@@ -12,7 +12,9 @@
 </template>
 
 <script>
+  import { UIText } from 'ui'
   export default {
+    components: { UIText },
     props: {
       title: String
     }

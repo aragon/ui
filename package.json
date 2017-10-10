@@ -1,10 +1,11 @@
 {
   "name": "@aragon/ui",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "src/index.js",
   "license": "GPL-3.0",
   "scripts": {
-    "start": "cd gallery && npm start"
+    "start": "cd gallery && npm start",
+    "build:watch": "wepack -w"
   },
   "dependencies": {},
   "peerDependencies": {
@@ -15,6 +16,7 @@
     "babel-loader": "^7.1.2",
     "babel-preset-env": "^1.6.0",
     "css-loader": "^0.28.7",
+    "extract-text-webpack-plugin": "^3.0.1",
     "file-loader": "^1.1.5",
     "postcss-cssnext": "^3.0.2",
     "url-loader": "^0.6.2",

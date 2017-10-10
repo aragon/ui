@@ -1,5 +1,6 @@
 const path = require('path')
 const webpack = require('webpack')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 const NODE_ENV = process.env.NODE_ENV
 const IS_PRODUCTION = NODE_ENV === 'production'
@@ -12,6 +13,11 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     library: 'Aragon',
     libraryTarget: 'umd',
+  },
+  resolve: {
+    alias: {
+      '@aragon/ui': path.resolve(__dirname, './src'),
+    },
   },
   externals: {
     vue: {
@@ -29,7 +35,7 @@ module.exports = {
         loader: 'vue-loader',
         options: {
           postcss: [require('postcss-cssnext')()],
-          extractCSS: IS_PRODUCTION,
+          extractCSS: true,
         },
       },
       {
@@ -54,8 +60,6 @@ module.exports = {
     new webpack.DefinePlugin({
       'process.env': { NODE_ENV: JSON.stringify(NODE_ENV) },
     }),
+    new ExtractTextPlugin('styles.css'),
   ],
-  alias: {
-    ui: path.resolve(__dirname, '.'),
-  }
 }

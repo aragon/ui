@@ -1,6 +1,0 @@
-export { default as UIBaseStyles } from './src/comps/BaseStyles/BaseStyles.vue'
-export { default as UIButton } from './src/comps/Button/Button.vue'
-export { default as UIText } from './src/comps/Text/Text.vue'
-export { default as UIHeader } from './src/comps/Header/Header.vue'
-export { default as UIIllustratedSection } from './src/comps/IllustratedSection/IllustratedSection.vue'
-export { default as UISection } from './src/comps/Section/Section.vue'

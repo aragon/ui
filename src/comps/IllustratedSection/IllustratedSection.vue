@@ -26,7 +26,7 @@
 </template>
 
 <script>
-  import { UISection } from 'ui'
+  import UISection from '../Section/Section.vue'
   export default {
     props: {
       dark: Boolean,

@@ -33,7 +33,7 @@
 </template>
 
 <script>
-  import { UIButton } from 'ui'
+  import UIButton from '../Button/Button.vue'
   export default {
     components: { UIButton },
     props: {
