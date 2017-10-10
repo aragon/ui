@@ -1,5 +1,5 @@
 <template>
-  <a-section class="illustrated-section" :class="{ dark }">
+  <UISection class="illustrated-section" :class="{ dark }">
     <div class="main">
       <div class="illustration" v-if="illustrationBefore">
         <slot name="illustration" />
@@ -22,17 +22,17 @@
         <slot name="illustration" />
       </div>
     </div>
-  </a-section>
+  </UISection>
 </template>
 
 <script>
-  import aSection from '../a-section/a-section.vue'
+  import { UISection } from 'ui'
   export default {
     props: {
       dark: Boolean,
       illustrationBefore: Boolean
     },
-    components: { aSection }
+    components: { UISection }
   }
 </script>
 

@@ -1,6 +1,10 @@
 <template>
   <section class="gallery__content">
-    <h1 class="title">{{ title }}</h1>
+    <h1 class="title">
+      <UIText>
+        {{ title }}
+      </UIText>
+    </h1>
     <div>
       <slot />
     </div>
@@ -8,7 +12,6 @@
 </template>
 
 <script>
-  import { aButton } from 'ui'
   export default {
     props: {
       title: String

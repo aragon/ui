@@ -1,15 +1,13 @@
 <template>
-  <a-text spaced>
+  <UIText spaced>
     The Aragon UI module allows you to develop apps that look and feel like
     Aragon apps.
-  </a-text>
+  </UIText>
 </template>
 
 <script>
-  import { aText } from 'ui'
+  import { UIText } from 'ui'
   export default {
-    components: {
-      aText
-    }
+    components: { UIText }
   }
 </script>

@@ -1,23 +1,20 @@
 <template>
   <div>
-    <a-text spaced>
+    <UIText spaced>
       The button component in normal, outline and strong modes:
-    </a-text>
+    </UIText>
     <div class="page__button__content">
-      <a-button>Normal Button</a-button>
-      <a-button outline>Outline Mode</a-button>
-      <a-button strong>Strong Mode</a-button>
+      <UIButton>Normal Button</UIButton>
+      <UIButton outline>Outline Mode</UIButton>
+      <UIButton strong>Strong Mode</UIButton>
     </div>
   </div>
 </template>
 
 <script>
-  import { aButton, aText } from 'ui'
+  import { UIButton, UIText } from 'ui'
   export default {
-    components: {
-      aButton,
-      aText
-    }
+    components: { UIButton, UIText }
   }
 </script>
 

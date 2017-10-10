@@ -1,12 +1,12 @@
 <template>
-  <a-text spaced>
+  <UIText spaced>
     The text component can be used to display text.
-  </a-text>
+  </UIText>
 </template>
 
 <script>
-  import { aText } from 'ui'
+  import { UIText } from 'ui'
   export default {
-    components: { aText }
+    components: { UIText }
   }
 </script>

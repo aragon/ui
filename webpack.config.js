@@ -55,4 +55,7 @@ module.exports = {
       'process.env': { NODE_ENV: JSON.stringify(NODE_ENV) },
     }),
   ],
+  alias: {
+    ui: path.resolve(__dirname, '.'),
+  }
 }

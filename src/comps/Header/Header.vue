@@ -25,17 +25,17 @@
         </nav>
       </div>
       <div>
-        <a-button outline>Try web version</a-button>
-        <a-button strong>Download Aragon</a-button>
+        <UIButton outline>Try web version</UIButton>
+        <UIButton strong>Download Aragon</UIButton>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-  import aButton from '../a-button/a-button.vue'
+  import { UIButton } from 'ui'
   export default {
-    components: { aButton },
+    components: { UIButton },
     props: {
       menuItems: Array
     }
