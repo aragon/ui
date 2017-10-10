@@ -1,5 +1,6 @@
 export { default as aBaseStyles } from './src/comps/a-base-styles/a-base-styles.vue'
 export { default as aButton } from './src/comps/a-button/a-button.vue'
+export { default as aText } from './src/comps/a-text/a-text.vue'
 export { default as aHeader } from './src/comps/a-header/a-header.vue'
 export { default as aIllustratedSection } from './src/comps/a-illustrated-section/a-illustrated-section.vue'
 export { default as aSection } from './src/comps/a-section/a-section.vue'
