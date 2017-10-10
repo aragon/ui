@@ -13,7 +13,7 @@ module.exports = {
     alias: {
       pages: path.resolve(__dirname, 'src/pages/'),
       comps: path.resolve(__dirname, 'src/comps/'),
-      toolkit: path.resolve(__dirname, '..'),
+      ui: path.resolve(__dirname, '..'),
     },
   },
   plugins: [new HtmlWebpackPlugin({ title: 'Aragon Toolkit Gallery' })],

@@ -1,5 +1,5 @@
 {
-  "name": "aragon-toolkit-gallery",
+  "name": "@aragon/ui-gallery",
   "version": "1.0.0",
   "main": "index.js",
   "license": "GPL-3.0",

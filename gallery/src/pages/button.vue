@@ -12,7 +12,7 @@
 </template>
 
 <script>
-  import { aButton, aText } from 'toolkit'
+  import { aButton, aText } from 'ui'
   export default {
     components: {
       aButton,

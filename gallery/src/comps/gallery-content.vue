@@ -8,7 +8,7 @@
 </template>
 
 <script>
-  import { aButton } from 'toolkit'
+  import { aButton } from 'ui'
   export default {
     props: {
       title: String

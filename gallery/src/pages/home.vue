@@ -6,7 +6,7 @@
 </template>
 
 <script>
-  import { aText } from 'toolkit'
+  import { aText } from 'ui'
   export default {
     components: {
       aText

@@ -12,7 +12,7 @@
 
 <script>
   import Vue from 'vue'
-  import { aBaseStyles } from 'toolkit'
+  import { aBaseStyles } from 'ui'
   import createHistory from 'history/createBrowserHistory'
   import gallerySidebar from 'comps/gallery-sidebar.vue'
   import galleryContent from 'comps/gallery-content.vue'
