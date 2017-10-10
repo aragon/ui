@@ -4,9 +4,9 @@
     <div class="gallery__sidebar">
       <gallery-sidebar :pages='pages' @openPage='handleOpenPage' />
     </div>
-    <div class="gallery__content">
+    <gallery-content :title="page.name">
       <component :is="page.comp" />
-    </div>
+    </gallery-content>
   </div>
 </template>
 
@@ -15,13 +15,16 @@
   import { aBaseStyles } from 'toolkit'
   import createHistory from 'history/createBrowserHistory'
   import gallerySidebar from 'comps/gallery-sidebar.vue'
+  import galleryContent from 'comps/gallery-content.vue'
 
   import home from 'pages/home.vue'
   import button from 'pages/button.vue'
+  import text from 'pages/text.vue'
 
   const pages = [
-    [home, 'Aragon Toolkit', '/'],
-    [button, 'Button', '/button']
+    [home, 'Aragon UI', '/'],
+    [text, 'Text', '/text'],
+    [button, 'Button', '/button'],
   ].map(p => ({
     comp: p[0],
     name: p[1],
@@ -31,6 +34,7 @@
   export default {
     components: {
       gallerySidebar,
+      galleryContent,
       aBaseStyles,
     },
     data() {
@@ -50,7 +54,6 @@
         }
         const page = pages.find(page => page.path === match[1])
         if (page) {
-          console.log('NEW PAGE', page)
           this.page = page
         }
       },
@@ -71,14 +74,17 @@
     display: flex;
     height: 100%;
   }
+
   .gallery__sidebar {
     width: 200px;
     padding-right: 20px;
     margin-right: 20px;
   }
+
   .gallery__content {
     padding: 20px;
   }
+
   .gallery__content .title {
     margin-bottom: 40px;
   }

@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "GPL-3.0",
+  "scripts": {
+    "start": "cd gallery && npm start"
+  },
   "dependencies": {},
   "peerDependencies": {
     "vue": "^2.4.4"

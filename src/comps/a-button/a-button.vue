@@ -19,9 +19,10 @@
     padding: 12px 25px;
     color: var(--grey500);
     background: var(--white);
-    cursor: pointer;
+    white-space: nowrap;
     border: 0;
     border-radius: 3px;
+    cursor: pointer;
     &.outline {
       border: 1px solid rgba(var(--grey500-rgb), 0.2);
     }

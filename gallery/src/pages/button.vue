@@ -1,28 +1,32 @@
 <template>
-  <section>
-    <h1>Button Component</h1>
-
-    <div>
+  <div>
+    <a-text spaced>
+      The button component in normal, outline and strong modes:
+    </a-text>
+    <div class="page__button__content">
       <a-button>Normal Button</a-button>
       <a-button outline>Outline Mode</a-button>
       <a-button strong>Strong Mode</a-button>
     </div>
-  </section>
+  </div>
 </template>
 
 <script>
-
-import { aButton } from 'toolkit'
-
-export default {
-  components: {
-    aButton
+  import { aButton, aText } from 'toolkit'
+  export default {
+    components: {
+      aButton,
+      aText
+    }
   }
-}
 </script>
 
-<style scoped>
-h1 {
-  margin-bottom: 20px;
-}
+<style>
+  .page__button__content {
+    display: flex;
+    max-width: 800px;
+  }
+  .page__button__content .button + .button {
+    margin-left: 20px;
+  }
 </style>

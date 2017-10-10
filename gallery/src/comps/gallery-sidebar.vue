@@ -1,6 +1,6 @@
 <template>
   <section class="gallery-sidebar">
-    <h1 class="gallery-sidebar__title">
+    <h1 class="title">
       <a :href="pages[0].path" @click.prevent="open(pages[0].path)">
         {{ pages[0].name }}
       </a>
@@ -32,14 +32,15 @@
   .gallery-sidebar {
     padding: 20px;
   }
-  .gallery-sidebar__title {
+  .gallery-sidebar .title {
     font-size: 14px;
     margin-bottom: 20px;
   }
-  .gallery-sidebar__title a {
+  .gallery-sidebar .title a {
     text-decoration: none;
   }
   .gallery-sidebar li {
     list-style: none;
+    margin: 10px 0;
   }
 </style>

@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import gallery from './gallery/gallery.vue'
+import gallery from './comps/gallery.vue'
 
 const initAppElement = (id = '#app') => {
   if (document.querySelector(id)) {
