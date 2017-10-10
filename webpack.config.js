@@ -1,6 +1,9 @@
 const path = require('path')
 const webpack = require('webpack')
 
+const NODE_ENV = process.env.NODE_ENV
+const IS_PRODUCTION = NODE_ENV === 'production'
+
 module.exports = {
   entry: './src/index.js',
   output: {
@@ -8,8 +11,7 @@ module.exports = {
     filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'dist'),
     library: 'Aragon',
-    libraryTarget: 'umd'
-
+    libraryTarget: 'umd',
   },
   externals: {
     vue: {
@@ -27,7 +29,7 @@ module.exports = {
         loader: 'vue-loader',
         options: {
           postcss: [require('postcss-cssnext')()],
-          // extractCSS: PRODUCTION,
+          extractCSS: IS_PRODUCTION,
         },
       },
       {
@@ -48,9 +50,9 @@ module.exports = {
       },
     ],
   },
-  // resolve: {
-  //   alias: {
-  //     toolkit: path.resolve(__dirname, '..'),
-  //   },
-  // },
+  plugins: [
+    new webpack.DefinePlugin({
+      'process.env': { NODE_ENV: JSON.stringify(NODE_ENV) },
+    }),
+  ],
 }
