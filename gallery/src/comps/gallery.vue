@@ -22,6 +22,7 @@
   import text from 'pages/text.vue'
   import header from 'pages/header.vue'
   import footer from 'pages/footer.vue'
+  import preFooter from 'pages/pre-footer.vue'
 
   const pages = [
     [home, 'Aragon UI', '/'],
@@ -29,6 +30,7 @@
     [button, 'Button', '/button'],
     [header, 'Header', '/header'],
     [footer, 'Footer', '/footer'],
+    [preFooter, 'PreFooter', '/pre-footer'],
 
   ].map(p => ({
     comp: p[0],
@@ -53,7 +55,7 @@
         this.history.push(page, {})
       },
       handleLocationUpdate(location) {
-        const match = location.pathname.match(/^(\/[a-z]*)\/?$/)
+        const match = location.pathname.match(/^(\/[a-z\-]*)\/?$/)
         if (!match || !match[1]) {
           return
         }
