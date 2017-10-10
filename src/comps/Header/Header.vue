@@ -1,8 +1,8 @@
 <template>
-  <div class="header">
+  <div class="header" :class="{ 'header--title': title }">
     <div class="header-in">
       <div>
-        <a href="/" class="logo">
+        <a href="/" class="logo" v-if="!title">
           <img
             alt="Aragon"
             src="./assets/logo.svg"
@@ -11,6 +11,13 @@
             v-once
           />
         </a>
+        <a href="/" class="logo" v-if="title">
+          <img src="./assets/isotype.svg" width="44" v-once />
+          <img src="./assets/logotype.svg" width="99" v-once />
+        </a>
+        <div v-if="title" class="title">
+          <h1>{{title}}</h1>
+        </div>
         <nav class="nav">
           <ul>
             <li v-for="item in menuItems">
@@ -24,7 +31,7 @@
           </ul>
         </nav>
       </div>
-      <div>
+      <div v-if="!title">
         <UIButton outline>Try web version</UIButton>
         <UIButton strong>Download Aragon</UIButton>
       </div>
@@ -37,7 +44,8 @@
   export default {
     components: { UIButton },
     props: {
-      menuItems: Array
+      menuItems: Array,
+      title: String,
     }
   }
 </script>
@@ -68,6 +76,21 @@
   .logo {
     display: flex;
     align-items: center;
+  }
+  .header--title .logo {
+    padding-right: 40px;
+    border-right: 1px solid #e8e8e8;
+    padding-top: 6px;
+    padding-bottom: 8px;
+  }
+  .header--title .logo img:first-child {
+    margin-right: 10px;
+  }
+  .title {
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+    margin-left: 40px;
   }
   .nav {
     display: flex;
