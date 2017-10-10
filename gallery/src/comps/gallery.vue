@@ -21,12 +21,14 @@
   import button from 'pages/button.vue'
   import text from 'pages/text.vue'
   import header from 'pages/header.vue'
+  import footer from 'pages/footer.vue'
 
   const pages = [
     [home, 'Aragon UI', '/'],
     [text, 'Text', '/text'],
     [button, 'Button', '/button'],
     [header, 'Header', '/header'],
+    [footer, 'Footer', '/footer'],
 
   ].map(p => ({
     comp: p[0],
