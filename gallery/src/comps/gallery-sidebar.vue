@@ -30,11 +30,12 @@
 
 <style scoped>
   .gallery-sidebar {
-    padding: 20px;
+    padding: 40px;
   }
   .gallery-sidebar .title {
+    margin-bottom: 40px;
     font-size: 14px;
-    margin-bottom: 20px;
+    font-weight: bold;
   }
   .gallery-sidebar .title a {
     text-decoration: none;

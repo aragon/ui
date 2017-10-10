@@ -1,6 +1,6 @@
 <template>
   <section class="gallery__content">
-    <h1 class="title">
+    <h1 class="gallery__content__title">
       <UIText>
         {{ title }}
       </UIText>
@@ -24,8 +24,14 @@
 <style>
   .gallery__content {
     width: 100%;
+    padding: 40px;
   }
-  .gallery__content .title {
-    margin-bottom: 20px;
+  .gallery__content .gallery__content__title {
+    margin-bottom: 40px;
+  }
+  .gallery__content .gallery__content__title .text {
+    color: #000;
+    font-weight: bold;
+    font-size: 24px;
   }
 </style>

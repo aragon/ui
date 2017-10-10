@@ -20,11 +20,14 @@
   import home from 'pages/home.vue'
   import button from 'pages/button.vue'
   import text from 'pages/text.vue'
+  import header from 'pages/header.vue'
 
   const pages = [
     [home, 'Aragon UI', '/'],
     [text, 'Text', '/text'],
     [button, 'Button', '/button'],
+    [header, 'Header', '/header'],
+
   ].map(p => ({
     comp: p[0],
     name: p[1],
@@ -74,18 +77,9 @@
     display: flex;
     height: 100%;
   }
-
   .gallery__sidebar {
     width: 200px;
     padding-right: 20px;
     margin-right: 20px;
-  }
-
-  .gallery__content {
-    padding: 20px;
-  }
-
-  .gallery__content .title {
-    margin-bottom: 40px;
   }
 </style>
