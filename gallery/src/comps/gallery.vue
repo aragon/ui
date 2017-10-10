@@ -23,6 +23,7 @@
   import header from 'pages/header.vue'
   import footer from 'pages/footer.vue'
   import preFooter from 'pages/pre-footer.vue'
+  import loader from 'pages/loader.vue'
 
   const pages = [
     [home, 'Aragon UI', '/'],
@@ -31,6 +32,7 @@
     [header, 'Header', '/header'],
     [footer, 'Footer', '/footer'],
     [preFooter, 'PreFooter', '/pre-footer'],
+    [loader, 'Loader', '/loader'],
 
   ].map(p => ({
     comp: p[0],

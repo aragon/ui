@@ -13,7 +13,7 @@
   }
 </script>
 
-<style>
+<style scoped>
   @import '../../shared-styles.css';
   .button {
     padding: 12px 25px;

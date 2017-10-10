@@ -7,7 +7,9 @@
     "start": "cd gallery && npm start",
     "build:watch": "wepack -w"
   },
-  "dependencies": {},
+  "dependencies": {
+    "vue-motion": "^0.2.0"
+  },
   "peerDependencies": {
     "vue": "^2.4.4"
   },
