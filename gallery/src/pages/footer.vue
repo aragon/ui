@@ -1,6 +1,10 @@
 <template>
   <div>
+    <UIText spaced>Default:</UIText>
     <UIFooter />
+
+    <UIText spaced>Light:</UIText>
+    <UIFooter light />
   </div>
 </template>
 
