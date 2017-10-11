@@ -1,6 +1,6 @@
+const path = require('path')
 const merge = require('lodash/merge')
 const postCssNext = require('postcss-cssnext')
-const path = require('path')
 
 const baseConf = (webpack, dir) => ({
   module: {
@@ -10,7 +10,6 @@ const baseConf = (webpack, dir) => ({
         loader: 'vue-loader',
         options: {
           postcss: [postCssNext()],
-          extractCSS: true,
         },
       },
       {
@@ -32,9 +31,6 @@ const baseConf = (webpack, dir) => ({
     ],
   },
   resolve: {
-    alias: {
-      '@aragon/ui': path.resolve(dir, '../src'),
-    },
     modules: [path.join(dir, 'node_modules')],
   },
   resolveLoader: {

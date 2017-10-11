@@ -1,7 +1,6 @@
 const webpack = require('webpack')
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const uiWebpack = require('../webpack-base')
 
 module.exports = uiWebpack(webpack, __dirname, {
@@ -14,11 +13,11 @@ module.exports = uiWebpack(webpack, __dirname, {
     alias: {
       pages: path.resolve(__dirname, 'src/pages/'),
       comps: path.resolve(__dirname, 'src/comps/'),
+      '@aragon/ui': path.resolve(__dirname, '../src'),
     },
   },
   plugins: [
     new HtmlWebpackPlugin({ title: 'Aragon Toolkit Gallery' }),
-    new ExtractTextPlugin('styles.css'),
   ],
   output: {
     publicPath: '/',
