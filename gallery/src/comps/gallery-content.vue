@@ -12,7 +12,7 @@
 </template>
 
 <script>
-  import { UIText } from 'ui'
+  import { UIText } from '@aragon/ui'
   export default {
     components: { UIText },
     props: {

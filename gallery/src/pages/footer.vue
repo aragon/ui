@@ -9,7 +9,7 @@
 </template>
 
 <script>
-  import { UIFooter, UIText } from 'ui'
+  import { UIFooter, UIText } from '@aragon/ui'
   export default {
     components: { UIFooter, UIText }
   }

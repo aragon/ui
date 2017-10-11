@@ -5,10 +5,12 @@
   "license": "GPL-3.0",
   "dependencies": {
     "history": "^4.7.2",
+    "vue-motion": "^0.2.0",
     "vue": "^2.4.4"
   },
   "scripts": {
-    "start": "webpack-dev-server --open"
+    "start": "webpack-dev-server",
+    "build": "webpack"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",

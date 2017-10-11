@@ -5,7 +5,7 @@
 </template>
 
 <script>
-  import { UIPreFooter } from 'ui'
+  import { UIPreFooter } from '@aragon/ui'
   export default {
     components: { UIPreFooter }
   }

@@ -12,7 +12,7 @@
 
 <script>
   import Vue from 'vue'
-  import { UIBaseStyles } from 'ui'
+  import { UIBaseStyles } from '@aragon/ui'
   import createHistory from 'history/createBrowserHistory'
   import gallerySidebar from 'comps/gallery-sidebar.vue'
   import galleryContent from 'comps/gallery-content.vue'
