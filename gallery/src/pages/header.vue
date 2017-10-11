@@ -17,7 +17,7 @@
 </template>
 
 <script>
-  import { UIHeader, UIText } from 'ui'
+  import { UIHeader, UIText } from '@aragon/ui'
   export default {
     components: { UIHeader, UIText }
   }

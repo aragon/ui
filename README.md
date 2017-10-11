@@ -4,16 +4,28 @@ The Aragon UI Toolkit.
 
 ## Develop
 
+Install the dependencies:
+
 ```sh
 npm install
-cd gallery
-npm install
+```
+
+Run the gallery:
+
+```sh
 npm start
 ```
 
+Open <http://localhost:8080/> in your web browser.
+
 ## Include in a project
 
-Add `@aragon/ui` to the dependencies of the package.json:
+`@aragon/ui` need to be transpiled by your project, using webpack. This is
+needed to ensure that only the required components are present in your project,
+and that no dependencies exist twice. It also facilitates exporting the assets
+associated with the components (styles, images, fonts).
+
+Start by adding `@aragon/ui` to your project `package.json`:
 
 ```json
 "dependencies": {
@@ -21,39 +33,36 @@ Add `@aragon/ui` to the dependencies of the package.json:
 }
 ```
 
-To transpile the toolkit, the `vue-loader`, `url-loader` and `babel-loader`
-loaders need to be added to your webpack configuration. The `postcss-cssnext`
-module also need to be installed and passed in the `vue-loader` options.
+Install the runtime dependencies:
+
+```sh
+npm install --save vue vue-motion
+```
+
+Install the build dependencies:
+
+```sh
+npm install --save-dev webpack babel-core babel-loader babel-preset-env css-loader file-loader url-loader vue-loader vue-template-compiler
+```
+
+You can now create your `webpack.config.js` file using the `webpack-base` module.
+
+Simple webpack configuration for a project:
 
 ```javascript
-// Webpack configuration
-module.exports = {
-  module: {
-    rules: [
-      {
-        test: /\.vue$/,
-        loader: 'vue-loader',
-        options: {
-          postcss: [require('postcss-cssnext')()]
-        },
-      },
-      {
-        test: /\.(png|jpg|gif|svg|woff|woff2)$/,
-        use: [
-          {
-            loader: 'url-loader',
-            options: {
-              limit: 8192,
-            },
-          },
-        ],
-      },
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: 'babel-loader',
-      },
-    ],
+// webpack.config.js
+const path = require('path')
+const webpack = require('webpack')
+const uiWebpackBase = require('@aragon/ui/webpack-base')
+
+// Pass webpack, the current directory,
+// and your own webpack configuration to uiWebpackBase().
+module.exports = uiWebpackBase(webpack, __dirname, {
+  entry: path.resolve(__dirname, 'src/index.js'),
+  output: {
+    publicPath: '/',
+    filename: '[name].bundle.js',
+    path: path.resolve(__dirname, 'dist'),
   },
-}
+})
 ```

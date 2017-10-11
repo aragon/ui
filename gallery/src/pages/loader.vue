@@ -8,7 +8,7 @@
 </template>
 
 <script>
-  import { UILoader, UIText, UIButton } from 'ui'
+  import { UILoader, UIText, UIButton } from '@aragon/ui'
   export default {
     components: { UILoader, UIText, UIButton },
     data() {

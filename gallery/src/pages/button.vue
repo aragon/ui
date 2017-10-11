@@ -12,7 +12,7 @@
 </template>
 
 <script>
-  import { UIButton, UIText } from 'ui'
+  import { UIButton, UIText } from '@aragon/ui'
   export default {
     components: { UIButton, UIText }
   }
