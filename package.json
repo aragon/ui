@@ -12,7 +12,6 @@
     "vue-motion": "^0.2.0"
   },
   "devDependencies": {
-    "lodash": "^4.17.4",
     "postcss-cssnext": "^3.0.2"
   }
 }
