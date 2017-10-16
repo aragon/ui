@@ -1,5 +1,5 @@
 <template>
-  <p class="text" :class="{ 'text--spaced': spaced }">
+  <p :class="{ [$style.text]: true, [$style.spaced]: spaced }">
     <slot />
   </p>
 </template>
@@ -12,12 +12,12 @@
   }
 </script>
 
-<style>
+<style module>
   @import '../../shared-styles.css';
   .text {
     color: var(--grey500);
   }
-  .text--spaced {
+  .spaced {
     margin: 20px 0;
   }
 </style>

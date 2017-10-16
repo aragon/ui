@@ -1,6 +1,6 @@
 <template>
-  <section class="gallery__content">
-    <h1 class="gallery__content__title">
+  <section :class="$style.content">
+    <h1 :class="$style.title">
       <UIText>
         {{ title }}
       </UIText>
@@ -21,15 +21,15 @@
   }
 </script>
 
-<style>
-  .gallery__content {
+<style module>
+  .content {
     width: 100%;
     padding: 40px;
   }
-  .gallery__content .gallery__content__title {
+  .title {
     margin-bottom: 40px;
   }
-  .gallery__content .gallery__content__title .text {
+  .title .text {
     color: #000;
     font-weight: bold;
     font-size: 24px;

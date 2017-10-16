@@ -13,6 +13,10 @@ module.exports = (webpack, dir, conf) =>
           loader: 'vue-loader',
           options: {
             postcss: [postCssNext()],
+            cssModules: {
+              localIdentName: '[hash:base64:7]',
+              camelCase: true
+            }
           },
         },
         {

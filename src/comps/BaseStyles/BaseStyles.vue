@@ -6,26 +6,26 @@
   }
 </script>
 
-<style>
+<style module>
   @import url('../../shared-styles.css');
   @font-face {
     font-family: 'overpass';
-    src: url('assets/overpass/overpass-thin.woff2') format('woff2'),
-      url('assets/overpass/overpass-thin.woff') format('woff');
+    src: url('./assets/overpass/overpass-thin.woff2') format('woff2'),
+         url('./assets/overpass/overpass-thin.woff') format('woff');
     font-weight: 200;
     font-style: normal;
   }
   @font-face {
     font-family: 'overpass';
-    src: url('assets/overpass/overpass-light.woff2') format('woff2'),
-      url('assets/overpass/overpass-light.woff') format('woff');
+    src: url('./assets/overpass/overpass-light.woff2') format('woff2'),
+         url('./assets/overpass/overpass-light.woff') format('woff');
     font-weight: 400;
     font-style: normal;
   }
   @font-face {
     font-family: 'overpass';
-    src: url('assets/overpass/overpass-semibold.woff2') format('woff2'),
-      url('assets/overpass/overpass-semibold.woff') format('woff');
+    src: url('./assets/overpass/overpass-semibold.woff2') format('woff2'),
+         url('./assets/overpass/overpass-semibold.woff') format('woff');
     font-weight: 600;
     font-style: normal;
   }
@@ -35,8 +35,10 @@
     box-sizing: border-box;
   }
   body {
-    @apply --text-normal;
     font-family: overpass, sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.5;
     color: var(--grey700);
     background: #eef7f8;
   }

@@ -3,10 +3,16 @@
     <UIText spaced>
       The button component in normal, outline and strong modes:
     </UIText>
-    <div class="page__button__content">
-      <UIButton>Normal Button</UIButton>
-      <UIButton outline>Outline Mode</UIButton>
-      <UIButton strong>Strong Mode</UIButton>
+    <div :class="$style.content">
+      <div>
+        <UIButton>Normal Button</UIButton>
+      </div>
+      <div>
+        <UIButton outline>Outline Mode</UIButton>
+      </div>
+      <div>
+        <UIButton strong>Strong Mode</UIButton>
+      </div>
     </div>
   </div>
 </template>
@@ -18,12 +24,15 @@
   }
 </script>
 
-<style>
-  .page__button__content {
+<style module>
+  .content {
     display: flex;
     max-width: 800px;
   }
-  .page__button__content .button + .button {
+  .content > div {
     margin-left: 20px;
+    &:first-child {
+      margin: 0;
+    }
   }
 </style>

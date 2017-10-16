@@ -1,5 +1,11 @@
 <template>
-  <button class="button" :class="{ outline, strong }">
+  <button
+    :class="{
+      [$style.button]: true,
+      [$style.strong]: strong,
+      [$style.outline]: outline,
+    }"
+  >
     <slot />
   </button>
 </template>
@@ -13,7 +19,7 @@
   }
 </script>
 
-<style scoped>
+<style module>
   @import '../../shared-styles.css';
   .button {
     padding: 12px 25px;
@@ -23,17 +29,13 @@
     border: 0;
     border-radius: 3px;
     cursor: pointer;
-    &.outline {
-      border: 1px solid rgba(var(--grey500-rgb), 0.2);
-    }
-    &.strong {
-      color: var(--white);
-      font-weight: 600;
-      background-image: linear-gradient(
-        130deg,
-        var(--aragon),
-        var(--aragonAlt)
-      );
-    }
+  }
+  .outline {
+    border: 1px solid rgba(var(--grey500-rgb), 0.2);
+  }
+  .strong {
+    color: var(--white);
+    font-weight: 600;
+    background-image: linear-gradient(130deg, var(--aragon), var(--aragonAlt));
   }
 </style>

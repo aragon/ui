@@ -1,7 +1,7 @@
 <template>
-  <UISection class="footer" :class="{'footer-light': light}" visual>
-    <div class="main">
-      <div class="first-part">
+  <UISection :class="{[$style.footer]: true, [$style.footerLight]: light}" visual>
+    <div :class="$style.main">
+      <div :class="$style.firstPart">
         <img src="./assets/logo.svg" width="158" height="50" alt="Aragon" />
         <ul v-if="!light">
           <li>
@@ -31,24 +31,24 @@
           </li>
         </ul>
       </div>
-      <ul class="second-part">
+      <ul :class="$style.secondPart">
         <li>
-          <a href="" class="icon twitter">
+          <a href="" :class="[$style.icon, $style.twitter]">
             Twitter
           </a>
         </li>
         <li>
-          <a href="" class="icon medium">
+          <a href="" :class="[$style.icon, $style.medium]">
             Medium
           </a>
         </li>
         <li>
-          <a href="" class="icon slack">
+          <a href="" :class="[$style.icon, $style.slack]">
             Slack
           </a>
         </li>
         <li>
-          <a href="" class="icon mail">
+          <a href="" :class="[$style.icon, $style.mail]">
             Email
           </a>
         </li>
@@ -67,7 +67,7 @@
   }
 </script>
 
-<style scoped>
+<style module>
   @import '../../shared-styles.css';
   .footer {
     padding: 90px 0 110px;
@@ -75,26 +75,26 @@
     color: var(--grey500);
     background: var(--grey700);
   }
-  .footer-light {
+  .footerLight {
     padding: 30px 0;
     background: var(--grey800);
   }
-  .footer-light .second-part {
+  .footerLight .secondPart {
     display: flex;
     align-items: center;
   }
-  .footer-light .second-part li {
+  .footerLight .secondPart li {
     margin-bottom: 0;
     margin-left: 20px;
   }
-  .footer-light .icon {
+  .footerLight .icon {
     padding-left: 25px;
   }
   .main {
     display: flex;
     justify-content: space-between;
   }
-  .first-part {
+  .firstPart {
     display: flex;
     justify-content: space-between;
     width: 50%;

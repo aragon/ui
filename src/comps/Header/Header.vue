@@ -1,8 +1,11 @@
 <template>
-  <div class="header" :class="{ 'header--title': title }">
-    <div class="header-in">
+  <div :class="{
+    [$style.header]: true,
+    [$style.headerWithTitle]: true,
+  }">
+    <div :class="$style.headerIn">
       <div>
-        <a href="/" class="logo" v-if="!title">
+        <a href="/" :class="$style.logo" v-if="!title">
           <img
             alt="Aragon"
             src="./assets/logo.svg"
@@ -11,29 +14,27 @@
             v-once
           />
         </a>
-        <a href="/" class="logo" v-if="title">
+        <a href="/" :class="$style.logo" v-if="title">
           <img src="./assets/isotype.svg" width="44" v-once />
           <img src="./assets/logotype.svg" width="99" v-once />
         </a>
-        <div v-if="title" class="title">
+        <div v-if="title" :class="$style.title">
           <h1>{{title}}</h1>
         </div>
-        <nav class="nav">
+        <nav :class="$style.nav">
           <ul>
-            <li v-for="item in menuItems">
+            <li v-for="item in menuItems" :class="$style.navItem">
               <a
                 :href="item[0]"
-                :class="{active: item[2]}"
-              >
-                {{item[1]}}
-              </a>
+                :class="{[$style.active]: item[2]}"
+              >{{item[1]}}</a>
             </li>
           </ul>
         </nav>
       </div>
       <div v-if="!title">
-        <UIButton outline>Try web version</UIButton>
-        <UIButton strong>Download Aragon</UIButton>
+        <div :class="$style.button"><UIButton outline>Try web version</UIButton></div>
+        <div :class="$style.button"><UIButton strong>Download Aragon</UIButton></div>
       </div>
     </div>
   </div>
@@ -50,15 +51,12 @@
   }
 </script>
 
-<style scoped>
+<style module>
   @import '../../shared-styles.css';
   .header {
     background: var(--white);
-    & .button {
-      margin-left: 10px;
-    }
   }
-  .header-in {
+  .headerIn {
     display: flex;
     justify-content: space-between;
     align-items: stretch;
@@ -66,24 +64,24 @@
     max-width: 1140px;
     margin: 0 auto;
   }
-  .header-in > div {
+  .headerIn > div {
     display: flex;
     align-items: center;
-  }
-  .header-in > div:first-child {
-    align-items: stretch;
+    &:first-child {
+      align-items: stretch;
+    }
   }
   .logo {
     display: flex;
     align-items: center;
   }
-  .header--title .logo {
+  .headerWithTitle .logo {
     padding-right: 40px;
     border-right: 1px solid #e8e8e8;
     padding-top: 6px;
     padding-bottom: 8px;
   }
-  .header--title .logo img:first-child {
+  .headerWithTitle .logo img:first-child {
     margin-right: 10px;
   }
   .title {
@@ -95,26 +93,32 @@
   .nav {
     display: flex;
     align-items: stretch;
-    & ul {
-      display: flex;
-      align-items: stretch;
-      list-style: none;
-      margin-left: 30px;
+    list-style: none;
+    margin-left: 45px;
+  }
+  .nav ul {
+    display: flex;
+    align-items: stretch;
+  }
+  .navItem {
+    display: flex;
+    align-items: stretch;
+  }
+  .navItem a {
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+    text-decoration: none;
+    font-size: 15px;
+    color: var(--grey500);
+    &.active {
+      color: var(--turquoise500);
     }
-    & li {
-      display: flex;
-      align-items: stretch;
-    }
-    & a {
-      display: flex;
-      align-items: center;
-      padding: 0 30px;
-      text-decoration: none;
-      font-size: 15px;
-      color: var(--grey500);
-      &.active {
-        color: var(--turquoise500);
-      }
+  }
+  .button {
+    margin-left: 10px;
+    &:first-child {
+      margin: 0;
     }
   }
 </style>

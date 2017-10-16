@@ -1,7 +1,7 @@
 <template>
-  <div class="gallery">
+  <div :class="$style.gallery">
     <UIBaseStyles />
-    <div class="gallery__sidebar">
+    <div :class="$style.sidebar">
       <gallery-sidebar :pages='pages' @openPage='handleOpenPage' />
     </div>
     <gallery-content :title="page.name">
@@ -78,12 +78,12 @@
   }
 </script>
 
-<style scoped>
+<style module>
   .gallery {
     display: flex;
     height: 100%;
   }
-  .gallery__sidebar {
+  .sidebar {
     width: 200px;
     padding-right: 20px;
     margin-right: 20px;

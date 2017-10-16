@@ -36,7 +36,7 @@
   }
 </script>
 
-<style scoped>
+<style module>
   @import '../../shared-styles.css';
   .illustrated-section {
     padding: 235px 0 140px;

@@ -1,11 +1,10 @@
 <template>
   <component
     :is="visual ? 'div' : 'section'"
-    :class="{ large }"
-    class="section"
+    :class="{ [$style.large]: large }"
   >
-    <div class="wrapper">
-      <div class="content">
+    <div>
+      <div :class="$style.content">
         <slot />
       </div>
     </div>
@@ -21,14 +20,14 @@
   }
 </script>
 
-<style scoped>
+<style module>
   @import '../../shared-styles.css';
   .content {
     margin: 0 auto;
     width: 100%;
     max-width: var(--cols10);
   }
-  .large .content {
+  .large {
     max-width: var(--cols12);
   }
 </style>

@@ -5,7 +5,7 @@
     v-bind:spring="spring"
   >
     <template scope="props">
-      <div class="loader" :style="loaderStyle(props.value)">
+      <div :class="$style.loader" :style="loaderStyle(props.value)">
         {{displayText}}
       </div>
     </template>
@@ -69,7 +69,7 @@
   }
 </script>
 
-<style scoped>
+<style module>
   .loader {
     position: fixed;
     z-index: 2;
