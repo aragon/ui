@@ -6,6 +6,7 @@
   "scripts": {
     "postinstall": "cd gallery && npm install",
     "deploy:site": "cd gallery && npm run build:production && gh-pages -d ./dist",
+    "publish": "npm publish --access public",
     "start": "cd gallery && npm start"
   },
   "peerDependencies": {
