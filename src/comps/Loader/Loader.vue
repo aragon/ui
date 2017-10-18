@@ -4,7 +4,7 @@
     v-bind:value="appearProgress"
     v-bind:spring="spring"
   >
-    <template slot-scope="props">
+    <template scope="props">
       <div :class="$style.loader" :style="loaderStyle(props.value)">
         {{displayText}}
       </div>
