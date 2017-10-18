@@ -26,19 +26,20 @@
   import preFooter from 'pages/pre-footer.vue'
   import loader from 'pages/loader.vue'
 
-  const pages = [
+  const PAGES = [
     [home, 'Aragon UI', '/'],
-    [text, 'Text', '/text'],
-    [button, 'Button', '/button'],
-    [header, 'Header', '/header'],
-    [footer, 'Footer', '/footer'],
-    [preFooter, 'PreFooter', '/pre-footer'],
-    [loader, 'Loader', '/loader'],
+    [text, 'Text', '/text/'],
+    [button, 'Button', '/button/'],
+    [header, 'Header', '/header/'],
+    [footer, 'Footer', '/footer/'],
+    [preFooter, 'PreFooter', '/pre-footer/'],
+    [loader, 'Loader', '/loader/'],
+  ]
 
-  ].map(p => ({
+  const preparePages = (path, pages) => pages.map(p => ({
     comp: p[0],
     name: p[1],
-    path: p[2]
+    path: path + p[2].replace(/^\//, '')
   }))
 
   export default {
@@ -46,10 +47,13 @@
       GallerySidebar,
       UIBaseStyles,
     },
+    props: {
+      path: String
+    },
     data() {
       return {
-        pages,
-        page: pages[0]
+        pages: null,
+        page: null,
       }
     },
     methods: {
@@ -57,17 +61,16 @@
         this.history.push(page, {})
       },
       handleLocationUpdate(location) {
-        const match = location.pathname.match(/^(\/[a-z\-]*)\/?$/)
-        if (!match || !match[1]) {
-          return
-        }
-        const page = pages.find(page => page.path === match[1])
+        const page = this.pages.find(page => page.path === location.pathname)
         if (page) {
           this.page = page
         }
       },
     },
     created() {
+      this.pages = preparePages(this.path, PAGES)
+      this.page = this.pages[0]
+
       this.history = createHistory()
       this.unlistenHistory = this.history.listen(this.handleLocationUpdate)
       this.handleLocationUpdate(this.history.location, true)

@@ -13,5 +13,5 @@ const initAppElement = (id = '#app') => {
 
 new Vue({
   el: initAppElement(),
-  render: h => h(gallery),
+  render: h => h(gallery, { props: { path: PUBLIC_PATH } }),
 })
