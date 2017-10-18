@@ -1,0 +1,3791 @@
+[
+  {
+    "timeStamp": 1508327660315,
+    "time": 4426,
+    "hash": "7acf88e55d301007c46e",
+    "errors": [],
+    "size": 1972486,
+    "assets": [
+      {
+        "name": "722a2cad8189a1ff4ab15e9340759adf.md",
+        "chunks": [],
+        "size": 480
+      },
+      {
+        "name": "8c022f6de72fa7d302ca54fe8f526c7d.woff2",
+        "chunks": [],
+        "size": 33696
+      },
+      {
+        "name": "c97e1959c8dd50cb12d0e7fb231d166b.woff2",
+        "chunks": [],
+        "size": 34472
+      },
+      {
+        "name": "3875601d3d9f38dbed024edb0204d27c.woff",
+        "chunks": [],
+        "size": 41936
+      },
+      {
+        "name": "ca8341201f84fb37c3f6ada7068e6811.woff2",
+        "chunks": [],
+        "size": 33416
+      },
+      {
+        "name": "ec228a396b9420f7dd003b59a8173db8.woff",
+        "chunks": [],
+        "size": 40620
+      },
+      {
+        "name": "fc2be84803be2f5c02dbb498af09012a.svg",
+        "chunks": [],
+        "size": 113740
+      },
+      {
+        "name": "b982c7fa5248d662d0202ed1602b3a69.svg",
+        "chunks": [],
+        "size": 114982
+      },
+      {
+        "name": "94f49172716aaf6567ad9f4c9dbaa3a9.woff",
+        "chunks": [],
+        "size": 40860
+      },
+      {
+        "name": "main.bundle.js",
+        "chunks": [
+          0
+        ],
+        "size": 1096601,
+        "minified": true
+      },
+      {
+        "name": "favicon.svg",
+        "chunks": [],
+        "size": 4307
+      },
+      {
+        "name": "index.html",
+        "chunks": [],
+        "size": 232
+      },
+      {
+        "name": "722a2cad8189a1ff4ab15e9340759adf.md.gz",
+        "chunks": [],
+        "size": 244
+      },
+      {
+        "name": "favicon.svg.gz",
+        "chunks": [],
+        "size": 1738
+      },
+      {
+        "name": "b982c7fa5248d662d0202ed1602b3a69.svg.gz",
+        "chunks": [],
+        "size": 85378
+      },
+      {
+        "name": "fc2be84803be2f5c02dbb498af09012a.svg.gz",
+        "chunks": [],
+        "size": 85147
+      },
+      {
+        "name": "main.bundle.js.gz",
+        "chunks": [],
+        "size": 244637
+      }
+    ],
+    "chunks": [
+      {
+        "size": 899741,
+        "files": [
+          "main.bundle.js"
+        ],
+        "modules": [
+          {
+            "name": "./node_modules/core-js/modules/_export.js",
+            "size": 1601,
+            "id": 0
+          },
+          {
+            "name": "./node_modules/core-js/modules/_an-object.js",
+            "size": 154,
+            "id": 1
+          },
+          {
+            "name": "./node_modules/core-js/modules/_global.js",
+            "size": 369,
+            "id": 2
+          },
+          {
+            "name": "./node_modules/core-js/modules/_fails.js",
+            "size": 104,
+            "id": 3
+          },
+          {
+            "name": "./node_modules/markdown-it/lib/common/utils.js",
+            "size": 7151,
+            "id": 4
+          },
+          {
+            "name": "./node_modules/core-js/modules/_is-object.js",
+            "size": 110,
+            "id": 5
+          },
+          {
+            "name": "./node_modules/core-js/modules/_wks.js",
+            "size": 358,
+            "id": 6
+          },
+          {
+            "name": "./node_modules/core-js/modules/_descriptors.js",
+            "size": 184,
+            "id": 7
+          },
+          {
+            "name": "./node_modules/core-js/modules/_object-dp.js",
+            "size": 600,
+            "id": 8
+          },
+          {
+            "name": "./node_modules/core-js/modules/_to-length.js",
+            "size": 215,
+            "id": 9
+          },
+          {
+            "name": "./node_modules/vue-loader/lib/component-normalizer.js",
+            "size": 2896,
+            "id": 10
+          },
+          {
+            "name": "./node_modules/core-js/modules/_to-object.js",
+            "size": 132,
+            "id": 11
+          },
+          {
+            "name": "./node_modules/css-loader/lib/css-base.js",
+            "size": 2260,
+            "id": 12
+          },
+          {
+            "name": "./node_modules/core-js/modules/_a-function.js",
+            "size": 125,
+            "id": 13
+          },
+          {
+            "name": "./node_modules/vue-style-loader/lib/addStylesClient.js",
+            "size": 6055,
+            "id": 14
+          },
+          {
+            "name": "./node_modules/core-js/modules/_has.js",
+            "size": 120,
+            "id": 15
+          },
+          {
+            "name": "./node_modules/core-js/modules/_hide.js",
+            "size": 286,
+            "id": 16
+          },
+          {
+            "name": "./node_modules/core-js/modules/_redefine.js",
+            "size": 1037,
+            "id": 17
+          },
+          {
+            "name": "./node_modules/core-js/modules/_string-html.js",
+            "size": 702,
+            "id": 18
+          },
+          {
+            "name": "./node_modules/core-js/modules/_to-iobject.js",
+            "size": 217,
+            "id": 19
+          },
+          {
+            "name": "./node_modules/core-js/modules/_object-gopd.js",
+            "size": 577,
+            "id": 20
+          },
+          {
+            "name": "./node_modules/core-js/modules/_object-gpo.js",
+            "size": 493,
+            "id": 21
+          },
+          {
+            "name": "./node_modules/core-js/modules/_ctx.js",
+            "size": 520,
+            "id": 22
+          },
+          {
+            "name": "./node_modules/core-js/modules/_cof.js",
+            "size": 106,
+            "id": 23
+          },
+          {
+            "name": "./node_modules/core-js/modules/_strict-method.js",
+            "size": 269,
+            "id": 24
+          },
+          {
+            "name": "./node_modules/core-js/modules/_core.js",
+            "size": 122,
+            "id": 25
+          },
+          {
+            "name": "./node_modules/core-js/modules/_to-primitive.js",
+            "size": 655,
+            "id": 26
+          },
+          {
+            "name": "./node_modules/core-js/modules/_defined.js",
+            "size": 162,
+            "id": 27
+          },
+          {
+            "name": "./node_modules/core-js/modules/_to-integer.js",
+            "size": 161,
+            "id": 28
+          },
+          {
+            "name": "./node_modules/core-js/modules/_object-sap.js",
+            "size": 370,
+            "id": 29
+          },
+          {
+            "name": "./node_modules/core-js/modules/_array-methods.js",
+            "size": 1494,
+            "id": 30
+          },
+          {
+            "name": "../src/index.js",
+            "size": 2321,
+            "id": 31
+          },
+          {
+            "name": "./node_modules/core-js/modules/_typed-array.js",
+            "size": 18286,
+            "id": 32
+          },
+          {
+            "name": "./node_modules/core-js/modules/_metadata.js",
+            "size": 1803,
+            "id": 33
+          },
+          {
+            "name": "./node_modules/css-loader?{\"minimize\":true,\"localIdentName\":\"[hash:base64:7]_0\",\"importLoaders\":true,\"modules\":true,\"sourceMap\":true}!../src/shared-styles.css",
+            "size": 2133,
+            "id": 34
+          },
+          {
+            "name": "./node_modules/core-js/modules/_meta.js",
+            "size": 1558,
+            "id": 35
+          },
+          {
+            "name": "./node_modules/core-js/modules/_add-to-unscopables.js",
+            "size": 297,
+            "id": 36
+          },
+          {
+            "name": "./node_modules/core-js/modules/_property-desc.js",
+            "size": 173,
+            "id": 37
+          },
+          {
+            "name": "./node_modules/core-js/modules/_uid.js",
+            "size": 162,
+            "id": 38
+          },
+          {
+            "name": "./node_modules/core-js/modules/_library.js",
+            "size": 24,
+            "id": 39
+          },
+          {
+            "name": "./node_modules/core-js/modules/_object-keys.js",
+            "size": 222,
+            "id": 40
+          },
+          {
+            "name": "./node_modules/core-js/modules/_to-absolute-index.js",
+            "size": 223,
+            "id": 41
+          },
+          {
+            "name": "./node_modules/core-js/modules/_object-create.js",
+            "size": 1505,
+            "id": 42
+          },
+          {
+            "name": "./node_modules/core-js/modules/_object-gopn.js",
+            "size": 288,
+            "id": 43
+          },
+          {
+            "name": "./node_modules/core-js/modules/_set-species.js",
+            "size": 359,
+            "id": 44
+          },
+          {
+            "name": "./node_modules/core-js/modules/_an-instance.js",
+            "size": 237,
+            "id": 45
+          },
+          {
+            "name": "./node_modules/core-js/modules/_for-of.js",
+            "size": 1176,
+            "id": 46
+          },
+          {
+            "name": "./node_modules/core-js/modules/_redefine-all.js",
+            "size": 169,
+            "id": 47
+          },
+          {
+            "name": "./src/comps/GalleryPage.vue",
+            "size": 1371,
+            "id": 48
+          },
+          {
+            "name": "./node_modules/core-js/modules/_set-to-string-tag.js",
+            "size": 262,
+            "id": 49
+          },
+          {
+            "name": "./node_modules/core-js/modules/_string-trim.js",
+            "size": 899,
+            "id": 50
+          },
+          {
+            "name": "./node_modules/core-js/modules/_iterators.js",
+            "size": 21,
+            "id": 51
+          },
+          {
+            "name": "./node_modules/core-js/modules/_validate-collection.js",
+            "size": 200,
+            "id": 52
+          },
+          {
+            "name": "(webpack)/buildin/global.js",
+            "size": 509,
+            "id": 53
+          },
+          {
+            "name": "./node_modules/core-js/modules/_iobject.js",
+            "size": 289,
+            "id": 54
+          },
+          {
+            "name": "./node_modules/core-js/modules/_object-pie.js",
+            "size": 37,
+            "id": 55
+          },
+          {
+            "name": "./node_modules/core-js/modules/_classof.js",
+            "size": 718,
+            "id": 56
+          },
+          {
+            "name": "../src/comps/Section/Section.vue",
+            "size": 1425,
+            "id": 57
+          },
+          {
+            "name": "./node_modules/core-js/modules/_shared.js",
+            "size": 202,
+            "id": 58
+          },
+          {
+            "name": "./node_modules/core-js/modules/_array-includes.js",
+            "size": 924,
+            "id": 59
+          },
+          {
+            "name": "./node_modules/core-js/modules/_object-gops.js",
+            "size": 42,
+            "id": 60
+          },
+          {
+            "name": "./node_modules/core-js/modules/_is-array.js",
+            "size": 147,
+            "id": 61
+          },
+          {
+            "name": "./node_modules/core-js/modules/_is-regexp.js",
+            "size": 289,
+            "id": 62
+          },
+          {
+            "name": "./node_modules/core-js/modules/_iter-detect.js",
+            "size": 645,
+            "id": 63
+          },
+          {
+            "name": "./node_modules/core-js/modules/_flags.js",
+            "size": 370,
+            "id": 64
+          },
+          {
+            "name": "./node_modules/core-js/modules/_fix-re-wks.js",
+            "size": 937,
+            "id": 65
+          },
+          {
+            "name": "./node_modules/core-js/modules/_species-constructor.js",
+            "size": 348,
+            "id": 66
+          },
+          {
+            "name": "./node_modules/core-js/modules/_collection.js",
+            "size": 3307,
+            "id": 67
+          },
+          {
+            "name": "./node_modules/core-js/modules/_typed.js",
+            "size": 674,
+            "id": 68
+          },
+          {
+            "name": "./node_modules/core-js/modules/_object-forced-pam.js",
+            "size": 361,
+            "id": 69
+          },
+          {
+            "name": "./node_modules/core-js/modules/_set-collection-of.js",
+            "size": 346,
+            "id": 70
+          },
+          {
+            "name": "./node_modules/core-js/modules/_set-collection-from.js",
+            "size": 802,
+            "id": 71
+          },
+          {
+            "name": "../src/comps/Button/Button.vue",
+            "size": 1422,
+            "id": 72
+          },
+          {
+            "name": "./node_modules/core-js/modules/_dom-create.js",
+            "size": 289,
+            "id": 73
+          },
+          {
+            "name": "./node_modules/core-js/modules/_wks-define.js",
+            "size": 417,
+            "id": 74
+          },
+          {
+            "name": "./node_modules/core-js/modules/_shared-key.js",
+            "size": 159,
+            "id": 75
+          },
+          {
+            "name": "./node_modules/core-js/modules/_enum-bug-keys.js",
+            "size": 160,
+            "id": 76
+          },
+          {
+            "name": "./node_modules/core-js/modules/_html.js",
+            "size": 101,
+            "id": 77
+          },
+          {
+            "name": "./node_modules/core-js/modules/_set-proto.js",
+            "size": 906,
+            "id": 78
+          },
+          {
+            "name": "./node_modules/core-js/modules/_string-ws.js",
+            "size": 170,
+            "id": 79
+          },
+          {
+            "name": "./node_modules/core-js/modules/_inherit-if-required.js",
+            "size": 337,
+            "id": 80
+          },
+          {
+            "name": "./node_modules/core-js/modules/_string-repeat.js",
+            "size": 373,
+            "id": 81
+          },
+          {
+            "name": "./node_modules/core-js/modules/_math-sign.js",
+            "size": 179,
+            "id": 82
+          },
+          {
+            "name": "./node_modules/core-js/modules/_math-expm1.js",
+            "size": 343,
+            "id": 83
+          },
+          {
+            "name": "./node_modules/core-js/modules/_string-at.js",
+            "size": 620,
+            "id": 84
+          },
+          {
+            "name": "./node_modules/core-js/modules/_iter-define.js",
+            "size": 2793,
+            "id": 85
+          },
+          {
+            "name": "./node_modules/core-js/modules/_iter-create.js",
+            "size": 526,
+            "id": 86
+          },
+          {
+            "name": "./node_modules/core-js/modules/_string-context.js",
+            "size": 314,
+            "id": 87
+          },
+          {
+            "name": "./node_modules/core-js/modules/_fails-is-regexp.js",
+            "size": 251,
+            "id": 88
+          },
+          {
+            "name": "./node_modules/core-js/modules/_is-array-iter.js",
+            "size": 279,
+            "id": 89
+          },
+          {
+            "name": "./node_modules/core-js/modules/_create-property.js",
+            "size": 271,
+            "id": 90
+          },
+          {
+            "name": "./node_modules/core-js/modules/core.get-iterator-method.js",
+            "size": 297,
+            "id": 91
+          },
+          {
+            "name": "./node_modules/core-js/modules/_array-species-create.js",
+            "size": 223,
+            "id": 92
+          },
+          {
+            "name": "./node_modules/core-js/modules/_array-fill.js",
+            "size": 643,
+            "id": 93
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.array.iterator.js",
+            "size": 1116,
+            "id": 94
+          },
+          {
+            "name": "./node_modules/core-js/modules/_task.js",
+            "size": 2484,
+            "id": 95
+          },
+          {
+            "name": "./node_modules/core-js/modules/_microtask.js",
+            "size": 1778,
+            "id": 96
+          },
+          {
+            "name": "./node_modules/core-js/modules/_new-promise-capability.js",
+            "size": 504,
+            "id": 97
+          },
+          {
+            "name": "./node_modules/core-js/modules/_typed-buffer.js",
+            "size": 9471,
+            "id": 98
+          },
+          {
+            "name": "./node_modules/uc.micro/categories/P/regex.js",
+            "size": 1778,
+            "id": 99
+          },
+          {
+            "name": "./node_modules/markdown-it/lib/ruler.js",
+            "size": 8651,
+            "id": 100
+          },
+          {
+            "name": "./node_modules/markdown-it/lib/token.js",
+            "size": 3650,
+            "id": 101
+          },
+          {
+            "name": "./node_modules/vue/dist/vue.runtime.esm.js",
+            "size": 204618,
+            "id": 102
+          },
+          {
+            "name": "./node_modules/warning/browser.js",
+            "size": 1807,
+            "id": 103
+          },
+          {
+            "name": "./node_modules/history/PathUtils.js",
+            "size": 1768,
+            "id": 104
+          },
+          {
+            "name": "../node_modules/babel-polyfill/lib/index.js",
+            "size": 833,
+            "id": 105
+          },
+          {
+            "name": "./node_modules/core-js/modules/_ie8-dom-define.js",
+            "size": 199,
+            "id": 106
+          },
+          {
+            "name": "./node_modules/core-js/modules/_wks-ext.js",
+            "size": 31,
+            "id": 107
+          },
+          {
+            "name": "./node_modules/core-js/modules/_object-keys-internal.js",
+            "size": 537,
+            "id": 108
+          },
+          {
+            "name": "./node_modules/core-js/modules/_object-dps.js",
+            "size": 404,
+            "id": 109
+          },
+          {
+            "name": "./node_modules/core-js/modules/_object-gopn-ext.js",
+            "size": 604,
+            "id": 110
+          },
+          {
+            "name": "./node_modules/core-js/modules/_object-assign.js",
+            "size": 1195,
+            "id": 111
+          },
+          {
+            "name": "./node_modules/core-js/modules/_bind.js",
+            "size": 903,
+            "id": 112
+          },
+          {
+            "name": "./node_modules/core-js/modules/_invoke.js",
+            "size": 701,
+            "id": 113
+          },
+          {
+            "name": "./node_modules/core-js/modules/_parse-int.js",
+            "size": 390,
+            "id": 114
+          },
+          {
+            "name": "./node_modules/core-js/modules/_parse-float.js",
+            "size": 359,
+            "id": 115
+          },
+          {
+            "name": "./node_modules/core-js/modules/_a-number-value.js",
+            "size": 158,
+            "id": 116
+          },
+          {
+            "name": "./node_modules/core-js/modules/_is-integer.js",
+            "size": 206,
+            "id": 117
+          },
+          {
+            "name": "./node_modules/core-js/modules/_math-log1p.js",
+            "size": 154,
+            "id": 118
+          },
+          {
+            "name": "./node_modules/core-js/modules/_math-fround.js",
+            "size": 716,
+            "id": 119
+          },
+          {
+            "name": "./node_modules/core-js/modules/_iter-call.js",
+            "size": 410,
+            "id": 120
+          },
+          {
+            "name": "./node_modules/core-js/modules/_array-reduce.js",
+            "size": 821,
+            "id": 121
+          },
+          {
+            "name": "./node_modules/core-js/modules/_array-copy-within.js",
+            "size": 876,
+            "id": 122
+          },
+          {
+            "name": "./node_modules/core-js/modules/_iter-step.js",
+            "size": 86,
+            "id": 123
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.regexp.flags.js",
+            "size": 201,
+            "id": 124
+          },
+          {
+            "name": "./node_modules/core-js/modules/_perform.js",
+            "size": 132,
+            "id": 125
+          },
+          {
+            "name": "./node_modules/core-js/modules/_promise-resolve.js",
+            "size": 397,
+            "id": 126
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.map.js",
+            "size": 642,
+            "id": 127
+          },
+          {
+            "name": "./node_modules/core-js/modules/_collection-strong.js",
+            "size": 5019,
+            "id": 128
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.set.js",
+            "size": 481,
+            "id": 129
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.weak-map.js",
+            "size": 1965,
+            "id": 130
+          },
+          {
+            "name": "./node_modules/core-js/modules/_collection-weak.js",
+            "size": 2788,
+            "id": 131
+          },
+          {
+            "name": "./node_modules/core-js/modules/_to-index.js",
+            "size": 339,
+            "id": 132
+          },
+          {
+            "name": "./node_modules/core-js/modules/_own-keys.js",
+            "size": 409,
+            "id": 133
+          },
+          {
+            "name": "./node_modules/core-js/modules/_flatten-into-array.js",
+            "size": 1286,
+            "id": 134
+          },
+          {
+            "name": "./node_modules/core-js/modules/_string-pad.js",
+            "size": 744,
+            "id": 135
+          },
+          {
+            "name": "./node_modules/core-js/modules/_object-to-array.js",
+            "size": 468,
+            "id": 136
+          },
+          {
+            "name": "./node_modules/core-js/modules/_collection-to-json.js",
+            "size": 317,
+            "id": 137
+          },
+          {
+            "name": "./node_modules/core-js/modules/_array-from-iterable.js",
+            "size": 172,
+            "id": 138
+          },
+          {
+            "name": "./node_modules/core-js/modules/_math-scale.js",
+            "size": 684,
+            "id": 139
+          },
+          {
+            "name": "./node_modules/markdown-it/lib/common/entities.js",
+            "size": 142,
+            "id": 140
+          },
+          {
+            "name": "./node_modules/mdurl/index.js",
+            "size": 195,
+            "id": 141
+          },
+          {
+            "name": "./node_modules/uc.micro/properties/Any/regex.js",
+            "size": 145,
+            "id": 142
+          },
+          {
+            "name": "./node_modules/uc.micro/categories/Cc/regex.js",
+            "size": 35,
+            "id": 143
+          },
+          {
+            "name": "./node_modules/uc.micro/categories/Z/regex.js",
+            "size": 61,
+            "id": 144
+          },
+          {
+            "name": "./node_modules/markdown-it/lib/common/html_re.js",
+            "size": 1047,
+            "id": 145
+          },
+          {
+            "name": "./node_modules/markdown-it/lib/rules_inline/strikethrough.js",
+            "size": 2635,
+            "id": 146
+          },
+          {
+            "name": "./node_modules/markdown-it/lib/rules_inline/emphasis.js",
+            "size": 3543,
+            "id": 147
+          },
+          {
+            "name": "multi ./src/index.js babel-polyfill",
+            "size": 40,
+            "id": 148
+          },
+          {
+            "name": "./src/index.js",
+            "size": 710,
+            "id": 149
+          },
+          {
+            "name": "./node_modules/timers-browserify/main.js",
+            "size": 1360,
+            "id": 150
+          },
+          {
+            "name": "./node_modules/setimmediate/setImmediate.js",
+            "size": 6473,
+            "id": 151
+          },
+          {
+            "name": "./node_modules/process/browser.js",
+            "size": 5418,
+            "id": 152
+          },
+          {
+            "name": "./src/comps/gallery.vue",
+            "size": 1627,
+            "id": 153
+          },
+          {
+            "name": "./node_modules/vue-style-loader!./node_modules/css-loader?minimize!./node_modules/vue-loader/lib/style-compiler?{\"vue\":true,\"id\":\"data-v-5d54dc01\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./src/comps/gallery.vue",
+            "size": 646,
+            "id": 154
+          },
+          {
+            "name": "./node_modules/css-loader?minimize!./node_modules/vue-loader/lib/style-compiler?{\"vue\":true,\"id\":\"data-v-5d54dc01\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./src/comps/gallery.vue",
+            "size": 408,
+            "id": 155
+          },
+          {
+            "name": "./node_modules/css-loader?minimize!./src/prism-theme.css",
+            "size": 1032,
+            "id": 156
+          },
+          {
+            "name": "./node_modules/vue-style-loader/lib/listToStyles.js",
+            "size": 639,
+            "id": 157
+          },
+          {
+            "name": "./node_modules/vue-style-loader!./node_modules/css-loader?{\"minimize\":true,\"localIdentName\":\"[hash:base64:7]_1\",\"importLoaders\":true,\"modules\":true,\"sourceMap\":true}!./node_modules/vue-loader/lib/style-compiler?{\"vue\":true,\"id\":\"data-v-5d54dc01\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=1!./src/comps/gallery.vue",
+            "size": 757,
+            "id": 158
+          },
+          {
+            "name": "./node_modules/css-loader?{\"minimize\":true,\"localIdentName\":\"[hash:base64:7]_1\",\"importLoaders\":true,\"modules\":true,\"sourceMap\":true}!./node_modules/vue-loader/lib/style-compiler?{\"vue\":true,\"id\":\"data-v-5d54dc01\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=1!./src/comps/gallery.vue",
+            "size": 732,
+            "id": 159
+          },
+          {
+            "name": "./node_modules/babel-loader/lib!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./src/comps/gallery.vue",
+            "size": 2600,
+            "id": 160
+          },
+          {
+            "name": "./node_modules/history/createBrowserHistory.js",
+            "size": 9751,
+            "id": 161
+          },
+          {
+            "name": "./node_modules/invariant/browser.js",
+            "size": 1516,
+            "id": 162
+          },
+          {
+            "name": "./node_modules/history/LocationUtils.js",
+            "size": 2647,
+            "id": 163
+          },
+          {
+            "name": "./node_modules/resolve-pathname/index.js",
+            "size": 1797,
+            "id": 164
+          },
+          {
+            "name": "./node_modules/value-equal/index.js",
+            "size": 1136,
+            "id": 165
+          },
+          {
+            "name": "./node_modules/history/createTransitionManager.js",
+            "size": 2361,
+            "id": 166
+          },
+          {
+            "name": "./node_modules/history/DOMUtils.js",
+            "size": 2491,
+            "id": 167
+          },
+          {
+            "name": "../src/comps/BaseStyles/BaseStyles.vue",
+            "size": 1188,
+            "id": 168
+          },
+          {
+            "name": "./node_modules/vue-style-loader!./node_modules/css-loader?{\"minimize\":true,\"localIdentName\":\"[hash:base64:7]_0\",\"importLoaders\":true,\"modules\":true,\"sourceMap\":true}!./node_modules/vue-loader/lib/style-compiler?{\"vue\":true,\"id\":\"data-v-3f3b8975\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!../src/comps/BaseStyles/BaseStyles.vue",
+            "size": 804,
+            "id": 169
+          },
+          {
+            "name": "./node_modules/css-loader?{\"minimize\":true,\"localIdentName\":\"[hash:base64:7]_0\",\"importLoaders\":true,\"modules\":true,\"sourceMap\":true}!./node_modules/vue-loader/lib/style-compiler?{\"vue\":true,\"id\":\"data-v-3f3b8975\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!../src/comps/BaseStyles/BaseStyles.vue",
+            "size": 4363,
+            "id": 170
+          },
+          {
+            "name": "../src/comps/BaseStyles/assets/overpass/overpass-thin.woff2",
+            "size": 84,
+            "id": 171
+          },
+          {
+            "name": "../src/comps/BaseStyles/assets/overpass/overpass-thin.woff",
+            "size": 83,
+            "id": 172
+          },
+          {
+            "name": "../src/comps/BaseStyles/assets/overpass/overpass-light.woff2",
+            "size": 84,
+            "id": 173
+          },
+          {
+            "name": "../src/comps/BaseStyles/assets/overpass/overpass-light.woff",
+            "size": 83,
+            "id": 174
+          },
+          {
+            "name": "../src/comps/BaseStyles/assets/overpass/overpass-semibold.woff2",
+            "size": 84,
+            "id": 175
+          },
+          {
+            "name": "../src/comps/BaseStyles/assets/overpass/overpass-semibold.woff",
+            "size": 83,
+            "id": 176
+          },
+          {
+            "name": "./node_modules/babel-loader/lib!./node_modules/vue-loader/lib/selector.js?type=script&index=0!../src/comps/BaseStyles/BaseStyles.vue",
+            "size": 153,
+            "id": 177
+          },
+          {
+            "name": "./node_modules/vue-style-loader!./node_modules/css-loader?{\"minimize\":true,\"localIdentName\":\"[hash:base64:7]_0\",\"importLoaders\":true,\"modules\":true,\"sourceMap\":true}!./node_modules/vue-loader/lib/style-compiler?{\"vue\":true,\"id\":\"data-v-5b622495\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!../src/comps/Button/Button.vue",
+            "size": 800,
+            "id": 178
+          },
+          {
+            "name": "./node_modules/css-loader?{\"minimize\":true,\"localIdentName\":\"[hash:base64:7]_0\",\"importLoaders\":true,\"modules\":true,\"sourceMap\":true}!./node_modules/vue-loader/lib/style-compiler?{\"vue\":true,\"id\":\"data-v-5b622495\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!../src/comps/Button/Button.vue",
+            "size": 1559,
+            "id": 179
+          },
+          {
+            "name": "./node_modules/babel-loader/lib!./node_modules/vue-loader/lib/selector.js?type=script&index=0!../src/comps/Button/Button.vue",
+            "size": 196,
+            "id": 180
+          },
+          {
+            "name": "./node_modules/vue-loader/lib/template-compiler?{\"id\":\"data-v-5b622495\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!../src/comps/Button/Button.vue",
+            "size": 398,
+            "id": 181
+          },
+          {
+            "name": "../src/comps/Footer/Footer.vue",
+            "size": 1422,
+            "id": 182
+          },
+          {
+            "name": "./node_modules/vue-style-loader!./node_modules/css-loader?{\"minimize\":true,\"localIdentName\":\"[hash:base64:7]_0\",\"importLoaders\":true,\"modules\":true,\"sourceMap\":true}!./node_modules/vue-loader/lib/style-compiler?{\"vue\":true,\"id\":\"data-v-bf6a4716\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!../src/comps/Footer/Footer.vue",
+            "size": 800,
+            "id": 183
+          },
+          {
+            "name": "./node_modules/css-loader?{\"minimize\":true,\"localIdentName\":\"[hash:base64:7]_0\",\"importLoaders\":true,\"modules\":true,\"sourceMap\":true}!./node_modules/vue-loader/lib/style-compiler?{\"vue\":true,\"id\":\"data-v-bf6a4716\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!../src/comps/Footer/Footer.vue",
+            "size": 4008,
+            "id": 184
+          },
+          {
+            "name": "../src/comps/Footer/assets/twitter.svg",
+            "size": 1037,
+            "id": 185
+          },
+          {
+            "name": "../src/comps/Footer/assets/medium.svg",
+            "size": 953,
+            "id": 186
+          },
+          {
+            "name": "../src/comps/Footer/assets/slack.svg",
+            "size": 1473,
+            "id": 187
+          },
+          {
+            "name": "../src/comps/Footer/assets/mail.svg",
+            "size": 725,
+            "id": 188
+          },
+          {
+            "name": "./node_modules/babel-loader/lib!./node_modules/vue-loader/lib/selector.js?type=script&index=0!../src/comps/Footer/Footer.vue",
+            "size": 561,
+            "id": 189
+          },
+          {
+            "name": "./node_modules/vue-style-loader!./node_modules/css-loader?{\"minimize\":true,\"localIdentName\":\"[hash:base64:7]_0\",\"importLoaders\":true,\"modules\":true,\"sourceMap\":true}!./node_modules/vue-loader/lib/style-compiler?{\"vue\":true,\"id\":\"data-v-7426d7e1\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!../src/comps/Section/Section.vue",
+            "size": 801,
+            "id": 190
+          },
+          {
+            "name": "./node_modules/css-loader?{\"minimize\":true,\"localIdentName\":\"[hash:base64:7]_0\",\"importLoaders\":true,\"modules\":true,\"sourceMap\":true}!./node_modules/vue-loader/lib/style-compiler?{\"vue\":true,\"id\":\"data-v-7426d7e1\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!../src/comps/Section/Section.vue",
+            "size": 961,
+            "id": 191
+          },
+          {
+            "name": "./node_modules/babel-loader/lib!./node_modules/vue-loader/lib/selector.js?type=script&index=0!../src/comps/Section/Section.vue",
+            "size": 197,
+            "id": 192
+          },
+          {
+            "name": "./node_modules/vue-loader/lib/template-compiler?{\"id\":\"data-v-7426d7e1\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!../src/comps/Section/Section.vue",
+            "size": 413,
+            "id": 193
+          },
+          {
+            "name": "./node_modules/vue-loader/lib/template-compiler?{\"id\":\"data-v-bf6a4716\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!../src/comps/Footer/Footer.vue",
+            "size": 1691,
+            "id": 194
+          },
+          {
+            "name": "../src/comps/Footer/assets/logo.svg",
+            "size": 82,
+            "id": 195
+          },
+          {
+            "name": "../src/comps/Header/Header.vue",
+            "size": 1422,
+            "id": 196
+          },
+          {
+            "name": "./node_modules/vue-style-loader!./node_modules/css-loader?{\"minimize\":true,\"localIdentName\":\"[hash:base64:7]_0\",\"importLoaders\":true,\"modules\":true,\"sourceMap\":true}!./node_modules/vue-loader/lib/style-compiler?{\"vue\":true,\"id\":\"data-v-e97c2f96\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!../src/comps/Header/Header.vue",
+            "size": 800,
+            "id": 197
+          },
+          {
+            "name": "./node_modules/css-loader?{\"minimize\":true,\"localIdentName\":\"[hash:base64:7]_0\",\"importLoaders\":true,\"modules\":true,\"sourceMap\":true}!./node_modules/vue-loader/lib/style-compiler?{\"vue\":true,\"id\":\"data-v-e97c2f96\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!../src/comps/Header/Header.vue",
+            "size": 5631,
+            "id": 198
+          },
+          {
+            "name": "./node_modules/babel-loader/lib!./node_modules/vue-loader/lib/selector.js?type=script&index=0!../src/comps/Header/Header.vue",
+            "size": 524,
+            "id": 199
+          },
+          {
+            "name": "./node_modules/vue-loader/lib/template-compiler?{\"id\":\"data-v-e97c2f96\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!../src/comps/Header/Header.vue",
+            "size": 1732,
+            "id": 200
+          },
+          {
+            "name": "../src/comps/Header/assets/logo.svg",
+            "size": 82,
+            "id": 201
+          },
+          {
+            "name": "../src/comps/Header/assets/isotype.svg",
+            "size": 4649,
+            "id": 202
+          },
+          {
+            "name": "../src/comps/Header/assets/logotype.svg",
+            "size": 10933,
+            "id": 203
+          },
+          {
+            "name": "../src/comps/IllustratedSection/IllustratedSection.vue",
+            "size": 1458,
+            "id": 204
+          },
+          {
+            "name": "./node_modules/vue-style-loader!./node_modules/css-loader?{\"minimize\":true,\"localIdentName\":\"[hash:base64:7]_0\",\"importLoaders\":true,\"modules\":true,\"sourceMap\":true}!./node_modules/vue-loader/lib/style-compiler?{\"vue\":true,\"id\":\"data-v-cf263cd6\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!../src/comps/IllustratedSection/IllustratedSection.vue",
+            "size": 812,
+            "id": 205
+          },
+          {
+            "name": "./node_modules/css-loader?{\"minimize\":true,\"localIdentName\":\"[hash:base64:7]_0\",\"importLoaders\":true,\"modules\":true,\"sourceMap\":true}!./node_modules/vue-loader/lib/style-compiler?{\"vue\":true,\"id\":\"data-v-cf263cd6\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!../src/comps/IllustratedSection/IllustratedSection.vue",
+            "size": 2915,
+            "id": 206
+          },
+          {
+            "name": "./node_modules/babel-loader/lib!./node_modules/vue-loader/lib/selector.js?type=script&index=0!../src/comps/IllustratedSection/IllustratedSection.vue",
+            "size": 497,
+            "id": 207
+          },
+          {
+            "name": "./node_modules/vue-loader/lib/template-compiler?{\"id\":\"data-v-cf263cd6\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!../src/comps/IllustratedSection/IllustratedSection.vue",
+            "size": 853,
+            "id": 208
+          },
+          {
+            "name": "../src/comps/Loader/Loader.vue",
+            "size": 1422,
+            "id": 209
+          },
+          {
+            "name": "./node_modules/vue-style-loader!./node_modules/css-loader?{\"minimize\":true,\"localIdentName\":\"[hash:base64:7]_0\",\"importLoaders\":true,\"modules\":true,\"sourceMap\":true}!./node_modules/vue-loader/lib/style-compiler?{\"vue\":true,\"id\":\"data-v-396e2575\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!../src/comps/Loader/Loader.vue",
+            "size": 800,
+            "id": 210
+          },
+          {
+            "name": "./node_modules/css-loader?{\"minimize\":true,\"localIdentName\":\"[hash:base64:7]_0\",\"importLoaders\":true,\"modules\":true,\"sourceMap\":true}!./node_modules/vue-loader/lib/style-compiler?{\"vue\":true,\"id\":\"data-v-396e2575\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!../src/comps/Loader/Loader.vue",
+            "size": 1023,
+            "id": 211
+          },
+          {
+            "name": "./node_modules/babel-loader/lib!./node_modules/vue-loader/lib/selector.js?type=script&index=0!../src/comps/Loader/Loader.vue",
+            "size": 1268,
+            "id": 212
+          },
+          {
+            "name": "./node_modules/vue-motion/dist/vue-motion.js",
+            "size": 10370,
+            "id": 213
+          },
+          {
+            "name": "../src/utils.js",
+            "size": 167,
+            "id": 214
+          },
+          {
+            "name": "./node_modules/vue-loader/lib/template-compiler?{\"id\":\"data-v-396e2575\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!../src/comps/Loader/Loader.vue",
+            "size": 491,
+            "id": 215
+          },
+          {
+            "name": "../src/comps/PreFooter/PreFooter.vue",
+            "size": 1431,
+            "id": 216
+          },
+          {
+            "name": "./node_modules/vue-style-loader!./node_modules/css-loader?{\"minimize\":true,\"localIdentName\":\"[hash:base64:7]_0\",\"importLoaders\":true,\"modules\":true,\"sourceMap\":true}!./node_modules/vue-loader/lib/style-compiler?{\"vue\":true,\"id\":\"data-v-04d2bd93\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!../src/comps/PreFooter/PreFooter.vue",
+            "size": 803,
+            "id": 217
+          },
+          {
+            "name": "./node_modules/css-loader?{\"minimize\":true,\"localIdentName\":\"[hash:base64:7]_0\",\"importLoaders\":true,\"modules\":true,\"sourceMap\":true}!./node_modules/vue-loader/lib/style-compiler?{\"vue\":true,\"id\":\"data-v-04d2bd93\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!../src/comps/PreFooter/PreFooter.vue",
+            "size": 2188,
+            "id": 218
+          },
+          {
+            "name": "../src/comps/PreFooter/assets/background.svg",
+            "size": 9901,
+            "id": 219
+          },
+          {
+            "name": "./node_modules/babel-loader/lib!./node_modules/vue-loader/lib/selector.js?type=script&index=0!../src/comps/PreFooter/PreFooter.vue",
+            "size": 541,
+            "id": 220
+          },
+          {
+            "name": "./node_modules/vue-loader/lib/template-compiler?{\"id\":\"data-v-04d2bd93\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!../src/comps/PreFooter/PreFooter.vue",
+            "size": 1008,
+            "id": 221
+          },
+          {
+            "name": "../src/comps/Text/Text.vue",
+            "size": 1176,
+            "id": 222
+          },
+          {
+            "name": "./node_modules/vue-style-loader!./node_modules/css-loader?{\"minimize\":true,\"localIdentName\":\"[hash:base64:7]_0\",\"importLoaders\":true,\"modules\":true,\"sourceMap\":true}!./node_modules/vue-loader/lib/style-compiler?{\"vue\":true,\"id\":\"data-v-673a3896\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!../src/comps/Text/Text.vue",
+            "size": 798,
+            "id": 223
+          },
+          {
+            "name": "./node_modules/css-loader?{\"minimize\":true,\"localIdentName\":\"[hash:base64:7]_0\",\"importLoaders\":true,\"modules\":true,\"sourceMap\":true}!./node_modules/vue-loader/lib/style-compiler?{\"vue\":true,\"id\":\"data-v-673a3896\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!../src/comps/Text/Text.vue",
+            "size": 840,
+            "id": 224
+          },
+          {
+            "name": "./node_modules/babel-loader/lib!./node_modules/vue-loader/lib/selector.js?type=script&index=0!../src/comps/Text/Text.vue",
+            "size": 1117,
+            "id": 225
+          },
+          {
+            "name": "./node_modules/core-js/shim.js",
+            "size": 8183,
+            "id": 226
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.symbol.js",
+            "size": 8829,
+            "id": 227
+          },
+          {
+            "name": "./node_modules/core-js/modules/_enum-keys.js",
+            "size": 469,
+            "id": 228
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.object.create.js",
+            "size": 162,
+            "id": 229
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.object.define-property.js",
+            "size": 217,
+            "id": 230
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.object.define-properties.js",
+            "size": 217,
+            "id": 231
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.object.get-own-property-descriptor.js",
+            "size": 342,
+            "id": 232
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.object.get-prototype-of.js",
+            "size": 273,
+            "id": 233
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.object.keys.js",
+            "size": 225,
+            "id": 234
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.object.get-own-property-names.js",
+            "size": 150,
+            "id": 235
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.object.freeze.js",
+            "size": 267,
+            "id": 236
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.object.seal.js",
+            "size": 256,
+            "id": 237
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.object.prevent-extensions.js",
+            "size": 334,
+            "id": 238
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.object.is-frozen.js",
+            "size": 243,
+            "id": 239
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.object.is-sealed.js",
+            "size": 243,
+            "id": 240
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.object.is-extensible.js",
+            "size": 267,
+            "id": 241
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.object.assign.js",
+            "size": 162,
+            "id": 242
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.object.is.js",
+            "size": 139,
+            "id": 243
+          },
+          {
+            "name": "./node_modules/core-js/modules/_same-value.js",
+            "size": 190,
+            "id": 244
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.object.set-prototype-of.js",
+            "size": 160,
+            "id": 245
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.object.to-string.js",
+            "size": 321,
+            "id": 246
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.function.bind.js",
+            "size": 164,
+            "id": 247
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.function.name.js",
+            "size": 355,
+            "id": 248
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.function.has-instance.js",
+            "size": 664,
+            "id": 249
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.parse-int.js",
+            "size": 194,
+            "id": 250
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.parse-float.js",
+            "size": 201,
+            "id": 251
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.number.constructor.js",
+            "size": 2793,
+            "id": 252
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.number.to-fixed.js",
+            "size": 2770,
+            "id": 253
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.number.to-precision.js",
+            "size": 613,
+            "id": 254
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.number.epsilon.js",
+            "size": 125,
+            "id": 255
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.number.is-finite.js",
+            "size": 246,
+            "id": 256
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.number.is-integer.js",
+            "size": 145,
+            "id": 257
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.number.is-nan.js",
+            "size": 220,
+            "id": 258
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.number.is-safe-integer.js",
+            "size": 294,
+            "id": 259
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.number.max-safe-integer.js",
+            "size": 143,
+            "id": 260
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.number.min-safe-integer.js",
+            "size": 145,
+            "id": 261
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.number.parse-float.js",
+            "size": 228,
+            "id": 262
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.number.parse-int.js",
+            "size": 221,
+            "id": 263
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.math.acosh.js",
+            "size": 571,
+            "id": 264
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.math.asinh.js",
+            "size": 342,
+            "id": 265
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.math.atanh.js",
+            "size": 304,
+            "id": 266
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.math.cbrt.js",
+            "size": 218,
+            "id": 267
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.math.clz32.js",
+            "size": 208,
+            "id": 268
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.math.cosh.js",
+            "size": 187,
+            "id": 269
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.math.expm1.js",
+            "size": 187,
+            "id": 270
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.math.fround.js",
+            "size": 132,
+            "id": 271
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.math.hypot.js",
+            "size": 662,
+            "id": 272
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.math.imul.js",
+            "size": 539,
+            "id": 273
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.math.log10.js",
+            "size": 168,
+            "id": 274
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.math.log1p.js",
+            "size": 129,
+            "id": 275
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.math.log2.js",
+            "size": 162,
+            "id": 276
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.math.sign.js",
+            "size": 126,
+            "id": 277
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.math.sinh.js",
+            "size": 454,
+            "id": 278
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.math.tanh.js",
+            "size": 317,
+            "id": 279
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.math.trunc.js",
+            "size": 181,
+            "id": 280
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.string.from-code-point.js",
+            "size": 865,
+            "id": 281
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.string.raw.js",
+            "size": 519,
+            "id": 282
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.string.trim.js",
+            "size": 167,
+            "id": 283
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.string.iterator.js",
+            "size": 531,
+            "id": 284
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.string.code-point-at.js",
+            "size": 249,
+            "id": 285
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.string.ends-with.js",
+            "size": 840,
+            "id": 286
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.string.includes.js",
+            "size": 479,
+            "id": 287
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.string.repeat.js",
+            "size": 156,
+            "id": 288
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.string.starts-with.js",
+            "size": 762,
+            "id": 289
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.string.anchor.js",
+            "size": 205,
+            "id": 290
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.string.big.js",
+            "size": 184,
+            "id": 291
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.string.blink.js",
+            "size": 192,
+            "id": 292
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.string.bold.js",
+            "size": 185,
+            "id": 293
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.string.fixed.js",
+            "size": 189,
+            "id": 294
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.string.fontcolor.js",
+            "size": 221,
+            "id": 295
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.string.fontsize.js",
+            "size": 214,
+            "id": 296
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.string.italics.js",
+            "size": 194,
+            "id": 297
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.string.link.js",
+            "size": 197,
+            "id": 298
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.string.small.js",
+            "size": 193,
+            "id": 299
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.string.strike.js",
+            "size": 197,
+            "id": 300
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.string.sub.js",
+            "size": 185,
+            "id": 301
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.string.sup.js",
+            "size": 185,
+            "id": 302
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.date.now.js",
+            "size": 154,
+            "id": 303
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.date.to-json.js",
+            "size": 562,
+            "id": 304
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.date.to-iso-string.js",
+            "size": 317,
+            "id": 305
+          },
+          {
+            "name": "./node_modules/core-js/modules/_date-to-iso-string.js",
+            "size": 996,
+            "id": 306
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.date.to-string.js",
+            "size": 435,
+            "id": 307
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.date.to-primitive.js",
+            "size": 186,
+            "id": 308
+          },
+          {
+            "name": "./node_modules/core-js/modules/_date-to-primitive.js",
+            "size": 317,
+            "id": 309
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.array.is-array.js",
+            "size": 145,
+            "id": 310
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.array.from.js",
+            "size": 1635,
+            "id": 311
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.array.of.js",
+            "size": 612,
+            "id": 312
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.array.join.js",
+            "size": 453,
+            "id": 313
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.array.slice.js",
+            "size": 929,
+            "id": 314
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.array.sort.js",
+            "size": 643,
+            "id": 315
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.array.for-each.js",
+            "size": 404,
+            "id": 316
+          },
+          {
+            "name": "./node_modules/core-js/modules/_array-species-constructor.js",
+            "size": 475,
+            "id": 317
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.array.map.js",
+            "size": 359,
+            "id": 318
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.array.filter.js",
+            "size": 376,
+            "id": 319
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.array.some.js",
+            "size": 365,
+            "id": 320
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.array.every.js",
+            "size": 370,
+            "id": 321
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.array.reduce.js",
+            "size": 408,
+            "id": 322
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.array.reduce-right.js",
+            "size": 427,
+            "id": 323
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.array.index-of.js",
+            "size": 594,
+            "id": 324
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.array.last-index-of.js",
+            "size": 964,
+            "id": 325
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.array.copy-within.js",
+            "size": 237,
+            "id": 326
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.array.fill.js",
+            "size": 215,
+            "id": 327
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.array.find.js",
+            "size": 527,
+            "id": 328
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.array.find-index.js",
+            "size": 547,
+            "id": 329
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.array.species.js",
+            "size": 36,
+            "id": 330
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.regexp.constructor.js",
+            "size": 1608,
+            "id": 331
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.regexp.to-string.js",
+            "size": 826,
+            "id": 332
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.regexp.match.js",
+            "size": 385,
+            "id": 333
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.regexp.replace.js",
+            "size": 495,
+            "id": 334
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.regexp.search.js",
+            "size": 394,
+            "id": 335
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.regexp.split.js",
+            "size": 3397,
+            "id": 336
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.promise.js",
+            "size": 9435,
+            "id": 337
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.weak-set.js",
+            "size": 473,
+            "id": 338
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.typed.array-buffer.js",
+            "size": 1800,
+            "id": 339
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.typed.data-view.js",
+            "size": 160,
+            "id": 340
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.typed.int8-array.js",
+            "size": 169,
+            "id": 341
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.typed.uint8-array.js",
+            "size": 171,
+            "id": 342
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.typed.uint8-clamped-array.js",
+            "size": 184,
+            "id": 343
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.typed.int16-array.js",
+            "size": 171,
+            "id": 344
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.typed.uint16-array.js",
+            "size": 173,
+            "id": 345
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.typed.int32-array.js",
+            "size": 171,
+            "id": 346
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.typed.uint32-array.js",
+            "size": 173,
+            "id": 347
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.typed.float32-array.js",
+            "size": 175,
+            "id": 348
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.typed.float64-array.js",
+            "size": 175,
+            "id": 349
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.reflect.apply.js",
+            "size": 655,
+            "id": 350
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.reflect.construct.js",
+            "size": 1993,
+            "id": 351
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.reflect.define-property.js",
+            "size": 799,
+            "id": 352
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.reflect.delete-property.js",
+            "size": 404,
+            "id": 353
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.reflect.enumerate.js",
+            "size": 749,
+            "id": 354
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.reflect.get.js",
+            "size": 790,
+            "id": 355
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.reflect.get-own-property-descriptor.js",
+            "size": 354,
+            "id": 356
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.reflect.get-prototype-of.js",
+            "size": 290,
+            "id": 357
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.reflect.has.js",
+            "size": 197,
+            "id": 358
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.reflect.is-extensible.js",
+            "size": 325,
+            "id": 359
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.reflect.own-keys.js",
+            "size": 140,
+            "id": 360
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.reflect.prevent-extensions.js",
+            "size": 424,
+            "id": 361
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.reflect.set.js",
+            "size": 1155,
+            "id": 362
+          },
+          {
+            "name": "./node_modules/core-js/modules/es6.reflect.set-prototype-of.js",
+            "size": 382,
+            "id": 363
+          },
+          {
+            "name": "./node_modules/core-js/modules/es7.array.includes.js",
+            "size": 379,
+            "id": 364
+          },
+          {
+            "name": "./node_modules/core-js/modules/es7.array.flat-map.js",
+            "size": 740,
+            "id": 365
+          },
+          {
+            "name": "./node_modules/core-js/modules/es7.array.flatten.js",
+            "size": 745,
+            "id": 366
+          },
+          {
+            "name": "./node_modules/core-js/modules/es7.string.at.js",
+            "size": 239,
+            "id": 367
+          },
+          {
+            "name": "./node_modules/core-js/modules/es7.string.pad-start.js",
+            "size": 341,
+            "id": 368
+          },
+          {
+            "name": "./node_modules/core-js/modules/es7.string.pad-end.js",
+            "size": 338,
+            "id": 369
+          },
+          {
+            "name": "./node_modules/core-js/modules/es7.string.trim-left.js",
+            "size": 219,
+            "id": 370
+          },
+          {
+            "name": "./node_modules/core-js/modules/es7.string.trim-right.js",
+            "size": 219,
+            "id": 371
+          },
+          {
+            "name": "./node_modules/core-js/modules/es7.string.match-all.js",
+            "size": 1028,
+            "id": 372
+          },
+          {
+            "name": "./node_modules/core-js/modules/es7.symbol.async-iterator.js",
+            "size": 43,
+            "id": 373
+          },
+          {
+            "name": "./node_modules/core-js/modules/es7.symbol.observable.js",
+            "size": 40,
+            "id": 374
+          },
+          {
+            "name": "./node_modules/core-js/modules/es7.object.get-own-property-descriptors.js",
+            "size": 690,
+            "id": 375
+          },
+          {
+            "name": "./node_modules/core-js/modules/es7.object.values.js",
+            "size": 242,
+            "id": 376
+          },
+          {
+            "name": "./node_modules/core-js/modules/es7.object.entries.js",
+            "size": 245,
+            "id": 377
+          },
+          {
+            "name": "./node_modules/core-js/modules/es7.object.define-getter.js",
+            "size": 505,
+            "id": 378
+          },
+          {
+            "name": "./node_modules/core-js/modules/es7.object.define-setter.js",
+            "size": 505,
+            "id": 379
+          },
+          {
+            "name": "./node_modules/core-js/modules/es7.object.lookup-getter.js",
+            "size": 624,
+            "id": 380
+          },
+          {
+            "name": "./node_modules/core-js/modules/es7.object.lookup-setter.js",
+            "size": 624,
+            "id": 381
+          },
+          {
+            "name": "./node_modules/core-js/modules/es7.map.to-json.js",
+            "size": 188,
+            "id": 382
+          },
+          {
+            "name": "./node_modules/core-js/modules/es7.set.to-json.js",
+            "size": 188,
+            "id": 383
+          },
+          {
+            "name": "./node_modules/core-js/modules/es7.map.of.js",
+            "size": 101,
+            "id": 384
+          },
+          {
+            "name": "./node_modules/core-js/modules/es7.set.of.js",
+            "size": 101,
+            "id": 385
+          },
+          {
+            "name": "./node_modules/core-js/modules/es7.weak-map.of.js",
+            "size": 109,
+            "id": 386
+          },
+          {
+            "name": "./node_modules/core-js/modules/es7.weak-set.of.js",
+            "size": 109,
+            "id": 387
+          },
+          {
+            "name": "./node_modules/core-js/modules/es7.map.from.js",
+            "size": 105,
+            "id": 388
+          },
+          {
+            "name": "./node_modules/core-js/modules/es7.set.from.js",
+            "size": 105,
+            "id": 389
+          },
+          {
+            "name": "./node_modules/core-js/modules/es7.weak-map.from.js",
+            "size": 113,
+            "id": 390
+          },
+          {
+            "name": "./node_modules/core-js/modules/es7.weak-set.from.js",
+            "size": 113,
+            "id": 391
+          },
+          {
+            "name": "./node_modules/core-js/modules/es7.global.js",
+            "size": 134,
+            "id": 392
+          },
+          {
+            "name": "./node_modules/core-js/modules/es7.system.global.js",
+            "size": 144,
+            "id": 393
+          },
+          {
+            "name": "./node_modules/core-js/modules/es7.error.is-error.js",
+            "size": 217,
+            "id": 394
+          },
+          {
+            "name": "./node_modules/core-js/modules/es7.math.clamp.js",
+            "size": 221,
+            "id": 395
+          },
+          {
+            "name": "./node_modules/core-js/modules/es7.math.deg-per-rad.js",
+            "size": 153,
+            "id": 396
+          },
+          {
+            "name": "./node_modules/core-js/modules/es7.math.degrees.js",
+            "size": 236,
+            "id": 397
+          },
+          {
+            "name": "./node_modules/core-js/modules/es7.math.fscale.js",
+            "size": 332,
+            "id": 398
+          },
+          {
+            "name": "./node_modules/core-js/modules/es7.math.iaddh.js",
+            "size": 339,
+            "id": 399
+          },
+          {
+            "name": "./node_modules/core-js/modules/es7.math.isubh.js",
+            "size": 338,
+            "id": 400
+          },
+          {
+            "name": "./node_modules/core-js/modules/es7.math.imulh.js",
+            "size": 444,
+            "id": 401
+          },
+          {
+            "name": "./node_modules/core-js/modules/es7.math.rad-per-deg.js",
+            "size": 153,
+            "id": 402
+          },
+          {
+            "name": "./node_modules/core-js/modules/es7.math.radians.js",
+            "size": 236,
+            "id": 403
+          },
+          {
+            "name": "./node_modules/core-js/modules/es7.math.scale.js",
+            "size": 158,
+            "id": 404
+          },
+          {
+            "name": "./node_modules/core-js/modules/es7.math.umulh.js",
+            "size": 448,
+            "id": 405
+          },
+          {
+            "name": "./node_modules/core-js/modules/es7.math.signbit.js",
+            "size": 269,
+            "id": 406
+          },
+          {
+            "name": "./node_modules/core-js/modules/es7.promise.finally.js",
+            "size": 763,
+            "id": 407
+          },
+          {
+            "name": "./node_modules/core-js/modules/es7.promise.try.js",
+            "size": 477,
+            "id": 408
+          },
+          {
+            "name": "./node_modules/core-js/modules/es7.reflect.define-metadata.js",
+            "size": 363,
+            "id": 409
+          },
+          {
+            "name": "./node_modules/core-js/modules/es7.reflect.delete-metadata.js",
+            "size": 704,
+            "id": 410
+          },
+          {
+            "name": "./node_modules/core-js/modules/es7.reflect.get-metadata.js",
+            "size": 761,
+            "id": 411
+          },
+          {
+            "name": "./node_modules/core-js/modules/es7.reflect.get-metadata-keys.js",
+            "size": 783,
+            "id": 412
+          },
+          {
+            "name": "./node_modules/core-js/modules/es7.reflect.get-own-metadata.js",
+            "size": 384,
+            "id": 413
+          },
+          {
+            "name": "./node_modules/core-js/modules/es7.reflect.get-own-metadata-keys.js",
+            "size": 364,
+            "id": 414
+          },
+          {
+            "name": "./node_modules/core-js/modules/es7.reflect.has-metadata.js",
+            "size": 677,
+            "id": 415
+          },
+          {
+            "name": "./node_modules/core-js/modules/es7.reflect.has-own-metadata.js",
+            "size": 384,
+            "id": 416
+          },
+          {
+            "name": "./node_modules/core-js/modules/es7.reflect.metadata.js",
+            "size": 498,
+            "id": 417
+          },
+          {
+            "name": "./node_modules/core-js/modules/es7.asap.js",
+            "size": 442,
+            "id": 418
+          },
+          {
+            "name": "./node_modules/core-js/modules/es7.observable.js",
+            "size": 5513,
+            "id": 419
+          },
+          {
+            "name": "./node_modules/core-js/modules/web.timers.js",
+            "size": 771,
+            "id": 420
+          },
+          {
+            "name": "./node_modules/core-js/modules/web.immediate.js",
+            "size": 162,
+            "id": 421
+          },
+          {
+            "name": "./node_modules/core-js/modules/web.dom.iterable.js",
+            "size": 1810,
+            "id": 422
+          },
+          {
+            "name": "./node_modules/regenerator-runtime/runtime.js",
+            "size": 24254,
+            "id": 423
+          },
+          {
+            "name": "./node_modules/core-js/fn/regexp/escape.js",
+            "size": 108,
+            "id": 424
+          },
+          {
+            "name": "./node_modules/core-js/modules/core.regexp.escape.js",
+            "size": 232,
+            "id": 425
+          },
+          {
+            "name": "./node_modules/core-js/modules/_replacer.js",
+            "size": 234,
+            "id": 426
+          },
+          {
+            "name": "./src/comps/GallerySidebar.vue",
+            "size": 1380,
+            "id": 427
+          },
+          {
+            "name": "./node_modules/vue-style-loader!./node_modules/css-loader?{\"minimize\":true,\"localIdentName\":\"[hash:base64:7]_0\",\"importLoaders\":true,\"modules\":true,\"sourceMap\":true}!./node_modules/vue-loader/lib/style-compiler?{\"vue\":true,\"id\":\"data-v-452e326b\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./src/comps/GallerySidebar.vue",
+            "size": 764,
+            "id": 428
+          },
+          {
+            "name": "./node_modules/css-loader?{\"minimize\":true,\"localIdentName\":\"[hash:base64:7]_0\",\"importLoaders\":true,\"modules\":true,\"sourceMap\":true}!./node_modules/vue-loader/lib/style-compiler?{\"vue\":true,\"id\":\"data-v-452e326b\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./src/comps/GallerySidebar.vue",
+            "size": 1942,
+            "id": 429
+          },
+          {
+            "name": "./node_modules/babel-loader/lib!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./src/comps/GallerySidebar.vue",
+            "size": 320,
+            "id": 430
+          },
+          {
+            "name": "./node_modules/vue-loader/lib/template-compiler?{\"id\":\"data-v-452e326b\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/comps/GallerySidebar.vue",
+            "size": 841,
+            "id": 431
+          },
+          {
+            "name": "./src/pages/home.vue",
+            "size": 912,
+            "id": 432
+          },
+          {
+            "name": "./node_modules/babel-loader/lib!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./src/pages/home.vue",
+            "size": 530,
+            "id": 433
+          },
+          {
+            "name": "./node_modules/vue-style-loader!./node_modules/css-loader?{\"minimize\":true,\"localIdentName\":\"[hash:base64:7]_0\",\"importLoaders\":true,\"modules\":true,\"sourceMap\":true}!./node_modules/vue-loader/lib/style-compiler?{\"vue\":true,\"id\":\"data-v-5d40c2e0\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./src/comps/GalleryPage.vue",
+            "size": 761,
+            "id": 434
+          },
+          {
+            "name": "./node_modules/css-loader?{\"minimize\":true,\"localIdentName\":\"[hash:base64:7]_0\",\"importLoaders\":true,\"modules\":true,\"sourceMap\":true}!./node_modules/vue-loader/lib/style-compiler?{\"vue\":true,\"id\":\"data-v-5d40c2e0\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./src/comps/GalleryPage.vue",
+            "size": 2442,
+            "id": 435
+          },
+          {
+            "name": "./node_modules/babel-loader/lib!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./src/comps/GalleryPage.vue",
+            "size": 319,
+            "id": 436
+          },
+          {
+            "name": "./node_modules/vue-loader/lib/template-compiler?{\"id\":\"data-v-5d40c2e0\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/comps/GalleryPage.vue",
+            "size": 893,
+            "id": 437
+          },
+          {
+            "name": "./node_modules/vue-loader/lib/template-compiler?{\"id\":\"data-v-22e077c0\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/pages/home.vue",
+            "size": 440,
+            "id": 438
+          },
+          {
+            "name": "./src/pages/button.vue",
+            "size": 1356,
+            "id": 439
+          },
+          {
+            "name": "./node_modules/vue-style-loader!./node_modules/css-loader?{\"minimize\":true,\"localIdentName\":\"[hash:base64:7]_0\",\"importLoaders\":true,\"modules\":true,\"sourceMap\":true}!./node_modules/vue-loader/lib/style-compiler?{\"vue\":true,\"id\":\"data-v-0b837a53\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./src/pages/button.vue",
+            "size": 756,
+            "id": 440
+          },
+          {
+            "name": "./node_modules/css-loader?{\"minimize\":true,\"localIdentName\":\"[hash:base64:7]_0\",\"importLoaders\":true,\"modules\":true,\"sourceMap\":true}!./node_modules/vue-loader/lib/style-compiler?{\"vue\":true,\"id\":\"data-v-0b837a53\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./src/pages/button.vue",
+            "size": 817,
+            "id": 441
+          },
+          {
+            "name": "./node_modules/babel-loader/lib!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./src/pages/button.vue",
+            "size": 2131,
+            "id": 442
+          },
+          {
+            "name": "../src/comps/Button/README.md",
+            "size": 81,
+            "id": 443
+          },
+          {
+            "name": "./src/render-readme.js",
+            "size": 3413,
+            "id": 444
+          },
+          {
+            "name": "./node_modules/markdown-it/index.js",
+            "size": 52,
+            "id": 445
+          },
+          {
+            "name": "./node_modules/markdown-it/lib/index.js",
+            "size": 17879,
+            "id": 446
+          },
+          {
+            "name": "./node_modules/entities/maps/entities.json",
+            "size": 29128,
+            "id": 447
+          },
+          {
+            "name": "./node_modules/mdurl/encode.js",
+            "size": 2270,
+            "id": 448
+          },
+          {
+            "name": "./node_modules/mdurl/decode.js",
+            "size": 2873,
+            "id": 449
+          },
+          {
+            "name": "./node_modules/mdurl/format.js",
+            "size": 514,
+            "id": 450
+          },
+          {
+            "name": "./node_modules/mdurl/parse.js",
+            "size": 9893,
+            "id": 451
+          },
+          {
+            "name": "./node_modules/uc.micro/index.js",
+            "size": 254,
+            "id": 452
+          },
+          {
+            "name": "./node_modules/uc.micro/categories/Cf/regex.js",
+            "size": 222,
+            "id": 453
+          },
+          {
+            "name": "./node_modules/markdown-it/lib/helpers/index.js",
+            "size": 243,
+            "id": 454
+          },
+          {
+            "name": "./node_modules/markdown-it/lib/helpers/parse_link_label.js",
+            "size": 1013,
+            "id": 455
+          },
+          {
+            "name": "./node_modules/markdown-it/lib/helpers/parse_link_destination.js",
+            "size": 1598,
+            "id": 456
+          },
+          {
+            "name": "./node_modules/markdown-it/lib/helpers/parse_link_title.js",
+            "size": 1075,
+            "id": 457
+          },
+          {
+            "name": "./node_modules/markdown-it/lib/renderer.js",
+            "size": 8929,
+            "id": 458
+          },
+          {
+            "name": "./node_modules/markdown-it/lib/parser_core.js",
+            "size": 1184,
+            "id": 459
+          },
+          {
+            "name": "./node_modules/markdown-it/lib/rules_core/normalize.js",
+            "size": 350,
+            "id": 460
+          },
+          {
+            "name": "./node_modules/markdown-it/lib/rules_core/block.js",
+            "size": 360,
+            "id": 461
+          },
+          {
+            "name": "./node_modules/markdown-it/lib/rules_core/inline.js",
+            "size": 308,
+            "id": 462
+          },
+          {
+            "name": "./node_modules/markdown-it/lib/rules_core/linkify.js",
+            "size": 3993,
+            "id": 463
+          },
+          {
+            "name": "./node_modules/markdown-it/lib/rules_core/replacements.js",
+            "size": 2744,
+            "id": 464
+          },
+          {
+            "name": "./node_modules/markdown-it/lib/rules_core/smartquotes.js",
+            "size": 5381,
+            "id": 465
+          },
+          {
+            "name": "./node_modules/markdown-it/lib/rules_core/state_core.js",
+            "size": 349,
+            "id": 466
+          },
+          {
+            "name": "./node_modules/markdown-it/lib/parser_block.js",
+            "size": 3466,
+            "id": 467
+          },
+          {
+            "name": "./node_modules/markdown-it/lib/rules_block/table.js",
+            "size": 5730,
+            "id": 468
+          },
+          {
+            "name": "./node_modules/markdown-it/lib/rules_block/code.js",
+            "size": 721,
+            "id": 469
+          },
+          {
+            "name": "./node_modules/markdown-it/lib/rules_block/fence.js",
+            "size": 2447,
+            "id": 470
+          },
+          {
+            "name": "./node_modules/markdown-it/lib/rules_block/blockquote.js",
+            "size": 8013,
+            "id": 471
+          },
+          {
+            "name": "./node_modules/markdown-it/lib/rules_block/hr.js",
+            "size": 1123,
+            "id": 472
+          },
+          {
+            "name": "./node_modules/markdown-it/lib/rules_block/list.js",
+            "size": 8701,
+            "id": 473
+          },
+          {
+            "name": "./node_modules/markdown-it/lib/rules_block/reference.js",
+            "size": 5321,
+            "id": 474
+          },
+          {
+            "name": "./node_modules/markdown-it/lib/rules_block/heading.js",
+            "size": 1545,
+            "id": 475
+          },
+          {
+            "name": "./node_modules/markdown-it/lib/rules_block/lheading.js",
+            "size": 2539,
+            "id": 476
+          },
+          {
+            "name": "./node_modules/markdown-it/lib/rules_block/html_block.js",
+            "size": 2278,
+            "id": 477
+          },
+          {
+            "name": "./node_modules/markdown-it/lib/common/html_blocks.js",
+            "size": 836,
+            "id": 478
+          },
+          {
+            "name": "./node_modules/markdown-it/lib/rules_block/paragraph.js",
+            "size": 1574,
+            "id": 479
+          },
+          {
+            "name": "./node_modules/markdown-it/lib/rules_block/state_block.js",
+            "size": 5942,
+            "id": 480
+          },
+          {
+            "name": "./node_modules/markdown-it/lib/parser_inline.js",
+            "size": 4498,
+            "id": 481
+          },
+          {
+            "name": "./node_modules/markdown-it/lib/rules_inline/text.js",
+            "size": 2125,
+            "id": 482
+          },
+          {
+            "name": "./node_modules/markdown-it/lib/rules_inline/newline.js",
+            "size": 1088,
+            "id": 483
+          },
+          {
+            "name": "./node_modules/markdown-it/lib/rules_inline/escape.js",
+            "size": 1078,
+            "id": 484
+          },
+          {
+            "name": "./node_modules/markdown-it/lib/rules_inline/backticks.js",
+            "size": 1120,
+            "id": 485
+          },
+          {
+            "name": "./node_modules/markdown-it/lib/rules_inline/link.js",
+            "size": 3880,
+            "id": 486
+          },
+          {
+            "name": "./node_modules/markdown-it/lib/rules_inline/image.js",
+            "size": 3862,
+            "id": 487
+          },
+          {
+            "name": "./node_modules/markdown-it/lib/rules_inline/autolink.js",
+            "size": 2004,
+            "id": 488
+          },
+          {
+            "name": "./node_modules/markdown-it/lib/rules_inline/html_inline.js",
+            "size": 1013,
+            "id": 489
+          },
+          {
+            "name": "./node_modules/markdown-it/lib/rules_inline/entity.js",
+            "size": 1432,
+            "id": 490
+          },
+          {
+            "name": "./node_modules/markdown-it/lib/rules_inline/balance_pairs.js",
+            "size": 1162,
+            "id": 491
+          },
+          {
+            "name": "./node_modules/markdown-it/lib/rules_inline/text_collapse.js",
+            "size": 768,
+            "id": 492
+          },
+          {
+            "name": "./node_modules/markdown-it/lib/rules_inline/state_inline.js",
+            "size": 3432,
+            "id": 493
+          },
+          {
+            "name": "./node_modules/linkify-it/index.js",
+            "size": 17698,
+            "id": 494
+          },
+          {
+            "name": "./node_modules/linkify-it/lib/re.js",
+            "size": 5689,
+            "id": 495
+          },
+          {
+            "name": "./node_modules/punycode/punycode.js",
+            "size": 14670,
+            "id": 496
+          },
+          {
+            "name": "(webpack)/buildin/module.js",
+            "size": 517,
+            "id": 497
+          },
+          {
+            "name": "./node_modules/markdown-it/lib/presets/default.js",
+            "size": 1313,
+            "id": 498
+          },
+          {
+            "name": "./node_modules/markdown-it/lib/presets/zero.js",
+            "size": 1661,
+            "id": 499
+          },
+          {
+            "name": "./node_modules/markdown-it/lib/presets/commonmark.js",
+            "size": 1920,
+            "id": 500
+          },
+          {
+            "name": "./node_modules/prismjs/prism.js",
+            "size": 20259,
+            "id": 501
+          },
+          {
+            "name": "./node_modules/prismjs/components/prism-markup.js",
+            "size": 1234,
+            "id": 502
+          },
+          {
+            "name": "./node_modules/prismjs/components/prism-javascript.js",
+            "size": 1660,
+            "id": 503
+          },
+          {
+            "name": "./node_modules/vue-loader/lib/template-compiler?{\"id\":\"data-v-0b837a53\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/pages/button.vue",
+            "size": 800,
+            "id": 504
+          },
+          {
+            "name": "./src/pages/text.vue",
+            "size": 912,
+            "id": 505
+          },
+          {
+            "name": "./node_modules/babel-loader/lib!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./src/pages/text.vue",
+            "size": 527,
+            "id": 506
+          },
+          {
+            "name": "./node_modules/vue-loader/lib/template-compiler?{\"id\":\"data-v-0408f10e\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/pages/text.vue",
+            "size": 422,
+            "id": 507
+          },
+          {
+            "name": "./src/pages/header.vue",
+            "size": 916,
+            "id": 508
+          },
+          {
+            "name": "./node_modules/babel-loader/lib!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./src/pages/header.vue",
+            "size": 581,
+            "id": 509
+          },
+          {
+            "name": "./node_modules/vue-loader/lib/template-compiler?{\"id\":\"data-v-6c03102e\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/pages/header.vue",
+            "size": 788,
+            "id": 510
+          },
+          {
+            "name": "./src/pages/footer.vue",
+            "size": 916,
+            "id": 511
+          },
+          {
+            "name": "./node_modules/babel-loader/lib!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./src/pages/footer.vue",
+            "size": 557,
+            "id": 512
+          },
+          {
+            "name": "./node_modules/vue-loader/lib/template-compiler?{\"id\":\"data-v-4ad0ac3c\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/pages/footer.vue",
+            "size": 510,
+            "id": 513
+          },
+          {
+            "name": "./src/pages/pre-footer.vue",
+            "size": 924,
+            "id": 514
+          },
+          {
+            "name": "./node_modules/babel-loader/lib!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./src/pages/pre-footer.vue",
+            "size": 531,
+            "id": 515
+          },
+          {
+            "name": "./node_modules/vue-loader/lib/template-compiler?{\"id\":\"data-v-11ccf5b4\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/pages/pre-footer.vue",
+            "size": 331,
+            "id": 516
+          },
+          {
+            "name": "./src/pages/loader.vue",
+            "size": 916,
+            "id": 517
+          },
+          {
+            "name": "./node_modules/babel-loader/lib!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./src/pages/loader.vue",
+            "size": 858,
+            "id": 518
+          },
+          {
+            "name": "./node_modules/vue-loader/lib/template-compiler?{\"id\":\"data-v-07d52ab4\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/pages/loader.vue",
+            "size": 488,
+            "id": 519
+          },
+          {
+            "name": "./node_modules/vue-loader/lib/template-compiler?{\"id\":\"data-v-5d54dc01\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/comps/gallery.vue",
+            "size": 512,
+            "id": 520
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "timeStamp": 1508333214561,
+    "time": 3225,
+    "hash": "56767229ccb9b7c223e9",
+    "errors": [],
+    "size": 1583923,
+    "assets": [
+      {
+        "name": "722a2cad8189a1ff4ab15e9340759adf.md",
+        "chunks": [],
+        "size": 480
+      },
+      {
+        "name": "8c022f6de72fa7d302ca54fe8f526c7d.woff2",
+        "chunks": [],
+        "size": 33696
+      },
+      {
+        "name": "c97e1959c8dd50cb12d0e7fb231d166b.woff2",
+        "chunks": [],
+        "size": 34472
+      },
+      {
+        "name": "3875601d3d9f38dbed024edb0204d27c.woff",
+        "chunks": [],
+        "size": 41936
+      },
+      {
+        "name": "ca8341201f84fb37c3f6ada7068e6811.woff2",
+        "chunks": [],
+        "size": 33416
+      },
+      {
+        "name": "ec228a396b9420f7dd003b59a8173db8.woff",
+        "chunks": [],
+        "size": 40620
+      },
+      {
+        "name": "fc2be84803be2f5c02dbb498af09012a.svg",
+        "chunks": [],
+        "size": 113740
+      },
+      {
+        "name": "b982c7fa5248d662d0202ed1602b3a69.svg",
+        "chunks": [],
+        "size": 114982
+      },
+      {
+        "name": "94f49172716aaf6567ad9f4c9dbaa3a9.woff",
+        "chunks": [],
+        "size": 40860
+      },
+      {
+        "name": "main.bundle.js",
+        "chunks": [
+          0
+        ],
+        "size": 770689,
+        "minified": true
+      },
+      {
+        "name": "favicon.svg",
+        "chunks": [],
+        "size": 4307
+      },
+      {
+        "name": "index.html",
+        "chunks": [],
+        "size": 232
+      },
+      {
+        "name": "722a2cad8189a1ff4ab15e9340759adf.md.gz",
+        "chunks": [],
+        "size": 244
+      },
+      {
+        "name": "favicon.svg.gz",
+        "chunks": [],
+        "size": 1738
+      },
+      {
+        "name": "fc2be84803be2f5c02dbb498af09012a.svg.gz",
+        "chunks": [],
+        "size": 85147
+      },
+      {
+        "name": "b982c7fa5248d662d0202ed1602b3a69.svg.gz",
+        "chunks": [],
+        "size": 85378
+      },
+      {
+        "name": "main.bundle.js.gz",
+        "chunks": [],
+        "size": 181986
+      }
+    ],
+    "chunks": [
+      {
+        "size": 666284,
+        "files": [
+          "main.bundle.js"
+        ],
+        "modules": [
+          {
+            "name": "./node_modules/markdown-it/lib/common/utils.js",
+            "size": 7151,
+            "id": 0
+          },
+          {
+            "name": "./node_modules/vue-loader/lib/component-normalizer.js",
+            "size": 2745,
+            "id": 1
+          },
+          {
+            "name": "./node_modules/css-loader/lib/css-base.js",
+            "size": 2260,
+            "id": 2
+          },
+          {
+            "name": "./node_modules/vue-style-loader/lib/addStylesClient.js",
+            "size": 6055,
+            "id": 3
+          },
+          {
+            "name": "../src/index.js",
+            "size": 2334,
+            "id": 4
+          },
+          {
+            "name": "./node_modules/css-loader?{\"minimize\":true,\"localIdentName\":\"[hash:base64:7]_0\",\"importLoaders\":true,\"modules\":true,\"sourceMap\":true}!../src/shared-styles.css",
+            "size": 2133,
+            "id": 5
+          },
+          {
+            "name": "./src/comps/GalleryPage.vue",
+            "size": 1371,
+            "id": 6
+          },
+          {
+            "name": "../src/comps/Section/Section.vue",
+            "size": 1425,
+            "id": 7
+          },
+          {
+            "name": "(webpack)/buildin/global.js",
+            "size": 509,
+            "id": 8
+          },
+          {
+            "name": "../src/comps/Button/Button.vue",
+            "size": 1422,
+            "id": 9
+          },
+          {
+            "name": "./node_modules/uc.micro/categories/P/regex.js",
+            "size": 1778,
+            "id": 10
+          },
+          {
+            "name": "./node_modules/markdown-it/lib/ruler.js",
+            "size": 8651,
+            "id": 11
+          },
+          {
+            "name": "./node_modules/markdown-it/lib/token.js",
+            "size": 3650,
+            "id": 12
+          },
+          {
+            "name": "./node_modules/vue/dist/vue.runtime.esm.js",
+            "size": 199034,
+            "id": 13
+          },
+          {
+            "name": "./node_modules/warning/browser.js",
+            "size": 1807,
+            "id": 14
+          },
+          {
+            "name": "./node_modules/history/PathUtils.js",
+            "size": 1768,
+            "id": 15
+          },
+          {
+            "name": "./node_modules/markdown-it/lib/common/entities.js",
+            "size": 142,
+            "id": 16
+          },
+          {
+            "name": "./node_modules/mdurl/index.js",
+            "size": 195,
+            "id": 17
+          },
+          {
+            "name": "./node_modules/uc.micro/properties/Any/regex.js",
+            "size": 145,
+            "id": 18
+          },
+          {
+            "name": "./node_modules/uc.micro/categories/Cc/regex.js",
+            "size": 35,
+            "id": 19
+          },
+          {
+            "name": "./node_modules/uc.micro/categories/Z/regex.js",
+            "size": 61,
+            "id": 20
+          },
+          {
+            "name": "./node_modules/markdown-it/lib/common/html_re.js",
+            "size": 1047,
+            "id": 21
+          },
+          {
+            "name": "./node_modules/markdown-it/lib/rules_inline/strikethrough.js",
+            "size": 2635,
+            "id": 22
+          },
+          {
+            "name": "./node_modules/markdown-it/lib/rules_inline/emphasis.js",
+            "size": 3543,
+            "id": 23
+          },
+          {
+            "name": "multi ./src/index.js",
+            "size": 28,
+            "id": 24
+          },
+          {
+            "name": "./src/index.js",
+            "size": 710,
+            "id": 25
+          },
+          {
+            "name": "./src/comps/gallery.vue",
+            "size": 1627,
+            "id": 26
+          },
+          {
+            "name": "./node_modules/vue-style-loader!./node_modules/css-loader?minimize!./node_modules/vue-loader/lib/style-compiler?{\"vue\":true,\"id\":\"data-v-5d54dc01\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./src/comps/gallery.vue",
+            "size": 646,
+            "id": 27
+          },
+          {
+            "name": "./node_modules/css-loader?minimize!./node_modules/vue-loader/lib/style-compiler?{\"vue\":true,\"id\":\"data-v-5d54dc01\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./src/comps/gallery.vue",
+            "size": 408,
+            "id": 28
+          },
+          {
+            "name": "./node_modules/css-loader?minimize!./src/prism-theme.css",
+            "size": 1032,
+            "id": 29
+          },
+          {
+            "name": "./node_modules/vue-style-loader/lib/listToStyles.js",
+            "size": 639,
+            "id": 30
+          },
+          {
+            "name": "./node_modules/vue-style-loader!./node_modules/css-loader?{\"minimize\":true,\"localIdentName\":\"[hash:base64:7]_1\",\"importLoaders\":true,\"modules\":true,\"sourceMap\":true}!./node_modules/vue-loader/lib/style-compiler?{\"vue\":true,\"id\":\"data-v-5d54dc01\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=1!./src/comps/gallery.vue",
+            "size": 757,
+            "id": 31
+          },
+          {
+            "name": "./node_modules/css-loader?{\"minimize\":true,\"localIdentName\":\"[hash:base64:7]_1\",\"importLoaders\":true,\"modules\":true,\"sourceMap\":true}!./node_modules/vue-loader/lib/style-compiler?{\"vue\":true,\"id\":\"data-v-5d54dc01\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=1!./src/comps/gallery.vue",
+            "size": 732,
+            "id": 32
+          },
+          {
+            "name": "./node_modules/babel-loader/lib!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./src/comps/gallery.vue",
+            "size": 2600,
+            "id": 33
+          },
+          {
+            "name": "./node_modules/history/createBrowserHistory.js",
+            "size": 9751,
+            "id": 34
+          },
+          {
+            "name": "./node_modules/invariant/browser.js",
+            "size": 1516,
+            "id": 35
+          },
+          {
+            "name": "./node_modules/history/LocationUtils.js",
+            "size": 2647,
+            "id": 36
+          },
+          {
+            "name": "./node_modules/resolve-pathname/index.js",
+            "size": 1797,
+            "id": 37
+          },
+          {
+            "name": "./node_modules/value-equal/index.js",
+            "size": 1136,
+            "id": 38
+          },
+          {
+            "name": "./node_modules/history/createTransitionManager.js",
+            "size": 2361,
+            "id": 39
+          },
+          {
+            "name": "./node_modules/history/DOMUtils.js",
+            "size": 2491,
+            "id": 40
+          },
+          {
+            "name": "../src/comps/BaseStyles/BaseStyles.vue",
+            "size": 1188,
+            "id": 41
+          },
+          {
+            "name": "./node_modules/vue-style-loader!./node_modules/css-loader?{\"minimize\":true,\"localIdentName\":\"[hash:base64:7]_0\",\"importLoaders\":true,\"modules\":true,\"sourceMap\":true}!./node_modules/vue-loader/lib/style-compiler?{\"vue\":true,\"id\":\"data-v-3f3b8975\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!../src/comps/BaseStyles/BaseStyles.vue",
+            "size": 804,
+            "id": 42
+          },
+          {
+            "name": "./node_modules/css-loader?{\"minimize\":true,\"localIdentName\":\"[hash:base64:7]_0\",\"importLoaders\":true,\"modules\":true,\"sourceMap\":true}!./node_modules/vue-loader/lib/style-compiler?{\"vue\":true,\"id\":\"data-v-3f3b8975\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!../src/comps/BaseStyles/BaseStyles.vue",
+            "size": 4363,
+            "id": 43
+          },
+          {
+            "name": "../src/comps/BaseStyles/assets/overpass/overpass-thin.woff2",
+            "size": 84,
+            "id": 44
+          },
+          {
+            "name": "../src/comps/BaseStyles/assets/overpass/overpass-thin.woff",
+            "size": 83,
+            "id": 45
+          },
+          {
+            "name": "../src/comps/BaseStyles/assets/overpass/overpass-light.woff2",
+            "size": 84,
+            "id": 46
+          },
+          {
+            "name": "../src/comps/BaseStyles/assets/overpass/overpass-light.woff",
+            "size": 83,
+            "id": 47
+          },
+          {
+            "name": "../src/comps/BaseStyles/assets/overpass/overpass-semibold.woff2",
+            "size": 84,
+            "id": 48
+          },
+          {
+            "name": "../src/comps/BaseStyles/assets/overpass/overpass-semibold.woff",
+            "size": 83,
+            "id": 49
+          },
+          {
+            "name": "./node_modules/babel-loader/lib!./node_modules/vue-loader/lib/selector.js?type=script&index=0!../src/comps/BaseStyles/BaseStyles.vue",
+            "size": 153,
+            "id": 50
+          },
+          {
+            "name": "./node_modules/vue-style-loader!./node_modules/css-loader?{\"minimize\":true,\"localIdentName\":\"[hash:base64:7]_0\",\"importLoaders\":true,\"modules\":true,\"sourceMap\":true}!./node_modules/vue-loader/lib/style-compiler?{\"vue\":true,\"id\":\"data-v-5b622495\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!../src/comps/Button/Button.vue",
+            "size": 800,
+            "id": 51
+          },
+          {
+            "name": "./node_modules/css-loader?{\"minimize\":true,\"localIdentName\":\"[hash:base64:7]_0\",\"importLoaders\":true,\"modules\":true,\"sourceMap\":true}!./node_modules/vue-loader/lib/style-compiler?{\"vue\":true,\"id\":\"data-v-5b622495\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!../src/comps/Button/Button.vue",
+            "size": 1559,
+            "id": 52
+          },
+          {
+            "name": "./node_modules/babel-loader/lib!./node_modules/vue-loader/lib/selector.js?type=script&index=0!../src/comps/Button/Button.vue",
+            "size": 196,
+            "id": 53
+          },
+          {
+            "name": "./node_modules/vue-loader/lib/template-compiler?{\"id\":\"data-v-5b622495\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!../src/comps/Button/Button.vue",
+            "size": 398,
+            "id": 54
+          },
+          {
+            "name": "../src/comps/Footer/Footer.vue",
+            "size": 1422,
+            "id": 55
+          },
+          {
+            "name": "./node_modules/vue-style-loader!./node_modules/css-loader?{\"minimize\":true,\"localIdentName\":\"[hash:base64:7]_0\",\"importLoaders\":true,\"modules\":true,\"sourceMap\":true}!./node_modules/vue-loader/lib/style-compiler?{\"vue\":true,\"id\":\"data-v-bf6a4716\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!../src/comps/Footer/Footer.vue",
+            "size": 800,
+            "id": 56
+          },
+          {
+            "name": "./node_modules/css-loader?{\"minimize\":true,\"localIdentName\":\"[hash:base64:7]_0\",\"importLoaders\":true,\"modules\":true,\"sourceMap\":true}!./node_modules/vue-loader/lib/style-compiler?{\"vue\":true,\"id\":\"data-v-bf6a4716\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!../src/comps/Footer/Footer.vue",
+            "size": 4008,
+            "id": 57
+          },
+          {
+            "name": "../src/comps/Footer/assets/twitter.svg",
+            "size": 1037,
+            "id": 58
+          },
+          {
+            "name": "../src/comps/Footer/assets/medium.svg",
+            "size": 953,
+            "id": 59
+          },
+          {
+            "name": "../src/comps/Footer/assets/slack.svg",
+            "size": 1473,
+            "id": 60
+          },
+          {
+            "name": "../src/comps/Footer/assets/mail.svg",
+            "size": 725,
+            "id": 61
+          },
+          {
+            "name": "./node_modules/babel-loader/lib!./node_modules/vue-loader/lib/selector.js?type=script&index=0!../src/comps/Footer/Footer.vue",
+            "size": 561,
+            "id": 62
+          },
+          {
+            "name": "./node_modules/vue-style-loader!./node_modules/css-loader?{\"minimize\":true,\"localIdentName\":\"[hash:base64:7]_0\",\"importLoaders\":true,\"modules\":true,\"sourceMap\":true}!./node_modules/vue-loader/lib/style-compiler?{\"vue\":true,\"id\":\"data-v-7426d7e1\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!../src/comps/Section/Section.vue",
+            "size": 801,
+            "id": 63
+          },
+          {
+            "name": "./node_modules/css-loader?{\"minimize\":true,\"localIdentName\":\"[hash:base64:7]_0\",\"importLoaders\":true,\"modules\":true,\"sourceMap\":true}!./node_modules/vue-loader/lib/style-compiler?{\"vue\":true,\"id\":\"data-v-7426d7e1\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!../src/comps/Section/Section.vue",
+            "size": 961,
+            "id": 64
+          },
+          {
+            "name": "./node_modules/babel-loader/lib!./node_modules/vue-loader/lib/selector.js?type=script&index=0!../src/comps/Section/Section.vue",
+            "size": 197,
+            "id": 65
+          },
+          {
+            "name": "./node_modules/vue-loader/lib/template-compiler?{\"id\":\"data-v-7426d7e1\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!../src/comps/Section/Section.vue",
+            "size": 413,
+            "id": 66
+          },
+          {
+            "name": "./node_modules/vue-loader/lib/template-compiler?{\"id\":\"data-v-bf6a4716\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!../src/comps/Footer/Footer.vue",
+            "size": 1691,
+            "id": 67
+          },
+          {
+            "name": "../src/comps/Footer/assets/logo.svg",
+            "size": 82,
+            "id": 68
+          },
+          {
+            "name": "../src/comps/Header/Header.vue",
+            "size": 1422,
+            "id": 69
+          },
+          {
+            "name": "./node_modules/vue-style-loader!./node_modules/css-loader?{\"minimize\":true,\"localIdentName\":\"[hash:base64:7]_0\",\"importLoaders\":true,\"modules\":true,\"sourceMap\":true}!./node_modules/vue-loader/lib/style-compiler?{\"vue\":true,\"id\":\"data-v-e97c2f96\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!../src/comps/Header/Header.vue",
+            "size": 800,
+            "id": 70
+          },
+          {
+            "name": "./node_modules/css-loader?{\"minimize\":true,\"localIdentName\":\"[hash:base64:7]_0\",\"importLoaders\":true,\"modules\":true,\"sourceMap\":true}!./node_modules/vue-loader/lib/style-compiler?{\"vue\":true,\"id\":\"data-v-e97c2f96\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!../src/comps/Header/Header.vue",
+            "size": 5631,
+            "id": 71
+          },
+          {
+            "name": "./node_modules/babel-loader/lib!./node_modules/vue-loader/lib/selector.js?type=script&index=0!../src/comps/Header/Header.vue",
+            "size": 524,
+            "id": 72
+          },
+          {
+            "name": "./node_modules/vue-loader/lib/template-compiler?{\"id\":\"data-v-e97c2f96\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!../src/comps/Header/Header.vue",
+            "size": 1732,
+            "id": 73
+          },
+          {
+            "name": "../src/comps/Header/assets/logo.svg",
+            "size": 82,
+            "id": 74
+          },
+          {
+            "name": "../src/comps/Header/assets/isotype.svg",
+            "size": 4649,
+            "id": 75
+          },
+          {
+            "name": "../src/comps/Header/assets/logotype.svg",
+            "size": 10933,
+            "id": 76
+          },
+          {
+            "name": "../src/comps/IllustratedSection/IllustratedSection.vue",
+            "size": 1458,
+            "id": 77
+          },
+          {
+            "name": "./node_modules/vue-style-loader!./node_modules/css-loader?{\"minimize\":true,\"localIdentName\":\"[hash:base64:7]_0\",\"importLoaders\":true,\"modules\":true,\"sourceMap\":true}!./node_modules/vue-loader/lib/style-compiler?{\"vue\":true,\"id\":\"data-v-cf263cd6\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!../src/comps/IllustratedSection/IllustratedSection.vue",
+            "size": 812,
+            "id": 78
+          },
+          {
+            "name": "./node_modules/css-loader?{\"minimize\":true,\"localIdentName\":\"[hash:base64:7]_0\",\"importLoaders\":true,\"modules\":true,\"sourceMap\":true}!./node_modules/vue-loader/lib/style-compiler?{\"vue\":true,\"id\":\"data-v-cf263cd6\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!../src/comps/IllustratedSection/IllustratedSection.vue",
+            "size": 2915,
+            "id": 79
+          },
+          {
+            "name": "./node_modules/babel-loader/lib!./node_modules/vue-loader/lib/selector.js?type=script&index=0!../src/comps/IllustratedSection/IllustratedSection.vue",
+            "size": 497,
+            "id": 80
+          },
+          {
+            "name": "./node_modules/vue-loader/lib/template-compiler?{\"id\":\"data-v-cf263cd6\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!../src/comps/IllustratedSection/IllustratedSection.vue",
+            "size": 853,
+            "id": 81
+          },
+          {
+            "name": "../src/comps/Loader/Loader.vue",
+            "size": 1422,
+            "id": 82
+          },
+          {
+            "name": "./node_modules/vue-style-loader!./node_modules/css-loader?{\"minimize\":true,\"localIdentName\":\"[hash:base64:7]_0\",\"importLoaders\":true,\"modules\":true,\"sourceMap\":true}!./node_modules/vue-loader/lib/style-compiler?{\"vue\":true,\"id\":\"data-v-396e2575\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!../src/comps/Loader/Loader.vue",
+            "size": 800,
+            "id": 83
+          },
+          {
+            "name": "./node_modules/css-loader?{\"minimize\":true,\"localIdentName\":\"[hash:base64:7]_0\",\"importLoaders\":true,\"modules\":true,\"sourceMap\":true}!./node_modules/vue-loader/lib/style-compiler?{\"vue\":true,\"id\":\"data-v-396e2575\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!../src/comps/Loader/Loader.vue",
+            "size": 1023,
+            "id": 84
+          },
+          {
+            "name": "./node_modules/babel-loader/lib!./node_modules/vue-loader/lib/selector.js?type=script&index=0!../src/comps/Loader/Loader.vue",
+            "size": 1268,
+            "id": 85
+          },
+          {
+            "name": "./node_modules/vue-motion/dist/vue-motion.js",
+            "size": 10370,
+            "id": 86
+          },
+          {
+            "name": "../src/utils.js",
+            "size": 167,
+            "id": 87
+          },
+          {
+            "name": "./node_modules/vue-loader/lib/template-compiler?{\"id\":\"data-v-396e2575\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!../src/comps/Loader/Loader.vue",
+            "size": 491,
+            "id": 88
+          },
+          {
+            "name": "../src/comps/PreFooter/PreFooter.vue",
+            "size": 1431,
+            "id": 89
+          },
+          {
+            "name": "./node_modules/vue-style-loader!./node_modules/css-loader?{\"minimize\":true,\"localIdentName\":\"[hash:base64:7]_0\",\"importLoaders\":true,\"modules\":true,\"sourceMap\":true}!./node_modules/vue-loader/lib/style-compiler?{\"vue\":true,\"id\":\"data-v-04d2bd93\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!../src/comps/PreFooter/PreFooter.vue",
+            "size": 803,
+            "id": 90
+          },
+          {
+            "name": "./node_modules/css-loader?{\"minimize\":true,\"localIdentName\":\"[hash:base64:7]_0\",\"importLoaders\":true,\"modules\":true,\"sourceMap\":true}!./node_modules/vue-loader/lib/style-compiler?{\"vue\":true,\"id\":\"data-v-04d2bd93\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!../src/comps/PreFooter/PreFooter.vue",
+            "size": 2188,
+            "id": 91
+          },
+          {
+            "name": "../src/comps/PreFooter/assets/background.svg",
+            "size": 9901,
+            "id": 92
+          },
+          {
+            "name": "./node_modules/babel-loader/lib!./node_modules/vue-loader/lib/selector.js?type=script&index=0!../src/comps/PreFooter/PreFooter.vue",
+            "size": 541,
+            "id": 93
+          },
+          {
+            "name": "./node_modules/vue-loader/lib/template-compiler?{\"id\":\"data-v-04d2bd93\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!../src/comps/PreFooter/PreFooter.vue",
+            "size": 1008,
+            "id": 94
+          },
+          {
+            "name": "../src/comps/Text/Text.vue",
+            "size": 1176,
+            "id": 95
+          },
+          {
+            "name": "./node_modules/vue-style-loader!./node_modules/css-loader?{\"minimize\":true,\"localIdentName\":\"[hash:base64:7]_0\",\"importLoaders\":true,\"modules\":true,\"sourceMap\":true}!./node_modules/vue-loader/lib/style-compiler?{\"vue\":true,\"id\":\"data-v-673a3896\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!../src/comps/Text/Text.vue",
+            "size": 798,
+            "id": 96
+          },
+          {
+            "name": "./node_modules/css-loader?{\"minimize\":true,\"localIdentName\":\"[hash:base64:7]_0\",\"importLoaders\":true,\"modules\":true,\"sourceMap\":true}!./node_modules/vue-loader/lib/style-compiler?{\"vue\":true,\"id\":\"data-v-673a3896\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!../src/comps/Text/Text.vue",
+            "size": 840,
+            "id": 97
+          },
+          {
+            "name": "./node_modules/babel-loader/lib!./node_modules/vue-loader/lib/selector.js?type=script&index=0!../src/comps/Text/Text.vue",
+            "size": 1117,
+            "id": 98
+          },
+          {
+            "name": "./node_modules/regenerator-runtime/runtime.js",
+            "size": 24254,
+            "id": 99
+          },
+          {
+            "name": "./src/comps/GallerySidebar.vue",
+            "size": 1380,
+            "id": 100
+          },
+          {
+            "name": "./node_modules/vue-style-loader!./node_modules/css-loader?{\"minimize\":true,\"localIdentName\":\"[hash:base64:7]_0\",\"importLoaders\":true,\"modules\":true,\"sourceMap\":true}!./node_modules/vue-loader/lib/style-compiler?{\"vue\":true,\"id\":\"data-v-452e326b\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./src/comps/GallerySidebar.vue",
+            "size": 764,
+            "id": 101
+          },
+          {
+            "name": "./node_modules/css-loader?{\"minimize\":true,\"localIdentName\":\"[hash:base64:7]_0\",\"importLoaders\":true,\"modules\":true,\"sourceMap\":true}!./node_modules/vue-loader/lib/style-compiler?{\"vue\":true,\"id\":\"data-v-452e326b\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./src/comps/GallerySidebar.vue",
+            "size": 1942,
+            "id": 102
+          },
+          {
+            "name": "./node_modules/babel-loader/lib!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./src/comps/GallerySidebar.vue",
+            "size": 320,
+            "id": 103
+          },
+          {
+            "name": "./node_modules/vue-loader/lib/template-compiler?{\"id\":\"data-v-452e326b\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/comps/GallerySidebar.vue",
+            "size": 841,
+            "id": 104
+          },
+          {
+            "name": "./src/pages/home.vue",
+            "size": 912,
+            "id": 105
+          },
+          {
+            "name": "./node_modules/babel-loader/lib!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./src/pages/home.vue",
+            "size": 530,
+            "id": 106
+          },
+          {
+            "name": "./node_modules/vue-style-loader!./node_modules/css-loader?{\"minimize\":true,\"localIdentName\":\"[hash:base64:7]_0\",\"importLoaders\":true,\"modules\":true,\"sourceMap\":true}!./node_modules/vue-loader/lib/style-compiler?{\"vue\":true,\"id\":\"data-v-5d40c2e0\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./src/comps/GalleryPage.vue",
+            "size": 761,
+            "id": 107
+          },
+          {
+            "name": "./node_modules/css-loader?{\"minimize\":true,\"localIdentName\":\"[hash:base64:7]_0\",\"importLoaders\":true,\"modules\":true,\"sourceMap\":true}!./node_modules/vue-loader/lib/style-compiler?{\"vue\":true,\"id\":\"data-v-5d40c2e0\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./src/comps/GalleryPage.vue",
+            "size": 2442,
+            "id": 108
+          },
+          {
+            "name": "./node_modules/babel-loader/lib!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./src/comps/GalleryPage.vue",
+            "size": 319,
+            "id": 109
+          },
+          {
+            "name": "./node_modules/vue-loader/lib/template-compiler?{\"id\":\"data-v-5d40c2e0\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/comps/GalleryPage.vue",
+            "size": 893,
+            "id": 110
+          },
+          {
+            "name": "./node_modules/vue-loader/lib/template-compiler?{\"id\":\"data-v-22e077c0\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/pages/home.vue",
+            "size": 440,
+            "id": 111
+          },
+          {
+            "name": "./src/pages/button.vue",
+            "size": 1356,
+            "id": 112
+          },
+          {
+            "name": "./node_modules/vue-style-loader!./node_modules/css-loader?{\"minimize\":true,\"localIdentName\":\"[hash:base64:7]_0\",\"importLoaders\":true,\"modules\":true,\"sourceMap\":true}!./node_modules/vue-loader/lib/style-compiler?{\"vue\":true,\"id\":\"data-v-0b837a53\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./src/pages/button.vue",
+            "size": 756,
+            "id": 113
+          },
+          {
+            "name": "./node_modules/css-loader?{\"minimize\":true,\"localIdentName\":\"[hash:base64:7]_0\",\"importLoaders\":true,\"modules\":true,\"sourceMap\":true}!./node_modules/vue-loader/lib/style-compiler?{\"vue\":true,\"id\":\"data-v-0b837a53\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./src/pages/button.vue",
+            "size": 817,
+            "id": 114
+          },
+          {
+            "name": "./node_modules/babel-loader/lib!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./src/pages/button.vue",
+            "size": 2131,
+            "id": 115
+          },
+          {
+            "name": "../src/comps/Button/README.md",
+            "size": 81,
+            "id": 116
+          },
+          {
+            "name": "./src/render-readme.js",
+            "size": 3413,
+            "id": 117
+          },
+          {
+            "name": "./node_modules/markdown-it/index.js",
+            "size": 52,
+            "id": 118
+          },
+          {
+            "name": "./node_modules/markdown-it/lib/index.js",
+            "size": 17879,
+            "id": 119
+          },
+          {
+            "name": "./node_modules/entities/maps/entities.json",
+            "size": 29128,
+            "id": 120
+          },
+          {
+            "name": "./node_modules/mdurl/encode.js",
+            "size": 2270,
+            "id": 121
+          },
+          {
+            "name": "./node_modules/mdurl/decode.js",
+            "size": 2873,
+            "id": 122
+          },
+          {
+            "name": "./node_modules/mdurl/format.js",
+            "size": 514,
+            "id": 123
+          },
+          {
+            "name": "./node_modules/mdurl/parse.js",
+            "size": 9893,
+            "id": 124
+          },
+          {
+            "name": "./node_modules/uc.micro/index.js",
+            "size": 254,
+            "id": 125
+          },
+          {
+            "name": "./node_modules/uc.micro/categories/Cf/regex.js",
+            "size": 222,
+            "id": 126
+          },
+          {
+            "name": "./node_modules/markdown-it/lib/helpers/index.js",
+            "size": 243,
+            "id": 127
+          },
+          {
+            "name": "./node_modules/markdown-it/lib/helpers/parse_link_label.js",
+            "size": 1013,
+            "id": 128
+          },
+          {
+            "name": "./node_modules/markdown-it/lib/helpers/parse_link_destination.js",
+            "size": 1598,
+            "id": 129
+          },
+          {
+            "name": "./node_modules/markdown-it/lib/helpers/parse_link_title.js",
+            "size": 1075,
+            "id": 130
+          },
+          {
+            "name": "./node_modules/markdown-it/lib/renderer.js",
+            "size": 8929,
+            "id": 131
+          },
+          {
+            "name": "./node_modules/markdown-it/lib/parser_core.js",
+            "size": 1184,
+            "id": 132
+          },
+          {
+            "name": "./node_modules/markdown-it/lib/rules_core/normalize.js",
+            "size": 350,
+            "id": 133
+          },
+          {
+            "name": "./node_modules/markdown-it/lib/rules_core/block.js",
+            "size": 360,
+            "id": 134
+          },
+          {
+            "name": "./node_modules/markdown-it/lib/rules_core/inline.js",
+            "size": 308,
+            "id": 135
+          },
+          {
+            "name": "./node_modules/markdown-it/lib/rules_core/linkify.js",
+            "size": 3993,
+            "id": 136
+          },
+          {
+            "name": "./node_modules/markdown-it/lib/rules_core/replacements.js",
+            "size": 2744,
+            "id": 137
+          },
+          {
+            "name": "./node_modules/markdown-it/lib/rules_core/smartquotes.js",
+            "size": 5381,
+            "id": 138
+          },
+          {
+            "name": "./node_modules/markdown-it/lib/rules_core/state_core.js",
+            "size": 349,
+            "id": 139
+          },
+          {
+            "name": "./node_modules/markdown-it/lib/parser_block.js",
+            "size": 3466,
+            "id": 140
+          },
+          {
+            "name": "./node_modules/markdown-it/lib/rules_block/table.js",
+            "size": 5730,
+            "id": 141
+          },
+          {
+            "name": "./node_modules/markdown-it/lib/rules_block/code.js",
+            "size": 721,
+            "id": 142
+          },
+          {
+            "name": "./node_modules/markdown-it/lib/rules_block/fence.js",
+            "size": 2447,
+            "id": 143
+          },
+          {
+            "name": "./node_modules/markdown-it/lib/rules_block/blockquote.js",
+            "size": 8013,
+            "id": 144
+          },
+          {
+            "name": "./node_modules/markdown-it/lib/rules_block/hr.js",
+            "size": 1123,
+            "id": 145
+          },
+          {
+            "name": "./node_modules/markdown-it/lib/rules_block/list.js",
+            "size": 8701,
+            "id": 146
+          },
+          {
+            "name": "./node_modules/markdown-it/lib/rules_block/reference.js",
+            "size": 5321,
+            "id": 147
+          },
+          {
+            "name": "./node_modules/markdown-it/lib/rules_block/heading.js",
+            "size": 1545,
+            "id": 148
+          },
+          {
+            "name": "./node_modules/markdown-it/lib/rules_block/lheading.js",
+            "size": 2539,
+            "id": 149
+          },
+          {
+            "name": "./node_modules/markdown-it/lib/rules_block/html_block.js",
+            "size": 2278,
+            "id": 150
+          },
+          {
+            "name": "./node_modules/markdown-it/lib/common/html_blocks.js",
+            "size": 836,
+            "id": 151
+          },
+          {
+            "name": "./node_modules/markdown-it/lib/rules_block/paragraph.js",
+            "size": 1574,
+            "id": 152
+          },
+          {
+            "name": "./node_modules/markdown-it/lib/rules_block/state_block.js",
+            "size": 5942,
+            "id": 153
+          },
+          {
+            "name": "./node_modules/markdown-it/lib/parser_inline.js",
+            "size": 4498,
+            "id": 154
+          },
+          {
+            "name": "./node_modules/markdown-it/lib/rules_inline/text.js",
+            "size": 2125,
+            "id": 155
+          },
+          {
+            "name": "./node_modules/markdown-it/lib/rules_inline/newline.js",
+            "size": 1088,
+            "id": 156
+          },
+          {
+            "name": "./node_modules/markdown-it/lib/rules_inline/escape.js",
+            "size": 1078,
+            "id": 157
+          },
+          {
+            "name": "./node_modules/markdown-it/lib/rules_inline/backticks.js",
+            "size": 1120,
+            "id": 158
+          },
+          {
+            "name": "./node_modules/markdown-it/lib/rules_inline/link.js",
+            "size": 3880,
+            "id": 159
+          },
+          {
+            "name": "./node_modules/markdown-it/lib/rules_inline/image.js",
+            "size": 3862,
+            "id": 160
+          },
+          {
+            "name": "./node_modules/markdown-it/lib/rules_inline/autolink.js",
+            "size": 2004,
+            "id": 161
+          },
+          {
+            "name": "./node_modules/markdown-it/lib/rules_inline/html_inline.js",
+            "size": 1013,
+            "id": 162
+          },
+          {
+            "name": "./node_modules/markdown-it/lib/rules_inline/entity.js",
+            "size": 1432,
+            "id": 163
+          },
+          {
+            "name": "./node_modules/markdown-it/lib/rules_inline/balance_pairs.js",
+            "size": 1162,
+            "id": 164
+          },
+          {
+            "name": "./node_modules/markdown-it/lib/rules_inline/text_collapse.js",
+            "size": 768,
+            "id": 165
+          },
+          {
+            "name": "./node_modules/markdown-it/lib/rules_inline/state_inline.js",
+            "size": 3432,
+            "id": 166
+          },
+          {
+            "name": "./node_modules/linkify-it/index.js",
+            "size": 17698,
+            "id": 167
+          },
+          {
+            "name": "./node_modules/linkify-it/lib/re.js",
+            "size": 5689,
+            "id": 168
+          },
+          {
+            "name": "./node_modules/punycode/punycode.js",
+            "size": 14670,
+            "id": 169
+          },
+          {
+            "name": "(webpack)/buildin/module.js",
+            "size": 517,
+            "id": 170
+          },
+          {
+            "name": "./node_modules/markdown-it/lib/presets/default.js",
+            "size": 1313,
+            "id": 171
+          },
+          {
+            "name": "./node_modules/markdown-it/lib/presets/zero.js",
+            "size": 1661,
+            "id": 172
+          },
+          {
+            "name": "./node_modules/markdown-it/lib/presets/commonmark.js",
+            "size": 1920,
+            "id": 173
+          },
+          {
+            "name": "./node_modules/prismjs/prism.js",
+            "size": 20259,
+            "id": 174
+          },
+          {
+            "name": "./node_modules/prismjs/components/prism-markup.js",
+            "size": 1234,
+            "id": 175
+          },
+          {
+            "name": "./node_modules/prismjs/components/prism-javascript.js",
+            "size": 1660,
+            "id": 176
+          },
+          {
+            "name": "./node_modules/vue-loader/lib/template-compiler?{\"id\":\"data-v-0b837a53\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/pages/button.vue",
+            "size": 800,
+            "id": 177
+          },
+          {
+            "name": "./src/pages/text.vue",
+            "size": 912,
+            "id": 178
+          },
+          {
+            "name": "./node_modules/babel-loader/lib!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./src/pages/text.vue",
+            "size": 527,
+            "id": 179
+          },
+          {
+            "name": "./node_modules/vue-loader/lib/template-compiler?{\"id\":\"data-v-0408f10e\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/pages/text.vue",
+            "size": 422,
+            "id": 180
+          },
+          {
+            "name": "./src/pages/header.vue",
+            "size": 916,
+            "id": 181
+          },
+          {
+            "name": "./node_modules/babel-loader/lib!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./src/pages/header.vue",
+            "size": 581,
+            "id": 182
+          },
+          {
+            "name": "./node_modules/vue-loader/lib/template-compiler?{\"id\":\"data-v-6c03102e\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/pages/header.vue",
+            "size": 788,
+            "id": 183
+          },
+          {
+            "name": "./src/pages/footer.vue",
+            "size": 916,
+            "id": 184
+          },
+          {
+            "name": "./node_modules/babel-loader/lib!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./src/pages/footer.vue",
+            "size": 557,
+            "id": 185
+          },
+          {
+            "name": "./node_modules/vue-loader/lib/template-compiler?{\"id\":\"data-v-4ad0ac3c\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/pages/footer.vue",
+            "size": 510,
+            "id": 186
+          },
+          {
+            "name": "./src/pages/pre-footer.vue",
+            "size": 924,
+            "id": 187
+          },
+          {
+            "name": "./node_modules/babel-loader/lib!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./src/pages/pre-footer.vue",
+            "size": 531,
+            "id": 188
+          },
+          {
+            "name": "./node_modules/vue-loader/lib/template-compiler?{\"id\":\"data-v-11ccf5b4\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/pages/pre-footer.vue",
+            "size": 331,
+            "id": 189
+          },
+          {
+            "name": "./src/pages/loader.vue",
+            "size": 916,
+            "id": 190
+          },
+          {
+            "name": "./node_modules/babel-loader/lib!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./src/pages/loader.vue",
+            "size": 858,
+            "id": 191
+          },
+          {
+            "name": "./node_modules/vue-loader/lib/template-compiler?{\"id\":\"data-v-07d52ab4\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/pages/loader.vue",
+            "size": 488,
+            "id": 192
+          },
+          {
+            "name": "./node_modules/vue-loader/lib/template-compiler?{\"id\":\"data-v-5d54dc01\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/comps/gallery.vue",
+            "size": 512,
+            "id": 193
+          }
+        ]
+      }
+    ]
+  }
+]

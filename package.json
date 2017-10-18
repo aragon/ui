@@ -5,6 +5,7 @@
   "license": "GPL-3.0",
   "scripts": {
     "postinstall": "cd gallery && npm install",
+    "deploy:site": "cd gallery && npm run build:production && gh-pages -d ./dist",
     "start": "cd gallery && npm start"
   },
   "peerDependencies": {
@@ -15,6 +16,7 @@
     "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.6.0",
     "babel-preset-stage-3": "^6.24.1",
+    "gh-pages": "^1.0.0",
     "postcss-cssnext": "^3.0.2"
   }
 }

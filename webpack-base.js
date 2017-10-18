@@ -8,7 +8,6 @@ const PRODUCTION = process.env.NODE_ENV === 'production'
 
 module.exports = (webpack, dir, conf) =>
   extend(conf, {
-    entry: append(conf.entry, ['babel-polyfill']),
     module: extend(conf.module, {
       rules: append(conf.module && conf.module.rules, [
         {
