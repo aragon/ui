@@ -12,12 +12,15 @@
   },
   "scripts": {
     "start": "webpack-dev-server",
-    "build": "webpack"
+    "build": "webpack",
+    "build:production": "NODE_ENV=production webpack",
+    "build:production:stats": "NODE_ENV=production INSPECT_BUNDLE=1 webpack && echo '\nOpen dist/bundle-stats.html to inspect the generated bundle.\n'"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-preset-env": "^1.6.0",
+    "compression-webpack-plugin": "^1.0.1",
     "css-loader": "^0.28.7",
     "extract-text-webpack-plugin": "^3.0.1",
     "file-loader": "^1.1.5",
@@ -27,6 +30,7 @@
     "vue-loader": "^13.0.5",
     "vue-template-compiler": "^2.4.4",
     "webpack": "^3.6.0",
-    "webpack-dev-server": "^2.9.1"
+    "webpack-dev-server": "^2.9.1",
+    "webpack-visualizer-plugin": "^0.1.11"
   }
 }
