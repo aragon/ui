@@ -1,6 +1,6 @@
-# Aragon Toolkit
+# Aragon UI
 
-The Aragon UI Toolkit.
+Aragon UI is the interface toolkit used by Aragon and its related projects.
 
 ## Develop
 
