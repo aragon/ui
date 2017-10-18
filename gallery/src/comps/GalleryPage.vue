@@ -4,36 +4,48 @@
       {{ title }}
     </UIText>
 
-    <div v-show="$slots.intro">
-      <div :class="[$style.intro, $style.markdown]">
-        <slot name="intro" />
-      </div>
-    </div>
+    <div v-if="intro" v-html="intro" :class="$style.markdown" />
 
-    <div v-show="$slots.demo">
+    <div v-show="$slots.default">
       <UIText :heading="2">Example</UIText>
-      <slot name="demo" />
+      <slot />
     </div>
 
-    <div v-show="$slots.doc">
-      <section :class="[$style.doc, $style.markdown]">
-        <slot name="doc" />
-      </section>
-    </div>
+    <div v-if="doc" v-html="doc" :class="$style.markdown" />
   </section>
 </template>
 
 <script>
+  import renderReadme from 'src/render-readme'
   import { UIText } from '@aragon/ui'
 
   export default {
-    components: { UIText },
     props: {
       title: {
         type: String,
         required: true,
+      },
+      readme: {
+        type: String,
+        required: false,
       }
-    }
+    },
+    data() {
+      return {
+        intro: '',
+        doc: '',
+      }
+    },
+    async created() {
+      if (!this.readme) {
+        return
+      }
+
+      const { intro, doc } = await renderReadme(this.readme)
+      this.intro = intro
+      this.doc = doc
+    },
+    components: { UIText },
   }
 </script>
 

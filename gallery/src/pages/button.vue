@@ -1,9 +1,6 @@
 <template>
-  <GalleryPage :title="title">
-
-    <div slot="intro" v-if="intro" v-html="intro" />
-
-    <div :class="$style.demo" slot="demo">
+  <GalleryPage :title="title" :readme="readme">
+    <div :class="$style.demo">
       <div>
         <UIButton>Normal Button</UIButton>
       </div>
@@ -14,40 +11,27 @@
         <UIButton strong>Strong Mode</UIButton>
       </div>
     </div>
-
-    <div slot="doc" v-if="doc" v-html="doc" />
-  </div>
-</GalleryPage>
+  </GalleryPage>
 </template>
 
 <script>
   import GalleryPage from 'comps/GalleryPage.vue'
-  import { UIButton, UIText } from '@aragon/ui'
+  import { UIButton } from '@aragon/ui'
   import readme from '@aragon/ui/comps/Button/README.md'
-  import renderReadme from 'src/render-readme'
 
   export default {
+    data() {
+      return { readme }
+    },
     props: {
       title: {
         type: String,
         required: true,
       },
     },
-    data() {
-      return {
-        intro: '',
-        doc: '',
-      }
-    },
-    async created() {
-      const { intro, doc } = await renderReadme(readme)
-      this.intro = intro
-      this.doc = doc
-    },
     components: {
       GalleryPage,
       UIButton,
-      UIText,
     },
   }
 </script>
@@ -59,8 +43,8 @@
   }
   .demo > div {
     margin-left: 20px;
-    &:first-child {
-      margin: 0;
-    }
+  }
+  .demo > div:first-child {
+    margin: 0;
   }
 </style>
