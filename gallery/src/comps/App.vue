@@ -1,5 +1,5 @@
 <template>
-  <div :class="$style.gallery">
+  <div :class="$style.app">
     <UIBaseStyles />
     <div :class="$style.sidebar">
       <GallerySidebar
@@ -90,7 +90,7 @@
 </style>
 
 <style module>
-  .gallery {
+  .app {
     display: flex;
     height: 100%;
   }

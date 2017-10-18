@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import gallery from './comps/gallery.vue'
+import App from './comps/App.vue'
 
 const initAppElement = (id = '#app') => {
   if (document.querySelector(id)) {
@@ -13,5 +13,5 @@ const initAppElement = (id = '#app') => {
 
 new Vue({
   el: initAppElement(),
-  render: h => h(gallery, { props: { path: PUBLIC_PATH } }),
+  render: h => h(App, { props: { path: PUBLIC_PATH } }),
 })
