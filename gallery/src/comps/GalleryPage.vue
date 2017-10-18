@@ -11,7 +11,7 @@
     </div>
 
     <div v-show="$slots.demo">
-      <UIText :heading="2" :class="$style.h2">Example</UIText>
+      <UIText :heading="2">Example</UIText>
       <slot name="demo" />
     </div>
 
@@ -49,19 +49,19 @@
     font-size: 24px;
     color: #000;
   }
-  .markdown h2,
-  .markdown h3 {
+  .main h2,
+  .main h3 {
     color: #000;
     font-weight: 600;
   }
-  .markdown h2 {
+  .main h2 {
     margin-top: 60px;
     margin-bottom: 30px;
     font-weight: bold;
     font-size: 18px;
     color: #000;
   }
-  .markdown h3 {
+  .main h3 {
     margin-top: 40px;
     margin-bottom: 20px;
   }
