@@ -1,16 +1,23 @@
 <template>
-  <div>
-    <div>
+  <GalleryPage :title="title">
+    <div slot="demo">
       <UIButton @click.native='showLoader()' outline>Show Loader</UIButton>
       <UILoader :text='loaderText' />
     </div>
-  </div>
+  </GalleryPage>
 </template>
 
 <script>
+  import GalleryPage from 'comps/GalleryPage.vue'
   import { UILoader, UIText, UIButton } from '@aragon/ui'
   export default {
-    components: { UILoader, UIText, UIButton },
+    props: {
+      title: {
+        type: String,
+        required: true,
+      },
+    },
+    components: { GalleryPage, UILoader, UIText, UIButton },
     data() {
       return {
         loaderText: ''

@@ -1,3 +1,4 @@
+import 'babel-polyfill'
 export { default as UIBaseStyles } from './comps/BaseStyles/BaseStyles.vue'
 export { default as UIButton } from './comps/Button/Button.vue'
 export { default as UIFooter } from './comps/Footer/Footer.vue'

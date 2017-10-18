@@ -1,16 +1,25 @@
 <template>
-  <div>
-    <UIText spaced>Default:</UIText>
-    <UIFooter />
+  <GalleryPage :title="title">
+    <div slot="demo">
+      <UIText spaced>Default:</UIText>
+      <UIFooter />
 
-    <UIText spaced>Light:</UIText>
-    <UIFooter light />
-  </div>
+      <UIText spaced>Light:</UIText>
+      <UIFooter light />
+    </div>
+  </GalleryPage>
 </template>
 
 <script>
+  import GalleryPage from 'comps/GalleryPage.vue'
   import { UIFooter, UIText } from '@aragon/ui'
   export default {
-    components: { UIFooter, UIText }
+    props: {
+      title: {
+        type: String,
+        required: true,
+      },
+    },
+    components: { GalleryPage, UIFooter, UIText }
   }
 </script>

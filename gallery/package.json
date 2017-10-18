@@ -5,8 +5,10 @@
   "license": "GPL-3.0",
   "dependencies": {
     "history": "^4.7.2",
-    "vue-motion": "^0.2.0",
-    "vue": "^2.4.4"
+    "markdown-it": "^8.4.0",
+    "prismjs": "^1.8.1",
+    "vue": "^2.4.4",
+    "vue-motion": "^0.2.0"
   },
   "scripts": {
     "start": "webpack-dev-server",

@@ -2,20 +2,21 @@
   <div :class="$style.gallery">
     <UIBaseStyles />
     <div :class="$style.sidebar">
-      <gallery-sidebar :pages='pages' @openPage='handleOpenPage' />
+      <GallerySidebar
+        :pages='pages'
+        :activePage='page'
+        @openPage='handleOpenPage'
+      />
     </div>
-    <gallery-content :title="page.name">
-      <component :is="page.comp" />
-    </gallery-content>
+    <component :is="page.comp" :title="page.name" />
   </div>
 </template>
 
 <script>
   import Vue from 'vue'
-  import { UIBaseStyles } from '@aragon/ui'
   import createHistory from 'history/createBrowserHistory'
-  import gallerySidebar from 'comps/gallery-sidebar.vue'
-  import galleryContent from 'comps/gallery-content.vue'
+  import { UIBaseStyles } from '@aragon/ui'
+  import GallerySidebar from 'comps/GallerySidebar.vue'
 
   import home from 'pages/home.vue'
   import button from 'pages/button.vue'
@@ -42,8 +43,7 @@
 
   export default {
     components: {
-      gallerySidebar,
-      galleryContent,
+      GallerySidebar,
       UIBaseStyles,
     },
     data() {
@@ -78,14 +78,20 @@
   }
 </script>
 
+<style>
+  @import url('https://fonts.googleapis.com/css?family=Source+Code+Pro');
+  @import url(../prism-theme.css);
+  code {
+    font-family: 'Source Code Pro', monospace;
+  }
+</style>
+
 <style module>
   .gallery {
     display: flex;
     height: 100%;
   }
   .sidebar {
-    width: 200px;
-    padding-right: 20px;
     margin-right: 20px;
   }
 </style>
