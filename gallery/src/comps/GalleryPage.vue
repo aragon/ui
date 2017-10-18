@@ -5,7 +5,9 @@
     </UIText>
 
     <div v-show="$slots.intro">
-      <slot name="intro" />
+      <div :class="[$style.intro, $style.markdown]">
+        <slot name="intro" />
+      </div>
     </div>
 
     <div v-show="$slots.demo">
@@ -14,7 +16,7 @@
     </div>
 
     <div v-show="$slots.doc">
-      <section :class="$style.doc">
+      <section :class="[$style.doc, $style.markdown]">
         <slot name="doc" />
       </section>
     </div>
@@ -39,6 +41,7 @@
   .main {
     width: 100%;
     padding: 40px;
+    color: #717171;
   }
   .main .title {
     margin-bottom: 40px;
@@ -46,46 +49,43 @@
     font-size: 24px;
     color: #000;
   }
-  .main h2 {
+  .markdown h2,
+  .markdown h3 {
+    color: #000;
+    font-weight: 600;
+  }
+  .markdown h2 {
     margin-top: 60px;
     margin-bottom: 30px;
     font-weight: bold;
     font-size: 18px;
     color: #000;
   }
-  .doc {
-    color: #717171;
-  }
-  .doc h1 {
-    display: none;
-  }
-  .doc h2, .doc h3 {
-    color: #000;
-    font-weight: 600;
-  }
-  .doc h3 {
+  .markdown h3 {
     margin-top: 40px;
     margin-bottom: 20px;
   }
-  .doc h2 code, .doc h3 code {
-    padding: 0;
-    background: none;
-  }
-  .doc code {
+  .markdown code {
     padding: 0 3px;
     border-radius: 5px;
     color: #000;
     background: white;
   }
-  .doc pre {
+  .markdown pre {
     padding: 20px;
     border-radius: 5px;
   }
-  .doc pre code {
+  .markdown pre code {
     color: inherit;
     background: inherit;
   }
-  .doc p, .doc ul {
+  .markdown h2 code,
+  .markdown h3 code {
+    padding: 0;
+    background: none;
+  }
+  .markdown p,
+  .markdown ul {
     list-style-position: inside;
     line-height: 2;
     margin-bottom: 20px;
