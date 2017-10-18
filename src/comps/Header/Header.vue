@@ -54,6 +54,7 @@
 <style module>
   @import '../../shared-styles.css';
   .header {
+    padding: 0 12px;
     background: var(--white);
   }
   .headerIn {
@@ -103,6 +104,7 @@
   .navItem {
     display: flex;
     align-items: stretch;
+    white-space: nowrap;
   }
   .navItem a {
     display: flex;
