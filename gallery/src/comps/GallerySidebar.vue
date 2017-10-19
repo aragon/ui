@@ -62,15 +62,15 @@
   .menuItemActive {
     position: relative;
     font-weight: 600;
-    &:before {
-      content: '';
-      position: absolute;
-      width: 4px;
-      height: 4px;
-      left: -10px;
-      top: calc(50% - 3px);
-      border-radius: 2px;
-      background: var(--aragon);
-    }
+  }
+  .menuItemActive:before {
+    content: '';
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    left: -10px;
+    top: calc(50% - 2px);
+    border-radius: 2px;
+    background: var(--aragon);
   }
 </style>

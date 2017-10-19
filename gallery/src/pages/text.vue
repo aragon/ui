@@ -1,8 +1,9 @@
 <template>
-  <GalleryPage :title="title">
+  <GalleryPage :title="title" :readme="readme">
     <div slot="demo">
       <UIText spaced>
-        The text component can be used to display text.
+        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
+        nonumy eirmod.
       </UIText>
     </div>
   </GalleryPage>
@@ -11,12 +12,17 @@
 <script>
   import GalleryPage from 'comps/GalleryPage.vue'
   import { UIText } from '@aragon/ui'
+  import readme from '@aragon/ui/comps/Text/README.md'
+
   export default {
     props: {
       title: {
         type: String,
         required: true,
       },
+    },
+    data() {
+      return { readme }
     },
     components: { GalleryPage, UIText }
   }

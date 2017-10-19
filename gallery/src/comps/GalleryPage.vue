@@ -1,5 +1,6 @@
 <template>
   <section :class="$style.main">
+
     <UIText :heading="1" :class="$style.title">
       {{ title }}
     </UIText>

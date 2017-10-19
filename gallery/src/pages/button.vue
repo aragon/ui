@@ -20,14 +20,14 @@
   import readme from '@aragon/ui/comps/Button/README.md'
 
   export default {
-    data() {
-      return { readme }
-    },
     props: {
       title: {
         type: String,
         required: true,
       },
+    },
+    data() {
+      return { readme }
     },
     components: {
       GalleryPage,
