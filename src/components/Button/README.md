@@ -4,30 +4,31 @@ A simple Button component.
 
 ## Usage
 
-```html
-<UIButton>Click me!</UIButton>
+```jsx
+import { Button } from '@aragon/ui'
+
+const App = () => (
+  <Button>Hello World</Button>
+)
 ```
 
 ## Properties
 
-### `outline`
+### `mode`
 
-- Type: `Boolean`
-- Default value: `true`
+- Type: `String`
+- Default value: `normal`
+- Possible values: `'normal'`, `'outline'`, `'strong'`, `'text'`
 
-Set this property to `true` to render the button with an outline.
+Set this property to the desired style mode.
 
-```html
-<UIButton outline="foo">Cancel</UIButton>
-```
+#### Example:
 
-### `strong`
-
-- Type: `Boolean`
-- Default value: `true`
-
-Set this property to `true` to make the button more important than a standard button.
-
-```html
-<UIButton strong>Validate</UIButton>
+```jsx
+const App = () => (
+  <div>
+    <Button mode="outline">Cancel</Button>
+    <Button mode="strong">Accept</Button>
+  </div>
+)
 ```
