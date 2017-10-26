@@ -12,23 +12,6 @@ const {
   textSecondary,
 } = theme
 
-
-const modeStyles = {
-  strong: `
-    font-weight: 600;
-    color: ${gradientText};
-    background-image:
-      linear-gradient(130deg, ${gradientStart}, ${gradientEnd});
-  `,
-  outline: `
-      background: transparent;
-      border: 1px solid ${contentBorder};
-  `,
-  text: `
-      background: transparent;
-  `,
-}
-
 const StyledButton = styled.button`
   padding: 10px 25px;
   font-weight: 400;
@@ -38,13 +21,40 @@ const StyledButton = styled.button`
   border: 0;
   border-radius: 3px;
   cursor: pointer;
-
-  ${({ mode }) => modeStyles[mode] || ''};
 `
 
-const Button = ({ children, ...props }) => (
-  <StyledButton {...props}>{children}</StyledButton>
-)
+const StyledButtonStrong = StyledButton.extend`
+  font-weight: 600;
+  color: ${gradientText};
+  background-image: linear-gradient(130deg, ${gradientStart}, ${gradientEnd});
+`
 
-export { StyledButton }
+const StyledButtonOutline = StyledButton.extend`
+  background: transparent;
+  border: 1px solid ${contentBorder};
+`
+
+const StyledButtonText = StyledButton.extend`
+  padding: 10px;
+  background: transparent;
+`
+
+const styledComponents = {
+  normal: StyledButton,
+  strong: StyledButtonStrong,
+  outline: StyledButtonOutline,
+  text: StyledButtonText,
+}
+
+const Button = ({ children, mode = 'normal' }) => {
+  const StyledComp = styledComponents[mode] || styledComponents['normal']
+  return <StyledComp>{children}</StyledComp>
+}
+
+export {
+  StyledButton,
+  StyledButtonStrong,
+  StyledButtonOutline,
+  StyledButtonText,
+}
 export default Button
