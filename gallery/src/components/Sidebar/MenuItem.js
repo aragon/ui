@@ -7,17 +7,14 @@ const StyledMenuItem = styled.li`
   margin: 10px 0;
   list-style: none;
   font-size: 18px;
+  line-height: 24px;
   font-weight: ${({ active }) => (active ? '600' : '400')};
   &:before {
-    display: ${({ active }) => (active ? 'inline-block' : 'none')};
-    content: '';
+    display: ${({ active }) => (active ? 'block' : 'none')};
+    content: 'I';
     position: absolute;
-    width: 3px;
     left: -10px;
-    top: calc(50% - 1ex);
-    height: calc(1ex * 1.5);
-    vertical-align: baseline;
-    background: ${theme.accent};
+    color: ${theme.accent};
   }
   a {
     text-decoration: none;

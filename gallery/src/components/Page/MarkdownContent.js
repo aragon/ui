@@ -1,12 +1,13 @@
 import React from 'react'
 import styled from 'styled-components'
+import { theme } from '@aragon/ui'
 
 const StyledMarkdown = styled.div`
   code {
     padding: 0 3px;
     border-radius: 5px;
-    color: #000;
-    background: white;
+    color: ${theme.textSecondary};
+    background: ${theme.contentBackground};
   }
   pre {
     padding: 20px;
