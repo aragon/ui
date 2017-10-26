@@ -47,18 +47,19 @@ class Page extends React.Component {
     return (
       <StyledPage>
         <h1>{title}</h1>
-
         <MarkdownContent content={intro} />
-
-        <div>
-          <h2>Example</h2>
-          <div>{children}</div>
-        </div>
-
+        {children}
         <MarkdownContent content={doc} />
       </StyledPage>
     )
   }
 }
+
+Page.Demo = ({ children }) => (
+  <div>
+    <h2>Demonstration</h2>
+    <div>{children}</div>
+  </div>
+)
 
 export default Page

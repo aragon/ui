@@ -61,6 +61,8 @@
     "gradientEnd": "=Eagle.Opal",
     "gradientText": "=White.White",
     "mainBackground": "=Rain.Aqua Blue",
+    "mainBgGradientStart": "=Rain.Rain Sky",
+    "mainBgGradientEnd": "=Rain.Aqua Blue",
     "secondaryBackground": "=Rain.Rain Sky",
     "contentBackground": "=White.White",
     "contentBorder": "=Grey.Gainsboro",

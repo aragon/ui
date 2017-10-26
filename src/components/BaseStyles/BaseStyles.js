@@ -1,5 +1,6 @@
 import React from 'react'
 import { injectGlobal } from 'styled-components'
+import theme from '../../theme'
 
 import overpassLightWoff from './assets/overpass/overpass-light.woff'
 import overpassLightWoff2 from './assets/overpass/overpass-light.woff2'
@@ -40,8 +41,8 @@ const injectStyles = () => injectGlobal`
     font-size: 14px;
     font-weight: 400;
     line-height: 1.5;
-    color: var(--grey700);
-    background: #eef7f8;
+    color: ${theme.textPrimary};
+    background: ${theme.mainBackground};
   }
   body,
   ul,

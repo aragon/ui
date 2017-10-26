@@ -20,6 +20,7 @@ Blue:
   Danube: hsl(210, 57%, 68%)
   Spindle: hsl(210, 57%, 81%)
   Solitude: hsl(201, 89%, 96%)
+
 Sea:
   Light Sea: hsl(185, 71%, 45%)
   Turquoise: hsl(167, 72%, 60%)
@@ -59,6 +60,8 @@ Aragon UI:
   gradientEnd: =Eagle.Opal
   gradientText: =White.White
   mainBackground: =Rain.Aqua Blue
+  mainBgGradientStart: =Rain.Rain Sky
+  mainBgGradientEnd: =Rain.Aqua Blue
   secondaryBackground: =Rain.Rain Sky
   contentBackground: =White.White
   contentBorder: =Grey.Gainsboro

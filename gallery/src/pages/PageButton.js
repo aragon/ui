@@ -18,20 +18,22 @@ const Container = styled.div`
 
 const PageButton = ({ title }) => (
   <Page title={title} readme={readme}>
-    <Container>
-      <div>
-        <Button>Normal Button</Button>
-      </div>
-      <div>
-        <Button mode='outline'>Outline Mode</Button>
-      </div>
-      <div>
-        <Button mode='strong'>Strong Mode</Button>
-      </div>
-      <div>
-        <Button mode='text'>Text Mode</Button>
-      </div>
-    </Container>
+    <Page.Demo>
+      <Container>
+        <div>
+          <Button>Normal Button</Button>
+        </div>
+        <div>
+          <Button mode="outline">Outline Mode</Button>
+        </div>
+        <div>
+          <Button mode="strong">Strong Mode</Button>
+        </div>
+        <div>
+          <Button mode="text">Text Mode</Button>
+        </div>
+      </Container>
+    </Page.Demo>
   </Page>
 )
 
