@@ -21,11 +21,9 @@
     "babel-preset-env": "^1.6.0",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
-    "babel-preset-stage-3": "^6.24.1",
     "gh-pages": "^1.0.0",
     "opencolor": "^0.2.0",
-    "opencolor-converter": "git://github.com/opencolor-tools/opencolor-converter.git#v2.1.21",
-    "postcss-cssnext": "^3.0.2"
+    "opencolor-converter": "git://github.com/opencolor-tools/opencolor-converter.git#v2.1.21"
   },
   "dependencies": {
     "styled-components": "^2.2.1"
