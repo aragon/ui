@@ -36,6 +36,9 @@ const injectStyles = () => injectGlobal`
   *:after {
     box-sizing: border-box;
   }
+  html {
+    min-height: 100%;
+  }
   body {
     font-family: overpass, sans-serif;
     font-size: 14px;

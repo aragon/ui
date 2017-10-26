@@ -2,10 +2,10 @@ import React from 'react'
 import styled from 'styled-components'
 import { colors } from '@aragon/ui'
 
-const StyledGroup = styled.section`
+const StyledGroup = styled.div`
   margin-bottom: 40px;
-  h1 {
-    margin-bottom: 20px;
+  h2 {
+    margin-bottom: 30px;
     font-weight: 600;
     font-size: 18px;
     color: ${colors.Black.Black};
@@ -35,12 +35,12 @@ const StyledGroup = styled.section`
 
 const Group = ({ name, colors, compact }) => (
   <StyledGroup compact={compact}>
-    <h1>{name}</h1>
+    <h2>{name}</h2>
     <ul>
       {Object.entries(colors).map(([name, color]) => (
         <li title={name} key={name}>
-          <span className='color' style={{ background: color }} />
-          <span className='name'>{name}</span>
+          <span className="color" style={{ background: color }} />
+          <span className="name">{name}</span>
         </li>
       ))}
     </ul>

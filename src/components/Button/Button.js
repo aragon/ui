@@ -15,7 +15,7 @@ const {
 
 const modeStyles = {
   strong: `
-    font-weight: 800;
+    font-weight: 600;
     color: ${gradientText};
     background-image:
       linear-gradient(130deg, ${gradientStart}, ${gradientEnd});
@@ -31,7 +31,7 @@ const modeStyles = {
 
 const StyledButton = styled.button`
   padding: 10px 25px;
-  font-weight: 600;
+  font-weight: 400;
   color: ${textSecondary};
   background: ${contentBackground};
   white-space: nowrap;
