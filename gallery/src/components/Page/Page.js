@@ -42,14 +42,20 @@ class Page extends React.Component {
     this.setState({ intro, doc })
   }
   render() {
-    const { title, children } = this.props
+    const { title, readme, children } = this.props
     const { intro, doc } = this.state
+    const loading = readme && !intro
     return (
       <StyledPage>
         <h1>{title}</h1>
-        <MarkdownContent content={intro} />
-        {children}
-        <MarkdownContent content={doc} />
+
+        {loading ? null : (
+          <div>
+            <MarkdownContent content={intro} />
+            {children}
+            <MarkdownContent content={doc} />
+          </div>
+        )}
       </StyledPage>
     )
   }
