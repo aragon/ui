@@ -1,12 +1,13 @@
 import React from 'react'
 import createHistory from 'history/createBrowserHistory'
-import styled, { injectGlobal } from 'styled-components'
-import { BaseStyles, theme } from '@aragon/ui'
+import styled from 'styled-components'
+import { BaseStyles } from '@aragon/ui'
 import Sidebar from 'comps/Sidebar/Sidebar'
 import PageHome from 'pages/PageHome'
 import PageColors from 'pages/PageColors'
 import PageTheme from 'pages/PageTheme'
 import PageButton from 'pages/PageButton'
+import initGlobalStyles from './global-styles'
 
 const PAGES = [
   [PageHome, 'Aragon UI', '/'],
@@ -30,16 +31,6 @@ const Main = styled.main`
   }
 `
 
-const globalStyles = `
-  body {
-    background: linear-gradient(
-      130deg,
-      ${theme.mainBgGradientStart},
-      ${theme.mainBgGradientEnd}
-    );
-  }
-`
-
 class App extends React.Component {
   state = {
     pages: preparePages('/', PAGES),
@@ -49,7 +40,7 @@ class App extends React.Component {
     this.history = createHistory()
     this.unlistenHistory = this.history.listen(this.handleLocationUpdate)
     this.handleLocationUpdate(this.history.location, true)
-    injectGlobal`${globalStyles}`
+    initGlobalStyles()
   }
   componentWillUnmount() {
     this.unlistenHistory()
