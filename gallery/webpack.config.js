@@ -3,20 +3,22 @@ const fs = require('fs')
 const path = require('path')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const CompressionPlugin = require('compression-webpack-plugin')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const WebpackMonitor = require('webpack-monitor')
-const uiWebpackBase = require('../webpack-base')
 
 const PRODUCTION = process.env.NODE_ENV === 'production'
-const BASE_HTML_CONF = { title: 'Aragon UI', favicon: './favicon.svg' }
-
 const PUBLIC_PATH = PRODUCTION ? '/aragon-ui/' : '/'
+const BASE_HTML_CONF = {
+  publicUrl: PUBLIC_PATH,
+  template: './public/index.html',
+}
 
-const pages = fs
-  .readdirSync(path.join(__dirname, 'src/pages'))
-  .filter(filename => filename.endsWith('.vue'))
-  .map(filename => filename.replace(/\.vue$/, ''))
+const pages = fs.readdirSync(path.join(__dirname, 'src/pages')).map(filename =>
+  filename
+    .replace(/\.js$/, '')
+    .replace(/^Page/, '')
+    .toLowerCase()
+)
 
 const htmlPages = () => {
   return pages.map(
@@ -27,22 +29,48 @@ const htmlPages = () => {
   )
 }
 
-module.exports = uiWebpackBase(webpack, __dirname, {
+module.exports = {
   entry: [path.resolve(__dirname, 'src/index.js')],
   devtool: 'eval',
   devServer: {
+    contentBase: path.join(__dirname, 'public'),
     historyApiFallback: true,
   },
   resolve: {
     alias: {
       pages: path.resolve(__dirname, 'src/pages'),
-      comps: path.resolve(__dirname, 'src/comps'),
+      comps: path.resolve(__dirname, 'src/components'),
       src: path.resolve(__dirname, 'src'),
       '@aragon/ui': path.resolve(__dirname, '../src'),
     },
+    modules: [
+      path.join(__dirname, 'node_modules'),
+      path.join(__dirname, '../node_modules'),
+    ],
+  },
+  resolveLoader: {
+    modules: [
+      path.join(__dirname, 'node_modules'),
+      path.join(__dirname, '../node_modules'),
+    ],
   },
   module: {
     rules: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: 'babel-loader',
+        options: { cacheDirectory: true },
+      },
+      {
+        test: /\.(png|jpg|gif|svg|woff|woff2)$/,
+        use: [
+          {
+            loader: 'url-loader',
+            options: { limit: 8192 },
+          },
+        ],
+      },
       {
         test: /\.md$/,
         use: [
@@ -68,7 +96,6 @@ module.exports = uiWebpackBase(webpack, __dirname, {
         .concat([
           new webpack.optimize.UglifyJsPlugin({ parallel: true }),
           new CompressionPlugin(),
-          new ExtractTextPlugin('styles.css'),
           new WebpackMonitor({ launch: !!process.env.INSPECT_BUNDLE }),
         ])
         .concat(htmlPages())
@@ -80,4 +107,4 @@ module.exports = uiWebpackBase(webpack, __dirname, {
     filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'dist'),
   },
-})
+}
