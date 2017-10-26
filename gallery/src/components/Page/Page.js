@@ -43,7 +43,6 @@ class Page extends React.Component {
     // Wait 150ms before displaying the loader
     const loadingDelay = setTimeout(() => {
       if (!this.props.intro) {
-        console.log('?', this.props.intro)
         this.setState({ loading: true })
       }
     }, 150)

@@ -1,29 +1,29 @@
 import React from 'react'
 import styled from 'styled-components'
-import {theme} from '@aragon/ui'
+import { theme } from '@aragon/ui'
 
 const StyledMenuItem = styled.li`
   position: relative;
   margin: 10px 0;
   list-style: none;
-  font-size: 1.1rem;
-  font-weight: ${({ active }) => (active ? '800' : '400')};
+  font-size: 18px;
+  font-weight: ${({ active }) => (active ? '600' : '400')};
   &:before {
-    display: ${({ active }) => (active ? 'block' : 'none')};
+    display: ${({ active }) => (active ? 'inline-block' : 'none')};
     content: '';
     position: absolute;
     width: 3px;
-    height: 3px;
     left: -10px;
-    top: calc(50% - 2px);
-    border-radius: 2px;
+    top: calc(50% - 1ex);
+    height: calc(1ex * 1.5);
+    vertical-align: baseline;
     background: ${theme.accent};
   }
   a {
     text-decoration: none;
   }
   a:active {
-    color: var(--grey500);
+    color: ${theme.textSecondary};
   }
 `
 
