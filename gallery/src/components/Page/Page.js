@@ -35,27 +35,41 @@ const StyledPage = styled.section`
 `
 
 class Page extends React.Component {
-  state = { intro: '', doc: '' }
+  state = { loading: false, intro: '', doc: '' }
   async componentDidMount() {
-    if (!this.props.readme) return
-    const { intro, doc } = await renderReadme(this.props.readme)
-    this.setState({ intro, doc })
+    const { readme } = this.props
+    if (!readme) return
+
+    // Wait 150ms before displaying the loader
+    const loadingDelay = setTimeout(() => {
+      if (!this.props.intro) {
+        console.log('?', this.props.intro)
+        this.setState({ loading: true })
+      }
+    }, 150)
+
+    const { intro, doc } = await renderReadme(readme)
+
+    clearTimeout(loadingDelay)
+    this.setState({ intro, doc, loading: false })
   }
   render() {
     const { title, readme, children } = this.props
-    const { intro, doc } = this.state
-    const loading = readme && !intro
+    const { intro, doc, loading } = this.state
+
+    const content = (
+      <div>
+        <MarkdownContent content={intro} />
+        {children}
+        <MarkdownContent content={doc} />
+      </div>
+    )
+
     return (
       <StyledPage>
         <h1>{title}</h1>
-
-        {loading ? null : (
-          <div>
-            <MarkdownContent content={intro} />
-            {children}
-            <MarkdownContent content={doc} />
-          </div>
-        )}
+        {loading && <p>Loading…</p>}
+        {!readme || intro ? content : null}
       </StyledPage>
     )
   }
