@@ -32,6 +32,10 @@ const StyledPage = styled.section`
     margin-top: 40px;
     margin-bottom: 20px;
   }
+  p {
+    margin-bottom: 30px;
+    line-height: 2;
+  }
 `
 
 class Page extends React.Component {

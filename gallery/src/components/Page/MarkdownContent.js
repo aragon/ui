@@ -26,7 +26,7 @@ const StyledMarkdown = styled.div`
   ul {
     list-style-position: inside;
     line-height: 2;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
   }
 `
 

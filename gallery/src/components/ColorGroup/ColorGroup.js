@@ -3,12 +3,16 @@ import styled from 'styled-components'
 import { colors } from '@aragon/ui'
 
 const StyledGroup = styled.div`
-  margin-bottom: 40px;
+  margin-bottom: ${props => (props.compact ? '10px' : '40px')};
   h2 {
     margin-bottom: 30px;
     font-weight: 600;
     font-size: 18px;
     color: ${colors.Black.Black};
+  }
+  h3 {
+    margin-top: 20px;
+    margin-bottom: 10px;
   }
   ul {
     display: flex;
@@ -21,9 +25,9 @@ const StyledGroup = styled.div`
     margin-bottom: ${props => (props.compact ? '0' : '20px')};
   }
   .color {
-    width: ${props => (props.compact ? '50px' : '20px')};
-    height: ${props => (props.compact ? '50px' : '20px')};
-    margin-right: ${props => (props.compact ? '20px' : '10px')};
+    width: ${props => (props.compact ? '30px' : '20px')};
+    height: ${props => (props.compact ? '30px' : '20px')};
+    margin-right: ${props => (props.compact ? '10px' : '10px')};
     border: 1px solid ${colors.Grey['Gainsboro']};
     border-radius: 60px;
   }
@@ -33,9 +37,9 @@ const StyledGroup = styled.div`
   }
 `
 
-const Group = ({ name, colors, compact }) => (
+const Group = ({ name, colors, title, compact }) => (
   <StyledGroup compact={compact}>
-    <h2>{name}</h2>
+    {title || <h2>{name}</h2>}
     <ul>
       {Object.entries(colors).map(([name, color]) => (
         <li title={name} key={name}>
