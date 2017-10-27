@@ -6,12 +6,13 @@ import ColorGroup from 'comps/ColorGroup/ColorGroup'
 
 const PageButton = ({ title }) => (
   <Page title={title}>
-    <p>
-      The Aragon color palettes. It is not recommended to use them directly,
-      prefer using the Aragon UI Theme.
-    </p>
+    <p>The Aragon color palettes.</p>
     <div>
-      <h2>Color Groups</h2>
+      <h2>Aragon Colors</h2>
+      <p>
+        These palettes contain the colors used by Aragon. It is not recommended
+        to refer to them in your Aragon apps, prefer using the Aragon UI Theme.
+      </p>
       {Object.entries(colors).map(([name, colors]) => (
         <ColorGroup
           key={name}
@@ -22,7 +23,18 @@ const PageButton = ({ title }) => (
         />
       ))}
     </div>
-    <ColorGroup name="Aragon Brand" colors={brand} compact />
+    <ColorGroup
+      title={
+        <div>
+          <h2>Aragon Brand</h2>
+          <p>
+            This palette contains the base colors that define the Aragon brand.
+          </p>
+        </div>
+      }
+      colors={brand}
+      compact
+    />
   </Page>
 )
 
