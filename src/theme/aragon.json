@@ -31,6 +31,7 @@
   },
   "Eagle": {
     "Cerulean": "#00B4E6",
+    "Dark Turquoise": "#00CBE6",
     "Opal": "#00F0E0"
   },
   "Gold": {
@@ -68,7 +69,7 @@
     "contentBorder": "=Grey.Gainsboro",
     "textPrimary": "=Black.Black",
     "textSecondary": "=Grey.Dim Grey",
-    "accent": "=Eagle.Opal",
+    "accent": "=Eagle.Dark Turquoise",
     "positive": "=Green.Spring Green",
     "negative": "=Red.Salmon Red"
   }

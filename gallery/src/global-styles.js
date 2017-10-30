@@ -49,7 +49,7 @@ const globalStyles = `
   }
   .token.boolean,
   .token.number {
-    color: #ae81ff;
+    color: hsl(43, 100%, 96%);
   }
   .token.keyword,
   .token.selector,

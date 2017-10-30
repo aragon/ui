@@ -1,5 +1,6 @@
-export { default as Button } from './components/Button/Button'
-export { default as Text } from './components/Text/Text'
 export { default as BaseStyles } from './components/BaseStyles/BaseStyles'
+export { default as Button } from './components/Button/Button'
+export { default as Header } from './components/Header/Header'
+export { default as Text } from './components/Text/Text'
 export * from './theme'
 export { default as theme } from './theme'

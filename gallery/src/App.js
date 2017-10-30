@@ -8,6 +8,7 @@ import PageColors from 'pages/PageColors'
 import PageTheme from 'pages/PageTheme'
 import PageButton from 'pages/PageButton'
 import PageText from 'pages/PageText'
+import PageHeader from 'pages/PageHeader'
 import initGlobalStyles from './global-styles'
 
 const PAGES = [
@@ -16,6 +17,7 @@ const PAGES = [
   [PageTheme, 'Theme', '/theme'],
   [PageText, 'Text', '/text'],
   [PageButton, 'Button', '/button'],
+  [PageHeader, 'Header', '/header'],
 ]
 
 const preparePages = (path, pages) =>

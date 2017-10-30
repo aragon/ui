@@ -26,6 +26,7 @@ const PageText = ({ title }) => (
         <Text size="normal">Normal Text</Text>
         <Text size="large">Large Text</Text>
         <Text size="xlarge">X-Large Text</Text>
+        <Text size="xxlarge">XX-Large Text</Text>
       </Container>
     </Page.Demo>
   </Page>

@@ -3,7 +3,8 @@ const FONT_SIZES = {
   small: '14px',
   normal: '15px',
   large: '16px',
-  xlarge: '22px',
+  xlarge: '20px',
+  xxlarge: '22px',
 }
 
 const FONT_WEIGHTS = {
@@ -12,7 +13,7 @@ const FONT_WEIGHTS = {
   bolder: '800',
 }
 
-export const fontStyle = ({ size = 'normal', weight = 'bold' }) => {
+export const fontStyle = ({ size = 'normal', weight = 'normal' }) => {
   const fontSize = FONT_SIZES[size] || FONT_SIZES.normal
   const fontWeigt = FONT_WEIGHTS[weight] || FONT_WEIGHTS.normal
   return `

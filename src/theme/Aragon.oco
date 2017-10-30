@@ -24,12 +24,14 @@ Sea:
   Light Sea: hsl(185, 71%, 45%)
   Turquoise: hsl(167, 72%, 60%)
   Blizzard Blue: hsl(176, 62%, 80%)
+
 Purple:
   Indigo: hsl(252, 62%, 46%)
   Portage: hsl(258, 85%, 74%)
   Lavender: hsl(258, 100%, 90%)
 Eagle:
   Cerulean: hsl(193, 100%, 45%)
+  Dark Turquoise: hsl(187, 100%, 45%);
   Opal: hsl(176, 100%, 47%)
 Gold:
   Brandy: hsl(40, 52%, 70%)
@@ -66,6 +68,6 @@ Aragon UI:
   contentBorder: =Grey.Gainsboro
   textPrimary: =Black.Black
   textSecondary: =Grey.Dim Grey
-  accent: =Eagle.Opal
+  accent: =Eagle.Dark Turquoise
   positive: =Green.Spring Green
   negative: =Red.Salmon Red
