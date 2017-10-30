@@ -7,12 +7,14 @@ import PageHome from 'pages/PageHome'
 import PageColors from 'pages/PageColors'
 import PageTheme from 'pages/PageTheme'
 import PageButton from 'pages/PageButton'
+import PageText from 'pages/PageText'
 import initGlobalStyles from './global-styles'
 
 const PAGES = [
   [PageHome, 'Aragon UI', '/'],
   [PageColors, 'Colors', '/colors'],
   [PageTheme, 'Theme', '/theme'],
+  [PageText, 'Text', '/text'],
   [PageButton, 'Button', '/button'],
 ]
 

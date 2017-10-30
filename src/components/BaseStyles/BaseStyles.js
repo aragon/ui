@@ -41,7 +41,7 @@ const injectStyles = () => injectGlobal`
   }
   body {
     font-family: overpass, sans-serif;
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 400;
     line-height: 1.5;
     color: ${theme.textPrimary};
