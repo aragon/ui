@@ -17,7 +17,7 @@ const App = () => (
 ### `mode`
 
 - Type: `String`
-- Values: `"normal"` (default), `"outline"`, `"strong"` or `"text"`.
+- Values: `normal` (default), `outline`, `strong` or `text`.
 
 Set this property to the desired visual variant.
 

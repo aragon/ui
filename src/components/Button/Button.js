@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import theme from '../../theme'
+import { fontStyle } from '../../shared-styles'
 
 const {
   gradientStart,
@@ -14,19 +15,19 @@ const {
 
 const StyledButton = styled.button`
   padding: 10px 25px;
-  font-weight: 400;
   color: ${textSecondary};
   background: ${contentBackground};
   white-space: nowrap;
   border: 0;
   border-radius: 3px;
   cursor: pointer;
+  ${fontStyle({ size: 'small', weight: 'normal' })};
 `
 
 const StyledButtonStrong = StyledButton.extend`
-  font-weight: 600;
   color: ${gradientText};
   background-image: linear-gradient(130deg, ${gradientStart}, ${gradientEnd});
+  ${fontStyle({ size: 'small', weight: 'bold' })};
 `
 
 const StyledButtonOutline = StyledButton.extend`
@@ -46,9 +47,9 @@ const styledComponents = {
   text: StyledButtonText,
 }
 
-const Button = ({ children, mode = 'normal' }) => {
+const Button = ({ mode = 'normal', ...props }) => {
   const StyledComp = styledComponents[mode] || styledComponents['normal']
-  return <StyledComp>{children}</StyledComp>
+  return <StyledComp {...props} />
 }
 
 export {
