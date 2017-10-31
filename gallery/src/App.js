@@ -12,6 +12,7 @@ import PageHeader from 'pages/PageHeader'
 import PageFooter from 'pages/PageFooter'
 import PagePreFooter from 'pages/PagePreFooter'
 import PageSection from 'pages/PageSection'
+import PageIllustratedSection from 'pages/PageIllustratedSection'
 import initGlobalStyles from './global-styles'
 
 const PAGES = [
@@ -24,6 +25,7 @@ const PAGES = [
   [PageHeader, 'Header', '/header'],
   [PageFooter, 'Footer', '/footer'],
   [PagePreFooter, 'PreFooter', '/pre-footer'],
+  [PageIllustratedSection, 'IllustratedSection', '/illustrated-section'],
 ]
 
 const preparePages = (path, pages) =>
