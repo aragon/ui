@@ -3,11 +3,14 @@ import styled from 'styled-components'
 import Page from 'comps/Page/Page'
 
 import readme from '@aragon/ui/components/Button/README.md'
-import { Button } from '@aragon/ui'
+import { Button, colors } from '@aragon/ui'
 
 const Container = styled.div`
   display: flex;
   max-width: 800px;
+  padding: 20px;
+  background: ${colors.Rain['Aqua Blue']};
+  border-radius: 5px;
   & > div {
     margin-left: 20px;
   }
