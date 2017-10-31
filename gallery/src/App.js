@@ -19,11 +19,11 @@ const PAGES = [
   [PageColors, 'Colors', '/colors'],
   [PageTheme, 'Theme', '/theme'],
   [PageText, 'Text', '/text'],
+  [PageSection, 'Section', '/section'],
   [PageButton, 'Button', '/button'],
   [PageHeader, 'Header', '/header'],
   [PageFooter, 'Footer', '/footer'],
   [PagePreFooter, 'PreFooter', '/pre-footer'],
-  [PageSection, 'Section', '/section'],
 ]
 
 const preparePages = (path, pages) =>
