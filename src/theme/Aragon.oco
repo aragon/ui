@@ -69,6 +69,26 @@ Aragon UI:
   contentBorder: =Grey.Gainsboro
   textPrimary: =Black.Black
   textSecondary: =Grey.Dim Grey
+  textTertiary: =Grey.Dim Grey
+  accent: =Eagle.Dark Turquoise
+  positive: =Green.Spring Green
+  negative: =Red.Salmon Red
+Aragon UI Dark:
+  oct/
+    view: List
+    swatchShape: SQUARE
+  gradientStart: =Eagle.Cerulean
+  gradientEnd: =Eagle.Opal
+  gradientText: =White.White
+  mainBackground: =Rain.Aqua Blue
+  mainBgGradientStart: =Rain.Rain Sky
+  mainBgGradientEnd: =Rain.Aqua Blue
+  secondaryBackground: =Rain.Rain Sky
+  contentBackground: =Rain.Shark
+  contentBorder: =Grey.Gainsboro
+  textPrimary: =White.White
+  textSecondary: =Grey.Dust Grey
+  textTertiary: =Grey.Dim Grey
   accent: =Eagle.Dark Turquoise
   positive: =Green.Spring Green
   negative: =Red.Salmon Red

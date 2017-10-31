@@ -1,5 +1,4 @@
-export * from './theme'
-export { default as theme } from './theme'
+export { default as theme, themeDark, brand, colors } from './theme'
 export { default as BaseStyles } from './components/BaseStyles/BaseStyles'
 export { default as Section } from './components/Section/Section'
 export { default as Button } from './components/Button/Button'

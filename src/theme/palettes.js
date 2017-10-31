@@ -2,11 +2,13 @@ import aragon from './aragon.json'
 
 // These need to match the names in the palettes
 const THEME_NAME = 'Aragon UI'
+const THEME_DARK_NAME = 'Aragon UI Dark'
 const BRAND_NAME = 'Aragon Brand'
 
 // Name of the group a given palette belong to
 const getGroupName = name => {
   if (name === THEME_NAME) return 'theme'
+  if (name === THEME_DARK_NAME) return 'themeDark'
   if (name === BRAND_NAME) return 'brand'
   return 'colors'
 }
@@ -38,7 +40,7 @@ const resolveColors = (palette, palettes) =>
     return pal
   }, {})
 
-// Prepare groups from the palettes: theme, brand and colors.
+// Prepare groups from the palettes: theme, themeDark, brand and colors.
 const groups = palettes =>
   Object.entries(palettes).reduce(
     (groups, [paletteName, palette]) => {
@@ -55,6 +57,6 @@ const groups = palettes =>
     { colors: {} }
   )
 
-const { theme, brand, colors } = groups(aragon)
+const { themeDark, theme, brand, colors } = groups(aragon)
 
-export { theme, brand, colors }
+export { themeDark, theme, brand, colors }
