@@ -13,6 +13,12 @@ const FONT_WEIGHTS = {
   bolder: '800',
 }
 
+const GRID = {
+  columns: 12,
+  gutterWidth: 30,
+  columnWidth: 68,
+}
+
 export const fontStyle = ({ size = 'normal', weight = 'normal' }) => {
   const fontSize = FONT_SIZES[size] || FONT_SIZES.normal
   const fontWeigt = FONT_WEIGHTS[weight] || FONT_WEIGHTS.normal
@@ -22,3 +28,6 @@ export const fontStyle = ({ size = 'normal', weight = 'normal' }) => {
     line-height: 1.5;
   `
 }
+
+export const gridWidth = cols =>
+  GRID.gutterWidth * cols + GRID.columnWidth * (cols - 1)
