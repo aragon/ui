@@ -1,25 +1,33 @@
 import React from 'react'
 import styled from 'styled-components'
-import { gridWidth } from '../../shares-styles'
+import { gridWidth } from '../../shared-styles'
 
-const StyledSection = styled.section`
+const StyledSection = styled.section``
+const StyledSectionDiv = StyledSection.withComponent('div')
+const StyledContent = styled.div`
   width: 100%;
   margin: 0 auto;
-  max-width: ${({ large }) => gridWidth(large ? 12 : 10)};
+  max-width: ${({ large }) => gridWidth(large ? 12 : 10)}px;
 `
 
-const StyledSectionDiv = StyledSection.withComponent('div')
-
-const Section = ({ large = false, visual = false, ...props }) => {
-  const SectionComp = visual ? StyledSectionDiv : StyledSection
+const Section = ({
+  large = false,
+  visual = false,
+  StyledComponent = null, // Allow to override the styled component
+  ...props
+}) => {
+  const SectionComp =
+    StyledComponent || (visual ? StyledSectionDiv : StyledSection)
 
   return (
     <SectionComp>
-      <div>
+      <StyledContent>
         <div {...props} />
-      </div>
+      </StyledContent>
     </SectionComp>
   )
 }
 
+Section.StyledSection = StyledSection
+Section.StyledSectionDiv = StyledSectionDiv
 export default Section
