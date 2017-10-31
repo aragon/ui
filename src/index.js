@@ -1,6 +1,7 @@
 export * from './theme'
 export { default as theme } from './theme'
 export { default as BaseStyles } from './components/BaseStyles/BaseStyles'
+export { default as Section } from './components/Section/Section'
 export { default as Button } from './components/Button/Button'
 export { default as Footer } from './components/Footer/Footer'
 export { default as Header } from './components/Header/Header'

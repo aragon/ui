@@ -21,3 +21,5 @@ const Section = ({ large = false, visual = false, ...props }) => {
     </SectionComp>
   )
 }
+
+export default Section
