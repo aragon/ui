@@ -10,6 +10,7 @@ Grey:
   Light Grey: hsl(0, 0%, 70%)
   Gainsboro: hsl(0, 0%, 85%)
 Rain:
+  Shark: hsl(180, 5%, 13%);
   Atomic: hsl(194, 13%, 31%)
   Slate: hsl(197, 11%, 48%)
   Aqua Island: hsl(194, 46%, 74%)
