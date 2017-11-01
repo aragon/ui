@@ -8,7 +8,7 @@
     "build": "babel src --out-dir lib --copy-files",
     "watch": "babel --watch src --out-dir lib --copy-files",
     "theme:build": "scripts/oco-json.js < src/theme/Aragon.oco > src/theme/aragon.json",
-    "deploy:site": "cd gallery && npm run build:production && echo 'ui.aragon.one' > dist/CNAME && gh-pages -d ./dist",
+    "deploy:site": "cd gallery && npm run build:production && echo 'ui.aragon.one' > dist/CNAME && cp public/favicon.svg dist && gh-pages -d dist",
     "publish": "npm publish --access public",
     "start": "cd gallery && npm start"
   },
