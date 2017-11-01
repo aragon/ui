@@ -7,7 +7,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const WebpackMonitor = require('webpack-monitor')
 
 const PRODUCTION = process.env.NODE_ENV === 'production'
-const PUBLIC_PATH = PRODUCTION ? '/aragon-ui/' : '/'
+const PUBLIC_PATH = '/'
 const BASE_HTML_CONF = {
   publicUrl: PUBLIC_PATH,
   template: './public/index.html',
