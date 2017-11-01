@@ -18,6 +18,7 @@ const StyledText = styled.p`
   }};
 `
 
+// We use different HTML elements based on the provided properties.
 StyledText.Block = StyledText.withComponent('div')
 StyledText.Inline = StyledText.withComponent('span')
 StyledText.Heading1 = StyledText.withComponent('h1')
@@ -48,7 +49,6 @@ const Text = ({
   block = false,
   inline = false,
   heading,
-  color,
   children,
   ...props
 }) => {
