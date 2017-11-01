@@ -31,7 +31,7 @@ const htmlPages = () => {
 
 module.exports = {
   entry: [path.resolve(__dirname, 'src/index.js')],
-  devtool: PRODUCTION? 'source-map' : 'eval',
+  devtool: PRODUCTION ? 'source-map' : 'eval',
   devServer: {
     contentBase: path.join(__dirname, 'public'),
     historyApiFallback: true,
@@ -94,7 +94,10 @@ module.exports = {
     if (PRODUCTION) {
       plugins = plugins
         .concat([
-          new webpack.optimize.UglifyJsPlugin({ parallel: true }),
+          new webpack.optimize.UglifyJsPlugin({
+            sourceMap: true,
+            parallel: true,
+          }),
           new CompressionPlugin(),
           new WebpackMonitor({ launch: !!process.env.INSPECT_BUNDLE }),
         ])
