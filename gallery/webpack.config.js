@@ -31,7 +31,7 @@ const htmlPages = () => {
 
 module.exports = {
   entry: [path.resolve(__dirname, 'src/index.js')],
-  devtool: 'eval',
+  devtool: PRODUCTION? 'source-map' : 'eval',
   devServer: {
     contentBase: path.join(__dirname, 'public'),
     historyApiFallback: true,
