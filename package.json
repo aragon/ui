@@ -2,22 +2,31 @@
   "name": "@aragon/ui",
   "version": "0.2.0",
   "main": "src/index.js",
+  "module": "lib/index.js",
   "license": "GPL-3.0",
   "scripts": {
-    "postinstall": "cd gallery && npm install",
+    "build": "babel src --out-dir lib --copy-files",
+    "watch": "babel --watch src --out-dir lib --copy-files",
+    "theme:build": "scripts/oco-json.js < src/theme/Aragon.oco > src/theme/aragon.json",
     "deploy:site": "cd gallery && npm run build:production && gh-pages -d ./dist",
     "publish": "npm publish --access public",
     "start": "cd gallery && npm start"
   },
   "peerDependencies": {
-    "vue": "^2.4.4",
-    "vue-motion": "^0.2.0"
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0"
   },
   "devDependencies": {
+    "babel-cli": "^6.26.0",
     "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.6.0",
-    "babel-preset-stage-3": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
     "gh-pages": "^1.0.0",
-    "postcss-cssnext": "^3.0.2"
+    "opencolor": "^0.2.0",
+    "opencolor-converter": "git://github.com/opencolor-tools/opencolor-converter.git#v2.1.21"
+  },
+  "dependencies": {
+    "styled-components": "^2.2.1"
   }
 }

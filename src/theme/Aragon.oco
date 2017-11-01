@@ -1,0 +1,94 @@
+oct/
+  defaultView: minimal
+  identityColorTop: =Aragon Brand.Primary
+  identityColorSide: =Aragon Brand.Secondary
+  identityColorBottom: =Aragon Brand.Black Ash
+Grey:
+  Black Ash: hsl(0, 0%, 23%)
+  Dim Grey: hsl(0, 0%, 44%)
+  Dust Grey: hsl(0, 0%, 59%)
+  Light Grey: hsl(0, 0%, 70%)
+  Gainsboro: hsl(0, 0%, 85%)
+Rain:
+  Shark: hsl(180, 5%, 13%);
+  Atomic: hsl(194, 13%, 31%)
+  Slate: hsl(197, 11%, 48%)
+  Aqua Island: hsl(194, 46%, 74%)
+  Rain Sky: hsl(194, 36%, 90%)
+  Aqua Blue: hsl(194, 56%, 98%)
+Blue:
+  Lochmara: hsl(200, 98%, 41%)
+  Danube: hsl(210, 57%, 68%)
+  Spindle: hsl(210, 57%, 81%)
+  Solitude: hsl(201, 89%, 96%)
+Sea:
+  Light Sea: hsl(185, 71%, 45%)
+  Turquoise: hsl(167, 72%, 60%)
+  Blizzard Blue: hsl(176, 62%, 80%)
+
+Purple:
+  Indigo: hsl(252, 62%, 46%)
+  Portage: hsl(258, 85%, 74%)
+  Lavender: hsl(258, 100%, 90%)
+Eagle:
+  Cerulean: hsl(193, 100%, 45%)
+  Dark Turquoise: hsl(187, 100%, 45%);
+  Opal: hsl(176, 100%, 47%)
+Gold:
+  Brandy: hsl(40, 52%, 70%)
+  Beige: hsl(43, 100%, 96%)
+Red:
+  Salmon Red: hsl(0, 94%, 73%)
+Green:
+  Spring Green: hsl(157, 73%, 48%)
+Black:
+  Black: hsl(0, 0%, 0%)
+White:
+  White: hsl(0, 0%, 100%)
+Aragon Brand:
+  oct/
+    view: Fan
+    colorsPerRow: 5
+  Primary: =Purple.Indigo
+  Secondary: =Sea.Turquoise
+  Black Ash: =Grey.Black Ash
+  Gradient Start: =Eagle.Cerulean
+  Gradient End: =Eagle.Opal
+Aragon UI:
+  oct/
+    view: List
+    swatchShape: SQUARE
+  gradientStart: =Eagle.Cerulean
+  gradientEnd: =Eagle.Opal
+  gradientText: =White.White
+  mainBackground: =Rain.Aqua Blue
+  mainBgGradientStart: =Rain.Rain Sky
+  mainBgGradientEnd: =Rain.Aqua Blue
+  secondaryBackground: =Rain.Rain Sky
+  contentBackground: =White.White
+  contentBorder: =Grey.Gainsboro
+  textPrimary: =Black.Black
+  textSecondary: =Grey.Dim Grey
+  textTertiary: =Grey.Dim Grey
+  accent: =Eagle.Dark Turquoise
+  positive: =Green.Spring Green
+  negative: =Red.Salmon Red
+Aragon UI Dark:
+  oct/
+    view: List
+    swatchShape: SQUARE
+  gradientStart: =Eagle.Cerulean
+  gradientEnd: =Eagle.Opal
+  gradientText: =White.White
+  mainBackground: =Rain.Aqua Blue
+  mainBgGradientStart: =Rain.Rain Sky
+  mainBgGradientEnd: =Rain.Aqua Blue
+  secondaryBackground: =Rain.Rain Sky
+  contentBackground: =Rain.Shark
+  contentBorder: =Grey.Gainsboro
+  textPrimary: =White.White
+  textSecondary: =Grey.Dust Grey
+  textTertiary: =Grey.Dim Grey
+  accent: =Eagle.Dark Turquoise
+  positive: =Green.Spring Green
+  negative: =Red.Salmon Red

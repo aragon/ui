@@ -1,17 +1,7 @@
-import Vue from 'vue'
-import App from './comps/App.vue'
+import 'regenerator-runtime/runtime'
 
-const initAppElement = (id = '#app') => {
-  if (document.querySelector(id)) {
-    return id
-  }
-  const main = document.createElement('div')
-  main.id = id.slice(1)
-  document.body.appendChild(main)
-  return id
-}
+import React from 'react'
+import ReactDOM from 'react-dom'
+import App from './App'
 
-new Vue({
-  el: initAppElement(),
-  render: h => h(App, { props: { path: PUBLIC_PATH } }),
-})
+ReactDOM.render(<App />, document.getElementById('root'))

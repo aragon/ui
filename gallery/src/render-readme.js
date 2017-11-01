@@ -2,6 +2,7 @@ import MarkdownIt from 'markdown-it'
 
 import Prism from 'prismjs'
 import 'prismjs/components/prism-markup'
+import 'prismjs/components/prism-jsx'
 import 'prismjs/components/prism-javascript'
 
 // MarkdownIt plugin inspired by Joshua Gleitze’s project:
@@ -38,7 +39,7 @@ const splitIntro = html => {
 
   // No doc part found
   if (docIndex === -1) {
-    return { intro: '', doc: nodesToString(children) }
+    return { intro: nodesToString(children), doc: '' }
   }
 
   return {

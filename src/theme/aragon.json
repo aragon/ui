@@ -1,0 +1,95 @@
+{
+  "Grey": {
+    "Black Ash": "#3B3B3B",
+    "Dim Grey": "#707070",
+    "Dust Grey": "#969696",
+    "Light Grey": "#B3B3B3",
+    "Gainsboro": "#D9D9D9"
+  },
+  "Rain": {
+    "Shark": "#1F2323",
+    "Atomic": "#455559",
+    "Slate": "#6D8088",
+    "Aqua Island": "#9ECDDB",
+    "Rain Sky": "#DCEAEF",
+    "Aqua Blue": "#F7FBFD"
+  },
+  "Blue": {
+    "Lochmara": "#028BCF",
+    "Danube": "#7FADDC",
+    "Spindle": "#B3CFEA",
+    "Solitude": "#ECF8FE"
+  },
+  "Sea": {
+    "Light Sea": "#21B7C4",
+    "Turquoise": "#50E2C3",
+    "Blizzard Blue": "#ACECE7"
+  },
+  "Purple": {
+    "Indigo": "#4A2DBE",
+    "Portage": "#A684F5",
+    "Lavender": "#DBCCFF"
+  },
+  "Eagle": {
+    "Cerulean": "#00B4E6",
+    "Dark Turquoise": "#00CBE6",
+    "Opal": "#00F0E0"
+  },
+  "Gold": {
+    "Brandy": "#DAC08B",
+    "Beige": "#FFF9EB"
+  },
+  "Red": {
+    "Salmon Red": "#FB7979"
+  },
+  "Green": {
+    "Spring Green": "#21D48F"
+  },
+  "Black": {
+    "Black": "#000000"
+  },
+  "White": {
+    "White": "#FFFFFF"
+  },
+  "Aragon Brand": {
+    "Primary": "=Purple.Indigo",
+    "Secondary": "=Sea.Turquoise",
+    "Black Ash": "=Grey.Black Ash",
+    "Gradient Start": "=Eagle.Cerulean",
+    "Gradient End": "=Eagle.Opal"
+  },
+  "Aragon UI": {
+    "gradientStart": "=Eagle.Cerulean",
+    "gradientEnd": "=Eagle.Opal",
+    "gradientText": "=White.White",
+    "mainBackground": "=Rain.Aqua Blue",
+    "mainBgGradientStart": "=Rain.Rain Sky",
+    "mainBgGradientEnd": "=Rain.Aqua Blue",
+    "secondaryBackground": "=Rain.Rain Sky",
+    "contentBackground": "=White.White",
+    "contentBorder": "=Grey.Gainsboro",
+    "textPrimary": "=Black.Black",
+    "textSecondary": "=Grey.Dim Grey",
+    "textTertiary": "=Grey.Dim Grey",
+    "accent": "=Eagle.Dark Turquoise",
+    "positive": "=Green.Spring Green",
+    "negative": "=Red.Salmon Red"
+  },
+  "Aragon UI Dark": {
+    "gradientStart": "=Eagle.Cerulean",
+    "gradientEnd": "=Eagle.Opal",
+    "gradientText": "=White.White",
+    "mainBackground": "=Rain.Aqua Blue",
+    "mainBgGradientStart": "=Rain.Rain Sky",
+    "mainBgGradientEnd": "=Rain.Aqua Blue",
+    "secondaryBackground": "=Rain.Rain Sky",
+    "contentBackground": "=Rain.Shark",
+    "contentBorder": "=Grey.Gainsboro",
+    "textPrimary": "=White.White",
+    "textSecondary": "=Grey.Dust Grey",
+    "textTertiary": "=Grey.Dim Grey",
+    "accent": "=Eagle.Dark Turquoise",
+    "positive": "=Green.Spring Green",
+    "negative": "=Red.Salmon Red"
+  }
+}
