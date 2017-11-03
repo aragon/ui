@@ -1,12 +1,15 @@
+/* @flow */
 import aragon from './aragon.json'
 
-// These need to match the names in the palettes
+type GroupName = 'theme' | 'themeDark' | 'brand' | 'colors'
+
+// These need to match the names in the Open Color palettes
 const THEME_NAME = 'Aragon UI'
 const THEME_DARK_NAME = 'Aragon UI Dark'
 const BRAND_NAME = 'Aragon Brand'
 
 // Name of the group a given palette belong to
-const getGroupName = name => {
+const getGroupName = (name: string): GroupName => {
   if (name === THEME_NAME) return 'theme'
   if (name === THEME_DARK_NAME) return 'themeDark'
   if (name === BRAND_NAME) return 'brand'
@@ -14,14 +17,15 @@ const getGroupName = name => {
 }
 
 // Resolve a single color
-const resolveColor = (value, palettes) => {
-  // normal color
+const resolveColor = (value: string, palettes) => {
+  // already resolved color
   if (!value.startsWith('=')) {
     return value
   }
 
   const [paletteName, key] = value.slice(1).split('.')
   const color = palettes[paletteName] && palettes[paletteName][key]
+
   if (!color) {
     throw new Error(`resolveColor: ${value} doesn’t seem to exist`)
   }
@@ -36,14 +40,16 @@ const resolveColor = (value, palettes) => {
 // Resolve all the colors in a palette
 const resolveColors = (palette, palettes) =>
   Object.entries(palette).reduce((pal, [name, value]) => {
-    pal[name] = resolveColor(value, palettes)
+    if (typeof value === 'string') {
+      pal[name] = resolveColor(value, palettes)
+    }
     return pal
   }, {})
 
 // Prepare groups from the palettes: theme, themeDark, brand and colors.
-const groups = palettes =>
+const groups = (palettes): { [GroupName]: * } =>
   Object.entries(palettes).reduce(
-    (groups, [paletteName, palette]) => {
+    (groups: { [GroupName]: * }, [paletteName, palette]) => {
       const groupName = getGroupName(paletteName)
 
       if (groupName === 'colors') {

@@ -1,3 +1,4 @@
+/* @flow */
 import React from 'react'
 import styled from 'styled-components'
 import { colors, theme } from '../..'
@@ -73,7 +74,11 @@ const StyledFooter = styled.footer`
   }
 `
 
-const Footer = ({ compact = false }) => (
+type Props = {
+  compact: boolean,
+}
+
+const Footer = ({ compact }: Props) => (
   <StyledFooter compact={compact}>
     <div className="main">
       <div className="part-1">
@@ -135,5 +140,9 @@ const Footer = ({ compact = false }) => (
     </div>
   </StyledFooter>
 )
+
+Footer.defaultProps = {
+  compact: false,
+}
 
 export default Footer

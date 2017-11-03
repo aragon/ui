@@ -7,6 +7,9 @@
   "scripts": {
     "build": "babel src --out-dir lib --copy-files",
     "watch": "babel --watch src --out-dir lib --copy-files",
+    "flow": "flow",
+    "lint": "eslint ./src",
+    "lint:fix": "eslint --fix ./src",
     "theme:build": "scripts/oco-json.js < src/theme/Aragon.oco > src/theme/aragon.json",
     "deploy:site": "cd gallery && npm run build:production && echo 'ui.aragon.one' > dist/CNAME && cp public/favicon.svg dist && gh-pages -d dist",
     "publish": "npm publish --access public",
@@ -18,13 +21,22 @@
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
+    "babel-eslint": "^8.0.1",
     "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.6.0",
+    "babel-preset-flow": "^6.23.0",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
+    "eslint": "^4.10.0",
+    "eslint-config-prettier": "^2.7.0",
+    "eslint-plugin-flowtype": "^2.39.1",
+    "eslint-plugin-prettier": "^2.3.1",
+    "eslint-plugin-react": "^7.4.0",
+    "flow-bin": "^0.58.0",
     "gh-pages": "^1.0.0",
     "opencolor": "^0.2.0",
-    "opencolor-converter": "git://github.com/opencolor-tools/opencolor-converter.git#v2.1.21"
+    "opencolor-converter": "git://github.com/opencolor-tools/opencolor-converter.git#v2.1.21",
+    "prettier": "^1.7.4"
   },
   "dependencies": {
     "react-click-outside": "tj/react-click-outside",
