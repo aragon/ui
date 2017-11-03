@@ -31,4 +31,6 @@ class AragonApp extends React.Component {
   }
 }
 
+AragonApp.Styled = StyledAragonApp
+
 export default AragonApp
