@@ -67,6 +67,7 @@ Aragon UI:
   secondaryBackground: =Rain.Rain Sky
   contentBackground: =White.White
   contentBorder: =Grey.Gainsboro
+  shadow: =Grey.Gainsboro
   textPrimary: =Black.Black
   textSecondary: =Grey.Dim Grey
   textTertiary: =Grey.Dim Grey
@@ -86,6 +87,7 @@ Aragon UI Dark:
   secondaryBackground: =Rain.Rain Sky
   contentBackground: =Rain.Shark
   contentBorder: =Grey.Gainsboro
+  shadow: =Grey.Gainsboro
   textPrimary: =White.White
   textSecondary: =Grey.Dust Grey
   textTertiary: =Grey.Dim Grey
