@@ -25,9 +25,35 @@ const StyledButton = styled.button`
 `
 
 const StyledButtonStrong = StyledButton.extend`
+  position: relative;
   color: ${gradientText};
   background-image: linear-gradient(130deg, ${gradientStart}, ${gradientEnd});
   ${fontStyle({ size: 'small', weight: 'bold' })};
+  transition: all 150ms ease-in-out;
+
+  &:after {
+    content: '';
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.04);
+  }
+
+  &:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+  }
+  &:active {
+    transform: translateY(0);
+    box-shadow: none;
+    outline: 0;
+    &:after {
+      opacity: 1;
+    }
+  }
 `
 
 const StyledButtonOutline = StyledButton.extend`
