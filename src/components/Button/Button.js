@@ -22,6 +22,7 @@ const plainButtonStyles = css`
   position: relative;
   overflow: hidden;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0);
+  outline: 0;
   &:after {
     content: '';
     opacity: 0;
@@ -39,7 +40,6 @@ const plainButtonStyles = css`
   &:active {
     transform: translateY(1px);
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0);
-    outline: 0;
     &:after {
       opacity: 1;
     }
@@ -70,7 +70,8 @@ const modeStrong = css`
 const modeOutline = css`
   background: transparent;
   border: 1px solid ${contentBorder};
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     border-color: ${contentBorderActive};
   }
   &:active {
@@ -89,6 +90,7 @@ const modeText = css`
 `
 
 const StyledButton = styled.button`
+  width: ${({ wide }) => (wide ? '100%' : 'auto')};
   padding: 10px 25px;
   white-space: nowrap;
   ${fontStyle({ size: 'small', weight: 'normal' })};

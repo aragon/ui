@@ -31,3 +31,18 @@ const App = () => (
   </div>
 )
 ```
+
+### `wide`
+
+- Type: `Boolean`
+- Default: `false`
+
+Set to true to obtain a button that expands horizontally.
+
+#### Example:
+
+```jsx
+const MyButton = () => (
+  <Button wide>Accept</Button>
+)
+```
