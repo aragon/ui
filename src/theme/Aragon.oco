@@ -9,6 +9,7 @@ Grey:
   Dust Grey: hsl(0, 0%, 59%)
   Light Grey: hsl(0, 0%, 70%)
   Gainsboro: hsl(0, 0%, 85%)
+  Alabaster: hsl(0, 0%, 95%)
 Rain:
   Shark: hsl(180, 5%, 13%);
   Atomic: hsl(194, 13%, 31%)
@@ -31,8 +32,10 @@ Purple:
   Portage: hsl(258, 85%, 74%)
   Lavender: hsl(258, 100%, 90%)
 Eagle:
+  Dark Cerulean: hsl(193, 100%, 41%)
   Cerulean: hsl(193, 100%, 45%)
   Dark Turquoise: hsl(187, 100%, 45%);
+  Dark Opal: hsl(176, 100%, 43%)
   Opal: hsl(176, 100%, 47%)
 Gold:
   Brandy: hsl(40, 52%, 70%)
@@ -60,13 +63,17 @@ Aragon UI:
     swatchShape: SQUARE
   gradientStart: =Eagle.Cerulean
   gradientEnd: =Eagle.Opal
+  gradientStartActive: =Eagle.Dark Cerulean
+  gradientEndActive: =Eagle.Dark Opal
   gradientText: =White.White
   mainBackground: =Rain.Aqua Blue
   mainBgGradientStart: =Rain.Rain Sky
   mainBgGradientEnd: =Rain.Aqua Blue
   secondaryBackground: =Rain.Rain Sky
   contentBackground: =White.White
+  contentBackgroundActive: =Grey.Alabaster
   contentBorder: =Grey.Gainsboro
+  contentBorderActive: =Grey.Light Grey
   shadow: =Grey.Gainsboro
   textPrimary: =Black.Black
   textSecondary: =Grey.Dim Grey
@@ -80,13 +87,17 @@ Aragon UI Dark:
     swatchShape: SQUARE
   gradientStart: =Eagle.Cerulean
   gradientEnd: =Eagle.Opal
+  gradientStartActive: =Eagle.Dark Cerulean
+  gradientEndActive: =Eagle.Dark Opal
   gradientText: =White.White
   mainBackground: =Rain.Aqua Blue
   mainBgGradientStart: =Rain.Rain Sky
   mainBgGradientEnd: =Rain.Aqua Blue
   secondaryBackground: =Rain.Rain Sky
   contentBackground: =Rain.Shark
+  contentBackgroundActive: =Grey.Alabaster
   contentBorder: =Grey.Gainsboro
+  contentBorderActive: =Grey.Light Grey
   shadow: =Grey.Gainsboro
   textPrimary: =White.White
   textSecondary: =Grey.Dust Grey

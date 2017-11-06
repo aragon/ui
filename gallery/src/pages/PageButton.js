@@ -8,9 +8,6 @@ import { Button, colors } from '@aragon/ui'
 const Container = styled.div`
   display: flex;
   max-width: 800px;
-  padding: 20px;
-  background: ${colors.Rain['Aqua Blue']};
-  border-radius: 5px;
   & > div {
     margin-left: 20px;
   }
@@ -27,10 +24,10 @@ const PageButton = ({ title }) => (
           <Button>Normal Button</Button>
         </div>
         <div>
-          <Button mode="outline">Outline Mode</Button>
+          <Button mode="strong">Strong Mode</Button>
         </div>
         <div>
-          <Button mode="strong">Strong Mode</Button>
+          <Button mode="outline">Outline Mode</Button>
         </div>
         <div>
           <Button mode="text">Text Mode</Button>
