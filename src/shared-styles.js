@@ -19,6 +19,10 @@ const GRID = {
   columnWidth: 68,
 }
 
+const SPRINGS = {
+  normal: { stiffness: 190, damping: 22, precision: 0.001 },
+}
+
 export const fontStyle = ({ size = 'normal', weight = 'normal' }) => {
   const fontSize = FONT_SIZES[size] || FONT_SIZES.normal
   const fontWeigt = FONT_WEIGHTS[weight] || FONT_WEIGHTS.normal
@@ -31,3 +35,15 @@ export const fontStyle = ({ size = 'normal', weight = 'normal' }) => {
 
 export const gridWidth = cols =>
   GRID.gutterWidth * cols + GRID.columnWidth * (cols - 1)
+
+export const unselectable = () => `
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+`
+
+export const springConf = name => {
+  return SPRINGS[name] || SPRINGS.gentle
+}
