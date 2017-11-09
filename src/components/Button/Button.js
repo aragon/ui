@@ -2,6 +2,8 @@ import React from 'react'
 import styled, { css } from 'styled-components'
 import theme from '../../theme'
 import { fontStyle } from '../../shared-styles'
+import cross from './assets/cross.svg'
+import check from './assets/check.svg'
 
 const {
   gradientStart,
@@ -22,7 +24,6 @@ const plainButtonStyles = css`
   position: relative;
   overflow: hidden;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0);
-  outline: 0;
   &:after {
     content: '';
     opacity: 0;
@@ -89,6 +90,18 @@ const modeText = css`
   }
 `
 
+const compactStyle = css`padding: 5px 15px;`
+
+const positiveStyle = css`
+  padding-left: 34px;
+  background: url(${check}) no-repeat 12px calc(50% - 1px);
+`
+
+const negativeStyle = css`
+  padding-left: 30px;
+  background: url(${cross}) no-repeat 10px calc(50% - 1px);
+`
+
 const StyledButton = styled.button`
   width: ${({ wide }) => (wide ? '100%' : 'auto')};
   padding: 10px 25px;
@@ -99,6 +112,7 @@ const StyledButton = styled.button`
   border: 0;
   border-radius: 3px;
   cursor: pointer;
+  outline: 0;
   &,
   &:after {
     transition-property: all;
@@ -114,6 +128,14 @@ const StyledButton = styled.button`
     if (mode === 'outline') return modeOutline
     if (mode === 'text') return modeText
     return modeNormal
+  }};
+
+  ${({ compact }) => (compact ? compactStyle : '')};
+
+  ${({ emphasis }) => {
+    if (emphasis === 'positive') return positiveStyle
+    if (emphasis === 'negative') return negativeStyle
+    return ''
   }};
 `
 
