@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="14px" height="10px" viewBox="0 0 14 10" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch Beta 48 (47142) - http://www.bohemiancoding.com/sketch -->
+    <title>check - material</title>
+    <desc>Created with Sketch Beta.</desc>
+    <defs></defs>
+    <g id="WebApp-1366px---Voting" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(-1067.000000, -451.000000)">
+        <g id="//Content" transform="translate(252.000000, 12.000000)" fill="#21D48E">
+            <g id="Past-Voting" transform="translate(0.000000, 356.000000)">
+                <g id="Table" transform="translate(0.000000, 42.000000)">
+                    <g id="row" transform="translate(0.000000, 41.000000)">
+                        <g id="result" transform="translate(815.000000, 0.000000)">
+                            <g id="YES">
+                                <polygon id="check---material" points="4.176 7.956 12.114 0 13.176 1.062 4.176 10.062 0 5.886 1.044 4.824"></polygon>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

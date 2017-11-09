@@ -4,7 +4,8 @@
     "Dim Grey": "#707070",
     "Dust Grey": "#969696",
     "Light Grey": "#B3B3B3",
-    "Gainsboro": "#D9D9D9"
+    "Gainsboro": "#D9D9D9",
+    "Alabaster": "#F2F2F2"
   },
   "Rain": {
     "Shark": "#1F2323",
@@ -31,8 +32,10 @@
     "Lavender": "#DBCCFF"
   },
   "Eagle": {
+    "Dark Cerulean": "#00A4D1",
     "Cerulean": "#00B4E6",
     "Dark Turquoise": "#00CBE6",
+    "Dark Opal": "#00DBCD",
     "Opal": "#00F0E0"
   },
   "Gold": {
@@ -61,13 +64,18 @@
   "Aragon UI": {
     "gradientStart": "=Eagle.Cerulean",
     "gradientEnd": "=Eagle.Opal",
+    "gradientStartActive": "=Eagle.Dark Cerulean",
+    "gradientEndActive": "=Eagle.Dark Opal",
     "gradientText": "=White.White",
     "mainBackground": "=Rain.Aqua Blue",
     "mainBgGradientStart": "=Rain.Rain Sky",
     "mainBgGradientEnd": "=Rain.Aqua Blue",
     "secondaryBackground": "=Rain.Rain Sky",
     "contentBackground": "=White.White",
+    "contentBackgroundActive": "=Grey.Alabaster",
     "contentBorder": "=Grey.Gainsboro",
+    "contentBorderActive": "=Grey.Light Grey",
+    "shadow": "=Grey.Gainsboro",
     "textPrimary": "=Black.Black",
     "textSecondary": "=Grey.Dim Grey",
     "textTertiary": "=Grey.Dim Grey",
@@ -78,13 +86,18 @@
   "Aragon UI Dark": {
     "gradientStart": "=Eagle.Cerulean",
     "gradientEnd": "=Eagle.Opal",
+    "gradientStartActive": "=Eagle.Dark Cerulean",
+    "gradientEndActive": "=Eagle.Dark Opal",
     "gradientText": "=White.White",
     "mainBackground": "=Rain.Aqua Blue",
     "mainBgGradientStart": "=Rain.Rain Sky",
     "mainBgGradientEnd": "=Rain.Aqua Blue",
     "secondaryBackground": "=Rain.Rain Sky",
     "contentBackground": "=Rain.Shark",
+    "contentBackgroundActive": "=Grey.Alabaster",
     "contentBorder": "=Grey.Gainsboro",
+    "contentBorderActive": "=Grey.Light Grey",
+    "shadow": "=Grey.Gainsboro",
     "textPrimary": "=White.White",
     "textSecondary": "=Grey.Dust Grey",
     "textTertiary": "=Grey.Dim Grey",

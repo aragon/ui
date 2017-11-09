@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="11px" height="11px" viewBox="0 0 11 11" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch Beta 48 (47142) - http://www.bohemiancoding.com/sketch -->
+    <title>clear - material</title>
+    <desc>Created with Sketch Beta.</desc>
+    <defs></defs>
+    <g id="WebApp-1366px---Groups" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(-1225.000000, -333.000000)">
+        <g id="//Content" transform="translate(252.000000, 12.000000)" fill="#FB7777">
+            <g id="Table" transform="translate(0.000000, 83.000000)">
+                <g id="row" transform="translate(0.000000, 228.000000)">
+                    <g id="Btn-remove" transform="translate(956.000000, 0.000000)">
+                        <polygon id="clear---material" points="27.476 11.524 23.3 15.7 27.476 19.876 26.414 20.938 22.238 16.762 18.062 20.938 17 19.876 21.176 15.7 17 11.524 18.062 10.462 22.238 14.638 26.414 10.462"></polygon>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

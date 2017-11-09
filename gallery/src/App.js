@@ -7,6 +7,7 @@ import PageHome from 'pages/PageHome'
 import PageColors from 'pages/PageColors'
 import PageTheme from 'pages/PageTheme'
 import PageButton from 'pages/PageButton'
+import PageDropDown from 'pages/PageDropDown'
 import PageText from 'pages/PageText'
 import PageHeader from 'pages/PageHeader'
 import PageFooter from 'pages/PageFooter'
@@ -22,6 +23,7 @@ const PAGES = [
   [PageText, 'Text', '/text'],
   [PageSection, 'Section', '/section'],
   [PageButton, 'Button', '/button'],
+  [PageDropDown, 'DropDown', '/dropdown'],
   [PageHeader, 'Header', '/header'],
   [PageFooter, 'Footer', '/footer'],
   [PagePreFooter, 'PreFooter', '/pre-footer'],
