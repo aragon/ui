@@ -53,7 +53,7 @@ const Text = ({
   ...props
 }) => {
   const StyledComp = getStyledComponent({ inline, block, heading })
-  return <StyledComp children={children} {...props} />
+  return <StyledComp children={children} smallcaps={smallcaps} {...props} />
 }
 
 export { StyledText }
