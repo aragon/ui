@@ -20,7 +20,7 @@ const StyledDropDown = styled.div`
   position: relative;
   color: ${textPrimary};
   white-space: nowrap;
-  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.03);
   &:focus {
     outline: 0;
   }
@@ -29,19 +29,20 @@ const StyledDropDown = styled.div`
 const DropDownItems = styled.ul`
   display: ${({ opened }) => (opened ? 'block' : 'none')};
   min-width: 100%;
-  padding: 10px 0;
+  padding: 8px 0;
   position: absolute;
+  z-index: 2;
   top: calc(100% - 1px);
   color: ${textPrimary};
   background: ${contentBackground};
   border: 1px solid ${contentBorder};
-  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.06);
   border-radius: 3px;
   list-style: none;
 `
 
 const DropDownActiveItem = styled(DropDownItem)`
-  padding: 15px 40px 15px 15px;
+  padding-right: 40px;
   background: ${contentBackground} url(${arrow}) no-repeat calc(100% - 15px) 50%;
   border: 1px solid ${contentBorder};
   border-radius: 3px;
@@ -65,7 +66,10 @@ class DropDown extends React.Component {
     this.setState({ opened: false })
   }
   handleItemActivate = (index, { keyboard }) => {
-    this.props.onChange(index)
+    const { onChange } = this.props
+    if (onChange) {
+      onChange(index)
+    }
     this.setState({ opened: false })
     if (this.activeItemElt && keyboard) {
       this.activeItemElt.focus()
@@ -85,12 +89,12 @@ class DropDown extends React.Component {
             {activeItem}
           </DropDownActiveItem>
           <Motion
-            defaultStyle={{ openProgress: 0 }}
             style={{
               openProgress: spring(Number(opened), springConf('normal')),
+              closeProgress: spring(Number(opened), springConf('fast')),
             }}
           >
-            {({ openProgress }) => {
+            {({ openProgress, closeProgress }) => {
               const scale = opened ? lerp(openProgress, 0.95, 1) : 1
               return (
                 <DropDownItems
@@ -98,7 +102,7 @@ class DropDown extends React.Component {
                   opened={openProgress > 0}
                   style={{
                     transform: `scale(${scale},${scale})`,
-                    opacity: opened ? openProgress : openProgress * 2,
+                    opacity: opened ? openProgress : closeProgress,
                   }}
                 >
                   {items.map((item, i) => (

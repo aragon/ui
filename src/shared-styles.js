@@ -21,6 +21,7 @@ const GRID = {
 
 const SPRINGS = {
   normal: { stiffness: 190, damping: 22, precision: 0.001 },
+  fast: { stiffness: 250, damping: 22, precision: 0.001 },
 }
 
 export const fontStyle = ({ size = 'normal', weight = 'normal' }) => {

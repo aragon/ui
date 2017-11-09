@@ -21,7 +21,6 @@ class PageDropDown extends React.Component {
     activeItem: 0,
   }
   handleChange = index => {
-    console.log(index)
     this.setState({ activeItem: index })
   }
   render() {

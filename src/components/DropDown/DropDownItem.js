@@ -7,7 +7,7 @@ const { accent, contentBackgroundActive } = theme
 
 const StyledDropDownItem = styled.div.attrs({ tabIndex: '0' })`
   position: relative;
-  padding: 10px 15px;
+  padding: 8px 15px;
   cursor: pointer;
   outline: 0;
   ${unselectable};
