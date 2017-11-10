@@ -1,3 +1,6 @@
+/* @flow */
+import type { ReactComponentStyled } from 'styled-components'
+
 import React from 'react'
 import styled from 'styled-components'
 import { gridWidth } from '../../shared-styles'
@@ -10,23 +13,36 @@ const StyledContent = styled.div`
   max-width: ${({ large }) => gridWidth(large ? 12 : 10)}px;
 `
 
+type Props = {
+  large: boolean,
+  visual: boolean,
+  StyledComponent: ReactComponentStyled<*>, // Allow to override the styled component
+}
+
+const DefaultProps = {
+  large: false,
+  visual: false,
+}
+
 const Section = ({
-  large = false,
-  visual = false,
-  StyledComponent = null, // Allow to override the styled component
+  large,
+  visual,
+  StyledComponent, // Allow to override the styled component
   ...props
-}) => {
+}: Props) => {
   const SectionComp =
     StyledComponent || (visual ? StyledSectionDiv : StyledSection)
 
   return (
     <SectionComp>
-      <StyledContent>
+      <StyledContent large={large}>
         <div {...props} />
       </StyledContent>
     </SectionComp>
   )
 }
+
+Section.defaultProps = DefaultProps
 
 Section.StyledSection = StyledSection
 Section.StyledSectionDiv = StyledSectionDiv

@@ -1,3 +1,5 @@
+/* @flow */
+import type { Node } from 'react'
 import React from 'react'
 import styled from 'styled-components'
 import theme from '../../theme'
@@ -18,43 +20,72 @@ const StyledText = styled.p`
   }};
 `
 
-// We use different HTML elements based on the provided properties.
-StyledText.Block = StyledText.withComponent('div')
-StyledText.Inline = StyledText.withComponent('span')
-StyledText.Heading1 = StyledText.withComponent('h1')
-StyledText.Heading2 = StyledText.withComponent('h2')
-StyledText.Heading3 = StyledText.withComponent('h3')
-StyledText.Heading4 = StyledText.withComponent('h4')
-StyledText.Heading5 = StyledText.withComponent('h5')
-StyledText.Heading6 = StyledText.withComponent('h6')
+const StyledBlock = StyledText.withComponent('div')
+const StyledInline = StyledText.withComponent('span')
+
+const styledHeadings = [
+  StyledText.withComponent('h1'),
+  StyledText.withComponent('h2'),
+  StyledText.withComponent('h3'),
+  StyledText.withComponent('h4'),
+  StyledText.withComponent('h5'),
+  StyledText.withComponent('h6'),
+]
 
 const getStyledComponent = ({
   heading = null,
   block = false,
   inline = false,
 }) => {
-  if (block) return StyledText.Block
-  if (inline) return StyledText.Inline
+  if (block) return StyledBlock
+  if (inline) return StyledInline
   if (heading) {
     return (
-      StyledText[`Heading${Math.max(1, Math.min(6, parseInt(heading, 10)))}`] ||
+      styledHeadings[Math.max(1, Math.min(6, parseInt(heading, 10))) - 1] ||
       StyledText
     )
   }
   return StyledText
 }
 
+type Props = {
+  block: boolean,
+  inline: boolean,
+  heading: string | number,
+  smallcaps: boolean,
+  size: string,
+  weight: ?string,
+  color: ?string,
+  children: Node,
+}
+
+const DefaultProps = {
+  block: false,
+  inline: false,
+  smallcaps: false,
+  heading: null,
+  size: null,
+  weight: null,
+  color: null,
+}
+
 const Text = ({
-  smallcaps = false,
-  block = false,
-  inline = false,
+  block,
+  inline,
   heading,
+  smallcaps,
+  size,
+  weight,
+  color,
   children,
   ...props
-}) => {
+}: Props) => {
   const StyledComp = getStyledComponent({ inline, block, heading })
-  return <StyledComp children={children} smallcaps={smallcaps} {...props} />
+  const styledProps = { ...props, weight, size, smallcaps, color, children }
+  return <StyledComp {...styledProps} />
 }
+
+Text.defaultProps = DefaultProps
 
 export { StyledText }
 export default Text

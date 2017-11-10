@@ -1,3 +1,5 @@
+/* @flow */
+import type { Node } from 'react'
 import React from 'react'
 import styled from 'styled-components'
 import { BaseStyles, theme } from '../..'
@@ -14,14 +16,19 @@ const StyledAragonApp = styled.main`
   background-repeat: no-repeat;
 `
 
-class AragonApp extends React.Component {
-  render() {
-    const {
-      children,
-      backgroundLogo,
-      className,
-    } = this.props
+type Props = {
+  className: string,
+  backgroundLogo: boolean,
+  children: Node,
+}
 
+class AragonApp extends React.Component<Props> {
+  static defaultProps = {
+    backgroundLogo: false,
+  }
+  static Styled = StyledAragonApp
+  render() {
+    const { children, backgroundLogo, className } = this.props
     return (
       <StyledAragonApp {...{ backgroundLogo, className }}>
         <BaseStyles />
@@ -30,7 +37,5 @@ class AragonApp extends React.Component {
     )
   }
 }
-
-AragonApp.Styled = StyledAragonApp
 
 export default AragonApp

@@ -1,3 +1,4 @@
+/* @flow */
 import React from 'react'
 import styled from 'styled-components'
 import { Motion, spring } from 'react-motion'
@@ -55,7 +56,23 @@ const DropDownActiveItem = styled(DropDownItem)`
   }
 `
 
-class DropDown extends React.Component {
+type Props = {
+  items: Array<string>,
+  active: number,
+  onChange: (number) => mixed,
+}
+
+type State = {
+  opened: boolean,
+}
+
+class DropDown extends React.Component<Props, State> {
+  static defaultProps = {
+    items: [],
+    active: 0,
+    onChange: () => {},
+  }
+  activeItemElt: ?HTMLElement;
   state = {
     opened: false,
   }
@@ -65,11 +82,8 @@ class DropDown extends React.Component {
   handleClose = () => {
     this.setState({ opened: false })
   }
-  handleItemActivate = (index, { keyboard }) => {
-    const { onChange } = this.props
-    if (onChange) {
-      onChange(index)
-    }
+  handleItemActivate = (index: number, { keyboard }: { keyboard: boolean }) => {
+    this.props.onChange(index)
     this.setState({ opened: false })
     if (this.activeItemElt && keyboard) {
       this.activeItemElt.focus()
@@ -98,7 +112,6 @@ class DropDown extends React.Component {
               const scale = opened ? lerp(openProgress, 0.95, 1) : 1
               return (
                 <DropDownItems
-                  onClick={this.handleItemsClick}
                   opened={openProgress > 0}
                   style={{
                     transform: `scale(${scale},${scale})`,

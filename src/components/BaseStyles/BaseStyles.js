@@ -1,3 +1,4 @@
+/* @flow */
 import React from 'react'
 import { injectGlobal } from 'styled-components'
 import theme from '../../theme'
@@ -85,7 +86,9 @@ const injectStyles = () => injectGlobal`
   }
 `
 
-class BaseStyles extends React.Component {
+type Props = {}
+
+class BaseStyles extends React.Component<Props> {
   componentWillMount() {
     injectStyles()
   }

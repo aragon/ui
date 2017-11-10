@@ -1,11 +1,11 @@
+/* @flow */
 import React from 'react'
 import styled from 'styled-components'
 import theme from '../../theme'
 import Button from '../Button/Button'
 import Text from '../Text/Text'
-
-import logo from './assets/logo.svg'
-import logoCompact from './assets/logo-compact.svg'
+import MenuItem from './MenuItem'
+import Logo from './Logo'
 
 const StyledHeader = styled.div`
   padding: 0 12px;
@@ -65,47 +65,28 @@ const StyledHeader = styled.div`
         margin-right: 10px;
       }
     `
-  }}
+  }};
 `
 
-const Logo = ({ compact }) => (
-  <a href="/" className="logo">
-    <img
-      alt="Aragon"
-      src={compact ? logoCompact : logo}
-      height={compact ? 36 : 51}
-    />
-  </a>
-)
+type Props = {
+  title: string,
+  menuItems: Array<[string, string, boolean]>,
+}
 
-const StyledMenuItem = styled.li`
-  display: flex;
-  align-items: stretch;
-  white-space: nowrap;
-  a {
-    display: flex;
-    align-items: center;
-    padding: 0 15px;
-    text-decoration: none;
-    font-size: 15px;
-    color: ${({ active }) => (active ? theme.accent : theme.textSecondary)};
-  }
-`
+const DefaultProps = {
+  menuItems: [],
+}
 
-const MenuItem = ({ url, label, active }) => (
-  <StyledMenuItem active={active}>
-    <a href={url}>{label}</a>
-  </StyledMenuItem>
-)
-
-const Header = ({ title, menuItems = [] }) => (
+const Header = ({ title, menuItems }: Props) => (
   <StyledHeader withTitle={Boolean(title)}>
     <div className="in">
       <div>
         <Logo compact={Boolean(title)} />
         {title && (
           <div className="title">
-            <Text heading={1} size='xlarge'>{title}</Text>
+            <Text heading="1" size="xlarge">
+              {title}
+            </Text>
           </div>
         )}
         {menuItems.length > 0 && (
@@ -136,6 +117,8 @@ const Header = ({ title, menuItems = [] }) => (
     </div>
   </StyledHeader>
 )
+
+Header.defaultProps = DefaultProps
 
 export { StyledHeader }
 export default Header

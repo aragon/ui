@@ -1,7 +1,9 @@
+/* @flow */
+import type { Node } from 'react'
 import React from 'react'
 import styled from 'styled-components'
 
-import { Section, Button, colors, theme, themeDark } from '../..'
+import { Section, theme } from '../..'
 
 const StyledIllustratedSection = Section.StyledSectionDiv.extend`
   padding: 235px 0 140px;
@@ -49,15 +51,24 @@ const StyledContent = styled.div`
   }
 `
 
-const IllustrationSection = ({ dark, children }) => {
+type Props = {
+  dark: boolean,
+  children: Node,
+}
+
+const DefaultProps = {
+  dark: false,
+}
+
+const IllustrationSection = ({ dark, children }: Props) => {
   return (
     <Section StyledComponent={StyledIllustratedSection} dark={dark}>
-      <div class="main">
-        {children}
-      </div>
+      <div className="main">{children}</div>
     </Section>
   )
 }
+
+IllustrationSection.defaultProps = DefaultProps
 
 IllustrationSection.Illustration = StyledIllustration
 IllustrationSection.Title = StyledTitle

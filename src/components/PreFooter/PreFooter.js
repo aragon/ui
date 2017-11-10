@@ -1,5 +1,5 @@
+/* @flow */
 import React from 'react'
-import styled from 'styled-components'
 import { Section, Button, colors, themeDark } from '../..'
 
 import preFooterBackground from './assets/background.svg'
