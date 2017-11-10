@@ -56,6 +56,10 @@ type Props = {
   children: Node,
 }
 
+const DefaultProps = {
+  dark: false,
+}
+
 const IllustrationSection = ({ dark, children }: Props) => {
   return (
     <Section StyledComponent={StyledIllustratedSection} dark={dark}>
@@ -64,9 +68,7 @@ const IllustrationSection = ({ dark, children }: Props) => {
   )
 }
 
-IllustrationSection.defaultProps = {
-  dark: false,
-}
+IllustrationSection.defaultProps = DefaultProps
 
 IllustrationSection.Illustration = StyledIllustration
 IllustrationSection.Title = StyledTitle

@@ -78,6 +78,10 @@ type Props = {
   compact: boolean,
 }
 
+const DefaultProps = {
+  compact: false,
+}
+
 const Footer = ({ compact }: Props) => (
   <StyledFooter compact={compact}>
     <div className="main">
@@ -141,8 +145,6 @@ const Footer = ({ compact }: Props) => (
   </StyledFooter>
 )
 
-Footer.defaultProps = {
-  compact: false,
-}
+Footer.defaultProps = DefaultProps
 
 export default Footer

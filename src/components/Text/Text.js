@@ -20,15 +20,17 @@ const StyledText = styled.p`
   }};
 `
 
-// We use different HTML elements based on the provided properties.
-StyledText.Block = StyledText.withComponent('div')
-StyledText.Inline = StyledText.withComponent('span')
-StyledText.Heading1 = StyledText.withComponent('h1')
-StyledText.Heading2 = StyledText.withComponent('h2')
-StyledText.Heading3 = StyledText.withComponent('h3')
-StyledText.Heading4 = StyledText.withComponent('h4')
-StyledText.Heading5 = StyledText.withComponent('h5')
-StyledText.Heading6 = StyledText.withComponent('h6')
+const StyledBlock = StyledText.withComponent('div')
+const StyledInline = StyledText.withComponent('span')
+
+const styledHeadings = [
+  StyledText.withComponent('h1'),
+  StyledText.withComponent('h2'),
+  StyledText.withComponent('h3'),
+  StyledText.withComponent('h4'),
+  StyledText.withComponent('h5'),
+  StyledText.withComponent('h6'),
+]
 
 const getStyledComponent = ({
   heading = null,
@@ -57,6 +59,16 @@ type Props = {
   children: Node,
 }
 
+const DefaultProps = {
+  block: false,
+  inline: false,
+  smallcaps: false,
+  heading: null,
+  size: null,
+  weight: null,
+  color: null,
+}
+
 const Text = ({
   block,
   inline,
@@ -73,15 +85,7 @@ const Text = ({
   return <StyledComp {...styledProps} />
 }
 
-Text.defaultProps = {
-  block: false,
-  inline: false,
-  smallcaps: false,
-  heading: null,
-  size: null,
-  weight: null,
-  color: null,
-}
+Text.defaultProps = DefaultProps
 
 export { StyledText }
 export default Text

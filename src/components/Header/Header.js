@@ -73,6 +73,10 @@ type Props = {
   menuItems: Array<[string, string, boolean]>,
 }
 
+const DefaultProps = {
+  menuItems: [],
+}
+
 const Header = ({ title, menuItems }: Props) => (
   <StyledHeader withTitle={Boolean(title)}>
     <div className="in">
@@ -114,9 +118,7 @@ const Header = ({ title, menuItems }: Props) => (
   </StyledHeader>
 )
 
-Header.defaultProps = {
-  menuItems: [],
-}
+Header.defaultProps = DefaultProps
 
 export { StyledHeader }
 export default Header

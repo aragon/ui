@@ -19,6 +19,11 @@ type Props = {
   StyledComponent: ReactComponentStyled<*>, // Allow to override the styled component
 }
 
+const DefaultProps = {
+  large: false,
+  visual: false,
+}
+
 const Section = ({
   large,
   visual,
@@ -37,10 +42,7 @@ const Section = ({
   )
 }
 
-Section.defaultProps = {
-  large: false,
-  visual: false,
-}
+Section.defaultProps = DefaultProps
 
 Section.StyledSection = StyledSection
 Section.StyledSectionDiv = StyledSectionDiv
