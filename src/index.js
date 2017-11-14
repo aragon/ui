@@ -1,6 +1,7 @@
 export { default as theme, themeDark, brand, colors } from './theme'
 export { default as BaseStyles } from './components/BaseStyles/BaseStyles'
 export { default as Section } from './components/Section/Section'
+export { default as IllustratedSection } from './components/IllustratedSection/IllustratedSection'
 export { default as Button } from './components/Button/Button'
 export { default as DropDown } from './components/DropDown/DropDown'
 export { default as Footer } from './components/Footer/Footer'

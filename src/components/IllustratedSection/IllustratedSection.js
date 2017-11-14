@@ -3,9 +3,9 @@ import type { Node } from 'react'
 import React from 'react'
 import styled from 'styled-components'
 
-import { Section, theme } from '../..'
+import { Section, theme, themeDark } from '../..'
 
-const StyledIllustratedSection = Section.StyledSectionDiv.extend`
+const StyledIllustratedSection = styled(Section)`
   padding: 235px 0 140px;
   .main {
     display: flex;
@@ -14,11 +14,16 @@ const StyledIllustratedSection = Section.StyledSectionDiv.extend`
 `
 
 const StyledIllustration = styled.div`
-  width: 450px;
+  flex-shrink: 0;
+  width: calc(40% + 100px);
   margin-left: 50px;
+  margin-right: -100px;
   &:first-child {
-    margin-left: 0;
-    margin-right: 60px;
+    margin-left: -100px;
+    margin-right: 80px;
+  }
+  img {
+    width: 100%;
   }
 `
 
@@ -40,18 +45,20 @@ const StyledEmphasis = styled.div`
   margin: 40px 0;
   padding-left: 30px;
   font-size: 19px;
-  border-left: 4px solid var(--aragonAlt);
+  border-left: 4px solid ${theme.accent};
   color: ${({ dark }) => (dark ? 'white' : 'black')};
 `
 
 const StyledContent = styled.div`
   font-size: 18px;
+  color: ${({ dark }) => (dark ? themeDark.textSecondary : 'black')};
   p {
     margin-bottom: 1em;
   }
 `
 
 type Props = {
+  className: string,
   dark: boolean,
   children: Node,
 }
@@ -60,11 +67,11 @@ const DefaultProps = {
   dark: false,
 }
 
-const IllustrationSection = ({ dark, children }: Props) => {
+const IllustrationSection = ({ className, dark, children }: Props) => {
   return (
-    <Section StyledComponent={StyledIllustratedSection} dark={dark}>
+    <StyledIllustratedSection className={className}>
       <div className="main">{children}</div>
-    </Section>
+    </StyledIllustratedSection>
   )
 }
 

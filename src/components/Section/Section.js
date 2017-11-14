@@ -28,13 +28,14 @@ const Section = ({
   large,
   visual,
   StyledComponent, // Allow to override the styled component
+  className,
   ...props
 }: Props) => {
   const SectionComp =
     StyledComponent || (visual ? StyledSectionDiv : StyledSection)
 
   return (
-    <SectionComp>
+    <SectionComp className={className}>
       <StyledContent large={large}>
         <div {...props} />
       </StyledContent>
