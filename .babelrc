@@ -1,8 +1,4 @@
 {
-  "presets": [
-    [ "env", { "modules": false } ],
-    "react",
-    "stage-2",
-    "flow"
-  ]
+  "plugins": [["inline-json-import", {}]],
+  "presets": [["env", { "modules": false }], "react", "stage-2", "flow"]
 }
