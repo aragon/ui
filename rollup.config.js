@@ -7,11 +7,15 @@ import pkg from './package.json'
 
 export default {
   input: 'src/index.js',
-  output: { file: pkg.module, format: 'es' },
+  output: [
+    { file: pkg.main, format: 'cjs' },
+    { file: pkg.module, format: 'es' },
+  ],
   external: ['react', 'react-dom'],
   plugins: [
     progress(),
     url({
+      // limit: 10 * 1024, // 10k
       limit: false,
       publicPath: '',
       include: [
