@@ -3,6 +3,10 @@
   "version": "0.3.0",
   "main": "lib/index.js",
   "module": "lib/index.js",
+  "author": "Aragon Institution MTU <contact@aragon.one>",
+  "contributors": [
+    "Pierre Bertet <pierre@aragon.one>"
+  ],
   "license": "GPL-3.0",
   "scripts": {
     "build": "rollup -c",
