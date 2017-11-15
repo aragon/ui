@@ -26,7 +26,8 @@ const StyledHeader = styled.div`
       align-items: stretch;
     }
   }
-  .logo {
+  .logo,
+  .logo a {
     display: flex;
     align-items: center;
   }
@@ -71,17 +72,18 @@ const StyledHeader = styled.div`
 type Props = {
   title: string,
   menuItems: Array<[string, string, boolean]>,
+  renderMenuItemLink: mixed,
 }
 
 const DefaultProps = {
   menuItems: [],
 }
 
-const Header = ({ title, menuItems }: Props) => (
+const Header = ({ title, menuItems, renderMenuItemLink }: Props) => (
   <StyledHeader withTitle={Boolean(title)}>
     <div className="in">
       <div>
-        <Logo compact={Boolean(title)} />
+        <Logo compact={Boolean(title)} renderLink={renderMenuItemLink} />
         {title && (
           <div className="title">
             <Text heading="1" size="xlarge">
@@ -98,6 +100,7 @@ const Header = ({ title, menuItems }: Props) => (
                   url={item[0]}
                   label={item[1]}
                   active={item[2]}
+                  renderLink={renderMenuItemLink}
                 />
               ))}
             </ul>

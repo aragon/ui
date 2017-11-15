@@ -7,12 +7,15 @@ const StyledMenuItem = styled.li`
   display: flex;
   align-items: stretch;
   white-space: nowrap;
-  a {
+  > span {
     display: flex;
     align-items: center;
     padding: 0 15px;
-    text-decoration: none;
     font-size: 15px;
+    color: ${({ active }) => (active ? theme.accent : theme.textSecondary)};
+  }
+  a {
+    text-decoration: none;
     color: ${({ active }) => (active ? theme.accent : theme.textSecondary)};
   }
 `
@@ -21,16 +24,20 @@ type Props = {
   url: string,
   label: string,
   active: boolean,
+  renderLink: mixed,
 }
 
-const MenuItem = ({ url, label, active }: Props) => (
+const DefaultProps = {
+  active: false,
+  renderLink: ({ url, children }) => <a href={url}>{children}</a>,
+}
+
+const MenuItem = ({ url, label, active, renderLink }: Props) => (
   <StyledMenuItem active={active}>
-    <a href={url}>{label}</a>
+    <span>{renderLink({ url, children: label })}</span>
   </StyledMenuItem>
 )
 
-MenuItem.defaultProps = {
-  active: false,
-}
+MenuItem.defaultProps = DefaultProps
 
 export default MenuItem

@@ -5,20 +5,29 @@ import logoCompact from './assets/logo-compact.svg'
 
 type Props = {
   compact: boolean,
+  renderLink: mixed,
 }
 
-const Logo = ({ compact }: Props) => (
-  <a href="/" className="logo">
-    <img
-      alt="Aragon"
-      src={compact ? logoCompact : logo}
-      height={compact ? 36 : 51}
-    />
-  </a>
+const DefaultProps = {
+  compact: false,
+  renderLink: ({ url, children }) => <a href={url}>{children}</a>,
+}
+
+const Logo = ({ compact, renderLink }: Props) => (
+  <span className="logo">
+    {renderLink({
+      url: '/',
+      children: (
+        <img
+          alt="Aragon"
+          src={compact ? logoCompact : logo}
+          height={compact ? 36 : 51}
+        />
+      ),
+    })}
+  </span>
 )
 
-Logo.defaultProps = {
-  compact: false,
-}
+Logo.defaultProps = DefaultProps
 
 export default Logo
