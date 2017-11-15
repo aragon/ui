@@ -6,7 +6,7 @@ import styled from 'styled-components'
 import { Section, theme, themeDark } from '../..'
 
 const StyledIllustratedSection = styled(Section)`
-  padding: 235px 0 140px;
+  padding: 120px 0 120px;
   .main {
     display: flex;
     align-items: center;
