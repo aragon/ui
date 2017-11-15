@@ -1,10 +1,12 @@
 /* @flow */
 import React from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import theme from '../../theme'
+import { breakpoint, BreakPoint } from '../../shared-styles'
 import Button from '../Button/Button'
 import Text from '../Text/Text'
 import MenuItem from './MenuItem'
+import MenuPanel from './MenuPanel'
 import Logo from './Logo'
 
 const StyledHeader = styled.div`
@@ -15,16 +17,26 @@ const StyledHeader = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: stretch;
-    min-height: 70px;
+    min-height: 60px;
     max-width: 1140px;
     margin: 0 auto;
   }
-  .in > div {
+  ${breakpoint(
+    'medium',
+    css`
+      .in {
+        min-height: 70px;
+      }
+    `
+  )};
+
+  .menu,
+  .buttons {
     display: flex;
     align-items: center;
-    &:first-child {
-      align-items: stretch;
-    }
+  }
+  .menu {
+    align-items: stretch;
   }
   .logo,
   .logo a {
@@ -35,6 +47,10 @@ const StyledHeader = styled.div`
     display: flex;
     align-items: center;
     margin-left: 40px;
+  }
+  .menu-items {
+    display: flex;
+    align-items: center;
   }
   .nav {
     display: flex;
@@ -82,7 +98,7 @@ const DefaultProps = {
 const Header = ({ title, menuItems, renderMenuItemLink }: Props) => (
   <StyledHeader withTitle={Boolean(title)}>
     <div className="in">
-      <div>
+      <div className="menu">
         <Logo compact={Boolean(title)} renderLink={renderMenuItemLink} />
         {title && (
           <div className="title">
@@ -92,30 +108,39 @@ const Header = ({ title, menuItems, renderMenuItemLink }: Props) => (
           </div>
         )}
         {menuItems.length > 0 && (
-          <nav className="nav">
-            <ul>
-              {menuItems.map((item, i) => (
-                <MenuItem
-                  key={i}
-                  url={item[0]}
-                  label={item[1]}
-                  active={item[2]}
-                  renderLink={renderMenuItemLink}
-                />
-              ))}
-            </ul>
-          </nav>
+          <div className="menu-items">
+            <BreakPoint to="medium">
+              <MenuPanel items={menuItems} renderLink={renderMenuItemLink} />
+            </BreakPoint>
+            <BreakPoint from="medium">
+              <nav className="nav">
+                <ul>
+                  {menuItems.map((item, i) => (
+                    <MenuItem
+                      key={i}
+                      url={item[0]}
+                      label={item[1]}
+                      active={item[2]}
+                      renderLink={renderMenuItemLink}
+                    />
+                  ))}
+                </ul>
+              </nav>
+            </BreakPoint>
+          </div>
         )}
       </div>
       {!title && (
-        <div>
-          <div className="button">
-            <Button mode="outline">Try web version</Button>
+        <BreakPoint from="medium">
+          <div className="buttons">
+            <div className="button">
+              <Button mode="outline">Try web version</Button>
+            </div>
+            <div className="button">
+              <Button mode="strong">Download Aragon</Button>
+            </div>
           </div>
-          <div className="button">
-            <Button mode="strong">Download Aragon</Button>
-          </div>
-        </div>
+        </BreakPoint>
       )}
     </div>
   </StyledHeader>
