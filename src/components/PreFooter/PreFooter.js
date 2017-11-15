@@ -7,8 +7,11 @@ import preFooterBackground from './assets/background.svg'
 const StyledPreFooterSection = Section.StyledSectionDiv.extend`
   padding: 140px 20px;
   color: ${themeDark.textTertiary};
-  background:
-    ${colors.Rain.Shark} url(${preFooterBackground}) no-repeat 50% 50%;
+  background-color: ${colors.Rain.Shark};
+  background-image: url(${preFooterBackground});
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-size: cover;
 
   .main {
     display: flex;
