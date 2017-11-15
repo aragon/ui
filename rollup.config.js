@@ -15,7 +15,8 @@ export default {
   plugins: [
     progress(),
     url({
-      limit: 10 * 1024, // 10k
+      // limit: 10 * 1024, // 10k
+      limit: false,
       publicPath: '',
       include: [
         '**/*.svg',
