@@ -8,6 +8,7 @@ import logo from './assets/logo-background.svg'
 // AragonApp provides everything needed to start an Aragon App.
 
 const StyledAragonApp = styled.main`
+  min-width: 320px;
   min-height: 100vh;
   background-color: ${theme.mainBackground};
   background-image: ${({ backgroundLogo }) =>
