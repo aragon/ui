@@ -38,9 +38,10 @@ const PanelContent = styled.div`
 
 const Toggle = styled.a.attrs({ role: 'button' })`
   position: absolute;
-  right: 15px;
+  right: 0;
   z-index: 4;
   height: 60px;
+  padding: 0 15px;
   display: flex;
   align-items: center;
   cursor: pointer;
@@ -75,6 +76,7 @@ class Panel extends React.Component {
               </Toggle>
               <PanelStyles
                 style={{
+                  display: openProgress > 0? 'block' : 'none',
                   opacity: openProgress,
                   transform: `translateY(-${(1 - openProgress) * 5}px)`,
                 }}
