@@ -71,6 +71,8 @@ const modeStrong = css`
 
 const modeOutline = css`
   background: transparent;
+  padding-top: 9px;
+  padding-bottom: 9px;
   border: 1px solid ${contentBorder};
   &:hover,
   &:focus {
@@ -105,7 +107,7 @@ const negativeStyle = css`
 
 const StyledButton = styled.button`
   width: ${({ wide }) => (wide ? '100%' : 'auto')};
-  padding: 10px 25px;
+  padding: 10px 15px;
   white-space: nowrap;
   ${fontStyle({ size: 'small', weight: 'normal' })};
   color: ${textSecondary};
