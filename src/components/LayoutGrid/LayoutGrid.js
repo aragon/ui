@@ -5,11 +5,12 @@ const LayoutGrid = () => (
   <div
     style={{
       position: 'fixed',
+      zIndex: '999',
       left: '0',
       right: '0',
       top: '0',
       bottom: '0',
-      width: grid(12),
+      width: grid(12) + 'px',
       margin: '0 auto',
       display: 'flex',
     }}
