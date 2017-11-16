@@ -2,7 +2,8 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Motion, spring } from 'react-motion'
-import { spring as springConf } from '../../shared-styles'
+import ClickOutHandler from 'react-onclickout'
+import { spring as springConf, unselectable } from '../../shared-styles'
 import theme from '../../theme'
 
 import close from './assets/close.svg'
@@ -10,10 +11,12 @@ import menu from './assets/menu.svg'
 
 const Container = styled.div`
   min-height: 60px;
+  ${unselectable()};
 `
 
 const PanelStyles = styled.div`
   position: absolute;
+  z-index: 3;
   top: 0;
   right: 0;
   padding-top: 70px;
@@ -28,12 +31,15 @@ const PanelStyles = styled.div`
 
 const PanelContent = styled.div`
   padding: 0 60px 30px 30px;
+  a {
+    display: block;
+  }
 `
 
 const Toggle = styled.a.attrs({ role: 'button' })`
   position: absolute;
   right: 15px;
-  z-index: 2;
+  z-index: 4;
   height: 60px;
   display: flex;
   align-items: center;
@@ -49,7 +55,7 @@ class Panel extends React.Component {
   toggle = () => {
     this.setState({ opened: !this.state.opened })
   }
-  handleItemClick = () => {
+  close = () => {
     this.setState({ opened: false })
   }
   render() {
@@ -58,31 +64,33 @@ class Panel extends React.Component {
     return (
       <Motion
         style={{
-          openProgress: spring(Number(opened), springConf('normal')),
+          openProgress: spring(Number(opened), springConf('fast')),
         }}
       >
         {({ openProgress }) => (
           <Container>
-            <Toggle onClick={this.toggle}>
-              <img src={opened ? close : menu} alt="" />
-            </Toggle>
-            <PanelStyles
-              style={{
-                opacity: openProgress,
-                transform: `translateY(-${(1 - openProgress) * 10}px)`,
-              }}
-            >
-              <PanelContent>
-                {items.map(([url, label, active]) => (
-                  <div key={url} onClick={this.handleItemClick}>
-                    {renderLink({
-                      url,
-                      children: label,
-                    })}
-                  </div>
-                ))}
-              </PanelContent>
-            </PanelStyles>
+            <ClickOutHandler onClickOut={this.close}>
+              <Toggle onClick={this.toggle}>
+                <img src={opened ? close : menu} alt="" />
+              </Toggle>
+              <PanelStyles
+                style={{
+                  opacity: openProgress,
+                  transform: `translateY(-${(1 - openProgress) * 5}px)`,
+                }}
+              >
+                <PanelContent>
+                  {items.map(([url, label, active]) => (
+                    <div key={url} onClick={this.close}>
+                      {renderLink({
+                        url,
+                        children: label,
+                      })}
+                    </div>
+                  ))}
+                </PanelContent>
+              </PanelStyles>
+            </ClickOutHandler>
           </Container>
         )}
       </Motion>

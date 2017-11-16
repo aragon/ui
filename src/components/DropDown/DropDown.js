@@ -2,7 +2,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Motion, spring } from 'react-motion'
-import ClickOutside from 'react-click-outside'
+import ClickOutHandler from 'react-onclickout'
 import theme from '../../theme'
 import { springConf } from '../../shared-styles'
 import { lerp } from '../../math-utils'
@@ -59,7 +59,7 @@ const DropDownActiveItem = styled(DropDownItem)`
 type Props = {
   items: Array<string>,
   active: number,
-  onChange: (number) => mixed,
+  onChange: number => mixed,
 }
 
 type State = {
@@ -72,7 +72,7 @@ class DropDown extends React.Component<Props, State> {
     active: 0,
     onChange: () => {},
   }
-  activeItemElt: ?HTMLElement;
+  activeItemElt: ?HTMLElement
   state = {
     opened: false,
   }
@@ -94,7 +94,7 @@ class DropDown extends React.Component<Props, State> {
     const { opened } = this.state
     const activeItem = items[active] || items[0]
     return (
-      <ClickOutside onClickOutside={this.handleClose}>
+      <ClickOutHandler onClickOut={this.handleClose}>
         <StyledDropDown>
           <DropDownActiveItem
             onActivate={this.handleToggle}
@@ -134,7 +134,7 @@ class DropDown extends React.Component<Props, State> {
             }}
           </Motion>
         </StyledDropDown>
-      </ClickOutside>
+      </ClickOutHandler>
     )
   }
 }
