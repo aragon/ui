@@ -44,8 +44,8 @@ export const font = ({ size = 'normal', weight = 'normal' }) => {
   `
 }
 
-export const grid = cols =>
-  GRID.gutterWidth * cols + GRID.columnWidth * (cols - 1)
+export const grid = (cols, gutters = cols - 1) =>
+  GRID.columnWidth * cols + GRID.gutterWidth * gutters
 
 export const spring = name => {
   return SPRINGS[name] || SPRINGS.normal
