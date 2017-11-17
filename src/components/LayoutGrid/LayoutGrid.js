@@ -13,6 +13,7 @@ const LayoutGrid = () => (
       width: grid(12) + 'px',
       margin: '0 auto',
       display: 'flex',
+      pointerEvents: 'none',
     }}
   >
     {[...Array(12)].map((v, i, arr) => (
