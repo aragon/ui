@@ -1,7 +1,7 @@
 /* @flow */
 import React from 'react'
 import styled, { css } from 'styled-components'
-import { LayoutGrid, colors, font, themeDark, breakpoint, grid } from '../..'
+import { colors, font, themeDark, breakpoint, grid } from '../..'
 
 import logo from './assets/logo.svg'
 import iconTwitter from './assets/twitter.svg'
