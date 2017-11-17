@@ -1,7 +1,7 @@
 /* @flow */
 import React from 'react'
 import styled, { css } from 'styled-components'
-import { Section, Button, colors, themeDark, breakpoint } from '../..'
+import { Section, Button, grid, colors, themeDark, breakpoint } from '../..'
 
 import logo from './assets/logo.svg'
 import bgLandscape from './assets/bg-landscape.svg'
@@ -34,14 +34,14 @@ const Container = styled(Section).attrs({ visual: true })`
     width: 100%;
     background: url(${logo}) no-repeat 50% 50%;
     background-size: 140px;
-    ${large(css`background-size: 200px`)};
+    ${large(`background-size: 200px;`)};
   }
   .section {
     display: flex;
     flex-direction: column;
     justify-content: center;
     width: 100%;
-    max-width: 360px;
+    max-width: ${grid(4)}px;
     min-height: 400px;
     height: 50%;
     text-align: center;
@@ -67,13 +67,13 @@ const Container = styled(Section).attrs({ visual: true })`
     font-size: 15px;
     border: 0;
     border-radius: 3px;
-    background: #FFF;
+    background: #fff;
   }
   button {
     font-size: 15px;
   }
 
-  ${large(css`
+  ${large(`
     padding-top: 140px;
     padding-bottom: 140px;
 
@@ -84,7 +84,7 @@ const Container = styled(Section).attrs({ visual: true })`
     }
     .section {
       min-height: 0;
-      width: 360px;
+      width: ${grid(4) + 'px'};
       justify-content: flex-start;
       text-align: left;
       padding-top: 0;
@@ -107,7 +107,7 @@ const PreFooter = () => (
             intermediaries.
           </p>
           <p className="email">
-            <input type="email" placeholder='Enter your email' />
+            <input type="email" placeholder="Enter your email" />
           </p>
         </section>
         <section className="section">
