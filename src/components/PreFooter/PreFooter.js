@@ -2,6 +2,7 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
 import { Section, Button, grid, colors, themeDark, breakpoint } from '../..'
+import getPublicUrl, { styledPublicUrl as asset } from '../../public-url'
 
 import logo from './assets/logo.svg'
 import bgLandscape from './assets/bg-landscape.svg'
@@ -10,18 +11,22 @@ import bgPortrait from './assets/bg-portrait.svg'
 const medium = css => breakpoint('medium', css)
 const large = css => breakpoint('large', css)
 
-const Main = styled.div`
+const Main = getPublicUrl(styled.div`
   position: relative;
   overflow: hidden;
   background-color: ${colors.Rain.Shark};
   background-repeat: no-repeat;
   background-position: 50% 50%;
   background-size: cover;
-  background-image: url(${bgPortrait});
-  ${large(`background-image: url(${bgLandscape})`)};
-`
+  background-image: url(${asset(bgPortrait)});
+  ${large(
+    css`
+      background-image: url(${asset(bgLandscape)});
+    `
+  )};
+`)
 
-const Container = styled(Section).attrs({ visual: true })`
+const Container = getPublicUrl(styled(Section).attrs({ visual: true })`
   position: relative;
   z-index: 2;
   padding: 0 20px;
@@ -32,7 +37,7 @@ const Container = styled(Section).attrs({ visual: true })`
     flex-direction: column;
     align-items: center;
     width: 100%;
-    background: url(${logo}) no-repeat 50% 50%;
+    background: url(${asset(logo)}) no-repeat 50% 50%;
     background-size: 140px;
     ${large(`background-size: 200px;`)};
   }
@@ -94,7 +99,7 @@ const Container = styled(Section).attrs({ visual: true })`
       padding-bottom: 0;
     }
   `)};
-`
+`)
 
 const PreFooter = () => (
   <Main>

@@ -1,7 +1,7 @@
 import React from 'react'
 import createHistory from 'history/createBrowserHistory'
 import styled from 'styled-components'
-import { BaseStyles } from '@aragon/ui'
+import { AragonApp } from '@aragon/ui'
 import Sidebar from 'comps/Sidebar/Sidebar'
 import PageHome from 'pages/PageHome'
 import PageColors from 'pages/PageColors'
@@ -37,7 +37,7 @@ const preparePages = (path, pages) =>
     path: path + p[2].replace(/^\//, '') + (p[2] === '/' ? '' : '/'),
   }))
 
-const Main = styled.main`
+const Main = styled.div`
   display: flex;
   height: 100%;
   > :first-child {
@@ -73,8 +73,7 @@ class App extends React.Component {
     const { pages, activePage } = this.state
     const Page = activePage && activePage.comp
     return (
-      <div>
-        <BaseStyles />
+      <AragonApp publicUrl="/">
         <Main>
           <Sidebar
             pages={pages}
@@ -83,7 +82,7 @@ class App extends React.Component {
           />
           {Page && <Page title={activePage.name} />}
         </Main>
-      </div>
+      </AragonApp>
     )
   }
 }

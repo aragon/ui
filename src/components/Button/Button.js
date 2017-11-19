@@ -3,6 +3,7 @@ import React from 'react'
 import styled, { css } from 'styled-components'
 import theme from '../../theme'
 import { fontStyle } from '../../shared-styles'
+import getPublicUrl, { styledPublicUrl as asset } from '../../public-url'
 import cross from './assets/cross.svg'
 import check from './assets/check.svg'
 
@@ -93,19 +94,21 @@ const modeText = css`
   }
 `
 
-const compactStyle = css`padding: 5px 15px;`
+const compactStyle = css`
+  padding: 5px 15px;
+`
 
 const positiveStyle = css`
   padding-left: 34px;
-  background: url(${check}) no-repeat 12px calc(50% - 1px);
+  background: url(${asset(check)}) no-repeat 12px calc(50% - 1px);
 `
 
 const negativeStyle = css`
   padding-left: 30px;
-  background: url(${cross}) no-repeat 10px calc(50% - 1px);
+  background: url(${asset(cross)}) no-repeat 10px calc(50% - 1px);
 `
 
-const StyledButton = styled.button`
+const StyledButton = getPublicUrl(styled.button`
   width: ${({ wide }) => (wide ? '100%' : 'auto')};
   padding: 10px 15px;
   white-space: nowrap;
@@ -140,7 +143,7 @@ const StyledButton = styled.button`
     if (emphasis === 'negative') return negativeStyle
     return ''
   }};
-`
+`)
 
 export { StyledButton }
 export default StyledButton

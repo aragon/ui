@@ -12,6 +12,7 @@ const StyledContent = styled.div`
 `
 
 type Props = {
+  publicUrl: string,
   large: boolean,
   visual: boolean,
 }
@@ -21,7 +22,7 @@ const DefaultProps = {
   visual: false,
 }
 
-const Section = ({ large, visual, className, ...props }: Props) => {
+const Section = ({ large, visual, className, publicUrl, ...props }: Props) => {
   const containerProps = { className }
   const content = (
     <StyledContent large={large}>

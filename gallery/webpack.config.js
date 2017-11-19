@@ -33,7 +33,7 @@ module.exports = {
   entry: [path.resolve(__dirname, 'src/index.js')],
   devtool: PRODUCTION ? 'source-map' : 'eval',
   devServer: {
-    contentBase: path.join(__dirname, 'public'),
+    contentBase: [path.join(__dirname, '../dist'), path.join(__dirname, 'public')],
     historyApiFallback: true,
   },
   resolve: {
@@ -41,7 +41,8 @@ module.exports = {
       pages: path.resolve(__dirname, 'src/pages'),
       comps: path.resolve(__dirname, 'src/components'),
       src: path.resolve(__dirname, 'src'),
-      '@aragon/ui': path.resolve(__dirname, '../src'),
+      '@aragon/ui': path.resolve(__dirname, '..'),
+      'ui-src': path.resolve(__dirname, '../src'),
     },
     modules: [
       path.join(__dirname, 'node_modules'),

@@ -2,6 +2,7 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
 import { colors, font, themeDark, breakpoint, grid } from '../..'
+import getPublicUrl, { styledPublicUrl as asset } from '../../public-url'
 
 import logo from './assets/logo.svg'
 import iconTwitter from './assets/twitter.svg'
@@ -12,7 +13,7 @@ import iconMail from './assets/mail.svg'
 const medium = css => breakpoint('medium', css)
 const large = css => breakpoint('large', css)
 
-const StyledFooter = styled.footer`
+const StyledFooter = getPublicUrl(styled.footer`
   padding: 60px 20px 10px;
   font-size: 15px;
   color: grey;
@@ -72,16 +73,16 @@ const StyledFooter = styled.footer`
     font-weight: 400;
   }
   .icon.twitter {
-    background-image: url(${iconTwitter});
+    background-image: url(${asset(iconTwitter)});
   }
   .icon.medium {
-    background-image: url(${iconMedium});
+    background-image: url(${asset(iconMedium)});
   }
   .icon.slack {
-    background-image: url(${iconSlack});
+    background-image: url(${asset(iconSlack)});
   }
   .icon.mail {
-    background-image: url(${iconMail});
+    background-image: url(${asset(iconMail)});
   }
 
   ${medium(`
@@ -134,7 +135,7 @@ const StyledFooter = styled.footer`
       line-height: 1.5;
     }
   `)};
-`
+`)
 
 type Props = {
   compact: boolean,
@@ -144,11 +145,11 @@ const DefaultProps = {
   compact: false,
 }
 
-const Footer = ({ compact }: Props) => (
+const Footer = ({ compact, publicUrl }: Props) => (
   <StyledFooter compact={compact}>
     <div className="main">
       <div className="logo">
-        <img src={logo} width="158" height="50" alt="Aragon" />
+        <img src={publicUrl + logo} width="158" height="50" alt="Aragon" />
       </div>
       <div className="all-links">
         {!compact && (
@@ -218,4 +219,4 @@ const Footer = ({ compact }: Props) => (
 
 Footer.defaultProps = DefaultProps
 
-export default Footer
+export default getPublicUrl(Footer)
