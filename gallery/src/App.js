@@ -34,7 +34,7 @@ const preparePages = (path, pages) =>
   pages.map(p => ({
     comp: p[0],
     name: p[1],
-    path: path + p[2].replace(/^\//, '') + (p[2] === '/'? '' : '/')
+    path: path + p[2].replace(/^\//, '') + (p[2] === '/' ? '' : '/'),
   }))
 
 const Main = styled.main`
