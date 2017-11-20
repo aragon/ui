@@ -104,7 +104,7 @@ const PreFooter = () => (
           <h1 className="title">Join the community</h1>
           <p className="desc">
             Be part of the conversation. Create value without borders or
-            intermediaries.
+            intermediaries
           </p>
           <p className="email">
             <input type="email" placeholder="Enter your email" />
@@ -114,7 +114,7 @@ const PreFooter = () => (
           <h1 className="title">Try Aragon now</h1>
           <p className="desc">
             Download Aragon Alpha for macOS<br /> or try the{' '}
-            <a href="">web version</a>.
+            <a href="">web version</a>
           </p>
           <Button mode="strong">Download Aragon Alpha for macOS</Button>
         </section>
