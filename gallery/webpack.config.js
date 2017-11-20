@@ -44,12 +44,8 @@ module.exports = {
       '@aragon/ui': path.resolve(__dirname, '..'),
       'ui-src': path.resolve(__dirname, '../src'),
     },
-    modules: [
-      path.join(__dirname, 'node_modules'),
-      path.join(__dirname, '../node_modules'),
-    ],
-  },
-  resolveLoader: {
+
+    // Only needed because @aragon/ui is linked
     modules: [
       path.join(__dirname, 'node_modules'),
       path.join(__dirname, '../node_modules'),
