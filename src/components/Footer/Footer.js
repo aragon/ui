@@ -83,12 +83,6 @@ const StyledFooter = styled.footer`
   .icon.mail {
     background-image: url(${iconMail});
   }
-  .copyright {
-    margin: 35px 0 0;
-    text-align: center;
-    color: ${themeDark.textTertiary};
-    ${font({ size: 'xsmall' })};
-  }
 
   ${medium(`
     .all-links {
@@ -138,9 +132,6 @@ const StyledFooter = styled.footer`
     li {
       margin: 0 0 10px;
       line-height: 1.5;
-    }
-    .copyright {
-      margin: 70px 0 0;
     }
   `)};
 `
@@ -222,7 +213,6 @@ const Footer = ({ compact }: Props) => (
         </ul>
       </div>
     </div>
-    <p className="copyright">© Copyright 2017 Aragon One.</p>
   </StyledFooter>
 )
 
