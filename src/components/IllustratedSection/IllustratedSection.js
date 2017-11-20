@@ -13,14 +13,14 @@ const StyledIllustratedSection = styled(Section)`
   .main {
     display: block;
     align-items: center;
-    ${breakpoint('large', 'display: flex')};
+    ${large('display: flex')};
   }
   .text {
     margin-top: 20px;
     ${medium(`
       display: flex;
       margin-top: 40px;
-    `)}
+    `)};
     ${large(`
       display: block;
       margin-top: 0;
@@ -30,13 +30,11 @@ const StyledIllustratedSection = styled(Section)`
 
 const StyledIllustration = styled.div`
   margin-top: 40px;
-
   img {
     display: block;
     margin: 0 auto;
     max-width: calc(100% - 30px);
   }
-
   ${large(`
     flex-shrink: 0;
     width: calc(40% + 150px);
@@ -63,10 +61,10 @@ const StyledTitle = styled.div`
   color: ${theme.accent};
   ${medium(`
     font-size: 18px;
-  `)}
+  `)};
   ${large(`
     text-align: left;
-  `)}
+  `)};
 `
 
 const StyledSubtitle = styled.div`
@@ -77,10 +75,10 @@ const StyledSubtitle = styled.div`
   color: ${({ dark }) => (dark ? 'white' : 'black')};
   ${medium(`
     font-size: 37px;
-  `)}
+  `)};
   ${large(`
     text-align: left;
-  `)}
+  `)};
 `
 
 const StyledEmphasis = styled.div`
@@ -92,7 +90,7 @@ const StyledEmphasis = styled.div`
   ${medium(`
     margin: 0 30px 40px 0;
     font-size: 19px;
-  `)}
+  `)};
   ${large(`
     margin: 40px 0;
   `)};
@@ -103,7 +101,7 @@ const StyledContent = styled.div`
   color: ${({ dark }) => (dark ? themeDark.textSecondary : 'black')};
   ${medium(`
     font-size: 18px;
-  `)}
+  `)};
   p {
     margin-bottom: 1em;
   }
