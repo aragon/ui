@@ -14,7 +14,7 @@ const medium = css => breakpoint('medium', css)
 const large = css => breakpoint('large', css)
 
 const StyledFooter = getPublicUrl(styled.footer`
-  padding: 60px 20px 10px;
+  padding: 60px 20px 35px;
   font-size: 15px;
   color: grey;
   background: ${colors.Rain['Shark']};
@@ -86,6 +86,8 @@ const StyledFooter = getPublicUrl(styled.footer`
   }
 
   ${medium(`
+    padding-bottom: 70px;
+
     .all-links {
       display: flex;
       justify-content: space-between;
