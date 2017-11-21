@@ -1,5 +1,6 @@
 import React from 'react'
 import Responsive from 'react-responsive'
+import { css } from 'styled-components'
 
 const FONT_SIZES = {
   xsmall: '12px',
@@ -52,9 +53,9 @@ export const spring = name => {
 }
 
 // CSS breakpoints
-export const breakpoint = (name, css) => `
+export const breakpoint = (name, styles) => css`
   @media (min-width: ${BREAKPOINTS[name]}px) {
-    ${css}
+    ${styles};
   }
 `
 
