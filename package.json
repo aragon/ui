@@ -65,6 +65,6 @@
     "react-motion": "^0.5.2",
     "react-onclickout": "^2.0.8",
     "react-responsive": "^3.0.0",
-    "styled-components": "^2.2.1"
+    "styled-components": "^2.2.3"
   }
 }
