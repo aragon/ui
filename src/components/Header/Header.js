@@ -9,6 +9,9 @@ import MenuItem from './MenuItem'
 import MenuPanel from './MenuPanel'
 import Logo from './Logo'
 
+const medium = css => breakpoint('medium', css)
+const large = css => breakpoint('large', css)
+
 const StyledHeader = styled.div`
   padding: 0 12px;
   background: ${theme.contentBackground};
@@ -21,14 +24,6 @@ const StyledHeader = styled.div`
     max-width: 1140px;
     margin: 0 auto;
   }
-  ${breakpoint(
-    'medium',
-    css`
-      .in {
-        min-height: 70px;
-      }
-    `
-  )};
 
   .menu,
   .buttons {
@@ -56,7 +51,7 @@ const StyledHeader = styled.div`
     display: flex;
     align-items: stretch;
     list-style: none;
-    margin-left: 45px;
+    margin-left: 20px;
   }
   .nav ul {
     display: flex;
@@ -68,6 +63,20 @@ const StyledHeader = styled.div`
       margin: 0;
     }
   }
+
+  ${medium(`
+    .in {
+      min-height: 70px;
+    }
+  `)};
+  ${large(`
+    .in {
+      min-height: 70px;
+    }
+    .nav {
+      margin-left: 45px;
+    }
+  `)};
 
   ${({ withTitle }) => {
     if (!withTitle) return ''
@@ -134,10 +143,20 @@ const Header = ({ title, menuItems, renderMenuItemLink }: Props) => (
         <BreakPoint from="medium">
           <div className="buttons">
             <div className="button">
-              <Button mode="outline">Try the web version</Button>
+              <Button mode="outline">
+                <BreakPoint from="medium" to="large">
+                  Web version
+                </BreakPoint>
+                <BreakPoint from="large">Try the web version</BreakPoint>
+              </Button>
             </div>
             <div className="button">
-              <Button mode="strong">Download Aragon Core</Button>
+              <Button mode="strong">
+                <BreakPoint from="medium" to="large">
+                  Aragon Core
+                </BreakPoint>
+                <BreakPoint from="large">Download Aragon Core</BreakPoint>
+              </Button>
             </div>
           </div>
         </BreakPoint>
