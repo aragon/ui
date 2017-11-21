@@ -14,9 +14,12 @@ const getPublicUrl = Component => {
   return highOrderComponent
 }
 
-// styled-component helper
-const styledPublicUrl = url => ({ publicUrl }) =>
+// prefix helper
+const prefixUrl = (url, publicUrl) =>
   url.startsWith('data:') ? url : publicUrl + url
 
-export { styledPublicUrl }
+// styled-component helper
+const styledPublicUrl = url => ({ publicUrl }) => prefixUrl(url, publicUrl)
+
+export { prefixUrl, styledPublicUrl }
 export default getPublicUrl

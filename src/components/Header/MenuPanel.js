@@ -4,7 +4,10 @@ import styled from 'styled-components'
 import { Motion, spring } from 'react-motion'
 import ClickOutHandler from 'react-onclickout'
 import { spring as springConf, unselectable } from '../../shared-styles'
-import getPublicUrl, { styledPublicUrl as asset } from '../../public-url'
+import getPublicUrl, {
+  styledPublicUrl as asset,
+  prefixUrl,
+} from '../../public-url'
 import theme from '../../theme'
 
 import close from './assets/close.svg'
@@ -73,7 +76,7 @@ class Panel extends React.Component {
           <Container>
             <ClickOutHandler onClickOut={this.close}>
               <Toggle onClick={this.toggle}>
-                <img src={publicUrl + (opened ? close : menu)} alt="" />
+                <img src={prefixUrl(opened ? close : menu, publicUrl)} alt="" />
               </Toggle>
               <PanelStyles
                 style={{
