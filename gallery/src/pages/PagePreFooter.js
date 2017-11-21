@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import Page from 'comps/Page/Page'
 
-import readme from '@aragon/ui/components/PreFooter/README.md'
+import readme from 'ui-src/components/PreFooter/README.md'
 import { PreFooter } from '@aragon/ui'
 
 const PagePreFooter = ({ title }) => (

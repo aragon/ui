@@ -15,8 +15,7 @@ export default {
   plugins: [
     progress(),
     url({
-      // limit: 10 * 1024, // 10k
-      limit: false,
+      limit: 5 * 1024, // inline files smaller than 5k
       publicPath: '',
       include: [
         '**/*.svg',

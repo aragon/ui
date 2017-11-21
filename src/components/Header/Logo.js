@@ -1,11 +1,12 @@
 /* @flow */
 import React from 'react'
 import styled from 'styled-components'
+import getPublicUrl, { styledPublicUrl as asset } from '../../public-url'
+import { BreakPoint } from '../..'
+
 import logo from './assets/logo.svg'
 import logoCompact from './assets/logo-compact.svg'
 import logoMinimal from './assets/logo-minimal.svg'
-
-import { BreakPoint } from '../..'
 
 const Container = styled.span`
   display: flex;
@@ -15,6 +16,7 @@ const Container = styled.span`
 type Props = {
   compact: boolean,
   renderLink: mixed,
+  publicUrl: string,
 }
 
 const DefaultProps = {
@@ -22,7 +24,7 @@ const DefaultProps = {
   renderLink: ({ url, children }) => <a href={url}>{children}</a>,
 }
 
-const Logo = ({ compact, renderLink }: Props) => {
+const Logo = ({ compact, renderLink, publicUrl }: Props) => {
   return (
     <span className="logo">
       {renderLink({
@@ -30,15 +32,15 @@ const Logo = ({ compact, renderLink }: Props) => {
         children: (
           <Container>
             <BreakPoint to="medium">
-              <img alt="Aragon" src={logoMinimal} height={40} />
+              <img alt="Aragon" src={publicUrl + logoMinimal} height={40} />
             </BreakPoint>
             <BreakPoint from="medium" to="large">
-              <img alt="Aragon" src={logoMinimal} height={50} />
+              <img alt="Aragon" src={publicUrl + logoMinimal} height={50} />
             </BreakPoint>
             <BreakPoint from="large">
               <img
                 alt="Aragon"
-                src={compact ? logoCompact : logo}
+                src={publicUrl + (compact ? logoCompact : logo)}
                 height={compact ? 36 : 51}
               />
             </BreakPoint>
@@ -51,4 +53,4 @@ const Logo = ({ compact, renderLink }: Props) => {
 
 Logo.defaultProps = DefaultProps
 
-export default Logo
+export default getPublicUrl(Logo)

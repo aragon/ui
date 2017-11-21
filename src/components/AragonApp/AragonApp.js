@@ -1,8 +1,10 @@
 /* @flow */
 import type { Node } from 'react'
 import React from 'react'
-import styled from 'styled-components'
+import PropTypes from 'prop-types'
+import styled, { css } from 'styled-components'
 import { BaseStyles, theme } from '../..'
+import getPublicUrl, { styledPublicUrl as asset } from '../../public-url'
 import logo from './assets/logo-background.svg'
 
 // AragonApp provides everything needed to start an Aragon App.
@@ -12,7 +14,7 @@ const StyledAragonApp = styled.main`
   min-height: 100vh;
   background-color: ${theme.mainBackground};
   background-image: ${({ backgroundLogo }) =>
-    backgroundLogo ? `url(${logo})` : 'none'};
+    backgroundLogo ? css`url(${asset(logo)})` : 'none'};
   background-position: 50% 50%;
   background-repeat: no-repeat;
 `
@@ -20,6 +22,7 @@ const StyledAragonApp = styled.main`
 type Props = {
   className: string,
   backgroundLogo: boolean,
+  publicUrl: string,
   children: Node,
 }
 
@@ -27,11 +30,20 @@ class AragonApp extends React.Component<Props> {
   static defaultProps = {
     backgroundLogo: false,
   }
+  static childContextTypes = {
+    publicUrl: PropTypes.string,
+  }
   static Styled = StyledAragonApp
+
+  getChildContext() {
+    return { publicUrl: this.props.publicUrl }
+  }
+
   render() {
-    const { children, backgroundLogo, className } = this.props
+    const { children, backgroundLogo, className, publicUrl } = this.props
+    const styledProps = { backgroundLogo, className, publicUrl }
     return (
-      <StyledAragonApp {...{ backgroundLogo, className }}>
+      <StyledAragonApp {...styledProps}>
         <BaseStyles />
         {children}
       </StyledAragonApp>

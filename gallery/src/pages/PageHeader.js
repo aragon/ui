@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import Page from 'comps/Page/Page'
 
-import readme from '@aragon/ui/components/Header/README.md'
+import readme from 'ui-src/components/Header/README.md'
 import { Text, Header, colors } from '@aragon/ui'
 
 const Container = styled.div`
