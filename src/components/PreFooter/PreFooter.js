@@ -19,11 +19,7 @@ const Main = getPublicUrl(styled.div`
   background-position: 50% 50%;
   background-size: cover;
   background-image: url(${asset(bgPortrait)});
-  ${large(
-    css`
-      background-image: url(${asset(bgLandscape)});
-    `
-  )};
+  ${large(css`background-image: url(${asset(bgLandscape)})`)};
 `)
 
 const Container = getPublicUrl(styled(Section).attrs({ visual: true })`
