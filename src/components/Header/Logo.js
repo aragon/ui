@@ -1,7 +1,7 @@
 /* @flow */
 import React from 'react'
 import styled from 'styled-components'
-import getPublicUrl, { styledPublicUrl as asset } from '../../public-url'
+import getPublicUrl from '../../public-url'
 import { BreakPoint } from '../..'
 
 import logo from './assets/logo.svg'
@@ -19,9 +19,17 @@ type Props = {
   publicUrl: string,
 }
 
+const renderLinkDefault = ({
+  url,
+  children,
+}: {
+  url: string,
+  children: Node,
+}) => <a href={url}>{children}</a>
+
 const DefaultProps = {
   compact: false,
-  renderLink: ({ url, children }) => <a href={url}>{children}</a>,
+  renderLink: renderLinkDefault,
 }
 
 const Logo = ({ compact, renderLink, publicUrl }: Props) => {

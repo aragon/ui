@@ -10,13 +10,7 @@ import getPublicUrl, { styledPublicUrl as asset } from '../../public-url'
 import DropDownItem from './DropDownItem'
 import arrow from './assets/arrow-down.svg'
 
-const {
-  contentBackground,
-  contentBorder,
-  contentBorderActive,
-  textPrimary,
-  textSecondary,
-} = theme
+const { contentBackground, contentBorder, textPrimary } = theme
 
 const StyledDropDown = styled.div`
   position: relative;
@@ -45,7 +39,8 @@ const DropDownItems = styled.ul`
 
 const DropDownActiveItem = getPublicUrl(styled(DropDownItem)`
   padding-right: 40px;
-  background: ${contentBackground} url(${asset(arrow)}) no-repeat calc(100% - 15px) 50%;
+  background: ${contentBackground} url(${asset(arrow)}) no-repeat
+    calc(100% - 15px) 50%;
   border: 1px solid ${contentBorder};
   border-radius: 3px;
   &:hover,

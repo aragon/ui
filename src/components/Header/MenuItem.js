@@ -1,4 +1,5 @@
 /* @flow */
+import type { Node } from 'react'
 import React from 'react'
 import styled from 'styled-components'
 import theme from '../../theme'
@@ -27,9 +28,17 @@ type Props = {
   renderLink: mixed,
 }
 
+const renderLinkDefault = ({
+  url,
+  children,
+}: {
+  url: string,
+  children: Node,
+}) => <a href={url}>{children}</a>
+
 const DefaultProps = {
   active: false,
-  renderLink: ({ url, children }) => <a href={url}>{children}</a>,
+  renderLink: renderLinkDefault,
 }
 
 const MenuItem = ({ url, label, active, renderLink }: Props) => (

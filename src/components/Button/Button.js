@@ -1,5 +1,4 @@
 /* @flow */
-import React from 'react'
 import styled, { css } from 'styled-components'
 import theme from '../../theme'
 import { fontStyle } from '../../shared-styles'
@@ -14,7 +13,6 @@ const {
   gradientEndActive,
   gradientText,
   contentBackground,
-  contentBackgroundActive,
   contentBorder,
   contentBorderActive,
   textPrimary,

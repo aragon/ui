@@ -1,13 +1,11 @@
 /* @flow */
+import type { Node } from 'react'
 import React from 'react'
 import styled from 'styled-components'
 import { Motion, spring } from 'react-motion'
 import ClickOutHandler from 'react-onclickout'
 import { spring as springConf, unselectable } from '../../shared-styles'
-import getPublicUrl, {
-  styledPublicUrl as asset,
-  prefixUrl,
-} from '../../public-url'
+import getPublicUrl, { prefixUrl } from '../../public-url'
 import theme from '../../theme'
 
 import close from './assets/close.svg'
@@ -51,9 +49,25 @@ const Toggle = styled.a.attrs({ role: 'button' })`
   cursor: pointer;
 `
 
-const renderLinkDefault = ({ url, children }) => <a href={url}>{children}</a>
+const renderLinkDefault = ({
+  url,
+  children,
+}: {
+  url: string,
+  children: Node,
+}) => <a href={url}>{children}</a>
 
-class Panel extends React.Component {
+type Props = {
+  items: Array<[string, string, boolean]>,
+  publicUrl: string,
+  renderLink: mixed,
+}
+
+type State = {
+  opened: boolean,
+}
+
+class Panel extends React.Component<Props, State> {
   state = {
     opened: false,
   }

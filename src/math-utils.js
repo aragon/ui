@@ -27,7 +27,7 @@ export function map(value, istart, istop, ostart, ostop) {
  * values are often intentional and useful.
  *
  * From Processing.js
-  *
+ *
  * @param {Number} aNumber    The incoming value to be converted
  * @param {Number} low        Lower bound of the value's current range
  * @param {Number} high       Upper bound of the value's current range

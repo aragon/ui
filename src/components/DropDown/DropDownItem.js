@@ -1,3 +1,5 @@
+/* @flow */
+import type { Node } from 'react'
 import React from 'react'
 import styled from 'styled-components'
 import theme from '../../theme'
@@ -36,7 +38,21 @@ const StyledDropDownItem = styled.div.attrs({ tabIndex: '0' })`
   }
 `
 
-class DropDownItem extends React.Component {
+type Props = {
+  active: boolean,
+  children: Node,
+  className: string,
+  index: number,
+  mainRef: mixed,
+  onActivate: mixed,
+}
+
+type State = {
+  displayFocus: boolean,
+  pressed: boolean,
+}
+
+class DropDownItem extends React.Component<Props, State> {
   state = {
     pressed: false,
     displayFocus: false,
@@ -58,7 +74,7 @@ class DropDownItem extends React.Component {
     this.setState({ displayFocus: !this.state.pressed })
   }
   render() {
-    const { index, children, className, mainRef, active } = this.props
+    const { children, className, mainRef, active } = this.props
     const { displayFocus } = this.state
     return (
       <StyledDropDownItem

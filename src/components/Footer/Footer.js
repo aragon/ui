@@ -1,7 +1,7 @@
 /* @flow */
 import React from 'react'
-import styled, { css } from 'styled-components'
-import { colors, font, themeDark, breakpoint, grid } from '../..'
+import styled from 'styled-components'
+import { colors, themeDark, breakpoint, grid } from '../..'
 import getPublicUrl, { styledPublicUrl as asset } from '../../public-url'
 
 import logo from './assets/logo.svg'
@@ -141,6 +141,7 @@ const StyledFooter = getPublicUrl(styled.footer`
 
 type Props = {
   compact: boolean,
+  publicUrl: string,
 }
 
 const DefaultProps = {
