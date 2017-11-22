@@ -57,7 +57,14 @@ module.exports = {
         test: /\.js$/,
         exclude: /node_modules/,
         loader: 'babel-loader',
-        options: { cacheDirectory: true },
+        options: {
+          cacheDirectory: true,
+          plugins: [
+            ["babel-plugin-styled-components", {
+              "displayName": !PRODUCTION,
+            }],
+          ],
+        },
       },
       {
         test: /\.(png|jpg|gif|svg|woff|woff2)$/,

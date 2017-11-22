@@ -1,4 +1,9 @@
 {
-  "plugins": [["inline-json-import", {}]],
+  "plugins": [
+    ["inline-json-import", {}],
+    ["babel-plugin-styled-components", {
+      "displayName": false
+    }]
+  ],
   "presets": [["env", { "modules": false }], "react", "stage-2", "flow"]
 }
