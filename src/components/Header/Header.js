@@ -1,6 +1,6 @@
 /* @flow */
 import React from 'react'
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 import theme from '../../theme'
 import { breakpoint, BreakPoint } from '../../shared-styles'
 import Button from '../Button/Button'

@@ -1,6 +1,4 @@
 /* @flow */
-import type { ReactComponentStyled } from 'styled-components'
-
 import React from 'react'
 import styled from 'styled-components'
 import { gridWidth } from '../../shared-styles'
@@ -12,8 +10,9 @@ const StyledContent = styled.div`
 `
 
 type Props = {
-  publicUrl: string,
+  className: string,
   large: boolean,
+  publicUrl: string,
   visual: boolean,
 }
 

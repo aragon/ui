@@ -87,7 +87,9 @@ const injectStyles = asset => injectGlobal`
   }
 `
 
-type Props = {}
+type Props = {
+  publicUrl: string,
+}
 
 class BaseStyles extends React.Component<Props> {
   componentWillMount() {

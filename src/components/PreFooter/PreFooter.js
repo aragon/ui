@@ -8,7 +8,6 @@ import logo from './assets/logo.svg'
 import bgLandscape from './assets/bg-landscape.svg'
 import bgPortrait from './assets/bg-portrait.svg'
 
-const medium = css => breakpoint('medium', css)
 const large = css => breakpoint('large', css)
 
 const Main = getPublicUrl(styled.div`
@@ -19,7 +18,11 @@ const Main = getPublicUrl(styled.div`
   background-position: 50% 50%;
   background-size: cover;
   background-image: url(${asset(bgPortrait)});
-  ${large(css`background-image: url(${asset(bgLandscape)})`)};
+  ${large(
+    css`
+      background-image: url(${asset(bgLandscape)});
+    `
+  )};
 `)
 
 const Container = getPublicUrl(styled(Section).attrs({ visual: true })`

@@ -1,3 +1,4 @@
+/* @flow */
 import React from 'react'
 import Responsive from 'react-responsive'
 import { css } from 'styled-components'
@@ -60,7 +61,14 @@ export const breakpoint = (name, styles) => css`
 `
 
 // Rendering breakpoints
-export const BreakPoint = ({ from, to, ...props }) => (
+export const BreakPoint = ({
+  from,
+  to,
+  ...props
+}: {
+  from: string,
+  to: string,
+}) => (
   <Responsive
     {...props}
     minWidth={BREAKPOINTS[from]}

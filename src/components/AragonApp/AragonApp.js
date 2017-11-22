@@ -4,7 +4,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 import { BaseStyles, theme } from '../..'
-import getPublicUrl, { styledPublicUrl as asset } from '../../public-url'
+import { styledPublicUrl as asset } from '../../public-url'
 import logo from './assets/logo-background.svg'
 
 // AragonApp provides everything needed to start an Aragon App.
