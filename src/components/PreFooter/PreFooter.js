@@ -118,10 +118,13 @@ const PreFooter = () => (
           <h1 className="title">Try Aragon now</h1>
           <p className="desc">
             Download Aragon Core<br /> or try the{' '}
-            <a href="https://alpha.aragon.one">web version</a>.<br />
-            <i>Outdated release, brand new one coming out Q1 2018</i>
+            <a href="https://alpha.aragon.one">web version</a>
           </p>
-          <Button mode="strong">Download Aragon Core 0.3</Button>
+          <a href="https://github.com/aragon/aragon/releases">
+            <Button mode="strong">
+              Download Aragon Core 0.3
+            </Button>
+          </a>
         </section>
       </div>
     </Container>

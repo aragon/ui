@@ -160,33 +160,35 @@ const Footer = ({ compact, publicUrl }: Props) => (
             <nav className="menu-1">
               <ul>
                 <li>
-                  <a href="">Core</a>
+                  <a href="https://aragon.one/core">Core</a>
                 </li>
                 <li>
-                  <a href="">Foundation</a>
+                  <a href="https://aragon.one/network">Network</a>
                 </li>
                 <li>
-                  <a href="">About</a>
+                  <a href="https://aragon.one/foundation">Foundation</a>
                 </li>
                 <li>
-                  <a href="">FAQs</a>
+                  <a href="https://aragon.one/about">About</a>
                 </li>
               </ul>
             </nav>
             <nav className="menu-2">
               <ul>
                 <li>
-                  <a href="">Wiki</a>
+                  <a href="https://wiki.aragon.one" target="_blank">Wiki</a>
                 </li>
                 <li>
-                  <a href="">Join us</a>
+                  <a href="https://github.com/aragon" target="_blank">Code</a>
                 </li>
                 <li>
-                  <a href="">Press kit</a>
+                  <a href="https://aragon.one/join">Join us</a>
                 </li>
                 <li>
                   <strong>
-                    <a href="">Download</a>
+                    <a href="https://github.com/aragon/aragon/releases" target="_blank">
+                      Download
+                    </a>
                   </strong>
                 </li>
               </ul>
@@ -195,23 +197,18 @@ const Footer = ({ compact, publicUrl }: Props) => (
         )}
         <ul className="social-links">
           <li>
-            <a href="" className="icon twitter">
+            <a href="https://twitter.com/AragonProject" className="icon twitter" target="_blank">
               Twitter
             </a>
           </li>
           <li>
-            <a href="" className="icon medium">
+            <a href="https://blog.aragon.one" className="icon medium" target="_blank">
               Medium
             </a>
           </li>
           <li>
-            <a href="" className="icon slack">
-              Slack
-            </a>
-          </li>
-          <li>
-            <a href="" className="icon mail">
-              Email
+            <a href="https://aragon.chat" className="icon slack" target="_blank">
+              Community
             </a>
           </li>
         </ul>
