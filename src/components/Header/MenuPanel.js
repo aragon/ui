@@ -8,8 +8,8 @@ import { spring as springConf, unselectable } from '../../shared-styles'
 import getPublicUrl, { prefixUrl } from '../../public-url'
 import theme from '../../theme'
 
-import close from './assets/close.svg'
-import menu from './assets/menu.svg'
+import close from './assets/panel-close.svg'
+import open from './assets/panel-open.svg'
 
 const Container = styled.div`
   min-height: 60px;
@@ -90,7 +90,12 @@ class Panel extends React.Component<Props, State> {
           <Container>
             <ClickOutHandler onClickOut={this.close}>
               <Toggle onClick={this.toggle}>
-                <img src={prefixUrl(opened ? close : menu, publicUrl)} alt="" />
+                <img
+                  alt=""
+                  width="22"
+                  height="22"
+                  src={prefixUrl(opened ? close : open, publicUrl)}
+                />
               </Toggle>
               <PanelStyles
                 style={{
