@@ -105,10 +105,10 @@ const PreFooter = () => (
     <Container>
       <div className="main">
         <section className="section">
-          <h1 className="title">Join the community</h1>
+          <h1 className="title">Aragon Newsletter</h1>
           <p className="desc">
-            Be part of the conversation. Create value without borders or
-            intermediaries
+            Follow the progress of Aragon by subscribing to our monthly
+            newsletter
           </p>
           <p className="email">
             <input type="email" placeholder="Enter your email" />
@@ -121,9 +121,7 @@ const PreFooter = () => (
             <a href="https://alpha.aragon.one">web version</a>
           </p>
           <a href="https://github.com/aragon/aragon/releases">
-            <Button mode="strong">
-              Download Aragon Core 0.3
-            </Button>
+            <Button mode="strong">Download Aragon Core 0.3</Button>
           </a>
         </section>
       </div>
