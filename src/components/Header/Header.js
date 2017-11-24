@@ -143,20 +143,24 @@ const Header = ({ title, menuItems, renderMenuItemLink }: Props) => (
         <BreakPoint from="medium">
           <div className="buttons">
             <div className="button">
-              <Button mode="outline">
-                <BreakPoint from="medium" to="large">
-                  Web version
-                </BreakPoint>
-                <BreakPoint from="large">Try the web version</BreakPoint>
-              </Button>
+              <a href="https://alpha.aragon.one" target="_blank">
+                <Button mode="outline">
+                  <BreakPoint from="medium" to="large">
+                    Web version
+                  </BreakPoint>
+                  <BreakPoint from="large">Try the web version</BreakPoint>
+                </Button>
+              </a>
             </div>
             <div className="button">
-              <Button mode="strong">
-                <BreakPoint from="medium" to="large">
-                  Aragon Core
-                </BreakPoint>
-                <BreakPoint from="large">Download Aragon Core</BreakPoint>
-              </Button>
+              <a href="https://github.com/aragon/aragon/releases" target="_blank">
+                <Button mode="strong">
+                  <BreakPoint from="medium" to="large">
+                    Aragon Core
+                  </BreakPoint>
+                  <BreakPoint from="large">Download Aragon Core</BreakPoint>
+                </Button>
+              </a>
             </div>
           </div>
         </BreakPoint>
