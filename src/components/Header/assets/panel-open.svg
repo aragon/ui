@@ -1,12 +1,1 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch Beta 48 (47218) - http://www.bohemiancoding.com/sketch -->
-    <title>panel-open</title>
-    <desc>Created with Sketch Beta.</desc>
-    <defs></defs>
-    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="panel-open" fill="#717171">
-            <path d="M2,19 L2,16.6484375 L22,16.6484375 L22,19 L2,19 Z M2,13.1484375 L2,10.8515625 L22,10.8515625 L22,13.1484375 L2,13.1484375 Z M2,5 L22,5 L22,7.3515625 L2,7.3515625 L2,5 Z" id="icon"></path>
-        </g>
-    </g>
-</svg>
+<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>panel-open</title><path d="M2 19v-2.352h20V19H2zm0-5.852v-2.296h20v2.296H2zM2 5h20v2.352H2V5z" fill="#717171" fill-rule="evenodd"/></svg>
