@@ -125,7 +125,7 @@ const childrenComponents = {
   Content: StyledContent,
 }
 
-const IllustrationSection = ({ className, dark, children }: Props) => {
+const IllustratedSection = ({ className, dark, children }: Props) => {
   // Collect the elements
   const elts = React.Children.toArray(children).reduce(
     // Fill the .elt property for existing children
@@ -183,15 +183,15 @@ const IllustrationSection = ({ className, dark, children }: Props) => {
   )
 }
 
-IllustrationSection.defaultProps = DefaultProps
+IllustratedSection.defaultProps = DefaultProps
 
 Object.entries(childrenComponents).forEach(([name, comp]) => {
   // Expose the child component
-  IllustrationSection[name] = comp
+  IllustratedSection[name] = comp
 
   // It is the simplest way to circumvent the react-hot-loader proxy wrapper.
   // See https://github.com/gaearon/react-hot-loader/issues/304
   comp.___typeName = name
 })
 
-export default IllustrationSection
+export default IllustratedSection
