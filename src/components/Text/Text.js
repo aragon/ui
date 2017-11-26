@@ -37,22 +37,10 @@ const styledHeadings = [
   StyledH6,
 ]
 
-const getStyledComponent = ({ heading, block = false, inline = false }) => {
-  if (block) return StyledBlock
-  if (inline) return StyledInline
-  if (heading) {
-    return (
-      styledHeadings[Math.max(1, Math.min(6, parseInt(heading, 10))) - 1] ||
-      StyledText
-    )
-  }
-  return StyledText
-}
-
 type Props = {
   block: boolean,
   inline: boolean,
-  heading: string | number,
+  heading: string | number, // Make this just a number?
   smallcaps: boolean,
   size: string,
   weight: string,
@@ -60,41 +48,28 @@ type Props = {
   children: Node,
 }
 
-const DefaultProps = {
-  block: false,
-  inline: false,
-  smallcaps: false,
-  heading: -1,
-  size: '',
-  weight: '',
-  color: '',
-}
+const Text = ({ block, inline, heading, ...props }: Props) => {
+  /*
+  const Component =
+    (block && StyledBlock) ||
+    (inline && StyledInline) ||
+    (heading >= 1 && heading <= 6 && styledHeadings[heading - 1]) ||
+    StyledText
+  */
+  let Component = StyledText
+  if (block) {
+    Component = StyledBlock
+  } else if (inline) {
+    Component = StyledInline
+  } else if (heading) {
+    heading = parseInt(heading, 10)
+    if (heading >= 1 && heading <= 6) {
+      Component = styledHeadings[heading - 1]
+    }
+  }
 
-const Text = ({
-  block,
-  inline,
-  heading,
-  smallcaps,
-  size,
-  weight,
-  color,
-  children,
-  ...props
-}: Props) => {
-  const StyledComp = getStyledComponent({ inline, block, heading })
-  return (
-    <StyledComp
-      {...props}
-      weight={weight}
-      size={size}
-      smallcaps={smallcaps}
-      color={color}
-      children={children}
-    />
-  )
+  return <Component {...props} />
 }
-
-Text.defaultProps = DefaultProps
 
 export {
   StyledBlock,
