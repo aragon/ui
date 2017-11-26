@@ -127,11 +127,11 @@ const StyledButton = getPublicUrl(styled.button`
     border: 0;
   }
 
-  ${({ mode }) => {
+  ${({ mode = 'normal' }) => {
+    if (mode === 'normal') return modeNormal
     if (mode === 'strong') return modeStrong
     if (mode === 'outline') return modeOutline
     if (mode === 'text') return modeText
-    return modeNormal
   }};
 
   ${({ compact }) => (compact ? compactStyle : '')};
