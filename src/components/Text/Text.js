@@ -6,7 +6,6 @@ import theme from '../../theme'
 import { fontStyle } from '../../shared-styles'
 
 const StyledText = styled.p`
-  color: ${theme.textPrimary};
   ${({ size, weight }) => fontStyle({ size, weight })};
   ${({ smallcaps }) => {
     if (!smallcaps) return ''
@@ -16,7 +15,7 @@ const StyledText = styled.p`
     `
   }};
   ${({ color }) => {
-    return color ? `color: ${color}` : ''
+    return `color: ${color || theme.textPrimary}`
   }};
 `
 
