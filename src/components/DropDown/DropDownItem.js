@@ -7,7 +7,7 @@ import { unselectable } from '../../shared-styles'
 
 const { accent, contentBackgroundActive } = theme
 
-const StyledDropDownItem = styled.div.attrs({ tabIndex: '0' })`
+const StyledDropDownItem = styled.li.attrs({ tabIndex: '0' })`
   position: relative;
   padding: 8px 15px;
   cursor: pointer;

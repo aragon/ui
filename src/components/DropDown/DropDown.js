@@ -115,15 +115,14 @@ class DropDown extends React.Component<Props, State> {
                   }}
                 >
                   {items.map((item, i) => (
-                    <li key={i}>
-                      <DropDownItem
-                        index={i}
-                        active={i === active}
-                        onActivate={this.handleItemActivate}
-                      >
-                        {item}
-                      </DropDownItem>
-                    </li>
+                    <DropDownItem
+                      key={i}
+                      index={i}
+                      active={i === active}
+                      onActivate={this.handleItemActivate}
+                    >
+                      {item}
+                    </DropDownItem>
                   ))}
                 </DropDownItems>
               )
