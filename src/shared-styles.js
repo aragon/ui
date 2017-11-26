@@ -38,10 +38,10 @@ const BREAKPOINTS = {
 
 export const font = ({ size = 'normal', weight = 'normal' }) => {
   const fontSize = FONT_SIZES[size] || FONT_SIZES.normal
-  const fontWeigt = FONT_WEIGHTS[weight] || FONT_WEIGHTS.normal
+  const fontWeight = FONT_WEIGHTS[weight] || FONT_WEIGHTS.normal
   return `
     font-size: ${fontSize};
-    font-weight: ${fontWeigt};
+    font-weight: ${fontWeight};
     line-height: 1.5;
   `
 }
