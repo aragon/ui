@@ -100,20 +100,23 @@ const Container = getPublicUrl(styled(Section).attrs({ visual: true })`
   `)};
 `)
 
-const PreFooter = () => (
+const emailFormDefault = () => (
+  <div>
+    <h1 className="title">Aragon Newsletter</h1>
+    <p className="desc">
+      Follow the progress of Aragon by subscribing to our monthly newsletter
+    </p>
+    <p className="email">
+      <input type="email" placeholder="Enter your email" />
+    </p>
+  </div>
+)
+
+const PreFooter = ({ emailForm = emailFormDefault }) => (
   <Main>
     <Container>
       <div className="main">
-        <section className="section">
-          <h1 className="title">Aragon Newsletter</h1>
-          <p className="desc">
-            Follow the progress of Aragon by subscribing to our monthly
-            newsletter
-          </p>
-          <p className="email">
-            <input type="email" placeholder="Enter your email" />
-          </p>
-        </section>
+        <section className="section">{emailForm}</section>
         <section className="section">
           <h1 className="title">Try Aragon now</h1>
           <p className="desc">
