@@ -2,16 +2,20 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 // High order component wrapper
+// Note that using this HOC on a styled component will destroy that component's ability to be used
+// in a reverse selector
 const getPublicUrl = Component => {
-  const highOrderComponent = (baseProps, context) => {
-    const { publicUrl = '' } = context
-    const props = { ...baseProps, publicUrl }
-    return <Component {...props} />
+  class WithPublicUrl extends React.Component {
+    static contextTypes = {
+      publicUrl: PropTypes.string,
+    }
+    render() {
+      const { publicUrl = '' } = this.context
+      const props = { ...this.props, publicUrl }
+      return <Component {...props} />
+    }
   }
-  highOrderComponent.contextTypes = {
-    publicUrl: PropTypes.string,
-  }
-  return highOrderComponent
+  return WithPublicUrl
 }
 
 // prefix helper
