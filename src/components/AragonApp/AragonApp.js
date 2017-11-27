@@ -31,8 +31,8 @@ class AragonApp extends React.Component<Props> {
   static Styled = StyledAragonApp
 
   render() {
-    const { children, backgroundLogo, className } = this.props
-    const styledProps = { backgroundLogo, className }
+    const { backgroundLogo, children, ...props } = this.props
+    const styledProps = { backgroundLogo, ...props }
     return (
       <StyledAragonApp {...styledProps}>
         <BaseStyles />
