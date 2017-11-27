@@ -25,6 +25,7 @@ export {
 } from './components/IllustratedSection/IllustratedSection'
 export { default as Button } from './components/Button/Button'
 export { default as DropDown } from './components/DropDown/DropDown'
+export { default as Field } from './components/Form/Field'
 export { default as Footer } from './components/Footer/Footer'
 export { default as PreFooter } from './components/PreFooter/PreFooter'
 export { default as Header } from './components/Header/Header'
