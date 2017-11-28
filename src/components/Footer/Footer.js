@@ -7,8 +7,7 @@ import getPublicUrl, { styledPublicUrl as asset } from '../../public-url'
 import logo from './assets/logo.svg'
 import iconTwitter from './assets/twitter.svg'
 import iconMedium from './assets/medium.svg'
-import iconSlack from './assets/slack.svg'
-import iconMail from './assets/mail.svg'
+import iconRocket from './assets/rocket.svg'
 
 const medium = css => breakpoint('medium', css)
 const large = css => breakpoint('large', css)
@@ -78,11 +77,8 @@ const StyledFooter = getPublicUrl(styled.footer`
   .icon.medium {
     background-image: url(${asset(iconMedium)});
   }
-  .icon.slack {
-    background-image: url(${asset(iconSlack)});
-  }
-  .icon.mail {
-    background-image: url(${asset(iconMail)});
+  .icon.rocket {
+    background-image: url(${asset(iconRocket)});
   }
 
   ${medium(`
@@ -202,12 +198,12 @@ const Footer = ({ compact, publicUrl }: Props) => (
             </a>
           </li>
           <li>
-            <a href="https://blog.aragon.one" className="icon medium" target="_blank">
+            <a href="https://blog.aragon.one/" className="icon medium" target="_blank">
               Medium
             </a>
           </li>
           <li>
-            <a href="https://aragon.chat" className="icon slack" target="_blank">
+            <a href="https://aragon.chat/" className="icon rocket" target="_blank">
               Community
             </a>
           </li>
