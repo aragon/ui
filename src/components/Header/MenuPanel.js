@@ -32,7 +32,7 @@ const PanelStyles = styled.div`
 `
 
 const PanelContent = styled.div`
-  padding: 0 60px 30px 30px;
+  padding: 0 60px 20px 30px;
   a {
     display: block;
   }
