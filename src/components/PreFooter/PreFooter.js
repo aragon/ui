@@ -121,9 +121,9 @@ const PreFooter = ({ emailForm = emailFormDefault }) => (
           <h1 className="title">Try Aragon now</h1>
           <p className="desc">
             Download Aragon Core<br /> or try the{' '}
-            <a href="https://alpha.aragon.one">web version</a>
+            <a href="https://alpha.aragon.one" target="_blank">web version</a>
           </p>
-          <a href="https://github.com/aragon/aragon/releases">
+          <a href="https://github.com/aragon/aragon/releases" target="_blank">
             <Button mode="strong">Download Aragon Core 0.3</Button>
           </a>
         </section>
