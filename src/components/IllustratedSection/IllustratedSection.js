@@ -59,6 +59,7 @@ const StyledTitle = styled.div`
   text-align: center;
   text-transform: uppercase;
   color: ${theme.accent};
+  font-weight: 600;
   ${medium(`
     font-size: 18px;
   `)};
@@ -104,6 +105,9 @@ const StyledContent = styled.div`
   `)};
   p {
     margin-bottom: 1em;
+  }
+  p:last-child {
+    margin-bottom: 0;
   }
 `
 
