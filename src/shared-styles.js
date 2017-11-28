@@ -73,6 +73,7 @@ export const BreakPoint = ({
     {...props}
     minWidth={BREAKPOINTS[from]}
     maxWidth={BREAKPOINTS[to] && BREAKPOINTS[to] - 1}
+    values={{ width: BREAKPOINTS.large, deviceWidth: BREAKPOINTS.large }}
   />
 )
 
