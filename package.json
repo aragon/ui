@@ -49,6 +49,7 @@
     "opencolor": "^0.2.0",
     "opencolor-converter": "git://github.com/opencolor-tools/opencolor-converter.git#v2.1.21",
     "prettier": "^1.7.4",
+    "react-media": "^1.6.1",
     "rollup": "^0.51.5",
     "rollup-plugin-babel": "^3.0.2",
     "rollup-plugin-commonjs": "^8.2.6",
@@ -65,7 +66,6 @@
     "prop-types": "^15.6.0",
     "react-motion": "^0.5.2",
     "react-onclickout": "^2.0.8",
-    "react-responsive": "^3.0.0",
     "styled-components": "^2.2.3"
   }
 }

@@ -1,6 +1,6 @@
 /* @flow */
 import React from 'react'
-import Responsive from 'react-responsive'
+import Media from 'react-media'
 import { css } from 'styled-components'
 
 const FONT_SIZES = {
@@ -64,18 +64,25 @@ export const breakpoint = (name, styles) => css`
 export const BreakPoint = ({
   from,
   to,
+  children,
   ...props
 }: {
   from: string,
   to: string,
-}) => (
-  <Responsive
-    {...props}
-    minWidth={BREAKPOINTS[from]}
-    maxWidth={BREAKPOINTS[to] && BREAKPOINTS[to] - 1}
-    values={{ width: BREAKPOINTS.large, deviceWidth: BREAKPOINTS.large }}
-  />
-)
+}) => {
+  const query = {}
+  if (BREAKPOINTS[from]) {
+    query.minWidth = BREAKPOINTS[from]
+  }
+  if (BREAKPOINTS[to]) {
+    query.maxWidth = BREAKPOINTS[to] - 1
+  }
+  return (
+    <Media query={query} defaultMatches={false} {...props}>
+      {ok => (ok ? children : null)}
+    </Media>
+  )
+}
 
 export const unselectable = () => `
   -webkit-touch-callout: none;
