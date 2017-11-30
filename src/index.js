@@ -1,3 +1,4 @@
+export * from './icons'
 export {
   css as styledCss,
   keyframes as styledKeyframes,
