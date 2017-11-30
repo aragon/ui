@@ -23,13 +23,19 @@ const StyledText = styled.p`
 const StyledBlock = StyledText.withComponent('div')
 const StyledInline = StyledText.withComponent('span')
 
+const StyledH1 = StyledText.withComponent('h1')
+const StyledH2 = StyledText.withComponent('h2')
+const StyledH3 = StyledText.withComponent('h3')
+const StyledH4 = StyledText.withComponent('h4')
+const StyledH5 = StyledText.withComponent('h5')
+const StyledH6 = StyledText.withComponent('h6')
 const styledHeadings = [
-  StyledText.withComponent('h1'),
-  StyledText.withComponent('h2'),
-  StyledText.withComponent('h3'),
-  StyledText.withComponent('h4'),
-  StyledText.withComponent('h5'),
-  StyledText.withComponent('h6'),
+  StyledH1,
+  StyledH2,
+  StyledH3,
+  StyledH4,
+  StyledH5,
+  StyledH6,
 ]
 
 const getStyledComponent = ({
@@ -87,5 +93,15 @@ const Text = ({
 
 Text.defaultProps = DefaultProps
 
-export { StyledText }
+export {
+  StyledBlock,
+  StyledInline,
+  StyledH1,
+  StyledH2,
+  StyledH3,
+  StyledH4,
+  StyledH5,
+  StyledH6,
+  StyledText,
+}
 export default Text
