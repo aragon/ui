@@ -5,11 +5,10 @@ import styled from 'styled-components'
 import { Motion, spring } from 'react-motion'
 import Text from '../Text/Text'
 import { lerp } from '../../math-utils'
+import { springConf } from '../../shared-styles'
 import getPublicUrl, { styledPublicUrl as asset } from '../../public-url'
 
 import close from './assets/close.svg'
-
-const PANEL_SPRING = { stiffness: 150, damping: 18, precision: 0.001 }
 
 const PANEL_WIDTH = 400
 const PANEL_OVERFLOW = PANEL_WIDTH * 0.2
@@ -83,7 +82,7 @@ type Props = {
 
 const SidePanel = ({ children, title, opened, onClose }: Props) => {
   return (
-    <Motion style={{ progress: spring(Number(opened), PANEL_SPRING) }}>
+    <Motion style={{ progress: spring(Number(opened), springConf('slow')) }}>
       {({ progress }) => {
         const styles = motionStyles(progress)
         return (
