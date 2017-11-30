@@ -15,6 +15,7 @@
     "lint": "eslint ./src",
     "lint:fix": "eslint --fix ./src",
     "theme:build": "scripts/oco-json.js < src/theme/Aragon.oco > src/theme/aragon.json",
+    "optimize:svg": "find ./src -name *.svg -exec svgo --config '{ \"plugins\": [ { \"removeDesc\": {\"removeAny\": true} }, { \"removeTitle\": true } ] }' {} \\;",
     "deploy:site": "cd gallery && npm run build:production && echo 'ui.aragon.one' > dist/CNAME && cp public/favicon.svg dist && gh-pages -d dist",
     "publish": "npm publish --access public",
     "start": "cd gallery && npm start"
@@ -59,7 +60,8 @@
     "rollup-plugin-progress": "^0.4.0",
     "rollup-plugin-rebase": "^0.12.0",
     "rollup-plugin-uglify": "^2.0.1",
-    "rollup-plugin-url": "^1.3.0"
+    "rollup-plugin-url": "^1.3.0",
+    "svgo": "^1.0.3"
   },
   "dependencies": {
     "babel-plugin-external-helpers": "^6.22.0",
