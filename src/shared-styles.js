@@ -25,6 +25,7 @@ const GRID = {
 }
 
 const SPRINGS = {
+  slow: { stiffness: 150, damping: 18, precision: 0.001 },
   normal: { stiffness: 190, damping: 22, precision: 0.001 },
   fast: { stiffness: 250, damping: 22, precision: 0.001 },
 }
