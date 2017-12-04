@@ -6,7 +6,7 @@ import { Motion, spring } from 'react-motion'
 import Text from '../Text/Text'
 import { lerp } from '../../math-utils'
 import { springConf } from '../../shared-styles'
-import getPublicUrl, { styledPublicUrl as asset } from '../../public-url'
+import getPublicUrl, { prefixUrl } from '../../public-url'
 
 import close from './assets/close.svg'
 
@@ -78,9 +78,10 @@ type Props = {
   title: string,
   opened: boolean,
   onClose?: mixed,
+  publicUrl: string,
 }
 
-const SidePanel = ({ children, title, opened, onClose }: Props) => {
+const SidePanel = ({ children, title, opened, onClose, publicUrl }: Props) => {
   return (
     <Motion style={{ progress: spring(Number(opened), springConf('slow')) }}>
       {({ progress }) => {
@@ -94,7 +95,7 @@ const SidePanel = ({ children, title, opened, onClose }: Props) => {
                   {title}
                 </Text>
                 <StyledPanelCloseButton type="button" onClick={onClose}>
-                  <img src={asset(close)} alt="Close" />
+                  <img src={prefixUrl(close, publicUrl)} alt="Close" />
                 </StyledPanelCloseButton>
               </StyledPanelHeader>
               {children}
