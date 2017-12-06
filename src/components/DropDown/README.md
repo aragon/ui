@@ -49,7 +49,7 @@ Use this property to define the items of the DropDown menu.
 
 Set this property to the index of the active item.
 
-### `handleChange`
+### `onChange`
 
 - Type: `Function`
 - Default: `undefined`
