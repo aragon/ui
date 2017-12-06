@@ -22,7 +22,7 @@ const StyledDropDown = styled.div`
   }
 `
 
-const DropDownItems = styled.ul`
+const DropDownItems = styled.div`
   display: ${({ opened }) => (opened ? 'block' : 'none')};
   min-width: 100%;
   padding: 8px 0;
@@ -108,6 +108,7 @@ class DropDown extends React.Component<Props, State> {
               const scale = opened ? lerp(openProgress, 0.95, 1) : 1
               return (
                 <DropDownItems
+                  role="listbox"
                   opened={openProgress > 0}
                   style={{
                     transform: `scale(${scale},${scale})`,
@@ -116,6 +117,7 @@ class DropDown extends React.Component<Props, State> {
                 >
                   {items.map((item, i) => (
                     <DropDownItem
+                      role="option"
                       key={i}
                       index={i}
                       active={i === active}
