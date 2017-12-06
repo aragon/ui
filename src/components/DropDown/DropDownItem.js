@@ -5,6 +5,8 @@ import styled from 'styled-components'
 import theme from '../../theme'
 import { unselectable } from '../../shared-styles'
 
+const NON_BREAKING_SPACE = '\xa0'
+
 const { accent, contentBackgroundActive } = theme
 
 const StyledDropDownItem = styled.div.attrs({ tabIndex: '0' })`
@@ -74,7 +76,12 @@ class DropDownItem extends React.Component<Props, State> {
     this.setState({ displayFocus: !this.state.pressed })
   }
   render() {
-    const { children, className, mainRef, active } = this.props
+    const {
+      children = NON_BREAKING_SPACE,
+      className,
+      mainRef,
+      active,
+    } = this.props
     const { displayFocus } = this.state
     return (
       <StyledDropDownItem

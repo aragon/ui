@@ -10,6 +10,8 @@ import getPublicUrl, { styledPublicUrl as asset } from '../../public-url'
 import DropDownItem from './DropDownItem'
 import arrow from './assets/arrow-down.svg'
 
+const NON_BREAKING_SPACE = '\xa0'
+
 const { contentBackground, contentBorder, textPrimary } = theme
 
 const StyledDropDown = styled.div`
@@ -115,17 +117,19 @@ class DropDown extends React.Component<Props, State> {
                     opacity: opened ? openProgress : closeProgress,
                   }}
                 >
-                  {items.map((item, i) => (
-                    <DropDownItem
-                      role="option"
-                      key={i}
-                      index={i}
-                      active={i === active}
-                      onActivate={this.handleItemActivate}
-                    >
-                      {item}
-                    </DropDownItem>
-                  ))}
+                  {items.length
+                    ? items.map((item, i) => (
+                        <DropDownItem
+                          role="option"
+                          key={i}
+                          index={i}
+                          active={i === active}
+                          onActivate={this.handleItemActivate}
+                        >
+                          {item}
+                        </DropDownItem>
+                      ))
+                    : NON_BREAKING_SPACE}
                 </DropDownItems>
               )
             }}
