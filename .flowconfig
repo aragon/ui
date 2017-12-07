@@ -1,4 +1,6 @@
 [ignore]
+.*/node_modules/react-motion/src/.*
+.*/node_modules/react-motion/lib/.*
 
 [include]
 
