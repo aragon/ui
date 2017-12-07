@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { Motion, spring } from 'react-motion'
 import ClickOutHandler from 'react-onclickout'
 import theme from '../../theme'
-import { springConf } from '../../shared-styles'
+import { springConf, unselectable } from '../../shared-styles'
 import { lerp } from '../../math-utils'
 import getPublicUrl, { styledPublicUrl as asset } from '../../public-url'
 import DropDownItem from './DropDownItem'
@@ -16,9 +16,12 @@ const { contentBackground, contentBorder, textPrimary } = theme
 
 const StyledDropDown = styled.div`
   position: relative;
+  display: ${({wide}) => wide? 'flex' : 'inline-flex'};
+  flex-direction: column;
   color: ${textPrimary};
   white-space: nowrap;
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.03);
+  ${unselectable};
   &:focus {
     outline: 0;
   }
@@ -26,7 +29,7 @@ const StyledDropDown = styled.div`
 
 const DropDownItems = styled.div`
   display: ${({ opened }) => (opened ? 'block' : 'none')};
-  min-width: 100%;
+  min-width: ${({wide}) => wide? '100%' : '0'};
   padding: 8px 0;
   position: absolute;
   z-index: 2;
@@ -56,6 +59,7 @@ const DropDownActiveItem = getPublicUrl(styled(DropDownItem)`
 
 type Props = {
   items: Array<string>,
+  wide: boolean,
   active: number,
   onChange: number => mixed,
 }
@@ -68,6 +72,7 @@ class DropDown extends React.Component<Props, State> {
   static defaultProps = {
     items: [],
     active: 0,
+    wide: false,
     onChange: () => {},
   }
   activeItemElt: ?HTMLElement
@@ -88,12 +93,12 @@ class DropDown extends React.Component<Props, State> {
     }
   }
   render() {
-    const { items, active } = this.props
+    const { items, active, wide } = this.props
     const { opened } = this.state
     const activeItem = items[active] || items[0]
     return (
       <ClickOutHandler onClickOut={this.handleClose}>
-        <StyledDropDown>
+        <StyledDropDown wide={wide}>
           <DropDownActiveItem
             onActivate={this.handleToggle}
             mainRef={el => (this.activeItemElt = el)}
@@ -107,11 +112,12 @@ class DropDown extends React.Component<Props, State> {
             }}
           >
             {({ openProgress, closeProgress }) => {
-              const scale = opened ? lerp(openProgress, 0.95, 1) : 1
+              const scale = opened ? lerp(openProgress, 0.98, 1) : 1
               return (
                 <DropDownItems
                   role="listbox"
                   opened={openProgress > 0}
+                  wide={wide}
                   style={{
                     transform: `scale(${scale},${scale})`,
                     opacity: opened ? openProgress : closeProgress,

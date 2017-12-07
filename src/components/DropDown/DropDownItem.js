@@ -3,7 +3,6 @@ import type { Node } from 'react'
 import React from 'react'
 import styled from 'styled-components'
 import theme from '../../theme'
-import { unselectable } from '../../shared-styles'
 
 const NON_BREAKING_SPACE = '\xa0'
 
@@ -14,7 +13,6 @@ const StyledDropDownItem = styled.div.attrs({ tabIndex: '0' })`
   padding: 8px 15px;
   cursor: pointer;
   outline: 0;
-  ${unselectable};
   &:after {
     content: '';
     opacity: 0;

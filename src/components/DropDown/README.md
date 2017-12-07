@@ -55,3 +55,10 @@ Set this property to the index of the active item.
 - Default: `undefined`
 
 This callback is called whenever the user selects a new item.
+
+### `wide`
+
+- Type: `Boolean`
+- Default: `false`
+
+Takes the full width if set to `true`.
