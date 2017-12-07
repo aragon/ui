@@ -53,6 +53,9 @@ type State = {
 }
 
 class DropDownItem extends React.Component<Props, State> {
+  static defaultProps = {
+    children: NON_BREAKING_SPACE,
+  }
   state = {
     pressed: false,
     displayFocus: false,
@@ -74,12 +77,7 @@ class DropDownItem extends React.Component<Props, State> {
     this.setState({ displayFocus: !this.state.pressed })
   }
   render() {
-    const {
-      children = NON_BREAKING_SPACE,
-      className,
-      mainRef,
-      active,
-    } = this.props
+    const { children, className, mainRef, active } = this.props
     const { displayFocus } = this.state
     return (
       <StyledDropDownItem
