@@ -33,11 +33,11 @@ a [`public/aragon-ui`](https://github.com/facebookincubator/create-react-app/blo
 folder in your app and then use `publicUrl="/aragon-ui/`.
 
 You may also want to add this sync step to your build scripts, in case you
-later upgrade this package:
+later upgrade this package (make sure to `npm i -D sync-assets first):
 
 ```json
 "scripts": {
-    "sync-assets": "sync-files $(node -e 'console.log(path.dirname(require.resolve(\"@aragon/ui\")))') public/aragon-ui",
+    "sync-assets": "sync-files $(dirname $(node -p 'require.resolve(\"@aragon/ui\")')) public/aragon-ui",
     "build": "npm run sync-assets && react-scripts build",
     "start": "npm run sync-assets && react-scripts start"
 }
