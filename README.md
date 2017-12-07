@@ -23,10 +23,30 @@ const App = () => (
 To get the path of the directory from where the assets need to be copied, use
 `path.dirname(require.resolve('@aragon/ui'))`.
 
+### `create-react-app`
+
+If you're using [`create-react-app`](https://github.com/facebookincubator/create-react-app)
+or [`react-scripts`](https://github.com/facebookincubator/create-react-app/tree/master/packages/react-scripts),
+you can copy over the contents of module's `dist/` folder (i.e.
+`path.dirname(require.resolve('@aragon/ui'))`) to
+a [`public/aragon-ui`](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#adding-assets-outside-of-the-module-system)
+folder in your app and then use `publicUrl="/aragon-ui/`.
+
+You may also want to add this sync step to your build scripts, in case you
+later upgrade this package (make sure to `npm i -D sync-assets first):
+
+```json
+"scripts": {
+    "sync-assets": "sync-files $(dirname $(node -p 'require.resolve(\"@aragon/ui\")')) public/aragon-ui",
+    "build": "npm run sync-assets && react-scripts build",
+    "start": "npm run sync-assets && react-scripts start"
+}
+```
+
 ### Copy Webpack Plugin
 
-A way to do this with webpack is to use [Copy Webpack
-Plugin](https://github.com/webpack-contrib/copy-webpack-plugin):
+If you have your own webpack configuration, a way to copy this package's assets
+is to use the [Copy Webpack Plugin](https://github.com/webpack-contrib/copy-webpack-plugin):
 
 ```js
 module.exports = {
