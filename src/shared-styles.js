@@ -90,15 +90,16 @@ export const BreakPoint = ({
   children,
   ...props
 }: {
-  from: BreakPointName,
-  to: BreakPointName,
+  from: BreakPointName | '',
+  to: BreakPointName | '',
   children: Node,
 }) => {
+  const names = ['medium', 'large']
   const query = {}
-  if (BREAKPOINTS[from]) {
+  if (from && names.includes(from)) {
     query.minWidth = BREAKPOINTS[from]
   }
-  if (BREAKPOINTS[to]) {
+  if (to && names.includes(to)) {
     query.maxWidth = BREAKPOINTS[to] - 1
   }
   return (
@@ -106,6 +107,11 @@ export const BreakPoint = ({
       {ok => (ok ? children : null)}
     </Media>
   )
+}
+
+BreakPoint.defaultProps = {
+  to: '',
+  from: '',
 }
 
 export const unselectable = () => `

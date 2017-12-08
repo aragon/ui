@@ -1,4 +1,5 @@
 /* @flow */
+import type { MenuItemRenderLink } from './MenuItem'
 import React from 'react'
 import styled from 'styled-components'
 import theme from '../../theme'
@@ -97,7 +98,7 @@ const StyledHeader = styled.div`
 type Props = {
   title: string,
   menuItems: Array<[string, string, boolean]>,
-  renderMenuItemLink: mixed,
+  renderMenuItemLink: MenuItemRenderLink,
 }
 
 const DefaultProps = {
@@ -153,7 +154,10 @@ const Header = ({ title, menuItems, renderMenuItemLink }: Props) => (
               </a>
             </div>
             <div className="button">
-              <a href="https://github.com/aragon/aragon/releases" target="_blank">
+              <a
+                href="https://github.com/aragon/aragon/releases"
+                target="_blank"
+              >
                 <Button mode="strong">
                   <BreakPoint from="medium" to="large">
                     Aragon Core
