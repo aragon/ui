@@ -49,9 +49,16 @@ Use this property to define the items of the DropDown menu.
 
 Set this property to the index of the active item.
 
-### `handleChange`
+### `onChange`
 
 - Type: `Function`
 - Default: `undefined`
 
 This callback is called whenever the user selects a new item.
+
+### `wide`
+
+- Type: `Boolean`
+- Default: `false`
+
+Takes the full width if set to `true`.

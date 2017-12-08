@@ -3,16 +3,16 @@ import type { Node } from 'react'
 import React from 'react'
 import styled from 'styled-components'
 import theme from '../../theme'
-import { unselectable } from '../../shared-styles'
+
+const NON_BREAKING_SPACE = '\xa0'
 
 const { accent, contentBackgroundActive } = theme
 
-const StyledDropDownItem = styled.li.attrs({ tabIndex: '0' })`
+const StyledDropDownItem = styled.div.attrs({ tabIndex: '0' })`
   position: relative;
   padding: 8px 15px;
   cursor: pointer;
   outline: 0;
-  ${unselectable};
   &:after {
     content: '';
     opacity: 0;
@@ -53,6 +53,9 @@ type State = {
 }
 
 class DropDownItem extends React.Component<Props, State> {
+  static defaultProps = {
+    children: NON_BREAKING_SPACE,
+  }
   state = {
     pressed: false,
     displayFocus: false,
