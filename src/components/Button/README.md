@@ -46,3 +46,19 @@ const MyButton = () => (
   <Button wide>Accept</Button>
 )
 ```
+
+## Attached Components
+
+### `Anchor`
+
+An `<a>` styled to be visually similar to Buttons, supporting the same properties.
+
+#### Example:
+
+```jsx
+const LinkButton = () => (
+  <Button.Anchor mode="strong" href="https://aragon.one/" target="_blank">
+    Aragon
+  </Button.Anchor>
+)
+```
