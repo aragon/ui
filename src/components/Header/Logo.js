@@ -1,4 +1,5 @@
 /* @flow */
+import type { Node } from 'react'
 import React from 'react'
 import styled from 'styled-components'
 import getPublicUrl from '../../public-url'
@@ -15,21 +16,13 @@ const Container = styled.span`
 
 type Props = {
   compact: boolean,
-  renderLink: mixed,
+  renderLink: ({ url: string, children: Node }) => Node,
   publicUrl: string,
 }
 
-const renderLinkDefault = ({
-  url,
-  children,
-}: {
-  url: string,
-  children: Node,
-}) => <a href={url}>{children}</a>
-
 const DefaultProps = {
   compact: false,
-  renderLink: renderLinkDefault,
+  renderLink: ({ url, children }) => <a href={url}>{children}</a>,
 }
 
 const Logo = ({ compact, renderLink, publicUrl }: Props) => {

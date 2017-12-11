@@ -4,6 +4,8 @@ import React from 'react'
 import styled from 'styled-components'
 import theme from '../../theme'
 
+export type MenuItemRenderLink = ({ url: string, children: Node }) => Node
+
 const StyledMenuItem = styled.li`
   display: flex;
   align-items: stretch;
@@ -25,20 +27,12 @@ type Props = {
   url: string,
   label: string,
   active: boolean,
-  renderLink: mixed,
+  renderLink: MenuItemRenderLink,
 }
-
-const renderLinkDefault = ({
-  url,
-  children,
-}: {
-  url: string,
-  children: Node,
-}) => <a href={url}>{children}</a>
 
 const DefaultProps = {
   active: false,
-  renderLink: renderLinkDefault,
+  renderLink: ({ url, children }) => <a href={url}>{children}</a>,
 }
 
 const MenuItem = ({ url, label, active, renderLink }: Props) => (

@@ -130,14 +130,33 @@ const childrenComponents = {
 }
 
 const IllustratedSection = ({ className, dark, children }: Props) => {
+  // Using proxiedComponents instead of childrenComponents is a way to
+  // circumvent the react-hot-loader proxy wrapper.
+  //
+  // See https://github.com/gaearon/react-hot-loader/issues/304
+  const proxiedComponents = Object.keys(childrenComponents).map(name => {
+    const Comp = childrenComponents[name]
+    return [name, Comp, <Comp />.type]
+  })
+  const elementType = elt => {
+    const compGroup = proxiedComponents.find(
+      ([name, Comp, ProxiedComp]) => elt.type === ProxiedComp
+    )
+    if (!compGroup) return { name: '', component: elt.type }
+    return { name: compGroup[0], component: compGroup[1] }
+  }
+
   // Collect the elements
   const elts = React.Children.toArray(children).reduce(
     // Fill the .elt property for existing children
     (elts, elt, i) => {
-      const name = elt.type.___typeName
+      const { name, component } = elementType(elt)
+
       if (!elts[name]) return elts
+
       elts[name].elt = elt
-      if (name === 'Illustration') {
+
+      if (component === childrenComponents.Illustration) {
         elts[name].first = i === 0
       }
       return elts
@@ -145,7 +164,7 @@ const IllustratedSection = ({ className, dark, children }: Props) => {
 
     // Fill the initial elts object with { elt: null } entries
     Object.keys(childrenComponents).reduce((elts, name) => {
-      elts[name] = { elt: null }
+      elts[name] = { elt: null, first: false }
       return elts
     }, {})
   )
@@ -192,10 +211,6 @@ IllustratedSection.defaultProps = DefaultProps
 Object.entries(childrenComponents).forEach(([name, comp]) => {
   // Expose the child component
   IllustratedSection[name] = comp
-
-  // It is the simplest way to circumvent the react-hot-loader proxy wrapper.
-  // See https://github.com/gaearon/react-hot-loader/issues/304
-  comp.___typeName = name
 })
 
 export default IllustratedSection

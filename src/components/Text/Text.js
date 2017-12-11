@@ -38,11 +38,7 @@ const styledHeadings = [
   StyledH6,
 ]
 
-const getStyledComponent = ({
-  heading = null,
-  block = false,
-  inline = false,
-}) => {
+const getStyledComponent = ({ heading, block = false, inline = false }) => {
   if (block) return StyledBlock
   if (inline) return StyledInline
   if (heading) {
@@ -60,8 +56,8 @@ type Props = {
   heading: string | number,
   smallcaps: boolean,
   size: string,
-  weight: ?string,
-  color: ?string,
+  weight: string,
+  color: string,
   children: Node,
 }
 
@@ -69,10 +65,10 @@ const DefaultProps = {
   block: false,
   inline: false,
   smallcaps: false,
-  heading: null,
-  size: null,
-  weight: null,
-  color: null,
+  heading: -1,
+  size: '',
+  weight: '',
+  color: '',
 }
 
 const Text = ({
@@ -87,8 +83,16 @@ const Text = ({
   ...props
 }: Props) => {
   const StyledComp = getStyledComponent({ inline, block, heading })
-  const styledProps = { ...props, weight, size, smallcaps, color, children }
-  return <StyledComp {...styledProps} />
+  return (
+    <StyledComp
+      {...props}
+      weight={weight}
+      size={size}
+      smallcaps={smallcaps}
+      color={color}
+      children={children}
+    />
+  )
 }
 
 Text.defaultProps = DefaultProps

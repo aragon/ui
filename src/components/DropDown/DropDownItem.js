@@ -41,10 +41,10 @@ const StyledDropDownItem = styled.div.attrs({ tabIndex: '0' })`
 type Props = {
   active: boolean,
   children: Node,
-  className: string,
   index: number,
-  mainRef: mixed,
-  onActivate: mixed,
+  mainRef: HTMLElement => void,
+  onActivate: (number, { keyboard: boolean }) => void,
+  className: string,
 }
 
 type State = {
@@ -55,12 +55,14 @@ type State = {
 class DropDownItem extends React.Component<Props, State> {
   static defaultProps = {
     children: NON_BREAKING_SPACE,
+    mainRef: () => {},
+    className: '',
   }
   state = {
     pressed: false,
     displayFocus: false,
   }
-  handleActivate = event => {
+  handleActivate = (event: SyntheticEvent<HTMLDivElement>) => {
     const keyboard = event.type === 'keydown'
     if (keyboard && event.keyCode !== 13) {
       return

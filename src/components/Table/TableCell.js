@@ -1,5 +1,5 @@
 /* @flow */
-import type { Node } from 'react'
+import type { Node, ComponentType } from 'react'
 import React from 'react'
 import styled from 'styled-components'
 import theme from '../../theme'
@@ -46,7 +46,7 @@ const StyledTableCellContent = styled.div`
 
 type Props = {
   children: Node,
-  contentContainer: Node,
+  contentContainer: ComponentType<*>,
 }
 
 const DefaultProps = {

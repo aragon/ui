@@ -1,4 +1,6 @@
 [ignore]
+.*/node_modules/react-motion/lib/.*flow
+.*/node_modules/styled-components/.*
 
 [include]
 

@@ -1,4 +1,5 @@
 /* @flow */
+import type { Node } from 'react'
 import React from 'react'
 import styled, { css } from 'styled-components'
 import { Section, Button, grid, colors, themeDark, breakpoint } from '../..'
@@ -112,7 +113,15 @@ const emailFormDefault = () => (
   </div>
 )
 
-const PreFooter = ({ emailForm = emailFormDefault }) => (
+type Props = {
+  emailForm: Node,
+}
+
+const DefaultProps = {
+  emailForm: emailFormDefault,
+}
+
+const PreFooter = ({ emailForm }: Props) => (
   <Main>
     <Container>
       <div className="main">
@@ -121,15 +130,21 @@ const PreFooter = ({ emailForm = emailFormDefault }) => (
           <h1 className="title">Try Aragon now</h1>
           <p className="desc">
             Download Aragon Core<br /> or try the{' '}
-            <a href="https://alpha.aragon.one" target="_blank">web version</a>
+            <a href="https://alpha.aragon.one" target="_blank">
+              web version
+            </a>
           </p>
           <a href="https://github.com/aragon/aragon/releases" target="_blank">
-            <Button mode="strong" wide>Download Aragon Core 0.3</Button>
+            <Button mode="strong" wide>
+              Download Aragon Core 0.3
+            </Button>
           </a>
         </section>
       </div>
     </Container>
   </Main>
 )
+
+PreFooter.defaultProps = DefaultProps
 
 export default PreFooter

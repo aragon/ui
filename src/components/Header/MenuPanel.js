@@ -49,18 +49,10 @@ const Toggle = styled.a.attrs({ role: 'button' })`
   cursor: pointer;
 `
 
-const renderLinkDefault = ({
-  url,
-  children,
-}: {
-  url: string,
-  children: Node,
-}) => <a href={url}>{children}</a>
-
 type Props = {
   items: Array<[string, string, boolean]>,
   publicUrl: string,
-  renderLink: mixed,
+  renderLink: ({ url: string, children: Node }) => Node,
 }
 
 type State = {
@@ -68,6 +60,9 @@ type State = {
 }
 
 class Panel extends React.Component<Props, State> {
+  static defaultProps = {
+    renderLink: ({ url, children }) => <a href={url}>{children}</a>,
+  }
   state = {
     opened: false,
   }
@@ -78,7 +73,7 @@ class Panel extends React.Component<Props, State> {
     this.setState({ opened: false })
   }
   render() {
-    const { items, publicUrl, renderLink = renderLinkDefault } = this.props
+    const { items, publicUrl, renderLink } = this.props
     const { opened } = this.state
     return (
       <Motion
