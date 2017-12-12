@@ -1,4 +1,5 @@
 /* @flow */
+import type { ComponentType } from 'react'
 import styled, { css } from 'styled-components'
 import theme from '../../theme'
 import { fontStyle } from '../../shared-styles'
@@ -106,7 +107,17 @@ const negativeStyle = css`
   background: url(${asset(cross)}) no-repeat 10px calc(50% - 1px);
 `
 
-const StyledButton = getPublicUrl(styled.button`
+type Mode = 'normal' | 'strong' | 'outline' | 'text'
+type Emphasis = 'positive' | 'negative'
+type Props = {
+  compact?: boolean,
+  emphasis?: Emphasis,
+  mode?: Mode,
+  wide?: boolean,
+}
+
+// Flow declaration: see https://github.com/styled-components/styled-components/issues/570#issuecomment-332087358
+const StyledButton: ComponentType<Props> = getPublicUrl(styled.button`
   width: ${({ wide }) => (wide ? '100%' : 'auto')};
   padding: 10px 15px;
   white-space: nowrap;
