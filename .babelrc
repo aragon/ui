@@ -1,8 +1,8 @@
 {
   "plugins": [
     ["inline-json-import", {}],
-    ["babel-plugin-styled-components", {
-      "displayName": false
+    ["styled-components", {
+      "displayName": true
     }]
   ],
   "presets": [["env", { "modules": false }], "react", "stage-2", "flow"]
