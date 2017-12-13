@@ -10,6 +10,7 @@ export {
   default as styled,
 } from 'styled-components'
 
+export { publicUrlInjector } from './public-url'
 export { default as theme, themeDark, brand, colors } from './theme'
 export {
   font,

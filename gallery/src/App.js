@@ -1,7 +1,7 @@
 import React from 'react'
 import createHistory from 'history/createBrowserHistory'
 import styled from 'styled-components'
-import { AragonApp } from '@aragon/ui'
+import { BaseStyles, publicUrlInjector } from '@aragon/ui'
 import Sidebar from 'comps/Sidebar/Sidebar'
 import PageHome from 'pages/PageHome'
 import PageColors from 'pages/PageColors'
@@ -37,13 +37,13 @@ const preparePages = (path, pages) =>
     path: path + p[2].replace(/^\//, '') + (p[2] === '/' ? '' : '/'),
   }))
 
-const Main = styled.div`
+const Main = publicUrlInjector(styled.main`
   display: flex;
   height: 100%;
   > :first-child {
     margin-right: 20px;
   }
-`
+`)
 
 class App extends React.Component {
   state = {
@@ -73,16 +73,15 @@ class App extends React.Component {
     const { pages, activePage } = this.state
     const Page = activePage && activePage.comp
     return (
-      <AragonApp publicUrl="/">
-        <Main>
-          <Sidebar
-            pages={pages}
-            activePage={activePage}
-            onOpen={this.handleOpenPage}
-          />
-          {Page && <Page title={activePage.name} />}
-        </Main>
-      </AragonApp>
+      <Main publicUrl="/">
+        <BaseStyles />
+        <Sidebar
+          pages={pages}
+          activePage={activePage}
+          onOpen={this.handleOpenPage}
+        />
+        {Page && <Page title={activePage.name} />}
+      </Main>
     )
   }
 }

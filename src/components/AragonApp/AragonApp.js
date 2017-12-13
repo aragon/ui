@@ -1,7 +1,6 @@
 /* @flow */
 import type { Node } from 'react'
 import React from 'react'
-import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 import { BaseStyles, theme } from '../..'
 import { styledPublicUrl as asset } from '../../public-url'
@@ -22,7 +21,6 @@ const StyledAragonApp = styled.main`
 type Props = {
   className: string,
   backgroundLogo: boolean,
-  publicUrl: string,
   children: Node,
 }
 
@@ -30,18 +28,11 @@ class AragonApp extends React.Component<Props> {
   static defaultProps = {
     backgroundLogo: false,
   }
-  static childContextTypes = {
-    publicUrl: PropTypes.string,
-  }
   static Styled = StyledAragonApp
 
-  getChildContext() {
-    return { publicUrl: this.props.publicUrl }
-  }
-
   render() {
-    const { children, backgroundLogo, className, publicUrl } = this.props
-    const styledProps = { backgroundLogo, className, publicUrl }
+    const { children, backgroundLogo, className } = this.props
+    const styledProps = { backgroundLogo, className }
     return (
       <StyledAragonApp {...styledProps}>
         <BaseStyles />
