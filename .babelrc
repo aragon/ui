@@ -3,7 +3,8 @@
     ["inline-json-import", {}],
     ["styled-components", {
       "displayName": true
-    }]
+    }],
+    ["flow-react-proptypes"]
   ],
   "presets": [["env", { "modules": false }], "react", "stage-2", "flow"]
 }
