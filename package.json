@@ -48,6 +48,7 @@
     "eslint-plugin-standard": "^3.0.1",
     "flow-bin": "^0.60.1",
     "gh-pages": "^1.0.0",
+    "markdown-it-anchor": "^4.0.0",
     "opencolor": "^0.2.0",
     "opencolor-converter": "git://github.com/opencolor-tools/opencolor-converter.git#v2.1.21",
     "prettier": "^1.7.4",
