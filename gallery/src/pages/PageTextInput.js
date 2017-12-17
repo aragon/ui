@@ -2,8 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 import Page from 'comps/Page/Page'
 
-import readme from 'ui-src/components/Form/Input.md'
-import { Input } from '@aragon/ui'
+import readme from 'ui-src/components/Input/TextInput.md'
+import { TextInput } from '@aragon/ui'
 
 const Container = styled.div`
   display: flex;
@@ -23,34 +23,34 @@ const DemoHeader = styled.h4`
   margin-bottom: 10px;
 `
 
-const PageInput = ({ title }) => (
+const PageTextInput = ({ title }) => (
   <Page title={title} readme={readme}>
     <Page.Demo>
       <Container>
         <div>
-          <Input placeholder="Input" type="text" />
+          <TextInput placeholder="TextInput" type="text" />
         </div>
         <div>
-          <Input readOnly type="text" value="Readonly" />
+          <TextInput readOnly type="text" value="Readonly" />
         </div>
         <div>
-          <Input disabled type="text" value="Disabled" />
-        </div>
-      </Container>
-      <DemoHeader>Input.Text</DemoHeader>
-      <Container>
-        <div>
-          <Input.Text placeholder="Text" />
+          <TextInput disabled type="text" value="Disabled" />
         </div>
       </Container>
-      <DemoHeader>Input.Number</DemoHeader>
+      <DemoHeader>TextInput.Text</DemoHeader>
       <Container>
         <div>
-          <Input.Number placeholder="Number" />
+          <TextInput.Text placeholder="Text" />
+        </div>
+      </Container>
+      <DemoHeader>TextInput.Number</DemoHeader>
+      <Container>
+        <div>
+          <TextInput.Number placeholder="Number" />
         </div>
       </Container>
     </Page.Demo>
   </Page>
 )
 
-export default PageInput
+export default PageTextInput

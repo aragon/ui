@@ -8,8 +8,8 @@ import PageColors from 'pages/PageColors'
 import PageTheme from 'pages/PageTheme'
 import PageButton from 'pages/PageButton'
 import PageDropDown from 'pages/PageDropDown'
-import PageInput from 'pages/PageInput'
 import PageText from 'pages/PageText'
+import PageTextInput from 'pages/PageTextInput'
 import PageHeader from 'pages/PageHeader'
 import PageFooter from 'pages/PageFooter'
 import PagePreFooter from 'pages/PagePreFooter'
@@ -25,7 +25,7 @@ const PAGES = [
   [PageSection, 'Section', '/section'],
   [PageButton, 'Button', '/button'],
   [PageDropDown, 'DropDown', '/dropdown'],
-  [PageInput, 'Input', '/input'],
+  [PageTextInput, 'TextInput', '/text-input'],
   [PageHeader, 'Header', '/header'],
   [PageFooter, 'Footer', '/footer'],
   [PagePreFooter, 'PreFooter', '/pre-footer'],
