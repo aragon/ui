@@ -1,19 +1,26 @@
-# Input
+# TextInput
 
-A basic text Input component. Not meant to be used for anything other than
+A basic text input component. Not meant to be used for anything other than
 `type=email|number|password|search|tel|text|url`.
 
 ## Usage
 
 ```jsx
-import { Input } from '@aragon/ui'
+import { TextInput } from '@aragon/ui'
 
 const App = () => (
-    <Input type="password" />
+    <TextInput type="password" />
 )
 ```
 
 ## Properties
+
+### `type`
+
+- Type: one of `'email'`, `'number'`, `'password'`, `'search'`, `'tel'`, `'text'`, `'url'`.
+- Default: `'text'`
+
+See [MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_<input>_types).
 
 ### `wide`
 
@@ -25,8 +32,8 @@ Set to true to obtain an input that expands horizontally.
 #### Example:
 
 ```jsx
-const MyInput = () => (
-  <Input type="text" wide />
+const MyWideTextInput = () => (
+  <TextInput wide />
 )
 ```
 
@@ -35,10 +42,6 @@ const MyInput = () => (
 See [MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input).
 
 ## Attached Components
-
-### `Text`
-
-A `type=text` input, supporting the same properties.
 
 ### `Number`
 

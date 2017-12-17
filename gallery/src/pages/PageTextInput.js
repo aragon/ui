@@ -37,12 +37,6 @@ const PageTextInput = ({ title }) => (
           <TextInput disabled type="text" value="Disabled" />
         </div>
       </Container>
-      <DemoHeader>TextInput.Text</DemoHeader>
-      <Container>
-        <div>
-          <TextInput.Text placeholder="Text" />
-        </div>
-      </Container>
       <DemoHeader>TextInput.Number</DemoHeader>
       <Container>
         <div>

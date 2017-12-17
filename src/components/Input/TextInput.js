@@ -25,7 +25,23 @@ const StyledInput = styled.input`
   }
 `
 
-StyledInput.Text = props => <StyledInput type="text" {...props} />
-StyledInput.Number = props => <StyledInput type="number" {...props} />
+type TextInputType =
+  | 'email'
+  | 'number'
+  | 'password'
+  | 'search'
+  | 'tel'
+  | 'text'
+  | 'url'
+type Props = {
+  type: TextInputType,
+}
 
-export default StyledInput
+const TextInput = (props: Props) => <StyledInput {...props} />
+TextInput.defaultProps = {
+  type: 'text',
+}
+
+TextInput.Number = props => <StyledInput type="number" {...props} />
+
+export default TextInput
