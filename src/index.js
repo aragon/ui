@@ -27,7 +27,7 @@ export {
 export { default as BadgeNumber } from './components/BadgeNumber/BadgeNumber'
 export { default as Button } from './components/Button/Button'
 export { default as DropDown } from './components/DropDown/DropDown'
-export { default as Field } from './components/Form/Field'
+export { default as Field } from './components/Field/Field'
 export { default as Input } from './components/Form/Input'
 export { default as Footer } from './components/Footer/Footer'
 export { default as PreFooter } from './components/PreFooter/PreFooter'
