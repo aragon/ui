@@ -26,6 +26,7 @@ export {
 } from './components/IllustratedSection/IllustratedSection'
 export { default as BadgeNumber } from './components/BadgeNumber/BadgeNumber'
 export { default as Button } from './components/Button/Button'
+export { default as CircleGraph } from './components/CircleGraph/CircleGraph'
 export { default as DropDown } from './components/DropDown/DropDown'
 export { default as Field } from './components/Form/Field'
 export { default as Footer } from './components/Footer/Footer'
