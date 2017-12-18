@@ -91,9 +91,9 @@ const SidePanel = ({ children, title, opened, onClose, publicUrl }: Props) => {
             <Overlay style={styles.overlay} />
             <StyledPanel style={styles.panel}>
               <StyledPanelHeader>
-                <Text size="xxlarge" heading="1">
-                  {title}
-                </Text>
+                <h1>
+                  <Text size="xxlarge">{title}</Text>
+                </h1>
                 <StyledPanelCloseButton type="button" onClick={onClose}>
                   <img src={prefixUrl(close, publicUrl)} alt="Close" />
                 </StyledPanelCloseButton>

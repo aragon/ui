@@ -1,6 +1,6 @@
 # Text
 
-The Text component is used to display text with some additional features.
+The Text component is used to display inline text with some additional features.
 
 It is generally not necessary to use `<Text>` with the default properties:
 `<BaseStyles>` sets this style to the HTML elements by default.
@@ -17,25 +17,6 @@ const App = () => (
 
 ## Properties
 
-### `block`
-
-- Type: `Boolean`
-- Default value: `false`
-
-Set this property to a `true` to render the text as a `<div>`. Useful to group
-more than a single paragraph. Takes priority over `inline`.
-
-```jsx
-<Text size='large' block>
-  <p>Some text</p>
-  <ul>
-    <li>Item</li>
-    <li>Item</li>
-  </ul>
-  <p>Some text</p>
-</Text>
-```
-
 ### `color`
 
 - Type: `String`
@@ -47,32 +28,12 @@ Set this property to a color value to change the text color.
 <Text color='tomato'>Text Example</Text>
 ```
 
-### `heading`
+### `size`
 
-- Type: `Number` or `String`
-- Default value: `undefined`
+- Type: one of `'xsmall'`, `'small'`, `'normal'`, `'large'`, `'xlarge'`,` 'xxlarge'`
+- Default value: `normal`
 
-Set this property to a number between `1` and `6` to render the text as a
-heading. It will be rendered as `<h1>` to `<h6>` HTML elements.
-
-```jsx
-<Text heading='1'>Example</Text>
-```
-
-### `inline`
-
-- Type: `Boolean`
-- Default value: `false`
-
-Set this property to a `true` to render the text as a `<span>`. Useful to use
-`<Text>` inside a parent that only allows [Phrasing Content](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Content_categories#Phrasing_content).
-
-```jsx
-<h1>
-  <span>Hello </span>
-  <Text size='xsmall'>World</Text>
-</h1>
-```
+Set this property to change the size of the text.
 
 ### `smallcaps`
 
@@ -84,3 +45,20 @@ Set this property to a `true` to render the text as small capitals.
 ```jsx
 <Text smallcaps>Title Example</Text>
 ```
+
+### `weight`
+
+- Type: one of `'normal'`, `'bold'`, `'bolder'`
+- Default value: `normal`
+
+Set this property to change the weight of the text.
+
+## Attached Components
+
+### `Block`
+
+A block of text, supporting the same [properties](#properties).
+
+### `Paragraph`
+
+A paragraph of text, supporting the same [properties](#properties).

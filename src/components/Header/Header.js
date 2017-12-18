@@ -112,9 +112,9 @@ const Header = ({ title, menuItems, renderMenuItemLink }: Props) => (
         <Logo compact={Boolean(title)} renderLink={renderMenuItemLink} />
         {title && (
           <div className="title">
-            <Text heading="1" size="xlarge">
-              {title}
-            </Text>
+            <h1>
+              <Text size="xlarge">{title} </Text>
+            </h1>
           </div>
         )}
         {menuItems.length > 0 && (

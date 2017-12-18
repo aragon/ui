@@ -21,12 +21,12 @@ const PageText = ({ title }) => (
   <Page title={title} readme={readme}>
     <Page.Demo>
       <Container>
-        <Text size="xsmall">X-Small Text</Text>
-        <Text size="small">Small Text</Text>
-        <Text size="normal">Normal Text</Text>
-        <Text size="large">Large Text</Text>
-        <Text size="xlarge">X-Large Text</Text>
-        <Text size="xxlarge">XX-Large Text</Text>
+        <Text.Block size="xsmall">X-Small Text</Text.Block>
+        <Text.Block size="small">Small Text</Text.Block>
+        <Text.Block size="normal">Normal Text</Text.Block>
+        <Text.Block size="large">Large Text</Text.Block>
+        <Text.Block size="xlarge">X-Large Text</Text.Block>
+        <Text.Block size="xxlarge">XX-Large Text</Text.Block>
       </Container>
     </Page.Demo>
   </Page>

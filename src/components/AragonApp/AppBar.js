@@ -4,7 +4,7 @@ import React from 'react'
 import styled, { css } from 'styled-components'
 import getPublicUrl, { styledPublicUrl as asset } from '../../public-url'
 import theme from '../../theme'
-import { StyledH1 } from '../Text/Text'
+import Text from '../Text/Text'
 
 import chevronSvg from './assets/chevron.svg'
 
@@ -27,7 +27,7 @@ const StyledAppBarEnd = styled.div`
   padding-right: 30px;
 `
 
-const StyledAppBarTitle = getPublicUrl(StyledH1.extend`
+const StyledAppBarTitle = getPublicUrl(styled.h1`
   padding-right: 20px;
   margin-right: 20px;
   background-image: ${({ chevron }) =>
@@ -45,8 +45,8 @@ type Props = {
 const AppBar = ({ children, endContent, title, ...props }: Props) => (
   <StyledAppBar {...props}>
     <StyledAppBarStart>
-      <StyledAppBarTitle chevron={!!children} size="xxlarge">
-        {title}
+      <StyledAppBarTitle chevron={!!children}>
+        <Text size="xxlarge">{title}</Text>
       </StyledAppBarTitle>
     </StyledAppBarStart>
     {children}
