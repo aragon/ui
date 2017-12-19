@@ -10,6 +10,7 @@ import PageButton from 'pages/PageButton'
 import PageDropDown from 'pages/PageDropDown'
 import PageCircleGraph from 'pages/PageCircleGraph'
 import PageText from 'pages/PageText'
+import PageTextInput from 'pages/PageTextInput'
 import PageHeader from 'pages/PageHeader'
 import PageFooter from 'pages/PageFooter'
 import PagePreFooter from 'pages/PagePreFooter'
@@ -25,6 +26,7 @@ const PAGES = [
   [PageSection, 'Section', '/section'],
   [PageButton, 'Button', '/button'],
   [PageDropDown, 'DropDown', '/dropdown'],
+  [PageTextInput, 'TextInput', '/text-input'],
   [PageCircleGraph, 'CircleGraph', '/circlegraph'],
   [PageHeader, 'Header', '/header'],
   [PageFooter, 'Footer', '/footer'],

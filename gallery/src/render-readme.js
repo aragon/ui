@@ -1,4 +1,5 @@
 import MarkdownIt from 'markdown-it'
+import MarkdownItAnchor from 'markdown-it-anchor'
 
 import Prism from 'prismjs'
 import 'prismjs/components/prism-markup'
@@ -50,6 +51,9 @@ const splitIntro = html => {
 
 const md = new MarkdownIt()
 md.use(markdownItPrism)
+md.use(MarkdownItAnchor, {
+  level: [2, 3],
+})
 
 export default async url => {
   const result = await fetch(url)
