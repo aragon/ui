@@ -30,7 +30,7 @@ const StyledActionButton = styled(Button)`
 type Props = {
   actionButton: Node,
   actionText: string,
-  icon: string,
+  icon: Node,
   onActivate: mixed,
   text: string,
   title: string,
@@ -43,16 +43,16 @@ const DefaultProps = {
 
 const EmptyStateCard = ({
   actionText,
-  icon,
   onActivate,
   text,
   title,
   actionButton: ActionButton,
+  icon: Icon,
   ...props
 }: Props) => (
   <StyledCard {...props}>
     <section>
-      <img src={icon} alt="" />
+      <Icon />
       <StyledHeading>
         <Text color={theme.accent} weight="bold" size="large">
           {title}
