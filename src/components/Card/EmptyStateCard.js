@@ -20,6 +20,7 @@ const StyledHeading = StyledH1.extend`
   margin: 20px 0 5px;
 `
 
+// $FlowFixMe
 const StyledActionButton = styled(Button)`
   width: 150px;
   margin-top: 20px;

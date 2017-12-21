@@ -116,8 +116,7 @@ type Props = {
   wide?: boolean,
 }
 
-// Flow declaration: see https://github.com/styled-components/styled-components/issues/570#issuecomment-332087358
-const StyledButton: ComponentType<Props> = getPublicUrl(styled.button`
+const StyledButton = styled.button`
   width: ${({ wide }) => (wide ? '100%' : 'auto')};
   padding: 10px 15px;
   white-space: nowrap;
@@ -152,7 +151,24 @@ const StyledButton: ComponentType<Props> = getPublicUrl(styled.button`
     if (emphasis === 'negative') return negativeStyle
     return ''
   }};
-`)
+`
 
-export { StyledButton }
-export default StyledButton
+type ButtonComponentType = {
+  Anchor: ComponentType<Props>,
+}
+
+// Flow declaration: see https://github.com/styled-components/styled-components/issues/570#issuecomment-332087358
+// Currently throwing errors: https://github.com/styled-components/styled-components/issues/1350
+const Button: ComponentType<Props> & ButtonComponentType = getPublicUrl(
+  StyledButton
+)
+const Anchor: ComponentType<Props> = getPublicUrl(
+  StyledButton.withComponent('a').extend`
+    display: inline-block;
+    text-decoration: none;
+  `
+)
+
+Button.Anchor = Anchor
+
+export default Button
