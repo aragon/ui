@@ -10,6 +10,7 @@ export {
   default as styled,
 } from 'styled-components'
 
+export { publicUrlInjector } from './public-url'
 export { default as theme, themeDark, brand, colors } from './theme'
 export {
   font,
@@ -43,4 +44,5 @@ export { default as Card } from './components/Card/Card'
 export { default as EmptyStateCard } from './components/Card/EmptyStateCard'
 export { default as AppBar } from './components/AragonApp/AppBar'
 export { default as AragonApp } from './components/AragonApp/AragonApp'
+export { default as DefaultAragonApp } from './components/AragonApp/DefaultAragonApp'
 export { default as LayoutGrid } from './components/LayoutGrid/LayoutGrid'
