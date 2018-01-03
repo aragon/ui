@@ -3,7 +3,7 @@ import React from 'react'
 import styled from 'styled-components'
 import theme from '../../theme'
 import Button from '../Button/Button'
-import Text, { StyledH1 } from '../Text/Text'
+import Text from '../Text/Text'
 import Card from './Card'
 
 const StyledCard = Card.extend`
@@ -16,7 +16,7 @@ const StyledCard = Card.extend`
   }
 `
 
-const StyledHeading = StyledH1.extend`
+const StyledHeading = styled.h1`
   margin: 20px 0 5px;
 `
 
@@ -49,10 +49,12 @@ const EmptyStateCard = ({
   <StyledCard {...props}>
     <section>
       <img src={icon} alt="" />
-      <StyledHeading color={theme.accent} weight="bold" size="large">
-        {title}
+      <StyledHeading>
+        <Text color={theme.accent} weight="bold" size="large">
+          {title}
+        </Text>
       </StyledHeading>
-      <Text>{text}</Text>
+      <Text.Block>{text}</Text.Block>
       <StyledActionButton mode="strong" onClick={onActivate}>
         {actionText}
       </StyledActionButton>

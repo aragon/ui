@@ -16,9 +16,9 @@ type Props = {
 
 const TableHeader = ({ title, ...props }: Props) => (
   <StyledTableHeader {...props}>
-    <Text color={theme.textSecondary} smallcaps>
+    <Text.Block color={theme.textSecondary} smallcaps>
       {title}
-    </Text>
+    </Text.Block>
   </StyledTableHeader>
 )
 

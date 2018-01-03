@@ -17,9 +17,9 @@ type Props = {
 const Field = ({ children, label, ...props }: Props) => (
   <StyledField {...props}>
     <label>
-      <Text color={theme.textSecondary} smallcaps>
+      <Text.Block color={theme.textSecondary} smallcaps>
         {label}
-      </Text>
+      </Text.Block>
       {children}
     </label>
   </StyledField>
