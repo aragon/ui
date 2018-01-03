@@ -47,6 +47,7 @@ const Main = styled.div`
   > :first-child {
     margin-right: 20px;
   }
+  overflow: auto;
 `
 
 class App extends React.Component {
