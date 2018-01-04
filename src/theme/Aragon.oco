@@ -8,7 +8,7 @@ Grey:
   Dim Grey: hsl(0, 0%, 44%)
   Dust Grey: hsl(0, 0%, 59%)
   Light Grey: hsl(0, 0%, 70%)
-  Gainsboro: hsl(0, 0%, 85%)
+  Gainsboro: hsl(0, 0%, 90%)
   Alabaster: hsl(0, 0%, 95%)
 Rain:
   Shark: hsl(180, 5%, 13%);
@@ -74,7 +74,7 @@ Aragon UI:
   contentBackgroundActive: =Grey.Alabaster
   contentBorder: =Grey.Gainsboro
   contentBorderActive: =Grey.Light Grey
-  shadow: =Grey.Gainsboro
+  shadow: =Grey.Alabaster
   textPrimary: =Black.Black
   textSecondary: =Grey.Dim Grey
   textTertiary: =Grey.Light Grey
@@ -100,7 +100,7 @@ Aragon UI Dark:
   contentBackgroundActive: =Grey.Alabaster
   contentBorder: =Grey.Gainsboro
   contentBorderActive: =Grey.Light Grey
-  shadow: =Grey.Gainsboro
+  shadow: =Grey.Alabaster
   textPrimary: =White.White
   textSecondary: =Grey.Dust Grey
   textTertiary: =Grey.Dim Grey
