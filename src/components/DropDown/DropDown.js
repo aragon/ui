@@ -16,7 +16,8 @@ const { contentBackground, contentBorder, textPrimary } = theme
 
 const StyledDropDown = styled.div`
   position: relative;
-  display: ${({wide}) => wide? 'flex' : 'inline-flex'};
+  z-index: ${({ opened }) => (opened ? '2' : '1')};
+  display: ${({ wide }) => (wide ? 'flex' : 'inline-flex')};
   flex-direction: column;
   color: ${textPrimary};
   white-space: nowrap;
@@ -29,10 +30,10 @@ const StyledDropDown = styled.div`
 
 const DropDownItems = styled.div`
   display: ${({ opened }) => (opened ? 'block' : 'none')};
-  min-width: ${({wide}) => wide? '100%' : '0'};
+  min-width: ${({ wide }) => (wide ? '100%' : '0')};
   padding: 8px 0;
   position: absolute;
-  z-index: 2;
+  z-index: ${({ opened }) => (opened ? '2' : '1')};
   top: calc(100% - 1px);
   color: ${textPrimary};
   background: ${contentBackground};
@@ -98,7 +99,7 @@ class DropDown extends React.Component<Props, State> {
     const activeItem = items[active] || items[0]
     return (
       <ClickOutHandler onClickOut={this.handleClose}>
-        <StyledDropDown wide={wide}>
+        <StyledDropDown wide={wide} opened={opened}>
           <DropDownActiveItem
             onActivate={this.handleToggle}
             mainRef={el => (this.activeItemElt = el)}
