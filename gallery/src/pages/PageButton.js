@@ -31,6 +31,9 @@ const PageButton = ({ title }) => (
           <Button>Normal Button</Button>
         </div>
         <div>
+          <Button mode="secondary">Secondary Button</Button>
+        </div>
+        <div>
           <Button mode="strong">Strong Mode</Button>
         </div>
         <div>

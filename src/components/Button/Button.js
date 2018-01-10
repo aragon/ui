@@ -16,6 +16,7 @@ const {
   contentBackground,
   contentBorder,
   contentBorderActive,
+  secondaryBackground,
   textPrimary,
   textSecondary,
 } = theme
@@ -52,6 +53,15 @@ const modeNormal = css`
   ${plainButtonStyles};
   &:active {
     color: ${textPrimary};
+  }
+`
+
+const modeSecondary = css`
+  ${plainButtonStyles};
+  background: ${secondaryBackground};
+  &:hover,
+  &:focus {
+    box-shadow: none;
   }
 `
 
@@ -107,7 +117,7 @@ const negativeStyle = css`
   background: url(${asset(cross)}) no-repeat 10px calc(50% - 1px);
 `
 
-type Mode = 'normal' | 'strong' | 'outline' | 'text'
+type Mode = 'normal' | 'secondary' | 'strong' | 'outline' | 'text'
 type Emphasis = 'positive' | 'negative'
 type Props = {
   compact?: boolean,
@@ -138,6 +148,7 @@ const StyledButton = styled.button`
   }
 
   ${({ mode }) => {
+    if (mode === 'secondary') return modeSecondary
     if (mode === 'strong') return modeStrong
     if (mode === 'outline') return modeOutline
     if (mode === 'text') return modeText
