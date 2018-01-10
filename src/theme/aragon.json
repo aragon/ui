@@ -4,7 +4,7 @@
     "Dim Grey": "#707070",
     "Dust Grey": "#969696",
     "Light Grey": "#B3B3B3",
-    "Gainsboro": "#D9D9D9",
+    "Gainsboro": "#E6E6E6",
     "Alabaster": "#F2F2F2"
   },
   "Rain": {
@@ -29,7 +29,7 @@
   "Purple": {
     "Indigo": "#4A2DBE",
     "Portage": "#A684F5",
-    "Lavender": "#DBCCFF"
+    "Lavender": "#EAE0FF"
   },
   "Eagle": {
     "Dark Cerulean": "#00A4D1",
@@ -75,7 +75,7 @@
     "contentBackgroundActive": "=Grey.Alabaster",
     "contentBorder": "=Grey.Gainsboro",
     "contentBorderActive": "=Grey.Light Grey",
-    "shadow": "=Grey.Gainsboro",
+    "shadow": "=Grey.Alabaster",
     "textPrimary": "=Black.Black",
     "textSecondary": "=Grey.Dim Grey",
     "textTertiary": "=Grey.Light Grey",
@@ -99,7 +99,7 @@
     "contentBackgroundActive": "=Grey.Alabaster",
     "contentBorder": "=Grey.Gainsboro",
     "contentBorderActive": "=Grey.Light Grey",
-    "shadow": "=Grey.Gainsboro",
+    "shadow": "=Grey.Alabaster",
     "textPrimary": "=White.White",
     "textSecondary": "=Grey.Dust Grey",
     "textTertiary": "=Grey.Dim Grey",
