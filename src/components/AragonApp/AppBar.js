@@ -16,7 +16,7 @@ const StyledAppBar = styled.div`
   height: 64px;
   background: ${theme.contentBackground};
   border-bottom: 1px solid ${theme.contentBorder};
-  ${unselectable};
+  ${unselectable()};
 `
 
 const StyledAppBarStart = styled.div`
