@@ -11,14 +11,11 @@ export {
 } from 'styled-components'
 
 export { default as theme, themeDark, brand, colors } from './theme'
-export {
-  font,
-  grid,
-  spring,
-  breakpoint,
-  unselectable,
-  BreakPoint,
-} from './shared-styles'
+export { font } from './utils/styles/font'
+export { grid } from './utils/styles/grid'
+export { spring } from './utils/styles/spring'
+export { breakpoint, BreakPoint } from './utils/styles/breakpoint'
+export { unselectable } from './utils/styles'
 export { default as BaseStyles } from './components/BaseStyles/BaseStyles'
 export { default as Section } from './components/Section/Section'
 export {

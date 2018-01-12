@@ -2,7 +2,7 @@
 import type { ComponentType } from 'react'
 import styled, { css } from 'styled-components'
 import theme from '../../theme'
-import { fontStyle } from '../../shared-styles'
+import { font } from '../../utils/styles/font'
 import getPublicUrl, { styledPublicUrl as asset } from '../../public-url'
 import cross from './assets/cross.svg'
 import check from './assets/check.svg'
@@ -69,7 +69,7 @@ const modeStrong = css`
   ${plainButtonStyles};
   color: ${gradientText};
   background-image: linear-gradient(130deg, ${gradientStart}, ${gradientEnd});
-  ${fontStyle({ size: 'small', weight: 'bold' })};
+  ${font({ size: 'small', weight: 'bold' })};
   &:after {
     background-image: linear-gradient(
       130deg,
@@ -130,7 +130,7 @@ const StyledButton = styled.button`
   width: ${({ wide }) => (wide ? '100%' : 'auto')};
   padding: 10px 15px;
   white-space: nowrap;
-  ${fontStyle({ size: 'small', weight: 'normal' })};
+  ${font({ size: 'small', weight: 'normal' })};
   color: ${textSecondary};
   background: ${contentBackground};
   border: 0;

@@ -1,12 +1,12 @@
 /* @flow */
 import React from 'react'
 import styled from 'styled-components'
-import { gridWidth } from '../../shared-styles'
+import { grid } from '../../utils/styles/grid'
 
 const StyledContent = styled.div`
   width: 100%;
   margin: 0 auto;
-  max-width: ${({ large }) => gridWidth(large ? 12 : 10)}px;
+  max-width: ${({ large }) => grid(large ? 12 : 10)}px;
 `
 
 type Props = {
