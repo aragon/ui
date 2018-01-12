@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import { Motion, spring } from 'react-motion'
 import Text from '../Text/Text'
 import { lerp } from '../../math-utils'
-import { springConf } from '../../shared-styles'
+import { springConf, unselectable } from '../../shared-styles'
 import getPublicUrl, { prefixUrl } from '../../public-url'
 
 import close from './assets/close.svg'
@@ -62,9 +62,12 @@ const StyledPanelCloseButton = styled.button`
     cursor: pointer;
     background: none;
     border: 0;
+    outline: 0;
     &::-moz-focus-inner {
       border: 0;
     }
+
+    ${unselectable()};
   }
 `
 
