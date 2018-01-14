@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import { AragonApp } from '@aragon/ui'
 import Sidebar from 'comps/Sidebar/Sidebar'
 import PageHome from 'pages/PageHome'
+import PageAragonApp from 'pages/PageAragonApp'
 import PageColors from 'pages/PageColors'
 import PageTheme from 'pages/PageTheme'
 import PageButton from 'pages/PageButton'
@@ -20,6 +21,7 @@ import initGlobalStyles from './global-styles'
 
 const PAGES = [
   [PageHome, 'Aragon UI', '/'],
+  [PageAragonApp, 'AragonApp', '/aragon-app'],
   [PageColors, 'Colors', '/colors'],
   [PageTheme, 'Theme', '/theme'],
   [PageText, 'Text', '/text'],
