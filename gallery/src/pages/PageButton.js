@@ -43,6 +43,20 @@ const PageButton = ({ title }) => (
           <Button mode="text">Text Mode</Button>
         </div>
       </Container>
+      <Container>
+        <div>
+          <Button emphasis="positive">Positive Button</Button>
+        </div>
+        <div>
+          <Button emphasis="negative">Negative Button</Button>
+        </div>
+      </Container>
+      <Container>
+        <Button compact>Compact Button</Button>
+      </Container>
+      <Container>
+        <Button wide>Wide Button</Button>
+      </Container>
       <DemoHeader>Button.Anchor</DemoHeader>
       <Container>
         <div>
