@@ -17,13 +17,15 @@ import PageFooter from 'pages/PageFooter'
 import PagePreFooter from 'pages/PagePreFooter'
 import PageSection from 'pages/PageSection'
 import PageIllustratedSection from 'pages/PageIllustratedSection'
+import PageCard from './pages/PageCard'
 import initGlobalStyles from './global-styles'
 
 const PAGES = [
   [PageHome, 'Aragon UI', '/'],
-  [PageAragonApp, 'AragonApp', '/aragon-app'],
   [PageColors, 'Colors', '/colors'],
   [PageTheme, 'Theme', '/theme'],
+  [PageAragonApp, 'AragonApp', '/aragon-app'],
+  [PageCard, 'Card', '/card'],
   [PageText, 'Text', '/text'],
   [PageSection, 'Section', '/section'],
   [PageButton, 'Button', '/button'],
