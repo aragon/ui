@@ -21,7 +21,8 @@ import PageCard from './pages/PageCard'
 import initGlobalStyles from './global-styles'
 import PageAppBar from './pages/PageAppBar'
 import PageEmptyStateCard from './pages/PageEmptyStateCard'
-import PageField from './pages/PageField';
+import PageField from './pages/PageField'
+import PageSidePanel from './pages/PageSidePanel'
 
 const PAGES = [
   [PageHome, 'Aragon UI', '/'],
@@ -29,6 +30,7 @@ const PAGES = [
   [PageTheme, 'Theme', '/theme'],
   [PageAragonApp, 'AragonApp', '/aragon-app'],
   [PageAppBar, 'AppBar', '/app-bar'],
+  [PageSidePanel, 'SidePanel', '/side-panel'],
   [PageCard, 'Card', '/card'],
   [PageEmptyStateCard, 'EmptyStateCard', '/empty-state-card'],
   [PageText, 'Text', '/text'],
