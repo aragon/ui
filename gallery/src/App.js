@@ -20,6 +20,7 @@ import PageIllustratedSection from 'pages/PageIllustratedSection'
 import PageCard from './pages/PageCard'
 import initGlobalStyles from './global-styles'
 import PageAppBar from './pages/PageAppBar'
+import PageEmptyStateCard from './pages/PageEmptyStateCard'
 
 const PAGES = [
   [PageHome, 'Aragon UI', '/'],
@@ -28,6 +29,7 @@ const PAGES = [
   [PageAragonApp, 'AragonApp', '/aragon-app'],
   [PageAppBar, 'AppBar', '/app-bar'],
   [PageCard, 'Card', '/card'],
+  [PageEmptyStateCard, 'EmptyStateCard', '/empty-state-card'],
   [PageText, 'Text', '/text'],
   [PageSection, 'Section', '/section'],
   [PageButton, 'Button', '/button'],
