@@ -41,7 +41,7 @@ const App = () => (
 
 - Type: `Node`
 
-This is an table row containing a header of your choice.
+This is a table row containing a header of your choice.
 
 #### Example:
 
