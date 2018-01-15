@@ -4,7 +4,6 @@ AragonApp provides everything needed to start an Aragon App.
 
 ## Usage
 
-
 ```jsx
 import { AragonApp } from '@aragon/ui'
 
