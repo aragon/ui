@@ -32,7 +32,7 @@ const TextContainer = styled.div`
   align-items: center;
 `
 
-const PageCard = ({ title }) => (
+const PageField = ({ title }) => (
   <Page title={title} readme={readme}>
     <Page.Demo>
       <Container>
@@ -46,4 +46,4 @@ const PageCard = ({ title }) => (
   </Page>
 )
 
-export default PageCard
+export default PageField
