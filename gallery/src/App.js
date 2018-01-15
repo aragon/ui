@@ -21,6 +21,7 @@ import PageCard from './pages/PageCard'
 import initGlobalStyles from './global-styles'
 import PageAppBar from './pages/PageAppBar'
 import PageEmptyStateCard from './pages/PageEmptyStateCard'
+import PageField from './pages/PageField';
 
 const PAGES = [
   [PageHome, 'Aragon UI', '/'],
@@ -32,6 +33,7 @@ const PAGES = [
   [PageEmptyStateCard, 'EmptyStateCard', '/empty-state-card'],
   [PageText, 'Text', '/text'],
   [PageSection, 'Section', '/section'],
+  [PageField, 'Field', '/field'],
   [PageButton, 'Button', '/button'],
   [PageDropDown, 'DropDown', '/dropdown'],
   [PageTextInput, 'TextInput', '/text-input'],
