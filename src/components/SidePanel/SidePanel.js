@@ -52,6 +52,7 @@ const StyledPanelHeader = styled.header`
   padding-top: 15px;
   padding-bottom: 15px;
   padding-right: 20px;
+  ${unselectable()};
 `
 
 const StyledPanelCloseButton = styled.button`
@@ -67,8 +68,6 @@ const StyledPanelCloseButton = styled.button`
     &::-moz-focus-inner {
       border: 0;
     }
-
-    ${unselectable()};
   }
 `
 
