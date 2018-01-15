@@ -76,42 +76,72 @@ const motionStyles = progress => ({
   panel: { right: `${lerp(progress, PANEL_HIDE_RIGHT, -PANEL_OVERFLOW)}px` },
 })
 
-const SidePanel = ({ children, title, opened, onClose, publicUrl }) => {
-  return (
-    <Motion style={{ progress: spring(Number(opened), springConf('slow')) }}>
-      {({ progress }) => {
-        const styles = motionStyles(progress)
-        return (
-          <StyledSidePanel hidden={progress === 0}>
-            <Overlay style={styles.overlay} />
-            <StyledPanel style={styles.panel}>
-              <StyledPanelHeader>
-                <h1>
-                  <Text size="xxlarge">{title}</Text>
-                </h1>
-                <StyledPanelCloseButton type="button" onClick={onClose}>
-                  <img src={prefixUrl(close, publicUrl)} alt="Close" />
-                </StyledPanelCloseButton>
-              </StyledPanelHeader>
-              {children}
-            </StyledPanel>
-          </StyledSidePanel>
-        )
-      }}
-    </Motion>
-  )
+class SidePanel extends React.Component {
+  componentDidMount() {
+    document.addEventListener('keydown', this.handleEscape, false)
+  }
+  componentWillUnmount() {
+    document.removeEventListener('keydown', this.handleEscape, false)
+  }
+  handleClose = () => {
+    if (!this.props.blocking) {
+      this.props.onClose()
+    }
+  }
+  handleEscape = event => {
+    if (event.keyCode === 27 && this.props.opened) {
+      this.handleClose()
+    }
+  }
+  render() {
+    const { children, title, opened, blocking, publicUrl } = this.props
+    return (
+      <Motion style={{ progress: spring(Number(opened), springConf('slow')) }}>
+        {({ progress }) => {
+          const styles = motionStyles(progress)
+          return (
+            <StyledSidePanel hidden={progress === 0} opened={opened}>
+              <Overlay
+                opened={opened}
+                style={styles.overlay}
+                onClick={this.handleClose}
+              />
+              <StyledPanel style={styles.panel}>
+                <StyledPanelHeader>
+                  <h1>
+                    <Text size="xxlarge">{title}</Text>
+                  </h1>
+                  {!blocking && (
+                    <StyledPanelCloseButton
+                      type="button"
+                      onClick={this.handleClose}
+                    >
+                      <img src={prefixUrl(close, publicUrl)} alt="Close" />
+                    </StyledPanelCloseButton>
+                  )}
+                </StyledPanelHeader>
+                {children}
+              </StyledPanel>
+            </StyledSidePanel>
+          )
+        }}
+      </Motion>
+    )
+  }
 }
 
 SidePanel.propTypes = {
   children: PropTypes.node,
   title: PropTypes.string.isRequired,
   opened: PropTypes.bool,
+  blocking: PropTypes.bool,
   onClose: PropTypes.func,
   publicUrl: PropTypes.string.isRequired,
 }
 
 SidePanel.defaultProps = {
   opened: true,
+  blocking: false,
 }
 
 export default getPublicUrl(SidePanel)
