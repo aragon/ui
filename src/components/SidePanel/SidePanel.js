@@ -20,6 +20,7 @@ const StyledSidePanel = styled.div`
   left: 0;
   right: 0;
   bottom: 0;
+  pointer-events: ${({ opened }) => (opened ? 'auto' : 'none')};
 `
 
 const Overlay = styled.div`
@@ -29,6 +30,7 @@ const Overlay = styled.div`
   right: 0;
   bottom: 0;
   background: rgba(68, 81, 89, 0.65);
+  pointer-events: ${({ opened }) => (opened ? 'auto' : 'none')};
 `
 
 const StyledPanel = styled.aside`
