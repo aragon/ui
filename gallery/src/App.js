@@ -19,12 +19,14 @@ import PageSection from 'pages/PageSection'
 import PageIllustratedSection from 'pages/PageIllustratedSection'
 import PageCard from './pages/PageCard'
 import initGlobalStyles from './global-styles'
+import PageAppBar from './pages/PageAppBar'
 
 const PAGES = [
   [PageHome, 'Aragon UI', '/'],
   [PageColors, 'Colors', '/colors'],
   [PageTheme, 'Theme', '/theme'],
   [PageAragonApp, 'AragonApp', '/aragon-app'],
+  [PageAppBar, 'AppBar', '/app-bar'],
   [PageCard, 'Card', '/card'],
   [PageText, 'Text', '/text'],
   [PageSection, 'Section', '/section'],
