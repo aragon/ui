@@ -23,6 +23,7 @@ import PageAppBar from './pages/PageAppBar'
 import PageEmptyStateCard from './pages/PageEmptyStateCard'
 import PageField from './pages/PageField'
 import PageSidePanel from './pages/PageSidePanel'
+import PageTable from './pages/PageTable'
 
 const PAGES = [
   [PageHome, 'Aragon UI', '/'],
@@ -33,6 +34,7 @@ const PAGES = [
   [PageSidePanel, 'SidePanel', '/side-panel'],
   [PageCard, 'Card', '/card'],
   [PageEmptyStateCard, 'EmptyStateCard', '/empty-state-card'],
+  [PageTable, 'Table', '/table'],
   [PageText, 'Text', '/text'],
   [PageSection, 'Section', '/section'],
   [PageField, 'Field', '/field'],
