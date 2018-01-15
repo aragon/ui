@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import Page from 'comps/Page/Page'
 
 import readme from 'ui-src/components/Field/README.md'
-import { Field, Text } from '@aragon/ui'
+import { Field, Text, TextInput } from '@aragon/ui'
 
 const Container = styled.div`
   display: flex;
@@ -38,7 +38,7 @@ const PageField = ({ title }) => (
       <Container>
         <div>
           <Field label="Enter name here:">
-            <input />
+            <TextInput />
           </Field>
         </div>
       </Container>
