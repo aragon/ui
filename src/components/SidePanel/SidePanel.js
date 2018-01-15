@@ -1,5 +1,4 @@
-/* @flow */
-import type { Node } from 'react'
+import PropTypes from 'prop-types'
 import React from 'react'
 import styled from 'styled-components'
 import { Motion, spring } from 'react-motion'
@@ -76,15 +75,7 @@ const motionStyles = progress => ({
   panel: { right: `${lerp(progress, PANEL_HIDE_RIGHT, -PANEL_OVERFLOW)}px` },
 })
 
-type Props = {
-  children: Node,
-  title: string,
-  opened: boolean,
-  onClose?: mixed,
-  publicUrl: string,
-}
-
-const SidePanel = ({ children, title, opened, onClose, publicUrl }: Props) => {
+const SidePanel = ({ children, title, opened, onClose, publicUrl }) => {
   return (
     <Motion style={{ progress: spring(Number(opened), springConf('slow')) }}>
       {({ progress }) => {
@@ -108,6 +99,18 @@ const SidePanel = ({ children, title, opened, onClose, publicUrl }: Props) => {
       }}
     </Motion>
   )
+}
+
+SidePanel.propTypes = {
+  children: PropTypes.node,
+  title: PropTypes.string.isRequired,
+  opened: PropTypes.bool,
+  onClose: PropTypes.func,
+  publicUrl: PropTypes.string.isRequired,
+}
+
+SidePanel.defaultProps = {
+  opened: true,
 }
 
 export default getPublicUrl(SidePanel)
