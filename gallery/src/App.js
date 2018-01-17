@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import { AragonApp } from '@aragon/ui'
 import Sidebar from 'comps/Sidebar/Sidebar'
 import PageHome from 'pages/PageHome'
+import PageAragonApp from 'pages/PageAragonApp'
 import PageColors from 'pages/PageColors'
 import PageTheme from 'pages/PageTheme'
 import PageButton from 'pages/PageButton'
@@ -16,14 +17,27 @@ import PageFooter from 'pages/PageFooter'
 import PagePreFooter from 'pages/PagePreFooter'
 import PageSection from 'pages/PageSection'
 import PageIllustratedSection from 'pages/PageIllustratedSection'
+import PageCard from './pages/PageCard'
 import initGlobalStyles from './global-styles'
+import PageAppBar from './pages/PageAppBar'
+import PageEmptyStateCard from './pages/PageEmptyStateCard'
+import PageField from './pages/PageField'
+import PageSidePanel from './pages/PageSidePanel'
+import PageTable from './pages/PageTable'
 
 const PAGES = [
   [PageHome, 'Aragon UI', '/'],
   [PageColors, 'Colors', '/colors'],
   [PageTheme, 'Theme', '/theme'],
+  [PageAragonApp, 'AragonApp', '/aragon-app'],
+  [PageAppBar, 'AppBar', '/app-bar'],
+  [PageSidePanel, 'SidePanel', '/side-panel'],
+  [PageCard, 'Card', '/card'],
+  [PageEmptyStateCard, 'EmptyStateCard', '/empty-state-card'],
+  [PageTable, 'Table', '/table'],
   [PageText, 'Text', '/text'],
   [PageSection, 'Section', '/section'],
+  [PageField, 'Field', '/field'],
   [PageButton, 'Button', '/button'],
   [PageDropDown, 'DropDown', '/dropdown'],
   [PageTextInput, 'TextInput', '/text-input'],

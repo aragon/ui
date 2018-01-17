@@ -4,20 +4,7 @@ import Page from 'comps/Page/Page'
 
 import readme from 'ui-src/components/Input/TextInput.md'
 import { TextInput } from '@aragon/ui'
-
-const Container = styled.div`
-  display: flex;
-  max-width: 800px;
-  &:not(:last-child) {
-    margin-bottom: 20px;
-  }
-  & > div {
-    margin-left: 20px;
-  }
-  & > div:first-child {
-    margin: 0;
-  }
-`
+import Container from '../components/Page/DemoContainer'
 
 const DemoHeader = styled.h4`
   margin-bottom: 10px;

@@ -32,6 +32,39 @@ const App = () => (
 )
 ```
 
+### `emphasis`
+
+- Type: `String`
+- Values: `positive` or `negative`.
+
+Set this property to provide positive or negative visual cues.
+
+#### Example:
+
+```jsx
+const App = () => (
+  <div>
+    <Button emphasis="negative">Cancel</Button>
+    <Button emphasis="positive">Accept</Button>
+  </div>
+)
+```
+
+### `compact`
+
+- Type: `Boolean`
+- Default: `false`
+
+Set to true to obtain a button that contains less padding than normal buttons.
+
+#### Example:
+
+```jsx
+const MyButton = () => (
+  <Button compact>Accept</Button>
+)
+```
+
 ### `wide`
 
 - Type: `Boolean`
