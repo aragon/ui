@@ -1,9 +1,8 @@
 import React from 'react'
-import styled from 'styled-components'
 import Page from 'comps/Page/Page'
 
 import readme from 'ui-src/components/Card/EmptyStateCard.md'
-import { EmptyStateCard, Text, IconHome } from '@aragon/ui'
+import { EmptyStateCard, IconHome } from '@aragon/ui'
 import Container from '../components/Page/DemoContainer'
 
 const PageEmptyStateCard = ({ title }) => (
