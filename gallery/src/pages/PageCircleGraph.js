@@ -1,20 +1,9 @@
 import React from 'react'
-import styled from 'styled-components'
 import Page from 'comps/Page/Page'
 
 import readme from 'ui-src/components/CircleGraph/README.md'
 import { Card, CircleGraph, Button } from '@aragon/ui'
-
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 30px 0;
-  .button {
-    margin-top: 30px;
-  }
-`
+import Container from '../components/Page/DemoContainer'
 
 class PageCircleGraph extends React.Component {
   state = {

@@ -4,24 +4,7 @@ import Page from 'comps/Page/Page'
 
 import readme from 'ui-src/components/Card/Card.md'
 import { Card, Text } from '@aragon/ui'
-
-const Container = styled.div`
-  display: flex;
-  max-width: 800px;
-  &:not(:last-child) {
-    margin-bottom: 20px;
-  }
-  & > div {
-    margin-left: 20px;
-  }
-  & > div:first-child {
-    margin: 0;
-  }
-`
-
-const DemoHeader = styled.h4`
-  margin-bottom: 10px;
-`
+import Container from '../components/Page/DemoContainer'
 
 const TextContainer = styled.div`
   display: flex;
