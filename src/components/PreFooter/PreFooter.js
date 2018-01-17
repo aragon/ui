@@ -101,7 +101,7 @@ const Container = getPublicUrl(styled(Section).attrs({ visual: true })`
   `)};
 `)
 
-const emailFormDefault = () => (
+const EmailFormDefault = () => (
   <div>
     <h1 className="title">Aragon Newsletter</h1>
     <p className="desc">
@@ -118,7 +118,7 @@ type Props = {
 }
 
 const DefaultProps = {
-  emailForm: emailFormDefault,
+  emailForm: <EmailFormDefault />,
 }
 
 const PreFooter = ({ emailForm }: Props) => (
