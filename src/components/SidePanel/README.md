@@ -47,3 +47,35 @@ const MySidePanel = (props) => (
   </SidePanel>
 )
 ```
+
+### `onClose`
+
+- Type: `Function`
+
+This property will be called when your SidePanel is closed.
+
+#### Example:
+
+```jsx
+const MySidePanel = (props) => (
+  <SidePanel opened={props.opened} onClose={() => console.log('MySidePanel was closed!')} {...props}>
+    {/* contents */}
+  </SidePanel>
+)
+```
+
+### `blocking`
+
+- Type: `Boolean`
+
+When set, this property removes the ability to close the SidePanel.
+
+#### Example:
+
+```jsx
+const MySidePanel = (props) => (
+  <SidePanel blocking {...props}>
+    {/* contents */}
+  </SidePanel>
+)
+```
