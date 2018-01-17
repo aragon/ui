@@ -1,7 +1,7 @@
 /* @flow */
 import React from 'react'
 import theme from '../../theme'
-import { font } from '../../utils/styles/font'
+import { font } from '../../utils/styles'
 import styled from 'styled-components'
 
 const StyledInput = styled.input`

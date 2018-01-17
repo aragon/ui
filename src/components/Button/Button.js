@@ -2,7 +2,7 @@
 import type { ComponentType } from 'react'
 import styled, { css } from 'styled-components'
 import theme from '../../theme'
-import { font } from '../../utils/styles/font'
+import { font } from '../../utils/styles'
 import getPublicUrl, { styledPublicUrl as asset } from '../../public-url'
 import cross from './assets/cross.svg'
 import check from './assets/check.svg'

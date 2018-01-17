@@ -1,7 +1,7 @@
 /* @flow */
 import React from 'react'
 import styled from 'styled-components'
-import { grid } from '../../utils/styles/grid'
+import { grid } from '../../utils/styles'
 
 const StyledContent = styled.div`
   width: 100%;

@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Motion, spring } from 'react-motion'
-import { spring as springConf } from '../../utils/styles/spring'
+import { spring as springConf } from '../../utils/styles'
 
 const BORDER_WIDTH = 4
 

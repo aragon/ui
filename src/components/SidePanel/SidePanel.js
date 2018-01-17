@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import { Motion, spring } from 'react-motion'
 import Text from '../Text/Text'
 import { lerp } from '../../utils/math'
-import { spring as springConf } from '../../utils/styles/spring'
+import { spring as springConf } from '../../utils/styles'
 import { unselectable } from '../../utils/styles'
 import getPublicUrl, { prefixUrl } from '../../public-url'
 
