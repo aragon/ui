@@ -11,7 +11,7 @@ const PageField = ({ title }) => (
       <Container>
         <div>
           <Field label="Enter name here:">
-            <TextInput />
+            <TextInput required/>
           </Field>
         </div>
       </Container>

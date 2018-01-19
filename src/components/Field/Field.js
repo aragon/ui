@@ -9,6 +9,14 @@ const StyledField = styled.div`
   margin-bottom: 20px;
 `
 
+const StyledAsterix = styled.span`
+  color: ${theme.gradientStart};
+  float: right;
+  &:after {
+    content: '*';
+  }
+`
+
 type Props = {
   children: Node,
   label: string,
@@ -19,6 +27,7 @@ const Field = ({ children, label, ...props }: Props) => (
     <label>
       <Text.Block color={theme.textSecondary} smallcaps>
         {label}
+        {children.props.required && <StyledAsterix />}
       </Text.Block>
       {children}
     </label>
