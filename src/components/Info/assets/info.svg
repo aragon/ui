@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="14px" height="14px" viewBox="0 0 14 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch Beta 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
+    <title>Icon_Info</title>
+    <desc>Created with Sketch Beta.</desc>
+    <defs></defs>
+    <g id="WebApp-1366px---New-Voting" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(-939.000000, -82.000000)">
+        <g id="Modal" transform="translate(890.000000, 0.000000)">
+            <g id="info-note" transform="translate(30.000000, 65.000000)">
+                <g id="Info" transform="translate(15.000000, 14.000000)">
+                    <g id="Icon_Info" transform="translate(4.000000, 3.000000)">
+                        <rect id="Rectangle-2" fill="#DAEAEF" x="0" y="0" width="14" height="14" rx="7"></rect>
+                        <path d="M6.155,8.547 L7.453,8.547 L7.453,3.3 L6.155,3.3 L6.155,8.547 Z M6.045,11 L7.574,11 L7.574,9.537 L6.045,9.537 L6.045,11 Z" id="!" fill="#6D777B" opacity="0.699999988"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
