@@ -95,10 +95,16 @@ class SidePanel extends React.Component {
       this.handleClose()
     }
   }
+  handleMotionRest = () => {
+    this.props.onTransitionEnd(this.props.opened)
+  }
   render() {
     const { children, title, opened, blocking, publicUrl } = this.props
     return (
-      <Motion style={{ progress: spring(Number(opened), springConf('slow')) }}>
+      <Motion
+        style={{ progress: spring(Number(opened), springConf('slow')) }}
+        onRest={this.handleMotionRest}
+      >
         {({ progress }) => {
           const styles = motionStyles(progress)
           return (
@@ -139,11 +145,13 @@ SidePanel.propTypes = {
   blocking: PropTypes.bool,
   onClose: PropTypes.func,
   publicUrl: PropTypes.string.isRequired,
+  onTransitionEnd: PropTypes.func,
 }
 
 SidePanel.defaultProps = {
   opened: true,
   blocking: false,
+  onTransitionEnd: () => {},
 }
 
 const WrappedSidePanel = getPublicUrl(SidePanel)
