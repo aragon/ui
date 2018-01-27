@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import ReactDOM from 'react-dom'
 import styled from 'styled-components'
 import renderReadme from 'src/render-readme'
 import MarkdownContent from './MarkdownContent'
+import Frame from './Frame'
 
 const StyledPage = styled.section`
   width: 100%;
@@ -79,32 +79,9 @@ class Page extends React.Component {
   }
 }
 
-class Frame extends Component {
-  componentDidMount() {
-    this.iframeHead = this.node.contentDocument.head
-    this.iframeRoot = this.node.contentDocument.body
-    this.head = this.props.head
-    this.forceUpdate()
-  }
-  
-  render() {
-    const { children, head, styles, ...rest } = this.props
-    return (
-      <iframe {...rest} ref={node => (this.node = node)}>
-        {this.iframeHead && ReactDOM.createPortal(this.head, this.iframeHead)}
-        {this.iframeRoot && ReactDOM.createPortal(children, this.iframeRoot)}
-      </iframe>
-    )
-  }
-}
-
-
-
 Page.Demo = ({ children }) => (
   <div>
-    <Frame 
-      head={<head dangerouslySetInnerHTML={{ __html: `${document.head.innerHTML}` }} />} 
-      style={{ width: '100%', height: 300, resize: 'both', overflow: 'auto' }}>
+    <Frame>
       <h2>Demonstration</h2>
       <div>{children}</div>
     </Frame>
