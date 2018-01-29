@@ -1,8 +1,9 @@
-import React, { Component } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import renderReadme from 'src/render-readme'
 import MarkdownContent from './MarkdownContent'
 import Frame from './Frame'
+import Resizable from './Resizable'
 
 const StyledPage = styled.section`
   width: 100%;
@@ -81,10 +82,12 @@ class Page extends React.Component {
 
 Page.Demo = ({ children }) => (
   <div>
-    <Frame>
-      <h2>Demonstration</h2>
-      <div>{children}</div>
-    </Frame>
+    <h2>Demonstration</h2>
+    <Resizable>
+      <Frame>
+        {children}
+      </Frame>
+    </Resizable>
   </div>
 )
 
