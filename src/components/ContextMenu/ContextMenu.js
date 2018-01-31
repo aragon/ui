@@ -115,6 +115,7 @@ const Popup = styled.div`
   position: absolute;
   top: ${BASE_HEIGHT - 1}px;
   right: 0;
+  padding: 10px 0;
   background: ${theme.contentBackground};
   border: 1px solid ${theme.contentBorder};
   border-radius: 3px 0 3px 3px;

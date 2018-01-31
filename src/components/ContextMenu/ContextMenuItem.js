@@ -10,12 +10,6 @@ const ContextMenuItem = styled.div`
   padding: 5px 20px;
   cursor: pointer;
   ${unselectable()};
-  &:first-child {
-    padding-top: 15px;
-  }
-  &:last-child {
-    padding-bottom: 15px;
-  }
   &:active {
     background: ${theme.contentBackgroundActive};
   }
