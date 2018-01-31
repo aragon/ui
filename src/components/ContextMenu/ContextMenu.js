@@ -32,8 +32,13 @@ class ContextMenu extends React.Component {
             openProgress: spring(Number(opened), springConf('fast')),
           }}
         >
-          {({ openProgress, closeProgress }) => (
-            <Main opened={opened}>
+          {({ openProgress }) => (
+            <Main
+              opened={opened}
+              style={{
+                boxShadow: `0 4px 4px rgba(0, 0, 0, ${openProgress * 0.03})`,
+              }}
+            >
               <BaseButton onClick={this.handleBaseButtonClick} opened={opened}>
                 <img src={opened ? ellipsisActive : ellipsis} alt="" />
                 <img
@@ -44,7 +49,14 @@ class ContextMenu extends React.Component {
                   }}
                 />
               </BaseButton>
-              <Popup opened={opened} onClick={this.handleClose}>
+              <Popup
+                opened={opened}
+                onClick={this.handleClose}
+                style={{
+                  opacity: openProgress,
+                  boxShadow: `0 4px 4px rgba(0, 0, 0, ${openProgress * 0.03})`,
+                }}
+              >
                 {children}
               </Popup>
             </Main>
@@ -83,6 +95,7 @@ const BaseButton = styled.div`
       opened ? theme.contentBackgroundActive : theme.contentBorder};
   }
   &:before {
+    display: ${({ opened }) => (opened ? 'block' : 'none')};
     content: '';
     position: absolute;
     bottom: -1px;
