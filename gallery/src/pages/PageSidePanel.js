@@ -9,7 +9,9 @@ const PageSidePanel = ({ title }) => (
   <Page title={title} readme={readme}>
     <Page.Demo>
       <Container>
-        <SidePanel />
+        <SidePanel title="Menu" opened>
+          {/* Content goes here */}
+        </SidePanel>
       </Container>
     </Page.Demo>
   </Page>
