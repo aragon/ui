@@ -16,8 +16,8 @@ const StyleTag = (props) => (
 class Frame extends React.Component {
   state = { iframeHead: null, iframeBody: null, iframeHeight: null }
   componentDidMount() {
-    this.node.contentDocument.body.style.background = 'none';
-    this.node.contentDocument.lastChild.style.overflow = 'hidden';  
+    this.node.contentDocument.body.style.background = 'none'
+    this.node.contentDocument.lastChild.style.overflow = 'hidden'
     this.setState({
       iframeHead: this.node.contentDocument.head,
       iframeBody: this.node.contentDocument.body,
@@ -34,9 +34,16 @@ class Frame extends React.Component {
   render() {
     const { children, styles, ...rest } = this.props
     const { iframeHead, iframeBody, iframeHeight } = this.state
-    const styleTags = StyleSheet.instance.tags.map((tag, index) => <StyleTag el={tag.el} key={index} />)
+    const { instance: { tags } } = StyleSheet // or passed props
+    const styleTags = tags.map((tag, index) => (
+      <StyleTag el={tag.el} key={index} />
+    ))
     return (
-      <StyledFrame {...rest} innerRef={node => (this.node = node)} height={iframeHeight}>
+      <StyledFrame
+        {...rest}
+        innerRef={node => (this.node = node)}
+        height={iframeHeight}
+      >
         {iframeHead && ReactDOM.createPortal(styleTags, iframeHead)}
         {iframeBody && ReactDOM.createPortal(children, iframeBody)}
       </StyledFrame>
