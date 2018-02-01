@@ -26,7 +26,6 @@ class Resizable extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      initialWidth: null,
       minWidth: props.minWidth || 0,
       contentProps: {
         width: '100%',
@@ -35,10 +34,7 @@ class Resizable extends React.Component {
   }
 
   componentDidMount() {
-    const initialWidth = this.resizableNode.offsetWidth
-    this.setState({
-      initialWidth: initialWidth,
-    })
+    this.parentNode = this.containerNode.parentNode
   }
 
   componentWillReceiveProps({ width }) {
@@ -54,13 +50,15 @@ class Resizable extends React.Component {
   }
 
   handleOnMouseMove = e => {
-    const { initialWidth, minWidth, contentProps } = this.state
-    const updatedWidth =
-      e.clientX - this.resizableNode.offsetLeft - this.resizerNode.offsetWidth
+    const { minWidth, contentProps } = this.state
+    const updatedWidth = e.clientX - this.containerNode.offsetLeft
+    const updatedWidthWithResizerHandle =
+      updatedWidth + this.resizerNode.offsetWidth
 
     if (
       contentProps.width !== updatedWidth &&
-      (updatedWidth <= initialWidth && updatedWidth >= minWidth)
+      updatedWidthWithResizerHandle <= this.parentNode.offsetWidth &&
+      updatedWidth >= minWidth
     ) {
       this.setState({
         contentProps: { ...contentProps, width: updatedWidth },
@@ -76,10 +74,9 @@ class Resizable extends React.Component {
   render() {
     const { contentProps } = this.state
     return (
-      <ResizableContainer>
+      <ResizableContainer innerRef={node => (this.containerNode = node)}>
         <ResizableContent
           {...contentProps}
-          innerRef={node => (this.resizableNode = node)}
         >
           {this.props.children}
         </ResizableContent>
