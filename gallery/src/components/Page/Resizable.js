@@ -11,9 +11,7 @@ const StyledResizer = styled.div`
   align-items: center;
   user-select: none;
 `
-const ResizableContent = styled.div.attrs({
-  style: props => ({ width: props.width }),
-})`
+const ResizableContent = styled.div`
   background-color: #f2f2f2;
   padding: 16px;
 `
@@ -23,13 +21,14 @@ const ResizableContainer = styled.div`
 `
 
 class Resizable extends React.Component {
+  static defaultProps = {
+    minWidth: 0,
+  }
+
   constructor(props) {
     super(props)
     this.state = {
-      minWidth: props.minWidth || 0,
-      contentProps: {
-        width: '100%',
-      },
+      contentWidth: props.width,
     }
   }
 
@@ -38,9 +37,8 @@ class Resizable extends React.Component {
   }
 
   componentWillReceiveProps({ width }) {
-    const { contentProps } = this.state
     this.setState({
-      contentProps: { ...contentProps, width: width },
+      contentWidth: width,
     })
   }
 
@@ -50,19 +48,18 @@ class Resizable extends React.Component {
   }
 
   handleOnMouseMove = e => {
-    const { minWidth, contentProps } = this.state
+    const { minWidth } = this.props
+    const { contentWidth } = this.state
     const updatedWidth = e.clientX - this.containerNode.offsetLeft
     const updatedWidthWithResizerHandle =
       updatedWidth + this.resizerNode.offsetWidth
 
     if (
-      contentProps.width !== updatedWidth &&
+      contentWidth !== updatedWidth &&
       updatedWidthWithResizerHandle <= this.parentNode.offsetWidth &&
       updatedWidth >= minWidth
     ) {
-      this.setState({
-        contentProps: { ...contentProps, width: updatedWidth },
-      })
+      this.setState({ contentWidth: updatedWidth })
     }
   }
 
@@ -72,11 +69,11 @@ class Resizable extends React.Component {
   }
 
   render() {
-    const { contentProps } = this.state
+    const { contentWidth } = this.state
     return (
       <ResizableContainer innerRef={node => (this.containerNode = node)}>
         <ResizableContent
-          {...contentProps}
+          style={{ width: contentWidth == null ? '100%' : `${contentWidth}px` }}
         >
           {this.props.children}
         </ResizableContent>
