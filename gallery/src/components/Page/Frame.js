@@ -1,38 +1,37 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import styled from 'styled-components'
-import StyleSheet from 'styled-components/lib/models/StyleSheet';
+import StyleSheet from 'styled-components/lib/models/StyleSheet'
 
 const StyledFrame = styled.iframe`
   border: none;
   width: 100%;
-  height: ${props => `${props.height}px;`}
+  height: ${props => `${props.height}px;`};
 `
 
-const StyleTag = (props) => (
-  <style>{props.el.innerHTML}</style>
-)
+const StyleTag = props => <style>{props.el.innerHTML}</style>
 
 class Frame extends React.Component {
   state = { iframeHead: null, iframeBody: null, iframeHeight: null }
   componentDidMount() {
-    this.node.contentDocument.body.style.background = 'none'
-    this.node.contentDocument.lastChild.style.overflow = 'hidden'
+    const frameDocument = this.node.contentDocument
+    frameDocument.body.style.background = 'none'
+    frameDocument.lastChild.style.overflow = 'hidden'
     this.setState({
-      iframeHead: this.node.contentDocument.head,
-      iframeBody: this.node.contentDocument.body,
+      iframeHead: frameDocument.head,
+      iframeBody: frameDocument.body,
     })
   }
 
   componentDidUpdate() {
-    const updatedHeight = this.state.iframeBody.offsetHeight;
+    const updatedHeight = this.state.iframeBody.offsetHeight
     if (this.state.iframeHeight !== updatedHeight) {
       this.setState({ iframeHeight: updatedHeight })
     }
   }
 
   render() {
-    const { children, styles, ...rest } = this.props
+    const { children,  ...rest } = this.props
     const { iframeHead, iframeBody, iframeHeight } = this.state
     const { instance: { tags } } = StyleSheet // or passed props
     const styleTags = tags.map((tag, index) => (
