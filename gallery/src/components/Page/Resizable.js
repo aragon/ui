@@ -24,6 +24,7 @@ const ResizableContainer = styled.div`
 class Resizable extends React.Component {
   static defaultProps = {
     minWidth: 0,
+    maxWidth: Number.MAX_VALUE,
   }
 
   constructor(props) {
@@ -49,7 +50,7 @@ class Resizable extends React.Component {
   }
 
   handleOnMouseMove = e => {
-    const { minWidth } = this.props
+    const { minWidth, maxWidth } = this.props
     const { contentWidth } = this.state
     const updatedWidth = e.clientX - this.containerNode.offsetLeft
     const updatedWidthWithResizerHandle =
@@ -58,7 +59,8 @@ class Resizable extends React.Component {
     if (
       contentWidth !== updatedWidth &&
       updatedWidthWithResizerHandle <= this.parentNode.offsetWidth &&
-      updatedWidth >= minWidth
+      updatedWidth >= minWidth &&
+      updatedWidth <= maxWidth
     ) {
       this.setState({ contentWidth: updatedWidth })
     }
