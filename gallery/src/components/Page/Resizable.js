@@ -5,7 +5,7 @@ const StyledResizer = styled.div`
   background-color: #ffff;
   box-shadow: 0 1.2rem 3.6rem rgba(0, 0, 0, 0.2);
   width: 45px;
-  cursor: w-resize;
+  cursor: col-resize;
   display: flex;
   justify-content: center;
   align-items: center;
