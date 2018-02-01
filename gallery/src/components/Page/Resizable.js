@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { unselectable } from '@aragon/ui'
 
 const StyledResizer = styled.div`
   background-color: #ffff;
@@ -9,7 +10,7 @@ const StyledResizer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  user-select: none;
+  ${unselectable()};
 `
 const ResizableContent = styled.div`
   background-color: #f2f2f2;
