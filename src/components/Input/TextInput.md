@@ -22,21 +22,6 @@ const App = () => (
 
 See [MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_<input>_types).
 
-### `required`
-
-- Type: `Boolean`
-- Default: `false`
-
-Set to true to obtain an input that is required.
-
-#### Example:
-
-```jsx
-const MyRequiredTextInput = () => (
-  <TextInput required />
-)
-```
-
 ### `wide`
 
 - Type: `Boolean`

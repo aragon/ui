@@ -12,6 +12,8 @@ const StyledField = styled.div`
 const StyledAsterisk = styled.span`
   color: ${theme.accent};
   float: right;
+  padding-top: 3px;
+  font-size: 12px;
 `
 
 type Props = {
