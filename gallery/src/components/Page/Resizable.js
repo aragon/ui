@@ -38,7 +38,7 @@ class Resizable extends React.Component {
     this.parentNode = this.containerNode.parentNode
   }
 
-  componentWillReceiveProps({ width }) {
+  componentWillReceiveProps({ width = this.state.contentWidth }) {
     this.setState({
       contentWidth: width,
     })
