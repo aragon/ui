@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
 import theme from '../../theme'
-import { font } from '../../shared-styles'
 
 const BadgeNumber = ({ number, small, background, color, ...props }) => (
   <Main small={small} background={background} color={color} {...props}>

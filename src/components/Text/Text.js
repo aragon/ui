@@ -3,7 +3,7 @@ import type { ComponentType, ElementType, Node } from 'react'
 import React from 'react'
 import styled from 'styled-components'
 import theme from '../../theme'
-import { fontStyle } from '../../shared-styles'
+import { font } from '../../utils/styles'
 
 type Props = {
   children?: Node,
@@ -19,7 +19,7 @@ type TextComponentType = {
 }
 
 const StyledText = styled.span`
-  ${({ size, weight }) => fontStyle({ size, weight })};
+  ${({ size, weight }) => font({ size, weight })};
   ${({ smallcaps }) => {
     if (!smallcaps) return ''
     return `

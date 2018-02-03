@@ -5,7 +5,7 @@ import styled, { css } from 'styled-components'
 import getPublicUrl, { styledPublicUrl as asset } from '../../public-url'
 import theme from '../../theme'
 import Text from '../Text/Text'
-import { unselectable } from '../../shared-styles'
+import { unselectable } from '../../utils/styles'
 
 import chevronSvg from './assets/chevron.svg'
 

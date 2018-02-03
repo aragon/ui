@@ -1,11 +1,11 @@
 /* @flow */
 import React from 'react'
 import theme from '../../theme'
-import { fontStyle } from '../../shared-styles'
+import { font } from '../../utils/styles'
 import styled from 'styled-components'
 
 const StyledInput = styled.input`
-  ${fontStyle({ size: 'small', weight: 'normal' })};
+  ${font({ size: 'small', weight: 'normal' })};
   width: ${({ wide }) => (wide ? '100%' : 'auto')};
 
   padding: 5px 10px;

@@ -1,14 +1,7 @@
 export * from './icons'
 
 export { default as theme, themeDark, brand, colors } from './theme'
-export {
-  font,
-  grid,
-  spring,
-  breakpoint,
-  unselectable,
-  BreakPoint,
-} from './shared-styles'
+export { font, grid, spring, breakpoint, BreakPoint, unselectable } from './utils/styles'
 export { default as BaseStyles } from './components/BaseStyles/BaseStyles'
 export { default as Section } from './components/Section/Section'
 export {
