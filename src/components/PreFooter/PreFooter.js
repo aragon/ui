@@ -127,16 +127,16 @@ const PreFooter = ({ emailForm }: Props) => (
       <div className="main">
         <section className="section">{emailForm}</section>
         <section className="section">
-          <h1 className="title">Try Aragon now</h1>
+          <h1 className="title">Aragon Alpha</h1>
           <p className="desc">
-            Download Aragon Core<br /> or try the{' '}
-            <a href="https://alpha.aragon.one" target="_blank">
-              web version
-            </a>
+            Completely updated<br /> Aragon Alpha v0.5 Coming Soon
           </p>
-          <a href="https://github.com/aragon/aragon/releases" target="_blank">
+          <a
+            href="https://blog.aragon.one/news-from-the-front-5820cd9f2e46"
+            target="_blank"
+          >
             <Button mode="strong" wide>
-              Download Aragon Core 0.3
+              Learn More
             </Button>
           </a>
         </section>

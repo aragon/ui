@@ -1,14 +1,4 @@
 export * from './icons'
-export {
-  css as styledCss,
-  keyframes as styledKeyframes,
-  injectGlobal as styledInjectGlobal,
-  ThemeProvider as styledThemeProvider,
-  withTheme as styledWithTheme,
-  ServerStyleSheet as styledServerStyleSheet,
-  StyleSheetManager as styledStyleSheetManager,
-  default as styled,
-} from 'styled-components'
 
 export { default as theme, themeDark, brand, colors } from './theme'
 export { font, grid, spring, breakpoint, BreakPoint, unselectable } from './utils/styles'

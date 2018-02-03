@@ -6,6 +6,8 @@ import { font } from '../../utils/styles'
 import getPublicUrl, { styledPublicUrl as asset } from '../../public-url'
 import cross from './assets/cross.svg'
 import check from './assets/check.svg'
+import crossWhite from './assets/cross-white.svg'
+import checkWhite from './assets/check-white.svg'
 
 const {
   gradientStart,
@@ -110,11 +112,35 @@ const compactStyle = css`
 const positiveStyle = css`
   padding-left: 34px;
   background: url(${asset(check)}) no-repeat 12px calc(50% - 1px);
+  ${({ mode }) => {
+    if (mode !== 'strong') return ''
+    return css`
+      &, &:active {
+        background-image: url(${asset(checkWhite)});
+        background-color: ${theme.positive};
+      }
+      &:after {
+        background: none;
+      }
+    `
+  }};
 `
 
 const negativeStyle = css`
   padding-left: 30px;
   background: url(${asset(cross)}) no-repeat 10px calc(50% - 1px);
+  ${({ mode }) => {
+    if (mode !== 'strong') return ''
+    return css`
+      &, &:active {
+        background-image: url(${asset(crossWhite)});
+        background-color: ${theme.negative};
+      }
+      &:after {
+        background: none;
+      }
+    `
+  }};
 `
 
 type Mode = 'normal' | 'secondary' | 'strong' | 'outline' | 'text'

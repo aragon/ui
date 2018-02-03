@@ -43,6 +43,7 @@ type Props = {
   title: string,
   children?: Node,
   endContent?: Node,
+  onTitleClick?: () => *,
 }
 
 const AppBar = ({

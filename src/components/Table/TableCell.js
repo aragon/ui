@@ -1,5 +1,3 @@
-/* @flow */
-import type { Node, ComponentType } from 'react'
 import React from 'react'
 import styled from 'styled-components'
 import theme from '../../theme'
@@ -11,6 +9,7 @@ const StyledTableCell = styled.td`
   padding: 20px;
   background: ${contentBackground};
   border-bottom: 1px solid ${contentBorder};
+  text-align: ${({ align }) => align};
 
   /* First and last cell styling */
   &:first-child {
@@ -41,25 +40,23 @@ const StyledTableCell = styled.td`
 const StyledTableCellContent = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: ${({ align }) =>
+    align === 'right' ? 'flex-end' : 'space-between'};
 `
 
-type Props = {
-  children: Node,
-  contentContainer: ComponentType<*>,
-}
-
 const DefaultProps = {
+  align: 'left',
   contentContainer: StyledTableCellContent,
 }
 
 const TableCell = ({
   children,
   contentContainer: Container,
+  align,
   ...props
-}: Props) => (
-  <StyledTableCell {...props}>
-    <Container>{children}</Container>
+}) => (
+  <StyledTableCell align={align} {...props}>
+    <Container align={align}>{children}</Container>
   </StyledTableCell>
 )
 

@@ -2,14 +2,21 @@ import React from 'react'
 import styled from 'styled-components'
 import theme from '../../theme'
 
-const BadgeNumber = ({ number = 0, small = false, ...props }) => (
-  <Main small={small} {...props}>
+const BadgeNumber = ({ number, small, background, color, ...props }) => (
+  <Main small={small} background={background} color={color} {...props}>
     {number}
   </Main>
 )
 
+BadgeNumber.defaultProps = {
+  number: 0,
+  small: false,
+  color: theme.positiveText,
+  background: theme.positive,
+}
+
 const Main = styled.span`
-  display: flex;
+  display: inline-flex;
   overflow: hidden;
   justify-content: center;
   align-items: center;
@@ -20,8 +27,8 @@ const Main = styled.span`
   border-radius: ${({ small }) => (small ? '7' : '9')}px;
   font-size: ${({ small }) => (small ? '10' : '12')}px;
   font-weight: 600;
-  color: ${theme.positiveText};
-  background: ${theme.positive};
+  color: ${({ color }) => color};
+  background: ${({ background }) => background};
 `
 
 export default BadgeNumber

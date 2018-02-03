@@ -9,7 +9,8 @@
     "markdown-it-anchor": "^4.0.0",
     "prismjs": "^1.8.1",
     "react": "^16.0.0",
-    "react-dom": "^16.0.0"
+    "react-dom": "^16.0.0",
+    "styled-components": "^2.2.3"
   },
   "scripts": {
     "start": "webpack-dev-server",

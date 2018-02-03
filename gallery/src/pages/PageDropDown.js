@@ -1,20 +1,9 @@
 import React from 'react'
-import styled from 'styled-components'
 import Page from 'comps/Page/Page'
 
 import readme from 'ui-src/components/DropDown/README.md'
 import { DropDown } from '@aragon/ui'
-
-const Container = styled.div`
-  display: flex;
-  max-width: 800px;
-  & > div {
-    margin-left: 20px;
-  }
-  & > div:first-child {
-    margin: 0;
-  }
-`
+import Container from '../components/Page/DemoContainer'
 
 class PageDropDown extends React.Component {
   state = {

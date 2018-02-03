@@ -1,5 +1,4 @@
-/* @flow */
-import type { Node } from 'react'
+import PropTypes from 'prop-types'
 import React from 'react'
 import styled from 'styled-components'
 import { Motion, spring } from 'react-motion'
@@ -21,6 +20,7 @@ const StyledSidePanel = styled.div`
   left: 0;
   right: 0;
   bottom: 0;
+  pointer-events: ${({ opened }) => (opened ? 'auto' : 'none')};
 `
 
 const Overlay = styled.div`
@@ -30,6 +30,7 @@ const Overlay = styled.div`
   right: 0;
   bottom: 0;
   background: rgba(68, 81, 89, 0.65);
+  pointer-events: ${({ opened }) => (opened ? 'auto' : 'none')};
 `
 
 const StyledPanel = styled.aside`
@@ -51,6 +52,7 @@ const StyledPanelHeader = styled.header`
   padding-top: 15px;
   padding-bottom: 15px;
   padding-right: 20px;
+  ${unselectable()};
 `
 
 const StyledPanelCloseButton = styled.button`
@@ -66,8 +68,6 @@ const StyledPanelCloseButton = styled.button`
     &::-moz-focus-inner {
       border: 0;
     }
-
-    ${unselectable()};
   }
 `
 
@@ -76,38 +76,72 @@ const motionStyles = progress => ({
   panel: { right: `${lerp(progress, PANEL_HIDE_RIGHT, -PANEL_OVERFLOW)}px` },
 })
 
-type Props = {
-  children: Node,
-  title: string,
-  opened: boolean,
-  onClose?: mixed,
-  publicUrl: string,
+class SidePanel extends React.Component {
+  componentDidMount() {
+    document.addEventListener('keydown', this.handleEscape, false)
+  }
+  componentWillUnmount() {
+    document.removeEventListener('keydown', this.handleEscape, false)
+  }
+  handleClose = () => {
+    if (!this.props.blocking) {
+      this.props.onClose()
+    }
+  }
+  handleEscape = event => {
+    if (event.keyCode === 27 && this.props.opened) {
+      this.handleClose()
+    }
+  }
+  render() {
+    const { children, title, opened, blocking, publicUrl } = this.props
+    return (
+      <Motion style={{ progress: spring(Number(opened), springConf('slow')) }}>
+        {({ progress }) => {
+          const styles = motionStyles(progress)
+          return (
+            <StyledSidePanel hidden={progress === 0} opened={opened}>
+              <Overlay
+                opened={opened}
+                style={styles.overlay}
+                onClick={this.handleClose}
+              />
+              <StyledPanel style={styles.panel}>
+                <StyledPanelHeader>
+                  <h1>
+                    <Text size="xxlarge">{title}</Text>
+                  </h1>
+                  {!blocking && (
+                    <StyledPanelCloseButton
+                      type="button"
+                      onClick={this.handleClose}
+                    >
+                      <img src={prefixUrl(close, publicUrl)} alt="Close" />
+                    </StyledPanelCloseButton>
+                  )}
+                </StyledPanelHeader>
+                {children}
+              </StyledPanel>
+            </StyledSidePanel>
+          )
+        }}
+      </Motion>
+    )
+  }
 }
 
-const SidePanel = ({ children, title, opened, onClose, publicUrl }: Props) => {
-  return (
-    <Motion style={{ progress: spring(Number(opened), springConf('slow')) }}>
-      {({ progress }) => {
-        const styles = motionStyles(progress)
-        return (
-          <StyledSidePanel hidden={progress === 0}>
-            <Overlay style={styles.overlay} />
-            <StyledPanel style={styles.panel}>
-              <StyledPanelHeader>
-                <h1>
-                  <Text size="xxlarge">{title}</Text>
-                </h1>
-                <StyledPanelCloseButton type="button" onClick={onClose}>
-                  <img src={prefixUrl(close, publicUrl)} alt="Close" />
-                </StyledPanelCloseButton>
-              </StyledPanelHeader>
-              {children}
-            </StyledPanel>
-          </StyledSidePanel>
-        )
-      }}
-    </Motion>
-  )
+SidePanel.propTypes = {
+  children: PropTypes.node,
+  title: PropTypes.string.isRequired,
+  opened: PropTypes.bool,
+  blocking: PropTypes.bool,
+  onClose: PropTypes.func,
+  publicUrl: PropTypes.string.isRequired,
+}
+
+SidePanel.defaultProps = {
+  opened: true,
+  blocking: false,
 }
 
 export default getPublicUrl(SidePanel)
