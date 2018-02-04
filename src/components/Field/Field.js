@@ -4,6 +4,7 @@ import React from 'react'
 import styled from 'styled-components'
 import Text from '../Text/Text'
 import theme from '../../theme'
+import { unselectable } from '../../utils/styles'
 
 const StyledField = styled.div`
   margin-bottom: 20px;
@@ -14,6 +15,10 @@ const StyledAsterisk = styled.span`
   float: right;
   padding-top: 3px;
   font-size: 12px;
+`
+
+const StyledTextBlock = styled(Text.Block)`
+  ${unselectable()};
 `
 
 type Props = {
@@ -28,10 +33,10 @@ const Field = ({ children, label, ...props }: Props) => {
   return (
     <StyledField {...props}>
       <label>
-        <Text.Block color={theme.textSecondary} smallcaps>
+        <StyledTextBlock color={theme.textSecondary} smallcaps>
           {label}
           {isRequired && <StyledAsterisk title="Required">*</StyledAsterisk>}
-        </Text.Block>
+        </StyledTextBlock>
         {children}
       </label>
     </StyledField>
