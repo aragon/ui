@@ -23,7 +23,7 @@ type Props = {
 
 const Field = ({ children, label, ...props }: Props) => {
   const isRequired = React.Children.toArray(children).some(
-    ({ props }) => (props.required)
+    ({ props: childProps }) => childProps.required
   )
   return (
     <StyledField {...props}>
