@@ -9,11 +9,11 @@ import getPublicUrl, { prefixUrl } from '../../public-url'
 
 import close from './assets/close.svg'
 
-export const PANEL_WIDTH = 450
-export const PANEL_OVERFLOW = PANEL_WIDTH * 0.2
-export const PANEL_HIDE_RIGHT = -PANEL_WIDTH * 1.6
-export const HORIZONTAL_PADDING = 30
-export const PANEL_INNER_WIDTH = PANEL_WIDTH - HORIZONTAL_PADDING * 2
+const PANEL_WIDTH = 450
+const PANEL_OVERFLOW = PANEL_WIDTH * 0.2
+const PANEL_HIDE_RIGHT = -PANEL_WIDTH * 1.6
+const HORIZONTAL_PADDING = 30
+const PANEL_INNER_WIDTH = PANEL_WIDTH - HORIZONTAL_PADDING * 2
 
 const StyledSidePanel = styled.div`
   position: fixed;
