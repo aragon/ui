@@ -29,7 +29,7 @@
   "Purple": {
     "Indigo": "#4A2DBE",
     "Portage": "#A684F5",
-    "Lavender": "#EAE0FF"
+    "Lavender": "#EDE5FF"
   },
   "Eagle": {
     "Dark Cerulean": "#00A4D1",
@@ -83,7 +83,15 @@
     "positive": "=Green.Spring Green",
     "positiveText": "=White.White",
     "negative": "=Red.Salmon Red",
-    "negativeText": "=White.White"
+    "negativeText": "=White.White",
+    "badgeAppBackground": "=Purple.Lavender",
+    "badgeAppForeground": "=Purple.Portage",
+    "badgeIdentityBackground": "=Rain.Rain Sky",
+    "badgeIdentityForeground": "=Rain.Slate",
+    "badgeNotificationBackground": "=Aragon UI.positive",
+    "badgeNotificationForeground": "=Aragon UI.positiveText",
+    "badgeInfoBackground": "=Rain.Rain Sky",
+    "badgeInfoForeground": "=Rain.Slate"
   },
   "Aragon UI Dark": {
     "gradientStart": "=Eagle.Cerulean",
@@ -107,6 +115,14 @@
     "positive": "=Green.Spring Green",
     "positiveText": "=White.White",
     "negative": "=Red.Salmon Red",
-    "negativeText": "=White.White"
+    "negativeText": "=White.White",
+    "badgeAppBackground": "=Purple.Lavender",
+    "badgeAppForeground": "=Purple.Portage",
+    "badgeIdentityBackground": "=Rain.Rain Sky",
+    "badgeIdentityForeground": "=Rain.Slate",
+    "badgeNotificationBackground": "=Aragon UI Dark.positive",
+    "badgeNotificationForeground": "=Aragon UI Dark.positiveText",
+    "badgeInfoBackground": "=Rain.Rain Sky",
+    "badgeInfoForeground": "=Rain.Slate"
   }
 }
