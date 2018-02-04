@@ -1,8 +1,6 @@
 import PropTypes from 'prop-types'
 import React from 'react'
-import styled, { css } from 'styled-components'
-import theme, { colors } from '../../theme'
-import { fontStyle } from '../../shared-styles'
+import theme from '../../theme'
 import { formatCount } from '../../utils/format'
 import Badge from './Badge'
 

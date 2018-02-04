@@ -2,7 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import theme from '../../theme'
-import { font } from '../../shared-styles'
 import Badge from './Badge'
 
 const BadgeDisc = ({ number, small, type, ...props }) => {

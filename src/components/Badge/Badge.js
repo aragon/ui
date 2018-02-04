@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
-import theme, { colors } from '../../theme'
-import { fontStyle } from '../../shared-styles'
+import { colors } from '../../theme'
+import { font } from '../../utils/styles'
 import BadgeInfo from './Badge.Info'
 import BadgeNotification from './Badge.Notification'
 import BadgeIdentity from './Badge.Identity'
@@ -18,7 +18,7 @@ const shapeStyles = shape => {
       width: 18px;
       height: 18px;
       border-radius: 9px;
-      ${fontStyle({ size: 'xsmall', weight: 'bold' })};
+      ${font({ size: 'xsmall', weight: 'bold' })};
       line-height: 20px;
     `
   }
@@ -32,7 +32,7 @@ const shapeStyles = shape => {
       width: 14px;
       height: 14px;
       border-radius: 7px;
-      ${fontStyle({ size: 'xxsmall', weight: 'bold' })};
+      ${font({ size: 'xxsmall', weight: 'bold' })};
       line-height: 14px;
     `
   }
@@ -40,14 +40,14 @@ const shapeStyles = shape => {
     return css`
       padding: 1px 3px 0;
       border-radius: 3px;
-      ${fontStyle({ size: 'xxsmall' })};
+      ${font({ size: 'xxsmall' })};
     `
   }
   // round shape
   return css`
     padding: 1px 8px 0;
     border-radius: 9px;
-    ${fontStyle({ size: 'xsmall' })};
+    ${font({ size: 'xsmall' })};
   `
 }
 

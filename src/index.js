@@ -9,6 +9,7 @@ export {
   default as IllustratedSection,
 } from './components/IllustratedSection/IllustratedSection'
 export { default as BadgeNumber } from './components/BadgeNumber/BadgeNumber'
+export { default as BadgeDisc } from './components/Badge/BadgeDisc'
 export { default as Badge } from './components/Badge/Badge'
 export { default as Button } from './components/Button/Button'
 export { default as CircleGraph } from './components/CircleGraph/CircleGraph'
