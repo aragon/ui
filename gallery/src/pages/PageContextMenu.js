@@ -27,7 +27,7 @@ const PageContextMenu = ({ title }) => (
           }
         >
           <TableRow>
-            <TableCell></TableCell>
+            <TableCell />
             <TableCell>
               <ContextMenu>
                 <ContextMenuItem>
