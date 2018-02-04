@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { Motion, spring } from 'react-motion'
 import ClickOutHandler from 'react-onclickout'
 import theme from '../../theme'
-import { springConf, unselectable } from '../../shared-styles'
+import { unselectable, spring as springConf } from '../../utils/styles'
 
 import Ellipsis from '../../icons/components/Ellipsis'
 import ArrowDown from '../../icons/components/ArrowDown'
