@@ -12,9 +12,6 @@ const ContextMenuItem = styled.div`
   &:active {
     background: ${theme.contentBackgroundActive};
   }
-  & > svg {
-    margin-right: 15px;
-  }
 `
 
 export default ContextMenuItem
