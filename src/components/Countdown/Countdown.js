@@ -2,10 +2,9 @@ import React from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import IconTime from '../../icons/components/Time'
-import { difference } from '../../date-utils'
+import { difference, formatHtmlDatetime } from '../../utils/date'
 import { unselectable } from '../../utils/styles'
 import theme from '../../theme'
-import { formatHtmlDatetime } from '../../utils/format'
 
 const formatUnit = v => String(v).padStart(2, '0')
 
