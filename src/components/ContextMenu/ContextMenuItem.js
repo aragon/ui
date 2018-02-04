@@ -2,7 +2,6 @@ import React from 'react'
 import styled from 'styled-components'
 import theme from '../../theme'
 import { unselectable } from '../../shared-styles'
-import { BASE_WIDTH } from './ContextMenu'
 
 const ContextMenuItem = styled.div`
   display: flex;

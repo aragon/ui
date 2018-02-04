@@ -8,8 +8,8 @@ import { springConf, unselectable } from '../../shared-styles'
 import Ellipsis from '../../icons/components/Ellipsis'
 import ArrowDown from '../../icons/components/ArrowDown'
 
-export const BASE_WIDTH = 46
-export const BASE_HEIGHT = 32
+const BASE_WIDTH = 46
+const BASE_HEIGHT = 32
 
 class ContextMenu extends React.Component {
   state = {
@@ -130,5 +130,8 @@ const Popup = styled.div`
   border: 1px solid ${theme.contentBorder};
   border-radius: 3px 0 3px 3px;
 `
+
+ContextMenu.BASE_WIDTH = 46
+ContextMenu.BASE_HEIGHT = 32
 
 export default ContextMenu
