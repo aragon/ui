@@ -9,6 +9,7 @@ import PageColors from 'pages/PageColors'
 import PageTheme from 'pages/PageTheme'
 import PageButton from 'pages/PageButton'
 import PageDropDown from 'pages/PageDropDown'
+import PageContextMenu from 'pages/PageContextMenu'
 import PageCircleGraph from 'pages/PageCircleGraph'
 import PageText from 'pages/PageText'
 import PageTextInput from 'pages/PageTextInput'
@@ -40,6 +41,7 @@ const PAGES = [
   [PageField, 'Field', '/field'],
   [PageButton, 'Button', '/button'],
   [PageDropDown, 'DropDown', '/dropdown'],
+  [PageContextMenu, 'ContextMenu', '/contextmenu'],
   [PageTextInput, 'TextInput', '/text-input'],
   [PageCircleGraph, 'CircleGraph', '/circlegraph'],
   [PageHeader, 'Header', '/header'],
