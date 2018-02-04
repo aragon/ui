@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import IconTime from '../../icons/components/Time'
 import { difference } from '../../date-utils'
-import { unselectable } from '../../shared-styles'
+import { unselectable } from '../../utils/styles'
 import theme from '../../theme'
 
 const formatUnit = v => String(v).padStart(2, '0')
