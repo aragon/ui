@@ -5,9 +5,8 @@ import ClickOutHandler from 'react-onclickout'
 import theme from '../../theme'
 import { springConf, unselectable } from '../../shared-styles'
 
-import ellipsis from './assets/ellipsis.svg'
-import ellipsisActive from './assets/ellipsis-active.svg'
-import arrow from './assets/arrow.svg'
+import Ellipsis from '../../icons/components/Ellipsis'
+import ArrowDown from '../../icons/components/ArrowDown'
 
 export const BASE_WIDTH = 46
 export const BASE_HEIGHT = 32
@@ -40,14 +39,21 @@ class ContextMenu extends React.Component {
               }}
             >
               <BaseButton onClick={this.handleBaseButtonClick} opened={opened}>
-                <img src={opened ? ellipsisActive : ellipsis} alt="" />
-                <img
-                  src={arrow}
-                  alt=""
-                  style={{
-                    transform: `rotate(${openProgress * 180}deg)`,
-                  }}
-                />
+                <span>
+                  <Ellipsis
+                    style={{
+                      color: opened ? theme.accent : theme.textSecondary,
+                    }}
+                  />
+                </span>
+                <span>
+                  <ArrowDown
+                    style={{
+                      color: theme.textTertiary,
+                      transform: `rotate(${openProgress * 180}deg)`,
+                    }}
+                  />
+                </span>
               </BaseButton>
               <Popup
                 opened={opened}
@@ -104,8 +110,12 @@ const BaseButton = styled.div`
     height: 2px;
     background: ${theme.contentBorder};
   }
-  img:first-child {
-    margin-right: 5px;
+  & > span {
+    display: flex;
+    align-items: center;
+    &:first-child {
+      margin-right: 5px;
+    }
   }
 `
 
