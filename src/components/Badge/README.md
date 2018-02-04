@@ -33,29 +33,29 @@ The background color.
 
 ## Attached Components
 
-These components are extending Badge by setting the `shape`, `foreground` and `background` props.
+These components extend Badge by adding defaults for the `shape`, `foreground` and `background` props.
 
 ### `<Badge.Notification>`
 
-Use this notifications (e.g. number of notification messages).
+Use this for notifications (e.g. number of notification messages).
 
 Additional props:
 
 - `small`: use the `smalldisc` shape rather than `disc`.
-- `count`: `Number`, any value higher than `99` will be displayed as “99”. Override `children` when set.
+- `count`: `Number`, any value higher than `99` will be displayed as “99”. Overrides `children` when set.
 
 ### `<Badge.Identity>`
 
-Use this Aragon identities or account addresses.
+Use this for Aragon identities or account addresses.
 
 Additional props:
 
 - `small`: use the `smalldisc` shape rather than `disc`.
-- `count`: `Number`, any value higher than `99` will be displayed as “99”. Override `children` when set.
+- `count`: `Number`, any value higher than `99` will be displayed as “99”. Overrides `children` when set.
 
 ### `<Badge.App>`
 
-Use this app instances.
+Use this for app instances.
 
 ### `<Badge.Info>`
 
