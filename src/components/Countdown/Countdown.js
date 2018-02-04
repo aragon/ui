@@ -42,14 +42,17 @@ class Countdown extends React.Component {
               {formatUnit(days)}
               <Unit>D</Unit>
             </Part>
+            <Separator />
             <Part>
               {formatUnit(hours)}
               <Unit>H</Unit>
             </Part>
+            <Separator>:</Separator>
             <Part>
               {formatUnit(minutes)}
               <Unit>M</Unit>
             </Part>
+            <Separator>:</Separator>
             <Part>
               {formatUnit(seconds)}
               <Unit>S</Unit>
@@ -81,18 +84,12 @@ const Part = styled.span`
   font-size: 15px;
   font-weight: 600;
   color: ${theme.textPrimary};
-  & + & {
-    margin-left: 7px;
-  }
-  &:nth-child(n + 2) + & {
-    margin-left: 0;
-    &:before {
-      content: ':';
-      margin: 0 4px;
-      color: ${theme.textTertiary};
-      font-weight: 400;
-    }
-  }
+`
+
+const Separator = styled.span`
+  margin: 0 4px;
+  color: ${theme.textTertiary};
+  font-weight: 400;
 `
 
 const Unit = styled.span`
