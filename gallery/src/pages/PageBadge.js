@@ -18,7 +18,7 @@ const PageTable = ({ title }) => (
             <Badge.Info>?</Badge.Info>
           </div>
           <div>
-            <Badge.Notification count={1000} />
+            <Badge.Notification label={1000} />
           </div>
           <div>
             <Badge.App>Finance</Badge.App>
@@ -27,7 +27,7 @@ const PageTable = ({ title }) => (
             <Badge.Identity>Sam</Badge.Identity>
           </div>
           <div>
-            <Badge.Notification count={3} small />
+            <Badge.Notification label={3} small />
           </div>
           <div>
             <Badge.App>ANT</Badge.App>

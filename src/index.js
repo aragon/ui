@@ -1,7 +1,7 @@
 export * from './icons'
 export { default as theme, themeDark, brand, colors } from './theme'
 export { font, grid, spring, breakpoint, BreakPoint, unselectable } from './utils/styles'
-export { formatCount } from './utils/format'
+export { formatNumber } from './utils/format'
 export { default as BaseStyles } from './components/BaseStyles/BaseStyles'
 export { default as Section } from './components/Section/Section'
 export { default as IllustratedSection } from './components/IllustratedSection/IllustratedSection'

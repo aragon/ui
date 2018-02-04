@@ -1,30 +1,27 @@
 import PropTypes from 'prop-types'
 import React from 'react'
 import theme from '../../theme'
-import { formatCount } from '../../utils/format'
+import { formatNumber } from '../../utils/format'
 import Badge from './Badge'
 
-const Notification = ({ count, small, children, ...props }) => {
-  const isCount = count !== -1
-  return (
-    <Badge
-      shape={small ? 'smalldisc' : 'disc'}
-      background={theme.badgeNotificationBackground}
-      foreground={theme.badgeNotificationForeground}
-      {...props}
-    >
-      {isCount ? formatCount(count) : children}
-    </Badge>
-  )
-}
+const Notification = ({ children, label, small, ...props }) => (
+  <Badge
+    shape={small ? 'smalldisc' : 'disc'}
+    background={theme.badgeNotificationBackground}
+    foreground={theme.badgeNotificationForeground}
+    {...props}
+  >
+    {children || (typeof label === 'number' ? formatNumber(label) : label)}
+  </Badge>
+)
 
 Notification.defaultProps = {
-  count: -1,
   small: false,
 }
 
 Notification.propTypes = {
-  count: PropTypes.number,
+  children: PropTypes.node,
+  label: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   small: PropTypes.bool,
 }
 
