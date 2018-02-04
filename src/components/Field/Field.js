@@ -9,20 +9,33 @@ const StyledField = styled.div`
   margin-bottom: 20px;
 `
 
+const StyledAsterisk = styled.span`
+  color: ${theme.accent};
+  float: right;
+  padding-top: 3px;
+  font-size: 12px;
+`
+
 type Props = {
   children: Node,
   label: string,
 }
 
-const Field = ({ children, label, ...props }: Props) => (
-  <StyledField {...props}>
-    <label>
-      <Text.Block color={theme.textSecondary} smallcaps>
-        {label}
-      </Text.Block>
-      {children}
-    </label>
-  </StyledField>
-)
+const Field = ({ children, label, ...props }: Props) => {
+  const isRequired = React.Children.toArray(children).some(
+    ({ props }) => (props.required)
+  )
+  return (
+    <StyledField {...props}>
+      <label>
+        <Text.Block color={theme.textSecondary} smallcaps>
+          {label}
+          {isRequired && <StyledAsterisk title="Required">*</StyledAsterisk>}
+        </Text.Block>
+        {children}
+      </label>
+    </StyledField>
+  )
+}
 
 export default Field

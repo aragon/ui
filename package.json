@@ -68,6 +68,7 @@
   },
   "dependencies": {
     "babel-plugin-external-helpers": "^6.22.0",
+    "date-fns": "^2.0.0-alpha.7",
     "prop-types": "^15.6.0",
     "react-motion": "^0.5.2",
     "react-onclickout": "^2.0.8"

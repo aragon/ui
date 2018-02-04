@@ -3,14 +3,18 @@ import createHistory from 'history/createBrowserHistory'
 import styled from 'styled-components'
 import { AragonApp } from '@aragon/ui'
 import Sidebar from 'comps/Sidebar/Sidebar'
+import initGlobalStyles from './global-styles'
+
 import PageHome from 'pages/PageHome'
 import PageAragonApp from 'pages/PageAragonApp'
 import PageColors from 'pages/PageColors'
 import PageTheme from 'pages/PageTheme'
 import PageButton from 'pages/PageButton'
 import PageDropDown from 'pages/PageDropDown'
+import PageContextMenu from 'pages/PageContextMenu'
 import PageCircleGraph from 'pages/PageCircleGraph'
 import PageBadge from './pages/PageBadge'
+import PageCountdown from 'pages/PageCountdown'
 import PageText from 'pages/PageText'
 import PageTextInput from 'pages/PageTextInput'
 import PageHeader from 'pages/PageHeader'
@@ -19,7 +23,6 @@ import PagePreFooter from 'pages/PagePreFooter'
 import PageSection from 'pages/PageSection'
 import PageIllustratedSection from 'pages/PageIllustratedSection'
 import PageCard from './pages/PageCard'
-import initGlobalStyles from './global-styles'
 import PageAppBar from './pages/PageAppBar'
 import PageEmptyStateCard from './pages/PageEmptyStateCard'
 import PageField from './pages/PageField'
@@ -41,9 +44,11 @@ const PAGES = [
   [PageField, 'Field', '/field'],
   [PageButton, 'Button', '/button'],
   [PageDropDown, 'DropDown', '/dropdown'],
+  [PageContextMenu, 'ContextMenu', '/contextmenu'],
   [PageTextInput, 'TextInput', '/text-input'],
   [PageCircleGraph, 'CircleGraph', '/circlegraph'],
   [PageBadge, 'Badge', '/badge'],
+  [PageCountdown, 'Countdown', '/countdown'],
   [PageHeader, 'Header', '/header'],
   [PageFooter, 'Footer', '/footer'],
   [PagePreFooter, 'PreFooter', '/pre-footer'],
