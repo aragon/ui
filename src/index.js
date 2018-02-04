@@ -10,6 +10,10 @@ export {
 export { default as BadgeNumber } from './components/BadgeNumber/BadgeNumber'
 export { default as Button } from './components/Button/Button'
 export { default as CircleGraph } from './components/CircleGraph/CircleGraph'
+export { default as ContextMenu } from './components/ContextMenu/ContextMenu'
+export {
+  default as ContextMenuItem,
+} from './components/ContextMenu/ContextMenuItem'
 export { default as DropDown } from './components/DropDown/DropDown'
 export { default as Field } from './components/Field/Field'
 export { default as TextInput } from './components/Input/TextInput'
