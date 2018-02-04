@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
+import { format } from 'date-fns'
 import IconTime from '../../icons/components/Time'
 import { difference } from '../../date-utils'
 import { unselectable } from '../../utils/styles'
@@ -31,7 +32,7 @@ class Countdown extends React.Component {
     )
 
     return (
-      <Main dateTime="">
+      <Main dateTime={format(end)}>
         <IconWrapper>
           <IconTime />
         </IconWrapper>
