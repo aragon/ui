@@ -1,13 +1,13 @@
 import React from 'react'
-import Page from 'comps/Page/Page'
-
-import readme from 'ui-src/components/Table/Table.md'
 import { Table, TableCell, TableHeader, TableRow, Text } from '@aragon/ui'
-import Container from '../components/Page/DemoContainer'
+
+import Page from 'comps/Page/Page'
+import Container from 'comps/Page/DemoContainer'
+import readme from 'ui-src/components/Table/Table.md'
 
 const PageTable = ({ title }) => (
   <Page title={title} readme={readme}>
-    <Page.Demo>
+    <Page.Demo opaque>
       <Container>
         <Table
           header={

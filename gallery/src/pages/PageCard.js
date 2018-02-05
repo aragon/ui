@@ -8,11 +8,11 @@ import Container from '../components/Page/DemoContainer'
 
 const TextContainer = styled.div`
   display: flex;
-  flex: 1;
   height: 100%;
-  flex-direction: column;
+  padding: 0 20px;
   justify-content: space-around;
   align-items: center;
+  white-space: nowrap;
 `
 
 const PageCard = ({ title }) => (
@@ -22,28 +22,15 @@ const PageCard = ({ title }) => (
         <div>
           <Card>
             <TextContainer>
-              <Text>Some Text</Text>
+              <Text>Default Card</Text>
             </TextContainer>
           </Card>
         </div>
-      </Container>
-      <Container>
-        <div>
-          <Card width="500px">
-            <TextContainer>
-              <Text>A 500px wide Card</Text>
-            </TextContainer>
-          </Card>
-        </div>
-      </Container>
-      <Container>
-        <div>
-          <Card height="300px">
-            <TextContainer>
-              <Text>A 300px tall Card</Text>
-            </TextContainer>
-          </Card>
-        </div>
+        <Card width="100%">
+          <TextContainer>
+            <Text>Flexible Width</Text>
+          </TextContainer>
+        </Card>
       </Container>
     </Page.Demo>
   </Page>

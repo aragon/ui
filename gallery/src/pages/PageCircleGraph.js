@@ -35,13 +35,13 @@ class PageCircleGraph extends React.Component {
     return (
       <Page title={title} readme={readme}>
         <Page.Demo>
-          <div style={{ display: 'flex' }}>
+          <div style={{ display: 'flex', padding: '20px' }}>
             {values.map((value, index) => (
               <Card
                 key={index}
                 width="200px"
                 height="auto"
-                style={{ marginRight: '20px' }}
+                style={{ marginRight: '20px', padding: '0 10px' }}
               >
                 <Container>
                   <CircleGraph value={value} size={120} />

@@ -1,18 +1,18 @@
 import React from 'react'
-import Page from 'comps/Page/Page'
-
-import readme from 'ui-src/components/AragonApp/AppBar.md'
-import { AppBar, Button } from '@aragon/ui'
 import styled from 'styled-components'
+import { AppBar, Button } from '@aragon/ui'
+import Page from 'comps/Page/Page'
+import Container from 'comps/Page/DemoContainer'
+import readme from 'ui-src/components/AragonApp/AppBar.md'
 
-const Container = styled.div`
+const StyledContainer = styled(Container)`
   width: 100%;
 `
 
 const PageAppBar = ({ title }) => (
   <Page title={title} readme={readme}>
     <Page.Demo>
-      <Container>
+      <StyledContainer>
         <AppBar
           title="Your Aragon App"
           endContent={
@@ -21,7 +21,7 @@ const PageAppBar = ({ title }) => (
             </Button>
           }
         />
-      </Container>
+      </StyledContainer>
     </Page.Demo>
   </Page>
 )
