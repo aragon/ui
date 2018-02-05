@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import React from 'react'
 import theme from '../../theme'
-import { formatNumber } from '../../utils/format'
+import { formatIntegerRange } from '../../utils/format'
 import Badge from './Badge'
 
 const Info = ({ children, label, small, ...props }) => (
@@ -11,7 +11,8 @@ const Info = ({ children, label, small, ...props }) => (
     foreground={theme.badgeInfoForeground}
     {...props}
   >
-    {children || (typeof label === 'number' ? formatNumber(label) : label)}
+    {children ||
+      (typeof label === 'number' ? formatIntegerRange(label) : label)}
   </Badge>
 )
 
