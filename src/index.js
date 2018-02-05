@@ -1,3 +1,5 @@
+/* eslint-disable prettier/prettier */
+
 export * from './icons'
 export { default as theme, themeDark, brand, colors } from './theme'
 export { font, grid, spring, breakpoint, BreakPoint, unselectable } from './utils/styles'

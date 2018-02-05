@@ -35,7 +35,7 @@ type TextInputType =
   | 'url'
 type Props = {
   type: TextInputType,
-  required?: Boolean
+  required?: Boolean,
 }
 
 const TextInput = (props: Props) => <StyledInput {...props} />

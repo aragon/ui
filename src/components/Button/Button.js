@@ -115,7 +115,8 @@ const positiveStyle = css`
   ${({ mode }) => {
     if (mode !== 'strong') return ''
     return css`
-      &, &:active {
+      &,
+      &:active {
         background-image: url(${asset(checkWhite)});
         background-color: ${theme.positive};
       }
@@ -132,7 +133,8 @@ const negativeStyle = css`
   ${({ mode }) => {
     if (mode !== 'strong') return ''
     return css`
-      &, &:active {
+      &,
+      &:active {
         background-image: url(${asset(crossWhite)});
         background-color: ${theme.negative};
       }

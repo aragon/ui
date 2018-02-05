@@ -1,4 +1,3 @@
-import React from 'react'
 import styled from 'styled-components'
 import theme from '../../theme'
 import { unselectable } from '../../utils/styles'

@@ -1,7 +1,6 @@
 /* @flow */
 type SpringName = 'slow' | 'normal' | 'fast'
 
-
 const SPRINGS: {
   [SpringName]: {|
     stiffness: number,
