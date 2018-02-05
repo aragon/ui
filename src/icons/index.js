@@ -1,3 +1,5 @@
+/* eslint-disable prettier/prettier */
+
 export { default as IconCheck } from './components/Check.js'
 export { default as IconCross } from './components/Cross.js'
 export { default as IconFinance } from './components/Finance.js'
