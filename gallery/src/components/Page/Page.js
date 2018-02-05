@@ -80,11 +80,11 @@ class Page extends React.Component {
   }
 }
 
-Page.Demo = ({ children }) => (
+Page.Demo = ({ opaque, children }) => (
   <div>
     <h2>Demonstration</h2>
     <Resizable>
-      <Frame>
+      <Frame opaque={opaque}>
         {children}
       </Frame>
     </Resizable>
@@ -92,4 +92,3 @@ Page.Demo = ({ children }) => (
 )
 
 export default Page
-
