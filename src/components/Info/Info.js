@@ -5,7 +5,7 @@ import getPublicUrl, { prefixUrl } from '../../public-url'
 import theme from '../../theme'
 import infoIcon from './assets/info.svg'
 
-const Info = getPublicUrl(({ title, publicUrl, children }) => (
+const Info = getPublicUrl(({ children, publicUrl, title }) => (
   <Main>
     <Title>
       <Icon src={prefixUrl(infoIcon, publicUrl)} alt="" />
@@ -14,6 +14,12 @@ const Info = getPublicUrl(({ title, publicUrl, children }) => (
     {children && <div>{children}</div>}
   </Main>
 ))
+
+Info.propTypes = {
+  children: PropTypes.node,
+  title: PropTypes.string,
+  publicUrl: PropTypes.string,
+}
 
 const Main = styled.section`
   padding: 15px;
