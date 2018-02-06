@@ -5,6 +5,7 @@ type FontWeight = 'normal' | 'bold' | 'bolder'
 const FONT_SIZES: {
   [FontSize]: string,
 } = {
+  xxsmall: '11px',
   xsmall: '12px',
   small: '14px',
   normal: '15px',

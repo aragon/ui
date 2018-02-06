@@ -13,6 +13,7 @@ import PageButton from 'pages/PageButton'
 import PageDropDown from 'pages/PageDropDown'
 import PageContextMenu from 'pages/PageContextMenu'
 import PageCircleGraph from 'pages/PageCircleGraph'
+import PageBadge from './pages/PageBadge'
 import PageCountdown from 'pages/PageCountdown'
 import PageText from 'pages/PageText'
 import PageTextInput from 'pages/PageTextInput'
@@ -46,6 +47,7 @@ const PAGES = [
   [PageContextMenu, 'ContextMenu', '/contextmenu'],
   [PageTextInput, 'TextInput', '/text-input'],
   [PageCircleGraph, 'CircleGraph', '/circlegraph'],
+  [PageBadge, 'Badge', '/badge'],
   [PageCountdown, 'Countdown', '/countdown'],
   [PageHeader, 'Header', '/header'],
   [PageFooter, 'Footer', '/footer'],

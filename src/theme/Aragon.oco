@@ -84,6 +84,14 @@ Aragon UI:
   positiveText: =White.White
   negative: =Red.Salmon Red
   negativeText: =White.White
+  badgeAppBackground: =Purple.Lavender
+  badgeAppForeground: =Purple.Portage
+  badgeIdentityBackground: =Rain.Rain Sky
+  badgeIdentityForeground: =Rain.Slate
+  badgeNotificationBackground: =Aragon UI.positive
+  badgeNotificationForeground: =Aragon UI.positiveText
+  badgeInfoBackground: =Rain.Rain Sky
+  badgeInfoForeground: =Rain.Slate
 Aragon UI Dark:
   oct/
     view: List
@@ -111,3 +119,12 @@ Aragon UI Dark:
   positiveText: =White.White
   negative: =Red.Salmon Red
   negativeText: =White.White
+  badgeAppBackground: =Purple.Lavender
+  badgeAppForeground: =Purple.Portage
+  badgeIdentityBackground: =Rain.Rain Sky
+  badgeIdentityForeground: =Rain.Slate
+  badgeNotificationBackground: =Aragon UI Dark.positive
+  badgeNotificationForeground: =Aragon UI Dark.positiveText
+  badgeInfoBackground: =Rain.Rain Sky
+  badgeInfoForeground: =Rain.Slate
+  
