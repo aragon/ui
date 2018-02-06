@@ -27,14 +27,14 @@ const StyledMenuItem = styled.li`
 class MenuItem extends React.Component {
   handleClick = event => {
     event.preventDefault()
-    this.props.onOpen(this.props.page.path)
+    this.props.onOpen(this.props.path)
   }
   render() {
-    const { active, page = {}, onOpen } = this.props
+    const { active, path, name, onOpen } = this.props
     return (
       <StyledMenuItem active={active}>
-        <a href={page.path} onClick={this.handleClick}>
-          {page.name}
+        <a href={path} onClick={this.handleClick}>
+          {name}
         </a>
       </StyledMenuItem>
     )

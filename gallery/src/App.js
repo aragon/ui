@@ -5,62 +5,89 @@ import { AragonApp } from '@aragon/ui'
 import Sidebar from 'comps/Sidebar/Sidebar'
 import initGlobalStyles from './global-styles'
 
+// Styles
 import PageHome from 'pages/PageHome'
-import PageAragonApp from 'pages/PageAragonApp'
 import PageColors from 'pages/PageColors'
 import PageTheme from 'pages/PageTheme'
+import PageText from 'pages/PageText'
+
+// Controls
 import PageButton from 'pages/PageButton'
 import PageDropDown from 'pages/PageDropDown'
 import PageContextMenu from 'pages/PageContextMenu'
-import PageCircleGraph from 'pages/PageCircleGraph'
-import PageBadge from './pages/PageBadge'
-import PageCountdown from 'pages/PageCountdown'
-import PageText from 'pages/PageText'
 import PageTextInput from 'pages/PageTextInput'
-import PageHeader from 'pages/PageHeader'
-import PageFooter from 'pages/PageFooter'
-import PagePreFooter from 'pages/PagePreFooter'
-import PageSection from 'pages/PageSection'
-import PageIllustratedSection from 'pages/PageIllustratedSection'
-import PageCard from './pages/PageCard'
-import PageAppBar from './pages/PageAppBar'
-import PageEmptyStateCard from './pages/PageEmptyStateCard'
 import PageField from './pages/PageField'
+
+// Other components
+import PageBadge from './pages/PageBadge'
+import PageCircleGraph from 'pages/PageCircleGraph'
+import PageCountdown from 'pages/PageCountdown'
+
+// Containers
+import PageAragonApp from 'pages/PageAragonApp'
+import PageAppBar from './pages/PageAppBar'
 import PageSidePanel from './pages/PageSidePanel'
+import PageCard from './pages/PageCard'
+import PageEmptyStateCard from './pages/PageEmptyStateCard'
 import PageTable from './pages/PageTable'
 
-const PAGES = [
-  [PageHome, 'Aragon UI', '/'],
-  [PageColors, 'Colors', '/colors'],
-  [PageTheme, 'Theme', '/theme'],
-  [PageAragonApp, 'AragonApp', '/aragon-app'],
-  [PageAppBar, 'AppBar', '/app-bar'],
-  [PageSidePanel, 'SidePanel', '/side-panel'],
-  [PageCard, 'Card', '/card'],
-  [PageEmptyStateCard, 'EmptyStateCard', '/empty-state-card'],
-  [PageTable, 'Table', '/table'],
-  [PageText, 'Text', '/text'],
-  [PageSection, 'Section', '/section'],
-  [PageField, 'Field', '/field'],
-  [PageButton, 'Button', '/button'],
-  [PageDropDown, 'DropDown', '/dropdown'],
-  [PageContextMenu, 'ContextMenu', '/contextmenu'],
-  [PageTextInput, 'TextInput', '/text-input'],
-  [PageCircleGraph, 'CircleGraph', '/circlegraph'],
-  [PageBadge, 'Badge', '/badge'],
-  [PageCountdown, 'Countdown', '/countdown'],
-  [PageHeader, 'Header', '/header'],
-  [PageFooter, 'Footer', '/footer'],
-  [PagePreFooter, 'PreFooter', '/pre-footer'],
-  [PageIllustratedSection, 'IllustratedSection', '/illustrated-section'],
+// TODO: move these components in @aragon/web
+// import PageHeader from 'pages/PageHeader'
+// import PageFooter from 'pages/PageFooter'
+// import PagePreFooter from 'pages/PagePreFooter'
+// import PageSection from 'pages/PageSection'
+// import PageIllustratedSection from 'pages/PageIllustratedSection'
+
+const preparePage = ([comp, name, path]) => ({
+  comp,
+  name,
+  path: '/' + path.replace(/^\//, '') + (path === '/' ? '' : '/'),
+})
+
+const PAGE_GROUPS = [
+  {
+    name: 'Styles',
+    pages: [
+      [PageColors, 'Colors', '/colors'],
+      [PageTheme, 'Theme', '/theme'],
+      [PageText, 'Text', '/text'],
+    ].map(preparePage),
+  },
+  {
+    name: 'Controls',
+    pages: [
+      [PageButton, 'Button', '/button'],
+      [PageDropDown, 'DropDown', '/dropdown'],
+      [PageContextMenu, 'ContextMenu', '/contextmenu'],
+      [PageTextInput, 'TextInput', '/text-input'],
+      [PageField, 'Field', '/field'],
+    ].map(preparePage),
+  },
+  {
+    name: 'Containers',
+    pages: [
+      [PageAragonApp, 'AragonApp', '/aragon-app'],
+      [PageAppBar, 'AppBar', '/app-bar'],
+      [PageSidePanel, 'SidePanel', '/side-panel'],
+      [PageCard, 'Card', '/card'],
+      [PageEmptyStateCard, 'EmptyStateCard', '/empty-state-card'],
+      [PageTable, 'Table', '/table'],
+    ].map(preparePage),
+  },
+  {
+    name: 'Components',
+    pages: [
+      [PageBadge, 'Badge', '/badge'],
+      [PageCircleGraph, 'CircleGraph', '/circlegraph'],
+      [PageCountdown, 'Countdown', '/countdown'],
+    ].map(preparePage),
+  },
 ]
 
-const preparePages = (path, pages) =>
-  pages.map(p => ({
-    comp: p[0],
-    name: p[1],
-    path: path + p[2].replace(/^\//, '') + (p[2] === '/' ? '' : '/'),
-  }))
+const PAGES = [
+  preparePage([PageHome, 'Aragon UI', '/']),
+  ...PAGE_GROUPS.reduce((pages, group) => pages.concat(group.pages), []),
+]
 
 const Main = styled.div`
   display: flex;
@@ -73,7 +100,7 @@ const Main = styled.div`
 
 class App extends React.Component {
   state = {
-    pages: preparePages('/', PAGES),
+    pages: PAGES,
     activePage: null,
   }
   componentDidMount() {
@@ -102,7 +129,9 @@ class App extends React.Component {
       <AragonApp publicUrl="/">
         <Main>
           <Sidebar
-            pages={pages}
+            title={pages[0].name}
+            root={pages[0].path}
+            groups={PAGE_GROUPS}
             activePage={activePage}
             onOpen={this.handleOpenPage}
           />
