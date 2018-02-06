@@ -9,10 +9,10 @@ import { PAGE_GROUPS, PAGES } from './routes'
 const Main = styled.div`
   display: flex;
   height: 100%;
+  overflow: auto;
   > :first-child {
     margin-right: 20px;
   }
-  overflow: auto;
 `
 
 class App extends React.Component {

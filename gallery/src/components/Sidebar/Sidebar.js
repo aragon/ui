@@ -55,7 +55,6 @@ const Main = styled.div`
 `
 
 const StyledSidebar = styled.section`
-  position: fixed;
   overflow-y: auto;
   height: 100vh;
   padding: 40px;
