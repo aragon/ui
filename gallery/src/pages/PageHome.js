@@ -44,6 +44,7 @@ const PageHome = () => (
 
 const Illustrations = styled.div`
   position: relative;
+  max-width: calc(450px * 3);
   min-width: 450px;
   flex-shrink: 0;
   height: 880px;
