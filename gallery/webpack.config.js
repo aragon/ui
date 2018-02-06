@@ -18,6 +18,7 @@ const pages = fs.readdirSync(path.join(__dirname, 'src/pages')).map(filename =>
   filename
     .replace(/\.js$/, '')
     .replace(/^Page/, '')
+    .replace(/(.)([A-Z])/g, '$1-$2')
     .toLowerCase()
 )
 
