@@ -16,7 +16,7 @@ import Container from '../components/Page/DemoContainer'
 
 const PageContextMenu = ({ title }) => (
   <Page title={title} readme={readme}>
-    <Page.Demo>
+    <Page.Demo height={180}>
       <Container style={{ maxWidth: 'none' }}>
         <Table
           header={

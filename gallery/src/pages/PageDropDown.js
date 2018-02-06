@@ -17,7 +17,7 @@ class PageDropDown extends React.Component {
     const { activeItem } = this.state
     return (
       <Page title={title} readme={readme}>
-        <Page.Demo>
+        <Page.Demo height={300}>
           <Container>
             <DropDown
               active={activeItem}

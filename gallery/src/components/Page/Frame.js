@@ -29,8 +29,10 @@ class Frame extends React.Component {
   updateHeight() {
     const { height } = this.props
     const { iframeHeight } = this.state
-    if (height > -1 && height !== iframeHeight) {
-      this.setState({ iframeHeight: height })
+    if (height > -1) {
+      if (height !== iframeHeight) {
+        this.setState({ iframeHeight: height })
+      }
       return
     }
 
