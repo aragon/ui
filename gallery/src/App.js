@@ -126,7 +126,7 @@ class App extends React.Component {
     const { pages, activePage } = this.state
     const Page = activePage && activePage.comp
     return (
-      <AragonApp publicUrl="/">
+      <AragonApp publicUrl="/aragon-ui/">
         <Main>
           <Sidebar
             title={pages[0].name}

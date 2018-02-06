@@ -15,8 +15,9 @@
   "scripts": {
     "start": "webpack-dev-server",
     "build": "webpack",
-    "build:production": "NODE_ENV=production webpack",
-    "build:production:stats": "NODE_ENV=production INSPECT_BUNDLE=1 webpack"
+    "build:production": "NODE_ENV=production webpack && npm run update-assets",
+    "build:production:stats": "NODE_ENV=production INSPECT_BUNDLE=1 webpack && npm run update-assets",
+    "update-assets": "rm -rf dist/aragon-ui && cp -r node_modules/@aragon/ui/dist dist/aragon-ui"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
