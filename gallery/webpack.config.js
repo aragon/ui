@@ -95,6 +95,9 @@ module.exports = {
         PUBLIC_PATH: JSON.stringify(PUBLIC_PATH),
       }),
       new HtmlWebpackPlugin(BASE_HTML_CONF),
+      new webpack.DefinePlugin({
+        ARAGON_UI_PATH: JSON.stringify(PRODUCTION ? '/aragon-ui/' : '/'),
+      }),
     ]
 
     if (PRODUCTION) {
