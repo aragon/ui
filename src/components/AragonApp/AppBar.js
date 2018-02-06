@@ -13,6 +13,7 @@ const StyledAppBar = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-start;
+  width: 100%;
   height: 64px;
   background: ${theme.contentBackground};
   border-bottom: 1px solid ${theme.contentBorder};
@@ -32,6 +33,7 @@ const StyledAppBarEnd = styled.div`
 const StyledAppBarTitle = getPublicUrl(styled.h1`
   padding-right: 20px;
   margin-right: calc(20px - 7px);
+  white-space: nowrap;
   background-image: ${({ chevron }) =>
     chevron ? css`url(${asset(chevronSvg)})` : 'none'};
   background-position: 100% 50%;
