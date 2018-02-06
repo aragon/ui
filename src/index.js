@@ -14,6 +14,7 @@ export { default as ContextMenuItem } from './components/ContextMenu/ContextMenu
 export { default as Countdown } from './components/Countdown/Countdown'
 export { default as DropDown } from './components/DropDown/DropDown'
 export { default as Field } from './components/Field/Field'
+export { default as Info } from './components/Info/Info'
 export { default as TextInput } from './components/Input/TextInput'
 export { default as Footer } from './components/Footer/Footer'
 export { default as PreFooter } from './components/PreFooter/PreFooter'
