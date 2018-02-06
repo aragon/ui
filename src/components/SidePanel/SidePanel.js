@@ -151,6 +151,7 @@ SidePanel.propTypes = {
 SidePanel.defaultProps = {
   opened: true,
   blocking: false,
+  onClose: () => {},
   onTransitionEnd: () => {},
 }
 
