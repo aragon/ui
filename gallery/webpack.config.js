@@ -1,6 +1,7 @@
 const webpack = require('webpack')
 const fs = require('fs')
 const path = require('path')
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const CompressionPlugin = require('compression-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
@@ -98,7 +99,7 @@ module.exports = {
     if (PRODUCTION) {
       plugins = plugins
         .concat([
-          new webpack.optimize.UglifyJsPlugin({
+          new UglifyJsPlugin({
             sourceMap: true,
             parallel: true,
           }),
