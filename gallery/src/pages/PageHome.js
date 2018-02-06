@@ -3,10 +3,10 @@ import styled from 'styled-components'
 import { theme } from '@aragon/ui'
 import Page from 'comps/Page/Page'
 
-import illustration1 from '../home-illustration-1.png'
-import illustration2 from '../home-illustration-2.png'
-import illustration3 from '../home-illustration-3.png'
-import illustration4 from '../home-illustration-4.png'
+import illustration1 from '../home-illustrations/1.png'
+import illustration2 from '../home-illustrations/2.png'
+import illustration3 from '../home-illustrations/3.png'
+import illustration4 from '../home-illustrations/4.png'
 
 const illustrations = [
   illustration1,
