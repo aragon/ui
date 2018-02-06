@@ -1,18 +1,18 @@
 import React from 'react'
 import styled from 'styled-components'
-import Page from 'comps/Page/Page'
-
-import readme from 'ui-src/components/Input/TextInput.md'
 import { TextInput } from '@aragon/ui'
-import Container from '../components/Page/DemoContainer'
+import Page from 'comps/Page/Page'
+import Container from 'comps/Page/DemoContainer'
+import readme from 'ui-src/components/Input/TextInput.md'
 
 const DemoHeader = styled.h4`
-  margin-bottom: 10px;
+  padding: 15px;
 `
 
 const PageTextInput = ({ title }) => (
   <Page title={title} readme={readme}>
     <Page.Demo>
+      <DemoHeader>TextInput</DemoHeader>
       <Container>
         <div>
           <TextInput placeholder="TextInput" type="text" />

@@ -6,8 +6,12 @@ import readme from 'ui-src/components/Header/README.md'
 import { Text, Header, colors } from '@aragon/ui'
 
 const Container = styled.div`
+  padding: 30px;
   p {
     margin-top: 30px;
+    &:first-child {
+      margin-top: 0;
+    }
   }
 `
 
@@ -15,9 +19,9 @@ const PageHeader = ({ title }) => (
   <Page title={title} readme={readme}>
     <Page.Demo>
       <Container>
-        <Text>Default:</Text>
+        <Text.Paragraph>Default:</Text.Paragraph>
         <Header />
-        <Text>With menu entries:</Text>
+        <Text.Paragraph>With menu entries:</Text.Paragraph>
         <Header
           menuItems={[
             ['/entry1', 'Entry 1'],
@@ -26,7 +30,7 @@ const PageHeader = ({ title }) => (
             ['/entry4', 'Entry 4'],
           ]}
         />
-        <Text spaced>With a title:</Text>
+        <Text.Paragraph spaced>With a title:</Text.Paragraph>
         <Header title="Project" />
       </Container>
     </Page.Demo>

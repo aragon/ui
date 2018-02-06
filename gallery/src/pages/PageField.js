@@ -1,13 +1,13 @@
 import React from 'react'
-import Page from 'comps/Page/Page'
-
-import readme from 'ui-src/components/Field/README.md'
 import { Field, TextInput } from '@aragon/ui'
+
+import Page from 'comps/Page/Page'
 import Container from '../components/Page/DemoContainer'
+import readme from 'ui-src/components/Field/README.md'
 
 const PageField = ({ title }) => (
   <Page title={title} readme={readme}>
-    <Page.Demo>
+    <Page.Demo opaque>
       <Container>
         <div>
           <Field label="Enter name here:">

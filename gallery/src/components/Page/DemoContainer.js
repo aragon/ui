@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export default styled.div`
   display: flex;
-  max-width: 800px;
+  padding: 20px;
   &:not(:last-child) {
     margin-bottom: 20px;
   }

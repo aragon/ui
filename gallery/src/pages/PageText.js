@@ -1,14 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
-import Page from 'comps/Page/Page'
-
-import readme from 'ui-src/components/Text/README.md'
 import { Text, colors } from '@aragon/ui'
 
-const Container = styled.div`
-  padding: 20px;
-  background: ${colors.Rain['Aqua Blue']};
-  border-radius: 5px;
+import Page from 'comps/Page/Page'
+import DemoContainer from 'comps/Page/DemoContainer'
+import readme from 'ui-src/components/Text/README.md'
+
+const Container = styled(DemoContainer)`
   p {
     margin: 0;
   }
@@ -19,14 +17,16 @@ const Container = styled.div`
 
 const PageText = ({ title }) => (
   <Page title={title} readme={readme}>
-    <Page.Demo>
+    <Page.Demo opaque>
       <Container>
-        <Text.Block size="xsmall">X-Small Text</Text.Block>
-        <Text.Block size="small">Small Text</Text.Block>
-        <Text.Block size="normal">Normal Text</Text.Block>
-        <Text.Block size="large">Large Text</Text.Block>
-        <Text.Block size="xlarge">X-Large Text</Text.Block>
-        <Text.Block size="xxlarge">XX-Large Text</Text.Block>
+        <div>
+          <Text.Paragraph size="xsmall">X-Small Text</Text.Paragraph>
+          <Text.Paragraph size="small">Small Text</Text.Paragraph>
+          <Text.Paragraph size="normal">Normal Text</Text.Paragraph>
+          <Text.Paragraph size="large">Large Text</Text.Paragraph>
+          <Text.Paragraph size="xlarge">X-Large Text</Text.Paragraph>
+          <Text.Paragraph size="xxlarge">XX-Large Text</Text.Paragraph>
+        </div>
       </Container>
     </Page.Demo>
   </Page>
