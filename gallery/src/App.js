@@ -1,6 +1,6 @@
 import React from 'react'
 import createHistory from 'history/createBrowserHistory'
-import styled from 'styled-components'
+import styled, { injectGlobal } from 'styled-components'
 import { AragonApp } from '@aragon/ui'
 import Sidebar from 'comps/Sidebar/Sidebar'
 import initGlobalStyles from './global-styles'
@@ -8,11 +8,20 @@ import { PAGE_GROUPS, PAGES } from './routes'
 
 const Main = styled.div`
   display: flex;
-  height: 100%;
-  overflow: auto;
+  height: 100vh;
   > :first-child {
     margin-right: 20px;
   }
+`
+const Menu = styled.div`
+  flex-shrink: 0;
+  height: 100%;
+  overflow: auto;
+`
+const Content = styled.div`
+  width: 100%;
+  height: 100%;
+  overflow: auto;
 `
 
 class App extends React.Component {
@@ -25,6 +34,12 @@ class App extends React.Component {
     this.unlistenHistory = this.history.listen(this.handleLocationUpdate)
     this.handleLocationUpdate(this.history.location, true)
     initGlobalStyles()
+
+    injectGlobal`
+      body, html {
+        overflow: hidden;
+      }
+    `
   }
   componentWillUnmount() {
     this.unlistenHistory()
@@ -45,14 +60,16 @@ class App extends React.Component {
     return (
       <AragonApp publicUrl="/aragon-ui/">
         <Main>
-          <Sidebar
-            title={pages[0].name}
-            root={pages[0].path}
-            groups={PAGE_GROUPS}
-            activePage={activePage}
-            onOpen={this.handleOpenPage}
-          />
-          {Page && <Page title={activePage.name} />}
+          <Menu>
+            <Sidebar
+              title={pages[0].name}
+              root={pages[0].path}
+              groups={PAGE_GROUPS}
+              activePage={activePage}
+              onOpen={this.handleOpenPage}
+            />
+          </Menu>
+          <Content>{Page && <Page title={activePage.name} />}</Content>
         </Main>
       </AragonApp>
     )
