@@ -12,8 +12,8 @@ import close from './assets/close.svg'
 const PANEL_WIDTH = 450
 const PANEL_OVERFLOW = PANEL_WIDTH * 0.2
 const PANEL_HIDE_RIGHT = -PANEL_WIDTH * 1.6
-const HORIZONTAL_PADDING = 30
-const PANEL_INNER_WIDTH = PANEL_WIDTH - HORIZONTAL_PADDING * 2
+const CONTENT_PADDING = 30
+const PANEL_INNER_WIDTH = PANEL_WIDTH - CONTENT_PADDING * 2
 
 const StyledSidePanel = styled.div`
   position: fixed;
@@ -36,25 +36,35 @@ const Overlay = styled.div`
 `
 
 const StyledPanel = styled.aside`
-  display: flex;
-  flex-direction: column;
-  width: ${PANEL_WIDTH + PANEL_OVERFLOW}px;
-  padding-right: ${HORIZONTAL_PADDING + PANEL_OVERFLOW}px;
-  padding-left: ${HORIZONTAL_PADDING}px;
-  height: 100%;
-  background: white;
   position: absolute;
   top: 0;
   right: 0;
+  display: flex;
+  flex-direction: column;
+  width: ${PANEL_WIDTH + PANEL_OVERFLOW}px;
+  height: 100vh;
+  padding-right: ${PANEL_OVERFLOW}px;
+  background: white;
   box-shadow: -2px 0 36px rgba(0, 0, 0, 0.2);
 `
 
 const StyledPanelHeader = styled.header`
   position: relative;
   padding-top: 15px;
-  padding-bottom: 15px;
+  padding-left: ${CONTENT_PADDING}px;
   padding-right: 20px;
+  padding-bottom: 15px;
   ${unselectable()};
+`
+
+const StyledPanelScrollView = styled.div`
+  overflow-y: auto;
+`
+
+const StyledPanelContent = styled.div`
+  padding-right: ${CONTENT_PADDING}px;
+  padding-left: ${CONTENT_PADDING}px;
+  padding-bottom: ${CONTENT_PADDING}px;
 `
 
 const StyledPanelCloseButton = styled.button`
@@ -62,7 +72,7 @@ const StyledPanelCloseButton = styled.button`
     position: absolute;
     padding: 20px;
     top: 0;
-    right: -${HORIZONTAL_PADDING}px;
+    right: 0;
     cursor: pointer;
     background: none;
     border: 0;
@@ -128,7 +138,9 @@ class SidePanel extends React.Component {
                     </StyledPanelCloseButton>
                   )}
                 </StyledPanelHeader>
-                {children}
+                <StyledPanelScrollView>
+                  <StyledPanelContent>{children}</StyledPanelContent>
+                </StyledPanelScrollView>
               </StyledPanel>
             </StyledSidePanel>
           )
@@ -160,7 +172,7 @@ const WrappedSidePanel = getPublicUrl(SidePanel)
 WrappedSidePanel.PANEL_WIDTH = PANEL_WIDTH
 WrappedSidePanel.PANEL_OVERFLOW = PANEL_OVERFLOW
 WrappedSidePanel.PANEL_HIDE_RIGHT = PANEL_HIDE_RIGHT
-WrappedSidePanel.HORIZONTAL_PADDING = HORIZONTAL_PADDING
 WrappedSidePanel.PANEL_INNER_WIDTH = PANEL_INNER_WIDTH
+WrappedSidePanel.HORIZONTAL_PADDING = CONTENT_PADDING
 
 export default WrappedSidePanel
