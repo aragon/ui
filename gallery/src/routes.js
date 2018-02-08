@@ -1,23 +1,24 @@
 // Styles
-import PageHome from 'pages/PageHome'
-import PageColors from 'pages/PageColors'
-import PageTheme from 'pages/PageTheme'
-import PageText from 'pages/PageText'
+import PageHome from './pages/PageHome'
+import PageColors from './pages/PageColors'
+import PageTheme from './pages/PageTheme'
+import PageText from './pages/PageText'
 
 // Controls
-import PageButton from 'pages/PageButton'
-import PageDropDown from 'pages/PageDropDown'
-import PageContextMenu from 'pages/PageContextMenu'
-import PageTextInput from 'pages/PageTextInput'
+import PageButton from './pages/PageButton'
+import PageDropDown from './pages/PageDropDown'
+import PageContextMenu from './pages/PageContextMenu'
+import PageTextInput from './pages/PageTextInput'
 import PageField from './pages/PageField'
 
 // Other components
 import PageBadge from './pages/PageBadge'
-import PageCircleGraph from 'pages/PageCircleGraph'
-import PageCountdown from 'pages/PageCountdown'
+import PageCircleGraph from './pages/PageCircleGraph'
+import PageCountdown from './pages/PageCountdown'
+import PageInfo from './pages/PageInfo'
 
 // Containers
-import PageAragonApp from 'pages/PageAragonApp'
+import PageAragonApp from './pages/PageAragonApp'
 import PageAppBar from './pages/PageAppBar'
 import PageSidePanel from './pages/PageSidePanel'
 import PageCard from './pages/PageCard'
@@ -66,6 +67,7 @@ export const PAGE_GROUPS = [
       [PageBadge, 'Badge', '/badge'],
       [PageCircleGraph, 'CircleGraph', '/circle-graph'],
       [PageCountdown, 'Countdown', '/countdown'],
+      [PageInfo, 'Info', '/info'],
     ].map(preparePage),
   },
 ]
