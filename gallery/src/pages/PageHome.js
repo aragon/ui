@@ -27,6 +27,7 @@ const PageHome = () => (
       <Illustrations>
         {illustrations.map((src, i) => (
           <img
+            key={src}
             src={src}
             alt=""
             width="450"
