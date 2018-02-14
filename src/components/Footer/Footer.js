@@ -80,6 +80,12 @@ const StyledFooter = getPublicUrl(styled.footer`
   .icon.rocket {
     background-image: url(${asset(iconRocket)});
   }
+  .menu-3 strong {
+    color: ${colors.Gold['Brandy']};
+  }
+  .menu-3 {
+    color: ${colors.Gold['Beige']};
+  }
 
   ${medium(`
     padding-bottom: 70px;
@@ -126,7 +132,6 @@ const StyledFooter = getPublicUrl(styled.footer`
     }
     .menu-3 {
       width: ${grid(2, 2)}px;
-      color: ${colors.Rain['Gold']};
     }
     .social-links {
       width: ${grid(3)}px;
@@ -196,10 +201,14 @@ const Footer = ({ compact, publicUrl }: Props) => (
             <nav className="menu-3">
               <ul>
                 <li>
-                  <a href="mailto:contact@aragon.one">Contact Us</a>
+                  <strong>
+                    <a href="mailto:contact@aragon.one">Contact Us</a>
+                  </strong>
                 </li>
                 <li>
-                  <a href="mailto:media@aragon.one">Media/Press Inquiries</a>
+                  <strong>
+                    <a href="mailto:media@aragon.one">Media/Press Inquiries</a>
+                  </strong>
                 </li>
                 <li>
                   <a href="https://wiki.aragon.one/press/press-kit/" target="_blank">Press Kit</a>
