@@ -122,7 +122,11 @@ const StyledFooter = getPublicUrl(styled.footer`
       margin-right: 0;
     }
     .menu-2 {
-      width: ${grid(4, 4)}px;
+      width: ${grid(2, 2)}px;
+    }
+    .menu-3 {
+      width: ${grid(2, 2)}px;
+      color: ${colors.Rain['Gold']};
     }
     .social-links {
       width: ${grid(3)}px;
@@ -179,6 +183,26 @@ const Footer = ({ compact, publicUrl }: Props) => (
                 </li>
                 <li>
                   <a href="https://aragon.one/join">Join us</a>
+                </li>
+                <li>
+                  <strong>
+                    <a href="https://blog.aragon.one/news-from-the-front-5820cd9f2e46" target="_blank">
+                      Preview Aragon 0.5
+                    </a>
+                  </strong>
+                </li>
+              </ul>
+            </nav>
+            <nav className="menu-3">
+              <ul>
+                <li>
+                  <a href="mailto:contact@aragon.one">Contact Us</a>
+                </li>
+                <li>
+                  <a href="mailto:media@aragon.one">Media/Press Inquiries</a>
+                </li>
+                <li>
+                  <a href="https://wiki.aragon.one/press/press-kit/" target="_blank">Press Kit</a>
                 </li>
                 <li>
                   <strong>
