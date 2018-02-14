@@ -45,6 +45,12 @@ const StyledFooter = getPublicUrl(styled.footer`
   .menu-1 {
     margin-right: 35px;
   }
+  .menu-2 {
+    margin-right: 35px;
+  }
+  .menu-3 {
+    margin-right: 35px;
+  }
   .social-links {
     display: flex;
     justify-content: center;
@@ -52,6 +58,7 @@ const StyledFooter = getPublicUrl(styled.footer`
   }
   .social-links li {
     display: flex;
+    margin-left: 75px;
   }
   .icon {
     overflow: hidden;
@@ -79,12 +86,6 @@ const StyledFooter = getPublicUrl(styled.footer`
   }
   .icon.rocket {
     background-image: url(${asset(iconRocket)});
-  }
-  .menu-3 strong {
-    color: ${colors.Gold['Brandy']};
-  }
-  .menu-3 {
-    color: ${colors.Gold['Beige']};
   }
 
   ${medium(`
@@ -190,11 +191,7 @@ const Footer = ({ compact, publicUrl }: Props) => (
                   <a href="https://aragon.one/join">Join us</a>
                 </li>
                 <li>
-                  <strong>
-                    <a href="https://blog.aragon.one/news-from-the-front-5820cd9f2e46" target="_blank">
-                      Preview Aragon 0.5
-                    </a>
-                  </strong>
+                  <a href="https://blog.aragon.one/" target="_blank">Blog</a>
                 </li>
               </ul>
             </nav>
@@ -202,13 +199,15 @@ const Footer = ({ compact, publicUrl }: Props) => (
               <ul>
                 <li>
                   <strong>
-                    <a href="mailto:contact@aragon.one">Contact Us</a>
+                    <a href="https://blog.aragon.one/news-from-the-front-5820cd9f2e46" target="_blank">Preview Aragon Core 0.5
+                    </a>
                   </strong>
                 </li>
                 <li>
-                  <strong>
-                    <a href="mailto:media@aragon.one">Media/Press Inquiries</a>
-                  </strong>
+                  <a href="mailto:contact@aragon.one">Contact Us</a>
+                </li>
+                <li>
+                  <a href="mailto:media@aragon.one">Media/Press Inquiries</a>
                 </li>
                 <li>
                   <a href="https://wiki.aragon.one/press/press-kit/" target="_blank">Press Kit</a>
