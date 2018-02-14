@@ -45,6 +45,12 @@ const StyledFooter = getPublicUrl(styled.footer`
   .menu-1 {
     margin-right: 35px;
   }
+  .menu-2 {
+    margin-right: 35px;
+  }
+  .menu-3 {
+    margin-right: 35px;
+  }
   .social-links {
     display: flex;
     justify-content: center;
@@ -52,6 +58,7 @@ const StyledFooter = getPublicUrl(styled.footer`
   }
   .social-links li {
     display: flex;
+    margin-left: 75px;
   }
   .icon {
     overflow: hidden;
@@ -122,7 +129,10 @@ const StyledFooter = getPublicUrl(styled.footer`
       margin-right: 0;
     }
     .menu-2 {
-      width: ${grid(4, 4)}px;
+      width: ${grid(2, 2)}px;
+    }
+    .menu-3 {
+      width: ${grid(2, 2)}px;
     }
     .social-links {
       width: ${grid(3)}px;
@@ -181,11 +191,26 @@ const Footer = ({ compact, publicUrl }: Props) => (
                   <a href="https://aragon.one/join">Join us</a>
                 </li>
                 <li>
+                  <a href="https://blog.aragon.one/" target="_blank">Blog</a>
+                </li>
+              </ul>
+            </nav>
+            <nav className="menu-3">
+              <ul>
+                <li>
                   <strong>
-                    <a href="https://blog.aragon.one/news-from-the-front-5820cd9f2e46" target="_blank">
-                      Preview Aragon 0.5
+                    <a href="https://blog.aragon.one/news-from-the-front-5820cd9f2e46" target="_blank">Preview Aragon Core 0.5
                     </a>
                   </strong>
+                </li>
+                <li>
+                  <a href="mailto:contact@aragon.one">Contact Us</a>
+                </li>
+                <li>
+                  <a href="mailto:media@aragon.one">Media/Press Inquiries</a>
+                </li>
+                <li>
+                  <a href="https://wiki.aragon.one/press/press-kit/" target="_blank">Press Kit</a>
                 </li>
               </ul>
             </nav>
