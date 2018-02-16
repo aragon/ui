@@ -13,13 +13,15 @@ const Icon = styled.span`
 
 const Title = styled.div`
   color: ${theme.textSecondary};
-  margin-top: 2px;
-  white-space: nowrap;
+  margin-bottom: 2px;
+  display: flex;
+  align-items: center;
   ${font({ size: 'small' })};
 `
 
 const TitlelessBody = styled.div`
-  white-space: nowrap;
+  display: flex;
+  align-items: center;
 `
 
 const IconInfo = ({ children, icon, title, ...props }) => {
