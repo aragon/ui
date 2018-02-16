@@ -8,6 +8,7 @@ import PageText from './pages/PageText'
 import PageButton from './pages/PageButton'
 import PageDropDown from './pages/PageDropDown'
 import PageContextMenu from './pages/PageContextMenu'
+import PageRadioGroup from './pages/PageRadioGroup'
 import PageTextInput from './pages/PageTextInput'
 import PageField from './pages/PageField'
 import PageSafeLink from './pages/PageSafeLink'
@@ -47,6 +48,7 @@ export const PAGE_GROUPS = [
       [PageButton, 'Button', '/button'],
       [PageDropDown, 'DropDown', '/drop-down'],
       [PageContextMenu, 'ContextMenu', '/context-menu'],
+      [PageRadioGroup, 'RadioGroup', '/radio-group'],
       [PageTextInput, 'TextInput', '/text-input'],
       [PageField, 'Field', '/field'],
       [PageSafeLink, 'SafeLink', '/safe-link'],
