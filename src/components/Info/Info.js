@@ -23,6 +23,7 @@ const Main = styled.section`
   background: ${({ background }) => background};
   padding: 15px;
   border-radius: 3px;
+  word-wrap: break-word;
 `
 
 const Title = styled.h1`
