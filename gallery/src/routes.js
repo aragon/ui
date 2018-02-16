@@ -10,6 +10,7 @@ import PageDropDown from './pages/PageDropDown'
 import PageContextMenu from './pages/PageContextMenu'
 import PageTextInput from './pages/PageTextInput'
 import PageField from './pages/PageField'
+import PageSafeLink from './pages/PageSafeLink'
 
 // Other components
 import PageBadge from './pages/PageBadge'
@@ -48,6 +49,7 @@ export const PAGE_GROUPS = [
       [PageContextMenu, 'ContextMenu', '/context-menu'],
       [PageTextInput, 'TextInput', '/text-input'],
       [PageField, 'Field', '/field'],
+      [PageSafeLink, 'SafeLink', '/safe-link'],
     ].map(preparePage),
   },
   {

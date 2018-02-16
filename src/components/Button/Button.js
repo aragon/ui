@@ -1,6 +1,7 @@
 /* @flow */
 import type { ComponentType } from 'react'
 import styled, { css } from 'styled-components'
+import SafeLink from '../Link/SafeLink'
 import theme from '../../theme'
 import { font } from '../../utils/styles'
 import getPublicUrl, { styledPublicUrl as asset } from '../../public-url'
@@ -202,7 +203,7 @@ const Button: ComponentType<Props> & ButtonComponentType = getPublicUrl(
   StyledButton
 )
 const Anchor: ComponentType<Props> = getPublicUrl(
-  StyledButton.withComponent('a').extend`
+  StyledButton.withComponent(SafeLink).extend`
     display: inline-block;
     text-decoration: none;
   `
