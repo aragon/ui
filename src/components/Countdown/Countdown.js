@@ -6,22 +6,28 @@ import { difference, formatHtmlDatetime } from '../../utils/date'
 import { unselectable } from '../../utils/styles'
 import theme from '../../theme'
 
+const FRAME_EVERY = 1000 / 30 // 30 FPS is enough for a ticker
+
 const formatUnit = v => String(v).padStart(2, '0')
 
 class Countdown extends React.Component {
   componentDidMount() {
-    this.startTimer()
+    this.raf = null
+    this.lastDraw = Date.now()
+    this.draw()
   }
   componentWillUnmount() {
-    clearTimeout(this.timeout)
+    this.raf && cancelAnimationFrame(this.raf)
   }
-  startTimer = () => {
-    this.timeout = setTimeout(() => {
-      requestAnimationFrame(() => {
-        this.forceUpdate()
-        this.startTimer()
-      })
-    }, 1000)
+  draw = () => {
+    this.raf = requestAnimationFrame(this.draw)
+
+    const now = Date.now()
+    const delta = now - this.lastDraw
+    if (delta > FRAME_EVERY) {
+      this.forceUpdate()
+      this.lastDraw = now - delta % FRAME_EVERY
+    }
   }
   render() {
     const { end } = this.props
