@@ -6,9 +6,9 @@ import Text from '../Text/Text'
 const StyledTableHeader = styled.th`
   padding-left: ${({ align }) => (align === 'left' ? '21px' : '0')};
   padding-right: ${({ align }) => (align === 'right' ? '21px' : '0')};
-  text-align: left;
   font-weight: normal;
   text-align: ${({ align }) => align};
+  white-space: nowrap;
 `
 
 const DefaultProps = {
