@@ -1,10 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
+import color from 'onecolor'
 import Text from '../Text/Text'
-import theme from '../../theme'
+import theme, { colors } from '../../theme'
 import { unselectable } from '../../utils/styles'
 import RadioInput from '../Input/RadioInput'
+
+const { contentBorder } = theme
+const labelBoxBorder = color(colors.Sea['Light Sea'])
 
 class RadioListItem extends React.Component {
   static propTypes = {
@@ -78,7 +82,7 @@ const LabelBox = styled.div`
   flex-grow: 1;
   margin-left: 12px;
   padding: 12px 12px;
-  border: 1px ${theme.contentBorder} solid;
+  border: 1px ${contentBorder} solid;
   border-radius: 3px;
   transition: border 200ms linear;
   cursor: pointer;
@@ -87,10 +91,10 @@ const LabelBox = styled.div`
   &:hover,
   ${RadioInput}:focus ~ &,
   ${RadioInput}:hover ~ & {
-    border-color: rgba(33, 183, 196, 0.35);
+    border-color: ${labelBoxBorder.alpha(0.35).cssa()};
   }
   ${RadioInput}:checked ~ & {
-    border-color: rgba(33, 183, 196, 0.7);
+    border-color: ${labelBoxBorder.alpha(0.7).cssa()};
   }
 `
 
