@@ -1,50 +1,64 @@
 import React from 'react'
 import Page from 'comps/Page/Page'
 
-import readme from 'ui-src/components/Radio/README.md'
-import { RadioGroup } from '@aragon/ui'
+import readme from 'ui-src/components/Radio/RadioGroup.md'
+import { RadioGroup, RadioInput } from '@aragon/ui'
 import Container from '../components/Page/DemoContainer'
+
+const RADIO_LABELS = ['First', 'Second', 'Third']
 
 class PageRadioGroup extends React.Component {
   state = {
-    selectedItem: 0,
+    selected: 0,
+    value: '',
   }
-  handleChange = index => {
-    this.setState({ selectedItem: index })
+  handleChange = event => {
+    this.setState({ value: event.target.value })
+  }
+  handleSelect = selected => {
+    this.setState({ selected })
   }
   render() {
     const { title } = this.props
-    const { selectedItem } = this.state
+    const { selected } = this.state
     return (
       <Page title={title} readme={readme}>
-        <Page.Demo height={400}>
+        <Page.Demo height={100}>
           <Container>
             <RadioGroup
-              title="This is a radio group"
-              description="Make a choice: "
+              name="group"
               onChange={this.handleChange}
-              items={[
-                {
-                  title: 'A choice',
-                  description: 'A description of the choice',
-                },
-                {
-                  title: 'Another choice',
-                  description:
-                    'A long, long description of the choice, which should wrap around if we give it a lot of text!',
-                },
-                {
-                  title: 'A third choice',
-                  description: 'Yet another choice!',
-                },
-              ]}
-              selected={selectedItem}
-            />
+              onSelect={this.handleSelect}
+            >
+              {RADIO_LABELS.map((label, i) => {
+                const radioValue = label.toLowerCase()
+                return (
+                  <Label key={i} label={label}>
+                    <RadioInput
+                      inline
+                      checked={i === selected}
+                      value={radioValue}
+                    />
+                  </Label>
+                )
+              })}
+            </RadioGroup>
           </Container>
         </Page.Demo>
       </Page>
     )
   }
 }
+
+const Label = ({ children, label, ...props }) => (
+  <label>
+    {React.Children.map(children, child =>
+      React.cloneElement(child, {
+        ...props,
+      })
+    )}
+    {label}
+  </label>
+)
 
 export default PageRadioGroup

@@ -1,12 +1,12 @@
-# RadioGroup
+# RadioList
 
-A group of radio buttons.
+A list of radio buttons.
 
 ## Usage
 
 ```jsx
 import { Component } from 'react'
-import { RadioGroup } from '@aragon/ui'
+import { RadioList } from '@aragon/ui'
 
 const items = [
   {
@@ -23,17 +23,17 @@ class App extends Component {
   state = {
     selected: 0,
   }
-  handleChange = selected => {
+  handleSelect = selected => {
     this.setState({ selected })
   }
   render() {
     return (
-      <RadioGroup
-        title="A radio group"
+      <RadioList
+        title="A radio list"
         description="You have two options:"
         items={items}
         selected={this.state.selected}
-        onChange={this.handleChange}
+        onSelect={this.handleSelect}
       />
     )
   }
@@ -46,7 +46,7 @@ class App extends Component {
 
 - Type: `Node`
 
-Use this property to add a description to the radio group.
+Use this property to add a description to the radio list.
 
 ### `items`
 
@@ -55,12 +55,14 @@ Use this property to add a description to the radio group.
 
 Use this property to define the radio items.
 
-### `onChange`
+### `onSelect`
 
 - Type: `Function`
 - Default: `() => {}`
 
 This callback is called whenever the user selects a new item.
+
+Note that this callback is different than `onChange`: see the underlying [`<RadioInput />`'s `onChange`](../radio-input/).
 
 ### `selected`
 
@@ -73,4 +75,8 @@ Set this property to the index of the active item.
 
 - Type: `Node`
 
-Use this property to add a title to the radio group.
+Use this property to add a title to the radio list.
+
+### `*`
+
+All other props will be passed into the underlying [`<RadioInput />`](../radio-input/)
