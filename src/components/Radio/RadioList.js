@@ -10,8 +10,9 @@ class RadioList extends React.Component {
     description: PropTypes.node,
     items: PropTypes.arrayOf(
       PropTypes.shape({
-        description: PropTypes.node,
-        title: PropTypes.node,
+        description: PropTypes.node.isRequired,
+        title: PropTypes.node.isRequired,
+        value: PropTypes.string,
       })
     ),
     selected: ({ items, selected }, _, componentName) => {
@@ -42,12 +43,13 @@ class RadioList extends React.Component {
         )}
         {description && <Description>{description}</Description>}
         <Group {...props}>
-          {items.map(({ description, title }, i) => (
+          {items.map(({ description, title, value }, i) => (
             <RadioListItem
               key={i}
               selected={i === selected}
               description={description}
               title={title}
+              value={value}
             />
           ))}
         </Group>

@@ -10,18 +10,23 @@ import { RadioList } from '@aragon/ui'
 
 const items = [
   {
-     title: 'An option',
-     description: 'This is option A',
+    title: 'An option',
+    description: 'This is option A',
+    value: 'a',
   },
   {
-     title: 'Another option',
-     description: 'This is option B',
+    title: 'Another option',
+    description: 'This is option B',
+    value: 'b',
   },
 ]
 
 class App extends Component {
   state = {
     selected: 0,
+  }
+  handleChange = event => {
+    console.log(`Selected radio with value: ${event.target.value}`)
   }
   handleSelect = selected => {
     this.setState({ selected })
@@ -33,6 +38,7 @@ class App extends Component {
         description="You have two options:"
         items={items}
         selected={this.state.selected}
+        onChange={this.handleChange}
         onSelect={this.handleSelect}
       />
     )
@@ -50,7 +56,7 @@ Use this property to add a description to the radio list.
 
 ### `items`
 
-- Type: `Array` containing objects of `{ description, title }`
+- Type: `Array` containing objects of `{ description, title, value? }` (`value` is optional and will be used as the underlying radio's `value` attribute)
 - Default: `[]`
 
 Use this property to define the radio items.
