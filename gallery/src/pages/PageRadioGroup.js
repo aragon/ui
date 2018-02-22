@@ -9,34 +9,26 @@ const RADIO_LABELS = ['First', 'Second', 'Third']
 
 class PageRadioGroup extends React.Component {
   state = {
-    selected: 0,
     value: '',
   }
   handleChange = event => {
     this.setState({ value: event.target.value })
   }
-  handleSelect = selected => {
-    this.setState({ selected })
-  }
   render() {
     const { title } = this.props
-    const { selected } = this.state
+    const { value } = this.state
     return (
       <Page title={title} readme={readme}>
         <Page.Demo height={100}>
           <Container>
-            <RadioGroup
-              name="group"
-              onChange={this.handleChange}
-              onSelect={this.handleSelect}
-            >
+            <RadioGroup name="group" onChange={this.handleChange}>
               {RADIO_LABELS.map((label, i) => {
                 const radioValue = label.toLowerCase()
                 return (
                   <Label key={i} label={label}>
                     <RadioInput
                       inline
-                      checked={i === selected}
+                      checked={radioValue === value}
                       value={radioValue}
                     />
                   </Label>

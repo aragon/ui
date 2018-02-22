@@ -1,37 +1,5 @@
-import React from 'react'
-import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 import theme from '../../theme'
-
-class RadioInput extends React.Component {
-  static propTypes = {
-    index: PropTypes.number,
-    inline: PropTypes.bool,
-    onChange: PropTypes.func,
-    onSelect: PropTypes.func,
-  }
-  static defaultProps = {
-    // By default, prevent the default change event from bubbling up
-    onChange: event => {
-      event.stopPropagation()
-    },
-    onSelect: () => {},
-  }
-  handleOnChange = event => {
-    const { index, onChange, onSelect } = this.props
-    onSelect(index)
-    onChange(event)
-  }
-  render() {
-    const {
-      index: ignoredIndex,
-      onChange: ignoredOnChange,
-      onSelect: ignoredOnSelect,
-      ...props
-    } = this.props
-    return <Radio onChange={this.handleOnChange} {...props} />
-  }
-}
 
 // Utility styles for the radio input
 const radioActive = css`
@@ -50,7 +18,7 @@ const radioDimmed = css`
 `
 
 // Styled component
-const Radio = styled.input.attrs({
+const RadioInput = styled.input.attrs({
   type: 'radio',
 })`
   appearance: none;
@@ -88,6 +56,5 @@ RadioInput.css = {
   active: radioActive,
   dimmed: radioDimmed,
 }
-RadioInput.Radio = Radio
 
 export default RadioInput

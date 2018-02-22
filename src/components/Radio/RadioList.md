@@ -61,14 +61,22 @@ Use this property to add a description to the radio list.
 
 Use this property to define the radio items.
 
+### `onChange`
+
+- Type: `Function`
+- Default: `event => { event.stopPropagation() }`
+
+Propagates `change` event back to the parent, see [MDN](https://developer.mozilla.org/en-US/docs/Web/Events/change).
+
+By default, the event is prevented from propagating up to parents to avoid handling the `change` event if no `onChange` handler is given.
+
 ### `onSelect`
 
 - Type: `Function`
-- Default: `() => {}`
 
-This callback is called whenever the user selects a new item.
+Propagates the `index` of the selected radio back to the parent whenever the user selects a new item.
 
-Note that this callback is different than `onChange`: see the underlying [`<RadioInput />`'s `onChange`](../radio-input/).
+Note that this callback is different than `onChange` (see above).
 
 ### `selected`
 

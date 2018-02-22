@@ -3,9 +3,8 @@ import PropTypes from 'prop-types'
 
 const RadioGroup = ({ children, className, ...radioProps }) => (
   <div className={className} role="radiogroup">
-    {React.Children.map(children, (child, index) =>
+    {React.Children.map(children, child =>
       React.cloneElement(child, {
-        index,
         ...radioProps,
       })
     )}

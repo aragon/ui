@@ -6,17 +6,15 @@ import readme from 'ui-src/components/Input/RadioInput.md'
 
 class PageRadioInput extends React.Component {
   state = {
-    selected: 0,
+    value: '0',
   }
   handleChange = event => {
-    alert(`Selected radio ${event.target.value}`)
-  }
-  handleSelect = selected => {
-    this.setState({ selected })
+    alert(`Selected radio with value: ${event.target.value}`)
+    this.setState({ value: event.target.value })
   }
   render() {
     const { title } = this.props
-    const { selected } = this.state
+    const { value } = this.state
     return (
       <Page title={title} readme={readme}>
         <Page.Demo height={100}>
@@ -25,22 +23,19 @@ class PageRadioInput extends React.Component {
             <div>
               <RadioGroup>
                 <RadioInput
-                  checked={selected === 0}
+                  checked={value === '0'}
                   onChange={this.handleChange}
-                  onSelect={this.handleSelect}
-                  value={0}
+                  value="0"
                 />
                 <RadioInput
-                  checked={selected === 1}
+                  checked={value === '1'}
                   onChange={this.handleChange}
-                  onSelect={this.handleSelect}
-                  value={1}
+                  value="1"
                 />
                 <RadioInput
-                  checked={selected === 2}
+                  checked={value === '2'}
                   onChange={this.handleChange}
-                  onSelect={this.handleSelect}
-                  value={2}
+                  value="2"
                 />
               </RadioGroup>
             </div>

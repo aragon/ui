@@ -6,27 +6,54 @@ import theme from '../../theme'
 import { unselectable } from '../../utils/styles'
 import RadioInput from '../Input/RadioInput'
 
-const RadioListItem = ({
-  className,
-  description,
-  selected,
-  title,
-  ...radioProps
-}) => (
-  <Label className={className}>
-    <Radio checked={selected} {...radioProps} />
-    <LabelBox selected={selected}>
-      <Title>{title}</Title>
-      <Description>{description}</Description>
-    </LabelBox>
-  </Label>
-)
-RadioListItem.propTypes = {
-  description: PropTypes.node.isRequired,
-  title: PropTypes.node.isRequired,
+class RadioListItem extends React.Component {
+  static propTypes = {
+    description: PropTypes.node.isRequired,
+    index: PropTypes.number.isRequired,
+    title: PropTypes.node.isRequired,
 
-  className: PropTypes.string,
-  selected: PropTypes.bool,
+    className: PropTypes.string,
+    onChange: PropTypes.func,
+    onSelect: PropTypes.func,
+    selected: PropTypes.bool,
+  }
+  static defaultProps = {
+    // By default, prevent the default change event from bubbling up
+    onChange: event => {
+      event.stopPropagation()
+    },
+    onSelect: () => {},
+  }
+  handleOnChange = event => {
+    const { index, onChange, onSelect } = this.props
+    onSelect(index)
+    onChange(event)
+  }
+  render() {
+    const {
+      className,
+      description,
+      selected,
+      title,
+      index: ignoredIndex,
+      onChange: ignoredOnChange,
+      onSelect: ignoredOnSelect,
+      ...radioProps
+    } = this.props
+    return (
+      <Label className={className}>
+        <Radio
+          checked={selected}
+          onChange={this.handleOnChange}
+          {...radioProps}
+        />
+        <LabelBox selected={selected}>
+          <Title>{title}</Title>
+          <Description>{description}</Description>
+        </LabelBox>
+      </Label>
+    )
+  }
 }
 
 // Utility styles from RadioInput
@@ -40,7 +67,7 @@ const Label = styled.label`
     margin-top: 10px;
   }
 
-  &:hover ${RadioInput.Radio}:not(:checked) {
+  &:hover ${RadioInput}:not(:checked) {
     ${radioDimmed};
   }
 
@@ -58,11 +85,11 @@ const LabelBox = styled.div`
 
   &:focus,
   &:hover,
-  ${RadioInput.Radio}:focus ~ &,
-  ${RadioInput.Radio}:hover ~ & {
+  ${RadioInput}:focus ~ &,
+  ${RadioInput}:hover ~ & {
     border-color: rgba(33, 183, 196, 0.35);
   }
-  ${RadioInput.Radio}:checked ~ & {
+  ${RadioInput}:checked ~ & {
     border-color: rgba(33, 183, 196, 0.7);
   }
 `

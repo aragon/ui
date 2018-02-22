@@ -46,6 +46,7 @@ class RadioList extends React.Component {
           {items.map(({ description, title, value }, i) => (
             <RadioListItem
               key={i}
+              index={i}
               selected={i === selected}
               description={description}
               title={title}
