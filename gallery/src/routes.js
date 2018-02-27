@@ -27,6 +27,9 @@ import PageCard from './pages/PageCard'
 import PageEmptyStateCard from './pages/PageEmptyStateCard'
 import PageTable from './pages/PageTable'
 
+// RxJS
+import PageObserve from './pages/PageObserve'
+
 const preparePage = ([comp, name, path]) => ({
   comp,
   name,
@@ -72,6 +75,12 @@ export const PAGE_GROUPS = [
       [PageCircleGraph, 'CircleGraph', '/circle-graph'],
       [PageCountdown, 'Countdown', '/countdown'],
       [PageInfo, 'Info', '/info'],
+    ].map(preparePage),
+  },
+  {
+    name: 'RxJS',
+    pages: [
+      [PageObserve, 'Observe', '/observe'],
     ].map(preparePage),
   },
 ]
