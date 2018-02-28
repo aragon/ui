@@ -7,6 +7,7 @@ const ContextMenuItem = styled.div`
   align-items: center;
   padding: 5px 20px;
   cursor: pointer;
+  white-space: nowrap;
   ${unselectable()};
   &:active {
     background: ${theme.contentBackgroundActive};
