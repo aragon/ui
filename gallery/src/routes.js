@@ -3,6 +3,7 @@ import PageHome from './pages/PageHome'
 import PageColors from './pages/PageColors'
 import PageTheme from './pages/PageTheme'
 import PageText from './pages/PageText'
+import PageIcons from './pages/PageIcons'
 
 // Controls
 import PageButton from './pages/PageButton'
@@ -39,6 +40,7 @@ export const PAGE_GROUPS = [
       [PageColors, 'Colors', '/colors'],
       [PageTheme, 'Theme', '/theme'],
       [PageText, 'Text', '/text'],
+      [PageIcons, 'Icons', '/icons'],
     ].map(preparePage),
   },
   {
