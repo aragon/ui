@@ -1,5 +1,6 @@
 /* eslint-disable prettier/prettier */
 
+export { default as IconAdd } from './components/Add.js'
 export { default as IconBlank } from './components/Blank.js'
 export { default as IconCheck } from './components/Check.js'
 export { default as IconCross } from './components/Cross.js'
