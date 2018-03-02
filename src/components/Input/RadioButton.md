@@ -20,13 +20,6 @@ const App = () => (
 
 ## Properties
 
-### `inline`
-
-- Type: `Boolean`
-- Default: `false`
-
-Whether to display the radio button as an inline element or not.
-
 ### Native `<input type="radio" />`
 
 See [MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input).

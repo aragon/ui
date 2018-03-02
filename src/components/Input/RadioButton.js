@@ -22,7 +22,7 @@ const RadioButton = styled.input.attrs({
   type: 'radio',
 })`
   appearance: none;
-  display: ${({ inline }) => (inline ? 'inline-flex' : 'flex')};
+  display: inline-flex;
   background: ${theme.secondaryBackground};
   border: 1px ${theme.contentBorder} solid;
   border-radius: 7px;
