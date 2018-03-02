@@ -18,7 +18,7 @@ const radioDimmed = css`
 `
 
 // Styled component
-const RadioInput = styled.input.attrs({
+const RadioButton = styled.input.attrs({
   type: 'radio',
 })`
   appearance: none;
@@ -52,9 +52,9 @@ const RadioInput = styled.input.attrs({
   }
 `
 
-RadioInput.css = {
+RadioButton.css = {
   active: radioActive,
   dimmed: radioDimmed,
 }
 
-export default RadioInput
+export default RadioButton

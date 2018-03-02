@@ -1,19 +1,19 @@
-# RadioInput
+# RadioButton
 
-A radio button input component.
+A radio button component.
 
 ## Usage
 
 ```jsx
-import { RadioGroup, RadioInput } from '@aragon/ui'
+import { RadioButton, RadioGroup } from '@aragon/ui'
 
 const onChange = event => { console.log('checked', event.target.value) }
 
 const App = () => (
   <RadioGroup>
-    <RadioInput checked index={0} value="first" onChange={onChange} />
-    <RadioInput index={1} value="second" onChange={onChange} />
-    <RadioInput index={2} value="third" onChange={onChange} />
+    <RadioButton checked index={0} value="first" onChange={onChange} />
+    <RadioButton index={1} value="second" onChange={onChange} />
+    <RadioButton index={2} value="third" onChange={onChange} />
   </RadioGroup>
 )
 ```

@@ -2,7 +2,7 @@ import React from 'react'
 import Page from 'comps/Page/Page'
 
 import readme from 'ui-src/components/Radio/RadioGroup.md'
-import { RadioGroup, RadioInput } from '@aragon/ui'
+import { RadioButton, RadioGroup } from '@aragon/ui'
 import Container from '../components/Page/DemoContainer'
 
 const RADIO_LABELS = ['First', 'Second', 'Third']
@@ -26,7 +26,7 @@ class PageRadioGroup extends React.Component {
                 const radioValue = label.toLowerCase()
                 return (
                   <Label key={i} label={label}>
-                    <RadioInput
+                    <RadioButton
                       inline
                       checked={radioValue === value}
                       value={radioValue}

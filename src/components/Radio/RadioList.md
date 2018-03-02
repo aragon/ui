@@ -93,4 +93,4 @@ Use this property to add a title to the radio list.
 
 ### `*`
 
-All other props will be passed into the underlying [`<RadioInput />`](../radio-input/)
+All other props will be passed into the underlying [`<RadioButton />`](../radio-button/)

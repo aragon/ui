@@ -1,10 +1,10 @@
 import React from 'react'
-import { RadioInput, RadioGroup } from '@aragon/ui'
+import { RadioButton, RadioGroup } from '@aragon/ui'
 import Page from 'comps/Page/Page'
 import Container from 'comps/Page/DemoContainer'
-import readme from 'ui-src/components/Input/RadioInput.md'
+import readme from 'ui-src/components/Input/RadioButton.md'
 
-class PageRadioInput extends React.Component {
+class PageRadioButton extends React.Component {
   state = {
     value: '0',
   }
@@ -22,17 +22,17 @@ class PageRadioInput extends React.Component {
             <h1>Some radio buttons:</h1>
             <div>
               <RadioGroup>
-                <RadioInput
+                <RadioButton
                   checked={value === '0'}
                   onChange={this.handleChange}
                   value="0"
                 />
-                <RadioInput
+                <RadioButton
                   checked={value === '1'}
                   onChange={this.handleChange}
                   value="1"
                 />
-                <RadioInput
+                <RadioButton
                   checked={value === '2'}
                   onChange={this.handleChange}
                   value="2"
@@ -46,4 +46,4 @@ class PageRadioInput extends React.Component {
   }
 }
 
-export default PageRadioInput
+export default PageRadioButton

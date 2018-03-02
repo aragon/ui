@@ -5,7 +5,7 @@ import color from 'onecolor'
 import Text from '../Text/Text'
 import theme, { colors } from '../../theme'
 import { unselectable } from '../../utils/styles'
-import RadioInput from '../Input/RadioInput'
+import RadioButton from '../Input/RadioButton'
 
 const { contentBorder } = theme
 const labelBoxBorder = color(colors.Sea['Light Sea'])
@@ -60,8 +60,8 @@ class RadioListItem extends React.Component {
   }
 }
 
-// Utility styles from RadioInput
-const { dimmed: radioDimmed } = RadioInput.css
+// Utility styles from RadioButton
+const { dimmed: radioDimmed } = RadioButton.css
 
 // Styled components
 const Label = styled.label`
@@ -71,7 +71,7 @@ const Label = styled.label`
     margin-top: 10px;
   }
 
-  &:hover ${RadioInput}:not(:checked) {
+  &:hover ${RadioButton}:not(:checked) {
     ${radioDimmed};
   }
 
@@ -89,11 +89,11 @@ const LabelBox = styled.div`
 
   &:focus,
   &:hover,
-  ${RadioInput}:focus ~ &,
-  ${RadioInput}:hover ~ & {
+  ${RadioButton}:focus ~ &,
+  ${RadioButton}:hover ~ & {
     border-color: ${labelBoxBorder.alpha(0.35).cssa()};
   }
-  ${RadioInput}:checked ~ & {
+  ${RadioButton}:checked ~ & {
     border-color: ${labelBoxBorder.alpha(0.7).cssa()};
   }
 `
@@ -106,7 +106,7 @@ const Description = styled(Text.Block)`
   margin-top: 5px;
 `
 
-const Radio = styled(RadioInput)`
+const Radio = styled(RadioButton)`
   flex-shrink: 0;
   margin-top: 16px;
 `
