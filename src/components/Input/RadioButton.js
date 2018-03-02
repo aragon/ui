@@ -23,6 +23,7 @@ const RadioButton = styled.input.attrs({
 })`
   appearance: none;
   display: inline-flex;
+  position: relative;
   background: ${theme.secondaryBackground};
   border: 1px ${theme.contentBorder} solid;
   border-radius: 7px;
@@ -40,6 +41,7 @@ const RadioButton = styled.input.attrs({
   }
 
   &:after {
+    position: absolute;
     background: ${theme.accent};
     width: 8px;
     height: 8px;
