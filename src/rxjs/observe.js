@@ -18,7 +18,7 @@ const observe = (Component, observe, initialState = {}) => {
       },
     }
     state = initialState
-    componentDidMount() {
+    componentWillMount() {
       this.subscribe(this.props.observable)
     }
     componentWillReceiveProps({ observable: nextObservable }) {
