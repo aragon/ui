@@ -1,8 +1,16 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 // Higher-order component for re-rendering
+// For a discussion on pitfalls, see https://gist.github.com/staltz/08bf613199092eeb41ac8137d51eb5e6#gistcomment-2280414
 const redraw = (Component, delay) => {
   return class extends React.Component {
+    static defaultProps = {
+      innerRef: () => {},
+    }
+    static propTypes = {
+      innerRef: PropTypes.func,
+    }
     static displayName = `Redraw(${Component.displayName ||
       Component.name ||
       'Component'})`
@@ -20,12 +28,26 @@ const redraw = (Component, delay) => {
       const now = Date.now()
       const delta = now - this.lastDraw
       if (delta > delay) {
-        this.forceUpdate()
+        this.child ? this.child.forceUpdate() : this.forceUpdate()
         this.lastDraw = now - delta % delay
       }
     }
     render() {
-      return <Component {...this.props} />
+      return (
+        <Component
+          {...this.props}
+          ref={
+            // Only add a ref prop if the given component is not a stateless
+            // component
+            Component.render
+              ? child => {
+                  this.child = child
+                  this.props.innerRef(child)
+                }
+              : undefined
+          }
+        />
+      )
     }
   }
 }
