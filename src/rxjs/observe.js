@@ -1,11 +1,10 @@
 import React from 'react'
+import getDisplayName from 'react-display-name'
 
 // Higher-order component for convenient subscriptions to RxJS observables
 const observe = (Component, observe, initialState = {}) => {
   return class extends React.Component {
-    static displayName = `Observe(${Component.displayName ||
-      Component.name ||
-      'Component'})`
+    static displayName = `Observe(${getDisplayName(Component)})`
     static propTypes = {
       observable: ({ observable }, _, componentName) => {
         if (observable && typeof observable.subscribe !== 'function') {
