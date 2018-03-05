@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import getDisplayName from 'react-display-name'
 
 // Higher-order component for re-rendering
 // For a discussion on pitfalls, see https://gist.github.com/staltz/08bf613199092eeb41ac8137d51eb5e6#gistcomment-2280414
@@ -11,9 +12,7 @@ const redraw = (Component, delay) => {
     static propTypes = {
       innerRef: PropTypes.func,
     }
-    static displayName = `Redraw(${Component.displayName ||
-      Component.name ||
-      'Component'})`
+    static displayName = `Redraw(${getDisplayName(Component)})`
     componentDidMount() {
       this.raf = null
       this.lastDraw = Date.now()
