@@ -4,8 +4,8 @@ import getDisplayName from 'react-display-name'
 
 // Higher-order component for re-rendering
 // For a discussion on pitfalls, see https://gist.github.com/staltz/08bf613199092eeb41ac8137d51eb5e6#gistcomment-2280414
-const redraw = (Component, delay) => {
-  return class extends React.Component {
+const redraw = delay => Component =>
+  class extends React.Component {
     static defaultProps = {
       innerRef: () => {},
     }
@@ -49,6 +49,5 @@ const redraw = (Component, delay) => {
       )
     }
   }
-}
 
 export default redraw

@@ -87,4 +87,4 @@ const TimeOut = styled.span`
   color: ${theme.textSecondary};
 `
 
-export default redraw(Countdown, FRAME_EVERY)
+export default redraw(FRAME_EVERY)(Countdown)
