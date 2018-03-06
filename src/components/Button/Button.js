@@ -22,6 +22,8 @@ const {
   secondaryBackground,
   textPrimary,
   textSecondary,
+  disabled: disabledColor,
+  disabledText,
 } = theme
 
 // Plain button = normal or strong
@@ -41,7 +43,7 @@ const plainButtonStyles = css`
   }
   &:hover,
   &:focus {
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+    ${({ disabled }) => (disabled ? 'none' : '0 1px 1px rgba(0, 0, 0, 0.2)')};
   }
   &:active {
     transform: translateY(1px);
@@ -70,8 +72,14 @@ const modeSecondary = css`
 
 const modeStrong = css`
   ${plainButtonStyles};
-  color: ${gradientText};
-  background-image: linear-gradient(130deg, ${gradientStart}, ${gradientEnd});
+  color: ${({ disabled }) => (disabled ? disabledText : gradientText)};
+  background-image: ${({ disabled }) =>
+    disabled
+      ? 'none'
+      : `linear-gradient(130deg, ${gradientStart}, ${gradientEnd})`};
+  background-color: ${({ disabled }) =>
+    disabled ? disabledColor : 'transparent'};
+
   ${font({ size: 'small', weight: 'bold' })};
   &:after {
     background-image: linear-gradient(

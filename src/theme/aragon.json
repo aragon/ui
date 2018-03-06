@@ -75,6 +75,8 @@
     "contentBackgroundActive": "=Grey.Alabaster",
     "contentBorder": "=Grey.Gainsboro",
     "contentBorderActive": "=Grey.Light Grey",
+    "disabled": "=Grey.Gainsboro",
+    "disabledText": "=White.White",
     "infoBackground": "=Blue.Solitude",
     "infoPermissionsBackground": "=Gold.Beige",
     "infoPermissionsIcon": "=Gold.Brandy",
