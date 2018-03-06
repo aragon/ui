@@ -55,12 +55,11 @@ const Receiver = ({ propValue, value }) => (
   </div>
 )
 const Observed = observe(
-  Receiver,
   observable =>
     observable.map(value => {
       return { value }
     }),
   { value: 0 }
-)
+)(Receiver)
 
 export default PageObserve

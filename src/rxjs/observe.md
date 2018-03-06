@@ -2,9 +2,9 @@
 
 A HOC for convenient subscriptions to RxJS observables.
 
-`observe(Component, observe, initialState = {}) -> ObservedComponent`
+`observe(observe, initialState = {}) -> (Component) -> ObservedComponent`
 
-Automatically subscribes to the resulting Observable returned by `observe`, passing down its state values as props to the given `Component`.
+Automatically subscribes to the Observable returned by `observe`, passing down its state values as props to the given `Component`.
 
 ## Usage
 
@@ -34,17 +34,16 @@ const ReceivingComponent = ({ propValue, value }) => (
 )
 
 const Observed = observe(
-  ReceivingComponent,
   observable => observable.map(value => {
      return { value }
   }),
   { value: 0 }
-)
+)(ReceivingComponent)
 ```
 
 ## Signature
 
-`observe(Component, observe, initialState = {}) -> ObservedComponent`
+`observe(observe, initialState = {}) -> (Component) -> ObservedComponent`
 
 - `Component`: Any `React.Node`
 - `observe`: A function that receives the Observable as input. Must return an Observable whose event values will be used as the passed down state
@@ -58,7 +57,7 @@ const Observed = observe(
 
 The Observable to be used in `observe`
 
-## `ObservedComponent`'s Added Properties to `Component`
+## `ObservedComponent`'s Injected Properties to `Component`
 
 ### `{...state}`
 
