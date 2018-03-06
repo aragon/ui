@@ -12,6 +12,7 @@ const FONT_SIZES: {
   large: '16px',
   xlarge: '20px',
   xxlarge: '22px',
+  great: '37px',
 }
 
 const FONT_WEIGHTS: {
