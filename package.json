@@ -5,7 +5,7 @@
   "contributors": [
     "Pierre Bertet <pierre@aragon.one>"
   ],
-  "license": "GPL-3.0",
+  "license": "MIT",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
   "files": [
