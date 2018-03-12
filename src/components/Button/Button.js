@@ -1,5 +1,3 @@
-/* @flow */
-import type { ComponentType } from 'react'
 import styled, { css } from 'styled-components'
 import SafeLink from '../Link/SafeLink'
 import theme from '../../theme'
@@ -41,17 +39,24 @@ const plainButtonStyles = css`
     right: 0;
     bottom: 0;
   }
-  &:hover,
-  &:focus {
-    ${({ disabled }) => (disabled ? 'none' : '0 1px 1px rgba(0, 0, 0, 0.2)')};
-  }
-  &:active {
-    transform: translateY(1px);
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0);
-    &:after {
-      opacity: 1;
-    }
-  }
+
+  ${({ disabled }) =>
+    disabled
+      ? ''
+      : css`
+          &:hover,
+          &:focus {
+            box-shadow: ${({ disabled }) =>
+              disabled ? 'none' : '0 1px 1px rgba(0, 0, 0, 0.2)'};
+          }
+          &:active {
+            transform: translateY(1px);
+            box-shadow: 0 1px 1px rgba(0, 0, 0, 0);
+            &:after {
+              opacity: 1;
+            }
+          }
+        `};
 `
 
 const modeNormal = css`
@@ -72,22 +77,32 @@ const modeSecondary = css`
 
 const modeStrong = css`
   ${plainButtonStyles};
-  color: ${({ disabled }) => (disabled ? disabledText : gradientText)};
-  background-image: ${({ disabled }) =>
-    disabled
-      ? 'none'
-      : `linear-gradient(130deg, ${gradientStart}, ${gradientEnd})`};
-  background-color: ${({ disabled }) =>
-    disabled ? disabledColor : 'transparent'};
-
   ${font({ size: 'small', weight: 'bold' })};
-  &:after {
-    background-image: linear-gradient(
-      130deg,
-      ${gradientStartActive},
-      ${gradientEndActive}
-    );
-  }
+
+  ${({ disabled }) =>
+    disabled
+      ? css`
+          color: ${disabledText};
+          background-color: ${disabledColor};
+          background-image: none;
+        `
+      : css`
+          color: ${gradientText};
+          background-color: transparent;
+          background-image: linear-gradient(
+            130deg,
+            ${gradientStart},
+            ${gradientEnd}
+          )};
+
+          &:after {
+            background-image: linear-gradient(
+              130deg,
+              ${gradientStartActive},
+              ${gradientEndActive}
+            );
+          }
+  `};
 `
 
 const modeOutline = css`
@@ -154,15 +169,6 @@ const negativeStyle = css`
   }};
 `
 
-type Mode = 'normal' | 'secondary' | 'strong' | 'outline' | 'text'
-type Emphasis = 'positive' | 'negative'
-type Props = {
-  compact?: boolean,
-  emphasis?: Emphasis,
-  mode?: Mode,
-  wide?: boolean,
-}
-
 const StyledButton = styled.button`
   width: ${({ wide }) => (wide ? '100%' : 'auto')};
   padding: 10px 15px;
@@ -172,8 +178,8 @@ const StyledButton = styled.button`
   background: ${contentBackground};
   border: 0;
   border-radius: 3px;
-  cursor: pointer;
   outline: 0;
+  cursor: ${({ disabled }) => (disabled ? 'default' : 'pointer')};
   &,
   &:after {
     transition-property: all;
@@ -201,16 +207,8 @@ const StyledButton = styled.button`
   }};
 `
 
-type ButtonComponentType = {
-  Anchor: ComponentType<Props>,
-}
-
-// Flow declaration: see https://github.com/styled-components/styled-components/issues/570#issuecomment-332087358
-// Currently throwing errors: https://github.com/styled-components/styled-components/issues/1350
-const Button: ComponentType<Props> & ButtonComponentType = getPublicUrl(
-  StyledButton
-)
-const Anchor: ComponentType<Props> = getPublicUrl(
+const Button = getPublicUrl(StyledButton)
+const Anchor = getPublicUrl(
   StyledButton.withComponent(SafeLink).extend`
     display: inline-block;
     text-decoration: none;
