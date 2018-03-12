@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
+import redraw from '../HOC/redraw'
 import IconTime from '../../icons/components/Time'
 import { difference, formatHtmlDatetime } from '../../utils/date'
 import { unselectable } from '../../utils/styles'
@@ -10,67 +11,45 @@ const FRAME_EVERY = 1000 / 30 // 30 FPS is enough for a ticker
 
 const formatUnit = v => String(v).padStart(2, '0')
 
-class Countdown extends React.Component {
-  componentDidMount() {
-    this.raf = null
-    this.lastDraw = Date.now()
-    this.draw()
-  }
-  componentWillUnmount() {
-    this.raf && cancelAnimationFrame(this.raf)
-  }
-  draw = () => {
-    this.raf = requestAnimationFrame(this.draw)
+const Countdown = ({ end }) => {
+  const { days, hours, minutes, seconds, totalInSeconds } = difference(
+    end,
+    new Date()
+  )
 
-    const now = Date.now()
-    const delta = now - this.lastDraw
-    if (delta > FRAME_EVERY) {
-      this.forceUpdate()
-      this.lastDraw = now - delta % FRAME_EVERY
-    }
-  }
-  render() {
-    const { end } = this.props
-    const { days, hours, minutes, seconds, totalInSeconds } = difference(
-      end,
-      new Date()
-    )
-
-    return (
-      <Main dateTime={formatHtmlDatetime(end)}>
-        <IconWrapper>
-          <IconTime />
-        </IconWrapper>
-        {totalInSeconds > 0 ? (
-          <span>
-            <Part>
-              {formatUnit(days)}
-              <Unit>D</Unit>
-            </Part>
-            <Separator />
-            <Part>
-              {formatUnit(hours)}
-              <Unit>H</Unit>
-            </Part>
-            <Separator>:</Separator>
-            <Part>
-              {formatUnit(minutes)}
-              <Unit>M</Unit>
-            </Part>
-            <Separator>:</Separator>
-            <Part>
-              {formatUnit(seconds)}
-              <Unit>S</Unit>
-            </Part>
-          </span>
-        ) : (
-          <TimeOut>Time out</TimeOut>
-        )}
-      </Main>
-    )
-  }
+  return (
+    <Main dateTime={formatHtmlDatetime(end)}>
+      <IconWrapper>
+        <IconTime />
+      </IconWrapper>
+      {totalInSeconds > 0 ? (
+        <span>
+          <Part>
+            {formatUnit(days)}
+            <Unit>D</Unit>
+          </Part>
+          <Separator />
+          <Part>
+            {formatUnit(hours)}
+            <Unit>H</Unit>
+          </Part>
+          <Separator>:</Separator>
+          <Part>
+            {formatUnit(minutes)}
+            <Unit>M</Unit>
+          </Part>
+          <Separator>:</Separator>
+          <Part>
+            {formatUnit(seconds)}
+            <Unit>S</Unit>
+          </Part>
+        </span>
+      ) : (
+        <TimeOut>Time out</TimeOut>
+      )}
+    </Main>
+  )
 }
-
 Countdown.propTypes = {
   end: PropTypes.instanceOf(Date),
 }
@@ -108,4 +87,4 @@ const TimeOut = styled.span`
   color: ${theme.textSecondary};
 `
 
-export default Countdown
+export default redraw(FRAME_EVERY)(Countdown)
