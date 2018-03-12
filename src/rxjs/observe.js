@@ -34,26 +34,22 @@ const observe = (observe, initialState = {}) => Component =>
     }
     subscribe = observable => {
       if (observable) {
-        this.subscription = observe(observable).subscribe(state => {
-          this.setState(state)
+        this.setState({
+          subscription: observe(observable).subscribe(state => {
+            this.setState(state)
+          }),
         })
       }
     }
     unsubscribe = () => {
-      this.subscription && this.subscription.unsubscribe()
+      this.state.subscription && this.state.subscription.unsubscribe()
     }
     render() {
       const { ...props } = this.props
       // Don't pass down the given observable
       delete props.observable
 
-      return (
-        <Component
-          subscription={this.subscription}
-          {...this.state}
-          {...props}
-        />
-      )
+      return <Component {...this.state} {...props} />
     }
   }
 
