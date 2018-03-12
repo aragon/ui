@@ -52,13 +52,41 @@ const PageButton = ({ title }) => (
             <div>
               <Button emphasis="negative">Negative Button</Button>
             </div>
+            <div>
+              <Button emphasis="positive" mode="strong">
+                Positive Button
+              </Button>
+            </div>
+            <div>
+              <Button emphasis="negative" mode="strong">
+                Negative Button
+              </Button>
+            </div>
           </Row>
           <Row>
             <div>
-              <Button compact>Compact Button</Button>
+              <Button disabled>
+                Disabled Button
+              </Button>
             </div>
             <div>
-              <Button wide>Wide Button</Button>
+              <Button mode="strong" disabled>
+                Disabled Strong Button
+              </Button>
+            </div>
+          </Row>
+          <Row>
+            <div>
+              <Button mode="secondary" compact>
+                Compact Button
+              </Button>
+            </div>
+          </Row>
+          <Row>
+            <div style={{ width: '300px' }}>
+              <Button mode="secondary" wide>
+                Wide Button
+              </Button>
             </div>
           </Row>
           <div>

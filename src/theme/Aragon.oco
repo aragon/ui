@@ -74,6 +74,8 @@ Aragon UI:
   contentBackgroundActive: =Grey.Alabaster
   contentBorder: =Grey.Gainsboro
   contentBorderActive: =Grey.Light Grey
+  disabled: =Grey.Gainsboro
+  disabledText: =White.White
   infoBackground: =Blue.Solitude
   infoPermissionsBackground: =Gold.Beige
   infoPermissionsIcon: =Gold.Brandy
@@ -113,6 +115,8 @@ Aragon UI Dark:
   contentBackgroundActive: =Grey.Alabaster
   contentBorder: =Grey.Gainsboro
   contentBorderActive: =Grey.Light Grey
+  disabled: =Grey.Light Grey
+  disabledText: =Grey.Dim Grey
   infoBackground: =Blue.Solitude
   infoPermissionsBackground: =Gold.Beige
   infoPermissionsIcon: =Gold.Brandy
