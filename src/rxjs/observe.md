@@ -4,7 +4,7 @@ A HOC for convenient subscriptions to RxJS observables.
 
 `observe(observe, initialState = {}) -> (Component) -> ObservedComponent`
 
-Automatically subscribes to the Observable returned by `observe`, passing down its state values as props to the given `Component`.
+Automatically subscribes to the `Observable` returned by `observe`, passing down its state values as props to the given `Component`.
 
 ## Usage
 
@@ -43,11 +43,11 @@ const Observed = observe(
 
 ## Signature
 
-`observe(observe, initialState = {}) -> (Component) -> ObservedComponent`
+`observe(observeFn, initialState = {}) -> (Component) -> ObservedComponent`
 
 - `Component`: Any `React.Node`
-- `observe`: A function that receives the Observable as input. Must return an Observable whose event values will be used as the passed down state
-- `initialState: The initial state to use
+- `observeFn`: A function (`Observable -> Observable`) that receives the `Observable` as input. Must return an `Observable` whose streamed values will be passed down as destructured props.
+- `initialState: The initial state to pass down as destructured props
 
 ## `ObservedComponent`'s Properties
 
@@ -55,19 +55,21 @@ const Observed = observe(
 
 - Type: `RxJS.Observable`
 
-The Observable to be used in `observe`
+The `Observable` to be used in `observe`. Can be initially empty.
 
-## `ObservedComponent`'s Injected Properties to `Component`
+This `Observable` is modifiable while the component is still mounted. The component will automatically unsubscribe from the old `Observable` and subscribe to the new `Observable` using the `observeFn`.
+
+## `Component`'s Injected Properties
 
 ### `{...state}`
 
-Any state returned by `observe`'s Observable is spread and added to `Component`'s props.
+Any state streamed by `observeFn`'s returned `Observable` is destructured and added to `Component`'s props.
 
 ### `subscription`
 
 - Type: `RxJS.Subscription`
 
-The Subscription object to `observe`'s Observable (useful if you'd like to unsubscribe prematurely).
+The `Subscription` of `observeFn`'s returned `Observable` (useful if `Component` would like to unsubscribe prematurely). Note that this will not be injected until an `Observable` is passed into the wrapped component.
 
 ### `*`
 
