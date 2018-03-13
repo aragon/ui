@@ -26,7 +26,9 @@ const splitIntro = html => {
 
   const children = [...container.childNodes]
   const docIndex = children.findIndex(
-    elt => elt.tagName === 'H2' && elt.textContent === 'Properties'
+    elt =>
+      elt.tagName === 'H2' &&
+      (elt.textContent === 'Properties' || elt.textContent === 'Signature')
   )
 
   if (children[0].tagName === 'H1') {
