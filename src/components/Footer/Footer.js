@@ -199,8 +199,7 @@ const Footer = ({ compact, publicUrl }: Props) => (
               <ul>
                 <li>
                   <strong>
-                    <a href="https://blog.aragon.one/news-from-the-front-5820cd9f2e46" target="_blank">Preview Aragon Core 0.5
-                    </a>
+                    <a href="https://app.aragon.one/" target="_blank">Try Aragon Core 0.5</a>
                   </strong>
                 </li>
                 <li>
