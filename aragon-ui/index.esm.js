@@ -162,6 +162,43 @@ var toConsumableArray = function (arr) {
   }
 };
 
+var Add = function Add(props) {
+  return React.createElement(
+    "svg",
+    _extends({ width: 22, height: 22, viewBox: "0 0 22 22" }, props),
+    React.createElement(
+      "g",
+      { fill: "none", fillRule: "evenodd" },
+      React.createElement("path", { d: "M0 0h22v22H0z" }),
+      React.createElement("path", {
+        d: "M11 4.744c1.216 0 2.341.304 3.376.912a6.308 6.308 0 0 1 2.368 2.368 6.546 6.546 0 0 1 .912 3.376 6.546 6.546 0 0 1-.912 3.376 6.308 6.308 0 0 1-2.368 2.368 6.546 6.546 0 0 1-3.376.912 6.546 6.546 0 0 1-3.376-.912 6.428 6.428 0 0 1-2.368-2.384 6.517 6.517 0 0 1-.912-3.36c0-1.205.304-2.325.912-3.36A6.55 6.55 0 0 1 7.64 5.656 6.517 6.517 0 0 1 11 4.744z",
+        stroke: "currentColor"
+      }),
+      React.createElement("path", {
+        fill: "currentColor",
+        d: "M11.656 8.056v2.688h2.688v1.312h-2.688v2.688h-1.312v-2.688H7.656v-1.312h2.688V8.056z"
+      })
+    )
+  );
+};
+
+var Blank = function Blank(props) {
+  return React.createElement(
+    "svg",
+    _extends({ width: 22, height: 22, viewBox: "0 0 22 22" }, props),
+    React.createElement(
+      "g",
+      { fill: "none", fillRule: "evenodd" },
+      React.createElement("path", { d: "M0 0h22v22H0z" }),
+      React.createElement("path", {
+        d: "M17.655 2H5.345A.357.357 0 0 0 5 2.345v16.559c0 .181.163.345.345.345h9.768c.09 0 .2-.037.254-.11l2.542-2.85a.345.345 0 0 0 .091-.236V2.345A.357.357 0 0 0 17.655 2zM5.69 2.69h11.62v12.637h-2.25a.69.69 0 0 0-.69.69v2.542H5.69V2.689zm9.369 15.742v-2.433h2.16l-2.16 2.433z",
+        fill: "currentColor",
+        fillRule: "nonzero"
+      })
+    )
+  );
+};
+
 var Check = function Check(props) {
   return React.createElement(
     "svg",
@@ -418,6 +455,109 @@ var Wallet = function Wallet(props) {
 
 /* eslint-disable prettier/prettier */
 
+var commonjsGlobal = typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
+
+
+
+function unwrapExports (x) {
+	return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, 'default') ? x['default'] : x;
+}
+
+function createCommonjsModule(fn, module) {
+	return module = { exports: {} }, fn(module, module.exports), module.exports;
+}
+
+var getDisplayName_1 = createCommonjsModule(function (module, exports) {
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = getDisplayName;
+function getDisplayName(Component) {
+  return Component.displayName || Component.name || (typeof Component === 'string' && Component.length > 0 ? Component : 'Unknown');
+}
+});
+
+var getDisplayName = unwrapExports(getDisplayName_1);
+
+// Higher-order component for convenient subscriptions to RxJS observables
+var observe = function observe(_observe) {
+  var initialState = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+  return function (Component) {
+    var _class, _temp2;
+
+    return _temp2 = _class = function (_React$Component) {
+      inherits(_class, _React$Component);
+
+      function _class() {
+        var _ref;
+
+        var _temp, _this, _ret;
+
+        classCallCheck(this, _class);
+
+        for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+          args[_key] = arguments[_key];
+        }
+
+        return _ret = (_temp = (_this = possibleConstructorReturn(this, (_ref = _class.__proto__ || Object.getPrototypeOf(_class)).call.apply(_ref, [this].concat(args))), _this), _this.state = initialState, _this.subscribe = function (observable) {
+          if (observable) {
+            _this.setState({
+              subscription: _observe(observable).subscribe(function (state) {
+                _this.setState(state);
+              })
+            });
+          }
+        }, _this.unsubscribe = function () {
+          _this.state.subscription && _this.state.subscription.unsubscribe();
+        }, _temp), possibleConstructorReturn(_this, _ret);
+      }
+
+      createClass(_class, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+          this.subscribe(this.props.observable);
+        }
+      }, {
+        key: 'componentWillReceiveProps',
+        value: function componentWillReceiveProps(_ref2) {
+          var nextObservable = _ref2.observable;
+          var observable = this.props.observable;
+          // If a new observable gets passed in, unsubscribe from the old and subscribe to the new
+
+          if (nextObservable !== observable) {
+            this.unsubscribe();
+            this.subscribe(nextObservable);
+          }
+        }
+      }, {
+        key: 'componentWillUnmount',
+        value: function componentWillUnmount() {
+          this.unsubscribe();
+        }
+      }, {
+        key: 'render',
+        value: function render() {
+          var props = objectWithoutProperties(this.props, []);
+          // Don't pass down the given observable
+
+          delete props.observable;
+
+          return React.createElement(Component, _extends({}, this.state, props));
+        }
+      }]);
+      return _class;
+    }(React.Component), _class.displayName = 'Observe(' + getDisplayName(Component) + ')', _class.propTypes = {
+      observable: function observable(_ref3, _, componentName) {
+        var _observable = _ref3.observable;
+
+        if (_observable && typeof _observable.subscribe !== 'function') {
+          throw new Error('Invalid prop `observable` supplied to `' + componentName + '` ' + '(wrapped by `observe()`). ' + '`observable` must be an RxJS Observable-like object. ' + ('Given ' + _observable + ' instead.'));
+        }
+      }
+    }, _temp2;
+  };
+};
+
 var aragon = {
   Grey: {
     'Black Ash': '#3B3B3B',
@@ -495,8 +635,15 @@ var aragon = {
     contentBackgroundActive: '=Grey.Alabaster',
     contentBorder: '=Grey.Gainsboro',
     contentBorderActive: '=Grey.Light Grey',
+    disabled: '=Grey.Gainsboro',
+    disabledText: '=White.White',
+    infoBackground: '=Blue.Solitude',
+    infoPermissionsBackground: '=Gold.Beige',
+    infoPermissionsIcon: '=Gold.Brandy',
     shadow: '=Grey.Alabaster',
-    textPrimary: '=Black.Black',
+    text: '=Black.Black',
+    textPrimary: '=Aragon UI.text',
+    textDimmed: '=Grey.Black Ash',
     textSecondary: '=Grey.Dim Grey',
     textTertiary: '=Grey.Light Grey',
     accent: '=Eagle.Dark Turquoise',
@@ -527,8 +674,15 @@ var aragon = {
     contentBackgroundActive: '=Grey.Alabaster',
     contentBorder: '=Grey.Gainsboro',
     contentBorderActive: '=Grey.Light Grey',
+    disabled: '=Grey.Light Grey',
+    disabledText: '=Grey.Dim Grey',
+    infoBackground: '=Blue.Solitude',
+    infoPermissionsBackground: '=Gold.Beige',
+    infoPermissionsIcon: '=Gold.Brandy',
     shadow: '=Grey.Alabaster',
-    textPrimary: '=White.White',
+    text: '=White.White',
+    textPrimary: '=Aragon UI Dark.text',
+    textDimmed: '=Grey.Alabaster',
     textSecondary: '=Grey.Dust Grey',
     textTertiary: '=Grey.Dim Grey',
     accent: '=Eagle.Dark Turquoise',
@@ -625,17 +779,14 @@ var theme = _groups.theme;
 var brand = _groups.brand;
 var colors = _groups.colors;
 
-var commonjsGlobal = typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
-
-
-
-function unwrapExports (x) {
-	return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, 'default') ? x['default'] : x;
-}
-
-function createCommonjsModule(fn, module) {
-	return module = { exports: {} }, fn(module, module.exports), module.exports;
-}
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ * 
+ */
 
 function makeEmptyFunction(arg) {
   return function () {
@@ -671,6 +822,17 @@ var emptyFunction_1 = emptyFunction;
  *
  */
 
+/**
+ * Use invariant() to assert state which your program assumes to be true.
+ *
+ * Provide sprintf-style format (only %s is supported) and arguments
+ * to provide information about what broke and what you were
+ * expecting.
+ *
+ * The invariant message will be stripped in production, but the invariant
+ * will remain to ensure logic does not differ in production.
+ */
+
 var validateFormat = function validateFormat(format) {};
 
 if (process.env.NODE_ENV !== 'production') {
@@ -703,6 +865,13 @@ function invariant(condition, format, a, b, c, d, e, f) {
 }
 
 var invariant_1 = invariant;
+
+/**
+ * Similar to invariant but only logs a warning if the condition is not met.
+ * This can be used to log issues in development environments in critical
+ * paths. Removing the logging code for production environments will keep the
+ * same logic and follow the same code paths.
+ */
 
 var warning = emptyFunction_1;
 
@@ -754,6 +923,7 @@ object-assign
 @license MIT
 */
 
+/* eslint-disable no-unused-vars */
 var getOwnPropertySymbols = Object.getOwnPropertySymbols;
 var hasOwnProperty = Object.prototype.hasOwnProperty;
 var propIsEnumerable = Object.prototype.propertyIsEnumerable;
@@ -1668,6 +1838,8 @@ module.exports = _Media2.default;
 
 var Media = unwrapExports(reactMedia);
 
+// These breakpoints values represent minimum screen sizes.
+// Small screen sizes should be targetted by default (mobile first).
 var BREAKPOINTS = {
   medium: 768,
   large: 1170
@@ -1713,7 +1885,8 @@ var FONT_SIZES = {
   normal: '15px',
   large: '16px',
   xlarge: '20px',
-  xxlarge: '22px'
+  xxlarge: '22px',
+  great: '37px'
 };
 
 var FONT_WEIGHTS = {
@@ -1775,6 +1948,76 @@ var formatIntegerRange = function formatIntegerRange() {
   return count.toString();
 };
 
+// Higher-order component for re-rendering
+// For a discussion on pitfalls, see https://gist.github.com/staltz/08bf613199092eeb41ac8137d51eb5e6#gistcomment-2280414
+var redraw = function redraw(delay) {
+  return function (Component) {
+    var _class, _temp2;
+
+    return _temp2 = _class = function (_React$Component) {
+      inherits(_class, _React$Component);
+
+      function _class() {
+        var _ref;
+
+        var _temp, _this, _ret;
+
+        classCallCheck(this, _class);
+
+        for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+          args[_key] = arguments[_key];
+        }
+
+        return _ret = (_temp = (_this = possibleConstructorReturn(this, (_ref = _class.__proto__ || Object.getPrototypeOf(_class)).call.apply(_ref, [this].concat(args))), _this), _this.draw = function () {
+          _this.raf = requestAnimationFrame(_this.draw);
+
+          var now = Date.now();
+          var delta = now - _this.lastDraw;
+          if (delta > delay) {
+            _this.child ? _this.child.forceUpdate() : _this.forceUpdate();
+            _this.lastDraw = now - delta % delay;
+          }
+        }, _temp), possibleConstructorReturn(_this, _ret);
+      }
+
+      createClass(_class, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+          this.raf = null;
+          this.lastDraw = Date.now();
+          this.draw();
+        }
+      }, {
+        key: 'componentWillUnmount',
+        value: function componentWillUnmount() {
+          this.raf && cancelAnimationFrame(this.raf);
+        }
+      }, {
+        key: 'render',
+        value: function render() {
+          var _this2 = this;
+
+          return React.createElement(Component, _extends({}, this.props, {
+            ref:
+            // Only add a ref prop if the given component is not a stateless
+            // component
+            Component.render ? function (child) {
+              _this2.child = child;
+              _this2.props.innerRef(child);
+            } : undefined
+          }));
+        }
+      }]);
+      return _class;
+    }(React.Component), _class.defaultProps = {
+      innerRef: function innerRef() {}
+    }, _class.propTypes = {
+      innerRef: propTypes.func
+    }, _class.displayName = 'Redraw(' + getDisplayName(Component) + ')', _temp2;
+  };
+};
+
+// High order component wrapper
 var getPublicUrl = function getPublicUrl(Component) {
   var highOrderComponent = function highOrderComponent(baseProps, context) {
     var _context$publicUrl = context.publicUrl,
@@ -2184,6 +2427,13 @@ BadgeNumber.defaultProps = {
   background: theme.positive
 };
 
+var SafeLink = styled.a.attrs({
+  // See https://mathiasbynens.github.io/rel-noopener
+  rel: 'noopener noreferrer'
+}).withConfig({
+  displayName: 'SafeLink'
+})(['']);
+
 var cross = "data:image/svg+xml,%3Csvg%20width%3D%2211%22%20height%3D%2211%22%20viewBox%3D%220%200%2011%2011%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M10.476%201.524L6.3%205.7l4.176%204.176-1.062%201.062-4.176-4.176-4.176%204.176L0%209.876%204.176%205.7%200%201.524%201.062.462l4.176%204.176L9.414.462z%22%20fill%3D%22%23FB7777%22%20fill-rule%3D%22evenodd%22%2F%3E%3C%2Fsvg%3E";
 
 var check = "data:image/svg+xml,%3Csvg%20width%3D%2214%22%20height%3D%2210%22%20viewBox%3D%220%200%2014%2010%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M4.176%207.956L12.114%200l1.062%201.062-9%209L0%205.886l1.044-1.062z%22%20fill%3D%22%2321D48E%22%20fill-rule%3D%22evenodd%22%2F%3E%3C%2Fsvg%3E";
@@ -2205,16 +2455,27 @@ var contentBorderActive = theme.contentBorderActive;
 var secondaryBackground = theme.secondaryBackground;
 var textPrimary = theme.textPrimary;
 var textSecondary = theme.textSecondary;
+var disabledColor = theme.disabled;
+var disabledText = theme.disabledText;
 
 // Plain button = normal or strong
 
-var plainButtonStyles = css(['position:relative;overflow:hidden;box-shadow:0 1px 1px rgba(0,0,0,0);&:after{content:\'\';opacity:0;position:absolute;z-index:-1;top:0;left:0;right:0;bottom:0;}&:hover,&:focus{box-shadow:0 1px 1px rgba(0,0,0,0.2);}&:active{transform:translateY(1px);box-shadow:0 1px 1px rgba(0,0,0,0);&:after{opacity:1;}}']);
+var plainButtonStyles = css(['position:relative;overflow:hidden;box-shadow:0 1px 1px rgba(0,0,0,0);&:after{content:\'\';opacity:0;position:absolute;z-index:-1;top:0;left:0;right:0;bottom:0;}', ';'], function (_ref) {
+  var disabled = _ref.disabled;
+  return disabled ? '' : css(['&:hover,&:focus{box-shadow:', ';}&:active{transform:translateY(1px);box-shadow:0 1px 1px rgba(0,0,0,0);&:after{opacity:1;}}'], function (_ref2) {
+    var disabled = _ref2.disabled;
+    return disabled ? 'none' : '0 1px 1px rgba(0, 0, 0, 0.2)';
+  });
+});
 
 var modeNormal = css(['', ';&:active{color:', ';}'], plainButtonStyles, textPrimary);
 
 var modeSecondary = css(['', ';background:', ';&:hover,&:focus{box-shadow:none;}'], plainButtonStyles, secondaryBackground);
 
-var modeStrong = css(['', ';color:', ';background-image:linear-gradient(130deg,', ',', ');', ';&:after{background-image:linear-gradient( 130deg,', ',', ' );}'], plainButtonStyles, gradientText, gradientStart, gradientEnd, font({ size: 'small', weight: 'bold' }), gradientStartActive, gradientEndActive);
+var modeStrong = css(['', ';', ';', ';'], plainButtonStyles, font({ size: 'small', weight: 'bold' }), function (_ref3) {
+  var disabled = _ref3.disabled;
+  return disabled ? css(['color:', ';background-color:', ';background-image:none;'], disabledText, disabledColor) : css(['color:', ';background-color:transparent;background-image:linear-gradient( 130deg,', ',', ' )};&:after{background-image:linear-gradient( 130deg,', ',', ' );}'], gradientText, gradientStart, gradientEnd, gradientStartActive, gradientEndActive);
+});
 
 var modeOutline = css(['background:transparent;padding-top:9px;padding-bottom:9px;border:1px solid ', ';&:hover,&:focus{border-color:', ';}&:active{color:', ';border-color:', ';}'], contentBorder, contentBorderActive, textPrimary, textPrimary);
 
@@ -2222,15 +2483,15 @@ var modeText = css(['padding:10px;background:transparent;&:active,&:focus{color:
 
 var compactStyle = css(['padding:5px 15px;']);
 
-var positiveStyle = css(['padding-left:34px;background:url(', ') no-repeat 12px calc(50% - 1px);', ';'], styledPublicUrl(check), function (_ref) {
-  var mode = _ref.mode;
+var positiveStyle = css(['padding-left:34px;background:url(', ') no-repeat 12px calc(50% - 1px);', ';'], styledPublicUrl(check), function (_ref4) {
+  var mode = _ref4.mode;
 
   if (mode !== 'strong') return '';
   return css(['&,&:active{background-image:url(', ');background-color:', ';}&:after{background:none;}'], styledPublicUrl(checkWhite), theme.positive);
 });
 
-var negativeStyle = css(['padding-left:30px;background:url(', ') no-repeat 10px calc(50% - 1px);', ';'], styledPublicUrl(cross), function (_ref2) {
-  var mode = _ref2.mode;
+var negativeStyle = css(['padding-left:30px;background:url(', ') no-repeat 10px calc(50% - 1px);', ';'], styledPublicUrl(cross), function (_ref5) {
+  var mode = _ref5.mode;
 
   if (mode !== 'strong') return '';
   return css(['&,&:active{background-image:url(', ');background-color:', ';}&:after{background:none;}'], styledPublicUrl(crossWhite), theme.negative);
@@ -2238,32 +2499,33 @@ var negativeStyle = css(['padding-left:30px;background:url(', ') no-repeat 10px 
 
 var StyledButton = styled.button.withConfig({
   displayName: 'Button__StyledButton'
-})(['width:', ';padding:10px 15px;white-space:nowrap;', ';color:', ';background:', ';border:0;border-radius:3px;cursor:pointer;outline:0;&,&:after{transition-property:all;transition-duration:100ms;transition-timing-function:ease-in-out;}&::-moz-focus-inner{border:0;}', ';', ';', ';'], function (_ref3) {
-  var wide = _ref3.wide;
+})(['width:', ';padding:10px 15px;white-space:nowrap;', ';color:', ';background:', ';border:0;border-radius:3px;outline:0;cursor:', ';&,&:after{transition-property:all;transition-duration:100ms;transition-timing-function:ease-in-out;}&::-moz-focus-inner{border:0;}', ';', ';', ';'], function (_ref6) {
+  var wide = _ref6.wide;
   return wide ? '100%' : 'auto';
-}, font({ size: 'small', weight: 'normal' }), textSecondary, contentBackground, function (_ref4) {
-  var mode = _ref4.mode;
+}, font({ size: 'small', weight: 'normal' }), textSecondary, contentBackground, function (_ref7) {
+  var disabled = _ref7.disabled;
+  return disabled ? 'default' : 'pointer';
+}, function (_ref8) {
+  var mode = _ref8.mode;
 
   if (mode === 'secondary') return modeSecondary;
   if (mode === 'strong') return modeStrong;
   if (mode === 'outline') return modeOutline;
   if (mode === 'text') return modeText;
   return modeNormal;
-}, function (_ref5) {
-  var compact = _ref5.compact;
+}, function (_ref9) {
+  var compact = _ref9.compact;
   return compact ? compactStyle : '';
-}, function (_ref6) {
-  var emphasis = _ref6.emphasis;
+}, function (_ref10) {
+  var emphasis = _ref10.emphasis;
 
   if (emphasis === 'positive') return positiveStyle;
   if (emphasis === 'negative') return negativeStyle;
   return '';
 });
 
-// Flow declaration: see https://github.com/styled-components/styled-components/issues/570#issuecomment-332087358
-// Currently throwing errors: https://github.com/styled-components/styled-components/issues/1350
 var Button = getPublicUrl(StyledButton);
-var Anchor = getPublicUrl(StyledButton.withComponent('a').extend(_templateObject$1));
+var Anchor = getPublicUrl(StyledButton.withComponent(SafeLink).extend(_templateObject$1));
 
 Button.Anchor = Anchor;
 
@@ -2425,7 +2687,7 @@ var performanceNow$2 = createCommonjsModule(function (module) {
 
 }).call(commonjsGlobal);
 
-//# sourceMappingURL=performance-now.js.map
+
 });
 
 var root = typeof window === 'undefined' ? commonjsGlobal : window;
@@ -4171,7 +4433,7 @@ ContextMenu.BASE_HEIGHT = 32;
 
 var ContextMenuItem = styled.div.withConfig({
   displayName: 'ContextMenuItem'
-})(['display:flex;align-items:center;padding:5px 20px;cursor:pointer;', ';&:active{background:', ';}'], unselectable(), theme.contentBackgroundActive);
+})(['display:flex;align-items:center;padding:5px 20px;cursor:pointer;white-space:nowrap;', ';&:active{background:', ';}'], unselectable(), theme.contentBackgroundActive);
 
 var MILLISECONDS_IN_HOUR = 3600000;
 var MILLISECONDS_IN_MINUTE = 60000;
@@ -4519,6 +4781,31 @@ function cloneObject (dirtyObject) {
   return object
 }
 
+/**
+ * @name differenceInMilliseconds
+ * @category Millisecond Helpers
+ * @summary Get the number of milliseconds between the given dates.
+ *
+ * @description
+ * Get the number of milliseconds between the given dates.
+ *
+ * @param {Date|String|Number} dateLeft - the later date
+ * @param {Date|String|Number} dateRight - the earlier date
+ * @param {Options} [options] - the object with options. See [Options]{@link https://date-fns.org/docs/Options}
+ * @param {0|1|2} [options.additionalDigits=2] - passed to `toDate`. See [toDate]{@link https://date-fns.org/docs/toDate}
+ * @returns {Number} the number of milliseconds
+ * @throws {TypeError} 2 arguments required
+ * @throws {RangeError} `options.additionalDigits` must be 0, 1 or 2
+ *
+ * @example
+ * // How many milliseconds are between
+ * // 2 July 2014 12:30:20.600 and 2 July 2014 12:30:21.700?
+ * var result = differenceInMilliseconds(
+ *   new Date(2014, 6, 2, 12, 30, 21, 700),
+ *   new Date(2014, 6, 2, 12, 30, 20, 600)
+ * )
+ * //=> 1100
+ */
 function differenceInMilliseconds (dirtyDateLeft, dirtyDateRight, dirtyOptions) {
   if (arguments.length < 2) {
     throw new TypeError('2 arguments required, but only ' + arguments.length + ' present')
@@ -4529,6 +4816,31 @@ function differenceInMilliseconds (dirtyDateLeft, dirtyDateRight, dirtyOptions) 
   return dateLeft.getTime() - dateRight.getTime()
 }
 
+/**
+ * @name differenceInSeconds
+ * @category Second Helpers
+ * @summary Get the number of seconds between the given dates.
+ *
+ * @description
+ * Get the number of seconds between the given dates.
+ *
+ * @param {Date|String|Number} dateLeft - the later date
+ * @param {Date|String|Number} dateRight - the earlier date
+ * @param {Options} [options] - the object with options. See [Options]{@link https://date-fns.org/docs/Options}
+ * @param {0|1|2} [options.additionalDigits=2] - passed to `toDate`. See [toDate]{@link https://date-fns.org/docs/toDate}
+ * @returns {Number} the number of seconds
+ * @throws {TypeError} 2 arguments required
+ * @throws {RangeError} `options.additionalDigits` must be 0, 1 or 2
+ *
+ * @example
+ * // How many seconds are between
+ * // 2 July 2014 12:30:07.999 and 2 July 2014 12:30:20.000?
+ * var result = differenceInSeconds(
+ *   new Date(2014, 6, 2, 12, 30, 20, 0),
+ *   new Date(2014, 6, 2, 12, 30, 7, 999)
+ * )
+ * //=> 12
+ */
 function differenceInSeconds (dirtyDateLeft, dirtyDateRight, dirtyOptions) {
   if (arguments.length < 2) {
     throw new TypeError('2 arguments required, but only ' + arguments.length + ' present')
@@ -4538,6 +4850,40 @@ function differenceInSeconds (dirtyDateLeft, dirtyDateRight, dirtyOptions) {
   return diff > 0 ? Math.floor(diff) : Math.ceil(diff)
 }
 
+/**
+ * @name isValid
+ * @category Common Helpers
+ * @summary Is the given date valid?
+ *
+ * @description
+ * Returns false if argument is Invalid Date and true otherwise.
+ * Argument is converted to Date using `toDate`. See [toDate]{@link https://date-fns.org/docs/toDate}
+ * Invalid Date is a Date, whose time value is NaN.
+ *
+ * Time value of Date: http://es5.github.io/#x15.9.1.1
+ *
+ * @param {*} date - the date to check
+ * @param {Options} [options] - the object with options. See [Options]{@link https://date-fns.org/docs/Options}
+ * @param {0|1|2} [options.additionalDigits=2] - passed to `toDate`. See [toDate]{@link https://date-fns.org/docs/toDate}
+ * @returns {Boolean} the date is valid
+ * @throws {TypeError} 1 argument required
+ * @throws {RangeError} `options.additionalDigits` must be 0, 1 or 2
+ *
+ * @example
+ * // For the valid date:
+ * var result = isValid(new Date(2014, 1, 31))
+ * //=> true
+ *
+ * @example
+ * // For the value, convertable into a date:
+ * var result = isValid('2014-02-31')
+ * //=> true
+ *
+ * @example
+ * // For the invalid date:
+ * var result = isValid(new Date(''))
+ * //=> false
+ */
 function isValid (dirtyDate, dirtyOptions) {
   if (arguments.length < 1) {
     throw new TypeError('1 argument required, but only ' + arguments.length + ' present')
@@ -4802,6 +5148,10 @@ function buildLocalizeArrayFn (values, defaultType) {
   }
 }
 
+// Note: in English, the names of days of the week and months are capitalized.
+// If you are making a new locale based on this one, check if the same is true for the language you're working on.
+// Generally, formatted dates should look like they are in the middle of a sentence,
+// e.g. in Spanish language the weekdays and months should be in the lowercase.
 var weekdayValues = {
   narrow: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
   short: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
@@ -5052,6 +5402,13 @@ var match = {
   timeOfDay: buildParseFn(parseTimeOfDayPatterns, 'any')
 };
 
+/**
+ * @type {Locale}
+ * @category Locales
+ * @summary English locale (United States).
+ * @language English
+ * @iso-639-2 eng
+ */
 var locale = {
   formatDistance: formatDistance,
   formatLong: formatLong,
@@ -5078,6 +5435,8 @@ function getUTCDayOfYear (dirtyDate, dirtyOptions) {
   return Math.floor(difference / MILLISECONDS_IN_DAY$1) + 1
 }
 
+// This function will be a part of public API when UTC function will be implemented.
+// See issue: https://github.com/date-fns/date-fns/issues/376
 function startOfUTCISOWeek (dirtyDate, dirtyOptions) {
   var weekStartsOn = 1;
 
@@ -5090,6 +5449,8 @@ function startOfUTCISOWeek (dirtyDate, dirtyOptions) {
   return date
 }
 
+// This function will be a part of public API when UTC function will be implemented.
+// See issue: https://github.com/date-fns/date-fns/issues/376
 function getUTCISOWeekYear (dirtyDate, dirtyOptions) {
   var date = toDate(dirtyDate, dirtyOptions);
   var year = date.getUTCFullYear();
@@ -5113,6 +5474,8 @@ function getUTCISOWeekYear (dirtyDate, dirtyOptions) {
   }
 }
 
+// This function will be a part of public API when UTC function will be implemented.
+// See issue: https://github.com/date-fns/date-fns/issues/376
 function startOfUTCISOWeekYear (dirtyDate, dirtyOptions) {
   var year = getUTCISOWeekYear(dirtyDate, dirtyOptions);
   var fourthOfJanuary = new Date(0);
@@ -5388,6 +5751,8 @@ function addLeadingZeros (number, targetLength) {
   return output
 }
 
+// This function will be a part of public API when UTC function will be implemented.
+// See issue: https://github.com/date-fns/date-fns/issues/376
 function addUTCMinutes (dirtyDate, dirtyAmount, dirtyOptions) {
   var date = toDate(dirtyDate, dirtyOptions);
   var amount = Number(dirtyAmount);
@@ -5599,129 +5964,91 @@ var formatHtmlDatetime = function formatHtmlDatetime(date) {
   return format(date, 'YYYY-MM-DDTHH:mm:ss.SSSZ');
 };
 
+var FRAME_EVERY = 1000 / 30; // 30 FPS is enough for a ticker
+
 var formatUnit = function formatUnit(v) {
   return String(v).padStart(2, '0');
 };
 
-var Countdown = function (_React$Component) {
-  inherits(Countdown, _React$Component);
+var Countdown = function Countdown(_ref) {
+  var end = _ref.end;
 
-  function Countdown() {
-    var _ref;
+  var _difference = difference(end, new Date()),
+      days = _difference.days,
+      hours = _difference.hours,
+      minutes = _difference.minutes,
+      seconds = _difference.seconds,
+      totalInSeconds = _difference.totalInSeconds;
 
-    var _temp, _this, _ret;
-
-    classCallCheck(this, Countdown);
-
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    return _ret = (_temp = (_this = possibleConstructorReturn(this, (_ref = Countdown.__proto__ || Object.getPrototypeOf(Countdown)).call.apply(_ref, [this].concat(args))), _this), _this.startTimer = function () {
-      _this.timeout = setTimeout(function () {
-        requestAnimationFrame(function () {
-          _this.forceUpdate();
-          _this.startTimer();
-        });
-      }, 1000);
-    }, _temp), possibleConstructorReturn(_this, _ret);
-  }
-
-  createClass(Countdown, [{
-    key: 'componentDidMount',
-    value: function componentDidMount() {
-      this.startTimer();
-    }
-  }, {
-    key: 'componentWillUnmount',
-    value: function componentWillUnmount() {
-      clearTimeout(this.timeout);
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      var end = this.props.end;
-
-      var _difference = difference(end, new Date()),
-          days = _difference.days,
-          hours = _difference.hours,
-          minutes = _difference.minutes,
-          seconds = _difference.seconds,
-          totalInSeconds = _difference.totalInSeconds;
-
-      return React.createElement(
-        Main$1,
-        { dateTime: formatHtmlDatetime(end) },
+  return React.createElement(
+    Main$1,
+    { dateTime: formatHtmlDatetime(end) },
+    React.createElement(
+      IconWrapper,
+      null,
+      React.createElement(Time, null)
+    ),
+    totalInSeconds > 0 ? React.createElement(
+      'span',
+      null,
+      React.createElement(
+        Part,
+        null,
+        formatUnit(days),
         React.createElement(
-          IconWrapper,
+          Unit,
           null,
-          React.createElement(Time, null)
-        ),
-        totalInSeconds > 0 ? React.createElement(
-          'span',
-          null,
-          React.createElement(
-            Part,
-            null,
-            formatUnit(days),
-            React.createElement(
-              Unit,
-              null,
-              'D'
-            )
-          ),
-          React.createElement(Separator, null),
-          React.createElement(
-            Part,
-            null,
-            formatUnit(hours),
-            React.createElement(
-              Unit,
-              null,
-              'H'
-            )
-          ),
-          React.createElement(
-            Separator,
-            null,
-            ':'
-          ),
-          React.createElement(
-            Part,
-            null,
-            formatUnit(minutes),
-            React.createElement(
-              Unit,
-              null,
-              'M'
-            )
-          ),
-          React.createElement(
-            Separator,
-            null,
-            ':'
-          ),
-          React.createElement(
-            Part,
-            null,
-            formatUnit(seconds),
-            React.createElement(
-              Unit,
-              null,
-              'S'
-            )
-          )
-        ) : React.createElement(
-          TimeOut,
-          null,
-          'Time out'
+          'D'
         )
-      );
-    }
-  }]);
-  return Countdown;
-}(React.Component);
-
+      ),
+      React.createElement(Separator, null),
+      React.createElement(
+        Part,
+        null,
+        formatUnit(hours),
+        React.createElement(
+          Unit,
+          null,
+          'H'
+        )
+      ),
+      React.createElement(
+        Separator,
+        null,
+        ':'
+      ),
+      React.createElement(
+        Part,
+        null,
+        formatUnit(minutes),
+        React.createElement(
+          Unit,
+          null,
+          'M'
+        )
+      ),
+      React.createElement(
+        Separator,
+        null,
+        ':'
+      ),
+      React.createElement(
+        Part,
+        null,
+        formatUnit(seconds),
+        React.createElement(
+          Unit,
+          null,
+          'S'
+        )
+      )
+    ) : React.createElement(
+      TimeOut,
+      null,
+      'Time out'
+    )
+  );
+};
 Countdown.propTypes = {
   end: propTypes.instanceOf(Date)
 };
@@ -5749,6 +6076,8 @@ var Unit = styled.span.withConfig({
 var TimeOut = styled.span.withConfig({
   displayName: 'Countdown__TimeOut'
 })(['font-weight:600;color:', ';'], theme.textSecondary);
+
+var Countdown$1 = redraw(FRAME_EVERY)(Countdown);
 
 /**
  * Re-maps a number from one range to another.
@@ -6160,40 +6489,168 @@ var Field = function Field(_ref) {
   );
 };
 
-var infoIcon = "data:image/svg+xml,%3Csvg%20width%3D%2214%22%20height%3D%2214%22%20viewBox%3D%220%200%2014%2014%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Crect%20fill%3D%22%23DAEAEF%22%20width%3D%2214%22%20height%3D%2214%22%20rx%3D%227%22%2F%3E%3Cpath%20d%3D%22M6.155%208.547h1.298V3.3H6.155v5.247zM6.045%2011h1.529V9.537H6.045V11z%22%20fill%3D%22%236D777B%22%20opacity%3D%22.7%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E";
-
-var Info$1 = getPublicUrl(function (_ref) {
-  var title = _ref.title,
-      publicUrl = _ref.publicUrl,
-      children = _ref.children;
+var Attention = function Attention(props) {
   return React.createElement(
-    Main$2,
-    null,
+    "svg",
+    _extends({ width: 14, height: 14, viewBox: "0 0 14 14" }, props),
     React.createElement(
-      Title,
-      null,
-      React.createElement(Icon, { src: prefixUrl(infoIcon, publicUrl), alt: '' }),
-      title
-    ),
-    children && React.createElement(
-      'div',
-      null,
-      children
+      "g",
+      { fill: "none", fillRule: "evenodd" },
+      React.createElement("rect", { fill: "#DAEAEF", width: 14, height: 14, rx: 7 }),
+      React.createElement("path", {
+        d: "M6.155 8.547h1.298V3.3H6.155v5.247zM6.045 11h1.529V9.537H6.045V11z",
+        fill: "#6D777B",
+        opacity: 0.7
+      })
     )
   );
-});
+};
+
+var Bylaw = function Bylaw(props) {
+  return React.createElement(
+    "svg",
+    _extends({ width: 17, height: 16, viewBox: "0 0 17 16" }, props),
+    React.createElement(
+      "g",
+      { fill: "none", fillRule: "evenodd" },
+      React.createElement("path", { d: "M-2-2h22v22H-2z" }),
+      React.createElement(
+        "g",
+        { opacity: 0.8, stroke: "currentColor" },
+        React.createElement("path", {
+          d: "M9.036 1.143L1.578 4.357V5.43h14.916V4.357L9.036 1.143zm6.88 12.393H2.071c-.318 0-.577.242-.577.535v1.072h15V14.07c0-.293-.26-.535-.578-.535z",
+          strokeLinecap: "round",
+          strokeLinejoin: "round"
+        }),
+        React.createElement("path", { d: "M3 5v8.034M6 5v8.275M9 5v8.034M12 5v8.275M15 5v8.275" })
+      )
+    )
+  );
+};
+
+var Icon = styled.span.withConfig({
+  displayName: 'IconInfo__Icon'
+})(['margin-right:10px;']);
+
+var Title$1 = styled.div.withConfig({
+  displayName: 'IconInfo__Title'
+})(['color:', ';margin-bottom:2px;display:flex;align-items:center;', ';'], theme.textSecondary, font({ size: 'small' }));
+
+var TitlelessBody = styled.div.withConfig({
+  displayName: 'IconInfo__TitlelessBody'
+})(['display:flex;align-items:center;']);
+
+var IconInfo = function IconInfo(_ref) {
+  var children = _ref.children,
+      icon = _ref.icon,
+      title = _ref.title,
+      props = objectWithoutProperties(_ref, ['children', 'icon', 'title']);
+
+  var titleElm = title;
+  var bodyElm = React.createElement(
+    TitlelessBody,
+    null,
+    icon && React.createElement(
+      Icon,
+      null,
+      icon
+    ),
+    children
+  );
+  if (title) {
+    titleElm = React.createElement(
+      Title$1,
+      null,
+      icon && React.createElement(
+        Icon,
+        null,
+        icon
+      ),
+      title
+    );
+    bodyElm = children;
+  }
+  return React.createElement(
+    Info$1,
+    _extends({ title: titleElm }, props),
+    bodyElm
+  );
+};
+IconInfo.propTypes = {
+  children: propTypes.node,
+  icon: propTypes.node,
+  title: propTypes.node
+};
+
+var Action = function Action(props) {
+  return React.createElement(IconInfo, _extends({ icon: React.createElement(Attention, null) }, props));
+};
+
+var PermissionIconInfo = styled(IconInfo).withConfig({
+  displayName: 'IconInfo__PermissionIconInfo'
+})(['', '{color:', ';}'], Icon, theme.infoPermissionsIcon);
+
+var Permissions$2 = function Permissions(props) {
+  return React.createElement(PermissionIconInfo, _extends({
+    background: theme.infoPermissionsBackground,
+    icon: React.createElement(Bylaw, null)
+  }, props));
+};
+
+var Info$1 = function Info(_ref) {
+  var children = _ref.children,
+      title = _ref.title,
+      props = objectWithoutProperties(_ref, ['children', 'title']);
+  return React.createElement(
+    Main$2,
+    props,
+    title && React.createElement(
+      Title,
+      null,
+      title
+    ),
+    children
+  );
+};
+Info$1.propTypes = {
+  background: propTypes.string,
+  children: propTypes.node,
+  title: propTypes.node
+};
+Info$1.defaultProps = {
+  background: theme.infoBackground
+};
 
 var Main$2 = styled.section.withConfig({
   displayName: 'Info__Main'
-})(['padding:15px;background:', ';border-radius:3px;'], theme.infoBackground);
-
-var Icon = styled.img.withConfig({
-  displayName: 'Info__Icon'
-})(['display:block;margin-right:10px;']);
+})(['background:', ';padding:15px;border-radius:3px;word-wrap:break-word;'], function (_ref2) {
+  var background = _ref2.background;
+  return background;
+});
 
 var Title = styled.h1.withConfig({
   displayName: 'Info__Title'
 })(['display:flex;']);
+
+Info$1.Action = Action;
+Info$1.Permissions = Permissions$2;
+
+// Utility styles for the radio input
+var radioActive = css(['background:transparent;&:after{content:\'\';}']);
+
+var radioDimmed = css(['', ';&:after{opacity:0.5;transition:none;}'], radioActive);
+
+// Styled component
+var RadioButton = styled.input.attrs({
+  type: 'radio'
+}).withConfig({
+  displayName: 'RadioButton'
+})(['appearance:none;display:inline-flex;position:relative;background:', ';border:1px ', ' solid;border-radius:7px;width:14px;height:14px;outline:none;cursor:pointer;align-items:center;justify-content:center;&:checked,&:focus,&:hover{', ';}&:after{position:absolute;background:', ';width:8px;height:8px;border-radius:4px;transition:opacity 200ms linear;}&:not(:checked):focus,&:not(:checked):hover{', ';}'], theme.secondaryBackground, theme.contentBorder, radioActive, theme.accent, radioDimmed);
+
+RadioButton.css = {
+  active: radioActive,
+  dimmed: radioDimmed
+};
 
 var StyledInput = styled.input.withConfig({
   displayName: 'TextInput__StyledInput'
@@ -6871,8 +7328,8 @@ var close$1 = "data:image/svg+xml,%3Csvg%20width%3D%2210%22%20height%3D%2210%22%
 var PANEL_WIDTH = 450;
 var PANEL_OVERFLOW = PANEL_WIDTH * 0.2;
 var PANEL_HIDE_RIGHT = -PANEL_WIDTH * 1.6;
-var HORIZONTAL_PADDING = 30;
-var PANEL_INNER_WIDTH = PANEL_WIDTH - HORIZONTAL_PADDING * 2;
+var CONTENT_PADDING = 30;
+var PANEL_INNER_WIDTH = PANEL_WIDTH - CONTENT_PADDING * 2;
 
 var StyledSidePanel = styled.div.withConfig({
   displayName: 'SidePanel__StyledSidePanel'
@@ -6890,15 +7347,23 @@ var Overlay = styled.div.withConfig({
 
 var StyledPanel = styled.aside.withConfig({
   displayName: 'SidePanel__StyledPanel'
-})(['display:flex;flex-direction:column;width:', 'px;padding-right:', 'px;padding-left:', 'px;height:100%;background:white;position:absolute;top:0;right:0;box-shadow:-2px 0 36px rgba(0,0,0,0.2);'], PANEL_WIDTH + PANEL_OVERFLOW, HORIZONTAL_PADDING + PANEL_OVERFLOW, HORIZONTAL_PADDING);
+})(['position:absolute;top:0;right:0;display:flex;flex-direction:column;width:', 'px;height:100vh;padding-right:', 'px;background:white;box-shadow:-2px 0 36px rgba(0,0,0,0.2);'], PANEL_WIDTH + PANEL_OVERFLOW, PANEL_OVERFLOW);
 
 var StyledPanelHeader = styled.header.withConfig({
   displayName: 'SidePanel__StyledPanelHeader'
-})(['position:relative;padding-top:15px;padding-bottom:15px;padding-right:20px;', ';'], unselectable());
+})(['position:relative;padding-top:15px;padding-left:', 'px;padding-right:20px;padding-bottom:15px;', ';'], CONTENT_PADDING, unselectable());
+
+var StyledPanelScrollView = styled.div.withConfig({
+  displayName: 'SidePanel__StyledPanelScrollView'
+})(['overflow-y:auto;']);
+
+var StyledPanelContent = styled.div.withConfig({
+  displayName: 'SidePanel__StyledPanelContent'
+})(['padding-right:', 'px;padding-left:', 'px;padding-bottom:', 'px;'], CONTENT_PADDING, CONTENT_PADDING, CONTENT_PADDING);
 
 var StyledPanelCloseButton = styled.button.withConfig({
   displayName: 'SidePanel__StyledPanelCloseButton'
-})(['', ' &{position:absolute;padding:20px;top:0;right:-', 'px;cursor:pointer;background:none;border:0;outline:0;&::-moz-focus-inner{border:0;}}'], StyledPanelHeader, HORIZONTAL_PADDING);
+})(['', ' &{position:absolute;padding:20px;top:0;right:0;cursor:pointer;background:none;border:0;outline:0;&::-moz-focus-inner{border:0;}}'], StyledPanelHeader);
 
 var motionStyles = function motionStyles(progress) {
   return {
@@ -6998,7 +7463,15 @@ var SidePanel = function (_React$Component) {
                   React.createElement('img', { src: prefixUrl(close$1, publicUrl), alt: 'Close' })
                 )
               ),
-              children
+              React.createElement(
+                StyledPanelScrollView,
+                null,
+                React.createElement(
+                  StyledPanelContent,
+                  null,
+                  children
+                )
+              )
             )
           );
         }
@@ -7030,8 +7503,8 @@ var WrappedSidePanel = getPublicUrl(SidePanel);
 WrappedSidePanel.PANEL_WIDTH = PANEL_WIDTH;
 WrappedSidePanel.PANEL_OVERFLOW = PANEL_OVERFLOW;
 WrappedSidePanel.PANEL_HIDE_RIGHT = PANEL_HIDE_RIGHT;
-WrappedSidePanel.HORIZONTAL_PADDING = HORIZONTAL_PADDING;
 WrappedSidePanel.PANEL_INNER_WIDTH = PANEL_INNER_WIDTH;
+WrappedSidePanel.HORIZONTAL_PADDING = CONTENT_PADDING;
 
 var SidePanelSeparator = styled.div.withConfig({
   displayName: 'SidePanelSeparator'
@@ -7064,6 +7537,1052 @@ var Part$1 = styled.div.withConfig({
   displayName: 'SidePanelSplit__Part'
 })(['width:50%;padding:20px ', 'px;&:first-child{border-right:1px solid ', ';}'], WrappedSidePanel.HORIZONTAL_PADDING, theme.contentBorder);
 
+var RadioGroup = function RadioGroup(_ref) {
+  var children = _ref.children,
+      className = _ref.className,
+      radioProps = objectWithoutProperties(_ref, ['children', 'className']);
+  return React.createElement(
+    'div',
+    { className: className, role: 'radiogroup' },
+    React.Children.map(children, function (child) {
+      return React.cloneElement(child, _extends({}, radioProps));
+    })
+  );
+};
+RadioGroup.propTypes = {
+  children: propTypes.node.isRequired,
+  className: propTypes.string
+};
+
+var installedColorSpaces = [];
+var undef = function (obj) {
+        return typeof obj === 'undefined';
+    };
+var channelRegExp = /\s*(\.\d+|\d+(?:\.\d+)?)(%)?\s*/;
+var percentageChannelRegExp = /\s*(\.\d+|100|\d?\d(?:\.\d+)?)%\s*/;
+var alphaChannelRegExp = /\s*(\.\d+|\d+(?:\.\d+)?)\s*/;
+var cssColorRegExp = new RegExp(
+                         '^(rgb|hsl|hsv)a?' +
+                         '\\(' +
+                             channelRegExp.source + ',' +
+                             channelRegExp.source + ',' +
+                             channelRegExp.source +
+                             '(?:,' + alphaChannelRegExp.source + ')?' +
+                         '\\)$', 'i');
+
+function color$1(obj) {
+    if (Array.isArray(obj)) {
+        if (typeof obj[0] === 'string' && typeof color$1[obj[0]] === 'function') {
+            // Assumed array from .toJSON()
+            return new color$1[obj[0]](obj.slice(1, obj.length));
+        } else if (obj.length === 4) {
+            // Assumed 4 element int RGB array from canvas with all channels [0;255]
+            return new color$1.RGB(obj[0] / 255, obj[1] / 255, obj[2] / 255, obj[3] / 255);
+        }
+    } else if (typeof obj === 'string') {
+        var lowerCased = obj.toLowerCase();
+        if (color$1.namedColors[lowerCased]) {
+            obj = '#' + color$1.namedColors[lowerCased];
+        }
+        if (lowerCased === 'transparent') {
+            obj = 'rgba(0,0,0,0)';
+        }
+        // Test for CSS rgb(....) string
+        var matchCssSyntax = obj.match(cssColorRegExp);
+        if (matchCssSyntax) {
+            var colorSpaceName = matchCssSyntax[1].toUpperCase(),
+                alpha = undef(matchCssSyntax[8]) ? matchCssSyntax[8] : parseFloat(matchCssSyntax[8]),
+                hasHue = colorSpaceName[0] === 'H',
+                firstChannelDivisor = matchCssSyntax[3] ? 100 : (hasHue ? 360 : 255),
+                secondChannelDivisor = (matchCssSyntax[5] || hasHue) ? 100 : 255,
+                thirdChannelDivisor = (matchCssSyntax[7] || hasHue) ? 100 : 255;
+            if (undef(color$1[colorSpaceName])) {
+                throw new Error('color.' + colorSpaceName + ' is not installed.');
+            }
+            return new color$1[colorSpaceName](
+                parseFloat(matchCssSyntax[2]) / firstChannelDivisor,
+                parseFloat(matchCssSyntax[4]) / secondChannelDivisor,
+                parseFloat(matchCssSyntax[6]) / thirdChannelDivisor,
+                alpha
+            );
+        }
+        // Assume hex syntax
+        if (obj.length < 6) {
+            // Allow CSS shorthand
+            obj = obj.replace(/^#?([0-9a-f])([0-9a-f])([0-9a-f])$/i, '$1$1$2$2$3$3');
+        }
+        // Split obj into red, green, and blue components
+        var hexMatch = obj.match(/^#?([0-9a-f][0-9a-f])([0-9a-f][0-9a-f])([0-9a-f][0-9a-f])$/i);
+        if (hexMatch) {
+            return new color$1.RGB(
+                parseInt(hexMatch[1], 16) / 255,
+                parseInt(hexMatch[2], 16) / 255,
+                parseInt(hexMatch[3], 16) / 255
+            );
+        }
+
+        // No match so far. Lets try the less likely ones
+        if (color$1.CMYK) {
+            var cmykMatch = obj.match(new RegExp(
+                             '^cmyk' +
+                             '\\(' +
+                                 percentageChannelRegExp.source + ',' +
+                                 percentageChannelRegExp.source + ',' +
+                                 percentageChannelRegExp.source + ',' +
+                                 percentageChannelRegExp.source +
+                             '\\)$', 'i'));
+            if (cmykMatch) {
+                return new color$1.CMYK(
+                    parseFloat(cmykMatch[1]) / 100,
+                    parseFloat(cmykMatch[2]) / 100,
+                    parseFloat(cmykMatch[3]) / 100,
+                    parseFloat(cmykMatch[4]) / 100
+                );
+            }
+        }
+    } else if (typeof obj === 'object' && obj.isColor) {
+        return obj;
+    }
+    return false;
+}
+
+color$1.namedColors = {};
+
+color$1.installColorSpace = function (colorSpaceName, propertyNames, config) {
+    color$1[colorSpaceName] = function (a1) { // ...
+        var args = Array.isArray(a1) ? a1 : arguments;
+        propertyNames.forEach(function (propertyName, i) {
+            var propertyValue = args[i];
+            if (propertyName === 'alpha') {
+                this._alpha = (isNaN(propertyValue) || propertyValue > 1) ? 1 : (propertyValue < 0 ? 0 : propertyValue);
+            } else {
+                if (isNaN(propertyValue)) {
+                    throw new Error('[' + colorSpaceName + ']: Invalid color: (' + propertyNames.join(',') + ')');
+                }
+                if (propertyName === 'hue') {
+                    this._hue = propertyValue < 0 ? propertyValue - Math.floor(propertyValue) : propertyValue % 1;
+                } else {
+                    this['_' + propertyName] = propertyValue < 0 ? 0 : (propertyValue > 1 ? 1 : propertyValue);
+                }
+            }
+        }, this);
+    };
+    color$1[colorSpaceName].propertyNames = propertyNames;
+
+    var prototype = color$1[colorSpaceName].prototype;
+
+    ['valueOf', 'hex', 'hexa', 'css', 'cssa'].forEach(function (methodName) {
+        prototype[methodName] = prototype[methodName] || (colorSpaceName === 'RGB' ? prototype.hex : function () {
+            return this.rgb()[methodName]();
+        });
+    });
+
+    prototype.isColor = true;
+
+    prototype.equals = function (otherColor, epsilon) {
+        if (undef(epsilon)) {
+            epsilon = 1e-10;
+        }
+
+        otherColor = otherColor[colorSpaceName.toLowerCase()]();
+
+        for (var i = 0; i < propertyNames.length; i = i + 1) {
+            if (Math.abs(this['_' + propertyNames[i]] - otherColor['_' + propertyNames[i]]) > epsilon) {
+                return false;
+            }
+        }
+
+        return true;
+    };
+
+    prototype.toJSON = function () {
+        return [colorSpaceName].concat(propertyNames.map(function (propertyName) {
+            return this['_' + propertyName];
+        }, this));
+    };
+
+    for (var propertyName in config) {
+        if (config.hasOwnProperty(propertyName)) {
+            var matchFromColorSpace = propertyName.match(/^from(.*)$/);
+            if (matchFromColorSpace) {
+                color$1[matchFromColorSpace[1].toUpperCase()].prototype[colorSpaceName.toLowerCase()] = config[propertyName];
+            } else {
+                prototype[propertyName] = config[propertyName];
+            }
+        }
+    }
+
+    // It is pretty easy to implement the conversion to the same color space:
+    prototype[colorSpaceName.toLowerCase()] = function () {
+        return this;
+    };
+    prototype.toString = function () {
+        return '[' + colorSpaceName + ' ' + propertyNames.map(function (propertyName) {
+            return this['_' + propertyName];
+        }, this).join(', ') + ']';
+    };
+
+    // Generate getters and setters
+    propertyNames.forEach(function (propertyName) {
+        var shortName = propertyName === 'black' ? 'k' : propertyName.charAt(0);
+        prototype[propertyName] = prototype[shortName] = function (value, isDelta) {
+            // Simple getter mode: color.red()
+            if (typeof value === 'undefined') {
+                return this['_' + propertyName];
+            } else if (isDelta) {
+                // Adjuster: color.red(+.2, true)
+                return new this.constructor(propertyNames.map(function (otherPropertyName) {
+                    return this['_' + otherPropertyName] + (propertyName === otherPropertyName ? value : 0);
+                }, this));
+            } else {
+                // Setter: color.red(.2);
+                return new this.constructor(propertyNames.map(function (otherPropertyName) {
+                    return (propertyName === otherPropertyName) ? value : this['_' + otherPropertyName];
+                }, this));
+            }
+        };
+    });
+
+    function installForeignMethods(targetColorSpaceName, sourceColorSpaceName) {
+        var obj = {};
+        obj[sourceColorSpaceName.toLowerCase()] = function () {
+            return this.rgb()[sourceColorSpaceName.toLowerCase()]();
+        };
+        color$1[sourceColorSpaceName].propertyNames.forEach(function (propertyName) {
+            var shortName = propertyName === 'black' ? 'k' : propertyName.charAt(0);
+            obj[propertyName] = obj[shortName] = function (value, isDelta) {
+                return this[sourceColorSpaceName.toLowerCase()]()[propertyName](value, isDelta);
+            };
+        });
+        for (var prop in obj) {
+            if (obj.hasOwnProperty(prop) && color$1[targetColorSpaceName].prototype[prop] === undefined) {
+                color$1[targetColorSpaceName].prototype[prop] = obj[prop];
+            }
+        }
+    }
+
+    installedColorSpaces.forEach(function (otherColorSpaceName) {
+        installForeignMethods(colorSpaceName, otherColorSpaceName);
+        installForeignMethods(otherColorSpaceName, colorSpaceName);
+    });
+
+    installedColorSpaces.push(colorSpaceName);
+    return color$1;
+};
+
+color$1.pluginList = [];
+
+color$1.use = function (plugin) {
+    if (color$1.pluginList.indexOf(plugin) === -1) {
+        this.pluginList.push(plugin);
+        plugin(color$1);
+    }
+    return color$1;
+};
+
+color$1.installMethod = function (name, fn) {
+    installedColorSpaces.forEach(function (colorSpace) {
+        color$1[colorSpace].prototype[name] = fn;
+    });
+    return this;
+};
+
+color$1.installColorSpace('RGB', ['red', 'green', 'blue', 'alpha'], {
+    hex: function () {
+        var hexString = (Math.round(255 * this._red) * 0x10000 + Math.round(255 * this._green) * 0x100 + Math.round(255 * this._blue)).toString(16);
+        return '#' + ('00000'.substr(0, 6 - hexString.length)) + hexString;
+    },
+
+    hexa: function () {
+        var alphaString = Math.round(this._alpha * 255).toString(16);
+        return '#' + '00'.substr(0, 2 - alphaString.length) + alphaString + this.hex().substr(1, 6);
+    },
+
+    css: function () {
+        return 'rgb(' + Math.round(255 * this._red) + ',' + Math.round(255 * this._green) + ',' + Math.round(255 * this._blue) + ')';
+    },
+
+    cssa: function () {
+        return 'rgba(' + Math.round(255 * this._red) + ',' + Math.round(255 * this._green) + ',' + Math.round(255 * this._blue) + ',' + this._alpha + ')';
+    }
+});
+
+var color_1 = color$1;
+
+var XYZ = function XYZ(color) {
+    color.installColorSpace('XYZ', ['x', 'y', 'z', 'alpha'], {
+        fromRgb: function () {
+            // http://www.easyrgb.com/index.php?X=MATH&H=02#text2
+            var convert = function (channel) {
+                    return channel > 0.04045 ?
+                        Math.pow((channel + 0.055) / 1.055, 2.4) :
+                        channel / 12.92;
+                },
+                r = convert(this._red),
+                g = convert(this._green),
+                b = convert(this._blue);
+
+            // Reference white point sRGB D65:
+            // http://www.brucelindbloom.com/index.html?Eqn_RGB_XYZ_Matrix.html
+            return new color.XYZ(
+                r * 0.4124564 + g * 0.3575761 + b * 0.1804375,
+                r * 0.2126729 + g * 0.7151522 + b * 0.0721750,
+                r * 0.0193339 + g * 0.1191920 + b * 0.9503041,
+                this._alpha
+            );
+        },
+
+        rgb: function () {
+            // http://www.easyrgb.com/index.php?X=MATH&H=01#text1
+            var x = this._x,
+                y = this._y,
+                z = this._z,
+                convert = function (channel) {
+                    return channel > 0.0031308 ?
+                        1.055 * Math.pow(channel, 1 / 2.4) - 0.055 :
+                        12.92 * channel;
+                };
+
+            // Reference white point sRGB D65:
+            // http://www.brucelindbloom.com/index.html?Eqn_RGB_XYZ_Matrix.html
+            return new color.RGB(
+                convert(x *  3.2404542 + y * -1.5371385 + z * -0.4985314),
+                convert(x * -0.9692660 + y *  1.8760108 + z *  0.0415560),
+                convert(x *  0.0556434 + y * -0.2040259 + z *  1.0572252),
+                this._alpha
+            );
+        },
+
+        lab: function () {
+            // http://www.easyrgb.com/index.php?X=MATH&H=07#text7
+            var convert = function (channel) {
+                    return channel > 0.008856 ?
+                        Math.pow(channel, 1 / 3) :
+                        7.787037 * channel + 4 / 29;
+                },
+                x = convert(this._x /  95.047),
+                y = convert(this._y / 100.000),
+                z = convert(this._z / 108.883);
+
+            return new color.LAB(
+                (116 * y) - 16,
+                500 * (x - y),
+                200 * (y - z),
+                this._alpha
+            );
+        }
+    });
+};
+
+var LAB = function LAB(color) {
+    color.use(XYZ);
+
+    color.installColorSpace('LAB', ['l', 'a', 'b', 'alpha'], {
+        fromRgb: function () {
+            return this.xyz().lab();
+        },
+
+        rgb: function () {
+            return this.xyz().rgb();
+        },
+
+        xyz: function () {
+            // http://www.easyrgb.com/index.php?X=MATH&H=08#text8
+            var convert = function (channel) {
+                    var pow = Math.pow(channel, 3);
+                    return pow > 0.008856 ?
+                        pow :
+                        (channel - 16 / 116) / 7.87;
+                },
+                y = (this._l + 16) / 116,
+                x = this._a / 500 + y,
+                z = y - this._b / 200;
+
+            return new color.XYZ(
+                convert(x) *  95.047,
+                convert(y) * 100.000,
+                convert(z) * 108.883,
+                this._alpha
+            );
+        }
+    });
+};
+
+var HSV = function HSV(color) {
+    color.installColorSpace('HSV', ['hue', 'saturation', 'value', 'alpha'], {
+        rgb: function () {
+            var hue = this._hue,
+                saturation = this._saturation,
+                value = this._value,
+                i = Math.min(5, Math.floor(hue * 6)),
+                f = hue * 6 - i,
+                p = value * (1 - saturation),
+                q = value * (1 - f * saturation),
+                t = value * (1 - (1 - f) * saturation),
+                red,
+                green,
+                blue;
+            switch (i) {
+            case 0:
+                red = value;
+                green = t;
+                blue = p;
+                break;
+            case 1:
+                red = q;
+                green = value;
+                blue = p;
+                break;
+            case 2:
+                red = p;
+                green = value;
+                blue = t;
+                break;
+            case 3:
+                red = p;
+                green = q;
+                blue = value;
+                break;
+            case 4:
+                red = t;
+                green = p;
+                blue = value;
+                break;
+            case 5:
+                red = value;
+                green = p;
+                blue = q;
+                break;
+            }
+            return new color.RGB(red, green, blue, this._alpha);
+        },
+
+        hsl: function () {
+            var l = (2 - this._saturation) * this._value,
+                sv = this._saturation * this._value,
+                svDivisor = l <= 1 ? l : (2 - l),
+                saturation;
+
+            // Avoid division by zero when lightness approaches zero:
+            if (svDivisor < 1e-9) {
+                saturation = 0;
+            } else {
+                saturation = sv / svDivisor;
+            }
+            return new color.HSL(this._hue, saturation, l / 2, this._alpha);
+        },
+
+        fromRgb: function () { // Becomes one.color.RGB.prototype.hsv
+            var red = this._red,
+                green = this._green,
+                blue = this._blue,
+                max = Math.max(red, green, blue),
+                min = Math.min(red, green, blue),
+                delta = max - min,
+                hue,
+                saturation = (max === 0) ? 0 : (delta / max),
+                value = max;
+            if (delta === 0) {
+                hue = 0;
+            } else {
+                switch (max) {
+                case red:
+                    hue = (green - blue) / delta / 6 + (green < blue ? 1 : 0);
+                    break;
+                case green:
+                    hue = (blue - red) / delta / 6 + 1 / 3;
+                    break;
+                case blue:
+                    hue = (red - green) / delta / 6 + 2 / 3;
+                    break;
+                }
+            }
+            return new color.HSV(hue, saturation, value, this._alpha);
+        }
+    });
+};
+
+var HSL = function HSL(color) {
+    color.use(HSV);
+
+    color.installColorSpace('HSL', ['hue', 'saturation', 'lightness', 'alpha'], {
+        hsv: function () {
+            // Algorithm adapted from http://wiki.secondlife.com/wiki/Color_conversion_scripts
+            var l = this._lightness * 2,
+                s = this._saturation * ((l <= 1) ? l : 2 - l),
+                saturation;
+
+            // Avoid division by zero when l + s is very small (approaching black):
+            if (l + s < 1e-9) {
+                saturation = 0;
+            } else {
+                saturation = (2 * s) / (l + s);
+            }
+
+            return new color.HSV(this._hue, saturation, (l + s) / 2, this._alpha);
+        },
+
+        rgb: function () {
+            return this.hsv().rgb();
+        },
+
+        fromRgb: function () { // Becomes one.color.RGB.prototype.hsv
+            return this.hsv().hsl();
+        }
+    });
+};
+
+var CMYK = function CMYK(color) {
+    color.installColorSpace('CMYK', ['cyan', 'magenta', 'yellow', 'black', 'alpha'], {
+        rgb: function () {
+            return new color.RGB((1 - this._cyan * (1 - this._black) - this._black),
+                                     (1 - this._magenta * (1 - this._black) - this._black),
+                                     (1 - this._yellow * (1 - this._black) - this._black),
+                                     this._alpha);
+        },
+
+        fromRgb: function () { // Becomes one.color.RGB.prototype.cmyk
+            // Adapted from http://www.javascripter.net/faq/rgb2cmyk.htm
+            var red = this._red,
+                green = this._green,
+                blue = this._blue,
+                cyan = 1 - red,
+                magenta = 1 - green,
+                yellow = 1 - blue,
+                black = 1;
+            if (red || green || blue) {
+                black = Math.min(cyan, Math.min(magenta, yellow));
+                cyan = (cyan - black) / (1 - black);
+                magenta = (magenta - black) / (1 - black);
+                yellow = (yellow - black) / (1 - black);
+            } else {
+                black = 1;
+            }
+            return new color.CMYK(cyan, magenta, yellow, black, this._alpha);
+        }
+    });
+};
+
+var namedColors = function namedColors(color) {
+    color.namedColors = {
+        aliceblue: 'f0f8ff',
+        antiquewhite: 'faebd7',
+        aqua: '0ff',
+        aquamarine: '7fffd4',
+        azure: 'f0ffff',
+        beige: 'f5f5dc',
+        bisque: 'ffe4c4',
+        black: '000',
+        blanchedalmond: 'ffebcd',
+        blue: '00f',
+        blueviolet: '8a2be2',
+        brown: 'a52a2a',
+        burlywood: 'deb887',
+        cadetblue: '5f9ea0',
+        chartreuse: '7fff00',
+        chocolate: 'd2691e',
+        coral: 'ff7f50',
+        cornflowerblue: '6495ed',
+        cornsilk: 'fff8dc',
+        crimson: 'dc143c',
+        cyan: '0ff',
+        darkblue: '00008b',
+        darkcyan: '008b8b',
+        darkgoldenrod: 'b8860b',
+        darkgray: 'a9a9a9',
+        darkgrey: 'a9a9a9',
+        darkgreen: '006400',
+        darkkhaki: 'bdb76b',
+        darkmagenta: '8b008b',
+        darkolivegreen: '556b2f',
+        darkorange: 'ff8c00',
+        darkorchid: '9932cc',
+        darkred: '8b0000',
+        darksalmon: 'e9967a',
+        darkseagreen: '8fbc8f',
+        darkslateblue: '483d8b',
+        darkslategray: '2f4f4f',
+        darkslategrey: '2f4f4f',
+        darkturquoise: '00ced1',
+        darkviolet: '9400d3',
+        deeppink: 'ff1493',
+        deepskyblue: '00bfff',
+        dimgray: '696969',
+        dimgrey: '696969',
+        dodgerblue: '1e90ff',
+        firebrick: 'b22222',
+        floralwhite: 'fffaf0',
+        forestgreen: '228b22',
+        fuchsia: 'f0f',
+        gainsboro: 'dcdcdc',
+        ghostwhite: 'f8f8ff',
+        gold: 'ffd700',
+        goldenrod: 'daa520',
+        gray: '808080',
+        grey: '808080',
+        green: '008000',
+        greenyellow: 'adff2f',
+        honeydew: 'f0fff0',
+        hotpink: 'ff69b4',
+        indianred: 'cd5c5c',
+        indigo: '4b0082',
+        ivory: 'fffff0',
+        khaki: 'f0e68c',
+        lavender: 'e6e6fa',
+        lavenderblush: 'fff0f5',
+        lawngreen: '7cfc00',
+        lemonchiffon: 'fffacd',
+        lightblue: 'add8e6',
+        lightcoral: 'f08080',
+        lightcyan: 'e0ffff',
+        lightgoldenrodyellow: 'fafad2',
+        lightgray: 'd3d3d3',
+        lightgrey: 'd3d3d3',
+        lightgreen: '90ee90',
+        lightpink: 'ffb6c1',
+        lightsalmon: 'ffa07a',
+        lightseagreen: '20b2aa',
+        lightskyblue: '87cefa',
+        lightslategray: '789',
+        lightslategrey: '789',
+        lightsteelblue: 'b0c4de',
+        lightyellow: 'ffffe0',
+        lime: '0f0',
+        limegreen: '32cd32',
+        linen: 'faf0e6',
+        magenta: 'f0f',
+        maroon: '800000',
+        mediumaquamarine: '66cdaa',
+        mediumblue: '0000cd',
+        mediumorchid: 'ba55d3',
+        mediumpurple: '9370d8',
+        mediumseagreen: '3cb371',
+        mediumslateblue: '7b68ee',
+        mediumspringgreen: '00fa9a',
+        mediumturquoise: '48d1cc',
+        mediumvioletred: 'c71585',
+        midnightblue: '191970',
+        mintcream: 'f5fffa',
+        mistyrose: 'ffe4e1',
+        moccasin: 'ffe4b5',
+        navajowhite: 'ffdead',
+        navy: '000080',
+        oldlace: 'fdf5e6',
+        olive: '808000',
+        olivedrab: '6b8e23',
+        orange: 'ffa500',
+        orangered: 'ff4500',
+        orchid: 'da70d6',
+        palegoldenrod: 'eee8aa',
+        palegreen: '98fb98',
+        paleturquoise: 'afeeee',
+        palevioletred: 'd87093',
+        papayawhip: 'ffefd5',
+        peachpuff: 'ffdab9',
+        peru: 'cd853f',
+        pink: 'ffc0cb',
+        plum: 'dda0dd',
+        powderblue: 'b0e0e6',
+        purple: '800080',
+        rebeccapurple: '639',
+        red: 'f00',
+        rosybrown: 'bc8f8f',
+        royalblue: '4169e1',
+        saddlebrown: '8b4513',
+        salmon: 'fa8072',
+        sandybrown: 'f4a460',
+        seagreen: '2e8b57',
+        seashell: 'fff5ee',
+        sienna: 'a0522d',
+        silver: 'c0c0c0',
+        skyblue: '87ceeb',
+        slateblue: '6a5acd',
+        slategray: '708090',
+        slategrey: '708090',
+        snow: 'fffafa',
+        springgreen: '00ff7f',
+        steelblue: '4682b4',
+        tan: 'd2b48c',
+        teal: '008080',
+        thistle: 'd8bfd8',
+        tomato: 'ff6347',
+        turquoise: '40e0d0',
+        violet: 'ee82ee',
+        wheat: 'f5deb3',
+        white: 'fff',
+        whitesmoke: 'f5f5f5',
+        yellow: 'ff0',
+        yellowgreen: '9acd32'
+    };
+};
+
+var clearer = function clearer(color) {
+    color.installMethod('clearer', function (amount) {
+        return this.alpha(isNaN(amount) ? -0.1 : -amount, true);
+    });
+};
+
+var darken = function darken(color) {
+    color.use(HSL);
+
+    color.installMethod('darken', function (amount) {
+        return this.lightness(isNaN(amount) ? -0.1 : -amount, true);
+    });
+};
+
+var desaturate = function desaturate(color) {
+    color.use(HSL);
+
+    color.installMethod('desaturate', function (amount) {
+        return this.saturation(isNaN(amount) ? -0.1 : -amount, true);
+    });
+};
+
+var grayscale = function grayscale(color) {
+    function gs () {
+        /*jslint strict:false*/
+        var rgb = this.rgb(),
+            val = rgb._red * 0.3 + rgb._green * 0.59 + rgb._blue * 0.11;
+
+        return new color.RGB(val, val, val, rgb._alpha);
+    }
+
+    color.installMethod('greyscale', gs).installMethod('grayscale', gs);
+};
+
+var lighten = function lighten(color) {
+    color.use(HSL);
+
+    color.installMethod('lighten', function (amount) {
+        return this.lightness(isNaN(amount) ? 0.1 : amount, true);
+    });
+};
+
+var mix = function mix(color) {
+    color.installMethod('mix', function (otherColor, weight) {
+        otherColor = color(otherColor).rgb();
+        weight = 1 - (isNaN(weight) ? 0.5 : weight);
+
+        var w = weight * 2 - 1,
+            a = this._alpha - otherColor._alpha,
+            weight1 = (((w * a === -1) ? w : (w + a) / (1 + w * a)) + 1) / 2,
+            weight2 = 1 - weight1,
+            rgb = this.rgb();
+
+        return new color.RGB(
+            rgb._red * weight1 + otherColor._red * weight2,
+            rgb._green * weight1 + otherColor._green * weight2,
+            rgb._blue * weight1 + otherColor._blue * weight2,
+            rgb._alpha * weight + otherColor._alpha * (1 - weight)
+        );
+    });
+};
+
+var negate = function negate(color) {
+    color.installMethod('negate', function () {
+        var rgb = this.rgb();
+        return new color.RGB(1 - rgb._red, 1 - rgb._green, 1 - rgb._blue, this._alpha);
+    });
+};
+
+var opaquer = function opaquer(color) {
+    color.installMethod('opaquer', function (amount) {
+        return this.alpha(isNaN(amount) ? 0.1 : amount, true);
+    });
+};
+
+var rotate = function rotate(color) {
+    color.use(HSL);
+
+    color.installMethod('rotate', function (degrees) {
+        return this.hue((degrees || 0) / 360, true);
+    });
+};
+
+var saturate = function saturate(color) {
+    color.use(HSL);
+
+    color.installMethod('saturate', function (amount) {
+        return this.saturation(isNaN(amount) ? 0.1 : amount, true);
+    });
+};
+
+// Adapted from http://gimp.sourcearchive.com/documentation/2.6.6-1ubuntu1/color-to-alpha_8c-source.html
+// toAlpha returns a color where the values of the argument have been converted to alpha
+var toAlpha = function toAlpha(color) {
+    color.installMethod('toAlpha', function (color) {
+        var me = this.rgb(),
+            other = color(color).rgb(),
+            epsilon = 1e-10,
+            a = new color.RGB(0, 0, 0, me._alpha),
+            channels = ['_red', '_green', '_blue'];
+
+        channels.forEach(function (channel) {
+            if (me[channel] < epsilon) {
+                a[channel] = me[channel];
+            } else if (me[channel] > other[channel]) {
+                a[channel] = (me[channel] - other[channel]) / (1 - other[channel]);
+            } else if (me[channel] > other[channel]) {
+                a[channel] = (other[channel] - me[channel]) / other[channel];
+            } else {
+                a[channel] = 0;
+            }
+        });
+
+        if (a._red > a._green) {
+            if (a._red > a._blue) {
+                me._alpha = a._red;
+            } else {
+                me._alpha = a._blue;
+            }
+        } else if (a._green > a._blue) {
+            me._alpha = a._green;
+        } else {
+            me._alpha = a._blue;
+        }
+
+        if (me._alpha < epsilon) {
+            return me;
+        }
+
+        channels.forEach(function (channel) {
+            me[channel] = (me[channel] - other[channel]) / me._alpha + other[channel];
+        });
+        me._alpha *= a._alpha;
+
+        return me;
+    });
+};
+
+var onecolor = color_1
+    .use(XYZ)
+    .use(LAB)
+    .use(HSV)
+    .use(HSL)
+    .use(CMYK)
+
+    // Convenience functions
+    .use(namedColors)
+    .use(clearer)
+    .use(darken)
+    .use(desaturate)
+    .use(grayscale)
+    .use(lighten)
+    .use(mix)
+    .use(negate)
+    .use(opaquer)
+    .use(rotate)
+    .use(saturate)
+    .use(toAlpha);
+
+var contentBorder$2 = theme.contentBorder;
+
+var labelBoxBorder = onecolor(colors.Sea['Light Sea']);
+
+var RadioListItem = function (_React$Component) {
+  inherits(RadioListItem, _React$Component);
+
+  function RadioListItem() {
+    var _ref;
+
+    var _temp, _this, _ret;
+
+    classCallCheck(this, RadioListItem);
+
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = possibleConstructorReturn(this, (_ref = RadioListItem.__proto__ || Object.getPrototypeOf(RadioListItem)).call.apply(_ref, [this].concat(args))), _this), _this.handleOnChange = function (event) {
+      var _this$props = _this.props,
+          index = _this$props.index,
+          onChange = _this$props.onChange,
+          onSelect = _this$props.onSelect;
+
+      onSelect(index);
+      onChange(event);
+    }, _temp), possibleConstructorReturn(_this, _ret);
+  }
+
+  createClass(RadioListItem, [{
+    key: 'render',
+    value: function render() {
+      var _props = this.props,
+          className = _props.className,
+          description = _props.description,
+          selected = _props.selected,
+          title = _props.title,
+          ignoredIndex = _props.index,
+          ignoredOnChange = _props.onChange,
+          ignoredOnSelect = _props.onSelect,
+          radioProps = objectWithoutProperties(_props, ['className', 'description', 'selected', 'title', 'index', 'onChange', 'onSelect']);
+
+      return React.createElement(
+        Label$1,
+        { className: className },
+        React.createElement(Radio, _extends({
+          checked: selected,
+          onChange: this.handleOnChange
+        }, radioProps)),
+        React.createElement(
+          LabelBox,
+          { selected: selected },
+          React.createElement(
+            Title$3,
+            null,
+            title
+          ),
+          React.createElement(
+            Description$1,
+            null,
+            description
+          )
+        )
+      );
+    }
+  }]);
+  return RadioListItem;
+}(React.Component);
+
+// Utility styles from RadioButton
+
+
+RadioListItem.propTypes = {
+  description: propTypes.node.isRequired,
+  index: propTypes.number.isRequired,
+  title: propTypes.node.isRequired,
+
+  className: propTypes.string,
+  onChange: propTypes.func,
+  onSelect: propTypes.func,
+  selected: propTypes.bool
+};
+RadioListItem.defaultProps = {
+  // By default, prevent the default change event from bubbling up
+  onChange: function onChange(event) {
+    event.stopPropagation();
+  },
+  onSelect: function onSelect() {}
+};
+var radioDimmed$1 = RadioButton.css.dimmed;
+
+// Styled components
+
+var Label$1 = styled.label.withConfig({
+  displayName: 'RadioListItem__Label'
+})(['display:flex;&:not(:first-child){margin-top:10px;}&:hover ', ':not(:checked){', ';}', ';'], RadioButton, radioDimmed$1, unselectable());
+
+var LabelBox = styled.div.withConfig({
+  displayName: 'RadioListItem__LabelBox'
+})(['flex-grow:1;margin-left:12px;padding:12px 12px;border:1px ', ' solid;border-radius:3px;transition:border 200ms linear;cursor:pointer;&:focus,&:hover,', ':focus ~ &,', ':hover ~ &{border-color:', ';}', ':checked ~ &{border-color:', ';}'], contentBorder$2, RadioButton, RadioButton, labelBoxBorder.alpha(0.35).cssa(), RadioButton, labelBoxBorder.alpha(0.7).cssa());
+
+var Title$3 = styled(TypedText).attrs({
+  weight: 'bold'
+}).withConfig({
+  displayName: 'RadioListItem__Title'
+})(['']);
+
+var Description$1 = styled(TypedText.Block).withConfig({
+  displayName: 'RadioListItem__Description'
+})(['margin-top:5px;']);
+
+var Radio = styled(RadioButton).withConfig({
+  displayName: 'RadioListItem__Radio'
+})(['flex-shrink:0;margin-top:16px;']);
+
+var RadioList = function (_React$Component) {
+  inherits(RadioList, _React$Component);
+
+  function RadioList() {
+    classCallCheck(this, RadioList);
+    return possibleConstructorReturn(this, (RadioList.__proto__ || Object.getPrototypeOf(RadioList)).apply(this, arguments));
+  }
+
+  createClass(RadioList, [{
+    key: 'render',
+    value: function render() {
+      var _props = this.props,
+          description = _props.description,
+          items = _props.items,
+          selected = _props.selected,
+          title = _props.title,
+          props = objectWithoutProperties(_props, ['description', 'items', 'selected', 'title']);
+
+      return React.createElement(
+        'div',
+        null,
+        title && React.createElement(
+          Title$2,
+          null,
+          React.createElement(
+            TypedText,
+            { size: 'large', weight: 'bold' },
+            title
+          )
+        ),
+        description && React.createElement(
+          Description,
+          null,
+          description
+        ),
+        React.createElement(
+          Group,
+          props,
+          items.map(function (_ref, i) {
+            var description = _ref.description,
+                title = _ref.title,
+                value = _ref.value;
+            return React.createElement(RadioListItem, {
+              key: i,
+              index: i,
+              selected: i === selected,
+              description: description,
+              title: title,
+              value: value
+            });
+          })
+        )
+      );
+    }
+  }]);
+  return RadioList;
+}(React.Component);
+
+RadioList.propTypes = {
+  description: propTypes.node,
+  items: propTypes.arrayOf(propTypes.shape({
+    description: propTypes.node.isRequired,
+    title: propTypes.node.isRequired,
+    value: propTypes.string
+  })),
+  selected: function selected(_ref2, _, componentName) {
+    var items = _ref2.items,
+        _selected = _ref2.selected;
+
+    if (!Number.isInteger(_selected) || _selected >= items.length) {
+      throw new Error('Invalid prop `selected` supplied to `' + componentName + '`. ' + '`selected` must be an integer less than the length of `items`. ' + ('Given ' + _selected + ' instead.'));
+    }
+  },
+  title: propTypes.node
+};
+RadioList.defaultProps = {
+  items: [],
+  selected: 0
+};
+
+
+var Title$2 = styled.h2.withConfig({
+  displayName: 'RadioList__Title'
+})(['margin-bottom:5px;']);
+
+var Description = styled(TypedText.Block).withConfig({
+  displayName: 'RadioList__Description'
+})(['margin-bottom:18px;']);
+
+var Group = styled(RadioGroup).withConfig({
+  displayName: 'RadioList__Group'
+})(['display:flex;flex-direction:column;']);
+
 var StyledTable = styled.table.withConfig({
   displayName: 'Table__StyledTable'
 })(['width:100%;border-spacing:0;']);
@@ -7093,15 +8612,15 @@ var StyledTableRow = styled.tr.withConfig({
 })(['']);
 
 var contentBackground$2 = theme.contentBackground;
-var contentBorder$2 = theme.contentBorder;
+var contentBorder$3 = theme.contentBorder;
 
 
 var StyledTableCell = styled.td.withConfig({
   displayName: 'TableCell__StyledTableCell'
-})(['padding:20px;background:', ';border-bottom:1px solid ', ';text-align:', ';&:first-child{border-left:1px solid ', ';}&:last-child{border-right:1px solid ', ';}', ':first-child &{border-top:1px solid ', ';}', ':first-child &:first-child{border-top-left-radius:3px;}', ':first-child &:last-child{border-top-right-radius:3px;}', ':last-child &:first-child{border-bottom-left-radius:3px;}', ':last-child &:last-child{border-bottom-right-radius:3px;}'], contentBackground$2, contentBorder$2, function (_ref) {
+})(['padding:20px;background:', ';border-bottom:1px solid ', ';text-align:', ';&:first-child{border-left:1px solid ', ';}&:last-child{border-right:1px solid ', ';}', ':first-child &{border-top:1px solid ', ';}', ':first-child &:first-child{border-top-left-radius:3px;}', ':first-child &:last-child{border-top-right-radius:3px;}', ':last-child &:first-child{border-bottom-left-radius:3px;}', ':last-child &:last-child{border-bottom-right-radius:3px;}'], contentBackground$2, contentBorder$3, function (_ref) {
   var align = _ref.align;
   return align;
-}, contentBorder$2, contentBorder$2, StyledTableRow, contentBorder$2, StyledTableRow, StyledTableRow, StyledTableRow, StyledTableRow);
+}, contentBorder$3, contentBorder$3, StyledTableRow, contentBorder$3, StyledTableRow, StyledTableRow, StyledTableRow, StyledTableRow);
 
 var StyledTableCellContent = styled.div.withConfig({
   displayName: 'TableCell__StyledTableCellContent'
@@ -7135,7 +8654,7 @@ TableCell.defaultProps = DefaultProps$7;
 
 var StyledTableHeader = styled.th.withConfig({
   displayName: 'TableHeader__StyledTableHeader'
-})(['padding-left:', ';padding-right:', ';text-align:left;font-weight:normal;text-align:', ';'], function (_ref) {
+})(['padding:0;padding-left:', ';padding-right:', ';line-height:30px;font-weight:normal;text-align:', ';white-space:nowrap;'], function (_ref) {
   var align = _ref.align;
   return align === 'left' ? '21px' : '0';
 }, function (_ref2) {
@@ -7295,6 +8814,8 @@ var AppBar = function AppBar(_ref3) {
 
 var logo$3 = "data:image/svg+xml,%3Csvg%20width%3D%221129%22%20height%3D%22792%22%20viewBox%3D%220%200%201129%20792%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cdefs%3E%3ClinearGradient%20x1%3D%2258.303%25%22%20y1%3D%2229.305%25%22%20x2%3D%22-20.356%25%22%20y2%3D%2289.584%25%22%20id%3D%22a%22%3E%3Cstop%20stop-color%3D%22%23E9F2F4%22%20offset%3D%220%25%22%2F%3E%3Cstop%20stop-color%3D%22%23FFF%22%20offset%3D%22100%25%22%2F%3E%3C%2FlinearGradient%3E%3ClinearGradient%20x1%3D%2250%25%22%20y1%3D%22125.887%25%22%20x2%3D%2250%25%22%20y2%3D%2227.419%25%22%20id%3D%22b%22%3E%3Cstop%20stop-color%3D%22%23E9F2F4%22%20offset%3D%220%25%22%2F%3E%3Cstop%20stop-color%3D%22%23FFF%22%20offset%3D%22100%25%22%2F%3E%3C%2FlinearGradient%3E%3ClinearGradient%20x1%3D%2238.76%25%22%20y1%3D%2240.284%25%22%20x2%3D%2227.198%25%22%20y2%3D%224.898%25%22%20id%3D%22c%22%3E%3Cstop%20stop-color%3D%22%23E9F2F4%22%20offset%3D%220%25%22%2F%3E%3Cstop%20stop-color%3D%22%23FFF%22%20offset%3D%22100%25%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%20opacity%3D%22.7%22%3E%3Cpath%20d%3D%22M474.223%2064.24c-.503%200-231.685%2073.873-231.685%20275.905%200%20202.033%20223.146%20300.029%20387.48%20300.029%2089.383%200%20162.808-26.013%20211.24-49.744%206.242-28.642%2028.943-96.473%20104.047-96.981%2013.393-.523%2025.958%201.99%2036.517%208.021%2050.256%2027.144%2017.59%2077.898%2017.59%2077.898%201.894-.307%203.809-.663%205.724-1.075%201.91-.413%203.83-.89%205.764-1.408%2060.404-16.268%20128.467-85.36%20116.661-201.057-9.463-92.774-95.09-151.58-136.743-174.94-13.64-7.648-22.566-11.513-22.566-11.513%201.508-9.423%201.995-16.71%201.995-22.309%200-1.05-.02-2.035-.05-2.96v-10.86C751.617%2020.65%20566.645.223%20475.414.223c-39.412%200-61.5%203.704-61.5%203.704l60.309%2060.313zm461.86%20125.638s-29.652-9.55-59.8-13.57c-15.083%2015.58-28.15%2022.113-32.17%2024.129-.503.497-1.005%201-1.005%201-87.95-18.595-119.612-63.827-119.612-63.827%2082.93-.497%20157.812%2019.098%20212.587%2052.268z%22%20fill%3D%22url%28%23a%29%22%20opacity%3D%22.779%22%2F%3E%3Cpath%20d%3D%22M1018.002%20315.017c0%2065.842-27.134%20126.647-73.375%20175.899l-2.197%202.528%203.704-.01c12.564-.508%2025.129%202.005%2035.688%208.036%2050.256%2027.144%2017.59%2077.898%2017.59%2077.898%2062.82-10.051%20140.719-80.406%20128.15-203.54-9.464-92.774-95.092-151.58-136.744-174.94%2017.901%2035.357%2027.184%2074.19%2027.184%20114.13%22%20fill%3D%22url%28%23b%29%22%20opacity%3D%22.374%22%2F%3E%3Cpath%20d%3D%22M.808%20545.696c0%208.152.317%2015.911.769%2023.495%2062.198%20119.616%20137.015%20224.115%20222.588%20310.653%20106.72%20107.685%20230.9%20187.578%20369.166%20237.539%20137.764-49.785%20261.949-129.854%20369.182-238.057%2031.792-32.144%2062.112-66.887%2090.915-104.012-229.272-16.479-215.346-155.74-215.346-155.74%200-5.524%200-11.057%201.005-16.585%200%200%20.508-4.89%202.176-12.564-48.432%2023.736-121.857%2049.749-211.244%2049.749-164.335%200-387.48-97.996-387.48-300.029%200-202.032%20231.181-275.905%20231.181-275.905l-.12-.035c-5.86-.452-12.143-.472-17.973-.472C202.836%2072.784.808%20284.863.808%20545.696%22%20fill%3D%22url%28%23c%29%22%20opacity%3D%22.557%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E";
 
+// AragonApp provides everything needed to start an Aragon App.
+
 var StyledAragonApp = styled.main.withConfig({
   displayName: 'AragonApp__StyledAragonApp'
 })(['min-width:320px;min-height:100vh;background-color:', ';background-image:', ';background-position:50% 50%;background-repeat:no-repeat;'], theme.mainBackground, function (_ref) {
@@ -7371,5 +8892,5 @@ var LayoutGrid = function LayoutGrid() {
 
 /* eslint-disable prettier/prettier */
 
-export { theme, themeDark, brand, colors, font, grid, spring, breakpoint, BreakPoint, unselectable, formatIntegerRange, BaseStyles$1 as BaseStyles, Section, IllustratedSection, BadgeNumber, Badge, Button, CircleGraph, ContextMenu, ContextMenuItem, Countdown, DropDown, Field, Info$1 as Info, TextInput, Footer$1 as Footer, PreFooter, Header, WrappedSidePanel as SidePanel, SidePanelSeparator, SidePanelSplit, Table, TableCell, TableHeader, StyledTableRow as TableRow, TypedText as Text, StyledCard as Card, EmptyStateCard, AppBar, AragonApp, LayoutGrid, Check as IconCheck, Cross as IconCross, Finance as IconFinance, Fundraising as IconFundraising, Groups as IconGroups, Home as IconHome, Identity as IconIdentity, Notifications as IconNotifications, Permissions as IconPermissions, Settings as IconSettings, Share as IconShare, Time as IconTime, Tokens as IconTokens, Voting as IconVoting, Wallet as IconWallet };
+export { theme, themeDark, brand, colors, font, grid, spring, breakpoint, BreakPoint, unselectable, formatIntegerRange, redraw, BaseStyles$1 as BaseStyles, Section, IllustratedSection, BadgeNumber, Badge, Button, CircleGraph, ContextMenu, ContextMenuItem, Countdown$1 as Countdown, DropDown, Field, Info$1 as Info, RadioButton, TextInput, Footer$1 as Footer, PreFooter, Header, SafeLink, WrappedSidePanel as SidePanel, SidePanelSeparator, SidePanelSplit, RadioGroup, RadioList, Table, TableCell, TableHeader, StyledTableRow as TableRow, TypedText as Text, StyledCard as Card, EmptyStateCard, AppBar, AragonApp, LayoutGrid, Add as IconAdd, Blank as IconBlank, Check as IconCheck, Cross as IconCross, Finance as IconFinance, Fundraising as IconFundraising, Groups as IconGroups, Home as IconHome, Identity as IconIdentity, Notifications as IconNotifications, Permissions as IconPermissions, Settings as IconSettings, Share as IconShare, Time as IconTime, Tokens as IconTokens, Voting as IconVoting, Wallet as IconWallet, observe };
 //# sourceMappingURL=index.esm.js.map
