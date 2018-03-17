@@ -130,7 +130,7 @@ const modeText = css`
 `
 
 const compactStyle = css`
-  padding: 5px 15px;
+  padding: ${({ mode }) => (mode === 'outline' ? '4px 14px' : '5px 15px')};
 `
 
 const positiveStyle = css`
