@@ -169,7 +169,7 @@ const negativeStyle = css`
   }};
 `
 
-const StyledButton = styled.button`
+const StyledButton = styled.button.attrs({ type: 'button' })`
   width: ${({ wide }) => (wide ? '100%' : 'auto')};
   padding: 10px 15px;
   white-space: nowrap;
