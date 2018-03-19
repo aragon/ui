@@ -486,7 +486,6 @@ function getDisplayName(Component) {
 
 var getDisplayName = unwrapExports(getDisplayName_1);
 
-// Higher-order component for convenient subscriptions to RxJS observables
 var observe = function observe(_observe) {
   var initialState = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
   return function (Component) {
@@ -786,14 +785,1457 @@ var theme = _groups.theme;
 var brand = _groups.brand;
 var colors = _groups.colors;
 
+var MILLISECONDS_IN_HOUR = 3600000;
+var MILLISECONDS_IN_MINUTE = 60000;
+var DEFAULT_ADDITIONAL_DIGITS = 2;
+
+var patterns = {
+  dateTimeDelimeter: /[T ]/,
+  plainTime: /:/,
+
+  // year tokens
+  YY: /^(\d{2})$/,
+  YYY: [
+    /^([+-]\d{2})$/, // 0 additional digits
+    /^([+-]\d{3})$/, // 1 additional digit
+    /^([+-]\d{4})$/ // 2 additional digits
+  ],
+  YYYY: /^(\d{4})/,
+  YYYYY: [
+    /^([+-]\d{4})/, // 0 additional digits
+    /^([+-]\d{5})/, // 1 additional digit
+    /^([+-]\d{6})/ // 2 additional digits
+  ],
+
+  // date tokens
+  MM: /^-(\d{2})$/,
+  DDD: /^-?(\d{3})$/,
+  MMDD: /^-?(\d{2})-?(\d{2})$/,
+  Www: /^-?W(\d{2})$/,
+  WwwD: /^-?W(\d{2})-?(\d{1})$/,
+
+  HH: /^(\d{2}([.,]\d*)?)$/,
+  HHMM: /^(\d{2}):?(\d{2}([.,]\d*)?)$/,
+  HHMMSS: /^(\d{2}):?(\d{2}):?(\d{2}([.,]\d*)?)$/,
+
+  // timezone tokens
+  timezone: /([Z+-].*)$/,
+  timezoneZ: /^(Z)$/,
+  timezoneHH: /^([+-])(\d{2})$/,
+  timezoneHHMM: /^([+-])(\d{2}):?(\d{2})$/
+};
+
 /**
- * Copyright (c) 2013-present, Facebook, Inc.
+ * @name toDate
+ * @category Common Helpers
+ * @summary Convert the given argument to an instance of Date.
  *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
+ * @description
+ * Convert the given argument to an instance of Date.
  *
- * 
+ * If the argument is an instance of Date, the function returns its clone.
+ *
+ * If the argument is a number, it is treated as a timestamp.
+ *
+ * If an argument is a string, the function tries to parse it.
+ * Function accepts complete ISO 8601 formats as well as partial implementations.
+ * ISO 8601: http://en.wikipedia.org/wiki/ISO_8601
+ *
+ * If the argument is null, it is treated as an invalid date.
+ *
+ * If all above fails, the function passes the given argument to Date constructor.
+ *
+ * **Note**: *all* Date arguments passed to any *date-fns* function is processed by `toDate`.
+ * All *date-fns* functions will throw `RangeError` if `options.additionalDigits` is not 0, 1, 2 or undefined.
+ *
+ * @param {*} argument - the value to convert
+ * @param {Options} [options] - the object with options. See [Options]{@link https://date-fns.org/docs/Options}
+ * @param {0|1|2} [options.additionalDigits=2] - the additional number of digits in the extended year format
+ * @returns {Date} the parsed date in the local time zone
+ * @throws {TypeError} 1 argument required
+ * @throws {RangeError} `options.additionalDigits` must be 0, 1 or 2
+ *
+ * @example
+ * // Convert string '2014-02-11T11:30:30' to date:
+ * var result = toDate('2014-02-11T11:30:30')
+ * //=> Tue Feb 11 2014 11:30:30
+ *
+ * @example
+ * // Convert string '+02014101' to date,
+ * // if the additional number of digits in the extended year format is 1:
+ * var result = toDate('+02014101', {additionalDigits: 1})
+ * //=> Fri Apr 11 2014 00:00:00
  */
+function toDate (argument, dirtyOptions) {
+  if (arguments.length < 1) {
+    throw new TypeError('1 argument required, but only ' + arguments.length + ' present')
+  }
+
+  if (argument === null) {
+    return new Date(NaN)
+  }
+
+  var options = dirtyOptions || {};
+
+  var additionalDigits = options.additionalDigits === undefined ? DEFAULT_ADDITIONAL_DIGITS : Number(options.additionalDigits);
+  if (additionalDigits !== 2 && additionalDigits !== 1 && additionalDigits !== 0) {
+    throw new RangeError('additionalDigits must be 0, 1 or 2')
+  }
+
+  // Clone the date
+  if (argument instanceof Date) {
+    // Prevent the date to lose the milliseconds when passed to new Date() in IE10
+    return new Date(argument.getTime())
+  } else if (typeof argument !== 'string') {
+    return new Date(argument)
+  }
+
+  var dateStrings = splitDateString(argument);
+
+  var parseYearResult = parseYear(dateStrings.date, additionalDigits);
+  var year = parseYearResult.year;
+  var restDateString = parseYearResult.restDateString;
+
+  var date = parseDate(restDateString, year);
+
+  if (date) {
+    var timestamp = date.getTime();
+    var time = 0;
+    var offset;
+
+    if (dateStrings.time) {
+      time = parseTime(dateStrings.time);
+    }
+
+    if (dateStrings.timezone) {
+      offset = parseTimezone(dateStrings.timezone);
+    } else {
+      // get offset accurate to hour in timezones that change offset
+      offset = new Date(timestamp + time).getTimezoneOffset();
+      offset = new Date(timestamp + time + offset * MILLISECONDS_IN_MINUTE).getTimezoneOffset();
+    }
+
+    return new Date(timestamp + time + offset * MILLISECONDS_IN_MINUTE)
+  } else {
+    return new Date(argument)
+  }
+}
+
+function splitDateString (dateString) {
+  var dateStrings = {};
+  var array = dateString.split(patterns.dateTimeDelimeter);
+  var timeString;
+
+  if (patterns.plainTime.test(array[0])) {
+    dateStrings.date = null;
+    timeString = array[0];
+  } else {
+    dateStrings.date = array[0];
+    timeString = array[1];
+  }
+
+  if (timeString) {
+    var token = patterns.timezone.exec(timeString);
+    if (token) {
+      dateStrings.time = timeString.replace(token[1], '');
+      dateStrings.timezone = token[1];
+    } else {
+      dateStrings.time = timeString;
+    }
+  }
+
+  return dateStrings
+}
+
+function parseYear (dateString, additionalDigits) {
+  var patternYYY = patterns.YYY[additionalDigits];
+  var patternYYYYY = patterns.YYYYY[additionalDigits];
+
+  var token;
+
+  // YYYY or ±YYYYY
+  token = patterns.YYYY.exec(dateString) || patternYYYYY.exec(dateString);
+  if (token) {
+    var yearString = token[1];
+    return {
+      year: parseInt(yearString, 10),
+      restDateString: dateString.slice(yearString.length)
+    }
+  }
+
+  // YY or ±YYY
+  token = patterns.YY.exec(dateString) || patternYYY.exec(dateString);
+  if (token) {
+    var centuryString = token[1];
+    return {
+      year: parseInt(centuryString, 10) * 100,
+      restDateString: dateString.slice(centuryString.length)
+    }
+  }
+
+  // Invalid ISO-formatted year
+  return {
+    year: null
+  }
+}
+
+function parseDate (dateString, year) {
+  // Invalid ISO-formatted year
+  if (year === null) {
+    return null
+  }
+
+  var token;
+  var date;
+  var month;
+  var week;
+
+  // YYYY
+  if (dateString.length === 0) {
+    date = new Date(0);
+    date.setUTCFullYear(year);
+    return date
+  }
+
+  // YYYY-MM
+  token = patterns.MM.exec(dateString);
+  if (token) {
+    date = new Date(0);
+    month = parseInt(token[1], 10) - 1;
+    date.setUTCFullYear(year, month);
+    return date
+  }
+
+  // YYYY-DDD or YYYYDDD
+  token = patterns.DDD.exec(dateString);
+  if (token) {
+    date = new Date(0);
+    var dayOfYear = parseInt(token[1], 10);
+    date.setUTCFullYear(year, 0, dayOfYear);
+    return date
+  }
+
+  // YYYY-MM-DD or YYYYMMDD
+  token = patterns.MMDD.exec(dateString);
+  if (token) {
+    date = new Date(0);
+    month = parseInt(token[1], 10) - 1;
+    var day = parseInt(token[2], 10);
+    date.setUTCFullYear(year, month, day);
+    return date
+  }
+
+  // YYYY-Www or YYYYWww
+  token = patterns.Www.exec(dateString);
+  if (token) {
+    week = parseInt(token[1], 10) - 1;
+    return dayOfISOYear(year, week)
+  }
+
+  // YYYY-Www-D or YYYYWwwD
+  token = patterns.WwwD.exec(dateString);
+  if (token) {
+    week = parseInt(token[1], 10) - 1;
+    var dayOfWeek = parseInt(token[2], 10) - 1;
+    return dayOfISOYear(year, week, dayOfWeek)
+  }
+
+  // Invalid ISO-formatted date
+  return null
+}
+
+function parseTime (timeString) {
+  var token;
+  var hours;
+  var minutes;
+
+  // hh
+  token = patterns.HH.exec(timeString);
+  if (token) {
+    hours = parseFloat(token[1].replace(',', '.'));
+    return (hours % 24) * MILLISECONDS_IN_HOUR
+  }
+
+  // hh:mm or hhmm
+  token = patterns.HHMM.exec(timeString);
+  if (token) {
+    hours = parseInt(token[1], 10);
+    minutes = parseFloat(token[2].replace(',', '.'));
+    return (hours % 24) * MILLISECONDS_IN_HOUR +
+      minutes * MILLISECONDS_IN_MINUTE
+  }
+
+  // hh:mm:ss or hhmmss
+  token = patterns.HHMMSS.exec(timeString);
+  if (token) {
+    hours = parseInt(token[1], 10);
+    minutes = parseInt(token[2], 10);
+    var seconds = parseFloat(token[3].replace(',', '.'));
+    return (hours % 24) * MILLISECONDS_IN_HOUR +
+      minutes * MILLISECONDS_IN_MINUTE +
+      seconds * 1000
+  }
+
+  // Invalid ISO-formatted time
+  return null
+}
+
+function parseTimezone (timezoneString) {
+  var token;
+  var absoluteOffset;
+
+  // Z
+  token = patterns.timezoneZ.exec(timezoneString);
+  if (token) {
+    return 0
+  }
+
+  // ±hh
+  token = patterns.timezoneHH.exec(timezoneString);
+  if (token) {
+    absoluteOffset = parseInt(token[2], 10) * 60;
+    return (token[1] === '+') ? -absoluteOffset : absoluteOffset
+  }
+
+  // ±hh:mm or ±hhmm
+  token = patterns.timezoneHHMM.exec(timezoneString);
+  if (token) {
+    absoluteOffset = parseInt(token[2], 10) * 60 + parseInt(token[3], 10);
+    return (token[1] === '+') ? -absoluteOffset : absoluteOffset
+  }
+
+  return 0
+}
+
+function dayOfISOYear (isoYear, week, day) {
+  week = week || 0;
+  day = day || 0;
+  var date = new Date(0);
+  date.setUTCFullYear(isoYear, 0, 4);
+  var fourthOfJanuaryDay = date.getUTCDay() || 7;
+  var diff = week * 7 + day + 1 - fourthOfJanuaryDay;
+  date.setUTCDate(date.getUTCDate() + diff);
+  return date
+}
+
+function cloneObject (dirtyObject) {
+  dirtyObject = dirtyObject || {};
+  var object = {};
+
+  for (var property in dirtyObject) {
+    if (dirtyObject.hasOwnProperty(property)) {
+      object[property] = dirtyObject[property];
+    }
+  }
+
+  return object
+}
+
+function differenceInMilliseconds (dirtyDateLeft, dirtyDateRight, dirtyOptions) {
+  if (arguments.length < 2) {
+    throw new TypeError('2 arguments required, but only ' + arguments.length + ' present')
+  }
+
+  var dateLeft = toDate(dirtyDateLeft, dirtyOptions);
+  var dateRight = toDate(dirtyDateRight, dirtyOptions);
+  return dateLeft.getTime() - dateRight.getTime()
+}
+
+function differenceInSeconds (dirtyDateLeft, dirtyDateRight, dirtyOptions) {
+  if (arguments.length < 2) {
+    throw new TypeError('2 arguments required, but only ' + arguments.length + ' present')
+  }
+
+  var diff = differenceInMilliseconds(dirtyDateLeft, dirtyDateRight, dirtyOptions) / 1000;
+  return diff > 0 ? Math.floor(diff) : Math.ceil(diff)
+}
+
+function isValid (dirtyDate, dirtyOptions) {
+  if (arguments.length < 1) {
+    throw new TypeError('1 argument required, but only ' + arguments.length + ' present')
+  }
+
+  var date = toDate(dirtyDate, dirtyOptions);
+  return !isNaN(date)
+}
+
+var formatDistanceLocale = {
+  lessThanXSeconds: {
+    one: 'less than a second',
+    other: 'less than {{count}} seconds'
+  },
+
+  xSeconds: {
+    one: '1 second',
+    other: '{{count}} seconds'
+  },
+
+  halfAMinute: 'half a minute',
+
+  lessThanXMinutes: {
+    one: 'less than a minute',
+    other: 'less than {{count}} minutes'
+  },
+
+  xMinutes: {
+    one: '1 minute',
+    other: '{{count}} minutes'
+  },
+
+  aboutXHours: {
+    one: 'about 1 hour',
+    other: 'about {{count}} hours'
+  },
+
+  xHours: {
+    one: '1 hour',
+    other: '{{count}} hours'
+  },
+
+  xDays: {
+    one: '1 day',
+    other: '{{count}} days'
+  },
+
+  aboutXMonths: {
+    one: 'about 1 month',
+    other: 'about {{count}} months'
+  },
+
+  xMonths: {
+    one: '1 month',
+    other: '{{count}} months'
+  },
+
+  aboutXYears: {
+    one: 'about 1 year',
+    other: 'about {{count}} years'
+  },
+
+  xYears: {
+    one: '1 year',
+    other: '{{count}} years'
+  },
+
+  overXYears: {
+    one: 'over 1 year',
+    other: 'over {{count}} years'
+  },
+
+  almostXYears: {
+    one: 'almost 1 year',
+    other: 'almost {{count}} years'
+  }
+};
+
+function formatDistance (token, count, options) {
+  options = options || {};
+
+  var result;
+  if (typeof formatDistanceLocale[token] === 'string') {
+    result = formatDistanceLocale[token];
+  } else if (count === 1) {
+    result = formatDistanceLocale[token].one;
+  } else {
+    result = formatDistanceLocale[token].other.replace('{{count}}', count);
+  }
+
+  if (options.addSuffix) {
+    if (options.comparison > 0) {
+      return 'in ' + result
+    } else {
+      return result + ' ago'
+    }
+  }
+
+  return result
+}
+
+var tokensToBeShortedPattern = /MMMM|MM|DD|dddd/g;
+
+function buildShortLongFormat (format) {
+  return format.replace(tokensToBeShortedPattern, function (token) {
+    return token.slice(1)
+  })
+}
+
+/**
+ * @name buildFormatLongFn
+ * @category Locale Helpers
+ * @summary Build `formatLong` property for locale used by `format`, `formatRelative` and `parse` functions.
+ *
+ * @description
+ * Build `formatLong` property for locale used by `format`, `formatRelative` and `parse` functions.
+ * Returns a function which takes one of the following tokens as the argument:
+ * `'LTS'`, `'LT'`, `'L'`, `'LL'`, `'LLL'`, `'l'`, `'ll'`, `'lll'`, `'llll'`
+ * and returns a long format string written as `format` token strings.
+ * See [format]{@link https://date-fns.org/docs/format}
+ *
+ * `'l'`, `'ll'`, `'lll'` and `'llll'` formats are built automatically
+ * by shortening some of the tokens from corresponding unshortened formats
+ * (e.g., if `LL` is `'MMMM DD YYYY'` then `ll` will be `MMM D YYYY`)
+ *
+ * @param {Object} obj - the object with long formats written as `format` token strings
+ * @param {String} obj.LT - time format: hours and minutes
+ * @param {String} obj.LTS - time format: hours, minutes and seconds
+ * @param {String} obj.L - short date format: numeric day, month and year
+ * @param {String} [obj.l] - short date format: numeric day, month and year (shortened)
+ * @param {String} obj.LL - long date format: day, month in words, and year
+ * @param {String} [obj.ll] - long date format: day, month in words, and year (shortened)
+ * @param {String} obj.LLL - long date and time format
+ * @param {String} [obj.lll] - long date and time format (shortened)
+ * @param {String} obj.LLLL - long date, time and weekday format
+ * @param {String} [obj.llll] - long date, time and weekday format (shortened)
+ * @returns {Function} `formatLong` property of the locale
+ *
+ * @example
+ * // For `en-US` locale:
+ * locale.formatLong = buildFormatLongFn({
+ *   LT: 'h:mm aa',
+ *   LTS: 'h:mm:ss aa',
+ *   L: 'MM/DD/YYYY',
+ *   LL: 'MMMM D YYYY',
+ *   LLL: 'MMMM D YYYY h:mm aa',
+ *   LLLL: 'dddd, MMMM D YYYY h:mm aa'
+ * })
+ */
+function buildFormatLongFn (obj) {
+  var formatLongLocale = {
+    LTS: obj.LTS,
+    LT: obj.LT,
+    L: obj.L,
+    LL: obj.LL,
+    LLL: obj.LLL,
+    LLLL: obj.LLLL,
+    l: obj.l || buildShortLongFormat(obj.L),
+    ll: obj.ll || buildShortLongFormat(obj.LL),
+    lll: obj.lll || buildShortLongFormat(obj.LLL),
+    llll: obj.llll || buildShortLongFormat(obj.LLLL)
+  };
+
+  return function (token) {
+    return formatLongLocale[token]
+  }
+}
+
+var formatLong = buildFormatLongFn({
+  LT: 'h:mm aa',
+  LTS: 'h:mm:ss aa',
+  L: 'MM/DD/YYYY',
+  LL: 'MMMM D YYYY',
+  LLL: 'MMMM D YYYY h:mm aa',
+  LLLL: 'dddd, MMMM D YYYY h:mm aa'
+});
+
+var formatRelativeLocale = {
+  lastWeek: '[last] dddd [at] LT',
+  yesterday: '[yesterday at] LT',
+  today: '[today at] LT',
+  tomorrow: '[tomorrow at] LT',
+  nextWeek: 'dddd [at] LT',
+  other: 'L'
+};
+
+function formatRelative (token, date, baseDate, options) {
+  return formatRelativeLocale[token]
+}
+
+/**
+ * @name buildLocalizeFn
+ * @category Locale Helpers
+ * @summary Build `localize.weekday`, `localize.month` and `localize.timeOfDay` properties for the locale.
+ *
+ * @description
+ * Build `localize.weekday`, `localize.month` and `localize.timeOfDay` properties for the locale
+ * used by `format` function.
+ * If no `type` is supplied to the options of the resulting function, `defaultType` will be used (see example).
+ *
+ * `localize.weekday` function takes the weekday index as argument (0 - Sunday).
+ * `localize.month` takes the month index (0 - January).
+ * `localize.timeOfDay` takes the hours. Use `indexCallback` to convert them to an array index (see example).
+ *
+ * @param {Object} values - the object with arrays of values
+ * @param {String} defaultType - the default type for the localize function
+ * @param {Function} [indexCallback] - the callback which takes the resulting function argument
+ *   and converts it into value array index
+ * @returns {Function} the resulting function
+ *
+ * @example
+ * var timeOfDayValues = {
+ *   uppercase: ['AM', 'PM'],
+ *   lowercase: ['am', 'pm'],
+ *   long: ['a.m.', 'p.m.']
+ * }
+ * locale.localize.timeOfDay = buildLocalizeFn(timeOfDayValues, 'long', function (hours) {
+ *   // 0 is a.m. array index, 1 is p.m. array index
+ *   return (hours / 12) >= 1 ? 1 : 0
+ * })
+ * locale.localize.timeOfDay(16, {type: 'uppercase'}) //=> 'PM'
+ * locale.localize.timeOfDay(5) //=> 'a.m.'
+ */
+function buildLocalizeFn (values, defaultType, indexCallback) {
+  return function (dirtyIndex, dirtyOptions) {
+    var options = dirtyOptions || {};
+    var type = options.type ? String(options.type) : defaultType;
+    var valuesArray = values[type] || values[defaultType];
+    var index = indexCallback ? indexCallback(Number(dirtyIndex)) : Number(dirtyIndex);
+    return valuesArray[index]
+  }
+}
+
+/**
+ * @name buildLocalizeArrayFn
+ * @category Locale Helpers
+ * @summary Build `localize.weekdays`, `localize.months` and `localize.timesOfDay` properties for the locale.
+ *
+ * @description
+ * Build `localize.weekdays`, `localize.months` and `localize.timesOfDay` properties for the locale.
+ * If no `type` is supplied to the options of the resulting function, `defaultType` will be used (see example).
+ *
+ * @param {Object} values - the object with arrays of values
+ * @param {String} defaultType - the default type for the localize function
+ * @returns {Function} the resulting function
+ *
+ * @example
+ * var weekdayValues = {
+ *   narrow: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
+ *   short: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+ *   long: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+ * }
+ * locale.localize.weekdays = buildLocalizeArrayFn(weekdayValues, 'long')
+ * locale.localize.weekdays({type: 'narrow'}) //=> ['Su', 'Mo', ...]
+ * locale.localize.weekdays() //=> ['Sunday', 'Monday', ...]
+ */
+function buildLocalizeArrayFn (values, defaultType) {
+  return function (dirtyOptions) {
+    var options = dirtyOptions || {};
+    var type = options.type ? String(options.type) : defaultType;
+    return values[type] || values[defaultType]
+  }
+}
+
+var weekdayValues = {
+  narrow: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
+  short: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+  long: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+};
+
+var monthValues = {
+  short: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+  long: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+};
+
+// `timeOfDay` is used to designate which part of the day it is, when used with 12-hour clock.
+// Use the system which is used the most commonly in the locale.
+// For example, if the country doesn't use a.m./p.m., you can use `night`/`morning`/`afternoon`/`evening`:
+//
+//   var timeOfDayValues = {
+//     any: ['in the night', 'in the morning', 'in the afternoon', 'in the evening']
+//   }
+//
+// And later:
+//
+//   var localize = {
+//     // The callback takes the hours as the argument and returns the array index
+//     timeOfDay: buildLocalizeFn(timeOfDayValues, 'any', function (hours) {
+//       if (hours >= 17) {
+//         return 3
+//       } else if (hours >= 12) {
+//         return 2
+//       } else if (hours >= 4) {
+//         return 1
+//       } else {
+//         return 0
+//       }
+//     }),
+//     timesOfDay: buildLocalizeArrayFn(timeOfDayValues, 'any')
+//   }
+var timeOfDayValues = {
+  uppercase: ['AM', 'PM'],
+  lowercase: ['am', 'pm'],
+  long: ['a.m.', 'p.m.']
+};
+
+function ordinalNumber (dirtyNumber, dirtyOptions) {
+  var number = Number(dirtyNumber);
+
+  // If ordinal numbers depend on context, for example,
+  // if they are different for different grammatical genders,
+  // use `options.unit`:
+  //
+  //   var options = dirtyOptions || {}
+  //   var unit = String(options.unit)
+  //
+  // where `unit` can be 'month', 'quarter', 'week', 'isoWeek', 'dayOfYear',
+  // 'dayOfMonth' or 'dayOfWeek'
+
+  var rem100 = number % 100;
+  if (rem100 > 20 || rem100 < 10) {
+    switch (rem100 % 10) {
+      case 1:
+        return number + 'st'
+      case 2:
+        return number + 'nd'
+      case 3:
+        return number + 'rd'
+    }
+  }
+  return number + 'th'
+}
+
+var localize = {
+  ordinalNumber: ordinalNumber,
+  weekday: buildLocalizeFn(weekdayValues, 'long'),
+  weekdays: buildLocalizeArrayFn(weekdayValues, 'long'),
+  month: buildLocalizeFn(monthValues, 'long'),
+  months: buildLocalizeArrayFn(monthValues, 'long'),
+  timeOfDay: buildLocalizeFn(timeOfDayValues, 'long', function (hours) {
+    return (hours / 12) >= 1 ? 1 : 0
+  }),
+  timesOfDay: buildLocalizeArrayFn(timeOfDayValues, 'long')
+};
+
+/**
+ * @name buildMatchFn
+ * @category Locale Helpers
+ * @summary Build `match.weekdays`, `match.months` and `match.timesOfDay` properties for the locale.
+ *
+ * @description
+ * Build `match.weekdays`, `match.months` and `match.timesOfDay` properties for the locale used by `parse` function.
+ * If no `type` is supplied to the options of the resulting function, `defaultType` will be used (see example).
+ * The result of the match function will be passed into corresponding parser function
+ * (`match.weekday`, `match.month` or `match.timeOfDay` respectively. See `buildParseFn`).
+ *
+ * @param {Object} values - the object with RegExps
+ * @param {String} defaultType - the default type for the match function
+ * @returns {Function} the resulting function
+ *
+ * @example
+ * var matchWeekdaysPatterns = {
+ *   narrow: /^(su|mo|tu|we|th|fr|sa)/i,
+ *   short: /^(sun|mon|tue|wed|thu|fri|sat)/i,
+ *   long: /^(sunday|monday|tuesday|wednesday|thursday|friday|saturday)/i
+ * }
+ * locale.match.weekdays = buildMatchFn(matchWeekdaysPatterns, 'long')
+ * locale.match.weekdays('Sunday', {type: 'narrow'}) //=> ['Su', 'Su', ...]
+ * locale.match.weekdays('Sunday') //=> ['Sunday', 'Sunday', ...]
+ */
+function buildMatchFn (patterns, defaultType) {
+  return function (dirtyString, dirtyOptions) {
+    var options = dirtyOptions || {};
+    var type = options.type ? String(options.type) : defaultType;
+    var pattern = patterns[type] || patterns[defaultType];
+    var string = String(dirtyString);
+    return string.match(pattern)
+  }
+}
+
+/**
+ * @name buildParseFn
+ * @category Locale Helpers
+ * @summary Build `match.weekday`, `match.month` and `match.timeOfDay` properties for the locale.
+ *
+ * @description
+ * Build `match.weekday`, `match.month` and `match.timeOfDay` properties for the locale used by `parse` function.
+ * The argument of the resulting function is the result of the corresponding match function
+ * (`match.weekdays`, `match.months` or `match.timesOfDay` respectively. See `buildMatchFn`).
+ *
+ * @param {Object} values - the object with arrays of RegExps
+ * @param {String} defaultType - the default type for the parser function
+ * @returns {Function} the resulting function
+ *
+ * @example
+ * var parseWeekdayPatterns = {
+ *   any: [/^su/i, /^m/i, /^tu/i, /^w/i, /^th/i, /^f/i, /^sa/i]
+ * }
+ * locale.match.weekday = buildParseFn(matchWeekdaysPatterns, 'long')
+ * var matchResult = locale.match.weekdays('Friday')
+ * locale.match.weekday(matchResult) //=> 5
+ */
+function buildParseFn (patterns, defaultType) {
+  return function (matchResult, dirtyOptions) {
+    var options = dirtyOptions || {};
+    var type = options.type ? String(options.type) : defaultType;
+    var patternsArray = patterns[type] || patterns[defaultType];
+    var string = matchResult[1];
+
+    return patternsArray.findIndex(function (pattern) {
+      return pattern.test(string)
+    })
+  }
+}
+
+/**
+ * @name buildMatchPatternFn
+ * @category Locale Helpers
+ * @summary Build match function from a single RegExp.
+ *
+ * @description
+ * Build match function from a single RegExp.
+ * Usually used for building `match.ordinalNumbers` property of the locale.
+ *
+ * @param {Object} pattern - the RegExp
+ * @returns {Function} the resulting function
+ *
+ * @example
+ * locale.match.ordinalNumbers = buildMatchPatternFn(/^(\d+)(th|st|nd|rd)?/i)
+ * locale.match.ordinalNumbers('3rd') //=> ['3rd', '3', 'rd', ...]
+ */
+function buildMatchPatternFn (pattern) {
+  return function (dirtyString) {
+    var string = String(dirtyString);
+    return string.match(pattern)
+  }
+}
+
+/**
+ * @name parseDecimal
+ * @category Locale Helpers
+ * @summary Parses the match result into decimal number.
+ *
+ * @description
+ * Parses the match result into decimal number.
+ * Uses the string matched with the first set of parentheses of match RegExp.
+ *
+ * @param {Array} matchResult - the object returned by matching function
+ * @returns {Number} the parsed value
+ *
+ * @example
+ * locale.match = {
+ *   ordinalNumbers: (dirtyString) {
+ *     return String(dirtyString).match(/^(\d+)(th|st|nd|rd)?/i)
+ *   },
+ *   ordinalNumber: parseDecimal
+ * }
+ */
+function parseDecimal (matchResult) {
+  return parseInt(matchResult[1], 10)
+}
+
+var matchOrdinalNumbersPattern = /^(\d+)(th|st|nd|rd)?/i;
+
+var matchWeekdaysPatterns = {
+  narrow: /^(su|mo|tu|we|th|fr|sa)/i,
+  short: /^(sun|mon|tue|wed|thu|fri|sat)/i,
+  long: /^(sunday|monday|tuesday|wednesday|thursday|friday|saturday)/i
+};
+
+var parseWeekdayPatterns = {
+  any: [/^su/i, /^m/i, /^tu/i, /^w/i, /^th/i, /^f/i, /^sa/i]
+};
+
+var matchMonthsPatterns = {
+  short: /^(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)/i,
+  long: /^(january|february|march|april|may|june|july|august|september|october|november|december)/i
+};
+
+var parseMonthPatterns = {
+  any: [/^ja/i, /^f/i, /^mar/i, /^ap/i, /^may/i, /^jun/i, /^jul/i, /^au/i, /^s/i, /^o/i, /^n/i, /^d/i]
+};
+
+// `timeOfDay` is used to designate which part of the day it is, when used with 12-hour clock.
+// Use the system which is used the most commonly in the locale.
+// For example, if the country doesn't use a.m./p.m., you can use `night`/`morning`/`afternoon`/`evening`:
+//
+//   var matchTimesOfDayPatterns = {
+//     long: /^((in the)? (night|morning|afternoon|evening?))/i
+//   }
+//
+//   var parseTimeOfDayPatterns = {
+//     any: [/(night|morning)/i, /(afternoon|evening)/i]
+//   }
+var matchTimesOfDayPatterns = {
+  short: /^(am|pm)/i,
+  long: /^([ap]\.?\s?m\.?)/i
+};
+
+var parseTimeOfDayPatterns = {
+  any: [/^a/i, /^p/i]
+};
+
+var match = {
+  ordinalNumbers: buildMatchPatternFn(matchOrdinalNumbersPattern),
+  ordinalNumber: parseDecimal,
+  weekdays: buildMatchFn(matchWeekdaysPatterns, 'long'),
+  weekday: buildParseFn(parseWeekdayPatterns, 'any'),
+  months: buildMatchFn(matchMonthsPatterns, 'long'),
+  month: buildParseFn(parseMonthPatterns, 'any'),
+  timesOfDay: buildMatchFn(matchTimesOfDayPatterns, 'long'),
+  timeOfDay: buildParseFn(parseTimeOfDayPatterns, 'any')
+};
+
+var locale = {
+  formatDistance: formatDistance,
+  formatLong: formatLong,
+  formatRelative: formatRelative,
+  localize: localize,
+  match: match,
+  options: {
+    weekStartsOn: 0 /* Sunday */,
+    firstWeekContainsDate: 1
+  }
+};
+
+var MILLISECONDS_IN_DAY$1 = 86400000;
+
+// This function will be a part of public API when UTC function will be implemented.
+// See issue: https://github.com/date-fns/date-fns/issues/376
+function getUTCDayOfYear (dirtyDate, dirtyOptions) {
+  var date = toDate(dirtyDate, dirtyOptions);
+  var timestamp = date.getTime();
+  date.setUTCMonth(0, 1);
+  date.setUTCHours(0, 0, 0, 0);
+  var startOfYearTimestamp = date.getTime();
+  var difference = timestamp - startOfYearTimestamp;
+  return Math.floor(difference / MILLISECONDS_IN_DAY$1) + 1
+}
+
+function startOfUTCISOWeek (dirtyDate, dirtyOptions) {
+  var weekStartsOn = 1;
+
+  var date = toDate(dirtyDate, dirtyOptions);
+  var day = date.getUTCDay();
+  var diff = (day < weekStartsOn ? 7 : 0) + day - weekStartsOn;
+
+  date.setUTCDate(date.getUTCDate() - diff);
+  date.setUTCHours(0, 0, 0, 0);
+  return date
+}
+
+function getUTCISOWeekYear (dirtyDate, dirtyOptions) {
+  var date = toDate(dirtyDate, dirtyOptions);
+  var year = date.getUTCFullYear();
+
+  var fourthOfJanuaryOfNextYear = new Date(0);
+  fourthOfJanuaryOfNextYear.setUTCFullYear(year + 1, 0, 4);
+  fourthOfJanuaryOfNextYear.setUTCHours(0, 0, 0, 0);
+  var startOfNextYear = startOfUTCISOWeek(fourthOfJanuaryOfNextYear, dirtyOptions);
+
+  var fourthOfJanuaryOfThisYear = new Date(0);
+  fourthOfJanuaryOfThisYear.setUTCFullYear(year, 0, 4);
+  fourthOfJanuaryOfThisYear.setUTCHours(0, 0, 0, 0);
+  var startOfThisYear = startOfUTCISOWeek(fourthOfJanuaryOfThisYear, dirtyOptions);
+
+  if (date.getTime() >= startOfNextYear.getTime()) {
+    return year + 1
+  } else if (date.getTime() >= startOfThisYear.getTime()) {
+    return year
+  } else {
+    return year - 1
+  }
+}
+
+function startOfUTCISOWeekYear (dirtyDate, dirtyOptions) {
+  var year = getUTCISOWeekYear(dirtyDate, dirtyOptions);
+  var fourthOfJanuary = new Date(0);
+  fourthOfJanuary.setUTCFullYear(year, 0, 4);
+  fourthOfJanuary.setUTCHours(0, 0, 0, 0);
+  var date = startOfUTCISOWeek(fourthOfJanuary, dirtyOptions);
+  return date
+}
+
+var MILLISECONDS_IN_WEEK$2 = 604800000;
+
+// This function will be a part of public API when UTC function will be implemented.
+// See issue: https://github.com/date-fns/date-fns/issues/376
+function getUTCISOWeek (dirtyDate, dirtyOptions) {
+  var date = toDate(dirtyDate, dirtyOptions);
+  var diff = startOfUTCISOWeek(date, dirtyOptions).getTime() - startOfUTCISOWeekYear(date, dirtyOptions).getTime();
+
+  // Round the number of days to the nearest integer
+  // because the number of milliseconds in a week is not constant
+  // (e.g. it's different in the week of the daylight saving time clock shift)
+  return Math.round(diff / MILLISECONDS_IN_WEEK$2) + 1
+}
+
+var formatters = {
+  // Month: 1, 2, ..., 12
+  'M': function (date) {
+    return date.getUTCMonth() + 1
+  },
+
+  // Month: 1st, 2nd, ..., 12th
+  'Mo': function (date, options) {
+    var month = date.getUTCMonth() + 1;
+    return options.locale.localize.ordinalNumber(month, {unit: 'month'})
+  },
+
+  // Month: 01, 02, ..., 12
+  'MM': function (date) {
+    return addLeadingZeros(date.getUTCMonth() + 1, 2)
+  },
+
+  // Month: Jan, Feb, ..., Dec
+  'MMM': function (date, options) {
+    return options.locale.localize.month(date.getUTCMonth(), {type: 'short'})
+  },
+
+  // Month: January, February, ..., December
+  'MMMM': function (date, options) {
+    return options.locale.localize.month(date.getUTCMonth(), {type: 'long'})
+  },
+
+  // Quarter: 1, 2, 3, 4
+  'Q': function (date) {
+    return Math.ceil((date.getUTCMonth() + 1) / 3)
+  },
+
+  // Quarter: 1st, 2nd, 3rd, 4th
+  'Qo': function (date, options) {
+    var quarter = Math.ceil((date.getUTCMonth() + 1) / 3);
+    return options.locale.localize.ordinalNumber(quarter, {unit: 'quarter'})
+  },
+
+  // Day of month: 1, 2, ..., 31
+  'D': function (date) {
+    return date.getUTCDate()
+  },
+
+  // Day of month: 1st, 2nd, ..., 31st
+  'Do': function (date, options) {
+    return options.locale.localize.ordinalNumber(date.getUTCDate(), {unit: 'dayOfMonth'})
+  },
+
+  // Day of month: 01, 02, ..., 31
+  'DD': function (date) {
+    return addLeadingZeros(date.getUTCDate(), 2)
+  },
+
+  // Day of year: 1, 2, ..., 366
+  'DDD': function (date) {
+    return getUTCDayOfYear(date)
+  },
+
+  // Day of year: 1st, 2nd, ..., 366th
+  'DDDo': function (date, options) {
+    return options.locale.localize.ordinalNumber(getUTCDayOfYear(date), {unit: 'dayOfYear'})
+  },
+
+  // Day of year: 001, 002, ..., 366
+  'DDDD': function (date) {
+    return addLeadingZeros(getUTCDayOfYear(date), 3)
+  },
+
+  // Day of week: Su, Mo, ..., Sa
+  'dd': function (date, options) {
+    return options.locale.localize.weekday(date.getUTCDay(), {type: 'narrow'})
+  },
+
+  // Day of week: Sun, Mon, ..., Sat
+  'ddd': function (date, options) {
+    return options.locale.localize.weekday(date.getUTCDay(), {type: 'short'})
+  },
+
+  // Day of week: Sunday, Monday, ..., Saturday
+  'dddd': function (date, options) {
+    return options.locale.localize.weekday(date.getUTCDay(), {type: 'long'})
+  },
+
+  // Day of week: 0, 1, ..., 6
+  'd': function (date) {
+    return date.getUTCDay()
+  },
+
+  // Day of week: 0th, 1st, 2nd, ..., 6th
+  'do': function (date, options) {
+    return options.locale.localize.ordinalNumber(date.getUTCDay(), {unit: 'dayOfWeek'})
+  },
+
+  // Day of ISO week: 1, 2, ..., 7
+  'E': function (date) {
+    return date.getUTCDay() || 7
+  },
+
+  // ISO week: 1, 2, ..., 53
+  'W': function (date) {
+    return getUTCISOWeek(date)
+  },
+
+  // ISO week: 1st, 2nd, ..., 53th
+  'Wo': function (date, options) {
+    return options.locale.localize.ordinalNumber(getUTCISOWeek(date), {unit: 'isoWeek'})
+  },
+
+  // ISO week: 01, 02, ..., 53
+  'WW': function (date) {
+    return addLeadingZeros(getUTCISOWeek(date), 2)
+  },
+
+  // Year: 00, 01, ..., 99
+  'YY': function (date) {
+    return addLeadingZeros(date.getUTCFullYear(), 4).substr(2)
+  },
+
+  // Year: 1900, 1901, ..., 2099
+  'YYYY': function (date) {
+    return addLeadingZeros(date.getUTCFullYear(), 4)
+  },
+
+  // ISO week-numbering year: 00, 01, ..., 99
+  'GG': function (date) {
+    return String(getUTCISOWeekYear(date)).substr(2)
+  },
+
+  // ISO week-numbering year: 1900, 1901, ..., 2099
+  'GGGG': function (date) {
+    return getUTCISOWeekYear(date)
+  },
+
+  // Hour: 0, 1, ... 23
+  'H': function (date) {
+    return date.getUTCHours()
+  },
+
+  // Hour: 00, 01, ..., 23
+  'HH': function (date) {
+    return addLeadingZeros(date.getUTCHours(), 2)
+  },
+
+  // Hour: 1, 2, ..., 12
+  'h': function (date) {
+    var hours = date.getUTCHours();
+    if (hours === 0) {
+      return 12
+    } else if (hours > 12) {
+      return hours % 12
+    } else {
+      return hours
+    }
+  },
+
+  // Hour: 01, 02, ..., 12
+  'hh': function (date) {
+    return addLeadingZeros(formatters['h'](date), 2)
+  },
+
+  // Minute: 0, 1, ..., 59
+  'm': function (date) {
+    return date.getUTCMinutes()
+  },
+
+  // Minute: 00, 01, ..., 59
+  'mm': function (date) {
+    return addLeadingZeros(date.getUTCMinutes(), 2)
+  },
+
+  // Second: 0, 1, ..., 59
+  's': function (date) {
+    return date.getUTCSeconds()
+  },
+
+  // Second: 00, 01, ..., 59
+  'ss': function (date) {
+    return addLeadingZeros(date.getUTCSeconds(), 2)
+  },
+
+  // 1/10 of second: 0, 1, ..., 9
+  'S': function (date) {
+    return Math.floor(date.getUTCMilliseconds() / 100)
+  },
+
+  // 1/100 of second: 00, 01, ..., 99
+  'SS': function (date) {
+    return addLeadingZeros(Math.floor(date.getUTCMilliseconds() / 10), 2)
+  },
+
+  // Millisecond: 000, 001, ..., 999
+  'SSS': function (date) {
+    return addLeadingZeros(date.getUTCMilliseconds(), 3)
+  },
+
+  // Timezone: -01:00, +00:00, ... +12:00
+  'Z': function (date, options) {
+    var originalDate = options._originalDate || date;
+    return formatTimezone(originalDate.getTimezoneOffset(), ':')
+  },
+
+  // Timezone: -0100, +0000, ... +1200
+  'ZZ': function (date, options) {
+    var originalDate = options._originalDate || date;
+    return formatTimezone(originalDate.getTimezoneOffset())
+  },
+
+  // Seconds timestamp: 512969520
+  'X': function (date, options) {
+    var originalDate = options._originalDate || date;
+    return Math.floor(originalDate.getTime() / 1000)
+  },
+
+  // Milliseconds timestamp: 512969520900
+  'x': function (date, options) {
+    var originalDate = options._originalDate || date;
+    return originalDate.getTime()
+  },
+
+  // AM, PM
+  'A': function (date, options) {
+    return options.locale.localize.timeOfDay(date.getUTCHours(), {type: 'uppercase'})
+  },
+
+  // am, pm
+  'a': function (date, options) {
+    return options.locale.localize.timeOfDay(date.getUTCHours(), {type: 'lowercase'})
+  },
+
+  // a.m., p.m.
+  'aa': function (date, options) {
+    return options.locale.localize.timeOfDay(date.getUTCHours(), {type: 'long'})
+  }
+};
+
+function formatTimezone (offset, delimeter) {
+  delimeter = delimeter || '';
+  var sign = offset > 0 ? '-' : '+';
+  var absOffset = Math.abs(offset);
+  var hours = Math.floor(absOffset / 60);
+  var minutes = absOffset % 60;
+  return sign + addLeadingZeros(hours, 2) + delimeter + addLeadingZeros(minutes, 2)
+}
+
+function addLeadingZeros (number, targetLength) {
+  var output = Math.abs(number).toString();
+  while (output.length < targetLength) {
+    output = '0' + output;
+  }
+  return output
+}
+
+function addUTCMinutes (dirtyDate, dirtyAmount, dirtyOptions) {
+  var date = toDate(dirtyDate, dirtyOptions);
+  var amount = Number(dirtyAmount);
+  date.setUTCMinutes(date.getUTCMinutes() + amount);
+  return date
+}
+
+var longFormattingTokensRegExp = /(\[[^[]*])|(\\)?(LTS|LT|LLLL|LLL|LL|L|llll|lll|ll|l)/g;
+var defaultFormattingTokensRegExp = /(\[[^[]*])|(\\)?(x|ss|s|mm|m|hh|h|do|dddd|ddd|dd|d|aa|a|ZZ|Z|YYYY|YY|X|Wo|WW|W|SSS|SS|S|Qo|Q|Mo|MMMM|MMM|MM|M|HH|H|GGGG|GG|E|Do|DDDo|DDDD|DDD|DD|D|A|.)/g;
+
+/**
+ * @name format
+ * @category Common Helpers
+ * @summary Format the date.
+ *
+ * @description
+ * Return the formatted date string in the given format.
+ *
+ * Accepted tokens:
+ * | Unit                    | Token | Result examples                  |
+ * |-------------------------|-------|----------------------------------|
+ * | Month                   | M     | 1, 2, ..., 12                    |
+ * |                         | Mo    | 1st, 2nd, ..., 12th              |
+ * |                         | MM    | 01, 02, ..., 12                  |
+ * |                         | MMM   | Jan, Feb, ..., Dec               |
+ * |                         | MMMM  | January, February, ..., December |
+ * | Quarter                 | Q     | 1, 2, 3, 4                       |
+ * |                         | Qo    | 1st, 2nd, 3rd, 4th               |
+ * | Day of month            | D     | 1, 2, ..., 31                    |
+ * |                         | Do    | 1st, 2nd, ..., 31st              |
+ * |                         | DD    | 01, 02, ..., 31                  |
+ * | Day of year             | DDD   | 1, 2, ..., 366                   |
+ * |                         | DDDo  | 1st, 2nd, ..., 366th             |
+ * |                         | DDDD  | 001, 002, ..., 366               |
+ * | Day of week             | d     | 0, 1, ..., 6                     |
+ * |                         | do    | 0th, 1st, ..., 6th               |
+ * |                         | dd    | Su, Mo, ..., Sa                  |
+ * |                         | ddd   | Sun, Mon, ..., Sat               |
+ * |                         | dddd  | Sunday, Monday, ..., Saturday    |
+ * | Day of ISO week         | E     | 1, 2, ..., 7                     |
+ * | ISO week                | W     | 1, 2, ..., 53                    |
+ * |                         | Wo    | 1st, 2nd, ..., 53rd              |
+ * |                         | WW    | 01, 02, ..., 53                  |
+ * | Year                    | YY    | 00, 01, ..., 99                  |
+ * |                         | YYYY  | 1900, 1901, ..., 2099            |
+ * | ISO week-numbering year | GG    | 00, 01, ..., 99                  |
+ * |                         | GGGG  | 1900, 1901, ..., 2099            |
+ * | AM/PM                   | A     | AM, PM                           |
+ * |                         | a     | am, pm                           |
+ * |                         | aa    | a.m., p.m.                       |
+ * | Hour                    | H     | 0, 1, ... 23                     |
+ * |                         | HH    | 00, 01, ... 23                   |
+ * |                         | h     | 1, 2, ..., 12                    |
+ * |                         | hh    | 01, 02, ..., 12                  |
+ * | Minute                  | m     | 0, 1, ..., 59                    |
+ * |                         | mm    | 00, 01, ..., 59                  |
+ * | Second                  | s     | 0, 1, ..., 59                    |
+ * |                         | ss    | 00, 01, ..., 59                  |
+ * | 1/10 of second          | S     | 0, 1, ..., 9                     |
+ * | 1/100 of second         | SS    | 00, 01, ..., 99                  |
+ * | Millisecond             | SSS   | 000, 001, ..., 999               |
+ * | Timezone                | Z     | -01:00, +00:00, ... +12:00       |
+ * |                         | ZZ    | -0100, +0000, ..., +1200         |
+ * | Seconds timestamp       | X     | 512969520                        |
+ * | Milliseconds timestamp  | x     | 512969520900                     |
+ * | Long format             | LT    | 05:30 a.m.                       |
+ * |                         | LTS   | 05:30:15 a.m.                    |
+ * |                         | L     | 07/02/1995                       |
+ * |                         | l     | 7/2/1995                         |
+ * |                         | LL    | July 2 1995                      |
+ * |                         | ll    | Jul 2 1995                       |
+ * |                         | LLL   | July 2 1995 05:30 a.m.           |
+ * |                         | lll   | Jul 2 1995 05:30 a.m.            |
+ * |                         | LLLL  | Sunday, July 2 1995 05:30 a.m.   |
+ * |                         | llll  | Sun, Jul 2 1995 05:30 a.m.       |
+ *
+ * The characters wrapped in square brackets are escaped.
+ *
+ * The result may vary by locale.
+ *
+ * @param {Date|String|Number} date - the original date
+ * @param {String} format - the string of tokens
+ * @param {Options} [options] - the object with options. See [Options]{@link https://date-fns.org/docs/Options}
+ * @param {0|1|2} [options.additionalDigits=2] - passed to `toDate`. See [toDate]{@link https://date-fns.org/docs/toDate}
+ * @param {Locale} [options.locale=defaultLocale] - the locale object. See [Locale]{@link https://date-fns.org/docs/Locale}
+ * @returns {String} the formatted date string
+ * @throws {TypeError} 2 arguments required
+ * @throws {RangeError} `options.additionalDigits` must be 0, 1 or 2
+ * @throws {RangeError} `options.locale` must contain `localize` property
+ * @throws {RangeError} `options.locale` must contain `formatLong` property
+ *
+ * @example
+ * // Represent 11 February 2014 in middle-endian format:
+ * var result = format(
+ *   new Date(2014, 1, 11),
+ *   'MM/DD/YYYY'
+ * )
+ * //=> '02/11/2014'
+ *
+ * @example
+ * // Represent 2 July 2014 in Esperanto:
+ * import { eoLocale } from 'date-fns/locale/eo'
+ * var result = format(
+ *   new Date(2014, 6, 2),
+ *   'Do [de] MMMM YYYY',
+ *   {locale: eoLocale}
+ * )
+ * //=> '2-a de julio 2014'
+ */
+function format (dirtyDate, dirtyFormatStr, dirtyOptions) {
+  if (arguments.length < 2) {
+    throw new TypeError('2 arguments required, but only ' + arguments.length + ' present')
+  }
+
+  var formatStr = String(dirtyFormatStr);
+  var options = dirtyOptions || {};
+
+  var locale$$1 = options.locale || locale;
+
+  if (!locale$$1.localize) {
+    throw new RangeError('locale must contain localize property')
+  }
+
+  if (!locale$$1.formatLong) {
+    throw new RangeError('locale must contain formatLong property')
+  }
+
+  var localeFormatters = locale$$1.formatters || {};
+  var formattingTokensRegExp = locale$$1.formattingTokensRegExp || defaultFormattingTokensRegExp;
+  var formatLong = locale$$1.formatLong;
+
+  var originalDate = toDate(dirtyDate, options);
+
+  if (!isValid(originalDate, options)) {
+    return 'Invalid Date'
+  }
+
+  // Convert the date in system timezone to the same date in UTC+00:00 timezone.
+  // This ensures that when UTC functions will be implemented, locales will be compatible with them.
+  // See an issue about UTC functions: https://github.com/date-fns/date-fns/issues/376
+  var timezoneOffset = originalDate.getTimezoneOffset();
+  var utcDate = addUTCMinutes(originalDate, -timezoneOffset, options);
+
+  var formatterOptions = cloneObject(options);
+  formatterOptions.locale = locale$$1;
+  formatterOptions.formatters = formatters;
+
+  // When UTC functions will be implemented, options._originalDate will likely be a part of public API.
+  // Right now, please don't use it in locales. If you have to use an original date,
+  // please restore it from `date`, adding a timezone offset to it.
+  formatterOptions._originalDate = originalDate;
+
+  var result = formatStr
+    .replace(longFormattingTokensRegExp, function (substring) {
+      if (substring[0] === '[') {
+        return substring
+      }
+
+      if (substring[0] === '\\') {
+        return cleanEscapedString(substring)
+      }
+
+      return formatLong(substring)
+    })
+    .replace(formattingTokensRegExp, function (substring) {
+      var formatter = localeFormatters[substring] || formatters[substring];
+
+      if (formatter) {
+        return formatter(utcDate, formatterOptions)
+      } else {
+        return cleanEscapedString(substring)
+      }
+    });
+
+  return result
+}
+
+function cleanEscapedString (input) {
+  if (input.match(/\[[\s\S]/)) {
+    return input.replace(/^\[|]$/g, '')
+  }
+  return input.replace(/\\/g, '')
+}
+
+function isEqual (dirtyLeftDate, dirtyRightDate, dirtyOptions) {
+  if (arguments.length < 2) {
+    throw new TypeError('2 arguments required, but only ' + arguments.length + ' present')
+  }
+
+  var dateLeft = toDate(dirtyLeftDate, dirtyOptions);
+  var dateRight = toDate(dirtyRightDate, dirtyOptions);
+  return dateLeft.getTime() === dateRight.getTime()
+}
+
+// This file is generated automatically by `scripts/build/indices.js`. Please, don't change it.
+
+var MINUTE_IN_SECONDS = 60;
+var HOUR_IN_SECONDS = MINUTE_IN_SECONDS * 60;
+var DAY_IN_SECONDS = HOUR_IN_SECONDS * 24;
+
+var difference = function difference(date1, date2) {
+  var totalInSeconds = differenceInSeconds(date1, date2);
+
+  var seconds = totalInSeconds;
+
+  var days = Math.floor(seconds / DAY_IN_SECONDS);
+  seconds = seconds % DAY_IN_SECONDS;
+
+  var hours = Math.floor(seconds / HOUR_IN_SECONDS);
+  seconds = seconds % HOUR_IN_SECONDS;
+
+  var minutes = Math.floor(seconds / MINUTE_IN_SECONDS);
+  seconds = seconds % MINUTE_IN_SECONDS;
+
+  return { days: days, hours: hours, minutes: minutes, seconds: seconds, totalInSeconds: totalInSeconds };
+};
+
+var formatHtmlDatetime = function formatHtmlDatetime(date) {
+  return format(date, 'YYYY-MM-DDTHH:mm:ss.SSSZ');
+};
+
+var formatIntegerRange = function formatIntegerRange() {
+  var count = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : -1;
+  var min = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+  var max = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 99;
+  var maxSuffix = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : '';
+
+  count = parseInt(count, 10);
+  if (count <= min) {
+    return '' + parseInt(min, 10);
+  }
+  if (count > max) {
+    return '' + parseInt(max, 10) + maxSuffix;
+  }
+  return count.toString();
+};
 
 function makeEmptyFunction(arg) {
   return function () {
@@ -829,17 +2271,6 @@ var emptyFunction_1 = emptyFunction;
  *
  */
 
-/**
- * Use invariant() to assert state which your program assumes to be true.
- *
- * Provide sprintf-style format (only %s is supported) and arguments
- * to provide information about what broke and what you were
- * expecting.
- *
- * The invariant message will be stripped in production, but the invariant
- * will remain to ensure logic does not differ in production.
- */
-
 var validateFormat = function validateFormat(format) {};
 
 if (process.env.NODE_ENV !== 'production') {
@@ -872,13 +2303,6 @@ function invariant(condition, format, a, b, c, d, e, f) {
 }
 
 var invariant_1 = invariant;
-
-/**
- * Similar to invariant but only logs a warning if the condition is not met.
- * This can be used to log issues in development environments in critical
- * paths. Removing the logging code for production environments will keep the
- * same logic and follow the same code paths.
- */
 
 var warning = emptyFunction_1;
 
@@ -930,7 +2354,6 @@ object-assign
 @license MIT
 */
 
-/* eslint-disable no-unused-vars */
 var getOwnPropertySymbols = Object.getOwnPropertySymbols;
 var hasOwnProperty = Object.prototype.hasOwnProperty;
 var propIsEnumerable = Object.prototype.propertyIsEnumerable;
@@ -1845,8 +3268,6 @@ module.exports = _Media2.default;
 
 var Media = unwrapExports(reactMedia);
 
-// These breakpoints values represent minimum screen sizes.
-// Small screen sizes should be targetted by default (mobile first).
 var BREAKPOINTS = {
   medium: 768,
   large: 1170
@@ -1939,24 +3360,6 @@ var unselectable = function unselectable() {
   return '\n  -webkit-touch-callout: none;\n  -webkit-user-select: none;\n  -moz-user-select: none;\n  -ms-user-select: none;\n  user-select: none;\n';
 };
 
-var formatIntegerRange = function formatIntegerRange() {
-  var count = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : -1;
-  var min = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
-  var max = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 99;
-  var maxSuffix = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : '';
-
-  count = parseInt(count, 10);
-  if (count <= min) {
-    return '' + parseInt(min, 10);
-  }
-  if (count > max) {
-    return '' + parseInt(max, 10) + maxSuffix;
-  }
-  return count.toString();
-};
-
-// Higher-order component for re-rendering
-// For a discussion on pitfalls, see https://gist.github.com/staltz/08bf613199092eeb41ac8137d51eb5e6#gistcomment-2280414
 var redraw = function redraw(delay) {
   return function (Component) {
     var _class, _temp2;
@@ -2016,15 +3419,114 @@ var redraw = function redraw(delay) {
         }
       }]);
       return _class;
-    }(React.Component), _class.defaultProps = {
-      innerRef: function innerRef() {}
-    }, _class.propTypes = {
+    }(React.Component), _class.propTypes = {
       innerRef: propTypes.func
+    }, _class.defaultProps = {
+      innerRef: function innerRef() {}
     }, _class.displayName = 'Redraw(' + getDisplayName(Component) + ')', _temp2;
   };
 };
 
-// High order component wrapper
+var EVERY_SECOND = 1000;
+var EVERY_MINUTE = EVERY_SECOND * 60;
+var EVERY_HOUR = EVERY_MINUTE * 60;
+
+var getRedrawTime = function getRedrawTime(fromDate) {
+  var _difference = difference(new Date(), fromDate),
+      days = _difference.days,
+      hours = _difference.hours,
+      minutes = _difference.minutes;
+
+  return hours || days ? EVERY_HOUR : minutes ? EVERY_MINUTE : EVERY_SECOND;
+};
+
+// Higher-order component for re-rendering based on a given date
+// Automatically adjusts the re-render timer to be one second, minute, or hour
+// based on the fromDate.
+// For a discussion on pitfalls, see https://gist.github.com/staltz/08bf613199092eeb41ac8137d51eb5e6#gistcomment-2280414
+var redrawFromDate = function redrawFromDate(Component) {
+  var _class, _temp2;
+
+  return _temp2 = _class = function (_React$Component) {
+    inherits(_class, _React$Component);
+
+    function _class() {
+      var _ref;
+
+      var _temp, _this, _ret;
+
+      classCallCheck(this, _class);
+
+      for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+        args[_key] = arguments[_key];
+      }
+
+      return _ret = (_temp = (_this = possibleConstructorReturn(this, (_ref = _class.__proto__ || Object.getPrototypeOf(_class)).call.apply(_ref, [this].concat(args))), _this), _this.clearInterval = function () {
+        _this.interval && clearInterval(_this.interval);
+      }, _this.restartDrawInterval = function (redrawTime) {
+        _this.clearInterval();
+
+        _this.interval = setInterval(function () {
+          _this.child ? _this.child.forceUpdate() : _this.forceUpdate();
+
+          var newRedrawTime = getRedrawTime(_this.props.fromDate);
+          if (newRedrawTime !== redrawTime) {
+            _this.restartDrawInterval(newRedrawTime);
+          }
+        }, redrawTime);
+      }, _temp), possibleConstructorReturn(_this, _ret);
+    }
+
+    createClass(_class, [{
+      key: 'componentDidMount',
+      value: function componentDidMount() {
+        var fromDate = this.props.fromDate;
+
+        if (fromDate) {
+          this.restartDrawInterval(getRedrawTime(this.props.fromDate));
+        }
+      }
+    }, {
+      key: 'componentWillReceiveProps',
+      value: function componentWillReceiveProps(_ref2) {
+        var fromDate = _ref2.fromDate;
+
+        if (!fromDate && this.props.fromDate) {
+          this.clearInterval();
+        } else if (!isEqual(fromDate, this.props.fromDate)) {
+          this.restartDrawInterval(getRedrawTime(this.props.fromDate));
+        }
+      }
+    }, {
+      key: 'componentWillUnmount',
+      value: function componentWillUnmount() {
+        this.clearInterval();
+      }
+    }, {
+      key: 'render',
+      value: function render() {
+        var _this2 = this;
+
+        return React.createElement(Component, _extends({}, this.props, {
+          ref:
+          // Only add a ref prop if the given component is not a stateless
+          // component
+          Component.render ? function (child) {
+            _this2.child = child;
+            _this2.props.innerRef(child);
+          } : undefined
+        }));
+      }
+    }]);
+    return _class;
+  }(React.Component), _class.propTypes = {
+    fromDate: propTypes.oneOfType([propTypes.string, propTypes.number, propTypes.instanceOf(Date)]),
+    innerRef: propTypes.func
+  }, _class.defaultProps = {
+    innerRef: function innerRef() {}
+  }, _class.displayName = 'RedrawFromDate(' + getDisplayName(Component) + ')', _temp2;
+};
+
 var getPublicUrl = function getPublicUrl(Component) {
   var highOrderComponent = function highOrderComponent(baseProps, context) {
     var _context$publicUrl = context.publicUrl,
@@ -2064,10 +3566,21 @@ var overpassSemiBoldWoff = "f8ba2d7a9af0db1f.woff";
 
 var overpassSemiBoldWoff2 = "5cfe62515c2f9b42.woff2";
 
-var _templateObject = taggedTemplateLiteral(['\n  @font-face {\n    font-family: \'overpass\';\n    src: url(', ') format(\'woff2\'),\n         url(', ') format(\'woff\');\n    font-weight: 400;\n    font-style: normal;\n  }\n  @font-face {\n    font-family: \'overpass\';\n    src: url(', ') format(\'woff2\'),\n         url(', ') format(\'woff\');\n    font-weight: 600;\n    font-style: normal;\n  }\n  @font-face {\n    font-family: \'overpass\';\n    src: url(', ') format(\'woff2\'),\n         url(', ') format(\'woff\');\n    font-weight: 800;\n    font-style: normal;\n  }\n  *,\n  *:before,\n  *:after {\n    box-sizing: border-box;\n  }\n  html {\n    min-height: 100%;\n  }\n  body {\n    font-family: overpass, sans-serif;\n    font-size: 15px;\n    font-weight: 400;\n    line-height: 1.5;\n    color: ', ';\n    background: ', ';\n  }\n  body,\n  ul,\n  p,\n  h1,\n  h2,\n  h3,\n  h4,\n  h5,\n  h6 {\n    margin: 0;\n    padding: 0;\n  }\n  button,\n  select,\n  input,\n  h1,\n  h2,\n  h3,\n  h4,\n  h5,\n  h6 {\n    font-size: inherit;\n    font-family: inherit;\n    font-weight: inherit;\n    line-height: inherit;\n  }\n  a,\n  button,\n  select,\n  input {\n    color: inherit;\n  }\n  strong,\n  b {\n    font-weight: 600;\n  }\n'], ['\n  @font-face {\n    font-family: \'overpass\';\n    src: url(', ') format(\'woff2\'),\n         url(', ') format(\'woff\');\n    font-weight: 400;\n    font-style: normal;\n  }\n  @font-face {\n    font-family: \'overpass\';\n    src: url(', ') format(\'woff2\'),\n         url(', ') format(\'woff\');\n    font-weight: 600;\n    font-style: normal;\n  }\n  @font-face {\n    font-family: \'overpass\';\n    src: url(', ') format(\'woff2\'),\n         url(', ') format(\'woff\');\n    font-weight: 800;\n    font-style: normal;\n  }\n  *,\n  *:before,\n  *:after {\n    box-sizing: border-box;\n  }\n  html {\n    min-height: 100%;\n  }\n  body {\n    font-family: overpass, sans-serif;\n    font-size: 15px;\n    font-weight: 400;\n    line-height: 1.5;\n    color: ', ';\n    background: ', ';\n  }\n  body,\n  ul,\n  p,\n  h1,\n  h2,\n  h3,\n  h4,\n  h5,\n  h6 {\n    margin: 0;\n    padding: 0;\n  }\n  button,\n  select,\n  input,\n  h1,\n  h2,\n  h3,\n  h4,\n  h5,\n  h6 {\n    font-size: inherit;\n    font-family: inherit;\n    font-weight: inherit;\n    line-height: inherit;\n  }\n  a,\n  button,\n  select,\n  input {\n    color: inherit;\n  }\n  strong,\n  b {\n    font-weight: 600;\n  }\n']);
+var _templateObject = taggedTemplateLiteral(['\n  @font-face {\n    font-family: \'overpass\';\n    src: ', ';\n    font-weight: 400;\n    font-style: normal;\n  }\n  @font-face {\n    font-family: \'overpass\';\n    src: ', ';\n    font-weight: 600;\n    font-style: normal;\n  }\n  @font-face {\n    font-family: \'overpass\';\n    src: ', ';\n    font-weight: 800;\n    font-style: normal;\n  }\n  *,\n  *:before,\n  *:after {\n    box-sizing: border-box;\n  }\n  html {\n    min-height: 100%;\n  }\n  body {\n    font-family: overpass, sans-serif;\n    font-size: 15px;\n    font-weight: 400;\n    line-height: 1.5;\n    color: ', ';\n    background: ', ';\n  }\n  body,\n  ul,\n  p,\n  h1,\n  h2,\n  h3,\n  h4,\n  h5,\n  h6 {\n    margin: 0;\n    padding: 0;\n  }\n  button,\n  select,\n  input,\n  h1,\n  h2,\n  h3,\n  h4,\n  h5,\n  h6 {\n    font-size: inherit;\n    font-family: inherit;\n    font-weight: inherit;\n    line-height: inherit;\n  }\n  a,\n  button,\n  select,\n  input {\n    color: inherit;\n  }\n  strong,\n  b {\n    font-weight: 600;\n  }\n'], ['\n  @font-face {\n    font-family: \'overpass\';\n    src: ', ';\n    font-weight: 400;\n    font-style: normal;\n  }\n  @font-face {\n    font-family: \'overpass\';\n    src: ', ';\n    font-weight: 600;\n    font-style: normal;\n  }\n  @font-face {\n    font-family: \'overpass\';\n    src: ', ';\n    font-weight: 800;\n    font-style: normal;\n  }\n  *,\n  *:before,\n  *:after {\n    box-sizing: border-box;\n  }\n  html {\n    min-height: 100%;\n  }\n  body {\n    font-family: overpass, sans-serif;\n    font-size: 15px;\n    font-weight: 400;\n    line-height: 1.5;\n    color: ', ';\n    background: ', ';\n  }\n  body,\n  ul,\n  p,\n  h1,\n  h2,\n  h3,\n  h4,\n  h5,\n  h6 {\n    margin: 0;\n    padding: 0;\n  }\n  button,\n  select,\n  input,\n  h1,\n  h2,\n  h3,\n  h4,\n  h5,\n  h6 {\n    font-size: inherit;\n    font-family: inherit;\n    font-weight: inherit;\n    line-height: inherit;\n  }\n  a,\n  button,\n  select,\n  input {\n    color: inherit;\n  }\n  strong,\n  b {\n    font-weight: 600;\n  }\n']);
 
-var injectStyles = function injectStyles(asset) {
-  return styled.injectGlobal(_templateObject, asset(overpassLightWoff2), asset(overpassLightWoff), asset(overpassRegularWoff2), asset(overpassRegularWoff), asset(overpassSemiBoldWoff2), asset(overpassSemiBoldWoff), theme.textPrimary, theme.mainBackground);
+var fontSrc = function fontSrc(sources) {
+  return sources.filter(function (_ref) {
+    var enable = _ref.enable;
+    return enable;
+  }).map(function (_ref2) {
+    var url = _ref2.url,
+        format = _ref2.format;
+    return 'url(' + url + ') format(\'' + format + '\')';
+  }).join(', ');
+};
+
+var injectStyles = function injectStyles(asset, legacyFonts) {
+  return styled.injectGlobal(_templateObject, fontSrc([{ url: asset(overpassLightWoff2), format: 'woff2', enable: true }, { url: asset(overpassLightWoff), format: 'woff', enable: legacyFonts }]), fontSrc([{ url: asset(overpassRegularWoff2), format: 'woff2', enable: true }, { url: asset(overpassRegularWoff), format: 'woff', enable: legacyFonts }]), fontSrc([{ url: asset(overpassSemiBoldWoff2), format: 'woff2', enable: true }, { url: asset(overpassSemiBoldWoff), format: 'woff', enable: legacyFonts }]), theme.textPrimary, theme.mainBackground);
 };
 
 var BaseStyles = function (_React$Component) {
@@ -2081,10 +3594,12 @@ var BaseStyles = function (_React$Component) {
   createClass(BaseStyles, [{
     key: 'componentWillMount',
     value: function componentWillMount() {
-      var _this2 = this;
+      var _props = this.props,
+          publicUrl = _props.publicUrl,
+          legacyFonts = _props.legacyFonts;
 
       injectStyles(function (url) {
-        return _this2.props.publicUrl + url;
+        return publicUrl + url;
       });
     }
   }, {
@@ -2095,6 +3610,12 @@ var BaseStyles = function (_React$Component) {
   }]);
   return BaseStyles;
 }(React.Component);
+
+BaseStyles.defaultProps = {
+  publicUrl: '/',
+  legacyFonts: false
+};
+
 
 var BaseStyles$1 = getPublicUrl(BaseStyles);
 
@@ -2488,43 +4009,46 @@ var modeOutline = styled.css(['background:transparent;padding-top:9px;padding-bo
 
 var modeText = styled.css(['padding:10px;background:transparent;&:active,&:focus{color:', ';}'], textPrimary);
 
-var compactStyle = styled.css(['padding:5px 15px;']);
-
-var positiveStyle = styled.css(['padding-left:34px;background:url(', ') no-repeat 12px calc(50% - 1px);', ';'], styledPublicUrl(check), function (_ref4) {
+var compactStyle = styled.css(['padding:', ';'], function (_ref4) {
   var mode = _ref4.mode;
+  return mode === 'outline' ? '4px 14px' : '5px 15px';
+});
+
+var positiveStyle = styled.css(['padding-left:34px;background:url(', ') no-repeat 12px calc(50% - 1px);', ';'], styledPublicUrl(check), function (_ref5) {
+  var mode = _ref5.mode;
 
   if (mode !== 'strong') return '';
   return styled.css(['&,&:active{background-image:url(', ');background-color:', ';}&:after{background:none;}'], styledPublicUrl(checkWhite), theme.positive);
 });
 
-var negativeStyle = styled.css(['padding-left:30px;background:url(', ') no-repeat 10px calc(50% - 1px);', ';'], styledPublicUrl(cross), function (_ref5) {
-  var mode = _ref5.mode;
+var negativeStyle = styled.css(['padding-left:30px;background:url(', ') no-repeat 10px calc(50% - 1px);', ';'], styledPublicUrl(cross), function (_ref6) {
+  var mode = _ref6.mode;
 
   if (mode !== 'strong') return '';
   return styled.css(['&,&:active{background-image:url(', ');background-color:', ';}&:after{background:none;}'], styledPublicUrl(crossWhite), theme.negative);
 });
 
-var StyledButton = styled__default.button.withConfig({
+var StyledButton = styled__default.button.attrs({ type: 'button' }).withConfig({
   displayName: 'Button__StyledButton'
-})(['width:', ';padding:10px 15px;white-space:nowrap;', ';color:', ';background:', ';border:0;border-radius:3px;outline:0;cursor:', ';&,&:after{transition-property:all;transition-duration:100ms;transition-timing-function:ease-in-out;}&::-moz-focus-inner{border:0;}', ';', ';', ';'], function (_ref6) {
-  var wide = _ref6.wide;
+})(['width:', ';padding:10px 15px;white-space:nowrap;', ';color:', ';background:', ';border:0;border-radius:3px;outline:0;cursor:', ';&,&:after{transition-property:all;transition-duration:100ms;transition-timing-function:ease-in-out;}&::-moz-focus-inner{border:0;}', ';', ';', ';'], function (_ref7) {
+  var wide = _ref7.wide;
   return wide ? '100%' : 'auto';
-}, font({ size: 'small', weight: 'normal' }), textSecondary, contentBackground, function (_ref7) {
-  var disabled = _ref7.disabled;
+}, font({ size: 'small', weight: 'normal' }), textSecondary, contentBackground, function (_ref8) {
+  var disabled = _ref8.disabled;
   return disabled ? 'default' : 'pointer';
-}, function (_ref8) {
-  var mode = _ref8.mode;
+}, function (_ref9) {
+  var mode = _ref9.mode;
 
   if (mode === 'secondary') return modeSecondary;
   if (mode === 'strong') return modeStrong;
   if (mode === 'outline') return modeOutline;
   if (mode === 'text') return modeText;
   return modeNormal;
-}, function (_ref9) {
-  var compact = _ref9.compact;
-  return compact ? compactStyle : '';
 }, function (_ref10) {
-  var emphasis = _ref10.emphasis;
+  var compact = _ref10.compact;
+  return compact ? compactStyle : '';
+}, function (_ref11) {
+  var emphasis = _ref11.emphasis;
 
   if (emphasis === 'positive') return positiveStyle;
   if (emphasis === 'negative') return negativeStyle;
@@ -2694,7 +4218,7 @@ var performanceNow$2 = createCommonjsModule(function (module) {
 
 }).call(commonjsGlobal);
 
-
+//# sourceMappingURL=performance-now.js.map
 });
 
 var root = typeof window === 'undefined' ? commonjsGlobal : window;
@@ -4442,1535 +5966,6 @@ var ContextMenuItem = styled__default.div.withConfig({
   displayName: 'ContextMenuItem'
 })(['display:flex;align-items:center;padding:5px 20px;cursor:pointer;white-space:nowrap;', ';&:active{background:', ';}'], unselectable(), theme.contentBackgroundActive);
 
-var MILLISECONDS_IN_HOUR = 3600000;
-var MILLISECONDS_IN_MINUTE = 60000;
-var DEFAULT_ADDITIONAL_DIGITS = 2;
-
-var patterns = {
-  dateTimeDelimeter: /[T ]/,
-  plainTime: /:/,
-
-  // year tokens
-  YY: /^(\d{2})$/,
-  YYY: [
-    /^([+-]\d{2})$/, // 0 additional digits
-    /^([+-]\d{3})$/, // 1 additional digit
-    /^([+-]\d{4})$/ // 2 additional digits
-  ],
-  YYYY: /^(\d{4})/,
-  YYYYY: [
-    /^([+-]\d{4})/, // 0 additional digits
-    /^([+-]\d{5})/, // 1 additional digit
-    /^([+-]\d{6})/ // 2 additional digits
-  ],
-
-  // date tokens
-  MM: /^-(\d{2})$/,
-  DDD: /^-?(\d{3})$/,
-  MMDD: /^-?(\d{2})-?(\d{2})$/,
-  Www: /^-?W(\d{2})$/,
-  WwwD: /^-?W(\d{2})-?(\d{1})$/,
-
-  HH: /^(\d{2}([.,]\d*)?)$/,
-  HHMM: /^(\d{2}):?(\d{2}([.,]\d*)?)$/,
-  HHMMSS: /^(\d{2}):?(\d{2}):?(\d{2}([.,]\d*)?)$/,
-
-  // timezone tokens
-  timezone: /([Z+-].*)$/,
-  timezoneZ: /^(Z)$/,
-  timezoneHH: /^([+-])(\d{2})$/,
-  timezoneHHMM: /^([+-])(\d{2}):?(\d{2})$/
-};
-
-/**
- * @name toDate
- * @category Common Helpers
- * @summary Convert the given argument to an instance of Date.
- *
- * @description
- * Convert the given argument to an instance of Date.
- *
- * If the argument is an instance of Date, the function returns its clone.
- *
- * If the argument is a number, it is treated as a timestamp.
- *
- * If an argument is a string, the function tries to parse it.
- * Function accepts complete ISO 8601 formats as well as partial implementations.
- * ISO 8601: http://en.wikipedia.org/wiki/ISO_8601
- *
- * If the argument is null, it is treated as an invalid date.
- *
- * If all above fails, the function passes the given argument to Date constructor.
- *
- * **Note**: *all* Date arguments passed to any *date-fns* function is processed by `toDate`.
- * All *date-fns* functions will throw `RangeError` if `options.additionalDigits` is not 0, 1, 2 or undefined.
- *
- * @param {*} argument - the value to convert
- * @param {Options} [options] - the object with options. See [Options]{@link https://date-fns.org/docs/Options}
- * @param {0|1|2} [options.additionalDigits=2] - the additional number of digits in the extended year format
- * @returns {Date} the parsed date in the local time zone
- * @throws {TypeError} 1 argument required
- * @throws {RangeError} `options.additionalDigits` must be 0, 1 or 2
- *
- * @example
- * // Convert string '2014-02-11T11:30:30' to date:
- * var result = toDate('2014-02-11T11:30:30')
- * //=> Tue Feb 11 2014 11:30:30
- *
- * @example
- * // Convert string '+02014101' to date,
- * // if the additional number of digits in the extended year format is 1:
- * var result = toDate('+02014101', {additionalDigits: 1})
- * //=> Fri Apr 11 2014 00:00:00
- */
-function toDate (argument, dirtyOptions) {
-  if (arguments.length < 1) {
-    throw new TypeError('1 argument required, but only ' + arguments.length + ' present')
-  }
-
-  if (argument === null) {
-    return new Date(NaN)
-  }
-
-  var options = dirtyOptions || {};
-
-  var additionalDigits = options.additionalDigits === undefined ? DEFAULT_ADDITIONAL_DIGITS : Number(options.additionalDigits);
-  if (additionalDigits !== 2 && additionalDigits !== 1 && additionalDigits !== 0) {
-    throw new RangeError('additionalDigits must be 0, 1 or 2')
-  }
-
-  // Clone the date
-  if (argument instanceof Date) {
-    // Prevent the date to lose the milliseconds when passed to new Date() in IE10
-    return new Date(argument.getTime())
-  } else if (typeof argument !== 'string') {
-    return new Date(argument)
-  }
-
-  var dateStrings = splitDateString(argument);
-
-  var parseYearResult = parseYear(dateStrings.date, additionalDigits);
-  var year = parseYearResult.year;
-  var restDateString = parseYearResult.restDateString;
-
-  var date = parseDate(restDateString, year);
-
-  if (date) {
-    var timestamp = date.getTime();
-    var time = 0;
-    var offset;
-
-    if (dateStrings.time) {
-      time = parseTime(dateStrings.time);
-    }
-
-    if (dateStrings.timezone) {
-      offset = parseTimezone(dateStrings.timezone);
-    } else {
-      // get offset accurate to hour in timezones that change offset
-      offset = new Date(timestamp + time).getTimezoneOffset();
-      offset = new Date(timestamp + time + offset * MILLISECONDS_IN_MINUTE).getTimezoneOffset();
-    }
-
-    return new Date(timestamp + time + offset * MILLISECONDS_IN_MINUTE)
-  } else {
-    return new Date(argument)
-  }
-}
-
-function splitDateString (dateString) {
-  var dateStrings = {};
-  var array = dateString.split(patterns.dateTimeDelimeter);
-  var timeString;
-
-  if (patterns.plainTime.test(array[0])) {
-    dateStrings.date = null;
-    timeString = array[0];
-  } else {
-    dateStrings.date = array[0];
-    timeString = array[1];
-  }
-
-  if (timeString) {
-    var token = patterns.timezone.exec(timeString);
-    if (token) {
-      dateStrings.time = timeString.replace(token[1], '');
-      dateStrings.timezone = token[1];
-    } else {
-      dateStrings.time = timeString;
-    }
-  }
-
-  return dateStrings
-}
-
-function parseYear (dateString, additionalDigits) {
-  var patternYYY = patterns.YYY[additionalDigits];
-  var patternYYYYY = patterns.YYYYY[additionalDigits];
-
-  var token;
-
-  // YYYY or ±YYYYY
-  token = patterns.YYYY.exec(dateString) || patternYYYYY.exec(dateString);
-  if (token) {
-    var yearString = token[1];
-    return {
-      year: parseInt(yearString, 10),
-      restDateString: dateString.slice(yearString.length)
-    }
-  }
-
-  // YY or ±YYY
-  token = patterns.YY.exec(dateString) || patternYYY.exec(dateString);
-  if (token) {
-    var centuryString = token[1];
-    return {
-      year: parseInt(centuryString, 10) * 100,
-      restDateString: dateString.slice(centuryString.length)
-    }
-  }
-
-  // Invalid ISO-formatted year
-  return {
-    year: null
-  }
-}
-
-function parseDate (dateString, year) {
-  // Invalid ISO-formatted year
-  if (year === null) {
-    return null
-  }
-
-  var token;
-  var date;
-  var month;
-  var week;
-
-  // YYYY
-  if (dateString.length === 0) {
-    date = new Date(0);
-    date.setUTCFullYear(year);
-    return date
-  }
-
-  // YYYY-MM
-  token = patterns.MM.exec(dateString);
-  if (token) {
-    date = new Date(0);
-    month = parseInt(token[1], 10) - 1;
-    date.setUTCFullYear(year, month);
-    return date
-  }
-
-  // YYYY-DDD or YYYYDDD
-  token = patterns.DDD.exec(dateString);
-  if (token) {
-    date = new Date(0);
-    var dayOfYear = parseInt(token[1], 10);
-    date.setUTCFullYear(year, 0, dayOfYear);
-    return date
-  }
-
-  // YYYY-MM-DD or YYYYMMDD
-  token = patterns.MMDD.exec(dateString);
-  if (token) {
-    date = new Date(0);
-    month = parseInt(token[1], 10) - 1;
-    var day = parseInt(token[2], 10);
-    date.setUTCFullYear(year, month, day);
-    return date
-  }
-
-  // YYYY-Www or YYYYWww
-  token = patterns.Www.exec(dateString);
-  if (token) {
-    week = parseInt(token[1], 10) - 1;
-    return dayOfISOYear(year, week)
-  }
-
-  // YYYY-Www-D or YYYYWwwD
-  token = patterns.WwwD.exec(dateString);
-  if (token) {
-    week = parseInt(token[1], 10) - 1;
-    var dayOfWeek = parseInt(token[2], 10) - 1;
-    return dayOfISOYear(year, week, dayOfWeek)
-  }
-
-  // Invalid ISO-formatted date
-  return null
-}
-
-function parseTime (timeString) {
-  var token;
-  var hours;
-  var minutes;
-
-  // hh
-  token = patterns.HH.exec(timeString);
-  if (token) {
-    hours = parseFloat(token[1].replace(',', '.'));
-    return (hours % 24) * MILLISECONDS_IN_HOUR
-  }
-
-  // hh:mm or hhmm
-  token = patterns.HHMM.exec(timeString);
-  if (token) {
-    hours = parseInt(token[1], 10);
-    minutes = parseFloat(token[2].replace(',', '.'));
-    return (hours % 24) * MILLISECONDS_IN_HOUR +
-      minutes * MILLISECONDS_IN_MINUTE
-  }
-
-  // hh:mm:ss or hhmmss
-  token = patterns.HHMMSS.exec(timeString);
-  if (token) {
-    hours = parseInt(token[1], 10);
-    minutes = parseInt(token[2], 10);
-    var seconds = parseFloat(token[3].replace(',', '.'));
-    return (hours % 24) * MILLISECONDS_IN_HOUR +
-      minutes * MILLISECONDS_IN_MINUTE +
-      seconds * 1000
-  }
-
-  // Invalid ISO-formatted time
-  return null
-}
-
-function parseTimezone (timezoneString) {
-  var token;
-  var absoluteOffset;
-
-  // Z
-  token = patterns.timezoneZ.exec(timezoneString);
-  if (token) {
-    return 0
-  }
-
-  // ±hh
-  token = patterns.timezoneHH.exec(timezoneString);
-  if (token) {
-    absoluteOffset = parseInt(token[2], 10) * 60;
-    return (token[1] === '+') ? -absoluteOffset : absoluteOffset
-  }
-
-  // ±hh:mm or ±hhmm
-  token = patterns.timezoneHHMM.exec(timezoneString);
-  if (token) {
-    absoluteOffset = parseInt(token[2], 10) * 60 + parseInt(token[3], 10);
-    return (token[1] === '+') ? -absoluteOffset : absoluteOffset
-  }
-
-  return 0
-}
-
-function dayOfISOYear (isoYear, week, day) {
-  week = week || 0;
-  day = day || 0;
-  var date = new Date(0);
-  date.setUTCFullYear(isoYear, 0, 4);
-  var fourthOfJanuaryDay = date.getUTCDay() || 7;
-  var diff = week * 7 + day + 1 - fourthOfJanuaryDay;
-  date.setUTCDate(date.getUTCDate() + diff);
-  return date
-}
-
-function cloneObject (dirtyObject) {
-  dirtyObject = dirtyObject || {};
-  var object = {};
-
-  for (var property in dirtyObject) {
-    if (dirtyObject.hasOwnProperty(property)) {
-      object[property] = dirtyObject[property];
-    }
-  }
-
-  return object
-}
-
-/**
- * @name differenceInMilliseconds
- * @category Millisecond Helpers
- * @summary Get the number of milliseconds between the given dates.
- *
- * @description
- * Get the number of milliseconds between the given dates.
- *
- * @param {Date|String|Number} dateLeft - the later date
- * @param {Date|String|Number} dateRight - the earlier date
- * @param {Options} [options] - the object with options. See [Options]{@link https://date-fns.org/docs/Options}
- * @param {0|1|2} [options.additionalDigits=2] - passed to `toDate`. See [toDate]{@link https://date-fns.org/docs/toDate}
- * @returns {Number} the number of milliseconds
- * @throws {TypeError} 2 arguments required
- * @throws {RangeError} `options.additionalDigits` must be 0, 1 or 2
- *
- * @example
- * // How many milliseconds are between
- * // 2 July 2014 12:30:20.600 and 2 July 2014 12:30:21.700?
- * var result = differenceInMilliseconds(
- *   new Date(2014, 6, 2, 12, 30, 21, 700),
- *   new Date(2014, 6, 2, 12, 30, 20, 600)
- * )
- * //=> 1100
- */
-function differenceInMilliseconds (dirtyDateLeft, dirtyDateRight, dirtyOptions) {
-  if (arguments.length < 2) {
-    throw new TypeError('2 arguments required, but only ' + arguments.length + ' present')
-  }
-
-  var dateLeft = toDate(dirtyDateLeft, dirtyOptions);
-  var dateRight = toDate(dirtyDateRight, dirtyOptions);
-  return dateLeft.getTime() - dateRight.getTime()
-}
-
-/**
- * @name differenceInSeconds
- * @category Second Helpers
- * @summary Get the number of seconds between the given dates.
- *
- * @description
- * Get the number of seconds between the given dates.
- *
- * @param {Date|String|Number} dateLeft - the later date
- * @param {Date|String|Number} dateRight - the earlier date
- * @param {Options} [options] - the object with options. See [Options]{@link https://date-fns.org/docs/Options}
- * @param {0|1|2} [options.additionalDigits=2] - passed to `toDate`. See [toDate]{@link https://date-fns.org/docs/toDate}
- * @returns {Number} the number of seconds
- * @throws {TypeError} 2 arguments required
- * @throws {RangeError} `options.additionalDigits` must be 0, 1 or 2
- *
- * @example
- * // How many seconds are between
- * // 2 July 2014 12:30:07.999 and 2 July 2014 12:30:20.000?
- * var result = differenceInSeconds(
- *   new Date(2014, 6, 2, 12, 30, 20, 0),
- *   new Date(2014, 6, 2, 12, 30, 7, 999)
- * )
- * //=> 12
- */
-function differenceInSeconds (dirtyDateLeft, dirtyDateRight, dirtyOptions) {
-  if (arguments.length < 2) {
-    throw new TypeError('2 arguments required, but only ' + arguments.length + ' present')
-  }
-
-  var diff = differenceInMilliseconds(dirtyDateLeft, dirtyDateRight, dirtyOptions) / 1000;
-  return diff > 0 ? Math.floor(diff) : Math.ceil(diff)
-}
-
-/**
- * @name isValid
- * @category Common Helpers
- * @summary Is the given date valid?
- *
- * @description
- * Returns false if argument is Invalid Date and true otherwise.
- * Argument is converted to Date using `toDate`. See [toDate]{@link https://date-fns.org/docs/toDate}
- * Invalid Date is a Date, whose time value is NaN.
- *
- * Time value of Date: http://es5.github.io/#x15.9.1.1
- *
- * @param {*} date - the date to check
- * @param {Options} [options] - the object with options. See [Options]{@link https://date-fns.org/docs/Options}
- * @param {0|1|2} [options.additionalDigits=2] - passed to `toDate`. See [toDate]{@link https://date-fns.org/docs/toDate}
- * @returns {Boolean} the date is valid
- * @throws {TypeError} 1 argument required
- * @throws {RangeError} `options.additionalDigits` must be 0, 1 or 2
- *
- * @example
- * // For the valid date:
- * var result = isValid(new Date(2014, 1, 31))
- * //=> true
- *
- * @example
- * // For the value, convertable into a date:
- * var result = isValid('2014-02-31')
- * //=> true
- *
- * @example
- * // For the invalid date:
- * var result = isValid(new Date(''))
- * //=> false
- */
-function isValid (dirtyDate, dirtyOptions) {
-  if (arguments.length < 1) {
-    throw new TypeError('1 argument required, but only ' + arguments.length + ' present')
-  }
-
-  var date = toDate(dirtyDate, dirtyOptions);
-  return !isNaN(date)
-}
-
-var formatDistanceLocale = {
-  lessThanXSeconds: {
-    one: 'less than a second',
-    other: 'less than {{count}} seconds'
-  },
-
-  xSeconds: {
-    one: '1 second',
-    other: '{{count}} seconds'
-  },
-
-  halfAMinute: 'half a minute',
-
-  lessThanXMinutes: {
-    one: 'less than a minute',
-    other: 'less than {{count}} minutes'
-  },
-
-  xMinutes: {
-    one: '1 minute',
-    other: '{{count}} minutes'
-  },
-
-  aboutXHours: {
-    one: 'about 1 hour',
-    other: 'about {{count}} hours'
-  },
-
-  xHours: {
-    one: '1 hour',
-    other: '{{count}} hours'
-  },
-
-  xDays: {
-    one: '1 day',
-    other: '{{count}} days'
-  },
-
-  aboutXMonths: {
-    one: 'about 1 month',
-    other: 'about {{count}} months'
-  },
-
-  xMonths: {
-    one: '1 month',
-    other: '{{count}} months'
-  },
-
-  aboutXYears: {
-    one: 'about 1 year',
-    other: 'about {{count}} years'
-  },
-
-  xYears: {
-    one: '1 year',
-    other: '{{count}} years'
-  },
-
-  overXYears: {
-    one: 'over 1 year',
-    other: 'over {{count}} years'
-  },
-
-  almostXYears: {
-    one: 'almost 1 year',
-    other: 'almost {{count}} years'
-  }
-};
-
-function formatDistance (token, count, options) {
-  options = options || {};
-
-  var result;
-  if (typeof formatDistanceLocale[token] === 'string') {
-    result = formatDistanceLocale[token];
-  } else if (count === 1) {
-    result = formatDistanceLocale[token].one;
-  } else {
-    result = formatDistanceLocale[token].other.replace('{{count}}', count);
-  }
-
-  if (options.addSuffix) {
-    if (options.comparison > 0) {
-      return 'in ' + result
-    } else {
-      return result + ' ago'
-    }
-  }
-
-  return result
-}
-
-var tokensToBeShortedPattern = /MMMM|MM|DD|dddd/g;
-
-function buildShortLongFormat (format) {
-  return format.replace(tokensToBeShortedPattern, function (token) {
-    return token.slice(1)
-  })
-}
-
-/**
- * @name buildFormatLongFn
- * @category Locale Helpers
- * @summary Build `formatLong` property for locale used by `format`, `formatRelative` and `parse` functions.
- *
- * @description
- * Build `formatLong` property for locale used by `format`, `formatRelative` and `parse` functions.
- * Returns a function which takes one of the following tokens as the argument:
- * `'LTS'`, `'LT'`, `'L'`, `'LL'`, `'LLL'`, `'l'`, `'ll'`, `'lll'`, `'llll'`
- * and returns a long format string written as `format` token strings.
- * See [format]{@link https://date-fns.org/docs/format}
- *
- * `'l'`, `'ll'`, `'lll'` and `'llll'` formats are built automatically
- * by shortening some of the tokens from corresponding unshortened formats
- * (e.g., if `LL` is `'MMMM DD YYYY'` then `ll` will be `MMM D YYYY`)
- *
- * @param {Object} obj - the object with long formats written as `format` token strings
- * @param {String} obj.LT - time format: hours and minutes
- * @param {String} obj.LTS - time format: hours, minutes and seconds
- * @param {String} obj.L - short date format: numeric day, month and year
- * @param {String} [obj.l] - short date format: numeric day, month and year (shortened)
- * @param {String} obj.LL - long date format: day, month in words, and year
- * @param {String} [obj.ll] - long date format: day, month in words, and year (shortened)
- * @param {String} obj.LLL - long date and time format
- * @param {String} [obj.lll] - long date and time format (shortened)
- * @param {String} obj.LLLL - long date, time and weekday format
- * @param {String} [obj.llll] - long date, time and weekday format (shortened)
- * @returns {Function} `formatLong` property of the locale
- *
- * @example
- * // For `en-US` locale:
- * locale.formatLong = buildFormatLongFn({
- *   LT: 'h:mm aa',
- *   LTS: 'h:mm:ss aa',
- *   L: 'MM/DD/YYYY',
- *   LL: 'MMMM D YYYY',
- *   LLL: 'MMMM D YYYY h:mm aa',
- *   LLLL: 'dddd, MMMM D YYYY h:mm aa'
- * })
- */
-function buildFormatLongFn (obj) {
-  var formatLongLocale = {
-    LTS: obj.LTS,
-    LT: obj.LT,
-    L: obj.L,
-    LL: obj.LL,
-    LLL: obj.LLL,
-    LLLL: obj.LLLL,
-    l: obj.l || buildShortLongFormat(obj.L),
-    ll: obj.ll || buildShortLongFormat(obj.LL),
-    lll: obj.lll || buildShortLongFormat(obj.LLL),
-    llll: obj.llll || buildShortLongFormat(obj.LLLL)
-  };
-
-  return function (token) {
-    return formatLongLocale[token]
-  }
-}
-
-var formatLong = buildFormatLongFn({
-  LT: 'h:mm aa',
-  LTS: 'h:mm:ss aa',
-  L: 'MM/DD/YYYY',
-  LL: 'MMMM D YYYY',
-  LLL: 'MMMM D YYYY h:mm aa',
-  LLLL: 'dddd, MMMM D YYYY h:mm aa'
-});
-
-var formatRelativeLocale = {
-  lastWeek: '[last] dddd [at] LT',
-  yesterday: '[yesterday at] LT',
-  today: '[today at] LT',
-  tomorrow: '[tomorrow at] LT',
-  nextWeek: 'dddd [at] LT',
-  other: 'L'
-};
-
-function formatRelative (token, date, baseDate, options) {
-  return formatRelativeLocale[token]
-}
-
-/**
- * @name buildLocalizeFn
- * @category Locale Helpers
- * @summary Build `localize.weekday`, `localize.month` and `localize.timeOfDay` properties for the locale.
- *
- * @description
- * Build `localize.weekday`, `localize.month` and `localize.timeOfDay` properties for the locale
- * used by `format` function.
- * If no `type` is supplied to the options of the resulting function, `defaultType` will be used (see example).
- *
- * `localize.weekday` function takes the weekday index as argument (0 - Sunday).
- * `localize.month` takes the month index (0 - January).
- * `localize.timeOfDay` takes the hours. Use `indexCallback` to convert them to an array index (see example).
- *
- * @param {Object} values - the object with arrays of values
- * @param {String} defaultType - the default type for the localize function
- * @param {Function} [indexCallback] - the callback which takes the resulting function argument
- *   and converts it into value array index
- * @returns {Function} the resulting function
- *
- * @example
- * var timeOfDayValues = {
- *   uppercase: ['AM', 'PM'],
- *   lowercase: ['am', 'pm'],
- *   long: ['a.m.', 'p.m.']
- * }
- * locale.localize.timeOfDay = buildLocalizeFn(timeOfDayValues, 'long', function (hours) {
- *   // 0 is a.m. array index, 1 is p.m. array index
- *   return (hours / 12) >= 1 ? 1 : 0
- * })
- * locale.localize.timeOfDay(16, {type: 'uppercase'}) //=> 'PM'
- * locale.localize.timeOfDay(5) //=> 'a.m.'
- */
-function buildLocalizeFn (values, defaultType, indexCallback) {
-  return function (dirtyIndex, dirtyOptions) {
-    var options = dirtyOptions || {};
-    var type = options.type ? String(options.type) : defaultType;
-    var valuesArray = values[type] || values[defaultType];
-    var index = indexCallback ? indexCallback(Number(dirtyIndex)) : Number(dirtyIndex);
-    return valuesArray[index]
-  }
-}
-
-/**
- * @name buildLocalizeArrayFn
- * @category Locale Helpers
- * @summary Build `localize.weekdays`, `localize.months` and `localize.timesOfDay` properties for the locale.
- *
- * @description
- * Build `localize.weekdays`, `localize.months` and `localize.timesOfDay` properties for the locale.
- * If no `type` is supplied to the options of the resulting function, `defaultType` will be used (see example).
- *
- * @param {Object} values - the object with arrays of values
- * @param {String} defaultType - the default type for the localize function
- * @returns {Function} the resulting function
- *
- * @example
- * var weekdayValues = {
- *   narrow: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
- *   short: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
- *   long: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
- * }
- * locale.localize.weekdays = buildLocalizeArrayFn(weekdayValues, 'long')
- * locale.localize.weekdays({type: 'narrow'}) //=> ['Su', 'Mo', ...]
- * locale.localize.weekdays() //=> ['Sunday', 'Monday', ...]
- */
-function buildLocalizeArrayFn (values, defaultType) {
-  return function (dirtyOptions) {
-    var options = dirtyOptions || {};
-    var type = options.type ? String(options.type) : defaultType;
-    return values[type] || values[defaultType]
-  }
-}
-
-// Note: in English, the names of days of the week and months are capitalized.
-// If you are making a new locale based on this one, check if the same is true for the language you're working on.
-// Generally, formatted dates should look like they are in the middle of a sentence,
-// e.g. in Spanish language the weekdays and months should be in the lowercase.
-var weekdayValues = {
-  narrow: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
-  short: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
-  long: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
-};
-
-var monthValues = {
-  short: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-  long: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
-};
-
-// `timeOfDay` is used to designate which part of the day it is, when used with 12-hour clock.
-// Use the system which is used the most commonly in the locale.
-// For example, if the country doesn't use a.m./p.m., you can use `night`/`morning`/`afternoon`/`evening`:
-//
-//   var timeOfDayValues = {
-//     any: ['in the night', 'in the morning', 'in the afternoon', 'in the evening']
-//   }
-//
-// And later:
-//
-//   var localize = {
-//     // The callback takes the hours as the argument and returns the array index
-//     timeOfDay: buildLocalizeFn(timeOfDayValues, 'any', function (hours) {
-//       if (hours >= 17) {
-//         return 3
-//       } else if (hours >= 12) {
-//         return 2
-//       } else if (hours >= 4) {
-//         return 1
-//       } else {
-//         return 0
-//       }
-//     }),
-//     timesOfDay: buildLocalizeArrayFn(timeOfDayValues, 'any')
-//   }
-var timeOfDayValues = {
-  uppercase: ['AM', 'PM'],
-  lowercase: ['am', 'pm'],
-  long: ['a.m.', 'p.m.']
-};
-
-function ordinalNumber (dirtyNumber, dirtyOptions) {
-  var number = Number(dirtyNumber);
-
-  // If ordinal numbers depend on context, for example,
-  // if they are different for different grammatical genders,
-  // use `options.unit`:
-  //
-  //   var options = dirtyOptions || {}
-  //   var unit = String(options.unit)
-  //
-  // where `unit` can be 'month', 'quarter', 'week', 'isoWeek', 'dayOfYear',
-  // 'dayOfMonth' or 'dayOfWeek'
-
-  var rem100 = number % 100;
-  if (rem100 > 20 || rem100 < 10) {
-    switch (rem100 % 10) {
-      case 1:
-        return number + 'st'
-      case 2:
-        return number + 'nd'
-      case 3:
-        return number + 'rd'
-    }
-  }
-  return number + 'th'
-}
-
-var localize = {
-  ordinalNumber: ordinalNumber,
-  weekday: buildLocalizeFn(weekdayValues, 'long'),
-  weekdays: buildLocalizeArrayFn(weekdayValues, 'long'),
-  month: buildLocalizeFn(monthValues, 'long'),
-  months: buildLocalizeArrayFn(monthValues, 'long'),
-  timeOfDay: buildLocalizeFn(timeOfDayValues, 'long', function (hours) {
-    return (hours / 12) >= 1 ? 1 : 0
-  }),
-  timesOfDay: buildLocalizeArrayFn(timeOfDayValues, 'long')
-};
-
-/**
- * @name buildMatchFn
- * @category Locale Helpers
- * @summary Build `match.weekdays`, `match.months` and `match.timesOfDay` properties for the locale.
- *
- * @description
- * Build `match.weekdays`, `match.months` and `match.timesOfDay` properties for the locale used by `parse` function.
- * If no `type` is supplied to the options of the resulting function, `defaultType` will be used (see example).
- * The result of the match function will be passed into corresponding parser function
- * (`match.weekday`, `match.month` or `match.timeOfDay` respectively. See `buildParseFn`).
- *
- * @param {Object} values - the object with RegExps
- * @param {String} defaultType - the default type for the match function
- * @returns {Function} the resulting function
- *
- * @example
- * var matchWeekdaysPatterns = {
- *   narrow: /^(su|mo|tu|we|th|fr|sa)/i,
- *   short: /^(sun|mon|tue|wed|thu|fri|sat)/i,
- *   long: /^(sunday|monday|tuesday|wednesday|thursday|friday|saturday)/i
- * }
- * locale.match.weekdays = buildMatchFn(matchWeekdaysPatterns, 'long')
- * locale.match.weekdays('Sunday', {type: 'narrow'}) //=> ['Su', 'Su', ...]
- * locale.match.weekdays('Sunday') //=> ['Sunday', 'Sunday', ...]
- */
-function buildMatchFn (patterns, defaultType) {
-  return function (dirtyString, dirtyOptions) {
-    var options = dirtyOptions || {};
-    var type = options.type ? String(options.type) : defaultType;
-    var pattern = patterns[type] || patterns[defaultType];
-    var string = String(dirtyString);
-    return string.match(pattern)
-  }
-}
-
-/**
- * @name buildParseFn
- * @category Locale Helpers
- * @summary Build `match.weekday`, `match.month` and `match.timeOfDay` properties for the locale.
- *
- * @description
- * Build `match.weekday`, `match.month` and `match.timeOfDay` properties for the locale used by `parse` function.
- * The argument of the resulting function is the result of the corresponding match function
- * (`match.weekdays`, `match.months` or `match.timesOfDay` respectively. See `buildMatchFn`).
- *
- * @param {Object} values - the object with arrays of RegExps
- * @param {String} defaultType - the default type for the parser function
- * @returns {Function} the resulting function
- *
- * @example
- * var parseWeekdayPatterns = {
- *   any: [/^su/i, /^m/i, /^tu/i, /^w/i, /^th/i, /^f/i, /^sa/i]
- * }
- * locale.match.weekday = buildParseFn(matchWeekdaysPatterns, 'long')
- * var matchResult = locale.match.weekdays('Friday')
- * locale.match.weekday(matchResult) //=> 5
- */
-function buildParseFn (patterns, defaultType) {
-  return function (matchResult, dirtyOptions) {
-    var options = dirtyOptions || {};
-    var type = options.type ? String(options.type) : defaultType;
-    var patternsArray = patterns[type] || patterns[defaultType];
-    var string = matchResult[1];
-
-    return patternsArray.findIndex(function (pattern) {
-      return pattern.test(string)
-    })
-  }
-}
-
-/**
- * @name buildMatchPatternFn
- * @category Locale Helpers
- * @summary Build match function from a single RegExp.
- *
- * @description
- * Build match function from a single RegExp.
- * Usually used for building `match.ordinalNumbers` property of the locale.
- *
- * @param {Object} pattern - the RegExp
- * @returns {Function} the resulting function
- *
- * @example
- * locale.match.ordinalNumbers = buildMatchPatternFn(/^(\d+)(th|st|nd|rd)?/i)
- * locale.match.ordinalNumbers('3rd') //=> ['3rd', '3', 'rd', ...]
- */
-function buildMatchPatternFn (pattern) {
-  return function (dirtyString) {
-    var string = String(dirtyString);
-    return string.match(pattern)
-  }
-}
-
-/**
- * @name parseDecimal
- * @category Locale Helpers
- * @summary Parses the match result into decimal number.
- *
- * @description
- * Parses the match result into decimal number.
- * Uses the string matched with the first set of parentheses of match RegExp.
- *
- * @param {Array} matchResult - the object returned by matching function
- * @returns {Number} the parsed value
- *
- * @example
- * locale.match = {
- *   ordinalNumbers: (dirtyString) {
- *     return String(dirtyString).match(/^(\d+)(th|st|nd|rd)?/i)
- *   },
- *   ordinalNumber: parseDecimal
- * }
- */
-function parseDecimal (matchResult) {
-  return parseInt(matchResult[1], 10)
-}
-
-var matchOrdinalNumbersPattern = /^(\d+)(th|st|nd|rd)?/i;
-
-var matchWeekdaysPatterns = {
-  narrow: /^(su|mo|tu|we|th|fr|sa)/i,
-  short: /^(sun|mon|tue|wed|thu|fri|sat)/i,
-  long: /^(sunday|monday|tuesday|wednesday|thursday|friday|saturday)/i
-};
-
-var parseWeekdayPatterns = {
-  any: [/^su/i, /^m/i, /^tu/i, /^w/i, /^th/i, /^f/i, /^sa/i]
-};
-
-var matchMonthsPatterns = {
-  short: /^(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)/i,
-  long: /^(january|february|march|april|may|june|july|august|september|october|november|december)/i
-};
-
-var parseMonthPatterns = {
-  any: [/^ja/i, /^f/i, /^mar/i, /^ap/i, /^may/i, /^jun/i, /^jul/i, /^au/i, /^s/i, /^o/i, /^n/i, /^d/i]
-};
-
-// `timeOfDay` is used to designate which part of the day it is, when used with 12-hour clock.
-// Use the system which is used the most commonly in the locale.
-// For example, if the country doesn't use a.m./p.m., you can use `night`/`morning`/`afternoon`/`evening`:
-//
-//   var matchTimesOfDayPatterns = {
-//     long: /^((in the)? (night|morning|afternoon|evening?))/i
-//   }
-//
-//   var parseTimeOfDayPatterns = {
-//     any: [/(night|morning)/i, /(afternoon|evening)/i]
-//   }
-var matchTimesOfDayPatterns = {
-  short: /^(am|pm)/i,
-  long: /^([ap]\.?\s?m\.?)/i
-};
-
-var parseTimeOfDayPatterns = {
-  any: [/^a/i, /^p/i]
-};
-
-var match = {
-  ordinalNumbers: buildMatchPatternFn(matchOrdinalNumbersPattern),
-  ordinalNumber: parseDecimal,
-  weekdays: buildMatchFn(matchWeekdaysPatterns, 'long'),
-  weekday: buildParseFn(parseWeekdayPatterns, 'any'),
-  months: buildMatchFn(matchMonthsPatterns, 'long'),
-  month: buildParseFn(parseMonthPatterns, 'any'),
-  timesOfDay: buildMatchFn(matchTimesOfDayPatterns, 'long'),
-  timeOfDay: buildParseFn(parseTimeOfDayPatterns, 'any')
-};
-
-/**
- * @type {Locale}
- * @category Locales
- * @summary English locale (United States).
- * @language English
- * @iso-639-2 eng
- */
-var locale = {
-  formatDistance: formatDistance,
-  formatLong: formatLong,
-  formatRelative: formatRelative,
-  localize: localize,
-  match: match,
-  options: {
-    weekStartsOn: 0 /* Sunday */,
-    firstWeekContainsDate: 1
-  }
-};
-
-var MILLISECONDS_IN_DAY$1 = 86400000;
-
-// This function will be a part of public API when UTC function will be implemented.
-// See issue: https://github.com/date-fns/date-fns/issues/376
-function getUTCDayOfYear (dirtyDate, dirtyOptions) {
-  var date = toDate(dirtyDate, dirtyOptions);
-  var timestamp = date.getTime();
-  date.setUTCMonth(0, 1);
-  date.setUTCHours(0, 0, 0, 0);
-  var startOfYearTimestamp = date.getTime();
-  var difference = timestamp - startOfYearTimestamp;
-  return Math.floor(difference / MILLISECONDS_IN_DAY$1) + 1
-}
-
-// This function will be a part of public API when UTC function will be implemented.
-// See issue: https://github.com/date-fns/date-fns/issues/376
-function startOfUTCISOWeek (dirtyDate, dirtyOptions) {
-  var weekStartsOn = 1;
-
-  var date = toDate(dirtyDate, dirtyOptions);
-  var day = date.getUTCDay();
-  var diff = (day < weekStartsOn ? 7 : 0) + day - weekStartsOn;
-
-  date.setUTCDate(date.getUTCDate() - diff);
-  date.setUTCHours(0, 0, 0, 0);
-  return date
-}
-
-// This function will be a part of public API when UTC function will be implemented.
-// See issue: https://github.com/date-fns/date-fns/issues/376
-function getUTCISOWeekYear (dirtyDate, dirtyOptions) {
-  var date = toDate(dirtyDate, dirtyOptions);
-  var year = date.getUTCFullYear();
-
-  var fourthOfJanuaryOfNextYear = new Date(0);
-  fourthOfJanuaryOfNextYear.setUTCFullYear(year + 1, 0, 4);
-  fourthOfJanuaryOfNextYear.setUTCHours(0, 0, 0, 0);
-  var startOfNextYear = startOfUTCISOWeek(fourthOfJanuaryOfNextYear, dirtyOptions);
-
-  var fourthOfJanuaryOfThisYear = new Date(0);
-  fourthOfJanuaryOfThisYear.setUTCFullYear(year, 0, 4);
-  fourthOfJanuaryOfThisYear.setUTCHours(0, 0, 0, 0);
-  var startOfThisYear = startOfUTCISOWeek(fourthOfJanuaryOfThisYear, dirtyOptions);
-
-  if (date.getTime() >= startOfNextYear.getTime()) {
-    return year + 1
-  } else if (date.getTime() >= startOfThisYear.getTime()) {
-    return year
-  } else {
-    return year - 1
-  }
-}
-
-// This function will be a part of public API when UTC function will be implemented.
-// See issue: https://github.com/date-fns/date-fns/issues/376
-function startOfUTCISOWeekYear (dirtyDate, dirtyOptions) {
-  var year = getUTCISOWeekYear(dirtyDate, dirtyOptions);
-  var fourthOfJanuary = new Date(0);
-  fourthOfJanuary.setUTCFullYear(year, 0, 4);
-  fourthOfJanuary.setUTCHours(0, 0, 0, 0);
-  var date = startOfUTCISOWeek(fourthOfJanuary, dirtyOptions);
-  return date
-}
-
-var MILLISECONDS_IN_WEEK$2 = 604800000;
-
-// This function will be a part of public API when UTC function will be implemented.
-// See issue: https://github.com/date-fns/date-fns/issues/376
-function getUTCISOWeek (dirtyDate, dirtyOptions) {
-  var date = toDate(dirtyDate, dirtyOptions);
-  var diff = startOfUTCISOWeek(date, dirtyOptions).getTime() - startOfUTCISOWeekYear(date, dirtyOptions).getTime();
-
-  // Round the number of days to the nearest integer
-  // because the number of milliseconds in a week is not constant
-  // (e.g. it's different in the week of the daylight saving time clock shift)
-  return Math.round(diff / MILLISECONDS_IN_WEEK$2) + 1
-}
-
-var formatters = {
-  // Month: 1, 2, ..., 12
-  'M': function (date) {
-    return date.getUTCMonth() + 1
-  },
-
-  // Month: 1st, 2nd, ..., 12th
-  'Mo': function (date, options) {
-    var month = date.getUTCMonth() + 1;
-    return options.locale.localize.ordinalNumber(month, {unit: 'month'})
-  },
-
-  // Month: 01, 02, ..., 12
-  'MM': function (date) {
-    return addLeadingZeros(date.getUTCMonth() + 1, 2)
-  },
-
-  // Month: Jan, Feb, ..., Dec
-  'MMM': function (date, options) {
-    return options.locale.localize.month(date.getUTCMonth(), {type: 'short'})
-  },
-
-  // Month: January, February, ..., December
-  'MMMM': function (date, options) {
-    return options.locale.localize.month(date.getUTCMonth(), {type: 'long'})
-  },
-
-  // Quarter: 1, 2, 3, 4
-  'Q': function (date) {
-    return Math.ceil((date.getUTCMonth() + 1) / 3)
-  },
-
-  // Quarter: 1st, 2nd, 3rd, 4th
-  'Qo': function (date, options) {
-    var quarter = Math.ceil((date.getUTCMonth() + 1) / 3);
-    return options.locale.localize.ordinalNumber(quarter, {unit: 'quarter'})
-  },
-
-  // Day of month: 1, 2, ..., 31
-  'D': function (date) {
-    return date.getUTCDate()
-  },
-
-  // Day of month: 1st, 2nd, ..., 31st
-  'Do': function (date, options) {
-    return options.locale.localize.ordinalNumber(date.getUTCDate(), {unit: 'dayOfMonth'})
-  },
-
-  // Day of month: 01, 02, ..., 31
-  'DD': function (date) {
-    return addLeadingZeros(date.getUTCDate(), 2)
-  },
-
-  // Day of year: 1, 2, ..., 366
-  'DDD': function (date) {
-    return getUTCDayOfYear(date)
-  },
-
-  // Day of year: 1st, 2nd, ..., 366th
-  'DDDo': function (date, options) {
-    return options.locale.localize.ordinalNumber(getUTCDayOfYear(date), {unit: 'dayOfYear'})
-  },
-
-  // Day of year: 001, 002, ..., 366
-  'DDDD': function (date) {
-    return addLeadingZeros(getUTCDayOfYear(date), 3)
-  },
-
-  // Day of week: Su, Mo, ..., Sa
-  'dd': function (date, options) {
-    return options.locale.localize.weekday(date.getUTCDay(), {type: 'narrow'})
-  },
-
-  // Day of week: Sun, Mon, ..., Sat
-  'ddd': function (date, options) {
-    return options.locale.localize.weekday(date.getUTCDay(), {type: 'short'})
-  },
-
-  // Day of week: Sunday, Monday, ..., Saturday
-  'dddd': function (date, options) {
-    return options.locale.localize.weekday(date.getUTCDay(), {type: 'long'})
-  },
-
-  // Day of week: 0, 1, ..., 6
-  'd': function (date) {
-    return date.getUTCDay()
-  },
-
-  // Day of week: 0th, 1st, 2nd, ..., 6th
-  'do': function (date, options) {
-    return options.locale.localize.ordinalNumber(date.getUTCDay(), {unit: 'dayOfWeek'})
-  },
-
-  // Day of ISO week: 1, 2, ..., 7
-  'E': function (date) {
-    return date.getUTCDay() || 7
-  },
-
-  // ISO week: 1, 2, ..., 53
-  'W': function (date) {
-    return getUTCISOWeek(date)
-  },
-
-  // ISO week: 1st, 2nd, ..., 53th
-  'Wo': function (date, options) {
-    return options.locale.localize.ordinalNumber(getUTCISOWeek(date), {unit: 'isoWeek'})
-  },
-
-  // ISO week: 01, 02, ..., 53
-  'WW': function (date) {
-    return addLeadingZeros(getUTCISOWeek(date), 2)
-  },
-
-  // Year: 00, 01, ..., 99
-  'YY': function (date) {
-    return addLeadingZeros(date.getUTCFullYear(), 4).substr(2)
-  },
-
-  // Year: 1900, 1901, ..., 2099
-  'YYYY': function (date) {
-    return addLeadingZeros(date.getUTCFullYear(), 4)
-  },
-
-  // ISO week-numbering year: 00, 01, ..., 99
-  'GG': function (date) {
-    return String(getUTCISOWeekYear(date)).substr(2)
-  },
-
-  // ISO week-numbering year: 1900, 1901, ..., 2099
-  'GGGG': function (date) {
-    return getUTCISOWeekYear(date)
-  },
-
-  // Hour: 0, 1, ... 23
-  'H': function (date) {
-    return date.getUTCHours()
-  },
-
-  // Hour: 00, 01, ..., 23
-  'HH': function (date) {
-    return addLeadingZeros(date.getUTCHours(), 2)
-  },
-
-  // Hour: 1, 2, ..., 12
-  'h': function (date) {
-    var hours = date.getUTCHours();
-    if (hours === 0) {
-      return 12
-    } else if (hours > 12) {
-      return hours % 12
-    } else {
-      return hours
-    }
-  },
-
-  // Hour: 01, 02, ..., 12
-  'hh': function (date) {
-    return addLeadingZeros(formatters['h'](date), 2)
-  },
-
-  // Minute: 0, 1, ..., 59
-  'm': function (date) {
-    return date.getUTCMinutes()
-  },
-
-  // Minute: 00, 01, ..., 59
-  'mm': function (date) {
-    return addLeadingZeros(date.getUTCMinutes(), 2)
-  },
-
-  // Second: 0, 1, ..., 59
-  's': function (date) {
-    return date.getUTCSeconds()
-  },
-
-  // Second: 00, 01, ..., 59
-  'ss': function (date) {
-    return addLeadingZeros(date.getUTCSeconds(), 2)
-  },
-
-  // 1/10 of second: 0, 1, ..., 9
-  'S': function (date) {
-    return Math.floor(date.getUTCMilliseconds() / 100)
-  },
-
-  // 1/100 of second: 00, 01, ..., 99
-  'SS': function (date) {
-    return addLeadingZeros(Math.floor(date.getUTCMilliseconds() / 10), 2)
-  },
-
-  // Millisecond: 000, 001, ..., 999
-  'SSS': function (date) {
-    return addLeadingZeros(date.getUTCMilliseconds(), 3)
-  },
-
-  // Timezone: -01:00, +00:00, ... +12:00
-  'Z': function (date, options) {
-    var originalDate = options._originalDate || date;
-    return formatTimezone(originalDate.getTimezoneOffset(), ':')
-  },
-
-  // Timezone: -0100, +0000, ... +1200
-  'ZZ': function (date, options) {
-    var originalDate = options._originalDate || date;
-    return formatTimezone(originalDate.getTimezoneOffset())
-  },
-
-  // Seconds timestamp: 512969520
-  'X': function (date, options) {
-    var originalDate = options._originalDate || date;
-    return Math.floor(originalDate.getTime() / 1000)
-  },
-
-  // Milliseconds timestamp: 512969520900
-  'x': function (date, options) {
-    var originalDate = options._originalDate || date;
-    return originalDate.getTime()
-  },
-
-  // AM, PM
-  'A': function (date, options) {
-    return options.locale.localize.timeOfDay(date.getUTCHours(), {type: 'uppercase'})
-  },
-
-  // am, pm
-  'a': function (date, options) {
-    return options.locale.localize.timeOfDay(date.getUTCHours(), {type: 'lowercase'})
-  },
-
-  // a.m., p.m.
-  'aa': function (date, options) {
-    return options.locale.localize.timeOfDay(date.getUTCHours(), {type: 'long'})
-  }
-};
-
-function formatTimezone (offset, delimeter) {
-  delimeter = delimeter || '';
-  var sign = offset > 0 ? '-' : '+';
-  var absOffset = Math.abs(offset);
-  var hours = Math.floor(absOffset / 60);
-  var minutes = absOffset % 60;
-  return sign + addLeadingZeros(hours, 2) + delimeter + addLeadingZeros(minutes, 2)
-}
-
-function addLeadingZeros (number, targetLength) {
-  var output = Math.abs(number).toString();
-  while (output.length < targetLength) {
-    output = '0' + output;
-  }
-  return output
-}
-
-// This function will be a part of public API when UTC function will be implemented.
-// See issue: https://github.com/date-fns/date-fns/issues/376
-function addUTCMinutes (dirtyDate, dirtyAmount, dirtyOptions) {
-  var date = toDate(dirtyDate, dirtyOptions);
-  var amount = Number(dirtyAmount);
-  date.setUTCMinutes(date.getUTCMinutes() + amount);
-  return date
-}
-
-var longFormattingTokensRegExp = /(\[[^[]*])|(\\)?(LTS|LT|LLLL|LLL|LL|L|llll|lll|ll|l)/g;
-var defaultFormattingTokensRegExp = /(\[[^[]*])|(\\)?(x|ss|s|mm|m|hh|h|do|dddd|ddd|dd|d|aa|a|ZZ|Z|YYYY|YY|X|Wo|WW|W|SSS|SS|S|Qo|Q|Mo|MMMM|MMM|MM|M|HH|H|GGGG|GG|E|Do|DDDo|DDDD|DDD|DD|D|A|.)/g;
-
-/**
- * @name format
- * @category Common Helpers
- * @summary Format the date.
- *
- * @description
- * Return the formatted date string in the given format.
- *
- * Accepted tokens:
- * | Unit                    | Token | Result examples                  |
- * |-------------------------|-------|----------------------------------|
- * | Month                   | M     | 1, 2, ..., 12                    |
- * |                         | Mo    | 1st, 2nd, ..., 12th              |
- * |                         | MM    | 01, 02, ..., 12                  |
- * |                         | MMM   | Jan, Feb, ..., Dec               |
- * |                         | MMMM  | January, February, ..., December |
- * | Quarter                 | Q     | 1, 2, 3, 4                       |
- * |                         | Qo    | 1st, 2nd, 3rd, 4th               |
- * | Day of month            | D     | 1, 2, ..., 31                    |
- * |                         | Do    | 1st, 2nd, ..., 31st              |
- * |                         | DD    | 01, 02, ..., 31                  |
- * | Day of year             | DDD   | 1, 2, ..., 366                   |
- * |                         | DDDo  | 1st, 2nd, ..., 366th             |
- * |                         | DDDD  | 001, 002, ..., 366               |
- * | Day of week             | d     | 0, 1, ..., 6                     |
- * |                         | do    | 0th, 1st, ..., 6th               |
- * |                         | dd    | Su, Mo, ..., Sa                  |
- * |                         | ddd   | Sun, Mon, ..., Sat               |
- * |                         | dddd  | Sunday, Monday, ..., Saturday    |
- * | Day of ISO week         | E     | 1, 2, ..., 7                     |
- * | ISO week                | W     | 1, 2, ..., 53                    |
- * |                         | Wo    | 1st, 2nd, ..., 53rd              |
- * |                         | WW    | 01, 02, ..., 53                  |
- * | Year                    | YY    | 00, 01, ..., 99                  |
- * |                         | YYYY  | 1900, 1901, ..., 2099            |
- * | ISO week-numbering year | GG    | 00, 01, ..., 99                  |
- * |                         | GGGG  | 1900, 1901, ..., 2099            |
- * | AM/PM                   | A     | AM, PM                           |
- * |                         | a     | am, pm                           |
- * |                         | aa    | a.m., p.m.                       |
- * | Hour                    | H     | 0, 1, ... 23                     |
- * |                         | HH    | 00, 01, ... 23                   |
- * |                         | h     | 1, 2, ..., 12                    |
- * |                         | hh    | 01, 02, ..., 12                  |
- * | Minute                  | m     | 0, 1, ..., 59                    |
- * |                         | mm    | 00, 01, ..., 59                  |
- * | Second                  | s     | 0, 1, ..., 59                    |
- * |                         | ss    | 00, 01, ..., 59                  |
- * | 1/10 of second          | S     | 0, 1, ..., 9                     |
- * | 1/100 of second         | SS    | 00, 01, ..., 99                  |
- * | Millisecond             | SSS   | 000, 001, ..., 999               |
- * | Timezone                | Z     | -01:00, +00:00, ... +12:00       |
- * |                         | ZZ    | -0100, +0000, ..., +1200         |
- * | Seconds timestamp       | X     | 512969520                        |
- * | Milliseconds timestamp  | x     | 512969520900                     |
- * | Long format             | LT    | 05:30 a.m.                       |
- * |                         | LTS   | 05:30:15 a.m.                    |
- * |                         | L     | 07/02/1995                       |
- * |                         | l     | 7/2/1995                         |
- * |                         | LL    | July 2 1995                      |
- * |                         | ll    | Jul 2 1995                       |
- * |                         | LLL   | July 2 1995 05:30 a.m.           |
- * |                         | lll   | Jul 2 1995 05:30 a.m.            |
- * |                         | LLLL  | Sunday, July 2 1995 05:30 a.m.   |
- * |                         | llll  | Sun, Jul 2 1995 05:30 a.m.       |
- *
- * The characters wrapped in square brackets are escaped.
- *
- * The result may vary by locale.
- *
- * @param {Date|String|Number} date - the original date
- * @param {String} format - the string of tokens
- * @param {Options} [options] - the object with options. See [Options]{@link https://date-fns.org/docs/Options}
- * @param {0|1|2} [options.additionalDigits=2] - passed to `toDate`. See [toDate]{@link https://date-fns.org/docs/toDate}
- * @param {Locale} [options.locale=defaultLocale] - the locale object. See [Locale]{@link https://date-fns.org/docs/Locale}
- * @returns {String} the formatted date string
- * @throws {TypeError} 2 arguments required
- * @throws {RangeError} `options.additionalDigits` must be 0, 1 or 2
- * @throws {RangeError} `options.locale` must contain `localize` property
- * @throws {RangeError} `options.locale` must contain `formatLong` property
- *
- * @example
- * // Represent 11 February 2014 in middle-endian format:
- * var result = format(
- *   new Date(2014, 1, 11),
- *   'MM/DD/YYYY'
- * )
- * //=> '02/11/2014'
- *
- * @example
- * // Represent 2 July 2014 in Esperanto:
- * import { eoLocale } from 'date-fns/locale/eo'
- * var result = format(
- *   new Date(2014, 6, 2),
- *   'Do [de] MMMM YYYY',
- *   {locale: eoLocale}
- * )
- * //=> '2-a de julio 2014'
- */
-function format (dirtyDate, dirtyFormatStr, dirtyOptions) {
-  if (arguments.length < 2) {
-    throw new TypeError('2 arguments required, but only ' + arguments.length + ' present')
-  }
-
-  var formatStr = String(dirtyFormatStr);
-  var options = dirtyOptions || {};
-
-  var locale$$1 = options.locale || locale;
-
-  if (!locale$$1.localize) {
-    throw new RangeError('locale must contain localize property')
-  }
-
-  if (!locale$$1.formatLong) {
-    throw new RangeError('locale must contain formatLong property')
-  }
-
-  var localeFormatters = locale$$1.formatters || {};
-  var formattingTokensRegExp = locale$$1.formattingTokensRegExp || defaultFormattingTokensRegExp;
-  var formatLong = locale$$1.formatLong;
-
-  var originalDate = toDate(dirtyDate, options);
-
-  if (!isValid(originalDate, options)) {
-    return 'Invalid Date'
-  }
-
-  // Convert the date in system timezone to the same date in UTC+00:00 timezone.
-  // This ensures that when UTC functions will be implemented, locales will be compatible with them.
-  // See an issue about UTC functions: https://github.com/date-fns/date-fns/issues/376
-  var timezoneOffset = originalDate.getTimezoneOffset();
-  var utcDate = addUTCMinutes(originalDate, -timezoneOffset, options);
-
-  var formatterOptions = cloneObject(options);
-  formatterOptions.locale = locale$$1;
-  formatterOptions.formatters = formatters;
-
-  // When UTC functions will be implemented, options._originalDate will likely be a part of public API.
-  // Right now, please don't use it in locales. If you have to use an original date,
-  // please restore it from `date`, adding a timezone offset to it.
-  formatterOptions._originalDate = originalDate;
-
-  var result = formatStr
-    .replace(longFormattingTokensRegExp, function (substring) {
-      if (substring[0] === '[') {
-        return substring
-      }
-
-      if (substring[0] === '\\') {
-        return cleanEscapedString(substring)
-      }
-
-      return formatLong(substring)
-    })
-    .replace(formattingTokensRegExp, function (substring) {
-      var formatter = localeFormatters[substring] || formatters[substring];
-
-      if (formatter) {
-        return formatter(utcDate, formatterOptions)
-      } else {
-        return cleanEscapedString(substring)
-      }
-    });
-
-  return result
-}
-
-function cleanEscapedString (input) {
-  if (input.match(/\[[\s\S]/)) {
-    return input.replace(/^\[|]$/g, '')
-  }
-  return input.replace(/\\/g, '')
-}
-
-// This file is generated automatically by `scripts/build/indices.js`. Please, don't change it.
-
-var MINUTE_IN_SECONDS = 60;
-var HOUR_IN_SECONDS = MINUTE_IN_SECONDS * 60;
-var DAY_IN_SECONDS = HOUR_IN_SECONDS * 24;
-
-var difference = function difference(date1, date2) {
-  var totalInSeconds = differenceInSeconds(date1, date2);
-
-  var seconds = totalInSeconds;
-
-  var days = Math.floor(seconds / DAY_IN_SECONDS);
-  seconds = seconds % DAY_IN_SECONDS;
-
-  var hours = Math.floor(seconds / HOUR_IN_SECONDS);
-  seconds = seconds % HOUR_IN_SECONDS;
-
-  var minutes = Math.floor(seconds / MINUTE_IN_SECONDS);
-  seconds = seconds % MINUTE_IN_SECONDS;
-
-  return { days: days, hours: hours, minutes: minutes, seconds: seconds, totalInSeconds: totalInSeconds };
-};
-
-var formatHtmlDatetime = function formatHtmlDatetime(date) {
-  return format(date, 'YYYY-MM-DDTHH:mm:ss.SSSZ');
-};
-
 var FRAME_EVERY = 1000 / 30; // 30 FPS is enough for a ticker
 
 var formatUnit = function formatUnit(v) {
@@ -6642,7 +6637,6 @@ var Title = styled__default.h1.withConfig({
 Info$1.Action = Action;
 Info$1.Permissions = Permissions$2;
 
-// Utility styles for the radio input
 var radioActive = styled.css(['background:transparent;&:after{content:\'\';}']);
 
 var radioDimmed = styled.css(['', ';&:after{opacity:0.5;transition:none;}'], radioActive);
@@ -8850,7 +8844,8 @@ var AragonApp = function (_React$Component) {
           children = _props.children,
           backgroundLogo = _props.backgroundLogo,
           className = _props.className,
-          publicUrl = _props.publicUrl;
+          publicUrl = _props.publicUrl,
+          supportLegacyAgents = _props.supportLegacyAgents;
 
       var styledProps = { backgroundLogo: backgroundLogo, className: className, publicUrl: publicUrl };
       return React.createElement(
@@ -8903,14 +8898,17 @@ exports.theme = theme;
 exports.themeDark = themeDark;
 exports.brand = brand;
 exports.colors = colors;
+exports.difference = difference;
+exports.formatHtmlDatetime = formatHtmlDatetime;
+exports.formatIntegerRange = formatIntegerRange;
 exports.font = font;
 exports.grid = grid;
 exports.spring = spring;
 exports.breakpoint = breakpoint;
 exports.BreakPoint = BreakPoint;
 exports.unselectable = unselectable;
-exports.formatIntegerRange = formatIntegerRange;
 exports.redraw = redraw;
+exports.redrawFromDate = redrawFromDate;
 exports.BaseStyles = BaseStyles$1;
 exports.Section = Section;
 exports.IllustratedSection = IllustratedSection;
