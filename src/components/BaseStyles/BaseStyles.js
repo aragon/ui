@@ -14,15 +14,15 @@ import overpassSemiBoldWoff2 from './assets/overpass/overpass-semibold.woff2'
 class BaseStyles extends React.Component {
   static propTypes = {
     publicUrl: PropTypes.string,
-    legacyFonts: PropTypes.bool,
+    enableLegacyFonts: PropTypes.bool,
   }
   static defaultProps = {
     publicUrl: '/',
-    legacyFonts: false,
+    enableLegacyFonts: false,
   }
   componentWillMount() {
-    const { publicUrl, legacyFonts } = this.props
-    injectStyles(url => publicUrl + url, legacyFonts)
+    const { publicUrl, enableLegacyFonts } = this.props
+    injectStyles(url => publicUrl + url, enableLegacyFonts)
   }
   render() {
     return null
