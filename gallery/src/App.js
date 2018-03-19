@@ -58,7 +58,7 @@ class App extends React.Component {
     const { pages, activePage } = this.state
     const Page = activePage && activePage.comp
     return (
-      <AragonApp publicUrl={ARAGON_UI_PATH}>
+      <AragonApp publicUrl={ARAGON_UI_PATH} supportLegacyAgents>
         <Main>
           <Menu>
             <Sidebar
