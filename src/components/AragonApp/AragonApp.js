@@ -1,13 +1,9 @@
-/* @flow */
-import type { Node } from 'react'
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 import { BaseStyles, theme } from '../..'
 import { styledPublicUrl as asset } from '../../public-url'
 import logo from './assets/logo-background.svg'
-
-// AragonApp provides everything needed to start an Aragon App.
 
 const StyledAragonApp = styled.main`
   min-width: 320px;
@@ -19,14 +15,14 @@ const StyledAragonApp = styled.main`
   background-repeat: no-repeat;
 `
 
-type Props = {
-  className: string,
-  backgroundLogo: boolean,
-  publicUrl: string,
-  children: Node,
-}
-
-class AragonApp extends React.Component<Props> {
+class AragonApp extends React.Component {
+  static propTypes = {
+    className: PropTypes.string,
+    backgroundLogo: PropTypes.bool,
+    publicUrl: PropTypes.string,
+    children: PropTypes.node,
+    supportLegacyAgents: PropTypes.bool,
+  }
   static defaultProps = {
     backgroundLogo: false,
   }
@@ -40,11 +36,17 @@ class AragonApp extends React.Component<Props> {
   }
 
   render() {
-    const { children, backgroundLogo, className, publicUrl } = this.props
+    const {
+      children,
+      backgroundLogo,
+      className,
+      publicUrl,
+      supportLegacyAgents,
+    } = this.props
     const styledProps = { backgroundLogo, className, publicUrl }
     return (
       <StyledAragonApp {...styledProps}>
-        <BaseStyles />
+        <BaseStyles publicUrl={publicUrl} legacyFonts={supportLegacyAgents} />
         {children}
       </StyledAragonApp>
     )
