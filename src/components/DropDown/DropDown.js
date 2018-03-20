@@ -16,7 +16,7 @@ const { contentBackground, contentBorder, textPrimary } = theme
 
 const StyledDropDown = styled.div`
   position: relative;
-  z-index: ${({ opened }) => (opened ? '2' : '1')};
+  z-index: ${({ opened }) => (opened ? '2' : '0')};
   display: ${({ wide }) => (wide ? 'flex' : 'inline-flex')};
   flex-direction: column;
   color: ${textPrimary};
