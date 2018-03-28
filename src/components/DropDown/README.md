@@ -51,10 +51,15 @@ Set this property to the index of the active item.
 
 ### `onChange`
 
-- Type: `Function`
+- Type: `Function`: `(index: Number, items: Array) -> *`
 - Default: `undefined`
 
 This callback is called whenever the user selects a new item.
+
+#### Arguments:
+
+- `index`: Index in `props.items` of the newly selected item
+- `items`: `props.items`
 
 ### `wide`
 

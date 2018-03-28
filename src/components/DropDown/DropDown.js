@@ -87,7 +87,7 @@ class DropDown extends React.Component<Props, State> {
     this.setState({ opened: false })
   }
   handleItemActivate = (index: number, { keyboard }: { keyboard: boolean }) => {
-    this.props.onChange(index)
+    this.props.onChange(index, this.props.items)
     this.setState({ opened: false })
     if (this.activeItemElt && keyboard) {
       this.activeItemElt.focus()
