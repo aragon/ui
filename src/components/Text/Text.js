@@ -19,17 +19,8 @@ type TextComponentType = {
 }
 
 const StyledText = styled.span`
-  ${({ size, weight }) => font({ size, weight })};
-  ${({ smallcaps }) => {
-    if (!smallcaps) return ''
-    return `
-      text-transform: lowercase;
-      font-variant: small-caps;
-    `
-  }};
-  ${({ color }) => {
-    return `color: ${color || theme.textPrimary}`
-  }};
+  ${({ size, weight, smallcaps }) => (font({ size, weight, smallcaps }): '')};
+  ${({ color }) => (color ? `color: ${color}` : '')};
 `
 
 const Text = props => <StyledText {...props} />

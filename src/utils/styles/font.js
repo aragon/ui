@@ -1,10 +1,4 @@
-/* @flow */
-type FontSize = 'xsmall' | 'small' | 'normal' | 'large' | 'xlarge' | 'xxlarge'
-type FontWeight = 'normal' | 'bold' | 'bolder'
-
-const FONT_SIZES: {
-  [FontSize]: string,
-} = {
+const FONT_SIZES = {
   xxsmall: '11px',
   xsmall: '12px',
   small: '14px',
@@ -15,26 +9,39 @@ const FONT_SIZES: {
   great: '37px',
 }
 
-const FONT_WEIGHTS: {
-  [FontWeight]: string,
-} = {
+const FONT_WEIGHTS = {
   normal: '400',
   bold: '600',
   bolder: '800',
 }
 
-export const font = ({
-  size = 'normal',
-  weight = 'normal',
-}: {
-  size: FontSize,
-  weight: FontWeight,
-}) => {
-  const fontSize = FONT_SIZES[size] || FONT_SIZES.normal
-  const fontWeight = FONT_WEIGHTS[weight] || FONT_WEIGHTS.normal
+const fontSizeCss = size => {
+  const fontSize = FONT_SIZES[size]
+  return fontSize !== undefined
+    ? `
+      line-height: 1.5;
+      font-size: ${fontSize}
+    `
+    : ''
+}
+
+const weightCss = weight => {
+  const fontWeight = FONT_WEIGHTS[weight]
+  return fontWeight !== undefined ? `font-weight: ${fontWeight}` : ''
+}
+
+const smallcapsCss = smallcaps =>
+  smallcaps
+    ? `
+      text-transform: lowercase;
+      font-variant: small-caps;
+    `
+    : ''
+
+export const font = ({ size, weight, smallcaps = false, inherit = false }) => {
   return `
-    font-size: ${fontSize};
-    font-weight: ${fontWeight};
-    line-height: 1.5;
+    ${fontSizeCss(size, inherit)};
+    ${weightCss(weight, inherit)};
+    ${smallcapsCss(smallcaps, inherit)};
   `
 }
