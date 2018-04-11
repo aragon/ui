@@ -2,7 +2,6 @@
 import type { ComponentType, ElementType, Node } from 'react'
 import React from 'react'
 import styled from 'styled-components'
-import theme from '../../theme'
 import { font } from '../../utils/styles'
 
 type Props = {

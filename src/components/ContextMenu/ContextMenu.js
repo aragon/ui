@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { Motion, spring } from 'react-motion'
 import ClickOutHandler from 'react-onclickout'
@@ -12,6 +13,9 @@ const BASE_WIDTH = 46
 const BASE_HEIGHT = 32
 
 class ContextMenu extends React.Component {
+  static propTypes = {
+    children: PropTypes.node,
+  }
   state = {
     opened: false,
   }

@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import theme from '../../theme'
 import TableRow from './TableRow'
@@ -44,11 +45,6 @@ const StyledTableCellContent = styled.div`
     align === 'right' ? 'flex-end' : 'space-between'};
 `
 
-const DefaultProps = {
-  align: 'left',
-  contentContainer: StyledTableCellContent,
-}
-
 const TableCell = ({
   children,
   contentContainer: Container,
@@ -60,7 +56,16 @@ const TableCell = ({
   </StyledTableCell>
 )
 
-TableCell.defaultProps = DefaultProps
+TableCell.propTypes = {
+  align: PropTypes.string,
+  contentContainer: PropTypes.func,
+  children: PropTypes.node,
+}
+
+TableCell.defaultProps = {
+  align: 'left',
+  contentContainer: StyledTableCellContent,
+}
 
 export { StyledTableCellContent }
 export default TableCell

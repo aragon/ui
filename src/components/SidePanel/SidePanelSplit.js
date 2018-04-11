@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import theme from '../../theme'
 import SidePanel from './SidePanel'
@@ -9,6 +10,10 @@ const SidePanelSplit = ({ children, ...props }) => (
     <Part>{children[1]}</Part>
   </Main>
 )
+
+SidePanelSplit.propTypes = {
+  children: PropTypes.node,
+}
 
 const Main = styled.div`
   display: flex;

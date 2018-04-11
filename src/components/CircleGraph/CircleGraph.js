@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { Motion, spring } from 'react-motion'
 import { spring as springConf } from '../../utils/styles'
@@ -42,6 +43,12 @@ const CircleGraph = ({ value, label, size }) => {
       )}
     </Motion>
   )
+}
+
+CircleGraph.propTypes = {
+  value: PropTypes.number,
+  size: PropTypes.number,
+  label: PropTypes.string,
 }
 
 CircleGraph.defaultProps = {

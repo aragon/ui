@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import theme from '../../theme'
 import Text from '../Text/Text'
@@ -13,10 +14,6 @@ const StyledTableHeader = styled.th`
   white-space: nowrap;
 `
 
-const DefaultProps = {
-  align: 'left',
-}
-
 const TableHeader = ({ title, align, ...props }) => (
   <StyledTableHeader align={align} {...props}>
     <Text.Block color={theme.textSecondary} smallcaps>
@@ -25,6 +22,13 @@ const TableHeader = ({ title, align, ...props }) => (
   </StyledTableHeader>
 )
 
-TableHeader.defaultProps = DefaultProps
+TableHeader.propTypes = {
+  title: PropTypes.string,
+  align: PropTypes.string,
+}
+
+TableHeader.defaultProps = {
+  align: 'left',
+}
 
 export default TableHeader
