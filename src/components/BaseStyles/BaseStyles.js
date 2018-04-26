@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { injectGlobal } from 'styled-components'
 import theme from '../../theme'
-import getPublicUrl from '../../public-url'
+import PublicUrl from '../../providers/PublicUrl'
 
 import overpassLightWoff from './assets/overpass/overpass-light.woff'
 import overpassLightWoff2 from './assets/overpass/overpass-light.woff2'
@@ -117,4 +117,4 @@ const injectStyles = (asset, legacyFonts) => injectGlobal`
   }
 `
 
-export default getPublicUrl(BaseStyles)
+export default PublicUrl.hocWrap(BaseStyles)

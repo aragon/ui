@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 import { BaseStyles, theme } from '../..'
-import { styledPublicUrl as asset } from '../../public-url'
+import PublicUrl from '../../providers/PublicUrl'
 import logo from './assets/logo-background.svg'
 
 const StyledAragonApp = styled.main`
@@ -10,7 +10,7 @@ const StyledAragonApp = styled.main`
   min-height: 100vh;
   background-color: ${theme.mainBackground};
   background-image: ${({ backgroundLogo }) =>
-    backgroundLogo ? css`url(${asset(logo)})` : 'none'};
+    backgroundLogo ? css`url(${PublicUrl.styledUrl(logo)})` : 'none'};
   background-position: 50% 50%;
   background-repeat: no-repeat;
 `
@@ -45,10 +45,12 @@ class AragonApp extends React.Component {
     } = this.props
     const styledProps = { backgroundLogo, className, publicUrl }
     return (
-      <StyledAragonApp {...styledProps}>
-        <BaseStyles publicUrl={publicUrl} legacyFonts={supportLegacyAgents} />
-        {children}
-      </StyledAragonApp>
+      <PublicUrl.Provider value={publicUrl}>
+        <StyledAragonApp {...styledProps}>
+          <BaseStyles legacyFonts={supportLegacyAgents} />
+          {children}
+        </StyledAragonApp>
+      </PublicUrl.Provider>
     )
   }
 }

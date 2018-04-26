@@ -2,10 +2,11 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import styled from 'styled-components'
 import { Motion, spring } from 'react-motion'
+import PublicUrl from '../../providers/PublicUrl'
 import Text from '../Text/Text'
 import { lerp } from '../../utils/math'
+import { prefixUrl } from '../../utils/url'
 import { spring as springConf, unselectable } from '../../utils/styles'
-import getPublicUrl, { prefixUrl } from '../../public-url'
 
 import close from './assets/close.svg'
 
@@ -109,43 +110,47 @@ class SidePanel extends React.Component {
     this.props.onTransitionEnd(this.props.opened)
   }
   render() {
-    const { children, title, opened, blocking, publicUrl } = this.props
+    const { children, title, opened, blocking } = this.props
     return (
-      <Motion
-        style={{ progress: spring(Number(opened), springConf('slow')) }}
-        onRest={this.handleMotionRest}
-      >
-        {({ progress }) => {
-          const styles = motionStyles(progress)
-          return (
-            <StyledSidePanel hidden={progress === 0} opened={opened}>
-              <Overlay
-                opened={opened}
-                style={styles.overlay}
-                onClick={this.handleClose}
-              />
-              <StyledPanel style={styles.panel}>
-                <StyledPanelHeader>
-                  <h1>
-                    <Text size="xxlarge">{title}</Text>
-                  </h1>
-                  {!blocking && (
-                    <StyledPanelCloseButton
-                      type="button"
-                      onClick={this.handleClose}
-                    >
-                      <img src={prefixUrl(close, publicUrl)} alt="Close" />
-                    </StyledPanelCloseButton>
-                  )}
-                </StyledPanelHeader>
-                <StyledPanelScrollView>
-                  <StyledPanelContent>{children}</StyledPanelContent>
-                </StyledPanelScrollView>
-              </StyledPanel>
-            </StyledSidePanel>
-          )
-        }}
-      </Motion>
+      <PublicUrl>
+        {publicUrl => (
+          <Motion
+            style={{ progress: spring(Number(opened), springConf('slow')) }}
+            onRest={this.handleMotionRest}
+          >
+            {({ progress }) => {
+              const styles = motionStyles(progress)
+              return (
+                <StyledSidePanel hidden={progress === 0} opened={opened}>
+                  <Overlay
+                    opened={opened}
+                    style={styles.overlay}
+                    onClick={this.handleClose}
+                  />
+                  <StyledPanel style={styles.panel}>
+                    <StyledPanelHeader>
+                      <h1>
+                        <Text size="xxlarge">{title}</Text>
+                      </h1>
+                      {!blocking && (
+                        <StyledPanelCloseButton
+                          type="button"
+                          onClick={this.handleClose}
+                        >
+                          <img src={prefixUrl(close, publicUrl)} alt="Close" />
+                        </StyledPanelCloseButton>
+                      )}
+                    </StyledPanelHeader>
+                    <StyledPanelScrollView>
+                      <StyledPanelContent>{children}</StyledPanelContent>
+                    </StyledPanelScrollView>
+                  </StyledPanel>
+                </StyledSidePanel>
+              )
+            }}
+          </Motion>
+        )}
+      </PublicUrl>
     )
   }
 }
@@ -156,7 +161,6 @@ SidePanel.propTypes = {
   opened: PropTypes.bool,
   blocking: PropTypes.bool,
   onClose: PropTypes.func,
-  publicUrl: PropTypes.string.isRequired,
   onTransitionEnd: PropTypes.func,
 }
 
@@ -167,12 +171,10 @@ SidePanel.defaultProps = {
   onTransitionEnd: () => {},
 }
 
-const WrappedSidePanel = getPublicUrl(SidePanel)
+SidePanel.PANEL_WIDTH = PANEL_WIDTH
+SidePanel.PANEL_OVERFLOW = PANEL_OVERFLOW
+SidePanel.PANEL_HIDE_RIGHT = PANEL_HIDE_RIGHT
+SidePanel.PANEL_INNER_WIDTH = PANEL_INNER_WIDTH
+SidePanel.HORIZONTAL_PADDING = CONTENT_PADDING
 
-WrappedSidePanel.PANEL_WIDTH = PANEL_WIDTH
-WrappedSidePanel.PANEL_OVERFLOW = PANEL_OVERFLOW
-WrappedSidePanel.PANEL_HIDE_RIGHT = PANEL_HIDE_RIGHT
-WrappedSidePanel.PANEL_INNER_WIDTH = PANEL_INNER_WIDTH
-WrappedSidePanel.HORIZONTAL_PADDING = CONTENT_PADDING
-
-export default WrappedSidePanel
+export default SidePanel

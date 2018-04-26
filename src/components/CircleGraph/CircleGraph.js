@@ -48,7 +48,7 @@ const CircleGraph = ({ value, label, size }) => {
 CircleGraph.propTypes = {
   value: PropTypes.number,
   size: PropTypes.number,
-  label: PropTypes.string,
+  label: PropTypes.func,
 }
 
 CircleGraph.defaultProps = {

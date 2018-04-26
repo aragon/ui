@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components'
 import SafeLink from '../Link/SafeLink'
 import theme from '../../theme'
 import { font } from '../../utils/styles'
-import getPublicUrl, { styledPublicUrl as asset } from '../../public-url'
+import PublicUrl, { styledUrl } from '../../providers/PublicUrl'
 import cross from './assets/cross.svg'
 import check from './assets/check.svg'
 import crossWhite from './assets/cross-white.svg'
@@ -135,13 +135,13 @@ const compactStyle = css`
 
 const positiveStyle = css`
   padding-left: 34px;
-  background: url(${asset(check)}) no-repeat 12px calc(50% - 1px);
+  background: url(${styledUrl(check)}) no-repeat 12px calc(50% - 1px);
   ${({ mode }) => {
     if (mode !== 'strong') return ''
     return css`
       &,
       &:active {
-        background-image: url(${asset(checkWhite)});
+        background-image: url(${styledUrl(checkWhite)});
         background-color: ${theme.positive};
       }
       &:after {
@@ -153,13 +153,13 @@ const positiveStyle = css`
 
 const negativeStyle = css`
   padding-left: 30px;
-  background: url(${asset(cross)}) no-repeat 10px calc(50% - 1px);
+  background: url(${styledUrl(cross)}) no-repeat 10px calc(50% - 1px);
   ${({ mode }) => {
     if (mode !== 'strong') return ''
     return css`
       &,
       &:active {
-        background-image: url(${asset(crossWhite)});
+        background-image: url(${styledUrl(crossWhite)});
         background-color: ${theme.negative};
       }
       &:after {
@@ -207,8 +207,8 @@ const StyledButton = styled.button.attrs({ type: 'button' })`
   }};
 `
 
-const Button = getPublicUrl(StyledButton)
-const Anchor = getPublicUrl(
+const Button = PublicUrl.hocWrap(StyledButton)
+const Anchor = PublicUrl.hocWrap(
   StyledButton.withComponent(SafeLink).extend`
     display: inline-block;
     text-decoration: none;
