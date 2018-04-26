@@ -1,8 +1,11 @@
 import React from 'react'
 import { createPortal } from 'react-dom'
 import { theme } from '@aragon/ui'
-import styled from 'styled-components'
-import StyleSheet from 'styled-components/lib/models/StyleSheet'
+import styled, {
+  __DO_NOT_USE_OR_YOU_WILL_BE_HAUNTED_BY_SPOOKY_GHOSTS as styledSecrets,
+} from 'styled-components'
+
+const { StyleSheet } = styledSecrets
 
 const StyledFrame = styled.iframe`
   display: block;
