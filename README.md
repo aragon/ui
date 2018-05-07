@@ -1,4 +1,6 @@
 # Aragon UI
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Faragon%2Faragon-ui.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Faragon%2Faragon-ui?ref=badge_shield)
+
 
 Aragon UI is the interface toolkit used by Aragon and its related projects.
 
@@ -105,3 +107,7 @@ npm start
 ```
 
 Open <http://localhost:8080/> in your web browser.
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Faragon%2Faragon-ui.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Faragon%2Faragon-ui?ref=badge_large)
