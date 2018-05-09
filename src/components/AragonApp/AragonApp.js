@@ -1,7 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
-import { BaseStyles, theme } from '../..'
+import BaseStyles from '../BaseStyles/BaseStyles'
+import theme from '../../theme'
 import PublicUrl from '../../providers/PublicUrl'
 import logo from './assets/logo-background.svg'
 
