@@ -4,7 +4,7 @@ import { Subject } from 'rxjs'
 import { observe, Badge, Button } from '@aragon/ui'
 
 import Page from 'comps/Page/Page'
-import readme from 'ui-src/rxjs/observe.md'
+import readme from 'ui-src/providers/observe/README.md'
 
 const Container = styled.div`
   padding: 20px;
