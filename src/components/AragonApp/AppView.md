@@ -24,10 +24,10 @@ Set to the desired title of your choice.
 
 ### `padding`
 
-- Type: `Boolean`
-- Default: `true`
+- Type: `Number`
+- Default: `30`
 
-Set to `false` in order to disable the content padding.
+Use this prop to change the default padding in pixels. Set it to `0` to disable it.
 
 ### `appBar`
 

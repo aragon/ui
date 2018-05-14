@@ -7,13 +7,13 @@ import AppBar from './AppBar'
 class AppView extends React.Component {
   static defaultProps = {
     title: '',
-    padding: true,
+    padding: 30,
   }
   static propTypes = {
     appBar: ExtraPropTypes.elementType(AppBar),
     title: PropTypes.string,
     children: PropTypes.node,
-    padding: PropTypes.bool,
+    padding: PropTypes.number,
   }
   render() {
     const { appBar, title, children, padding } = this.props
@@ -49,7 +49,7 @@ const Content = styled.div`
   display: flex;
   flex-direction: column;
   min-height: 100%;
-  ${({ padding }) => (padding ? 'padding: 30px' : '')};
+  padding: ${({ padding }) => `${padding}px`};
 `
 
 export default AppView
