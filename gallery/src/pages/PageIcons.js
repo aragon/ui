@@ -7,7 +7,6 @@ import {
   IconBlank,
   IconCheck,
   IconCross,
-  IconFinance,
   IconFundraising,
   IconGroups,
   IconHome,
@@ -17,8 +16,6 @@ import {
   IconSettings,
   IconShare,
   IconTime,
-  IconTokens,
-  IconVoting,
   IconWallet,
 } from '@aragon/ui'
 import Page from 'comps/Page/Page'
@@ -29,7 +26,6 @@ const icons = Object.entries({
   IconBlank,
   IconCheck,
   IconCross,
-  IconFinance,
   IconFundraising,
   IconGroups,
   IconHome,
@@ -39,8 +35,6 @@ const icons = Object.entries({
   IconSettings,
   IconShare,
   IconTime,
-  IconTokens,
-  IconVoting,
   IconWallet,
 }).reduce(
   (icons, [name, Icon]) => [
