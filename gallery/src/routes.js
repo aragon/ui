@@ -25,6 +25,7 @@ import PageInfo from './pages/PageInfo'
 // Containers
 import PageAragonApp from './pages/PageAragonApp'
 import PageAppBar from './pages/PageAppBar'
+import PageAppView from './pages/PageAppView'
 import PageSidePanel from './pages/PageSidePanel'
 import PageCard from './pages/PageCard'
 import PageEmptyStateCard from './pages/PageEmptyStateCard'
@@ -70,6 +71,7 @@ export const PAGE_GROUPS = [
     pages: [
       [PageAragonApp, 'AragonApp', '/aragon-app'],
       [PageAppBar, 'AppBar', '/app-bar'],
+      [PageAppView, 'AppView', '/app-view'],
       [PageSidePanel, 'SidePanel', '/side-panel'],
       [PageCard, 'Card', '/card'],
       [PageEmptyStateCard, 'EmptyStateCard', '/empty-state-card'],

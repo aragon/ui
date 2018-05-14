@@ -1,4 +1,5 @@
 export { default as AppBar } from './AragonApp/AppBar'
+export { default as AppView } from './AragonApp/AppView'
 export { default as AragonApp } from './AragonApp/AragonApp'
 export { default as Badge } from './Badge/Badge'
 export { default as BadgeNumber } from './BadgeNumber/BadgeNumber'

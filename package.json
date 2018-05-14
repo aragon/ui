@@ -74,6 +74,7 @@
     "svgr": "^1.1.0"
   },
   "dependencies": {
+    "airbnb-prop-types": "^2.9.0",
     "date-fns": "^2.0.0-alpha.7",
     "onecolor": "^3.0.5",
     "prop-types": "^15.6.0",
