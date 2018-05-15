@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components'
 import SafeLink from '../Link/SafeLink'
 import theme from '../../theme'
-import { font } from '../../utils/styles'
+import { font, unselectable } from '../../utils/styles'
 import getPublicUrl, { styledPublicUrl as asset } from '../../public-url'
 import cross from './assets/cross.svg'
 import check from './assets/check.svg'
@@ -210,6 +210,7 @@ const StyledButton = styled.button.attrs({ type: 'button' })`
 const Button = getPublicUrl(StyledButton)
 const Anchor = getPublicUrl(
   StyledButton.withComponent(SafeLink).extend`
+    ${unselectable};
     display: inline-block;
     text-decoration: none;
   `
