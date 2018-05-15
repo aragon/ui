@@ -1,10 +1,10 @@
-/* @flow */
+import PropTypes from 'prop-types'
 import React from 'react'
+import styled, { css } from 'styled-components'
 import theme from '../../theme'
 import { font } from '../../utils/styles'
-import styled from 'styled-components'
 
-const StyledInput = styled.input`
+const baseStyles = css`
   ${font({ size: 'small', weight: 'normal' })};
   width: ${({ wide }) => (wide ? '100%' : 'auto')};
 
@@ -25,24 +25,45 @@ const StyledInput = styled.input`
   }
 `
 
-type TextInputType =
-  | 'email'
-  | 'number'
-  | 'password'
-  | 'search'
-  | 'tel'
-  | 'text'
-  | 'url'
-type Props = {
-  type: TextInputType,
-  required?: Boolean,
+// Simple input
+const TextInput = styled.input`
+  ${baseStyles};
+`
+TextInput.propTypes = {
+  required: PropTypes.bool,
+  type: PropTypes.oneOf([
+    'email',
+    'number',
+    'password',
+    'search',
+    'tel',
+    'text',
+    'url',
+  ]),
 }
-
-const TextInput = (props: Props) => <StyledInput {...props} />
 TextInput.defaultProps = {
+  required: false,
   type: 'text',
 }
 
-TextInput.Number = props => <StyledInput type="number" {...props} />
+// <input type=number> (only for compat)
+const TextInputNumber = styled.input.attrs({ type: 'number' })`
+  ${baseStyles};
+`
+
+// Multiline input (textarea element)
+const TextInputMultiline = styled.textarea`
+  ${baseStyles};
+  resize: vertical;
+`
+TextInputMultiline.propTypes = {
+  required: PropTypes.bool,
+}
+TextInputMultiline.defaultProps = {
+  required: false,
+}
+
+TextInput.Number = TextInputNumber
+TextInput.Multiline = TextInputMultiline
 
 export default TextInput
