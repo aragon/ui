@@ -94,6 +94,7 @@ const injectStyles = (asset, legacyFonts) => injectGlobal`
   button,
   select,
   input,
+  textarea,
   h1,
   h2,
   h3,
@@ -108,7 +109,8 @@ const injectStyles = (asset, legacyFonts) => injectGlobal`
   a,
   button,
   select,
-  input {
+  input,
+  textarea {
     color: inherit;
   }
   strong,
