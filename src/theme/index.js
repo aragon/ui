@@ -1,1 +1,1 @@
-export { theme as default, themeDark, brand, colors } from './palettes'
+export { theme as default, theme, themeDark, brand, colors } from './palettes'

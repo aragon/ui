@@ -2,7 +2,7 @@
 import type { Node } from 'react'
 import React from 'react'
 import styled, { css } from 'styled-components'
-import getPublicUrl, { styledPublicUrl as asset } from '../../public-url'
+import PublicUrl from '../../providers/PublicUrl'
 import theme from '../../theme'
 import Text from '../Text/Text'
 import { unselectable } from '../../utils/styles'
@@ -30,12 +30,12 @@ const StyledAppBarEnd = styled.div`
   padding-right: 30px;
 `
 
-const StyledAppBarTitle = getPublicUrl(styled.h1`
+const StyledAppBarTitle = PublicUrl.hocWrap(styled.h1`
   padding-right: 20px;
   margin-right: calc(20px - 7px);
   white-space: nowrap;
   background-image: ${({ chevron }) =>
-    chevron ? css`url(${asset(chevronSvg)})` : 'none'};
+    chevron ? css`url(${PublicUrl.styledUrl(chevronSvg)})` : 'none'};
   background-position: 100% 50%;
   background-repeat: no-repeat;
   cursor: ${({ clickable }) => (clickable ? 'pointer' : 'default')};

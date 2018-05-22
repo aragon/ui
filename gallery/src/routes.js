@@ -31,7 +31,9 @@ import PageCard from './pages/PageCard'
 import PageEmptyStateCard from './pages/PageEmptyStateCard'
 import PageTable from './pages/PageTable'
 
-// RxJS
+// Providers
+import PageRedraw from './pages/PageRedraw'
+import PageRedrawFromDate from './pages/PageRedrawFromDate'
 import PageObserve from './pages/PageObserve'
 
 const preparePage = ([comp, name, path]) => ({
@@ -86,8 +88,10 @@ export const PAGE_GROUPS = [
     ].map(preparePage),
   },
   {
-    name: 'RxJS',
+    name: 'Providers',
     pages: [
+      [PageRedraw, 'Redraw', '/redraw'],
+      [PageRedrawFromDate, 'RedrawFromDate', '/redraw-from-date'],
       [PageObserve, 'Observe', '/observe'],
     ].map(preparePage),
   },

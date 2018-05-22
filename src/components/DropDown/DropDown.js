@@ -6,8 +6,9 @@ import ClickOutHandler from 'react-onclickout'
 import theme from '../../theme'
 import { spring as springConf, unselectable } from '../../utils/styles'
 import { lerp } from '../../utils/math'
-import getPublicUrl, { styledPublicUrl as asset } from '../../public-url'
+import PublicUrl from '../../providers/PublicUrl'
 import DropDownItem from './DropDownItem'
+
 import arrow from './assets/arrow-down.svg'
 
 const NON_BREAKING_SPACE = '\xa0'
@@ -43,10 +44,12 @@ const DropDownItems = styled.div`
   list-style: none;
 `
 
-const DropDownActiveItem = getPublicUrl(styled(DropDownItem)`
+const DropDownActiveItem = styled(PublicUrl.hocWrap(DropDownItem))`
   padding-right: 40px;
-  background: ${contentBackground} url(${asset(arrow)}) no-repeat
-    calc(100% - 15px) 50%;
+  background: ${contentBackground};
+  background-image: url(${PublicUrl.styledUrl(arrow)});
+  background-repeat: no-repeat;
+  background-position: calc(100% - 15px) 50%;
   border: 1px solid ${contentBorder};
   border-radius: 3px;
   &:hover,
@@ -56,7 +59,7 @@ const DropDownActiveItem = getPublicUrl(styled(DropDownItem)`
   &:active {
     color: ${textPrimary};
   }
-`)
+`
 
 type Props = {
   items: Array<string>,
