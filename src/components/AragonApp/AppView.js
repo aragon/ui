@@ -30,17 +30,21 @@ class AppView extends React.Component {
 
 const Main = styled.div`
   display: flex;
-  height: 100%;
+  height: 100vh;
   flex-direction: column;
   align-items: stretch;
   justify-content: stretch;
 `
 
 const Header = styled.div`
+  position: relative;
+  z-index: 2;
   flex-shrink: 0;
 `
 
 const ScrollWrapper = styled.div`
+  position: relative;
+  z-index: 1;
   height: 100%;
   overflow: auto;
 `
