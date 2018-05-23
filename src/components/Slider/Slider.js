@@ -64,6 +64,16 @@ class Slider extends React.Component {
     this.setState({ animate: false })
     this.updateValueFromClientX(e.clientX)
   }
+  getHandleStyles(value, pressProgress) {
+    const { rect } = this.state
+    const x = value * (rect ? rect.width : 0)
+    const y = pressProgress * 2
+    const shadowOpacity = 0.13 * (1 - pressProgress)
+    return {
+      transform: `translate(${x}px, calc(-50% + ${y}px))`,
+      boxShadow: ` 0 4px 8px 0 rgba(0, 0, 0, ${shadowOpacity})`,
+    }
+  }
   render() {
     const { pressed, rect, animate } = this.state
     const value = Math.max(0, Math.min(1, this.props.value))
@@ -82,25 +92,12 @@ class Slider extends React.Component {
                 <BaseBar />
                 <ActiveBar
                   pressed={pressed}
-                  style={{
-                    transform: `scaleX(${value}`,
-                    transformOrigin: '0 0',
-                  }}
+                  style={{ transform: `scaleX(${value}` }}
                 />
               </Bars>
               <Handle
                 pressed={pressed}
-                style={{
-                  transform: `
-                  translate(
-                    ${value * (rect ? rect.width : 0)}px,
-                    calc(-50% + ${pressProgress * 2}px)
-                  )
-                `,
-                  boxShadow: `
-                  0 4px 8px 0 rgba(0, 0, 0, ${0.13 * (1 - pressProgress)})
-                `,
-                }}
+                style={this.getHandleStyles(value, pressProgress)}
               />
             </Area>
           </Main>
@@ -145,6 +142,7 @@ const BaseBar = Bar.extend`
 `
 
 const ActiveBar = Bar.extend`
+  transform-origin: 0 0;
   background: #1dd9d5;
 `
 
