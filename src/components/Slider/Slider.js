@@ -66,7 +66,7 @@ class Slider extends React.Component {
   }
   render() {
     const { pressed, rect, animate } = this.state
-    const value = Math.max(0, Math.min(100, this.props.value))
+    const value = Math.max(0, Math.min(1, this.props.value))
     return (
       <Motion
         defaultStyles={{ pressProgress: 0, value: 0 }}
