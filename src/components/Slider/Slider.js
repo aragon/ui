@@ -1,7 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Motion, spring } from 'react-motion'
-import { theme, spring as springConf, unselectable } from '@aragon/ui'
+import theme from '../../theme'
+import { spring as springConf, unselectable } from '../../utils'
 
 const BAR_HEIGHT = 6
 const HANDLE_SIZE = 24
