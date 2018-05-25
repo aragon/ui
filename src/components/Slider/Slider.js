@@ -22,7 +22,7 @@ class Slider extends React.Component {
     animate: true,
   }
   componentWillUnmount() {
-    this.stopDrag()
+    this.dragStop()
   }
   handleRef = element => {
     this._mainElement = element
@@ -34,36 +34,37 @@ class Slider extends React.Component {
       this.setState({ rect })
     }
   }
+  clientXFromEvent(event) {
+    return (event.touches ? event.touches.item(0) : event).clientX
+  }
   updateValueFromClientX(clientX) {
     const { rect } = this.state
     const x = Math.min(rect.width, Math.max(0, clientX - rect.x))
     this.props.onUpdate(x / rect.width)
   }
-  startDrag() {
-    this.stopDrag()
+  dragStart = event => {
+    this.dragStop()
     this.updateRect()
-    document.addEventListener('mouseup', this.handleMouseUp)
-    document.addEventListener('mousemove', this.handleMouseMove)
-  }
-  stopDrag() {
-    document.removeEventListener('mouseup', this.handleMouseUp)
-    document.removeEventListener('mousemove', this.handleMouseMove)
-  }
-  handleMouseDown = e => {
-    this.updateValueFromClientX(e.clientX)
+    this.updateValueFromClientX(this.clientXFromEvent(event))
     this.setState({ pressed: true, animate: true })
-    this.startDrag()
+    document.addEventListener('mouseup', this.dragStop)
+    document.addEventListener('touchend', this.dragStop)
+    document.addEventListener('mousemove', this.dragMove)
+    document.addEventListener('touchmove', this.dragMove)
   }
-  handleMouseUp = e => {
+  dragStop = () => {
     this.setState({ pressed: false, animate: true })
-    this.stopDrag()
+    document.removeEventListener('mouseup', this.dragStop)
+    document.removeEventListener('touchend', this.dragStop)
+    document.removeEventListener('mousemove', this.dragMove)
+    document.removeEventListener('touchmove', this.dragMove)
   }
-  handleMouseMove = e => {
+  dragMove = event => {
     if (!this.state.pressed) {
       return
     }
     this.setState({ animate: false })
-    this.updateValueFromClientX(e.clientX)
+    this.updateValueFromClientX(this.clientXFromEvent(event))
   }
   getHandleStyles(value, pressProgress) {
     const { rect } = this.state
@@ -96,7 +97,11 @@ class Slider extends React.Component {
       >
         {({ value, pressProgress }) => (
           <Main>
-            <Area onMouseDown={this.handleMouseDown} innerRef={this.handleRef}>
+            <Area
+              innerRef={this.handleRef}
+              onMouseDown={this.dragStart}
+              onTouchStart={this.dragStart}
+            >
               <Bars>
                 <BaseBar />
                 <ActiveBar
