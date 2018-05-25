@@ -10,7 +10,7 @@ const PADDING = 5
 const MIN_WIDTH = HANDLE_SIZE * 10
 const HEIGHT = Math.max(HANDLE_SIZE, BAR_HEIGHT) + PADDING * 2
 
-const SPRING = { stiffness: 380, damping: 28, precision: 0.001 }
+const SPRING = { stiffness: 400, damping: 28, precision: 0.01 }
 
 class Slider extends React.Component {
   static defaultProps = {
