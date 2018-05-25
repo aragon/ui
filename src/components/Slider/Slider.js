@@ -68,11 +68,19 @@ class Slider extends React.Component {
   getHandleStyles(value, pressProgress) {
     const { rect } = this.state
     const x = value * (rect ? rect.width : 0)
-    const y = pressProgress * 2
+    const y = pressProgress // 1px down when pressed
     const shadowOpacity = 0.13 * (1 - pressProgress)
     return {
       transform: `translate(${x}px, calc(-50% + ${y}px))`,
       boxShadow: ` 0 4px 8px 0 rgba(0, 0, 0, ${shadowOpacity})`,
+      background: `hsl(0, 0%, ${100}%)`,
+    }
+  }
+  getActiveBarStyles(value, pressProgress) {
+    const saturationDiff = 1 + 0.2 * pressProgress
+    return {
+      transform: `scaleX(${value}`,
+      background: `hsl(179, ${76 * saturationDiff}%, 48%)`,
     }
   }
   render() {
@@ -93,7 +101,7 @@ class Slider extends React.Component {
                 <BaseBar />
                 <ActiveBar
                   pressed={pressed}
-                  style={{ transform: `scaleX(${value}` }}
+                  style={this.getActiveBarStyles(value, pressProgress)}
                 />
               </Bars>
               <Handle
@@ -117,6 +125,7 @@ const Main = styled.div`
 const Area = styled.div`
   position: relative;
   height: ${HEIGHT}px;
+  cursor: pointer;
 `
 
 const Bars = styled.div`
@@ -144,7 +153,6 @@ const BaseBar = Bar.extend`
 
 const ActiveBar = Bar.extend`
   transform-origin: 0 0;
-  background: #1dd9d5;
 `
 
 const Handle = styled.div`
@@ -156,7 +164,6 @@ const Handle = styled.div`
   height: ${HANDLE_SIZE}px;
   border: 0.5px solid #dcecf5;
   border-radius: 50%;
-  background: ${({ pressed }) => (pressed ? '#fcfcfc' : '#ffffff')};
 `
 
 export default Slider
