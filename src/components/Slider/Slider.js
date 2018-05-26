@@ -26,27 +26,26 @@ class Slider extends React.Component {
   }
   handleRef = element => {
     this._mainElement = element
-    this.updateRect()
   }
-  updateRect() {
-    if (this._mainElement) {
-      const rect = this._mainElement.getBoundingClientRect()
-      this.setState({ rect })
-    }
+  getRect() {
+    return this._mainElement
+      ? this._mainElement.getBoundingClientRect()
+      : new DOMRect()
   }
   clientXFromEvent(event) {
     return (event.touches ? event.touches.item(0) : event).clientX
   }
   updateValueFromClientX(clientX) {
-    const { rect } = this.state
+    const rect = this.getRect()
     const x = Math.min(rect.width, Math.max(0, clientX - rect.x))
     this.props.onUpdate(x / rect.width)
   }
   dragStart = event => {
     this.dragStop()
-    this.updateRect()
-    this.updateValueFromClientX(this.clientXFromEvent(event))
-    this.setState({ pressed: true, animate: true })
+    const clientX = this.clientXFromEvent(event)
+    this.setState({ pressed: true, animate: true }, () => {
+      this.updateValueFromClientX(clientX)
+    })
     document.addEventListener('mouseup', this.dragStop)
     document.addEventListener('touchend', this.dragStop)
     document.addEventListener('mousemove', this.dragMove)
@@ -67,15 +66,16 @@ class Slider extends React.Component {
     this.updateValueFromClientX(this.clientXFromEvent(event))
   }
   getHandleStyles(value, pressProgress) {
-    const { rect } = this.state
-    const x = value * (rect ? rect.width : 0)
-    const y = pressProgress // 1px down when pressed
     const shadowOpacity = 0.13 * (1 - pressProgress)
+    const lightness = 100 * (1 - pressProgress * 0.01)
     return {
-      transform: `translate(${x}px, calc(-50% + ${y}px))`,
+      transform: `translateY(calc(${pressProgress}px - 50%))`,
       boxShadow: ` 0 4px 8px 0 rgba(0, 0, 0, ${shadowOpacity})`,
-      background: `hsl(0, 0%, ${100}%)`,
+      background: `hsl(0, 0%, ${lightness}%)`,
     }
+  }
+  getHandleWrapperStyles(value, progress) {
+    return { transform: `translate(${value * 10000 - 50}%, 0)` }
   }
   getActiveBarStyles(value, pressProgress) {
     const saturationDiff = 1 + 0.2 * pressProgress
@@ -85,7 +85,7 @@ class Slider extends React.Component {
     }
   }
   render() {
-    const { pressed, rect, animate } = this.state
+    const { pressed, animate } = this.state
     const value = Math.max(0, Math.min(1, this.props.value))
     return (
       <Motion
@@ -109,10 +109,14 @@ class Slider extends React.Component {
                   style={this.getActiveBarStyles(value, pressProgress)}
                 />
               </Bars>
-              <Handle
-                pressed={pressed}
-                style={this.getHandleStyles(value, pressProgress)}
-              />
+              <HandleWrapper
+                style={this.getHandleWrapperStyles(value, pressProgress)}
+              >
+                <Handle
+                  pressed={pressed}
+                  style={this.getHandleStyles(value, pressProgress)}
+                />
+              </HandleWrapper>
             </Area>
           </Main>
         )}
@@ -160,10 +164,16 @@ const ActiveBar = Bar.extend`
   transform-origin: 0 0;
 `
 
+const HandleWrapper = styled.div`
+  width: 1%;
+  height: 100%;
+  top: 50%;
+  transform-origin: 50% 50%;
+`
+
 const Handle = styled.div`
   position: absolute;
   top: 50%;
-  transform: translateY(-50%);
   left: ${-HANDLE_SIZE / 2}px;
   width: ${HANDLE_SIZE}px;
   height: ${HANDLE_SIZE}px;
