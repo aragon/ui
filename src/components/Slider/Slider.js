@@ -27,10 +27,20 @@ class Slider extends React.Component {
   handleRef = element => {
     this._mainElement = element
   }
-  getRect() {
-    return this._mainElement
+  getRect = () => {
+    const now = Date.now()
+
+    // Cache the rect if the last poll was less than a second ago
+    if (this._lastRect && now - this._lastRectTime < 1000) {
+      return this._lastRect
+    }
+
+    this._lastRectTime = now
+    this._lastRect = this._mainElement
       ? this._mainElement.getBoundingClientRect()
       : new DOMRect()
+
+    return this._lastRect
   }
   clientXFromEvent(event) {
     return (event.touches ? event.touches.item(0) : event).clientX
