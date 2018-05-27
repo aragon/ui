@@ -60,19 +60,12 @@ class RadioListItem extends React.Component {
   }
 }
 
-// Utility styles from RadioButton
-const { dimmed: radioDimmed } = RadioButton.css
-
 // Styled components
 const Label = styled.label`
   display: flex;
 
   &:not(:first-child) {
     margin-top: 10px;
-  }
-
-  &:hover ${RadioButton}:not(:checked) {
-    ${radioDimmed};
   }
 
   ${unselectable()};
@@ -88,13 +81,8 @@ const LabelBox = styled.div`
   cursor: pointer;
 
   &:focus,
-  &:hover,
-  ${RadioButton}:focus ~ &,
-  ${RadioButton}:hover ~ & {
+  &:hover {
     border-color: ${labelBoxBorder.alpha(0.35).cssa()};
-  }
-  ${RadioButton}:checked ~ & {
-    border-color: ${labelBoxBorder.alpha(0.7).cssa()};
   }
 `
 

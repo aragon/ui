@@ -1,62 +1,44 @@
 import styled, { css } from 'styled-components'
 import theme from '../../theme'
 
-// Utility styles for the radio input
-const radioActive = css`
-  background: transparent;
-  &:after {
-    content: '';
-  }
-`
-
-const radioDimmed = css`
-  ${radioActive};
-  &:after {
-    opacity: 0.5;
-    transition: none;
-  }
-`
-
-// Styled component
-const RadioButton = styled.input.attrs({
-  type: 'radio',
-})`
+const RadioButton = styled.input.attrs({ type: 'radio' })`
   appearance: none;
   display: inline-flex;
-  position: relative;
-  background: ${theme.secondaryBackground};
-  border: 1px ${theme.contentBorder} solid;
-  border-radius: 7px;
-  width: 14px;
-  height: 14px;
-  outline: none;
-  cursor: pointer;
   align-items: center;
   justify-content: center;
-
-  &:checked,
-  &:focus,
-  &:hover {
-    ${radioActive};
-  }
-
+  position: relative;
+  width: 14px;
+  height: 14px;
+  margin: 5px;
+  background: #f3f9fb;
+  border: 1px solid #daeaef;
+  border-radius: 50%;
+  outline: 0;
+  cursor: pointer;
   &:after {
+    content: '';
     position: absolute;
-    background: ${theme.accent};
+    background: #daeaef;
     width: 8px;
     height: 8px;
     border-radius: 4px;
-    transition: opacity 200ms linear;
+    opacity: 0;
+    transform: scale(0);
+    transition: all 100ms ease-in-out;
   }
-  &:not(:checked):focus,
-  &:not(:checked):hover {
-    ${radioDimmed};
+  &:active {
+    border-color: #c9d9de;
+  }
+  &:active:after {
+    opacity: 1;
+    transform: scale(0.7);
+    background: #daeaef;
+  }
+  &:checked:after {
+    opacity: 1;
+    transform: scale(1);
+    background: #1dd9d5;
   }
 `
-
-RadioButton.css = {
-  active: radioActive,
-  dimmed: radioDimmed,
-}
 
 export default RadioButton
