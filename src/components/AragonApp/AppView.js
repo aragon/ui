@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import ExtraPropTypes from 'airbnb-prop-types'
 import styled from 'styled-components'
 import AppBar from './AppBar'
 
@@ -10,7 +9,7 @@ class AppView extends React.Component {
     padding: 30,
   }
   static propTypes = {
-    appBar: ExtraPropTypes.elementType(AppBar),
+    appBar: PropTypes.element,
     title: PropTypes.string,
     children: PropTypes.node,
     padding: PropTypes.number,
