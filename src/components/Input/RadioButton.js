@@ -23,7 +23,7 @@ const RadioButton = styled.input.attrs({ type: 'radio' })`
     height: 8px;
     border-radius: 4px;
     opacity: 0;
-    transform: scale(0);
+    transform: scale(0.3);
     transition: all 100ms ease-in-out;
   }
   &:active {
@@ -31,7 +31,7 @@ const RadioButton = styled.input.attrs({ type: 'radio' })`
   }
   &:active:after {
     opacity: 1;
-    transform: scale(0.7);
+    transform: scale(0.6);
     background: #daeaef;
   }
   &:checked:after {
