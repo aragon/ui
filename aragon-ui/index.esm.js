@@ -144,24 +144,6 @@ var taggedTemplateLiteral = function (strings, raw) {
   }));
 };
 
-
-
-
-
-
-
-
-
-var toConsumableArray = function (arr) {
-  if (Array.isArray(arr)) {
-    for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) arr2[i] = arr[i];
-
-    return arr2;
-  } else {
-    return Array.from(arr);
-  }
-};
-
 var Add = function Add(props) {
   return React.createElement(
     "svg",
@@ -177,6 +159,23 @@ var Add = function Add(props) {
       React.createElement("path", {
         fill: "currentColor",
         d: "M11.656 8.056v2.688h2.688v1.312h-2.688v2.688h-1.312v-2.688H7.656v-1.312h2.688V8.056z"
+      })
+    )
+  );
+};
+
+var Apps = function Apps(props) {
+  return React.createElement(
+    "svg",
+    _extends({ width: 22, height: 22, viewBox: "0 0 22 22" }, props),
+    React.createElement(
+      "g",
+      { fill: "none", fillRule: "evenodd" },
+      React.createElement("path", { d: "M0 0h22v22H0z" }),
+      React.createElement("path", {
+        d: "M4.157 3.07C3.523 3.07 3 3.592 3 4.226v5.012c0 .635.523 1.157 1.157 1.157h5.012c.634 0 1.156-.522 1.156-1.157V4.226c0-.634-.522-1.156-1.156-1.156H4.157zm8.482 0c-.635 0-1.157.522-1.157 1.156v5.012c0 .635.522 1.157 1.157 1.157h5.012c.634 0 1.156-.522 1.156-1.157V4.226c0-.634-.522-1.156-1.156-1.156h-5.012zm-8.482.77h5.012c.22 0 .385.166.385.386v5.012c0 .22-.165.386-.385.386H4.157a.377.377 0 0 1-.386-.386V4.226c0-.22.165-.385.386-.385zm8.482 0h5.012c.22 0 .385.166.385.386v5.012c0 .22-.165.386-.385.386h-5.012a.377.377 0 0 1-.386-.386V4.226c0-.22.165-.385.386-.385zm2.463 7.706a.386.386 0 0 0-.343.391v2.892h-2.892a.386.386 0 1 0 0 .77h2.892v2.893a.386.386 0 1 0 .771 0V15.6h2.892a.386.386 0 1 0 0-.771H15.53v-2.892a.386.386 0 0 0-.428-.391zm-10.945.006c-.634 0-1.157.522-1.157 1.156v5.012c0 .635.523 1.157 1.157 1.157h5.012c.634 0 1.156-.522 1.156-1.157v-5.012c0-.634-.522-1.156-1.156-1.156H4.157zm0 .77h5.012c.22 0 .385.166.385.386v5.012c0 .22-.165.386-.385.386H4.157a.377.377 0 0 1-.386-.386v-5.012c0-.22.165-.385.386-.385z",
+        fill: "currentColor",
+        fillRule: "nonzero"
       })
     )
   );
@@ -220,22 +219,6 @@ var Cross = function Cross(props) {
       fill: "#FB7777",
       fillRule: "evenodd"
     })
-  );
-};
-
-var Finance = function Finance(props) {
-  return React.createElement(
-    "svg",
-    _extends({ width: 22, height: 22, viewBox: "0 0 22 22" }, props),
-    React.createElement(
-      "g",
-      { fill: "none", fillRule: "evenodd" },
-      React.createElement("path", { d: "M0 0h22v22H0z" }),
-      React.createElement("path", {
-        d: "M18.063 3c.253 0 .473.093.659.278a.901.901 0 0 1 .278.66v13.124a.901.901 0 0 1-.278.66.901.901 0 0 1-.66.278H4.938a.901.901 0 0 1-.659-.278.901.901 0 0 1-.278-.66V3.938c0-.253.093-.473.278-.659A.901.901 0 0 1 4.938 3h13.125zm0 14.063V3.938H4.938v13.124h13.125zM7.28 8.155a.463.463 0 0 1-.468-.469.45.45 0 0 1 .139-.33.45.45 0 0 1 .33-.138h.937V6.28a.45.45 0 0 1 .139-.33.45.45 0 0 1 .33-.138.45.45 0 0 1 .33.139.45.45 0 0 1 .138.33v.937h.938a.45.45 0 0 1 .33.139.45.45 0 0 1 .139.33.463.463 0 0 1-.469.469h-.938v.937a.463.463 0 0 1-.469.469.463.463 0 0 1-.468-.47v-.937H7.28zm3.062 3.501c.097.098.146.21.146.337a.417.417 0 0 1-.146.322l-.996.996.996.997c.097.097.146.21.146.337a.417.417 0 0 1-.146.322.425.425 0 0 1-.33.146.425.425 0 0 1-.33-.146l-.995-.982-.997.982a.425.425 0 0 1-.33.146.425.425 0 0 1-.329-.146.417.417 0 0 1-.146-.322c0-.127.049-.24.146-.337l.996-.996-.996-.997a.417.417 0 0 1-.146-.322c0-.127.049-.24.146-.337a.447.447 0 0 1 .33-.132c.132 0 .242.044.33.132l.995.996.997-.996a.447.447 0 0 1 .33-.132c.131 0 .24.044.329.132zm2.563-3.5a.463.463 0 0 1-.469-.47.45.45 0 0 1 .14-.33.45.45 0 0 1 .33-.138h2.812a.45.45 0 0 1 .33.139.45.45 0 0 1 .139.33.463.463 0 0 1-.469.469h-2.813zm0 4.687a.463.463 0 0 1-.469-.469.45.45 0 0 1 .14-.33.45.45 0 0 1 .33-.139h2.812a.45.45 0 0 1 .33.14.45.45 0 0 1 .139.329.463.463 0 0 1-.469.469h-2.813zm0 1.875a.463.463 0 0 1-.469-.469.45.45 0 0 1 .14-.33.45.45 0 0 1 .33-.139h2.812a.45.45 0 0 1 .33.14.45.45 0 0 1 .139.329.463.463 0 0 1-.469.469h-2.813z",
-        fill: "currentColor"
-      })
-    )
   );
 };
 
@@ -287,15 +270,10 @@ var Home = function Home(props) {
   return React.createElement(
     "svg",
     _extends({ width: 22, height: 22, viewBox: "0 0 22 22" }, props),
-    React.createElement(
-      "g",
-      { fill: "none", fillRule: "evenodd" },
-      React.createElement("path", { d: "M0 0h22v22H0z" }),
-      React.createElement("path", {
-        d: "M17.92 10.515a.46.46 0 0 1 .124.337.52.52 0 0 1-.139.336.717.717 0 0 1-.154.096.403.403 0 0 1-.168.036.49.49 0 0 1-.19-.036.363.363 0 0 1-.147-.11l-.63-.66v7.017a.45.45 0 0 1-.14.33.45.45 0 0 1-.329.139h-3.28a.45.45 0 0 1-.33-.14.45.45 0 0 1-.14-.329v-4.687H8.662l-.015 4.687a.45.45 0 0 1-.139.33.45.45 0 0 1-.33.139H4.913a.463.463 0 0 1-.469-.469v-7.016l-.63.659a.52.52 0 0 1-.337.139.46.46 0 0 1-.336-.125.52.52 0 0 1-.14-.336.46.46 0 0 1 .125-.337L10.2 3.146a.498.498 0 0 1 .161-.11.49.49 0 0 1 .366 0 .363.363 0 0 1 .147.11l7.046 7.369zm-2.241-.909c0-.02.004-.039.014-.058l-5.156-5.39-5.17 5.39c0 .02.002.039.006.058a.24.24 0 0 1 .008.059v7.398H7.71l.015-4.688a.45.45 0 0 1 .139-.33.45.45 0 0 1 .33-.139h4.672a.45.45 0 0 1 .33.14.45.45 0 0 1 .139.329v4.688h2.344V9.605z",
-        fill: "currentColor"
-      })
-    )
+    React.createElement("path", {
+      d: "M17.884 9.993c.08.085.121.198.115.314a.484.484 0 0 1-.129.312.667.667 0 0 1-.143.09.375.375 0 0 1-.157.033c-.06 0-.12-.01-.176-.033a.338.338 0 0 1-.137-.103l-.586-.614v6.53a.419.419 0 0 1-.13.307.419.419 0 0 1-.307.13h-3.052a.419.419 0 0 1-.307-.13.419.419 0 0 1-.13-.307V12.16H9.268l-.014 4.362a.419.419 0 0 1-.13.307.419.419 0 0 1-.307.13H5.78a.43.43 0 0 1-.437-.437V9.993l-.586.613a.484.484 0 0 1-.314.13.428.428 0 0 1-.312-.117.484.484 0 0 1-.13-.312.428.428 0 0 1 .116-.314L10.7 3.135a.463.463 0 0 1 .15-.102.456.456 0 0 1 .34 0 .339.339 0 0 1 .137.102l6.557 6.858zM15.8 9.147c0-.019.003-.036.013-.054l-4.799-5.016-4.81 5.016a.26.26 0 0 0 .005.054.223.223 0 0 1 .007.055v6.885h2.168l.014-4.363a.419.419 0 0 1 .129-.307.419.419 0 0 1 .307-.13h4.348a.419.419 0 0 1 .307.13c.083.08.13.191.13.307v4.363h2.18v-6.94z",
+      fill: "currentColor"
+    })
   );
 };
 
@@ -398,45 +376,6 @@ var Time = function Time(props) {
   );
 };
 
-var Tokens = function Tokens(props) {
-  return React.createElement(
-    "svg",
-    _extends({ width: 22, height: 22, viewBox: "0 0 22 22" }, props),
-    React.createElement(
-      "g",
-      { fill: "none", fillRule: "evenodd" },
-      React.createElement("path", { d: "M0 0h22v22H0z" }),
-      React.createElement(
-        "g",
-        { transform: "translate(2 3)", stroke: "currentColor" },
-        React.createElement("circle", { cx: 9, cy: 13, r: 3 }),
-        React.createElement("circle", { cx: 9, cy: 2, r: 2 }),
-        React.createElement("circle", { cx: 2, cy: 5, r: 2 }),
-        React.createElement("circle", { cx: 16, cy: 5, r: 2 }),
-        React.createElement("path", { d: "M3.275 6.48l3.715 4.164m1.994-6.645v5.99m5.844-3.393l-4.019 4.018" })
-      )
-    )
-  );
-};
-
-var Voting = function Voting(props) {
-  return React.createElement(
-    "svg",
-    _extends({ width: 22, height: 22, viewBox: "0 0 22 22" }, props),
-    React.createElement(
-      "g",
-      { fill: "none", fillRule: "evenodd" },
-      React.createElement("path", { d: "M0 0h22v22H0z" }),
-      React.createElement("path", {
-        d: "M2.053 11.267c.576.047 1.169.105 1.497.176.328.07 2.297.557 3.656.557.2 0 .442-.005.723-.015a6.99 6.99 0 0 0 .814-.075c.26-.04.489-.1.683-.181.194-.08 2.051-3.995 1.83-4.59-.149-.398-1.243-.598-3.282-.603-.311 0-.579.001-.803.005l-.337.005a.318.318 0 0 1-.16-.04.292.292 0 0 1-.111-.11.237.237 0 0 1-.055-.142.385.385 0 0 1 .025-.16c.08-.228.149-.479.206-.754a6.92 6.92 0 0 0 .12-.808c.024-.265.027-.507.01-.728-.016-.221-.062-.392-.135-.513l-.13-.2C6.562 3.03 6.462 3 6.301 3c-.02 0-.054.017-.1.05-.047.034-.101.117-.161.251a11.039 11.039 0 0 1-.89 1.723A7.683 7.683 0 0 1 4.138 6.31a5.006 5.006 0 0 1-1.06.828 2.635 2.635 0 0 1-1.024.352c-.06.127-.08 3.65 0 3.777zm18.167-.534c-.575-.047-1.168-.105-1.496-.176-.328-.07-2.297-.557-3.656-.557-.201 0-.442.005-.724.015a6.99 6.99 0 0 0-.813.075c-.261.04-.49.1-.683.181-.195.08-2.052 3.995-1.83 4.59.148.398 1.242.598 3.281.603.312 0 .58-.001.804-.005l.336-.005c.06 0 .114.014.16.04a.292.292 0 0 1 .111.11.244.244 0 0 1 .056.142.385.385 0 0 1-.025.16 5.73 5.73 0 0 0-.206.754 7.047 7.047 0 0 0-.12.808 4.466 4.466 0 0 0-.011.728c.017.221.062.392.136.513l.13.2c.04.06.14.091.302.091.02 0 .053-.017.1-.05.047-.034.1-.117.16-.251.269-.643.565-1.217.89-1.723a7.683 7.683 0 0 1 1.014-1.286 5.006 5.006 0 0 1 1.06-.828 2.64 2.64 0 0 1 1.024-.352c.06-.127.08-3.65 0-3.777z",
-        stroke: "currentColor",
-        strokeLinecap: "round",
-        strokeLinejoin: "round"
-      })
-    )
-  );
-};
-
 var Wallet = function Wallet(props) {
   return React.createElement(
     "svg",
@@ -454,108 +393,6 @@ var Wallet = function Wallet(props) {
 };
 
 /* eslint-disable prettier/prettier */
-
-var commonjsGlobal = typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
-
-
-
-function unwrapExports (x) {
-	return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, 'default') ? x['default'] : x;
-}
-
-function createCommonjsModule(fn, module) {
-	return module = { exports: {} }, fn(module, module.exports), module.exports;
-}
-
-var getDisplayName_1 = createCommonjsModule(function (module, exports) {
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = getDisplayName;
-function getDisplayName(Component) {
-  return Component.displayName || Component.name || (typeof Component === 'string' && Component.length > 0 ? Component : 'Unknown');
-}
-});
-
-var getDisplayName = unwrapExports(getDisplayName_1);
-
-var observe = function observe(_observe) {
-  var initialState = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-  return function (Component) {
-    var _class, _temp2;
-
-    return _temp2 = _class = function (_React$Component) {
-      inherits(_class, _React$Component);
-
-      function _class() {
-        var _ref;
-
-        var _temp, _this, _ret;
-
-        classCallCheck(this, _class);
-
-        for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-          args[_key] = arguments[_key];
-        }
-
-        return _ret = (_temp = (_this = possibleConstructorReturn(this, (_ref = _class.__proto__ || Object.getPrototypeOf(_class)).call.apply(_ref, [this].concat(args))), _this), _this.state = initialState, _this.subscribe = function (observable) {
-          if (observable) {
-            _this.setState({
-              subscription: _observe(observable).subscribe(function (state) {
-                _this.setState(state);
-              })
-            });
-          }
-        }, _this.unsubscribe = function () {
-          _this.state.subscription && _this.state.subscription.unsubscribe();
-        }, _temp), possibleConstructorReturn(_this, _ret);
-      }
-
-      createClass(_class, [{
-        key: 'componentDidMount',
-        value: function componentDidMount() {
-          this.subscribe(this.props.observable);
-        }
-      }, {
-        key: 'componentWillReceiveProps',
-        value: function componentWillReceiveProps(_ref2) {
-          var nextObservable = _ref2.observable;
-          var observable = this.props.observable;
-          // If a new observable gets passed in, unsubscribe from the old and subscribe to the new
-
-          if (nextObservable !== observable) {
-            this.unsubscribe();
-            this.subscribe(nextObservable);
-          }
-        }
-      }, {
-        key: 'componentWillUnmount',
-        value: function componentWillUnmount() {
-          this.unsubscribe();
-        }
-      }, {
-        key: 'render',
-        value: function render() {
-          var props = objectWithoutProperties(this.props, []);
-          // Don't pass down the given observable
-
-          delete props.observable;
-
-          return React.createElement(Component, _extends({}, this.state, props));
-        }
-      }]);
-      return _class;
-    }(React.Component), _class.displayName = 'Observe(' + getDisplayName(Component) + ')', _class.propTypes = {
-      observable: function observable(_ref3, _, componentName) {
-        var _observable = _ref3.observable;
-
-        if (_observable && typeof _observable.subscribe !== 'function') {
-          throw new Error('Invalid prop `observable` supplied to `' + componentName + '` ' + '(wrapped by `observe()`). ' + '`observable` must be an RxJS Observable-like object. ' + ('Given ' + _observable + ' instead.'));
-        }
-      }
-    }, _temp2;
-  };
-};
 
 var aragon = {
   Grey: {
@@ -1124,6 +961,31 @@ function cloneObject (dirtyObject) {
   return object
 }
 
+/**
+ * @name differenceInMilliseconds
+ * @category Millisecond Helpers
+ * @summary Get the number of milliseconds between the given dates.
+ *
+ * @description
+ * Get the number of milliseconds between the given dates.
+ *
+ * @param {Date|String|Number} dateLeft - the later date
+ * @param {Date|String|Number} dateRight - the earlier date
+ * @param {Options} [options] - the object with options. See [Options]{@link https://date-fns.org/docs/Options}
+ * @param {0|1|2} [options.additionalDigits=2] - passed to `toDate`. See [toDate]{@link https://date-fns.org/docs/toDate}
+ * @returns {Number} the number of milliseconds
+ * @throws {TypeError} 2 arguments required
+ * @throws {RangeError} `options.additionalDigits` must be 0, 1 or 2
+ *
+ * @example
+ * // How many milliseconds are between
+ * // 2 July 2014 12:30:20.600 and 2 July 2014 12:30:21.700?
+ * var result = differenceInMilliseconds(
+ *   new Date(2014, 6, 2, 12, 30, 21, 700),
+ *   new Date(2014, 6, 2, 12, 30, 20, 600)
+ * )
+ * //=> 1100
+ */
 function differenceInMilliseconds (dirtyDateLeft, dirtyDateRight, dirtyOptions) {
   if (arguments.length < 2) {
     throw new TypeError('2 arguments required, but only ' + arguments.length + ' present')
@@ -1134,6 +996,31 @@ function differenceInMilliseconds (dirtyDateLeft, dirtyDateRight, dirtyOptions) 
   return dateLeft.getTime() - dateRight.getTime()
 }
 
+/**
+ * @name differenceInSeconds
+ * @category Second Helpers
+ * @summary Get the number of seconds between the given dates.
+ *
+ * @description
+ * Get the number of seconds between the given dates.
+ *
+ * @param {Date|String|Number} dateLeft - the later date
+ * @param {Date|String|Number} dateRight - the earlier date
+ * @param {Options} [options] - the object with options. See [Options]{@link https://date-fns.org/docs/Options}
+ * @param {0|1|2} [options.additionalDigits=2] - passed to `toDate`. See [toDate]{@link https://date-fns.org/docs/toDate}
+ * @returns {Number} the number of seconds
+ * @throws {TypeError} 2 arguments required
+ * @throws {RangeError} `options.additionalDigits` must be 0, 1 or 2
+ *
+ * @example
+ * // How many seconds are between
+ * // 2 July 2014 12:30:07.999 and 2 July 2014 12:30:20.000?
+ * var result = differenceInSeconds(
+ *   new Date(2014, 6, 2, 12, 30, 20, 0),
+ *   new Date(2014, 6, 2, 12, 30, 7, 999)
+ * )
+ * //=> 12
+ */
 function differenceInSeconds (dirtyDateLeft, dirtyDateRight, dirtyOptions) {
   if (arguments.length < 2) {
     throw new TypeError('2 arguments required, but only ' + arguments.length + ' present')
@@ -1143,6 +1030,40 @@ function differenceInSeconds (dirtyDateLeft, dirtyDateRight, dirtyOptions) {
   return diff > 0 ? Math.floor(diff) : Math.ceil(diff)
 }
 
+/**
+ * @name isValid
+ * @category Common Helpers
+ * @summary Is the given date valid?
+ *
+ * @description
+ * Returns false if argument is Invalid Date and true otherwise.
+ * Argument is converted to Date using `toDate`. See [toDate]{@link https://date-fns.org/docs/toDate}
+ * Invalid Date is a Date, whose time value is NaN.
+ *
+ * Time value of Date: http://es5.github.io/#x15.9.1.1
+ *
+ * @param {*} date - the date to check
+ * @param {Options} [options] - the object with options. See [Options]{@link https://date-fns.org/docs/Options}
+ * @param {0|1|2} [options.additionalDigits=2] - passed to `toDate`. See [toDate]{@link https://date-fns.org/docs/toDate}
+ * @returns {Boolean} the date is valid
+ * @throws {TypeError} 1 argument required
+ * @throws {RangeError} `options.additionalDigits` must be 0, 1 or 2
+ *
+ * @example
+ * // For the valid date:
+ * var result = isValid(new Date(2014, 1, 31))
+ * //=> true
+ *
+ * @example
+ * // For the value, convertable into a date:
+ * var result = isValid('2014-02-31')
+ * //=> true
+ *
+ * @example
+ * // For the invalid date:
+ * var result = isValid(new Date(''))
+ * //=> false
+ */
 function isValid (dirtyDate, dirtyOptions) {
   if (arguments.length < 1) {
     throw new TypeError('1 argument required, but only ' + arguments.length + ' present')
@@ -1407,6 +1328,10 @@ function buildLocalizeArrayFn (values, defaultType) {
   }
 }
 
+// Note: in English, the names of days of the week and months are capitalized.
+// If you are making a new locale based on this one, check if the same is true for the language you're working on.
+// Generally, formatted dates should look like they are in the middle of a sentence,
+// e.g. in Spanish language the weekdays and months should be in the lowercase.
 var weekdayValues = {
   narrow: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
   short: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
@@ -1657,6 +1582,13 @@ var match = {
   timeOfDay: buildParseFn(parseTimeOfDayPatterns, 'any')
 };
 
+/**
+ * @type {Locale}
+ * @category Locales
+ * @summary English locale (United States).
+ * @language English
+ * @iso-639-2 eng
+ */
 var locale = {
   formatDistance: formatDistance,
   formatLong: formatLong,
@@ -1683,6 +1615,8 @@ function getUTCDayOfYear (dirtyDate, dirtyOptions) {
   return Math.floor(difference / MILLISECONDS_IN_DAY$1) + 1
 }
 
+// This function will be a part of public API when UTC function will be implemented.
+// See issue: https://github.com/date-fns/date-fns/issues/376
 function startOfUTCISOWeek (dirtyDate, dirtyOptions) {
   var weekStartsOn = 1;
 
@@ -1695,6 +1629,8 @@ function startOfUTCISOWeek (dirtyDate, dirtyOptions) {
   return date
 }
 
+// This function will be a part of public API when UTC function will be implemented.
+// See issue: https://github.com/date-fns/date-fns/issues/376
 function getUTCISOWeekYear (dirtyDate, dirtyOptions) {
   var date = toDate(dirtyDate, dirtyOptions);
   var year = date.getUTCFullYear();
@@ -1718,6 +1654,8 @@ function getUTCISOWeekYear (dirtyDate, dirtyOptions) {
   }
 }
 
+// This function will be a part of public API when UTC function will be implemented.
+// See issue: https://github.com/date-fns/date-fns/issues/376
 function startOfUTCISOWeekYear (dirtyDate, dirtyOptions) {
   var year = getUTCISOWeekYear(dirtyDate, dirtyOptions);
   var fourthOfJanuary = new Date(0);
@@ -1993,6 +1931,8 @@ function addLeadingZeros (number, targetLength) {
   return output
 }
 
+// This function will be a part of public API when UTC function will be implemented.
+// See issue: https://github.com/date-fns/date-fns/issues/376
 function addUTCMinutes (dirtyDate, dirtyAmount, dirtyOptions) {
   var date = toDate(dirtyDate, dirtyOptions);
   var amount = Number(dirtyAmount);
@@ -2177,16 +2117,6 @@ function cleanEscapedString (input) {
   return input.replace(/\\/g, '')
 }
 
-function isEqual (dirtyLeftDate, dirtyRightDate, dirtyOptions) {
-  if (arguments.length < 2) {
-    throw new TypeError('2 arguments required, but only ' + arguments.length + ' present')
-  }
-
-  var dateLeft = toDate(dirtyLeftDate, dirtyOptions);
-  var dateRight = toDate(dirtyRightDate, dirtyOptions);
-  return dateLeft.getTime() === dateRight.getTime()
-}
-
 // This file is generated automatically by `scripts/build/indices.js`. Please, don't change it.
 
 var MINUTE_IN_SECONDS = 60;
@@ -2230,6 +2160,27 @@ var formatIntegerRange = function formatIntegerRange() {
   return count.toString();
 };
 
+var commonjsGlobal = typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
+
+
+
+function unwrapExports (x) {
+	return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, 'default') ? x['default'] : x;
+}
+
+function createCommonjsModule(fn, module) {
+	return module = { exports: {} }, fn(module, module.exports), module.exports;
+}
+
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ * 
+ */
+
 function makeEmptyFunction(arg) {
   return function () {
     return arg;
@@ -2264,6 +2215,17 @@ var emptyFunction_1 = emptyFunction;
  *
  */
 
+/**
+ * Use invariant() to assert state which your program assumes to be true.
+ *
+ * Provide sprintf-style format (only %s is supported) and arguments
+ * to provide information about what broke and what you were
+ * expecting.
+ *
+ * The invariant message will be stripped in production, but the invariant
+ * will remain to ensure logic does not differ in production.
+ */
+
 var validateFormat = function validateFormat(format) {};
 
 if (process.env.NODE_ENV !== 'production') {
@@ -2296,6 +2258,13 @@ function invariant(condition, format, a, b, c, d, e, f) {
 }
 
 var invariant_1 = invariant;
+
+/**
+ * Similar to invariant but only logs a warning if the condition is not met.
+ * This can be used to log issues in development environments in critical
+ * paths. Removing the logging code for production environments will keep the
+ * same logic and follow the same code paths.
+ */
 
 var warning = emptyFunction_1;
 
@@ -2347,6 +2316,7 @@ object-assign
 @license MIT
 */
 
+/* eslint-disable no-unused-vars */
 var getOwnPropertySymbols = Object.getOwnPropertySymbols;
 var hasOwnProperty = Object.prototype.hasOwnProperty;
 var propIsEnumerable = Object.prototype.propertyIsEnumerable;
@@ -3261,6 +3231,8 @@ module.exports = _Media2.default;
 
 var Media = unwrapExports(reactMedia);
 
+// These breakpoints values represent minimum screen sizes.
+// Small screen sizes should be targetted by default (mobile first).
 var BREAKPOINTS = {
   medium: 768,
   large: 1170
@@ -3316,15 +3288,29 @@ var FONT_WEIGHTS = {
   bolder: '800'
 };
 
-var font = function font(_ref) {
-  var _ref$size = _ref.size,
-      size = _ref$size === undefined ? 'normal' : _ref$size,
-      _ref$weight = _ref.weight,
-      weight = _ref$weight === undefined ? 'normal' : _ref$weight;
+var fontSizeCss = function fontSizeCss(size) {
+  var fontSize = FONT_SIZES[size];
+  return fontSize !== undefined ? '\n      line-height: 1.5;\n      font-size: ' + fontSize + '\n    ' : '';
+};
 
-  var fontSize = FONT_SIZES[size] || FONT_SIZES.normal;
-  var fontWeight = FONT_WEIGHTS[weight] || FONT_WEIGHTS.normal;
-  return '\n    font-size: ' + fontSize + ';\n    font-weight: ' + fontWeight + ';\n    line-height: 1.5;\n  ';
+var weightCss = function weightCss(weight) {
+  var fontWeight = FONT_WEIGHTS[weight];
+  return fontWeight !== undefined ? 'font-weight: ' + fontWeight : '';
+};
+
+var smallcapsCss = function smallcapsCss(smallcaps) {
+  return smallcaps ? '\n      text-transform: lowercase;\n      font-variant: small-caps;\n    ' : '';
+};
+
+var font = function font(_ref) {
+  var size = _ref.size,
+      weight = _ref.weight,
+      _ref$smallcaps = _ref.smallcaps,
+      smallcaps = _ref$smallcaps === undefined ? false : _ref$smallcaps,
+      _ref$inherit = _ref.inherit,
+      inherit = _ref$inherit === undefined ? false : _ref$inherit;
+
+  return '\n    ' + fontSizeCss(size, inherit) + ';\n    ' + weightCss(weight, inherit) + ';\n    ' + smallcapsCss(smallcaps, inherit) + ';\n  ';
 };
 
 var GRID = {
@@ -3353,7 +3339,23 @@ var unselectable = function unselectable() {
   return '\n  -webkit-touch-callout: none;\n  -webkit-user-select: none;\n  -moz-user-select: none;\n  -ms-user-select: none;\n  user-select: none;\n';
 };
 
-var redraw = function redraw(delay) {
+/* eslint-disable prettier/prettier */
+
+var getDisplayName_1 = createCommonjsModule(function (module, exports) {
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = getDisplayName;
+function getDisplayName(Component) {
+  return Component.displayName || Component.name || (typeof Component === 'string' && Component.length > 0 ? Component : 'Unknown');
+}
+});
+
+var getDisplayName = unwrapExports(getDisplayName_1);
+
+// Higher-order component for convenient subscriptions to RxJS observables
+var observe = function observe(_observe) {
+  var initialState = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
   return function (Component) {
     var _class, _temp2;
 
@@ -3371,181 +3373,109 @@ var redraw = function redraw(delay) {
           args[_key] = arguments[_key];
         }
 
-        return _ret = (_temp = (_this = possibleConstructorReturn(this, (_ref = _class.__proto__ || Object.getPrototypeOf(_class)).call.apply(_ref, [this].concat(args))), _this), _this.draw = function () {
-          _this.raf = requestAnimationFrame(_this.draw);
-
-          var now = Date.now();
-          var delta = now - _this.lastDraw;
-          if (delta > delay) {
-            _this.child ? _this.child.forceUpdate() : _this.forceUpdate();
-            _this.lastDraw = now - delta % delay;
+        return _ret = (_temp = (_this = possibleConstructorReturn(this, (_ref = _class.__proto__ || Object.getPrototypeOf(_class)).call.apply(_ref, [this].concat(args))), _this), _this.state = initialState, _this.subscribe = function (observable) {
+          if (observable) {
+            _this.setState({
+              subscription: _observe(observable).subscribe(function (state) {
+                _this.setState(state);
+              })
+            });
           }
+        }, _this.unsubscribe = function () {
+          _this.state.subscription && _this.state.subscription.unsubscribe();
         }, _temp), possibleConstructorReturn(_this, _ret);
       }
 
       createClass(_class, [{
         key: 'componentDidMount',
         value: function componentDidMount() {
-          this.raf = null;
-          this.lastDraw = Date.now();
-          this.draw();
+          this.subscribe(this.props.observable);
+        }
+      }, {
+        key: 'componentWillReceiveProps',
+        value: function componentWillReceiveProps(_ref2) {
+          var nextObservable = _ref2.observable;
+          var observable = this.props.observable;
+          // If a new observable gets passed in, unsubscribe from the old and subscribe to the new
+
+          if (nextObservable !== observable) {
+            this.unsubscribe();
+            this.subscribe(nextObservable);
+          }
         }
       }, {
         key: 'componentWillUnmount',
         value: function componentWillUnmount() {
-          this.raf && cancelAnimationFrame(this.raf);
+          this.unsubscribe();
         }
       }, {
         key: 'render',
         value: function render() {
-          var _this2 = this;
+          var props = objectWithoutProperties(this.props, []);
+          // Don't pass down the given observable
 
-          return React.createElement(Component, _extends({}, this.props, {
-            ref:
-            // Only add a ref prop if the given component is not a stateless
-            // component
-            Component.render ? function (child) {
-              _this2.child = child;
-              _this2.props.innerRef(child);
-            } : undefined
-          }));
+          delete props.observable;
+
+          return React.createElement(Component, _extends({}, this.state, props));
         }
       }]);
       return _class;
-    }(React.Component), _class.propTypes = {
-      innerRef: propTypes.func
-    }, _class.defaultProps = {
-      innerRef: function innerRef() {}
-    }, _class.displayName = 'Redraw(' + getDisplayName(Component) + ')', _temp2;
-  };
-};
+    }(React.Component), _class.displayName = 'Observe(' + getDisplayName(Component) + ')', _class.propTypes = {
+      observable: function observable(_ref3, _, componentName) {
+        var _observable = _ref3.observable;
 
-var EVERY_SECOND = 1000;
-var EVERY_MINUTE = EVERY_SECOND * 60;
-var EVERY_HOUR = EVERY_MINUTE * 60;
-
-var getRedrawTime = function getRedrawTime(fromDate) {
-  var _difference = difference(new Date(), fromDate),
-      days = _difference.days,
-      hours = _difference.hours,
-      minutes = _difference.minutes;
-
-  return hours || days ? EVERY_HOUR : minutes ? EVERY_MINUTE : EVERY_SECOND;
-};
-
-// Higher-order component for re-rendering based on a given date
-// Automatically adjusts the re-render timer to be one second, minute, or hour
-// based on the fromDate.
-// For a discussion on pitfalls, see https://gist.github.com/staltz/08bf613199092eeb41ac8137d51eb5e6#gistcomment-2280414
-var redrawFromDate = function redrawFromDate(Component) {
-  var _class, _temp2;
-
-  return _temp2 = _class = function (_React$Component) {
-    inherits(_class, _React$Component);
-
-    function _class() {
-      var _ref;
-
-      var _temp, _this, _ret;
-
-      classCallCheck(this, _class);
-
-      for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-        args[_key] = arguments[_key];
-      }
-
-      return _ret = (_temp = (_this = possibleConstructorReturn(this, (_ref = _class.__proto__ || Object.getPrototypeOf(_class)).call.apply(_ref, [this].concat(args))), _this), _this.clearInterval = function () {
-        _this.interval && clearInterval(_this.interval);
-      }, _this.restartDrawInterval = function (redrawTime) {
-        _this.clearInterval();
-
-        _this.interval = setInterval(function () {
-          _this.child ? _this.child.forceUpdate() : _this.forceUpdate();
-
-          var newRedrawTime = getRedrawTime(_this.props.fromDate);
-          if (newRedrawTime !== redrawTime) {
-            _this.restartDrawInterval(newRedrawTime);
-          }
-        }, redrawTime);
-      }, _temp), possibleConstructorReturn(_this, _ret);
-    }
-
-    createClass(_class, [{
-      key: 'componentDidMount',
-      value: function componentDidMount() {
-        var fromDate = this.props.fromDate;
-
-        if (fromDate) {
-          this.restartDrawInterval(getRedrawTime(this.props.fromDate));
+        if (_observable && typeof _observable.subscribe !== 'function') {
+          throw new Error('Invalid prop `observable` supplied to `' + componentName + '` ' + '(wrapped by `observe()`). ' + '`observable` must be an RxJS Observable-like object. ' + ('Given ' + _observable + ' instead.'));
         }
       }
-    }, {
-      key: 'componentWillReceiveProps',
-      value: function componentWillReceiveProps(_ref2) {
-        var fromDate = _ref2.fromDate;
-
-        if (!fromDate && this.props.fromDate) {
-          this.clearInterval();
-        } else if (!isEqual(fromDate, this.props.fromDate)) {
-          this.restartDrawInterval(getRedrawTime(this.props.fromDate));
-        }
-      }
-    }, {
-      key: 'componentWillUnmount',
-      value: function componentWillUnmount() {
-        this.clearInterval();
-      }
-    }, {
-      key: 'render',
-      value: function render() {
-        var _this2 = this;
-
-        return React.createElement(Component, _extends({}, this.props, {
-          ref:
-          // Only add a ref prop if the given component is not a stateless
-          // component
-          Component.render ? function (child) {
-            _this2.child = child;
-            _this2.props.innerRef(child);
-          } : undefined
-        }));
-      }
-    }]);
-    return _class;
-  }(React.Component), _class.propTypes = {
-    fromDate: propTypes.oneOfType([propTypes.string, propTypes.number, propTypes.instanceOf(Date)]),
-    innerRef: propTypes.func
-  }, _class.defaultProps = {
-    innerRef: function innerRef() {}
-  }, _class.displayName = 'RedrawFromDate(' + getDisplayName(Component) + ')', _temp2;
-};
-
-var getPublicUrl = function getPublicUrl(Component) {
-  var highOrderComponent = function highOrderComponent(baseProps, context) {
-    var _context$publicUrl = context.publicUrl,
-        publicUrl = _context$publicUrl === undefined ? '' : _context$publicUrl;
-
-    var props = _extends({}, baseProps, { publicUrl: publicUrl });
-    return React.createElement(Component, props);
+    }, _temp2;
   };
-  highOrderComponent.contextTypes = {
-    publicUrl: propTypes.string
+};
+
+var DEFAULT_URL = '';
+
+var _React$createContext = React.createContext(DEFAULT_URL);
+var Provider = _React$createContext.Provider;
+var PublicUrl$1 = _React$createContext.Consumer;
+
+var PublicUrlProvider = function PublicUrlProvider(_ref) {
+  var url = _ref.url,
+      children = _ref.children;
+
+  return React.createElement(
+    Provider,
+    { value: url },
+    children
+  );
+};
+PublicUrlProvider.propTypes = {
+  url: propTypes.string,
+  children: propTypes.func
+
+  // HOC wrapper
+};var hocWrap = function hocWrap(Component) {
+  return function (props) {
+    return React.createElement(
+      PublicUrl$1,
+      null,
+      function (publicUrl) {
+        return React.createElement(Component, _extends({}, props, { publicUrl: publicUrl }));
+      }
+    );
   };
-  return highOrderComponent;
 };
 
-// prefix helper
-var prefixUrl = function prefixUrl(url, publicUrl) {
-  return url.startsWith('data:') ? url : publicUrl + url;
-};
-
-// styled-component helper
-var styledPublicUrl = function styledPublicUrl(url) {
-  return function (_ref) {
-    var publicUrl = _ref.publicUrl;
+// styled-components utility for URLs
+var styledUrl = function styledUrl(url) {
+  return function (_ref2) {
+    var publicUrl = _ref2.publicUrl;
     return prefixUrl(url, publicUrl);
   };
 };
+
+PublicUrl$1.Provider = PublicUrlProvider;
+PublicUrl$1.hocWrap = hocWrap;
+PublicUrl$1.styledUrl = styledUrl;
 
 var overpassLightWoff = "fd48a701d84ebf69.woff";
 
@@ -3560,6 +3490,44 @@ var overpassSemiBoldWoff = "f8ba2d7a9af0db1f.woff";
 var overpassSemiBoldWoff2 = "5cfe62515c2f9b42.woff2";
 
 var _templateObject = taggedTemplateLiteral(['\n  @font-face {\n    font-family: \'overpass\';\n    src: ', ';\n    font-weight: 400;\n    font-style: normal;\n  }\n  @font-face {\n    font-family: \'overpass\';\n    src: ', ';\n    font-weight: 600;\n    font-style: normal;\n  }\n  @font-face {\n    font-family: \'overpass\';\n    src: ', ';\n    font-weight: 800;\n    font-style: normal;\n  }\n  *,\n  *:before,\n  *:after {\n    box-sizing: border-box;\n  }\n  html {\n    min-height: 100%;\n  }\n  body {\n    font-family: overpass, sans-serif;\n    font-size: 15px;\n    font-weight: 400;\n    line-height: 1.5;\n    color: ', ';\n    background: ', ';\n  }\n  body,\n  ul,\n  p,\n  h1,\n  h2,\n  h3,\n  h4,\n  h5,\n  h6 {\n    margin: 0;\n    padding: 0;\n  }\n  button,\n  select,\n  input,\n  h1,\n  h2,\n  h3,\n  h4,\n  h5,\n  h6 {\n    font-size: inherit;\n    font-family: inherit;\n    font-weight: inherit;\n    line-height: inherit;\n  }\n  a,\n  button,\n  select,\n  input {\n    color: inherit;\n  }\n  strong,\n  b {\n    font-weight: 600;\n  }\n'], ['\n  @font-face {\n    font-family: \'overpass\';\n    src: ', ';\n    font-weight: 400;\n    font-style: normal;\n  }\n  @font-face {\n    font-family: \'overpass\';\n    src: ', ';\n    font-weight: 600;\n    font-style: normal;\n  }\n  @font-face {\n    font-family: \'overpass\';\n    src: ', ';\n    font-weight: 800;\n    font-style: normal;\n  }\n  *,\n  *:before,\n  *:after {\n    box-sizing: border-box;\n  }\n  html {\n    min-height: 100%;\n  }\n  body {\n    font-family: overpass, sans-serif;\n    font-size: 15px;\n    font-weight: 400;\n    line-height: 1.5;\n    color: ', ';\n    background: ', ';\n  }\n  body,\n  ul,\n  p,\n  h1,\n  h2,\n  h3,\n  h4,\n  h5,\n  h6 {\n    margin: 0;\n    padding: 0;\n  }\n  button,\n  select,\n  input,\n  h1,\n  h2,\n  h3,\n  h4,\n  h5,\n  h6 {\n    font-size: inherit;\n    font-family: inherit;\n    font-weight: inherit;\n    line-height: inherit;\n  }\n  a,\n  button,\n  select,\n  input {\n    color: inherit;\n  }\n  strong,\n  b {\n    font-weight: 600;\n  }\n']);
+
+var BaseStyles = function (_React$Component) {
+  inherits(BaseStyles, _React$Component);
+
+  function BaseStyles() {
+    classCallCheck(this, BaseStyles);
+    return possibleConstructorReturn(this, (BaseStyles.__proto__ || Object.getPrototypeOf(BaseStyles)).apply(this, arguments));
+  }
+
+  createClass(BaseStyles, [{
+    key: 'componentWillMount',
+    value: function componentWillMount() {
+      var _props = this.props,
+          publicUrl = _props.publicUrl,
+          enableLegacyFonts = _props.enableLegacyFonts;
+
+      injectStyles(function (url) {
+        return publicUrl + url;
+      }, enableLegacyFonts);
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      return null;
+    }
+  }]);
+  return BaseStyles;
+}(React.Component);
+
+BaseStyles.propTypes = {
+  publicUrl: propTypes.string,
+  enableLegacyFonts: propTypes.bool
+};
+BaseStyles.defaultProps = {
+  publicUrl: '/',
+  enableLegacyFonts: false
+};
+
 
 var fontSrc = function fontSrc(sources) {
   return sources.filter(function (_ref) {
@@ -3576,241 +3544,7 @@ var injectStyles = function injectStyles(asset, legacyFonts) {
   return injectGlobal(_templateObject, fontSrc([{ url: asset(overpassLightWoff2), format: 'woff2', enable: true }, { url: asset(overpassLightWoff), format: 'woff', enable: legacyFonts }]), fontSrc([{ url: asset(overpassRegularWoff2), format: 'woff2', enable: true }, { url: asset(overpassRegularWoff), format: 'woff', enable: legacyFonts }]), fontSrc([{ url: asset(overpassSemiBoldWoff2), format: 'woff2', enable: true }, { url: asset(overpassSemiBoldWoff), format: 'woff', enable: legacyFonts }]), theme.textPrimary, theme.mainBackground);
 };
 
-var BaseStyles = function (_React$Component) {
-  inherits(BaseStyles, _React$Component);
-
-  function BaseStyles() {
-    classCallCheck(this, BaseStyles);
-    return possibleConstructorReturn(this, (BaseStyles.__proto__ || Object.getPrototypeOf(BaseStyles)).apply(this, arguments));
-  }
-
-  createClass(BaseStyles, [{
-    key: 'componentWillMount',
-    value: function componentWillMount() {
-      var _props = this.props,
-          publicUrl = _props.publicUrl,
-          legacyFonts = _props.legacyFonts;
-
-      injectStyles(function (url) {
-        return publicUrl + url;
-      });
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      return null;
-    }
-  }]);
-  return BaseStyles;
-}(React.Component);
-
-BaseStyles.defaultProps = {
-  publicUrl: '/',
-  legacyFonts: false
-};
-
-
-var BaseStyles$1 = getPublicUrl(BaseStyles);
-
-var StyledContent = styled.div.withConfig({
-  displayName: 'Section__StyledContent'
-})(['width:100%;margin:0 auto;max-width:', 'px;'], function (_ref) {
-  var large = _ref.large;
-  return grid(large ? 12 : 10);
-});
-
-var DefaultProps = {
-  large: false,
-  visual: false
-};
-
-var Section = function Section(_ref2) {
-  var large = _ref2.large,
-      visual = _ref2.visual,
-      className = _ref2.className,
-      publicUrl = _ref2.publicUrl,
-      props = objectWithoutProperties(_ref2, ['large', 'visual', 'className', 'publicUrl']);
-
-  var containerProps = { className: className };
-  var content = React.createElement(
-    StyledContent,
-    { large: large },
-    React.createElement('div', props)
-  );
-  if (visual) return React.createElement(
-    'div',
-    containerProps,
-    content
-  );
-  return React.createElement(
-    'section',
-    containerProps,
-    content
-  );
-};
-
-Section.defaultProps = DefaultProps;
-
-var medium = function medium(css$$1) {
-  return breakpoint('medium', css$$1);
-};
-var large = function large(css$$1) {
-  return breakpoint('large', css$$1);
-};
-
-var StyledIllustratedSection = styled(Section).withConfig({
-  displayName: 'IllustratedSection__StyledIllustratedSection'
-})(['padding:120px 15px 120px;.main{display:block;align-items:center;', ';}.text{margin-top:20px;', ';', ';}'], large('display: flex'), medium('\n      display: flex;\n      margin-top: 40px;\n    '), large('\n      display: block;\n      margin-top: 0;\n    '));
-
-var StyledIllustration = styled.div.withConfig({
-  displayName: 'IllustratedSection__StyledIllustration'
-})(['margin-top:40px;img{display:block;margin:0 auto;max-width:calc(100% - 30px);}', ';'], large('\n    flex-shrink: 0;\n    width: calc(40% + 150px);\n    margin-left: 50px;\n    margin-right: -100px;\n    margin-top: 0;\n    padding: 0 70px;\n    &:first-child {\n      margin-left: -100px;\n      margin-right: 50px;\n    }\n    img {\n      width: 100%;\n      margin: 0;\n    }\n  '));
-
-var StyledTitle = styled.div.withConfig({
-  displayName: 'IllustratedSection__StyledTitle'
-})(['margin-bottom:10px;font-size:15px;text-align:center;text-transform:uppercase;color:', ';font-weight:600;', ';', ';'], theme.accent, medium('\n    font-size: 18px;\n  '), large('\n    text-align: left;\n  '));
-
-var StyledSubtitle = styled.div.withConfig({
-  displayName: 'IllustratedSection__StyledSubtitle'
-})(['font-size:25px;font-weight:200;line-height:1.3;text-align:center;color:', ';', ';', ';'], function (_ref) {
-  var dark = _ref.dark;
-  return dark ? 'white' : 'black';
-}, medium('\n    font-size: 37px;\n  '), large('\n    text-align: left;\n  '));
-
-var StyledEmphasis = styled.div.withConfig({
-  displayName: 'IllustratedSection__StyledEmphasis'
-})(['margin:0 0 30px;padding-left:30px;font-size:18px;border-left:4px solid ', ';color:', ';', ';', ';'], theme.accent, function (_ref2) {
-  var dark = _ref2.dark;
-  return dark ? 'white' : 'black';
-}, medium('\n    margin: 0 30px 40px 0;\n    font-size: 19px;\n  '), large('\n    margin: 40px 0;\n  '));
-
-var StyledContent$1 = styled.div.withConfig({
-  displayName: 'IllustratedSection__StyledContent'
-})(['font-size:17px;color:', ';', ';p{margin-bottom:1em;}p:last-child{margin-bottom:0;}'], function (_ref3) {
-  var dark = _ref3.dark;
-  return dark ? themeDark.textSecondary : 'black';
-}, medium('\n    font-size: 18px;\n  '));
-
-var DefaultProps$1 = {
-  dark: false
-};
-
-var childrenComponents = {
-  Illustration: StyledIllustration,
-  Title: StyledTitle,
-  Subtitle: StyledSubtitle,
-  Emphasis: StyledEmphasis,
-  Content: StyledContent$1
-};
-
-var IllustratedSection = function IllustratedSection(_ref4) {
-  var className = _ref4.className,
-      dark = _ref4.dark,
-      children = _ref4.children;
-
-  // Using proxiedComponents instead of childrenComponents is a way to
-  // circumvent the react-hot-loader proxy wrapper.
-  //
-  // See https://github.com/gaearon/react-hot-loader/issues/304
-  var proxiedComponents = Object.keys(childrenComponents).map(function (name) {
-    var Comp = childrenComponents[name];
-    return [name, Comp, React.createElement(Comp, null).type];
-  });
-  var elementType = function elementType(elt) {
-    var compGroup = proxiedComponents.find(function (_ref5) {
-      var _ref6 = slicedToArray(_ref5, 3),
-          name = _ref6[0],
-          Comp = _ref6[1],
-          ProxiedComp = _ref6[2];
-
-      return elt.type === ProxiedComp;
-    });
-    if (!compGroup) return { name: '', component: elt.type };
-    return { name: compGroup[0], component: compGroup[1] };
-  };
-
-  // Collect the elements
-  var elts = React.Children.toArray(children).reduce(
-  // Fill the .elt property for existing children
-  function (elts, elt, i) {
-    var _elementType = elementType(elt),
-        name = _elementType.name,
-        component = _elementType.component;
-
-    if (!elts[name]) return elts;
-
-    elts[name].elt = elt;
-
-    if (component === childrenComponents.Illustration) {
-      elts[name].first = i === 0;
-    }
-    return elts;
-  },
-
-  // Fill the initial elts object with { elt: null } entries
-  Object.keys(childrenComponents).reduce(function (elts, name) {
-    elts[name] = { elt: null, first: false };
-    return elts;
-  }, {}));
-
-  var illustration = elts.Illustration,
-      title = elts.Title,
-      subtitle = elts.Subtitle,
-      emphasis = elts.Emphasis,
-      content = elts.Content;
-
-
-  return React.createElement(
-    StyledIllustratedSection,
-    { className: className },
-    React.createElement(
-      BreakPoint,
-      { to: 'large' },
-      React.createElement(
-        'div',
-        { className: 'main' },
-        title.elt,
-        subtitle.elt,
-        illustration.elt,
-        React.createElement(
-          'div',
-          { className: 'text' },
-          emphasis.elt,
-          content.elt
-        )
-      )
-    ),
-    React.createElement(
-      BreakPoint,
-      { from: 'large' },
-      React.createElement(
-        'div',
-        { className: 'main' },
-        illustration.first && illustration.elt,
-        React.createElement(
-          'div',
-          { className: 'text' },
-          title.elt,
-          subtitle.elt,
-          emphasis.elt,
-          content.elt
-        ),
-        !illustration.first && illustration.elt
-      )
-    )
-  );
-};
-
-IllustratedSection.defaultProps = DefaultProps$1;
-
-Object.entries(childrenComponents).forEach(function (_ref7) {
-  var _ref8 = slicedToArray(_ref7, 2),
-      name = _ref8[0],
-      comp = _ref8[1];
-
-  // Expose the child component
-  IllustratedSection[name] = comp;
-});
+var BaseStyles$1 = PublicUrl$1.hocWrap(BaseStyles);
 
 var Info = function Info(_ref) {
   var children = _ref.children,
@@ -3941,6 +3675,13 @@ var BadgeNumber = function BadgeNumber(_ref) {
   );
 };
 
+BadgeNumber.propTypes = {
+  number: propTypes.number,
+  small: propTypes.bool,
+  color: propTypes.string,
+  background: propTypes.string
+};
+
 BadgeNumber.defaultProps = {
   number: 0,
   small: false,
@@ -4007,18 +3748,18 @@ var compactStyle = css(['padding:', ';'], function (_ref4) {
   return mode === 'outline' ? '4px 14px' : '5px 15px';
 });
 
-var positiveStyle = css(['padding-left:34px;background:url(', ') no-repeat 12px calc(50% - 1px);', ';'], styledPublicUrl(check), function (_ref5) {
+var positiveStyle = css(['padding-left:34px;background:url(', ') no-repeat 12px calc(50% - 1px);', ';'], asset(check), function (_ref5) {
   var mode = _ref5.mode;
 
   if (mode !== 'strong') return '';
-  return css(['&,&:active{background-image:url(', ');background-color:', ';}&:after{background:none;}'], styledPublicUrl(checkWhite), theme.positive);
+  return css(['&,&:active{background-image:url(', ');background-color:', ';}&:after{background:none;}'], asset(checkWhite), theme.positive);
 });
 
-var negativeStyle = css(['padding-left:30px;background:url(', ') no-repeat 10px calc(50% - 1px);', ';'], styledPublicUrl(cross), function (_ref6) {
+var negativeStyle = css(['padding-left:30px;background:url(', ') no-repeat 10px calc(50% - 1px);', ';'], asset(cross), function (_ref6) {
   var mode = _ref6.mode;
 
   if (mode !== 'strong') return '';
-  return css(['&,&:active{background-image:url(', ');background-color:', ';}&:after{background:none;}'], styledPublicUrl(crossWhite), theme.negative);
+  return css(['&,&:active{background-image:url(', ');background-color:', ';}&:after{background:none;}'], asset(crossWhite), theme.negative);
 });
 
 var StyledButton = styled.button.attrs({ type: 'button' }).withConfig({
@@ -4048,8 +3789,8 @@ var StyledButton = styled.button.attrs({ type: 'button' }).withConfig({
   return '';
 });
 
-var Button = getPublicUrl(StyledButton);
-var Anchor = getPublicUrl(StyledButton.withComponent(SafeLink).extend(_templateObject$1));
+var Button = PublicUrl$1.hocWrap(StyledButton);
+var Anchor = PublicUrl$1.hocWrap(StyledButton.withComponent(SafeLink).extend(_templateObject$1));
 
 Button.Anchor = Anchor;
 
@@ -4211,7 +3952,7 @@ var performanceNow$2 = createCommonjsModule(function (module) {
 
 }).call(commonjsGlobal);
 
-//# sourceMappingURL=performance-now.js.map
+
 });
 
 var root = typeof window === 'undefined' ? commonjsGlobal : window;
@@ -5675,6 +5416,12 @@ var CircleGraph = function CircleGraph(_ref) {
   );
 };
 
+CircleGraph.propTypes = {
+  value: propTypes.number,
+  size: propTypes.number,
+  label: propTypes.string
+};
+
 CircleGraph.defaultProps = {
   value: VALUE_DEFAULT,
   size: SIZE_DEFAULT,
@@ -5922,6 +5669,11 @@ var ContextMenu = function (_React$Component) {
   return ContextMenu;
 }(React.Component);
 
+ContextMenu.propTypes = {
+  children: propTypes.node
+};
+
+
 var Main = styled.div.withConfig({
   displayName: 'ContextMenu__Main'
 })(['position:relative;z-index:', ';width:', 'px;height:', 'px;'], function (_ref4) {
@@ -5958,6 +5710,75 @@ ContextMenu.BASE_HEIGHT = 32;
 var ContextMenuItem = styled.div.withConfig({
   displayName: 'ContextMenuItem'
 })(['display:flex;align-items:center;padding:5px 20px;cursor:pointer;white-space:nowrap;', ';&:active{background:', ';}'], unselectable(), theme.contentBackgroundActive);
+
+// Higher-order component for re-rendering
+// For a discussion on pitfalls, see https://gist.github.com/staltz/08bf613199092eeb41ac8137d51eb5e6#gistcomment-2280414
+var redraw = function redraw(delay) {
+  return function (Component) {
+    var _class, _temp2;
+
+    return _temp2 = _class = function (_React$Component) {
+      inherits(_class, _React$Component);
+
+      function _class() {
+        var _ref;
+
+        var _temp, _this, _ret;
+
+        classCallCheck(this, _class);
+
+        for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+          args[_key] = arguments[_key];
+        }
+
+        return _ret = (_temp = (_this = possibleConstructorReturn(this, (_ref = _class.__proto__ || Object.getPrototypeOf(_class)).call.apply(_ref, [this].concat(args))), _this), _this.draw = function () {
+          _this.raf = requestAnimationFrame(_this.draw);
+
+          var now = Date.now();
+          var delta = now - _this.lastDraw;
+          if (delta > delay) {
+            _this.child ? _this.child.forceUpdate() : _this.forceUpdate();
+            _this.lastDraw = now - delta % delay;
+          }
+        }, _temp), possibleConstructorReturn(_this, _ret);
+      }
+
+      createClass(_class, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+          this.raf = null;
+          this.lastDraw = Date.now();
+          this.draw();
+        }
+      }, {
+        key: 'componentWillUnmount',
+        value: function componentWillUnmount() {
+          this.raf && cancelAnimationFrame(this.raf);
+        }
+      }, {
+        key: 'render',
+        value: function render() {
+          var _this2 = this;
+
+          return React.createElement(Component, _extends({}, this.props, {
+            ref:
+            // Only add a ref prop if the given component is not a stateless
+            // component
+            Component.render ? function (child) {
+              _this2.child = child;
+              _this2.props.innerRef(child);
+            } : undefined
+          }));
+        }
+      }]);
+      return _class;
+    }(React.Component), _class.propTypes = {
+      innerRef: propTypes.func
+    }, _class.defaultProps = {
+      innerRef: function innerRef() {}
+    }, _class.displayName = 'Redraw(' + getDisplayName(Component) + ')', _temp2;
+  };
+};
 
 var FRAME_EVERY = 1000 / 30; // 30 FPS is enough for a ticker
 
@@ -6255,7 +6076,7 @@ var StyledDropDown = styled.div.withConfig({
   displayName: 'DropDown__StyledDropDown'
 })(['position:relative;z-index:', ';display:', ';flex-direction:column;color:', ';white-space:nowrap;box-shadow:0 4px 4px 0 rgba(0,0,0,0.03);', ';&:focus{outline:0;}'], function (_ref) {
   var opened = _ref.opened;
-  return opened ? '2' : '1';
+  return opened ? '2' : '0';
 }, function (_ref2) {
   var wide = _ref2.wide;
   return wide ? 'flex' : 'inline-flex';
@@ -6274,9 +6095,9 @@ var DropDownItems = styled.div.withConfig({
   return opened ? '2' : '1';
 }, textPrimary$1, contentBackground$1, contentBorder$1);
 
-var DropDownActiveItem = getPublicUrl(styled(DropDownItem).withConfig({
+var DropDownActiveItem = styled(PublicUrl$1.hocWrap(DropDownItem)).withConfig({
   displayName: 'DropDown__DropDownActiveItem'
-})(['padding-right:40px;background:', ' url(', ') no-repeat calc(100% - 15px) 50%;border:1px solid ', ';border-radius:3px;&:hover,&:focus{color:inherit;}&:active{color:', ';}'], contentBackground$1, styledPublicUrl(arrow), contentBorder$1, textPrimary$1));
+})(['padding-right:40px;background:', ';background-image:url(', ');background-repeat:no-repeat;background-position:calc(100% - 15px) 50%;border:1px solid ', ';border-radius:3px;&:hover,&:focus{color:inherit;}&:active{color:', ';}'], contentBackground$1, PublicUrl$1.styledUrl(arrow), contentBorder$1, textPrimary$1);
 
 var DropDown = function (_React$Component) {
   inherits(DropDown, _React$Component);
@@ -6301,7 +6122,7 @@ var DropDown = function (_React$Component) {
     }, _this.handleItemActivate = function (index, _ref7) {
       var keyboard = _ref7.keyboard;
 
-      _this.props.onChange(index);
+      _this.props.onChange(index, _this.props.items);
       _this.setState({ opened: false });
       if (_this.activeItemElt && keyboard) {
         _this.activeItemElt.focus();
@@ -6393,19 +6214,14 @@ DropDown.defaultProps = {
 
 var StyledText = styled.span.withConfig({
   displayName: 'Text__StyledText'
-})(['', ';', ';', ';'], function (_ref) {
+})(['', ';', ';'], function (_ref) {
   var size = _ref.size,
-      weight = _ref.weight;
-  return font({ size: size, weight: weight });
+      weight = _ref.weight,
+      smallcaps = _ref.smallcaps;
+  return font({ size: size, weight: weight, smallcaps: smallcaps });
 }, function (_ref2) {
-  var smallcaps = _ref2.smallcaps;
-
-  if (!smallcaps) return '';
-  return '\n      text-transform: lowercase;\n      font-variant: small-caps;\n    ';
-}, function (_ref3) {
-  var color = _ref3.color;
-
-  return 'color: ' + (color || theme.textPrimary);
+  var color = _ref2.color;
+  return color ? 'color: ' + color : '';
 });
 
 var Text = function Text(props) {
@@ -6413,13 +6229,13 @@ var Text = function Text(props) {
 };
 
 var createTextContainer = function createTextContainer(Element, defaultProps) {
-  var Container = function Container(_ref4) {
-    var children = _ref4.children,
-        color = _ref4.color,
-        size = _ref4.size,
-        smallcaps = _ref4.smallcaps,
-        weight = _ref4.weight,
-        props = objectWithoutProperties(_ref4, ['children', 'color', 'size', 'smallcaps', 'weight']);
+  var Container = function Container(_ref3) {
+    var children = _ref3.children,
+        color = _ref3.color,
+        size = _ref3.size,
+        smallcaps = _ref3.smallcaps,
+        weight = _ref3.weight,
+        props = objectWithoutProperties(_ref3, ['children', 'color', 'size', 'smallcaps', 'weight']);
 
     var textProps = { color: color, size: size, smallcaps: smallcaps, weight: weight };
     return React.createElement(
@@ -6630,6 +6446,7 @@ var Title = styled.h1.withConfig({
 Info$1.Action = Action;
 Info$1.Permissions = Permissions$2;
 
+// Utility styles for the radio input
 var radioActive = css(['background:transparent;&:after{content:\'\';}']);
 
 var radioDimmed = css(['', ';&:after{opacity:0.5;transition:none;}'], radioActive);
@@ -6664,660 +6481,12 @@ TextInput.Number = function (props) {
   return React.createElement(StyledInput, _extends({ type: 'number' }, props));
 };
 
-var logo = "feef84fc525d4290.svg";
-
-var iconTwitter = "data:image/svg+xml,%3Csvg%20width%3D%2215%22%20height%3D%2230%22%20viewBox%3D%220%200%2015%2030%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%3Cuse%20xlink%3Ahref%3D%22%23a%22%20fill%3D%22%23717171%22%2F%3E%3Cdefs%3E%3Cpath%20id%3D%22a%22%20d%3D%22M13.56%2010.558a5.42%205.42%200%200%201-1.557.419%202.7%202.7%200%200%200%201.189-1.49%205.323%205.323%200%200%201-1.716.652%202.697%202.697%200%200%200-1.975-.853%202.702%202.702%200%200%200-2.704%202.703c0%20.21.025.419.067.62a7.685%207.685%200%200%201-5.575-2.83%202.702%202.702%200%200%200%20.837%203.616%202.724%202.724%200%200%201-1.222-.342v.033c0%201.314.93%202.402%202.168%202.653a2.858%202.858%200%200%201-.712.092c-.175%200-.343-.016-.51-.041a2.708%202.708%200%200%200%202.528%201.875A5.414%205.414%200%200%201%201.02%2018.82a5.62%205.62%200%200%201-.653-.034A7.64%207.64%200%200%200%204.52%2020c4.972%200%207.693-4.118%207.693-7.693%200-.117%200-.234-.009-.351a5.81%205.81%200%200%200%201.356-1.398z%22%2F%3E%3C%2Fdefs%3E%3C%2Fsvg%3E";
-
-var iconMedium = "data:image/svg+xml,%3Csvg%20width%3D%2216%22%20height%3D%2230%22%20viewBox%3D%220%200%2016%2030%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%3Cuse%20xlink%3Ahref%3D%22%23a%22%20fill%3D%22%23717171%22%2F%3E%3Cdefs%3E%3Cpath%20id%3D%22a%22%20d%3D%22M4.997%2010.667a.117.117%200%200%200-.025-.042L.695%208.482C.578%208.424.46%208.357.326%208.357.1%208.357%200%208.549%200%208.758v9.543c0%20.25.184.552.419.67l3.892%201.95a.612.612%200%200%200%20.276.067c.285%200%20.41-.243.41-.503v-9.818zm.536.845v5.023l4.47%202.226-4.47-7.249zm9.467.15l-4.52%207.342%203.691%201.841a.793.793%200%200%200%20.394.11c.276%200%20.435-.193.435-.47v-8.822zm-.025-1.004a.056.056%200%200%200-.034-.05l-4.528-2.26a.488.488%200%200%200-.218-.05.505.505%200%200%200-.435.234l-2.712%204.412%203.264%205.307c.335-.536%204.663-7.559%204.663-7.593z%22%2F%3E%3C%2Fdefs%3E%3C%2Fsvg%3E";
-
-var iconRocket = "data:image/svg+xml,%3Csvg%20width%3D%2218%22%20height%3D%2215%22%20viewBox%3D%220%200%2018%2015%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M18%207.488c0-.885-.27-1.734-.804-2.523-.479-.708-1.15-1.336-1.994-1.864-1.63-1.02-3.773-1.581-6.033-1.581-.755%200-1.5.062-2.221.186A7.358%207.358%200%200%200%205.42.634C2.458-.773%200%20.6%200%20.6s2.285%201.838%201.913%203.45C.891%205.044.337%206.24.337%207.488v.024c0%201.247.554%202.444%201.576%203.437C2.285%2012.561%200%2014.4%200%2014.4s2.458%201.374%205.421-.033a7.355%207.355%200%200%200%201.527-1.072c.722.124%201.466.186%202.22.186%202.26%200%204.403-.561%206.034-1.581.844-.528%201.515-1.156%201.994-1.864.534-.789.804-1.638.804-2.523v-.025zm-8.828%204.864c-.951%200-1.862-.108-2.704-.304-.855%201.007-2.737%202.409-4.565%201.956.594-.626%201.475-1.683%201.287-3.424-1.096-.835-1.754-1.903-1.754-3.068%200-2.673%203.464-4.84%207.736-4.84s7.736%202.167%207.736%204.84-3.464%204.84-7.736%204.84zm1.028-4.84c0%20.556-.46%201.007-1.028%201.007a1.017%201.017%200%200%201-1.027-1.007c0-.556.46-1.006%201.027-1.006.568%200%201.028.45%201.028%201.006zm2.545-1.006c-.567%200-1.027.45-1.027%201.006s.46%201.007%201.027%201.007c.568%200%201.028-.451%201.028-1.007%200-.556-.46-1.006-1.028-1.006zm-7.146%200c-.567%200-1.027.45-1.027%201.006s.46%201.007%201.027%201.007c.568%200%201.028-.451%201.028-1.007%200-.556-.46-1.006-1.028-1.006z%22%20fill%3D%22%23717171%22%2F%3E%3C%2Fsvg%3E";
-
-var medium$1 = function medium(css$$1) {
-  return breakpoint('medium', css$$1);
-};
-var large$1 = function large(css$$1) {
-  return breakpoint('large', css$$1);
+// prefix helper
+var prefixUrl$1 = function prefixUrl(url, publicUrl) {
+  return url.startsWith('data:') ? url : publicUrl + url;
 };
 
-var StyledFooter = getPublicUrl(styled.footer.withConfig({
-  displayName: 'Footer__StyledFooter'
-})(['padding:60px 20px 35px;font-size:15px;color:grey;background:', ';', ';.main{display:flex;align-items:center;flex-direction:column;margin:0 auto;}.logo{margin-bottom:60px;}.menus{display:flex;}.menu-1{margin-right:35px;}.social-links{display:flex;justify-content:center;margin-top:30px;}.social-links li{display:flex;}.icon{overflow:hidden;text-indent:-9999px;padding-left:30px;background-repeat:no-repeat;background-position:50% 50%;}li{list-style:none;line-height:2;}a{text-decoration:none;}strong a{color:', ';font-weight:400;}.icon.twitter{background-image:url(', ');}.icon.medium{background-image:url(', ');}.icon.rocket{background-image:url(', ');}', ';', ';'], colors.Rain['Shark'], function (_ref) {
-  var compact = _ref.compact;
-
-  if (!compact) return '';
-  return '\n      padding-top: 30px;\n      padding-bottom: 30px;\n      .icon {\n        padding-left: 25px;\n      }\n    ';
-}, themeDark.accent, styledPublicUrl(iconTwitter), styledPublicUrl(iconMedium), styledPublicUrl(iconRocket), medium$1('\n    padding-bottom: 70px;\n\n    .all-links {\n      display: flex;\n      justify-content: space-between;\n    }\n    .social-links {\n      display: block;\n      margin-top: 0;\n      margin-left: 120px;\n    }\n    .social-links li {\n      display: block;\n    }\n    .icon {\n      overflow: visible;\n      text-indent: 0;\n      background-position: 0 50%;\n    }\n  '), large$1('\n    padding-top: 90px;\n    .main {\n      flex-direction: row;\n      max-width: ' + grid(12, 11) + 'px;\n    }\n    .logo {\n      width: ' + grid(3, 3) + 'px;\n      flex-shrink: 0;\n    }\n    .menus {\n      display: flex;\n      width: ' + grid(6, 6) + 'px;\n    }\n    .menu-1 {\n      width: ' + grid(2, 2) + 'px;\n      margin-right: 0;\n    }\n    .menu-2 {\n      width: ' + grid(4, 4) + 'px;\n    }\n    .social-links {\n      width: ' + grid(3) + 'px;\n      margin-left: 0;\n    }\n    li {\n      margin: 0 0 10px;\n      line-height: 1.5;\n    }\n  ')));
-
-var DefaultProps$2 = {
-  compact: false
-};
-
-var Footer = function Footer(_ref2) {
-  var compact = _ref2.compact,
-      publicUrl = _ref2.publicUrl;
-  return React.createElement(
-    StyledFooter,
-    { compact: compact },
-    React.createElement(
-      'div',
-      { className: 'main' },
-      React.createElement(
-        'div',
-        { className: 'logo' },
-        React.createElement('img', { src: publicUrl + logo, width: '158', height: '50', alt: 'Aragon' })
-      ),
-      React.createElement(
-        'div',
-        { className: 'all-links' },
-        !compact && React.createElement(
-          'div',
-          { className: 'menus' },
-          React.createElement(
-            'nav',
-            { className: 'menu-1' },
-            React.createElement(
-              'ul',
-              null,
-              React.createElement(
-                'li',
-                null,
-                React.createElement(
-                  'a',
-                  { href: 'https://aragon.one/core' },
-                  'Core'
-                )
-              ),
-              React.createElement(
-                'li',
-                null,
-                React.createElement(
-                  'a',
-                  { href: 'https://aragon.one/network' },
-                  'Network'
-                )
-              ),
-              React.createElement(
-                'li',
-                null,
-                React.createElement(
-                  'a',
-                  { href: 'https://aragon.one/foundation' },
-                  'Foundation'
-                )
-              ),
-              React.createElement(
-                'li',
-                null,
-                React.createElement(
-                  'a',
-                  { href: 'https://aragon.one/about' },
-                  'About'
-                )
-              )
-            )
-          ),
-          React.createElement(
-            'nav',
-            { className: 'menu-2' },
-            React.createElement(
-              'ul',
-              null,
-              React.createElement(
-                'li',
-                null,
-                React.createElement(
-                  'a',
-                  { href: 'https://wiki.aragon.one', target: '_blank' },
-                  'Wiki'
-                )
-              ),
-              React.createElement(
-                'li',
-                null,
-                React.createElement(
-                  'a',
-                  { href: 'https://github.com/aragon', target: '_blank' },
-                  'Code'
-                )
-              ),
-              React.createElement(
-                'li',
-                null,
-                React.createElement(
-                  'a',
-                  { href: 'https://aragon.one/join' },
-                  'Join us'
-                )
-              ),
-              React.createElement(
-                'li',
-                null,
-                React.createElement(
-                  'strong',
-                  null,
-                  React.createElement(
-                    'a',
-                    { href: 'https://github.com/aragon/aragon/releases', target: '_blank' },
-                    'Download'
-                  )
-                )
-              )
-            )
-          )
-        ),
-        React.createElement(
-          'ul',
-          { className: 'social-links' },
-          React.createElement(
-            'li',
-            null,
-            React.createElement(
-              'a',
-              { href: 'https://twitter.com/AragonProject', className: 'icon twitter', target: '_blank' },
-              'Twitter'
-            )
-          ),
-          React.createElement(
-            'li',
-            null,
-            React.createElement(
-              'a',
-              { href: 'https://blog.aragon.one/', className: 'icon medium', target: '_blank' },
-              'Medium'
-            )
-          ),
-          React.createElement(
-            'li',
-            null,
-            React.createElement(
-              'a',
-              { href: 'https://aragon.chat/', className: 'icon rocket', target: '_blank' },
-              'Community'
-            )
-          )
-        )
-      )
-    )
-  );
-};
-
-Footer.defaultProps = DefaultProps$2;
-
-var Footer$1 = getPublicUrl(Footer);
-
-var logo$1 = "data:image/svg+xml,%3Csvg%20width%3D%22200%22%20height%3D%22183%22%20viewBox%3D%220%200%20200%20183%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cdefs%3E%3ClinearGradient%20x1%3D%2240.59%25%22%20y1%3D%22172.164%25%22%20x2%3D%22134.278%25%22%20y2%3D%22-209.701%25%22%20id%3D%22a%22%3E%3Cstop%20stop-color%3D%22%230B0B0A%22%20offset%3D%220%25%22%2F%3E%3Cstop%20stop-color%3D%22%23464F51%22%20offset%3D%22100%25%22%2F%3E%3C%2FlinearGradient%3E%3ClinearGradient%20x1%3D%220%25%22%20y1%3D%22125.497%25%22%20x2%3D%2263.448%25%22%20y2%3D%22-8.979%25%22%20id%3D%22b%22%3E%3Cstop%20stop-color%3D%22%230B0B0A%22%20offset%3D%220%25%22%2F%3E%3Cstop%20stop-color%3D%22%23464F51%22%20offset%3D%22100%25%22%2F%3E%3C%2FlinearGradient%3E%3ClinearGradient%20x1%3D%2272.854%25%22%20y1%3D%22157.035%25%22%20x2%3D%2272.854%25%22%20y2%3D%2250%25%22%20id%3D%22c%22%3E%3Cstop%20stop-color%3D%22%230B0B0A%22%20offset%3D%220%25%22%2F%3E%3Cstop%20stop-color%3D%22%23464F51%22%20offset%3D%22100%25%22%2F%3E%3C%2FlinearGradient%3E%3ClinearGradient%20x1%3D%220%25%22%20y1%3D%22140.325%25%22%20x2%3D%22122.689%25%22%20y2%3D%22-73.565%25%22%20id%3D%22d%22%3E%3Cstop%20stop-color%3D%22%230B0B0A%22%20offset%3D%220%25%22%2F%3E%3Cstop%20stop-color%3D%22%23464F51%22%20offset%3D%22100%25%22%2F%3E%3C%2FlinearGradient%3E%3ClinearGradient%20x1%3D%220%25%22%20y1%3D%2295.2%25%22%20x2%3D%2276.121%25%22%20y2%3D%22-21.873%25%22%20id%3D%22e%22%3E%3Cstop%20stop-color%3D%22%230B0B0A%22%20offset%3D%220%25%22%2F%3E%3Cstop%20stop-color%3D%22%23464F51%22%20offset%3D%22100%25%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20d%3D%22M99.9%200l-2.912.915C87.782%203.887%2039.932%2020.343%201.893%2052.57L0%2054.17l.465%202.626c.784%204.268%205.341%2026.823%2018.048%2051.836%208.171%2016.031%2018.16%2030.102%2029.693%2041.824%2014.051%2014.241%2030.459%2024.802%2048.78%2031.396l2.972%201.05%201.937-.753%201.03-.364c18.209-6.553%2034.615-17.112%2048.764-31.388%2011.467-11.593%2021.458-25.666%2029.695-41.827%2012.782-25.102%2017.587-48.377%2018.076-52.006h.005l.456-2.592-2.056-1.468C159.836%2020.318%20112.047%203.884%20102.87.923L99.9%200z%22%20fill%3D%22url%28%23a%29%22%2F%3E%3Cpath%20d%3D%22M85.23%2043.803c-.061%200-28.567%209.109-28.567%2034.02%200%2024.912%2027.515%2036.995%2047.778%2036.995%2011.021%200%2020.075-3.208%2026.047-6.134.77-3.531%203.569-11.895%2012.83-11.958%201.651-.064%203.2.246%204.502.99%206.197%203.346%202.17%209.604%202.17%209.604a13.943%2013.943%200%200%200%201.416-.306c7.448-2.006%2015.84-10.525%2014.385-24.791-1.167-11.44-11.726-18.69-16.862-21.57-1.681-.944-2.782-1.42-2.782-1.42.186-1.162.246-2.061.246-2.751%200-.13-.002-.251-.006-.365v-1.34c-26.952-16.35-49.76-18.868-61.01-18.868-4.859%200-7.582.457-7.582.457l7.436%207.437zm56.95%2015.491s-3.656-1.177-7.373-1.673c-1.86%201.921-3.471%202.727-3.967%202.975l-.124.124c-10.844-2.293-14.748-7.87-14.748-7.87%2010.225-.062%2019.458%202.354%2026.212%206.444z%22%20fill%3D%22url%28%23b%29%22%20opacity%3D%22.401%22%2F%3E%3Cpath%20d%3D%22M152.281%2074.725c0%208.118-3.345%2015.616-9.047%2021.689l-.271.312.457-.002c1.549-.062%203.098.248%204.4.991%206.197%203.347%202.17%209.605%202.17%209.605%207.745-1.239%2017.35-9.914%2015.8-25.097-1.166-11.44-11.725-18.69-16.86-21.57a31.046%2031.046%200%200%201%203.351%2014.072%22%20fill%3D%22url%28%23c%29%22%20opacity%3D%22.1%22%2F%3E%3Cpath%20d%3D%22M26.857%20103.168c0%201.006.039%201.962.095%202.897%207.669%2014.75%2016.894%2027.635%2027.446%2038.305%2013.159%2013.278%2028.47%2023.13%2045.52%2029.29%2016.986-6.139%2032.299-16.012%2045.521-29.353a141.977%20141.977%200%200%200%2011.21-12.826c-28.27-2.032-26.553-19.203-26.553-19.203%200-.681%200-1.363.124-2.045%200%200%20.063-.603.269-1.55-5.972%202.927-15.026%206.135-26.048%206.135-20.263%200-47.778-12.083-47.778-36.995%200-24.911%2028.506-34.02%2028.506-34.02l-.015-.005a29.86%2029.86%200%200%200-2.216-.058c-31.17%201.116-56.081%2027.267-56.081%2059.428%22%20fill%3D%22url%28%23d%29%22%20opacity%3D%22.453%22%2F%3E%3Cpath%20d%3D%22M99.9%200l-2.912.915C87.782%203.887%2039.932%2020.343%201.893%2052.57L0%2054.17l.465%202.626c.784%204.268%205.341%2026.823%2018.048%2051.836%208.171%2016.031%2018.16%2030.102%2029.693%2041.824%2014.051%2014.241%2030.459%2024.802%2048.78%2031.396l2.972%201.05%201.937-.753%201.03-.364c18.209-6.553%2034.615-17.112%2048.764-31.388%2011.467-11.593%2021.458-25.666%2029.695-41.827%2012.782-25.102%2017.587-48.377%2018.076-52.006h.005l.456-2.592-2.056-1.468C159.836%2020.318%20112.047%203.884%20102.87.923L99.9%200zM54.399%20144.37c-10.861-10.983-20.322-24.306-28.123-39.602C15.523%2083.71%2010.912%2064.732%209.436%2057.59%2045.466%2027.844%2089.521%2012.462%2099.914%209.1c10.445%203.408%2054.72%2018.972%2090.482%2048.489-1.489%207.117-6.123%2026.018-16.836%2047.055-7.843%2015.38-17.305%2028.724-28.12%2039.662-13.223%2013.341-28.536%2023.214-45.522%2029.353-17.05-6.16-32.361-16.012-45.52-29.29z%22%20fill%3D%22url%28%23e%29%22%20opacity%3D%22.127%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E";
-
-var bgLandscape = "data:image/svg+xml,%3Csvg%20width%3D%221440%22%20height%3D%22491%22%20viewBox%3D%220%200%201440%20491%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%3Cdefs%3E%3ClinearGradient%20x1%3D%22-14.438%25%22%20y1%3D%22107.641%25%22%20x2%3D%2298.443%25%22%20y2%3D%22-54.066%25%22%20id%3D%22b%22%3E%3Cstop%20stop-color%3D%22%230B0B0A%22%20offset%3D%220%25%22%2F%3E%3Cstop%20stop-color%3D%22%23464F51%22%20offset%3D%22100%25%22%2F%3E%3C%2FlinearGradient%3E%3Cpath%20id%3D%22a%22%20d%3D%22M0%200h720v491H0z%22%2F%3E%3ClinearGradient%20x1%3D%2295.341%25%22%20y1%3D%2296.71%25%22%20x2%3D%2237.949%25%22%20y2%3D%228.725%25%22%20id%3D%22d%22%3E%3Cstop%20stop-color%3D%22%23C8C8C8%22%20stop-opacity%3D%220%22%20offset%3D%220%25%22%2F%3E%3Cstop%20stop-color%3D%22%23979797%22%20offset%3D%22100%25%22%2F%3E%3C%2FlinearGradient%3E%3ClinearGradient%20x1%3D%2225.323%25%22%20y1%3D%2264.209%25%22%20x2%3D%22-177.025%25%22%20y2%3D%22232.498%25%22%20id%3D%22e%22%3E%3Cstop%20stop-color%3D%22%23C8C8C8%22%20stop-opacity%3D%220%22%20offset%3D%220%25%22%2F%3E%3Cstop%20stop-color%3D%22%23979797%22%20offset%3D%22100%25%22%2F%3E%3C%2FlinearGradient%3E%3ClinearGradient%20x1%3D%2298.443%25%22%20y1%3D%22-54.066%25%22%20x2%3D%22-14.438%25%22%20y2%3D%22107.641%25%22%20id%3D%22g%22%3E%3Cstop%20stop-color%3D%22%230B0B0A%22%20offset%3D%220%25%22%2F%3E%3Cstop%20stop-color%3D%22%23464F51%22%20offset%3D%22100%25%22%2F%3E%3C%2FlinearGradient%3E%3Cpath%20id%3D%22f%22%20d%3D%22M0%200h720v491H0z%22%2F%3E%3ClinearGradient%20x1%3D%22224.819%25%22%20y1%3D%22-159.682%25%22%20x2%3D%2229.43%25%22%20y2%3D%2296.423%25%22%20id%3D%22i%22%3E%3Cstop%20stop-color%3D%22%23C8C8C8%22%20offset%3D%220%25%22%2F%3E%3Cstop%20stop-color%3D%22%23979797%22%20stop-opacity%3D%220%22%20offset%3D%22100%25%22%2F%3E%3C%2FlinearGradient%3E%3ClinearGradient%20x1%3D%2250%25%22%20y1%3D%220%25%22%20x2%3D%2250%25%22%20y2%3D%2297.636%25%22%20id%3D%22j%22%3E%3Cstop%20stop-color%3D%22%23C8C8C8%22%20offset%3D%220%25%22%2F%3E%3Cstop%20stop-color%3D%22%23979797%22%20stop-opacity%3D%220%22%20offset%3D%22100%25%22%2F%3E%3C%2FlinearGradient%3E%3ClinearGradient%20x1%3D%2250%25%22%20y1%3D%220%25%22%20x2%3D%22-96.692%25%22%20y2%3D%22190.844%25%22%20id%3D%22k%22%3E%3Cstop%20stop-color%3D%22%23C8C8C8%22%20stop-opacity%3D%220%22%20offset%3D%220%25%22%2F%3E%3Cstop%20stop-color%3D%22%23C7C7C7%22%20stop-opacity%3D%22.012%22%20offset%3D%221.236%25%22%2F%3E%3Cstop%20stop-color%3D%22%23979797%22%20offset%3D%22100%25%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20transform%3D%22translate%28720%29%22%3E%3Cmask%20id%3D%22c%22%20fill%3D%22%23fff%22%3E%3Cuse%20xlink%3Ahref%3D%22%23a%22%2F%3E%3C%2Fmask%3E%3Cuse%20fill%3D%22url%28%23b%29%22%20xlink%3Ahref%3D%22%23a%22%2F%3E%3Cg%20mask%3D%22url%28%23c%29%22%20stroke-linecap%3D%22square%22%3E%3Cpath%20d%3D%22M.5%201l552%20533%22%20stroke%3D%22url%28%23d%29%22%20opacity%3D%22.446%22%20transform%3D%22translate%28132%20-284%29%22%2F%3E%3Cpath%20d%3D%22M429.5%20414.5L805.854%2038.146%22%20stroke%3D%22url%28%23e%29%22%20transform%3D%22translate%28132%20-284%29%22%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3Cmask%20id%3D%22h%22%20fill%3D%22%23fff%22%3E%3Cuse%20xlink%3Ahref%3D%22%23f%22%2F%3E%3C%2Fmask%3E%3Cuse%20fill%3D%22url%28%23g%29%22%20xlink%3Ahref%3D%22%23f%22%2F%3E%3Cg%20mask%3D%22url%28%23h%29%22%20stroke-linecap%3D%22square%22%3E%3Cpath%20d%3D%22M.5%20700.5l376.354-376.354%22%20stroke%3D%22url%28%23i%29%22%20transform%3D%22translate%28-347%20-99%29%22%2F%3E%3Cpath%20d%3D%22M162.5%20116l552%20533%22%20stroke%3D%22url%28%23j%29%22%20opacity%3D%22.446%22%20transform%3D%22translate%28-347%20-99%29%22%2F%3E%3Cpath%20d%3D%22M433.5%20376.5L809.854.146%22%20stroke%3D%22url%28%23k%29%22%20opacity%3D%22.446%22%20transform%3D%22translate%28-347%20-99%29%22%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E";
-
-var bgPortrait = "data:image/svg+xml,%3Csvg%20width%3D%22768%22%20height%3D%22880%22%20viewBox%3D%220%200%20768%20880%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%3Cdefs%3E%3ClinearGradient%20x1%3D%22-14.438%25%22%20y1%3D%22107.641%25%22%20x2%3D%2298.443%25%22%20y2%3D%22-54.066%25%22%20id%3D%22b%22%3E%3Cstop%20stop-color%3D%22%230B0B0A%22%20offset%3D%220%25%22%2F%3E%3Cstop%20stop-color%3D%22%23464F51%22%20offset%3D%22100%25%22%2F%3E%3C%2FlinearGradient%3E%3Cpath%20id%3D%22a%22%20d%3D%22M0%200h768v440H0z%22%2F%3E%3ClinearGradient%20x1%3D%2295.341%25%22%20y1%3D%2296.71%25%22%20x2%3D%2237.949%25%22%20y2%3D%228.725%25%22%20id%3D%22d%22%3E%3Cstop%20stop-color%3D%22%23C8C8C8%22%20stop-opacity%3D%220%22%20offset%3D%220%25%22%2F%3E%3Cstop%20stop-color%3D%22%23979797%22%20offset%3D%22100%25%22%2F%3E%3C%2FlinearGradient%3E%3ClinearGradient%20x1%3D%2225.323%25%22%20y1%3D%2264.209%25%22%20x2%3D%22-177.025%25%22%20y2%3D%22232.498%25%22%20id%3D%22e%22%3E%3Cstop%20stop-color%3D%22%23C8C8C8%22%20stop-opacity%3D%220%22%20offset%3D%220%25%22%2F%3E%3Cstop%20stop-color%3D%22%23979797%22%20offset%3D%22100%25%22%2F%3E%3C%2FlinearGradient%3E%3ClinearGradient%20x1%3D%2298.443%25%22%20y1%3D%22-54.066%25%22%20x2%3D%22-14.438%25%22%20y2%3D%22107.641%25%22%20id%3D%22g%22%3E%3Cstop%20stop-color%3D%22%230B0B0A%22%20offset%3D%220%25%22%2F%3E%3Cstop%20stop-color%3D%22%23464F51%22%20offset%3D%22100%25%22%2F%3E%3C%2FlinearGradient%3E%3Cpath%20id%3D%22f%22%20d%3D%22M0%200h768v440H0z%22%2F%3E%3ClinearGradient%20x1%3D%22224.819%25%22%20y1%3D%22-159.682%25%22%20x2%3D%2229.43%25%22%20y2%3D%2296.423%25%22%20id%3D%22i%22%3E%3Cstop%20stop-color%3D%22%23C8C8C8%22%20offset%3D%220%25%22%2F%3E%3Cstop%20stop-color%3D%22%23979797%22%20stop-opacity%3D%220%22%20offset%3D%22100%25%22%2F%3E%3C%2FlinearGradient%3E%3ClinearGradient%20x1%3D%2250%25%22%20y1%3D%220%25%22%20x2%3D%2250%25%22%20y2%3D%2297.636%25%22%20id%3D%22j%22%3E%3Cstop%20stop-color%3D%22%23C8C8C8%22%20offset%3D%220%25%22%2F%3E%3Cstop%20stop-color%3D%22%23979797%22%20stop-opacity%3D%220%22%20offset%3D%22100%25%22%2F%3E%3C%2FlinearGradient%3E%3ClinearGradient%20x1%3D%2250%25%22%20y1%3D%220%25%22%20x2%3D%22-96.692%25%22%20y2%3D%22190.844%25%22%20id%3D%22k%22%3E%3Cstop%20stop-color%3D%22%23C8C8C8%22%20stop-opacity%3D%220%22%20offset%3D%220%25%22%2F%3E%3Cstop%20stop-color%3D%22%23C7C7C7%22%20stop-opacity%3D%22.012%22%20offset%3D%221.236%25%22%2F%3E%3Cstop%20stop-color%3D%22%23979797%22%20offset%3D%22100%25%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20transform%3D%22translate%280%20440%29%22%3E%3Cmask%20id%3D%22c%22%20fill%3D%22%23fff%22%3E%3Cuse%20xlink%3Ahref%3D%22%23a%22%2F%3E%3C%2Fmask%3E%3Cuse%20fill%3D%22url%28%23b%29%22%20xlink%3Ahref%3D%22%23a%22%2F%3E%3Cg%20mask%3D%22url%28%23c%29%22%20stroke-linecap%3D%22square%22%3E%3Cpath%20d%3D%22M.5%201l552%20533%22%20stroke%3D%22url%28%23d%29%22%20opacity%3D%22.446%22%20transform%3D%22translate%28180%20-284%29%22%2F%3E%3Cpath%20d%3D%22M429.5%20414.5L805.854%2038.146%22%20stroke%3D%22url%28%23e%29%22%20transform%3D%22translate%28180%20-284%29%22%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3Cmask%20id%3D%22h%22%20fill%3D%22%23fff%22%3E%3Cuse%20xlink%3Ahref%3D%22%23f%22%2F%3E%3C%2Fmask%3E%3Cuse%20fill%3D%22url%28%23g%29%22%20xlink%3Ahref%3D%22%23f%22%2F%3E%3Cg%20mask%3D%22url%28%23h%29%22%20stroke-linecap%3D%22square%22%3E%3Cpath%20d%3D%22M.5%20700.5l376.354-376.354%22%20stroke%3D%22url%28%23i%29%22%20transform%3D%22translate%28-347%20-99%29%22%2F%3E%3Cpath%20d%3D%22M162.5%20116l552%20533%22%20stroke%3D%22url%28%23j%29%22%20opacity%3D%22.446%22%20transform%3D%22translate%28-347%20-99%29%22%2F%3E%3Cpath%20d%3D%22M433.5%20376.5L809.854.146%22%20stroke%3D%22url%28%23k%29%22%20opacity%3D%22.446%22%20transform%3D%22translate%28-347%20-99%29%22%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E";
-
-var large$2 = function large(css$$1) {
-  return breakpoint('large', css$$1);
-};
-
-var Main$3 = getPublicUrl(styled.div.withConfig({
-  displayName: 'PreFooter__Main'
-})(['position:relative;overflow:hidden;background-color:', ';background-repeat:no-repeat;background-position:50% 50%;background-size:cover;background-image:url(', ');', ';'], colors.Rain.Shark, styledPublicUrl(bgPortrait), large$2(css(['background-image:url(', ');'], styledPublicUrl(bgLandscape)))));
-
-var Container = getPublicUrl(styled(Section).attrs({ visual: true }).withConfig({
-  displayName: 'PreFooter__Container'
-})(['position:relative;z-index:2;padding:0 20px;color:', ';.main{display:flex;flex-direction:column;align-items:center;width:100%;background:url(', ') no-repeat 50% 50%;background-size:140px;', ';}.section{display:flex;flex-direction:column;justify-content:center;width:100%;max-width:', 'px;min-height:400px;height:50%;text-align:center;}.title{margin-bottom:30px;color:', ';font-size:27px;}.desc{font-size:18px;margin-bottom:30px;}.desc:last-child{margin-bottom:0;}.desc a{color:', ';}.email input{width:100%;padding:10px;font-size:15px;border:0;border-radius:3px;background:#fff;}button{font-size:15px;}', ';'], themeDark.textTertiary, styledPublicUrl(logo$1), large$2('background-size: 200px;'), grid(4), themeDark.textPrimary, themeDark.textSecondary, large$2('\n    padding-top: 140px;\n    padding-bottom: 140px;\n\n    .main {\n      flex-direction: row;\n      justify-content: space-between;\n      align-items: flex-start;\n    }\n    .section {\n      min-height: 0;\n      width: ' + (grid(4) + 'px') + ';\n      justify-content: flex-start;\n      text-align: left;\n      padding-top: 0;\n    }\n    .section + .section {\n      text-align: right;\n      padding-bottom: 0;\n    }\n  ')));
-
-var EmailFormDefault = function EmailFormDefault() {
-  return React.createElement(
-    'div',
-    null,
-    React.createElement(
-      'h1',
-      { className: 'title' },
-      'Aragon Newsletter'
-    ),
-    React.createElement(
-      'p',
-      { className: 'desc' },
-      'Follow the progress of Aragon by subscribing to our monthly newsletter'
-    ),
-    React.createElement(
-      'p',
-      { className: 'email' },
-      React.createElement('input', { type: 'email', placeholder: 'Enter your email' })
-    )
-  );
-};
-
-var DefaultProps$3 = {
-  emailForm: React.createElement(EmailFormDefault, null)
-};
-
-var PreFooter = function PreFooter(_ref) {
-  var emailForm = _ref.emailForm;
-  return React.createElement(
-    Main$3,
-    null,
-    React.createElement(
-      Container,
-      null,
-      React.createElement(
-        'div',
-        { className: 'main' },
-        React.createElement(
-          'section',
-          { className: 'section' },
-          emailForm
-        ),
-        React.createElement(
-          'section',
-          { className: 'section' },
-          React.createElement(
-            'h1',
-            { className: 'title' },
-            'Aragon Alpha'
-          ),
-          React.createElement(
-            'p',
-            { className: 'desc' },
-            'Completely updated',
-            React.createElement('br', null),
-            ' Aragon Alpha v0.5 Coming Soon'
-          ),
-          React.createElement(
-            'a',
-            {
-              href: 'https://blog.aragon.one/news-from-the-front-5820cd9f2e46',
-              target: '_blank'
-            },
-            React.createElement(
-              Button,
-              { mode: 'strong', wide: true },
-              'Learn More'
-            )
-          )
-        )
-      )
-    )
-  );
-};
-
-PreFooter.defaultProps = DefaultProps$3;
-
-var StyledMenuItem = styled.li.withConfig({
-  displayName: 'MenuItem__StyledMenuItem'
-})(['display:flex;align-items:stretch;white-space:nowrap;> span{display:flex;align-items:center;padding:0 15px;font-size:15px;color:', ';}a{text-decoration:none;color:', ';}'], function (_ref) {
-  var active = _ref.active;
-  return active ? theme.accent : theme.textSecondary;
-}, function (_ref2) {
-  var active = _ref2.active;
-  return active ? theme.accent : theme.textSecondary;
-});
-
-var DefaultProps$5 = {
-  active: false,
-  renderLink: function renderLink(_ref3) {
-    var url = _ref3.url,
-        children = _ref3.children;
-    return React.createElement(
-      'a',
-      { href: url },
-      children
-    );
-  }
-};
-
-var MenuItem = function MenuItem(_ref4) {
-  var url = _ref4.url,
-      label = _ref4.label,
-      active = _ref4.active,
-      renderLink = _ref4.renderLink;
-  return React.createElement(
-    StyledMenuItem,
-    { active: active },
-    React.createElement(
-      'span',
-      null,
-      renderLink({ url: url, children: label })
-    )
-  );
-};
-
-MenuItem.defaultProps = DefaultProps$5;
-
-var close = "data:image/svg+xml,%3Csvg%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M20.297%205.64l-6.508%206.508%206.508%206.508-1.64%201.64-6.509-6.507-6.507%206.508L4%2018.657l6.508-6.509L4%205.641%205.64%204l6.508%206.508L18.656%204z%22%20fill%3D%22%23FFF%22%20fill-rule%3D%22evenodd%22%2F%3E%3C%2Fsvg%3E";
-
-var open = "data:image/svg+xml,%3Csvg%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M2%2019v-2.352h20V19H2zm0-5.852v-2.296h20v2.296H2zM2%205h20v2.352H2V5z%22%20fill%3D%22%23717171%22%20fill-rule%3D%22evenodd%22%2F%3E%3C%2Fsvg%3E";
-
-var Container$1 = styled.div.withConfig({
-  displayName: 'MenuPanel__Container'
-})(['min-height:60px;', ';'], unselectable());
-
-var PanelStyles = styled.div.withConfig({
-  displayName: 'MenuPanel__PanelStyles'
-})(['position:absolute;z-index:3;top:0;right:0;padding-top:70px;line-height:2;font-size:17px;background:', ';a{color:white;text-decoration:none;}'], theme.accent);
-
-var PanelContent = styled.div.withConfig({
-  displayName: 'MenuPanel__PanelContent'
-})(['padding:0 60px 20px 30px;a{display:block;}']);
-
-var Toggle = styled.a.attrs({ role: 'button' }).withConfig({
-  displayName: 'MenuPanel__Toggle'
-})(['position:absolute;right:0;z-index:4;height:60px;padding:0 15px;display:flex;align-items:center;cursor:pointer;']);
-
-var Panel = function (_React$Component) {
-  inherits(Panel, _React$Component);
-
-  function Panel() {
-    var _ref;
-
-    var _temp, _this, _ret;
-
-    classCallCheck(this, Panel);
-
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    return _ret = (_temp = (_this = possibleConstructorReturn(this, (_ref = Panel.__proto__ || Object.getPrototypeOf(Panel)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
-      opened: false
-    }, _this.toggle = function () {
-      _this.setState({ opened: !_this.state.opened });
-    }, _this.close = function () {
-      _this.setState({ opened: false });
-    }, _temp), possibleConstructorReturn(_this, _ret);
-  }
-
-  createClass(Panel, [{
-    key: 'render',
-    value: function render() {
-      var _this2 = this;
-
-      var _props = this.props,
-          items = _props.items,
-          publicUrl = _props.publicUrl,
-          renderLink = _props.renderLink;
-      var opened = this.state.opened;
-
-      return React.createElement(
-        reactMotion_1,
-        {
-          style: {
-            openProgress: reactMotion_4(Number(opened), spring('fast'))
-          }
-        },
-        function (_ref2) {
-          var openProgress = _ref2.openProgress;
-          return React.createElement(
-            Container$1,
-            null,
-            React.createElement(
-              reactOnclickout,
-              { onClickOut: _this2.close },
-              React.createElement(
-                Toggle,
-                { onClick: _this2.toggle },
-                React.createElement('img', {
-                  alt: '',
-                  width: '22',
-                  height: '22',
-                  src: prefixUrl(opened ? close : open, publicUrl)
-                })
-              ),
-              React.createElement(
-                PanelStyles,
-                {
-                  style: {
-                    display: openProgress > 0 ? 'block' : 'none',
-                    opacity: openProgress,
-                    transform: 'translateY(-' + (1 - openProgress) * 5 + 'px)'
-                  }
-                },
-                React.createElement(
-                  PanelContent,
-                  null,
-                  items.map(function (_ref3) {
-                    var _ref4 = slicedToArray(_ref3, 3),
-                        url = _ref4[0],
-                        label = _ref4[1],
-                        active = _ref4[2];
-
-                    return React.createElement(
-                      'div',
-                      { key: url, onClick: _this2.close },
-                      renderLink({
-                        url: url,
-                        children: label
-                      })
-                    );
-                  })
-                )
-              )
-            )
-          );
-        }
-      );
-    }
-  }]);
-  return Panel;
-}(React.Component);
-
-Panel.defaultProps = {
-  renderLink: function renderLink(_ref5) {
-    var url = _ref5.url,
-        children = _ref5.children;
-    return React.createElement(
-      'a',
-      { href: url },
-      children
-    );
-  }
-};
-
-
-var MenuPanel = getPublicUrl(Panel);
-
-var logo$2 = "6a089bdf02f98b6c.svg";
-
-var logoCompact = "f2b90665d4eb28f3.svg";
-
-var logoMinimal = "188027b3d4ea587a.svg";
-
-var Container$2 = styled.span.withConfig({
-  displayName: 'Logo__Container'
-})(['display:flex;align-items:center;']);
-
-var DefaultProps$6 = {
-  compact: false,
-  renderLink: function renderLink(_ref) {
-    var url = _ref.url,
-        children = _ref.children;
-    return React.createElement(
-      'a',
-      { href: url },
-      children
-    );
-  }
-};
-
-var Logo = function Logo(_ref2) {
-  var compact = _ref2.compact,
-      renderLink = _ref2.renderLink,
-      publicUrl = _ref2.publicUrl;
-
-  return React.createElement(
-    'span',
-    { className: 'logo' },
-    renderLink({
-      url: '/',
-      children: React.createElement(
-        Container$2,
-        null,
-        React.createElement(
-          BreakPoint,
-          { to: 'medium' },
-          React.createElement('img', { alt: 'Aragon', src: publicUrl + logoMinimal, height: 40 })
-        ),
-        React.createElement(
-          BreakPoint,
-          { from: 'medium', to: 'large' },
-          React.createElement('img', { alt: 'Aragon', src: publicUrl + logoMinimal, height: 50 })
-        ),
-        React.createElement(
-          BreakPoint,
-          { from: 'large' },
-          React.createElement('img', {
-            alt: 'Aragon',
-            src: publicUrl + (compact ? logoCompact : logo$2),
-            height: compact ? 36 : 51
-          })
-        )
-      )
-    })
-  );
-};
-
-Logo.defaultProps = DefaultProps$6;
-
-var Logo$1 = getPublicUrl(Logo);
-
-var medium$2 = function medium(css$$1) {
-  return breakpoint('medium', css$$1);
-};
-var large$3 = function large(css$$1) {
-  return breakpoint('large', css$$1);
-};
-
-var StyledHeader = styled.div.withConfig({
-  displayName: 'Header__StyledHeader'
-})(['padding:0 12px;background:', ';.in{display:flex;justify-content:space-between;align-items:stretch;min-height:60px;max-width:1140px;margin:0 auto;}.menu,.buttons{display:flex;align-items:center;}.menu{align-items:stretch;}.logo,.logo a{display:flex;align-items:center;}.title{display:flex;align-items:center;margin-left:40px;}.menu-items{display:flex;align-items:center;}.nav{display:flex;align-items:stretch;list-style:none;margin-left:20px;}.nav ul{display:flex;align-items:stretch;}.button{margin-left:10px;&:first-child{margin:0;}}', ';', ';', ';'], theme.contentBackground, medium$2('\n    .in {\n      min-height: 70px;\n    }\n  '), large$3('\n    .in {\n      min-height: 70px;\n    }\n    .nav {\n      margin-left: 45px;\n    }\n  '), function (_ref) {
-  var withTitle = _ref.withTitle;
-
-  if (!withTitle) return '';
-  return '\n      .logo {\n        padding-right: 40px;\n        border-right: 1px solid #e8e8e8;\n        padding-top: 6px;\n        padding-bottom: 8px;\n      }\n      .logo img:first-child {\n        margin-right: 10px;\n      }\n    ';
-});
-
-var DefaultProps$4 = {
-  menuItems: []
-};
-
-var Header = function Header(_ref2) {
-  var title = _ref2.title,
-      menuItems = _ref2.menuItems,
-      renderMenuItemLink = _ref2.renderMenuItemLink;
-  return React.createElement(
-    StyledHeader,
-    { withTitle: Boolean(title) },
-    React.createElement(
-      'div',
-      { className: 'in' },
-      React.createElement(
-        'div',
-        { className: 'menu' },
-        React.createElement(Logo$1, { compact: Boolean(title), renderLink: renderMenuItemLink }),
-        title && React.createElement(
-          'div',
-          { className: 'title' },
-          React.createElement(
-            'h1',
-            null,
-            React.createElement(
-              TypedText,
-              { size: 'xlarge' },
-              title,
-              ' '
-            )
-          )
-        ),
-        menuItems.length > 0 && React.createElement(
-          'div',
-          { className: 'menu-items' },
-          React.createElement(
-            BreakPoint,
-            { to: 'medium' },
-            React.createElement(MenuPanel, { items: menuItems, renderLink: renderMenuItemLink })
-          ),
-          React.createElement(
-            BreakPoint,
-            { from: 'medium' },
-            React.createElement(
-              'nav',
-              { className: 'nav' },
-              React.createElement(
-                'ul',
-                null,
-                menuItems.map(function (item, i) {
-                  return React.createElement(MenuItem, {
-                    key: i,
-                    url: item[0],
-                    label: item[1],
-                    active: item[2],
-                    renderLink: renderMenuItemLink
-                  });
-                })
-              )
-            )
-          )
-        )
-      ),
-      !title && React.createElement(
-        BreakPoint,
-        { from: 'medium' },
-        React.createElement(
-          'div',
-          { className: 'buttons' },
-          React.createElement(
-            'div',
-            { className: 'button' },
-            React.createElement(
-              'a',
-              { href: 'https://alpha.aragon.one', target: '_blank' },
-              React.createElement(
-                Button,
-                { mode: 'outline' },
-                React.createElement(
-                  BreakPoint,
-                  { from: 'medium', to: 'large' },
-                  'Web version'
-                ),
-                React.createElement(
-                  BreakPoint,
-                  { from: 'large' },
-                  'Try the web version'
-                )
-              )
-            )
-          ),
-          React.createElement(
-            'div',
-            { className: 'button' },
-            React.createElement(
-              'a',
-              {
-                href: 'https://github.com/aragon/aragon/releases',
-                target: '_blank'
-              },
-              React.createElement(
-                Button,
-                { mode: 'strong' },
-                React.createElement(
-                  BreakPoint,
-                  { from: 'medium', to: 'large' },
-                  'Aragon Core'
-                ),
-                React.createElement(
-                  BreakPoint,
-                  { from: 'large' },
-                  'Download Aragon Core'
-                )
-              )
-            )
-          )
-        )
-      )
-    )
-  );
-};
-
-Header.defaultProps = DefaultProps$4;
-
-var close$1 = "data:image/svg+xml,%3Csvg%20width%3D%2210%22%20height%3D%2210%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M10%201.014L6.014%205%2010%208.986%208.986%2010%205%206.014%201.014%2010%200%208.986%203.986%205%200%201.014%201.014%200%205%203.986%208.986%200z%22%20fill%3D%22%236D777B%22%20fill-rule%3D%22evenodd%22%20opacity%3D%22.7%22%2F%3E%3C%2Fsvg%3E";
+var close = "data:image/svg+xml,%3Csvg%20width%3D%2210%22%20height%3D%2210%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M10%201.014L6.014%205%2010%208.986%208.986%2010%205%206.014%201.014%2010%200%208.986%203.986%205%200%201.014%201.014%200%205%203.986%208.986%200z%22%20fill%3D%22%236D777B%22%20fill-rule%3D%22evenodd%22%20opacity%3D%22.7%22%2F%3E%3C%2Fsvg%3E";
 
 var PANEL_WIDTH = 450;
 var PANEL_OVERFLOW = PANEL_WIDTH * 0.2;
@@ -7412,61 +6581,66 @@ var SidePanel = function (_React$Component) {
           children = _props.children,
           title = _props.title,
           opened = _props.opened,
-          blocking = _props.blocking,
-          publicUrl = _props.publicUrl;
+          blocking = _props.blocking;
 
       return React.createElement(
-        reactMotion_1,
-        {
-          style: { progress: reactMotion_4(Number(opened), spring('slow')) },
-          onRest: this.handleMotionRest
-        },
-        function (_ref4) {
-          var progress = _ref4.progress;
-
-          var styles = motionStyles(progress);
+        PublicUrl,
+        null,
+        function (publicUrl) {
           return React.createElement(
-            StyledSidePanel,
-            { hidden: progress === 0, opened: opened },
-            React.createElement(Overlay, {
-              opened: opened,
-              style: styles.overlay,
-              onClick: _this2.handleClose
-            }),
-            React.createElement(
-              StyledPanel,
-              { style: styles.panel },
-              React.createElement(
-                StyledPanelHeader,
-                null,
+            reactMotion_1,
+            {
+              style: { progress: reactMotion_4(Number(opened), spring('slow')) },
+              onRest: _this2.handleMotionRest
+            },
+            function (_ref4) {
+              var progress = _ref4.progress;
+
+              var styles = motionStyles(progress);
+              return React.createElement(
+                StyledSidePanel,
+                { hidden: progress === 0, opened: opened },
+                React.createElement(Overlay, {
+                  opened: opened,
+                  style: styles.overlay,
+                  onClick: _this2.handleClose
+                }),
                 React.createElement(
-                  'h1',
-                  null,
+                  StyledPanel,
+                  { style: styles.panel },
                   React.createElement(
-                    TypedText,
-                    { size: 'xxlarge' },
-                    title
+                    StyledPanelHeader,
+                    null,
+                    React.createElement(
+                      'h1',
+                      null,
+                      React.createElement(
+                        TypedText,
+                        { size: 'xxlarge' },
+                        title
+                      )
+                    ),
+                    !blocking && React.createElement(
+                      StyledPanelCloseButton,
+                      {
+                        type: 'button',
+                        onClick: _this2.handleClose
+                      },
+                      React.createElement('img', { src: prefixUrl$1(close, publicUrl), alt: 'Close' })
+                    )
+                  ),
+                  React.createElement(
+                    StyledPanelScrollView,
+                    null,
+                    React.createElement(
+                      StyledPanelContent,
+                      null,
+                      children
+                    )
                   )
-                ),
-                !blocking && React.createElement(
-                  StyledPanelCloseButton,
-                  {
-                    type: 'button',
-                    onClick: _this2.handleClose
-                  },
-                  React.createElement('img', { src: prefixUrl(close$1, publicUrl), alt: 'Close' })
                 )
-              ),
-              React.createElement(
-                StyledPanelScrollView,
-                null,
-                React.createElement(
-                  StyledPanelContent,
-                  null,
-                  children
-                )
-              )
-            )
+              );
+            }
           );
         }
       );
@@ -7481,7 +6655,6 @@ SidePanel.propTypes = {
   opened: propTypes.bool,
   blocking: propTypes.bool,
   onClose: propTypes.func,
-  publicUrl: propTypes.string.isRequired,
   onTransitionEnd: propTypes.func
 };
 
@@ -7492,23 +6665,21 @@ SidePanel.defaultProps = {
   onTransitionEnd: function onTransitionEnd() {}
 };
 
-var WrappedSidePanel = getPublicUrl(SidePanel);
-
-WrappedSidePanel.PANEL_WIDTH = PANEL_WIDTH;
-WrappedSidePanel.PANEL_OVERFLOW = PANEL_OVERFLOW;
-WrappedSidePanel.PANEL_HIDE_RIGHT = PANEL_HIDE_RIGHT;
-WrappedSidePanel.PANEL_INNER_WIDTH = PANEL_INNER_WIDTH;
-WrappedSidePanel.HORIZONTAL_PADDING = CONTENT_PADDING;
+SidePanel.PANEL_WIDTH = PANEL_WIDTH;
+SidePanel.PANEL_OVERFLOW = PANEL_OVERFLOW;
+SidePanel.PANEL_HIDE_RIGHT = PANEL_HIDE_RIGHT;
+SidePanel.PANEL_INNER_WIDTH = PANEL_INNER_WIDTH;
+SidePanel.HORIZONTAL_PADDING = CONTENT_PADDING;
 
 var SidePanelSeparator = styled.div.withConfig({
   displayName: 'SidePanelSeparator'
-})(['width:calc(100% + ', 'px);margin:0 -', 'px;height:1px;background:', ';'], WrappedSidePanel.HORIZONTAL_PADDING * 2, WrappedSidePanel.HORIZONTAL_PADDING, theme.contentBorder);
+})(['width:calc(100% + ', 'px);margin:0 -', 'px;height:1px;background:', ';'], SidePanel.HORIZONTAL_PADDING * 2, SidePanel.HORIZONTAL_PADDING, theme.contentBorder);
 
 var SidePanelSplit = function SidePanelSplit(_ref) {
   var children = _ref.children,
       props = objectWithoutProperties(_ref, ['children']);
   return React.createElement(
-    Main$4,
+    Main$3,
     props,
     React.createElement(
       Part$1,
@@ -7523,13 +6694,17 @@ var SidePanelSplit = function SidePanelSplit(_ref) {
   );
 };
 
-var Main$4 = styled.div.withConfig({
+SidePanelSplit.propTypes = {
+  children: propTypes.node
+};
+
+var Main$3 = styled.div.withConfig({
   displayName: 'SidePanelSplit__Main'
-})(['display:flex;width:calc(100% + ', 'px);margin:0 -', 'px;border:1px solid ', ';border-width:1px 0;'], WrappedSidePanel.HORIZONTAL_PADDING * 2, WrappedSidePanel.HORIZONTAL_PADDING, theme.contentBorder);
+})(['display:flex;width:calc(100% + ', 'px);margin:0 -', 'px;border:1px solid ', ';border-width:1px 0;'], SidePanel.HORIZONTAL_PADDING * 2, SidePanel.HORIZONTAL_PADDING, theme.contentBorder);
 
 var Part$1 = styled.div.withConfig({
   displayName: 'SidePanelSplit__Part'
-})(['width:50%;padding:20px ', 'px;&:first-child{border-right:1px solid ', ';}'], WrappedSidePanel.HORIZONTAL_PADDING, theme.contentBorder);
+})(['width:50%;padding:20px ', 'px;&:first-child{border-right:1px solid ', ';}'], SidePanel.HORIZONTAL_PADDING, theme.contentBorder);
 
 var RadioGroup = function RadioGroup(_ref) {
   var children = _ref.children,
@@ -8623,11 +7798,6 @@ var StyledTableCellContent = styled.div.withConfig({
   return align === 'right' ? 'flex-end' : 'space-between';
 });
 
-var DefaultProps$7 = {
-  align: 'left',
-  contentContainer: StyledTableCellContent
-};
-
 var TableCell = function TableCell(_ref3) {
   var children = _ref3.children,
       Container = _ref3.contentContainer,
@@ -8644,7 +7814,16 @@ var TableCell = function TableCell(_ref3) {
   );
 };
 
-TableCell.defaultProps = DefaultProps$7;
+TableCell.propTypes = {
+  align: propTypes.string,
+  contentContainer: propTypes.func,
+  children: propTypes.node
+};
+
+TableCell.defaultProps = {
+  align: 'left',
+  contentContainer: StyledTableCellContent
+};
 
 var StyledTableHeader = styled.th.withConfig({
   displayName: 'TableHeader__StyledTableHeader'
@@ -8658,10 +7837,6 @@ var StyledTableHeader = styled.th.withConfig({
   var align = _ref3.align;
   return align;
 });
-
-var DefaultProps$8 = {
-  align: 'left'
-};
 
 var TableHeader = function TableHeader(_ref4) {
   var title = _ref4.title,
@@ -8678,7 +7853,14 @@ var TableHeader = function TableHeader(_ref4) {
   );
 };
 
-TableHeader.defaultProps = DefaultProps$8;
+TableHeader.propTypes = {
+  title: propTypes.string,
+  align: propTypes.string
+};
+
+TableHeader.defaultProps = {
+  align: 'left'
+};
 
 var StyledCard = styled.div.withConfig({
   displayName: 'Card__StyledCard'
@@ -8703,7 +7885,7 @@ var StyledActionButton = styled(Button).withConfig({
   displayName: 'EmptyStateCard__StyledActionButton'
 })(['width:150px;margin-top:20px;']);
 
-var DefaultProps$9 = {
+var DefaultProps = {
   actionButton: StyledActionButton,
   title: 'Nothing here.'
 };
@@ -8746,7 +7928,7 @@ var EmptyStateCard = function EmptyStateCard(_ref) {
   );
 };
 
-EmptyStateCard.defaultProps = DefaultProps$9;
+EmptyStateCard.defaultProps = DefaultProps;
 
 var chevronSvg = "data:image/svg+xml,%3Csvg%20width%3D%227%22%20height%3D%2212%22%20viewBox%3D%220%200%207%2012%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M.446%2012a.512.512%200%200%201-.172-.03.422.422%200%200%201-.146-.087A.37.37%200%200%201%200%2011.6a.37.37%200%200%201%20.128-.281l5.826-5.361L.217.692A.376.376%200%200%201%20.089.405.378.378%200%200%201%20.217.117.444.444%200%200%201%20.529%200c.123%200%20.228.04.313.117l6.03%205.56A.37.37%200%200%201%207%205.96a.37.37%200%200%201-.128.281l-6.12%205.643A.477.477%200%200%201%20.446%2012z%22%20fill%3D%22%2300CBE6%22%20fill-rule%3D%22evenodd%22%2F%3E%3C%2Fsvg%3E";
 
@@ -8761,11 +7943,11 @@ var StyledAppBarEnd = styled.div.withConfig({
   displayName: 'AppBar__StyledAppBarEnd'
 })(['margin-left:auto;padding-right:30px;']);
 
-var StyledAppBarTitle = getPublicUrl(styled.h1.withConfig({
+var StyledAppBarTitle = PublicUrl$1.hocWrap(styled.h1.withConfig({
   displayName: 'AppBar__StyledAppBarTitle'
 })(['padding-right:20px;margin-right:calc(20px - 7px);white-space:nowrap;background-image:', ';background-position:100% 50%;background-repeat:no-repeat;cursor:', ';'], function (_ref) {
   var chevron = _ref.chevron;
-  return chevron ? css(['url(', ')'], styledPublicUrl(chevronSvg)) : 'none';
+  return chevron ? css(['url(', ')'], PublicUrl$1.styledUrl(chevronSvg)) : 'none';
 }, function (_ref2) {
   var clickable = _ref2.clickable;
   return clickable ? 'pointer' : 'default';
@@ -8806,15 +7988,13 @@ var AppBar = function AppBar(_ref3) {
   );
 };
 
-var logo$3 = "data:image/svg+xml,%3Csvg%20width%3D%221129%22%20height%3D%22792%22%20viewBox%3D%220%200%201129%20792%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cdefs%3E%3ClinearGradient%20x1%3D%2258.303%25%22%20y1%3D%2229.305%25%22%20x2%3D%22-20.356%25%22%20y2%3D%2289.584%25%22%20id%3D%22a%22%3E%3Cstop%20stop-color%3D%22%23E9F2F4%22%20offset%3D%220%25%22%2F%3E%3Cstop%20stop-color%3D%22%23FFF%22%20offset%3D%22100%25%22%2F%3E%3C%2FlinearGradient%3E%3ClinearGradient%20x1%3D%2250%25%22%20y1%3D%22125.887%25%22%20x2%3D%2250%25%22%20y2%3D%2227.419%25%22%20id%3D%22b%22%3E%3Cstop%20stop-color%3D%22%23E9F2F4%22%20offset%3D%220%25%22%2F%3E%3Cstop%20stop-color%3D%22%23FFF%22%20offset%3D%22100%25%22%2F%3E%3C%2FlinearGradient%3E%3ClinearGradient%20x1%3D%2238.76%25%22%20y1%3D%2240.284%25%22%20x2%3D%2227.198%25%22%20y2%3D%224.898%25%22%20id%3D%22c%22%3E%3Cstop%20stop-color%3D%22%23E9F2F4%22%20offset%3D%220%25%22%2F%3E%3Cstop%20stop-color%3D%22%23FFF%22%20offset%3D%22100%25%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%20opacity%3D%22.7%22%3E%3Cpath%20d%3D%22M474.223%2064.24c-.503%200-231.685%2073.873-231.685%20275.905%200%20202.033%20223.146%20300.029%20387.48%20300.029%2089.383%200%20162.808-26.013%20211.24-49.744%206.242-28.642%2028.943-96.473%20104.047-96.981%2013.393-.523%2025.958%201.99%2036.517%208.021%2050.256%2027.144%2017.59%2077.898%2017.59%2077.898%201.894-.307%203.809-.663%205.724-1.075%201.91-.413%203.83-.89%205.764-1.408%2060.404-16.268%20128.467-85.36%20116.661-201.057-9.463-92.774-95.09-151.58-136.743-174.94-13.64-7.648-22.566-11.513-22.566-11.513%201.508-9.423%201.995-16.71%201.995-22.309%200-1.05-.02-2.035-.05-2.96v-10.86C751.617%2020.65%20566.645.223%20475.414.223c-39.412%200-61.5%203.704-61.5%203.704l60.309%2060.313zm461.86%20125.638s-29.652-9.55-59.8-13.57c-15.083%2015.58-28.15%2022.113-32.17%2024.129-.503.497-1.005%201-1.005%201-87.95-18.595-119.612-63.827-119.612-63.827%2082.93-.497%20157.812%2019.098%20212.587%2052.268z%22%20fill%3D%22url%28%23a%29%22%20opacity%3D%22.779%22%2F%3E%3Cpath%20d%3D%22M1018.002%20315.017c0%2065.842-27.134%20126.647-73.375%20175.899l-2.197%202.528%203.704-.01c12.564-.508%2025.129%202.005%2035.688%208.036%2050.256%2027.144%2017.59%2077.898%2017.59%2077.898%2062.82-10.051%20140.719-80.406%20128.15-203.54-9.464-92.774-95.092-151.58-136.744-174.94%2017.901%2035.357%2027.184%2074.19%2027.184%20114.13%22%20fill%3D%22url%28%23b%29%22%20opacity%3D%22.374%22%2F%3E%3Cpath%20d%3D%22M.808%20545.696c0%208.152.317%2015.911.769%2023.495%2062.198%20119.616%20137.015%20224.115%20222.588%20310.653%20106.72%20107.685%20230.9%20187.578%20369.166%20237.539%20137.764-49.785%20261.949-129.854%20369.182-238.057%2031.792-32.144%2062.112-66.887%2090.915-104.012-229.272-16.479-215.346-155.74-215.346-155.74%200-5.524%200-11.057%201.005-16.585%200%200%20.508-4.89%202.176-12.564-48.432%2023.736-121.857%2049.749-211.244%2049.749-164.335%200-387.48-97.996-387.48-300.029%200-202.032%20231.181-275.905%20231.181-275.905l-.12-.035c-5.86-.452-12.143-.472-17.973-.472C202.836%2072.784.808%20284.863.808%20545.696%22%20fill%3D%22url%28%23c%29%22%20opacity%3D%22.557%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E";
-
-// AragonApp provides everything needed to start an Aragon App.
+var logo = "data:image/svg+xml,%3Csvg%20width%3D%221129%22%20height%3D%22792%22%20viewBox%3D%220%200%201129%20792%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cdefs%3E%3ClinearGradient%20x1%3D%2258.303%25%22%20y1%3D%2229.305%25%22%20x2%3D%22-20.356%25%22%20y2%3D%2289.584%25%22%20id%3D%22a%22%3E%3Cstop%20stop-color%3D%22%23E9F2F4%22%20offset%3D%220%25%22%2F%3E%3Cstop%20stop-color%3D%22%23FFF%22%20offset%3D%22100%25%22%2F%3E%3C%2FlinearGradient%3E%3ClinearGradient%20x1%3D%2250%25%22%20y1%3D%22125.887%25%22%20x2%3D%2250%25%22%20y2%3D%2227.419%25%22%20id%3D%22b%22%3E%3Cstop%20stop-color%3D%22%23E9F2F4%22%20offset%3D%220%25%22%2F%3E%3Cstop%20stop-color%3D%22%23FFF%22%20offset%3D%22100%25%22%2F%3E%3C%2FlinearGradient%3E%3ClinearGradient%20x1%3D%2238.76%25%22%20y1%3D%2240.284%25%22%20x2%3D%2227.198%25%22%20y2%3D%224.898%25%22%20id%3D%22c%22%3E%3Cstop%20stop-color%3D%22%23E9F2F4%22%20offset%3D%220%25%22%2F%3E%3Cstop%20stop-color%3D%22%23FFF%22%20offset%3D%22100%25%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%20opacity%3D%22.7%22%3E%3Cpath%20d%3D%22M474.223%2064.24c-.503%200-231.685%2073.873-231.685%20275.905%200%20202.033%20223.146%20300.029%20387.48%20300.029%2089.383%200%20162.808-26.013%20211.24-49.744%206.242-28.642%2028.943-96.473%20104.047-96.981%2013.393-.523%2025.958%201.99%2036.517%208.021%2050.256%2027.144%2017.59%2077.898%2017.59%2077.898%201.894-.307%203.809-.663%205.724-1.075%201.91-.413%203.83-.89%205.764-1.408%2060.404-16.268%20128.467-85.36%20116.661-201.057-9.463-92.774-95.09-151.58-136.743-174.94-13.64-7.648-22.566-11.513-22.566-11.513%201.508-9.423%201.995-16.71%201.995-22.309%200-1.05-.02-2.035-.05-2.96v-10.86C751.617%2020.65%20566.645.223%20475.414.223c-39.412%200-61.5%203.704-61.5%203.704l60.309%2060.313zm461.86%20125.638s-29.652-9.55-59.8-13.57c-15.083%2015.58-28.15%2022.113-32.17%2024.129-.503.497-1.005%201-1.005%201-87.95-18.595-119.612-63.827-119.612-63.827%2082.93-.497%20157.812%2019.098%20212.587%2052.268z%22%20fill%3D%22url%28%23a%29%22%20opacity%3D%22.779%22%2F%3E%3Cpath%20d%3D%22M1018.002%20315.017c0%2065.842-27.134%20126.647-73.375%20175.899l-2.197%202.528%203.704-.01c12.564-.508%2025.129%202.005%2035.688%208.036%2050.256%2027.144%2017.59%2077.898%2017.59%2077.898%2062.82-10.051%20140.719-80.406%20128.15-203.54-9.464-92.774-95.092-151.58-136.744-174.94%2017.901%2035.357%2027.184%2074.19%2027.184%20114.13%22%20fill%3D%22url%28%23b%29%22%20opacity%3D%22.374%22%2F%3E%3Cpath%20d%3D%22M.808%20545.696c0%208.152.317%2015.911.769%2023.495%2062.198%20119.616%20137.015%20224.115%20222.588%20310.653%20106.72%20107.685%20230.9%20187.578%20369.166%20237.539%20137.764-49.785%20261.949-129.854%20369.182-238.057%2031.792-32.144%2062.112-66.887%2090.915-104.012-229.272-16.479-215.346-155.74-215.346-155.74%200-5.524%200-11.057%201.005-16.585%200%200%20.508-4.89%202.176-12.564-48.432%2023.736-121.857%2049.749-211.244%2049.749-164.335%200-387.48-97.996-387.48-300.029%200-202.032%20231.181-275.905%20231.181-275.905l-.12-.035c-5.86-.452-12.143-.472-17.973-.472C202.836%2072.784.808%20284.863.808%20545.696%22%20fill%3D%22url%28%23c%29%22%20opacity%3D%22.557%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E";
 
 var StyledAragonApp = styled.main.withConfig({
   displayName: 'AragonApp__StyledAragonApp'
 })(['min-width:320px;min-height:100vh;background-color:', ';background-image:', ';background-position:50% 50%;background-repeat:no-repeat;'], theme.mainBackground, function (_ref) {
   var backgroundLogo = _ref.backgroundLogo;
-  return backgroundLogo ? css(['url(', ')'], styledPublicUrl(logo$3)) : 'none';
+  return backgroundLogo ? css(['url(', ')'], PublicUrl$1.styledUrl(logo)) : 'none';
 });
 
 var AragonApp = function (_React$Component) {
@@ -8842,16 +8022,27 @@ var AragonApp = function (_React$Component) {
 
       var styledProps = { backgroundLogo: backgroundLogo, className: className, publicUrl: publicUrl };
       return React.createElement(
-        StyledAragonApp,
-        styledProps,
-        React.createElement(BaseStyles$1, null),
-        children
+        PublicUrl$1.Provider,
+        { value: publicUrl },
+        React.createElement(
+          StyledAragonApp,
+          styledProps,
+          React.createElement(BaseStyles$1, { legacyFonts: supportLegacyAgents }),
+          children
+        )
       );
     }
   }]);
   return AragonApp;
 }(React.Component);
 
+AragonApp.propTypes = {
+  className: propTypes.string,
+  backgroundLogo: propTypes.bool,
+  publicUrl: propTypes.string,
+  children: propTypes.node,
+  supportLegacyAgents: propTypes.bool
+};
 AragonApp.defaultProps = {
   backgroundLogo: false
 };
@@ -8860,32 +8051,7 @@ AragonApp.childContextTypes = {
 };
 AragonApp.Styled = StyledAragonApp;
 
-var Container$3 = styled.div.withConfig({
-  displayName: 'LayoutGrid__Container'
-})(['position:fixed;z-index:999;left:0;right:0;top:0;bottom:0;display:flex;width:', 'px;margin:0 auto;pointerevents:none;'], grid(12));
-
-var Column = styled.div.withConfig({
-  displayName: 'LayoutGrid__Column'
-})(['width:', 'px;height:100%;background:rgba(184,184,184,0.5);'], grid(1));
-
-var LayoutGrid = function LayoutGrid() {
-  return React.createElement(
-    Container$3,
-    null,
-    [].concat(toConsumableArray(Array(12))).map(function (v, i, arr) {
-      return React.createElement(
-        'div',
-        {
-          key: i,
-          style: { width: grid(1, i < arr.length - 1 ? 1 : 0) + 'px' }
-        },
-        React.createElement(Column, null)
-      );
-    })
-  );
-};
-
 /* eslint-disable prettier/prettier */
 
-export { theme, themeDark, brand, colors, difference, formatHtmlDatetime, formatIntegerRange, font, grid, spring, breakpoint, BreakPoint, unselectable, redraw, redrawFromDate, BaseStyles$1 as BaseStyles, Section, IllustratedSection, BadgeNumber, Badge, Button, CircleGraph, ContextMenu, ContextMenuItem, Countdown$1 as Countdown, DropDown, Field, Info$1 as Info, RadioButton, TextInput, Footer$1 as Footer, PreFooter, Header, SafeLink, WrappedSidePanel as SidePanel, SidePanelSeparator, SidePanelSplit, RadioGroup, RadioList, Table, TableCell, TableHeader, StyledTableRow as TableRow, TypedText as Text, StyledCard as Card, EmptyStateCard, AppBar, AragonApp, LayoutGrid, Add as IconAdd, Blank as IconBlank, Check as IconCheck, Cross as IconCross, Finance as IconFinance, Fundraising as IconFundraising, Groups as IconGroups, Home as IconHome, Identity as IconIdentity, Notifications as IconNotifications, Permissions as IconPermissions, Settings as IconSettings, Share as IconShare, Time as IconTime, Tokens as IconTokens, Voting as IconVoting, Wallet as IconWallet, observe };
+export { BaseStyles$1 as BaseStyles, BadgeNumber, Badge, Button, CircleGraph, ContextMenu, ContextMenuItem, Countdown$1 as Countdown, DropDown, Field, Info$1 as Info, RadioButton, TextInput, SafeLink, SidePanel, SidePanelSeparator, SidePanelSplit, RadioGroup, RadioList, Table, TableCell, TableHeader, StyledTableRow as TableRow, TypedText as Text, StyledCard as Card, EmptyStateCard, AppBar, AragonApp, Add as IconAdd, Apps as IconApps, Blank as IconBlank, Check as IconCheck, Cross as IconCross, Fundraising as IconFundraising, Groups as IconGroups, Home as IconHome, Identity as IconIdentity, Notifications as IconNotifications, Permissions as IconPermissions, Settings as IconSettings, Share as IconShare, Time as IconTime, Wallet as IconWallet, theme, themeDark, brand, colors, difference, formatHtmlDatetime, formatIntegerRange, font, grid, spring, breakpoint, BreakPoint, unselectable, observe };
 //# sourceMappingURL=index.esm.js.map
