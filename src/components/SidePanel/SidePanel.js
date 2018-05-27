@@ -56,10 +56,12 @@ const StyledPanelHeader = styled.header`
   padding-right: 20px;
   padding-bottom: 15px;
   ${unselectable()};
+  flex-shrink: 0;
 `
 
 const StyledPanelScrollView = styled.div`
   overflow-y: auto;
+  height: 100%;
 `
 
 const StyledPanelContent = styled.div`
