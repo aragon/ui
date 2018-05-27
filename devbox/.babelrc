@@ -1,0 +1,7 @@
+{
+  "plugins": [
+    ["styled-components", { "displayName": true }],
+    ["transform-class-properties"]
+  ],
+  "presets": [["env", "react", "stage-2"]]
+}
