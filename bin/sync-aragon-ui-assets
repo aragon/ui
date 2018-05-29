@@ -1,0 +1,74 @@
+#!/usr/bin/env sh
+set -o errexit
+set -o nounset
+
+DIR_NAME="aragon-ui-assets"
+DESTINATION_DIR=""
+SOURCE_DIR="$(cd "$(dirname "$0")/../dist" && pwd -P)"
+
+show_help() {
+cat << EOF
+
+  Usage: ./${0##*/} [-h] [-n DIR_NAME] [DESTINATION_DIR]
+
+  Options:
+
+    -h Display this help and exit.
+    -n DIR_NAME Change the directory name (defaults to "aragon-ui-assets").
+
+  Examples:
+
+    $ sync-aragon-ui-assets .
+    $ sync-aragon-ui-assets ./public --dir-name aragon_ui_assets
+
+EOF
+}
+
+show_rsync_error() {
+  echo
+  echo "$0 error: rsync is not installed."
+}
+
+show_no_destination_dir_error() {
+  echo
+  echo "$0 error: no destination directory provided."
+}
+
+# Check for rsync first
+if ! [ -x "$(command -v rsync)" ]; then
+  echo
+  show_rsync_error >&2
+  exit 1
+fi
+
+# Options
+OPTIND=1
+while getopts "hn:" opt; do
+  case "$opt" in
+    h)
+      show_help
+      exit 0
+      ;;
+    n)
+      DIR_NAME="${OPTARG%/}"
+      ;;
+    \?)
+      show_help >&2
+      exit 1
+      ;;
+    esac
+done
+shift "$((OPTIND-1))"
+
+# Destination directory
+DESTINATION_DIR="${@%/}"
+if [ -z "$DESTINATION_DIR" ]; then
+  show_no_destination_dir_error >&2
+  show_help >&2
+  exit 1
+fi
+
+echo
+echo "  Syncing Aragon UI assets: $SOURCE_DIR/ => $DESTINATION_DIR/$DIR_NAME/"
+
+rsync --recursive --update --times "$SOURCE_DIR/" "$DESTINATION_DIR/$DIR_NAME/"
