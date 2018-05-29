@@ -19,7 +19,7 @@ cat << EOF
   Examples:
 
     $ sync-aragon-ui-assets .
-    $ sync-aragon-ui-assets ./public --dir-name aragon_ui_assets
+    $ sync-aragon-ui-assets -n aragon-ui ./public
 
 EOF
 }
