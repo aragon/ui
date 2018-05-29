@@ -9,7 +9,7 @@ SOURCE_DIR="$(cd "$(dirname "$0")/../dist" && pwd -P)"
 show_help() {
 cat << EOF
 
-  Usage: ./${0##*/} [-h] [-n DIR_NAME] [DESTINATION_DIR]
+  Usage: sync-aragon-ui-assets [-h] [-n DIR_NAME] [DESTINATION_DIR]
 
   Options:
 
