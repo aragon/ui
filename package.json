@@ -14,7 +14,9 @@
     "src/",
     "scripts/"
   ],
-  "bin": { "sync-aragon-ui-assets": "./bin/sync-aragon-ui-assets" },
+  "bin": {
+    "copy-aragon-ui-assets": "./bin/copy-aragon-ui-assets"
+  },
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c -w",
@@ -76,11 +78,14 @@
   },
   "dependencies": {
     "airbnb-prop-types": "^2.9.0",
+    "arg": "^2.0.0",
+    "command-exists": "^1.2.6",
     "date-fns": "^2.0.0-alpha.7",
     "onecolor": "^3.0.5",
     "prop-types": "^15.6.0",
     "react-display-name": "^0.2.3",
     "react-motion": "^0.5.2",
-    "react-onclickout": "^2.0.8"
+    "react-onclickout": "^2.0.8",
+    "recursive-copy": "^2.0.9"
   }
 }
