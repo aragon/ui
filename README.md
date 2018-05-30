@@ -1,107 +1,81 @@
 # Aragon UI
 
-Aragon UI is the interface toolkit used by Aragon and its related projects.
+<p align=center>
+  <img src="https://user-images.githubusercontent.com/36158/40653789-19f2d150-6334-11e8-9f78-8b32648698b4.png" alt="">
+</p>
 
-## How to import
+Aragon UI is the user interface toolkit used by Aragon and its related projects.
 
-Aragon UI is a library that comes with some assets, like fonts or images. These
-need to be copied where Aragon UI can access them.
+## Getting Started
 
-This emplacement can then be communicated to Aragon UI using the global
-component `<AragonApp />`:
+Install it from npm:
+
+```sh
+npm install --save @aragon/ui
+```
+
+Aragon UI comes with some assets (e.g. fonts). These need to be copied where Aragon UI can access them, like the `public/` directory of a project using [Create React App](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#adding-assets-outside-of-the-module-system).
+
+A simple way to do this is to use the `copy-aragon-ui-assets` provided by Aragon UI:
+
+```sh
+npx copy-aragon-ui-assets ./public
+```
+
+This emplacement has to be communicated to the library using `<AragonApp>`, so that the assets can be fetched by the components below in the tree.
 
 ```jsx
 import { AragonApp } from '@aragon/ui'
 
 const App = () => (
-  <AragonApp publicUrl="/">
-    {/* Your app goes here */}
+  <AragonApp publicUrl="/aragon-ui-assets/">
+    …
   </AragonApp>
 )
 ```
 
-To get the path of the directory from where the assets need to be copied, use
-`path.dirname(require.resolve('@aragon/ui'))`.
+*Your project is now ready to use Aragon UI. 💫*
 
-### `create-react-app`
+Open https://ui.aragon.one/ to see the list of available components and how to use them.
 
-If you're using [`create-react-app`](https://github.com/facebookincubator/create-react-app)
-or [`react-scripts`](https://github.com/facebookincubator/create-react-app/tree/master/packages/react-scripts),
-you can copy over the contents of module's `dist/` folder (i.e.
-`path.dirname(require.resolve('@aragon/ui'))`) to
-a [`public/aragon-ui`](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#adding-assets-outside-of-the-module-system)
-folder in your app and then use `publicUrl="/aragon-ui/`.
+### Assets Synchronization (optional)
 
-You may also want to add this sync step to your build scripts, in case you
-later upgrade this package (make sure to `npm i -D sync-assets first):
+You may also want to add it as a step in your project scripts, so that upgrading Aragon UI can be done without having to worry about these.
 
 ```json
 "scripts": {
-    "sync-assets": "sync-files $(dirname $(node -p 'require.resolve(\"@aragon/ui\")')) public/aragon-ui",
-    "build": "npm run sync-assets && react-scripts build",
-    "start": "npm run sync-assets && react-scripts start"
+  "sync-assets": "copy-aragon-ui-assets ./public",
+  "build": "npm run sync-assets && react-scripts build",
+  "start": "npm run sync-assets && react-scripts start"
 }
 ```
 
-### Copy Webpack Plugin
+See `copy-aragon-ui-assets -h` for more information.
 
-If you have your own webpack configuration, a way to copy this package's assets
-is to use the [Copy Webpack Plugin](https://github.com/webpack-contrib/copy-webpack-plugin):
+## Build & Develop
 
-```js
-module.exports = {
-  /* … */
-
-  plugins: [
-    new CopyWebpackPlugin([
-      {
-        from: path.dirname(require.resolve('@aragon/ui')),
-        to: path.resolve(
-          path.join(__dirname, 'dist/public')
-        ),
-      },
-    ]),
-  ]
-}
-```
-
-### webpack DevServer
-
-For [webpack DevServer](https://webpack.js.org/configuration/dev-server/), add
-the Aragon UI directory to the `contentBase` array, without having to copy it:
-
-```js
-module.exports = {
-  /* … */
-
-  devServer: {
-    contentBase: [
-      path.dirname(require.resolve('@aragon/ui')),
-      path.join(__dirname, 'public'),
-    ],
-  },
-}
-```
-
-## Develop
-
-Install the dependencies:
+Clone this repository, install the dependencies:
 
 ```sh
 npm install
 ```
 
-Build Aragon UI:
+Build:
 
 ```sh
-npm run build # or "npm run dev" to rebuild when a file has changed
+npm run build
 ```
 
-
-Run the gallery:
+Auto rebuild:
 
 ```sh
+npm run dev
+```
+
+Run the devbox (to develop a component in isolation):
+
+```sh
+cd devbox
+npm install
 npm start
 ```
-
-Open <http://localhost:8080/> in your web browser.
