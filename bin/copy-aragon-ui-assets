@@ -57,7 +57,11 @@ async function main(argv, argspec) {
   const copy = commandExists('rsync') ? rsyncCopy : nodeCopy
 
   return copy(source, destination).then(
-    () => `\nCopied Aragon UI assets: ${source} => ${destination}`
+    () =>
+      `\nAragon UI assets copied to ${path.relative(
+        process.cwd(),
+        destination
+      )}`
   )
 }
 
