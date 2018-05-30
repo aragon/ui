@@ -35,7 +35,7 @@ const argspec = {
   '-n': '--dirname',
 }
 
-const error = message => console.error(`${COMMAND} error: ${message}`)
+const error = message => console.error(`\n  ${COMMAND} error: ${message}`)
 
 async function main(argv, argspec) {
   const args = arg(argspec, { permissive: true })
@@ -44,7 +44,7 @@ async function main(argv, argspec) {
   if (args['--version']) return VERSION
 
   if (!args._[0]) {
-    throw new Error('no destination directory provided')
+    throw new Error(`no destination directory provided\n${HELP}`)
   }
 
   const source = path.resolve(__dirname, '..', path.dirname(pkg.main))
