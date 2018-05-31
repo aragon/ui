@@ -6,6 +6,7 @@ import { spring as springConf, unselectable } from '../../utils'
 
 const BAR_HEIGHT = 6
 const HANDLE_SIZE = 24
+const HANDLE_SHADOW_MARGIN = 15
 const PADDING = 5
 const MIN_WIDTH = HANDLE_SIZE * 10
 const HEIGHT = Math.max(HANDLE_SIZE, BAR_HEIGHT) + PADDING * 2
@@ -84,8 +85,12 @@ class Slider extends React.Component {
       background: `hsl(0, 0%, ${lightness}%)`,
     }
   }
-  getHandleWrapperStyles(value, progress) {
-    return { transform: `translate(${value * 10000 - 50}%, 0)` }
+  getHandlePositionStyles(value, progress) {
+    return {
+      transform: `
+        translate(calc(${value * 100}% + ${HANDLE_SHADOW_MARGIN}px), 0)
+      `,
+    }
   }
   getActiveBarStyles(value, pressProgress) {
     const saturationDiff = 1 + 0.2 * pressProgress
@@ -119,14 +124,17 @@ class Slider extends React.Component {
                   style={this.getActiveBarStyles(value, pressProgress)}
                 />
               </Bars>
-              <HandleWrapper
-                style={this.getHandleWrapperStyles(value, pressProgress)}
-              >
-                <Handle
-                  pressed={pressed}
-                  style={this.getHandleStyles(value, pressProgress)}
-                />
-              </HandleWrapper>
+
+              <HandleClip>
+                <HandlePosition
+                  style={this.getHandlePositionStyles(value, pressProgress)}
+                >
+                  <Handle
+                    pressed={pressed}
+                    style={this.getHandleStyles(value, pressProgress)}
+                  />
+                </HandlePosition>
+              </HandleClip>
             </Area>
           </Main>
         )}
@@ -174,17 +182,28 @@ const ActiveBar = Bar.extend`
   transform-origin: 0 0;
 `
 
-const HandleWrapper = styled.div`
-  width: 1%;
+const HandleClip = styled.div`
+  pointer-events: none;
+  overflow: hidden;
+  width: calc(100% + ${HANDLE_SIZE + HANDLE_SHADOW_MARGIN * 2}px);
+  height: calc(100% + ${HANDLE_SHADOW_MARGIN * 2}px);
+  transform-origin: 50% 50%;
+  transform: translate(
+    -${HANDLE_SIZE / 2 + HANDLE_SHADOW_MARGIN}px,
+    -${HANDLE_SHADOW_MARGIN}px
+  );
+`
+
+const HandlePosition = styled.div`
+  width: calc(100% - ${HANDLE_SIZE + HANDLE_SHADOW_MARGIN * 2}px);
   height: 100%;
-  top: 50%;
   transform-origin: 50% 50%;
 `
 
 const Handle = styled.div`
   position: absolute;
   top: 50%;
-  left: ${-HANDLE_SIZE / 2}px;
+  left: 0;
   width: ${HANDLE_SIZE}px;
   height: ${HANDLE_SIZE}px;
   border: 0.5px solid #dcecf5;
