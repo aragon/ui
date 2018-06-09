@@ -80,7 +80,7 @@ class Slider extends React.Component {
     const shadowOpacity = 0.13 * (1 - pressProgress)
     const lightness = 100 * (1 - pressProgress * 0.01)
     return {
-      transform: `translateY(calc(${pressProgress}px - 50%))`,
+      transform: `translate3d(0, calc(${pressProgress}px - 50%), 0)`,
       boxShadow: ` 0 4px 8px 0 rgba(0, 0, 0, ${shadowOpacity})`,
       background: `hsl(0, 0%, ${lightness}%)`,
     }
@@ -88,15 +88,15 @@ class Slider extends React.Component {
   getHandlePositionStyles(value, progress) {
     return {
       transform: `
-        translate(calc(${value * 100}% + ${HANDLE_SHADOW_MARGIN}px), 0)
+        translate3d(calc(${value * 100}% + ${HANDLE_SHADOW_MARGIN}px), 0, 0)
       `,
     }
   }
   getActiveBarStyles(value, pressProgress) {
     const saturationDiff = 1 + 0.2 * pressProgress
     return {
-      transform: `scaleX(${value}`,
-      background: `hsl(179, ${76 * saturationDiff}%, 48%)`,
+      transform: `scaleX(${value}) translateZ(0)`,
+      background: `hsl(179, ${Math.round(76 * saturationDiff)}%, 48%)`,
     }
   }
   render() {
