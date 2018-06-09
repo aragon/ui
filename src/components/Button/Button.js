@@ -209,7 +209,7 @@ const StyledButton = styled.button.attrs({ type: 'button' })`
 
 const Button = PublicUrl.hocWrap(StyledButton)
 const Anchor = PublicUrl.hocWrap(
-  StyledButton.withComponent(SafeLink).extend`
+  styled(StyledButton.withComponent(SafeLink))`
     ${unselectable};
     display: inline-block;
     text-decoration: none;
