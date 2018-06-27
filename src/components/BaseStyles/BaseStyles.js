@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { injectGlobal } from 'styled-components'
-import theme from '../../theme'
-import PublicUrl from '../../providers/PublicUrl'
+import { theme } from '../../theme'
+import { PublicUrl } from '../../providers/PublicUrl'
 
 import overpassLightWoff from './assets/overpass/overpass-light.woff'
 import overpassLightWoff2 from './assets/overpass/overpass-light.woff2'

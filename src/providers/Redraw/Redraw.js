@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import getDisplayName from 'react-display-name'
 
 // Render prop component and HOC for re-rendering.
 // For a discussion on pitfalls, see

@@ -2,7 +2,7 @@
 import type { Node } from 'react'
 import React from 'react'
 import styled from 'styled-components'
-import theme from '../../theme'
+import { theme } from '../../theme'
 
 const NON_BREAKING_SPACE = '\xa0'
 

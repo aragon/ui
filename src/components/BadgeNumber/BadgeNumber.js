@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Badge from '../Badge/Badge'
-import theme from '../../theme'
+import { theme } from '../../theme'
 
 const BadgeNumber = ({ number, small, background, color, ...props }) => (
   <Badge

@@ -1,8 +1,8 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { Motion, spring } from 'react-motion'
-import theme from '../../theme'
-import { spring as springConf, unselectable } from '../../utils'
+import { unselectable } from '../../utils'
 
 const BAR_HEIGHT = 6
 const HANDLE_SIZE = 24
@@ -14,6 +14,10 @@ const HEIGHT = Math.max(HANDLE_SIZE, BAR_HEIGHT) + PADDING * 2
 const SPRING = { stiffness: 400, damping: 28, precision: 0.01 }
 
 class Slider extends React.Component {
+  static propTypes = {
+    value: PropTypes.number,
+    onUpdate: PropTypes.func,
+  }
   static defaultProps = {
     value: 0,
     onUpdate: () => {},
@@ -39,7 +43,7 @@ class Slider extends React.Component {
     this._lastRectTime = now
     this._lastRect = this._mainElement
       ? this._mainElement.getBoundingClientRect()
-      : new DOMRect()
+      : new window.DOMRect()
 
     return this._lastRect
   }

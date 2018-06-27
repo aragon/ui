@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import color from 'onecolor'
 import Text from '../Text/Text'
-import theme, { colors } from '../../theme'
+import { theme, colors } from '../../theme'
 import { unselectable } from '../../utils/styles'
 import RadioButton from '../Input/RadioButton'
 

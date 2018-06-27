@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { isEqual } from 'date-fns/esm'
-import getDisplayName from 'react-display-name'
 import { difference } from '../../utils/date'
 
 // Render prop component for re-rendering based on a given date. Automatically
@@ -21,11 +20,12 @@ const getRedrawTime = fromDate => {
 
 class RedrawFromDate extends React.Component {
   static propTypes = {
+    children: PropTypes.func.isRequired,
     fromDate: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.number,
       PropTypes.instanceOf(Date),
-    ]),
+    ]).isRequired,
   }
   state = {
     redrawTime: EVERY_HOUR,
@@ -67,11 +67,17 @@ class RedrawFromDate extends React.Component {
   }
 }
 
-const hocWrap = Component => props => (
-  <RedrawFromDate fromDate={props.fromDate}>
-    {() => <Component {...props} />}
-  </RedrawFromDate>
-)
+const hocWrap = Component => {
+  const HOC = props => (
+    <RedrawFromDate fromDate={props.fromDate}>
+      {() => <Component {...props} />}
+    </RedrawFromDate>
+  )
+  HOC.propTypes = {
+    fromDate: RedrawFromDate.propTypes.fromDate,
+  }
+  return HOC
+}
 
 RedrawFromDate.hocWrap = hocWrap
 

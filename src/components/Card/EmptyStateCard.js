@@ -2,7 +2,7 @@
 import type { Node } from 'react'
 import React from 'react'
 import styled from 'styled-components'
-import theme from '../../theme'
+import { theme } from '../../theme'
 import Button from '../Button/Button'
 import Text from '../Text/Text'
 import Card from './Card'
