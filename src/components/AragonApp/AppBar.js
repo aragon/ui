@@ -1,5 +1,3 @@
-/* @flow */
-import type { Node } from 'react'
 import React from 'react'
 import styled, { css } from 'styled-components'
 import PublicUrl from '../../providers/PublicUrl'
@@ -41,20 +39,7 @@ const StyledAppBarTitle = PublicUrl.hocWrap(styled.h1`
   cursor: ${({ clickable }) => (clickable ? 'pointer' : 'default')};
 `)
 
-type Props = {
-  title: string,
-  children?: Node,
-  endContent?: Node,
-  onTitleClick?: () => *,
-}
-
-const AppBar = ({
-  children,
-  endContent,
-  title,
-  onTitleClick,
-  ...props
-}: Props) => (
+const AppBar = ({ children, endContent, title, onTitleClick, ...props }) => (
   <StyledAppBar {...props}>
     <StyledAppBarStart>
       <StyledAppBarTitle
@@ -69,5 +54,12 @@ const AppBar = ({
     {endContent && <StyledAppBarEnd>{endContent}</StyledAppBarEnd>}
   </StyledAppBar>
 )
+
+AppBar.propTypes = {
+  children: PropTypes.node,
+  title: PropTypes.string,
+  endContent: PropTypes.node,
+  onTitleClick: PropTypes.func,
+}
 
 export default AppBar

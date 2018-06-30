@@ -1,5 +1,3 @@
-/* @flow */
-import type { Node } from 'react'
 import React from 'react'
 import styled from 'styled-components'
 import theme from '../../theme'
@@ -8,51 +6,15 @@ const NON_BREAKING_SPACE = '\xa0'
 
 const { accent, contentBackgroundActive } = theme
 
-const StyledDropDownItem = styled.div.attrs({ tabIndex: '0' })`
-  position: relative;
-  padding: 8px 15px;
-  cursor: pointer;
-  outline: 0;
-  &:after {
-    content: '';
-    opacity: 0;
-    position: absolute;
-    z-index: 2;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    margin: -1px -2px;
-    border: 2px solid ${accent};
-    transition: all 100ms ease-in-out;
+class DropDownItem extends React.Component {
+  static propTypes = {
+    active: PropTypes.boolean,
+    children: PropTypes.node,
+    index: PropTypes.number,
+    mainRef: PropTypes.func,
+    onActivate: PropTypes.func,
+    className: PropTypes.string,
   }
-  &:active {
-    background-color: ${contentBackgroundActive};
-  }
-  &:hover,
-  &:focus {
-    color: ${accent};
-  }
-  &:focus:after {
-    opacity: ${({ displayFocus }) => (displayFocus ? 1 : 0)};
-  }
-`
-
-type Props = {
-  active: boolean,
-  children: Node,
-  index: number,
-  mainRef: HTMLElement => void,
-  onActivate: (number, { keyboard: boolean }) => void,
-  className: string,
-}
-
-type State = {
-  displayFocus: boolean,
-  pressed: boolean,
-}
-
-class DropDownItem extends React.Component<Props, State> {
   static defaultProps = {
     children: NON_BREAKING_SPACE,
     mainRef: () => {},
@@ -62,7 +24,7 @@ class DropDownItem extends React.Component<Props, State> {
     pressed: false,
     displayFocus: false,
   }
-  handleActivate = (event: SyntheticEvent<HTMLDivElement>) => {
+  handleActivate = event => {
     const keyboard = event.type === 'keydown'
     if (keyboard && event.keyCode !== 13) {
       return
@@ -98,5 +60,35 @@ class DropDownItem extends React.Component<Props, State> {
     )
   }
 }
+
+const StyledDropDownItem = styled.div.attrs({ tabIndex: '0' })`
+  position: relative;
+  padding: 8px 15px;
+  cursor: pointer;
+  outline: 0;
+  &:after {
+    content: '';
+    opacity: 0;
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: -1px -2px;
+    border: 2px solid ${accent};
+    transition: all 100ms ease-in-out;
+  }
+  &:active {
+    background-color: ${contentBackgroundActive};
+  }
+  &:hover,
+  &:focus {
+    color: ${accent};
+  }
+  &:focus:after {
+    opacity: ${({ displayFocus }) => (displayFocus ? 1 : 0)};
+  }
+`
 
 export default DropDownItem
