@@ -10,8 +10,6 @@ const BREAKPOINTS = {
   large: 1170,
 }
 
-const BreakPointName = PropTypes.oneOf([...Object.keys(BREAKPOINTS), ''])
-
 // CSS breakpoints
 export const breakpoint = (name, styles) => css`
   @media (min-width: ${BREAKPOINTS[name]}px) {
@@ -35,6 +33,8 @@ export const BreakPoint = ({ from, to, children, ...props }) => {
     </Media>
   )
 }
+
+const BreakPointName = PropTypes.oneOf([...Object.keys(BREAKPOINTS), ''])
 
 BreakPoint.propTypes = {
   from: BreakPointName,
