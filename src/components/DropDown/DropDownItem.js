@@ -9,7 +9,7 @@ const { accent, contentBackgroundActive } = theme
 
 class DropDownItem extends React.Component {
   static propTypes = {
-    active: PropTypes.boolean,
+    active: PropTypes.bool,
     children: PropTypes.node,
     index: PropTypes.number,
     mainRef: PropTypes.func,
