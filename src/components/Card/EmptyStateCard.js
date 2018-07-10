@@ -1,6 +1,5 @@
-/* @flow */
-import type { Node } from 'react'
 import React from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import theme from '../../theme'
 import Button from '../Button/Button'
@@ -21,25 +20,10 @@ const StyledHeading = styled.h1`
   margin: 20px 0 5px;
 `
 
-// $FlowFixMe
 const StyledActionButton = styled(Button)`
   width: 150px;
   margin-top: 20px;
 `
-
-type Props = {
-  actionButton: Node,
-  actionText: string,
-  icon: Node,
-  onActivate: mixed,
-  text: string,
-  title: string,
-}
-
-const DefaultProps = {
-  actionButton: StyledActionButton,
-  title: 'Nothing here.',
-}
 
 const EmptyStateCard = ({
   actionText,
@@ -49,7 +33,7 @@ const EmptyStateCard = ({
   actionButton: ActionButton,
   icon: Icon,
   ...props
-}: Props) => (
+}) => (
   <StyledCard {...props}>
     <section>
       <Icon />
@@ -66,6 +50,18 @@ const EmptyStateCard = ({
   </StyledCard>
 )
 
-EmptyStateCard.defaultProps = DefaultProps
+EmptyStateCard.propTypes = {
+  actionButton: PropTypes.node,
+  actionText: PropTypes.string,
+  icon: PropTypes.node,
+  onActivate: PropTypes.func,
+  text: PropTypes.string,
+  title: PropTypes.string,
+}
+
+EmptyStateCard.defaultProps = {
+  actionButton: StyledActionButton,
+  title: 'Nothing here.',
+}
 
 export default EmptyStateCard

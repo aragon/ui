@@ -1,6 +1,5 @@
-/* @flow */
-import type { Node } from 'react'
 import React from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import Text from '../Text/Text'
 import theme from '../../theme'
@@ -21,12 +20,7 @@ const StyledTextBlock = styled(Text.Block)`
   ${unselectable()};
 `
 
-type Props = {
-  children: Node,
-  label: string,
-}
-
-const Field = ({ children, label, ...props }: Props) => {
+const Field = ({ children, label, ...props }) => {
   const isRequired = React.Children.toArray(children).some(
     ({ props: childProps }) => childProps.required
   )
@@ -41,6 +35,11 @@ const Field = ({ children, label, ...props }: Props) => {
       </label>
     </StyledField>
   )
+}
+
+Field.propTypes = {
+  children: PropTypes.node,
+  label: PropTypes.string,
 }
 
 export default Field
