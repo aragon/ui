@@ -4,7 +4,6 @@ import styled from 'styled-components'
 import { Spring, animated } from 'react-spring'
 import { PublicUrl } from '../../providers/PublicUrl'
 import Text from '../Text/Text'
-import { lerp } from '../../utils/math'
 import { prefixUrl } from '../../utils/url'
 import { springs, unselectable } from '../../utils/styles'
 

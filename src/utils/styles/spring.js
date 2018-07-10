@@ -40,7 +40,9 @@ const reactMotionSprings = Object.entries(springs).reduce(
 export const spring = name => {
   // TODO: propagate process.env.NODE_ENV to Aragon UI
   if (process.env.NODE_ENV === 'development') {
-    console.warn('spring(name) is deprecated. Please use springs[name] instead.')
+    console.warn(
+      'spring(name) is deprecated. Please use springs[name] instead.'
+    )
   }
   return reactMotionSprings[name] || reactMotionSprings.normal
 }
