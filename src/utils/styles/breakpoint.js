@@ -1,36 +1,24 @@
-/* @flow */
 import React from 'react'
+import PropTypes from 'prop-types'
 import Media from 'react-media'
 import { css } from 'styled-components'
-import type { Node } from 'react'
-
-type BreakPointName = 'medium' | 'large'
 
 // These breakpoints values represent minimum screen sizes.
 // Small screen sizes should be targetted by default (mobile first).
-const BREAKPOINTS: { [BreakPointName]: number } = {
+const BREAKPOINTS = {
   medium: 768,
   large: 1170,
 }
 
 // CSS breakpoints
-export const breakpoint = (name: BreakPointName, styles: string) => css`
+export const breakpoint = (name, styles) => css`
   @media (min-width: ${BREAKPOINTS[name]}px) {
     ${styles};
   }
 `
 
 // Rendering breakpoints
-export const BreakPoint = ({
-  from,
-  to,
-  children,
-  ...props
-}: {
-  from: BreakPointName | '',
-  to: BreakPointName | '',
-  children: Node,
-}) => {
+export const BreakPoint = ({ from, to, children, ...props }) => {
   const names = ['medium', 'large']
   const query = {}
   if (from && names.includes(from)) {
@@ -44,6 +32,14 @@ export const BreakPoint = ({
       {ok => (ok ? children : null)}
     </Media>
   )
+}
+
+const BreakPointName = PropTypes.oneOf([...Object.keys(BREAKPOINTS), ''])
+
+BreakPoint.propTypes = {
+  from: BreakPointName,
+  to: BreakPointName,
+  children: PropTypes.node,
 }
 
 BreakPoint.defaultProps = {

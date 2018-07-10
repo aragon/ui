@@ -21,6 +21,10 @@ export const springs = {
 
 // Deprecated, see above
 export const spring = name => {
+  // TODO: propagate process.env.NODE_ENV to Aragon UI
+  if (process.env.NODE_ENV === 'development') {
+    console.warn('spring(name) is deprecated. Please use springs[name] instead.')
+  }
   return springs[name] || springs.normal
 }
 
