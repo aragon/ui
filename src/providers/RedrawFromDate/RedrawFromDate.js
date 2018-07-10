@@ -74,6 +74,9 @@ const hocWrap = Component => {
       {() => <Component {...props} />}
     </RedrawFromDate>
   )
+  HOC.propTypes = {
+    fromDate: RedrawFromDate.propTypes.fromDate,
+  }
   HOC.displayName = `RedrawFromDate(${getDisplayName(Component)})`
   return HOC
 }
