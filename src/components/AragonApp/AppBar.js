@@ -57,8 +57,8 @@ const AppBar = ({ children, endContent, title, onTitleClick, ...props }) => (
 )
 
 AppBar.propTypes = {
-  title: PropTypes.string,
   children: PropTypes.node,
+  title: PropTypes.string,
   endContent: PropTypes.node,
   onTitleClick: PropTypes.func,
 }
