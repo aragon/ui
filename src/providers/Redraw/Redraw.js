@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import getDisplayName from 'react-display-name'
 
 // Render prop component and HOC for re-rendering.
 // For a discussion on pitfalls, see
@@ -38,9 +39,13 @@ class Redraw extends React.Component {
     return this.props.children()
   }
 }
-const hocWrap = (Component, interval) => props => (
-  <Redraw interval={interval}>{() => <Component {...props} />}</Redraw>
-)
+const hocWrap = (Component, interval) => {
+  const HOC = props => (
+    <Redraw interval={interval}>{() => <Component {...props} />}</Redraw>
+  )
+  HOC.displayName = `Redraw(${getDisplayName(Component)})`
+  return HOC
+}
 
 Redraw.hocWrap = hocWrap
 

@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import getDisplayName from 'react-display-name'
 import { isEqual } from 'date-fns/esm'
 import { difference } from '../../utils/date'
 
@@ -73,9 +74,7 @@ const hocWrap = Component => {
       {() => <Component {...props} />}
     </RedrawFromDate>
   )
-  HOC.propTypes = {
-    fromDate: RedrawFromDate.propTypes.fromDate,
-  }
+  HOC.displayName = `RedrawFromDate(${getDisplayName(Component)})`
   return HOC
 }
 
