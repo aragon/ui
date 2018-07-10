@@ -1,5 +1,5 @@
-/* @flow */
 import React from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { Motion, spring } from 'react-motion'
 import ClickOutHandler from 'react-onclickout'
@@ -61,35 +61,31 @@ const DropDownActiveItem = styled(PublicUrl.hocWrap(DropDownItem))`
   }
 `
 
-type Props = {
-  items: Array<string>,
-  wide: boolean,
-  active: number,
-  onChange: number => mixed,
-}
-
-type State = {
-  opened: boolean,
-}
-
-class DropDown extends React.Component<Props, State> {
+class DropDown extends React.Component {
+  static propTypes = {
+    items: PropTypes.arrayOf(PropTypes.string),
+    wide: PropTypes.bool,
+    active: PropTypes.number,
+    onChange: PropTypes.func,
+  }
   static defaultProps = {
     items: [],
-    active: 0,
     wide: false,
+    active: 0,
     onChange: () => {},
   }
-  activeItemElt: ?HTMLElement
   state = {
     opened: false,
   }
+  activeItemElt = null
+
   handleToggle = () => {
     this.setState({ opened: !this.state.opened })
   }
   handleClose = () => {
     this.setState({ opened: false })
   }
-  handleItemActivate = (index: number, { keyboard }: { keyboard: boolean }) => {
+  handleItemActivate = (index, { keyboard }) => {
     this.props.onChange(index, this.props.items)
     this.setState({ opened: false })
     if (this.activeItemElt && keyboard) {
