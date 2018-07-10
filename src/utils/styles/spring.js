@@ -1,7 +1,7 @@
 // This module exports a `springs` object and a `spring()` function:
 //
-//   - `spring()` is deprecated and will be removed in the future.
-//   - `springs` should be used from now on.
+//   - `spring()` is deprecated and will be removed in the future (react-motion).
+//   - `springs` should be used from now on (react-spring).
 
 export const springs = {
   // Super slow spring, for debugging purposes
@@ -19,23 +19,15 @@ export const springs = {
   fast: { tension: 220, friction: 24 },
 }
 
-// Deprecated, see above
-export const spring = name => {
-  // TODO: propagate process.env.NODE_ENV to Aragon UI
-  if (process.env.NODE_ENV === 'development') {
-    console.warn('spring(name) is deprecated. Please use springs[name] instead.')
-  }
-  return springs[name] || springs.normal
-}
-
+// Convert to react-motion springs:
+//
+//   stiffness => tension
+//   damping => friction
+//
 const reactMotionSprings = Object.entries(springs).reduce(
-  // react-motion aliases:
-  //  stiffness => tension
-  //  damping => friction
   (springs, [name, spring]) => ({
     ...springs,
     [name]: {
-      ...spring,
       stiffness: spring.tension,
       damping: spring.friction,
       precision: 0.001,
@@ -43,3 +35,12 @@ const reactMotionSprings = Object.entries(springs).reduce(
   }),
   {}
 )
+
+// Deprecated, see above
+export const spring = name => {
+  // TODO: propagate process.env.NODE_ENV to Aragon UI
+  if (process.env.NODE_ENV === 'development') {
+    console.warn('spring(name) is deprecated. Please use springs[name] instead.')
+  }
+  return reactMotionSprings[name] || reactMotionSprings.normal
+}
