@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import Attention from '../../icons/components/Attention'
 import Bylaw from '../../icons/components/Bylaw'
-import theme from '../../theme'
+import { theme } from '../../theme'
 import { font } from '../../utils/styles'
 import Info from './Info'
 

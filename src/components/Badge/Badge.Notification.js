@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 import React from 'react'
-import theme from '../../theme'
+import { theme } from '../../theme'
 import { formatIntegerRange } from '../../utils/format'
 import Badge from './Badge'
 

@@ -1,11 +1,11 @@
 import React from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
-import Redraw from '../../providers/Redraw'
+import { Redraw } from '../../providers/Redraw'
 import IconTime from '../../icons/components/Time'
 import { difference, formatHtmlDatetime } from '../../utils/date'
 import { unselectable } from '../../utils/styles'
-import theme from '../../theme'
+import { theme } from '../../theme'
 
 const FRAME_EVERY = 1000 / 30 // 30 FPS is enough for a ticker
 

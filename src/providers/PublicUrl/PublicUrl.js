@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import getDisplayName from 'react-display-name'
 import { prefixUrl } from '../../utils/url'
 
 const DEFAULT_URL = ''
@@ -15,11 +16,15 @@ PublicUrlProvider.propTypes = {
 }
 
 // HOC wrapper
-const hocWrap = Component => props => (
-  <PublicUrl>
-    {publicUrl => <Component {...props} publicUrl={publicUrl} />}
-  </PublicUrl>
-)
+const hocWrap = Component => {
+  const HOC = props => (
+    <PublicUrl>
+      {publicUrl => <Component {...props} publicUrl={publicUrl} />}
+    </PublicUrl>
+  )
+  HOC.displayName = `PublicUrlProvider(${getDisplayName(Component)})`
+  return HOC
+}
 
 // styled-components utility for URLs
 const styledUrl = url => ({ publicUrl }) => prefixUrl(url, publicUrl)

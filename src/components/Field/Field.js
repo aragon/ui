@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import Text from '../Text/Text'
-import theme from '../../theme'
+import { theme } from '../../theme'
 import { unselectable } from '../../utils/styles'
 
 const StyledField = styled.div`

@@ -1,5 +1,4 @@
-import styled, { css } from 'styled-components'
-import theme from '../../theme'
+import styled from 'styled-components'
 
 const RadioButton = styled.input.attrs({ type: 'radio' })`
   appearance: none;

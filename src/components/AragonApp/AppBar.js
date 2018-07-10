@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
-import PublicUrl from '../../providers/PublicUrl'
-import theme from '../../theme'
+import { PublicUrl } from '../../providers/PublicUrl'
+import { theme } from '../../theme'
 import Text from '../Text/Text'
 import { unselectable } from '../../utils/styles'
 
@@ -61,6 +61,11 @@ AppBar.propTypes = {
   title: PropTypes.string,
   endContent: PropTypes.node,
   onTitleClick: PropTypes.func,
+}
+
+AppBar.defaultProps = {
+  title: '',
+  onTitleClick: () => {},
 }
 
 export default AppBar
