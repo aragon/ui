@@ -85,6 +85,7 @@
     "react-display-name": "^0.2.3",
     "react-motion": "^0.5.2",
     "react-onclickout": "^2.0.8",
+    "react-spring": "^5.3.12",
     "recursive-copy": "^2.0.9"
   }
 }
