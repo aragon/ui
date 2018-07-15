@@ -25,6 +25,7 @@ import PageInfo from './pages/PageInfo'
 // Containers
 import PageAragonApp from './pages/PageAragonApp'
 import PageAppBar from './pages/PageAppBar'
+import PageNavigationBar from './pages/PageNavigationBar'
 import PageAppView from './pages/PageAppView'
 import PageSidePanel from './pages/PageSidePanel'
 import PageCard from './pages/PageCard'
@@ -71,6 +72,7 @@ export const PAGE_GROUPS = [
     pages: [
       [PageAragonApp, 'AragonApp', '/aragon-app'],
       [PageAppBar, 'AppBar', '/app-bar'],
+      [PageNavigationBar, 'NavigationBar', '/navigation-bar'],
       [PageAppView, 'AppView', '/app-view'],
       [PageSidePanel, 'SidePanel', '/side-panel'],
       [PageCard, 'Card', '/card'],

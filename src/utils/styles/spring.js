@@ -10,6 +10,9 @@ export const springs = {
   // Slow spring, can be used to move large things (e.g. a side panel).
   lazy: { tension: 50, friction: 10 },
 
+  // Medium speed spring, can be used to move small objects
+  smooth: { tension: 120, friction: 12 },
+
   // These springs (slow, normal, fast) were originally created for
   // react-motion. While they can be used with react-spring, their use is not
   // recommended. New springs will be added later as we move everything to
