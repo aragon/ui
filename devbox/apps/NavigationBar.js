@@ -72,12 +72,17 @@ const Main = styled.div`
 
   button {
     margin-right: 20px;
-    border: 1px solid #666;
     color: #333;
     background: #eee;
-    border-radius: 5px;
+    border-radius: 3px;
     padding: 10px 20px;
     cursor: pointer;
+    border: 0;
+    outline: 0;
+  }
+
+  button:active {
+    background: #e5e5e5;
   }
 
   button:disabled {
