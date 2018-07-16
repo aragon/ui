@@ -97,20 +97,6 @@ const SpacedBadge = styled(Badge)`
   margin-left: 10px;
 `
 
-const BackButton = styled.span`
-  display: flex;
-  align-items: center;
-  height: 63px;
-  padding-left: 30px;
-  cursor: pointer;
-  svg path {
-    stroke: hsl(179, 76%, 48%);
-  }
-  :active svg path {
-    stroke: hsl(179, 76%, 63%);
-  }
-`
-
 const Title = styled.span`
   display: flex;
   align-items: center;
@@ -124,6 +110,23 @@ const Label = styled.span`
   padding-left: 30px;
   white-space: nowrap;
   font-size: 22px;
+`
+
+const BackButton = styled.span`
+  display: flex;
+  align-items: center;
+  height: 63px;
+  padding: 0 30px;
+  cursor: pointer;
+  svg path {
+    stroke: hsl(179, 76%, 48%);
+  }
+  :active svg path {
+    stroke: hsl(179, 76%, 63%);
+  }
+  & + ${Label} {
+    padding-left: 0;
+  }
 `
 
 export default NavigationBar
