@@ -41,7 +41,12 @@ class NavigationBar extends React.Component {
     return (
       <Container>
         <Transition
-          keys={displayedItems.map(item => item.index)}
+          keys={displayedItems.map(
+            // Use a different key than 0 when there is only one item, so that
+            // the “leave” transition of the first item can be executed when a
+            // second item is added.
+            item => (items.length === 1 ? -1 : item.index)
+          )}
           config={springs.smooth}
           from={{ opacity: 0, position: this.state.direction * -1 }}
           enter={{ opacity: 1, position: 0 }}
