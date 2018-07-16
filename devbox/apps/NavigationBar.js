@@ -12,11 +12,16 @@ import {
 
 class App extends React.Component {
   state = {
-    items: ['Surveys'],
+    items: ['Level 1'],
+  }
+  reset = () => {
+    this.setState(({ items }) => ({
+      items: ['Level 1'],
+    }))
   }
   forward = () => {
     this.setState(({ items }) => ({
-      items: [...items, 'Survey Details'],
+      items: [...items, 'Level ' + (items.length + 1)],
     }))
   }
   backward = () => {
@@ -25,18 +30,24 @@ class App extends React.Component {
     }))
   }
   render() {
+    const { items } = this.state
     return (
       <AragonApp publicUrl="/aragon-ui/">
         <AppView
           appBar={
             <AppBar>
-              <NavigationBar items={this.state.items} onBack={this.backward} />
+              <NavigationBar items={items} onBack={this.backward} />
             </AppBar>
           }
         >
           <Main>
             <div>
-              <button onClick={this.backward}>⬅</button>
+              <button onClick={this.backward} disabled={items.length < 2}>
+                ⬅
+              </button>
+              <button onClick={this.reset} disabled={items.length < 2}>
+                reset
+              </button>
               <button onClick={this.forward}>➡</button>
             </div>
           </Main>
@@ -61,12 +72,17 @@ const Main = styled.div`
 
   button {
     margin-right: 20px;
-    border: 2px solid #789;
-    color: #789;
+    border: 1px solid #666;
+    color: #333;
     background: #eee;
     border-radius: 5px;
     padding: 10px 20px;
     cursor: pointer;
+  }
+
+  button:disabled {
+    color: #999;
+    border-color: #999;
   }
 `
 
