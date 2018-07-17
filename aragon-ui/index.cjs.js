@@ -37,7 +37,20 @@ var createClass = function () {
 
 
 
+var defineProperty = function (obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
 
+  return obj;
+};
 
 var _extends = Object.assign || function (target) {
   for (var i = 1; i < arguments.length; i++) {
@@ -149,6 +162,24 @@ var taggedTemplateLiteral = function (strings, raw) {
       value: Object.freeze(raw)
     }
   }));
+};
+
+
+
+
+
+
+
+
+
+var toConsumableArray = function (arr) {
+  if (Array.isArray(arr)) {
+    for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) arr2[i] = arr[i];
+
+    return arr2;
+  } else {
+    return Array.from(arr);
+  }
 };
 
 var Add = function Add(props) {
@@ -544,8 +575,8 @@ var aragon = {
   }
 };
 
-
 // These need to match the names in the Open Color palettes
+
 var THEME_NAME = 'Aragon UI';
 var THEME_DARK_NAME = 'Aragon UI Dark';
 var BRAND_NAME = 'Aragon Brand';
@@ -622,6 +653,42 @@ var theme = _groups.theme;
 var brand = _groups.brand;
 var colors = _groups.colors;
 
+function toInteger (dirtyNumber) {
+  if (dirtyNumber === null || dirtyNumber === true || dirtyNumber === false) {
+    return NaN
+  }
+
+  var number = Number(dirtyNumber);
+
+  if (isNaN(number)) {
+    return number
+  }
+
+  return number < 0 ? Math.ceil(number) : Math.floor(number)
+}
+
+var MILLISECONDS_IN_MINUTE$1 = 60000;
+
+/**
+ * Google Chrome as of 67.0.3396.87 introduced timezones with offset that includes seconds.
+ * They usually appear for dates that denote time before the timezones were introduced
+ * (e.g. for 'Europe/Prague' timezone the offset is GMT+00:57:44 before 1 October 1891
+ * and GMT+01:00:00 after that date)
+ *
+ * Date#getTimezoneOffset returns the offset in minutes and would return 57 for the example above,
+ * which would lead to incorrect calculations.
+ *
+ * This function returns the timezone offset in milliseconds that takes seconds in account.
+ */
+function getTimezoneOffsetInMilliseconds (dirtyDate) {
+  var date = new Date(dirtyDate.getTime());
+  var baseTimezoneOffset = date.getTimezoneOffset();
+  date.setSeconds(0, 0);
+  var millisecondsPartOfTimezoneOffset = date.getTime() % MILLISECONDS_IN_MINUTE$1;
+
+  return baseTimezoneOffset * MILLISECONDS_IN_MINUTE$1 + millisecondsPartOfTimezoneOffset
+}
+
 var MILLISECONDS_IN_HOUR = 3600000;
 var MILLISECONDS_IN_MINUTE = 60000;
 var DEFAULT_ADDITIONAL_DIGITS = 2;
@@ -629,6 +696,7 @@ var DEFAULT_ADDITIONAL_DIGITS = 2;
 var patterns = {
   dateTimeDelimeter: /[T ]/,
   plainTime: /:/,
+  timeZoneDelimeter: /[Z ]/i,
 
   // year tokens
   YY: /^(\d{2})$/,
@@ -677,15 +745,14 @@ var patterns = {
  * If an argument is a string, the function tries to parse it.
  * Function accepts complete ISO 8601 formats as well as partial implementations.
  * ISO 8601: http://en.wikipedia.org/wiki/ISO_8601
+ * If the function cannot parse the string, it returns Invalid Date.
  *
- * If the argument is null, it is treated as an invalid date.
- *
- * If all above fails, the function passes the given argument to Date constructor.
+ * If the argument is none of the above, the function returns Invalid Date.
  *
  * **Note**: *all* Date arguments passed to any *date-fns* function is processed by `toDate`.
  * All *date-fns* functions will throw `RangeError` if `options.additionalDigits` is not 0, 1, 2 or undefined.
  *
- * @param {*} argument - the value to convert
+ * @param {Date|String|Number} argument - the value to convert
  * @param {Options} [options] - the object with options. See [Options]{@link https://date-fns.org/docs/Options}
  * @param {0|1|2} [options.additionalDigits=2] - the additional number of digits in the extended year format
  * @returns {Date} the parsed date in the local time zone
@@ -714,7 +781,7 @@ function toDate (argument, dirtyOptions) {
 
   var options = dirtyOptions || {};
 
-  var additionalDigits = options.additionalDigits === undefined ? DEFAULT_ADDITIONAL_DIGITS : Number(options.additionalDigits);
+  var additionalDigits = options.additionalDigits == null ? DEFAULT_ADDITIONAL_DIGITS : toInteger(options.additionalDigits);
   if (additionalDigits !== 2 && additionalDigits !== 1 && additionalDigits !== 0) {
     throw new RangeError('additionalDigits must be 0, 1 or 2')
   }
@@ -723,8 +790,10 @@ function toDate (argument, dirtyOptions) {
   if (argument instanceof Date) {
     // Prevent the date to lose the milliseconds when passed to new Date() in IE10
     return new Date(argument.getTime())
-  } else if (typeof argument !== 'string') {
+  } else if (typeof argument === 'number' || Object.prototype.toString.call(argument) === '[object Number]') {
     return new Date(argument)
+  } else if (!(typeof argument === 'string' || Object.prototype.toString.call(argument) === '[object String]')) {
+    return new Date(NaN)
   }
 
   var dateStrings = splitDateString(argument);
@@ -748,13 +817,13 @@ function toDate (argument, dirtyOptions) {
       offset = parseTimezone(dateStrings.timezone);
     } else {
       // get offset accurate to hour in timezones that change offset
-      offset = new Date(timestamp + time).getTimezoneOffset();
-      offset = new Date(timestamp + time + offset * MILLISECONDS_IN_MINUTE).getTimezoneOffset();
+      offset = getTimezoneOffsetInMilliseconds(new Date(timestamp + time));
+      offset = getTimezoneOffsetInMilliseconds(new Date(timestamp + time + offset));
     }
 
-    return new Date(timestamp + time + offset * MILLISECONDS_IN_MINUTE)
+    return new Date(timestamp + time + offset)
   } else {
-    return new Date(argument)
+    return new Date(NaN)
   }
 }
 
@@ -769,6 +838,10 @@ function splitDateString (dateString) {
   } else {
     dateStrings.date = array[0];
     timeString = array[1];
+    if (patterns.timeZoneDelimeter.test(dateStrings.date)) {
+      dateStrings.date = dateString.split(patterns.timeZoneDelimeter)[0];
+      timeString = dateString.substr(dateStrings.date.length, dateString.length);
+    }
   }
 
   if (timeString) {
@@ -866,7 +939,7 @@ function parseDate (dateString, year) {
   token = patterns.Www.exec(dateString);
   if (token) {
     week = parseInt(token[1], 10) - 1;
-    return dayOfISOYear(year, week)
+    return dayOfISOWeekYear(year, week)
   }
 
   // YYYY-Www-D or YYYYWwwD
@@ -874,7 +947,7 @@ function parseDate (dateString, year) {
   if (token) {
     week = parseInt(token[1], 10) - 1;
     var dayOfWeek = parseInt(token[2], 10) - 1;
-    return dayOfISOYear(year, week, dayOfWeek)
+    return dayOfISOWeekYear(year, week, dayOfWeek)
   }
 
   // Invalid ISO-formatted date
@@ -930,42 +1003,60 @@ function parseTimezone (timezoneString) {
   // ±hh
   token = patterns.timezoneHH.exec(timezoneString);
   if (token) {
-    absoluteOffset = parseInt(token[2], 10) * 60;
+    absoluteOffset = parseInt(token[2], 10) * MILLISECONDS_IN_HOUR;
     return (token[1] === '+') ? -absoluteOffset : absoluteOffset
   }
 
   // ±hh:mm or ±hhmm
   token = patterns.timezoneHHMM.exec(timezoneString);
   if (token) {
-    absoluteOffset = parseInt(token[2], 10) * 60 + parseInt(token[3], 10);
+    absoluteOffset = parseInt(token[2], 10) * MILLISECONDS_IN_HOUR + parseInt(token[3], 10) * MILLISECONDS_IN_MINUTE;
     return (token[1] === '+') ? -absoluteOffset : absoluteOffset
   }
 
   return 0
 }
 
-function dayOfISOYear (isoYear, week, day) {
+function dayOfISOWeekYear (isoWeekYear, week, day) {
   week = week || 0;
   day = day || 0;
   var date = new Date(0);
-  date.setUTCFullYear(isoYear, 0, 4);
+  date.setUTCFullYear(isoWeekYear, 0, 4);
   var fourthOfJanuaryDay = date.getUTCDay() || 7;
   var diff = week * 7 + day + 1 - fourthOfJanuaryDay;
   date.setUTCDate(date.getUTCDate() + diff);
   return date
 }
 
-function cloneObject (dirtyObject) {
-  dirtyObject = dirtyObject || {};
-  var object = {};
-
-  for (var property in dirtyObject) {
-    if (dirtyObject.hasOwnProperty(property)) {
-      object[property] = dirtyObject[property];
-    }
+/**
+ * @name addMilliseconds
+ * @category Millisecond Helpers
+ * @summary Add the specified number of milliseconds to the given date.
+ *
+ * @description
+ * Add the specified number of milliseconds to the given date.
+ *
+ * @param {Date|String|Number} date - the date to be changed
+ * @param {Number} amount - the amount of milliseconds to be added
+ * @param {Options} [options] - the object with options. See [Options]{@link https://date-fns.org/docs/Options}
+ * @param {0|1|2} [options.additionalDigits=2] - passed to `toDate`. See [toDate]{@link https://date-fns.org/docs/toDate}
+ * @returns {Date} the new date with the milliseconds added
+ * @throws {TypeError} 2 arguments required
+ * @throws {RangeError} `options.additionalDigits` must be 0, 1 or 2
+ *
+ * @example
+ * // Add 750 milliseconds to 10 July 2014 12:45:30.000:
+ * var result = addMilliseconds(new Date(2014, 6, 10, 12, 45, 30, 0), 750)
+ * //=> Thu Jul 10 2014 12:45:30.750
+ */
+function addMilliseconds (dirtyDate, dirtyAmount, dirtyOptions) {
+  if (arguments.length < 2) {
+    throw new TypeError('2 arguments required, but only ' + arguments.length + ' present')
   }
 
-  return object
+  var timestamp = toDate(dirtyDate, dirtyOptions).getTime();
+  var amount = toInteger(dirtyAmount);
+  return new Date(timestamp + amount)
 }
 
 /**
@@ -1172,213 +1263,175 @@ function formatDistance (token, count, options) {
   return result
 }
 
-var tokensToBeShortedPattern = /MMMM|MM|DD|dddd/g;
-
-function buildShortLongFormat (format) {
-  return format.replace(tokensToBeShortedPattern, function (token) {
-    return token.slice(1)
-  })
-}
-
-/**
- * @name buildFormatLongFn
- * @category Locale Helpers
- * @summary Build `formatLong` property for locale used by `format`, `formatRelative` and `parse` functions.
- *
- * @description
- * Build `formatLong` property for locale used by `format`, `formatRelative` and `parse` functions.
- * Returns a function which takes one of the following tokens as the argument:
- * `'LTS'`, `'LT'`, `'L'`, `'LL'`, `'LLL'`, `'l'`, `'ll'`, `'lll'`, `'llll'`
- * and returns a long format string written as `format` token strings.
- * See [format]{@link https://date-fns.org/docs/format}
- *
- * `'l'`, `'ll'`, `'lll'` and `'llll'` formats are built automatically
- * by shortening some of the tokens from corresponding unshortened formats
- * (e.g., if `LL` is `'MMMM DD YYYY'` then `ll` will be `MMM D YYYY`)
- *
- * @param {Object} obj - the object with long formats written as `format` token strings
- * @param {String} obj.LT - time format: hours and minutes
- * @param {String} obj.LTS - time format: hours, minutes and seconds
- * @param {String} obj.L - short date format: numeric day, month and year
- * @param {String} [obj.l] - short date format: numeric day, month and year (shortened)
- * @param {String} obj.LL - long date format: day, month in words, and year
- * @param {String} [obj.ll] - long date format: day, month in words, and year (shortened)
- * @param {String} obj.LLL - long date and time format
- * @param {String} [obj.lll] - long date and time format (shortened)
- * @param {String} obj.LLLL - long date, time and weekday format
- * @param {String} [obj.llll] - long date, time and weekday format (shortened)
- * @returns {Function} `formatLong` property of the locale
- *
- * @example
- * // For `en-US` locale:
- * locale.formatLong = buildFormatLongFn({
- *   LT: 'h:mm aa',
- *   LTS: 'h:mm:ss aa',
- *   L: 'MM/DD/YYYY',
- *   LL: 'MMMM D YYYY',
- *   LLL: 'MMMM D YYYY h:mm aa',
- *   LLLL: 'dddd, MMMM D YYYY h:mm aa'
- * })
- */
-function buildFormatLongFn (obj) {
-  var formatLongLocale = {
-    LTS: obj.LTS,
-    LT: obj.LT,
-    L: obj.L,
-    LL: obj.LL,
-    LLL: obj.LLL,
-    LLLL: obj.LLLL,
-    l: obj.l || buildShortLongFormat(obj.L),
-    ll: obj.ll || buildShortLongFormat(obj.LL),
-    lll: obj.lll || buildShortLongFormat(obj.LLL),
-    llll: obj.llll || buildShortLongFormat(obj.LLLL)
-  };
-
-  return function (token) {
-    return formatLongLocale[token]
+function buildFormatLongFn (args) {
+  return function (dirtyOptions) {
+    var options = dirtyOptions || {};
+    var width = options.width ? String(options.width) : args.defaultWidth;
+    var format = args.formats[width] || args.formats[args.defaultWidth];
+    return format
   }
 }
 
-var formatLong = buildFormatLongFn({
-  LT: 'h:mm aa',
-  LTS: 'h:mm:ss aa',
-  L: 'MM/DD/YYYY',
-  LL: 'MMMM D YYYY',
-  LLL: 'MMMM D YYYY h:mm aa',
-  LLLL: 'dddd, MMMM D YYYY h:mm aa'
-});
+var dateFormats = {
+  full: 'EEEE, MMMM do, y',
+  long: 'MMMM do, y',
+  medium: 'MMM d, y',
+  short: 'MM/dd/yyyy'
+};
+
+var timeFormats = {
+  full: 'h:mm:ss a zzzz',
+  long: 'h:mm:ss a z',
+  medium: 'h:mm:ss a',
+  short: 'h:mm a'
+};
+
+var dateTimeFormats = {
+  full: "{{date}} 'at' {{time}}",
+  long: "{{date}} 'at' {{time}}",
+  medium: '{{date}}, {{time}}',
+  short: '{{date}}, {{time}}'
+};
+
+var formatLong = {
+  date: buildFormatLongFn({
+    formats: dateFormats,
+    defaultWidth: 'full'
+  }),
+
+  time: buildFormatLongFn({
+    formats: timeFormats,
+    defaultWidth: 'full'
+  }),
+
+  dateTime: buildFormatLongFn({
+    formats: dateTimeFormats,
+    defaultWidth: 'full'
+  })
+};
 
 var formatRelativeLocale = {
-  lastWeek: '[last] dddd [at] LT',
-  yesterday: '[yesterday at] LT',
-  today: '[today at] LT',
-  tomorrow: '[tomorrow at] LT',
-  nextWeek: 'dddd [at] LT',
-  other: 'L'
+  lastWeek: "'last' eeee 'at' p",
+  yesterday: "'yesterday at' p",
+  today: "'today at' p",
+  tomorrow: "'tomorrow at' p",
+  nextWeek: "eeee 'at' p",
+  other: 'P'
 };
 
 function formatRelative (token, date, baseDate, options) {
   return formatRelativeLocale[token]
 }
 
-/**
- * @name buildLocalizeFn
- * @category Locale Helpers
- * @summary Build `localize.weekday`, `localize.month` and `localize.timeOfDay` properties for the locale.
- *
- * @description
- * Build `localize.weekday`, `localize.month` and `localize.timeOfDay` properties for the locale
- * used by `format` function.
- * If no `type` is supplied to the options of the resulting function, `defaultType` will be used (see example).
- *
- * `localize.weekday` function takes the weekday index as argument (0 - Sunday).
- * `localize.month` takes the month index (0 - January).
- * `localize.timeOfDay` takes the hours. Use `indexCallback` to convert them to an array index (see example).
- *
- * @param {Object} values - the object with arrays of values
- * @param {String} defaultType - the default type for the localize function
- * @param {Function} [indexCallback] - the callback which takes the resulting function argument
- *   and converts it into value array index
- * @returns {Function} the resulting function
- *
- * @example
- * var timeOfDayValues = {
- *   uppercase: ['AM', 'PM'],
- *   lowercase: ['am', 'pm'],
- *   long: ['a.m.', 'p.m.']
- * }
- * locale.localize.timeOfDay = buildLocalizeFn(timeOfDayValues, 'long', function (hours) {
- *   // 0 is a.m. array index, 1 is p.m. array index
- *   return (hours / 12) >= 1 ? 1 : 0
- * })
- * locale.localize.timeOfDay(16, {type: 'uppercase'}) //=> 'PM'
- * locale.localize.timeOfDay(5) //=> 'a.m.'
- */
-function buildLocalizeFn (values, defaultType, indexCallback) {
+function buildLocalizeFn (args) {
   return function (dirtyIndex, dirtyOptions) {
     var options = dirtyOptions || {};
-    var type = options.type ? String(options.type) : defaultType;
-    var valuesArray = values[type] || values[defaultType];
-    var index = indexCallback ? indexCallback(Number(dirtyIndex)) : Number(dirtyIndex);
+    var width = options.width ? String(options.width) : args.defaultWidth;
+    var context = options.context ? String(options.context) : 'standalone';
+
+    var valuesArray;
+    if (context === 'formatting' && args.formattingValues) {
+      valuesArray = args.formattingValues[width] || args.formattingValues[args.defaultFormattingWidth];
+    } else {
+      valuesArray = args.values[width] || args.values[args.defaultWidth];
+    }
+    var index = args.argumentCallback ? args.argumentCallback(dirtyIndex) : dirtyIndex;
     return valuesArray[index]
   }
 }
 
-/**
- * @name buildLocalizeArrayFn
- * @category Locale Helpers
- * @summary Build `localize.weekdays`, `localize.months` and `localize.timesOfDay` properties for the locale.
- *
- * @description
- * Build `localize.weekdays`, `localize.months` and `localize.timesOfDay` properties for the locale.
- * If no `type` is supplied to the options of the resulting function, `defaultType` will be used (see example).
- *
- * @param {Object} values - the object with arrays of values
- * @param {String} defaultType - the default type for the localize function
- * @returns {Function} the resulting function
- *
- * @example
- * var weekdayValues = {
- *   narrow: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
- *   short: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
- *   long: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
- * }
- * locale.localize.weekdays = buildLocalizeArrayFn(weekdayValues, 'long')
- * locale.localize.weekdays({type: 'narrow'}) //=> ['Su', 'Mo', ...]
- * locale.localize.weekdays() //=> ['Sunday', 'Monday', ...]
- */
-function buildLocalizeArrayFn (values, defaultType) {
-  return function (dirtyOptions) {
-    var options = dirtyOptions || {};
-    var type = options.type ? String(options.type) : defaultType;
-    return values[type] || values[defaultType]
-  }
-}
+var eraValues = {
+  narrow: ['B', 'A'],
+  abbreviated: ['BC', 'AD'],
+  wide: ['Before Christ', 'Anno Domini']
+};
+
+var quarterValues = {
+  narrow: ['1', '2', '3', '4'],
+  abbreviated: ['Q1', 'Q2', 'Q3', 'Q4'],
+  wide: ['1st quarter', '2nd quarter', '3rd quarter', '4th quarter']
+};
 
 // Note: in English, the names of days of the week and months are capitalized.
 // If you are making a new locale based on this one, check if the same is true for the language you're working on.
 // Generally, formatted dates should look like they are in the middle of a sentence,
 // e.g. in Spanish language the weekdays and months should be in the lowercase.
-var weekdayValues = {
-  narrow: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
-  short: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
-  long: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
-};
-
 var monthValues = {
-  short: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-  long: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+  narrow: ['J', 'F', 'M', 'A', 'M', 'J', 'J', 'A', 'S', 'O', 'N', 'D'],
+  abbreviated: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+  wide: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 };
 
-// `timeOfDay` is used to designate which part of the day it is, when used with 12-hour clock.
-// Use the system which is used the most commonly in the locale.
-// For example, if the country doesn't use a.m./p.m., you can use `night`/`morning`/`afternoon`/`evening`:
-//
-//   var timeOfDayValues = {
-//     any: ['in the night', 'in the morning', 'in the afternoon', 'in the evening']
-//   }
-//
-// And later:
-//
-//   var localize = {
-//     // The callback takes the hours as the argument and returns the array index
-//     timeOfDay: buildLocalizeFn(timeOfDayValues, 'any', function (hours) {
-//       if (hours >= 17) {
-//         return 3
-//       } else if (hours >= 12) {
-//         return 2
-//       } else if (hours >= 4) {
-//         return 1
-//       } else {
-//         return 0
-//       }
-//     }),
-//     timesOfDay: buildLocalizeArrayFn(timeOfDayValues, 'any')
-//   }
-var timeOfDayValues = {
-  uppercase: ['AM', 'PM'],
-  lowercase: ['am', 'pm'],
-  long: ['a.m.', 'p.m.']
+var dayValues = {
+  narrow: ['S', 'M', 'T', 'W', 'T', 'F', 'S'],
+  short: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
+  abbreviated: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+  wide: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+};
+
+var dayPeriodValues = {
+  narrow: {
+    am: 'a',
+    pm: 'p',
+    midnight: 'mi',
+    noon: 'n',
+    morning: 'morning',
+    afternoon: 'afternoon',
+    evening: 'evening',
+    night: 'night'
+  },
+  abbreviated: {
+    am: 'AM',
+    pm: 'PM',
+    midnight: 'midnight',
+    noon: 'noon',
+    morning: 'morning',
+    afternoon: 'afternoon',
+    evening: 'evening',
+    night: 'night'
+  },
+  wide: {
+    am: 'a.m.',
+    pm: 'p.m.',
+    midnight: 'midnight',
+    noon: 'noon',
+    morning: 'morning',
+    afternoon: 'afternoon',
+    evening: 'evening',
+    night: 'night'
+  }
+};
+var formattingDayPeriodValues = {
+  narrow: {
+    am: 'a',
+    pm: 'p',
+    midnight: 'mi',
+    noon: 'n',
+    morning: 'in the morning',
+    afternoon: 'in the afternoon',
+    evening: 'in the evening',
+    night: 'at night'
+  },
+  abbreviated: {
+    am: 'AM',
+    pm: 'PM',
+    midnight: 'midnight',
+    noon: 'noon',
+    morning: 'in the morning',
+    afternoon: 'in the afternoon',
+    evening: 'in the evening',
+    night: 'at night'
+  },
+  wide: {
+    am: 'a.m.',
+    pm: 'p.m.',
+    midnight: 'midnight',
+    noon: 'noon',
+    morning: 'in the morning',
+    afternoon: 'in the afternoon',
+    evening: 'in the evening',
+    night: 'at night'
+  }
 };
 
 function ordinalNumber (dirtyNumber, dirtyOptions) {
@@ -1391,8 +1444,8 @@ function ordinalNumber (dirtyNumber, dirtyOptions) {
   //   var options = dirtyOptions || {}
   //   var unit = String(options.unit)
   //
-  // where `unit` can be 'month', 'quarter', 'week', 'isoWeek', 'dayOfYear',
-  // 'dayOfMonth' or 'dayOfWeek'
+  // where `unit` can be 'year', 'quarter', 'month', 'week', 'date', 'dayOfYear',
+  // 'day', 'hour', 'minute', 'second'
 
   var rem100 = number % 100;
   if (rem100 > 20 || rem100 < 10) {
@@ -1410,183 +1463,210 @@ function ordinalNumber (dirtyNumber, dirtyOptions) {
 
 var localize = {
   ordinalNumber: ordinalNumber,
-  weekday: buildLocalizeFn(weekdayValues, 'long'),
-  weekdays: buildLocalizeArrayFn(weekdayValues, 'long'),
-  month: buildLocalizeFn(monthValues, 'long'),
-  months: buildLocalizeArrayFn(monthValues, 'long'),
-  timeOfDay: buildLocalizeFn(timeOfDayValues, 'long', function (hours) {
-    return (hours / 12) >= 1 ? 1 : 0
+
+  era: buildLocalizeFn({
+    values: eraValues,
+    defaultWidth: 'wide'
   }),
-  timesOfDay: buildLocalizeArrayFn(timeOfDayValues, 'long')
+
+  quarter: buildLocalizeFn({
+    values: quarterValues,
+    defaultWidth: 'wide',
+    argumentCallback: function (quarter) {
+      return Number(quarter) - 1
+    }
+  }),
+
+  month: buildLocalizeFn({
+    values: monthValues,
+    defaultWidth: 'wide'
+  }),
+
+  day: buildLocalizeFn({
+    values: dayValues,
+    defaultWidth: 'wide'
+  }),
+
+  dayPeriod: buildLocalizeFn({
+    values: dayPeriodValues,
+    defaultWidth: 'wide',
+    formattingValues: formattingDayPeriodValues,
+    defaulFormattingWidth: 'wide'
+  })
 };
 
-/**
- * @name buildMatchFn
- * @category Locale Helpers
- * @summary Build `match.weekdays`, `match.months` and `match.timesOfDay` properties for the locale.
- *
- * @description
- * Build `match.weekdays`, `match.months` and `match.timesOfDay` properties for the locale used by `parse` function.
- * If no `type` is supplied to the options of the resulting function, `defaultType` will be used (see example).
- * The result of the match function will be passed into corresponding parser function
- * (`match.weekday`, `match.month` or `match.timeOfDay` respectively. See `buildParseFn`).
- *
- * @param {Object} values - the object with RegExps
- * @param {String} defaultType - the default type for the match function
- * @returns {Function} the resulting function
- *
- * @example
- * var matchWeekdaysPatterns = {
- *   narrow: /^(su|mo|tu|we|th|fr|sa)/i,
- *   short: /^(sun|mon|tue|wed|thu|fri|sat)/i,
- *   long: /^(sunday|monday|tuesday|wednesday|thursday|friday|saturday)/i
- * }
- * locale.match.weekdays = buildMatchFn(matchWeekdaysPatterns, 'long')
- * locale.match.weekdays('Sunday', {type: 'narrow'}) //=> ['Su', 'Su', ...]
- * locale.match.weekdays('Sunday') //=> ['Sunday', 'Sunday', ...]
- */
-function buildMatchFn (patterns, defaultType) {
-  return function (dirtyString, dirtyOptions) {
-    var options = dirtyOptions || {};
-    var type = options.type ? String(options.type) : defaultType;
-    var pattern = patterns[type] || patterns[defaultType];
-    var string = String(dirtyString);
-    return string.match(pattern)
-  }
-}
-
-/**
- * @name buildParseFn
- * @category Locale Helpers
- * @summary Build `match.weekday`, `match.month` and `match.timeOfDay` properties for the locale.
- *
- * @description
- * Build `match.weekday`, `match.month` and `match.timeOfDay` properties for the locale used by `parse` function.
- * The argument of the resulting function is the result of the corresponding match function
- * (`match.weekdays`, `match.months` or `match.timesOfDay` respectively. See `buildMatchFn`).
- *
- * @param {Object} values - the object with arrays of RegExps
- * @param {String} defaultType - the default type for the parser function
- * @returns {Function} the resulting function
- *
- * @example
- * var parseWeekdayPatterns = {
- *   any: [/^su/i, /^m/i, /^tu/i, /^w/i, /^th/i, /^f/i, /^sa/i]
- * }
- * locale.match.weekday = buildParseFn(matchWeekdaysPatterns, 'long')
- * var matchResult = locale.match.weekdays('Friday')
- * locale.match.weekday(matchResult) //=> 5
- */
-function buildParseFn (patterns, defaultType) {
-  return function (matchResult, dirtyOptions) {
-    var options = dirtyOptions || {};
-    var type = options.type ? String(options.type) : defaultType;
-    var patternsArray = patterns[type] || patterns[defaultType];
-    var string = matchResult[1];
-
-    return patternsArray.findIndex(function (pattern) {
-      return pattern.test(string)
-    })
-  }
-}
-
-/**
- * @name buildMatchPatternFn
- * @category Locale Helpers
- * @summary Build match function from a single RegExp.
- *
- * @description
- * Build match function from a single RegExp.
- * Usually used for building `match.ordinalNumbers` property of the locale.
- *
- * @param {Object} pattern - the RegExp
- * @returns {Function} the resulting function
- *
- * @example
- * locale.match.ordinalNumbers = buildMatchPatternFn(/^(\d+)(th|st|nd|rd)?/i)
- * locale.match.ordinalNumbers('3rd') //=> ['3rd', '3', 'rd', ...]
- */
-function buildMatchPatternFn (pattern) {
+function buildMatchPatternFn (args) {
   return function (dirtyString) {
     var string = String(dirtyString);
-    return string.match(pattern)
+
+    var matchResult = string.match(args.matchPattern);
+    if (!matchResult) {
+      return null
+    }
+    var matchedString = matchResult[0];
+
+    var parseResult = string.match(args.parsePattern);
+    if (!parseResult) {
+      return null
+    }
+    var value = args.valueCallback ? args.valueCallback(parseResult[0]) : parseResult[0];
+
+    return {
+      value: value,
+      rest: string.slice(matchedString.length)
+    }
   }
 }
 
-/**
- * @name parseDecimal
- * @category Locale Helpers
- * @summary Parses the match result into decimal number.
- *
- * @description
- * Parses the match result into decimal number.
- * Uses the string matched with the first set of parentheses of match RegExp.
- *
- * @param {Array} matchResult - the object returned by matching function
- * @returns {Number} the parsed value
- *
- * @example
- * locale.match = {
- *   ordinalNumbers: (dirtyString) {
- *     return String(dirtyString).match(/^(\d+)(th|st|nd|rd)?/i)
- *   },
- *   ordinalNumber: parseDecimal
- * }
- */
-function parseDecimal (matchResult) {
-  return parseInt(matchResult[1], 10)
+function buildMatchFn (args) {
+  return function (dirtyString, dirtyOptions) {
+    var string = String(dirtyString);
+    var options = dirtyOptions || {};
+    var width = options.width;
+
+    var matchPattern = (width && args.matchPatterns[width]) || args.matchPatterns[args.defaultMatchWidth];
+    var matchResult = string.match(matchPattern);
+
+    if (!matchResult) {
+      return null
+    }
+    var matchedString = matchResult[0];
+
+    var parsePatterns = (width && args.parsePatterns[width]) || args.parsePatterns[args.defaultParseWidth];
+
+    var value;
+    if (Object.prototype.toString.call(parsePatterns) === '[object Array]') {
+      value = parsePatterns.findIndex(function (pattern) {
+        return pattern.test(string)
+      });
+    } else {
+      value = findKey(parsePatterns, function (pattern) {
+        return pattern.test(string)
+      });
+    }
+
+    value = args.valueCallback ? args.valueCallback(value) : value;
+
+    return {
+      value: value,
+      rest: string.slice(matchedString.length)
+    }
+  }
 }
 
-var matchOrdinalNumbersPattern = /^(\d+)(th|st|nd|rd)?/i;
+function findKey (object, predicate) {
+  for (var key in object) {
+    if (object.hasOwnProperty(key) && predicate(object[key])) {
+      return key
+    }
+  }
+}
 
-var matchWeekdaysPatterns = {
-  narrow: /^(su|mo|tu|we|th|fr|sa)/i,
-  short: /^(sun|mon|tue|wed|thu|fri|sat)/i,
-  long: /^(sunday|monday|tuesday|wednesday|thursday|friday|saturday)/i
+var matchOrdinalNumberPattern = /^(\d+)(th|st|nd|rd)?/i;
+var parseOrdinalNumberPattern = /\d+/i;
+
+var matchEraPatterns = {
+  narrow: /^(b|a)/i,
+  abbreviated: /^(b\.?\s?c\.?|b\.?\s?c\.?\s?e\.?|a\.?\s?d\.?|c\.?\s?e\.?)/i,
+  wide: /^(before christ|before common era|anno domini|common era)/i
+};
+var parseEraPatterns = {
+  any: [/^b/i, /^(a|c)/i]
 };
 
-var parseWeekdayPatterns = {
-  any: [/^su/i, /^m/i, /^tu/i, /^w/i, /^th/i, /^f/i, /^sa/i]
+var matchQuarterPatterns = {
+  narrow: /^[1234]/i,
+  abbreviated: /^q[1234]/i,
+  wide: /^[1234](th|st|nd|rd)? quarter/i
+};
+var parseQuarterPatterns = {
+  any: [/1/i, /2/i, /3/i, /4/i]
 };
 
-var matchMonthsPatterns = {
-  short: /^(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)/i,
-  long: /^(january|february|march|april|may|june|july|august|september|october|november|december)/i
+var matchMonthPatterns = {
+  narrow: /^[jfmasond]/i,
+  abbreviated: /^(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)/i,
+  wide: /^(january|february|march|april|may|june|july|august|september|october|november|december)/i
 };
-
 var parseMonthPatterns = {
+  narrow: [/^j/i, /^f/i, /^m/i, /^a/i, /^m/i, /^j/i, /^j/i, /^a/i, /^s/i, /^o/i, /^n/i, /^d/i],
   any: [/^ja/i, /^f/i, /^mar/i, /^ap/i, /^may/i, /^jun/i, /^jul/i, /^au/i, /^s/i, /^o/i, /^n/i, /^d/i]
 };
 
-// `timeOfDay` is used to designate which part of the day it is, when used with 12-hour clock.
-// Use the system which is used the most commonly in the locale.
-// For example, if the country doesn't use a.m./p.m., you can use `night`/`morning`/`afternoon`/`evening`:
-//
-//   var matchTimesOfDayPatterns = {
-//     long: /^((in the)? (night|morning|afternoon|evening?))/i
-//   }
-//
-//   var parseTimeOfDayPatterns = {
-//     any: [/(night|morning)/i, /(afternoon|evening)/i]
-//   }
-var matchTimesOfDayPatterns = {
-  short: /^(am|pm)/i,
-  long: /^([ap]\.?\s?m\.?)/i
+var matchDayPatterns = {
+  narrow: /^[smtwf]/i,
+  short: /^(su|mo|tu|we|th|fr|sa)/i,
+  abbreviated: /^(sun|mon|tue|wed|thu|fri|sat)/i,
+  wide: /^(sunday|monday|tuesday|wednesday|thursday|friday|saturday)/i
+};
+var parseDayPatterns = {
+  narrow: [/^s/i, /^m/i, /^t/i, /^w/i, /^t/i, /^f/i, /^s/i],
+  any: [/^su/i, /^m/i, /^tu/i, /^w/i, /^th/i, /^f/i, /^sa/i]
 };
 
-var parseTimeOfDayPatterns = {
-  any: [/^a/i, /^p/i]
+var matchDayPeriodPatterns = {
+  narrow: /^(a|p|mi|n|(in the|at) (morning|afternoon|evening|night))/i,
+  any: /^([ap]\.?\s?m\.?|midnight|noon|(in the|at) (morning|afternoon|evening|night))/i
+};
+var parseDayPeriodPatterns = {
+  any: {
+    am: /^a/i,
+    pm: /^p/i,
+    midnight: /^mi/i,
+    noon: /^no/i,
+    morning: /morning/i,
+    afternoon: /afternoon/i,
+    evening: /evening/i,
+    night: /night/i
+  }
 };
 
 var match = {
-  ordinalNumbers: buildMatchPatternFn(matchOrdinalNumbersPattern),
-  ordinalNumber: parseDecimal,
-  weekdays: buildMatchFn(matchWeekdaysPatterns, 'long'),
-  weekday: buildParseFn(parseWeekdayPatterns, 'any'),
-  months: buildMatchFn(matchMonthsPatterns, 'long'),
-  month: buildParseFn(parseMonthPatterns, 'any'),
-  timesOfDay: buildMatchFn(matchTimesOfDayPatterns, 'long'),
-  timeOfDay: buildParseFn(parseTimeOfDayPatterns, 'any')
+  ordinalNumber: buildMatchPatternFn({
+    matchPattern: matchOrdinalNumberPattern,
+    parsePattern: parseOrdinalNumberPattern,
+    valueCallback: function (value) {
+      return parseInt(value, 10)
+    }
+  }),
+
+  era: buildMatchFn({
+    matchPatterns: matchEraPatterns,
+    defaultMatchWidth: 'wide',
+    parsePatterns: parseEraPatterns,
+    defaultParseWidth: 'any'
+  }),
+
+  quarter: buildMatchFn({
+    matchPatterns: matchQuarterPatterns,
+    defaultMatchWidth: 'wide',
+    parsePatterns: parseQuarterPatterns,
+    defaultParseWidth: 'any',
+    valueCallback: function (index) {
+      return index + 1
+    }
+  }),
+
+  month: buildMatchFn({
+    matchPatterns: matchMonthPatterns,
+    defaultMatchWidth: 'wide',
+    parsePatterns: parseMonthPatterns,
+    defaultParseWidth: 'any'
+  }),
+
+  day: buildMatchFn({
+    matchPatterns: matchDayPatterns,
+    defaultMatchWidth: 'wide',
+    parsePatterns: parseDayPatterns,
+    defaultParseWidth: 'any'
+  }),
+
+  dayPeriod: buildMatchFn({
+    matchPatterns: matchDayPeriodPatterns,
+    defaultMatchWidth: 'any',
+    parsePatterns: parseDayPeriodPatterns,
+    defaultParseWidth: 'any'
+  })
 };
 
 /**
@@ -1595,6 +1675,8 @@ var match = {
  * @summary English locale (United States).
  * @language English
  * @iso-639-2 eng
+ * @author Sasha Koss [@kossnocorp]{@link https://github.com/kossnocorp}
+ * @author Lesha Koss [@leshakoss]{@link https://github.com/leshakoss}
  */
 var locale = {
   formatDistance: formatDistance,
@@ -1613,6 +1695,10 @@ var MILLISECONDS_IN_DAY$1 = 86400000;
 // This function will be a part of public API when UTC function will be implemented.
 // See issue: https://github.com/date-fns/date-fns/issues/376
 function getUTCDayOfYear (dirtyDate, dirtyOptions) {
+  if (arguments.length < 1) {
+    throw new TypeError('1 argument required, but only ' + arguments.length + ' present')
+  }
+
   var date = toDate(dirtyDate, dirtyOptions);
   var timestamp = date.getTime();
   date.setUTCMonth(0, 1);
@@ -1625,6 +1711,10 @@ function getUTCDayOfYear (dirtyDate, dirtyOptions) {
 // This function will be a part of public API when UTC function will be implemented.
 // See issue: https://github.com/date-fns/date-fns/issues/376
 function startOfUTCISOWeek (dirtyDate, dirtyOptions) {
+  if (arguments.length < 1) {
+    throw new TypeError('1 argument required, but only ' + arguments.length + ' present')
+  }
+
   var weekStartsOn = 1;
 
   var date = toDate(dirtyDate, dirtyOptions);
@@ -1639,6 +1729,10 @@ function startOfUTCISOWeek (dirtyDate, dirtyOptions) {
 // This function will be a part of public API when UTC function will be implemented.
 // See issue: https://github.com/date-fns/date-fns/issues/376
 function getUTCISOWeekYear (dirtyDate, dirtyOptions) {
+  if (arguments.length < 1) {
+    throw new TypeError('1 argument required, but only ' + arguments.length + ' present')
+  }
+
   var date = toDate(dirtyDate, dirtyOptions);
   var year = date.getUTCFullYear();
 
@@ -1664,6 +1758,10 @@ function getUTCISOWeekYear (dirtyDate, dirtyOptions) {
 // This function will be a part of public API when UTC function will be implemented.
 // See issue: https://github.com/date-fns/date-fns/issues/376
 function startOfUTCISOWeekYear (dirtyDate, dirtyOptions) {
+  if (arguments.length < 1) {
+    throw new TypeError('1 argument required, but only ' + arguments.length + ' present')
+  }
+
   var year = getUTCISOWeekYear(dirtyDate, dirtyOptions);
   var fourthOfJanuary = new Date(0);
   fourthOfJanuary.setUTCFullYear(year, 0, 4);
@@ -1677,6 +1775,10 @@ var MILLISECONDS_IN_WEEK$2 = 604800000;
 // This function will be a part of public API when UTC function will be implemented.
 // See issue: https://github.com/date-fns/date-fns/issues/376
 function getUTCISOWeek (dirtyDate, dirtyOptions) {
+  if (arguments.length < 1) {
+    throw new TypeError('1 argument required, but only ' + arguments.length + ' present')
+  }
+
   var date = toDate(dirtyDate, dirtyOptions);
   var diff = startOfUTCISOWeek(date, dirtyOptions).getTime() - startOfUTCISOWeekYear(date, dirtyOptions).getTime();
 
@@ -1686,269 +1788,949 @@ function getUTCISOWeek (dirtyDate, dirtyOptions) {
   return Math.round(diff / MILLISECONDS_IN_WEEK$2) + 1
 }
 
-var formatters = {
-  // Month: 1, 2, ..., 12
-  'M': function (date) {
-    return date.getUTCMonth() + 1
-  },
-
-  // Month: 1st, 2nd, ..., 12th
-  'Mo': function (date, options) {
-    var month = date.getUTCMonth() + 1;
-    return options.locale.localize.ordinalNumber(month, {unit: 'month'})
-  },
-
-  // Month: 01, 02, ..., 12
-  'MM': function (date) {
-    return addLeadingZeros(date.getUTCMonth() + 1, 2)
-  },
-
-  // Month: Jan, Feb, ..., Dec
-  'MMM': function (date, options) {
-    return options.locale.localize.month(date.getUTCMonth(), {type: 'short'})
-  },
-
-  // Month: January, February, ..., December
-  'MMMM': function (date, options) {
-    return options.locale.localize.month(date.getUTCMonth(), {type: 'long'})
-  },
-
-  // Quarter: 1, 2, 3, 4
-  'Q': function (date) {
-    return Math.ceil((date.getUTCMonth() + 1) / 3)
-  },
-
-  // Quarter: 1st, 2nd, 3rd, 4th
-  'Qo': function (date, options) {
-    var quarter = Math.ceil((date.getUTCMonth() + 1) / 3);
-    return options.locale.localize.ordinalNumber(quarter, {unit: 'quarter'})
-  },
-
-  // Day of month: 1, 2, ..., 31
-  'D': function (date) {
-    return date.getUTCDate()
-  },
-
-  // Day of month: 1st, 2nd, ..., 31st
-  'Do': function (date, options) {
-    return options.locale.localize.ordinalNumber(date.getUTCDate(), {unit: 'dayOfMonth'})
-  },
-
-  // Day of month: 01, 02, ..., 31
-  'DD': function (date) {
-    return addLeadingZeros(date.getUTCDate(), 2)
-  },
-
-  // Day of year: 1, 2, ..., 366
-  'DDD': function (date) {
-    return getUTCDayOfYear(date)
-  },
-
-  // Day of year: 1st, 2nd, ..., 366th
-  'DDDo': function (date, options) {
-    return options.locale.localize.ordinalNumber(getUTCDayOfYear(date), {unit: 'dayOfYear'})
-  },
-
-  // Day of year: 001, 002, ..., 366
-  'DDDD': function (date) {
-    return addLeadingZeros(getUTCDayOfYear(date), 3)
-  },
-
-  // Day of week: Su, Mo, ..., Sa
-  'dd': function (date, options) {
-    return options.locale.localize.weekday(date.getUTCDay(), {type: 'narrow'})
-  },
-
-  // Day of week: Sun, Mon, ..., Sat
-  'ddd': function (date, options) {
-    return options.locale.localize.weekday(date.getUTCDay(), {type: 'short'})
-  },
-
-  // Day of week: Sunday, Monday, ..., Saturday
-  'dddd': function (date, options) {
-    return options.locale.localize.weekday(date.getUTCDay(), {type: 'long'})
-  },
-
-  // Day of week: 0, 1, ..., 6
-  'd': function (date) {
-    return date.getUTCDay()
-  },
-
-  // Day of week: 0th, 1st, 2nd, ..., 6th
-  'do': function (date, options) {
-    return options.locale.localize.ordinalNumber(date.getUTCDay(), {unit: 'dayOfWeek'})
-  },
-
-  // Day of ISO week: 1, 2, ..., 7
-  'E': function (date) {
-    return date.getUTCDay() || 7
-  },
-
-  // ISO week: 1, 2, ..., 53
-  'W': function (date) {
-    return getUTCISOWeek(date)
-  },
-
-  // ISO week: 1st, 2nd, ..., 53th
-  'Wo': function (date, options) {
-    return options.locale.localize.ordinalNumber(getUTCISOWeek(date), {unit: 'isoWeek'})
-  },
-
-  // ISO week: 01, 02, ..., 53
-  'WW': function (date) {
-    return addLeadingZeros(getUTCISOWeek(date), 2)
-  },
-
-  // Year: 00, 01, ..., 99
-  'YY': function (date) {
-    return addLeadingZeros(date.getUTCFullYear(), 4).substr(2)
-  },
-
-  // Year: 1900, 1901, ..., 2099
-  'YYYY': function (date) {
-    return addLeadingZeros(date.getUTCFullYear(), 4)
-  },
-
-  // ISO week-numbering year: 00, 01, ..., 99
-  'GG': function (date) {
-    return String(getUTCISOWeekYear(date)).substr(2)
-  },
-
-  // ISO week-numbering year: 1900, 1901, ..., 2099
-  'GGGG': function (date) {
-    return getUTCISOWeekYear(date)
-  },
-
-  // Hour: 0, 1, ... 23
-  'H': function (date) {
-    return date.getUTCHours()
-  },
-
-  // Hour: 00, 01, ..., 23
-  'HH': function (date) {
-    return addLeadingZeros(date.getUTCHours(), 2)
-  },
-
-  // Hour: 1, 2, ..., 12
-  'h': function (date) {
-    var hours = date.getUTCHours();
-    if (hours === 0) {
-      return 12
-    } else if (hours > 12) {
-      return hours % 12
-    } else {
-      return hours
-    }
-  },
-
-  // Hour: 01, 02, ..., 12
-  'hh': function (date) {
-    return addLeadingZeros(formatters['h'](date), 2)
-  },
-
-  // Minute: 0, 1, ..., 59
-  'm': function (date) {
-    return date.getUTCMinutes()
-  },
-
-  // Minute: 00, 01, ..., 59
-  'mm': function (date) {
-    return addLeadingZeros(date.getUTCMinutes(), 2)
-  },
-
-  // Second: 0, 1, ..., 59
-  's': function (date) {
-    return date.getUTCSeconds()
-  },
-
-  // Second: 00, 01, ..., 59
-  'ss': function (date) {
-    return addLeadingZeros(date.getUTCSeconds(), 2)
-  },
-
-  // 1/10 of second: 0, 1, ..., 9
-  'S': function (date) {
-    return Math.floor(date.getUTCMilliseconds() / 100)
-  },
-
-  // 1/100 of second: 00, 01, ..., 99
-  'SS': function (date) {
-    return addLeadingZeros(Math.floor(date.getUTCMilliseconds() / 10), 2)
-  },
-
-  // Millisecond: 000, 001, ..., 999
-  'SSS': function (date) {
-    return addLeadingZeros(date.getUTCMilliseconds(), 3)
-  },
-
-  // Timezone: -01:00, +00:00, ... +12:00
-  'Z': function (date, options) {
-    var originalDate = options._originalDate || date;
-    return formatTimezone(originalDate.getTimezoneOffset(), ':')
-  },
-
-  // Timezone: -0100, +0000, ... +1200
-  'ZZ': function (date, options) {
-    var originalDate = options._originalDate || date;
-    return formatTimezone(originalDate.getTimezoneOffset())
-  },
-
-  // Seconds timestamp: 512969520
-  'X': function (date, options) {
-    var originalDate = options._originalDate || date;
-    return Math.floor(originalDate.getTime() / 1000)
-  },
-
-  // Milliseconds timestamp: 512969520900
-  'x': function (date, options) {
-    var originalDate = options._originalDate || date;
-    return originalDate.getTime()
-  },
-
-  // AM, PM
-  'A': function (date, options) {
-    return options.locale.localize.timeOfDay(date.getUTCHours(), {type: 'uppercase'})
-  },
-
-  // am, pm
-  'a': function (date, options) {
-    return options.locale.localize.timeOfDay(date.getUTCHours(), {type: 'lowercase'})
-  },
-
-  // a.m., p.m.
-  'aa': function (date, options) {
-    return options.locale.localize.timeOfDay(date.getUTCHours(), {type: 'long'})
+// This function will be a part of public API when UTC function will be implemented.
+// See issue: https://github.com/date-fns/date-fns/issues/376
+function startOfUTCWeek (dirtyDate, dirtyOptions) {
+  if (arguments.length < 1) {
+    throw new TypeError('1 argument required, but only ' + arguments.length + ' present')
   }
-};
 
-function formatTimezone (offset, delimeter) {
-  delimeter = delimeter || '';
-  var sign = offset > 0 ? '-' : '+';
-  var absOffset = Math.abs(offset);
-  var hours = Math.floor(absOffset / 60);
-  var minutes = absOffset % 60;
-  return sign + addLeadingZeros(hours, 2) + delimeter + addLeadingZeros(minutes, 2)
-}
+  var options = dirtyOptions || {};
+  var locale = options.locale;
+  var localeWeekStartsOn = locale && locale.options && locale.options.weekStartsOn;
+  var defaultWeekStartsOn = localeWeekStartsOn == null ? 0 : toInteger(localeWeekStartsOn);
+  var weekStartsOn = options.weekStartsOn == null ? defaultWeekStartsOn : toInteger(options.weekStartsOn);
 
-function addLeadingZeros (number, targetLength) {
-  var output = Math.abs(number).toString();
-  while (output.length < targetLength) {
-    output = '0' + output;
+  // Test if weekStartsOn is between 0 and 6 _and_ is not NaN
+  if (!(weekStartsOn >= 0 && weekStartsOn <= 6)) {
+    throw new RangeError('weekStartsOn must be between 0 and 6 inclusively')
   }
-  return output
+
+  var date = toDate(dirtyDate, options);
+  var day = date.getUTCDay();
+  var diff = (day < weekStartsOn ? 7 : 0) + day - weekStartsOn;
+
+  date.setUTCDate(date.getUTCDate() - diff);
+  date.setUTCHours(0, 0, 0, 0);
+  return date
 }
 
 // This function will be a part of public API when UTC function will be implemented.
 // See issue: https://github.com/date-fns/date-fns/issues/376
-function addUTCMinutes (dirtyDate, dirtyAmount, dirtyOptions) {
+function getUTCWeekYear (dirtyDate, dirtyOptions) {
+  if (arguments.length < 1) {
+    throw new TypeError('1 argument required, but only ' + arguments.length + ' present')
+  }
+
   var date = toDate(dirtyDate, dirtyOptions);
-  var amount = Number(dirtyAmount);
-  date.setUTCMinutes(date.getUTCMinutes() + amount);
+  var year = date.getUTCFullYear();
+
+  var options = dirtyOptions || {};
+  var locale = options.locale;
+  var localeFirstWeekContainsDate = locale &&
+    locale.options &&
+    locale.options.firstWeekContainsDate;
+  var defaultFirstWeekContainsDate =
+    localeFirstWeekContainsDate == null
+      ? 1
+      : toInteger(localeFirstWeekContainsDate);
+  var firstWeekContainsDate =
+    options.firstWeekContainsDate == null
+      ? defaultFirstWeekContainsDate
+      : toInteger(options.firstWeekContainsDate);
+
+  // Test if weekStartsOn is between 1 and 7 _and_ is not NaN
+  if (!(firstWeekContainsDate >= 1 && firstWeekContainsDate <= 7)) {
+    throw new RangeError('firstWeekContainsDate must be between 1 and 7 inclusively')
+  }
+
+  var firstWeekOfNextYear = new Date(0);
+  firstWeekOfNextYear.setUTCFullYear(year + 1, 0, firstWeekContainsDate);
+  firstWeekOfNextYear.setUTCHours(0, 0, 0, 0);
+  var startOfNextYear = startOfUTCWeek(firstWeekOfNextYear, dirtyOptions);
+
+  var firstWeekOfThisYear = new Date(0);
+  firstWeekOfThisYear.setUTCFullYear(year, 0, firstWeekContainsDate);
+  firstWeekOfThisYear.setUTCHours(0, 0, 0, 0);
+  var startOfThisYear = startOfUTCWeek(firstWeekOfThisYear, dirtyOptions);
+
+  if (date.getTime() >= startOfNextYear.getTime()) {
+    return year + 1
+  } else if (date.getTime() >= startOfThisYear.getTime()) {
+    return year
+  } else {
+    return year - 1
+  }
+}
+
+// This function will be a part of public API when UTC function will be implemented.
+// See issue: https://github.com/date-fns/date-fns/issues/376
+function startOfUTCWeekYear (dirtyDate, dirtyOptions) {
+  if (arguments.length < 1) {
+    throw new TypeError('1 argument required, but only ' + arguments.length + ' present')
+  }
+
+  var options = dirtyOptions || {};
+  var locale = options.locale;
+  var localeFirstWeekContainsDate = locale &&
+    locale.options &&
+    locale.options.firstWeekContainsDate;
+  var defaultFirstWeekContainsDate =
+    localeFirstWeekContainsDate == null
+      ? 1
+      : toInteger(localeFirstWeekContainsDate);
+  var firstWeekContainsDate =
+    options.firstWeekContainsDate == null
+      ? defaultFirstWeekContainsDate
+      : toInteger(options.firstWeekContainsDate);
+
+  var year = getUTCWeekYear(dirtyDate, dirtyOptions);
+  var firstWeek = new Date(0);
+  firstWeek.setUTCFullYear(year, 0, firstWeekContainsDate);
+  firstWeek.setUTCHours(0, 0, 0, 0);
+  var date = startOfUTCWeek(firstWeek, dirtyOptions);
   return date
 }
 
-var longFormattingTokensRegExp = /(\[[^[]*])|(\\)?(LTS|LT|LLLL|LLL|LL|L|llll|lll|ll|l)/g;
-var defaultFormattingTokensRegExp = /(\[[^[]*])|(\\)?(x|ss|s|mm|m|hh|h|do|dddd|ddd|dd|d|aa|a|ZZ|Z|YYYY|YY|X|Wo|WW|W|SSS|SS|S|Qo|Q|Mo|MMMM|MMM|MM|M|HH|H|GGGG|GG|E|Do|DDDo|DDDD|DDD|DD|D|A|.)/g;
+var MILLISECONDS_IN_WEEK$3 = 604800000;
+
+// This function will be a part of public API when UTC function will be implemented.
+// See issue: https://github.com/date-fns/date-fns/issues/376
+function getUTCWeek (dirtyDate, dirtyOptions) {
+  if (arguments.length < 1) {
+    throw new TypeError('1 argument required, but only ' + arguments.length + ' present')
+  }
+
+  var date = toDate(dirtyDate, dirtyOptions);
+  var diff = startOfUTCWeek(date, dirtyOptions).getTime() - startOfUTCWeekYear(date, dirtyOptions).getTime();
+
+  // Round the number of days to the nearest integer
+  // because the number of milliseconds in a week is not constant
+  // (e.g. it's different in the week of the daylight saving time clock shift)
+  return Math.round(diff / MILLISECONDS_IN_WEEK$3) + 1
+}
+
+var dayPeriodEnum = {
+  am: 'am',
+  pm: 'pm',
+  midnight: 'midnight',
+  noon: 'noon',
+  morning: 'morning',
+  afternoon: 'afternoon',
+  evening: 'evening',
+  night: 'night'
+};
+
+/*
+ * |     | Unit                           |     | Unit                           |
+ * |-----|--------------------------------|-----|--------------------------------|
+ * |  a  | AM, PM                         |  A* | Milliseconds in day            |
+ * |  b  | AM, PM, noon, midnight         |  B  | Flexible day period            |
+ * |  c  | Stand-alone local day of week  |  C* | Localized hour w/ day period   |
+ * |  d  | Day of month                   |  D  | Day of year                    |
+ * |  e  | Local day of week              |  E  | Day of week                    |
+ * |  f  |                                |  F* | Day of week in month           |
+ * |  g* | Modified Julian day            |  G  | Era                            |
+ * |  h  | Hour [1-12]                    |  H  | Hour [0-23]                    |
+ * |  i! | ISO day of week                |  I! | ISO week of year               |
+ * |  j* | Localized hour w/ day period   |  J* | Localized hour w/o day period  |
+ * |  k  | Hour [1-24]                    |  K  | Hour [0-11]                    |
+ * |  l* | (deprecated)                   |  L  | Stand-alone month              |
+ * |  m  | Minute                         |  M  | Month                          |
+ * |  n  |                                |  N  |                                |
+ * |  o! | Ordinal number modifier        |  O  | Timezone (GMT)                 |
+ * |  p! | Long localized time            |  P! | Long localized date            |
+ * |  q  | Stand-alone quarter            |  Q  | Quarter                        |
+ * |  r* | Related Gregorian year         |  R! | ISO week-numbering year        |
+ * |  s  | Second                         |  S  | Fraction of second             |
+ * |  t! | Seconds timestamp              |  T! | Milliseconds timestamp         |
+ * |  u  | Extended year                  |  U* | Cyclic year                    |
+ * |  v* | Timezone (generic non-locat.)  |  V* | Timezone (location)            |
+ * |  w  | Local week of year             |  W* | Week of month                  |
+ * |  x  | Timezone (ISO-8601 w/o Z)      |  X  | Timezone (ISO-8601)            |
+ * |  y  | Year (abs)                     |  Y  | Local week-numbering year      |
+ * |  z  | Timezone (specific non-locat.) |  Z* | Timezone (aliases)             |
+ *
+ * Letters marked by * are not implemented but reserved by Unicode standard.
+ *
+ * Letters marked by ! are non-standard, but implemented by date-fns:
+ * - `o` modifies the previous token to turn it into an ordinal (see `format` docs)
+ * - `i` is ISO day of week. For `i` and `ii` is returns numeric ISO week days,
+ *   i.e. 7 for Sunday, 1 for Monday, etc.
+ * - `I` is ISO week of year, as opposed to `w` which is local week of year.
+ * - `R` is ISO week-numbering year, as opposed to `Y` which is local week-numbering year.
+ *   `R` is supposed to be used in conjunction with `I` and `i`
+ *   for universal ISO week-numbering date, whereas
+ *   `Y` is supposed to be used in conjunction with `w` and `e`
+ *   for week-numbering date specific to the locale.
+ * - `P` is long localized date format
+ * - `p` is long localized time format
+ */
+
+var formatters = {
+  // Era
+  G: function (date, token, localize) {
+    var era = date.getUTCFullYear() > 0 ? 1 : 0;
+    switch (token) {
+      // AD, BC
+      case 'G':
+      case 'GG':
+      case 'GGG':
+        return localize.era(era, {width: 'abbreviated'})
+      // A, B
+      case 'GGGGG':
+        return localize.era(era, {width: 'narrow'})
+      // Anno Domini, Before Christ
+      case 'GGGG':
+      default:
+        return localize.era(era, {width: 'wide'})
+    }
+  },
+
+  // Year
+  y: function (date, token, localize, options) {
+    // From http://www.unicode.org/reports/tr35/tr35-31/tr35-dates.html#Date_Format_tokens
+    // | Year     |     y | yy |   yyy |  yyyy | yyyyy |
+    // |----------|-------|----|-------|-------|-------|
+    // | AD 1     |     1 | 01 |   001 |  0001 | 00001 |
+    // | AD 12    |    12 | 12 |   012 |  0012 | 00012 |
+    // | AD 123   |   123 | 23 |   123 |  0123 | 00123 |
+    // | AD 1234  |  1234 | 34 |  1234 |  1234 | 01234 |
+    // | AD 12345 | 12345 | 45 | 12345 | 12345 | 12345 |
+
+    var signedYear = date.getUTCFullYear();
+
+    // Returns 1 for 1 BC (which is year 0 in JavaScript)
+    var year = signedYear > 0 ? signedYear : 1 - signedYear;
+
+    // Two digit year
+    if (token === 'yy') {
+      var twoDigitYear = year % 100;
+      return addLeadingZeros(twoDigitYear, 2)
+    }
+
+    // Ordinal number
+    if (token === 'yo') {
+      return localize.ordinalNumber(year, {unit: 'year'})
+    }
+
+    // Padding
+    return addLeadingZeros(year, token.length)
+  },
+
+  // Local week-numbering year
+  Y: function (date, token, localize, options) {
+    var signedWeekYear = getUTCWeekYear(date, options);
+    var weekYear = signedWeekYear > 0 ? signedWeekYear : 1 - signedWeekYear;
+
+    // Two digit year
+    if (token === 'YY') {
+      var twoDigitYear = weekYear % 100;
+      return addLeadingZeros(twoDigitYear, 2)
+    }
+
+    // Ordinal number
+    if (token === 'Yo') {
+      return localize.ordinalNumber(weekYear, {unit: 'year'})
+    }
+
+    // Padding
+    return addLeadingZeros(weekYear, token.length)
+  },
+
+  // ISO week-numbering year
+  R: function (date, token, localize, options) {
+    var isoWeekYear = getUTCISOWeekYear(date, options);
+
+    // Padding
+    return addLeadingZeros(isoWeekYear, token.length)
+  },
+
+  // Extended year. This is a single number designating the year of this calendar system.
+  // The main difference between `y` and `u` localizers are B.C. years:
+  // | Year | `y` | `u` |
+  // |------|-----|-----|
+  // | AC 1 |   1 |   1 |
+  // | BC 1 |   1 |   0 |
+  // | BC 2 |   2 |  -1 |
+  // Also `yy` always returns the last two digits of a year,
+  // while `uu` pads single digit years to 2 characters and returns other years unchanged.
+  u: function (date, token, localize, options) {
+    var year = date.getUTCFullYear();
+    return addLeadingZeros(year, token.length)
+  },
+
+  // Quarter
+  Q: function (date, token, localize, options) {
+    var quarter = Math.ceil((date.getUTCMonth() + 1) / 3);
+    switch (token) {
+      // 1, 2, 3, 4
+      case 'Q':
+        return String(quarter)
+      // 01, 02, 03, 04
+      case 'QQ':
+        return addLeadingZeros(quarter, 2)
+      // 1st, 2nd, 3rd, 4th
+      case 'Qo':
+        return localize.ordinalNumber(quarter, {unit: 'quarter'})
+      // Q1, Q2, Q3, Q4
+      case 'QQQ':
+        return localize.quarter(quarter, {width: 'abbreviated', context: 'formatting'})
+      // 1, 2, 3, 4 (narrow quarter; could be not numerical)
+      case 'QQQQQ':
+        return localize.quarter(quarter, {width: 'narrow', context: 'formatting'})
+      // 1st quarter, 2nd quarter, ...
+      case 'QQQQ':
+      default:
+        return localize.quarter(quarter, {width: 'wide', context: 'formatting'})
+    }
+  },
+
+  // Stand-alone quarter
+  q: function (date, token, localize, options) {
+    var quarter = Math.ceil((date.getUTCMonth() + 1) / 3);
+    switch (token) {
+      // 1, 2, 3, 4
+      case 'q':
+        return String(quarter)
+      // 01, 02, 03, 04
+      case 'qq':
+        return addLeadingZeros(quarter, 2)
+      // 1st, 2nd, 3rd, 4th
+      case 'qo':
+        return localize.ordinalNumber(quarter, {unit: 'quarter'})
+      // Q1, Q2, Q3, Q4
+      case 'qqq':
+        return localize.quarter(quarter, {width: 'abbreviated', context: 'standalone'})
+      // 1, 2, 3, 4 (narrow quarter; could be not numerical)
+      case 'qqqqq':
+        return localize.quarter(quarter, {width: 'narrow', context: 'standalone'})
+      // 1st quarter, 2nd quarter, ...
+      case 'qqqq':
+      default:
+        return localize.quarter(quarter, {width: 'wide', context: 'standalone'})
+    }
+  },
+
+  // Month
+  M: function (date, token, localize, options) {
+    var month = date.getUTCMonth();
+    switch (token) {
+      // 1, 2, ..., 12
+      case 'M':
+        return String(month + 1)
+      // 01, 02, ..., 12
+      case 'MM':
+        return addLeadingZeros(month + 1, 2)
+      // 1st, 2nd, ..., 12th
+      case 'Mo':
+        return localize.ordinalNumber(month + 1, {unit: 'month'})
+      // Jan, Feb, ..., Dec
+      case 'MMM':
+        return localize.month(month, {width: 'abbreviated', context: 'formatting'})
+      // J, F, ..., D
+      case 'MMMMM':
+        return localize.month(month, {width: 'narrow', context: 'formatting'})
+      // January, February, ..., December
+      case 'MMMM':
+      default:
+        return localize.month(month, {width: 'wide', context: 'formatting'})
+    }
+  },
+
+  // Stand-alone month
+  L: function (date, token, localize, options) {
+    var month = date.getUTCMonth();
+    switch (token) {
+      // 1, 2, ..., 12
+      case 'L':
+        return String(month + 1)
+      // 01, 02, ..., 12
+      case 'LL':
+        return addLeadingZeros(month + 1, 2)
+      // 1st, 2nd, ..., 12th
+      case 'Lo':
+        return localize.ordinalNumber(month + 1, {unit: 'month'})
+      // Jan, Feb, ..., Dec
+      case 'LLL':
+        return localize.month(month, {width: 'abbreviated', context: 'standalone'})
+      // J, F, ..., D
+      case 'LLLLL':
+        return localize.month(month, {width: 'narrow', context: 'standalone'})
+      // January, February, ..., December
+      case 'LLLL':
+      default:
+        return localize.month(month, {width: 'wide', context: 'standalone'})
+    }
+  },
+
+  // Local week of year
+  w: function (date, token, localize, options) {
+    var week = getUTCWeek(date, options);
+
+    if (token === 'wo') {
+      return localize.ordinalNumber(week, {unit: 'week'})
+    }
+
+    return addLeadingZeros(week, token.length)
+  },
+
+  // ISO week of year
+  I: function (date, token, localize, options) {
+    var isoWeek = getUTCISOWeek(date, options);
+
+    if (token === 'Io') {
+      return localize.ordinalNumber(isoWeek, {unit: 'week'})
+    }
+
+    return addLeadingZeros(isoWeek, token.length)
+  },
+
+  // Day of the month
+  d: function (date, token, localize, options) {
+    var dayOfMonth = date.getUTCDate();
+
+    if (token === 'do') {
+      return localize.ordinalNumber(dayOfMonth, {unit: 'date'})
+    }
+
+    return addLeadingZeros(dayOfMonth, token.length)
+  },
+
+  // Day of year
+  D: function (date, token, localize, options) {
+    var dayOfYear = getUTCDayOfYear(date, options);
+
+    if (token === 'Do') {
+      return localize.ordinalNumber(dayOfYear, {unit: 'dayOfYear'})
+    }
+
+    return addLeadingZeros(dayOfYear, token.length)
+  },
+
+  // Day of week
+  E: function (date, token, localize, options) {
+    var dayOfWeek = date.getUTCDay();
+    switch (token) {
+      // Tue
+      case 'E':
+      case 'EE':
+      case 'EEE':
+        return localize.day(dayOfWeek, {width: 'abbreviated', context: 'formatting'})
+      // T
+      case 'EEEEE':
+        return localize.day(dayOfWeek, {width: 'narrow', context: 'formatting'})
+      // Tu
+      case 'EEEEEE':
+        return localize.day(dayOfWeek, {width: 'short', context: 'formatting'})
+      // Tuesday
+      case 'EEEE':
+      default:
+        return localize.day(dayOfWeek, {width: 'wide', context: 'formatting'})
+    }
+  },
+
+  // Local day of week
+  e: function (date, token, localize, options) {
+    var dayOfWeek = date.getUTCDay();
+    var localDayOfWeek = ((dayOfWeek - options.weekStartsOn + 8) % 7) || 7;
+    switch (token) {
+      // Numerical value (Nth day of week with current locale or weekStartsOn)
+      case 'e':
+        return String(localDayOfWeek)
+      // Padded numerical value
+      case 'ee':
+        return addLeadingZeros(localDayOfWeek, 2)
+      // 1st, 2nd, ..., 7th
+      case 'eo':
+        return localize.ordinalNumber(localDayOfWeek, {unit: 'day'})
+      case 'eee':
+        return localize.day(dayOfWeek, {width: 'abbreviated', context: 'formatting'})
+      // T
+      case 'eeeee':
+        return localize.day(dayOfWeek, {width: 'narrow', context: 'formatting'})
+      // Tu
+      case 'eeeeee':
+        return localize.day(dayOfWeek, {width: 'short', context: 'formatting'})
+      // Tuesday
+      case 'eeee':
+      default:
+        return localize.day(dayOfWeek, {width: 'wide', context: 'formatting'})
+    }
+  },
+
+  // Stand-alone local day of week
+  c: function (date, token, localize, options) {
+    var dayOfWeek = date.getUTCDay();
+    var localDayOfWeek = ((dayOfWeek - options.weekStartsOn + 8) % 7) || 7;
+    switch (token) {
+      // Numerical value (same as in `e`)
+      case 'c':
+        return String(localDayOfWeek)
+      // Padded numberical value
+      case 'cc':
+        return addLeadingZeros(localDayOfWeek, token.length)
+      // 1st, 2nd, ..., 7th
+      case 'co':
+        return localize.ordinalNumber(localDayOfWeek, {unit: 'day'})
+      case 'ccc':
+        return localize.day(dayOfWeek, {width: 'abbreviated', context: 'standalone'})
+      // T
+      case 'ccccc':
+        return localize.day(dayOfWeek, {width: 'narrow', context: 'standalone'})
+      // Tu
+      case 'cccccc':
+        return localize.day(dayOfWeek, {width: 'short', context: 'standalone'})
+      // Tuesday
+      case 'cccc':
+      default:
+        return localize.day(dayOfWeek, {width: 'wide', context: 'standalone'})
+    }
+  },
+
+  // ISO day of week
+  i: function (date, token, localize, options) {
+    var dayOfWeek = date.getUTCDay();
+    var isoDayOfWeek = dayOfWeek === 0 ? 7 : dayOfWeek;
+    switch (token) {
+      // 2
+      case 'i':
+        return String(isoDayOfWeek)
+      // 02
+      case 'ii':
+        return addLeadingZeros(isoDayOfWeek, token.length)
+      // 2nd
+      case 'io':
+        return localize.ordinalNumber(isoDayOfWeek, {unit: 'day'})
+      // Tue
+      case 'iii':
+        return localize.day(dayOfWeek, {width: 'abbreviated', context: 'formatting'})
+      // T
+      case 'iiiii':
+        return localize.day(dayOfWeek, {width: 'narrow', context: 'formatting'})
+      // Tu
+      case 'iiiiii':
+        return localize.day(dayOfWeek, {width: 'short', context: 'formatting'})
+      // Tuesday
+      case 'iiii':
+      default:
+        return localize.day(dayOfWeek, {width: 'wide', context: 'formatting'})
+    }
+  },
+
+  // AM or PM
+  a: function (date, token, localize) {
+    var hours = date.getUTCHours();
+    var dayPeriodEnumValue = (hours / 12) >= 1 ? 'pm' : 'am';
+
+    switch (token) {
+      case 'a':
+      case 'aa':
+      case 'aaa':
+        return localize.dayPeriod(dayPeriodEnumValue, {width: 'abbreviated', context: 'formatting'})
+      case 'aaaaa':
+        return localize.dayPeriod(dayPeriodEnumValue, {width: 'narrow', context: 'formatting'})
+      case 'aaaa':
+      default:
+        return localize.dayPeriod(dayPeriodEnumValue, {width: 'wide', context: 'formatting'})
+    }
+  },
+
+  // AM, PM, midnight, noon
+  b: function (date, token, localize) {
+    var hours = date.getUTCHours();
+    var dayPeriodEnumValue;
+    if (hours === 12) {
+      dayPeriodEnumValue = dayPeriodEnum.noon;
+    } else if (hours === 0) {
+      dayPeriodEnumValue = dayPeriodEnum.midnight;
+    } else {
+      dayPeriodEnumValue = (hours / 12) >= 1 ? 'pm' : 'am';
+    }
+
+    switch (token) {
+      case 'b':
+      case 'bb':
+      case 'bbb':
+        return localize.dayPeriod(dayPeriodEnumValue, {width: 'abbreviated', context: 'formatting'})
+      case 'bbbbb':
+        return localize.dayPeriod(dayPeriodEnumValue, {width: 'narrow', context: 'formatting'})
+      case 'bbbb':
+      default:
+        return localize.dayPeriod(dayPeriodEnumValue, {width: 'wide', context: 'formatting'})
+    }
+  },
+
+  // in the morning, in the afternoon, in the evening, at night
+  B: function (date, token, localize) {
+    var hours = date.getUTCHours();
+    var dayPeriodEnumValue;
+    if (hours >= 17) {
+      dayPeriodEnumValue = dayPeriodEnum.evening;
+    } else if (hours >= 12) {
+      dayPeriodEnumValue = dayPeriodEnum.afternoon;
+    } else if (hours >= 4) {
+      dayPeriodEnumValue = dayPeriodEnum.morning;
+    } else {
+      dayPeriodEnumValue = dayPeriodEnum.night;
+    }
+
+    switch (token) {
+      case 'B':
+      case 'BB':
+      case 'BBB':
+        return localize.dayPeriod(dayPeriodEnumValue, {width: 'abbreviated', context: 'formatting'})
+      case 'BBBBB':
+        return localize.dayPeriod(dayPeriodEnumValue, {width: 'narrow', context: 'formatting'})
+      case 'BBBB':
+      default:
+        return localize.dayPeriod(dayPeriodEnumValue, {width: 'wide', context: 'formatting'})
+    }
+  },
+
+  // Hour [1-12]
+  h: function (date, token, localize, options) {
+    var hours = date.getUTCHours() % 12;
+
+    if (hours === 0) {
+      hours = 12;
+    }
+
+    if (token === 'ho') {
+      return localize.ordinalNumber(hours, {unit: 'hour'})
+    }
+
+    return addLeadingZeros(hours, token.length)
+  },
+
+  // Hour [0-23]
+  H: function (date, token, localize, options) {
+    var hours = date.getUTCHours();
+
+    if (token === 'Ho') {
+      return localize.ordinalNumber(hours, {unit: 'hour'})
+    }
+
+    return addLeadingZeros(hours, token.length)
+  },
+
+  // Hour [0-11]
+  K: function (date, token, localize, options) {
+    var hours = date.getUTCHours() % 12;
+
+    if (token === 'Ko') {
+      return localize.ordinalNumber(hours, {unit: 'hour'})
+    }
+
+    return addLeadingZeros(hours, token.length)
+  },
+
+  // Hour [1-24]
+  k: function (date, token, localize, options) {
+    var hours = date.getUTCHours();
+
+    if (hours === 0) {
+      hours = 24;
+    }
+
+    if (token === 'ko') {
+      return localize.ordinalNumber(hours, {unit: 'hour'})
+    }
+
+    return addLeadingZeros(hours, token.length)
+  },
+
+  // Minute
+  m: function (date, token, localize, options) {
+    var minutes = date.getUTCMinutes();
+
+    if (token === 'mo') {
+      return localize.ordinalNumber(minutes, {unit: 'minute'})
+    }
+
+    return addLeadingZeros(minutes, token.length)
+  },
+
+  // Second
+  s: function (date, token, localize, options) {
+    var seconds = date.getUTCSeconds();
+
+    if (token === 'so') {
+      return localize.ordinalNumber(seconds, {unit: 'second'})
+    }
+
+    return addLeadingZeros(seconds, token.length)
+  },
+
+  // Fraction of second
+  S: function (date, token, localize, options) {
+    var numberOfDigits = token.length;
+    var milliseconds = date.getUTCMilliseconds();
+    var fractionalSeconds = Math.floor(milliseconds * Math.pow(10, numberOfDigits - 3));
+    return addLeadingZeros(fractionalSeconds, numberOfDigits)
+  },
+
+  // Timezone (ISO-8601. If offset is 0, output is always `'Z'`)
+  X: function (date, token, localize, options) {
+    var originalDate = options._originalDate || date;
+    var timezoneOffset = originalDate.getTimezoneOffset();
+
+    if (timezoneOffset === 0) {
+      return 'Z'
+    }
+
+    switch (token) {
+      // Hours and optional minutes
+      case 'X':
+        return formatTimezoneWithOptionalMinutes(timezoneOffset)
+
+      // Hours, minutes and optional seconds without `:` delimeter
+      // Note: neither ISO-8601 nor JavaScript supports seconds in timezone offsets
+      // so this token always has the same output as `XX`
+      case 'XXXX':
+      case 'XX': // Hours and minutes without `:` delimeter
+        return formatTimezone(timezoneOffset)
+
+      // Hours, minutes and optional seconds with `:` delimeter
+      // Note: neither ISO-8601 nor JavaScript supports seconds in timezone offsets
+      // so this token always has the same output as `XXX`
+      case 'XXXXX':
+      case 'XXX': // Hours and minutes with `:` delimeter
+      default:
+        return formatTimezone(timezoneOffset, ':')
+    }
+  },
+
+  // Timezone (ISO-8601. If offset is 0, output is `'+00:00'` or equivalent)
+  x: function (date, token, localize, options) {
+    var originalDate = options._originalDate || date;
+    var timezoneOffset = originalDate.getTimezoneOffset();
+
+    switch (token) {
+      // Hours and optional minutes
+      case 'x':
+        return formatTimezoneWithOptionalMinutes(timezoneOffset)
+
+      // Hours, minutes and optional seconds without `:` delimeter
+      // Note: neither ISO-8601 nor JavaScript supports seconds in timezone offsets
+      // so this token always has the same output as `xx`
+      case 'xxxx':
+      case 'xx': // Hours and minutes without `:` delimeter
+        return formatTimezone(timezoneOffset)
+
+      // Hours, minutes and optional seconds with `:` delimeter
+      // Note: neither ISO-8601 nor JavaScript supports seconds in timezone offsets
+      // so this token always has the same output as `xxx`
+      case 'xxxxx':
+      case 'xxx': // Hours and minutes with `:` delimeter
+      default:
+        return formatTimezone(timezoneOffset, ':')
+    }
+  },
+
+  // Timezone (GMT)
+  O: function (date, token, localize, options) {
+    var originalDate = options._originalDate || date;
+    var timezoneOffset = originalDate.getTimezoneOffset();
+
+    switch (token) {
+      // Short
+      case 'O':
+      case 'OO':
+      case 'OOO':
+        return 'GMT' + formatTimezoneShort(timezoneOffset, ':')
+      // Long
+      case 'OOOO':
+      default:
+        return 'GMT' + formatTimezone(timezoneOffset, ':')
+    }
+  },
+
+  // Timezone (specific non-location)
+  z: function (date, token, localize, options) {
+    var originalDate = options._originalDate || date;
+    var timezoneOffset = originalDate.getTimezoneOffset();
+
+    switch (token) {
+      // Short
+      case 'z':
+      case 'zz':
+      case 'zzz':
+        return 'GMT' + formatTimezoneShort(timezoneOffset, ':')
+      // Long
+      case 'zzzz':
+      default:
+        return 'GMT' + formatTimezone(timezoneOffset, ':')
+    }
+  },
+
+  // Seconds timestamp
+  t: function (date, token, localize, options) {
+    var originalDate = options._originalDate || date;
+    var timestamp = Math.floor(originalDate.getTime() / 1000);
+    return addLeadingZeros(timestamp, token.length)
+  },
+
+  // Milliseconds timestamp
+  T: function (date, token, localize, options) {
+    var originalDate = options._originalDate || date;
+    var timestamp = originalDate.getTime();
+    return addLeadingZeros(timestamp, token.length)
+  }
+};
+
+function addLeadingZeros (number, targetLength) {
+  var sign = number < 0 ? '-' : '';
+  var output = Math.abs(number).toString();
+  while (output.length < targetLength) {
+    output = '0' + output;
+  }
+  return sign + output
+}
+
+function formatTimezone (offset, dirtyDelimeter) {
+  var delimeter = dirtyDelimeter || '';
+  var sign = offset > 0 ? '-' : '+';
+  var absOffset = Math.abs(offset);
+  var hours = addLeadingZeros(Math.floor(absOffset / 60), 2);
+  var minutes = addLeadingZeros(absOffset % 60, 2);
+  return sign + hours + delimeter + minutes
+}
+
+function formatTimezoneWithOptionalMinutes (offset, dirtyDelimeter) {
+  if (offset % 60 === 0) {
+    var sign = offset > 0 ? '-' : '+';
+    return sign + addLeadingZeros(Math.abs(offset) / 60, 2)
+  }
+  return formatTimezone(offset, dirtyDelimeter)
+}
+
+function formatTimezoneShort (offset, dirtyDelimeter) {
+  var sign = offset > 0 ? '-' : '+';
+  var absOffset = Math.abs(offset);
+  var hours = Math.floor(absOffset / 60);
+  var minutes = absOffset % 60;
+  if (minutes === 0) {
+    return sign + String(hours)
+  }
+  var delimeter = dirtyDelimeter || '';
+  return sign + String(hours) + delimeter + addLeadingZeros(minutes, 2)
+}
+
+function dateLongFormatter (pattern, formatLong, options) {
+  switch (pattern) {
+    case 'P':
+      return formatLong.date({width: 'short'})
+    case 'PP':
+      return formatLong.date({width: 'medium'})
+    case 'PPP':
+      return formatLong.date({width: 'long'})
+    case 'PPPP':
+    default:
+      return formatLong.date({width: 'full'})
+  }
+}
+
+function timeLongFormatter (pattern, formatLong, options) {
+  switch (pattern) {
+    case 'p':
+      return formatLong.time({width: 'short'})
+    case 'pp':
+      return formatLong.time({width: 'medium'})
+    case 'ppp':
+      return formatLong.time({width: 'long'})
+    case 'pppp':
+    default:
+      return formatLong.time({width: 'full'})
+  }
+}
+
+function dateTimeLongFormatter (pattern, formatLong, options) {
+  var matchResult = pattern.match(/(P+)(p+)?/);
+  var datePattern = matchResult[1];
+  var timePattern = matchResult[2];
+
+  if (!timePattern) {
+    return dateLongFormatter(pattern, formatLong, options)
+  }
+
+  var dateTimeFormat;
+
+  switch (datePattern) {
+    case 'P':
+      dateTimeFormat = formatLong.dateTime({width: 'short'});
+      break
+    case 'PP':
+      dateTimeFormat = formatLong.dateTime({width: 'medium'});
+      break
+    case 'PPP':
+      dateTimeFormat = formatLong.dateTime({width: 'long'});
+      break
+    case 'PPPP':
+    default:
+      dateTimeFormat = formatLong.dateTime({width: 'full'});
+      break
+  }
+
+  return dateTimeFormat
+    .replace('{{date}}', dateLongFormatter(datePattern, formatLong, options))
+    .replace('{{time}}', timeLongFormatter(timePattern, formatLong, options))
+}
+
+var longFormatters = {
+  p: timeLongFormatter,
+  P: dateTimeLongFormatter
+};
+
+/**
+ * @name subMilliseconds
+ * @category Millisecond Helpers
+ * @summary Subtract the specified number of milliseconds from the given date.
+ *
+ * @description
+ * Subtract the specified number of milliseconds from the given date.
+ *
+ * @param {Date|String|Number} date - the date to be changed
+ * @param {Number} amount - the amount of milliseconds to be subtracted
+ * @param {Options} [options] - the object with options. See [Options]{@link https://date-fns.org/docs/Options}
+ * @param {0|1|2} [options.additionalDigits=2] - passed to `toDate`. See [toDate]{@link https://date-fns.org/docs/toDate}
+ * @returns {Date} the new date with the milliseconds subtracted
+ * @throws {TypeError} 2 arguments required
+ * @throws {RangeError} `options.additionalDigits` must be 0, 1 or 2
+ *
+ * @example
+ * // Subtract 750 milliseconds from 10 July 2014 12:45:30.000:
+ * var result = subMilliseconds(new Date(2014, 6, 10, 12, 45, 30, 0), 750)
+ * //=> Thu Jul 10 2014 12:45:29.250
+ */
+function subMilliseconds (dirtyDate, dirtyAmount, dirtyOptions) {
+  if (arguments.length < 2) {
+    throw new TypeError('2 arguments required, but only ' + arguments.length + ' present')
+  }
+
+  var amount = toInteger(dirtyAmount);
+  return addMilliseconds(dirtyDate, -amount, dirtyOptions)
+}
+
+// This RegExp consists of three parts separated by `|`:
+// - [yYQqMLwIdDecihHKkms]o matches any available ordinal number token
+//   (one of the certain letters followed by `o`)
+// - (\w)\1* matches any sequences of the same letter
+// - '' matches two quote characters in a row
+// - '(''|[^'])+('|$) matches anything surrounded by two quote characters ('),
+//   except a single quote symbol, which ends the sequence.
+//   Two quote characters do not end the sequence.
+//   If there is no matching single quote
+//   then the sequence will continue until the end of the string.
+// - . matches any single character unmatched by previous parts of the RegExps
+var formattingTokensRegExp = /[yYQqMLwIdDecihHKkms]o|(\w)\1*|''|'(''|[^'])+('|$)|./g;
+
+// This RegExp catches symbols escaped by quotes, and also
+// sequences of symbols P, p, and the combinations like `PPPPPPPppppp`
+var longFormattingTokensRegExp = /P+p+|P+|p+|''|'(''|[^'])+('|$)|./g;
+
+var escapedStringRegExp = /^'(.*?)'?$/;
+var doubleQuoteRegExp = /''/g;
 
 /**
  * @name format
@@ -1956,86 +2738,259 @@ var defaultFormattingTokensRegExp = /(\[[^[]*])|(\\)?(x|ss|s|mm|m|hh|h|do|dddd|d
  * @summary Format the date.
  *
  * @description
- * Return the formatted date string in the given format.
+ * Return the formatted date string in the given format. The result may vary by locale.
  *
- * Accepted tokens:
- * | Unit                    | Token | Result examples                  |
- * |-------------------------|-------|----------------------------------|
- * | Month                   | M     | 1, 2, ..., 12                    |
- * |                         | Mo    | 1st, 2nd, ..., 12th              |
- * |                         | MM    | 01, 02, ..., 12                  |
- * |                         | MMM   | Jan, Feb, ..., Dec               |
- * |                         | MMMM  | January, February, ..., December |
- * | Quarter                 | Q     | 1, 2, 3, 4                       |
- * |                         | Qo    | 1st, 2nd, 3rd, 4th               |
- * | Day of month            | D     | 1, 2, ..., 31                    |
- * |                         | Do    | 1st, 2nd, ..., 31st              |
- * |                         | DD    | 01, 02, ..., 31                  |
- * | Day of year             | DDD   | 1, 2, ..., 366                   |
- * |                         | DDDo  | 1st, 2nd, ..., 366th             |
- * |                         | DDDD  | 001, 002, ..., 366               |
- * | Day of week             | d     | 0, 1, ..., 6                     |
- * |                         | do    | 0th, 1st, ..., 6th               |
- * |                         | dd    | Su, Mo, ..., Sa                  |
- * |                         | ddd   | Sun, Mon, ..., Sat               |
- * |                         | dddd  | Sunday, Monday, ..., Saturday    |
- * | Day of ISO week         | E     | 1, 2, ..., 7                     |
- * | ISO week                | W     | 1, 2, ..., 53                    |
- * |                         | Wo    | 1st, 2nd, ..., 53rd              |
- * |                         | WW    | 01, 02, ..., 53                  |
- * | Year                    | YY    | 00, 01, ..., 99                  |
- * |                         | YYYY  | 1900, 1901, ..., 2099            |
- * | ISO week-numbering year | GG    | 00, 01, ..., 99                  |
- * |                         | GGGG  | 1900, 1901, ..., 2099            |
- * | AM/PM                   | A     | AM, PM                           |
- * |                         | a     | am, pm                           |
- * |                         | aa    | a.m., p.m.                       |
- * | Hour                    | H     | 0, 1, ... 23                     |
- * |                         | HH    | 00, 01, ... 23                   |
- * |                         | h     | 1, 2, ..., 12                    |
- * |                         | hh    | 01, 02, ..., 12                  |
- * | Minute                  | m     | 0, 1, ..., 59                    |
- * |                         | mm    | 00, 01, ..., 59                  |
- * | Second                  | s     | 0, 1, ..., 59                    |
- * |                         | ss    | 00, 01, ..., 59                  |
- * | 1/10 of second          | S     | 0, 1, ..., 9                     |
- * | 1/100 of second         | SS    | 00, 01, ..., 99                  |
- * | Millisecond             | SSS   | 000, 001, ..., 999               |
- * | Timezone                | Z     | -01:00, +00:00, ... +12:00       |
- * |                         | ZZ    | -0100, +0000, ..., +1200         |
- * | Seconds timestamp       | X     | 512969520                        |
- * | Milliseconds timestamp  | x     | 512969520900                     |
- * | Long format             | LT    | 05:30 a.m.                       |
- * |                         | LTS   | 05:30:15 a.m.                    |
- * |                         | L     | 07/02/1995                       |
- * |                         | l     | 7/2/1995                         |
- * |                         | LL    | July 2 1995                      |
- * |                         | ll    | Jul 2 1995                       |
- * |                         | LLL   | July 2 1995 05:30 a.m.           |
- * |                         | lll   | Jul 2 1995 05:30 a.m.            |
- * |                         | LLLL  | Sunday, July 2 1995 05:30 a.m.   |
- * |                         | llll  | Sun, Jul 2 1995 05:30 a.m.       |
+ * The characters wrapped between two single quotes characters (') are escaped.
+ * Two single quotes in a row, whether inside or outside a quoted sequence, represent a 'real' single quote.
+ * (see the last example)
  *
- * The characters wrapped in square brackets are escaped.
+ * Format of the string is based on Unicode Technical Standard #35:
+ * https://www.unicode.org/reports/tr35/tr35-dates.html#Date_Field_Symbol_Table
+ * with a few additions (see note 7 below the table).
  *
- * The result may vary by locale.
+ * Accepted patterns:
+ * | Unit                            | Pattern | Result examples                   | Notes |
+ * |---------------------------------|---------|-----------------------------------|-------|
+ * | Era                             | G..GGG  | AD, BC                            |       |
+ * |                                 | GGGG    | Anno Domini, Before Christ        | 2     |
+ * |                                 | GGGGG   | A, B                              |       |
+ * | Calendar year                   | y       | 44, 1, 1900, 2017                 | 5     |
+ * |                                 | yo      | 44th, 1st, 0th, 17th              | 5,7   |
+ * |                                 | yy      | 44, 01, 00, 17                    | 5     |
+ * |                                 | yyy     | 044, 001, 1900, 2017              | 5     |
+ * |                                 | yyyy    | 0044, 0001, 1900, 2017            | 5     |
+ * |                                 | yyyyy   | ...                               | 3,5   |
+ * | Local week-numbering year       | Y       | 44, 1, 1900, 2017                 | 5     |
+ * |                                 | Yo      | 44th, 1st, 1900th, 2017th         | 5,7   |
+ * |                                 | YY      | 44, 01, 00, 17                    | 5     |
+ * |                                 | YYY     | 044, 001, 1900, 2017              | 5     |
+ * |                                 | YYYY    | 0044, 0001, 1900, 2017            | 5     |
+ * |                                 | YYYYY   | ...                               | 3,5   |
+ * | ISO week-numbering year         | R       | -43, 0, 1, 1900, 2017             | 5,7   |
+ * |                                 | RR      | -43, 00, 01, 1900, 2017           | 5,7   |
+ * |                                 | RRR     | -043, 000, 001, 1900, 2017        | 5,7   |
+ * |                                 | RRRR    | -0043, 0000, 0001, 1900, 2017     | 5,7   |
+ * |                                 | RRRRR   | ...                               | 3,5,7 |
+ * | Extended year                   | u       | -43, 0, 1, 1900, 2017             | 5     |
+ * |                                 | uu      | -43, 01, 1900, 2017               | 5     |
+ * |                                 | uuu     | -043, 001, 1900, 2017             | 5     |
+ * |                                 | uuuu    | -0043, 0001, 1900, 2017           | 5     |
+ * |                                 | uuuuu   | ...                               | 3,5   |
+ * | Quarter (formatting)            | Q       | 1, 2, 3, 4                        |       |
+ * |                                 | Qo      | 1st, 2nd, 3rd, 4th                | 7     |
+ * |                                 | QQ      | 01, 02, 03, 04                    |       |
+ * |                                 | QQQ     | Q1, Q2, Q3, Q4                    |       |
+ * |                                 | QQQQ    | 1st quarter, 2nd quarter, ...     | 2     |
+ * |                                 | QQQQQ   | 1, 2, 3, 4                        | 4     |
+ * | Quarter (stand-alone)           | q       | 1, 2, 3, 4                        |       |
+ * |                                 | qo      | 1st, 2nd, 3rd, 4th                | 7     |
+ * |                                 | qq      | 01, 02, 03, 04                    |       |
+ * |                                 | qqq     | Q1, Q2, Q3, Q4                    |       |
+ * |                                 | qqqq    | 1st quarter, 2nd quarter, ...     | 2     |
+ * |                                 | qqqqq   | 1, 2, 3, 4                        | 4     |
+ * | Month (formatting)              | M       | 1, 2, ..., 12                     |       |
+ * |                                 | Mo      | 1st, 2nd, ..., 12th               | 7     |
+ * |                                 | MM      | 01, 02, ..., 12                   |       |
+ * |                                 | MMM     | Jan, Feb, ..., Dec                |       |
+ * |                                 | MMMM    | January, February, ..., December  | 2     |
+ * |                                 | MMMMM   | J, F, ..., D                      |       |
+ * | Month (stand-alone)             | L       | 1, 2, ..., 12                     |       |
+ * |                                 | Lo      | 1st, 2nd, ..., 12th               | 7     |
+ * |                                 | LL      | 01, 02, ..., 12                   |       |
+ * |                                 | LLL     | Jan, Feb, ..., Dec                |       |
+ * |                                 | LLLL    | January, February, ..., December  | 2     |
+ * |                                 | LLLLL   | J, F, ..., D                      |       |
+ * | Local week of year              | w       | 1, 2, ..., 53                     |       |
+ * |                                 | wo      | 1st, 2nd, ..., 53th               | 7     |
+ * |                                 | ww      | 01, 02, ..., 53                   |       |
+ * | ISO week of year                | I       | 1, 2, ..., 53                     | 7     |
+ * |                                 | Io      | 1st, 2nd, ..., 53th               | 7     |
+ * |                                 | II      | 01, 02, ..., 53                   | 7     |
+ * | Day of month                    | d       | 1, 2, ..., 31                     |       |
+ * |                                 | do      | 1st, 2nd, ..., 31st               | 7     |
+ * |                                 | dd      | 01, 02, ..., 31                   |       |
+ * | Day of year                     | D       | 1, 2, ..., 365, 366               |       |
+ * |                                 | Do      | 1st, 2nd, ..., 365th, 366th       | 7     |
+ * |                                 | DD      | 01, 02, ..., 365, 366             |       |
+ * |                                 | DDD     | 001, 002, ..., 365, 366           |       |
+ * |                                 | DDDD    | ...                               | 3     |
+ * | Day of week (formatting)        | E..EEE  | Mon, Tue, Wed, ..., Su            |       |
+ * |                                 | EEEE    | Monday, Tuesday, ..., Sunday      | 2     |
+ * |                                 | EEEEE   | M, T, W, T, F, S, S               |       |
+ * |                                 | EEEEEE  | Mo, Tu, We, Th, Fr, Su, Sa        |       |
+ * | ISO day of week (formatting)    | i       | 1, 2, 3, ..., 7                   | 7     |
+ * |                                 | io      | 1st, 2nd, ..., 7th                | 7     |
+ * |                                 | ii      | 01, 02, ..., 07                   | 7     |
+ * |                                 | iii     | Mon, Tue, Wed, ..., Su            | 7     |
+ * |                                 | iiii    | Monday, Tuesday, ..., Sunday      | 2,7   |
+ * |                                 | iiiii   | M, T, W, T, F, S, S               | 7     |
+ * |                                 | iiiiii  | Mo, Tu, We, Th, Fr, Su, Sa        | 7     |
+ * | Local day of week (formatting)  | e       | 2, 3, 4, ..., 1                   |       |
+ * |                                 | eo      | 2nd, 3rd, ..., 1st                | 7     |
+ * |                                 | ee      | 02, 03, ..., 01                   |       |
+ * |                                 | eee     | Mon, Tue, Wed, ..., Su            |       |
+ * |                                 | eeee    | Monday, Tuesday, ..., Sunday      | 2     |
+ * |                                 | eeeee   | M, T, W, T, F, S, S               |       |
+ * |                                 | eeeeee  | Mo, Tu, We, Th, Fr, Su, Sa        |       |
+ * | Local day of week (stand-alone) | c       | 2, 3, 4, ..., 1                   |       |
+ * |                                 | co      | 2nd, 3rd, ..., 1st                | 7     |
+ * |                                 | cc      | 02, 03, ..., 01                   |       |
+ * |                                 | ccc     | Mon, Tue, Wed, ..., Su            |       |
+ * |                                 | cccc    | Monday, Tuesday, ..., Sunday      | 2     |
+ * |                                 | ccccc   | M, T, W, T, F, S, S               |       |
+ * |                                 | cccccc  | Mo, Tu, We, Th, Fr, Su, Sa        |       |
+ * | AM, PM                          | a..aaa  | AM, PM                            |       |
+ * |                                 | aaaa    | a.m., p.m.                        | 2     |
+ * |                                 | aaaaa   | a, p                              |       |
+ * | AM, PM, noon, midnight          | b..bbb  | AM, PM, noon, midnight            |       |
+ * |                                 | bbbb    | a.m., p.m., noon, midnight        | 2     |
+ * |                                 | bbbbb   | a, p, n, mi                       |       |
+ * | Flexible day period             | B..BBB  | at night, in the morning, ...     |       |
+ * |                                 | BBBB    | at night, in the morning, ...     | 2     |
+ * |                                 | BBBBB   | at night, in the morning, ...     |       |
+ * | Hour [1-12]                     | h       | 1, 2, ..., 11, 12                 |       |
+ * |                                 | ho      | 1st, 2nd, ..., 11th, 12th         | 7     |
+ * |                                 | hh      | 01, 02, ..., 11, 12               |       |
+ * | Hour [0-23]                     | H       | 0, 1, 2, ..., 23                  |       |
+ * |                                 | Ho      | 0th, 1st, 2nd, ..., 23rd          | 7     |
+ * |                                 | HH      | 00, 01, 02, ..., 23               |       |
+ * | Hour [0-11]                     | K       | 1, 2, ..., 11, 0                  |       |
+ * |                                 | Ko      | 1st, 2nd, ..., 11th, 0th          | 7     |
+ * |                                 | KK      | 1, 2, ..., 11, 0                  |       |
+ * | Hour [1-24]                     | k       | 24, 1, 2, ..., 23                 |       |
+ * |                                 | ko      | 24th, 1st, 2nd, ..., 23rd         | 7     |
+ * |                                 | kk      | 24, 01, 02, ..., 23               |       |
+ * | Minute                          | m       | 0, 1, ..., 59                     |       |
+ * |                                 | mo      | 0th, 1st, ..., 59th               | 7     |
+ * |                                 | mm      | 00, 01, ..., 59                   |       |
+ * | Second                          | s       | 0, 1, ..., 59                     |       |
+ * |                                 | so      | 0th, 1st, ..., 59th               | 7     |
+ * |                                 | ss      | 00, 01, ..., 59                   |       |
+ * | Fraction of second              | S       | 0, 1, ..., 9                      |       |
+ * |                                 | SS      | 00, 01, ..., 99                   |       |
+ * |                                 | SSS     | 000, 0001, ..., 999               |       |
+ * |                                 | SSSS    | ...                               | 3     |
+ * | Timezone (ISO-8601 w/ Z)        | X       | -08, +0530, Z                     |       |
+ * |                                 | XX      | -0800, +0530, Z                   |       |
+ * |                                 | XXX     | -08:00, +05:30, Z                 |       |
+ * |                                 | XXXX    | -0800, +0530, Z, +123456          | 2     |
+ * |                                 | XXXXX   | -08:00, +05:30, Z, +12:34:56      |       |
+ * | Timezone (ISO-8601 w/o Z)       | x       | -08, +0530, +00                   |       |
+ * |                                 | xx      | -0800, +0530, +0000               |       |
+ * |                                 | xxx     | -08:00, +05:30, +00:00            | 2     |
+ * |                                 | xxxx    | -0800, +0530, +0000, +123456      |       |
+ * |                                 | xxxxx   | -08:00, +05:30, +00:00, +12:34:56 |       |
+ * | Timezone (GMT)                  | O...OOO | GMT-8, GMT+5:30, GMT+0            |       |
+ * |                                 | OOOO    | GMT-08:00, GMT+05:30, GMT+00:00   | 2     |
+ * | Timezone (specific non-locat.)  | z...zzz | GMT-8, GMT+5:30, GMT+0            | 6     |
+ * |                                 | zzzz    | GMT-08:00, GMT+05:30, GMT+00:00   | 2,6   |
+ * | Seconds timestamp               | t       | 512969520                         | 7     |
+ * |                                 | tt      | ...                               | 3,7   |
+ * | Milliseconds timestamp          | T       | 512969520900                      | 7     |
+ * |                                 | TT      | ...                               | 3,7   |
+ * | Long localized date             | P       | 05/29/1453                        | 7     |
+ * |                                 | PP      | May 29, 1453                      | 7     |
+ * |                                 | PPP     | May 29th, 1453                    | 7     |
+ * |                                 | PPPP    | Sunday, May 29th, 1453            | 2,7   |
+ * | Long localized time             | p       | 12:00 AM                          | 7     |
+ * |                                 | pp      | 12:00:00 AM                       | 7     |
+ * |                                 | ppp     | 12:00:00 AM GMT+2                 | 7     |
+ * |                                 | pppp    | 12:00:00 AM GMT+02:00             | 2,7   |
+ * | Combination of date and time    | Pp      | 05/29/1453, 12:00 AM              | 7     |
+ * |                                 | PPpp    | May 29, 1453, 12:00:00 AM         | 7     |
+ * |                                 | PPPppp  | May 29th, 1453 at ...             | 7     |
+ * |                                 | PPPPpppp| Sunday, May 29th, 1453 at ...     | 2,7   |
+ * Notes:
+ * 1. "Formatting" units (e.g. formatting quarter) in the default en-US locale
+ *    are the same as "stand-alone" units, but are different in some languages.
+ *    "Formatting" units are declined according to the rules of the language
+ *    in the context of a date. "Stand-alone" units are always nominative singular:
+ *
+ *    `format(new Date(2017, 10, 6), 'do LLLL', {locale: cs}) //=> '6. listopad'`
+ *
+ *    `format(new Date(2017, 10, 6), 'do MMMM', {locale: cs}) //=> '6. listopadu'`
+ *
+ * 2. Any sequence of the identical letters is a pattern, unless it is escaped by
+ *    the single quote characters (see below).
+ *    If the sequence is longer than listed in table (e.g. `EEEEEEEEEEE`)
+ *    the output will be the same as default pattern for this unit, usually
+ *    the longest one (in case of ISO weekdays, `EEEE`). Default patterns for units
+ *    are marked with "2" in the last column of the table.
+ *
+ *    `format(new Date(2017, 10, 6), 'MMM') //=> 'Nov'`
+ *
+ *    `format(new Date(2017, 10, 6), 'MMMM') //=> 'November'`
+ *
+ *    `format(new Date(2017, 10, 6), 'MMMMM') //=> 'N'`
+ *
+ *    `format(new Date(2017, 10, 6), 'MMMMMM') //=> 'November'`
+ *
+ *    `format(new Date(2017, 10, 6), 'MMMMMMM') //=> 'November'`
+ *
+ * 3. Some patterns could be unlimited length (such as `yyyyyyyy`).
+ *    The output will be padded with zeros to match the length of the pattern.
+ *
+ *    `format(new Date(2017, 10, 6), 'yyyyyyyy') //=> '00002017'`
+ *
+ * 4. `QQQQQ` and `qqqqq` could be not strictly numerical in some locales.
+ *    These tokens represent the shortest form of the quarter.
+ *
+ * 5. The main difference between `y` and `u` patterns are B.C. years:
+ *
+ *    | Year | `y` | `u` |
+ *    |------|-----|-----|
+ *    | AC 1 |   1 |   1 |
+ *    | BC 1 |   1 |   0 |
+ *    | BC 2 |   2 |  -1 |
+ *
+ *    Also `yy` always returns the last two digits of a year,
+ *    while `uu` pads single digit years to 2 characters and returns other years unchanged:
+ *
+ *    | Year | `yy` | `uu` |
+ *    |------|------|------|
+ *    | 1    |   01 |   01 |
+ *    | 14   |   14 |   14 |
+ *    | 376  |   76 |  376 |
+ *    | 1453 |   53 | 1453 |
+ *
+ *    The same difference is true for local and ISO week-numbering years (`Y` and `R`),
+ *    except local week-numbering years are dependent on `options.weekStartsOn`
+ *    and `options.firstWeekContainsDate` (compare [getISOWeekYear]{@link https://date-fns.org/docs/getISOWeekYear}
+ *    and [getWeekYear]{@link https://date-fns.org/docs/getWeekYear}).
+ *
+ * 6. Specific non-location timezones are currently unavailable in `date-fns`,
+ *    so right now these tokens fall back to GMT timezones.
+ *
+ * 7. These patterns are not in the Unicode Technical Standard #35:
+ *    - `i`: ISO day of week
+ *    - `I`: ISO week of year
+ *    - `R`: ISO week-numbering year
+ *    - `t`: seconds timestamp
+ *    - `T`: milliseconds timestamp
+ *    - `o`: ordinal number modifier
+ *    - `P`: long localized date
+ *    - `p`: long localized time
  *
  * @param {Date|String|Number} date - the original date
  * @param {String} format - the string of tokens
  * @param {Options} [options] - the object with options. See [Options]{@link https://date-fns.org/docs/Options}
  * @param {0|1|2} [options.additionalDigits=2] - passed to `toDate`. See [toDate]{@link https://date-fns.org/docs/toDate}
+ * @param {0|1|2|3|4|5|6} [options.weekStartsOn=0] - the index of the first day of the week (0 - Sunday)
+ * @param {Number} [options.firstWeekContainsDate=1] - the day of January, which is
  * @param {Locale} [options.locale=defaultLocale] - the locale object. See [Locale]{@link https://date-fns.org/docs/Locale}
  * @returns {String} the formatted date string
  * @throws {TypeError} 2 arguments required
  * @throws {RangeError} `options.additionalDigits` must be 0, 1 or 2
  * @throws {RangeError} `options.locale` must contain `localize` property
  * @throws {RangeError} `options.locale` must contain `formatLong` property
+ * @throws {RangeError} `options.weekStartsOn` must be between 0 and 6
+ * @throws {RangeError} `options.firstWeekContainsDate` must be between 1 and 7
  *
  * @example
  * // Represent 11 February 2014 in middle-endian format:
  * var result = format(
  *   new Date(2014, 1, 11),
- *   'MM/DD/YYYY'
+ *   'MM/dd/yyyy'
  * )
  * //=> '02/11/2014'
  *
@@ -2044,10 +2999,18 @@ var defaultFormattingTokensRegExp = /(\[[^[]*])|(\\)?(x|ss|s|mm|m|hh|h|do|dddd|d
  * import { eoLocale } from 'date-fns/locale/eo'
  * var result = format(
  *   new Date(2014, 6, 2),
- *   'Do [de] MMMM YYYY',
+ *   "do 'de' MMMM yyyy",
  *   {locale: eoLocale}
  * )
  * //=> '2-a de julio 2014'
+ *
+ * @example
+ * // Escape string by single quote characters:
+ * var result = format(
+ *   new Date(2014, 6, 2, 15),
+ *   "h 'o''clock'"
+ * )
+ * //=> "3 o'clock"
  */
 function format (dirtyDate, dirtyFormatStr, dirtyOptions) {
   if (arguments.length < 2) {
@@ -2059,6 +3022,32 @@ function format (dirtyDate, dirtyFormatStr, dirtyOptions) {
 
   var locale$$1 = options.locale || locale;
 
+  var localeFirstWeekContainsDate =
+    locale$$1.options &&
+    locale$$1.options.firstWeekContainsDate;
+  var defaultFirstWeekContainsDate =
+    localeFirstWeekContainsDate == null
+      ? 1
+      : toInteger(localeFirstWeekContainsDate);
+  var firstWeekContainsDate =
+    options.firstWeekContainsDate == null
+      ? defaultFirstWeekContainsDate
+      : toInteger(options.firstWeekContainsDate);
+
+  // Test if weekStartsOn is between 1 and 7 _and_ is not NaN
+  if (!(firstWeekContainsDate >= 1 && firstWeekContainsDate <= 7)) {
+    throw new RangeError('firstWeekContainsDate must be between 1 and 7 inclusively')
+  }
+
+  var localeWeekStartsOn = locale$$1.options && locale$$1.options.weekStartsOn;
+  var defaultWeekStartsOn = localeWeekStartsOn == null ? 0 : toInteger(localeWeekStartsOn);
+  var weekStartsOn = options.weekStartsOn == null ? defaultWeekStartsOn : toInteger(options.weekStartsOn);
+
+  // Test if weekStartsOn is between 0 and 6 _and_ is not NaN
+  if (!(weekStartsOn >= 0 && weekStartsOn <= 6)) {
+    throw new RangeError('weekStartsOn must be between 0 and 6 inclusively')
+  }
+
   if (!locale$$1.localize) {
     throw new RangeError('locale must contain localize property')
   }
@@ -2066,10 +3055,6 @@ function format (dirtyDate, dirtyFormatStr, dirtyOptions) {
   if (!locale$$1.formatLong) {
     throw new RangeError('locale must contain formatLong property')
   }
-
-  var localeFormatters = locale$$1.formatters || {};
-  var formattingTokensRegExp = locale$$1.formattingTokensRegExp || defaultFormattingTokensRegExp;
-  var formatLong = locale$$1.formatLong;
 
   var originalDate = toDate(dirtyDate, options);
 
@@ -2080,48 +3065,121 @@ function format (dirtyDate, dirtyFormatStr, dirtyOptions) {
   // Convert the date in system timezone to the same date in UTC+00:00 timezone.
   // This ensures that when UTC functions will be implemented, locales will be compatible with them.
   // See an issue about UTC functions: https://github.com/date-fns/date-fns/issues/376
-  var timezoneOffset = originalDate.getTimezoneOffset();
-  var utcDate = addUTCMinutes(originalDate, -timezoneOffset, options);
+  var timezoneOffset = getTimezoneOffsetInMilliseconds(originalDate);
+  var utcDate = subMilliseconds(originalDate, timezoneOffset, options);
 
-  var formatterOptions = cloneObject(options);
-  formatterOptions.locale = locale$$1;
-  formatterOptions.formatters = formatters;
-
-  // When UTC functions will be implemented, options._originalDate will likely be a part of public API.
-  // Right now, please don't use it in locales. If you have to use an original date,
-  // please restore it from `date`, adding a timezone offset to it.
-  formatterOptions._originalDate = originalDate;
+  var formatterOptions = {
+    firstWeekContainsDate: firstWeekContainsDate,
+    weekStartsOn: weekStartsOn,
+    locale: locale$$1,
+    _originalDate: originalDate
+  };
 
   var result = formatStr
-    .replace(longFormattingTokensRegExp, function (substring) {
-      if (substring[0] === '[') {
-        return substring
+    .match(longFormattingTokensRegExp)
+    .map(function (substring) {
+      var firstCharacter = substring[0];
+      if (firstCharacter === 'p' || firstCharacter === 'P') {
+        var longFormatter = longFormatters[firstCharacter];
+        return longFormatter(substring, locale$$1.formatLong, formatterOptions)
       }
-
-      if (substring[0] === '\\') {
-        return cleanEscapedString(substring)
-      }
-
-      return formatLong(substring)
+      return substring
     })
-    .replace(formattingTokensRegExp, function (substring) {
-      var formatter = localeFormatters[substring] || formatters[substring];
+    .join('')
+    .match(formattingTokensRegExp)
+    .map(function (substring) {
+      // Replace two single quote characters with one single quote character
+      if (substring === "''") {
+        return "'"
+      }
 
-      if (formatter) {
-        return formatter(utcDate, formatterOptions)
-      } else {
+      var firstCharacter = substring[0];
+      if (firstCharacter === "'") {
         return cleanEscapedString(substring)
       }
-    });
+
+      var formatter = formatters[firstCharacter];
+      if (formatter) {
+        return formatter(utcDate, substring, locale$$1.localize, formatterOptions)
+      }
+
+      return substring
+    })
+    .join('');
 
   return result
 }
 
 function cleanEscapedString (input) {
-  if (input.match(/\[[\s\S]/)) {
-    return input.replace(/^\[|]$/g, '')
+  return input.match(escapedStringRegExp)[1].replace(doubleQuoteRegExp, "'")
+}
+
+/**
+ * @name isDate
+ * @category Common Helpers
+ * @summary Is the given value a date?
+ *
+ * @description
+ * Returns true if the given value is an instance of Date. The function works for dates transferred across iframes.
+ *
+ * @param {*} value - the value to check
+ * @param {Options} [options] - the object with options. Unused; present for FP submodule compatibility sake. See [Options]{@link https://date-fns.org/docs/Options}
+ * @returns {boolean} true if the given value is a date
+ * @throws {TypeError} 1 arguments required
+ *
+ * @example
+ * // For a valid date:
+ * var result = isDate(new Date())
+ * //=> true
+ *
+ * @example
+ * // For an invalid date:
+ * var result = isDate(new Date(NaN))
+ * //=> true
+ *
+ * @example
+ * // For some value:
+ * var result = isDate('2014-02-31')
+ * //=> false
+ *
+ * @example
+ * // For an object:
+ * var result = isDate({})
+ * //=> false
+ */
+
+/**
+ * @name isEqual
+ * @category Common Helpers
+ * @summary Are the given dates equal?
+ *
+ * @description
+ * Are the given dates equal?
+ *
+ * @param {Date|String|Number} dateLeft - the first date to compare
+ * @param {Date|String|Number} dateRight - the second date to compare
+ * @param {Options} [options] - the object with options. See [Options]{@link https://date-fns.org/docs/Options}
+ * @param {0|1|2} [options.additionalDigits=2] - passed to `toDate`. See [toDate]{@link https://date-fns.org/docs/toDate}
+ * @returns {Boolean} the dates are equal
+ * @throws {TypeError} 2 arguments required
+ * @throws {RangeError} `options.additionalDigits` must be 0, 1 or 2
+ *
+ * @example
+ * // Are 2 July 2014 06:30:45.000 and 2 July 2014 06:30:45.500 equal?
+ * var result = isEqual(
+ *   new Date(2014, 6, 2, 6, 30, 45, 0)
+ *   new Date(2014, 6, 2, 6, 30, 45, 500)
+ * )
+ * //=> false
+ */
+function isEqual (dirtyLeftDate, dirtyRightDate, dirtyOptions) {
+  if (arguments.length < 2) {
+    throw new TypeError('2 arguments required, but only ' + arguments.length + ' present')
   }
-  return input.replace(/\\/g, '')
+
+  var dateLeft = toDate(dirtyLeftDate, dirtyOptions);
+  var dateRight = toDate(dirtyRightDate, dirtyOptions);
+  return dateLeft.getTime() === dateRight.getTime()
 }
 
 // This file is generated automatically by `scripts/build/indices.js`. Please, don't change it.
@@ -2178,144 +3236,6 @@ function unwrapExports (x) {
 function createCommonjsModule(fn, module) {
 	return module = { exports: {} }, fn(module, module.exports), module.exports;
 }
-
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- * 
- */
-
-function makeEmptyFunction(arg) {
-  return function () {
-    return arg;
-  };
-}
-
-/**
- * This function accepts and discards inputs; it has no side effects. This is
- * primarily useful idiomatically for overridable function endpoints which
- * always need to be callable, since JS lacks a null-call idiom ala Cocoa.
- */
-var emptyFunction = function emptyFunction() {};
-
-emptyFunction.thatReturns = makeEmptyFunction;
-emptyFunction.thatReturnsFalse = makeEmptyFunction(false);
-emptyFunction.thatReturnsTrue = makeEmptyFunction(true);
-emptyFunction.thatReturnsNull = makeEmptyFunction(null);
-emptyFunction.thatReturnsThis = function () {
-  return this;
-};
-emptyFunction.thatReturnsArgument = function (arg) {
-  return arg;
-};
-
-var emptyFunction_1 = emptyFunction;
-
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-/**
- * Use invariant() to assert state which your program assumes to be true.
- *
- * Provide sprintf-style format (only %s is supported) and arguments
- * to provide information about what broke and what you were
- * expecting.
- *
- * The invariant message will be stripped in production, but the invariant
- * will remain to ensure logic does not differ in production.
- */
-
-var validateFormat = function validateFormat(format) {};
-
-if (process.env.NODE_ENV !== 'production') {
-  validateFormat = function validateFormat(format) {
-    if (format === undefined) {
-      throw new Error('invariant requires an error message argument');
-    }
-  };
-}
-
-function invariant(condition, format, a, b, c, d, e, f) {
-  validateFormat(format);
-
-  if (!condition) {
-    var error;
-    if (format === undefined) {
-      error = new Error('Minified exception occurred; use the non-minified dev environment ' + 'for the full error message and additional helpful warnings.');
-    } else {
-      var args = [a, b, c, d, e, f];
-      var argIndex = 0;
-      error = new Error(format.replace(/%s/g, function () {
-        return args[argIndex++];
-      }));
-      error.name = 'Invariant Violation';
-    }
-
-    error.framesToPop = 1; // we don't care about invariant's own frame
-    throw error;
-  }
-}
-
-var invariant_1 = invariant;
-
-/**
- * Similar to invariant but only logs a warning if the condition is not met.
- * This can be used to log issues in development environments in critical
- * paths. Removing the logging code for production environments will keep the
- * same logic and follow the same code paths.
- */
-
-var warning = emptyFunction_1;
-
-if (process.env.NODE_ENV !== 'production') {
-  var printWarning = function printWarning(format) {
-    for (var _len = arguments.length, args = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-      args[_key - 1] = arguments[_key];
-    }
-
-    var argIndex = 0;
-    var message = 'Warning: ' + format.replace(/%s/g, function () {
-      return args[argIndex++];
-    });
-    if (typeof console !== 'undefined') {
-      console.error(message);
-    }
-    try {
-      // --- Welcome to debugging React ---
-      // This error was thrown as a convenience so that you can use this stack
-      // to find the callsite that caused this warning to fire.
-      throw new Error(message);
-    } catch (x) {}
-  };
-
-  warning = function warning(condition, format) {
-    if (format === undefined) {
-      throw new Error('`warning(condition, format, ...args)` requires a warning ' + 'message argument');
-    }
-
-    if (format.indexOf('Failed Composite propType: ') === 0) {
-      return; // Ignore CompositeComponent proptype check.
-    }
-
-    if (!condition) {
-      for (var _len2 = arguments.length, args = Array(_len2 > 2 ? _len2 - 2 : 0), _key2 = 2; _key2 < _len2; _key2++) {
-        args[_key2 - 2] = arguments[_key2];
-      }
-
-      printWarning.apply(undefined, [format].concat(args));
-    }
-  };
-}
-
-var warning_1 = warning;
 
 /*
 object-assign
@@ -2418,11 +3338,24 @@ var ReactPropTypesSecret = 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED';
 
 var ReactPropTypesSecret_1 = ReactPropTypesSecret;
 
+var printWarning$1 = function() {};
+
 if (process.env.NODE_ENV !== 'production') {
-  var invariant$1 = invariant_1;
-  var warning$1 = warning_1;
   var ReactPropTypesSecret$1 = ReactPropTypesSecret_1;
   var loggedTypeFailures = {};
+
+  printWarning$1 = function(text) {
+    var message = 'Warning: ' + text;
+    if (typeof console !== 'undefined') {
+      console.error(message);
+    }
+    try {
+      // --- Welcome to debugging React ---
+      // This error was thrown as a convenience so that you can use this stack
+      // to find the callsite that caused this warning to fire.
+      throw new Error(message);
+    } catch (x) {}
+  };
 }
 
 /**
@@ -2447,12 +3380,29 @@ function checkPropTypes(typeSpecs, values, location, componentName, getStack) {
         try {
           // This is intentionally an invariant that gets caught. It's the same
           // behavior as without this statement except with a better message.
-          invariant$1(typeof typeSpecs[typeSpecName] === 'function', '%s: %s type `%s` is invalid; it must be a function, usually from ' + 'the `prop-types` package, but received `%s`.', componentName || 'React class', location, typeSpecName, typeof typeSpecs[typeSpecName]);
+          if (typeof typeSpecs[typeSpecName] !== 'function') {
+            var err = Error(
+              (componentName || 'React class') + ': ' + location + ' type `' + typeSpecName + '` is invalid; ' +
+              'it must be a function, usually from the `prop-types` package, but received `' + typeof typeSpecs[typeSpecName] + '`.'
+            );
+            err.name = 'Invariant Violation';
+            throw err;
+          }
           error = typeSpecs[typeSpecName](values, typeSpecName, componentName, location, null, ReactPropTypesSecret$1);
         } catch (ex) {
           error = ex;
         }
-        warning$1(!error || error instanceof Error, '%s: type specification of %s `%s` is invalid; the type checker ' + 'function must return `null` or an `Error` but returned a %s. ' + 'You may have forgotten to pass an argument to the type checker ' + 'creator (arrayOf, instanceOf, objectOf, oneOf, oneOfType, and ' + 'shape all require an argument).', componentName || 'React class', location, typeSpecName, typeof error);
+        if (error && !(error instanceof Error)) {
+          printWarning$1(
+            (componentName || 'React class') + ': type specification of ' +
+            location + ' `' + typeSpecName + '` is invalid; the type checker ' +
+            'function must return `null` or an `Error` but returned a ' + typeof error + '. ' +
+            'You may have forgotten to pass an argument to the type checker ' +
+            'creator (arrayOf, instanceOf, objectOf, oneOf, oneOfType, and ' +
+            'shape all require an argument).'
+          );
+
+        }
         if (error instanceof Error && !(error.message in loggedTypeFailures)) {
           // Only monitor this failure once because there tends to be a lot of the
           // same error.
@@ -2460,7 +3410,9 @@ function checkPropTypes(typeSpecs, values, location, componentName, getStack) {
 
           var stack = getStack ? getStack() : '';
 
-          warning$1(false, 'Failed %s type: %s%s', location, error.message, stack != null ? stack : '');
+          printWarning$1(
+            'Failed ' + location + ' type: ' + error.message + (stack != null ? stack : '')
+          );
         }
       }
     }
@@ -2468,6 +3420,27 @@ function checkPropTypes(typeSpecs, values, location, componentName, getStack) {
 }
 
 var checkPropTypes_1 = checkPropTypes;
+
+var printWarning = function() {};
+
+if (process.env.NODE_ENV !== 'production') {
+  printWarning = function(text) {
+    var message = 'Warning: ' + text;
+    if (typeof console !== 'undefined') {
+      console.error(message);
+    }
+    try {
+      // --- Welcome to debugging React ---
+      // This error was thrown as a convenience so that you can use this stack
+      // to find the callsite that caused this warning to fire.
+      throw new Error(message);
+    } catch (x) {}
+  };
+}
+
+function emptyFunctionThatReturnsNull() {
+  return null;
+}
 
 var factoryWithTypeCheckers = function(isValidElement, throwOnDirectAccess) {
   /* global Symbol */
@@ -2611,12 +3584,13 @@ var factoryWithTypeCheckers = function(isValidElement, throwOnDirectAccess) {
       if (secret !== ReactPropTypesSecret_1) {
         if (throwOnDirectAccess) {
           // New behavior only for users of `prop-types` package
-          invariant_1(
-            false,
+          var err = new Error(
             'Calling PropTypes validators directly is not supported by the `prop-types` package. ' +
             'Use `PropTypes.checkPropTypes()` to call them. ' +
             'Read more at http://fb.me/use-check-prop-types'
           );
+          err.name = 'Invariant Violation';
+          throw err;
         } else if (process.env.NODE_ENV !== 'production' && typeof console !== 'undefined') {
           // Old behavior for people using React.PropTypes
           var cacheKey = componentName + ':' + propName;
@@ -2625,15 +3599,12 @@ var factoryWithTypeCheckers = function(isValidElement, throwOnDirectAccess) {
             // Avoid spamming the console because they are often not actionable except for lib authors
             manualPropTypeWarningCount < 3
           ) {
-            warning_1(
-              false,
+            printWarning(
               'You are manually calling a React.PropTypes validation ' +
-              'function for the `%s` prop on `%s`. This is deprecated ' +
+              'function for the `' + propFullName + '` prop on `' + componentName  + '`. This is deprecated ' +
               'and will throw in the standalone `prop-types` package. ' +
               'You may be seeing this warning due to a third-party PropTypes ' +
-              'library. See https://fb.me/react-warning-dont-call-proptypes ' + 'for details.',
-              propFullName,
-              componentName
+              'library. See https://fb.me/react-warning-dont-call-proptypes ' + 'for details.'
             );
             manualPropTypeCallCache[cacheKey] = true;
             manualPropTypeWarningCount++;
@@ -2677,7 +3648,7 @@ var factoryWithTypeCheckers = function(isValidElement, throwOnDirectAccess) {
   }
 
   function createAnyTypeChecker() {
-    return createChainableTypeChecker(emptyFunction_1.thatReturnsNull);
+    return createChainableTypeChecker(emptyFunctionThatReturnsNull);
   }
 
   function createArrayOfTypeChecker(typeChecker) {
@@ -2727,8 +3698,8 @@ var factoryWithTypeCheckers = function(isValidElement, throwOnDirectAccess) {
 
   function createEnumTypeChecker(expectedValues) {
     if (!Array.isArray(expectedValues)) {
-      process.env.NODE_ENV !== 'production' ? warning_1(false, 'Invalid argument supplied to oneOf, expected an instance of array.') : void 0;
-      return emptyFunction_1.thatReturnsNull;
+      process.env.NODE_ENV !== 'production' ? printWarning('Invalid argument supplied to oneOf, expected an instance of array.') : void 0;
+      return emptyFunctionThatReturnsNull;
     }
 
     function validate(props, propName, componentName, location, propFullName) {
@@ -2770,21 +3741,18 @@ var factoryWithTypeCheckers = function(isValidElement, throwOnDirectAccess) {
 
   function createUnionTypeChecker(arrayOfTypeCheckers) {
     if (!Array.isArray(arrayOfTypeCheckers)) {
-      process.env.NODE_ENV !== 'production' ? warning_1(false, 'Invalid argument supplied to oneOfType, expected an instance of array.') : void 0;
-      return emptyFunction_1.thatReturnsNull;
+      process.env.NODE_ENV !== 'production' ? printWarning('Invalid argument supplied to oneOfType, expected an instance of array.') : void 0;
+      return emptyFunctionThatReturnsNull;
     }
 
     for (var i = 0; i < arrayOfTypeCheckers.length; i++) {
       var checker = arrayOfTypeCheckers[i];
       if (typeof checker !== 'function') {
-        warning_1(
-          false,
+        printWarning(
           'Invalid argument supplied to oneOfType. Expected an array of check functions, but ' +
-          'received %s at index %s.',
-          getPostfixForTypeWarning(checker),
-          i
+          'received ' + getPostfixForTypeWarning(checker) + ' at index ' + i + '.'
         );
-        return emptyFunction_1.thatReturnsNull;
+        return emptyFunctionThatReturnsNull;
       }
     }
 
@@ -2995,9 +3963,909 @@ var factoryWithTypeCheckers = function(isValidElement, throwOnDirectAccess) {
   return ReactPropTypes;
 };
 
+function emptyFunction() {}
+
 var factoryWithThrowingShims = function() {
   function shim(props, propName, componentName, location, propFullName, secret) {
     if (secret === ReactPropTypesSecret_1) {
+      // It is still safe when called from React.
+      return;
+    }
+    var err = new Error(
+      'Calling PropTypes validators directly is not supported by the `prop-types` package. ' +
+      'Use PropTypes.checkPropTypes() to call them. ' +
+      'Read more at http://fb.me/use-check-prop-types'
+    );
+    err.name = 'Invariant Violation';
+    throw err;
+  }
+  shim.isRequired = shim;
+  function getShim() {
+    return shim;
+  }
+  // Important!
+  // Keep this list in sync with production version in `./factoryWithTypeCheckers.js`.
+  var ReactPropTypes = {
+    array: shim,
+    bool: shim,
+    func: shim,
+    number: shim,
+    object: shim,
+    string: shim,
+    symbol: shim,
+
+    any: shim,
+    arrayOf: getShim,
+    element: shim,
+    instanceOf: getShim,
+    node: shim,
+    objectOf: getShim,
+    oneOf: getShim,
+    oneOfType: getShim,
+    shape: getShim,
+    exact: getShim
+  };
+
+  ReactPropTypes.checkPropTypes = emptyFunction;
+  ReactPropTypes.PropTypes = ReactPropTypes;
+
+  return ReactPropTypes;
+};
+
+var propTypes = createCommonjsModule(function (module) {
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+if (process.env.NODE_ENV !== 'production') {
+  var REACT_ELEMENT_TYPE = (typeof Symbol === 'function' &&
+    Symbol.for &&
+    Symbol.for('react.element')) ||
+    0xeac7;
+
+  var isValidElement = function(object) {
+    return typeof object === 'object' &&
+      object !== null &&
+      object.$$typeof === REACT_ELEMENT_TYPE;
+  };
+
+  // By explicitly using `prop-types` you are opting into new development behavior.
+  // http://fb.me/prop-types-in-prod
+  var throwOnDirectAccess = true;
+  module.exports = factoryWithTypeCheckers(isValidElement, throwOnDirectAccess);
+} else {
+  // By explicitly using `prop-types` you are opting into new production behavior.
+  // http://fb.me/prop-types-in-prod
+  module.exports = factoryWithThrowingShims();
+}
+});
+
+function createCommonjsModule$1(fn, module) {
+	return module = { exports: {} }, fn(module, module.exports), module.exports;
+}
+
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ * 
+ */
+
+function makeEmptyFunction(arg) {
+  return function () {
+    return arg;
+  };
+}
+
+/**
+ * This function accepts and discards inputs; it has no side effects. This is
+ * primarily useful idiomatically for overridable function endpoints which
+ * always need to be callable, since JS lacks a null-call idiom ala Cocoa.
+ */
+var emptyFunction$1 = function emptyFunction() {};
+
+emptyFunction$1.thatReturns = makeEmptyFunction;
+emptyFunction$1.thatReturnsFalse = makeEmptyFunction(false);
+emptyFunction$1.thatReturnsTrue = makeEmptyFunction(true);
+emptyFunction$1.thatReturnsNull = makeEmptyFunction(null);
+emptyFunction$1.thatReturnsThis = function () {
+  return this;
+};
+emptyFunction$1.thatReturnsArgument = function (arg) {
+  return arg;
+};
+
+var emptyFunction_1 = emptyFunction$1;
+
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ */
+
+/**
+ * Use invariant() to assert state which your program assumes to be true.
+ *
+ * Provide sprintf-style format (only %s is supported) and arguments
+ * to provide information about what broke and what you were
+ * expecting.
+ *
+ * The invariant message will be stripped in production, but the invariant
+ * will remain to ensure logic does not differ in production.
+ */
+
+var validateFormat = function validateFormat(format) {};
+
+if (process.env.NODE_ENV !== 'production') {
+  validateFormat = function validateFormat(format) {
+    if (format === undefined) {
+      throw new Error('invariant requires an error message argument');
+    }
+  };
+}
+
+function invariant(condition, format, a, b, c, d, e, f) {
+  validateFormat(format);
+
+  if (!condition) {
+    var error;
+    if (format === undefined) {
+      error = new Error('Minified exception occurred; use the non-minified dev environment ' + 'for the full error message and additional helpful warnings.');
+    } else {
+      var args = [a, b, c, d, e, f];
+      var argIndex = 0;
+      error = new Error(format.replace(/%s/g, function () {
+        return args[argIndex++];
+      }));
+      error.name = 'Invariant Violation';
+    }
+
+    error.framesToPop = 1; // we don't care about invariant's own frame
+    throw error;
+  }
+}
+
+var invariant_1 = invariant;
+
+/**
+ * Similar to invariant but only logs a warning if the condition is not met.
+ * This can be used to log issues in development environments in critical
+ * paths. Removing the logging code for production environments will keep the
+ * same logic and follow the same code paths.
+ */
+
+var warning = emptyFunction_1;
+
+if (process.env.NODE_ENV !== 'production') {
+  var printWarning$2 = function printWarning(format) {
+    for (var _len = arguments.length, args = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+      args[_key - 1] = arguments[_key];
+    }
+
+    var argIndex = 0;
+    var message = 'Warning: ' + format.replace(/%s/g, function () {
+      return args[argIndex++];
+    });
+    if (typeof console !== 'undefined') {
+      console.error(message);
+    }
+    try {
+      // --- Welcome to debugging React ---
+      // This error was thrown as a convenience so that you can use this stack
+      // to find the callsite that caused this warning to fire.
+      throw new Error(message);
+    } catch (x) {}
+  };
+
+  warning = function warning(condition, format) {
+    if (format === undefined) {
+      throw new Error('`warning(condition, format, ...args)` requires a warning ' + 'message argument');
+    }
+
+    if (format.indexOf('Failed Composite propType: ') === 0) {
+      return; // Ignore CompositeComponent proptype check.
+    }
+
+    if (!condition) {
+      for (var _len2 = arguments.length, args = Array(_len2 > 2 ? _len2 - 2 : 0), _key2 = 2; _key2 < _len2; _key2++) {
+        args[_key2 - 2] = arguments[_key2];
+      }
+
+      printWarning$2.apply(undefined, [format].concat(args));
+    }
+  };
+}
+
+var warning_1 = warning;
+
+/*
+object-assign
+(c) Sindre Sorhus
+@license MIT
+*/
+
+/* eslint-disable no-unused-vars */
+var getOwnPropertySymbols$1 = Object.getOwnPropertySymbols;
+var hasOwnProperty$1 = Object.prototype.hasOwnProperty;
+var propIsEnumerable$1 = Object.prototype.propertyIsEnumerable;
+
+function toObject$1(val) {
+	if (val === null || val === undefined) {
+		throw new TypeError('Object.assign cannot be called with null or undefined');
+	}
+
+	return Object(val);
+}
+
+function shouldUseNative$1() {
+	try {
+		if (!Object.assign) {
+			return false;
+		}
+
+		// Detect buggy property enumeration order in older V8 versions.
+
+		// https://bugs.chromium.org/p/v8/issues/detail?id=4118
+		var test1 = new String('abc');  // eslint-disable-line no-new-wrappers
+		test1[5] = 'de';
+		if (Object.getOwnPropertyNames(test1)[0] === '5') {
+			return false;
+		}
+
+		// https://bugs.chromium.org/p/v8/issues/detail?id=3056
+		var test2 = {};
+		for (var i = 0; i < 10; i++) {
+			test2['_' + String.fromCharCode(i)] = i;
+		}
+		var order2 = Object.getOwnPropertyNames(test2).map(function (n) {
+			return test2[n];
+		});
+		if (order2.join('') !== '0123456789') {
+			return false;
+		}
+
+		// https://bugs.chromium.org/p/v8/issues/detail?id=3056
+		var test3 = {};
+		'abcdefghijklmnopqrst'.split('').forEach(function (letter) {
+			test3[letter] = letter;
+		});
+		if (Object.keys(Object.assign({}, test3)).join('') !==
+				'abcdefghijklmnopqrst') {
+			return false;
+		}
+
+		return true;
+	} catch (err) {
+		// We don't expect any of the above to throw, but better to be safe.
+		return false;
+	}
+}
+
+var objectAssign$2 = shouldUseNative$1() ? Object.assign : function (target, source) {
+	var from;
+	var to = toObject$1(target);
+	var symbols;
+
+	for (var s = 1; s < arguments.length; s++) {
+		from = Object(arguments[s]);
+
+		for (var key in from) {
+			if (hasOwnProperty$1.call(from, key)) {
+				to[key] = from[key];
+			}
+		}
+
+		if (getOwnPropertySymbols$1) {
+			symbols = getOwnPropertySymbols$1(from);
+			for (var i = 0; i < symbols.length; i++) {
+				if (propIsEnumerable$1.call(from, symbols[i])) {
+					to[symbols[i]] = from[symbols[i]];
+				}
+			}
+		}
+	}
+
+	return to;
+};
+
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+var ReactPropTypesSecret$3 = 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED';
+
+var ReactPropTypesSecret_1$2 = ReactPropTypesSecret$3;
+
+if (process.env.NODE_ENV !== 'production') {
+  var invariant$1 = invariant_1;
+  var warning$1 = warning_1;
+  var ReactPropTypesSecret$1$1 = ReactPropTypesSecret_1$2;
+  var loggedTypeFailures$1 = {};
+}
+
+/**
+ * Assert that the values match with the type specs.
+ * Error messages are memorized and will only be shown once.
+ *
+ * @param {object} typeSpecs Map of name to a ReactPropType
+ * @param {object} values Runtime values that need to be type-checked
+ * @param {string} location e.g. "prop", "context", "child context"
+ * @param {string} componentName Name of the component for error messages.
+ * @param {?Function} getStack Returns the component stack.
+ * @private
+ */
+function checkPropTypes$2(typeSpecs, values, location, componentName, getStack) {
+  if (process.env.NODE_ENV !== 'production') {
+    for (var typeSpecName in typeSpecs) {
+      if (typeSpecs.hasOwnProperty(typeSpecName)) {
+        var error;
+        // Prop type validation may throw. In case they do, we don't want to
+        // fail the render phase where it didn't fail before. So we log it.
+        // After these have been cleaned up, we'll let them throw.
+        try {
+          // This is intentionally an invariant that gets caught. It's the same
+          // behavior as without this statement except with a better message.
+          invariant$1(typeof typeSpecs[typeSpecName] === 'function', '%s: %s type `%s` is invalid; it must be a function, usually from ' + 'the `prop-types` package, but received `%s`.', componentName || 'React class', location, typeSpecName, typeof typeSpecs[typeSpecName]);
+          error = typeSpecs[typeSpecName](values, typeSpecName, componentName, location, null, ReactPropTypesSecret$1$1);
+        } catch (ex) {
+          error = ex;
+        }
+        warning$1(!error || error instanceof Error, '%s: type specification of %s `%s` is invalid; the type checker ' + 'function must return `null` or an `Error` but returned a %s. ' + 'You may have forgotten to pass an argument to the type checker ' + 'creator (arrayOf, instanceOf, objectOf, oneOf, oneOfType, and ' + 'shape all require an argument).', componentName || 'React class', location, typeSpecName, typeof error);
+        if (error instanceof Error && !(error.message in loggedTypeFailures$1)) {
+          // Only monitor this failure once because there tends to be a lot of the
+          // same error.
+          loggedTypeFailures$1[error.message] = true;
+
+          var stack = getStack ? getStack() : '';
+
+          warning$1(false, 'Failed %s type: %s%s', location, error.message, stack != null ? stack : '');
+        }
+      }
+    }
+  }
+}
+
+var checkPropTypes_1$2 = checkPropTypes$2;
+
+var factoryWithTypeCheckers$2 = function(isValidElement, throwOnDirectAccess) {
+  /* global Symbol */
+  var ITERATOR_SYMBOL = typeof Symbol === 'function' && Symbol.iterator;
+  var FAUX_ITERATOR_SYMBOL = '@@iterator'; // Before Symbol spec.
+
+  /**
+   * Returns the iterator method function contained on the iterable object.
+   *
+   * Be sure to invoke the function with the iterable as context:
+   *
+   *     var iteratorFn = getIteratorFn(myIterable);
+   *     if (iteratorFn) {
+   *       var iterator = iteratorFn.call(myIterable);
+   *       ...
+   *     }
+   *
+   * @param {?object} maybeIterable
+   * @return {?function}
+   */
+  function getIteratorFn(maybeIterable) {
+    var iteratorFn = maybeIterable && (ITERATOR_SYMBOL && maybeIterable[ITERATOR_SYMBOL] || maybeIterable[FAUX_ITERATOR_SYMBOL]);
+    if (typeof iteratorFn === 'function') {
+      return iteratorFn;
+    }
+  }
+
+  /**
+   * Collection of methods that allow declaration and validation of props that are
+   * supplied to React components. Example usage:
+   *
+   *   var Props = require('ReactPropTypes');
+   *   var MyArticle = React.createClass({
+   *     propTypes: {
+   *       // An optional string prop named "description".
+   *       description: Props.string,
+   *
+   *       // A required enum prop named "category".
+   *       category: Props.oneOf(['News','Photos']).isRequired,
+   *
+   *       // A prop named "dialog" that requires an instance of Dialog.
+   *       dialog: Props.instanceOf(Dialog).isRequired
+   *     },
+   *     render: function() { ... }
+   *   });
+   *
+   * A more formal specification of how these methods are used:
+   *
+   *   type := array|bool|func|object|number|string|oneOf([...])|instanceOf(...)
+   *   decl := ReactPropTypes.{type}(.isRequired)?
+   *
+   * Each and every declaration produces a function with the same signature. This
+   * allows the creation of custom validation functions. For example:
+   *
+   *  var MyLink = React.createClass({
+   *    propTypes: {
+   *      // An optional string or URI prop named "href".
+   *      href: function(props, propName, componentName) {
+   *        var propValue = props[propName];
+   *        if (propValue != null && typeof propValue !== 'string' &&
+   *            !(propValue instanceof URI)) {
+   *          return new Error(
+   *            'Expected a string or an URI for ' + propName + ' in ' +
+   *            componentName
+   *          );
+   *        }
+   *      }
+   *    },
+   *    render: function() {...}
+   *  });
+   *
+   * @internal
+   */
+
+  var ANONYMOUS = '<<anonymous>>';
+
+  // Important!
+  // Keep this list in sync with production version in `./factoryWithThrowingShims.js`.
+  var ReactPropTypes = {
+    array: createPrimitiveTypeChecker('array'),
+    bool: createPrimitiveTypeChecker('boolean'),
+    func: createPrimitiveTypeChecker('function'),
+    number: createPrimitiveTypeChecker('number'),
+    object: createPrimitiveTypeChecker('object'),
+    string: createPrimitiveTypeChecker('string'),
+    symbol: createPrimitiveTypeChecker('symbol'),
+
+    any: createAnyTypeChecker(),
+    arrayOf: createArrayOfTypeChecker,
+    element: createElementTypeChecker(),
+    instanceOf: createInstanceTypeChecker,
+    node: createNodeChecker(),
+    objectOf: createObjectOfTypeChecker,
+    oneOf: createEnumTypeChecker,
+    oneOfType: createUnionTypeChecker,
+    shape: createShapeTypeChecker,
+    exact: createStrictShapeTypeChecker,
+  };
+
+  /**
+   * inlined Object.is polyfill to avoid requiring consumers ship their own
+   * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is
+   */
+  /*eslint-disable no-self-compare*/
+  function is(x, y) {
+    // SameValue algorithm
+    if (x === y) {
+      // Steps 1-5, 7-10
+      // Steps 6.b-6.e: +0 != -0
+      return x !== 0 || 1 / x === 1 / y;
+    } else {
+      // Step 6.a: NaN == NaN
+      return x !== x && y !== y;
+    }
+  }
+  /*eslint-enable no-self-compare*/
+
+  /**
+   * We use an Error-like object for backward compatibility as people may call
+   * PropTypes directly and inspect their output. However, we don't use real
+   * Errors anymore. We don't inspect their stack anyway, and creating them
+   * is prohibitively expensive if they are created too often, such as what
+   * happens in oneOfType() for any type before the one that matched.
+   */
+  function PropTypeError(message) {
+    this.message = message;
+    this.stack = '';
+  }
+  // Make `instanceof Error` still work for returned errors.
+  PropTypeError.prototype = Error.prototype;
+
+  function createChainableTypeChecker(validate) {
+    if (process.env.NODE_ENV !== 'production') {
+      var manualPropTypeCallCache = {};
+      var manualPropTypeWarningCount = 0;
+    }
+    function checkType(isRequired, props, propName, componentName, location, propFullName, secret) {
+      componentName = componentName || ANONYMOUS;
+      propFullName = propFullName || propName;
+
+      if (secret !== ReactPropTypesSecret_1$2) {
+        if (throwOnDirectAccess) {
+          // New behavior only for users of `prop-types` package
+          invariant_1(
+            false,
+            'Calling PropTypes validators directly is not supported by the `prop-types` package. ' +
+            'Use `PropTypes.checkPropTypes()` to call them. ' +
+            'Read more at http://fb.me/use-check-prop-types'
+          );
+        } else if (process.env.NODE_ENV !== 'production' && typeof console !== 'undefined') {
+          // Old behavior for people using React.PropTypes
+          var cacheKey = componentName + ':' + propName;
+          if (
+            !manualPropTypeCallCache[cacheKey] &&
+            // Avoid spamming the console because they are often not actionable except for lib authors
+            manualPropTypeWarningCount < 3
+          ) {
+            warning_1(
+              false,
+              'You are manually calling a React.PropTypes validation ' +
+              'function for the `%s` prop on `%s`. This is deprecated ' +
+              'and will throw in the standalone `prop-types` package. ' +
+              'You may be seeing this warning due to a third-party PropTypes ' +
+              'library. See https://fb.me/react-warning-dont-call-proptypes ' + 'for details.',
+              propFullName,
+              componentName
+            );
+            manualPropTypeCallCache[cacheKey] = true;
+            manualPropTypeWarningCount++;
+          }
+        }
+      }
+      if (props[propName] == null) {
+        if (isRequired) {
+          if (props[propName] === null) {
+            return new PropTypeError('The ' + location + ' `' + propFullName + '` is marked as required ' + ('in `' + componentName + '`, but its value is `null`.'));
+          }
+          return new PropTypeError('The ' + location + ' `' + propFullName + '` is marked as required in ' + ('`' + componentName + '`, but its value is `undefined`.'));
+        }
+        return null;
+      } else {
+        return validate(props, propName, componentName, location, propFullName);
+      }
+    }
+
+    var chainedCheckType = checkType.bind(null, false);
+    chainedCheckType.isRequired = checkType.bind(null, true);
+
+    return chainedCheckType;
+  }
+
+  function createPrimitiveTypeChecker(expectedType) {
+    function validate(props, propName, componentName, location, propFullName, secret) {
+      var propValue = props[propName];
+      var propType = getPropType(propValue);
+      if (propType !== expectedType) {
+        // `propValue` being instance of, say, date/regexp, pass the 'object'
+        // check, but we can offer a more precise error message here rather than
+        // 'of type `object`'.
+        var preciseType = getPreciseType(propValue);
+
+        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + preciseType + '` supplied to `' + componentName + '`, expected ') + ('`' + expectedType + '`.'));
+      }
+      return null;
+    }
+    return createChainableTypeChecker(validate);
+  }
+
+  function createAnyTypeChecker() {
+    return createChainableTypeChecker(emptyFunction_1.thatReturnsNull);
+  }
+
+  function createArrayOfTypeChecker(typeChecker) {
+    function validate(props, propName, componentName, location, propFullName) {
+      if (typeof typeChecker !== 'function') {
+        return new PropTypeError('Property `' + propFullName + '` of component `' + componentName + '` has invalid PropType notation inside arrayOf.');
+      }
+      var propValue = props[propName];
+      if (!Array.isArray(propValue)) {
+        var propType = getPropType(propValue);
+        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + propType + '` supplied to `' + componentName + '`, expected an array.'));
+      }
+      for (var i = 0; i < propValue.length; i++) {
+        var error = typeChecker(propValue, i, componentName, location, propFullName + '[' + i + ']', ReactPropTypesSecret_1$2);
+        if (error instanceof Error) {
+          return error;
+        }
+      }
+      return null;
+    }
+    return createChainableTypeChecker(validate);
+  }
+
+  function createElementTypeChecker() {
+    function validate(props, propName, componentName, location, propFullName) {
+      var propValue = props[propName];
+      if (!isValidElement(propValue)) {
+        var propType = getPropType(propValue);
+        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + propType + '` supplied to `' + componentName + '`, expected a single ReactElement.'));
+      }
+      return null;
+    }
+    return createChainableTypeChecker(validate);
+  }
+
+  function createInstanceTypeChecker(expectedClass) {
+    function validate(props, propName, componentName, location, propFullName) {
+      if (!(props[propName] instanceof expectedClass)) {
+        var expectedClassName = expectedClass.name || ANONYMOUS;
+        var actualClassName = getClassName(props[propName]);
+        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + actualClassName + '` supplied to `' + componentName + '`, expected ') + ('instance of `' + expectedClassName + '`.'));
+      }
+      return null;
+    }
+    return createChainableTypeChecker(validate);
+  }
+
+  function createEnumTypeChecker(expectedValues) {
+    if (!Array.isArray(expectedValues)) {
+      process.env.NODE_ENV !== 'production' ? warning_1(false, 'Invalid argument supplied to oneOf, expected an instance of array.') : void 0;
+      return emptyFunction_1.thatReturnsNull;
+    }
+
+    function validate(props, propName, componentName, location, propFullName) {
+      var propValue = props[propName];
+      for (var i = 0; i < expectedValues.length; i++) {
+        if (is(propValue, expectedValues[i])) {
+          return null;
+        }
+      }
+
+      var valuesString = JSON.stringify(expectedValues);
+      return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of value `' + propValue + '` ' + ('supplied to `' + componentName + '`, expected one of ' + valuesString + '.'));
+    }
+    return createChainableTypeChecker(validate);
+  }
+
+  function createObjectOfTypeChecker(typeChecker) {
+    function validate(props, propName, componentName, location, propFullName) {
+      if (typeof typeChecker !== 'function') {
+        return new PropTypeError('Property `' + propFullName + '` of component `' + componentName + '` has invalid PropType notation inside objectOf.');
+      }
+      var propValue = props[propName];
+      var propType = getPropType(propValue);
+      if (propType !== 'object') {
+        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + propType + '` supplied to `' + componentName + '`, expected an object.'));
+      }
+      for (var key in propValue) {
+        if (propValue.hasOwnProperty(key)) {
+          var error = typeChecker(propValue, key, componentName, location, propFullName + '.' + key, ReactPropTypesSecret_1$2);
+          if (error instanceof Error) {
+            return error;
+          }
+        }
+      }
+      return null;
+    }
+    return createChainableTypeChecker(validate);
+  }
+
+  function createUnionTypeChecker(arrayOfTypeCheckers) {
+    if (!Array.isArray(arrayOfTypeCheckers)) {
+      process.env.NODE_ENV !== 'production' ? warning_1(false, 'Invalid argument supplied to oneOfType, expected an instance of array.') : void 0;
+      return emptyFunction_1.thatReturnsNull;
+    }
+
+    for (var i = 0; i < arrayOfTypeCheckers.length; i++) {
+      var checker = arrayOfTypeCheckers[i];
+      if (typeof checker !== 'function') {
+        warning_1(
+          false,
+          'Invalid argument supplied to oneOfType. Expected an array of check functions, but ' +
+          'received %s at index %s.',
+          getPostfixForTypeWarning(checker),
+          i
+        );
+        return emptyFunction_1.thatReturnsNull;
+      }
+    }
+
+    function validate(props, propName, componentName, location, propFullName) {
+      for (var i = 0; i < arrayOfTypeCheckers.length; i++) {
+        var checker = arrayOfTypeCheckers[i];
+        if (checker(props, propName, componentName, location, propFullName, ReactPropTypesSecret_1$2) == null) {
+          return null;
+        }
+      }
+
+      return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` supplied to ' + ('`' + componentName + '`.'));
+    }
+    return createChainableTypeChecker(validate);
+  }
+
+  function createNodeChecker() {
+    function validate(props, propName, componentName, location, propFullName) {
+      if (!isNode(props[propName])) {
+        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` supplied to ' + ('`' + componentName + '`, expected a ReactNode.'));
+      }
+      return null;
+    }
+    return createChainableTypeChecker(validate);
+  }
+
+  function createShapeTypeChecker(shapeTypes) {
+    function validate(props, propName, componentName, location, propFullName) {
+      var propValue = props[propName];
+      var propType = getPropType(propValue);
+      if (propType !== 'object') {
+        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type `' + propType + '` ' + ('supplied to `' + componentName + '`, expected `object`.'));
+      }
+      for (var key in shapeTypes) {
+        var checker = shapeTypes[key];
+        if (!checker) {
+          continue;
+        }
+        var error = checker(propValue, key, componentName, location, propFullName + '.' + key, ReactPropTypesSecret_1$2);
+        if (error) {
+          return error;
+        }
+      }
+      return null;
+    }
+    return createChainableTypeChecker(validate);
+  }
+
+  function createStrictShapeTypeChecker(shapeTypes) {
+    function validate(props, propName, componentName, location, propFullName) {
+      var propValue = props[propName];
+      var propType = getPropType(propValue);
+      if (propType !== 'object') {
+        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type `' + propType + '` ' + ('supplied to `' + componentName + '`, expected `object`.'));
+      }
+      // We need to check all keys in case some are required but missing from
+      // props.
+      var allKeys = objectAssign$2({}, props[propName], shapeTypes);
+      for (var key in allKeys) {
+        var checker = shapeTypes[key];
+        if (!checker) {
+          return new PropTypeError(
+            'Invalid ' + location + ' `' + propFullName + '` key `' + key + '` supplied to `' + componentName + '`.' +
+            '\nBad object: ' + JSON.stringify(props[propName], null, '  ') +
+            '\nValid keys: ' +  JSON.stringify(Object.keys(shapeTypes), null, '  ')
+          );
+        }
+        var error = checker(propValue, key, componentName, location, propFullName + '.' + key, ReactPropTypesSecret_1$2);
+        if (error) {
+          return error;
+        }
+      }
+      return null;
+    }
+
+    return createChainableTypeChecker(validate);
+  }
+
+  function isNode(propValue) {
+    switch (typeof propValue) {
+      case 'number':
+      case 'string':
+      case 'undefined':
+        return true;
+      case 'boolean':
+        return !propValue;
+      case 'object':
+        if (Array.isArray(propValue)) {
+          return propValue.every(isNode);
+        }
+        if (propValue === null || isValidElement(propValue)) {
+          return true;
+        }
+
+        var iteratorFn = getIteratorFn(propValue);
+        if (iteratorFn) {
+          var iterator = iteratorFn.call(propValue);
+          var step;
+          if (iteratorFn !== propValue.entries) {
+            while (!(step = iterator.next()).done) {
+              if (!isNode(step.value)) {
+                return false;
+              }
+            }
+          } else {
+            // Iterator will provide entry [k,v] tuples rather than values.
+            while (!(step = iterator.next()).done) {
+              var entry = step.value;
+              if (entry) {
+                if (!isNode(entry[1])) {
+                  return false;
+                }
+              }
+            }
+          }
+        } else {
+          return false;
+        }
+
+        return true;
+      default:
+        return false;
+    }
+  }
+
+  function isSymbol(propType, propValue) {
+    // Native Symbol.
+    if (propType === 'symbol') {
+      return true;
+    }
+
+    // 19.4.3.5 Symbol.prototype[@@toStringTag] === 'Symbol'
+    if (propValue['@@toStringTag'] === 'Symbol') {
+      return true;
+    }
+
+    // Fallback for non-spec compliant Symbols which are polyfilled.
+    if (typeof Symbol === 'function' && propValue instanceof Symbol) {
+      return true;
+    }
+
+    return false;
+  }
+
+  // Equivalent of `typeof` but with special handling for array and regexp.
+  function getPropType(propValue) {
+    var propType = typeof propValue;
+    if (Array.isArray(propValue)) {
+      return 'array';
+    }
+    if (propValue instanceof RegExp) {
+      // Old webkits (at least until Android 4.0) return 'function' rather than
+      // 'object' for typeof a RegExp. We'll normalize this here so that /bla/
+      // passes PropTypes.object.
+      return 'object';
+    }
+    if (isSymbol(propType, propValue)) {
+      return 'symbol';
+    }
+    return propType;
+  }
+
+  // This handles more types than `getPropType`. Only used for error messages.
+  // See `createPrimitiveTypeChecker`.
+  function getPreciseType(propValue) {
+    if (typeof propValue === 'undefined' || propValue === null) {
+      return '' + propValue;
+    }
+    var propType = getPropType(propValue);
+    if (propType === 'object') {
+      if (propValue instanceof Date) {
+        return 'date';
+      } else if (propValue instanceof RegExp) {
+        return 'regexp';
+      }
+    }
+    return propType;
+  }
+
+  // Returns a string that is postfixed to a warning about an invalid type.
+  // For example, "undefined" or "of type array"
+  function getPostfixForTypeWarning(value) {
+    var type = getPreciseType(value);
+    switch (type) {
+      case 'array':
+      case 'object':
+        return 'an ' + type;
+      case 'boolean':
+      case 'date':
+      case 'regexp':
+        return 'a ' + type;
+      default:
+        return type;
+    }
+  }
+
+  // Returns class name of the object, if any.
+  function getClassName(propValue) {
+    if (!propValue.constructor || !propValue.constructor.name) {
+      return ANONYMOUS;
+    }
+    return propValue.constructor.name;
+  }
+
+  ReactPropTypes.checkPropTypes = checkPropTypes_1$2;
+  ReactPropTypes.PropTypes = ReactPropTypes;
+
+  return ReactPropTypes;
+};
+
+var factoryWithThrowingShims$2 = function() {
+  function shim(props, propName, componentName, location, propFullName, secret) {
+    if (secret === ReactPropTypesSecret_1$2) {
       // It is still safe when called from React.
       return;
     }
@@ -3041,7 +4909,7 @@ var factoryWithThrowingShims = function() {
   return ReactPropTypes;
 };
 
-var propTypes = createCommonjsModule(function (module) {
+var propTypes$1 = createCommonjsModule$1(function (module) {
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  *
@@ -3064,13 +4932,65 @@ if (process.env.NODE_ENV !== 'production') {
   // By explicitly using `prop-types` you are opting into new development behavior.
   // http://fb.me/prop-types-in-prod
   var throwOnDirectAccess = true;
-  module.exports = factoryWithTypeCheckers(isValidElement, throwOnDirectAccess);
+  module.exports = factoryWithTypeCheckers$2(isValidElement, throwOnDirectAccess);
 } else {
   // By explicitly using `prop-types` you are opting into new production behavior.
   // http://fb.me/prop-types-in-prod
-  module.exports = factoryWithThrowingShims();
+  module.exports = factoryWithThrowingShims$2();
 }
 });
+
+/**
+ * Copyright 2013-2015, Facebook, Inc.
+ * All rights reserved.
+ *
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
+ */
+
+/**
+ * Use invariant() to assert state which your program assumes to be true.
+ *
+ * Provide sprintf-style format (only %s is supported) and arguments
+ * to provide information about what broke and what you were
+ * expecting.
+ *
+ * The invariant message will be stripped in production, but the invariant
+ * will remain to ensure logic does not differ in production.
+ */
+
+var NODE_ENV = process.env.NODE_ENV;
+
+var invariant$3 = function(condition, format, a, b, c, d, e, f) {
+  if (NODE_ENV !== 'production') {
+    if (format === undefined) {
+      throw new Error('invariant requires an error message argument');
+    }
+  }
+
+  if (!condition) {
+    var error;
+    if (format === undefined) {
+      error = new Error(
+        'Minified exception occurred; use the non-minified dev environment ' +
+        'for the full error message and additional helpful warnings.'
+      );
+    } else {
+      var args = [a, b, c, d, e, f];
+      var argIndex = 0;
+      error = new Error(
+        format.replace(/%s/g, function() { return args[argIndex++]; })
+      );
+      error.name = 'Invariant Violation';
+    }
+
+    error.framesToPop = 1; // we don't care about invariant's own frame
+    throw error;
+  }
+};
+
+var invariant_1$2 = invariant$3;
 
 var camel2hyphen = function (str) {
   return str
@@ -3132,62 +5052,107 @@ var json2mq = function (query) {
 
 var json2mq_1 = json2mq;
 
-var Media_1 = createCommonjsModule(function (module, exports) {
-exports.__esModule = true;
-
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
-
-
-var _react2 = _interopRequireDefault(React);
+var _typeof$1 = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) {
+  return typeof obj;
+} : function (obj) {
+  return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+};
 
 
 
-var _propTypes2 = _interopRequireDefault(propTypes);
 
 
 
-var _json2mq2 = _interopRequireDefault(json2mq_1);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var classCallCheck$1 = function (instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+};
+
+
+
+
+
+
+
+
+
+
+
+var inherits$1 = function (subClass, superClass) {
+  if (typeof superClass !== "function" && superClass !== null) {
+    throw new TypeError("Super expression must either be null or a function, not " + typeof superClass);
+  }
+
+  subClass.prototype = Object.create(superClass && superClass.prototype, {
+    constructor: {
+      value: subClass,
+      enumerable: false,
+      writable: true,
+      configurable: true
+    }
+  });
+  if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
+};
+
+
+
+
+
+
+
+
+
+
+
+var possibleConstructorReturn$1 = function (self, call) {
+  if (!self) {
+    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+  }
+
+  return call && (typeof call === "object" || typeof call === "function") ? call : self;
+};
 
 /**
  * Conditionally renders based on whether or not a media query matches.
  */
+
 var Media = function (_React$Component) {
-  _inherits(Media, _React$Component);
+  inherits$1(Media, _React$Component);
 
   function Media() {
     var _temp, _this, _ret;
 
-    _classCallCheck(this, Media);
+    classCallCheck$1(this, Media);
 
     for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, _React$Component.call.apply(_React$Component, [this].concat(args))), _this), _this.state = {
+    return _ret = (_temp = (_this = possibleConstructorReturn$1(this, _React$Component.call.apply(_React$Component, [this].concat(args))), _this), _this.state = {
       matches: _this.props.defaultMatches
     }, _this.updateMatches = function () {
       return _this.setState({ matches: _this.mediaQueryList.matches });
-    }, _temp), _possibleConstructorReturn(_this, _ret);
+    }, _temp), possibleConstructorReturn$1(_this, _ret);
   }
 
   Media.prototype.componentWillMount = function componentWillMount() {
-    if ((typeof window === 'undefined' ? 'undefined' : _typeof(window)) !== 'object') return;
+    if ((typeof window === "undefined" ? "undefined" : _typeof$1(window)) !== "object") return;
+
+    var targetWindow = this.props.targetWindow || window;
+
+    invariant_1$2(typeof targetWindow.matchMedia === "function", "<Media targetWindow> does not support `matchMedia`.");
 
     var query = this.props.query;
 
+    if (typeof query !== "string") query = json2mq_1(query);
 
-    if (typeof query !== 'string') query = (0, _json2mq2.default)(query);
-
-    this.mediaQueryList = window.matchMedia(query);
+    this.mediaQueryList = targetWindow.matchMedia(query);
     this.mediaQueryList.addListener(this.updateMatches);
     this.updateMatches();
   };
@@ -3203,40 +5168,23 @@ var Media = function (_React$Component) {
     var matches = this.state.matches;
 
 
-    return render ? matches ? render() : null : children ? typeof children === 'function' ? children(matches) : !Array.isArray(children) || children.length ? // Preact defaults to empty children array
-    matches ? _react2.default.Children.only(children) : null : null : null;
+    return render ? matches ? render() : null : children ? typeof children === "function" ? children(matches) : !Array.isArray(children) || children.length // Preact defaults to empty children array
+    ? matches ? React.Children.only(children) : null : null : null;
   };
 
   return Media;
-}(_react2.default.Component);
+}(React.Component);
 
 Media.propTypes = {
-  defaultMatches: _propTypes2.default.bool,
-  query: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.object, _propTypes2.default.arrayOf(_propTypes2.default.object.isRequired)]).isRequired,
-  render: _propTypes2.default.func,
-  children: _propTypes2.default.oneOfType([_propTypes2.default.node, _propTypes2.default.func])
+  defaultMatches: propTypes$1.bool,
+  query: propTypes$1.oneOfType([propTypes$1.string, propTypes$1.object, propTypes$1.arrayOf(propTypes$1.object.isRequired)]).isRequired,
+  render: propTypes$1.func,
+  children: propTypes$1.oneOfType([propTypes$1.node, propTypes$1.func]),
+  targetWindow: propTypes$1.object
 };
 Media.defaultProps = {
   defaultMatches: true
 };
-exports.default = Media;
-});
-
-unwrapExports(Media_1);
-
-var reactMedia = createCommonjsModule(function (module) {
-var _Media2 = _interopRequireDefault(Media_1);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-// TODO: Remove in the next major release.
-_Media2.default.Media = _Media2.default; /* eslint-env node */
-
-
-module.exports = _Media2.default;
-});
-
-var Media = unwrapExports(reactMedia);
 
 // These breakpoints values represent minimum screen sizes.
 // Small screen sizes should be targetted by default (mobile first).
@@ -3271,6 +5219,14 @@ var BreakPoint = function BreakPoint(_ref) {
       return ok ? children : null;
     }
   );
+};
+
+var BreakPointName = propTypes.oneOf([].concat(toConsumableArray(Object.keys(BREAKPOINTS)), ['']));
+
+BreakPoint.propTypes = {
+  from: BreakPointName,
+  to: BreakPointName,
+  children: propTypes.node
 };
 
 BreakPoint.defaultProps = {
@@ -3331,15 +5287,50 @@ var grid = function grid(cols) {
   return GRID.columnWidth * cols + GRID.gutterWidth * gutters;
 };
 
-var SPRINGS = {
-  slow: { stiffness: 150, damping: 18, precision: 0.001 },
-  normal: { stiffness: 190, damping: 22, precision: 0.001 },
-  fast: { stiffness: 220, damping: 24, precision: 0.001 }
-};
+// This module exports a `springs` object and a `spring()` function:
+//
+//   - `spring()` is deprecated and will be removed in the future (react-motion).
+//   - `springs` should be used from now on (react-spring).
 
+var springs = {
+  // Super slow spring, for debugging purposes
+  debug: { tension: 10, friction: 40 },
 
+  // Slow spring, can be used to move large things (e.g. a side panel).
+  lazy: { tension: 50, friction: 10 },
+
+  // These springs (slow, normal, fast) were originally created for
+  // react-motion. While they can be used with react-spring, their use is not
+  // recommended. New springs will be added later as we move everything to
+  // use react-spring.
+  slow: { tension: 150, friction: 18 },
+  normal: { tension: 190, friction: 22 },
+  fast: { tension: 220, friction: 24 }
+
+  // Convert to react-motion springs:
+  //
+  //   stiffness => tension
+  //   damping => friction
+  //
+};var reactMotionSprings = Object.entries(springs).reduce(function (springs, _ref) {
+  var _ref2 = slicedToArray(_ref, 2),
+      name = _ref2[0],
+      spring = _ref2[1];
+
+  return _extends({}, springs, defineProperty({}, name, {
+    stiffness: spring.tension,
+    damping: spring.friction,
+    precision: 0.001
+  }));
+}, {});
+
+// Deprecated, see above
 var spring = function spring(name) {
-  return SPRINGS[name] || SPRINGS.normal;
+  // TODO: propagate process.env.NODE_ENV to Aragon UI
+  if (process.env.NODE_ENV === 'development') {
+    console.warn('spring(name) is deprecated. Please use springs[name] instead.');
+  }
+  return reactMotionSprings[name] || reactMotionSprings.normal;
 };
 
 var unselectable = function unselectable() {
@@ -3439,11 +5430,16 @@ var observe = function observe(_observe) {
   };
 };
 
+// prefix helper
+var prefixUrl = function prefixUrl(url, publicUrl) {
+  return url.startsWith('data:') ? url : publicUrl + url;
+};
+
 var DEFAULT_URL = '';
 
 var _React$createContext = React.createContext(DEFAULT_URL);
 var Provider = _React$createContext.Provider;
-var PublicUrl$1 = _React$createContext.Consumer;
+var PublicUrl = _React$createContext.Consumer;
 
 var PublicUrlProvider = function PublicUrlProvider(_ref) {
   var url = _ref.url,
@@ -3457,19 +5453,21 @@ var PublicUrlProvider = function PublicUrlProvider(_ref) {
 };
 PublicUrlProvider.propTypes = {
   url: propTypes.string,
-  children: propTypes.func
+  children: propTypes.node
 
   // HOC wrapper
 };var hocWrap = function hocWrap(Component) {
-  return function (props) {
+  var HOC = function HOC(props) {
     return React.createElement(
-      PublicUrl$1,
+      PublicUrl,
       null,
       function (publicUrl) {
         return React.createElement(Component, _extends({}, props, { publicUrl: publicUrl }));
       }
     );
   };
+  HOC.displayName = 'PublicUrlProvider(' + getDisplayName(Component) + ')';
+  return HOC;
 };
 
 // styled-components utility for URLs
@@ -3480,9 +5478,365 @@ var styledUrl = function styledUrl(url) {
   };
 };
 
-PublicUrl$1.Provider = PublicUrlProvider;
-PublicUrl$1.hocWrap = hocWrap;
-PublicUrl$1.styledUrl = styledUrl;
+PublicUrl.Provider = PublicUrlProvider;
+PublicUrl.hocWrap = hocWrap;
+PublicUrl.styledUrl = styledUrl;
+
+// Render prop component and HOC for re-rendering.
+// For a discussion on pitfalls, see
+// https://gist.github.com/staltz/08bf613199092eeb41ac8137d51eb5e6
+
+var Redraw = function (_React$Component) {
+  inherits(Redraw, _React$Component);
+
+  function Redraw() {
+    var _ref;
+
+    var _temp, _this, _ret;
+
+    classCallCheck(this, Redraw);
+
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = possibleConstructorReturn(this, (_ref = Redraw.__proto__ || Object.getPrototypeOf(Redraw)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
+      lastDraw: -1
+    }, _this.draw = function () {
+      _this.raf = requestAnimationFrame(_this.draw);
+
+      var interval = _this.props.interval;
+      var lastDraw = _this.state.lastDraw;
+
+      var now = Date.now();
+      var delta = now - lastDraw;
+      if (lastDraw === -1 || delta > interval) {
+        _this.setState({ lastDraw: now - delta % interval });
+      }
+    }, _temp), possibleConstructorReturn(_this, _ret);
+  }
+
+  createClass(Redraw, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      this.raf = null;
+      this.draw();
+    }
+  }, {
+    key: 'componentWillUnmount',
+    value: function componentWillUnmount() {
+      this.raf && cancelAnimationFrame(this.raf);
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      return this.props.children();
+    }
+  }]);
+  return Redraw;
+}(React.Component);
+
+Redraw.propTypes = {
+  interval: propTypes.number,
+  children: propTypes.func.isRequired
+};
+Redraw.defaultProps = {
+  interval: 1000
+};
+
+var hocWrap$1 = function hocWrap(Component, interval) {
+  var HOC = function HOC(props) {
+    return React.createElement(
+      Redraw,
+      { interval: interval },
+      function () {
+        return React.createElement(Component, props);
+      }
+    );
+  };
+  HOC.displayName = 'Redraw(' + getDisplayName(Component) + ')';
+  return HOC;
+};
+
+Redraw.hocWrap = hocWrap$1;
+
+// Render prop component for re-rendering based on a given date. Automatically
+// adjusts the re-render timer to be one second, minute, or hour based on the
+// fromDate prop.
+// For a discussion on pitfalls, see
+// https://gist.github.com/staltz/08bf613199092eeb41ac8137d51eb5e6
+
+var EVERY_SECOND = 1000;
+var EVERY_MINUTE = EVERY_SECOND * 60;
+var EVERY_HOUR = EVERY_MINUTE * 60;
+
+var getRedrawTime = function getRedrawTime(fromDate) {
+  var _difference = difference(new Date(), fromDate),
+      days = _difference.days,
+      hours = _difference.hours,
+      minutes = _difference.minutes;
+
+  return hours || days ? EVERY_HOUR : minutes > 1 ? EVERY_MINUTE : EVERY_SECOND;
+};
+
+var RedrawFromDate = function (_React$Component) {
+  inherits(RedrawFromDate, _React$Component);
+
+  function RedrawFromDate() {
+    var _ref;
+
+    var _temp, _this, _ret;
+
+    classCallCheck(this, RedrawFromDate);
+
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = possibleConstructorReturn(this, (_ref = RedrawFromDate.__proto__ || Object.getPrototypeOf(RedrawFromDate)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
+      redrawTime: EVERY_HOUR,
+      lastDraw: -1
+    }, _this.clearInterval = function () {
+      _this.interval && clearInterval(_this.interval);
+    }, _this.restartDrawInterval = function (redrawTime) {
+      _this.clearInterval();
+
+      _this.interval = setInterval(function () {
+        _this.setState({ lastDraw: Date.now() });
+
+        var newRedrawTime = getRedrawTime(_this.props.fromDate);
+        if (newRedrawTime !== redrawTime) {
+          _this.restartDrawInterval(newRedrawTime);
+        }
+      }, redrawTime);
+    }, _temp), possibleConstructorReturn(_this, _ret);
+  }
+
+  createClass(RedrawFromDate, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      var fromDate = this.props.fromDate;
+
+      if (fromDate) {
+        this.restartDrawInterval(getRedrawTime(fromDate));
+      }
+    }
+  }, {
+    key: 'componentWillReceiveProps',
+    value: function componentWillReceiveProps(_ref2) {
+      var fromDate = _ref2.fromDate;
+
+      if (!fromDate && this.props.fromDate) {
+        this.clearInterval();
+      } else if (!isEqual(fromDate, this.props.fromDate)) {
+        this.restartDrawInterval(getRedrawTime(this.props.fromDate));
+      }
+    }
+  }, {
+    key: 'componentWillUnmount',
+    value: function componentWillUnmount() {
+      this.clearInterval();
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      return this.props.children();
+    }
+  }]);
+  return RedrawFromDate;
+}(React.Component);
+
+RedrawFromDate.propTypes = {
+  children: propTypes.func.isRequired,
+  fromDate: propTypes.oneOfType([propTypes.string, propTypes.number, propTypes.instanceOf(Date)]).isRequired
+};
+
+
+var hocWrap$2 = function hocWrap(Component) {
+  var HOC = function HOC(props) {
+    return React.createElement(
+      RedrawFromDate,
+      { fromDate: props.fromDate },
+      function () {
+        return React.createElement(Component, props);
+      }
+    );
+  };
+  HOC.propTypes = {
+    fromDate: RedrawFromDate.propTypes.fromDate
+  };
+  HOC.displayName = 'RedrawFromDate(' + getDisplayName(Component) + ')';
+  return HOC;
+};
+
+RedrawFromDate.hocWrap = hocWrap$2;
+
+var Text = styled__default.span.withConfig({
+  displayName: 'Text'
+})(['', ';', ';'], function (_ref) {
+  var size = _ref.size,
+      weight = _ref.weight,
+      smallcaps = _ref.smallcaps;
+  return font({ size: size, weight: weight, smallcaps: smallcaps });
+}, function (_ref2) {
+  var color = _ref2.color;
+  return color ? 'color: ' + color : '';
+});
+
+var Block = Text.withComponent('div');
+var Paragraph = Text.withComponent('p');
+
+Text.propTypes = Block.propTypes = Paragraph.propTypes = {
+  children: propTypes.node,
+  color: propTypes.string,
+  size: propTypes.string,
+  smallcaps: propTypes.bool,
+  weight: propTypes.string
+};
+
+Text.Block = Block;
+Text.Paragraph = Paragraph;
+
+var chevronSvg = "data:image/svg+xml,%3Csvg%20width%3D%227%22%20height%3D%2212%22%20viewBox%3D%220%200%207%2012%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M.446%2012a.512.512%200%200%201-.172-.03.422.422%200%200%201-.146-.087A.37.37%200%200%201%200%2011.6a.37.37%200%200%201%20.128-.281l5.826-5.361L.217.692A.376.376%200%200%201%20.089.405.378.378%200%200%201%20.217.117.444.444%200%200%201%20.529%200c.123%200%20.228.04.313.117l6.03%205.56A.37.37%200%200%201%207%205.96a.37.37%200%200%201-.128.281l-6.12%205.643A.477.477%200%200%201%20.446%2012z%22%20fill%3D%22%2300CBE6%22%20fill-rule%3D%22evenodd%22%2F%3E%3C%2Fsvg%3E";
+
+var StyledAppBar = styled__default.div.withConfig({
+  displayName: 'AppBar__StyledAppBar'
+})(['display:flex;align-items:center;justify-content:flex-start;width:100%;height:64px;background:', ';border-bottom:1px solid ', ';', ';'], theme.contentBackground, theme.contentBorder, unselectable());
+
+var StyledAppBarStart = styled__default.div.withConfig({
+  displayName: 'AppBar__StyledAppBarStart'
+})(['display:flex;align-items:center;padding-left:30px;']);
+var StyledAppBarEnd = styled__default.div.withConfig({
+  displayName: 'AppBar__StyledAppBarEnd'
+})(['margin-left:auto;padding-right:30px;']);
+
+var StyledAppBarTitle = PublicUrl.hocWrap(styled__default.h1.withConfig({
+  displayName: 'AppBar__StyledAppBarTitle'
+})(['padding-right:20px;margin-right:calc(20px - 7px);white-space:nowrap;background-image:', ';background-position:100% 50%;background-repeat:no-repeat;cursor:', ';'], function (_ref) {
+  var chevron = _ref.chevron;
+  return chevron ? styled.css(['url(', ')'], PublicUrl.styledUrl(chevronSvg)) : 'none';
+}, function (_ref2) {
+  var clickable = _ref2.clickable;
+  return clickable ? 'pointer' : 'default';
+}));
+
+var AppBar = function AppBar(_ref3) {
+  var children = _ref3.children,
+      endContent = _ref3.endContent,
+      title = _ref3.title,
+      onTitleClick = _ref3.onTitleClick,
+      props = objectWithoutProperties(_ref3, ['children', 'endContent', 'title', 'onTitleClick']);
+  return React.createElement(
+    StyledAppBar,
+    props,
+    React.createElement(
+      StyledAppBarStart,
+      null,
+      React.createElement(
+        StyledAppBarTitle,
+        {
+          chevron: !!children,
+          clickable: !!onTitleClick,
+          onClick: onTitleClick
+        },
+        React.createElement(
+          Text,
+          { size: 'xxlarge' },
+          title
+        )
+      )
+    ),
+    children,
+    endContent && React.createElement(
+      StyledAppBarEnd,
+      null,
+      endContent
+    )
+  );
+};
+
+AppBar.propTypes = {
+  children: propTypes.node,
+  title: propTypes.string,
+  endContent: propTypes.node,
+  onTitleClick: propTypes.func
+};
+
+AppBar.defaultProps = {
+  title: '',
+  onTitleClick: function onTitleClick() {}
+};
+
+var AppView = function (_React$Component) {
+  inherits(AppView, _React$Component);
+
+  function AppView() {
+    classCallCheck(this, AppView);
+    return possibleConstructorReturn(this, (AppView.__proto__ || Object.getPrototypeOf(AppView)).apply(this, arguments));
+  }
+
+  createClass(AppView, [{
+    key: 'render',
+    value: function render() {
+      var _props = this.props,
+          appBar = _props.appBar,
+          title = _props.title,
+          children = _props.children,
+          padding = _props.padding;
+
+      return React.createElement(
+        Main,
+        null,
+        React.createElement(
+          Header,
+          null,
+          appBar || React.createElement(AppBar, { title: title })
+        ),
+        React.createElement(
+          ScrollWrapper,
+          null,
+          React.createElement(
+            Content,
+            { padding: padding },
+            children
+          )
+        )
+      );
+    }
+  }]);
+  return AppView;
+}(React.Component);
+
+AppView.defaultProps = {
+  title: '',
+  padding: 30
+};
+AppView.propTypes = {
+  appBar: propTypes.element,
+  title: propTypes.string,
+  children: propTypes.node,
+  padding: propTypes.number
+};
+
+
+var Main = styled__default.div.withConfig({
+  displayName: 'AppView__Main'
+})(['display:flex;height:100vh;flex-direction:column;align-items:stretch;justify-content:stretch;']);
+
+var Header = styled__default.div.withConfig({
+  displayName: 'AppView__Header'
+})(['position:relative;z-index:2;flex-shrink:0;']);
+
+var ScrollWrapper = styled__default.div.withConfig({
+  displayName: 'AppView__ScrollWrapper'
+})(['position:relative;z-index:1;height:100%;overflow:auto;']);
+
+var Content = styled__default.div.withConfig({
+  displayName: 'AppView__Content'
+})(['display:flex;flex-direction:column;min-height:100%;padding:', ';'], function (_ref) {
+  var padding = _ref.padding;
+  return padding + 'px';
+});
 
 var overpassLightWoff = "fd48a701d84ebf69.woff";
 
@@ -3496,7 +5850,7 @@ var overpassSemiBoldWoff = "f8ba2d7a9af0db1f.woff";
 
 var overpassSemiBoldWoff2 = "5cfe62515c2f9b42.woff2";
 
-var _templateObject = taggedTemplateLiteral(['\n  @font-face {\n    font-family: \'overpass\';\n    src: ', ';\n    font-weight: 400;\n    font-style: normal;\n  }\n  @font-face {\n    font-family: \'overpass\';\n    src: ', ';\n    font-weight: 600;\n    font-style: normal;\n  }\n  @font-face {\n    font-family: \'overpass\';\n    src: ', ';\n    font-weight: 800;\n    font-style: normal;\n  }\n  *,\n  *:before,\n  *:after {\n    box-sizing: border-box;\n  }\n  html {\n    min-height: 100%;\n  }\n  body {\n    font-family: overpass, sans-serif;\n    font-size: 15px;\n    font-weight: 400;\n    line-height: 1.5;\n    color: ', ';\n    background: ', ';\n  }\n  body,\n  ul,\n  p,\n  h1,\n  h2,\n  h3,\n  h4,\n  h5,\n  h6 {\n    margin: 0;\n    padding: 0;\n  }\n  button,\n  select,\n  input,\n  h1,\n  h2,\n  h3,\n  h4,\n  h5,\n  h6 {\n    font-size: inherit;\n    font-family: inherit;\n    font-weight: inherit;\n    line-height: inherit;\n  }\n  a,\n  button,\n  select,\n  input {\n    color: inherit;\n  }\n  strong,\n  b {\n    font-weight: 600;\n  }\n'], ['\n  @font-face {\n    font-family: \'overpass\';\n    src: ', ';\n    font-weight: 400;\n    font-style: normal;\n  }\n  @font-face {\n    font-family: \'overpass\';\n    src: ', ';\n    font-weight: 600;\n    font-style: normal;\n  }\n  @font-face {\n    font-family: \'overpass\';\n    src: ', ';\n    font-weight: 800;\n    font-style: normal;\n  }\n  *,\n  *:before,\n  *:after {\n    box-sizing: border-box;\n  }\n  html {\n    min-height: 100%;\n  }\n  body {\n    font-family: overpass, sans-serif;\n    font-size: 15px;\n    font-weight: 400;\n    line-height: 1.5;\n    color: ', ';\n    background: ', ';\n  }\n  body,\n  ul,\n  p,\n  h1,\n  h2,\n  h3,\n  h4,\n  h5,\n  h6 {\n    margin: 0;\n    padding: 0;\n  }\n  button,\n  select,\n  input,\n  h1,\n  h2,\n  h3,\n  h4,\n  h5,\n  h6 {\n    font-size: inherit;\n    font-family: inherit;\n    font-weight: inherit;\n    line-height: inherit;\n  }\n  a,\n  button,\n  select,\n  input {\n    color: inherit;\n  }\n  strong,\n  b {\n    font-weight: 600;\n  }\n']);
+var _templateObject = taggedTemplateLiteral(['\n  @font-face {\n    font-family: \'overpass\';\n    src: ', ';\n    font-weight: 400;\n    font-style: normal;\n  }\n  @font-face {\n    font-family: \'overpass\';\n    src: ', ';\n    font-weight: 600;\n    font-style: normal;\n  }\n  @font-face {\n    font-family: \'overpass\';\n    src: ', ';\n    font-weight: 800;\n    font-style: normal;\n  }\n  *,\n  *:before,\n  *:after {\n    box-sizing: border-box;\n  }\n  html {\n    min-height: 100%;\n  }\n  body {\n    font-family: overpass, sans-serif;\n    font-size: 15px;\n    font-weight: 400;\n    line-height: 1.5;\n    color: ', ';\n    background: ', ';\n  }\n  body,\n  ul,\n  p,\n  h1,\n  h2,\n  h3,\n  h4,\n  h5,\n  h6 {\n    margin: 0;\n    padding: 0;\n  }\n  button,\n  select,\n  input,\n  textarea,\n  h1,\n  h2,\n  h3,\n  h4,\n  h5,\n  h6 {\n    font-size: inherit;\n    font-family: inherit;\n    font-weight: inherit;\n    line-height: inherit;\n  }\n  a,\n  button,\n  select,\n  input,\n  textarea {\n    color: inherit;\n  }\n  strong,\n  b {\n    font-weight: 600;\n  }\n'], ['\n  @font-face {\n    font-family: \'overpass\';\n    src: ', ';\n    font-weight: 400;\n    font-style: normal;\n  }\n  @font-face {\n    font-family: \'overpass\';\n    src: ', ';\n    font-weight: 600;\n    font-style: normal;\n  }\n  @font-face {\n    font-family: \'overpass\';\n    src: ', ';\n    font-weight: 800;\n    font-style: normal;\n  }\n  *,\n  *:before,\n  *:after {\n    box-sizing: border-box;\n  }\n  html {\n    min-height: 100%;\n  }\n  body {\n    font-family: overpass, sans-serif;\n    font-size: 15px;\n    font-weight: 400;\n    line-height: 1.5;\n    color: ', ';\n    background: ', ';\n  }\n  body,\n  ul,\n  p,\n  h1,\n  h2,\n  h3,\n  h4,\n  h5,\n  h6 {\n    margin: 0;\n    padding: 0;\n  }\n  button,\n  select,\n  input,\n  textarea,\n  h1,\n  h2,\n  h3,\n  h4,\n  h5,\n  h6 {\n    font-size: inherit;\n    font-family: inherit;\n    font-weight: inherit;\n    line-height: inherit;\n  }\n  a,\n  button,\n  select,\n  input,\n  textarea {\n    color: inherit;\n  }\n  strong,\n  b {\n    font-weight: 600;\n  }\n']);
 
 var BaseStyles = function (_React$Component) {
   inherits(BaseStyles, _React$Component);
@@ -3551,7 +5905,70 @@ var injectStyles = function injectStyles(asset, legacyFonts) {
   return styled.injectGlobal(_templateObject, fontSrc([{ url: asset(overpassLightWoff2), format: 'woff2', enable: true }, { url: asset(overpassLightWoff), format: 'woff', enable: legacyFonts }]), fontSrc([{ url: asset(overpassRegularWoff2), format: 'woff2', enable: true }, { url: asset(overpassRegularWoff), format: 'woff', enable: legacyFonts }]), fontSrc([{ url: asset(overpassSemiBoldWoff2), format: 'woff2', enable: true }, { url: asset(overpassSemiBoldWoff), format: 'woff', enable: legacyFonts }]), theme.textPrimary, theme.mainBackground);
 };
 
-var BaseStyles$1 = PublicUrl$1.hocWrap(BaseStyles);
+var BaseStyles$1 = PublicUrl.hocWrap(BaseStyles);
+
+var logo = "data:image/svg+xml,%3Csvg%20width%3D%221129%22%20height%3D%22792%22%20viewBox%3D%220%200%201129%20792%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cdefs%3E%3ClinearGradient%20x1%3D%2258.303%25%22%20y1%3D%2229.305%25%22%20x2%3D%22-20.356%25%22%20y2%3D%2289.584%25%22%20id%3D%22a%22%3E%3Cstop%20stop-color%3D%22%23E9F2F4%22%20offset%3D%220%25%22%2F%3E%3Cstop%20stop-color%3D%22%23FFF%22%20offset%3D%22100%25%22%2F%3E%3C%2FlinearGradient%3E%3ClinearGradient%20x1%3D%2250%25%22%20y1%3D%22125.887%25%22%20x2%3D%2250%25%22%20y2%3D%2227.419%25%22%20id%3D%22b%22%3E%3Cstop%20stop-color%3D%22%23E9F2F4%22%20offset%3D%220%25%22%2F%3E%3Cstop%20stop-color%3D%22%23FFF%22%20offset%3D%22100%25%22%2F%3E%3C%2FlinearGradient%3E%3ClinearGradient%20x1%3D%2238.76%25%22%20y1%3D%2240.284%25%22%20x2%3D%2227.198%25%22%20y2%3D%224.898%25%22%20id%3D%22c%22%3E%3Cstop%20stop-color%3D%22%23E9F2F4%22%20offset%3D%220%25%22%2F%3E%3Cstop%20stop-color%3D%22%23FFF%22%20offset%3D%22100%25%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%20opacity%3D%22.7%22%3E%3Cpath%20d%3D%22M474.223%2064.24c-.503%200-231.685%2073.873-231.685%20275.905%200%20202.033%20223.146%20300.029%20387.48%20300.029%2089.383%200%20162.808-26.013%20211.24-49.744%206.242-28.642%2028.943-96.473%20104.047-96.981%2013.393-.523%2025.958%201.99%2036.517%208.021%2050.256%2027.144%2017.59%2077.898%2017.59%2077.898%201.894-.307%203.809-.663%205.724-1.075%201.91-.413%203.83-.89%205.764-1.408%2060.404-16.268%20128.467-85.36%20116.661-201.057-9.463-92.774-95.09-151.58-136.743-174.94-13.64-7.648-22.566-11.513-22.566-11.513%201.508-9.423%201.995-16.71%201.995-22.309%200-1.05-.02-2.035-.05-2.96v-10.86C751.617%2020.65%20566.645.223%20475.414.223c-39.412%200-61.5%203.704-61.5%203.704l60.309%2060.313zm461.86%20125.638s-29.652-9.55-59.8-13.57c-15.083%2015.58-28.15%2022.113-32.17%2024.129-.503.497-1.005%201-1.005%201-87.95-18.595-119.612-63.827-119.612-63.827%2082.93-.497%20157.812%2019.098%20212.587%2052.268z%22%20fill%3D%22url%28%23a%29%22%20opacity%3D%22.779%22%2F%3E%3Cpath%20d%3D%22M1018.002%20315.017c0%2065.842-27.134%20126.647-73.375%20175.899l-2.197%202.528%203.704-.01c12.564-.508%2025.129%202.005%2035.688%208.036%2050.256%2027.144%2017.59%2077.898%2017.59%2077.898%2062.82-10.051%20140.719-80.406%20128.15-203.54-9.464-92.774-95.092-151.58-136.744-174.94%2017.901%2035.357%2027.184%2074.19%2027.184%20114.13%22%20fill%3D%22url%28%23b%29%22%20opacity%3D%22.374%22%2F%3E%3Cpath%20d%3D%22M.808%20545.696c0%208.152.317%2015.911.769%2023.495%2062.198%20119.616%20137.015%20224.115%20222.588%20310.653%20106.72%20107.685%20230.9%20187.578%20369.166%20237.539%20137.764-49.785%20261.949-129.854%20369.182-238.057%2031.792-32.144%2062.112-66.887%2090.915-104.012-229.272-16.479-215.346-155.74-215.346-155.74%200-5.524%200-11.057%201.005-16.585%200%200%20.508-4.89%202.176-12.564-48.432%2023.736-121.857%2049.749-211.244%2049.749-164.335%200-387.48-97.996-387.48-300.029%200-202.032%20231.181-275.905%20231.181-275.905l-.12-.035c-5.86-.452-12.143-.472-17.973-.472C202.836%2072.784.808%20284.863.808%20545.696%22%20fill%3D%22url%28%23c%29%22%20opacity%3D%22.557%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E";
+
+var StyledAragonApp = styled__default.main.withConfig({
+  displayName: 'AragonApp__StyledAragonApp'
+})(['min-width:320px;min-height:100vh;background-color:', ';background-image:', ';background-position:50% 50%;background-repeat:no-repeat;'], theme.mainBackground, function (_ref) {
+  var backgroundLogo = _ref.backgroundLogo;
+  return backgroundLogo ? styled.css(['url(', ')'], PublicUrl.styledUrl(logo)) : 'none';
+});
+
+var AragonApp = function (_React$Component) {
+  inherits(AragonApp, _React$Component);
+
+  function AragonApp() {
+    classCallCheck(this, AragonApp);
+    return possibleConstructorReturn(this, (AragonApp.__proto__ || Object.getPrototypeOf(AragonApp)).apply(this, arguments));
+  }
+
+  createClass(AragonApp, [{
+    key: 'getChildContext',
+    value: function getChildContext() {
+      return { publicUrl: this.props.publicUrl };
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _props = this.props,
+          children = _props.children,
+          backgroundLogo = _props.backgroundLogo,
+          className = _props.className,
+          publicUrl = _props.publicUrl,
+          supportLegacyAgents = _props.supportLegacyAgents;
+
+      var styledProps = { backgroundLogo: backgroundLogo, className: className, publicUrl: publicUrl };
+      return React.createElement(
+        PublicUrl.Provider,
+        { url: publicUrl },
+        React.createElement(
+          StyledAragonApp,
+          styledProps,
+          React.createElement(BaseStyles$1, { legacyFonts: supportLegacyAgents }),
+          children
+        )
+      );
+    }
+  }]);
+  return AragonApp;
+}(React.Component);
+
+AragonApp.propTypes = {
+  className: propTypes.string,
+  backgroundLogo: propTypes.bool,
+  publicUrl: propTypes.string,
+  children: propTypes.node,
+  supportLegacyAgents: propTypes.bool
+};
+AragonApp.defaultProps = {
+  backgroundLogo: false
+};
+AragonApp.childContextTypes = {
+  publicUrl: propTypes.string
+};
+AragonApp.Styled = StyledAragonApp;
 
 var Info = function Info(_ref) {
   var children = _ref.children,
@@ -3711,8 +6128,6 @@ var crossWhite = "data:image/svg+xml,%3Csvg%20width%3D%2211%22%20height%3D%2211%
 
 var checkWhite = "data:image/svg+xml,%3Csvg%20width%3D%2214%22%20height%3D%2210%22%20viewBox%3D%220%200%2014%2010%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M4.176%207.956L12.114%200l1.062%201.062-9%209L0%205.886l1.044-1.062z%22%20fill%3D%22%23FFF%22%20fill-rule%3D%22evenodd%22%2F%3E%3C%2Fsvg%3E";
 
-var _templateObject$1 = taggedTemplateLiteral(['\n    display: inline-block;\n    text-decoration: none;\n  '], ['\n    display: inline-block;\n    text-decoration: none;\n  ']);
-
 var gradientStart = theme.gradientStart;
 var gradientEnd = theme.gradientEnd;
 var gradientStartActive = theme.gradientStartActive;
@@ -3755,18 +6170,18 @@ var compactStyle = styled.css(['padding:', ';'], function (_ref4) {
   return mode === 'outline' ? '4px 14px' : '5px 15px';
 });
 
-var positiveStyle = styled.css(['padding-left:34px;background:url(', ') no-repeat 12px calc(50% - 1px);', ';'], asset(check), function (_ref5) {
+var positiveStyle = styled.css(['padding-left:34px;background:url(', ') no-repeat 12px calc(50% - 1px);', ';'], styledUrl(check), function (_ref5) {
   var mode = _ref5.mode;
 
   if (mode !== 'strong') return '';
-  return styled.css(['&,&:active{background-image:url(', ');background-color:', ';}&:after{background:none;}'], asset(checkWhite), theme.positive);
+  return styled.css(['&,&:active{background-image:url(', ');background-color:', ';}&:after{background:none;}'], styledUrl(checkWhite), theme.positive);
 });
 
-var negativeStyle = styled.css(['padding-left:30px;background:url(', ') no-repeat 10px calc(50% - 1px);', ';'], asset(cross), function (_ref6) {
+var negativeStyle = styled.css(['padding-left:30px;background:url(', ') no-repeat 10px calc(50% - 1px);', ';'], styledUrl(cross), function (_ref6) {
   var mode = _ref6.mode;
 
   if (mode !== 'strong') return '';
-  return styled.css(['&,&:active{background-image:url(', ');background-color:', ';}&:after{background:none;}'], asset(crossWhite), theme.negative);
+  return styled.css(['&,&:active{background-image:url(', ');background-color:', ';}&:after{background:none;}'], styledUrl(crossWhite), theme.negative);
 });
 
 var StyledButton = styled__default.button.attrs({ type: 'button' }).withConfig({
@@ -3796,10 +6211,22 @@ var StyledButton = styled__default.button.attrs({ type: 'button' }).withConfig({
   return '';
 });
 
-var Button = PublicUrl$1.hocWrap(StyledButton);
-var Anchor = PublicUrl$1.hocWrap(StyledButton.withComponent(SafeLink).extend(_templateObject$1));
+var Button = PublicUrl.hocWrap(StyledButton);
+var Anchor = PublicUrl.hocWrap(styled__default(StyledButton.withComponent(SafeLink)).withConfig({
+  displayName: 'Button__Anchor'
+})(['', ';display:inline-block;text-decoration:none;'], unselectable));
 
 Button.Anchor = Anchor;
+
+var StyledCard = styled__default.div.withConfig({
+  displayName: 'Card__StyledCard'
+})(['width:', ';height:', ';background:', ';border:1px solid ', ';border-radius:3px;'], function (_ref) {
+  var width = _ref.width;
+  return width || '282px';
+}, function (_ref2) {
+  var height = _ref2.height;
+  return height || '322px';
+}, theme.contentBackground, theme.contentBorder);
 
 var mapToZero_1 = createCommonjsModule(function (module, exports) {
 // currently used to initiate the velocity style object to 0
@@ -5426,7 +7853,7 @@ var CircleGraph = function CircleGraph(_ref) {
 CircleGraph.propTypes = {
   value: propTypes.number,
   size: propTypes.number,
-  label: propTypes.string
+  label: propTypes.func
 };
 
 CircleGraph.defaultProps = {
@@ -5625,7 +8052,7 @@ var ContextMenu = function (_React$Component) {
           function (_ref3) {
             var openProgress = _ref3.openProgress;
             return React.createElement(
-              Main,
+              Main$1,
               {
                 opened: opened,
                 style: {
@@ -5681,7 +8108,7 @@ ContextMenu.propTypes = {
 };
 
 
-var Main = styled__default.div.withConfig({
+var Main$1 = styled__default.div.withConfig({
   displayName: 'ContextMenu__Main'
 })(['position:relative;z-index:', ';width:', 'px;height:', 'px;'], function (_ref4) {
   var opened = _ref4.opened;
@@ -5718,165 +8145,131 @@ var ContextMenuItem = styled__default.div.withConfig({
   displayName: 'ContextMenuItem'
 })(['display:flex;align-items:center;padding:5px 20px;cursor:pointer;white-space:nowrap;', ';&:active{background:', ';}'], unselectable(), theme.contentBackgroundActive);
 
-// Higher-order component for re-rendering
-// For a discussion on pitfalls, see https://gist.github.com/staltz/08bf613199092eeb41ac8137d51eb5e6#gistcomment-2280414
-var redraw = function redraw(delay) {
-  return function (Component) {
-    var _class, _temp2;
-
-    return _temp2 = _class = function (_React$Component) {
-      inherits(_class, _React$Component);
-
-      function _class() {
-        var _ref;
-
-        var _temp, _this, _ret;
-
-        classCallCheck(this, _class);
-
-        for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-          args[_key] = arguments[_key];
-        }
-
-        return _ret = (_temp = (_this = possibleConstructorReturn(this, (_ref = _class.__proto__ || Object.getPrototypeOf(_class)).call.apply(_ref, [this].concat(args))), _this), _this.draw = function () {
-          _this.raf = requestAnimationFrame(_this.draw);
-
-          var now = Date.now();
-          var delta = now - _this.lastDraw;
-          if (delta > delay) {
-            _this.child ? _this.child.forceUpdate() : _this.forceUpdate();
-            _this.lastDraw = now - delta % delay;
-          }
-        }, _temp), possibleConstructorReturn(_this, _ret);
-      }
-
-      createClass(_class, [{
-        key: 'componentDidMount',
-        value: function componentDidMount() {
-          this.raf = null;
-          this.lastDraw = Date.now();
-          this.draw();
-        }
-      }, {
-        key: 'componentWillUnmount',
-        value: function componentWillUnmount() {
-          this.raf && cancelAnimationFrame(this.raf);
-        }
-      }, {
-        key: 'render',
-        value: function render() {
-          var _this2 = this;
-
-          return React.createElement(Component, _extends({}, this.props, {
-            ref:
-            // Only add a ref prop if the given component is not a stateless
-            // component
-            Component.render ? function (child) {
-              _this2.child = child;
-              _this2.props.innerRef(child);
-            } : undefined
-          }));
-        }
-      }]);
-      return _class;
-    }(React.Component), _class.propTypes = {
-      innerRef: propTypes.func
-    }, _class.defaultProps = {
-      innerRef: function innerRef() {}
-    }, _class.displayName = 'Redraw(' + getDisplayName(Component) + ')', _temp2;
-  };
-};
-
 var FRAME_EVERY = 1000 / 30; // 30 FPS is enough for a ticker
 
 var formatUnit = function formatUnit(v) {
   return String(v).padStart(2, '0');
 };
 
-var Countdown = function Countdown(_ref) {
-  var end = _ref.end;
+var Countdown = function (_React$Component) {
+  inherits(Countdown, _React$Component);
 
-  var _difference = difference(end, new Date()),
-      days = _difference.days,
-      hours = _difference.hours,
-      minutes = _difference.minutes,
-      seconds = _difference.seconds,
-      totalInSeconds = _difference.totalInSeconds;
+  function Countdown() {
+    var _ref;
 
-  return React.createElement(
-    Main$1,
-    { dateTime: formatHtmlDatetime(end) },
-    React.createElement(
-      IconWrapper,
-      null,
-      React.createElement(Time, null)
-    ),
-    totalInSeconds > 0 ? React.createElement(
-      'span',
-      null,
-      React.createElement(
-        Part,
-        null,
-        formatUnit(days),
-        React.createElement(
-          Unit,
+    var _temp, _this, _ret;
+
+    classCallCheck(this, Countdown);
+
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = possibleConstructorReturn(this, (_ref = Countdown.__proto__ || Object.getPrototypeOf(Countdown)).call.apply(_ref, [this].concat(args))), _this), _this.renderTime = function () {
+      var end = _this.props.end;
+
+      var _difference = difference(end, new Date()),
+          days = _difference.days,
+          hours = _difference.hours,
+          minutes = _difference.minutes,
+          seconds = _difference.seconds,
+          totalInSeconds = _difference.totalInSeconds;
+
+      if (totalInSeconds <= 0) {
+        return React.createElement(
+          TimeOut,
           null,
-          'D'
-        )
-      ),
-      React.createElement(Separator, null),
-      React.createElement(
-        Part,
+          'Time out'
+        );
+      }
+      return React.createElement(
+        'span',
         null,
-        formatUnit(hours),
         React.createElement(
-          Unit,
+          Part,
           null,
-          'H'
-        )
-      ),
-      React.createElement(
-        Separator,
-        null,
-        ':'
-      ),
-      React.createElement(
-        Part,
-        null,
-        formatUnit(minutes),
+          formatUnit(days),
+          React.createElement(
+            Unit,
+            null,
+            'D'
+          )
+        ),
+        React.createElement(Separator, null),
         React.createElement(
-          Unit,
+          Part,
           null,
-          'M'
-        )
-      ),
-      React.createElement(
-        Separator,
-        null,
-        ':'
-      ),
-      React.createElement(
-        Part,
-        null,
-        formatUnit(seconds),
+          formatUnit(hours),
+          React.createElement(
+            Unit,
+            null,
+            'H'
+          )
+        ),
         React.createElement(
-          Unit,
+          Separator,
           null,
-          'S'
+          ':'
+        ),
+        React.createElement(
+          Part,
+          null,
+          formatUnit(minutes),
+          React.createElement(
+            Unit,
+            null,
+            'M'
+          )
+        ),
+        React.createElement(
+          Separator,
+          null,
+          ':'
+        ),
+        React.createElement(
+          Part,
+          null,
+          formatUnit(seconds),
+          React.createElement(
+            Unit,
+            null,
+            'S'
+          )
         )
-      )
-    ) : React.createElement(
-      TimeOut,
-      null,
-      'Time out'
-    )
-  );
-};
+      );
+    }, _temp), possibleConstructorReturn(_this, _ret);
+  }
+
+  createClass(Countdown, [{
+    key: 'render',
+    value: function render() {
+      var end = this.props.end;
+
+      return React.createElement(
+        Main$2,
+        { dateTime: formatHtmlDatetime(end) },
+        React.createElement(
+          IconWrapper,
+          null,
+          React.createElement(Time, null)
+        ),
+        React.createElement(
+          Redraw,
+          { interval: FRAME_EVERY },
+          this.renderTime
+        )
+      );
+    }
+  }]);
+  return Countdown;
+}(React.Component);
+
 Countdown.propTypes = {
   end: propTypes.instanceOf(Date)
 };
 
-var Main$1 = styled__default.time.withConfig({
+
+var Main$2 = styled__default.time.withConfig({
   displayName: 'Countdown__Main'
 })(['width:12em;white-space:nowrap;', ';'], unselectable());
 
@@ -5899,8 +8292,6 @@ var Unit = styled__default.span.withConfig({
 var TimeOut = styled__default.span.withConfig({
   displayName: 'Countdown__TimeOut'
 })(['font-weight:600;color:', ';'], theme.textSecondary);
-
-var Countdown$1 = redraw(FRAME_EVERY)(Countdown);
 
 /**
  * Re-maps a number from one range to another.
@@ -5994,19 +8385,11 @@ var NON_BREAKING_SPACE$1 = '\xa0';
 var accent = theme.accent;
 var contentBackgroundActive = theme.contentBackgroundActive;
 
-
-var StyledDropDownItem = styled__default.div.attrs({ tabIndex: '0' }).withConfig({
-  displayName: 'DropDownItem__StyledDropDownItem'
-})(['position:relative;padding:8px 15px;cursor:pointer;outline:0;&:after{content:\'\';opacity:0;position:absolute;z-index:2;top:0;left:0;right:0;bottom:0;margin:-1px -2px;border:2px solid ', ';transition:all 100ms ease-in-out;}&:active{background-color:', ';}&:hover,&:focus{color:', ';}&:focus:after{opacity:', ';}'], accent, contentBackgroundActive, accent, function (_ref) {
-  var displayFocus = _ref.displayFocus;
-  return displayFocus ? 1 : 0;
-});
-
 var DropDownItem = function (_React$Component) {
   inherits(DropDownItem, _React$Component);
 
   function DropDownItem() {
-    var _ref2;
+    var _ref;
 
     var _temp, _this, _ret;
 
@@ -6016,7 +8399,7 @@ var DropDownItem = function (_React$Component) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = possibleConstructorReturn(this, (_ref2 = DropDownItem.__proto__ || Object.getPrototypeOf(DropDownItem)).call.apply(_ref2, [this].concat(args))), _this), _this.state = {
+    return _ret = (_temp = (_this = possibleConstructorReturn(this, (_ref = DropDownItem.__proto__ || Object.getPrototypeOf(DropDownItem)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
       pressed: false,
       displayFocus: false
     }, _this.handleActivate = function (event) {
@@ -6064,11 +8447,27 @@ var DropDownItem = function (_React$Component) {
   return DropDownItem;
 }(React.Component);
 
+DropDownItem.propTypes = {
+  active: propTypes.bool,
+  children: propTypes.node,
+  index: propTypes.number,
+  mainRef: propTypes.func,
+  onActivate: propTypes.func,
+  className: propTypes.string
+};
 DropDownItem.defaultProps = {
   children: NON_BREAKING_SPACE$1,
   mainRef: function mainRef() {},
   className: ''
 };
+
+
+var StyledDropDownItem = styled__default.div.attrs({ tabIndex: '0' }).withConfig({
+  displayName: 'DropDownItem__StyledDropDownItem'
+})(['position:relative;padding:8px 15px;cursor:pointer;outline:0;&:after{content:\'\';opacity:0;position:absolute;z-index:2;top:0;left:0;right:0;bottom:0;margin:-1px -2px;border:2px solid ', ';transition:all 100ms ease-in-out;}&:active{background-color:', ';}&:hover,&:focus{color:', ';}&:focus:after{opacity:', ';}'], accent, contentBackgroundActive, accent, function (_ref2) {
+  var displayFocus = _ref2.displayFocus;
+  return displayFocus ? 1 : 0;
+});
 
 var arrow = "data:image/svg+xml,%3Csvg%20width%3D%229%22%20height%3D%225%22%20viewBox%3D%220%200%209%205%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M0%200h8.36L4.18%204.18z%22%20fill%3D%22%23B3B3B3%22%20fill-rule%3D%22evenodd%22%2F%3E%3C%2Fsvg%3E";
 
@@ -6102,9 +8501,9 @@ var DropDownItems = styled__default.div.withConfig({
   return opened ? '2' : '1';
 }, textPrimary$1, contentBackground$1, contentBorder$1);
 
-var DropDownActiveItem = styled__default(PublicUrl$1.hocWrap(DropDownItem)).withConfig({
+var DropDownActiveItem = styled__default(PublicUrl.hocWrap(DropDownItem)).withConfig({
   displayName: 'DropDown__DropDownActiveItem'
-})(['padding-right:40px;background:', ';background-image:url(', ');background-repeat:no-repeat;background-position:calc(100% - 15px) 50%;border:1px solid ', ';border-radius:3px;&:hover,&:focus{color:inherit;}&:active{color:', ';}'], contentBackground$1, PublicUrl$1.styledUrl(arrow), contentBorder$1, textPrimary$1);
+})(['padding-right:40px;background:', ';background-image:url(', ');background-repeat:no-repeat;background-position:calc(100% - 15px) 50%;border:1px solid ', ';border-radius:3px;&:hover,&:focus{color:inherit;}&:active{color:', ';}'], contentBackground$1, PublicUrl.styledUrl(arrow), contentBorder$1, textPrimary$1);
 
 var DropDown = function (_React$Component) {
   inherits(DropDown, _React$Component);
@@ -6122,7 +8521,7 @@ var DropDown = function (_React$Component) {
 
     return _ret = (_temp = (_this = possibleConstructorReturn(this, (_ref6 = DropDown.__proto__ || Object.getPrototypeOf(DropDown)).call.apply(_ref6, [this].concat(args))), _this), _this.state = {
       opened: false
-    }, _this.handleToggle = function () {
+    }, _this.activeItemElt = null, _this.handleToggle = function () {
       _this.setState({ opened: !_this.state.opened });
     }, _this.handleClose = function () {
       _this.setState({ opened: false });
@@ -6212,58 +8611,82 @@ var DropDown = function (_React$Component) {
   return DropDown;
 }(React.Component);
 
+DropDown.propTypes = {
+  items: propTypes.arrayOf(propTypes.string),
+  wide: propTypes.bool,
+  active: propTypes.number,
+  onChange: propTypes.func
+};
 DropDown.defaultProps = {
   items: [],
-  active: 0,
   wide: false,
+  active: 0,
   onChange: function onChange() {}
 };
 
-var StyledText = styled__default.span.withConfig({
-  displayName: 'Text__StyledText'
-})(['', ';', ';'], function (_ref) {
-  var size = _ref.size,
-      weight = _ref.weight,
-      smallcaps = _ref.smallcaps;
-  return font({ size: size, weight: weight, smallcaps: smallcaps });
-}, function (_ref2) {
-  var color = _ref2.color;
-  return color ? 'color: ' + color : '';
-});
+var _templateObject$1 = taggedTemplateLiteral(['\n  display: flex;\n  padding: 40px 60px;\n  align-items: center;\n  text-align: center;\n  section {\n    padding-top: 20px;\n  }\n'], ['\n  display: flex;\n  padding: 40px 60px;\n  align-items: center;\n  text-align: center;\n  section {\n    padding-top: 20px;\n  }\n']);
 
-var Text = function Text(props) {
-  return React.createElement(StyledText, props);
-};
+var StyledCard$1 = StyledCard.extend(_templateObject$1);
 
-var createTextContainer = function createTextContainer(Element, defaultProps) {
-  var Container = function Container(_ref3) {
-    var children = _ref3.children,
-        color = _ref3.color,
-        size = _ref3.size,
-        smallcaps = _ref3.smallcaps,
-        weight = _ref3.weight,
-        props = objectWithoutProperties(_ref3, ['children', 'color', 'size', 'smallcaps', 'weight']);
+var StyledHeading = styled__default.h1.withConfig({
+  displayName: 'EmptyStateCard__StyledHeading'
+})(['margin:20px 0 5px;']);
 
-    var textProps = { color: color, size: size, smallcaps: smallcaps, weight: weight };
-    return React.createElement(
-      Element,
-      props,
+var StyledActionButton = styled__default(Button).withConfig({
+  displayName: 'EmptyStateCard__StyledActionButton'
+})(['width:150px;margin-top:20px;']);
+
+var EmptyStateCard = function EmptyStateCard(_ref) {
+  var actionText = _ref.actionText,
+      onActivate = _ref.onActivate,
+      text = _ref.text,
+      title = _ref.title,
+      ActionButton = _ref.actionButton,
+      Icon = _ref.icon,
+      props = objectWithoutProperties(_ref, ['actionText', 'onActivate', 'text', 'title', 'actionButton', 'icon']);
+  return React.createElement(
+    StyledCard$1,
+    props,
+    React.createElement(
+      'section',
+      null,
+      React.createElement(Icon, null),
       React.createElement(
-        Text,
-        textProps,
-        children
+        StyledHeading,
+        null,
+        React.createElement(
+          Text,
+          { color: theme.accent, weight: 'bold', size: 'large' },
+          title
+        )
+      ),
+      React.createElement(
+        Text.Block,
+        null,
+        text
+      ),
+      React.createElement(
+        ActionButton,
+        { mode: 'strong', onClick: onActivate },
+        actionText
       )
-    );
-  };
-  Container.defaultProps = defaultProps;
-
-  return Container;
+    )
+  );
 };
 
-Text.Block = createTextContainer('div');
-Text.Paragraph = createTextContainer('p');
+EmptyStateCard.propTypes = {
+  actionButton: propTypes.node,
+  actionText: propTypes.string,
+  icon: propTypes.node,
+  onActivate: propTypes.func,
+  text: propTypes.string,
+  title: propTypes.string
+};
 
-var TypedText = Text;
+EmptyStateCard.defaultProps = {
+  actionButton: StyledActionButton,
+  title: 'Nothing here.'
+};
 
 var StyledField = styled__default.div.withConfig({
   displayName: 'Field__StyledField'
@@ -6273,7 +8696,7 @@ var StyledAsterisk = styled__default.span.withConfig({
   displayName: 'Field__StyledAsterisk'
 })(['color:', ';float:right;padding-top:3px;font-size:12px;'], theme.accent);
 
-var StyledTextBlock = styled__default(TypedText.Block).withConfig({
+var StyledTextBlock = styled__default(Text.Block).withConfig({
   displayName: 'Field__StyledTextBlock'
 })(['', ';'], unselectable());
 
@@ -6305,6 +8728,11 @@ var Field = function Field(_ref) {
       children
     )
   );
+};
+
+Field.propTypes = {
+  children: propTypes.node,
+  label: propTypes.string
 };
 
 var Attention = function Attention(props) {
@@ -6420,7 +8848,7 @@ var Info$1 = function Info(_ref) {
       title = _ref.title,
       props = objectWithoutProperties(_ref, ['children', 'title']);
   return React.createElement(
-    Main$2,
+    Main$3,
     props,
     title && React.createElement(
       Title,
@@ -6439,7 +8867,7 @@ Info$1.defaultProps = {
   background: theme.infoBackground
 };
 
-var Main$2 = styled__default.section.withConfig({
+var Main$3 = styled__default.section.withConfig({
   displayName: 'Info__Main'
 })(['background:', ';padding:15px;border-radius:3px;word-wrap:break-word;'], function (_ref2) {
   var background = _ref2.background;
@@ -6453,265 +8881,9 @@ var Title = styled__default.h1.withConfig({
 Info$1.Action = Action;
 Info$1.Permissions = Permissions$2;
 
-// Utility styles for the radio input
-var radioActive = styled.css(['background:transparent;&:after{content:\'\';}']);
-
-var radioDimmed = styled.css(['', ';&:after{opacity:0.5;transition:none;}'], radioActive);
-
-// Styled component
-var RadioButton = styled__default.input.attrs({
-  type: 'radio'
-}).withConfig({
+var RadioButton = styled__default.input.attrs({ type: 'radio' }).withConfig({
   displayName: 'RadioButton'
-})(['appearance:none;display:inline-flex;position:relative;background:', ';border:1px ', ' solid;border-radius:7px;width:14px;height:14px;outline:none;cursor:pointer;align-items:center;justify-content:center;&:checked,&:focus,&:hover{', ';}&:after{position:absolute;background:', ';width:8px;height:8px;border-radius:4px;transition:opacity 200ms linear;}&:not(:checked):focus,&:not(:checked):hover{', ';}'], theme.secondaryBackground, theme.contentBorder, radioActive, theme.accent, radioDimmed);
-
-RadioButton.css = {
-  active: radioActive,
-  dimmed: radioDimmed
-};
-
-var StyledInput = styled__default.input.withConfig({
-  displayName: 'TextInput__StyledInput'
-})(['', ';width:', ';padding:5px 10px;background:', ';border:1px solid ', ';border-radius:3px;box-shadow:inset 0 1px 2px rgba(0,0,0,0.06);color:', ';appearance:none;&:focus{outline:none;border-color:', ';}&:read-only{color:transparent;text-shadow:0 0 0 ', ';}'], font({ size: 'small', weight: 'normal' }), function (_ref) {
-  var wide = _ref.wide;
-  return wide ? '100%' : 'auto';
-}, theme.contentBackground, theme.contentBorder, theme.textPrimary, theme.contentBorderActive, theme.textSecondary);
-
-var TextInput = function TextInput(props) {
-  return React.createElement(StyledInput, props);
-};
-TextInput.defaultProps = {
-  type: 'text'
-};
-
-TextInput.Number = function (props) {
-  return React.createElement(StyledInput, _extends({ type: 'number' }, props));
-};
-
-// prefix helper
-var prefixUrl$1 = function prefixUrl(url, publicUrl) {
-  return url.startsWith('data:') ? url : publicUrl + url;
-};
-
-var close = "data:image/svg+xml,%3Csvg%20width%3D%2210%22%20height%3D%2210%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M10%201.014L6.014%205%2010%208.986%208.986%2010%205%206.014%201.014%2010%200%208.986%203.986%205%200%201.014%201.014%200%205%203.986%208.986%200z%22%20fill%3D%22%236D777B%22%20fill-rule%3D%22evenodd%22%20opacity%3D%22.7%22%2F%3E%3C%2Fsvg%3E";
-
-var PANEL_WIDTH = 450;
-var PANEL_OVERFLOW = PANEL_WIDTH * 0.2;
-var PANEL_HIDE_RIGHT = -PANEL_WIDTH * 1.6;
-var CONTENT_PADDING = 30;
-var PANEL_INNER_WIDTH = PANEL_WIDTH - CONTENT_PADDING * 2;
-
-var StyledSidePanel = styled__default.div.withConfig({
-  displayName: 'SidePanel__StyledSidePanel'
-})(['position:fixed;z-index:3;top:0;left:0;right:0;bottom:0;pointer-events:', ';'], function (_ref) {
-  var opened = _ref.opened;
-  return opened ? 'auto' : 'none';
-});
-
-var Overlay = styled__default.div.withConfig({
-  displayName: 'SidePanel__Overlay'
-})(['position:absolute;top:0;left:0;right:0;bottom:0;background:rgba(68,81,89,0.65);pointer-events:', ';'], function (_ref2) {
-  var opened = _ref2.opened;
-  return opened ? 'auto' : 'none';
-});
-
-var StyledPanel = styled__default.aside.withConfig({
-  displayName: 'SidePanel__StyledPanel'
-})(['position:absolute;top:0;right:0;display:flex;flex-direction:column;width:', 'px;height:100vh;padding-right:', 'px;background:white;box-shadow:-2px 0 36px rgba(0,0,0,0.2);'], PANEL_WIDTH + PANEL_OVERFLOW, PANEL_OVERFLOW);
-
-var StyledPanelHeader = styled__default.header.withConfig({
-  displayName: 'SidePanel__StyledPanelHeader'
-})(['position:relative;padding-top:15px;padding-left:', 'px;padding-right:20px;padding-bottom:15px;', ';'], CONTENT_PADDING, unselectable());
-
-var StyledPanelScrollView = styled__default.div.withConfig({
-  displayName: 'SidePanel__StyledPanelScrollView'
-})(['overflow-y:auto;']);
-
-var StyledPanelContent = styled__default.div.withConfig({
-  displayName: 'SidePanel__StyledPanelContent'
-})(['padding-right:', 'px;padding-left:', 'px;padding-bottom:', 'px;'], CONTENT_PADDING, CONTENT_PADDING, CONTENT_PADDING);
-
-var StyledPanelCloseButton = styled__default.button.withConfig({
-  displayName: 'SidePanel__StyledPanelCloseButton'
-})(['', ' &{position:absolute;padding:20px;top:0;right:0;cursor:pointer;background:none;border:0;outline:0;&::-moz-focus-inner{border:0;}}'], StyledPanelHeader);
-
-var motionStyles = function motionStyles(progress) {
-  return {
-    overlay: { opacity: progress },
-    panel: { right: lerp(progress, PANEL_HIDE_RIGHT, -PANEL_OVERFLOW) + 'px' }
-  };
-};
-
-var SidePanel = function (_React$Component) {
-  inherits(SidePanel, _React$Component);
-
-  function SidePanel() {
-    var _ref3;
-
-    var _temp, _this, _ret;
-
-    classCallCheck(this, SidePanel);
-
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    return _ret = (_temp = (_this = possibleConstructorReturn(this, (_ref3 = SidePanel.__proto__ || Object.getPrototypeOf(SidePanel)).call.apply(_ref3, [this].concat(args))), _this), _this.handleClose = function () {
-      if (!_this.props.blocking) {
-        _this.props.onClose();
-      }
-    }, _this.handleEscape = function (event) {
-      if (event.keyCode === 27 && _this.props.opened) {
-        _this.handleClose();
-      }
-    }, _this.handleMotionRest = function () {
-      _this.props.onTransitionEnd(_this.props.opened);
-    }, _temp), possibleConstructorReturn(_this, _ret);
-  }
-
-  createClass(SidePanel, [{
-    key: 'componentDidMount',
-    value: function componentDidMount() {
-      document.addEventListener('keydown', this.handleEscape, false);
-    }
-  }, {
-    key: 'componentWillUnmount',
-    value: function componentWillUnmount() {
-      document.removeEventListener('keydown', this.handleEscape, false);
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      var _this2 = this;
-
-      var _props = this.props,
-          children = _props.children,
-          title = _props.title,
-          opened = _props.opened,
-          blocking = _props.blocking;
-
-      return React.createElement(
-        PublicUrl,
-        null,
-        function (publicUrl) {
-          return React.createElement(
-            reactMotion_1,
-            {
-              style: { progress: reactMotion_4(Number(opened), spring('slow')) },
-              onRest: _this2.handleMotionRest
-            },
-            function (_ref4) {
-              var progress = _ref4.progress;
-
-              var styles = motionStyles(progress);
-              return React.createElement(
-                StyledSidePanel,
-                { hidden: progress === 0, opened: opened },
-                React.createElement(Overlay, {
-                  opened: opened,
-                  style: styles.overlay,
-                  onClick: _this2.handleClose
-                }),
-                React.createElement(
-                  StyledPanel,
-                  { style: styles.panel },
-                  React.createElement(
-                    StyledPanelHeader,
-                    null,
-                    React.createElement(
-                      'h1',
-                      null,
-                      React.createElement(
-                        TypedText,
-                        { size: 'xxlarge' },
-                        title
-                      )
-                    ),
-                    !blocking && React.createElement(
-                      StyledPanelCloseButton,
-                      {
-                        type: 'button',
-                        onClick: _this2.handleClose
-                      },
-                      React.createElement('img', { src: prefixUrl$1(close, publicUrl), alt: 'Close' })
-                    )
-                  ),
-                  React.createElement(
-                    StyledPanelScrollView,
-                    null,
-                    React.createElement(
-                      StyledPanelContent,
-                      null,
-                      children
-                    )
-                  )
-                )
-              );
-            }
-          );
-        }
-      );
-    }
-  }]);
-  return SidePanel;
-}(React.Component);
-
-SidePanel.propTypes = {
-  children: propTypes.node,
-  title: propTypes.string.isRequired,
-  opened: propTypes.bool,
-  blocking: propTypes.bool,
-  onClose: propTypes.func,
-  onTransitionEnd: propTypes.func
-};
-
-SidePanel.defaultProps = {
-  opened: true,
-  blocking: false,
-  onClose: function onClose() {},
-  onTransitionEnd: function onTransitionEnd() {}
-};
-
-SidePanel.PANEL_WIDTH = PANEL_WIDTH;
-SidePanel.PANEL_OVERFLOW = PANEL_OVERFLOW;
-SidePanel.PANEL_HIDE_RIGHT = PANEL_HIDE_RIGHT;
-SidePanel.PANEL_INNER_WIDTH = PANEL_INNER_WIDTH;
-SidePanel.HORIZONTAL_PADDING = CONTENT_PADDING;
-
-var SidePanelSeparator = styled__default.div.withConfig({
-  displayName: 'SidePanelSeparator'
-})(['width:calc(100% + ', 'px);margin:0 -', 'px;height:1px;background:', ';'], SidePanel.HORIZONTAL_PADDING * 2, SidePanel.HORIZONTAL_PADDING, theme.contentBorder);
-
-var SidePanelSplit = function SidePanelSplit(_ref) {
-  var children = _ref.children,
-      props = objectWithoutProperties(_ref, ['children']);
-  return React.createElement(
-    Main$3,
-    props,
-    React.createElement(
-      Part$1,
-      null,
-      children[0]
-    ),
-    React.createElement(
-      Part$1,
-      null,
-      children[1]
-    )
-  );
-};
-
-SidePanelSplit.propTypes = {
-  children: propTypes.node
-};
-
-var Main$3 = styled__default.div.withConfig({
-  displayName: 'SidePanelSplit__Main'
-})(['display:flex;width:calc(100% + ', 'px);margin:0 -', 'px;border:1px solid ', ';border-width:1px 0;'], SidePanel.HORIZONTAL_PADDING * 2, SidePanel.HORIZONTAL_PADDING, theme.contentBorder);
-
-var Part$1 = styled__default.div.withConfig({
-  displayName: 'SidePanelSplit__Part'
-})(['width:50%;padding:20px ', 'px;&:first-child{border-right:1px solid ', ';}'], SidePanel.HORIZONTAL_PADDING, theme.contentBorder);
+})(['appearance:none;display:inline-flex;align-items:center;justify-content:center;position:relative;width:14px;height:14px;margin:5px;background:#f3f9fb;border:1px solid #daeaef;border-radius:50%;outline:0;cursor:pointer;&:after{content:\'\';position:absolute;background:#daeaef;width:8px;height:8px;border-radius:4px;opacity:0;transform:scale(0.3);transition:all 100ms ease-in-out;}&:active{border-color:#c9d9de;}&:active:after{opacity:1;transform:scale(0.6);background:#daeaef;}&:checked:after{opacity:1;transform:scale(1);background:#1dd9d5;}']);
 
 var RadioGroup = function RadioGroup(_ref) {
   var children = _ref.children,
@@ -7620,7 +9792,7 @@ var RadioListItem = function (_React$Component) {
   return RadioListItem;
 }(React.Component);
 
-// Utility styles from RadioButton
+// Styled components
 
 
 RadioListItem.propTypes = {
@@ -7640,25 +9812,21 @@ RadioListItem.defaultProps = {
   },
   onSelect: function onSelect() {}
 };
-var radioDimmed$1 = RadioButton.css.dimmed;
-
-// Styled components
-
 var Label$1 = styled__default.label.withConfig({
   displayName: 'RadioListItem__Label'
-})(['display:flex;&:not(:first-child){margin-top:10px;}&:hover ', ':not(:checked){', ';}', ';'], RadioButton, radioDimmed$1, unselectable());
+})(['display:flex;&:not(:first-child){margin-top:10px;}', ';'], unselectable());
 
 var LabelBox = styled__default.div.withConfig({
   displayName: 'RadioListItem__LabelBox'
-})(['flex-grow:1;margin-left:12px;padding:12px 12px;border:1px ', ' solid;border-radius:3px;transition:border 200ms linear;cursor:pointer;&:focus,&:hover,', ':focus ~ &,', ':hover ~ &{border-color:', ';}', ':checked ~ &{border-color:', ';}'], contentBorder$2, RadioButton, RadioButton, labelBoxBorder.alpha(0.35).cssa(), RadioButton, labelBoxBorder.alpha(0.7).cssa());
+})(['flex-grow:1;margin-left:12px;padding:12px 12px;border:1px ', ' solid;border-radius:3px;transition:border 200ms linear;cursor:pointer;&:focus,&:hover{border-color:', ';}'], contentBorder$2, labelBoxBorder.alpha(0.35).cssa());
 
-var Title$3 = styled__default(TypedText).attrs({
+var Title$3 = styled__default(Text).attrs({
   weight: 'bold'
 }).withConfig({
   displayName: 'RadioListItem__Title'
 })(['']);
 
-var Description$1 = styled__default(TypedText.Block).withConfig({
+var Description$1 = styled__default(Text.Block).withConfig({
   displayName: 'RadioListItem__Description'
 })(['margin-top:5px;']);
 
@@ -7691,7 +9859,7 @@ var RadioList = function (_React$Component) {
           Title$2,
           null,
           React.createElement(
-            TypedText,
+            Text,
             { size: 'large', weight: 'bold' },
             title
           )
@@ -7751,7 +9919,7 @@ var Title$2 = styled__default.h2.withConfig({
   displayName: 'RadioList__Title'
 })(['margin-bottom:5px;']);
 
-var Description = styled__default(TypedText.Block).withConfig({
+var Description = styled__default(Text.Block).withConfig({
   displayName: 'RadioList__Description'
 })(['margin-bottom:18px;']);
 
@@ -7759,9 +9927,3168 @@ var Group = styled__default(RadioGroup).withConfig({
   displayName: 'RadioList__Group'
 })(['display:flex;flex-direction:column;']);
 
-var StyledTable = styled__default.table.withConfig({
-  displayName: 'Table__StyledTable'
-})(['width:100%;border-spacing:0;']);
+function _extends$1() {
+  _extends$1 = Object.assign || function (target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i];
+
+      for (var key in source) {
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+          target[key] = source[key];
+        }
+      }
+    }
+
+    return target;
+  };
+
+  return _extends$1.apply(this, arguments);
+}
+
+function _inheritsLoose(subClass, superClass) {
+  subClass.prototype = Object.create(superClass.prototype);
+  subClass.prototype.constructor = subClass;
+  subClass.__proto__ = superClass;
+}
+
+function _objectWithoutProperties(source, excluded) {
+  if (source == null) return {};
+  var target = {};
+  var sourceKeys = Object.keys(source);
+  var key, i;
+
+  for (i = 0; i < sourceKeys.length; i++) {
+    key = sourceKeys[i];
+    if (excluded.indexOf(key) >= 0) continue;
+    target[key] = source[key];
+  }
+
+  if (Object.getOwnPropertySymbols) {
+    var sourceSymbolKeys = Object.getOwnPropertySymbols(source);
+
+    for (i = 0; i < sourceSymbolKeys.length; i++) {
+      key = sourceSymbolKeys[i];
+      if (excluded.indexOf(key) >= 0) continue;
+      if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue;
+      target[key] = source[key];
+    }
+  }
+
+  return target;
+}
+
+var bugfixes = undefined;
+var applyAnimatedValues = undefined;
+var colorNames = [];
+var requestFrame = function requestFrame(cb) {
+  return global.requestAnimationFrame(cb);
+};
+var cancelFrame = function cancelFrame(cb) {
+  return global.cancelAnimationFrame(cb);
+};
+var interpolation = undefined;
+var injectApplyAnimatedValues = function injectApplyAnimatedValues(fn, transform) {
+  return applyAnimatedValues = {
+    fn: fn,
+    transform: transform
+  };
+};
+var injectColorNames = function injectColorNames(names) {
+  return colorNames = names;
+};
+var injectBugfixes = function injectBugfixes(fn) {
+  return bugfixes = fn;
+};
+var injectInterpolation = function injectInterpolation(cls) {
+  return interpolation = cls;
+};
+var injectFrame = function injectFrame(raf, caf) {
+  var _ref;
+
+  return _ref = [raf, caf], requestFrame = _ref[0], cancelFrame = _ref[1], _ref;
+};
+
+var Globals = /*#__PURE__*/Object.freeze({
+  get bugfixes () { return bugfixes; },
+  get applyAnimatedValues () { return applyAnimatedValues; },
+  get colorNames () { return colorNames; },
+  get requestFrame () { return requestFrame; },
+  get cancelFrame () { return cancelFrame; },
+  get interpolation () { return interpolation; },
+  injectApplyAnimatedValues: injectApplyAnimatedValues,
+  injectColorNames: injectColorNames,
+  injectBugfixes: injectBugfixes,
+  injectInterpolation: injectInterpolation,
+  injectFrame: injectFrame
+});
+
+var colors$1 = {
+  transparent: 0x00000000,
+  // http://www.w3.org/TR/css3-color/#svg-color
+  aliceblue: 0xf0f8ffff,
+  antiquewhite: 0xfaebd7ff,
+  aqua: 0x00ffffff,
+  aquamarine: 0x7fffd4ff,
+  azure: 0xf0ffffff,
+  beige: 0xf5f5dcff,
+  bisque: 0xffe4c4ff,
+  black: 0x000000ff,
+  blanchedalmond: 0xffebcdff,
+  blue: 0x0000ffff,
+  blueviolet: 0x8a2be2ff,
+  brown: 0xa52a2aff,
+  burlywood: 0xdeb887ff,
+  burntsienna: 0xea7e5dff,
+  cadetblue: 0x5f9ea0ff,
+  chartreuse: 0x7fff00ff,
+  chocolate: 0xd2691eff,
+  coral: 0xff7f50ff,
+  cornflowerblue: 0x6495edff,
+  cornsilk: 0xfff8dcff,
+  crimson: 0xdc143cff,
+  cyan: 0x00ffffff,
+  darkblue: 0x00008bff,
+  darkcyan: 0x008b8bff,
+  darkgoldenrod: 0xb8860bff,
+  darkgray: 0xa9a9a9ff,
+  darkgreen: 0x006400ff,
+  darkgrey: 0xa9a9a9ff,
+  darkkhaki: 0xbdb76bff,
+  darkmagenta: 0x8b008bff,
+  darkolivegreen: 0x556b2fff,
+  darkorange: 0xff8c00ff,
+  darkorchid: 0x9932ccff,
+  darkred: 0x8b0000ff,
+  darksalmon: 0xe9967aff,
+  darkseagreen: 0x8fbc8fff,
+  darkslateblue: 0x483d8bff,
+  darkslategray: 0x2f4f4fff,
+  darkslategrey: 0x2f4f4fff,
+  darkturquoise: 0x00ced1ff,
+  darkviolet: 0x9400d3ff,
+  deeppink: 0xff1493ff,
+  deepskyblue: 0x00bfffff,
+  dimgray: 0x696969ff,
+  dimgrey: 0x696969ff,
+  dodgerblue: 0x1e90ffff,
+  firebrick: 0xb22222ff,
+  floralwhite: 0xfffaf0ff,
+  forestgreen: 0x228b22ff,
+  fuchsia: 0xff00ffff,
+  gainsboro: 0xdcdcdcff,
+  ghostwhite: 0xf8f8ffff,
+  gold: 0xffd700ff,
+  goldenrod: 0xdaa520ff,
+  gray: 0x808080ff,
+  green: 0x008000ff,
+  greenyellow: 0xadff2fff,
+  grey: 0x808080ff,
+  honeydew: 0xf0fff0ff,
+  hotpink: 0xff69b4ff,
+  indianred: 0xcd5c5cff,
+  indigo: 0x4b0082ff,
+  ivory: 0xfffff0ff,
+  khaki: 0xf0e68cff,
+  lavender: 0xe6e6faff,
+  lavenderblush: 0xfff0f5ff,
+  lawngreen: 0x7cfc00ff,
+  lemonchiffon: 0xfffacdff,
+  lightblue: 0xadd8e6ff,
+  lightcoral: 0xf08080ff,
+  lightcyan: 0xe0ffffff,
+  lightgoldenrodyellow: 0xfafad2ff,
+  lightgray: 0xd3d3d3ff,
+  lightgreen: 0x90ee90ff,
+  lightgrey: 0xd3d3d3ff,
+  lightpink: 0xffb6c1ff,
+  lightsalmon: 0xffa07aff,
+  lightseagreen: 0x20b2aaff,
+  lightskyblue: 0x87cefaff,
+  lightslategray: 0x778899ff,
+  lightslategrey: 0x778899ff,
+  lightsteelblue: 0xb0c4deff,
+  lightyellow: 0xffffe0ff,
+  lime: 0x00ff00ff,
+  limegreen: 0x32cd32ff,
+  linen: 0xfaf0e6ff,
+  magenta: 0xff00ffff,
+  maroon: 0x800000ff,
+  mediumaquamarine: 0x66cdaaff,
+  mediumblue: 0x0000cdff,
+  mediumorchid: 0xba55d3ff,
+  mediumpurple: 0x9370dbff,
+  mediumseagreen: 0x3cb371ff,
+  mediumslateblue: 0x7b68eeff,
+  mediumspringgreen: 0x00fa9aff,
+  mediumturquoise: 0x48d1ccff,
+  mediumvioletred: 0xc71585ff,
+  midnightblue: 0x191970ff,
+  mintcream: 0xf5fffaff,
+  mistyrose: 0xffe4e1ff,
+  moccasin: 0xffe4b5ff,
+  navajowhite: 0xffdeadff,
+  navy: 0x000080ff,
+  oldlace: 0xfdf5e6ff,
+  olive: 0x808000ff,
+  olivedrab: 0x6b8e23ff,
+  orange: 0xffa500ff,
+  orangered: 0xff4500ff,
+  orchid: 0xda70d6ff,
+  palegoldenrod: 0xeee8aaff,
+  palegreen: 0x98fb98ff,
+  paleturquoise: 0xafeeeeff,
+  palevioletred: 0xdb7093ff,
+  papayawhip: 0xffefd5ff,
+  peachpuff: 0xffdab9ff,
+  peru: 0xcd853fff,
+  pink: 0xffc0cbff,
+  plum: 0xdda0ddff,
+  powderblue: 0xb0e0e6ff,
+  purple: 0x800080ff,
+  rebeccapurple: 0x663399ff,
+  red: 0xff0000ff,
+  rosybrown: 0xbc8f8fff,
+  royalblue: 0x4169e1ff,
+  saddlebrown: 0x8b4513ff,
+  salmon: 0xfa8072ff,
+  sandybrown: 0xf4a460ff,
+  seagreen: 0x2e8b57ff,
+  seashell: 0xfff5eeff,
+  sienna: 0xa0522dff,
+  silver: 0xc0c0c0ff,
+  skyblue: 0x87ceebff,
+  slateblue: 0x6a5acdff,
+  slategray: 0x708090ff,
+  slategrey: 0x708090ff,
+  snow: 0xfffafaff,
+  springgreen: 0x00ff7fff,
+  steelblue: 0x4682b4ff,
+  tan: 0xd2b48cff,
+  teal: 0x008080ff,
+  thistle: 0xd8bfd8ff,
+  tomato: 0xff6347ff,
+  turquoise: 0x40e0d0ff,
+  violet: 0xee82eeff,
+  wheat: 0xf5deb3ff,
+  white: 0xffffffff,
+  whitesmoke: 0xf5f5f5ff,
+  yellow: 0xffff00ff,
+  yellowgreen: 0x9acd32ff
+};
+
+var linear = function linear(t) {
+  return t;
+};
+
+var Interpolation =
+/*#__PURE__*/
+function () {
+  function Interpolation() {}
+
+  Interpolation.create = function create(config) {
+    if (typeof config === 'function') return function () {
+      return config.apply(void 0, arguments);
+    };
+    if (interpolation && config.output && typeof config.output[0] === 'string') return interpolation(config);
+    var outputRange = config.output;
+    var inputRange = config.range;
+    var easing = config.easing || linear;
+    var extrapolateLeft = 'extend';
+    var map = config.map;
+
+    if (config.extrapolateLeft !== undefined) {
+      extrapolateLeft = config.extrapolateLeft;
+    } else if (config.extrapolate !== undefined) {
+      extrapolateLeft = config.extrapolate;
+    }
+
+    var extrapolateRight = 'extend';
+
+    if (config.extrapolateRight !== undefined) {
+      extrapolateRight = config.extrapolateRight;
+    } else if (config.extrapolate !== undefined) {
+      extrapolateRight = config.extrapolate;
+    }
+
+    return function (input) {
+      var range = findRange(input, inputRange);
+      return interpolate(input, inputRange[range], inputRange[range + 1], outputRange[range], outputRange[range + 1], easing, extrapolateLeft, extrapolateRight, map);
+    };
+  };
+
+  return Interpolation;
+}();
+
+function interpolate(input, inputMin, inputMax, outputMin, outputMax, easing, extrapolateLeft, extrapolateRight, map) {
+  var result = map ? map(input) : input; // Extrapolate
+
+  if (result < inputMin) {
+    if (extrapolateLeft === 'identity') {
+      return result;
+    } else if (extrapolateLeft === 'clamp') {
+      result = inputMin;
+    }
+  }
+
+  if (result > inputMax) {
+    if (extrapolateRight === 'identity') {
+      return result;
+    } else if (extrapolateRight === 'clamp') {
+      result = inputMax;
+    }
+  }
+
+  if (outputMin === outputMax) return outputMin;
+
+  if (inputMin === inputMax) {
+    if (input <= inputMin) return outputMin;
+    return outputMax;
+  } // Input Range
+
+
+  if (inputMin === -Infinity) {
+    result = -result;
+  } else if (inputMax === Infinity) {
+    result = result - inputMin;
+  } else {
+    result = (result - inputMin) / (inputMax - inputMin);
+  } // Easing
+
+
+  result = easing(result); // Output Range
+
+  if (outputMin === -Infinity) {
+    result = -result;
+  } else if (outputMax === Infinity) {
+    result = result + outputMin;
+  } else {
+    result = result * (outputMax - outputMin) + outputMin;
+  }
+
+  return result;
+}
+
+function findRange(input, inputRange) {
+  for (var i = 1; i < inputRange.length - 1; ++i) {
+    if (inputRange[i] >= input) break;
+  }
+
+  return i - 1;
+}
+
+/*
+https://github.com/react-community/normalize-css-color
+
+BSD 3-Clause License
+
+Copyright (c) 2016, React Community
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+
+* Redistributions of source code must retain the above copyright notice, this
+  list of conditions and the following disclaimer.
+
+* Redistributions in binary form must reproduce the above copyright notice,
+  this list of conditions and the following disclaimer in the documentation
+  and/or other materials provided with the distribution.
+
+* Neither the name of the copyright holder nor the names of its
+  contributors may be used to endorse or promote products derived from
+  this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+*/
+function normalizeColor(color) {
+  var match;
+
+  if (typeof color === 'number') {
+    return color >>> 0 === color && color >= 0 && color <= 0xffffffff ? color : null;
+  } // Ordered based on occurrences on Facebook codebase
+
+
+  if (match = matchers.hex6.exec(color)) return parseInt(match[1] + 'ff', 16) >>> 0;
+  if (colors$1.hasOwnProperty(color)) return colors$1[color];
+
+  if (match = matchers.rgb.exec(color)) {
+    return (parse255(match[1]) << 24 | // r
+    parse255(match[2]) << 16 | // g
+    parse255(match[3]) << 8 | // b
+    0x000000ff) >>> // a
+    0;
+  }
+
+  if (match = matchers.rgba.exec(color)) {
+    return (parse255(match[1]) << 24 | // r
+    parse255(match[2]) << 16 | // g
+    parse255(match[3]) << 8 | // b
+    parse1(match[4])) >>> // a
+    0;
+  }
+
+  if (match = matchers.hex3.exec(color)) {
+    return parseInt(match[1] + match[1] + // r
+    match[2] + match[2] + // g
+    match[3] + match[3] + // b
+    'ff', // a
+    16) >>> 0;
+  } // https://drafts.csswg.org/css-color-4/#hex-notation
+
+
+  if (match = matchers.hex8.exec(color)) return parseInt(match[1], 16) >>> 0;
+
+  if (match = matchers.hex4.exec(color)) {
+    return parseInt(match[1] + match[1] + // r
+    match[2] + match[2] + // g
+    match[3] + match[3] + // b
+    match[4] + match[4], // a
+    16) >>> 0;
+  }
+
+  if (match = matchers.hsl.exec(color)) {
+    return (hslToRgb(parse360(match[1]), // h
+    parsePercentage(match[2]), // s
+    parsePercentage(match[3]) // l
+    ) | 0x000000ff) >>> // a
+    0;
+  }
+
+  if (match = matchers.hsla.exec(color)) {
+    return (hslToRgb(parse360(match[1]), // h
+    parsePercentage(match[2]), // s
+    parsePercentage(match[3]) // l
+    ) | parse1(match[4])) >>> // a
+    0;
+  }
+
+  return null;
+}
+
+function hue2rgb(p, q, t) {
+  if (t < 0) t += 1;
+  if (t > 1) t -= 1;
+  if (t < 1 / 6) return p + (q - p) * 6 * t;
+  if (t < 1 / 2) return q;
+  if (t < 2 / 3) return p + (q - p) * (2 / 3 - t) * 6;
+  return p;
+}
+
+function hslToRgb(h, s, l) {
+  var q = l < 0.5 ? l * (1 + s) : l + s - l * s;
+  var p = 2 * l - q;
+  var r = hue2rgb(p, q, h + 1 / 3);
+  var g = hue2rgb(p, q, h);
+  var b = hue2rgb(p, q, h - 1 / 3);
+  return Math.round(r * 255) << 24 | Math.round(g * 255) << 16 | Math.round(b * 255) << 8;
+} // var INTEGER = '[-+]?\\d+';
+
+
+var NUMBER = '[-+]?\\d*\\.?\\d+';
+var PERCENTAGE = NUMBER + '%';
+
+function toArray$1(arrayLike) {
+  return Array.prototype.slice.call(arrayLike, 0);
+}
+
+function call() {
+  return '\\(\\s*(' + toArray$1(arguments).join(')\\s*,\\s*(') + ')\\s*\\)';
+}
+
+var matchers = {
+  rgb: new RegExp('rgb' + call(NUMBER, NUMBER, NUMBER)),
+  rgba: new RegExp('rgba' + call(NUMBER, NUMBER, NUMBER, NUMBER)),
+  hsl: new RegExp('hsl' + call(NUMBER, PERCENTAGE, PERCENTAGE)),
+  hsla: new RegExp('hsla' + call(NUMBER, PERCENTAGE, PERCENTAGE, NUMBER)),
+  hex3: /^#([0-9a-fA-F]{1})([0-9a-fA-F]{1})([0-9a-fA-F]{1})$/,
+  hex4: /^#([0-9a-fA-F]{1})([0-9a-fA-F]{1})([0-9a-fA-F]{1})([0-9a-fA-F]{1})$/,
+  hex6: /^#([0-9a-fA-F]{6})$/,
+  hex8: /^#([0-9a-fA-F]{8})$/
+};
+
+function parse255(str) {
+  var int = parseInt(str, 10);
+  if (int < 0) return 0;
+  if (int > 255) return 255;
+  return int;
+}
+
+function parse360(str) {
+  var int = parseFloat(str);
+  return (int % 360 + 360) % 360 / 360;
+}
+
+function parse1(str) {
+  var num = parseFloat(str);
+  if (num < 0) return 0;
+  if (num > 1) return 255;
+  return Math.round(num * 255);
+}
+
+function parsePercentage(str) {
+  // parseFloat conveniently ignores the final %
+  var int = parseFloat(str, 10);
+  if (int < 0) return 0;
+  if (int > 100) return 1;
+  return int / 100;
+}
+
+function colorToRgba(input) {
+  var int32Color = normalizeColor(input);
+  if (int32Color === null) return input;
+  int32Color = int32Color || 0;
+  var r = (int32Color & 0xff000000) >>> 24;
+  var g = (int32Color & 0x00ff0000) >>> 16;
+  var b = (int32Color & 0x0000ff00) >>> 8;
+  var a = (int32Color & 0x000000ff) / 255;
+  return "rgba(" + r + ", " + g + ", " + b + ", " + a + ")";
+} // Problem: https://github.com/animatedjs/animated/pull/102
+// Solution: https://stackoverflow.com/questions/638565/parsing-scientific-notation-sensibly/658662
+
+
+var stringShapeRegex = /[+\-]?(?:0|[1-9]\d*)(?:\.\d*)?(?:[eE][+\-]?\d+)?/g;
+/**
+ * Supports string shapes by extracting numbers so new values can be computed,
+ * and recombines those values into new strings of the same shape.  Supports
+ * things like:
+ *
+ *   rgba(123, 42, 99, 0.36)           // colors
+ *   -45deg                            // values with units
+ */
+
+function createInterpolation(config) {
+  var outputRange = config.output.map(colorToRgba); // ->
+  // [
+  //   [0, 50],
+  //   [100, 150],
+  //   [200, 250],
+  //   [0, 0.5],
+  // ]
+
+  var outputRanges = outputRange[0].match(stringShapeRegex).map(function () {
+    return [];
+  });
+  outputRange.forEach(function (value) {
+    value.match(stringShapeRegex).forEach(function (number, i) {
+      return outputRanges[i].push(+number);
+    });
+  });
+  var interpolations = outputRange[0].match(stringShapeRegex).map(function (value, i) {
+    return Interpolation.create(_extends({}, config, {
+      output: outputRanges[i]
+    }));
+  });
+  var shouldRound = /^rgb/.test(outputRange[0]);
+  return function (input) {
+    var i = 0;
+    return outputRange[0].replace(stringShapeRegex, function () {
+      var val = interpolations[i++](input);
+      return String(shouldRound && i < 4 ? Math.round(val) : val);
+    });
+  };
+}
+
+var Animated =
+/*#__PURE__*/
+function () {
+  function Animated() {}
+
+  var _proto = Animated.prototype;
+
+  _proto.__attach = function __attach() {};
+
+  _proto.__detach = function __detach() {};
+
+  _proto.__getValue = function __getValue() {};
+
+  _proto.__getAnimatedValue = function __getAnimatedValue() {
+    return this.__getValue();
+  };
+
+  _proto.__addChild = function __addChild(child) {};
+
+  _proto.__removeChild = function __removeChild(child) {};
+
+  _proto.__getChildren = function __getChildren() {
+    return [];
+  };
+
+  return Animated;
+}();
+
+var AnimatedTracking =
+/*#__PURE__*/
+function (_Animated) {
+  _inheritsLoose(AnimatedTracking, _Animated);
+
+  function AnimatedTracking(value, parent, animationClass, animationConfig, callback) {
+    var _this;
+
+    _this = _Animated.call(this) || this;
+    _this.update = throttle(function () {
+      _this._value.animate(new _this._animationClass(_extends({}, _this._animationConfig, {
+        to: _this._animationConfig.to.__getValue()
+      })), _this._callback);
+    }, 1000 / 30);
+    _this._value = value;
+    _this._parent = parent;
+    _this._animationClass = animationClass;
+    _this._animationConfig = animationConfig;
+    _this._callback = callback;
+
+    _this.__attach();
+
+    return _this;
+  }
+
+  var _proto = AnimatedTracking.prototype;
+
+  _proto.__getValue = function __getValue() {
+    return this._parent.__getValue();
+  };
+
+  _proto.__attach = function __attach() {
+    this._parent.__addChild(this);
+  };
+
+  _proto.__detach = function __detach() {
+    this._parent.__removeChild(this);
+  };
+
+  return AnimatedTracking;
+}(Animated);
+
+function throttle(callback, limit) {
+  var wait = false;
+  return function () {
+    if (!wait) {
+      callback.call();
+      wait = true;
+      setTimeout(function () {
+        return wait = false;
+      }, limit);
+    }
+  };
+}
+
+var AnimatedWithChildren =
+/*#__PURE__*/
+function (_Animated) {
+  _inheritsLoose(AnimatedWithChildren, _Animated);
+
+  function AnimatedWithChildren() {
+    var _this;
+
+    _this = _Animated.call(this) || this;
+    _this._children = [];
+    return _this;
+  }
+
+  var _proto = AnimatedWithChildren.prototype;
+
+  _proto.__addChild = function __addChild(child) {
+    if (this._children.length === 0) this.__attach();
+
+    this._children.push(child);
+  };
+
+  _proto.__removeChild = function __removeChild(child) {
+    var index = this._children.indexOf(child);
+
+    if (index === -1) {
+      console.warn("Trying to remove a child that doesn't exist");
+      return;
+    }
+
+    this._children.splice(index, 1);
+
+    if (this._children.length === 0) this.__detach();
+  };
+
+  _proto.__getChildren = function __getChildren() {
+    return this._children;
+  };
+
+  return AnimatedWithChildren;
+}(Animated);
+
+var AnimatedInterpolation =
+/*#__PURE__*/
+function (_AnimatedWithChildren) {
+  _inheritsLoose(AnimatedInterpolation, _AnimatedWithChildren);
+
+  function AnimatedInterpolation(parents, config) {
+    var _this;
+
+    _this = _AnimatedWithChildren.call(this) || this;
+    _this._parents = Array.isArray(parents) ? parents : [parents];
+    _this._interpolation = Interpolation.create(config);
+    return _this;
+  }
+
+  var _proto = AnimatedInterpolation.prototype;
+
+  _proto.__getValue = function __getValue() {
+    return this._interpolation.apply(this, this._parents.map(function (value) {
+      return value.__getValue();
+    }));
+  };
+
+  _proto.__attach = function __attach() {
+    for (var i = 0; i < this._parents.length; ++i) {
+      if (this._parents[i] instanceof Animated) this._parents[i].__addChild(this);
+    }
+  };
+
+  _proto.__detach = function __detach() {
+    for (var i = 0; i < this._parents.length; ++i) {
+      if (this._parents[i] instanceof Animated) this._parents[i].__removeChild(this);
+    }
+  };
+
+  _proto.interpolate = function interpolate(config) {
+    return new AnimatedInterpolation(this, config);
+  };
+
+  return AnimatedInterpolation;
+}(AnimatedWithChildren);
+var _uniqueId = 0;
+/**
+ * Animated works by building a directed acyclic graph of dependencies
+ * transparently when you render your Animated components.
+ *
+ *               new Animated.Value(0)
+ *     .interpolate()        .interpolate()    new Animated.Value(1)
+ *         opacity               translateY      scale
+ *          style                         transform
+ *         View#234                         style
+ *                                         View#123
+ *
+ * A) Top Down phase
+ * When an Animated.Value is updated, we recursively go down through this
+ * graph in order to find leaf nodes: the views that we flag as needing
+ * an update.
+ *
+ * B) Bottom Up phase
+ * When a view is flagged as needing an update, we recursively go back up
+ * in order to build the new value that it needs. The reason why we need
+ * this two-phases process is to deal with composite props such as
+ * transform which can receive values from multiple parents.
+ */
+
+function findAnimatedStyles(node, styles) {
+  if (typeof node.update === 'function') styles.add(node);else node.__getChildren().forEach(function (child) {
+    return findAnimatedStyles(child, styles);
+  });
+}
+/**
+ * Standard value for driving animations.  One `Animated.Value` can drive
+ * multiple properties in a synchronized fashion, but can only be driven by one
+ * mechanism at a time.  Using a new mechanism (e.g. starting a new animation,
+ * or calling `setValue`) will stop any previous ones.
+ */
+
+
+var AnimatedValue =
+/*#__PURE__*/
+function (_AnimatedWithChildren) {
+  _inheritsLoose(AnimatedValue, _AnimatedWithChildren);
+
+  function AnimatedValue(value) {
+    var _this;
+
+    _this = _AnimatedWithChildren.call(this) || this;
+    _this._value = value;
+    _this._animation = null;
+    _this._animatedStyles = new Set();
+    _this._listeners = {};
+    return _this;
+  }
+
+  var _proto = AnimatedValue.prototype;
+
+  _proto.__detach = function __detach() {
+    this.stopAnimation();
+  };
+
+  _proto.__getValue = function __getValue() {
+    return this._value;
+  };
+
+  _proto._update = function _update() {
+    findAnimatedStyles(this, this._animatedStyles);
+  };
+
+  _proto._flush = function _flush() {
+    if (this._animatedStyles.size === 0) this._update();
+
+    this._animatedStyles.forEach(function (animatedStyle) {
+      return animatedStyle.update();
+    });
+  };
+
+  _proto._updateValue = function _updateValue(value) {
+    this._value = value;
+
+    this._flush();
+
+    for (var key in this._listeners) {
+      this._listeners[key]({
+        value: this.__getValue()
+      });
+    }
+  };
+  /**
+   * Directly set the value.  This will stop any animations running on the value
+   * and update all the bound properties.
+   */
+
+
+  _proto.setValue = function setValue(value) {
+    if (this._animation) {
+      this._animation.stop();
+
+      this._animation = null;
+    }
+
+    this._animatedStyles.clear();
+
+    this._updateValue(value);
+  };
+  /**
+   * Stops any running animation or tracking.  `callback` is invoked with the
+   * final value after stopping the animation, which is useful for updating
+   * state to match the animation position with layout.
+   */
+
+
+  _proto.stopAnimation = function stopAnimation(callback) {
+    this.stopTracking();
+    this._animation && this._animation.stop();
+    this._animation = null;
+    callback && callback(this.__getValue());
+  };
+  /**
+   * Interpolates the value before updating the property, e.g. mapping 0-1 to
+   * 0-10.
+   */
+
+
+  _proto.interpolate = function interpolate(config) {
+    return new AnimatedInterpolation(this, config);
+  };
+  /**
+   * Typically only used internally, but could be used by a custom Animation
+   * class.
+   */
+
+
+  _proto.animate = function animate(animation, callback) {
+    var _this2 = this;
+
+    var previousAnimation = this._animation;
+    this._animation && this._animation.stop();
+    this._animation = animation;
+
+    this._animatedStyles.clear();
+
+    animation.start(this._value, function (value) {
+      return _this2._updateValue(value);
+    }, function (result) {
+      _this2._animation = null;
+      callback && callback(result);
+    }, previousAnimation);
+  };
+  /**
+   * Adds an asynchronous listener to the value so you can observe updates from
+   * animations.  This is useful because there is no way to
+   * synchronously read the value because it might be driven natively.
+   */
+
+
+  _proto.addListener = function addListener(callback) {
+    var id = String(_uniqueId++);
+    this._listeners[id] = callback;
+    return id;
+  };
+
+  _proto.removeListener = function removeListener(id) {
+    delete this._listeners[id];
+  };
+
+  _proto.removeAllListeners = function removeAllListeners() {
+    this._listeners = {};
+  };
+  /**
+   * Typically only used internally.
+   */
+
+
+  _proto.stopTracking = function stopTracking() {
+    this._tracking && this._tracking.__detach();
+    this._tracking = null;
+  };
+  /**
+   * Typically only used internally.
+   */
+
+
+  _proto.track = function track(tracking) {
+    this.stopTracking();
+    this._tracking = tracking;
+  };
+
+  return AnimatedValue;
+}(AnimatedWithChildren);
+
+var getValues = function getValues(object) {
+  return Object.keys(object).map(function (k) {
+    return object[k];
+  });
+};
+
+var check$1 = function check(value) {
+  return value === 'auto';
+};
+
+var overwrite = function overwrite(width, height) {
+  return function (acc, _ref2) {
+    var _extends3;
+
+    var name = _ref2[0],
+        value = _ref2[1];
+    return _extends({}, acc, (_extends3 = {}, _extends3[name] = value === 'auto' ? ~name.indexOf('height') ? height : width : value, _extends3));
+  };
+};
+
+function fixAuto(spring, props) {
+  var native = props.native,
+      children = props.children,
+      render = props.render,
+      from = props.from,
+      to = props.to; // Dry-route props back if nothing's using 'auto' in there
+
+  if (!getValues(from).concat(getValues(to)).some(check$1)) return; // Fetch render v-dom
+
+  var element = spring.renderChildren(props, spring.convertValues(props));
+  var elementStyles = element.props.style; // Return v.dom with injected ref
+
+  return React.createElement(element.type, _extends({}, element.props, {
+    style: _extends({}, elementStyles, {
+      position: 'absolute',
+      visibility: 'hidden'
+    }),
+    ref: function ref(_ref3) {
+      if (_ref3) {
+        // Once it's rendered out, fetch bounds (minus padding/margin/borders)
+        var node = reactDom.findDOMNode(_ref3);
+        var width, height;
+        var cs = getComputedStyle(node);
+
+        if (cs.boxSizing === 'border-box') {
+          width = node.clientWidth;
+          height = node.clientHeight;
+        } else {
+          var paddingX = parseFloat(cs.paddingLeft || 0) + parseFloat(cs.paddingRight || 0);
+          var paddingY = parseFloat(cs.paddingTop || 0) + parseFloat(cs.paddingBottom || 0);
+          var borderX = parseFloat(cs.borderLeftWidth || 0) + parseFloat(cs.borderRightWidth || 0);
+          var borderY = parseFloat(cs.borderTopWidth || 0) + parseFloat(cs.borderBottomWidth || 0);
+          width = node.offsetWidth - paddingX - borderX;
+          height = node.offsetHeight - paddingY - borderY;
+        } // Defer to next frame, or else the springs updateToken is canceled
+
+
+        var _convert = overwrite(width, height);
+
+        requestAnimationFrame(function () {
+          return spring.updateProps(_extends({}, props, {
+            from: Object.entries(from).reduce(_convert, from),
+            to: Object.entries(to).reduce(_convert, to)
+          }), true, true);
+        });
+      }
+    }
+  }));
+}
+
+var isUnitlessNumber = {
+  animationIterationCount: true,
+  borderImageOutset: true,
+  borderImageSlice: true,
+  borderImageWidth: true,
+  boxFlex: true,
+  boxFlexGroup: true,
+  boxOrdinalGroup: true,
+  columnCount: true,
+  columns: true,
+  flex: true,
+  flexGrow: true,
+  flexPositive: true,
+  flexShrink: true,
+  flexNegative: true,
+  flexOrder: true,
+  gridRow: true,
+  gridRowEnd: true,
+  gridRowSpan: true,
+  gridRowStart: true,
+  gridColumn: true,
+  gridColumnEnd: true,
+  gridColumnSpan: true,
+  gridColumnStart: true,
+  fontWeight: true,
+  lineClamp: true,
+  lineHeight: true,
+  opacity: true,
+  order: true,
+  orphans: true,
+  tabSize: true,
+  widows: true,
+  zIndex: true,
+  zoom: true,
+  // SVG-related properties
+  fillOpacity: true,
+  floodOpacity: true,
+  stopOpacity: true,
+  strokeDasharray: true,
+  strokeDashoffset: true,
+  strokeMiterlimit: true,
+  strokeOpacity: true,
+  strokeWidth: true
+};
+
+var prefixKey = function prefixKey(prefix, key) {
+  return prefix + key.charAt(0).toUpperCase() + key.substring(1);
+};
+
+var prefixes = ['Webkit', 'Ms', 'Moz', 'O'];
+Object.keys(isUnitlessNumber).forEach(function (prop) {
+  return prefixes.forEach(function (pre) {
+    return isUnitlessNumber[prefixKey(pre, prop)] = isUnitlessNumber[prop];
+  });
+});
+
+function dangerousStyleValue(name, value, isCustomProperty) {
+  if (value == null || typeof value === 'boolean' || value === '') return '';
+  if (!isCustomProperty && typeof value === 'number' && value !== 0 && !(isUnitlessNumber.hasOwnProperty(name) && isUnitlessNumber[name])) return value + 'px'; // Presumes implicit 'px' suffix for unitless numbers
+
+  return ('' + value).trim();
+}
+
+injectInterpolation(createInterpolation);
+injectColorNames(colors$1);
+injectBugfixes(fixAuto);
+injectApplyAnimatedValues(function (instance, props) {
+  if (instance.nodeType && instance.setAttribute !== undefined) {
+    var style = props.style,
+        attributes = _objectWithoutProperties(props, ["style"]); // Set styles ...
+
+
+    for (var styleName in style) {
+      if (!style.hasOwnProperty(styleName)) continue;
+      var isCustomProperty = styleName.indexOf('--') === 0;
+      var styleValue = dangerousStyleValue(styleName, style[styleName], isCustomProperty);
+      if (styleName === 'float') styleName = 'cssFloat';
+      if (isCustomProperty) instance.style.setProperty(styleName, styleValue);else instance.style[styleName] = styleValue;
+    } // Set attributes ...
+
+
+    for (var name in attributes) {
+      if (instance.getAttribute(name)) instance.setAttribute(name, attributes[name]);
+    }
+  } else return false;
+}, function (style) {
+  return style;
+});
+
+// Important note: start() and stop() will only be called at most once.
+// Once an animation has been stopped or finished its course, it will
+// not be reused.
+var Animation =
+/*#__PURE__*/
+function () {
+  function Animation() {}
+
+  var _proto = Animation.prototype;
+
+  _proto.start = function start(fromValue, onUpdate, onEnd, previousAnimation) {};
+
+  _proto.stop = function stop() {}; // Helper function for subclasses to make sure onEnd is only called once.
+
+
+  _proto.__debouncedOnEnd = function __debouncedOnEnd(result) {
+    var onEnd = this.__onEnd;
+    this.__onEnd = null;
+    onEnd && onEnd(result);
+  };
+
+  return Animation;
+}();
+
+var withDefault = function withDefault(value, defaultValue) {
+  return value === undefined || value === null ? defaultValue : value;
+};
+
+var tensionFromOrigamiValue = function tensionFromOrigamiValue(oValue) {
+  return (oValue - 30) * 3.62 + 194;
+};
+
+var frictionFromOrigamiValue = function frictionFromOrigamiValue(oValue) {
+  return (oValue - 8) * 3 + 25;
+};
+
+var fromOrigamiTensionAndFriction = function fromOrigamiTensionAndFriction(tension, friction) {
+  return {
+    tension: tensionFromOrigamiValue(tension),
+    friction: frictionFromOrigamiValue(friction)
+  };
+};
+
+var SpringAnimation =
+/*#__PURE__*/
+function (_Animation) {
+  _inheritsLoose(SpringAnimation, _Animation);
+
+  function SpringAnimation(config) {
+    var _this;
+
+    _this = _Animation.call(this) || this;
+
+    _this.onUpdate = function () {
+      var position = _this._lastPosition;
+      var velocity = _this._lastVelocity;
+      var tempPosition = _this._lastPosition;
+      var tempVelocity = _this._lastVelocity; // If for some reason we lost a lot of frames (e.g. process large payload or
+      // stopped in the debugger), we only advance by 4 frames worth of
+      // computation and will continue on the next frame. It's better to have it
+      // running at faster speed than jumping to the end.
+
+      var MAX_STEPS = 64;
+      var now = Date.now();
+      if (now > _this._lastTime + MAX_STEPS) now = _this._lastTime + MAX_STEPS; // We are using a fixed time step and a maximum number of iterations.
+      // The following post provides a lot of thoughts into how to build this
+      // loop: http://gafferongames.com/game-physics/fix-your-timestep/
+
+      var TIMESTEP_MSEC = 1;
+      var numSteps = Math.floor((now - _this._lastTime) / TIMESTEP_MSEC);
+
+      for (var i = 0; i < numSteps; ++i) {
+        // Velocity is based on seconds instead of milliseconds
+        var step = TIMESTEP_MSEC / 1000; // This is using RK4. A good blog post to understand how it works:
+        // http://gafferongames.com/game-physics/integration-basics/
+
+        var aVelocity = velocity;
+        var aAcceleration = _this._tension * (_this._to - tempPosition) - _this._friction * tempVelocity;
+        var tempPosition = position + aVelocity * step / 2;
+        var tempVelocity = velocity + aAcceleration * step / 2;
+        var bVelocity = tempVelocity;
+        var bAcceleration = _this._tension * (_this._to - tempPosition) - _this._friction * tempVelocity;
+        tempPosition = position + bVelocity * step / 2;
+        tempVelocity = velocity + bAcceleration * step / 2;
+        var cVelocity = tempVelocity;
+        var cAcceleration = _this._tension * (_this._to - tempPosition) - _this._friction * tempVelocity;
+        tempPosition = position + cVelocity * step / 2;
+        tempVelocity = velocity + cAcceleration * step / 2;
+        var dVelocity = tempVelocity;
+        var dAcceleration = _this._tension * (_this._to - tempPosition) - _this._friction * tempVelocity;
+        tempPosition = position + cVelocity * step / 2;
+        tempVelocity = velocity + cAcceleration * step / 2;
+        var dxdt = (aVelocity + 2 * (bVelocity + cVelocity) + dVelocity) / 6;
+        var dvdt = (aAcceleration + 2 * (bAcceleration + cAcceleration) + dAcceleration) / 6;
+        position += dxdt * step;
+        velocity += dvdt * step;
+      }
+
+      _this._lastTime = now;
+      _this._lastPosition = position;
+      _this._lastVelocity = velocity;
+
+      _this._onUpdate(position); // a listener might have stopped us in _onUpdate
+
+
+      if (!_this.__active) return; // Conditions for stopping the spring animation
+
+      var isOvershooting = false;
+
+      if (_this._overshootClamping && _this._tension !== 0) {
+        if (_this._startPosition < _this._to) {
+          isOvershooting = position > _this._to;
+        } else {
+          isOvershooting = position < _this._to;
+        }
+      }
+
+      var isVelocity = Math.abs(velocity) <= _this._restSpeedThreshold;
+
+      var isDisplacement = true;
+      if (_this._tension !== 0) isDisplacement = Math.abs(_this._to - position) <= _this._restDisplacementThreshold;
+
+      if (isOvershooting || isVelocity && isDisplacement) {
+        // Ensure that we end up with a round value
+        if (_this._tension !== 0) _this._onUpdate(_this._to);
+        return _this.__debouncedOnEnd({
+          finished: true
+        });
+      }
+
+      _this._animationFrame = requestFrame(_this.onUpdate);
+    };
+
+    _this._overshootClamping = withDefault(config.overshootClamping, false);
+    _this._restDisplacementThreshold = withDefault(config.restDisplacementThreshold, 0.0001);
+    _this._restSpeedThreshold = withDefault(config.restSpeedThreshold, 0.0001);
+    _this._initialVelocity = config.velocity;
+    _this._lastVelocity = withDefault(config.velocity, 0);
+    _this._to = config.to;
+    var springConfig = fromOrigamiTensionAndFriction(withDefault(config.tension, 40), withDefault(config.friction, 7));
+    _this._tension = springConfig.tension;
+    _this._friction = springConfig.friction;
+    return _this;
+  }
+
+  var _proto = SpringAnimation.prototype;
+
+  _proto.start = function start(fromValue, onUpdate, onEnd, previousAnimation) {
+    this.__active = true;
+    this._startPosition = fromValue;
+    this._lastPosition = this._startPosition;
+    this._onUpdate = onUpdate;
+    this.__onEnd = onEnd;
+    this._lastTime = Date.now();
+
+    if (previousAnimation instanceof SpringAnimation) {
+      var internalState = previousAnimation.getInternalState();
+      this._lastPosition = internalState.lastPosition;
+      this._lastVelocity = internalState.lastVelocity;
+      this._lastTime = internalState.lastTime;
+    }
+
+    if (typeof fromValue === 'string') {
+      this._onUpdate(fromValue);
+
+      return this.__debouncedOnEnd({
+        finished: true
+      });
+    }
+
+    if (this._initialVelocity !== undefined && this._initialVelocity !== null) this._lastVelocity = this._initialVelocity;
+    this.onUpdate();
+  };
+
+  _proto.getInternalState = function getInternalState() {
+    return {
+      lastPosition: this._lastPosition,
+      lastVelocity: this._lastVelocity,
+      lastTime: this._lastTime
+    };
+  };
+
+  _proto.stop = function stop() {
+    this.__active = false;
+    clearTimeout(this._timeout);
+    cancelFrame(this._animationFrame);
+
+    this.__debouncedOnEnd({
+      finished: false
+    });
+  };
+
+  return SpringAnimation;
+}(Animation);
+
+var AnimatedArray =
+/*#__PURE__*/
+function (_AnimatedWithChildren) {
+  _inheritsLoose(AnimatedArray, _AnimatedWithChildren);
+
+  function AnimatedArray(array) {
+    var _this;
+
+    _this = _AnimatedWithChildren.call(this) || this;
+    _this._values = array.map(function (n) {
+      return new AnimatedValue(n);
+    });
+    return _this;
+  }
+
+  var _proto = AnimatedArray.prototype;
+
+  _proto.setValue = function setValue(values) {
+    var _this2 = this;
+
+    values.forEach(function (n, i) {
+      return _this2._values[i].setValue(n);
+    });
+  };
+
+  _proto.__getValue = function __getValue() {
+    return this._values.map(function (v) {
+      return v.__getValue();
+    });
+  };
+
+  _proto.stopAnimation = function stopAnimation(callback) {
+    this._values.forEach(function (v) {
+      return v.stopAnimation();
+    });
+
+    callback && callback(this.__getValue());
+  };
+
+  _proto.__attach = function __attach() {
+    for (var i = 0; i < this._values.length; ++i) {
+      if (this._values[i] instanceof Animated) this._values[i].__addChild(this);
+    }
+  };
+
+  _proto.__detach = function __detach() {
+    for (var i = 0; i < this._values.length; ++i) {
+      if (this._values[i] instanceof Animated) this._values[i].__removeChild(this);
+    }
+  };
+
+  return AnimatedArray;
+}(AnimatedWithChildren);
+
+function maybeVectorAnim(array, _ref, anim, impl) {
+  var tension = _ref.tension,
+      friction = _ref.friction,
+      to = _ref.to;
+  // { tension, friction, to: [...]}
+  if (array instanceof AnimatedArray) return parallel(array._values.map(function (v, i) {
+    return anim(v, {
+      tension: tension,
+      friction: friction,
+      to: to[i]
+    }, impl);
+  }), {
+    stopTogether: false
+  });
+  return null;
+}
+
+function parallel(animations, config) {
+  var doneCount = 0;
+  var hasEnded = {};
+  var stopTogether = !(config && config.stopTogether === false);
+  var result = {
+    start: function start(callback) {
+      if (doneCount === animations.length) return callback && callback({
+        finished: true
+      });
+      animations.forEach(function (animation, idx) {
+        var cb = function cb(endResult) {
+          hasEnded[idx] = true;
+          doneCount++;
+
+          if (doneCount === animations.length) {
+            doneCount = 0;
+            return callback && callback(endResult);
+          }
+
+          if (!endResult.finished && stopTogether) result.stop();
+        };
+
+        if (!animation) cb({
+          finished: true
+        });else animation.start(cb);
+      });
+    },
+    stop: function stop() {
+      animations.forEach(function (animation, idx) {
+        !hasEnded[idx] && animation.stop();
+        hasEnded[idx] = true;
+      });
+    }
+  };
+  return result;
+}
+
+function controller(value, config, impl) {
+  if (impl === void 0) {
+    impl = SpringAnimation;
+  }
+
+  return maybeVectorAnim(value, config, controller, impl) || {
+    start: function start(callback) {
+      var singleValue = value;
+      var singleConfig = config;
+      singleValue.stopTracking();
+      if (config.to instanceof Animated) singleValue.track(new AnimatedTracking(singleValue, config.to, impl, singleConfig, callback));else singleValue.animate(new impl(singleConfig), callback);
+    },
+    stop: function stop() {
+      value.stopAnimation();
+    }
+  };
+}
+
+var AnimatedStyle =
+/*#__PURE__*/
+function (_AnimatedWithChildren) {
+  _inheritsLoose(AnimatedStyle, _AnimatedWithChildren);
+
+  function AnimatedStyle(style) {
+    var _this;
+
+    _this = _AnimatedWithChildren.call(this) || this;
+    style = style || {};
+    if (style.transform && !(style.transform instanceof Animated)) style = applyAnimatedValues.transform(style);
+    _this._style = style;
+    return _this;
+  }
+
+  var _proto = AnimatedStyle.prototype;
+
+  _proto.__getValue = function __getValue() {
+    var style = {};
+
+    for (var key in this._style) {
+      var value = this._style[key];
+      style[key] = value instanceof Animated ? value.__getValue() : value;
+    }
+
+    return style;
+  };
+
+  _proto.__getAnimatedValue = function __getAnimatedValue() {
+    var style = {};
+
+    for (var key in this._style) {
+      var value = this._style[key];
+      if (value instanceof Animated) style[key] = value.__getAnimatedValue();
+    }
+
+    return style;
+  };
+
+  _proto.__attach = function __attach() {
+    for (var key in this._style) {
+      var value = this._style[key];
+      if (value instanceof Animated) value.__addChild(this);
+    }
+  };
+
+  _proto.__detach = function __detach() {
+    for (var key in this._style) {
+      var value = this._style[key];
+      if (value instanceof Animated) value.__removeChild(this);
+    }
+  };
+
+  return AnimatedStyle;
+}(AnimatedWithChildren);
+
+var AnimatedProps =
+/*#__PURE__*/
+function (_Animated) {
+  _inheritsLoose(AnimatedProps, _Animated);
+
+  function AnimatedProps(props, callback) {
+    var _this;
+
+    _this = _Animated.call(this) || this;
+
+    if (props.style) {
+      props = _extends({}, props, {
+        style: new AnimatedStyle(props.style)
+      });
+    }
+
+    _this._props = props;
+    _this._callback = callback;
+
+    _this.__attach();
+
+    return _this;
+  }
+
+  var _proto = AnimatedProps.prototype;
+
+  _proto.__getValue = function __getValue() {
+    var props = {};
+
+    for (var key in this._props) {
+      var value = this._props[key];
+      if (value instanceof Animated) props[key] = value.__getValue();else props[key] = value;
+    }
+
+    return props;
+  };
+
+  _proto.__getAnimatedValue = function __getAnimatedValue() {
+    var props = {};
+
+    for (var key in this._props) {
+      var value = this._props[key];
+      if (value instanceof Animated) props[key] = value.__getAnimatedValue();
+    }
+
+    return props;
+  };
+
+  _proto.__attach = function __attach() {
+    for (var key in this._props) {
+      var value = this._props[key];
+      if (value instanceof Animated) value.__addChild(this);
+    }
+  };
+
+  _proto.__detach = function __detach() {
+    for (var key in this._props) {
+      var value = this._props[key];
+      if (value instanceof Animated) value.__removeChild(this);
+    }
+  };
+
+  _proto.update = function update() {
+    this._callback();
+  };
+
+  return AnimatedProps;
+}(Animated);
+
+function createAnimatedComponent(Component) {
+  return (
+    /*#__PURE__*/
+    function (_React$Component) {
+      _inheritsLoose(AnimatedComponent, _React$Component);
+
+      function AnimatedComponent() {
+        return _React$Component.apply(this, arguments) || this;
+      }
+
+      var _proto = AnimatedComponent.prototype;
+
+      _proto.componentWillUnmount = function componentWillUnmount() {
+        this._propsAnimated && this._propsAnimated.__detach();
+      };
+
+      _proto.setNativeProps = function setNativeProps(props) {
+        var didUpdate = applyAnimatedValues.fn(this.node, props, this);
+        if (didUpdate === false) this.forceUpdate();
+      };
+
+      _proto.componentWillMount = function componentWillMount() {
+        this.attachProps(this.props);
+      };
+
+      _proto.attachProps = function attachProps(nextProps) {
+        var _this = this;
+
+        var oldPropsAnimated = this._propsAnimated; // The system is best designed when setNativeProps is implemented. It is
+        // able to avoid re-rendering and directly set the attributes that
+        // changed. However, setNativeProps can only be implemented on leaf
+        // native components. If you want to animate a composite component, you
+        // need to re-render it. In this case, we have a fallback that uses
+        // forceUpdate.
+
+        var callback = function callback() {
+          if (_this.node) {
+            var didUpdate = applyAnimatedValues.fn(_this.node, _this._propsAnimated.__getAnimatedValue(), _this);
+            if (didUpdate === false) _this.forceUpdate();
+          }
+        };
+
+        this._propsAnimated = new AnimatedProps(nextProps, callback); // When you call detach, it removes the element from the parent list
+        // of children. If it goes to 0, then the parent also detaches itself
+        // and so on.
+        // An optimization is to attach the new elements and THEN detach the old
+        // ones instead of detaching and THEN attaching.
+        // This way the intermediate state isn't to go to 0 and trigger
+        // this expensive recursive detaching to then re-attach everything on
+        // the very next operation.
+
+        oldPropsAnimated && oldPropsAnimated.__detach();
+      };
+
+      _proto.componentWillReceiveProps = function componentWillReceiveProps(nextProps) {
+        this.attachProps(nextProps);
+      };
+
+      _proto.render = function render() {
+        var _this2 = this;
+
+        var props = this._propsAnimated.__getValue();
+
+        return React.createElement(Component, _extends({}, props, {
+          ref: function ref(node) {
+            return _this2.node = node;
+          }
+        }));
+      };
+
+      return AnimatedComponent;
+    }(React.Component)
+  );
+}
+
+function shallowDiff(a, b) {
+  for (var i in a) {
+    if (!(i in b)) return true;
+  }
+
+  for (var _i in b) {
+    if (a[_i] !== b[_i]) return true;
+  }
+
+  return false;
+}
+
+var config = {
+  default: {
+    tension: 170,
+    friction: 26
+  },
+  gentle: {
+    tension: 120,
+    friction: 14
+  },
+  wobbly: {
+    tension: 180,
+    friction: 12
+  },
+  stiff: {
+    tension: 210,
+    friction: 20
+  },
+  slow: {
+    tension: 280,
+    friction: 60
+  }
+};
+
+var callProp = function callProp(p, n) {
+  return typeof p === 'function' ? p(n) : p;
+};
+
+var convert$1 = function convert(acc, _ref) {
+  var _extends2;
+
+  var name = _ref[0],
+      value = _ref[1];
+  return _extends({}, acc, (_extends2 = {}, _extends2[name] = new AnimatedValue(value), _extends2));
+};
+
+var Spring =
+/*#__PURE__*/
+function (_React$Component) {
+  _inheritsLoose(Spring, _React$Component);
+
+  function Spring() {
+    var _this;
+
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    _this = _React$Component.call.apply(_React$Component, [this].concat(args)) || this;
+    _this.state = {
+      props: undefined
+    };
+    _this.animations = {};
+
+    _this.callback = function () {
+      if (_this.props.onFrame) _this.props.onFrame(_this.animatedProps.__getValue());
+      !_this.props.native && _this.forceUpdate();
+    };
+
+    return _this;
+  }
+
+  var _proto = Spring.prototype;
+
+  _proto.componentWillUnmount = function componentWillUnmount() {
+    this.stop();
+  };
+
+  _proto.componentWillMount = function componentWillMount() {
+    this.updatePropsAsync(this.props);
+  };
+
+  _proto.componentWillUpdate = function componentWillUpdate(props) {
+    if (props.reset || shallowDiff(props.to, this.props.to)) this.updatePropsAsync(props);
+  };
+
+  _proto.updatePropsAsync = function updatePropsAsync(props) {
+    if (props.inject) {
+      this.inject = props.inject(this, props);
+      if (this.inject) return;
+    }
+
+    this.updateProps(props);
+  };
+
+  _proto.updateProps = function updateProps(props, force, didInject) {
+    var _this2 = this;
+
+    if (force === void 0) {
+      force = false;
+    }
+
+    if (didInject === void 0) {
+      didInject = false;
+    }
+
+    // Springs can be destroyed, the "destroyed" flag prevents them from ever
+    // updating further, they'll just animate out and function no more ...
+    if (this.destroyed && props.destroyed) return;
+    this.destroyed = props.destroyed;
+    var impl = props.impl,
+        from = props.from,
+        to = props.to,
+        config = props.config,
+        attach = props.attach,
+        immediate = props.immediate,
+        reset = props.reset,
+        onFrame = props.onFrame,
+        onRest = props.onRest,
+        inject = props.inject,
+        native = props.native;
+    var allProps = Object.entries(_extends({}, from, to));
+    this.interpolators = {};
+    this.animations = allProps.reduce(function (acc, _ref2, i) {
+      var _extends3;
+
+      var name = _ref2[0],
+          value = _ref2[1];
+      var entry = reset === false && _this2.animations[name] || (_this2.animations[name] = {});
+      var isNumber = typeof value === 'number';
+      var isString = typeof value === 'string' && !value.startsWith('#') && !/\d/.test(value) && !colorNames[value];
+      var isArray = !isNumber && !isString && Array.isArray(value);
+      var fromValue = from[name] !== undefined ? from[name] : value;
+      var fromAnimated = fromValue instanceof AnimatedValue;
+      var toValue = isNumber || isArray ? value : 1;
+
+      if (attach) {
+        // Attach value to target animation
+        var target = attach(_this2);
+        var attachedAnimation = target && target.animations[name];
+        if (attachedAnimation) toValue = attachedAnimation.animation;
+      }
+
+      if (fromAnimated) {
+        // Use provided animated value
+        entry.animation = entry.interpolation = fromValue;
+      } else if (isNumber || isString) {
+        // Create animated value
+        entry.animation = entry.interpolation = entry.animation || new AnimatedValue(fromValue);
+      } else if (isArray) {
+        // Create animated array
+        entry.animation = entry.interpolation = entry.animation || new AnimatedArray(fromValue);
+      } else {
+        // Deal with interpolations
+        var previous = entry.interpolation && entry.interpolation._interpolation(entry.animation._value);
+
+        entry.animation = new AnimatedValue(0);
+        entry.interpolation = entry.animation.interpolate({
+          range: [0, 1],
+          output: [previous !== undefined ? previous : fromValue, value]
+        });
+      }
+
+      if (callProp(immediate, name)) entry.animation.setValue(toValue);
+      entry.stopped = false;
+
+      entry.onFinish = function (cb) {
+        _this2.animations[name].stopped = true;
+
+        if (_this2.getAnimations().every(function (a) {
+          return a.stopped;
+        })) {
+          var current = _extends({}, _this2.props.from, _this2.props.to);
+
+          if (onRest) onRest(current);
+          cb && typeof cb === 'function' && cb(current);
+
+          if (didInject) {
+            // Restore the original values for injected props
+            var componentProps = _this2.convertValues(_this2.props);
+
+            _this2.inject = _this2.renderChildren(_this2.props, componentProps);
+
+            _this2.forceUpdate();
+          }
+        }
+      };
+
+      entry.start = function (cb) {
+        if (entry.animation.__getValue() === toValue) return entry.onFinish(cb);
+        controller(entry.animation, _extends({
+          to: toValue
+        }, callProp(config, name)), impl).start(function (props) {
+          return props.finished && entry.onFinish(cb);
+        });
+      };
+
+      entry.stop = function () {
+        entry.stopped = true;
+        entry.animation.stopAnimation();
+      };
+
+      _this2.interpolators[name] = entry.interpolation;
+      return _extends({}, acc, (_extends3 = {}, _extends3[name] = entry, _extends3));
+    }, {});
+    var oldAnimatedProps = this.animatedProps;
+    this.animatedProps = new AnimatedProps(this.interpolators, this.callback);
+    oldAnimatedProps && oldAnimatedProps.__detach();
+    this.updateToken = true;
+    if (force) this.forceUpdate();
+  };
+
+  _proto.start = function start() {
+    var _this3 = this;
+
+    var onStart = this.props.onStart;
+
+    var fn = function fn() {
+      return _this3.getAnimations().forEach(function (animation) {
+        return animation.start(resolve);
+      });
+    };
+
+    var resolve,
+        promise = new Promise(function (r) {
+      return resolve = r;
+    });
+
+    if (this.props.delay) {
+      if (this.timeout) clearTimeout(this.timeout);
+      return this.timeout = setTimeout(function () {
+        return fn();
+      }, this.props.delay);
+    }
+
+    if (onStart) onStart();
+    fn();
+    return promise;
+  };
+
+  _proto.stop = function stop() {
+    this.getAnimations().forEach(function (animation) {
+      return animation.stop();
+    });
+  };
+
+  _proto.flush = function flush() {
+    this.getAnimations().forEach(function (_ref3) {
+      var animation = _ref3.animation;
+      return animation._update && animation._update();
+    });
+  };
+
+  _proto.getAnimations = function getAnimations() {
+    var _this4 = this;
+
+    return Object.keys(this.animations).map(function (key) {
+      return _this4.animations[key];
+    });
+  };
+
+  _proto.getValues = function getValues() {
+    return this.animatedProps ? this.animatedProps.__getValue() : {};
+  };
+
+  _proto.getAnimatedValues = function getAnimatedValues() {
+    return this.props.native ? this.interpolators : this.getValues();
+  };
+
+  _proto.convertValues = function convertValues(props) {
+    var from = props.from,
+        to = props.to,
+        native = props.native,
+        children = props.children,
+        render = props.render;
+    var forward = this.getForwardProps(props);
+    var allProps = Object.entries(_extends({}, from, to));
+    return native ? allProps.reduce(convert$1, forward) : _extends({}, from, to, forward);
+  };
+
+  _proto.getForwardProps = function getForwardProps(props) {
+    if (props === void 0) {
+      props = this.props;
+    }
+
+    var _props = props,
+        to = _props.to,
+        from = _props.from,
+        config = _props.config,
+        native = _props.native,
+        onRest = _props.onRest,
+        onFrame = _props.onFrame,
+        children = _props.children,
+        render = _props.render,
+        reset = _props.reset,
+        immediate = _props.immediate,
+        impl = _props.impl,
+        inject = _props.inject,
+        forward = _objectWithoutProperties(_props, ["to", "from", "config", "native", "onRest", "onFrame", "children", "render", "reset", "immediate", "impl", "inject"]);
+
+    return forward;
+  };
+
+  _proto.componentDidUpdate = function componentDidUpdate() {
+    // Animation has to start *after* render, since at that point the scene
+    // graph should be established, so we do it here. Unfortunatelly, non-native
+    // animations call forceUpdate, so it's causing a loop. updateToken prevents
+    // that as it gets set only on prop changes.
+    if (this.updateToken) {
+      this.updateToken = false;
+      this.start();
+    }
+  };
+
+  _proto.componentDidMount = function componentDidMount() {
+    this.updateToken = false;
+    this.start();
+  };
+
+  _proto.renderChildren = function renderChildren(props, componentProps) {
+    return props.render ? props.render(_extends({}, componentProps, {
+      children: props.children
+    })) : props.children(componentProps);
+  };
+
+  _proto.render = function render() {
+    if (this.inject) {
+      var content = this.inject;
+      this.inject = undefined;
+      return content;
+    }
+
+    var _this$props = this.props,
+        children = _this$props.children,
+        render = _this$props.render;
+    var values = this.getAnimatedValues();
+    return values && Object.keys(values).length ? this.renderChildren(this.props, _extends({}, values, this.getForwardProps())) : null;
+  };
+
+  return Spring;
+}(React.Component);
+
+Spring.defaultProps = {
+  from: {},
+  to: {},
+  config: config.default,
+  native: false,
+  immediate: false,
+  reset: false,
+  impl: SpringAnimation,
+  inject: bugfixes
+};
+
+var empty = function empty() {
+  return null;
+};
+
+var ref = function ref(object, key) {
+  if (object === void 0) {
+    object = {};
+  }
+
+  return typeof object === 'function' ? object(key) : object;
+};
+
+var get$1 = function get(props) {
+  var keys = props.keys,
+      children = props.children,
+      render = props.render,
+      items = props.items,
+      rest = _objectWithoutProperties(props, ["keys", "children", "render", "items"]);
+
+  children = render || children || empty;
+  keys = typeof keys === 'function' ? items.map(keys) : keys;
+
+  if (!Array.isArray(children)) {
+    children = [children];
+    keys = keys ? [keys] : children.map(function (c) {
+      return c.toString();
+    });
+  }
+
+  return _extends({
+    keys: keys,
+    children: children,
+    items: items
+  }, rest);
+};
+
+var Transition =
+/*#__PURE__*/
+function (_React$PureComponent) {
+  _inheritsLoose(Transition, _React$PureComponent);
+
+  function Transition(prevProps) {
+    var _this;
+
+    _this = _React$PureComponent.call(this) || this;
+    _this.springs = [];
+    _this.state = {
+      transitions: [],
+      prevProps: prevProps
+    };
+    return _this;
+  }
+
+  Transition.getDerivedStateFromProps = function getDerivedStateFromProps(props, _ref) {
+    var transitions = _ref.transitions,
+        prevProps = _ref.prevProps;
+
+    var _get = get$1(props),
+        keys = _get.keys,
+        children = _get.children,
+        items = _get.items,
+        from = _get.from,
+        enter = _get.enter,
+        leave = _get.leave,
+        update = _get.update;
+
+    var _get2 = get$1(prevProps),
+        _keys = _get2.keys,
+        _children = _get2.children,
+        _items = _get2.items; // Compare next keys with current keys
+
+
+    var allKeys = transitions.map(function (t) {
+      return t.key;
+    });
+    var nextSet = new Set(keys);
+    var currentSet = new Set(allKeys);
+    var added = keys.filter(function (item) {
+      return !currentSet.has(item);
+    });
+    var deleted = allKeys.filter(function (item) {
+      return !nextSet.has(item);
+    });
+    var rest = keys.filter(function (item) {
+      return currentSet.has(item);
+    }); // Insert new keys into the transition collection
+
+    added.forEach(function (key) {
+      var i = keys.indexOf(key);
+      transitions = transitions.slice(0, i).concat([key], transitions.slice(i));
+    });
+    transitions = transitions.map(function (transition) {
+      var isTransition = typeof transition === 'object';
+      var key = isTransition ? transition.key : transition;
+      var keyIndex = keys.indexOf(key);
+      var item = items ? items[keyIndex] : key;
+
+      if (isTransition) {
+        // A transition already exists
+        if (deleted.find(function (k) {
+          return k === key;
+        })) {
+          // The transition was removed, re-key it and animate it out
+          return _extends({}, transition, {
+            destroyed: true,
+            prevKey: key,
+            key: transition.key + '_',
+            to: !transition.destroyed ? ref(leave, _items ? _items[_keys.indexOf(key)] : key) : transition.to
+          });
+        } // Transition remains untouched, update children and call hook
+
+
+        return _extends({}, transition, {
+          children: children[keyIndex] || transition.children,
+          to: update && rest.indexOf(transition.key) !== -1 ? ref(update, item) || transition.to : transition.to
+        });
+      } // Map added key into transition
+
+
+      return {
+        children: children[keyIndex],
+        key: key,
+        item: item,
+        to: ref(enter, item),
+        from: ref(from, item)
+      };
+    }); // Re-order list
+
+    var ordered = keys.map(function (key) {
+      return transitions.find(function (child) {
+        return child.key === key;
+      });
+    });
+    transitions.forEach(function (t, i) {
+      if (t.destroyed) ordered = ordered.slice(0, i).concat([t], ordered.slice(i));
+    });
+    return {
+      transitions: ordered,
+      prevProps: props
+    };
+  };
+
+  var _proto = Transition.prototype;
+
+  _proto.getValues = function getValues() {
+    return undefined;
+  };
+
+  _proto.render = function render() {
+    var _this2 = this;
+
+    var _this$props = this.props,
+        render = _this$props.render,
+        _this$props$from = _this$props.from,
+        _this$props$enter = _this$props.enter,
+        _this$props$leave = _this$props.leave,
+        _this$props$native = _this$props.native,
+        native = _this$props$native === void 0 ? false : _this$props$native,
+        _this$props$config = _this$props.config,
+        config$$1 = _this$props$config === void 0 ? config.default : _this$props$config,
+        keys = _this$props.keys,
+        items = _this$props.items,
+        onFrame = _this$props.onFrame,
+        onRest = _this$props.onRest,
+        extra = _objectWithoutProperties(_this$props, ["render", "from", "enter", "leave", "native", "config", "keys", "items", "onFrame", "onRest"]);
+
+    var props = _extends({
+      native: native,
+      config: config$$1
+    }, extra);
+
+    return this.state.transitions.map(function (transition, i) {
+      var prevKey = transition.prevKey,
+          key = transition.key,
+          item = transition.item,
+          children = transition.children,
+          from = transition.from,
+          rest = _objectWithoutProperties(transition, ["prevKey", "key", "item", "children", "from"]);
+
+      return React.createElement(Spring, _extends({
+        ref: function ref(r) {
+          return r && (_this2.springs[key] = r);
+        },
+        key: key,
+        onRest: rest.destroyed ? function () {
+          return _this2.setState(function (_ref2) {
+            var transitions = _ref2.transitions;
+            return {
+              transitions: transitions.filter(function (t) {
+                return t !== transition;
+              })
+            };
+          }, function () {
+            return delete _this2.springs[key];
+          });
+        } : onRest && function (values) {
+          return onRest(item, values);
+        },
+        onFrame: onFrame && function (values) {
+          return onFrame(item, values);
+        }
+      }, rest, props, {
+        from: rest.destroyed ? _this2.springs[prevKey].getValues() : from,
+        render: render && children,
+        children: render ? _this2.props.children : children
+      }));
+    });
+  };
+
+  return Transition;
+}(React.PureComponent);
+
+var Trail =
+/*#__PURE__*/
+function (_React$PureComponent) {
+  _inheritsLoose(Trail, _React$PureComponent);
+
+  function Trail() {
+    return _React$PureComponent.apply(this, arguments) || this;
+  }
+
+  var _proto = Trail.prototype;
+
+  _proto.getValues = function getValues() {
+    return this.instance && this.instance.getValues();
+  };
+
+  _proto.componentDidMount = function componentDidMount() {
+    this.instance && this.instance.flush();
+  };
+
+  _proto.componentDidUpdate = function componentDidUpdate() {
+    this.instance && this.instance.flush();
+  };
+
+  _proto.render = function render() {
+    var _this = this;
+
+    var _this$props = this.props,
+        children = _this$props.children,
+        render = _this$props.render,
+        _this$props$from = _this$props.from,
+        from = _this$props$from === void 0 ? {} : _this$props$from,
+        _this$props$to = _this$props.to,
+        to = _this$props$to === void 0 ? {} : _this$props$to,
+        _this$props$native = _this$props.native,
+        native = _this$props$native === void 0 ? false : _this$props$native,
+        _this$props$config = _this$props.config,
+        config$$1 = _this$props$config === void 0 ? config.default : _this$props$config,
+        keys = _this$props.keys,
+        delay = _this$props.delay,
+        onRest = _this$props.onRest,
+        extra = _objectWithoutProperties(_this$props, ["children", "render", "from", "to", "native", "config", "keys", "delay", "onRest"]);
+
+    var animations = new Set();
+
+    var hook = function hook(index, animation) {
+      animations.add(animation);
+      if (index === 0) return undefined;else return Array.from(animations)[index - 1];
+    };
+
+    var props = _extends({}, extra, {
+      native: native,
+      from: from,
+      config: config$$1,
+      to: to
+    });
+
+    var target = render || children;
+    return target.map(function (child, i) {
+      var attachedHook = function attachedHook(animation) {
+        return hook(i, animation);
+      };
+
+      var firstDelay = i === 0 && delay;
+      return React.createElement(Spring, _extends({
+        ref: function ref(_ref) {
+          return i === 0 && (_this.instance = _ref);
+        },
+        onRest: i === 0 ? onRest : null,
+        key: keys[i]
+      }, props, {
+        delay: firstDelay,
+        attach: attachedHook,
+        render: render && child,
+        children: render ? children : child
+      }));
+    });
+  };
+
+  return Trail;
+}(React.PureComponent);
+
+var DEFAULT = '__default';
+
+var Keyframes =
+/*#__PURE__*/
+function (_React$PureComponent) {
+  _inheritsLoose(Keyframes, _React$PureComponent);
+
+  function Keyframes() {
+    var _this;
+
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    _this = _React$PureComponent.call.apply(_React$PureComponent, [this].concat(args)) || this;
+    _this.guid = 0;
+    _this.state = {
+      primitive: undefined,
+      props: {},
+      oldProps: {},
+      resolve: function resolve() {
+        return null;
+      }
+    };
+
+    _this.next = function (primitive, props) {
+      return new Promise(function (resolve) {
+        _this.setState(function (state) {
+          return {
+            primitive: primitive,
+            props: props,
+            oldProps: _extends({}, _this.state.props),
+            resolve: resolve
+          };
+        });
+      });
+    };
+
+    return _this;
+  }
+
+  var _proto = Keyframes.prototype;
+
+  _proto.componentDidMount = function componentDidMount() {
+    this.componentDidUpdate({});
+  };
+
+  _proto.componentDidUpdate = function componentDidUpdate(prevProps) {
+    var _this2 = this;
+
+    if (prevProps.state !== this.props.state) {
+      (function () {
+        var _this2$props = _this2.props,
+            states = _this2$props.states,
+            state = _this2$props.state,
+            primitive = _this2$props.primitive;
+
+        if (states && state && primitive) {
+          (function () {
+            var localId = ++_this2.guid;
+            var slots = states[state];
+
+            if (slots) {
+              if (Array.isArray(slots)) {
+                var q = Promise.resolve();
+
+                var _loop = function _loop() {
+                  if (_isArray) {
+                    if (_i >= _iterator.length) return "break";
+                    _ref = _iterator[_i++];
+                  } else {
+                    _i = _iterator.next();
+                    if (_i.done) return "break";
+                    _ref = _i.value;
+                  }
+
+                  var s = _ref;
+                  q = q.then(function () {
+                    return localId === _this2.guid && _this2.next(primitive, s);
+                  });
+                };
+
+                for (var _iterator = slots, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
+                  var _ref;
+
+                  var _ret = _loop();
+
+                  if (_ret === "break") break;
+                }
+              } else if (typeof slots === 'function') {
+                slots(function (props) {
+                  return localId === _this2.guid && _this2.next(primitive, props);
+                }, _this2.props);
+              } else {
+                _this2.next(primitive, states[state]);
+              }
+            }
+          })();
+        }
+      })();
+    }
+  };
+
+  _proto.render = function render() {
+    var _this3 = this;
+
+    var _this$state = this.state,
+        Component = _this$state.primitive,
+        props = _this$state.props,
+        oldProps = _this$state.oldProps,
+        resolve = _this$state.resolve;
+
+    var _this$props = this.props,
+        ownFrom = _this$props.from,
+        _onRest = _this$props.onRest,
+        rest = _objectWithoutProperties(_this$props, ["from", "onRest"]);
+
+    if (Component) {
+      var current = this.instance && this.instance.getValues();
+      var from = typeof props.from === 'function' ? props.from : _extends({}, oldProps.from, current, props.from);
+      return React.createElement(Component, _extends({
+        ref: function ref(_ref2) {
+          return _this3.instance = _ref2;
+        }
+      }, rest, props, {
+        from: _extends({}, from, ownFrom),
+        onRest: function onRest(args) {
+          resolve(args);
+          if (_onRest) _onRest(args);
+        }
+      }));
+    } else return null;
+  };
+
+  return Keyframes;
+}(React.PureComponent);
+
+Keyframes.defaultProps = {
+  state: DEFAULT
+};
+
+Keyframes.create = function (primitive) {
+  return function (states) {
+    var _states;
+
+    if (typeof states === 'function') states = (_states = {}, _states[DEFAULT] = states, _states);
+    return function (props) {
+      return React.createElement(Keyframes, _extends({
+        primitive: primitive,
+        states: states
+      }, props));
+    };
+  };
+};
+
+Keyframes.Spring = Keyframes.create(Spring);
+Keyframes.Trail = Keyframes.create(Trail);
+Keyframes.Transition = Keyframes.create(Transition);
+
+var AnimatedDiv = createAnimatedComponent('div');
+
+var _React$createContext$1 = React.createContext(null);
+var Provider$1 = _React$createContext$1.Provider;
+var Consumer = _React$createContext$1.Consumer;
+
+function getScrollType(horizontal) {
+  return horizontal ? 'scrollLeft' : 'scrollTop';
+}
+
+var START_TRANSLATE_3D = 'translate3d(0px,0px,0px)';
+var START_TRANSLATE = 'translate(0px,0px)';
+var ParallaxLayer =
+/*#__PURE__*/
+function (_React$PureComponent) {
+  _inheritsLoose(ParallaxLayer, _React$PureComponent);
+
+  function ParallaxLayer() {
+    return _React$PureComponent.apply(this, arguments) || this;
+  }
+
+  var _proto = ParallaxLayer.prototype;
+
+  _proto.componentDidMount = function componentDidMount() {
+    var parent = this.parent;
+
+    if (parent) {
+      parent.layers = parent.layers.concat(this);
+      parent.update();
+    }
+  };
+
+  _proto.componentWillUnmount = function componentWillUnmount() {
+    var _this = this;
+
+    var parent = this.parent;
+
+    if (parent) {
+      parent.layers = parent.layers.filter(function (layer) {
+        return layer !== _this;
+      });
+      parent.update();
+    }
+  };
+
+  _proto.setPosition = function setPosition(height, scrollTop, immediate) {
+    if (immediate === void 0) {
+      immediate = false;
+    }
+
+    var _this$parent$props = this.parent.props,
+        config$$1 = _this$parent$props.config,
+        impl = _this$parent$props.impl;
+    var targetScroll = Math.floor(this.props.offset) * height;
+    var offset = height * this.props.offset + targetScroll * this.props.speed;
+    var to = parseFloat(-(scrollTop * this.props.speed) + offset);
+    if (!immediate) controller(this.animatedTranslate, _extends({
+      to: to
+    }, config$$1), impl).start();else this.animatedTranslate.setValue(to);
+  };
+
+  _proto.setHeight = function setHeight(height, immediate) {
+    if (immediate === void 0) {
+      immediate = false;
+    }
+
+    var _this$parent$props2 = this.parent.props,
+        config$$1 = _this$parent$props2.config,
+        impl = _this$parent$props2.impl;
+    var to = parseFloat(height * this.props.factor);
+    if (!immediate) controller(this.animatedSpace, _extends({
+      to: to
+    }, config$$1), impl).start();else this.animatedSpace.setValue(to);
+  };
+
+  _proto.initialize = function initialize() {
+    var props = this.props;
+    var parent = this.parent;
+    var targetScroll = Math.floor(props.offset) * parent.space;
+    var offset = parent.space * props.offset + targetScroll * props.speed;
+    var to = parseFloat(-(parent.current * props.speed) + offset);
+    this.animatedTranslate = new AnimatedValue(to);
+    this.animatedSpace = new AnimatedValue(parent.space * props.factor);
+  };
+
+  _proto.renderLayer = function renderLayer() {
+    var _extends2;
+
+    var _this$props = this.props,
+        style = _this$props.style,
+        children = _this$props.children,
+        offset = _this$props.offset,
+        speed = _this$props.speed,
+        factor = _this$props.factor,
+        className = _this$props.className,
+        props = _objectWithoutProperties(_this$props, ["style", "children", "offset", "speed", "factor", "className"]);
+
+    var horizontal = this.parent.props.horizontal;
+    var translate3d = this.animatedTranslate.interpolate({
+      range: [0, 1],
+      output: horizontal ? [START_TRANSLATE_3D, 'translate3d(1px,0,0)'] : [START_TRANSLATE_3D, 'translate3d(0,1px,0)']
+    });
+    return React.createElement(AnimatedDiv, _extends({}, props, {
+      className: className,
+      style: _extends((_extends2 = {
+        position: 'absolute',
+        backgroundSize: 'auto',
+        backgroundRepeat: 'no-repeat',
+        willChange: 'transform'
+      }, _extends2[horizontal ? 'height' : 'width'] = '100%', _extends2[horizontal ? 'width' : 'height'] = this.animatedSpace, _extends2.WebkitTransform = translate3d, _extends2.MsTransform = translate3d, _extends2.transform = translate3d, _extends2), style)
+    }), children);
+  };
+
+  _proto.render = function render() {
+    var _this2 = this;
+
+    return React.createElement(Consumer, null, function (parent) {
+      if (parent && !_this2.parent) {
+        _this2.parent = parent;
+
+        _this2.initialize();
+      }
+
+      return _this2.renderLayer();
+    });
+  };
+
+  return ParallaxLayer;
+}(React.PureComponent);
+ParallaxLayer.defaultProps = {
+  factor: 1,
+  offset: 0,
+  speed: 0
+};
+
+var Parallax =
+/*#__PURE__*/
+function (_React$PureComponent2) {
+  _inheritsLoose(Parallax, _React$PureComponent2);
+
+  function Parallax() {
+    var _this3;
+
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    _this3 = _React$PureComponent2.call.apply(_React$PureComponent2, [this].concat(args)) || this;
+    _this3.state = {
+      ready: false
+    };
+    _this3.layers = [];
+    _this3.space = 0;
+    _this3.current = 0;
+    _this3.offset = 0;
+    _this3.busy = false;
+
+    _this3.moveItems = function () {
+      _this3.layers.forEach(function (layer) {
+        return layer.setPosition(_this3.space, _this3.current);
+      });
+
+      _this3.busy = false;
+    };
+
+    _this3.scrollerRaf = function () {
+      return requestAnimationFrame(_this3.moveItems);
+    };
+
+    _this3.onScroll = function (event) {
+      var horizontal = _this3.props.horizontal;
+
+      if (!_this3.busy) {
+        _this3.busy = true;
+
+        _this3.scrollerRaf();
+
+        _this3.current = event.target[getScrollType(horizontal)];
+      }
+    };
+
+    _this3.update = function () {
+      var _this3$props = _this3.props,
+          scrolling = _this3$props.scrolling,
+          horizontal = _this3$props.horizontal;
+      var scrollType = getScrollType(horizontal);
+      if (!_this3.container) return;
+      _this3.space = _this3.container[horizontal ? 'clientWidth' : 'clientHeight'];
+      if (scrolling) _this3.current = _this3.container[scrollType];else _this3.container[scrollType] = _this3.current = _this3.offset * _this3.space;
+      if (_this3.content) _this3.content.style[horizontal ? 'width' : 'height'] = _this3.space * _this3.props.pages + "px";
+
+      _this3.layers.forEach(function (layer) {
+        layer.setHeight(_this3.space, true);
+        layer.setPosition(_this3.space, _this3.current, true);
+      });
+    };
+
+    _this3.updateRaf = function () {
+      requestAnimationFrame(_this3.update); // Some browsers don't fire on maximize
+
+      setTimeout(_this3.update, 150);
+    };
+
+    _this3.scrollStop = function (event) {
+      return _this3.animatedScroll && _this3.animatedScroll.stopAnimation();
+    };
+
+    return _this3;
+  }
+
+  var _proto2 = Parallax.prototype;
+
+  _proto2.scrollTo = function scrollTo(offset) {
+    var _this$props2 = this.props,
+        horizontal = _this$props2.horizontal,
+        config$$1 = _this$props2.config,
+        impl = _this$props2.impl;
+    var scrollType = getScrollType(horizontal);
+    this.scrollStop();
+    this.offset = offset;
+    var target = this.container;
+    this.animatedScroll = new AnimatedValue(target[scrollType]);
+    this.animatedScroll.addListener(function (_ref) {
+      var value = _ref.value;
+      return target[scrollType] = value;
+    });
+    controller(this.animatedScroll, _extends({
+      to: offset * this.space
+    }, config$$1), impl).start();
+  };
+
+  _proto2.componentDidMount = function componentDidMount() {
+    window.addEventListener('resize', this.updateRaf, false);
+    this.update();
+    this.setState({
+      ready: true
+    });
+  };
+
+  _proto2.componentWillUnmount = function componentWillUnmount() {
+    window.removeEventListener('resize', this.updateRaf, false);
+  };
+
+  _proto2.componentDidUpdate = function componentDidUpdate() {
+    this.update();
+  };
+
+  _proto2.render = function render() {
+    var _this4 = this,
+        _extends3;
+
+    var _this$props3 = this.props,
+        style = _this$props3.style,
+        innerStyle = _this$props3.innerStyle,
+        pages = _this$props3.pages,
+        className = _this$props3.className,
+        scrolling = _this$props3.scrolling,
+        children = _this$props3.children,
+        horizontal = _this$props3.horizontal;
+    var overflow = scrolling ? 'scroll' : 'hidden';
+    return React.createElement("div", {
+      ref: function ref(node) {
+        return _this4.container = node;
+      },
+      onScroll: this.onScroll,
+      onWheel: scrolling ? this.scrollStop : null,
+      onTouchStart: scrolling ? this.scrollStop : null,
+      style: _extends({
+        position: 'absolute',
+        width: '100%',
+        height: '100%',
+        overflow: overflow,
+        overflowY: horizontal ? 'hidden' : overflow,
+        overflowX: horizontal ? overflow : 'hidden',
+        WebkitOverflowScrolling: 'touch',
+        WebkitTransform: START_TRANSLATE,
+        MsTransform: START_TRANSLATE,
+        transform: START_TRANSLATE_3D
+      }, style),
+      className: className
+    }, this.state.ready && React.createElement("div", {
+      ref: function ref(node) {
+        return _this4.content = node;
+      },
+      style: _extends((_extends3 = {
+        position: 'absolute'
+      }, _extends3[horizontal ? 'height' : 'width'] = '100%', _extends3.WebkitTransform = START_TRANSLATE, _extends3.MsTransform = START_TRANSLATE, _extends3.transform = START_TRANSLATE_3D, _extends3.overflow = 'hidden', _extends3[horizontal ? 'width' : 'height'] = this.space * pages, _extends3), innerStyle)
+    }, React.createElement(Provider$1, {
+      value: this
+    }, children)));
+  };
+
+  return Parallax;
+}(React.PureComponent);
+
+Parallax.Layer = ParallaxLayer;
+Parallax.defaultProps = {
+  config: config.slow,
+  scrolling: true,
+  horizontal: false,
+  impl: SpringAnimation
+};
+
+var domElements = ['a', 'abbr', 'address', 'area', 'article', 'aside', 'audio', 'b', 'base', 'bdi', 'bdo', 'big', 'blockquote', 'body', 'br', 'button', 'canvas', 'caption', 'cite', 'code', 'col', 'colgroup', 'data', 'datalist', 'dd', 'del', 'details', 'dfn', 'dialog', 'div', 'dl', 'dt', 'em', 'embed', 'fieldset', 'figcaption', 'figure', 'footer', 'form', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'head', 'header', 'hgroup', 'hr', 'html', 'i', 'iframe', 'img', 'input', 'ins', 'kbd', 'keygen', 'label', 'legend', 'li', 'link', 'main', 'map', 'mark', 'marquee', 'menu', 'menuitem', 'meta', 'meter', 'nav', 'noscript', 'object', 'ol', 'optgroup', 'option', 'output', 'p', 'param', 'picture', 'pre', 'progress', 'q', 'rp', 'rt', 'ruby', 's', 'samp', 'script', 'section', 'select', 'small', 'source', 'span', 'strong', 'style', 'sub', 'summary', 'sup', 'table', 'tbody', 'td', 'textarea', 'tfoot', 'th', 'thead', 'time', 'title', 'tr', 'track', 'u', 'ul', 'var', 'video', 'wbr', // SVG
+'circle', 'clipPath', 'defs', 'ellipse', 'foreignObject', 'g', 'image', 'line', 'linearGradient', 'mask', 'path', 'pattern', 'polygon', 'polyline', 'radialGradient', 'rect', 'stop', 'svg', 'text', 'tspan'];
+var elements = domElements.reduce(function (acc, element) {
+  var _extends2;
+
+  return _extends({}, acc, (_extends2 = {}, _extends2[element] = createAnimatedComponent(element), _extends2));
+}, {});
+Object.assign(createAnimatedComponent, elements);
+
+var close = "data:image/svg+xml,%3Csvg%20width%3D%2210%22%20height%3D%2210%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M10%201.014L6.014%205%2010%208.986%208.986%2010%205%206.014%201.014%2010%200%208.986%203.986%205%200%201.014%201.014%200%205%203.986%208.986%200z%22%20fill%3D%22%236D777B%22%20fill-rule%3D%22evenodd%22%20opacity%3D%22.7%22%2F%3E%3C%2Fsvg%3E";
+
+var PANEL_WIDTH = 450;
+var CONTENT_PADDING = 30;
+var PANEL_EXTRA_PADDING = PANEL_WIDTH * 0.2;
+var PANEL_OUTER_WIDTH = PANEL_WIDTH + PANEL_EXTRA_PADDING;
+var PANEL_INNER_WIDTH = PANEL_WIDTH - CONTENT_PADDING * 2;
+
+var SidePanel = function (_React$PureComponent) {
+  inherits(SidePanel, _React$PureComponent);
+
+  function SidePanel() {
+    var _ref;
+
+    var _temp, _this, _ret;
+
+    classCallCheck(this, SidePanel);
+
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = possibleConstructorReturn(this, (_ref = SidePanel.__proto__ || Object.getPrototypeOf(SidePanel)).call.apply(_ref, [this].concat(args))), _this), _this.handleClose = function () {
+      if (!_this.props.blocking) {
+        _this.props.onClose();
+      }
+    }, _this.handleEscape = function (event) {
+      if (event.keyCode === 27 && _this.props.opened) {
+        _this.handleClose();
+      }
+    }, _this.handleTransitionRest = function () {
+      _this.props.onTransitionEnd(_this.props.opened);
+    }, _this.renderIn = function (_ref2) {
+      var progress = _ref2.progress;
+      var _this$props = _this.props,
+          children = _this$props.children,
+          title = _this$props.title,
+          opened = _this$props.opened,
+          blocking = _this$props.blocking;
+
+      // When hiding the panel, add 40px more for the shadow
+
+      var panelRight = opened ? -PANEL_EXTRA_PADDING : -PANEL_OUTER_WIDTH - 40;
+
+      return React.createElement(
+        Main$4,
+        { opened: opened },
+        React.createElement(Overlay, {
+          style: {
+            opacity: progress,
+            pointerEvents: opened ? 'auto' : 'none'
+          },
+          onClick: _this.handleClose
+        }),
+        React.createElement(
+          Panel,
+          {
+            style: {
+              right: panelRight + 'px',
+              transform: progress.interpolate(function (t) {
+                return 'translateX(' + (Number(opened) - t) * (PANEL_WIDTH + 40) + 'px)';
+              })
+            }
+          },
+          React.createElement(
+            PanelHeader,
+            null,
+            React.createElement(
+              'h1',
+              null,
+              React.createElement(
+                Text,
+                { size: 'xxlarge' },
+                title
+              )
+            ),
+            !blocking && React.createElement(
+              PanelCloseButton,
+              { type: 'button', onClick: _this.handleClose },
+              React.createElement(
+                PublicUrl,
+                null,
+                function (publicUrl) {
+                  return React.createElement('img', { src: prefixUrl(close, publicUrl), alt: 'Close' });
+                }
+              )
+            )
+          ),
+          React.createElement(
+            PanelScrollView,
+            null,
+            React.createElement(
+              PanelContent,
+              null,
+              children
+            )
+          )
+        )
+      );
+    }, _temp), possibleConstructorReturn(_this, _ret);
+  }
+
+  createClass(SidePanel, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      document.addEventListener('keydown', this.handleEscape, false);
+    }
+  }, {
+    key: 'componentWillUnmount',
+    value: function componentWillUnmount() {
+      document.removeEventListener('keydown', this.handleEscape, false);
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var opened = this.props.opened;
+
+      return React.createElement(
+        Spring,
+        {
+          config: springs.lazy,
+          to: { progress: Number(opened) },
+          onRest: this.handleTransitionRest,
+          native: true
+        },
+        this.renderIn
+      );
+    }
+  }]);
+  return SidePanel;
+}(React.PureComponent);
+
+SidePanel.propTypes = {
+  children: propTypes.node,
+  title: propTypes.string.isRequired,
+  opened: propTypes.bool,
+  blocking: propTypes.bool,
+  onClose: propTypes.func,
+  onTransitionEnd: propTypes.func
+};
+
+SidePanel.defaultProps = {
+  opened: true,
+  blocking: false,
+  onClose: function onClose() {},
+  onTransitionEnd: function onTransitionEnd() {}
+};
+
+var Main$4 = styled__default.div.withConfig({
+  displayName: 'SidePanel__Main'
+})(['position:fixed;z-index:3;top:0;left:0;right:0;bottom:0;pointer-events:', ';'], function (_ref3) {
+  var opened = _ref3.opened;
+  return opened ? 'auto' : 'none';
+});
+
+var Overlay = styled__default(createAnimatedComponent.div).withConfig({
+  displayName: 'SidePanel__Overlay'
+})(['position:absolute;top:0;left:0;right:0;bottom:0;background:rgba(68,81,89,0.65);']);
+
+var Panel = styled__default(createAnimatedComponent.aside).withConfig({
+  displayName: 'SidePanel__Panel'
+})(['position:absolute;top:0;right:0;display:flex;flex-direction:column;width:', 'px;height:100vh;padding-right:', 'px;background:white;box-shadow:-2px 0 36px rgba(0,0,0,0.2);'], PANEL_WIDTH + PANEL_EXTRA_PADDING, PANEL_EXTRA_PADDING);
+
+var PanelHeader = styled__default.header.withConfig({
+  displayName: 'SidePanel__PanelHeader'
+})(['position:relative;padding-top:15px;padding-left:', 'px;padding-right:20px;padding-bottom:15px;', ';flex-shrink:0;'], CONTENT_PADDING, unselectable());
+
+var PanelScrollView = styled__default.div.withConfig({
+  displayName: 'SidePanel__PanelScrollView'
+})(['overflow-y:auto;height:100%;']);
+
+var PanelContent = styled__default.div.withConfig({
+  displayName: 'SidePanel__PanelContent'
+})(['padding-right:', 'px;padding-left:', 'px;padding-bottom:', 'px;'], CONTENT_PADDING, CONTENT_PADDING, CONTENT_PADDING);
+
+var PanelCloseButton = styled__default.button.withConfig({
+  displayName: 'SidePanel__PanelCloseButton'
+})(['', ' &{position:absolute;padding:20px;top:0;right:0;cursor:pointer;background:none;border:0;outline:0;&::-moz-focus-inner{border:0;}}'], PanelHeader);
+
+SidePanel.PANEL_WIDTH = PANEL_WIDTH;
+SidePanel.PANEL_OUTER_WIDTH = PANEL_OUTER_WIDTH;
+SidePanel.PANEL_EXTRA_PADDING = PANEL_EXTRA_PADDING;
+SidePanel.PANEL_INNER_WIDTH = PANEL_INNER_WIDTH;
+SidePanel.HORIZONTAL_PADDING = CONTENT_PADDING;
+
+// legacy
+SidePanel.PANEL_OVERFLOW = PANEL_EXTRA_PADDING;
+SidePanel.PANEL_HIDE_RIGHT = -PANEL_OUTER_WIDTH;
+
+var SidePanelSeparator = styled__default.div.withConfig({
+  displayName: 'SidePanelSeparator'
+})(['width:calc(100% + ', 'px);margin:0 -', 'px;height:1px;background:', ';'], SidePanel.HORIZONTAL_PADDING * 2, SidePanel.HORIZONTAL_PADDING, theme.contentBorder);
+
+var SidePanelSplit = function SidePanelSplit(_ref) {
+  var children = _ref.children,
+      props = objectWithoutProperties(_ref, ['children']);
+  return React.createElement(
+    Main$5,
+    props,
+    React.createElement(
+      Part$1,
+      null,
+      children[0]
+    ),
+    React.createElement(
+      Part$1,
+      null,
+      children[1]
+    )
+  );
+};
+
+SidePanelSplit.propTypes = {
+  children: propTypes.node
+};
+
+var Main$5 = styled__default.div.withConfig({
+  displayName: 'SidePanelSplit__Main'
+})(['display:flex;width:calc(100% + ', 'px);margin:0 -', 'px;border:1px solid ', ';border-width:1px 0;'], SidePanel.HORIZONTAL_PADDING * 2, SidePanel.HORIZONTAL_PADDING, theme.contentBorder);
+
+var Part$1 = styled__default.div.withConfig({
+  displayName: 'SidePanelSplit__Part'
+})(['width:50%;padding:20px ', 'px;&:first-child{border-right:1px solid ', ';}'], SidePanel.HORIZONTAL_PADDING, theme.contentBorder);
+
+var _templateObject$2 = taggedTemplateLiteral(['\n  background: #edf3f6;\n'], ['\n  background: #edf3f6;\n']);
+var _templateObject2 = taggedTemplateLiteral(['\n  transform-origin: 0 0;\n'], ['\n  transform-origin: 0 0;\n']);
+
+var BAR_HEIGHT = 6;
+var HANDLE_SIZE = 24;
+var HANDLE_SHADOW_MARGIN = 15;
+var PADDING = 5;
+var MIN_WIDTH = HANDLE_SIZE * 10;
+var HEIGHT = Math.max(HANDLE_SIZE, BAR_HEIGHT) + PADDING * 2;
+
+var SPRING = { stiffness: 400, damping: 28, precision: 0.01 };
+
+var Slider = function (_React$Component) {
+  inherits(Slider, _React$Component);
+
+  function Slider() {
+    var _ref;
+
+    var _temp, _this, _ret;
+
+    classCallCheck(this, Slider);
+
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = possibleConstructorReturn(this, (_ref = Slider.__proto__ || Object.getPrototypeOf(Slider)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
+      pressed: false,
+      animate: true
+    }, _this.handleRef = function (element) {
+      _this._mainElement = element;
+    }, _this.getRect = function () {
+      var now = Date.now();
+
+      // Cache the rect if the last poll was less than a second ago
+      if (_this._lastRect && now - _this._lastRectTime < 1000) {
+        return _this._lastRect;
+      }
+
+      _this._lastRectTime = now;
+      _this._lastRect = _this._mainElement ? _this._mainElement.getBoundingClientRect() : new window.DOMRect();
+
+      return _this._lastRect;
+    }, _this.dragStart = function (event) {
+      _this.dragStop();
+      var clientX = _this.clientXFromEvent(event);
+      _this.setState({ pressed: true, animate: true }, function () {
+        _this.updateValueFromClientX(clientX);
+      });
+      document.addEventListener('mouseup', _this.dragStop);
+      document.addEventListener('touchend', _this.dragStop);
+      document.addEventListener('mousemove', _this.dragMove);
+      document.addEventListener('touchmove', _this.dragMove);
+    }, _this.dragStop = function () {
+      _this.setState({ pressed: false, animate: true });
+      document.removeEventListener('mouseup', _this.dragStop);
+      document.removeEventListener('touchend', _this.dragStop);
+      document.removeEventListener('mousemove', _this.dragMove);
+      document.removeEventListener('touchmove', _this.dragMove);
+    }, _this.dragMove = function (event) {
+      if (!_this.state.pressed) {
+        return;
+      }
+      _this.setState({ animate: false });
+      _this.updateValueFromClientX(_this.clientXFromEvent(event));
+    }, _temp), possibleConstructorReturn(_this, _ret);
+  }
+
+  createClass(Slider, [{
+    key: 'componentWillUnmount',
+    value: function componentWillUnmount() {
+      this.dragStop();
+    }
+  }, {
+    key: 'clientXFromEvent',
+    value: function clientXFromEvent(event) {
+      return (event.touches ? event.touches.item(0) : event).clientX;
+    }
+  }, {
+    key: 'updateValueFromClientX',
+    value: function updateValueFromClientX(clientX) {
+      var rect = this.getRect();
+      var x = Math.min(rect.width, Math.max(0, clientX - rect.x));
+      this.props.onUpdate(x / rect.width);
+    }
+  }, {
+    key: 'getHandleStyles',
+    value: function getHandleStyles(value, pressProgress) {
+      var shadowOpacity = 0.13 * (1 - pressProgress);
+      var lightness = 100 * (1 - pressProgress * 0.01);
+      return {
+        transform: 'translate3d(0, calc(' + pressProgress + 'px - 50%), 0)',
+        boxShadow: ' 0 4px 8px 0 rgba(0, 0, 0, ' + shadowOpacity + ')',
+        background: 'hsl(0, 0%, ' + lightness + '%)'
+      };
+    }
+  }, {
+    key: 'getHandlePositionStyles',
+    value: function getHandlePositionStyles(value, progress) {
+      return {
+        transform: '\n        translate3d(calc(' + value * 100 + '% + ' + HANDLE_SHADOW_MARGIN + 'px), 0, 0)\n      '
+      };
+    }
+  }, {
+    key: 'getActiveBarStyles',
+    value: function getActiveBarStyles(value, pressProgress) {
+      var saturationDiff = 1 + 0.2 * pressProgress;
+      return {
+        transform: 'scaleX(' + value + ') translateZ(0)',
+        background: 'hsl(179, ' + Math.round(76 * saturationDiff) + '%, 48%)'
+      };
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
+
+      var _state = this.state,
+          pressed = _state.pressed,
+          animate = _state.animate;
+
+      var value = Math.max(0, Math.min(1, this.props.value));
+      return React.createElement(
+        reactMotion_1,
+        {
+          defaultStyles: { pressProgress: 0, value: 0 },
+          style: {
+            value: animate ? reactMotion_4(value, SPRING) : value,
+            pressProgress: reactMotion_4(Number(pressed), SPRING)
+          }
+        },
+        function (_ref2) {
+          var value = _ref2.value,
+              pressProgress = _ref2.pressProgress;
+          return React.createElement(
+            Main$6,
+            null,
+            React.createElement(
+              Area,
+              {
+                innerRef: _this2.handleRef,
+                onMouseDown: _this2.dragStart,
+                onTouchStart: _this2.dragStart
+              },
+              React.createElement(
+                Bars,
+                null,
+                React.createElement(BaseBar, null),
+                React.createElement(ActiveBar, {
+                  pressed: pressed,
+                  style: _this2.getActiveBarStyles(value, pressProgress)
+                })
+              ),
+              React.createElement(
+                HandleClip,
+                null,
+                React.createElement(
+                  HandlePosition,
+                  {
+                    style: _this2.getHandlePositionStyles(value, pressProgress)
+                  },
+                  React.createElement(Handle, {
+                    pressed: pressed,
+                    style: _this2.getHandleStyles(value, pressProgress)
+                  })
+                )
+              )
+            )
+          );
+        }
+      );
+    }
+  }]);
+  return Slider;
+}(React.Component);
+
+Slider.propTypes = {
+  value: propTypes.number,
+  onUpdate: propTypes.func
+};
+Slider.defaultProps = {
+  value: 0,
+  onUpdate: function onUpdate() {}
+};
+
+
+var Main$6 = styled__default.div.withConfig({
+  displayName: 'Slider__Main'
+})(['min-width:', 'px;padding:0 ', 'px;', ';'], MIN_WIDTH, HANDLE_SIZE / 2 + PADDING, unselectable);
+
+var Area = styled__default.div.withConfig({
+  displayName: 'Slider__Area'
+})(['position:relative;height:', 'px;cursor:pointer;'], HEIGHT);
+
+var Bars = styled__default.div.withConfig({
+  displayName: 'Slider__Bars'
+})(['position:absolute;left:0;right:0;top:50%;transform:translateY(-50%);overflow:hidden;border-radius:2px;height:', 'px;'], BAR_HEIGHT);
+
+var Bar = styled__default.div.withConfig({
+  displayName: 'Slider__Bar'
+})(['position:absolute;top:0;left:0;right:0;bottom:0;']);
+
+var BaseBar = Bar.extend(_templateObject$2);
+
+var ActiveBar = Bar.extend(_templateObject2);
+
+var HandleClip = styled__default.div.withConfig({
+  displayName: 'Slider__HandleClip'
+})(['pointer-events:none;overflow:hidden;width:calc(100% + ', 'px);height:calc(100% + ', 'px);transform-origin:50% 50%;transform:translate( -', 'px,-', 'px );'], HANDLE_SIZE + HANDLE_SHADOW_MARGIN * 2, HANDLE_SHADOW_MARGIN * 2, HANDLE_SIZE / 2 + HANDLE_SHADOW_MARGIN, HANDLE_SHADOW_MARGIN);
+
+var HandlePosition = styled__default.div.withConfig({
+  displayName: 'Slider__HandlePosition'
+})(['width:calc(100% - ', 'px);height:100%;transform-origin:50% 50%;'], HANDLE_SIZE + HANDLE_SHADOW_MARGIN * 2);
+
+var Handle = styled__default.div.withConfig({
+  displayName: 'Slider__Handle'
+})(['position:absolute;top:50%;left:0;width:', 'px;height:', 'px;border:0.5px solid #dcecf5;border-radius:50%;'], HANDLE_SIZE, HANDLE_SIZE);
 
 var Table = function Table(_ref) {
   var header = _ref.header,
@@ -7782,6 +13109,15 @@ var Table = function Table(_ref) {
     )
   );
 };
+
+Table.propTypes = {
+  children: propTypes.node,
+  header: propTypes.node
+};
+
+var StyledTable = styled__default.table.withConfig({
+  displayName: 'Table__StyledTable'
+})(['width:100%;border-spacing:0;']);
 
 var StyledTableRow = styled__default.tr.withConfig({
   displayName: 'TableRow__StyledTableRow'
@@ -7853,7 +13189,7 @@ var TableHeader = function TableHeader(_ref4) {
     StyledTableHeader,
     _extends({ align: align }, props),
     React.createElement(
-      TypedText.Block,
+      Text.Block,
       { color: theme.textSecondary, smallcaps: true },
       title
     )
@@ -7869,225 +13205,42 @@ TableHeader.defaultProps = {
   align: 'left'
 };
 
-var StyledCard = styled__default.div.withConfig({
-  displayName: 'Card__StyledCard'
-})(['width:', ';height:', ';background:', ';border:1px solid ', ';border-radius:3px;'], function (_ref) {
-  var width = _ref.width;
-  return width || '282px';
-}, function (_ref2) {
-  var height = _ref2.height;
-  return height || '322px';
-}, theme.contentBackground, theme.contentBorder);
+var baseStyles = styled.css(['', ';width:', ';padding:5px 10px;background:', ';border:1px solid ', ';border-radius:3px;box-shadow:inset 0 1px 2px rgba(0,0,0,0.06);color:', ';appearance:none;&:focus{outline:none;border-color:', ';}&:read-only{color:transparent;text-shadow:0 0 0 ', ';}'], font({ size: 'small', weight: 'normal' }), function (_ref) {
+  var wide = _ref.wide;
+  return wide ? '100%' : 'auto';
+}, theme.contentBackground, theme.contentBorder, theme.textPrimary, theme.contentBorderActive, theme.textSecondary);
 
-var _templateObject$2 = taggedTemplateLiteral(['\n  display: flex;\n  padding: 40px 60px;\n  align-items: center;\n  text-align: center;\n  section {\n    padding-top: 20px;\n  }\n'], ['\n  display: flex;\n  padding: 40px 60px;\n  align-items: center;\n  text-align: center;\n  section {\n    padding-top: 20px;\n  }\n']);
+// Simple input
+var TextInput = styled__default.input.withConfig({
+  displayName: 'TextInput'
+})(['', ';'], baseStyles);
+TextInput.propTypes = {
+  required: propTypes.bool,
+  type: propTypes.oneOf(['email', 'number', 'password', 'search', 'tel', 'text', 'url'])
+};
+TextInput.defaultProps = {
+  required: false,
+  type: 'text'
 
-var StyledCard$1 = StyledCard.extend(_templateObject$2);
+  // <input type=number> (only for compat)
+};var TextInputNumber = styled__default.input.attrs({ type: 'number' }).withConfig({
+  displayName: 'TextInput__TextInputNumber'
+})(['', ';'], baseStyles);
 
-var StyledHeading = styled__default.h1.withConfig({
-  displayName: 'EmptyStateCard__StyledHeading'
-})(['margin:20px 0 5px;']);
-
-// $FlowFixMe
-var StyledActionButton = styled__default(Button).withConfig({
-  displayName: 'EmptyStateCard__StyledActionButton'
-})(['width:150px;margin-top:20px;']);
-
-var DefaultProps = {
-  actionButton: StyledActionButton,
-  title: 'Nothing here.'
+// Multiline input (textarea element)
+var TextInputMultiline = styled__default.textarea.withConfig({
+  displayName: 'TextInput__TextInputMultiline'
+})(['', ';resize:vertical;'], baseStyles);
+TextInputMultiline.propTypes = {
+  required: propTypes.bool
+};
+TextInputMultiline.defaultProps = {
+  required: false
 };
 
-var EmptyStateCard = function EmptyStateCard(_ref) {
-  var actionText = _ref.actionText,
-      onActivate = _ref.onActivate,
-      text = _ref.text,
-      title = _ref.title,
-      ActionButton = _ref.actionButton,
-      Icon = _ref.icon,
-      props = objectWithoutProperties(_ref, ['actionText', 'onActivate', 'text', 'title', 'actionButton', 'icon']);
-  return React.createElement(
-    StyledCard$1,
-    props,
-    React.createElement(
-      'section',
-      null,
-      React.createElement(Icon, null),
-      React.createElement(
-        StyledHeading,
-        null,
-        React.createElement(
-          TypedText,
-          { color: theme.accent, weight: 'bold', size: 'large' },
-          title
-        )
-      ),
-      React.createElement(
-        TypedText.Block,
-        null,
-        text
-      ),
-      React.createElement(
-        ActionButton,
-        { mode: 'strong', onClick: onActivate },
-        actionText
-      )
-    )
-  );
-};
+TextInput.Number = TextInputNumber;
+TextInput.Multiline = TextInputMultiline;
 
-EmptyStateCard.defaultProps = DefaultProps;
-
-var chevronSvg = "data:image/svg+xml,%3Csvg%20width%3D%227%22%20height%3D%2212%22%20viewBox%3D%220%200%207%2012%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M.446%2012a.512.512%200%200%201-.172-.03.422.422%200%200%201-.146-.087A.37.37%200%200%201%200%2011.6a.37.37%200%200%201%20.128-.281l5.826-5.361L.217.692A.376.376%200%200%201%20.089.405.378.378%200%200%201%20.217.117.444.444%200%200%201%20.529%200c.123%200%20.228.04.313.117l6.03%205.56A.37.37%200%200%201%207%205.96a.37.37%200%200%201-.128.281l-6.12%205.643A.477.477%200%200%201%20.446%2012z%22%20fill%3D%22%2300CBE6%22%20fill-rule%3D%22evenodd%22%2F%3E%3C%2Fsvg%3E";
-
-var StyledAppBar = styled__default.div.withConfig({
-  displayName: 'AppBar__StyledAppBar'
-})(['display:flex;align-items:center;justify-content:flex-start;width:100%;height:64px;background:', ';border-bottom:1px solid ', ';', ';'], theme.contentBackground, theme.contentBorder, unselectable());
-
-var StyledAppBarStart = styled__default.div.withConfig({
-  displayName: 'AppBar__StyledAppBarStart'
-})(['display:flex;align-items:center;padding-left:30px;']);
-var StyledAppBarEnd = styled__default.div.withConfig({
-  displayName: 'AppBar__StyledAppBarEnd'
-})(['margin-left:auto;padding-right:30px;']);
-
-var StyledAppBarTitle = PublicUrl$1.hocWrap(styled__default.h1.withConfig({
-  displayName: 'AppBar__StyledAppBarTitle'
-})(['padding-right:20px;margin-right:calc(20px - 7px);white-space:nowrap;background-image:', ';background-position:100% 50%;background-repeat:no-repeat;cursor:', ';'], function (_ref) {
-  var chevron = _ref.chevron;
-  return chevron ? styled.css(['url(', ')'], PublicUrl$1.styledUrl(chevronSvg)) : 'none';
-}, function (_ref2) {
-  var clickable = _ref2.clickable;
-  return clickable ? 'pointer' : 'default';
-}));
-
-var AppBar = function AppBar(_ref3) {
-  var children = _ref3.children,
-      endContent = _ref3.endContent,
-      title = _ref3.title,
-      onTitleClick = _ref3.onTitleClick,
-      props = objectWithoutProperties(_ref3, ['children', 'endContent', 'title', 'onTitleClick']);
-  return React.createElement(
-    StyledAppBar,
-    props,
-    React.createElement(
-      StyledAppBarStart,
-      null,
-      React.createElement(
-        StyledAppBarTitle,
-        {
-          chevron: !!children,
-          clickable: !!onTitleClick,
-          onClick: onTitleClick
-        },
-        React.createElement(
-          TypedText,
-          { size: 'xxlarge' },
-          title
-        )
-      )
-    ),
-    children,
-    endContent && React.createElement(
-      StyledAppBarEnd,
-      null,
-      endContent
-    )
-  );
-};
-
-var logo = "data:image/svg+xml,%3Csvg%20width%3D%221129%22%20height%3D%22792%22%20viewBox%3D%220%200%201129%20792%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cdefs%3E%3ClinearGradient%20x1%3D%2258.303%25%22%20y1%3D%2229.305%25%22%20x2%3D%22-20.356%25%22%20y2%3D%2289.584%25%22%20id%3D%22a%22%3E%3Cstop%20stop-color%3D%22%23E9F2F4%22%20offset%3D%220%25%22%2F%3E%3Cstop%20stop-color%3D%22%23FFF%22%20offset%3D%22100%25%22%2F%3E%3C%2FlinearGradient%3E%3ClinearGradient%20x1%3D%2250%25%22%20y1%3D%22125.887%25%22%20x2%3D%2250%25%22%20y2%3D%2227.419%25%22%20id%3D%22b%22%3E%3Cstop%20stop-color%3D%22%23E9F2F4%22%20offset%3D%220%25%22%2F%3E%3Cstop%20stop-color%3D%22%23FFF%22%20offset%3D%22100%25%22%2F%3E%3C%2FlinearGradient%3E%3ClinearGradient%20x1%3D%2238.76%25%22%20y1%3D%2240.284%25%22%20x2%3D%2227.198%25%22%20y2%3D%224.898%25%22%20id%3D%22c%22%3E%3Cstop%20stop-color%3D%22%23E9F2F4%22%20offset%3D%220%25%22%2F%3E%3Cstop%20stop-color%3D%22%23FFF%22%20offset%3D%22100%25%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%20opacity%3D%22.7%22%3E%3Cpath%20d%3D%22M474.223%2064.24c-.503%200-231.685%2073.873-231.685%20275.905%200%20202.033%20223.146%20300.029%20387.48%20300.029%2089.383%200%20162.808-26.013%20211.24-49.744%206.242-28.642%2028.943-96.473%20104.047-96.981%2013.393-.523%2025.958%201.99%2036.517%208.021%2050.256%2027.144%2017.59%2077.898%2017.59%2077.898%201.894-.307%203.809-.663%205.724-1.075%201.91-.413%203.83-.89%205.764-1.408%2060.404-16.268%20128.467-85.36%20116.661-201.057-9.463-92.774-95.09-151.58-136.743-174.94-13.64-7.648-22.566-11.513-22.566-11.513%201.508-9.423%201.995-16.71%201.995-22.309%200-1.05-.02-2.035-.05-2.96v-10.86C751.617%2020.65%20566.645.223%20475.414.223c-39.412%200-61.5%203.704-61.5%203.704l60.309%2060.313zm461.86%20125.638s-29.652-9.55-59.8-13.57c-15.083%2015.58-28.15%2022.113-32.17%2024.129-.503.497-1.005%201-1.005%201-87.95-18.595-119.612-63.827-119.612-63.827%2082.93-.497%20157.812%2019.098%20212.587%2052.268z%22%20fill%3D%22url%28%23a%29%22%20opacity%3D%22.779%22%2F%3E%3Cpath%20d%3D%22M1018.002%20315.017c0%2065.842-27.134%20126.647-73.375%20175.899l-2.197%202.528%203.704-.01c12.564-.508%2025.129%202.005%2035.688%208.036%2050.256%2027.144%2017.59%2077.898%2017.59%2077.898%2062.82-10.051%20140.719-80.406%20128.15-203.54-9.464-92.774-95.092-151.58-136.744-174.94%2017.901%2035.357%2027.184%2074.19%2027.184%20114.13%22%20fill%3D%22url%28%23b%29%22%20opacity%3D%22.374%22%2F%3E%3Cpath%20d%3D%22M.808%20545.696c0%208.152.317%2015.911.769%2023.495%2062.198%20119.616%20137.015%20224.115%20222.588%20310.653%20106.72%20107.685%20230.9%20187.578%20369.166%20237.539%20137.764-49.785%20261.949-129.854%20369.182-238.057%2031.792-32.144%2062.112-66.887%2090.915-104.012-229.272-16.479-215.346-155.74-215.346-155.74%200-5.524%200-11.057%201.005-16.585%200%200%20.508-4.89%202.176-12.564-48.432%2023.736-121.857%2049.749-211.244%2049.749-164.335%200-387.48-97.996-387.48-300.029%200-202.032%20231.181-275.905%20231.181-275.905l-.12-.035c-5.86-.452-12.143-.472-17.973-.472C202.836%2072.784.808%20284.863.808%20545.696%22%20fill%3D%22url%28%23c%29%22%20opacity%3D%22.557%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E";
-
-var StyledAragonApp = styled__default.main.withConfig({
-  displayName: 'AragonApp__StyledAragonApp'
-})(['min-width:320px;min-height:100vh;background-color:', ';background-image:', ';background-position:50% 50%;background-repeat:no-repeat;'], theme.mainBackground, function (_ref) {
-  var backgroundLogo = _ref.backgroundLogo;
-  return backgroundLogo ? styled.css(['url(', ')'], PublicUrl$1.styledUrl(logo)) : 'none';
-});
-
-var AragonApp = function (_React$Component) {
-  inherits(AragonApp, _React$Component);
-
-  function AragonApp() {
-    classCallCheck(this, AragonApp);
-    return possibleConstructorReturn(this, (AragonApp.__proto__ || Object.getPrototypeOf(AragonApp)).apply(this, arguments));
-  }
-
-  createClass(AragonApp, [{
-    key: 'getChildContext',
-    value: function getChildContext() {
-      return { publicUrl: this.props.publicUrl };
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      var _props = this.props,
-          children = _props.children,
-          backgroundLogo = _props.backgroundLogo,
-          className = _props.className,
-          publicUrl = _props.publicUrl,
-          supportLegacyAgents = _props.supportLegacyAgents;
-
-      var styledProps = { backgroundLogo: backgroundLogo, className: className, publicUrl: publicUrl };
-      return React.createElement(
-        PublicUrl$1.Provider,
-        { value: publicUrl },
-        React.createElement(
-          StyledAragonApp,
-          styledProps,
-          React.createElement(BaseStyles$1, { legacyFonts: supportLegacyAgents }),
-          children
-        )
-      );
-    }
-  }]);
-  return AragonApp;
-}(React.Component);
-
-AragonApp.propTypes = {
-  className: propTypes.string,
-  backgroundLogo: propTypes.bool,
-  publicUrl: propTypes.string,
-  children: propTypes.node,
-  supportLegacyAgents: propTypes.bool
-};
-AragonApp.defaultProps = {
-  backgroundLogo: false
-};
-AragonApp.childContextTypes = {
-  publicUrl: propTypes.string
-};
-AragonApp.Styled = StyledAragonApp;
-
-/* eslint-disable prettier/prettier */
-
-exports.BaseStyles = BaseStyles$1;
-exports.BadgeNumber = BadgeNumber;
-exports.Badge = Badge;
-exports.Button = Button;
-exports.CircleGraph = CircleGraph;
-exports.ContextMenu = ContextMenu;
-exports.ContextMenuItem = ContextMenuItem;
-exports.Countdown = Countdown$1;
-exports.DropDown = DropDown;
-exports.Field = Field;
-exports.Info = Info$1;
-exports.RadioButton = RadioButton;
-exports.TextInput = TextInput;
-exports.SafeLink = SafeLink;
-exports.SidePanel = SidePanel;
-exports.SidePanelSeparator = SidePanelSeparator;
-exports.SidePanelSplit = SidePanelSplit;
-exports.RadioGroup = RadioGroup;
-exports.RadioList = RadioList;
-exports.Table = Table;
-exports.TableCell = TableCell;
-exports.TableHeader = TableHeader;
-exports.TableRow = StyledTableRow;
-exports.Text = TypedText;
-exports.Card = StyledCard;
-exports.EmptyStateCard = EmptyStateCard;
-exports.AppBar = AppBar;
-exports.AragonApp = AragonApp;
 exports.IconAdd = Add;
 exports.IconApps = Apps;
 exports.IconBlank = Blank;
@@ -8113,8 +13266,42 @@ exports.formatIntegerRange = formatIntegerRange;
 exports.font = font;
 exports.grid = grid;
 exports.spring = spring;
+exports.springs = springs;
 exports.breakpoint = breakpoint;
 exports.BreakPoint = BreakPoint;
 exports.unselectable = unselectable;
 exports.observe = observe;
+exports.PublicUrl = PublicUrl;
+exports.Redraw = Redraw;
+exports.RedrawFromDate = RedrawFromDate;
+exports.AppBar = AppBar;
+exports.AppView = AppView;
+exports.AragonApp = AragonApp;
+exports.Badge = Badge;
+exports.BadgeNumber = BadgeNumber;
+exports.BaseStyles = BaseStyles$1;
+exports.Button = Button;
+exports.Card = StyledCard;
+exports.CircleGraph = CircleGraph;
+exports.ContextMenu = ContextMenu;
+exports.ContextMenuItem = ContextMenuItem;
+exports.Countdown = Countdown;
+exports.DropDown = DropDown;
+exports.EmptyStateCard = EmptyStateCard;
+exports.Field = Field;
+exports.Info = Info$1;
+exports.RadioButton = RadioButton;
+exports.RadioGroup = RadioGroup;
+exports.RadioList = RadioList;
+exports.SafeLink = SafeLink;
+exports.SidePanel = SidePanel;
+exports.SidePanelSeparator = SidePanelSeparator;
+exports.SidePanelSplit = SidePanelSplit;
+exports.Slider = Slider;
+exports.Table = Table;
+exports.TableCell = TableCell;
+exports.TableHeader = TableHeader;
+exports.TableRow = StyledTableRow;
+exports.Text = Text;
+exports.TextInput = TextInput;
 //# sourceMappingURL=index.cjs.js.map
