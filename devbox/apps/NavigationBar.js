@@ -4,6 +4,7 @@ import {
   AppBar,
   AppView,
   AragonApp,
+  Badge,
   Button,
   NavigationBar,
   SidePanel,
@@ -14,20 +15,31 @@ class App extends React.Component {
   state = {
     items: ['Level 1'],
   }
+  addLevel(items) {
+    const label = `Level ${items.length + 1}`
+    return [
+      ...items,
+      items.length === 1 ? (
+        <span style={{ display: 'flex', alignItems: 'center' }}>
+          <span style={{ marginRight: '20px' }}>{label}</span>
+          <Badge.App>ANT</Badge.App>
+        </span>
+      ) : (
+        label
+      ),
+    ]
+  }
+  removeLevel(items) {
+    return items.length > 1 ? items.slice(0, -1) : items
+  }
   reset = () => {
-    this.setState(({ items }) => ({
-      items: ['Level 1'],
-    }))
+    this.setState(({ items }) => ({ items: ['Level 1'] }))
   }
   forward = () => {
-    this.setState(({ items }) => ({
-      items: [...items, 'Level ' + (items.length + 1)],
-    }))
+    this.setState(({ items }) => ({ items: this.addLevel(items) }))
   }
   backward = () => {
-    this.setState(({ items }) => ({
-      items: items.length > 1 ? items.slice(0, -1) : items,
-    }))
+    this.setState(({ items }) => ({ items: this.removeLevel(items) }))
   }
   render() {
     const { items } = this.state
