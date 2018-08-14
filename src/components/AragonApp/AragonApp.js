@@ -4,6 +4,7 @@ import styled, { css } from 'styled-components'
 import BaseStyles from '../BaseStyles/BaseStyles'
 import { theme } from '../../theme'
 import { PublicUrl } from '../../providers/PublicUrl'
+import { ensureSlash } from '../../utils/url'
 import logo from './assets/logo-background.svg'
 
 const StyledAragonApp = styled.main`
@@ -33,7 +34,7 @@ class AragonApp extends React.Component {
   static Styled = StyledAragonApp
 
   getChildContext() {
-    return { publicUrl: this.props.publicUrl }
+    return { publicUrl: ensureSlash(this.props.publicUrl) }
   }
 
   render() {
