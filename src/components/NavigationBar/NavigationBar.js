@@ -20,6 +20,9 @@ class NavigationBar extends React.Component {
   state = {
     cachedItems: null,
     direction: -1,
+
+    // only animate after the first rendering
+    animate: false,
   }
   static getDerivedStateFromProps(props, state) {
     const updatedState = { cachedItems: props.items }
@@ -31,10 +34,12 @@ class NavigationBar extends React.Component {
       direction: state.cachedItems.length > props.items.length ? 1 : -1,
     }
   }
+  componentDidMount() {
+    this.setState({ animate: true })
+  }
   render() {
     const { onBack, items } = this.props
-    const tokenSymbol = 'ANT'
-    const view = 'survey'
+    const { animate } = this.state
     const displayedItems = items
       .map((node, index) => ({ node, index }))
       .slice(-1)
@@ -51,6 +56,7 @@ class NavigationBar extends React.Component {
           from={{ opacity: 0, position: this.state.direction * -1 }}
           enter={{ opacity: 1, position: 0 }}
           leave={{ opacity: 0, position: this.state.direction }}
+          immediate={!animate}
           native
         >
           {displayedItems.map(item => styles => (
