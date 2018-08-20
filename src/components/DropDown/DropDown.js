@@ -33,7 +33,6 @@ const DropDownItems = styled.div`
   display: ${({ opened }) => (opened ? 'block' : 'none')};
   min-width: ${({ wide }) => (wide ? '100%' : '0')};
   padding: 8px 0;
-  position: absolute;
   z-index: ${({ opened }) => (opened ? '2' : '1')};
   top: calc(100% - 1px);
   color: ${textPrimary};
