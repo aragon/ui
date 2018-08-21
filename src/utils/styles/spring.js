@@ -17,6 +17,9 @@ export const springs = {
   slow: { tension: 150, friction: 18 },
   normal: { tension: 190, friction: 22 },
   fast: { tension: 220, friction: 24 },
+
+  // Specific springs
+  slider: { tension: 400, friction: 28 },
 }
 
 // Convert to react-motion springs:
