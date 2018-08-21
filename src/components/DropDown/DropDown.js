@@ -1,10 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { Motion, spring } from 'react-motion'
+import { Spring, animated } from 'react-spring'
 import ClickOutHandler from 'react-onclickout'
 import { theme } from '../../theme'
-import { spring as springConf, unselectable } from '../../utils/styles'
+import { springs, unselectable } from '../../utils/styles'
 import { lerp } from '../../utils/math'
 import { PublicUrl } from '../../providers/PublicUrl'
 import DropDownItem from './DropDownItem'
@@ -29,7 +29,7 @@ const StyledDropDown = styled.div`
   }
 `
 
-const DropDownItems = styled.div`
+const DropDownItems = styled(animated.div)`
   display: ${({ opened }) => (opened ? 'block' : 'none')};
   min-width: ${({ wide }) => (wide ? '100%' : '0')};
   padding: 8px 0;
@@ -104,21 +104,27 @@ class DropDown extends React.Component {
           >
             {activeItem}
           </DropDownActiveItem>
-          <Motion
-            style={{
-              openProgress: spring(Number(opened), springConf('normal')),
-              closeProgress: spring(Number(opened), springConf('fast')),
+          <Spring
+            config={springs.normal}
+            to={{
+              openProgress: Number(opened),
+              closeProgress: Number(opened),
             }}
+            native
           >
             {({ openProgress, closeProgress }) => {
-              const scale = opened ? lerp(openProgress, 0.98, 1) : 1
+              const transform = openProgress.interpolate((t) => {
+                const scale = opened ? lerp(t, 0.98, 1) : 1
+                return `scale(${scale},${scale})`
+              })
+              
               return (
                 <DropDownItems
                   role="listbox"
-                  opened={openProgress > 0}
+                  opened={opened}
                   wide={wide}
                   style={{
-                    transform: `scale(${scale},${scale})`,
+                    transform,
                     opacity: opened ? openProgress : closeProgress,
                   }}
                 >
@@ -138,7 +144,7 @@ class DropDown extends React.Component {
                 </DropDownItems>
               )
             }}
-          </Motion>
+          </Spring>
         </StyledDropDown>
       </ClickOutHandler>
     )
