@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { Motion, spring } from 'react-motion'
-import { spring as springConf } from '../../utils/styles'
+import { Spring, animated } from 'react-spring'
+import { springs } from '../../utils/styles'
 
 const BORDER_WIDTH = 4
 
@@ -14,9 +14,12 @@ const CircleGraph = ({ value, label, size }) => {
   const length = Math.PI * 2 * (size - BORDER_WIDTH)
   const radius = (size - BORDER_WIDTH) / 2
   return (
-    <Motion
-      defaultStyle={{ progressValue: 0 }}
-      style={{ progressValue: spring(value, springConf('slow')) }}
+    <Spring
+      config={springs.lazy}
+      to={{
+        progressValue: value,
+      }}
+      native
     >
       {({ progressValue }) => (
         <svg
@@ -32,16 +35,16 @@ const CircleGraph = ({ value, label, size }) => {
             r={radius}
             style={{
               strokeDasharray: length,
-              strokeDashoffset: length - length * progressValue / 2,
+              strokeDashoffset: progressValue.interpolate(t => length - length * t / 2),
               strokeWidth: BORDER_WIDTH,
             }}
           />
           <Label x="50%" y="50%">
-            {label(Math.min(value, Math.max(0, progressValue)))}
+            {label(Math.min(value, Math.max(0, value)))}
           </Label>
         </svg>
       )}
-    </Motion>
+    </Spring>
   )
 }
 
@@ -63,7 +66,7 @@ const CircleBase = styled.circle`
   opacity: 0.3;
 `
 
-const CircleValue = styled.circle`
+const CircleValue = styled(animated.circle)`
   fill: none;
   transform: rotate(270deg);
   transform-origin: 50% 50%;
