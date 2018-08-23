@@ -1,4 +1,4 @@
-# Table
+# Slider
 
 A slider component.
 

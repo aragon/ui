@@ -31,10 +31,8 @@ class ContextMenu extends React.Component {
     return (
       <ClickOutHandler onClickOut={this.handleClose}>
         <Spring
-          config={springs.slow}
-          to={{
-            openProgress: Number(opened),
-          }}
+          config={springs.smooth}
+          to={{ openProgress: Number(opened) }}
           native
         >
           {({ openProgress }) => (

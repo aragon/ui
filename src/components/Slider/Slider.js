@@ -22,7 +22,6 @@ class Slider extends React.Component {
   }
   state = {
     pressed: false,
-    animate: true,
   }
   componentWillUnmount() {
     this.dragStop()
@@ -56,7 +55,7 @@ class Slider extends React.Component {
   dragStart = event => {
     this.dragStop()
     const clientX = this.clientXFromEvent(event)
-    this.setState({ pressed: true, animate: true }, () => {
+    this.setState({ pressed: true }, () => {
       this.updateValueFromClientX(clientX)
     })
     document.addEventListener('mouseup', this.dragStop)
@@ -65,7 +64,7 @@ class Slider extends React.Component {
     document.addEventListener('touchmove', this.dragMove)
   }
   dragStop = () => {
-    this.setState({ pressed: false, animate: true })
+    this.setState({ pressed: false })
     document.removeEventListener('mouseup', this.dragStop)
     document.removeEventListener('touchend', this.dragStop)
     document.removeEventListener('mousemove', this.dragMove)
@@ -75,33 +74,43 @@ class Slider extends React.Component {
     if (!this.state.pressed) {
       return
     }
-    this.setState({ animate: false })
+
     this.updateValueFromClientX(this.clientXFromEvent(event))
   }
   getHandleStyles(pressProgress) {
     return {
-      transform: pressProgress.interpolate(t => `translate3d(0, calc(${t}px - 50%), 0)`),
-      boxShadow: pressProgress.interpolate(t => `0 4px 8px 0 rgba(0, 0, 0, ${0.13 * (1 - t)})`),
-      background: pressProgress.interpolate(t => `hsl(0, 0%, ${100 * (1 - t * 0.01)}%)`),
+      transform: pressProgress.interpolate(
+        t => `translate3d(0, calc(${t}px - 50%), 0)`
+      ),
+      boxShadow: pressProgress.interpolate(
+        t => `0 4px 8px 0 rgba(0, 0, 0, ${0.13 * (1 - t)})`
+      ),
+      background: pressProgress.interpolate(
+        t => `hsl(0, 0%, ${100 * (1 - t * 0.01)}%)`
+      ),
     }
   }
   getHandlePositionStyles(value) {
     return {
-      transform: value.interpolate(t => `translate3d(calc(${t * 100}% + ${HANDLE_SHADOW_MARGIN}px), 0, 0)`),
+      transform: value.interpolate(
+        t => `translate3d(calc(${t * 100}% + ${HANDLE_SHADOW_MARGIN}px), 0, 0)`
+      ),
     }
   }
   getActiveBarStyles(value, pressProgress) {
     return {
       transform: value.interpolate(t => `scaleX(${t}) translateZ(0)`),
-      background: pressProgress.interpolate(t => `hsl(179, ${Math.round(76 * (1 + 0.2 * t))}%, 48%)`),
+      background: pressProgress.interpolate(
+        t => `hsl(179, ${Math.round(76 * (1 + 0.2 * t))}%, 48%)`
+      ),
     }
   }
   render() {
-    const { pressed, animate } = this.state
+    const { pressed } = this.state
     const value = Math.max(0, Math.min(1, this.props.value))
     return (
       <Spring
-        config={springs.lazy}
+        config={springs.swift}
         to={{
           pressProgress: Number(pressed),
           value,
