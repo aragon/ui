@@ -32,7 +32,7 @@ class Redraw extends React.Component {
     const now = Date.now()
     const delta = now - lastDraw
     if (lastDraw === -1 || delta > interval) {
-      this.setState({ lastDraw: now - delta % interval })
+      this.setState({ lastDraw: now - (delta % interval) })
     }
   }
   render() {

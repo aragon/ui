@@ -39,7 +39,9 @@ class ContextMenu extends React.Component {
             <Main
               opened={opened}
               style={{
-                boxShadow: openProgress.interpolate(t => `0 4px 4px rgba(0, 0, 0, ${t * 0.03})`),
+                boxShadow: openProgress.interpolate(
+                  t => `0 4px 4px rgba(0, 0, 0, ${t * 0.03})`
+                ),
               }}
             >
               <BaseButton onClick={this.handleBaseButtonClick} opened={opened}>
@@ -54,7 +56,9 @@ class ContextMenu extends React.Component {
                   <animated.div
                     style={{
                       color: theme.textTertiary,
-                      transform: openProgress.interpolate(t => `rotate(${t * 180}deg)`),
+                      transform: openProgress.interpolate(
+                        t => `rotate(${t * 180}deg)`
+                      ),
                     }}
                   >
                     <ArrowDown />
@@ -66,7 +70,9 @@ class ContextMenu extends React.Component {
                 onClick={this.handleClose}
                 style={{
                   opacity: openProgress,
-                  boxShadow: openProgress.interpolate(t => `0 4px 4px rgba(0, 0, 0, ${t * 0.03})`),
+                  boxShadow: openProgress.interpolate(
+                    t => `0 4px 4px rgba(0, 0, 0, ${t * 0.03})`
+                  ),
                 }}
               >
                 {children}

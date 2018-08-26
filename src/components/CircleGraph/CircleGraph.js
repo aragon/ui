@@ -1,7 +1,7 @@
-import React from "react"
-import PropTypes from "prop-types"
-import styled from "styled-components"
-import { Spring, animated } from "react-spring"
+import React from 'react'
+import PropTypes from 'prop-types'
+import styled from 'styled-components'
+import { Spring, animated } from 'react-spring'
 
 const BORDER_WIDTH = 4
 
@@ -17,9 +17,9 @@ const CircleGraph = ({ value, label, size }) => {
       {({ progressValue }) => (
         <Main
           style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
             width: `${size}px`,
             height: `${size}px`,
           }}
