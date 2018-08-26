@@ -28,6 +28,7 @@ class Slider extends React.Component {
   }
   handleRef = element => {
     this._mainElement = element
+    this._document = element.ownerDocument
   }
   getRect = () => {
     const now = Date.now()
@@ -58,17 +59,17 @@ class Slider extends React.Component {
     this.setState({ pressed: true }, () => {
       this.updateValueFromClientX(clientX)
     })
-    document.addEventListener('mouseup', this.dragStop)
-    document.addEventListener('touchend', this.dragStop)
-    document.addEventListener('mousemove', this.dragMove)
-    document.addEventListener('touchmove', this.dragMove)
+    this._document.addEventListener('mouseup', this.dragStop)
+    this._document.addEventListener('touchend', this.dragStop)
+    this._document.addEventListener('mousemove', this.dragMove)
+    this._document.addEventListener('touchmove', this.dragMove)
   }
   dragStop = () => {
     this.setState({ pressed: false })
-    document.removeEventListener('mouseup', this.dragStop)
-    document.removeEventListener('touchend', this.dragStop)
-    document.removeEventListener('mousemove', this.dragMove)
-    document.removeEventListener('touchmove', this.dragMove)
+    this._document.removeEventListener('mouseup', this.dragStop)
+    this._document.removeEventListener('touchend', this.dragStop)
+    this._document.removeEventListener('mousemove', this.dragMove)
+    this._document.removeEventListener('touchmove', this.dragMove)
   }
   dragMove = event => {
     if (!this.state.pressed) {
