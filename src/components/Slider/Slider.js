@@ -28,7 +28,7 @@ class Slider extends React.Component {
   }
   handleRef = element => {
     this._mainElement = element
-    this._document = element.ownerDocument
+    this._document = element && element.ownerDocument
   }
   getRect = () => {
     const now = Date.now()
