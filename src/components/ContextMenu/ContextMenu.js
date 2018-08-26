@@ -1,10 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { Motion, spring } from 'react-motion'
+import { Spring, animated } from 'react-spring'
 import ClickOutHandler from 'react-onclickout'
 import { theme } from '../../theme'
-import { unselectable, spring as springConf } from '../../utils/styles'
+import { springs, unselectable } from '../../utils/styles'
 
 import Ellipsis from '../../icons/components/Ellipsis'
 import ArrowDown from '../../icons/components/ArrowDown'
@@ -30,16 +30,18 @@ class ContextMenu extends React.Component {
     const { children } = this.props
     return (
       <ClickOutHandler onClickOut={this.handleClose}>
-        <Motion
-          style={{
-            openProgress: spring(Number(opened), springConf('fast')),
-          }}
+        <Spring
+          config={springs.smooth}
+          to={{ openProgress: Number(opened) }}
+          native
         >
           {({ openProgress }) => (
             <Main
               opened={opened}
               style={{
-                boxShadow: `0 4px 4px rgba(0, 0, 0, ${openProgress * 0.03})`,
+                boxShadow: openProgress.interpolate(
+                  t => `0 4px 4px rgba(0, 0, 0, ${t * 0.03})`
+                ),
               }}
             >
               <BaseButton onClick={this.handleBaseButtonClick} opened={opened}>
@@ -51,12 +53,16 @@ class ContextMenu extends React.Component {
                   />
                 </span>
                 <span>
-                  <ArrowDown
+                  <animated.div
                     style={{
                       color: theme.textTertiary,
-                      transform: `rotate(${openProgress * 180}deg)`,
+                      transform: openProgress.interpolate(
+                        t => `rotate(${t * 180}deg)`
+                      ),
                     }}
-                  />
+                  >
+                    <ArrowDown />
+                  </animated.div>
                 </span>
               </BaseButton>
               <Popup
@@ -64,20 +70,22 @@ class ContextMenu extends React.Component {
                 onClick={this.handleClose}
                 style={{
                   opacity: openProgress,
-                  boxShadow: `0 4px 4px rgba(0, 0, 0, ${openProgress * 0.03})`,
+                  boxShadow: openProgress.interpolate(
+                    t => `0 4px 4px rgba(0, 0, 0, ${t * 0.03})`
+                  ),
                 }}
               >
                 {children}
               </Popup>
             </Main>
           )}
-        </Motion>
+        </Spring>
       </ClickOutHandler>
     )
   }
 }
 
-const Main = styled.div`
+const Main = styled(animated.div)`
   position: relative;
   z-index: ${({ opened }) => (opened ? '2' : '1')};
   width: ${BASE_WIDTH}px;
@@ -123,7 +131,7 @@ const BaseButton = styled.div`
   }
 `
 
-const Popup = styled.div`
+const Popup = styled(animated.div)`
   display: ${({ opened }) => (opened ? 'block' : 'none')};
   overflow: hidden;
   position: absolute;

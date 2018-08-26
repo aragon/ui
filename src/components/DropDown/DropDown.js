@@ -1,11 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { Motion, spring } from 'react-motion'
+import { Transition, animated } from 'react-spring'
 import ClickOutHandler from 'react-onclickout'
 import { theme } from '../../theme'
-import { spring as springConf, unselectable } from '../../utils/styles'
-import { lerp } from '../../utils/math'
+import { springs, unselectable } from '../../utils/styles'
 import { PublicUrl } from '../../providers/PublicUrl'
 import DropDownItem from './DropDownItem'
 
@@ -29,19 +28,26 @@ const StyledDropDown = styled.div`
   }
 `
 
-const DropDownItems = styled.div`
-  display: ${({ opened }) => (opened ? 'block' : 'none')};
-  min-width: ${({ wide }) => (wide ? '100%' : '0')};
-  padding: 8px 0;
+const DropDownItems = styled(animated.div)`
   position: absolute;
-  z-index: ${({ opened }) => (opened ? '2' : '1')};
+  z-index: 2;
   top: calc(100% - 1px);
+  padding: 8px 0;
   color: ${textPrimary};
   background: ${contentBackground};
   border: 1px solid ${contentBorder};
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.06);
   border-radius: 3px;
   list-style: none;
+`
+
+const BlockingLayer = styled(animated.div)`
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 `
 
 const DropDownActiveItem = styled(PublicUrl.hocWrap(DropDownItem))`
@@ -105,41 +111,47 @@ class DropDown extends React.Component {
           >
             {activeItem}
           </DropDownActiveItem>
-          <Motion
-            style={{
-              openProgress: spring(Number(opened), springConf('normal')),
-              closeProgress: spring(Number(opened), springConf('fast')),
-            }}
+          <Transition
+            config={springs.normal}
+            from={{ scale: 0.98, opacity: 0, enabled: 1 }}
+            enter={{ scale: 1, opacity: 1, enabled: 1 }}
+            leave={{ scale: 1, opacity: 0, enabled: 0 }}
+            native
           >
-            {({ openProgress, closeProgress }) => {
-              const scale = opened ? lerp(openProgress, 0.98, 1) : 1
-              return (
-                <DropDownItems
-                  role="listbox"
-                  opened={openProgress > 0}
-                  wide={wide}
-                  style={{
-                    transform: `scale(${scale},${scale})`,
-                    opacity: opened ? openProgress : closeProgress,
-                  }}
-                >
-                  {items.length
-                    ? items.map((item, i) => (
-                        <DropDownItem
-                          role="option"
-                          key={i}
-                          index={i}
-                          active={i === active}
-                          onActivate={this.handleItemActivate}
-                        >
-                          {item}
-                        </DropDownItem>
-                      ))
-                    : NON_BREAKING_SPACE}
-                </DropDownItems>
-              )
-            }}
-          </Motion>
+            {opened
+              ? ({ scale, opacity, enabled }) => (
+                  <DropDownItems
+                    role="listbox"
+                    style={{
+                      transform: scale.interpolate(t => `scale(${t},${t})`),
+                      minWidth: wide ? '100%' : '0',
+                      opacity,
+                    }}
+                  >
+                    {items.length
+                      ? items.map((item, i) => (
+                          <DropDownItem
+                            role="option"
+                            key={i}
+                            index={i}
+                            active={i === active}
+                            onActivate={this.handleItemActivate}
+                          >
+                            {item}
+                          </DropDownItem>
+                        ))
+                      : NON_BREAKING_SPACE}
+                    <BlockingLayer
+                      style={{
+                        display: enabled.interpolate(
+                          t => (t === 1 ? 'none' : 'block')
+                        ),
+                      }}
+                    />
+                  </DropDownItems>
+                )
+              : null}
+          </Transition>
         </StyledDropDown>
       </ClickOutHandler>
     )
