@@ -69,7 +69,7 @@ const DropDownActiveItem = styled(PublicUrl.hocWrap(DropDownItem))`
 
 class DropDown extends React.Component {
   static propTypes = {
-    items: PropTypes.arrayOf(PropTypes.string),
+    items: PropTypes.arrayOf(PropTypes.node),
     wide: PropTypes.bool,
     active: PropTypes.number,
     onChange: PropTypes.func,
@@ -112,7 +112,7 @@ class DropDown extends React.Component {
             {activeItem}
           </DropDownActiveItem>
           <Transition
-            config={springs.normal}
+            config={springs.swift}
             from={{ scale: 0.98, opacity: 0, enabled: 1 }}
             enter={{ scale: 1, opacity: 1, enabled: 1 }}
             leave={{ scale: 1, opacity: 0, enabled: 0 }}
@@ -123,9 +123,9 @@ class DropDown extends React.Component {
                   <DropDownItems
                     role="listbox"
                     style={{
-                      transform: scale.interpolate(t => `scale(${t},${t})`),
-                      minWidth: wide ? '100%' : '0',
                       opacity,
+                      transform: scale.interpolate(t => `scale3d(${t},${t},1)`),
+                      minWidth: wide ? '100%' : '0',
                     }}
                   >
                     {items.length
