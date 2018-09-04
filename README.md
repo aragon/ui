@@ -45,7 +45,7 @@ const App = () => (
 
 *Your project is now ready to use Aragon UI. 💫*
 
-Open https://ui.aragon.one/ for a list of the available components and how to use them.
+Open https://ui.aragon.org/ for a list of the available components and how to use them.
 
 ### Assets Synchronization (optional)
 

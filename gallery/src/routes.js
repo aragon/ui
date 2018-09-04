@@ -15,6 +15,7 @@ import PageRadioList from './pages/PageRadioList'
 import PageTextInput from './pages/PageTextInput'
 import PageField from './pages/PageField'
 import PageSafeLink from './pages/PageSafeLink'
+import PageSlider from './pages/PageSlider'
 
 // Other components
 import PageBadge from './pages/PageBadge'
@@ -65,6 +66,7 @@ export const PAGE_GROUPS = [
       [PageTextInput, 'TextInput', '/text-input'],
       [PageField, 'Field', '/field'],
       [PageSafeLink, 'SafeLink', '/safe-link'],
+      [PageSlider, 'Slider', '/slider'],
     ].map(preparePage),
   },
   {

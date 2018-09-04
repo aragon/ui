@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { Motion, spring } from 'react-motion'
-import { unselectable } from '../../utils'
+import { Spring, animated } from 'react-spring'
+import { springs, unselectable } from '../../utils'
 
 const BAR_HEIGHT = 6
 const HANDLE_SIZE = 24
@@ -10,8 +10,6 @@ const HANDLE_SHADOW_MARGIN = 15
 const PADDING = 5
 const MIN_WIDTH = HANDLE_SIZE * 10
 const HEIGHT = Math.max(HANDLE_SIZE, BAR_HEIGHT) + PADDING * 2
-
-const SPRING = { stiffness: 400, damping: 28, precision: 0.01 }
 
 class Slider extends React.Component {
   static propTypes = {
@@ -24,13 +22,13 @@ class Slider extends React.Component {
   }
   state = {
     pressed: false,
-    animate: true,
   }
   componentWillUnmount() {
     this.dragStop()
   }
   handleRef = element => {
     this._mainElement = element
+    this._document = element && element.ownerDocument
   }
   getRect = () => {
     const now = Date.now()
@@ -58,61 +56,67 @@ class Slider extends React.Component {
   dragStart = event => {
     this.dragStop()
     const clientX = this.clientXFromEvent(event)
-    this.setState({ pressed: true, animate: true }, () => {
+    this.setState({ pressed: true }, () => {
       this.updateValueFromClientX(clientX)
     })
-    document.addEventListener('mouseup', this.dragStop)
-    document.addEventListener('touchend', this.dragStop)
-    document.addEventListener('mousemove', this.dragMove)
-    document.addEventListener('touchmove', this.dragMove)
+    this._document.addEventListener('mouseup', this.dragStop)
+    this._document.addEventListener('touchend', this.dragStop)
+    this._document.addEventListener('mousemove', this.dragMove)
+    this._document.addEventListener('touchmove', this.dragMove)
   }
   dragStop = () => {
-    this.setState({ pressed: false, animate: true })
-    document.removeEventListener('mouseup', this.dragStop)
-    document.removeEventListener('touchend', this.dragStop)
-    document.removeEventListener('mousemove', this.dragMove)
-    document.removeEventListener('touchmove', this.dragMove)
+    this.setState({ pressed: false })
+    this._document.removeEventListener('mouseup', this.dragStop)
+    this._document.removeEventListener('touchend', this.dragStop)
+    this._document.removeEventListener('mousemove', this.dragMove)
+    this._document.removeEventListener('touchmove', this.dragMove)
   }
   dragMove = event => {
     if (!this.state.pressed) {
       return
     }
-    this.setState({ animate: false })
+
     this.updateValueFromClientX(this.clientXFromEvent(event))
   }
-  getHandleStyles(value, pressProgress) {
-    const shadowOpacity = 0.13 * (1 - pressProgress)
-    const lightness = 100 * (1 - pressProgress * 0.01)
+  getHandleStyles(pressProgress) {
     return {
-      transform: `translate3d(0, calc(${pressProgress}px - 50%), 0)`,
-      boxShadow: ` 0 4px 8px 0 rgba(0, 0, 0, ${shadowOpacity})`,
-      background: `hsl(0, 0%, ${lightness}%)`,
+      transform: pressProgress.interpolate(
+        t => `translate3d(0, calc(${t}px - 50%), 0)`
+      ),
+      boxShadow: pressProgress.interpolate(
+        t => `0 4px 8px 0 rgba(0, 0, 0, ${0.13 * (1 - t)})`
+      ),
+      background: pressProgress.interpolate(
+        t => `hsl(0, 0%, ${100 * (1 - t * 0.01)}%)`
+      ),
     }
   }
-  getHandlePositionStyles(value, progress) {
+  getHandlePositionStyles(value) {
     return {
-      transform: `
-        translate3d(calc(${value * 100}% + ${HANDLE_SHADOW_MARGIN}px), 0, 0)
-      `,
+      transform: value.interpolate(
+        t => `translate3d(calc(${t * 100}% + ${HANDLE_SHADOW_MARGIN}px), 0, 0)`
+      ),
     }
   }
   getActiveBarStyles(value, pressProgress) {
-    const saturationDiff = 1 + 0.2 * pressProgress
     return {
-      transform: `scaleX(${value}) translateZ(0)`,
-      background: `hsl(179, ${Math.round(76 * saturationDiff)}%, 48%)`,
+      transform: value.interpolate(t => `scaleX(${t}) translateZ(0)`),
+      background: pressProgress.interpolate(
+        t => `hsl(179, ${Math.round(76 * (1 + 0.2 * t))}%, 48%)`
+      ),
     }
   }
   render() {
-    const { pressed, animate } = this.state
+    const { pressed } = this.state
     const value = Math.max(0, Math.min(1, this.props.value))
     return (
-      <Motion
-        defaultStyles={{ pressProgress: 0, value: 0 }}
-        style={{
-          value: animate ? spring(value, SPRING) : value,
-          pressProgress: spring(Number(pressed), SPRING),
+      <Spring
+        config={springs.swift}
+        to={{
+          pressProgress: Number(pressed),
+          value,
         }}
+        native
       >
         {({ value, pressProgress }) => (
           <Main>
@@ -135,14 +139,14 @@ class Slider extends React.Component {
                 >
                   <Handle
                     pressed={pressed}
-                    style={this.getHandleStyles(value, pressProgress)}
+                    style={this.getHandleStyles(pressProgress)}
                   />
                 </HandlePosition>
               </HandleClip>
             </Area>
           </Main>
         )}
-      </Motion>
+      </Spring>
     )
   }
 }
@@ -159,7 +163,7 @@ const Area = styled.div`
   cursor: pointer;
 `
 
-const Bars = styled.div`
+const Bars = styled(animated.div)`
   position: absolute;
   left: 0;
   right: 0;
@@ -170,7 +174,7 @@ const Bars = styled.div`
   height: ${BAR_HEIGHT}px;
 `
 
-const Bar = styled.div`
+const Bar = styled(animated.div)`
   position: absolute;
   top: 0;
   left: 0;
@@ -198,13 +202,13 @@ const HandleClip = styled.div`
   );
 `
 
-const HandlePosition = styled.div`
+const HandlePosition = styled(animated.div)`
   width: calc(100% - ${HANDLE_SIZE + HANDLE_SHADOW_MARGIN * 2}px);
   height: 100%;
   transform-origin: 50% 50%;
 `
 
-const Handle = styled.div`
+const Handle = styled(animated.div)`
   position: absolute;
   top: 50%;
   left: 0;

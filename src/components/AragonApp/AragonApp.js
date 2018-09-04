@@ -4,6 +4,7 @@ import styled, { css } from 'styled-components'
 import BaseStyles from '../BaseStyles/BaseStyles'
 import { theme } from '../../theme'
 import { PublicUrl } from '../../providers/PublicUrl'
+import { ensureTrailingSlash } from '../../utils/url'
 import logo from './assets/logo-background.svg'
 
 const StyledAragonApp = styled.main`
@@ -33,7 +34,7 @@ class AragonApp extends React.Component {
   static Styled = StyledAragonApp
 
   getChildContext() {
-    return { publicUrl: this.props.publicUrl }
+    return { publicUrl: ensureTrailingSlash(this.props.publicUrl) }
   }
 
   render() {
@@ -46,7 +47,7 @@ class AragonApp extends React.Component {
     } = this.props
     const styledProps = { backgroundLogo, className, publicUrl }
     return (
-      <PublicUrl.Provider url={publicUrl}>
+      <PublicUrl.Provider url={ensureTrailingSlash(publicUrl)}>
         <StyledAragonApp {...styledProps}>
           <BaseStyles legacyFonts={supportLegacyAgents} />
           {children}
