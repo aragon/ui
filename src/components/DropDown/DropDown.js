@@ -69,7 +69,7 @@ const DropDownActiveItem = styled(PublicUrl.hocWrap(DropDownItem))`
 
 class DropDown extends React.Component {
   static propTypes = {
-    items: PropTypes.arrayOf(PropTypes.string),
+    items: PropTypes.arrayOf(PropTypes.node),
     wide: PropTypes.bool,
     active: PropTypes.number,
     onChange: PropTypes.func,
