@@ -22,7 +22,7 @@ const StyledTextBlock = styled(Text.Block)`
 
 const Field = ({ children, label, ...props }) => {
   const isRequired = React.Children.toArray(children).some(
-    ({ props: childProps }) => childProps.required
+    ({ props }) => props && props.required
   )
   return (
     <StyledField {...props}>
