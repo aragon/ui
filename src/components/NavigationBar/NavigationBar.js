@@ -99,10 +99,6 @@ const Container = styled.span`
   height: 100%;
 `
 
-const SpacedBadge = styled(Badge)`
-  margin-left: 10px;
-`
-
 const Title = styled.span`
   display: flex;
   align-items: center;
