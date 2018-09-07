@@ -42,15 +42,17 @@ const StyledAppBarTitle = PublicUrl.hocWrap(styled.h1`
 
 const AppBar = ({ children, endContent, title, onTitleClick, ...props }) => (
   <StyledAppBar {...props}>
-    <StyledAppBarStart>
-      <StyledAppBarTitle
-        chevron={!!children}
-        clickable={!!onTitleClick}
-        onClick={onTitleClick}
-      >
-        <Text size="xxlarge">{title}</Text>
-      </StyledAppBarTitle>
-    </StyledAppBarStart>
+    {title && (
+      <StyledAppBarStart>
+        <StyledAppBarTitle
+          chevron={!!children}
+          clickable={!!onTitleClick}
+          onClick={onTitleClick}
+        >
+          <Text size="xxlarge">{title}</Text>
+        </StyledAppBarTitle>
+      </StyledAppBarStart>
+    )}
     {children}
     {endContent && <StyledAppBarEnd>{endContent}</StyledAppBarEnd>}
   </StyledAppBar>
