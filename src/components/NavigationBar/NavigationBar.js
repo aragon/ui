@@ -91,11 +91,11 @@ const Item = ({ opacity, position, displayBack, onBack, label }) => (
 )
 
 Item.propTypes = {
-  opacity: PropTypes.number,
-  position: PropTypes.number,
+  opacity: PropTypes.object,
+  position: PropTypes.object,
   displayBack: PropTypes.bool,
   onBack: PropTypes.func,
-  label: PropTypes.string,
+  label: PropTypes.node,
 }
 
 const Container = styled.span`
