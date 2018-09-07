@@ -2,9 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { Transition, animated } from 'react-spring'
-import AppBar from '../AragonApp/AppBar'
-import Badge from '../Badge/Badge'
-import Button from '../Button/Button'
 import { springs } from '../../utils/styles/spring'
 import LeftIcon from './LeftIcon'
 
@@ -92,6 +89,14 @@ const Item = ({ opacity, position, displayBack, onBack, label }) => (
     </Title>
   </animated.span>
 )
+
+Item.propTypes = {
+  opacity: PropTypes.number,
+  position: PropTypes.number,
+  displayBack: PropTypes.bool,
+  onBack: PropTypes.func,
+  label: PropTypes.string,
+}
 
 const Container = styled.span`
   display: flex;
