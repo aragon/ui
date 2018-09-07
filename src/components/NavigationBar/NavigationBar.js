@@ -124,11 +124,11 @@ const BackButton = styled.span`
   height: 63px;
   padding: 0 30px;
   cursor: pointer;
-  svg path {
-    stroke: hsl(179, 76%, 48%);
+  svg {
+    color: hsl(179, 76%, 48%);
   }
-  :active svg path {
-    stroke: hsl(179, 76%, 63%);
+  :active svg {
+    color: hsl(179, 76%, 63%);
   }
   & + ${Label} {
     padding-left: 0;
