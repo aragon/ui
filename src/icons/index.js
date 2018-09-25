@@ -2,6 +2,7 @@
 
 export { default as IconAdd } from './components/Add'
 export { default as IconApps } from './components/Apps'
+export { default as IconAttention } from './components/Attention'
 export { default as IconBlank } from './components/Blank'
 export { default as IconCheck } from './components/Check'
 export { default as IconCross } from './components/Cross'
