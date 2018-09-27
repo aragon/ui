@@ -6,7 +6,7 @@ import Button from '../Button/Button'
 import Text from '../Text/Text'
 import Card from './Card'
 
-const StyledCard = Card.extend`
+const StyledCard = styled(Card)`
   display: flex;
   padding: 40px 60px;
   align-items: center;
