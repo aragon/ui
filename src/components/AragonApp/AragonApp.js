@@ -48,10 +48,8 @@ class AragonApp extends React.Component {
     const styledProps = { backgroundLogo, className, publicUrl }
     return (
       <PublicUrl.Provider url={ensureTrailingSlash(publicUrl)}>
-        <StyledAragonApp {...styledProps}>
-          <BaseStyles legacyFonts={supportLegacyAgents} />
-          {children}
-        </StyledAragonApp>
+        <BaseStyles enableLegacyFonts={supportLegacyAgents} />
+        <StyledAragonApp {...styledProps}>{children}</StyledAragonApp>
       </PublicUrl.Provider>
     )
   }
