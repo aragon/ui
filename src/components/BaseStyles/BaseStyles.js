@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { injectGlobal } from 'styled-components'
+import { createGlobalStyle } from 'styled-components'
 import { theme } from '../../theme'
 import { PublicUrl } from '../../providers/PublicUrl'
 
@@ -20,12 +20,9 @@ class BaseStyles extends React.Component {
     publicUrl: '/',
     enableLegacyFonts: false,
   }
-  componentWillMount() {
-    const { publicUrl, enableLegacyFonts } = this.props
-    injectStyles(url => publicUrl + url, enableLegacyFonts)
-  }
   render() {
-    return null
+    const { publicUrl, enableLegacyFonts } = this.props
+    return injectGlobalStyles(url => publicUrl + url, enableLegacyFonts)
   }
 }
 
@@ -35,7 +32,7 @@ const fontSrc = sources =>
     .map(({ url, format }) => `url(${url}) format('${format}')`)
     .join(', ')
 
-const injectStyles = (asset, legacyFonts) => injectGlobal`
+const injectGlobalStyles = (asset, legacyFonts) => createGlobalStyle`
   @font-face {
     font-family: 'overpass';
     src: ${fontSrc([

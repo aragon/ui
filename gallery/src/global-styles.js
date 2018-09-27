@@ -1,13 +1,16 @@
-import { injectGlobal } from 'styled-components'
+import { createGlobalStyle } from 'styled-components'
 import { theme } from '@aragon/ui'
 
-const globalStyles = `
+const GlobalStyles = createGlobalStyle`
   body {
     background: linear-gradient(
       130deg,
       ${theme.mainBgGradientStart},
       ${theme.mainBgGradientEnd}
     );
+  }
+  body, html {
+    overflow: hidden;
   }
   code[class*='language-'],
   pre[class*='language-'] {
@@ -80,6 +83,4 @@ const globalStyles = `
   }
 `
 
-export default () => {
-  injectGlobal`${globalStyles}`
-}
+export default GlobalStyles
