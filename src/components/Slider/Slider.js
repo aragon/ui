@@ -121,7 +121,7 @@ class Slider extends React.Component {
         {({ value, pressProgress }) => (
           <Main>
             <Area
-              innerRef={this.handleRef}
+              ref={this.handleRef}
               onMouseDown={this.dragStart}
               onTouchStart={this.dragStart}
             >
