@@ -29,7 +29,7 @@ class AppView extends React.Component {
 
 const Main = styled.div`
   display: flex;
-  height: 100vh;
+  height: 100%;
   flex-direction: column;
   align-items: stretch;
   justify-content: stretch;
