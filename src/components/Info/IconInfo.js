@@ -9,6 +9,7 @@ import Info from './Info'
 
 const Icon = styled.span`
   margin-right: 10px;
+  display: flex;
 `
 
 const Title = styled.div`
@@ -55,6 +56,14 @@ IconInfo.propTypes = {
 
 const Action = props => <IconInfo icon={<Attention />} {...props} />
 
+const Alert = props => (
+  <IconInfo
+    background={'rgba(255, 68, 93, 0.0614)'}
+    icon={<Attention bg="rgba(255, 68, 93, 0.1)" color="rgba(255, 68, 93)" />}
+    {...props}
+  />
+)
+
 const PermissionIconInfo = styled(IconInfo)`
   ${Icon} {
     color: ${theme.infoPermissionsIcon};
@@ -69,5 +78,5 @@ const Permissions = props => (
   />
 )
 
-export { Action, Permissions }
+export { Action, Alert, Permissions }
 export default IconInfo
