@@ -1,16 +1,16 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { Text, SafeLink, Countdown, Info, theme } from '@aragon/ui'
 import { Transition, animated } from 'react-spring'
 
+import theme from '../../theme'
 import { springs } from '../../utils/styles'
 
+import { Text, SafeLink, Countdown, Info, ProgressBar } from '../index'
 import { IconClose } from '../../icons'
-import ProgressBar from '../ProgressBar/ProgressBar'
 
 const Card = styled(animated.div)`
-  background: #ffffff;
+  background: ${theme.contentBackground};
   border: 1px solid #e6e6e6;
   border-radius: 3px;
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.06);
@@ -61,13 +61,26 @@ export default class TransactionProgress extends React.Component {
   static propTypes = {
     top: PropTypes.string,
     left: PropTypes.string,
+    slow: PropTypes.bool,
+    transactionHash: PropTypes.string,
+    endTime: PropTypes.instanceOf(Date),
+    handleClose: PropTypes.func,
+    progress: PropTypes.number,
   }
 
   state = {
     opened: false,
   }
   render() {
-    const { slow, top, left, handleClose } = this.props
+    const {
+      slow,
+      top,
+      left,
+      progress,
+      endTime,
+      transactionHash,
+      handleClose,
+    } = this.props
 
     return (
       <Transition
@@ -93,20 +106,19 @@ export default class TransactionProgress extends React.Component {
                 Pending transaction
               </Text>
               <ContentWrapper>
-                <Text smallcaps={true} weight="bolder" color="#707070">
+                <Text smallcaps weight="bolder" color={theme.textSecondary}>
                   Estimated time:
                 </Text>
-                <Countdown
-                  removeDaysAndHours={true}
-                  end={new Date(Date.now() + 100000)}
-                />
+                <Countdown removeDaysAndHours end={endTime} />
               </ContentWrapper>
-              <ProgressBar color={theme.accent} progress={0.25} />
+              <ProgressBar color={theme.accent} progress={progress} />
               <FooterWrapper slow={slow}>
                 {slow && (
                   <Info.Alert>Slow transaction. Retry with more gas</Info.Alert>
                 )}
-                <Link href="https://aragon.org/">See on Etherscan</Link>
+                <Link href={`https://etherscan.io/tx/${transactionHash}`}>
+                  See on Etherscan
+                </Link>
               </FooterWrapper>
             </Wrapper>
           </Card>

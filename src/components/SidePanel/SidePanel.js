@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import React from 'react'
 import styled from 'styled-components'
-import { IconClose } from '@aragon/ui'
+import { IconClose } from '../../icons'
 import { Spring, animated } from 'react-spring'
 import Text from '../Text/Text'
 import { springs, unselectable } from '../../utils/styles'

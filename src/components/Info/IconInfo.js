@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
+import color from 'onecolor'
 import Attention from '../../icons/components/Attention'
 import Bylaw from '../../icons/components/Bylaw'
 import { theme } from '../../theme'
@@ -56,10 +57,12 @@ IconInfo.propTypes = {
 
 const Action = props => <IconInfo icon={<Attention />} {...props} />
 
+const redColor = color('rgba(255, 68, 93)')
+
 const Alert = props => (
   <IconInfo
-    background={'rgba(255, 68, 93, 0.0614)'}
-    icon={<Attention bg="rgba(255, 68, 93, 0.1)" color="rgba(255, 68, 93)" />}
+    background={redColor.alpha(0.06).cssa()}
+    icon={<Attention bg={redColor.alpha(0.1).cssa()} color={redColor.css()} />}
     {...props}
   />
 )

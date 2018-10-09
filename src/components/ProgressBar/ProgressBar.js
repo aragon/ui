@@ -12,7 +12,7 @@ const ProgressBar = ({ color, progress }) => (
           <Progress
             color={color}
             style={{
-              width: progressValue.interpolate(t => `${t * 100}%`),
+              transform: progressValue.interpolate(t => `scaleX(${t})`),
             }}
           />
         </Base>
@@ -38,13 +38,11 @@ const Base = styled.div`
   height: 8px;
   background: #edf3f6;
   border-radius: 2px;
-  text-align: right;
-  line-height: 14px;
 `
 const Progress = styled(animated.div)`
   height: 8px;
   background: ${({ color }) => color || theme.accent};
   border-radius: 2px;
-  float: left;
+  transform-origin: 0 0;
 `
 export default ProgressBar
