@@ -1,13 +1,10 @@
 import PropTypes from 'prop-types'
 import React from 'react'
 import styled from 'styled-components'
+import { IconClose } from '@aragon/ui'
 import { Spring, animated } from 'react-spring'
-import { PublicUrl } from '../../providers/PublicUrl'
 import Text from '../Text/Text'
-import { prefixUrl } from '../../utils/url'
 import { springs, unselectable } from '../../utils/styles'
-
-import close from './assets/close.svg'
 
 const PANEL_WIDTH = 450
 const CONTENT_PADDING = 30
@@ -54,7 +51,9 @@ class SidePanel extends React.PureComponent {
           style={{
             right: `${panelRight}px`,
             transform: progress.interpolate(
-              t => `translate3d(${(Number(opened) - t) * (PANEL_WIDTH + 40)}px, 0, 0)`
+              t =>
+                `translate3d(${(Number(opened) - t) *
+                  (PANEL_WIDTH + 40)}px, 0, 0)`
             ),
           }}
         >
@@ -64,11 +63,7 @@ class SidePanel extends React.PureComponent {
             </h1>
             {!blocking && (
               <PanelCloseButton type="button" onClick={this.handleClose}>
-                <PublicUrl>
-                  {publicUrl => (
-                    <img src={prefixUrl(close, publicUrl)} alt="Close" />
-                  )}
-                </PublicUrl>
+                <IconClose />
               </PanelCloseButton>
             )}
           </PanelHeader>
