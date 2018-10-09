@@ -14,6 +14,7 @@ const formatUnit = v => String(v).padStart(2, '0')
 class Countdown extends React.Component {
   static propTypes = {
     end: PropTypes.instanceOf(Date),
+    removeDaysAndHours: PropTypes.bool,
   }
   render() {
     const { end } = this.props
@@ -27,7 +28,7 @@ class Countdown extends React.Component {
     )
   }
   renderTime = () => {
-    const { end } = this.props
+    const { end, removeDaysAndHours } = this.props
     const { days, hours, minutes, seconds, totalInSeconds } = difference(
       end,
       new Date()
@@ -37,16 +38,20 @@ class Countdown extends React.Component {
     }
     return (
       <span>
-        <Part>
-          {formatUnit(days)}
-          <Unit>D</Unit>
-        </Part>
-        <Separator />
-        <Part>
-          {formatUnit(hours)}
-          <Unit>H</Unit>
-        </Part>
-        <Separator>:</Separator>
+        {!removeDaysAndHours && (
+          <React.Fragment>
+            <Part>
+              {formatUnit(days)}
+              <Unit>D</Unit>
+            </Part>
+            <Separator />
+            <Part>
+              {formatUnit(hours)}
+              <Unit>H</Unit>
+            </Part>
+            <Separator>:</Separator>
+          </React.Fragment>
+        )}
         <Part>
           {formatUnit(minutes)}
           <Unit>M</Unit>
@@ -62,7 +67,6 @@ class Countdown extends React.Component {
 }
 
 const Main = styled.time`
-  width: 12em;
   white-space: nowrap;
   ${unselectable()};
 `
