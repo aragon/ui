@@ -1,15 +1,10 @@
 {
   "presets": [
     [
-      "env",
-      {
-        "targets": {
-          "browsers": "last 2 versions, > 2%"
-        },
-        "modules": false
-      }
+      "@babel/preset-env",
+      { "targets": { "browsers": "last 2 versions, > 2%" }, "modules": false }
     ],
-    "react",
-    "stage-2"
-  ]
+    "@babel/preset-react"
+  ],
+  "plugins": ["@babel/plugin-proposal-class-properties"]
 }

@@ -7,7 +7,6 @@ const CompressionPlugin = require('compression-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const WebpackMonitor = require('webpack-monitor')
 
-const PRODUCTION = process.env.NODE_ENV === 'production'
 const PUBLIC_PATH = '/'
 const BASE_HTML_CONF = {
   publicUrl: PUBLIC_PATH,
@@ -31,92 +30,97 @@ const htmlPages = () => {
   )
 }
 
-module.exports = {
-  entry: [path.resolve(__dirname, 'src/index.js')],
-  devtool: PRODUCTION ? 'source-map' : 'eval',
-  devServer: {
-    contentBase: [path.join(__dirname, '../dist'), path.join(__dirname, 'public')],
-    historyApiFallback: true,
-  },
-  resolve: {
-    alias: {
-      pages: path.resolve(__dirname, 'src/pages'),
-      comps: path.resolve(__dirname, 'src/components'),
-      src: path.resolve(__dirname, 'src'),
-      '@aragon/ui': path.resolve(__dirname, '..'),
-      'ui-src': path.resolve(__dirname, '../src'),
+module.exports = (env, argv) => {
+  const production = argv.mode === 'production'
+  return {
+    entry: [path.resolve(__dirname, 'src/index.js')],
+    devtool: production ? 'source-map' : 'eval',
+    devServer: {
+      contentBase: [
+        path.join(__dirname, '../dist'),
+        path.join(__dirname, 'public'),
+      ],
+      historyApiFallback: true,
     },
+    resolve: {
+      alias: {
+        pages: path.resolve(__dirname, 'src/pages'),
+        comps: path.resolve(__dirname, 'src/components'),
+        src: path.resolve(__dirname, 'src'),
+        '@aragon/ui': path.resolve(__dirname, '..'),
+        'ui-src': path.resolve(__dirname, '../src'),
+      },
 
-    // Only needed because @aragon/ui is linked
-    modules: [
-      path.join(__dirname, 'node_modules'),
-      path.join(__dirname, '../node_modules'),
-    ],
-  },
-  module: {
-    rules: [
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        loader: 'babel-loader',
-        options: {
-          cacheDirectory: true,
-          plugins: [
-            ["babel-plugin-styled-components", {
-              "displayName": !PRODUCTION,
-            }],
+      // Only needed because @aragon/ui is linked
+      modules: [
+        path.join(__dirname, 'node_modules'),
+        path.join(__dirname, '../node_modules'),
+      ],
+    },
+    module: {
+      rules: [
+        {
+          test: /\.js$/,
+          exclude: /node_modules/,
+          loader: 'babel-loader',
+          options: {
+            cacheDirectory: true,
+            plugins: [
+              [
+                'babel-plugin-styled-components',
+                {
+                  displayName: !production,
+                },
+              ],
+            ],
+          },
+        },
+        {
+          test: /\.(png|jpg|gif|svg|woff|woff2)$/,
+          use: [
+            {
+              loader: 'url-loader',
+              options: { limit: 8192 },
+            },
           ],
         },
-      },
-      {
-        test: /\.(png|jpg|gif|svg|woff|woff2)$/,
-        use: [
-          {
-            loader: 'url-loader',
-            options: { limit: 8192 },
-          },
-        ],
-      },
-      {
-        test: /\.md$/,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {},
-          },
-        ],
-      },
-    ],
-  },
-  plugins: (() => {
-    let plugins = [
-      new CleanWebpackPlugin(['dist']),
-      new webpack.DefinePlugin({
-        PUBLIC_PATH: JSON.stringify(PUBLIC_PATH),
-      }),
-      new HtmlWebpackPlugin(BASE_HTML_CONF),
-      new webpack.DefinePlugin({
-        ARAGON_UI_PATH: JSON.stringify(PRODUCTION ? '/aragon-ui/' : '/'),
-      }),
-    ]
+        {
+          test: /\.md$/,
+          use: [
+            {
+              loader: 'file-loader',
+              options: {},
+            },
+          ],
+        },
+      ],
+    },
+    plugins: (() => {
+      let plugins = [
+        new CleanWebpackPlugin(['dist']),
+        new webpack.DefinePlugin({
+          PUBLIC_PATH: JSON.stringify(PUBLIC_PATH),
+        }),
+        new HtmlWebpackPlugin(BASE_HTML_CONF),
+        new webpack.DefinePlugin({
+          ARAGON_UI_PATH: JSON.stringify(production ? '/aragon-ui/' : '/'),
+        }),
+      ]
 
-    if (PRODUCTION) {
-      plugins = plugins
-        .concat([
-          new UglifyJsPlugin({
-            sourceMap: true,
-            parallel: true,
-          }),
-          new CompressionPlugin(),
-          new WebpackMonitor({ launch: !!process.env.INSPECT_BUNDLE }),
-        ])
-        .concat(htmlPages())
-    }
-    return plugins
-  })(),
-  output: {
-    publicPath: PUBLIC_PATH,
-    filename: '[name].bundle.js',
-    path: path.resolve(__dirname, 'dist'),
-  },
+      if (production) {
+        plugins = plugins
+          .concat([
+            new CompressionPlugin(),
+            new WebpackMonitor({ launch: !!process.env.INSPECT_BUNDLE }),
+          ])
+          .concat(htmlPages())
+      }
+      return plugins
+    })(),
+    output: {
+      publicPath: PUBLIC_PATH,
+      filename: '[name].bundle.js',
+      path: path.resolve(__dirname, 'dist'),
+    },
+  }
 }
