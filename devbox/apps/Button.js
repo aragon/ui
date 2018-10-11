@@ -8,7 +8,71 @@ const EMPHASES = ['none', 'positive', 'negative']
 const DISABLED = [false, true]
 
 class App extends React.Component {
+  renderAllButtons() {
+    return EMPHASES.map((emphasis, emphasisIndex) => (
+      <div key={[emphasisIndex].join('')} className="emphasis">
+        <h2>
+          <Text size="xlarge">
+            emphasis=
+            {emphasis}
+          </Text>
+        </h2>
+        <div>
+          {DISABLED.map((disabled, disabledIndex) =>
+            SIZES.map((size, sizeIndex) => (
+              <div
+                key={[emphasisIndex, disabledIndex, sizeIndex].join('')}
+                className="row"
+              >
+                {MODES.map((mode, modeIndex) => (
+                  <span
+                    key={[
+                      emphasisIndex,
+                      disabledIndex,
+                      sizeIndex,
+                      modeIndex,
+                    ].join('')}
+                  >
+                    <Button
+                      size={size}
+                      mode={mode}
+                      emphasis={emphasis}
+                      disabled={disabled}
+                    >
+                      {mode}
+                      {disabled && size !== 'normal' ? ` (${size} & off)` : ''}
+                      {disabled && size === 'normal' ? ` (off)` : ''}
+                      {!disabled && size !== 'normal' ? ` (${size})` : ''}
+                    </Button>
+                  </span>
+                ))}
+              </div>
+            ))
+          )}
+        </div>
+      </div>
+    ))
+  }
+  renderSomeButtons() {
+    return (
+      <div style={{ padding: '100px 0' }}>
+        {['normal', 'strong', 'secondary'].map(mode => (
+          <div className="row" key={mode}>
+            {SIZES.map(size => (
+              <span key={mode + size}>
+                <Button mode={mode} size={size}>
+                  {size}
+                </Button>
+              </span>
+            ))}
+          </div>
+        ))}
+      </div>
+    )
+  }
   render() {
+    // const buttons = this.renderSomeButtons()
+    const buttons = this.renderAllButtons()
     return (
       <AragonApp publicUrl="/aragon-ui/">
         <Main>
@@ -16,50 +80,7 @@ class App extends React.Component {
             <h1>
               <Text size="xxlarge">Button variations</Text>
             </h1>
-            {EMPHASES.map((emphasis, emphasisIndex) => (
-              <div key={[emphasisIndex].join('')} className="emphasis">
-                <h2>
-                  <Text size="xlarge">emphasis={emphasis}</Text>
-                </h2>
-                <div>
-                  {DISABLED.map((disabled, disabledIndex) =>
-                    SIZES.map((size, sizeIndex) => (
-                      <div
-                        key={[emphasisIndex, disabledIndex, sizeIndex].join('')}
-                        className="row"
-                      >
-                        {MODES.map((mode, modeIndex) => (
-                          <span
-                            key={[
-                              emphasisIndex,
-                              disabledIndex,
-                              sizeIndex,
-                              modeIndex,
-                            ].join('')}
-                          >
-                            <Button
-                              size={size}
-                              mode={mode}
-                              emphasis={emphasis}
-                              disabled={disabled}
-                            >
-                              {mode}
-                              {disabled && size !== 'normal'
-                                ? ` (${size} & off)`
-                                : ''}
-                              {disabled && size === 'normal' ? ` (off)` : ''}
-                              {!disabled && size !== 'normal'
-                                ? ` (${size})`
-                                : ''}
-                            </Button>
-                          </span>
-                        ))}
-                      </div>
-                    ))
-                  )}
-                </div>
-              </div>
-            ))}
+            {buttons}
           </Container>
         </Main>
       </AragonApp>
