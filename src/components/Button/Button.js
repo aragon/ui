@@ -129,45 +129,65 @@ const modeText = css`
   }
 `
 
-const compactStyle = css`
+const smallStyle = css`
   padding: ${({ mode }) => (mode === 'outline' ? '4px 14px' : '5px 15px')};
 `
 
-const positiveStyle = css`
-  padding-left: 34px;
-  background: url(${styledUrl(check)}) no-repeat 12px calc(50% - 1px);
+const miniStyle = css`
+  padding: ${({ mode }) => (mode === 'outline' ? '1px 11px' : '2px 12px')};
+  ${font({ size: 'small' })};
+`
+
+const getEmphasisStyle = ({
+  emphasisColor,
+  icon,
+  iconLight,
+  iconX = '12px',
+  iconY = 'calc(50% - 1px)',
+  iconWidth = '34px',
+}) => css`
+  padding-left: ${iconWidth};
+  background-image: url(${styledUrl(icon)});
+  background-position: ${iconX} ${iconY};
+  background-repeat: no-repeat;
   ${({ mode }) => {
-    if (mode !== 'strong') return ''
-    return css`
-      &,
-      &:active {
-        background-image: url(${styledUrl(checkWhite)});
-        background-color: ${theme.positive};
-      }
-      &:after {
-        background: none;
-      }
-    `
+    if (mode === 'normal') {
+      return css`
+        &,
+        &:active {
+          background-image: url(${styledUrl(icon)});
+        }
+      `
+    }
+    if (mode === 'strong') {
+      return css`
+        &,
+        &:active {
+          background-image: url(${styledUrl(iconLight)});
+          background-color: ${emphasisColor};
+        }
+        &:after {
+          background: none;
+        }
+      `
+    }
+    return ''
   }};
 `
 
-const negativeStyle = css`
-  padding-left: 30px;
-  background: url(${styledUrl(cross)}) no-repeat 10px calc(50% - 1px);
-  ${({ mode }) => {
-    if (mode !== 'strong') return ''
-    return css`
-      &,
-      &:active {
-        background-image: url(${styledUrl(crossWhite)});
-        background-color: ${theme.negative};
-      }
-      &:after {
-        background: none;
-      }
-    `
-  }};
-`
+const positiveStyle = getEmphasisStyle({
+  emphasisColor: theme.positive,
+  icon: check,
+  iconLight: checkWhite,
+})
+
+const negativeStyle = getEmphasisStyle({
+  emphasisColor: theme.negative,
+  icon: cross,
+  iconLight: crossWhite,
+  iconX: '10px',
+  iconWidth: '30px',
+})
 
 const StyledButton = styled.button.attrs({ type: 'button' })`
   width: ${({ wide }) => (wide ? '100%' : 'auto')};
@@ -198,7 +218,11 @@ const StyledButton = styled.button.attrs({ type: 'button' })`
     return modeNormal
   }};
 
-  ${({ compact }) => (compact ? compactStyle : '')};
+  ${({ compact, size }) => {
+    if (size === 'small' || compact) return smallStyle
+    if (size === 'mini') return miniStyle
+    return ''
+  }};
 
   ${({ emphasis }) => {
     if (emphasis === 'positive') return positiveStyle
