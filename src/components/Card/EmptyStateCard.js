@@ -24,9 +24,11 @@ const EmptyStateCard = ({
         </Text>
       </Heading>
       <Text.Block>{text}</Text.Block>
-      <ActionButton mode="strong" wide onClick={onActivate}>
-        {actionText}
-      </ActionButton>
+      <ButtonWrapper>
+        <ActionButton mode="strong" wide onClick={onActivate}>
+          {actionText}
+        </ActionButton>
+      </ButtonWrapper>
     </section>
   </Main>
 )
