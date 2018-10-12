@@ -45,8 +45,8 @@ const AppBar = ({ children, endContent, title, onTitleClick, ...props }) => (
     {title && (
       <StyledAppBarStart>
         <StyledAppBarTitle
-          chevron={!!children}
-          clickable={!!onTitleClick}
+          chevron={Boolean(children)}
+          clickable={Boolean(onTitleClick)}
           onClick={onTitleClick}
         >
           {typeof title === 'string' ? (
