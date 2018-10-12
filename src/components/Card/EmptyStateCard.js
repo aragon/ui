@@ -6,25 +6,6 @@ import Button from '../Button/Button'
 import Text from '../Text/Text'
 import Card from './Card'
 
-const StyledCard = Card.extend`
-  display: flex;
-  padding: 40px 60px;
-  align-items: center;
-  text-align: center;
-  section {
-    padding-top: 20px;
-  }
-`
-
-const StyledHeading = styled.h1`
-  margin: 20px 0 5px;
-`
-
-const StyledActionButton = styled(Button)`
-  width: 150px;
-  margin-top: 20px;
-`
-
 const EmptyStateCard = ({
   actionText,
   onActivate,
@@ -34,34 +15,51 @@ const EmptyStateCard = ({
   icon: Icon,
   ...props
 }) => (
-  <StyledCard {...props}>
+  <Main {...props}>
     <section>
       <Icon />
-      <StyledHeading>
+      <Heading>
         <Text color={theme.accent} weight="bold" size="large">
           {title}
         </Text>
-      </StyledHeading>
+      </Heading>
       <Text.Block>{text}</Text.Block>
-      <ActionButton mode="strong" onClick={onActivate}>
+      <ActionButton mode="strong" wide onClick={onActivate}>
         {actionText}
       </ActionButton>
     </section>
-  </StyledCard>
+  </Main>
 )
 
 EmptyStateCard.propTypes = {
-  actionButton: PropTypes.node,
   actionText: PropTypes.string,
-  icon: PropTypes.node,
   onActivate: PropTypes.func,
   text: PropTypes.string,
   title: PropTypes.string,
 }
 
 EmptyStateCard.defaultProps = {
-  actionButton: StyledActionButton,
+  actionButton: Button,
   title: 'Nothing here.',
 }
+
+const Main = styled(Card)`
+  display: flex;
+  padding: 40px 60px;
+  align-items: center;
+  text-align: center;
+  section {
+    padding-top: 20px;
+  }
+`
+
+const Heading = styled.h1`
+  margin: 20px 0 5px;
+`
+
+const ButtonWrapper = styled.div`
+  width: 150px;
+  margin-top: 20px;
+`
 
 export default EmptyStateCard

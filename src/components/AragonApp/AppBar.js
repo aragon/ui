@@ -49,7 +49,11 @@ const AppBar = ({ children, endContent, title, onTitleClick, ...props }) => (
           clickable={!!onTitleClick}
           onClick={onTitleClick}
         >
-          <Text size="xxlarge">{title}</Text>
+          {typeof title === 'string' ? (
+            <Text size="xxlarge">{title}</Text>
+          ) : (
+            title
+          )}
         </StyledAppBarTitle>
       </StyledAppBarStart>
     )}
@@ -60,7 +64,7 @@ const AppBar = ({ children, endContent, title, onTitleClick, ...props }) => (
 
 AppBar.propTypes = {
   children: PropTypes.node,
-  title: PropTypes.string,
+  title: PropTypes.node,
   endContent: PropTypes.node,
   onTitleClick: PropTypes.func,
 }
