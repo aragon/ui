@@ -8,8 +8,11 @@ import { ensureTrailingSlash } from '../../utils/url'
 import logo from './assets/logo-background.svg'
 
 const StyledAragonApp = styled.main`
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
   min-width: 320px;
-  min-height: 100vh;
   background-color: ${theme.mainBackground};
   background-image: ${({ backgroundLogo }) =>
     backgroundLogo ? css`url(${PublicUrl.styledUrl(logo)})` : 'none'};
