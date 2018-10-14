@@ -57,7 +57,7 @@ IconInfo.propTypes = {
 
 const Action = props => <IconInfo icon={<Attention />} {...props} />
 
-const redColor = color('rgba(255, 68, 93)')
+const redColor = color(theme.negative)
 
 const Alert = props => (
   <IconInfo
