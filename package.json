@@ -81,6 +81,7 @@
     "command-exists": "^1.2.6",
     "date-fns": "^2.0.0-alpha.7",
     "onecolor": "^3.0.5",
+    "popper.js": "^1.14.4",
     "prop-types": "^15.6.0",
     "react-display-name": "^0.2.3",
     "react-onclickout": "^2.0.8",

@@ -1,27 +1,29 @@
 import React from 'react'
 import styled from 'styled-components'
-import { TransactionProgress, Button } from '@aragon/ui'
+import { Button } from '@aragon/ui'
 import Page from 'comps/Page/Page'
 import Container from 'comps/Page/DemoContainer'
-import readme from 'ui-src/components/TransactionProgress/README.md'
+import readme from 'ui-src/components/Popover/README.md'
 import Popover from 'ui-src/components/Popover/Popover'
 
-class PageTransactionProgress extends React.Component {
+class PagePopover extends React.Component {
   state = {
-    top: '0px',
-    left: '0px',
     hide: true,
   }
   render() {
     const { title } = this.props
-    const { top, left, hide } = this.state
+    const { hide } = this.state
     return (
       <Page title={title} readme={readme}>
         <Page.Demo>
           <Popover.Container>
             <Container>
               <Wrapper>
-                <div>
+                <div
+                  ref={ref => {
+                    this.openerRef = ref
+                  }}
+                >
                   <Button
                     onClick={e =>
                       this.setState({
@@ -37,14 +39,12 @@ class PageTransactionProgress extends React.Component {
                 <div>
                   <div>
                     {!hide && (
-                      <Popover top={top} left={left} zIndex={100}>
-                        <TransactionProgress
-                          transactionHashUrl="https://etherscan.io/tx/0x5c504ed432cb51138bcf09aa5e8a410dd4a1e204ef84bfed1be16dfba1b22060"
-                          progress={0.3}
-                          endTime={new Date(Date.now() + 100000)}
-                          handleClose={() => this.setState({ hide: true })}
-                          slow
-                        />
+                      <Popover
+                        openerRef={this.openerRef}
+                        placement="top-start"
+                        gutter="20px"
+                      >
+                        <Box />
                       </Popover>
                     )}
                   </div>
@@ -66,4 +66,10 @@ const Wrapper = styled.div`
   height: 400px;
 `
 
-export default PageTransactionProgress
+const Box = styled.div`
+  width: 200px;
+  height: 100px;
+  background-color: red;
+`
+
+export default PagePopover
