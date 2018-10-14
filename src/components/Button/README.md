@@ -50,12 +50,30 @@ const App = () => (
 )
 ```
 
-### `compact`
+### `size`
+
+- Type: `String`
+- Values: `normal`, `small` or `mini`.
+- Default: `normal`
+
+Use this property to change the size of the button.
+
+#### Example:
+
+```jsx
+const MyButton = () => (
+  <Button size="small">Accept</Button>
+)
+```
+
+### `compact` (deprecated)
 
 - Type: `Boolean`
 - Default: `false`
 
-Set to true to obtain a button that contains less padding than normal buttons.
+Set to `true` to obtain a button that contains less padding than normal buttons.
+
+It is the equivalent of setting `size` to `small`. This prop is deprecated, please use `size` instead.
 
 #### Example:
 

@@ -15,28 +15,27 @@
     "styled-components": "^3.3.2"
   },
   "scripts": {
-    "start": "webpack-dev-server",
-    "build": "webpack",
-    "build:production": "NODE_ENV=production webpack && npm run update-assets",
-    "build:production:stats": "NODE_ENV=production INSPECT_BUNDLE=1 webpack && npm run update-assets",
-    "update-assets": "rm -rf dist/aragon-ui && cp -r node_modules/@aragon/ui/dist dist/aragon-ui"
+    "start": "webpack-dev-server --mode development",
+    "build": "webpack --mode production && npm run copy-assets",
+    "copy-assets": "../bin/copy-aragon-ui-assets -n aragon-ui ./dist"
   },
   "devDependencies": {
-    "babel-core": "^6.26.0",
-    "babel-loader": "^7.1.2",
+    "@babel/core": "^7.0.0",
+    "@babel/plugin-proposal-class-properties": "^7.0.0",
+    "@babel/polyfill": "^7.0.0",
+    "@babel/preset-env": "^7.0.0",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.0",
     "babel-plugin-styled-components": "^1.3.0",
-    "babel-polyfill": "^6.26.0",
-    "babel-preset-env": "^1.6.0",
-    "babel-preset-react": "^6.24.1",
-    "babel-preset-stage-2": "^6.24.1",
     "clean-webpack-plugin": "^0.1.17",
-    "compression-webpack-plugin": "^1.0.1",
-    "file-loader": "^1.1.5",
-    "html-webpack-plugin": "^2.30.1",
-    "uglifyjs-webpack-plugin": "^1.1.8",
-    "url-loader": "^0.6.2",
-    "webpack": "^3.6.0",
-    "webpack-dev-server": "^2.9.1",
+    "compression-webpack-plugin": "^2.0.0",
+    "file-loader": "^2.0.0",
+    "html-webpack-plugin": "^3.2.0",
+    "uglifyjs-webpack-plugin": "^2.0.1",
+    "url-loader": "^1.1.1",
+    "webpack": "^4.20.2",
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.9",
     "webpack-monitor": "^1.0.13"
   }
 }
