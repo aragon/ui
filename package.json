@@ -79,7 +79,7 @@
     "airbnb-prop-types": "^2.9.0",
     "arg": "^2.0.0",
     "command-exists": "^1.2.6",
-    "date-fns": "^2.0.0-alpha.7",
+    "date-fns": "2.0.0-alpha.22",
     "onecolor": "^3.0.5",
     "prop-types": "^15.6.0",
     "react-display-name": "^0.2.3",

@@ -1,4 +1,4 @@
-import { differenceInSeconds, format } from 'date-fns/esm'
+import { differenceInSeconds, format } from 'date-fns'
 
 const MINUTE_IN_SECONDS = 60
 const HOUR_IN_SECONDS = MINUTE_IN_SECONDS * 60
@@ -22,4 +22,4 @@ export const difference = (date1, date2) => {
 }
 
 export const formatHtmlDatetime = date =>
-  format(date, 'YYYY-MM-DDTHH:mm:ss.SSSZ')
+  format(date, "yyyy-MM-dd'T'HH:mm:ss.SSSxxx")
