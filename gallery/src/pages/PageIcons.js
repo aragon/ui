@@ -49,7 +49,6 @@ const icons = Object.entries({
     ...icons,
     {
       name: `<${name} />`,
-      shortName: name.replace(/^Icon/, '').toLowerCase(),
       Icon: Icon,
     },
   ],
@@ -59,12 +58,12 @@ const icons = Object.entries({
 const PageIcons = ({ title }) => (
   <Page title={title}>
     <Main>
-      {icons.map(({ shortName, Icon }) => (
-        <IconCard key={shortName} width="140px" height="140px">
+      {icons.map(({ name, Icon }) => (
+        <IconCard key={name} width="180px" height="140px">
           <IconWrap>
             <Icon />
           </IconWrap>
-          <Text size="small">{shortName}</Text>
+          <Text size="small">{name}</Text>
         </IconCard>
       ))}
     </Main>
@@ -94,8 +93,7 @@ const IconCard = styled(Card)`
 const IconWrap = styled.div`
   display: flex;
   width: 100%;
-  height: 40px;
-  margin-bottom: 5px;
+  margin-bottom: 15px;
   align-items: center;
   justify-content: center;
 `
