@@ -26,6 +26,7 @@ const StyledActionButton = styled(Button)`
 `
 
 const EmptyStateCard = ({
+  actionDisabled,
   actionText,
   onActivate,
   text,
@@ -43,7 +44,11 @@ const EmptyStateCard = ({
         </Text>
       </StyledHeading>
       <Text.Block>{text}</Text.Block>
-      <ActionButton mode="strong" onClick={onActivate}>
+      <ActionButton
+        disabled={actionDisabled}
+        mode="strong"
+        onClick={onActivate}
+      >
         {actionText}
       </ActionButton>
     </section>
@@ -52,6 +57,7 @@ const EmptyStateCard = ({
 
 EmptyStateCard.propTypes = {
   actionButton: PropTypes.node,
+  actionDisabled: PropTypes.bool,
   actionText: PropTypes.string,
   icon: PropTypes.node,
   onActivate: PropTypes.func,

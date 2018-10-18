@@ -75,6 +75,20 @@ const App = () => (
 )
 ```
 
+### `actionDisabled`
+
+- Type: `Boolean`
+
+Disable the `actionButton`.
+
+#### Example:
+
+```jsx
+const App = () => (
+  <EmptyStateCard actionDsiabled />
+)
+```
+
 ### `actionText`
 
 - Type: `String`

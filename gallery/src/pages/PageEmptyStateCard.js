@@ -16,6 +16,14 @@ const PageEmptyStateCard = ({ title }) => (
             icon={() => <IconHome color="blue" />}
           />
         </div>
+        <div>
+          <EmptyStateCard
+            actionDisabled
+            actionText="Create a new post!"
+            text="You seem to not have any content on your wall."
+            icon={() => <IconHome color="blue" />}
+          />
+        </div>
       </Container>
     </Page.Demo>
   </Page>
