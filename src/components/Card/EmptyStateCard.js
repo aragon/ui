@@ -7,6 +7,7 @@ import Text from '../Text/Text'
 import Card from './Card'
 
 const EmptyStateCard = ({
+  actionDisabled,
   actionText,
   onActivate,
   text,
@@ -25,7 +26,12 @@ const EmptyStateCard = ({
       </Heading>
       <Text.Block>{text}</Text.Block>
       <ButtonWrapper>
-        <ActionButton mode="strong" wide onClick={onActivate}>
+        <ActionButton
+          disabled={actionDisabled}
+          mode="strong"
+          wide
+          onClick={onActivate}
+        >
           {actionText}
         </ActionButton>
       </ButtonWrapper>
@@ -40,6 +46,7 @@ const PropTypesComponent = PropTypes.oneOfType([
 
 EmptyStateCard.propTypes = {
   actionButton: PropTypesComponent,
+  actionDisabled: PropTypes.bool,
   actionText: PropTypes.string,
   icon: PropTypesComponent.isRequired,
   onActivate: PropTypes.func,
@@ -48,10 +55,10 @@ EmptyStateCard.propTypes = {
 }
 
 EmptyStateCard.defaultProps = {
+  title: 'Nothing here.',
   actionButton: styled(Button)`
     width: 150px;
   `,
-  title: 'Nothing here.',
 }
 
 const Main = styled(Card)`

@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import getDisplayName from 'react-display-name'
-import { isEqual } from 'date-fns/esm'
+import { isEqual } from 'date-fns'
 import { difference } from '../../utils/date'
 
 // Render prop component for re-rendering based on a given date. Automatically
