@@ -33,7 +33,10 @@ const EmptyStateCard = ({
   </Main>
 )
 
-const PropTypesComponent = PropTypes.oneOfType([PropTypes.string, PropTypes.func])
+const PropTypesComponent = PropTypes.oneOfType([
+  PropTypes.string,
+  PropTypes.func,
+])
 
 EmptyStateCard.propTypes = {
   actionButton: PropTypesComponent,
@@ -45,7 +48,9 @@ EmptyStateCard.propTypes = {
 }
 
 EmptyStateCard.defaultProps = {
-  actionButton: Button,
+  actionButton: styled(Button)`
+    width: 150px;
+  `,
   title: 'Nothing here.',
 }
 
@@ -64,7 +69,6 @@ const Heading = styled.h1`
 `
 
 const ButtonWrapper = styled.div`
-  width: 150px;
   margin-top: 20px;
 `
 
