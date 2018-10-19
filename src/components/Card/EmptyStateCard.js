@@ -56,6 +56,7 @@ EmptyStateCard.propTypes = {
 
 EmptyStateCard.defaultProps = {
   title: 'Nothing here.',
+  actionDisabled: false,
   actionButton: styled(Button)`
     width: 150px;
   `,
