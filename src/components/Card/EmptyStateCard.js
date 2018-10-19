@@ -33,8 +33,12 @@ const EmptyStateCard = ({
   </Main>
 )
 
+const PropTypesComponent = PropTypes.oneOfType([PropTypes.string, PropTypes.func])
+
 EmptyStateCard.propTypes = {
+  actionButton: PropTypesComponent,
   actionText: PropTypes.string,
+  icon: PropTypesComponent.isRequired,
   onActivate: PropTypes.func,
   text: PropTypes.string,
   title: PropTypes.string,
