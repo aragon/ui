@@ -54,7 +54,9 @@ class SidePanel extends React.PureComponent {
           style={{
             right: `${panelRight}px`,
             transform: progress.interpolate(
-              t => `translate3d(${(Number(opened) - t) * (PANEL_WIDTH + 40)}px, 0, 0)`
+              t =>
+                `translate3d(${(Number(opened) - t) *
+                  (PANEL_WIDTH + 40)}px, 0, 0)`
             ),
           }}
         >
