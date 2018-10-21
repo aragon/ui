@@ -10,3 +10,5 @@ export {
   BreakPoint,
   unselectable,
 } from './styles'
+
+export function noop() {}
