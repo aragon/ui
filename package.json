@@ -1,6 +1,6 @@
 {
   "name": "@aragon/ui",
-  "version": "0.21.0",
+  "version": "0.22.0",
   "author": "Aragon Institution MTU <contact@aragon.one>",
   "license": "MIT",
   "repository": "github:aragon/aragon-ui",
@@ -24,7 +24,7 @@
     "theme:build": "scripts/oco-json.js < src/theme/Aragon.oco > src/theme/aragon.json",
     "icons:build": "svgr --no-semi --replace-attr-value '#8B9396=currentColor' --no-title -d src/icons/components src/icons/svg",
     "optimize:svg": "find ./src -name *.svg -exec svgo --config '{ \"plugins\": [ { \"removeDesc\": {\"removeAny\": true} }, { \"removeTitle\": true }, { \"removeViewBox\": false } ] }' {} \\;",
-    "deploy:site": "cd gallery && npm run build:production && echo 'ui.aragon.org' > dist/CNAME && cp public/favicon.svg dist && gh-pages -d dist",
+    "deploy:site": "cd gallery && npm run build && echo 'ui.aragon.org' > dist/CNAME && cp public/favicon.svg dist && gh-pages -d dist",
     "prepare": "npm run build",
     "start": "cd gallery && npm start"
   },

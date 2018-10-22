@@ -37,8 +37,8 @@ class ContextMenu extends React.Component {
         >
           {({ openProgress }) => (
             <Main
-              opened={opened}
               style={{
+                zIndex: opened ? '2' : '1',
                 boxShadow: openProgress.interpolate(
                   t => `0 4px 4px rgba(0, 0, 0, ${t * 0.03})`
                 ),
@@ -66,9 +66,9 @@ class ContextMenu extends React.Component {
                 </span>
               </BaseButton>
               <Popup
-                opened={opened}
                 onClick={this.handleClose}
                 style={{
+                  display: opened ? 'block' : 'none',
                   opacity: openProgress,
                   boxShadow: openProgress.interpolate(
                     t => `0 4px 4px rgba(0, 0, 0, ${t * 0.03})`
@@ -87,7 +87,6 @@ class ContextMenu extends React.Component {
 
 const Main = styled(animated.div)`
   position: relative;
-  z-index: ${({ opened }) => (opened ? '2' : '1')};
   width: ${BASE_WIDTH}px;
   height: ${BASE_HEIGHT}px;
 `
@@ -132,7 +131,6 @@ const BaseButton = styled.div`
 `
 
 const Popup = styled(animated.div)`
-  display: ${({ opened }) => (opened ? 'block' : 'none')};
   overflow: hidden;
   position: absolute;
   top: ${BASE_HEIGHT - 1}px;

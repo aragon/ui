@@ -6,25 +6,6 @@ import Button from '../Button/Button'
 import Text from '../Text/Text'
 import Card from './Card'
 
-const StyledCard = styled(Card)`
-  display: flex;
-  padding: 40px 60px;
-  align-items: center;
-  text-align: center;
-  section {
-    padding-top: 20px;
-  }
-`
-
-const StyledHeading = styled.h1`
-  margin: 20px 0 5px;
-`
-
-const StyledActionButton = styled(Button)`
-  width: 150px;
-  margin-top: 20px;
-`
-
 const EmptyStateCard = ({
   actionDisabled,
   actionText,
@@ -35,39 +16,68 @@ const EmptyStateCard = ({
   icon: Icon,
   ...props
 }) => (
-  <StyledCard {...props}>
+  <Main {...props}>
     <section>
       <Icon />
-      <StyledHeading>
+      <Heading>
         <Text color={theme.accent} weight="bold" size="large">
           {title}
         </Text>
-      </StyledHeading>
+      </Heading>
       <Text.Block>{text}</Text.Block>
-      <ActionButton
-        disabled={actionDisabled}
-        mode="strong"
-        onClick={onActivate}
-      >
-        {actionText}
-      </ActionButton>
+      <ButtonWrapper>
+        <ActionButton
+          disabled={actionDisabled}
+          mode="strong"
+          wide
+          onClick={onActivate}
+        >
+          {actionText}
+        </ActionButton>
+      </ButtonWrapper>
     </section>
-  </StyledCard>
+  </Main>
 )
 
+const PropTypesComponent = PropTypes.oneOfType([
+  PropTypes.string,
+  PropTypes.func,
+])
+
 EmptyStateCard.propTypes = {
-  actionButton: PropTypes.node,
+  actionButton: PropTypesComponent,
   actionDisabled: PropTypes.bool,
   actionText: PropTypes.string,
-  icon: PropTypes.node,
+  icon: PropTypesComponent.isRequired,
   onActivate: PropTypes.func,
   text: PropTypes.string,
   title: PropTypes.string,
 }
 
 EmptyStateCard.defaultProps = {
-  actionButton: StyledActionButton,
   title: 'Nothing here.',
+  actionDisabled: false,
+  actionButton: styled(Button)`
+    width: 150px;
+  `,
 }
+
+const Main = styled(Card)`
+  display: flex;
+  padding: 40px 60px;
+  align-items: center;
+  text-align: center;
+  section {
+    padding-top: 20px;
+  }
+`
+
+const Heading = styled.h1`
+  margin: 20px 0 5px;
+`
+
+const ButtonWrapper = styled.div`
+  margin-top: 20px;
+`
 
 export default EmptyStateCard
