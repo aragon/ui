@@ -77,7 +77,7 @@ class Frame extends React.Component {
     return (
       <StyledFrame
         {...rest}
-        innerRef={node => (this.node = node)}
+        ref={node => (this.node = node)}
         srcDoc=""
         onLoad={this.handleLoad}
         style={{ height: `${iframeHeight}px` }}

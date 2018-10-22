@@ -1,6 +1,5 @@
-import React from 'react'
 import PropTypes from 'prop-types'
-import { injectGlobal } from 'styled-components'
+import { createGlobalStyle } from 'styled-components'
 import { theme } from '../../theme'
 import { PublicUrl } from '../../providers/PublicUrl'
 
@@ -11,55 +10,43 @@ import overpassRegularWoff2 from './assets/overpass/overpass-regular.woff2'
 import overpassSemiBoldWoff from './assets/overpass/overpass-semibold.woff'
 import overpassSemiBoldWoff2 from './assets/overpass/overpass-semibold.woff2'
 
-class BaseStyles extends React.Component {
-  static propTypes = {
-    publicUrl: PropTypes.string,
-    enableLegacyFonts: PropTypes.bool,
-  }
-  static defaultProps = {
-    publicUrl: '/',
-    enableLegacyFonts: false,
-  }
-  componentWillMount() {
-    const { publicUrl, enableLegacyFonts } = this.props
-    injectStyles(url => publicUrl + url, enableLegacyFonts)
-  }
-  render() {
-    return null
-  }
+const fontFamily = {
+  Light: [
+    { url: overpassLightWoff2, format: 'woff2' },
+    { url: overpassLightWoff, format: 'woff', legacy: true },
+  ],
+  Regular: [
+    { url: overpassRegularWoff2, format: 'woff2' },
+    { url: overpassRegularWoff, format: 'woff', legacy: true },
+  ],
+  SemiBold: [
+    { url: overpassSemiBoldWoff2, format: 'woff2' },
+    { url: overpassSemiBoldWoff, format: 'woff', legacy: true },
+  ],
 }
 
-const fontSrc = sources =>
+const fontSrc = (sources, { publicUrl, enableLegacyFonts }) =>
   sources
-    .filter(({ enable }) => enable)
-    .map(({ url, format }) => `url(${url}) format('${format}')`)
+    .filter(({ legacy }) => !legacy || (legacy && enableLegacyFonts))
+    .map(({ url, format }) => `url(${publicUrl + url}) format('${format}')`)
     .join(', ')
 
-const injectStyles = (asset, legacyFonts) => injectGlobal`
+const BaseStyles = createGlobalStyle`
   @font-face {
     font-family: 'overpass';
-    src: ${fontSrc([
-      { url: asset(overpassLightWoff2), format: 'woff2', enable: true },
-      { url: asset(overpassLightWoff), format: 'woff', enable: legacyFonts },
-    ])};
+    src: ${props => fontSrc(fontFamily['Light'], props)};
     font-weight: 400;
     font-style: normal;
   }
   @font-face {
     font-family: 'overpass';
-    src: ${fontSrc([
-      { url: asset(overpassRegularWoff2), format: 'woff2', enable: true },
-      { url: asset(overpassRegularWoff), format: 'woff', enable: legacyFonts },
-    ])};
+    src: ${props => fontSrc(fontFamily['Regular'], props)};
     font-weight: 600;
     font-style: normal;
   }
   @font-face {
     font-family: 'overpass';
-    src: ${fontSrc([
-      { url: asset(overpassSemiBoldWoff2), format: 'woff2', enable: true },
-      { url: asset(overpassSemiBoldWoff), format: 'woff', enable: legacyFonts },
-    ])};
+    src: ${props => fontSrc(fontFamily['SemiBold'], props)};
     font-weight: 800;
     font-style: normal;
   }
@@ -118,5 +105,15 @@ const injectStyles = (asset, legacyFonts) => injectGlobal`
     font-weight: 600;
   }
 `
+
+BaseStyles.propTypes = {
+  publicUrl: PropTypes.string,
+  enableLegacyFonts: PropTypes.bool,
+}
+
+BaseStyles.defaultProps = {
+  publicUrl: '/',
+  enableLegacyFonts: false,
+}
 
 export default PublicUrl.hocWrap(BaseStyles)
