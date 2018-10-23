@@ -41,9 +41,12 @@ class TabBar extends React.Component {
     }
   }
   handleTabMouseDown = e => {
-    // We would usually create a separate component rather than using the DOM
-    // element to do that, but since we are already doing it for the keyboard,
-    // we might as well do the same for the pointer.
+    // We would usually avoid using the DOM when possible, and prefer using a
+    // separate component (`Tab`) to keep the `index` in a prop, then pass it
+    // using an event prop. But since `this.selectElement()` is needed (so we
+    // can pass `document.activeElement` to it for the keyboard), and we have
+    // `e.currentTarget` in the event object, we might as well use it for the
+    // pointer device too.
     this.selectElement(e.currentTarget)
   }
   handleBarRef = el => {
