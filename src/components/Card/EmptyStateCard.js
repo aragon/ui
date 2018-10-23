@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from '../../proptypes'
 import styled from 'styled-components'
 import { theme } from '../../theme'
-import { noop } from '../../utils'
+import { noop, warn } from '../../utils'
 import Button from '../Button/Button'
 import Text from '../Text/Text'
 import Card from './Card'
@@ -37,7 +37,7 @@ class EmptyStateCard extends React.Component {
   displayWarnings(prevProps, props) {
     // Deprecated warnings
     if (prevProps.actionButton !== props.actionButton && props.actionButton) {
-      console.warn(
+      warn(
         'The “actionButton” prop is deprecated. Please use “action” to pass ' +
           'a custom element instead.'
       )
@@ -47,7 +47,7 @@ class EmptyStateCard extends React.Component {
       props.icon &&
       !React.isValidElement(props.icon)
     ) {
-      console.warn(
+      warn(
         'Passing a component to the “icon” prop is deprecated. Please pass ' +
           'an element instead (i.e. use icon={<Icon />} rather than ' +
           'icon={Icon}).'
@@ -59,7 +59,7 @@ class EmptyStateCard extends React.Component {
     const anyActionParam =
       props.actionDisabled || props.actionText || props.onActivate
     if (prevProps.action !== props.action && props.action && anyActionParam) {
-      console.warn(
+      warn(
         'Using `action` takes priority over `actionDisabled`, `actionText`, ' +
           'and `onActivate`. Please use either `action` or any of these ' +
           'props.'
