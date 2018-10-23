@@ -28,26 +28,26 @@ class TabBar extends React.Component {
       this.props.onSelect(index)
     }
   }
-  handleMouseDown = e => {
+  handleMouseDown = () => {
     this.disableFocusRing()
   }
-  handleKeydown = e => {
-    if (e.key === 'Enter') {
+  handleKeydown = ({ key }) => {
+    if (key === 'Enter') {
       this.selectElement(document.activeElement)
       this.enableFocusRing()
     }
-    if (e.key === 'Tab') {
+    if (key === 'Tab') {
       this.enableFocusRing()
     }
   }
-  handleTabMouseDown = e => {
+  handleTabMouseDown = ({ currentTarget }) => {
     // We would usually avoid using the DOM when possible, and prefer using a
     // separate component (`Tab`) to keep the `index` in a prop, then pass it
     // using an event prop. But since `this.selectElement()` is needed (so we
     // can pass `document.activeElement` to it for the keyboard), and we have
     // `e.currentTarget` in the event object, we might as well use it for the
     // pointer device too.
-    this.selectElement(e.currentTarget)
+    this.selectElement(currentTarget)
   }
   handleBarRef = el => {
     this.barElement = el
