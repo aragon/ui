@@ -110,7 +110,7 @@ const Tab = styled.li`
 const Label = styled.span`
   display: flex;
   margin-bottom: -1px;
-  padding: 10px 0 11px;
+  padding: 5px 0 3px;
   border-bottom: 4px solid ${p => (p.selected ? theme.accent : 'transparent')};
 `
 
