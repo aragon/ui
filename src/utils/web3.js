@@ -1,3 +1,5 @@
+const ADDRESS_REGEX = /^0x[0-9a-fA-F]{40}$/
+
 /**
  * Check address equality without checksums
  * @param {string} first First address
@@ -38,5 +40,14 @@ export function shortenAddress(address, charsLength = 4) {
   )
 }
 
-// Re-export some utilities from web3-utils
-export { fromWei, isAddress, toChecksumAddress, toWei } from 'web3-utils'
+/**
+ *
+ * Checks if the given string is an address
+ *
+ * @method isAddress
+ * @param {String} address the given HEX address
+ * @return {Boolean}
+ */
+export function isAddress(address) {
+  return ADDRESS_REGEX.test(address)
+}
