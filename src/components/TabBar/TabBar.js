@@ -1,9 +1,19 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
-import { theme, font, unselectable } from '../..'
+import { theme, font, unselectable, noop } from '../..'
 
 class TabBar extends React.Component {
+  static propTypes = {
+    items: PropTypes.arrayOf(PropTypes.node).isRequired,
+    selected: PropTypes.number,
+    onSelect: PropTypes.func,
+  }
+  static defaultProps = {
+    selected: 0,
+    onSelect: noop,
+  }
   state = {
     displayFocusRing: false,
   }
