@@ -83,6 +83,7 @@
     "lodash-es": "^4.17.11",
     "onecolor": "^3.0.5",
     "prop-types": "^15.6.0",
+    "react-blockies": "^1.4.0",
     "react-display-name": "^0.2.3",
     "react-onclickout": "^2.0.8",
     "react-spring": "^5.6.8",
