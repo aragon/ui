@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import Blockies from 'react-blockies'
+import { Text } from '..'
 import { isAddress, shortenAddress } from '../../utils'
 
 const IDENTICON_SCALE = 3
@@ -21,10 +22,10 @@ class IdentityBadge extends React.PureComponent {
     fontSize: 'normal',
   }
   render() {
-    const { entity, shorten = true } = this.props
+    const { entity, shorten, fontSize, ...props } = this.props
     const address = isAddress(entity) ? entity : null
     return (
-      <Main title={address} onClick={this.handleClick}>
+      <Main title={address} onClick={this.handleClick} {...props}>
         {address && (
           <Identicon>
             <Blockies
@@ -34,7 +35,9 @@ class IdentityBadge extends React.PureComponent {
             />
           </Identicon>
         )}
-        <Label>{address && shorten ? shortenAddress(address) : entity}</Label>
+        <Label size={fontSize}>
+          {address && shorten ? shortenAddress(address) : entity}
+        </Label>
       </Main>
     )
   }
@@ -42,7 +45,7 @@ class IdentityBadge extends React.PureComponent {
 
 const Main = styled.div`
   overflow: hidden;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   height: ${IDENTICON_SIZE}px;
   background: #daeaef;
@@ -69,10 +72,9 @@ const Identicon = styled.div`
   }
 `
 
-const Label = styled.span`
+const Label = styled(Text)`
   padding: 0 8px;
   white-space: nowrap;
-  font-size: 15px;
   ${Identicon} + & {
     padding: 0 8px 0 5px;
   }
