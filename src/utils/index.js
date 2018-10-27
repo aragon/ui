@@ -3,6 +3,7 @@ export * from './date'
 export * from './format'
 export * from './styles'
 export * from './web3'
+export * from './components'
 
 export function noop() {}
 
