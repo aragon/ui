@@ -1,5 +1,7 @@
+import { warn } from '../utils'
+
 const ADDRESS_REGEX = /^0x[0-9a-fA-F]{40}$/
-const ETHERSCAN_NETWORKS = ['mainnet', 'kovan', 'rinkeby', 'ropsten']
+const ETHERSCAN_NETWORK_TYPES = ['mainnet', 'kovan', 'rinkeby', 'ropsten']
 const ETHERSCAN_TYPES = ['block', 'transaction', 'address', 'token']
 
 /**
@@ -67,22 +69,25 @@ export function isAddress(address) {
 export function blockExplorerUrl(
   type,
   value,
-  { network = 'mainnet', provider = 'etherscan' } = {}
+  { networkType = 'mainnet', provider = 'etherscan' } = {}
 ) {
   // Only Etherscan is supported for now.
   if (provider !== 'etherscan') {
+    warn('blockExplorerUrl(): provider not supported.')
     return ''
   }
 
-  if (!ETHERSCAN_NETWORKS.includes(network)) {
+  if (!ETHERSCAN_NETWORK_TYPES.includes(networkType)) {
+    warn('blockExplorerUrl(): network type not supported.')
     return ''
   }
 
   if (!ETHERSCAN_TYPES.includes(type)) {
+    warn('blockExplorerUrl(): type not supported.')
     return ''
   }
 
-  const subdomain = network === 'mainnet' ? '' : `${network}.`
+  const subdomain = networkType === 'mainnet' ? '' : `${networkType}.`
 
   return `https://${subdomain}etherscan.io/${type}/${value}`
 }
