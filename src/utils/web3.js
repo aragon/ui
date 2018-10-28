@@ -1,4 +1,8 @@
+import { warn } from '../utils'
+
 const ADDRESS_REGEX = /^0x[0-9a-fA-F]{40}$/
+const ETHERSCAN_NETWORK_TYPES = ['mainnet', 'kovan', 'rinkeby', 'ropsten']
+const ETHERSCAN_TYPES = ['block', 'transaction', 'address', 'token']
 
 /**
  * Check address equality without checksums
@@ -45,9 +49,45 @@ export function shortenAddress(address, charsLength = 4) {
  * Checks if the given string is an address
  *
  * @method isAddress
- * @param {String} address the given HEX address
- * @return {Boolean}
+ * @param {string} address the given HEX address
+ * @return {boolean}
  */
 export function isAddress(address) {
   return ADDRESS_REGEX.test(address)
+}
+
+/**
+ * Generates an etherscan URL
+ *
+ * @param {string} type The type of URL (block, transaction, address or token).
+ * @param {string} value Identifier of the object, depending on the type (block number, transaction hash, …).
+ * @param {object} options The optional parameters.
+ * @param {string} options.networkType The Ethereum network type (mainnet, kovan, rinkeby or ropsten).
+ * @param {string} options.provider The explorer provider (e.g. etherscan).
+ * @return {string} The generated URL, or an empty string if the parameters are invalid.
+ */
+export function blockExplorerUrl(
+  type,
+  value,
+  { networkType = 'mainnet', provider = 'etherscan' } = {}
+) {
+  // Only Etherscan is supported for now.
+  if (provider !== 'etherscan') {
+    warn('blockExplorerUrl(): provider not supported.')
+    return ''
+  }
+
+  if (!ETHERSCAN_NETWORK_TYPES.includes(networkType)) {
+    warn('blockExplorerUrl(): network type not supported.')
+    return ''
+  }
+
+  if (!ETHERSCAN_TYPES.includes(type)) {
+    warn('blockExplorerUrl(): type not supported.')
+    return ''
+  }
+
+  const subdomain = networkType === 'mainnet' ? '' : `${networkType}.`
+
+  return `https://${subdomain}etherscan.io/${type}/${value}`
 }

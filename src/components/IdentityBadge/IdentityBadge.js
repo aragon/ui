@@ -2,8 +2,13 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import Blockies from 'react-blockies'
-import { Text } from '..'
-import { isAddress, shortenAddress } from '../../utils'
+import { Text, SafeLink } from '..'
+import {
+  isAddress,
+  shortenAddress,
+  blockExplorerUrl,
+  stylingProps,
+} from '../../utils'
 
 const IDENTICON_SCALE = 3
 const IDENTICON_SQUARES = 8
@@ -15,17 +20,27 @@ class IdentityBadge extends React.PureComponent {
     entity: PropTypes.string,
     shorten: PropTypes.bool,
     fontSize: PropTypes.string,
+    networkType: PropTypes.string,
   }
   static defaultProps = {
     entity: '',
     shorten: true,
     fontSize: 'normal',
+    networkType: 'mainnet',
   }
   render() {
-    const { entity, shorten, fontSize, ...props } = this.props
+    const { entity, shorten, fontSize, networkType } = this.props
     const address = isAddress(entity) ? entity : null
+
+    const mainProps = stylingProps(this)
+    if (address) {
+      mainProps.href = blockExplorerUrl('address', address, { networkType })
+    }
+
+    const MainComponent = address ? MainAsLink : Main
+
     return (
-      <Main title={address} onClick={this.handleClick} {...props}>
+      <MainComponent title={address} onClick={this.handleClick} {...mainProps}>
         {address && (
           <Identicon>
             <Blockies
@@ -38,7 +53,7 @@ class IdentityBadge extends React.PureComponent {
         <Label size={fontSize}>
           {address && shorten ? shortenAddress(address) : entity}
         </Label>
-      </Main>
+      </MainComponent>
     )
   }
 }
@@ -51,6 +66,15 @@ const Main = styled.div`
   background: #daeaef;
   border-radius: 3px;
   cursor: default;
+`
+
+// TODO: move to `as` when migrating to styled-components v4.
+// See https://www.styled-components.com/docs/api#as-polymorphic-prop
+const MainAsLink = styled(Main.withComponent(SafeLink)).attrs({
+  target: '_blank',
+})`
+  cursor: pointer;
+  text-decoration: none;
 `
 
 const Identicon = styled.div`
