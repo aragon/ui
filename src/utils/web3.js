@@ -59,7 +59,9 @@ export function isAddress(address) {
  *
  * @param {string} type The type of URL (block, transaction, address or token).
  * @param {string} value Identifier of the object, depending on the type (block number, transaction hash, …).
- * @param {string} network The Ethereum network (mainnet, kovan, rinkeby or ropsten).
+ * @param {object} options The optional parameters.
+ * @param {string} options.networkType The Ethereum network type (mainnet, kovan, rinkeby or ropsten).
+ * @param {string} options.provider The explorer provider (e.g. etherscan).
  * @return {string} The generated URL, or an empty string if the parameters are invalid.
  */
 export function blockExplorerUrl(
