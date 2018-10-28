@@ -1,4 +1,6 @@
 const ADDRESS_REGEX = /^0x[0-9a-fA-F]{40}$/
+const ETHERSCAN_NETWORKS = ['mainnet', 'kovan', 'rinkeby', 'ropsten']
+const ETHERSCAN_TYPES = ['block', 'transaction', 'address', 'token']
 
 /**
  * Check address equality without checksums
@@ -45,9 +47,40 @@ export function shortenAddress(address, charsLength = 4) {
  * Checks if the given string is an address
  *
  * @method isAddress
- * @param {String} address the given HEX address
- * @return {Boolean}
+ * @param {string} address the given HEX address
+ * @return {boolean}
  */
 export function isAddress(address) {
   return ADDRESS_REGEX.test(address)
+}
+
+/**
+ * Generates an etherscan URL
+ *
+ * @param {string} type The type of URL (block, transaction, address or token).
+ * @param {string} value Identifier of the object, depending on the type (block number, transaction hash, …).
+ * @param {string} network The Ethereum network (mainnet, kovan, rinkeby or ropsten).
+ * @return {string} The generated URL, or an empty string if the parameters are invalid.
+ */
+export function blockExplorerUrl(
+  type,
+  value,
+  { network = 'mainnet', provider = 'etherscan' } = {}
+) {
+  // Only Etherscan is supported for now.
+  if (provider !== 'etherscan') {
+    return ''
+  }
+
+  if (!ETHERSCAN_NETWORKS.includes(network)) {
+    return ''
+  }
+
+  if (!ETHERSCAN_TYPES.includes(type)) {
+    return ''
+  }
+
+  const subdomain = network === 'mainnet' ? '' : `${network}.`
+
+  return `https://${subdomain}etherscan.io/${type}/${value}`
 }

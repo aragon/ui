@@ -2,8 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import Blockies from 'react-blockies'
-import { Text } from '..'
-import { isAddress, shortenAddress } from '../../utils'
+import { Text, SafeLink } from '..'
+import { isAddress, shortenAddress, blockExplorerUrl } from '../../utils'
 
 const IDENTICON_SCALE = 3
 const IDENTICON_SQUARES = 8
@@ -24,8 +24,14 @@ class IdentityBadge extends React.PureComponent {
   render() {
     const { entity, shorten, fontSize, ...props } = this.props
     const address = isAddress(entity) ? entity : null
+    const MainComponent = address ? MainAsLink : Main
     return (
-      <Main title={address} onClick={this.handleClick} {...props}>
+      <MainComponent
+        title={address}
+        onClick={this.handleClick}
+        {...(address ? { href: blockExplorerUrl('address', address) } : {})}
+        {...props}
+      >
         {address && (
           <Identicon>
             <Blockies
@@ -38,7 +44,7 @@ class IdentityBadge extends React.PureComponent {
         <Label size={fontSize}>
           {address && shorten ? shortenAddress(address) : entity}
         </Label>
-      </Main>
+      </MainComponent>
     )
   }
 }
@@ -51,6 +57,13 @@ const Main = styled.div`
   background: #daeaef;
   border-radius: 3px;
   cursor: default;
+`
+
+const MainAsLink = styled(Main.withComponent(SafeLink)).attrs({
+  target: '_blank',
+})`
+  cursor: pointer;
+  text-decoration: none;
 `
 
 const Identicon = styled.div`
