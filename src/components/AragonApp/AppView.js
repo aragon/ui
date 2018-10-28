@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import AppBar from './AppBar'
+import { stylingProps } from '../../utils'
 
 class AppView extends React.Component {
   static defaultProps = {
@@ -17,7 +18,7 @@ class AppView extends React.Component {
   render() {
     const { appBar, title, children, padding } = this.props
     return (
-      <Main>
+      <Main {...stylingProps(this)}>
         <Header>{appBar || <AppBar title={title} />}</Header>
         <ScrollWrapper>
           <Content padding={padding}>{children}</Content>
@@ -29,7 +30,7 @@ class AppView extends React.Component {
 
 const Main = styled.div`
   display: flex;
-  height: 100vh;
+  height: 100%;
   flex-direction: column;
   align-items: stretch;
   justify-content: stretch;
