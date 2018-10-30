@@ -164,6 +164,7 @@ const PanelScrollView = styled.div`
 const PanelContent = styled.div`
   min-height: 0;
   flex-grow: 1;
+  flex-shrink: 0;
   display: flex;
   flex-direction: column;
   width: 100%;
