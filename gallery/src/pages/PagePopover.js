@@ -5,6 +5,7 @@ import Page from 'comps/Page/Page'
 import Container from 'comps/Page/DemoContainer'
 import readme from 'ui-src/components/Popover/README.md'
 import Popover from 'ui-src/components/Popover/Popover'
+import RootProvider from 'ui-src/components/RootProvider/RootProvider'
 
 class PagePopover extends React.Component {
   state = {
@@ -16,7 +17,7 @@ class PagePopover extends React.Component {
     return (
       <Page title={title} readme={readme}>
         <Page.Demo>
-          <Popover.Container>
+          <RootProvider>
             <Container>
               <Wrapper>
                 <div
@@ -25,13 +26,11 @@ class PagePopover extends React.Component {
                   }}
                 >
                   <Button
-                    onClick={e =>
+                    onClick={() => {
                       this.setState({
-                        top: e.clientY + 'px',
-                        left: e.clientX + 'px',
-                        hide: false,
+                        hide: !hide,
                       })
-                    }
+                    }}
                   >
                     Show component
                   </Button>
@@ -40,9 +39,10 @@ class PagePopover extends React.Component {
                   <div>
                     {!hide && (
                       <Popover
-                        openerRef={this.openerRef}
                         placement="top-start"
                         gutter="20px"
+                        openerRef={this.openerRef}
+                        handleClose={() => this.setState({ hide: true })}
                       >
                         <Box />
                       </Popover>
@@ -51,7 +51,7 @@ class PagePopover extends React.Component {
                 </div>
               </Wrapper>
             </Container>
-          </Popover.Container>
+          </RootProvider>
         </Page.Demo>
       </Page>
     )

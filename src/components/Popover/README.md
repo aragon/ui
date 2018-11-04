@@ -2,7 +2,7 @@
 
 ## Usage
 
-The Popover component makes use of React Context API to work. You only need one `Popover.Container` at the top level of your app.
+The Popover component makes use of React Context API to work. You only need one `RootProvider` component at the top level of your app.
 You can then use `Popover` component wherever you like.
 
 ### Positioning relative to the mouse
@@ -12,7 +12,7 @@ Please check out TransactionProgress component and its example which uses the Po
 ### Positioning relative to the "opener"
 
 ```jsx
-import { TransactionProgress, Popover } from '@aragon/ui'
+import { RootProvider, Popover, TransactionProgress } from '@aragon/ui'
 
 const Box = styled.div`
   width: 200px;
@@ -29,7 +29,7 @@ class PageTransactionProgress extends React.Component {
     const { hide } = this.state
 
     return (
-      <Popover.Container>
+      <RootProvider>
         <div>
           <div
             ref={ref => {
@@ -39,7 +39,7 @@ class PageTransactionProgress extends React.Component {
             <Button
               onClick={e =>
                 this.setState({
-                  hide: false,
+                  hide: !hide,
                 })
               }
             >
@@ -48,15 +48,16 @@ class PageTransactionProgress extends React.Component {
           </div>
           {!hide && (
             <Popover
-              openerRef={this.openerRef}
               placement="top-start"
               gutter="20px"
+              openerRef={this.openerRef}
+              handleClose={() => this.setState({ hide: true })}
             >
               <Box />
             </Popover>
           )}
         </div>
-      </Popover.Container>
+      </RootProvider>
     )
   }
 }
@@ -75,12 +76,12 @@ Reference to the "opener"which is what the Popover is positioning relative to.
 - Type: `String`
 - Values: `top`, `bottom`, `left`and `right` which can be concatenated with `-start` and `-end` e.g. `top-start`
 
-Placement of the Popover relative to the "opener".
+Placement of the Popover relative to the "opener". Checkout [Popper.js](https://popper.js.org/index.html) for placement visuals.
 
 ### `gutter`
 
 - Type: `String`
-- Values: Should be in `px` e.g. `100px`
+- Values: Should be in `px` e.g. `100px` and defaults to `20px`.
 
 Space between Popover and the "opener".
 

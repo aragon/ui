@@ -3,7 +3,7 @@
 ## Usage
 
 ```jsx
-import { TransactionProgress, Popover } from '@aragon/ui'
+import { RootProvider, Popover, TransactionProgress } from '@aragon/ui'
 
 class PageTransactionProgress extends React.Component {
   state = {
@@ -15,15 +15,19 @@ class PageTransactionProgress extends React.Component {
     const { top, left, hide } = this.state
 
     return (
-      <Popover.Container>
+      <RootProvider>
         <div>
-          <div>
+          <div
+            ref={ref => {
+              this.openerRef = ref
+            }}
+          >
             <Button
               onClick={e =>
                 this.setState({
                   top: e.clientY + 'px',
                   left: e.clientX + 'px',
-                  hide: false,
+                  hide: !hide,
                 })
               }
             >
@@ -31,7 +35,13 @@ class PageTransactionProgress extends React.Component {
             </Button>
           </div>
           {!hide && (
-            <Popover top={top} left={left} zIndex={100}>
+            <Popover
+              top={top}
+              left={left}
+              zIndex={100}
+              openerRef={this.openerRef}
+              handleClose={() => this.setState({ hide: true })}
+            >
               <TransactionProgress
                 transactionHashUrl="https://etherscan.io/tx/0x5c504ed432cb51138bcf09aa5e8a410dd4a1e204ef84bfed1be16dfba1b22060"
                 progress={0.3}
@@ -42,7 +52,7 @@ class PageTransactionProgress extends React.Component {
             </Popover>
           )}
         </div>
-      </Popover.Container>
+      </RootProvider>
     )
   }
 }
