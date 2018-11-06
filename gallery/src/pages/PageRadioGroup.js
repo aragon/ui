@@ -46,15 +46,11 @@ class PageRadioGroup extends React.Component {
   }
 }
 
-const Label = ({ children, label, ...props }) => (
-  <label>
-    {React.Children.map(children, child =>
-      React.cloneElement(child, {
-        ...props,
-      })
-    )}
-    {label}
-  </label>
-)
+const Label = styled.label`
+  display: inline-flex;
+  align-items: center;
+  margin-right: 10px;
+  cursor: pointer;
+`
 
 export default PageRadioGroup
