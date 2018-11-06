@@ -1,0 +1,69 @@
+# MessageHub
+
+The MessageHub component is used to display text message toasts.
+
+## Usage
+
+```jsx
+import { MessageHub, Button } from '@aragon/ui'
+
+const App = () => (
+  <MessageHub>
+    <MessageHub.Toast>
+      {toast => (
+        <Button onClick={() => toast("hello world")</Button>}>Click me</Button>
+      )}
+    </MessageHub.Toast>
+  </MessageHub>
+)
+```
+
+## Properties
+
+### `config`
+
+- Type: `Object`
+- Default value: `{ tension: 125, friction: 20, precision: 0.1 }`
+
+Set this property to alter the animation config.
+
+### `timeout`
+
+- Type: `Number`
+- Default value: `400`
+
+Set this property to change how long toasts will stick around.
+
+### `showIndicator`
+
+- Type: `Boolean`
+- Default value: `false`
+
+Set this property to `true` to add a small timout-indicator to toast messages.
+
+### `threshold`
+
+- Type: `Number`
+- Default value: `Infinity`
+
+Set this property to change the threshold of toasts being presented at the same time. This will be used as an aproximation or a guideline, but it will still allow bursts to at least show.
+
+### `position`
+
+- Type: one of `'start'`, `'center'`, `'end'`
+- Default value: `end`
+
+Set this property to change the position where toasts will appear.
+
+### `top`
+
+- Type: `Boolean`
+- Default value: `false`
+
+Set this property to `true` to make toasts appear from the top.
+
+## Attached Components
+
+### `Toast`
+
+The Toast component allows you to consume the Hubs means of creating toasts.
