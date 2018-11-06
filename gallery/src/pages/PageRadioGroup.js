@@ -1,4 +1,6 @@
 import React from 'react'
+import styled from 'styled-components'
+
 import Page from 'comps/Page/Page'
 
 import readme from 'ui-src/components/Radio/RadioGroup.md'
@@ -20,17 +22,19 @@ class PageRadioGroup extends React.Component {
     return (
       <Page title={title} readme={readme}>
         <Page.Demo height={100}>
-          <Container>
+          <Container centered style={{ height: '100vh' }}>
             <RadioGroup name="group" onChange={this.handleChange}>
               {RADIO_LABELS.map((label, i) => {
                 const radioValue = label.toLowerCase()
                 return (
-                  <Label key={i} label={label}>
+                  <Label key={i}>
                     <RadioButton
                       inline
                       checked={radioValue === value}
+                      onChange={() => {}}
                       value={radioValue}
                     />
+                    {label}
                   </Label>
                 )
               })}
