@@ -1,6 +1,6 @@
 # EmptyStateCard
 
-EmptyStateCard extends the Card Component with default content for representing an empty state in your app. 
+EmptyStateCard extends the Card Component with default content for representing an empty state in your app.
 
 ## Usage
 
@@ -61,12 +61,6 @@ const App = () => (
 )
 ```
 
-### `actionButton`
-
-- Type: `Node`
-
-A button for triggering the main action of your EmptyStateCard.
-
 #### Example:
 
 ```jsx
@@ -114,5 +108,21 @@ This will be called when the EmptyStateCard's action button is clicked.
 ```jsx
 const App = () => (
   <EmptyStateCard onActivate={() => {console.log('The action button was clicked!')}} />
+)
+```
+
+### `action`
+
+- Type: `Node`
+
+Use this prop to override the button used for the main action of
+EmptyStateCard. Setting this prop makes the value of `actionDisabled`,
+`actionText` or `onActivate` ignored.
+
+#### Example:
+
+```jsx
+const App = () => (
+  <EmptyStateCard action={<Button mode='secondary'>Click me</Button>} />
 )
 ```

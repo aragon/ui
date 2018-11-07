@@ -150,9 +150,17 @@ const PanelHeader = styled.header`
 const PanelScrollView = styled.div`
   overflow-y: auto;
   height: 100%;
+  display: flex;
+  flex-direction: column;
 `
 
 const PanelContent = styled.div`
+  min-height: 0;
+  flex-grow: 1;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
   padding-right: ${CONTENT_PADDING}px;
   padding-left: ${CONTENT_PADDING}px;
   padding-bottom: ${CONTENT_PADDING}px;

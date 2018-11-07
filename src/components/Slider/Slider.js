@@ -182,11 +182,11 @@ const Bar = styled(animated.div)`
   bottom: 0;
 `
 
-const BaseBar = Bar.extend`
+const BaseBar = styled(Bar)`
   background: #edf3f6;
 `
 
-const ActiveBar = Bar.extend`
+const ActiveBar = styled(Bar)`
   transform-origin: 0 0;
 `
 
