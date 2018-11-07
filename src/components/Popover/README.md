@@ -51,7 +51,7 @@ class PageTransactionProgress extends React.Component {
               placement="top-start"
               gutter="20px"
               openerRef={this.openerRef}
-              handleClose={() => this.setState({ hide: true })}
+              onClose={() => this.setState({ hide: true })}
             >
               <Box />
             </Popover>
@@ -97,3 +97,9 @@ This is for absolute positioning of the component and is mostly used for positio
 - Type: `number`
 
 zIndex of Popover.
+
+### `onClose`
+
+- Type: `function`
+
+The callback that is called when the popover is being closed.

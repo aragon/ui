@@ -6,6 +6,21 @@ import Popper from 'popper.js'
 import { Consumer } from '../RootProvider/RootProvider'
 
 class Popover extends React.Component {
+  static propTypes = {
+    openerRef: PropTypes.instanceOf(Element).isRequired,
+    containerRef: PropTypes.instanceOf(Element),
+    placement: PropTypes.string,
+    gutter: PropTypes.string,
+    top: PropTypes.string,
+    left: PropTypes.string,
+    zIndex: PropTypes.number,
+    onClose: PropTypes.func,
+  }
+
+  static defaultProps = {
+    gutter: '20px',
+  }
+
   state = {
     thisRef: null,
   }
@@ -29,43 +44,40 @@ class Popover extends React.Component {
 
   componentDidUpdate(prevProps) {
     const { placement, children } = this.props
-
     if (prevProps.placement !== placement || prevProps.children !== children) {
       this.destroyPopper()
       this.initPopper()
     }
   }
 
+  // check if a point is inside a DOM rect
+  insideRect(rect, x, y) {
+    return rect.top < y && rect.bottom > y && rect.left < x && rect.right > x
+  }
+
   handleEscape = e => {
-    const { handleClose } = this.props
+    const { onClose } = this.props
     if (e.keyCode === 27) {
-      handleClose()
+      onClose()
     }
   }
 
   handleClick = e => {
-    const { handleClose, openerRef } = this.props
+    const { onClose, openerRef } = this.props
     const { thisRef } = this.state
 
-    if (openerRef) {
-      const thisRefContent = thisRef.getBoundingClientRect()
-      const openerRefContent = openerRef.getBoundingClientRect()
-      if (
-        !(
-          thisRefContent.y < e.clientY &&
-          thisRefContent.y + thisRefContent.height > e.clientY &&
-          thisRefContent.x < e.clientX &&
-          thisRefContent.x + thisRefContent.width > e.clientX
-        ) &&
-        !(
-          openerRefContent.y < e.clientY &&
-          openerRefContent.y + openerRefContent.height > e.clientY &&
-          openerRefContent.x < e.clientX &&
-          openerRefContent.x + openerRefContent.width > e.clientX
-        )
-      ) {
-        handleClose()
-      }
+    if (!openerRef) {
+      return
+    }
+
+    const thisRefContent = thisRef.getBoundingClientRect()
+    const openerRefContent = openerRef.getBoundingClientRect()
+
+    const insidePopover = this.insideRect(thisRefContent, e.clientX, e.clientY)
+    const insideOpener = this.insideRect(openerRefContent, e.clientX, e.clientY)
+
+    if (!insidePopover && !insideOpener) {
+      onClose()
     }
   }
 
@@ -90,7 +102,6 @@ class Popover extends React.Component {
 
   render() {
     const { top, left, zIndex, children, containerRef } = this.props
-
     return ReactDOM.createPortal(
       <div style={{ position: 'absolute', top, left, zIndex }}>{children}</div>,
       containerRef
@@ -99,30 +110,11 @@ class Popover extends React.Component {
 }
 
 class PopoverWithProvider extends React.Component {
-  static propTypes = {
-    openerRef: PropTypes.instanceOf(Element).isRequired,
-    containerRef: PropTypes.instanceOf(Element),
-    placement: PropTypes.string,
-    gutter: PropTypes.string,
-    top: PropTypes.string,
-    left: PropTypes.string,
-    zIndex: PropTypes.number,
-  }
-
-  static defaultProps = {
-    gutter: '20px',
-  }
-
+  static propTypes = Popover.propTypes
   render() {
     return (
       <Consumer>
-        {({ el }) => (
-          <Popover
-            containerRef={el}
-            handleClose={this.props.handleClose}
-            {...this.props}
-          />
-        )}
+        {({ el }) => <Popover containerRef={el} {...this.props} />}
       </Consumer>
     )
   }
