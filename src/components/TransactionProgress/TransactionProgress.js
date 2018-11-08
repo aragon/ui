@@ -1,12 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { Transition, animated } from 'react-spring'
 
 import theme from '../../theme'
-import { springs } from '../../utils/styles'
 
-import { Text, SafeLink, Countdown, Info, ProgressBar } from '../index'
+import { Text, SafeLink, Countdown, Info, ProgressBar, Popover } from '../'
 import { IconClose } from '../../icons'
 
 export default class TransactionProgress extends React.Component {
@@ -14,7 +12,7 @@ export default class TransactionProgress extends React.Component {
     slow: PropTypes.bool,
     transactionHashUrl: PropTypes.string,
     endTime: PropTypes.instanceOf(Date),
-    handleClose: PropTypes.func,
+    onClose: PropTypes.func,
     progress: PropTypes.number,
   }
 
@@ -24,58 +22,46 @@ export default class TransactionProgress extends React.Component {
       progress,
       endTime,
       transactionHashUrl,
-      handleClose,
+      onClose,
+      openerRef,
     } = this.props
 
+    const { top, left } = this.props
+
     return (
-      <Transition
-        config={springs.swift}
-        from={{ scale: 0.9, opacity: 0 }}
-        to={{ scale: 1, opacity: 1 }}
-        native
+      <Popover
+        top={top}
+        left={left}
+        placement="auto"
+        zIndex={100}
+        openerRef={openerRef}
+        onClose={onClose}
       >
-        {({ scale, opacity }) => (
-          <Card
-            style={{
-              opacity,
-              transform: scale.interpolate(t => `scale3d(${t},${t},1)`),
-            }}
-          >
-            <CloseButton type="button" onClick={handleClose}>
-              <IconClose />
-            </CloseButton>
-            <Wrapper>
-              <Text size="large" weight="bold">
-                Pending transaction
-              </Text>
-              <ContentWrapper>
-                <Text smallcaps weight="bolder" color={theme.textSecondary}>
-                  Estimated time:
-                </Text>
-                <Countdown removeDaysAndHours end={endTime} />
-              </ContentWrapper>
-              <ProgressBar color={theme.accent} progress={progress} />
-              <FooterWrapper slow={slow}>
-                {slow && (
-                  <Info.Alert>Slow transaction. Retry with more gas</Info.Alert>
-                )}
-                <Link href={transactionHashUrl}>See on Etherscan</Link>
-              </FooterWrapper>
-            </Wrapper>
-          </Card>
-        )}
-      </Transition>
+        <CloseButton type="button" onClick={onClose}>
+          <IconClose />
+        </CloseButton>
+        <Wrapper>
+          <Text size="large" weight="bold">
+            Pending transaction
+          </Text>
+          <ContentWrapper>
+            <Text smallcaps weight="bolder" color={theme.textSecondary}>
+              Estimated time:
+            </Text>
+            <Countdown removeDaysAndHours end={endTime} />
+          </ContentWrapper>
+          <ProgressBar color={theme.accent} progress={progress} />
+          <FooterWrapper slow={slow}>
+            {slow && (
+              <Info.Alert>Slow transaction. Retry with more gas</Info.Alert>
+            )}
+            <Link href={transactionHashUrl}>See on Etherscan</Link>
+          </FooterWrapper>
+        </Wrapper>
+      </Popover>
     )
   }
 }
-
-const Card = styled(animated.div)`
-  background: ${theme.contentBackground};
-  border: 1px solid #e6e6e6;
-  border-radius: 3px;
-  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.06);
-  width: 480px;
-`
 
 const Wrapper = styled.div`
   padding: 1rem;
