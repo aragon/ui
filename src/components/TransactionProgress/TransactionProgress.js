@@ -51,7 +51,7 @@ class TransactionProgress extends React.Component {
             Pending transaction
           </Text>
           <ContentWrapper>
-            <Text smallcaps weight="bolder" color={theme.textSecondary}>
+            <Text smallcaps color={theme.textSecondary}>
               Estimated time:
             </Text>
             <Countdown removeDaysAndHours end={endTime} />
@@ -59,7 +59,9 @@ class TransactionProgress extends React.Component {
           <ProgressBar color={theme.accent} progress={progress} />
           <FooterWrapper slow={slow}>
             {slow && (
-              <Info.Alert>Slow transaction. Retry with more gas</Info.Alert>
+              <SlowTransaction>
+                <Info.Alert>Slow transaction. Retry with more gas</Info.Alert>
+              </SlowTransaction>
             )}
             <Link href={transactionHashUrl}>See on Etherscan</Link>
           </FooterWrapper>
@@ -101,10 +103,12 @@ const FooterWrapper = styled.div`
 `
 
 const Link = styled(SafeLink)`
-  font-size: 16px;
-  font-weight: 700;
   color: #21aae7;
   text-decoration: none;
+`
+
+const SlowTransaction = styled.div`
+  margin-right: 10px;
 `
 
 export default TransactionProgress
