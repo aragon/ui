@@ -1,13 +1,19 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
+import {
+  Text,
+  SafeLink,
+  Countdown,
+  Info,
+  ProgressBar,
+  Popover,
+  IconClose,
+  font,
+  theme,
+} from '../..'
 
-import theme from '../../theme'
-
-import { Text, SafeLink, Countdown, Info, ProgressBar, Popover } from '../'
-import { IconClose } from '../../icons'
-
-export default class TransactionProgress extends React.Component {
+class TransactionProgress extends React.Component {
   static propTypes = {
     slow: PropTypes.bool,
     transactionHashUrl: PropTypes.string,
@@ -100,3 +106,5 @@ const Link = styled(SafeLink)`
   color: #21aae7;
   text-decoration: none;
 `
+
+export default TransactionProgress
