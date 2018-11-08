@@ -5,5 +5,5 @@
     ["transform-react-jsx", {}],
     ["transform-react-display-name", {}]
   ],
-  "presets": [["env", { "modules": false }], "stage-2"],
+  "presets": [["env", { "modules": false }], "stage-2"]
 }

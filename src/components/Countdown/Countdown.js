@@ -57,10 +57,10 @@ class Countdown extends React.Component {
           <Unit>M</Unit>
         </Part>
         <Separator>:</Separator>
-        <Part>
+        <PartSeconds>
           {formatUnit(seconds)}
-          <Unit>S</Unit>
-        </Part>
+          <UnitSeconds>S</UnitSeconds>
+        </PartSeconds>
       </span>
     )
   }
@@ -79,6 +79,18 @@ const Part = styled.span`
   font-size: 15px;
   font-weight: 600;
   color: ${theme.textPrimary};
+`
+
+const PartSeconds = styled(Part)`
+  display: inline-flex;
+  align-items: baseline;
+  justify-content: space-between;
+  min-width: 31px;
+`
+
+const UnitSeconds = styled(Unit)`
+  position: relative;
+  left: -3px;
 `
 
 const Separator = styled.span`
