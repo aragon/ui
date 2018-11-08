@@ -84,6 +84,12 @@ const PartSeconds = styled(Part)`
   min-width: 31px;
 `
 
+const Unit = styled.span`
+  margin-left: 2px;
+  font-size: 12px;
+  color: ${theme.textSecondary};
+`
+
 const UnitSeconds = styled(Unit)`
   position: relative;
   left: -3px;
@@ -93,12 +99,6 @@ const Separator = styled.span`
   margin: 0 4px;
   color: ${theme.textTertiary};
   font-weight: 400;
-`
-
-const Unit = styled.span`
-  margin-left: 2px;
-  font-size: 12px;
-  color: ${theme.textSecondary};
 `
 
 const TimeOut = styled.span`
