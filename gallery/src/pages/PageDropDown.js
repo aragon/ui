@@ -15,20 +15,33 @@ class PageDropDown extends React.Component {
   render() {
     const { title } = this.props
     const { activeItem } = this.state
+
     return (
       <Page title={title} readme={readme}>
-        <Page.Demo height={300}>
+        <Page.Demo height={350}>
           <Container>
-            <DropDown
-              active={activeItem}
-              onChange={this.handleChange}
-              items={[
-                'Wandering Thunder',
-                'Black Wildflower',
-                'Ancient Paper',
-                'Green Fire',
-              ]}
-            />
+            <div
+              style={{
+                display: 'flex',
+                height: '100%',
+                width: '100%',
+                paddingTop: '40px',
+                justifyContent: 'center',
+              }}
+            >
+              <div>
+                <DropDown
+                  active={activeItem}
+                  onChange={this.handleChange}
+                  items={[
+                    'Wandering Thunder',
+                    'Black Wildflower',
+                    'Ancient Paper',
+                    'Green Fire',
+                  ]}
+                />
+              </div>
+            </div>
           </Container>
         </Page.Demo>
       </Page>
