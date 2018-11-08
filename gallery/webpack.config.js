@@ -65,16 +65,6 @@ module.exports = (env, argv) => {
           loader: 'babel-loader',
           options: {
             cacheDirectory: true,
-            presets: [
-              [
-                '@babel/preset-env',
-                {
-                  targets: { browsers: 'last 2 versions, > 2%' },
-                  modules: false,
-                },
-              ],
-              '@babel/preset-react',
-            ],
             plugins: [
               [
                 'babel-plugin-styled-components',

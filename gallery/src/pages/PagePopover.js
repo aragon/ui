@@ -1,11 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Button } from '@aragon/ui'
+import { Button, Popover, Root } from '@aragon/ui'
 import Page from 'comps/Page/Page'
 import Container from 'comps/Page/DemoContainer'
 import readme from 'ui-src/components/Popover/README.md'
-import Popover from 'ui-src/components/Popover/Popover'
-import RootProvider from 'ui-src/components/RootProvider/RootProvider'
 
 class PagePopover extends React.Component {
   state = {
@@ -17,7 +15,7 @@ class PagePopover extends React.Component {
     return (
       <Page title={title} readme={readme}>
         <Page.Demo>
-          <RootProvider>
+          <Root.Provider>
             <Container>
               <Wrapper>
                 <div
@@ -44,14 +42,14 @@ class PagePopover extends React.Component {
                         openerRef={this.openerRef}
                         handleClose={() => this.setState({ hide: true })}
                       >
-                        <Box />
+                        <Box>Popover</Box>
                       </Popover>
                     )}
                   </div>
                 </div>
               </Wrapper>
             </Container>
-          </RootProvider>
+          </Root.Provider>
         </Page.Demo>
       </Page>
     )
@@ -67,9 +65,11 @@ const Wrapper = styled.div`
 `
 
 const Box = styled.div`
-  width: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
   height: 100px;
-  background-color: red;
 `
 
 export default PagePopover
