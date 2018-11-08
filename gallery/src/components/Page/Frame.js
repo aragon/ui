@@ -14,6 +14,10 @@ const StyledFrame = styled.iframe`
 `
 
 class Frame extends React.Component {
+  static defaultProps = {
+    height: -1,
+  }
+
   state = {
     root: null,
     iframeHeight: 0,
@@ -29,9 +33,16 @@ class Frame extends React.Component {
     }, 1000 / 60)
   }
 
+  componentWillUnmount() {
+    clearTimeout(this.updateTimeout)
+  }
+
   updateHeight() {
+    if (!this.node) return
+
     const { height } = this.props
     const { iframeHeight } = this.state
+
     if (height > -1) {
       if (height !== iframeHeight) {
         this.setState({ iframeHeight: height })
@@ -53,13 +64,15 @@ class Frame extends React.Component {
   }
 
   updateStyles() {
+    if (!this.node) return
+
     this.setState({
       styles: StyleSheet.instance.toHTML(),
     })
   }
 
   handleLoad = event => {
-    if (this.state.root) {
+    if (this.state.root || !this.node) {
       return
     }
     const { documentElement: root, body, head } = this.node.contentDocument
@@ -88,6 +101,7 @@ class Frame extends React.Component {
               style={{
                 background: opaque ? theme.contentBackground : 'none',
                 overflow: 'hidden',
+                minHeight: '100vh',
                 borderRadius: '3px 0 0 3px',
               }}
             >
@@ -99,10 +113,6 @@ class Frame extends React.Component {
       </StyledFrame>
     )
   }
-}
-
-Frame.defaultProps = {
-  height: -1,
 }
 
 export default Frame
