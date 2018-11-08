@@ -17,27 +17,6 @@ export const springs = {
 
   // Fast speed spring, for actions that need to feel almost instant.
   swift: { mass: 0.5, tension: 400, friction: 30, precision: 0.001 },
-
-  // These springs (slow, normal, fast) were originally created for
-  // react-motion. Their use is deprecated.
-  get slow() {
-    warn(
-      'springs.slow is deprecated. Please use another spring (like springs.lazy).'
-    )
-    return { mass: 1, tension: 150, friction: 18 }
-  },
-  get normal() {
-    warn(
-      'springs.normal is deprecated. Please use another spring (like springs.smooth).'
-    )
-    return { mass: 1, tension: 190, friction: 22 }
-  },
-  get fast() {
-    warn(
-      'springs.fast is deprecated. Please use another spring (like springs.swift).'
-    )
-    return { mass: 1, tension: 220, friction: 24 }
-  },
 }
 
 // Deprecated react-motion springs (see above)
@@ -50,7 +29,8 @@ const reactMotionSprings = {
 export const spring = name => {
   if (process.env.NODE_ENV === 'development') {
     console.warn(
-      'spring(name) is deprecated. Please use springs[name] instead.'
+      'Using spring(name) with react-motion is deprecated. ' +
+        'Please use springs[name] with react-spring instead.'
     )
   }
   return reactMotionSprings[name] || reactMotionSprings.normal
