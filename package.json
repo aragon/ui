@@ -83,6 +83,7 @@
     "date-fns": "2.0.0-alpha.22",
     "lodash-es": "^4.17.11",
     "onecolor": "^3.0.5",
+    "popper.js": "^1.14.4",
     "prop-types": "^15.6.0",
     "react-blockies": "^1.4.0",
     "react-display-name": "^0.2.3",

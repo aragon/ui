@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
+import color from 'onecolor'
 import Attention from '../../icons/components/Attention'
 import Bylaw from '../../icons/components/Bylaw'
 import { theme } from '../../theme'
@@ -9,6 +10,7 @@ import Info from './Info'
 
 const Icon = styled.span`
   margin-right: 10px;
+  display: flex;
 `
 
 const Title = styled.div`
@@ -55,6 +57,16 @@ IconInfo.propTypes = {
 
 const Action = props => <IconInfo icon={<Attention />} {...props} />
 
+const redColor = color(theme.negative)
+
+const Alert = props => (
+  <IconInfo
+    background={redColor.alpha(0.06).cssa()}
+    icon={<Attention bg={redColor.alpha(0.1).cssa()} color={redColor.css()} />}
+    {...props}
+  />
+)
+
 const PermissionIconInfo = styled(IconInfo)`
   ${Icon} {
     color: ${theme.infoPermissionsIcon};
@@ -69,5 +81,5 @@ const Permissions = props => (
   />
 )
 
-export { Action, Permissions }
+export { Action, Alert, Permissions }
 export default IconInfo
