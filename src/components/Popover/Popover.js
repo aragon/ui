@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import Popper from 'popper.js'
-import { Transition, animated } from 'react-spring'
+import { Spring, animated } from 'react-spring'
 
 import theme from '../../theme'
 import { springs } from '../../utils/styles'
@@ -12,7 +12,7 @@ import { Root } from '../../providers'
 class PopoverBase extends React.Component {
   static propTypes = {
     openerRef: PropTypes.instanceOf(Element).isRequired,
-    containerRef: PropTypes.instanceOf(Element),
+    rootElement: PropTypes.instanceOf(Element),
     placement: PropTypes.string,
     gutter: PropTypes.string,
     top: PropTypes.string,
@@ -103,17 +103,16 @@ class PopoverBase extends React.Component {
   }
 
   render() {
-    const { top, left, zIndex, children, containerRef } = this.props
+    const { top, left, zIndex, children, rootElement } = this.props
     return ReactDOM.createPortal(
       <div
         ref={this._element}
         style={{ position: 'absolute', top, left, zIndex }}
       >
-        <Transition
+        <Spring
           config={springs.swift}
           from={{ scale: 0.9, opacity: 0 }}
-          enter={{ scale: 1, opacity: 1 }}
-          leave={{ scale: 0.9, opacity: 0 }}
+          to={{ scale: 1, opacity: 1 }}
           native
         >
           {({ scale, opacity }) => (
@@ -126,9 +125,9 @@ class PopoverBase extends React.Component {
               {children}
             </Card>
           )}
-        </Transition>
+        </Spring>
       </div>,
-      containerRef
+      rootElement
     )
   }
 }
@@ -141,7 +140,7 @@ const Card = styled(animated.div)`
 `
 
 const Popover = props => (
-  <Root>{el => <PopoverBase containerRef={el} {...props} />}</Root>
+  <Root>{el => <PopoverBase rootElement={el} {...props} />}</Root>
 )
 Popover.propTypes = PopoverBase.propTypes
 
