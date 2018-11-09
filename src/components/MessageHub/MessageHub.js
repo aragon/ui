@@ -6,6 +6,8 @@ import { springs } from '../../utils/styles/spring'
 import Text from '../Text/Text'
 
 let id = 0
+
+const move = pixel => `translate3d(0,${pixel}px,0)`
 const { Provider, Consumer: Toast } = React.createContext(() => {
   throw "For Toast to work it needs to be part of a MessageHub's tree, which has to be declared at an upper level!"
 })
@@ -49,9 +51,7 @@ class MessageHub extends React.PureComponent {
     }))
   config = (item, state) => {
     const config = this.props.config
-    // If the state-machine flags a leave return three configs, the first being duration based
-    // This will impact the leave function, which will cause three animations
-    // For everything else return a default config
+    // Return custom configs on leave (includes the life-line duration)
     return state === 'leave'
       ? [{ duration: this.props.timeout }, config, config]
       : config
@@ -60,20 +60,18 @@ class MessageHub extends React.PureComponent {
     if (this.cancelMap.has(item)) {
       const fn = this.cancelMap.get(item)
       fn()
-      // There are 3 passes in leave, the lifeline and opacity->height
-      // Calling cancel twice brings us to height->0
+      // There are 3 passes: lifeline, opacity->0, height->0
       if (secondPass) fn()
     }
   }
   leave = item => async (next, cancel) => {
     // Save cancel so that it can be used interactively
     this.cancelMap.set(item, cancel)
-    // Suck the life out of it first, it's duration based & affects the indicator
-    await next({ to: { life: 0 } })
+    // Lifeline first
+    await next({ to: { life: '0%' } })
     // Then fade out
     await next({ to: { opacity: 0 } })
-    // Then shrink down, the last "true" informs Keyframes that is is the last frame
-    // This is the only way for it to know when to call "onRest" on scripted animations
+    // Then shrink, the last "true" informs Keyframes that is is the last frame
     await next({ to: { height: 0 } }, true)
     this.setState(state => ({
       leaving: state.leaving.filter(i => i.key !== item.key),
@@ -89,8 +87,8 @@ class MessageHub extends React.PureComponent {
             native
             items={this.state.items}
             keys={item => item.key}
-            from={{ opacity: 0, height: 0, life: 1, transform: 'translate3d(0,30px,0)' }}
-            enter={{ opacity: 1, height: 'auto', transform: 'translate3d(0,0px,0)' }}
+            from={{ opacity: 0, height: 0, life: '100%', transform: move(30) }}
+            enter={{ opacity: 1, height: 'auto', transform: move(0) }}
             leave={this.leave}
             onRest={this.remove}
             config={this.config}
@@ -98,12 +96,7 @@ class MessageHub extends React.PureComponent {
             {item => ({ life, ...props }) => (
               <Message style={props}>
                 <Content top={top}>
-                  {showIndicator && (
-                    <Life
-                      top={top}
-                      style={{ right: life.interpolate(l => `${l * 100}%`) }}
-                    />
-                  )}
+                  {showIndicator && <Life top={top} style={{ right: life }} />}
                   <Text.Paragraph>{item.msg}</Text.Paragraph>
                 </Content>
               </Message>
