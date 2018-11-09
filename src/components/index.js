@@ -33,7 +33,7 @@ export { default as TableHeader } from './Table/TableHeader'
 export { default as TableRow } from './Table/TableRow'
 export { default as Text } from './Text/Text'
 export { default as TextInput } from './Input/TextInput'
-export { MessageHub, Toast } from './MessageHub/MessageHub'
+export { ToastHub, Toast } from './ToastHub/ToastHub'
 export {
   default as TransactionProgress,
 } from './TransactionProgress/TransactionProgress'
