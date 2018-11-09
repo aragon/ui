@@ -40,7 +40,7 @@ import PageTable from './pages/PageTable'
 import PageRedraw from './pages/PageRedraw'
 import PageRedrawFromDate from './pages/PageRedrawFromDate'
 import PageObserve from './pages/PageObserve'
-import PageMessageHub from './pages/PageMessageHub'
+import PageToastHub from './pages/PageToastHub'
 
 const preparePage = ([comp, name, path]) => ({
   comp,
@@ -104,7 +104,7 @@ export const PAGE_GROUPS = [
       [PageRedraw, 'Redraw', '/redraw'],
       [PageRedrawFromDate, 'RedrawFromDate', '/redraw-from-date'],
       [PageObserve, 'Observe', '/observe'],
-      [PageMessageHub, 'MessageHub', '/message-hub'],
+      [PageToastHub, 'ToastHub', '/toast-hub'],
     ].map(preparePage),
   },
 ]
