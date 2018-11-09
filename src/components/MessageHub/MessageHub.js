@@ -119,27 +119,27 @@ const Container = styled('div')`
   display: flex;
   flex-direction: ${props => (props.top ? 'column-reverse' : 'column')};
   pointer-events: none;
-  align-items: ${props => {
-    switch (props.position) {
-      case 'left':
-        return 'flex-start'
-      case 'right':
-        return 'flex-end'
-      default:
-        return 'center'
-    }
-  }};
-  @media (max-width: 700px) {
-    align-items: center;
+  align-items: center;
+  @media (min-width: 700px) {
+    align-items: ${props => {
+      switch (props.position) {
+        case 'left':
+          return 'flex-start'
+        case 'right':
+          return 'flex-end'
+        default:
+          return 'center'
+      }
+    }};
   }
 `
 
 const Message = styled(animated.div)`
   box-sizing: border-box;
   position: relative;
-  width: 42ch;
-  @media (max-width: 700px) {
-    width: 100%;
+  width: 100%;
+  @media (min-width: 700px) {
+    width: 42ch;
   }
 `
 
