@@ -7,7 +7,7 @@ import Text from '../Text/Text'
 
 let id = 0
 const { Provider, Consumer: Toast } = React.createContext(() => {
-  throw "For Toast to work it needs to be part of a MessageHub's tree, which has to be delcared at an upper level!"
+  throw "For Toast to work it needs to be part of a MessageHub's tree, which has to be declared at an upper level!"
 })
 
 class MessageHub extends React.PureComponent {
