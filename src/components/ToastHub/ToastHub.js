@@ -9,7 +9,7 @@ let id = 0
 
 const move = pixel => `translate3d(0,${pixel}px,0)`
 const { Provider, Consumer: Toast } = React.createContext(() => {
-  throw "For Toast to work it needs to be part of a MessageHub's tree, which has to be declared at an upper level!"
+  throw "For Toast to work it needs to be part of a ToastHub's tree, which has to be declared at an upper level!"
 })
 
 class ToastHub extends React.PureComponent {

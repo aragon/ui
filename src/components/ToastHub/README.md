@@ -1,20 +1,20 @@
-# MessageHub
+# ToastHub
 
-The MessageHub component is used to display text message toasts.
+The ToastHub component is used to display text message toasts.
 
 ## Usage
 
 ```jsx
-import { MessageHub, Toast, Button } from '@aragon/ui'
+import { ToastHub, Toast, Button } from '@aragon/ui'
 
 const App = () => (
-  <MessageHub>
+  <ToastHub>
     <Toast>
       {toast => (
         <Button onClick={() => toast("hello world")</Button>}>Click me</Button>
       )}
     </Toast>
-  </MessageHub>
+  </ToastHub>
 )
 ```
 

@@ -15,7 +15,7 @@ const Container = styled(DemoContainer)`
   }
 `
 
-const PageMessageHub = ({ title }) => (
+const PageToastHub = ({ title }) => (
   <ToastHub>
     <Page title={title} readme={readme}>
       <Page.Demo opaque>
@@ -35,4 +35,4 @@ const PageMessageHub = ({ title }) => (
   </ToastHub>
 )
 
-export default PageMessageHub
+export default PageToastHub
