@@ -23,14 +23,14 @@ const App = () => (
 ### `config`
 
 - Type: `Object`
-- Default value: `{ tension: 125, friction: 20, precision: 0.1 }`
+- Default value: `springs.lazy`
 
 Set this property to alter the animation config.
 
 ### `timeout`
 
 - Type: `Number`
-- Default value: `400`
+- Default value: `4000`
 
 Set this property to change how long toasts will stick around.
 
@@ -50,7 +50,7 @@ Set this property to change the threshold of toasts being presented at the same 
 
 ### `position`
 
-- Type: one of `'start'`, `'center'`, `'end'`
+- Type: one of `'left'`, `'center'`, `'right'`
 - Default value: `end`
 
 Set this property to change the position where toasts will appear.
