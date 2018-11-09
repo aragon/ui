@@ -20,7 +20,7 @@ const App = () => (
 
 ## Properties
 
-### `config`
+### `animationConfig`
 
 - Type: `Object`
 - Default value: `springs.lazy`
