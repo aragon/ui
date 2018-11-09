@@ -9,6 +9,8 @@ import Button from './apps/Button'
 import EmptyStateCard from './apps/EmptyStateCard'
 import TabBar from './apps/TabBar'
 import IdentityBadge from './apps/IdentityBadge'
+import Popover from './apps/Popover'
+import TransactionProgress from './apps/TransactionProgress'
 
 // Set DEVBOX_APP to one of these apps (e.g. `DEVBOX_APP=Button npm start`)
 const MODULES = {
@@ -20,6 +22,8 @@ const MODULES = {
   EmptyStateCard,
   TabBar,
   IdentityBadge,
+  Popover,
+  TransactionProgress,
 }
 
 const App =

@@ -43,6 +43,7 @@ class NavigationBar extends React.Component {
     return (
       <Container>
         <Transition
+          items={displayedItems}
           keys={displayedItems.map(
             // Use a different key than 0 when there is only one item, so that
             // the “leave” transition of the first item can be executed when a
@@ -56,14 +57,14 @@ class NavigationBar extends React.Component {
           immediate={!animate}
           native
         >
-          {displayedItems.map(item => styles => (
+          {item => styles => (
             <Item
               label={item.node}
               onBack={onBack}
               displayBack={items.length > 1 && item.index > 0}
               {...styles}
             />
-          ))}
+          )}
         </Transition>
       </Container>
     )

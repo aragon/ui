@@ -22,6 +22,9 @@ import PageBadge from './pages/PageBadge'
 import PageCircleGraph from './pages/PageCircleGraph'
 import PageCountdown from './pages/PageCountdown'
 import PageInfo from './pages/PageInfo'
+import PageProgressBar from './pages/PageProgressBar'
+import PageTransactionProgress from './pages/PageTransactionProgress'
+import PagePopover from './pages/PagePopover'
 
 // Containers
 import PageAragonApp from './pages/PageAragonApp'
@@ -90,6 +93,9 @@ export const PAGE_GROUPS = [
       [PageCircleGraph, 'CircleGraph', '/circle-graph'],
       [PageCountdown, 'Countdown', '/countdown'],
       [PageInfo, 'Info', '/info'],
+      [PageProgressBar, 'ProgressBar', '/progress-bar'],
+      [PageTransactionProgress, 'TransactionProgress', '/transaction-progress'],
+      [PagePopover, 'Popover', '/Popover'],
     ].map(preparePage),
   },
   {

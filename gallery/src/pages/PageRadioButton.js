@@ -25,7 +25,7 @@ class PageRadioButton extends React.Component {
               </h1>
               <div>
                 {[...Array(3)].map((_, i) => (
-                  <Item>
+                  <Item key={i}>
                     <RadioButton
                       checked={value === i}
                       onChange={this.handleChange}
