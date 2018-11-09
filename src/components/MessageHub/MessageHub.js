@@ -14,7 +14,7 @@ const { Provider, Consumer: Toast } = React.createContext(() => {
 
 class MessageHub extends React.PureComponent {
   static propTypes = {
-    config: PropTypes.object,
+    animationConfig: PropTypes.object,
     timeout: PropTypes.number,
     showIndicator: PropTypes.bool,
     threshold: PropTypes.number,
@@ -23,7 +23,7 @@ class MessageHub extends React.PureComponent {
   }
 
   static defaultProps = {
-    config: springs.lazy,
+    animationConfig: springs.lazy,
     timeout: 4000,
     showIndicator: false,
     threshold: Infinity,
@@ -50,7 +50,7 @@ class MessageHub extends React.PureComponent {
       leaving: [item, ...state.leaving],
     }))
   config = (item, state) => {
-    const config = this.props.config
+    const config = this.props.animationConfig
     // Return custom configs on leave (includes the life-line duration)
     return state === 'leave'
       ? [{ duration: this.props.timeout }, config, config]
