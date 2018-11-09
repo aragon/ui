@@ -66,4 +66,4 @@ Set this property to `true` to make toasts appear from the top.
 
 ### `Toast`
 
-The Toast component allows you to consume the Hubs means of creating toasts.
+The Toast component calls its render-child and passes a single function that allows you to create pop-up messages.
