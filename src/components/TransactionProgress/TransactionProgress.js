@@ -9,17 +9,23 @@ import {
   ProgressBar,
   Popover,
   IconClose,
-  font,
   theme,
 } from '../..'
+import { noop } from '../../utils'
 
 class TransactionProgress extends React.Component {
   static propTypes = {
+    openerRef: PropTypes.instanceOf(Element).isRequired,
+    top: PropTypes.string,
+    left: PropTypes.string,
     slow: PropTypes.bool,
     transactionHashUrl: PropTypes.string,
     endTime: PropTypes.instanceOf(Date),
     onClose: PropTypes.func,
     progress: PropTypes.number,
+  }
+  static defaultProps = {
+    onClose: noop,
   }
 
   render() {
@@ -30,9 +36,9 @@ class TransactionProgress extends React.Component {
       transactionHashUrl,
       onClose,
       openerRef,
+      top,
+      left,
     } = this.props
-
-    const { top, left } = this.props
 
     return (
       <Popover
