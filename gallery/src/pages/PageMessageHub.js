@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { MessageHub, Button } from '@aragon/ui'
+import { MessageHub, Toast, Button } from '@aragon/ui'
 
 import Page from 'comps/Page/Page'
 import DemoContainer from 'comps/Page/DemoContainer'
@@ -21,13 +21,13 @@ const PageMessageHub = ({ title }) => (
       <Page.Demo opaque>
         <Container>
           <div>
-            <MessageHub.Toast>
+            <Toast>
               {toast => (
                 <Button mode="strong" compact onClick={() => toast('hello')}>
                   Add toast
                 </Button>
               )}
-            </MessageHub.Toast>
+            </Toast>
           </div>
         </Container>
       </Page.Demo>

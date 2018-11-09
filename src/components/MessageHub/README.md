@@ -5,15 +5,15 @@ The MessageHub component is used to display text message toasts.
 ## Usage
 
 ```jsx
-import { MessageHub, Button } from '@aragon/ui'
+import { MessageHub, Toast, Button } from '@aragon/ui'
 
 const App = () => (
   <MessageHub>
-    <MessageHub.Toast>
+    <Toast>
       {toast => (
         <Button onClick={() => toast("hello world")</Button>}>Click me</Button>
       )}
-    </MessageHub.Toast>
+    </Toast>
   </MessageHub>
 )
 ```
@@ -62,7 +62,7 @@ Set this property to change the position where toasts will appear.
 
 Set this property to `true` to make toasts appear from the top.
 
-## Attached Components
+## Compound components
 
 ### `Toast`
 

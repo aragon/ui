@@ -2,79 +2,13 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { animated, Transition } from 'react-spring'
+import { springs } from '../../utils/styles/spring'
 import Text from '../Text/Text'
 
-export const Container = styled('div')`
-  position: fixed;
-  z-index: 1000;
-  top: ${props => (props.top ? '30px' : 'unset')};
-  bottom: ${props => (props.top ? 'unset' : '30px')};
-  margin: 0 auto;
-  left: 30px;
-  right: 30px;
-  display: flex;
-  flex-direction: ${props => (props.top ? 'column-reverse' : 'column')};
-  pointer-events: none;
-  align-items: ${props =>
-    props.position === 'center' ? 'center' : `flex-${props.position}`};
-  @media (max-width: 700px) {
-    align-items: center;
-  }
-`
-
-export const Message = styled(animated.div)`
-  box-sizing: border-box;
-  position: relative;
-  overflow: hidden;
-  width: 42ch;
-  @media (max-width: 700px) {
-    width: 100%;
-  }
-`
-
-export const Content = styled('div')`
-  color: white;
-  background: #445159;
-  opacity: 0.9;
-  margin-top: ${props => (props.top ? '0' : '10px')};
-  margin-bottom: ${props => (props.top ? '10px' : '0')};
-  padding: 12px 22px;
-  font-size: 1em;
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-gap: 10px;
-  border-radius: 3px;
-  overflow: hidden;
-`
-
-export const Button = styled('button')`
-  cursor: pointer;
-  pointer-events: all;
-  outline: 0;
-  border: none;
-  background: transparent;
-  display: flex;
-  align-self: flex-end;
-  overflow: hidden;
-  margin: 0;
-  padding: 0;
-  color: rgba(255, 255, 255, 0.5);
-  :hover {
-    color: rgba(255, 255, 255, 0.6);
-  }
-`
-
-export const Life = styled(animated.div)`
-  position: absolute;
-  bottom: ${props => (props.top ? '10px' : '0')};
-  left: 0px;
-  width: auto;
-  background-image: linear-gradient(130deg, #00b4e6, #00f0e0);
-  height: 5px;
-`
-
 let id = 0
-let { Provider, Consumer } = React.createContext()
+const { Provider, Consumer: Toast } = React.createContext(() => {
+  throw "For Toast to work it needs to be part of a MessageHub's tree, which has to be delcared at an upper level!"
+})
 
 class MessageHub extends React.PureComponent {
   static propTypes = {
@@ -82,16 +16,16 @@ class MessageHub extends React.PureComponent {
     timeout: PropTypes.number,
     showIndicator: PropTypes.bool,
     threshold: PropTypes.number,
-    position: PropTypes.PropTypes.oneOf(['start', 'center', 'end']),
+    position: PropTypes.PropTypes.oneOf(['left', 'center', 'right']),
     top: PropTypes.bool,
   }
 
   static defaultProps = {
-    config: { tension: 125, friction: 20, precision: 0.1 },
+    config: springs.lazy,
     timeout: 4000,
     showIndicator: false,
     threshold: Infinity,
-    position: 'end',
+    position: 'right',
     top: false,
   }
 
@@ -146,7 +80,7 @@ class MessageHub extends React.PureComponent {
     }))
   }
   render() {
-    let { children, showIndicator, position, top } = this.props
+    const { children, showIndicator, position, top } = this.props
     return (
       <React.Fragment>
         <Provider value={this.add} children={children} />
@@ -155,8 +89,8 @@ class MessageHub extends React.PureComponent {
             native
             items={this.state.items}
             keys={item => item.key}
-            from={{ opacity: 0, height: 0, life: 1 }}
-            enter={{ opacity: 1, height: 'auto' }}
+            from={{ opacity: 0, height: 0, life: 1, transform: 'translate3d(0,30px,0)' }}
+            enter={{ opacity: 1, height: 'auto', transform: 'translate3d(0,0px,0)' }}
             leave={this.leave}
             onRest={this.remove}
             config={this.config}
@@ -181,6 +115,63 @@ class MessageHub extends React.PureComponent {
   }
 }
 
-MessageHub.Toast = Consumer
+const Container = styled('div')`
+  position: fixed;
+  z-index: 1000;
+  top: ${props => (props.top ? '30px' : 'unset')};
+  bottom: ${props => (props.top ? 'unset' : '30px')};
+  margin: 0 auto;
+  left: 30px;
+  right: 30px;
+  display: flex;
+  flex-direction: ${props => (props.top ? 'column-reverse' : 'column')};
+  pointer-events: none;
+  align-items: ${props => {
+    switch (props.position) {
+      case 'left':
+        return 'flex-start'
+      case 'right':
+        return 'flex-end'
+      default:
+        return 'center'
+    }
+  }};
+  @media (max-width: 700px) {
+    align-items: center;
+  }
+`
 
-export default MessageHub
+const Message = styled(animated.div)`
+  box-sizing: border-box;
+  position: relative;
+  width: 42ch;
+  @media (max-width: 700px) {
+    width: 100%;
+  }
+`
+
+const Content = styled('div')`
+  color: white;
+  background: #445159;
+  opacity: 0.9;
+  margin-top: ${props => (props.top ? '0' : '10px')};
+  margin-bottom: ${props => (props.top ? '10px' : '0')};
+  padding: 12px 22px;
+  font-size: 1em;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 10px;
+  border-radius: 3px;
+  overflow: hidden;
+`
+
+const Life = styled(animated.div)`
+  position: absolute;
+  bottom: ${props => (props.top ? '10px' : '0')};
+  left: 0px;
+  width: auto;
+  background-image: linear-gradient(130deg, #00b4e6, #00f0e0);
+  height: 5px;
+`
+
+export { MessageHub, Toast }
