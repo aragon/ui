@@ -12,7 +12,7 @@ const { Provider, Consumer: Toast } = React.createContext(() => {
   throw "For Toast to work it needs to be part of a MessageHub's tree, which has to be declared at an upper level!"
 })
 
-class MessageHub extends React.PureComponent {
+class ToastHub extends React.PureComponent {
   static propTypes = {
     animationConfig: PropTypes.object,
     timeout: PropTypes.number,
@@ -167,4 +167,4 @@ const Life = styled(animated.div)`
   height: 5px;
 `
 
-export { MessageHub, Toast }
+export { ToastHub, Toast }
