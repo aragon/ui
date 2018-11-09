@@ -78,11 +78,11 @@ class MessageHub extends React.PureComponent {
     }))
   }
   render() {
-    const { children, showIndicator, position, top } = this.props
+    const { children, showIndicator, position, top, style } = this.props
     return (
       <React.Fragment>
         <Provider value={this.add} children={children} />
-        <Container position={position} top={top}>
+        <Container position={position} top={top} style={style}>
           <Transition
             native
             items={this.state.items}
