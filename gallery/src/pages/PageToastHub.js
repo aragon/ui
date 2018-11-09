@@ -1,10 +1,10 @@
 import React from 'react'
 import styled from 'styled-components'
-import { MessageHub, Toast, Button } from '@aragon/ui'
+import { ToastHub, Toast, Button } from '@aragon/ui'
 
 import Page from 'comps/Page/Page'
 import DemoContainer from 'comps/Page/DemoContainer'
-import readme from 'ui-src/components/MessageHub/README.md'
+import readme from 'ui-src/components/ToastHub/README.md'
 
 const Container = styled(DemoContainer)`
   p {
@@ -16,7 +16,7 @@ const Container = styled(DemoContainer)`
 `
 
 const PageMessageHub = ({ title }) => (
-  <MessageHub>
+  <ToastHub>
     <Page title={title} readme={readme}>
       <Page.Demo opaque>
         <Container>
@@ -32,7 +32,7 @@ const PageMessageHub = ({ title }) => (
         </Container>
       </Page.Demo>
     </Page>
-  </MessageHub>
+  </ToastHub>
 )
 
 export default PageMessageHub
