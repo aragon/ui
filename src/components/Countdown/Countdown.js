@@ -14,6 +14,7 @@ const formatUnit = v => String(v).padStart(2, '0')
 class Countdown extends React.Component {
   static propTypes = {
     end: PropTypes.instanceOf(Date),
+    removeDaysAndHours: PropTypes.bool,
   }
   render() {
     const { end } = this.props
@@ -27,7 +28,7 @@ class Countdown extends React.Component {
     )
   }
   renderTime = () => {
-    const { end } = this.props
+    const { end, removeDaysAndHours } = this.props
     const { days, hours, minutes, seconds, totalInSeconds } = difference(
       end,
       new Date()
@@ -37,32 +38,35 @@ class Countdown extends React.Component {
     }
     return (
       <span>
-        <Part>
-          {formatUnit(days)}
-          <Unit>D</Unit>
-        </Part>
-        <Separator />
-        <Part>
-          {formatUnit(hours)}
-          <Unit>H</Unit>
-        </Part>
-        <Separator>:</Separator>
+        {!removeDaysAndHours && (
+          <React.Fragment>
+            <Part>
+              {formatUnit(days)}
+              <Unit>D</Unit>
+            </Part>
+            <Separator />
+            <Part>
+              {formatUnit(hours)}
+              <Unit>H</Unit>
+            </Part>
+            <Separator>:</Separator>
+          </React.Fragment>
+        )}
         <Part>
           {formatUnit(minutes)}
           <Unit>M</Unit>
         </Part>
         <Separator>:</Separator>
-        <Part>
+        <PartSeconds>
           {formatUnit(seconds)}
-          <Unit>S</Unit>
-        </Part>
+          <UnitSeconds>S</UnitSeconds>
+        </PartSeconds>
       </span>
     )
   }
 }
 
 const Main = styled.time`
-  width: 12em;
   white-space: nowrap;
   ${unselectable()};
 `
@@ -77,16 +81,28 @@ const Part = styled.span`
   color: ${theme.textPrimary};
 `
 
-const Separator = styled.span`
-  margin: 0 4px;
-  color: ${theme.textTertiary};
-  font-weight: 400;
+const PartSeconds = styled(Part)`
+  display: inline-flex;
+  align-items: baseline;
+  justify-content: space-between;
+  min-width: 31px;
 `
 
 const Unit = styled.span`
   margin-left: 2px;
   font-size: 12px;
   color: ${theme.textSecondary};
+`
+
+const UnitSeconds = styled(Unit)`
+  position: relative;
+  left: -3px;
+`
+
+const Separator = styled.span`
+  margin: 0 4px;
+  color: ${theme.textTertiary};
+  font-weight: 400;
 `
 
 const TimeOut = styled.span`

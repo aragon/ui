@@ -1,7 +1,7 @@
 import { warn } from '../utils'
 
 const ADDRESS_REGEX = /^0x[0-9a-fA-F]{40}$/
-const ETHERSCAN_NETWORK_TYPES = ['mainnet', 'kovan', 'rinkeby', 'ropsten']
+const ETHERSCAN_NETWORK_TYPES = ['main', 'kovan', 'rinkeby', 'ropsten']
 const ETHERSCAN_TYPES = ['block', 'transaction', 'address', 'token']
 
 /**
@@ -62,14 +62,14 @@ export function isAddress(address) {
  * @param {string} type The type of URL (block, transaction, address or token).
  * @param {string} value Identifier of the object, depending on the type (block number, transaction hash, …).
  * @param {object} options The optional parameters.
- * @param {string} options.networkType The Ethereum network type (mainnet, kovan, rinkeby or ropsten).
+ * @param {string} options.networkType The Ethereum network type (main, kovan, rinkeby, or ropsten).
  * @param {string} options.provider The explorer provider (e.g. etherscan).
  * @return {string} The generated URL, or an empty string if the parameters are invalid.
  */
 export function blockExplorerUrl(
   type,
   value,
-  { networkType = 'mainnet', provider = 'etherscan' } = {}
+  { networkType = 'main', provider = 'etherscan' } = {}
 ) {
   // Only Etherscan is supported for now.
   if (provider !== 'etherscan') {
@@ -87,7 +87,7 @@ export function blockExplorerUrl(
     return ''
   }
 
-  const subdomain = networkType === 'mainnet' ? '' : `${networkType}.`
+  const subdomain = networkType === 'main' ? '' : `${networkType}.`
 
   return `https://${subdomain}etherscan.io/${type}/${value}`
 }

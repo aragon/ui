@@ -26,7 +26,7 @@ class IdentityBadge extends React.PureComponent {
     entity: '',
     shorten: true,
     fontSize: 'normal',
-    networkType: 'mainnet',
+    networkType: 'main',
   }
   render() {
     const { entity, shorten, fontSize, networkType } = this.props

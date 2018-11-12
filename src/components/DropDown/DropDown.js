@@ -113,44 +113,46 @@ class DropDown extends React.Component {
           </DropDownActiveItem>
           <Transition
             config={springs.swift}
+            items={opened}
             from={{ scale: 0.98, opacity: 0, enabled: 1 }}
             enter={{ scale: 1, opacity: 1, enabled: 1 }}
             leave={{ scale: 1, opacity: 0, enabled: 0 }}
             native
           >
-            {opened
-              ? ({ scale, opacity, enabled }) => (
-                  <DropDownItems
-                    role="listbox"
+            {opened =>
+              opened &&
+              (({ scale, opacity, enabled }) => (
+                <DropDownItems
+                  role="listbox"
+                  style={{
+                    opacity,
+                    transform: scale.interpolate(t => `scale3d(${t},${t},1)`),
+                    minWidth: wide ? '100%' : '0',
+                  }}
+                >
+                  {items.length
+                    ? items.map((item, i) => (
+                        <DropDownItem
+                          role="option"
+                          key={i}
+                          index={i}
+                          active={i === active}
+                          onActivate={this.handleItemActivate}
+                        >
+                          {item}
+                        </DropDownItem>
+                      ))
+                    : NON_BREAKING_SPACE}
+                  <BlockingLayer
                     style={{
-                      opacity,
-                      transform: scale.interpolate(t => `scale3d(${t},${t},1)`),
-                      minWidth: wide ? '100%' : '0',
+                      display: enabled.interpolate(
+                        t => (t === 1 ? 'none' : 'block')
+                      ),
                     }}
-                  >
-                    {items.length
-                      ? items.map((item, i) => (
-                          <DropDownItem
-                            role="option"
-                            key={i}
-                            index={i}
-                            active={i === active}
-                            onActivate={this.handleItemActivate}
-                          >
-                            {item}
-                          </DropDownItem>
-                        ))
-                      : NON_BREAKING_SPACE}
-                    <BlockingLayer
-                      style={{
-                        display: enabled.interpolate(
-                          t => (t === 1 ? 'none' : 'block')
-                        ),
-                      }}
-                    />
-                  </DropDownItems>
-                )
-              : null}
+                  />
+                </DropDownItems>
+              ))
+            }
           </Transition>
         </StyledDropDown>
       </ClickOutHandler>

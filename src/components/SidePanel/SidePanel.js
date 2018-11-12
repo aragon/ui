@@ -1,13 +1,10 @@
 import PropTypes from 'prop-types'
 import React from 'react'
 import styled from 'styled-components'
+import { IconClose } from '../../icons'
 import { Spring, animated } from 'react-spring'
-import { PublicUrl } from '../../providers/PublicUrl'
 import Text from '../Text/Text'
-import { prefixUrl } from '../../utils/url'
 import { springs, unselectable } from '../../utils/styles'
-
-import close from './assets/close.svg'
 
 const PANEL_WIDTH = 450
 const CONTENT_PADDING = 30
@@ -66,11 +63,7 @@ class SidePanel extends React.PureComponent {
             </h1>
             {!blocking && (
               <PanelCloseButton type="button" onClick={this.handleClose}>
-                <PublicUrl>
-                  {publicUrl => (
-                    <img src={prefixUrl(close, publicUrl)} alt="Close" />
-                  )}
-                </PublicUrl>
+                <IconClose />
               </PanelCloseButton>
             )}
           </PanelHeader>
@@ -157,9 +150,17 @@ const PanelHeader = styled.header`
 const PanelScrollView = styled.div`
   overflow-y: auto;
   height: 100%;
+  display: flex;
+  flex-direction: column;
 `
 
 const PanelContent = styled.div`
+  min-height: 0;
+  flex-grow: 1;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
   padding-right: ${CONTENT_PADDING}px;
   padding-left: ${CONTENT_PADDING}px;
   padding-bottom: ${CONTENT_PADDING}px;
