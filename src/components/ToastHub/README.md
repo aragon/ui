@@ -20,13 +20,6 @@ const App = () => (
 
 ## Properties
 
-### `animationConfig`
-
-- Type: `Object`
-- Default value: `springs.lazy`
-
-Set this property to alter the animation config.
-
 ### `timeout`
 
 - Type: `Number`
