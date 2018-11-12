@@ -9,7 +9,9 @@ let id = 0
 
 const move = pixel => `translate3d(0,${pixel}px,0)`
 const { Provider, Consumer: Toast } = React.createContext(() => {
-  throw "For Toast to work it needs to be part of a ToastHub's tree, which has to be declared at an upper level!"
+  throw new Error(
+    "For Toast to work it needs to be part of a ToastHub's tree, which has to be declared at an upper level!"
+  )
 })
 
 class ToastHub extends React.PureComponent {
@@ -19,6 +21,7 @@ class ToastHub extends React.PureComponent {
     threshold: PropTypes.number,
     position: PropTypes.PropTypes.oneOf(['left', 'center', 'right']),
     top: PropTypes.bool,
+    children: PropTypes.node,
   }
 
   static defaultProps = {
