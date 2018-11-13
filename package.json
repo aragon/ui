@@ -58,6 +58,7 @@
     "opencolor": "^0.2.0",
     "opencolor-converter": "git://github.com/opencolor-tools/opencolor-converter.git#v2.1.21",
     "prettier": "^1.12.0",
+    "pretty-quick": "^1.8.0",
     "react-media": "^1.6.1",
     "rollup": "^0.67.1",
     "rollup-plugin-babel": "^4.0.3",
@@ -92,7 +93,8 @@
   },
   "husky": {
     "hooks": {
-      "pre-push": "npm run lint"
+      "pre-push": "npm run lint",
+      "pre-commit": "pretty-quick --staged"
     }
   }
 }
