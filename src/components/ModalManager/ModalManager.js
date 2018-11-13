@@ -46,34 +46,46 @@ const ModalConsumer = ModalContext.Consumer
 
 const ModalView = () => (
   <ModalConsumer>
-    {({ modalComponent: ModalComponent, modalComponentProps, hideModal }) => (
+    {({
+      modalComponent,
+      modalComponentProps: { zIndex, ...modalComponentProps },
+      hideModal,
+    }) => (
       <Transition
-        blocking={!!ModalComponent}
         native
-        from={{ opacity: 0, enterProgress: 0 }}
-        enter={{ opacity: 1, enterProgress: 1 }}
-        leave={{ opacity: 0, enterProgress: 1 }}
+        items={modalComponent}
+        from={{ opacity: 0, enterProgress: 0, blocking: false }}
+        enter={{ opacity: 1, enterProgress: 1, blocking: true }}
+        leave={{ opacity: 0, enterProgress: 1, blocking: false }}
         config={springs.lazy}
       >
-        {ModalComponent &&
+        {ModalComponent =>
+          ModalComponent &&
           (({ opacity, enterProgress, blocking }) => (
-            <Wrap style={{ pointerEvents: blocking ? 'auto' : 'none' }}>
+            <Wrap
+              style={{
+                pointerEvents: blocking ? 'auto' : 'none',
+                zIndex,
+              }}
+            >
               <Overlay style={{ opacity: opacity.interpolate(v => v * 0.5) }} />
               <AnimatedWrap
                 style={{
                   opacity,
                   transform: enterProgress.interpolate(
                     v => `
-                      translate3d(0, ${(1 - v) * 10}px, 0)
-                      scale3d(${1 - (1 - v) * 0.03}, ${1 - (1 - v) * 0.03}, 1)
-                    `
+                          translate3d(0, ${(1 - v) * 10}px, 0)
+                          scale3d(${1 - (1 - v) * 0.03}, ${1 -
+                      (1 - v) * 0.03}, 1)
+                        `
                   ),
                 }}
               >
                 <ModalComponent onHide={hideModal} {...modalComponentProps} />
               </AnimatedWrap>
             </Wrap>
-          ))}
+          ))
+        }
       </Transition>
     )}
   </ModalConsumer>
