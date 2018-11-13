@@ -32,6 +32,7 @@ ProgressBar.defaultProps = {
 }
 
 ProgressBar.propTypes = {
+  color: PropTypes.string,
   progress: PropTypes.number,
 }
 

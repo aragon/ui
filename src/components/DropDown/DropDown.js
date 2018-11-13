@@ -145,8 +145,8 @@ class DropDown extends React.Component {
                     : NON_BREAKING_SPACE}
                   <BlockingLayer
                     style={{
-                      display: enabled.interpolate(
-                        t => (t === 1 ? 'none' : 'block')
+                      display: enabled.interpolate(t =>
+                        t === 1 ? 'none' : 'block'
                       ),
                     }}
                   />

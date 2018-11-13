@@ -22,7 +22,7 @@
   },
   "plugins": ["prettier", "react", "flowtype", "import"],
   "rules": {
-    "import/no-unresolved": ["error", { ignore: ["^react$", "^styled-components$"] }],
+    "import/no-unresolved": ["error", { ignore: ["^react(-dom)?$", "^styled-components$"] }],
     "prettier/prettier": [
       "error",
       {

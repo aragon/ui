@@ -45,6 +45,8 @@ class PageTransactionProgress extends React.Component {
                         progress={0.3}
                         endTime={new Date(Date.now() + 100000)}
                         handleClose={() => this.setState({ hide: true })}
+                        top={top}
+                        left={left}
                         openerRef={this.openerRef}
                         slow
                       />
