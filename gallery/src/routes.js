@@ -27,6 +27,8 @@ import PageInfo from './pages/PageInfo'
 import PageProgressBar from './pages/PageProgressBar'
 import PageTransactionProgress from './pages/PageTransactionProgress'
 import PagePopover from './pages/PagePopover'
+import PageModalManager from './pages/PageModalManager'
+import PageModal from './pages/PageModal'
 
 // Containers
 import PageMain from './pages/PageMain'
@@ -106,6 +108,7 @@ export const PAGE_GROUPS = [
       [PageCircleGraph, 'CircleGraph'],
       [PageCountdown, 'Countdown'],
       [PageInfo, 'Info'],
+      [PageModal, 'Modal', '/Modal'],
       [PageProgressBar, 'ProgressBar'],
       [PageTransactionProgress, 'TransactionProgress'],
       [PagePopover, 'Popover'],
