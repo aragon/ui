@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { animated, Transition } from 'react-spring'
 import { springs } from '../../utils/styles/spring'
+import { stylingProps } from '../../utils'
 import Text from '../Text/Text'
 
 let id = 0
@@ -84,17 +85,14 @@ class ToastHub extends React.PureComponent {
       showIndicator,
       position,
       top,
-      style,
-      className,
     } = this.props
     return (
       <React.Fragment>
         <Provider value={this.add} children={children} />
         <Container
+          {...stylingProps(this)}
           position={position}
           top={top}
-          style={style}
-          className={className}
         >
           <Transition
             native
