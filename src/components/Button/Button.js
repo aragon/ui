@@ -1,3 +1,4 @@
+import React from 'react'
 import styled, { css } from 'styled-components'
 import SafeLink from '../Link/SafeLink'
 import { theme } from '../../theme'
@@ -190,16 +191,20 @@ const negativeStyle = getEmphasisStyle({
 })
 
 const StyledButton = styled.button.attrs({ type: 'button' })`
+  display: inline-block;
   width: ${({ wide }) => (wide ? '100%' : 'auto')};
   padding: 10px 15px;
   white-space: nowrap;
   ${font({ size: 'small', weight: 'normal' })};
+  ${unselectable};
+  text-decoration: none;
   color: ${textSecondary};
   background: ${contentBackground};
   border: 0;
   border-radius: 3px;
   outline: 0;
   cursor: ${({ disabled }) => (disabled ? 'default' : 'pointer')};
+
   &,
   &:after {
     transition-property: all;
@@ -232,13 +237,9 @@ const StyledButton = styled.button.attrs({ type: 'button' })`
 `
 
 const Button = PublicUrl.hocWrap(StyledButton)
-const Anchor = PublicUrl.hocWrap(
-  styled(StyledButton.withComponent(SafeLink))`
-    ${unselectable};
-    display: inline-block;
-    text-decoration: none;
-  `
-)
+const Anchor = PublicUrl.hocWrap(props => (
+  <StyledButton as={SafeLink} {...props} />
+))
 
 Button.Anchor = Anchor
 
