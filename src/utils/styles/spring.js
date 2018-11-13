@@ -3,8 +3,6 @@
 //   - `spring()` is deprecated and will be removed in the future (react-motion).
 //   - `springs` should be used from now on (react-spring).
 
-import { warn } from '..'
-
 export const springs = {
   // Super slow spring, for debugging purposes
   debug: { mass: 1, tension: 10, friction: 40 },
