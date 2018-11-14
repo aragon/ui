@@ -59,7 +59,7 @@
     "eslint-plugin-standard": "^3.0.1",
     "gh-pages": "^1.0.0",
     "opencolor": "^0.2.0",
-    "opencolor-converter": "git://github.com/opencolor-tools/opencolor-converter.git#v2.1.21",
+    "opencolor-converter": "git://github.com/opencolor-tools/opencolor-converter.git#v2.1.23",
     "prettier": "^1.12.0",
     "react-media": "^1.6.1",
     "rollup": "^0.51.5",
