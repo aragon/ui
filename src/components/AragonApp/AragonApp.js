@@ -21,7 +21,7 @@ class AragonApp extends React.Component {
   static propTypes = {
     className: PropTypes.string,
     backgroundLogo: PropTypes.bool,
-    publicUrl: PropTypes.string,
+    publicUrl: PropTypes.string.isRequired,
     children: PropTypes.node,
     supportLegacyAgents: PropTypes.bool,
   }
