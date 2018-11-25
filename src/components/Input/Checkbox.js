@@ -3,7 +3,7 @@ import styled from 'styled-components'
 const color = '#1dd9d5'
 const checkIcon = `<svg width='14' height='10' viewBox='0 0 14 10' xmlns='http://www.w3.org/2000/svg'><path d='M4.176 7.956L12.114 0l1.062 1.062-9 9L0 5.886l1.044-1.062z' fill='${color}' fill-rule='evenodd' /></svg>`
 
-export const CheckButton = styled.input.attrs({ type: 'radio' })`
+const Checkbox = styled.input.attrs({ type: 'radio' })`
   appearance: none;
   display: inline-flex;
   align-items: center;
@@ -47,3 +47,5 @@ export const CheckButton = styled.input.attrs({ type: 'radio' })`
     left: 0px;
   }
 `
+
+export default Checkbox
