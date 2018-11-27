@@ -1,14 +1,14 @@
 import styled from 'styled-components'
 import checkIcon from '../../icons/svg/check.svg'
 
-const COLOR = '#1dd9d5'
+const CHECK_COLOR = '#1dd9d5'
 
 const coloredCheck = checkIcon.replace(
   /fill%3D%22([^"]*)%22/,
-  `fill%3D%22${COLOR}%22`
+  `fill%3D%22${CHECK_COLOR}%22`
 )
 
-const Checkbox = styled.input.attrs({ type: 'check' })`
+const Checkbox = styled.input.attrs({ type: 'checkbox' })`
   appearance: none;
   display: inline-flex;
   align-items: center;
@@ -32,8 +32,6 @@ const Checkbox = styled.input.attrs({ type: 'check' })`
     transform: scale(0.3);
     transition: all 100ms ease-in-out;
   }
-  &:active {
-  }
   &:active:after {
     opacity: 1;
     transform: scale(0.6);
@@ -41,11 +39,8 @@ const Checkbox = styled.input.attrs({ type: 'check' })`
   &:checked:after {
     opacity: 1;
     transform: scale(1);
-    content: '';
     background-image: url("${coloredCheck}");
     background-repeat: no-repeat;
-    color: #1dd9d5;
-    font-size: 20px;
     height: 14px;
     width: 14px;
     top: 1px;

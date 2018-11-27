@@ -9,6 +9,12 @@ class App extends React.Component {
     selected: items.map(item => false),
   }
 
+  onCheckboxClick(index, e) {
+    this.setState({
+      selected: this.state.selected.splice(index, 0, e.target.checked),
+    })
+  }
+
   render() {
     const { selected } = this.state
     return (
@@ -19,11 +25,7 @@ class App extends React.Component {
               <Item key={item}>
                 <Checkbox
                   checked={selected[i]}
-                  onChange={e => {
-                    this.setState({
-                      selected: selected.splice(i, 0, e.target.checked),
-                    })
-                  }}
+                  onChange={e => this.onCheckboxClick(i, e)}
                 />
                 {item}
               </Item>
@@ -39,7 +41,7 @@ const List = styled.div``
 
 const Item = styled.label`
   display: flex;
-  align-items: center;
+  align-items: baseline;
   height: 40px;
   cursor: pointer;
   color: #000;
