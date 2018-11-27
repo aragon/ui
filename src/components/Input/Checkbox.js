@@ -1,9 +1,14 @@
 import styled from 'styled-components'
+import checkIcon from '../../icons/svg/check.svg'
 
-const color = '#1dd9d5'
-const checkIcon = `<svg width='14' height='10' viewBox='0 0 14 10' xmlns='http://www.w3.org/2000/svg'><path d='M4.176 7.956L12.114 0l1.062 1.062-9 9L0 5.886l1.044-1.062z' fill='${color}' fill-rule='evenodd' /></svg>`
+const COLOR = '#1dd9d5'
 
-const Checkbox = styled.input.attrs({ type: 'radio' })`
+const coloredCheck = checkIcon.replace(
+  /fill%3D%22([^"]*)%22/,
+  `fill%3D%22${COLOR}%22`
+)
+
+const Checkbox = styled.input.attrs({ type: 'check' })`
   appearance: none;
   display: inline-flex;
   align-items: center;
@@ -37,7 +42,7 @@ const Checkbox = styled.input.attrs({ type: 'radio' })`
     opacity: 1;
     transform: scale(1);
     content: '';
-    background-image: url("data:image/svg+xml;utf8,${checkIcon}");
+    background-image: url("${coloredCheck}");
     background-repeat: no-repeat;
     color: #1dd9d5;
     font-size: 20px;
