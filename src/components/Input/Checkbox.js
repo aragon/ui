@@ -42,7 +42,7 @@ const Checkbox = styled.input.attrs({ type: 'checkbox' })`
     background-image: url("${coloredCheck}");
     background-repeat: no-repeat;
     height: 14px;
-    width: 14px;
+    width: 13px;
     top: 1px;
     left: 0px;
   }
