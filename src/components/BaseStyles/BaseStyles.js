@@ -1,3 +1,4 @@
+import React from 'react'
 import PropTypes from 'prop-types'
 import { createGlobalStyle } from 'styled-components'
 import { theme } from '../../theme'
@@ -10,46 +11,77 @@ import overpassRegularWoff2 from './assets/overpass/overpass-regular.woff2'
 import overpassSemiBoldWoff from './assets/overpass/overpass-semibold.woff'
 import overpassSemiBoldWoff2 from './assets/overpass/overpass-semibold.woff2'
 
-const fontFamily = {
-  Light: [
+
+const DEFAULT_FONT_FAMILY = 'overpass'
+
+const DEFAULT_FONTS = {
+  '400': [
     { url: overpassLightWoff2, format: 'woff2' },
     { url: overpassLightWoff, format: 'woff', legacy: true },
   ],
-  Regular: [
+  '600': [
     { url: overpassRegularWoff2, format: 'woff2' },
     { url: overpassRegularWoff, format: 'woff', legacy: true },
   ],
-  SemiBold: [
+  '800': [
     { url: overpassSemiBoldWoff2, format: 'woff2' },
     { url: overpassSemiBoldWoff, format: 'woff', legacy: true },
   ],
 }
 
-const fontSrc = (sources, { publicUrl, enableLegacyFonts }) =>
-  sources
-    .filter(({ legacy }) => !legacy || (legacy && enableLegacyFonts))
-    .map(({ url, format }) => `url(${publicUrl + url}) format('${format}')`)
-    .join(', ')
+class BaseStyles extends React.PureComponent {
+  static propTypes = {
+    publicUrl: PropTypes.string,
+    enableLegacyFonts: PropTypes.bool,
+    fontFamily: PropTypes.string,
+  }
+  static defaultProps = {
+    publicUrl: '/',
+    enableLegacyFonts: false,
+    fontFamily: `${DEFAULT_FONT_FAMILY}, sans-serif`,
+  }
+  fontSrc(sources, { publicUrl, enableLegacyFonts }) {
+    return sources
+      .filter(({ legacy }) => !legacy || (legacy && enableLegacyFonts))
+      .map(({ url, format }) => `url(${publicUrl + url}) format('${format}')`)
+      .join(', ')
+  }
+  fontFaceDeclarations() {
+    const { props } = this
+    // No need to declare the font faces if the font family has changed.
+    if (props.fontFamily !== BaseStyles.defaultProps.fontFamily) {
+      return ''
+    }
+    return `
+      @font-face {
+        font-family: ${DEFAULT_FONT_FAMILY};
+        src: ${this.fontSrc(DEFAULT_FONTS['400'], props)};
+        font-weight: 400;
+        font-style: normal;
+      }
+      @font-face {
+        font-family: ${DEFAULT_FONT_FAMILY};
+        src: ${this.fontSrc(DEFAULT_FONTS['600'], props)};
+        font-weight: 600;
+        font-style: normal;
+      }
+      @font-face {
+        font-family: ${DEFAULT_FONT_FAMILY};
+        src: ${this.fontSrc(DEFAULT_FONTS['800'], props)};
+        font-weight: 800;
+        font-style: normal;
+      }
+    `
+  }
+  render() {
+    return (
+      <GlobalStyle {...this.props} fontFaces={this.fontFaceDeclarations()} />
+    )
+  }
+}
 
-const BaseStyles = createGlobalStyle`
-  @font-face {
-    font-family: 'overpass';
-    src: ${props => fontSrc(fontFamily['Light'], props)};
-    font-weight: 400;
-    font-style: normal;
-  }
-  @font-face {
-    font-family: 'overpass';
-    src: ${props => fontSrc(fontFamily['Regular'], props)};
-    font-weight: 600;
-    font-style: normal;
-  }
-  @font-face {
-    font-family: 'overpass';
-    src: ${props => fontSrc(fontFamily['SemiBold'], props)};
-    font-weight: 800;
-    font-style: normal;
-  }
+const GlobalStyle = createGlobalStyle`
+  ${props => (props.fontFaces ? props.fontFaces : '')}
   *,
   *:before,
   *:after {
@@ -59,7 +91,7 @@ const BaseStyles = createGlobalStyle`
     min-height: 100%;
   }
   body {
-    font-family: overpass, sans-serif;
+    font-family: ${props => props.fontFamily};
     font-size: 15px;
     font-weight: 400;
     line-height: 1.5;
@@ -105,15 +137,5 @@ const BaseStyles = createGlobalStyle`
     font-weight: 600;
   }
 `
-
-BaseStyles.propTypes = {
-  publicUrl: PropTypes.string,
-  enableLegacyFonts: PropTypes.bool,
-}
-
-BaseStyles.defaultProps = {
-  publicUrl: '/',
-  enableLegacyFonts: false,
-}
 
 export default PublicUrl.hocWrap(BaseStyles)
