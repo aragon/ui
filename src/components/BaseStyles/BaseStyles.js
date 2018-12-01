@@ -70,6 +70,7 @@ const injectStyles = (asset, legacyFonts) => injectGlobal`
   }
   html {
     min-height: 100%;
+    -webkit-overflow-scrolling: touch;
   }
   body {
     font-family: overpass, sans-serif;
