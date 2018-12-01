@@ -95,7 +95,7 @@ class Resizable extends React.Component {
   render() {
     const { contentWidth, dragging } = this.state
     return (
-      <ResizableContainer innerRef={node => (this.containerNode = node)}>
+      <ResizableContainer ref={node => (this.containerNode = node)}>
         <ResizableContent
           active={dragging}
           style={{ width: contentWidth == null ? '100%' : `${contentWidth}px` }}
@@ -106,7 +106,7 @@ class Resizable extends React.Component {
         <Resizer
           active={dragging}
           onMouseDown={this.handleOnMouseDown}
-          innerRef={node => (this.resizerNode = node)}
+          ref={node => (this.resizerNode = node)}
         >
           ||
         </Resizer>
