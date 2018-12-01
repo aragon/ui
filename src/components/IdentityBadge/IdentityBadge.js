@@ -31,15 +31,16 @@ class IdentityBadge extends React.PureComponent {
   getMainProps(address) {
     const { networkType } = this.props
     const baseProps = stylingProps(this)
-    return !address
-      ? baseProps
-      : {
-          ...baseProps,
-          as: SafeLink,
-          target: '_blank',
-          href: blockExplorerUrl('address', address, { networkType }),
-          style: { ...baseProps.style, cursor: 'pointer' },
-        }
+    if (!address) {
+      return baseProps
+    }
+    return {
+      ...baseProps,
+      as: SafeLink,
+      target: '_blank',
+      href: blockExplorerUrl('address', address, { networkType }),
+      style: { ...baseProps.style, cursor: 'pointer' },
+    }
   }
   render() {
     const { entity, shorten, fontSize } = this.props
