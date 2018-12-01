@@ -5,9 +5,10 @@ import PropTypes from 'prop-types'
 import Popper from 'popper.js'
 import { Spring, animated } from 'react-spring'
 
-import theme from '../../theme'
-import { springs } from '../../utils/styles'
 import { Root } from '../../providers'
+import { theme } from '../../theme'
+import { noop } from '../../utils'
+import { springs } from '../../utils/styles'
 
 class PopoverBase extends React.Component {
   static propTypes = {
@@ -23,6 +24,7 @@ class PopoverBase extends React.Component {
 
   static defaultProps = {
     gutter: '20px',
+    onClose: noop,
   }
 
   _element = React.createRef()
