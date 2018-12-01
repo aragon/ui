@@ -89,6 +89,7 @@ const GlobalStyle = createGlobalStyle`
   }
   html {
     min-height: 100%;
+    -webkit-overflow-scrolling: touch;
   }
   body {
     font-family: ${props => props.fontFamily};
