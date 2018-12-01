@@ -28,19 +28,26 @@ class IdentityBadge extends React.PureComponent {
     fontSize: 'normal',
     networkType: 'main',
   }
-  render() {
-    const { entity, shorten, fontSize, networkType } = this.props
-    const address = isAddress(entity) ? entity : null
-
-    const mainProps = stylingProps(this)
-    if (address) {
-      mainProps.href = blockExplorerUrl('address', address, { networkType })
+  getMainProps(address) {
+    const { networkType } = this.props
+    const baseProps = stylingProps(this)
+    if (!address) {
+      return baseProps
     }
-
-    const MainComponent = address ? MainAsLink : Main
-
+    return {
+      ...baseProps,
+      as: SafeLink,
+      target: '_blank',
+      href: blockExplorerUrl('address', address, { networkType }),
+      style: { ...baseProps.style, cursor: 'pointer' },
+    }
+  }
+  render() {
+    const { entity, shorten, fontSize } = this.props
+    const address = isAddress(entity) ? entity : null
+    const props = this.getMainProps(address)
     return (
-      <MainComponent title={address} onClick={this.handleClick} {...mainProps}>
+      <Main title={address} onClick={this.handleClick} {...props}>
         {address && (
           <Identicon>
             <Blockies
@@ -53,7 +60,7 @@ class IdentityBadge extends React.PureComponent {
         <Label size={fontSize}>
           {address && shorten ? shortenAddress(address) : entity}
         </Label>
-      </MainComponent>
+      </Main>
     )
   }
 }
@@ -66,14 +73,6 @@ const Main = styled.div`
   background: #daeaef;
   border-radius: 3px;
   cursor: default;
-`
-
-// TODO: move to `as` when migrating to styled-components v4.
-// See https://www.styled-components.com/docs/api#as-polymorphic-prop
-const MainAsLink = styled(Main.withComponent(SafeLink)).attrs({
-  target: '_blank',
-})`
-  cursor: pointer;
   text-decoration: none;
 `
 

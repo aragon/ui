@@ -1,3 +1,4 @@
+import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { font } from '../../utils/styles'
@@ -7,8 +8,8 @@ const Text = styled.span`
   ${({ color }) => (color ? `color: ${color}` : '')};
 `
 
-const Block = Text.withComponent('div')
-const Paragraph = Text.withComponent('p')
+const Block = props => <Text as="div" {...props} />
+const Paragraph = props => <Text as="p" {...props} />
 
 Text.propTypes = Block.propTypes = Paragraph.propTypes = {
   children: PropTypes.node,
