@@ -1,5 +1,6 @@
 # Countdown
 
+Just an alias for Timer (to keep backward compat)
 Displays a countdown.
 
 ## Usage
