@@ -1,4 +1,4 @@
-# Countdown
+# Timer
 
 Displays a countdown or stopwatch
 
