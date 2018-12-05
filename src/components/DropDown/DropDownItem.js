@@ -46,7 +46,7 @@ class DropDownItem extends React.Component {
     const { displayFocus } = this.state
     return (
       <StyledDropDownItem
-        innerRef={mainRef}
+        ref={mainRef}
         className={className}
         active={active}
         displayFocus={displayFocus}

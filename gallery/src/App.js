@@ -1,9 +1,9 @@
 import React from 'react'
 import createHistory from 'history/createBrowserHistory'
-import styled, { injectGlobal } from 'styled-components'
+import styled from 'styled-components'
 import { AragonApp } from '@aragon/ui'
 import Sidebar from 'comps/Sidebar/Sidebar'
-import initGlobalStyles from './global-styles'
+import GlobalStyles from './global-styles'
 import { PAGE_GROUPS, PAGES } from './routes'
 
 const Main = styled.div`
@@ -33,13 +33,6 @@ class App extends React.Component {
     this.history = createHistory()
     this.unlistenHistory = this.history.listen(this.handleLocationUpdate)
     this.handleLocationUpdate(this.history.location, true)
-    initGlobalStyles()
-
-    injectGlobal`
-      body, html {
-        overflow: hidden;
-      }
-    `
   }
   componentWillUnmount() {
     this.unlistenHistory()
@@ -71,6 +64,7 @@ class App extends React.Component {
           </Menu>
           <Content>{Page && <Page title={activePage.name} />}</Content>
         </Main>
+        <GlobalStyles />
       </AragonApp>
     )
   }
