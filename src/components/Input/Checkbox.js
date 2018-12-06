@@ -74,6 +74,9 @@ const Main = styled.button.attrs({ type: 'button' })`
   outline: 0;
   padding: 0;
   cursor: pointer;
+  &:active {
+    border-color: #c9d9de;
+  }
   &:focus ${FocusRing} {
     display: block;
   }
