@@ -1,7 +1,9 @@
+import React from 'react'
 import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 import { theme } from '../../theme'
 import { font } from '../../utils/styles'
+import { IconStyled, inputPaddingCss } from './Icon.js'
 
 const baseStyles = css`
   ${font({ size: 'small', weight: 'normal' })};
@@ -45,6 +47,45 @@ TextInput.defaultProps = {
   type: 'text',
 }
 
+const Container = styled.div`
+  position: relative;
+  width: max-content;
+`
+const TextInputStyled = styled(TextInput)`
+  ${props => props.icon && inputPaddingCss(props.iconposition)}
+`
+
+class WrapperTextInput extends React.Component {
+  render() {
+    const { icon, iconposition, innerRef } = this.props
+    console.log(1, icon, iconposition)
+    const f = x => {
+      this.input = x
+    }
+    return (
+      <Container>
+        <TextInputStyled {...this.props} innerRef={innerRef || f} />
+        {icon && (
+          <IconStyled
+            component={icon}
+            icon={icon}
+            iconposition={iconposition}
+          />
+        )}
+      </Container>
+    )
+  }
+}
+
+WrapperTextInput.propTypes = {
+  iconposition: PropTypes.string,
+  icon: PropTypes.any,
+}
+
+WrapperTextInput.defaultProps = {
+  iconposition: 'left',
+}
+
 // <input type=number> (only for compat)
 const TextInputNumber = styled.input.attrs({ type: 'number' })`
   ${baseStyles};
@@ -62,7 +103,7 @@ TextInputMultiline.defaultProps = {
   required: false,
 }
 
-TextInput.Number = TextInputNumber
-TextInput.Multiline = TextInputMultiline
+WrapperTextInput.Number = TextInputNumber
+WrapperTextInput.Multiline = TextInputMultiline
 
-export default TextInput
+export default WrapperTextInput
