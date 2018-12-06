@@ -1,51 +1,109 @@
+import React from 'react'
 import styled from 'styled-components'
-import checkIcon from '../../icons/svg/check.svg'
+import { Spring, animated } from 'react-spring'
+import { IconCheck } from '../../icons'
+import theme from '../../theme'
+import { springs } from '../../utils'
 
-const CHECK_COLOR = '#1dd9d5'
+class Checkbox extends React.Component {
+  static defaultProps = {
+    checked: false,
+    mixed: false,
+  }
+  getAriaChecked() {
+    const { checked, mixed } = this.props
+    if (mixed) return 'mixed'
+    if (checked) return 'true'
+    return 'false'
+  }
+  handleClick = () => {
+    this.props.onChange(!this.props.checked)
+  }
+  render() {
+    const { checked, mixed } = this.props
+    return (
+      <Main
+        role="checkbox"
+        tabIndex="0"
+        aria-checked={this.getAriaChecked()}
+        onClick={this.handleClick}
+      >
+        <Spring
+          from={{ progress: 0 }}
+          to={{ progress: Boolean(checked) }}
+          config={springs.instant}
+          native
+        >
+          {({ progress }) => (
+            <CheckWrapper
+              style={{
+                opacity: progress,
+                transform: progress.interpolate(v => `scale(${v})`),
+              }}
+            >
+              <Check />
+            </CheckWrapper>
+          )}
+        </Spring>
+        <FocusRing />
+      </Main>
+    )
+  }
+}
 
-const coloredCheck = checkIcon.replace(
-  /fill%3D%22([^"]*)%22/,
-  `fill%3D%22${CHECK_COLOR}%22`
-)
+const FocusRing = styled.span`
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  right: -4px;
+  bottom: -4px;
+  border: 2px solid ${theme.accent};
+  border-radius: 3px;
+  display: none;
+`
 
-const Checkbox = styled.input.attrs({ type: 'checkbox' })`
-  appearance: none;
+const Main = styled.button.attrs({ type: 'button' })`
   display: inline-flex;
-  align-items: center;
-  justify-content: center;
   position: relative;
   width: 14px;
   height: 14px;
   margin: 5px;
   background: #f3f9fb;
   border: 1px solid #daeaef;
-  border-radius: 0;
+  border-radius: 3px;
   outline: 0;
+  padding: 0;
   cursor: pointer;
-  &:after {
-    content: '';
-    position: absolute;
-    width: 8px;
-    height: 8px;
-    border-radius: 4px;
-    opacity: 0;
-    transform: scale(0.3);
-    transition: all 100ms ease-in-out;
+  &:focus ${FocusRing} {
+    display: block;
   }
-  &:active:after {
-    opacity: 1;
-    transform: scale(0.6);
+  &:focus:not(:focus-visible) ${FocusRing} {
+    display: none;
   }
-  &:checked:after {
-    opacity: 1;
-    transform: scale(1);
-    background-image: url("${coloredCheck}");
-    background-repeat: no-repeat;
-    height: 14px;
-    width: 13px;
-    top: 1px;
-    left: 0px;
+  &:focus-visible ${FocusRing} {
+    display: block;
   }
+  &::-moz-focus-inner {
+    border: 0;
+  }
+`
+
+const CheckWrapper = styled(animated.span)`
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`
+
+const Check = styled(IconCheck)`
+  /* Use a filter to make it black, until we have a color system for icons */
+  filter: brightness(0);
+  transform-origin: 50% 50%;
+  transform: scale(0.9);
 `
 
 export default Checkbox
