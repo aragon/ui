@@ -6,29 +6,38 @@ const items = ['Strawberry', 'Banana', 'Apple', 'Cherry']
 
 class App extends React.Component {
   state = {
-    selected: items.map(item => false),
+    selectedItems: [],
   }
 
-  onCheckboxClick(index, e) {
-    this.setState({
-      selected: this.state.selected.splice(index, 0, e.target.checked),
-    })
+  isSelected(index) {
+    return (
+      this.state.selectedItems.findIndex(itemIndex => itemIndex === index) > -1
+    )
+  }
+
+  onCheckboxClick(index, check) {
+    this.setState(({ selectedItems }) => ({
+      selectedItems: !check
+        ? selectedItems.filter(i => i !== index)
+        : [...selectedItems, index],
+    }))
   }
 
   render() {
-    const { selected } = this.state
     return (
       <AragonApp publicUrl="/aragon-ui/">
         <Main>
           <List>
             {items.map((item, i) => (
-              <Item key={item}>
-                <Checkbox
-                  checked={selected[i]}
-                  onChange={e => this.onCheckboxClick(i, e)}
-                />
-                {item}
-              </Item>
+              <li key={item}>
+                <Label>
+                  <Checkbox
+                    checked={this.isSelected(i)}
+                    onChange={check => this.onCheckboxClick(i, check)}
+                  />
+                  <Item>{item}</Item>
+                </Label>
+              </li>
             ))}
           </List>
         </Main>
@@ -37,17 +46,25 @@ class App extends React.Component {
   }
 }
 
-const List = styled.div``
+const List = styled.ul`
+  list-style: none;
+  margin: 0;
+  padding: 0;
+`
 
-const Item = styled.label`
+const Label = styled.label`
   display: flex;
-  align-items: baseline;
+  align-items: center;
   height: 40px;
   cursor: pointer;
   color: #000;
   &:active {
     color: #666;
   }
+`
+
+const Item = styled.span`
+  margin-left: 5px;
 `
 
 const Main = styled.div`
