@@ -8,13 +8,17 @@ export const springs = {
   debug: { mass: 1, tension: 10, friction: 40 },
 
   // Slow spring, can be used to move large things (e.g. a side panel).
-  lazy: { mass: 1, tension: 120, friction: 20, precision: 0.001 },
+  lazy: { mass: 1, tension: 120, friction: 20 },
 
   // Medium speed spring, can be used to move small objects.
-  smooth: { mass: 0.7, tension: 300, friction: 25, precision: 0.001 },
+  smooth: { mass: 0.7, tension: 300, friction: 25 },
 
-  // Fast speed spring, for actions that need to feel almost instant.
-  swift: { mass: 0.5, tension: 400, friction: 30, precision: 0.001 },
+  // Fast speed spring, for interactions that feel “almost instant”.
+  swift: { mass: 0.5, tension: 800, friction: 30 },
+
+  // Super fast speed spring, for interactions that feel instant (e.g. a
+  // chekbox tick).
+  instant: { mass: 0.3, tension: 1000, friction: 30 },
 }
 
 // Deprecated react-motion springs (see above)
