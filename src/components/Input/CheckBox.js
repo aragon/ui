@@ -6,7 +6,7 @@ import { IconCheck } from '../../icons'
 import theme from '../../theme'
 import { springs } from '../../utils'
 
-class Checkbox extends React.Component {
+class CheckBox extends React.Component {
   static propTypes = {
     checked: PropTypes.bool,
     mixed: PropTypes.bool,
@@ -114,4 +114,4 @@ const Check = styled(IconCheck)`
   transform: scale(0.9);
 `
 
-export default Checkbox
+export default CheckBox
