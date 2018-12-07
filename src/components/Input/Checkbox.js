@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { Spring, animated } from 'react-spring'
 import { IconCheck } from '../../icons'
@@ -6,6 +7,10 @@ import theme from '../../theme'
 import { springs } from '../../utils'
 
 class Checkbox extends React.Component {
+  static propTypes = {
+    checked: PropTypes.bool,
+    mixed: PropTypes.bool,
+  }
   static defaultProps = {
     checked: false,
     mixed: false,
@@ -53,10 +58,10 @@ class Checkbox extends React.Component {
 
 const FocusRing = styled.span`
   position: absolute;
-  top: -4px;
-  left: -4px;
-  right: -4px;
-  bottom: -4px;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
   border: 2px solid ${theme.accent};
   border-radius: 3px;
   display: none;
