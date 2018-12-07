@@ -58,7 +58,6 @@ const TextInputStyled = styled(TextInput)`
 class WrapperTextInput extends React.Component {
   render() {
     const { icon, iconposition, innerRef } = this.props
-    console.log(1, icon, iconposition)
     const f = x => {
       this.input = x
     }
