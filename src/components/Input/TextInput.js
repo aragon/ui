@@ -52,12 +52,12 @@ const Container = styled.div`
   width: max-content;
 `
 const TextInputStyled = styled(TextInput)`
-  ${props => props.icon && inputPaddingCss(props.iconposition)}
+  ${props => props.icon && inputPaddingCss(props.iconPosition)}
 `
 
 class WrapperTextInput extends React.Component {
   render() {
-    const { icon, iconposition, innerRef } = this.props
+    const { icon, iconPosition, innerRef } = this.props
     const f = x => {
       this.input = x
     }
@@ -68,7 +68,7 @@ class WrapperTextInput extends React.Component {
           <IconStyled
             component={icon}
             icon={icon}
-            iconposition={iconposition}
+            iconPosition={iconPosition}
           />
         )}
       </Container>
@@ -77,12 +77,12 @@ class WrapperTextInput extends React.Component {
 }
 
 WrapperTextInput.propTypes = {
-  iconposition: PropTypes.string,
+  iconPosition: PropTypes.string,
   icon: PropTypes.any,
 }
 
 WrapperTextInput.defaultProps = {
-  iconposition: 'left',
+  iconPosition: 'left',
 }
 
 // <input type=number> (only for compat)
