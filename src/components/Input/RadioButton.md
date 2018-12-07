@@ -7,7 +7,7 @@ A radio button component.
 ```jsx
 import { RadioButton, RadioGroup } from '@aragon/ui'
 
-const onChange = event => { console.log('checked', event.target.value) }
+const onChange = checked => { console.log('checked', checked) }
 
 const App = () => (
   <RadioGroup>

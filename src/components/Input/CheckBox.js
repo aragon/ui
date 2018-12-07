@@ -10,10 +10,12 @@ class CheckBox extends React.Component {
   static propTypes = {
     checked: PropTypes.bool,
     mixed: PropTypes.bool,
+    variant: PropTypes.oneOf(['checkbox', 'radio']),
   }
   static defaultProps = {
     checked: false,
     mixed: false,
+    variant: 'checkbox',
   }
   getAriaChecked() {
     const { checked, mixed } = this.props
@@ -25,10 +27,10 @@ class CheckBox extends React.Component {
     this.props.onChange(!this.props.checked)
   }
   render() {
-    const { checked, mixed } = this.props
+    const { checked, mixed, variant } = this.props
     return (
       <Main
-        role="checkbox"
+        role={variant}
         tabIndex="0"
         aria-checked={this.getAriaChecked()}
         onClick={this.handleClick}
@@ -40,17 +42,17 @@ class CheckBox extends React.Component {
           native
         >
           {({ progress }) => (
-            <CheckWrapper
+            <AnimatedWrapper
               style={{
                 opacity: progress,
                 transform: progress.interpolate(v => `scale(${v})`),
               }}
             >
-              <Check />
-            </CheckWrapper>
+              {variant === 'radio' ? <Bullet /> : <Check />}
+            </AnimatedWrapper>
           )}
         </Spring>
-        <FocusRing />
+        <FocusRing variant={variant} />
       </Main>
     )
   }
@@ -63,7 +65,7 @@ const FocusRing = styled.span`
   right: -5px;
   bottom: -5px;
   border: 2px solid ${theme.accent};
-  border-radius: 3px;
+  border-radius: ${p => (p.variant === 'radio' ? '50%' : '3px')};
   display: none;
 `
 
@@ -75,7 +77,7 @@ const Main = styled.button.attrs({ type: 'button' })`
   margin: 5px;
   background: #f3f9fb;
   border: 1px solid #daeaef;
-  border-radius: 3px;
+  border-radius: ${p => (p.role === 'radio' ? '50%' : '3px')};
   outline: 0;
   padding: 0;
   cursor: pointer;
@@ -96,7 +98,7 @@ const Main = styled.button.attrs({ type: 'button' })`
   }
 `
 
-const CheckWrapper = styled(animated.span)`
+const AnimatedWrapper = styled(animated.span)`
   position: absolute;
   top: 0;
   left: 0;
@@ -112,6 +114,13 @@ const Check = styled(IconCheck)`
   filter: brightness(0);
   transform-origin: 50% 50%;
   transform: scale(0.9);
+`
+
+const Bullet = styled.span`
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: ${theme.accent};
 `
 
 export default CheckBox

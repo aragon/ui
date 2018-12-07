@@ -19,28 +19,31 @@ class App extends React.Component {
           {!showRadioList && (
             <List>
               {items.map((item, i) => (
-                <Item key={item}>
-                  <RadioButton
-                    checked={i === selected}
-                    onChange={e => {
-                      this.setState({ selected: e.target.checked ? i : -1 })
-                    }}
-                  />
-                  {item}
-                </Item>
+                <li key={item}>
+                  <Label>
+                    <RadioButton
+                      checked={i === selected}
+                      onChange={check => {
+                        if (check) {
+                          this.setState({ selected: i })
+                        }
+                      }}
+                    />
+                    <Item>{item}</Item>
+                  </Label>
+                </li>
               ))}
             </List>
           )}
+
           {showRadioList && (
-            <List>
-              <RadioList
-                title="Action Requirement"
-                description="Here are some options you can use to perform it:"
-                items={items.map(item => ({ title: item, description: item }))}
-                onSelect={selected => this.setState({ selected })}
-                selected={selected}
-              />
-            </List>
+            <RadioList
+              title="Action Requirement"
+              description="Here are some options you can use to perform it:"
+              items={items.map(item => ({ title: item, description: item }))}
+              onSelect={selected => this.setState({ selected })}
+              selected={selected}
+            />
           )}
         </Main>
       </AragonApp>
@@ -48,9 +51,13 @@ class App extends React.Component {
   }
 }
 
-const List = styled.div``
+const List = styled.ul`
+  list-style: none;
+  margin: 0;
+  padding: 0;
+`
 
-const Item = styled.label`
+const Label = styled.label`
   display: flex;
   align-items: center;
   height: 40px;
@@ -59,6 +66,10 @@ const Item = styled.label`
   &:active {
     color: #666;
   }
+`
+
+const Item = styled.span`
+  margin-left: 5px;
 `
 
 const Main = styled.div`
