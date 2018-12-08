@@ -89,8 +89,8 @@
     "recursive-copy": "^2.0.9"
   },
   "browserslist": {
-    "development": "> 1%, last 3 versions, ie >= 9, ios >= 8, android >= 4.2",
-    "production": "> 1%, last 3 versions, ie >= 9, ios >= 8, android >= 4.2"
+    "development": "> 1%",
+    "production": "> 1%"
   },
   "husky": {
     "hooks": {
