@@ -21,7 +21,7 @@ class AragonApp extends React.Component {
   static propTypes = {
     className: PropTypes.string,
     backgroundLogo: PropTypes.bool,
-    publicUrl: PropTypes.string,
+    publicUrl: PropTypes.string.isRequired,
     children: PropTypes.node,
     supportLegacyAgents: PropTypes.bool,
   }
@@ -48,10 +48,8 @@ class AragonApp extends React.Component {
     const styledProps = { backgroundLogo, className, publicUrl }
     return (
       <PublicUrl.Provider url={ensureTrailingSlash(publicUrl)}>
-        <StyledAragonApp {...styledProps}>
-          <BaseStyles legacyFonts={supportLegacyAgents} />
-          {children}
-        </StyledAragonApp>
+        <BaseStyles enableLegacyFonts={supportLegacyAgents} />
+        <StyledAragonApp {...styledProps}>{children}</StyledAragonApp>
       </PublicUrl.Provider>
     )
   }

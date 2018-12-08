@@ -67,7 +67,7 @@ class TabBar extends React.Component {
     const { items, selected } = this.props
     return (
       <nav onMouseDown={this.handleMouseDown}>
-        <Bar innerRef={this.handleBarRef}>
+        <Bar ref={this.handleBarRef}>
           {items.map((item, i) => (
             <Tab
               key={i}
