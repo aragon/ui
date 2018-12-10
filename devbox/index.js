@@ -11,6 +11,7 @@ import TabBar from './apps/TabBar'
 import IdentityBadge from './apps/IdentityBadge'
 import Popover from './apps/Popover'
 import TransactionProgress from './apps/TransactionProgress'
+import PartitionBar from './apps/PartitionBar'
 
 const APPS = {
   LinkedSliders,
@@ -23,6 +24,7 @@ const APPS = {
   IdentityBadge,
   Popover,
   TransactionProgress,
+  PartitionBar,
 }
 
 class Index extends React.Component {

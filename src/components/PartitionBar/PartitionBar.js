@@ -83,7 +83,7 @@ const Bar = styled.div`
   align-items: stretch;
   width: 100%;
   height: 10px;
-  margin: 20px 0px;
+  margin-top: 20px;
   border-radius: 4px;
   overflow: hidden;
 `
