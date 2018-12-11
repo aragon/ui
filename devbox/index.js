@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 
 import LinkedSliders from './apps/LinkedSliders'
 import RadioButton from './apps/RadioButton'
-import CheckBox from './apps/CheckBox'
+import Checkbox from './apps/Checkbox'
 import SidePanel from './apps/SidePanel'
 import NavigationBar from './apps/NavigationBar'
 import Button from './apps/Button'
@@ -16,7 +16,7 @@ import TransactionProgress from './apps/TransactionProgress'
 const APPS = {
   LinkedSliders,
   RadioButton,
-  CheckBox,
+  Checkbox,
   SidePanel,
   NavigationBar,
   Button,

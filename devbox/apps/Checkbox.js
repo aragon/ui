@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { AragonApp, CheckBox, unselectable } from '@aragon/ui'
+import { AragonApp, Checkbox, unselectable } from '@aragon/ui'
 
 const items = ['Strawberry', 'Banana', 'Apple', 'Cherry']
 
@@ -15,7 +15,7 @@ class App extends React.Component {
     )
   }
 
-  onCheckBoxClick(index, check) {
+  onCheckboxClick(index, check) {
     this.setState(({ selectedItems }) => ({
       selectedItems: !check
         ? selectedItems.filter(i => i !== index)
@@ -31,9 +31,9 @@ class App extends React.Component {
             {items.map((item, i) => (
               <li key={item}>
                 <Label>
-                  <CheckBox
+                  <Checkbox
                     checked={this.isSelected(i)}
-                    onChange={check => this.onCheckBoxClick(i, check)}
+                    onChange={check => this.onCheckboxClick(i, check)}
                   />
                   <Item>{item}</Item>
                 </Label>

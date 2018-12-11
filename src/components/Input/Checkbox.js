@@ -7,7 +7,7 @@ import theme from '../../theme'
 import { springs, noop } from '../../utils'
 import FocusVisible from '../FocusVisible/FocusVisible'
 
-class CheckBox extends React.Component {
+class Checkbox extends React.Component {
   static propTypes = {
     checked: PropTypes.bool,
     mixed: PropTypes.bool,
@@ -118,4 +118,4 @@ const Check = styled(IconCheck)`
   transform: scale(0.9);
 `
 
-export default CheckBox
+export default Checkbox
