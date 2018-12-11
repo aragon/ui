@@ -11,6 +11,7 @@ import TabBar from './apps/TabBar'
 import IdentityBadge from './apps/IdentityBadge'
 import Popover from './apps/Popover'
 import TransactionProgress from './apps/TransactionProgress'
+import DatePicker from './apps/DatePicker'
 
 const APPS = new Map(
   Object.entries({
@@ -24,6 +25,7 @@ const APPS = new Map(
     IdentityBadge,
     Popover,
     TransactionProgress,
+    DatePicker,
   })
 )
 

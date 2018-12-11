@@ -37,3 +37,4 @@ export { ToastHub, Toast } from './ToastHub/ToastHub'
 export {
   default as TransactionProgress,
 } from './TransactionProgress/TransactionProgress'
+export { default as DatePicker } from './DatePicker/DatePicker'
