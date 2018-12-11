@@ -4,17 +4,21 @@ import styled from 'styled-components'
 import { Spring, animated } from 'react-spring'
 import { IconCheck } from '../../icons'
 import theme from '../../theme'
-import { springs } from '../../utils'
+import { springs, noop } from '../../utils'
+import FocusVisible from '../FocusVisible/FocusVisible'
 
 class CheckBox extends React.Component {
   static propTypes = {
     checked: PropTypes.bool,
     mixed: PropTypes.bool,
+    onChange: PropTypes.func,
   }
   static defaultProps = {
     checked: false,
     mixed: false,
+    onChange: noop,
   }
+  _element = React.createRef()
   getAriaChecked() {
     const { checked, mixed } = this.props
     if (mixed) return 'mixed'
@@ -25,33 +29,40 @@ class CheckBox extends React.Component {
     this.props.onChange(!this.props.checked)
   }
   render() {
-    const { checked, mixed } = this.props
+    const { checked, mixed, focusVisible, ...props } = this.props
     return (
-      <Main
-        role="checkbox"
-        tabIndex="0"
-        aria-checked={this.getAriaChecked()}
-        onClick={this.handleClick}
-      >
-        <Spring
-          from={{ progress: 0 }}
-          to={{ progress: Boolean(checked) }}
-          config={springs.instant}
-          native
-        >
-          {({ progress }) => (
-            <CheckWrapper
-              style={{
-                opacity: progress,
-                transform: progress.interpolate(v => `scale(${v})`),
-              }}
+      <FocusVisible element={this._element && this._element.current}>
+        {focusVisible => (
+          <Main
+            role="checkbox"
+            tabIndex="0"
+            aria-checked={this.getAriaChecked()}
+            onClick={this.handleClick}
+            ref={this._element}
+            focusVisible={focusVisible}
+            {...props}
+          >
+            <Spring
+              from={{ progress: 0 }}
+              to={{ progress: Boolean(checked) }}
+              config={springs.instant}
+              native
             >
-              <Check />
-            </CheckWrapper>
-          )}
-        </Spring>
-        <FocusRing />
-      </Main>
+              {({ progress }) => (
+                <CheckWrapper
+                  style={{
+                    opacity: progress,
+                    transform: progress.interpolate(v => `scale(${v})`),
+                  }}
+                >
+                  <Check />
+                </CheckWrapper>
+              )}
+            </Spring>
+            <FocusRing />
+          </Main>
+        )}
+      </FocusVisible>
     )
   }
 }
@@ -83,13 +94,7 @@ const Main = styled.button.attrs({ type: 'button' })`
     border-color: #c9d9de;
   }
   &:focus ${FocusRing} {
-    display: block;
-  }
-  &:focus:not(:focus-visible) ${FocusRing} {
-    display: none;
-  }
-  &:focus-visible ${FocusRing} {
-    display: block;
+    display: ${p => (p.focusVisible ? 'block' : 'none')};
   }
   &::-moz-focus-inner {
     border: 0;
