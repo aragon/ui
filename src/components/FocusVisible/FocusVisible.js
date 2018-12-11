@@ -26,17 +26,22 @@ class FocusVisible extends React.Component {
     document.addEventListener('touchend', this.handlePointerEvent)
   }
   componentWillUnmount() {
+    const { element } = this.props
+    if (element) {
+      element.removeEventListener('focus', this.handleFocus)
+    }
+
     document.removeEventListener('mousedown', this.handlePointerEvent)
     document.removeEventListener('mouseup', this.handlePointerEvent)
     document.removeEventListener('touchstart', this.handlePointerEvent)
     document.removeEventListener('touchend', this.handlePointerEvent)
-    if (this.props.element) {
-      this.props.element.removeEventListener('focus', this.handleFocus)
-    }
   }
   componentDidUpdate(prevProps) {
     const { element } = this.props
-    if (prevProps.element !== element && prevProps.element) {
+    if (prevProps.element === element) {
+      return
+    }
+    if (prevProps.element) {
       prevProps.element.removeEventListener('focus', this.handleFocus)
     }
     if (element) {
