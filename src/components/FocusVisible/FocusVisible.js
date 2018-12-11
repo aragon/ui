@@ -14,7 +14,7 @@ import PropTypes from 'prop-types'
 class FocusVisible extends React.Component {
   static propTypes = {
     children: PropTypes.func.isRequired,
-    element: PropTypes.instanceOf(Element).isRequired,
+    element: PropTypes.instanceOf(Element),
   }
   state = {
     focusVisible: false,
@@ -39,7 +39,9 @@ class FocusVisible extends React.Component {
     if (prevProps.element !== element && prevProps.element) {
       prevProps.element.removeEventListener('focus', this.handleFocus)
     }
-    element.addEventListener('focus', this.handleFocus)
+    if (element) {
+      element.addEventListener('focus', this.handleFocus)
+    }
   }
   handleFocus = () => {
     this.setState({ focusVisible: !this._pointerActive })
