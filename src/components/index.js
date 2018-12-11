@@ -38,3 +38,4 @@ export {
   default as TransactionProgress,
 } from './TransactionProgress/TransactionProgress'
 export { default as DatePicker } from './DatePicker/DatePicker'
+export { default as DateInput } from './Input/DateInput'
