@@ -18,7 +18,6 @@ class CheckBox extends React.Component {
     mixed: false,
     onChange: noop,
   }
-  _element = React.createRef()
   getAriaChecked() {
     const { checked, mixed } = this.props
     if (mixed) return 'mixed'
@@ -31,15 +30,15 @@ class CheckBox extends React.Component {
   render() {
     const { checked, mixed, focusVisible, ...props } = this.props
     return (
-      <FocusVisible element={this._element && this._element.current}>
-        {focusVisible => (
+      <FocusVisible>
+        {({ focusVisible, onFocus }) => (
           <Main
             role="checkbox"
             tabIndex="0"
             aria-checked={this.getAriaChecked()}
             onClick={this.handleClick}
-            ref={this._element}
             focusVisible={focusVisible}
+            onFocus={onFocus}
             {...props}
           >
             <Spring
