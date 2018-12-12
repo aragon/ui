@@ -4,13 +4,12 @@
     "es6": true
   },
   "extends": [
-    "plugin:flowtype/recommended",
     "plugin:import/recommended",
+    "plugin:promise/recommended",
     "standard",
     "standard-react",
-    "prettier",
-    "prettier/flowtype",
-    "prettier/react"
+    "prettier/react",
+    "plugin:prettier/recommended"
   ],
   "parser": "babel-eslint",
   "parserOptions": {
@@ -20,20 +19,9 @@
     },
     "sourceType": "module"
   },
-  "plugins": ["prettier", "react", "flowtype", "import"],
+  "plugins": ["prettier", "react", "import", "promise"],
   "rules": {
     "import/no-unresolved": ["error", { ignore: ["^react(-dom)?$", "^styled-components$"] }],
-    "prettier/prettier": [
-      "error",
-      {
-        "singleQuote": true,
-        "semi": false,
-        "trailingComma": "es5",
-        "bracketSpacing": true,
-        "jsxBracketSameLine": false,
-        "parser": "flow"
-      }
-    ],
     "linebreak-style": ["error", "unix"]
   }
 }
