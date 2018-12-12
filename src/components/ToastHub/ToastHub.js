@@ -80,20 +80,11 @@ class ToastHub extends React.PureComponent {
     }))
   }
   render() {
-    const {
-      children,
-      showIndicator,
-      position,
-      top,
-    } = this.props
+    const { children, showIndicator, position, top } = this.props
     return (
       <React.Fragment>
         <Provider value={this.add} children={children} />
-        <Container
-          {...stylingProps(this)}
-          position={position}
-          top={top}
-        >
+        <Container {...stylingProps(this)} position={position} top={top}>
           <Transition
             native
             items={this.state.items}
