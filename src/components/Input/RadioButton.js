@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import CheckBox from './CheckBox'
+import Checkbox from './Checkbox'
 import { RadioGroupConsumer } from '../Radio/RadioGroup'
 import { noop } from '../../utils'
 
@@ -73,7 +73,7 @@ class RadioButton extends React.Component {
   render() {
     const { variant, checked, onCheck, ...props } = this.props
     return (
-      <CheckBox
+      <Checkbox
         ref={this._element}
         variant={variant}
         checked={checked}
