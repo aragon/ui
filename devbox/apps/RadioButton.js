@@ -1,46 +1,59 @@
 import React from 'react'
 import styled from 'styled-components'
-import { AragonApp, RadioButton, RadioList, unselectable } from '@aragon/ui'
+import {
+  AragonApp,
+  RadioGroup,
+  RadioButton,
+  RadioList,
+  unselectable,
+} from '@aragon/ui'
 
-const items = ['Strawberry', 'Banana', 'Apple', 'Cherry']
+const items = [
+  ['Strawberry', 'Banana', 'Apple', 'Cherry'],
+  ['Cherry', 'Strawberry', 'Banana', 'Apple'],
+]
 
 const showRadioList = false
 
 class App extends React.Component {
   state = {
-    selected: 0,
+    selected: [],
   }
-
   render() {
     const { selected } = this.state
     return (
       <AragonApp publicUrl="/aragon-ui/">
         <Main>
-          {!showRadioList && (
-            <List>
-              {items.map((item, i) => (
-                <li key={item}>
-                  <Label>
-                    <RadioButton
-                      checked={i === selected}
-                      onChange={check => {
-                        if (check) {
-                          this.setState({ selected: i })
-                        }
-                      }}
-                    />
-                    <Item>{item}</Item>
-                  </Label>
-                </li>
+          <div style={{ display: 'flex' }}>
+            {!showRadioList &&
+              items.map((localItems, i) => (
+                <List key={i}>
+                  <RadioGroup
+                    selected={selected[i]}
+                    onChange={id => {
+                      const newSelected = [...selected]
+                      newSelected[i] = id
+                      this.setState({ selected: newSelected })
+                    }}
+                  >
+                    {localItems.map((item, i) => (
+                      <li key={item}>
+                        <Label>
+                          <RadioButton id={item} />
+                          <Item>{item}</Item>
+                        </Label>
+                      </li>
+                    ))}
+                  </RadioGroup>
+                </List>
               ))}
-            </List>
-          )}
+          </div>
 
           {showRadioList && (
             <RadioList
               title="Action Requirement"
               description="Here are some options you can use to perform it:"
-              items={items.map(item => ({ title: item, description: item }))}
+              items={ITEMS.map(item => ({ title: item, description: item }))}
               onSelect={selected => this.setState({ selected })}
               selected={selected}
             />
@@ -53,7 +66,7 @@ class App extends React.Component {
 
 const List = styled.ul`
   list-style: none;
-  margin: 0;
+  margin: 0 20px;
   padding: 0;
 `
 

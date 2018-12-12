@@ -20,6 +20,7 @@ class Checkbox extends React.Component {
     onChange: noop,
     variant: 'checkbox',
   }
+  _element = React.createRef()
   getAriaChecked() {
     const { checked, indeterminate } = this.props
     if (indeterminate) return 'mixed'
@@ -29,6 +30,9 @@ class Checkbox extends React.Component {
   handleClick = () => {
     const { onChange, checked, indeterminate } = this.props
     onChange(indeterminate ? false : !checked)
+  }
+  focus = () => {
+    this._element.current.focus()
   }
   renderCheck(visible, node) {
     return (
@@ -68,6 +72,7 @@ class Checkbox extends React.Component {
       <FocusVisible>
         {({ focusVisible, onFocus }) => (
           <Main
+            ref={this._element}
             role={variant}
             tabIndex="0"
             aria-checked={this.getAriaChecked()}
