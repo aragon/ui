@@ -59,7 +59,6 @@ class RadioButton extends React.Component {
   }
   handleKeyDown = event => {
     const { selectPrev, selectNext } = this.props
-    console.log('KEY DOWN')
     if (KEYS_PREV.includes(event.key)) {
       selectPrev()
     }
