@@ -40,9 +40,14 @@ class RadioGroup extends React.Component {
       return null
     }
 
-    // don’t change on the first and last items
-    if (newSelectedIndex === -1 || newSelectedIndex === radios.length) {
-      return null
+    // back on the first item: go to the last one
+    if (newSelectedIndex === -1) {
+      return radios[radios.length-1]
+    }
+
+    // next on the last item: go to the first one
+    if (newSelectedIndex === radios.length) {
+      return radios[0]
     }
 
     // new item to select
