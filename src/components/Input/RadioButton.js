@@ -70,7 +70,7 @@ class RadioButton extends React.Component {
     this.props.onCheck(this.props.id)
   }
   render() {
-    const { variant, checked, onCheck, ...props } = this.props
+    const { variant, checked, onCheck, id, ...props } = this.props
     return (
       <Checkbox
         ref={this._element}
