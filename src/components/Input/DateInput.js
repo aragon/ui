@@ -4,7 +4,8 @@ import styled from 'styled-components'
 import { isDate, format as formatDate } from 'date-fns'
 
 import { TextInput, DatePicker } from '..'
-import { IconBlank } from '../../icons'
+import { IconCalendar } from '../../icons'
+import { theme } from '../../theme'
 
 const Container = styled.div`
   position: relative;
@@ -55,13 +56,17 @@ class DateInput extends React.PureComponent {
   }
 
   render() {
+    const icon = this.state.showPicker
+      ? <IconCalendarSelected />
+      : <IconCalendar />
+
     return (
       <Container ref={el => (this.rootRef = el)} onClick={this.handleClick}>
         <TextInput
           {...this.props}
           value={this.formattedValue}
           readOnly
-          icon={<IconBlank />}
+          icon={icon}
           iconPosition="right"
         />
         {this.state.showPicker && (
@@ -75,6 +80,10 @@ class DateInput extends React.PureComponent {
     )
   }
 }
+
+const IconCalendarSelected = styled(IconCalendar)`
+  color: ${theme.accent}
+`
 
 DateInput.propTypes = {
   format: PropTypes.string,
