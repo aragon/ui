@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
-import { AragonApp, CheckBox, unselectable } from '@aragon/ui'
+import { AragonApp, Checkbox, unselectable } from '@aragon/ui'
 
-const items = ['Strawberry', 'Banana', 'Apple', 'Cherry']
+const ITEMS = ['Strawberry', 'Banana', 'Apple', 'Cherry']
 
 class App extends React.Component {
   state = {
@@ -15,7 +15,7 @@ class App extends React.Component {
     )
   }
 
-  onCheckBoxClick(index, check) {
+  onCheckboxClick(index, check) {
     this.setState(({ selectedItems }) => ({
       selectedItems: !check
         ? selectedItems.filter(i => i !== index)
@@ -24,18 +24,41 @@ class App extends React.Component {
   }
 
   render() {
+    const items = ITEMS.map((name, i) => ({
+      name,
+      checked: this.isSelected(i),
+    }))
+    const checkedItems = items.filter(({ checked }) => checked)
+    const allChecked = checkedItems.length === ITEMS.length
+    const noneChecked = checkedItems.length === 0
     return (
       <AragonApp publicUrl="/aragon-ui/">
         <Main>
           <List>
-            {items.map((item, i) => (
-              <li key={item}>
+            <li>
+              <Label>
+                <Checkbox
+                  indeterminate={!(allChecked ? !noneChecked : noneChecked)}
+                  checked={allChecked}
+                  onChange={check => {
+                    this.setState({
+                      selectedItems: check
+                        ? Object.keys(items).map(Number)
+                        : [],
+                    })
+                  }}
+                />
+                <Item>Check all</Item>
+              </Label>
+            </li>
+            {items.map(({ name, checked }, i) => (
+              <li key={name}>
                 <Label>
-                  <CheckBox
-                    checked={this.isSelected(i)}
-                    onChange={check => this.onCheckBoxClick(i, check)}
+                  <Checkbox
+                    checked={checked}
+                    onChange={check => this.onCheckboxClick(i, check)}
                   />
-                  <Item>{item}</Item>
+                  <Item>{name}</Item>
                 </Label>
               </li>
             ))}
