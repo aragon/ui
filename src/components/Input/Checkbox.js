@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { Spring, animated } from 'react-spring'
+import { Transition, animated } from 'react-spring'
 import { IconCheck } from '../../icons'
 import theme from '../../theme'
 import { springs, noop } from '../../utils'
@@ -10,25 +10,52 @@ import FocusVisible from '../FocusVisible/FocusVisible'
 class Checkbox extends React.Component {
   static propTypes = {
     checked: PropTypes.bool,
-    mixed: PropTypes.bool,
+    indeterminate: PropTypes.bool,
     onChange: PropTypes.func,
   }
   static defaultProps = {
     checked: false,
-    mixed: false,
+    indeterminate: false,
     onChange: noop,
   }
   getAriaChecked() {
-    const { checked, mixed } = this.props
-    if (mixed) return 'mixed'
+    const { checked, indeterminate } = this.props
+    if (indeterminate) return 'mixed'
     if (checked) return 'true'
     return 'false'
   }
   handleClick = () => {
-    this.props.onChange(!this.props.checked)
+    const { onChange, checked, indeterminate } = this.props
+    onChange(indeterminate ? false : !checked)
+  }
+  renderCheck(visible, node) {
+    return (
+      <Transition
+        items={visible}
+        from={{ progress: 0 }}
+        enter={{ progress: 1 }}
+        leave={{ progress: 0 }}
+        config={springs.instant}
+        native
+      >
+        {visible =>
+          visible &&
+          (({ progress }) => (
+            <CheckWrapper
+              style={{
+                opacity: progress,
+                transform: progress.interpolate(v => `scale3d(${v}, ${v}, 1)`),
+              }}
+            >
+              {node}
+            </CheckWrapper>
+          ))
+        }
+      </Transition>
+    )
   }
   render() {
-    const { checked, mixed, focusVisible, ...props } = this.props
+    const { checked, indeterminate, focusVisible, ...props } = this.props
     return (
       <FocusVisible>
         {({ focusVisible, onFocus }) => (
@@ -41,23 +68,8 @@ class Checkbox extends React.Component {
             onFocus={onFocus}
             {...props}
           >
-            <Spring
-              from={{ progress: 0 }}
-              to={{ progress: Boolean(checked) }}
-              config={springs.instant}
-              native
-            >
-              {({ progress }) => (
-                <CheckWrapper
-                  style={{
-                    opacity: progress,
-                    transform: progress.interpolate(v => `scale(${v})`),
-                  }}
-                >
-                  <Check />
-                </CheckWrapper>
-              )}
-            </Spring>
+            {this.renderCheck(checked, <Check />)}
+            {this.renderCheck(indeterminate, <Dash />)}
             <FocusRing />
           </Main>
         )}
@@ -116,6 +128,15 @@ const Check = styled(IconCheck)`
   filter: brightness(0);
   transform-origin: 50% 50%;
   transform: scale(0.9);
+`
+
+const Dash = styled.span`
+  display: block;
+  width: 8px;
+  background: #000;
+  /* Chrome doesn’t support subpixels so we have to use a transform */
+  height: 3px;
+  transform: scaleY(0.4);
 `
 
 export default Checkbox
