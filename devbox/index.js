@@ -14,22 +14,63 @@ import TransactionProgress from './apps/TransactionProgress'
 import DatePicker from './apps/DatePicker'
 import DateInput from './apps/DateInput'
 
-const APPS = new Map(
-  Object.entries({
-    LinkedSliders,
-    RadioButton,
-    SidePanel,
-    NavigationBar,
-    Button,
-    EmptyStateCard,
-    TabBar,
-    IdentityBadge,
-    Popover,
-    TransactionProgress,
-    DatePicker,
-    DateInput,
-  })
-)
+const APPS = {
+  LinkedSliders,
+  RadioButton,
+  SidePanel,
+  NavigationBar,
+  Button,
+  EmptyStateCard,
+  TabBar,
+  IdentityBadge,
+  Popover,
+  TransactionProgress,
+  DatePicker,
+  DateInput,
+}
+
+class Index extends React.Component {
+  state = {
+    appName: '',
+  }
+  componentDidMount() {
+    this.handleHashChange()
+    window.addEventListener('hashchange', this.handleHashChange)
+  }
+  componentWillUnmount() {
+    window.removeEventListener('hashchange', this.handleHashChange)
+  }
+  appNameFromHash(hash) {
+    return hash.replace(/^#/, '')
+  }
+  handleHashChange = () => {
+    const appName = this.appNameFromHash(window.location.hash)
+    this.setState({ appName })
+  }
+  render() {
+    const { appName } = this.state
+    const CurrentApp = APPS[appName]
+    return CurrentApp ? (
+      <CurrentApp />
+    ) : (
+      <React.Fragment>
+        <style>{STYLES}</style>
+        <main>
+          <h1>Devbox</h1>
+          <ul>
+            {Object.keys(APPS)
+              .sort()
+              .map(appName => (
+                <li key={appName}>
+                  <a href={`#${appName}`}>{appName}</a>
+                </li>
+              ))}
+          </ul>
+        </main>
+      </React.Fragment>
+    )
+  }
+}
 
 const STYLES = `
 *, *:before, *:after {
@@ -100,45 +141,7 @@ li a:active {
 }
 `
 
-class Index extends React.Component {
-  state = {
-    appName: '',
-  }
-  componentDidMount() {
-    this.handleHashChange()
-    window.addEventListener('hashchange', this.handleHashChange)
-  }
-  componentWillUnmount() {
-    window.removeEventListener('hashchange', this.handleHashChange)
-  }
-  appNameFromHash(hash) {
-    return hash.replace(/^#/, '')
-  }
-  handleHashChange = () => {
-    const appName = this.appNameFromHash(window.location.hash)
-    this.setState({ appName })
-  }
-  render() {
-    const { appName } = this.state
-    const CurrentApp = APPS.get(appName)
-    return CurrentApp ? (
-      <CurrentApp />
-    ) : (
-      <React.Fragment>
-        <style>{STYLES}</style>
-        <main>
-          <h1>Devbox</h1>
-          <ul>
-            {[...APPS.keys()].sort().map(appName => (
-              <li key={appName}>
-                <a href={`#${appName}`}>{appName}</a>
-              </li>
-            ))}
-          </ul>
-        </main>
-      </React.Fragment>
-    )
-  }
-}
-
-ReactDOM.render(<Index />, document.getElementById('app'))
+ReactDOM.render(
+  <Index />,
+  document.body.appendChild(document.createElement('div'))
+)
