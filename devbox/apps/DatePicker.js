@@ -27,12 +27,14 @@ class App extends React.Component {
   }
 
   handleClickOutside = (event) => {
+    console.log('handleClickOutside', this.rootRef)
     if (this.rootRef && !this.rootRef.contains(event.target)) {
       this.setState({ showPicker: false })
     }
   }
 
   handleSelect = (date) => {
+    console.log('handleSelect', date)
     this.setState({ currentDate: date, showPicker: false })
   }
 
@@ -49,7 +51,6 @@ class App extends React.Component {
               <Button mode="secondary" onClick={this.handleClick} compact >
                 Date
               </Button>
-            </span>
             {this.state.showPicker && (
               <DatePicker
                 currentDate={currentDate}
@@ -57,6 +58,7 @@ class App extends React.Component {
                 overlay={true}
               />
             )}
+            </span>
           </Container>
         </Main>
       </AragonApp>
