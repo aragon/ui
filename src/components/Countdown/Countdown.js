@@ -5,7 +5,8 @@ import Timer from '../Timer/Timer'
 class Countdown extends React.Component {
   render() {
     const { end, removeDaysAndHours } = this.props
-    return <Timer end={end} removeDaysAndHours={removeDaysAndHours} />
+    const format = removeDaysAndHours ? 'ms' : 'dhms'
+    return <Timer end={end} format={format} />
   }
 }
 

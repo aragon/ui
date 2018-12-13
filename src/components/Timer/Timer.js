@@ -11,12 +11,37 @@ const FRAME_EVERY = 1000 / 30 // 30 FPS is enough for a ticker
 
 const formatUnit = v => String(v).padStart(2, '0')
 
+const formats = {
+  dhms: 'dhms',
+  dhm: 'dhm',
+  hms: 'hms',
+  hm: 'hm',
+  ms: 'ms'
+}
+
+const getFormat = function (format) {
+  const timeFormat = ['d', 'h', 'm', 's']
+  const checkFormat = symbol => formats[format].includes(symbol)
+  return timeFormat.map(checkFormat)
+}
+
 class Timer extends React.Component {
   static propTypes = {
     start: PropTypes.instanceOf(Date),
     end: PropTypes.instanceOf(Date),
-    removeDaysAndHours: PropTypes.bool,
+    format: PropTypes.oneOf(Object.keys(formats))
   }
+
+  static defaultProps = {
+    format: formats.dhms
+  }
+
+  constructor(props) {
+    super(props)
+    const [showDays, showHours, showMinutes, showSeconds] = getFormat(props.format)
+    this.state = { showDays, showHours, showMinutes, showSeconds }
+  }
+
   render() {
     const { end, start } = this.props
     return (
@@ -28,8 +53,10 @@ class Timer extends React.Component {
       </Main>
     )
   }
+
   renderTime = () => {
-    const { start, end, removeDaysAndHours } = this.props
+    const { start, end } = this.props
+    const { showDays, showHours, showMinutes, showSeconds } = this.state
     const diffArgs = end ? [end, new Date()] : [new Date(), start]
     const { days, hours, minutes, seconds, totalInSeconds } = difference(
       ...diffArgs
@@ -38,31 +65,42 @@ class Timer extends React.Component {
     if (end && totalInSeconds <= 0) {
       return <TimeOut>Time out</TimeOut>
     }
+
     return (
       <span>
-        {!removeDaysAndHours && (
+        {showDays && (
           <React.Fragment>
             <Part>
               {formatUnit(days)}
               <Unit>D</Unit>
             </Part>
             <Separator />
-            <Part>
-              {formatUnit(hours)}
-              <Unit>H</Unit>
-            </Part>
-            <Separator>:</Separator>
           </React.Fragment>
         )}
-        <Part>
-          {formatUnit(minutes)}
-          <Unit>M</Unit>
-        </Part>
-        <Separator>:</Separator>
-        <PartSeconds>
-          {formatUnit(seconds)}
-          <UnitSeconds>S</UnitSeconds>
-        </PartSeconds>
+        {showHours && (
+          <Part>
+            {formatUnit(hours)}
+            <Unit>H</Unit>
+          </Part>
+        )}
+        {showHours && showMinutes && (
+          <Separator>:</Separator>
+        )}
+        {showMinutes && (
+          <Part>
+            {formatUnit(minutes)}
+            <Unit>M</Unit>
+          </Part>
+        )}
+        {showSeconds && (
+          <React.Fragment>
+            <Separator>:</Separator>
+            <PartSeconds>
+              {formatUnit(seconds)}
+              <UnitSeconds>S</UnitSeconds>
+            </PartSeconds>
+          </React.Fragment>
+        )}
       </span>
     )
   }

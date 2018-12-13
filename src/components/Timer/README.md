@@ -42,3 +42,9 @@ The end of the countdown, as a `Date` instance.
 - Type: `Date`
 
 The start of a timer, as a `Date` instance.
+
+### `format`
+
+- Type `Enum: [ 'dhms', 'dhm', 'hms', 'hm', 'ms' ]`
+
+Format output in days 'd', hours 'h', minutes 'm', seconds 's'
