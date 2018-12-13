@@ -46,7 +46,7 @@ const WrapModal = styled(EscapeOutside)`
     'medium',
     `
       height: unset;
-      min-height: 400px;
+      min-height: 20px;
       padding: 50px;
       margin: auto;
     `
