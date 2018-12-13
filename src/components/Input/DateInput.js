@@ -7,10 +7,6 @@ import { TextInput, DatePicker } from '..'
 import { IconCalendar } from '../../icons'
 import { theme } from '../../theme'
 
-const Container = styled.div`
-  position: relative;
-`
-
 class DateInput extends React.PureComponent {
   state = {
     showPicker: false,
@@ -81,10 +77,6 @@ class DateInput extends React.PureComponent {
   }
 }
 
-const IconCalendarSelected = styled(IconCalendar)`
-  color: ${theme.accent}
-`
-
 DateInput.propTypes = {
   format: PropTypes.string,
   onChange: PropTypes.func,
@@ -95,5 +87,13 @@ DateInput.defaultProps = {
   format: 'LL/dd/yyyy',
   onChange: () => {},
 }
+
+const Container = styled.div`
+  position: relative;
+`
+
+const IconCalendarSelected = styled(IconCalendar)`
+  color: ${theme.accent}
+`
 
 export default DateInput
