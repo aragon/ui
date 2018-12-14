@@ -1,8 +1,9 @@
 import { warn } from '../utils'
 
+const TRANSACTION_REGEX = /^(0x)?([A-Fa-f0-9]{64})$/
 const ADDRESS_REGEX = /^0x[0-9a-fA-F]{40}$/
 const ETHERSCAN_NETWORK_TYPES = ['main', 'kovan', 'rinkeby', 'ropsten']
-const ETHERSCAN_TYPES = ['block', 'transaction', 'address', 'token']
+const ETHERSCAN_TYPES = ['block', 'tx', 'address', 'token']
 
 /**
  * Check address equality without checksums
@@ -45,6 +46,11 @@ export function shortenAddress(address, charsLength = 4) {
 }
 
 /**
+ * Alias for shortenAddress (to generalize its use)
+ */
+export const shortenTransaction = shortenAddress
+
+/**
  *
  * Checks if the given string is an address
  *
@@ -54,6 +60,18 @@ export function shortenAddress(address, charsLength = 4) {
  */
 export function isAddress(address) {
   return ADDRESS_REGEX.test(address)
+}
+
+/**
+ *
+ * Checks if the given string is a transaction
+ *
+ * @method isTransaction
+ * @param {string} address the given HEX address
+ * @return {boolean}
+ */
+export function isTransaction(tx) {
+  return TRANSACTION_REGEX.test(tx)
 }
 
 /**
