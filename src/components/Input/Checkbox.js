@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { Transition, animated } from 'react-spring'
 import { IconCheck } from '../../icons'
-import theme from '../../theme'
+import { theme } from '../../theme'
 import { springs, noop } from '../../utils'
 import FocusVisible from '../FocusVisible/FocusVisible'
 
