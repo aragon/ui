@@ -94,7 +94,7 @@ const PageButton = ({ title }) => (
           </div>
           <Row>
             <div>
-              <Button.Anchor href="https://aragon.one/" target="_blank">
+              <Button.Anchor href="https://aragon.org/" target="_blank">
                 Link Button
               </Button.Anchor>
             </div>
