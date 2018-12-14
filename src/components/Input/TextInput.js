@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 import { theme } from '../../theme'
 import { font } from '../../utils/styles'
-import { IconStyled, inputPaddingCss } from './Icon.js'
+import { AdornmentStyled, inputPaddingCss } from './Adornment.js'
 
 const baseStyles = css`
   ${font({ size: 'small', weight: 'normal' })};
@@ -52,23 +52,23 @@ const Container = styled.div`
   width: max-content;
 `
 const TextInputStyled = styled(TextInput)`
-  ${props => props.icon && inputPaddingCss(props.iconPosition)}
+  ${props => props.adornment && inputPaddingCss(props.adornmentPosition)}
 `
 
 class WrapperTextInput extends React.Component {
   render() {
-    const { icon, iconPosition, innerRef } = this.props
+    const { adornment, adornmentPosition, innerRef } = this.props
     const f = x => {
       this.input = x
     }
     return (
       <Container>
         <TextInputStyled {...this.props} innerRef={innerRef || f} />
-        {icon && (
-          <IconStyled
-            component={icon}
-            icon={icon}
-            iconPosition={iconPosition}
+        {adornment && (
+          <AdornmentStyled
+            component={adornment}
+            adornment={adornment}
+            adornmentPosition={adornmentPosition}
           />
         )}
       </Container>
@@ -77,12 +77,12 @@ class WrapperTextInput extends React.Component {
 }
 
 WrapperTextInput.propTypes = {
-  iconPosition: PropTypes.string,
-  icon: PropTypes.any,
+  adornmentPosition: PropTypes.string,
+  adornment: PropTypes.any,
 }
 
 WrapperTextInput.defaultProps = {
-  iconPosition: 'left',
+  adornmentPosition: 'start',
 }
 
 // <input type=number> (only for compat)

@@ -2,31 +2,31 @@ import React from 'react'
 import styled from 'styled-components'
 import { theme } from '../../theme'
 
-export const IconStyled = styled(({ component, ...props }) => {
-  const { icon, iconPosition, ...rest } = props
+export const AdornmentStyled = styled(({ component, ...props }) => {
+  const { adornment, adornmentPosition, ...rest } = props
   return React.cloneElement(component, rest)
 })`
   position: absolute;
   top: 5px;
   color: ${theme.textSecondary};
-  ${props => props.icon && iconPositionCss(props.iconPosition)}
+  ${props => props.adornment && adornmentPositionCss(props.adornmentPosition)}
 `
 
-const iconPositionCss = (position = 'left') => {
+const adornmentPositionCss = (position = 'start') => {
   switch (position) {
-    case 'right':
+    case 'end':
       return `right: 4px;`
-    case 'left':
+    case 'start':
     default:
       return `left: 4px;`
   }
 }
 
-export const inputPaddingCss = (position = 'left') => {
+export const inputPaddingCss = (position = 'start') => {
   switch (position) {
-    case 'right':
+    case 'end':
       return `padding-right: 30px;`
-    case 'left':
+    case 'start':
     default:
       return `padding-left: 30px;`
   }
