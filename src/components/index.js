@@ -35,5 +35,8 @@ export { default as Text } from './Text/Text'
 export { default as TextInput } from './Input/TextInput'
 export { ToastHub, Toast } from './ToastHub/ToastHub'
 export {
+  default as TransactionBadge,
+} from './TransactionBadge/TransactionBadge'
+export {
   default as TransactionProgress,
 } from './TransactionProgress/TransactionProgress'
