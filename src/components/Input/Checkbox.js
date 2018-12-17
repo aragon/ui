@@ -1,13 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { Transition, animated } from 'react-spring'
+import { Spring, animated } from 'react-spring'
 import { IconCheck } from '../../icons'
 import { theme } from '../../theme'
 import { springs, noop } from '../../utils'
 import FocusVisible from '../FocusVisible/FocusVisible'
 
-class Checkbox extends React.Component {
+class Checkbox extends React.PureComponent {
   static propTypes = {
     checked: PropTypes.bool,
     indeterminate: PropTypes.bool,
@@ -36,28 +36,23 @@ class Checkbox extends React.Component {
   }
   renderCheck(visible, node) {
     return (
-      <Transition
-        items={visible}
+      <Spring
         from={{ progress: 0 }}
-        enter={{ progress: 1 }}
-        leave={{ progress: 0 }}
+        to={{ progress: Number(visible) }}
         config={springs.instant}
         native
       >
-        {visible =>
-          visible &&
-          (({ progress }) => (
-            <CheckWrapper
-              style={{
-                opacity: progress,
-                transform: progress.interpolate(v => `scale3d(${v}, ${v}, 1)`),
-              }}
-            >
-              {node}
-            </CheckWrapper>
-          ))
-        }
-      </Transition>
+        {({ progress }) => (
+          <CheckWrapper
+            style={{
+              opacity: progress,
+              transform: progress.interpolate(v => `scale(${v}, ${v})`),
+            }}
+          >
+            {node}
+          </CheckWrapper>
+        )}
+      </Spring>
     )
   }
   render() {

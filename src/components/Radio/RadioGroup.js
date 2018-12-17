@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 const { Provider, Consumer } = React.createContext({})
 
-class RadioGroup extends React.Component {
+class RadioGroup extends React.PureComponent {
   static propTypes = {
     children: PropTypes.node,
     selected: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),

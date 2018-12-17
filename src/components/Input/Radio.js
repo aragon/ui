@@ -20,7 +20,7 @@ const KEYS_NEXT = [
   'Right',
 ]
 
-class Radio extends React.Component {
+class Radio extends React.PureComponent {
   static propTypes = {
     checked: PropTypes.bool,
     variant: PropTypes.oneOf(['checkbox', 'radio']),
@@ -84,7 +84,7 @@ class Radio extends React.Component {
   }
 }
 
-class ConnectedRadio extends React.Component {
+class ConnectedRadio extends React.PureComponent {
   static propTypes = Radio.propTypes
   static defaultProps = Radio.defaultProps
   static displayName = 'Radio'
