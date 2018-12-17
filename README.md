@@ -12,7 +12,7 @@ Used by:
 
 - [Aragon](https://github.com/aragon/aragon)
 - [Aragon apps by the core team](https://github.com/aragon/aragon-apps)
-- [aragon.one](https://aragon.one/)
+- [aragon.org](https://aragon.org/)
 - [hack.aragon.org](https://hack.aragon.org/)
 
 ## Getting Started

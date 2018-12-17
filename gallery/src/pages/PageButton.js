@@ -65,9 +65,7 @@ const PageButton = ({ title }) => (
           </Row>
           <Row>
             <div>
-              <Button disabled>
-                Disabled Button
-              </Button>
+              <Button disabled>Disabled Button</Button>
             </div>
             <div>
               <Button mode="strong" disabled>
@@ -94,7 +92,7 @@ const PageButton = ({ title }) => (
           </div>
           <Row>
             <div>
-              <Button.Anchor href="https://aragon.one/" target="_blank">
+              <Button.Anchor href="https://aragon.org/" target="_blank">
                 Link Button
               </Button.Anchor>
             </div>

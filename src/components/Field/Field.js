@@ -11,13 +11,14 @@ const StyledField = styled.div`
 
 const StyledAsterisk = styled.span`
   color: ${theme.accent};
-  float: right;
+  margin-left: auto;
   padding-top: 3px;
   font-size: 12px;
 `
 
 const StyledTextBlock = styled(Text.Block)`
   ${unselectable()};
+  display: flex;
 `
 
 const Field = ({ children, label, ...props }) => {
