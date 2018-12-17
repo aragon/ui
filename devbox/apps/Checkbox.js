@@ -38,7 +38,7 @@ class App extends React.Component {
             <li>
               <Label>
                 <Checkbox
-                  indeterminate={!(allChecked ? !noneChecked : noneChecked)}
+                  indeterminate={!(allChecked ^ noneChecked)}
                   checked={allChecked}
                   onChange={check => {
                     this.setState({
