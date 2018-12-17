@@ -12,27 +12,34 @@ import PropTypes from 'prop-types'
 //  - https://github.com/WICG/focus-visible/issues/88#issuecomment-363227219
 //  - https://chromium-review.googlesource.com/c/chromium/src/+/897002<Paste>
 //
-class FocusVisible extends React.Component {
+class FocusVisible extends React.PureComponent {
   static propTypes = {
     // children is called with an object containing two entries:
     //   - focusVisible represents the visibility of the focus (boolean).
     //   - onFocus() need to be called when the target element is focused.
     children: PropTypes.func.isRequired,
+    tagName: PropTypes.string,
   }
+  static defaultProps = {
+    tagName: 'span',
+  }
+  _element = React.createRef()
   state = {
     focusVisible: false,
   }
   componentDidMount() {
-    document.addEventListener('mousedown', this.handlePointerEvent)
-    document.addEventListener('mouseup', this.handlePointerEvent)
-    document.addEventListener('touchstart', this.handlePointerEvent)
-    document.addEventListener('touchend', this.handlePointerEvent)
+    const doc = this._element.current.ownerDocument
+    doc.addEventListener('mousedown', this.handlePointerEvent)
+    doc.addEventListener('mouseup', this.handlePointerEvent)
+    doc.addEventListener('touchstart', this.handlePointerEvent)
+    doc.addEventListener('touchend', this.handlePointerEvent)
   }
   componentWillUnmount() {
-    document.removeEventListener('mousedown', this.handlePointerEvent)
-    document.removeEventListener('mouseup', this.handlePointerEvent)
-    document.removeEventListener('touchstart', this.handlePointerEvent)
-    document.removeEventListener('touchend', this.handlePointerEvent)
+    const doc = this._element.current.ownerDocument
+    doc.removeEventListener('mousedown', this.handlePointerEvent)
+    doc.removeEventListener('mouseup', this.handlePointerEvent)
+    doc.removeEventListener('touchstart', this.handlePointerEvent)
+    doc.removeEventListener('touchend', this.handlePointerEvent)
   }
   // It doesn’t seem to be specified, but pointer events happen before focus
   // events on modern browsers.
@@ -49,7 +56,12 @@ class FocusVisible extends React.Component {
   }
   render() {
     const { focusVisible } = this.state
-    return this.props.children({ focusVisible, onFocus: this.handleFocus })
+    const { tagName } = this.props
+    return React.createElement(
+      tagName,
+      { ref: this._element },
+      this.props.children({ focusVisible, onFocus: this.handleFocus })
+    )
   }
 }
 
