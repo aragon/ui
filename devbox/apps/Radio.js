@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import {
   AragonApp,
   RadioGroup,
-  RadioButton,
+  Radio,
   RadioList,
   unselectable,
 } from '@aragon/ui'
@@ -39,7 +39,7 @@ class App extends React.Component {
                     {localItems.map((item, i) => (
                       <li key={item}>
                         <Label>
-                          <RadioButton id={item} />
+                          <Radio id={item} />
                           <Item>{item}</Item>
                         </Label>
                       </li>
@@ -53,7 +53,7 @@ class App extends React.Component {
             <RadioList
               title="Action Requirement"
               description="Here are some options you can use to perform it:"
-              items={ITEMS.map(item => ({ title: item, description: item }))}
+              items={items.map(item => ({ title: item, description: item }))}
               onSelect={selected => this.setState({ selected })}
               selected={selected}
             />

@@ -1,10 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const { Provider, Consumer } = React.createContext()
+const { Provider, Consumer } = React.createContext({})
 
 class RadioGroup extends React.Component {
   static propTypes = {
+    children: PropTypes.node,
     selected: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     onChange: PropTypes.func,
   }
@@ -42,7 +43,7 @@ class RadioGroup extends React.Component {
 
     // back on the first item: go to the last one
     if (newSelectedIndex === -1) {
-      return radios[radios.length-1]
+      return radios[radios.length - 1]
     }
 
     // next on the last item: go to the first one

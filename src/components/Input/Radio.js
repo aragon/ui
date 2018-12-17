@@ -20,7 +20,7 @@ const KEYS_NEXT = [
   'Right',
 ]
 
-class RadioButton extends React.Component {
+class Radio extends React.Component {
   static propTypes = {
     checked: PropTypes.bool,
     variant: PropTypes.oneOf(['checkbox', 'radio']),
@@ -84,9 +84,10 @@ class RadioButton extends React.Component {
   }
 }
 
-class ConnectedRadioButton extends React.Component {
-  static propTypes = RadioButton.propTypes
-  static defaultProps = RadioButton.defaultProps
+class ConnectedRadio extends React.Component {
+  static propTypes = Radio.propTypes
+  static defaultProps = Radio.defaultProps
+  static displayName = 'Radio'
   render() {
     const { props } = this
     return (
@@ -100,7 +101,7 @@ class ConnectedRadioButton extends React.Component {
           selectNext,
           selectPrev,
         }) => (
-          <RadioButton
+          <Radio
             {...props}
             onCheck={props.onCheck || onCheck || noop}
             checked={props.id === selected && selected !== null}
@@ -116,4 +117,4 @@ class ConnectedRadioButton extends React.Component {
   }
 }
 
-export default ConnectedRadioButton
+export default ConnectedRadio

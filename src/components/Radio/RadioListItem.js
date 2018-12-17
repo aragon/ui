@@ -5,7 +5,7 @@ import color from 'onecolor'
 import Text from '../Text/Text'
 import { theme, colors } from '../../theme'
 import { unselectable } from '../../utils/styles'
-import RadioButton from '../Input/RadioButton'
+import Radio from '../Input/Radio'
 
 const { contentBorder } = theme
 const labelBoxBorder = color(colors.Sea['Light Sea'])
@@ -46,7 +46,7 @@ class RadioListItem extends React.Component {
     } = this.props
     return (
       <Label className={className}>
-        <Radio
+        <RadioWrapper
           checked={selected}
           onChange={this.handleOnChange}
           {...radioProps}
@@ -94,7 +94,7 @@ const Description = styled(Text.Block)`
   margin-top: 5px;
 `
 
-const Radio = styled(RadioButton)`
+const RadioWrapper = styled(Radio)`
   flex-shrink: 0;
   margin-top: 16px;
 `

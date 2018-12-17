@@ -1,40 +1,36 @@
 import React from 'react'
 import styled from 'styled-components'
-import { RadioButton, RadioGroup } from '@aragon/ui'
+import { Radio, RadioGroup } from '@aragon/ui'
 import Page from 'comps/Page/Page'
 import Container from 'comps/Page/DemoContainer'
-import readme from 'ui-src/components/Input/RadioButton.md'
+import readme from 'ui-src/components/Input/Radio.md'
 
-class PageRadioButton extends React.Component {
+class PageRadio extends React.Component {
   state = {
-    value: 0,
+    activeId: '1',
   }
-  handleChange = event => {
-    this.setState({ value: Number(event.target.value) })
+  handleChange = activeId => {
+    this.setState({ activeId })
   }
   render() {
     const { title } = this.props
-    const { value } = this.state
+    const { activeId } = this.state
     return (
       <Page title={title} readme={readme}>
         <Page.Demo opaque>
           <Container>
             <div>
               <h1 style={{ marginBottom: '20px' }}>
-                Selected item: {Number(value) + 1}
+                Selected item: {activeId}
               </h1>
-              <div>
+              <RadioGroup onChange={this.handleChange} selected={activeId}>
                 {[...Array(3)].map((_, i) => (
                   <Item key={i}>
-                    <RadioButton
-                      checked={value === i}
-                      onChange={this.handleChange}
-                      value={i}
-                    />
+                    <Radio id={String(i + 1)} />
                     Item {i + 1}
                   </Item>
                 ))}
-              </div>
+              </RadioGroup>
             </div>
           </Container>
         </Page.Demo>
@@ -54,4 +50,4 @@ const Item = styled.label`
   }
 `
 
-export default PageRadioButton
+export default PageRadio

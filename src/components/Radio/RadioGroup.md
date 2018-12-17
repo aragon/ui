@@ -6,7 +6,7 @@ A convenience container for a group of radio buttons.
 
 ```jsx
 import { Component } from 'react'
-import { RadioButton, RadioGroup } from '@aragon/ui'
+import { Radio, RadioGroup } from '@aragon/ui'
 
 const items = ['First', 'Second', 'Third']
 
@@ -25,7 +25,7 @@ class App extends Component {
           const radioValue = label.toLowerCase()
           return (
             <Label key={i} label={label}>
-              <RadioButton
+              <Radio
                 inline
                 checked={radioValue === value}
                 value={radioValue}
@@ -60,7 +60,7 @@ Sets the class name of the `radiogroup` container.
 
 ### `*`
 
-All other props will be passed into the children (e.g. [`<RadioButton />`](../radio-button/)s).
+All other props will be passed into the children (e.g. [`<Radio />`](../radio/)s).
 
 Setting the props directly on the `<RadioGroup />` is the same as setting the same props on each
 child. The following approaches are all equivalent:
@@ -71,7 +71,7 @@ child. The following approaches are all equivalent:
     const radioValue = label.toLowerCase()
     return (
       <label>
-        <RadioButton checked={radioValue === value} value={radioValue} />
+        <Radio checked={radioValue === value} value={radioValue} />
         {label}
       </label>
     )
@@ -85,7 +85,7 @@ child. The following approaches are all equivalent:
     const radioValue = label.toLowerCase()
     return (
       <label>
-        <RadioButton
+        <Radio
           checked={radioValue === value}
           name="group"
           onChange={this.handleChange}
@@ -101,7 +101,7 @@ child. The following approaches are all equivalent:
 ```jsx
 <RadioGroup>
   <label>
-    <RadioButton
+    <Radio
       checked={'first' === value}
       index={0}
       name="group"
@@ -111,7 +111,7 @@ child. The following approaches are all equivalent:
     First
   </label>
   <label>
-    <RadioButton
+    <Radio
       checked={'second' === value}
       index={1}
       name="group"
@@ -121,7 +121,7 @@ child. The following approaches are all equivalent:
     Second
   </label>
   <label>
-    <RadioButton
+    <Radio
       checked={'third' === value}
       index={2}
       name="group"
