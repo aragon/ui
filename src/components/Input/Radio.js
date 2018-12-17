@@ -61,9 +61,11 @@ class Radio extends React.PureComponent {
     const { selectPrev, selectNext } = this.props
     if (KEYS_PREV.includes(event.key)) {
       selectPrev()
+      event.preventDefault()
     }
     if (KEYS_NEXT.includes(event.key)) {
       selectNext()
+      event.preventDefault()
     }
   }
   handleChange = () => {
