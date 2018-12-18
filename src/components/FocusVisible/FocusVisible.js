@@ -18,10 +18,6 @@ class FocusVisible extends React.PureComponent {
     //   - focusVisible represents the visibility of the focus (boolean).
     //   - onFocus() need to be called when the target element is focused.
     children: PropTypes.func.isRequired,
-    tagName: PropTypes.string,
-  }
-  static defaultProps = {
-    tagName: 'span',
   }
   _element = React.createRef()
   state = {
@@ -56,11 +52,11 @@ class FocusVisible extends React.PureComponent {
   }
   render() {
     const { focusVisible } = this.state
-    const { tagName } = this.props
-    return React.createElement(
-      tagName,
-      { ref: this._element },
-      this.props.children({ focusVisible, onFocus: this.handleFocus })
+    return (
+      <React.Fragment>
+        {this.props.children({ focusVisible, onFocus: this.handleFocus })}
+        <span ref={this._element} />
+      </React.Fragment>
     )
   }
 }
