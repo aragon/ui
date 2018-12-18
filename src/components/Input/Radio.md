@@ -5,13 +5,31 @@ A radio button component.
 ## Usage
 
 ```jsx
-import { Radio, RadioGroup } from '@aragon/ui'
+import React from 'react'
+import { Radio } from '@aragon/ui'
 
-const onChange = checked => { console.log('checked', checked) }
-
-const App = () => (
-  <Radio onCheck={onChange} checked />
-)
+class App extends React.Component {
+  state = { checked: false }
+  render() {
+    return (
+      <div>
+        <label>
+          <Radio
+            id="strawberry"
+            checked={this.state.checked}
+            onChange={id => {
+              console.log(
+                `${singleChecked ? 'Unchecked' : 'Checked'} ${id}`
+              )
+              this.setState({ singleChecked: !singleChecked })
+            }}
+          />
+          Click me
+        </label>
+      </div>
+    )
+  }
+}
 ```
 
 ## Properties
