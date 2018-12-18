@@ -106,8 +106,12 @@ class ConnectedRadio extends React.PureComponent {
           <Radio
             {...props}
             onCheck={props.onCheck || onCheck || noop}
-            checked={props.id === selected && selected !== null}
-            tabIndex={props.id === focusable && props.id !== null ? '0' : '-1'}
+            checked={
+              props.checked || (props.id === selected && selected !== null)
+            }
+            tabIndex={
+              focusable === undefined || props.id === focusable ? '0' : '-1'
+            }
             addRadio={addRadio}
             removeRadio={removeRadio}
             selectPrev={selectPrev}
