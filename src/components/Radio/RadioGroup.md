@@ -8,46 +8,32 @@ A single-selection group of radios.
 import { Component } from 'react'
 import { Radio, RadioGroup } from '@aragon/ui'
 
-const items = ['First', 'Second', 'Third']
+const RADIO_LABELS = ['First', 'Second', 'Third']
 
 class App extends Component {
   state = {
-    value: '',
+    activeId: 'first',
   }
-  handleChange = event => {
-    this.setState({ value: event.target.value })
+  handleChange = activeId => {
+    this.setState({ activeId })
   }
   render() {
-    const { value } = this.state
+    const { activeId } = this.state
     return (
-      <RadioGroup name="group" onChange={this.handleChange}>
+      <RadioGroup onChange={this.handleChange} selected={activeId}>
         {RADIO_LABELS.map((label, i) => {
-          const radioValue = label.toLowerCase()
+          const radioId = label.toLowerCase()
           return (
-            <Label key={i} label={label}>
-              <Radio
-                inline
-                checked={radioValue === value}
-                value={radioValue}
-              />
-            </Label>
+            <label key={i}>
+              <Radio id={radioId} />
+              {label}
+            </label>
           )
         })}
       </RadioGroup>
     )
   }
 }
-
-const Label = ({ children, label, ...props }) => (
-  <label>
-    {React.Children.map(children, child =>
-      React.cloneElement(child, {
-        ...props,
-      })
-    )}
-    {label}
-  </label>
-)
 ```
 
 ## Properties
