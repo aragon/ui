@@ -10,13 +10,17 @@ const DAYS = HOURS * 24
 const now = Date.now()
 
 const timers = [
-  { start: -4 * HOURS },
+  { start: -40 * SECONDS },
+  { start: -40 * SECONDS, showEmpty: true },
   { start: -4 * HOURS, end: 8 * HOURS },
   { end: 1 * DAYS },
-].map(({ start, end }) => {
-  const timer = {}
-  if (start) timer.start = new Date(now + start)
-  if (end) timer.end = new Date(now + end)
+  ...['dhms', 'dhm', 'hms', 'hm', 'ms', 'm', 's'].map(format => ({
+    end: 2 * DAYS - 55 * SECONDS,
+    format,
+  })),
+].map(timer => {
+  if (timer.start) timer.start = new Date(now + timer.start)
+  if (timer.end) timer.end = new Date(now + timer.end)
   return timer
 })
 
@@ -26,13 +30,14 @@ class App extends React.Component {
       <AragonApp publicUrl="/aragon-ui/">
         <Main>
           <div>
-            {timers.map(timer => (
+            {timers.map((props, i) => (
               <div
+                key={i}
                 css={`
-                  margin-bottom: 10px;
+                  padding: 5px 0;
                 `}
               >
-                <Timer {...timer} />
+                <Timer {...props} />
               </div>
             ))}
           </div>
@@ -46,7 +51,7 @@ const Main = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  min-height: 100vh;
 `
 
 export default App
