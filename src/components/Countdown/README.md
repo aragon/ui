@@ -1,4 +1,4 @@
-# Countdown
+# Countdown (Timer alias)
 
 Displays a countdown.
 
