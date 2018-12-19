@@ -45,6 +45,14 @@ The start of a timer, as a `Date` instance.
 
 ### `format`
 
-- Type `Enum: [ 'dhms', 'dhm', 'hms', 'hm', 'ms' ]`
+- Type `Enum: [ 'dhms', 'dhm', 'hms', 'hm', 'ms', 'm', 's' ]`
+- Default: `'dhms'`
 
 Format output in days 'd', hours 'h', minutes 'm', seconds 's'
+
+### `showEmpty`
+
+- Type `Boolean`
+- Default: `false`
+
+Display the units on the left side of the timer when they are equal to zero.

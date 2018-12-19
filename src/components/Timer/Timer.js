@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
+import memoize from 'lodash-es/memoize'
 import { Redraw } from '../../providers/Redraw'
 import IconTime from '../../icons/components/Time'
 import { difference, formatHtmlDatetime } from '../../utils/date'
@@ -16,30 +17,60 @@ const formats = {
   dhm: 'dhm',
   hms: 'hms',
   hm: 'hm',
-  ms: 'ms'
+  ms: 'ms',
+  m: 'm',
+  s: 's',
 }
 
-const getFormat = function (format) {
-  const timeFormat = ['d', 'h', 'm', 's']
-  const checkFormat = symbol => formats[format].includes(symbol)
-  return timeFormat.map(checkFormat)
+const getFormat = memoize(format =>
+  ['d', 'h', 'm', 's'].map(symbol => formats[format].includes(symbol))
+)
+
+const getTime = (start, end, format, showEmpty) => {
+  const [showDays, showHours, showMinutes, showSeconds] = getFormat(format)
+  let { days, hours, minutes, seconds, totalInSeconds } = difference(
+    ...(end ? [end, new Date()] : [new Date(), start])
+  )
+
+  if (!showDays) {
+    hours += days * 24
+    days = null
+  } else if (days === 0 && !showEmpty) {
+    days = null
+  }
+
+  if (!showHours) {
+    minutes += hours * 60
+    hours = null
+  } else if (hours === 0 && days === null && !showEmpty) {
+    hours = null
+  }
+
+  if (!showMinutes) {
+    seconds += minutes * 60
+    minutes = null
+  } else if (minutes === 0 && hours === null && days === null && !showEmpty) {
+    minutes = null
+  }
+
+  if (!showSeconds) {
+    seconds = null
+  }
+
+  return { days, hours, minutes, seconds, totalInSeconds }
 }
 
 class Timer extends React.Component {
   static propTypes = {
     start: PropTypes.instanceOf(Date),
     end: PropTypes.instanceOf(Date),
-    format: PropTypes.oneOf(Object.keys(formats))
+    format: PropTypes.oneOf(Object.keys(formats)),
+    showEmpty: PropTypes.bool,
   }
 
   static defaultProps = {
-    format: formats.dhms
-  }
-
-  constructor(props) {
-    super(props)
-    const [showDays, showHours, showMinutes, showSeconds] = getFormat(props.format)
-    this.state = { showDays, showHours, showMinutes, showSeconds }
+    format: formats.dhms,
+    showEmpty: false,
   }
 
   render() {
@@ -55,11 +86,13 @@ class Timer extends React.Component {
   }
 
   renderTime = () => {
-    const { start, end } = this.props
-    const { showDays, showHours, showMinutes, showSeconds } = this.state
-    const diffArgs = end ? [end, new Date()] : [new Date(), start]
-    const { days, hours, minutes, seconds, totalInSeconds } = difference(
-      ...diffArgs
+    const { start, end, format, showEmpty } = this.props
+
+    const { days, hours, minutes, seconds, totalInSeconds } = getTime(
+      start,
+      end,
+      format,
+      showEmpty
     )
 
     if (end && totalInSeconds <= 0) {
@@ -68,7 +101,7 @@ class Timer extends React.Component {
 
     return (
       <span>
-        {showDays && (
+        {days !== null && (
           <React.Fragment>
             <Part>
               {formatUnit(days)}
@@ -77,24 +110,22 @@ class Timer extends React.Component {
             <Separator />
           </React.Fragment>
         )}
-        {showHours && (
+        {hours !== null && (
           <Part>
             {formatUnit(hours)}
             <Unit>H</Unit>
           </Part>
         )}
-        {showHours && showMinutes && (
-          <Separator>:</Separator>
-        )}
-        {showMinutes && (
+        {hours !== null && minutes !== null && <Separator>:</Separator>}
+        {minutes !== null && (
           <Part>
             {formatUnit(minutes)}
             <Unit>M</Unit>
           </Part>
         )}
-        {showSeconds && (
+        {seconds !== null && (
           <React.Fragment>
-            <Separator>:</Separator>
+            {minutes !== null && <Separator>:</Separator>}
             <PartSeconds>
               {formatUnit(seconds)}
               <UnitSeconds>S</UnitSeconds>
