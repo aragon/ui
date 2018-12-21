@@ -13,12 +13,14 @@ class Checkbox extends React.PureComponent {
     indeterminate: PropTypes.bool,
     onChange: PropTypes.func,
     variant: PropTypes.oneOf(['checkbox', 'radio']),
+    tabIndex: PropTypes.string,
   }
   static defaultProps = {
     checked: false,
     indeterminate: false,
     onChange: noop,
     variant: 'checkbox',
+    tabIndex: '0',
   }
   _element = React.createRef()
   getAriaChecked() {
@@ -61,6 +63,7 @@ class Checkbox extends React.PureComponent {
       focusVisible,
       indeterminate,
       variant,
+      tabIndex,
       ...props
     } = this.props
     return (
@@ -69,7 +72,7 @@ class Checkbox extends React.PureComponent {
           <Main
             ref={this._element}
             role={variant}
-            tabIndex="0"
+            tabIndex={tabIndex}
             aria-checked={this.getAriaChecked()}
             onClick={this.handleClick}
             focusVisible={focusVisible}

@@ -30,6 +30,7 @@ class Radio extends React.PureComponent {
     removeRadio: PropTypes.func,
     selectNext: PropTypes.func,
     selectPrev: PropTypes.func,
+    tabIndex: PropTypes.string,
   }
   static defaultProps = {
     checked: false,
@@ -72,12 +73,13 @@ class Radio extends React.PureComponent {
     this.props.onCheck(this.props.id)
   }
   render() {
-    const { variant, checked, onCheck, id, ...props } = this.props
+    const { variant, checked, onCheck, id, tabIndex, ...props } = this.props
     return (
       <Checkbox
         ref={this._element}
         variant={variant}
         checked={checked}
+        tabIndex={tabIndex}
         onChange={this.handleChange}
         onKeyDown={this.handleKeyDown}
         {...props}
@@ -110,7 +112,8 @@ class ConnectedRadio extends React.PureComponent {
               props.checked || (props.id === selected && selected !== null)
             }
             tabIndex={
-              focusable === undefined || props.id === focusable ? '0' : '-1'
+              props.tabIndex ||
+              (focusable === undefined || props.id === focusable ? '0' : '-1')
             }
             addRadio={addRadio}
             removeRadio={removeRadio}
