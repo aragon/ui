@@ -23,7 +23,7 @@ const KEYS_NEXT = [
 class RadioButton extends React.PureComponent {
   static propTypes = {
     checked: PropTypes.bool,
-    onCheck: PropTypes.func,
+    onChange: PropTypes.func,
     id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     addRadio: PropTypes.func,
     removeRadio: PropTypes.func,
@@ -36,7 +36,7 @@ class RadioButton extends React.PureComponent {
     id: null,
     selectPrev: noop,
     selectNext: noop,
-    onCheck: noop,
+    onChange: undefined, // <Button /> need to detect if onChange has been set
     addRadio: noop,
     removeRadio: noop,
   }
@@ -71,10 +71,13 @@ class RadioButton extends React.PureComponent {
     }
   }
   handleChange = () => {
-    this.props.onCheck(this.props.id)
+    const { onChange, id } = this.props
+    if (onChange) {
+      onChange(id)
+    }
   }
   render() {
-    const { checked, onCheck, id, tabIndex, ...props } = this.props
+    const { checked, onChange, id, tabIndex, ...props } = this.props
     return (
       <Checkbox
         ref={this._element}
@@ -97,7 +100,7 @@ class Radio extends React.PureComponent {
     return (
       <RadioGroupConsumer>
         {({
-          onCheck,
+          onChange,
           selected,
           focusable,
           addRadio,
@@ -107,7 +110,7 @@ class Radio extends React.PureComponent {
         }) => (
           <RadioButton
             {...props}
-            onCheck={props.onCheck || onCheck}
+            onChange={props.onChange || onChange}
             checked={
               props.checked || (props.id === selected && selected !== null)
             }

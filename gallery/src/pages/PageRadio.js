@@ -26,7 +26,7 @@ class PageRadio extends React.Component {
                 <Radio
                   id="single"
                   checked={singleChecked}
-                  onCheck={id => {
+                  onChange={id => {
                     console.log(
                       `${singleChecked ? 'Unchecked' : 'Checked'} ${id}`
                     )

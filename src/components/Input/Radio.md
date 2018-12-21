@@ -50,7 +50,7 @@ the `<RadioGroup />`'s `onChange` handler when the radio is checked.
 
 If not, it is passed to the `onCheck` handler when the radio is checked.
 
-### `onCheck`
+### `onChange`
 
 - Type: `Function`: `(id: String|Number) -> *`
 

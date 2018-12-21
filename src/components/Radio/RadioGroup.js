@@ -17,7 +17,7 @@ class RadioGroup extends React.PureComponent {
     // keep track of the radios buttons to handle keyboard navigation
     radios: new Set(),
   }
-  handleCheck = id => {
+  handleChange = id => {
     this.props.onChange(id)
   }
   addRadio = id => {
@@ -89,7 +89,7 @@ class RadioGroup extends React.PureComponent {
         value={{
           selected,
           focusable,
-          onCheck: this.handleCheck,
+          onChange: this.handleChange,
           addRadio: this.addRadio,
           removeRadio: this.removeRadio,
           selectPrev: this.selectPrev,
