@@ -65,9 +65,7 @@ const PageButton = ({ title }) => (
           </Row>
           <Row>
             <div>
-              <Button disabled>
-                Disabled Button
-              </Button>
+              <Button disabled>Disabled Button</Button>
             </div>
             <div>
               <Button mode="strong" disabled>

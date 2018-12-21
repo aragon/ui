@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 
 import LinkedSliders from './apps/LinkedSliders'
-import RadioButton from './apps/RadioButton'
+import Radio from './apps/Radio'
 import Checkbox from './apps/Checkbox'
 import SidePanel from './apps/SidePanel'
 import NavigationBar from './apps/NavigationBar'
@@ -16,7 +16,7 @@ import Timer from './apps/Timer'
 
 const APPS = {
   LinkedSliders,
-  RadioButton,
+  Radio,
   Checkbox,
   SidePanel,
   NavigationBar,

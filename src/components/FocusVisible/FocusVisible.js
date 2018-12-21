@@ -12,27 +12,30 @@ import PropTypes from 'prop-types'
 //  - https://github.com/WICG/focus-visible/issues/88#issuecomment-363227219
 //  - https://chromium-review.googlesource.com/c/chromium/src/+/897002<Paste>
 //
-class FocusVisible extends React.Component {
+class FocusVisible extends React.PureComponent {
   static propTypes = {
     // children is called with an object containing two entries:
     //   - focusVisible represents the visibility of the focus (boolean).
     //   - onFocus() need to be called when the target element is focused.
     children: PropTypes.func.isRequired,
   }
+  _element = React.createRef()
   state = {
     focusVisible: false,
   }
   componentDidMount() {
-    document.addEventListener('mousedown', this.handlePointerEvent)
-    document.addEventListener('mouseup', this.handlePointerEvent)
-    document.addEventListener('touchstart', this.handlePointerEvent)
-    document.addEventListener('touchend', this.handlePointerEvent)
+    this._document = this._element.current.ownerDocument
+    this._document.addEventListener('mousedown', this.handlePointerEvent)
+    this._document.addEventListener('mouseup', this.handlePointerEvent)
+    this._document.addEventListener('touchstart', this.handlePointerEvent)
+    this._document.addEventListener('touchend', this.handlePointerEvent)
   }
   componentWillUnmount() {
-    document.removeEventListener('mousedown', this.handlePointerEvent)
-    document.removeEventListener('mouseup', this.handlePointerEvent)
-    document.removeEventListener('touchstart', this.handlePointerEvent)
-    document.removeEventListener('touchend', this.handlePointerEvent)
+    this._document.removeEventListener('mousedown', this.handlePointerEvent)
+    this._document.removeEventListener('mouseup', this.handlePointerEvent)
+    this._document.removeEventListener('touchstart', this.handlePointerEvent)
+    this._document.removeEventListener('touchend', this.handlePointerEvent)
+    delete this._document
   }
   // It doesn’t seem to be specified, but pointer events happen before focus
   // events on modern browsers.
@@ -49,7 +52,12 @@ class FocusVisible extends React.Component {
   }
   render() {
     const { focusVisible } = this.state
-    return this.props.children({ focusVisible, onFocus: this.handleFocus })
+    return (
+      <React.Fragment>
+        {this.props.children({ focusVisible, onFocus: this.handleFocus })}
+        {!this._document && <span ref={this._element} />}
+      </React.Fragment>
+    )
   }
 }
 
