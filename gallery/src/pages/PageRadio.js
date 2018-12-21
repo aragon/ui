@@ -8,20 +8,39 @@ import readme from 'ui-src/components/Input/Radio.md'
 class PageRadio extends React.Component {
   state = {
     activeId: '1',
+    singleChecked: false,
   }
   handleChange = activeId => {
     this.setState({ activeId })
   }
   render() {
     const { title } = this.props
-    const { activeId } = this.state
+    const { activeId, singleChecked } = this.state
     return (
       <Page title={title} readme={readme}>
         <Page.Demo opaque>
           <Container>
             <div>
+              <h1 style={{ marginBottom: '20px' }}>Single radio</h1>
+              <label>
+                <Radio
+                  id="single"
+                  checked={singleChecked}
+                  onCheck={id => {
+                    console.log(
+                      `${singleChecked ? 'Unchecked' : 'Checked'} ${id}`
+                    )
+                    this.setState({ singleChecked: !singleChecked })
+                  }}
+                />
+                Click me
+              </label>
+            </div>
+          </Container>
+          <Container>
+            <div>
               <h1 style={{ marginBottom: '20px' }}>
-                Selected item: {activeId}
+                RadioGroup - selected item: {activeId}
               </h1>
               <RadioGroup onChange={this.handleChange} selected={activeId}>
                 {[...Array(3)].map((_, i) => (

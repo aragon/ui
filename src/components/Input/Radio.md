@@ -5,13 +5,31 @@ A radio button component.
 ## Usage
 
 ```jsx
-import { Radio, RadioGroup } from '@aragon/ui'
+import React from 'react'
+import { Radio } from '@aragon/ui'
 
-const onChange = checked => { console.log('checked', checked) }
-
-const App = () => (
-  <Radio onCheck={onChange} checked />
-)
+class App extends React.Component {
+  state = { checked: false }
+  render() {
+    return (
+      <div>
+        <label>
+          <Radio
+            id="strawberry"
+            checked={this.state.checked}
+            onChange={id => {
+              console.log(
+                `${singleChecked ? 'Unchecked' : 'Checked'} ${id}`
+              )
+              this.setState({ singleChecked: !singleChecked })
+            }}
+          />
+          Click me
+        </label>
+      </div>
+    )
+  }
+}
 ```
 
 ## Properties
@@ -27,17 +45,17 @@ Whether it is checked or not.
 
 - Type: `String` or `Number`
 
-When nested into `<RadioGroup />`, this value is passed to the `onChange` event
-when the radio button is checked.
+When the `<Radio />` is nested in a `<RadioGroup />`, this value is passed to
+the `<RadioGroup />`'s `onChange` handler when the radio is checked.
 
-If not, it is passed to the `onCheck` event.
+If not, it is passed to the `onCheck` handler when the radio is checked.
 
 ### `onCheck`
 
 - Type: `Function`: `(id: String|Number) -> *`
 
-This callback is called whenever the user selects the radio button.
+This callback is called whenever the user selects the radio.
 
 #### Arguments:
 
-- `id`: The value passed to the `id` prop.
+- `id`: The value passed as the `id` prop.

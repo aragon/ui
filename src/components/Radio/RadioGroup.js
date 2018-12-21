@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { stylingProps } from '../../utils'
 
 const { Provider, Consumer } = React.createContext({})
 
@@ -92,7 +93,9 @@ class RadioGroup extends React.PureComponent {
           selectNext: this.selectNext,
         }}
       >
-        <div role="radiogroup">{children}</div>
+        <div role="radiogroup" {...stylingProps(this)}>
+          {children}
+        </div>
       </Provider>
     )
   }
