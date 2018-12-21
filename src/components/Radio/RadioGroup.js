@@ -37,7 +37,7 @@ class RadioGroup extends React.PureComponent {
   getSiblingId(position) {
     const { selected } = this.props
     const radios = [...this.state.radios]
-    const selectedIndex = radios.indexOf(selected)
+    const selectedIndex = selected === undefined ? 0 : radios.indexOf(selected)
     const newSelectedIndex = selectedIndex + position
 
     // no radios
@@ -45,24 +45,19 @@ class RadioGroup extends React.PureComponent {
       return null
     }
 
-    // back on the first item: go to the last one
+    // up on the first item: go to the last one
     if (newSelectedIndex === -1) {
       return radios[radios.length - 1]
     }
 
-    // next on the last item: go to the first one
+    // down on the last item: go to the first one
     if (newSelectedIndex === radios.length) {
       return radios[0]
     }
 
-    // new item to select
+    // select the item item if possible
     if (selectedIndex > -1 && radios[newSelectedIndex]) {
       return radios[newSelectedIndex]
-    }
-
-    // select the second item if we are going down
-    if (position === 1 && radios[1] !== undefined) {
-      return radios[1]
     }
 
     // default: select the first item if available
