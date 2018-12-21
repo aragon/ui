@@ -23,7 +23,6 @@ const KEYS_NEXT = [
 class Radio extends React.PureComponent {
   static propTypes = {
     checked: PropTypes.bool,
-    variant: PropTypes.oneOf(['checkbox', 'radio']),
     onCheck: PropTypes.func,
     id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     addRadio: PropTypes.func,
@@ -34,7 +33,6 @@ class Radio extends React.PureComponent {
   }
   static defaultProps = {
     checked: false,
-    variant: 'radio',
     id: null,
     selectPrev: noop,
     selectNext: noop,
@@ -73,11 +71,11 @@ class Radio extends React.PureComponent {
     this.props.onCheck(this.props.id)
   }
   render() {
-    const { variant, checked, onCheck, id, tabIndex, ...props } = this.props
+    const { checked, onCheck, id, tabIndex, ...props } = this.props
     return (
       <Checkbox
         ref={this._element}
-        variant={variant}
+        variant="radio"
         checked={checked}
         tabIndex={tabIndex}
         onChange={this.handleChange}
