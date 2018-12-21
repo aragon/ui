@@ -79,7 +79,8 @@ class Checkbox extends React.PureComponent {
             onFocus={onFocus}
             {...props}
           >
-            {variant === 'checkbox' && this.renderCheck(checked, <Check />)}
+            {variant === 'checkbox' &&
+              this.renderCheck(checked && !indeterminate, <Check />)}
             {variant === 'checkbox' &&
               this.renderCheck(indeterminate, <Dash />)}
             {variant === 'radio' && this.renderCheck(checked, <Bullet />)}
