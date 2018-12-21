@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { stylingProps } from '../../utils'
+import { stylingProps, noop } from '../../utils'
 
 const { Provider, Consumer } = React.createContext({})
 
@@ -9,6 +9,9 @@ class RadioGroup extends React.PureComponent {
     children: PropTypes.node,
     selected: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     onChange: PropTypes.func,
+  }
+  static defaultProps = {
+    onChange: noop,
   }
   state = {
     // keep track of the radios buttons to handle keyboard navigation
