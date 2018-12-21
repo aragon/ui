@@ -102,7 +102,7 @@ class Radio extends React.PureComponent {
         {({
           onChange,
           selected,
-          focusable,
+          focusableId,
           addRadio,
           removeRadio,
           selectNext,
@@ -116,7 +116,9 @@ class Radio extends React.PureComponent {
             }
             tabIndex={
               props.tabIndex ||
-              (focusable === undefined || props.id === focusable ? '0' : '-1')
+              (focusableId === undefined || props.id === focusableId
+                ? '0'
+                : '-1')
             }
             addRadio={addRadio}
             removeRadio={removeRadio}

@@ -78,12 +78,12 @@ class RadioGroup extends React.PureComponent {
   render() {
     const { radios } = this.state
     const { children, selected } = this.props
-    const focusable = radios.has(selected) ? selected : [...radios][0]
+    const focusableId = radios.has(selected) ? selected : [...radios][0]
     return (
       <Provider
         value={{
           selected,
-          focusable,
+          focusableId,
           onChange: this.handleChange,
           addRadio: this.addRadio,
           removeRadio: this.removeRadio,
