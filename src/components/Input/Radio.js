@@ -36,6 +36,9 @@ class Radio extends React.PureComponent {
     id: null,
     selectPrev: noop,
     selectNext: noop,
+    onCheck: noop,
+    addRadio: noop,
+    removeRadio: noop,
   }
   _element = React.createRef()
   componentDidMount() {
@@ -105,7 +108,7 @@ class ConnectedRadio extends React.PureComponent {
         }) => (
           <Radio
             {...props}
-            onCheck={props.onCheck || onCheck || noop}
+            onCheck={props.onCheck || onCheck}
             checked={
               props.checked || (props.id === selected && selected !== null)
             }
