@@ -24,18 +24,18 @@ class FocusVisible extends React.PureComponent {
     focusVisible: false,
   }
   componentDidMount() {
-    const doc = this._element.current.ownerDocument
-    doc.addEventListener('mousedown', this.handlePointerEvent)
-    doc.addEventListener('mouseup', this.handlePointerEvent)
-    doc.addEventListener('touchstart', this.handlePointerEvent)
-    doc.addEventListener('touchend', this.handlePointerEvent)
+    this._document = this._element.current.ownerDocument
+    this._document.addEventListener('mousedown', this.handlePointerEvent)
+    this._document.addEventListener('mouseup', this.handlePointerEvent)
+    this._document.addEventListener('touchstart', this.handlePointerEvent)
+    this._document.addEventListener('touchend', this.handlePointerEvent)
   }
   componentWillUnmount() {
-    const doc = this._element.current.ownerDocument
-    doc.removeEventListener('mousedown', this.handlePointerEvent)
-    doc.removeEventListener('mouseup', this.handlePointerEvent)
-    doc.removeEventListener('touchstart', this.handlePointerEvent)
-    doc.removeEventListener('touchend', this.handlePointerEvent)
+    this._document.removeEventListener('mousedown', this.handlePointerEvent)
+    this._document.removeEventListener('mouseup', this.handlePointerEvent)
+    this._document.removeEventListener('touchstart', this.handlePointerEvent)
+    this._document.removeEventListener('touchend', this.handlePointerEvent)
+    delete this._document
   }
   // It doesn’t seem to be specified, but pointer events happen before focus
   // events on modern browsers.
@@ -55,7 +55,7 @@ class FocusVisible extends React.PureComponent {
     return (
       <React.Fragment>
         {this.props.children({ focusVisible, onFocus: this.handleFocus })}
-        <span ref={this._element} />
+        {!this._document && <span ref={this._element} />}
       </React.Fragment>
     )
   }
