@@ -48,7 +48,7 @@ class Checkbox extends React.PureComponent {
           <CheckWrapper
             style={{
               opacity: progress,
-              transform: progress.interpolate(v => `scale(${v}, ${v})`),
+              transform: progress.interpolate(v => `scale(${v})`),
             }}
           >
             {node}
@@ -135,23 +135,22 @@ const CheckWrapper = styled(animated.span)`
   display: flex;
   align-items: center;
   justify-content: center;
+  transform-origin: 50% 50%;
 `
 
 const Check = styled(IconCheck)`
   /* Use a filter to make it black, until we have a color system for icons */
   filter: brightness(0);
   transform-origin: 50% 50%;
-  transform: scale(0.9);
+  transform: scale(0.88);
 `
 
-const Dash = styled.span`
-  display: block;
-  width: 8px;
-  background: #000;
-  /* Chrome doesn’t support subpixels so we have to use a transform */
-  height: 3px;
-  transform: scaleY(0.4);
-`
+const Dash = () => (
+  /* Use SVG to have subpixels (1.5 storke width) on Chrome */
+  <svg width="14" height="14" viewBox="0 0 14 14">
+    <line x1="3" y1="7" x2="11" y2="7" stroke="black" strokeWidth="1.5" />
+  </svg>
+)
 
 const Bullet = styled.span`
   display: block;
