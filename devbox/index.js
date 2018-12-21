@@ -12,6 +12,7 @@ import TabBar from './apps/TabBar'
 import IdentityBadge from './apps/IdentityBadge'
 import Popover from './apps/Popover'
 import TransactionProgress from './apps/TransactionProgress'
+import Timer from './apps/Timer'
 
 const APPS = {
   LinkedSliders,
@@ -25,6 +26,7 @@ const APPS = {
   IdentityBadge,
   Popover,
   TransactionProgress,
+  Timer,
 }
 
 class Index extends React.Component {

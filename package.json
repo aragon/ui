@@ -99,14 +99,9 @@
     }
   },
   "lint-staged": {
-    "linters": {
-      "*.js": [
-        "eslint --fix",
-        "git add"
-      ]
-    },
-    "ignore": [
-      "gallery/**/*.js"
+    "src/*.js": [
+      "eslint --fix",
+      "git add"
     ]
   }
 }
