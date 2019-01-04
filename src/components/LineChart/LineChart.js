@@ -1,6 +1,7 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
 import { Spring } from 'react-spring'
+import memoize from 'lodash-es/memoize'
 import PropTypes from '../../proptypes'
 import { unselectable, springs } from '../../utils/styles'
 
@@ -16,13 +17,18 @@ class LineChart extends React.Component {
     borderColor: PropTypes.string,
     reset: PropTypes.bool,
     settings: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.number,
-        color: PropTypes.string,
-        values: PropTypes.arrayOf(PropTypes.number) // numbers between 0 and 1
-      })
+      PropTypes.oneOfType([
+        PropTypes.shape({
+          id: PropTypes.number,
+          values: PropTypes.arrayOf(PropTypes.number).isRequired, // numbers between 0 and 1
+          color: PropTypes.string, // overrides the color() prop if set
+        }),
+        // values can also be passed directly
+        PropTypes.arrayOf(PropTypes.number),
+      ])
     ),
     label: PropTypes.oneOfType([PropTypes.func, PropTypes._null]),
+    color: PropTypes.func,
   }
 
   static defaultProps = {
@@ -31,12 +37,14 @@ class LineChart extends React.Component {
     width: 300,
     height: 200,
     captionsHeight: 20,
-    dotRadius: 7/2,
+    dotRadius: 7 / 2,
     animDelay: 500,
     reset: false,
     borderColor: 'rgba(209, 209, 209, 0.5)',
     settings: [],
     label: index => index + 1,
+    color: (index, { settings }) =>
+      `hsl(${(index * (360 / settings.length) + 40) % 360}, 60%, 70%)`,
   }
 
   getX(index) {
@@ -53,9 +61,16 @@ class LineChart extends React.Component {
     return height - padding - (height - padding * 2) * percentage * progress
   }
 
+  convertSettings = memoize(settings => {
+    return settings.map(settingOrValues =>
+      Array.isArray(settingOrValues)
+        ? { values: settingOrValues }
+        : settingOrValues
+    )
+  })
+
   render() {
     const {
-      settings,
       width,
       height,
       captionsHeight,
@@ -66,7 +81,10 @@ class LineChart extends React.Component {
       label,
       reset,
       animDelay,
+      color,
     } = this.props
+
+    const settings = this.convertSettings(this.props.settings)
 
     // All the settings' values should have same length
     const valuesLength = settings.length ? settings[0].values.length : 0
@@ -104,47 +122,45 @@ class LineChart extends React.Component {
                   stroke={borderColor}
                   strokeWidth="1"
                 />
-                {settings.map(({ id, color, values }) => {
-                  return valuesLength && (
-                    <g key={`line-plot-${id}`}>
-                      <path
-                        d={`
-                          M
-                          ${this.getX(0)},
-                          ${this.getY(values[0], progress)}
+                {settings.map(
+                  (setting, index) =>
+                    valuesLength && (
+                      <g key={`line-plot-${setting.id || index}`}>
+                        <path
+                          d={`
+                            M
+                            ${this.getX(0)},
+                            ${this.getY(setting.values[0], progress)}
 
-                          ${values
-                            .slice(1)
-                            .map(
-                              (val, i) =>
-                                `L
-                                 ${this.getX((i + 1) * progress)},
-                                 ${this.getY(val, progress)}
-                                `
-                            )
-                            .join('')}
-                        `}
-                        fill="transparent"
-                        stroke={color}
-                        strokeWidth="2"
-                        strokeOpacity="0.7"
-                      />
-                      {values
-                        .slice(1, -1)
-                        .map((val, i) => (
+                            ${setting.values
+                              .slice(1)
+                              .map(
+                                (val, i) =>
+                                  `L
+                                   ${this.getX((i + 1) * progress)},
+                                   ${this.getY(val, progress)}
+                                  `
+                              )
+                              .join('')}
+                          `}
+                          fill="transparent"
+                          stroke={setting.color || color(index, { settings })}
+                          strokeWidth="2"
+                        />
+                        {setting.values.slice(1, -1).map((val, i) => (
                           <circle
                             key={i}
                             cx={this.getX(i + 1) * progress}
                             cy={this.getY(val, progress)}
                             r={dotRadius}
                             fill="white"
-                            stroke={color}
+                            stroke={setting.color || color(index, { settings })}
                             strokeWidth="1"
                           />
                         ))}
-                    </g>
-                  )
-                })}
+                      </g>
+                    )
+                )}
                 <line
                   x1={this.getX(valuesLength - 1) * progress}
                   y1="0"
