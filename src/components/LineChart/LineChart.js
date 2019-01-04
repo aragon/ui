@@ -22,7 +22,7 @@ class LineChart extends React.Component {
         values: PropTypes.arrayOf(PropTypes.number) // numbers between 0 and 1
       })
     ),
-    labels: PropTypes.array
+    label: PropTypes.oneOfType([PropTypes.func, PropTypes._null]),
   }
 
   static defaultProps = {
@@ -35,7 +35,8 @@ class LineChart extends React.Component {
     animDelay: 500,
     reset: false,
     borderColor: 'rgba(209, 209, 209, 0.5)',
-    settings: []
+    settings: [],
+    label: index => index + 1,
   }
 
   getX(index) {
@@ -62,13 +63,14 @@ class LineChart extends React.Component {
       durationSlices,
       dotRadius,
       springConfig,
-      labels,
-      reset
+      label,
+      reset,
       animDelay,
     } = this.props
 
     // All the settings' values should have same length
     const valuesLength = settings.length ? settings[0].values.length : 0
+    const labels = label ? [...Array(valuesLength).keys()].map(label) : null
 
     return (
       <div>
@@ -151,15 +153,19 @@ class LineChart extends React.Component {
                   stroke="#DAEAEF"
                   strokeWidth="3"
                 />
-                { labels &&
+                {labels && (
                   <g transform={`translate(0,${height + 20})`}>
                     {[...new Array(durationSlices - 1)].map((_, i) => (
-                      <LabelText key={i} x={this.getX(i) + (i === 0 ? 2 : 0)} transform={`rotate(45, ${this.getX(i) + (i === 0 ? 2 : 0)},0) translate(-6)`}>
+                      <LabelText
+                        key={i}
+                        x={this.getX(i) + (i === 0 ? 2 : 0)}
+                        textAnchor="middle"
+                      >
                         {labels[i]}
                       </LabelText>
                     ))}
                   </g>
-                }
+                )}
               </svg>
             )}
           </Spring>

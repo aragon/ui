@@ -9,6 +9,7 @@ const ExtendedPropTypes = {
     friction: PropTypes.number,
     precision: PropTypes.number,
   }),
+  _null: PropTypes.oneOf([null]),
 }
 
 export default ExtendedPropTypes

@@ -31,7 +31,6 @@ class App extends React.Component {
             <LineChart
               settings={data}
               durationSlices={8}
-              labels={labels}
               captionsHeight={20}
             />
           </Container>
