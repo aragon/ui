@@ -42,22 +42,6 @@ class LineChart extends React.Component {
     settings: []
   }
 
-  state = {
-    animate: false,
-  }
-
-  componentDidMount() {
-    // animate after a delay
-    const { animDelay } = this.props
-    this._transitionTimer = setTimeout(() => {
-      this.setState({ animate: true })
-    }, animDelay)
-  }
-
-  componentWillUnmount() {
-    clearTimeout(this._transitionTimer)
-  }
-
   getX(index) {
     const { width, durationSlices } = this.props
 
@@ -73,7 +57,6 @@ class LineChart extends React.Component {
   }
 
   render() {
-    const { animate } = this.state
     const {
       settings,
       width,
@@ -85,6 +68,7 @@ class LineChart extends React.Component {
       springConfig,
       labels,
       reset
+      animDelay,
     } = this.props
 
     // All the settings' values should have same length
@@ -95,8 +79,9 @@ class LineChart extends React.Component {
         <SvgWrapper>
           <Spring
             from={{ progress: 0 }}
-            to={{ progress: Number(animate) }}
+            to={{ progress: 1 }}
             config={springConfig}
+            delay={animDelay}
             reset={reset}
           >
             {({ progress }) => (
