@@ -1,16 +1,12 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 import { Spring } from 'react-spring'
-
-import { unselectable } from '../../utils/styles'
+import PropTypes from '../../proptypes'
+import { unselectable, springs } from '../../utils/styles'
 
 class LineChart extends React.Component {
   static propTypes = {
-    springConfig: PropTypes.shape({
-      tension: PropTypes.number,
-      friction: PropTypes.number
-    }),
+    springConfig: PropTypes._spring,
     durationSlices: PropTypes.number,
     width: PropTypes.number,
     height: PropTypes.number,
@@ -30,8 +26,8 @@ class LineChart extends React.Component {
   }
 
   static defaultProps = {
-    springConfig: { tension: 60, friction: 12 },
     durationSlices: 16,
+    springConfig: springs.lazy,
     width: 300,
     height: 200,
     captionsHeight: 20,
