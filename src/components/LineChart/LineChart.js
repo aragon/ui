@@ -1,7 +1,6 @@
 import React from 'react'
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 import { Spring } from 'react-spring'
-import memoize from 'lodash-es/memoize'
 import PropTypes from '../../proptypes'
 import { unselectable, springs } from '../../utils/styles'
 
