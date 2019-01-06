@@ -41,3 +41,4 @@ export { ToastHub, Toast } from './ToastHub/ToastHub'
 export {
   default as TransactionProgress,
 } from './TransactionProgress/TransactionProgress'
+export { default as LineChart } from './LineChart/LineChart'
