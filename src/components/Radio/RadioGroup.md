@@ -1,53 +1,39 @@
 # RadioGroup
 
-A convenience container for a group of radio buttons.
+A single-selection group of radios.
 
 ## Usage
 
 ```jsx
 import { Component } from 'react'
-import { RadioButton, RadioGroup } from '@aragon/ui'
+import { Radio, RadioGroup } from '@aragon/ui'
 
-const items = ['First', 'Second', 'Third']
+const RADIO_LABELS = ['First', 'Second', 'Third']
 
 class App extends Component {
   state = {
-    value: '',
+    activeId: 'first',
   }
-  handleChange = event => {
-    this.setState({ value: event.target.value })
+  handleChange = activeId => {
+    this.setState({ activeId })
   }
   render() {
-    const { value } = this.state
+    const { activeId } = this.state
     return (
-      <RadioGroup name="group" onChange={this.handleChange}>
+      <RadioGroup onChange={this.handleChange} selected={activeId}>
         {RADIO_LABELS.map((label, i) => {
-          const radioValue = label.toLowerCase()
+          const radioId = label.toLowerCase()
           return (
-            <Label key={i} label={label}>
-              <RadioButton
-                inline
-                checked={radioValue === value}
-                value={radioValue}
-              />
-            </Label>
+            <label key={i}>
+              <Radio id={radioId} />
+              {label}
+            </label>
           )
         })}
       </RadioGroup>
     )
   }
 }
-
-const Label = ({ children, label, ...props }) => (
-  <label>
-    {React.Children.map(children, child =>
-      React.cloneElement(child, {
-        ...props,
-      })
-    )}
-    {label}
-  </label>
-)
 ```
 
 ## Properties
@@ -58,77 +44,23 @@ const Label = ({ children, label, ...props }) => (
 
 Sets the class name of the `radiogroup` container.
 
-### `*`
+### `selected`
 
-All other props will be passed into the children (e.g. [`<RadioButton />`](../radio-button/)s).
+- Type: `Function`: `(id: String|Number) -> *`
 
-Setting the props directly on the `<RadioGroup />` is the same as setting the same props on each
-child. The following approaches are all equivalent:
+Id of selected radio, if any.
 
-```jsx
-<RadioGroup name="group" onChange={this.handleChange}>
-  {RADIO_LABELS.map((label, i) => {
-    const radioValue = label.toLowerCase()
-    return (
-      <label>
-        <RadioButton checked={radioValue === value} value={radioValue} />
-        {label}
-      </label>
-    )
-  })}
-</RadioGroup>
-```
+### `onChange`
 
-```jsx
-<RadioGroup>
-  {RADIO_LABELS.map((label, i) => {
-    const radioValue = label.toLowerCase()
-    return (
-      <label>
-        <RadioButton
-          checked={radioValue === value}
-          name="group"
-          onChange={this.handleChange}
-          value={radioValue}
-        />
-        {label}
-      </label>
-    )
-  })}
-</RadioGroup>
-```
+- Type: `Function`: `(id: String|Number) -> *`
 
-```jsx
-<RadioGroup>
-  <label>
-    <RadioButton
-      checked={'first' === value}
-      index={0}
-      name="group"
-      onChange={this.handleChange}
-      value="first"
-    />
-    First
-  </label>
-  <label>
-    <RadioButton
-      checked={'second' === value}
-      index={1}
-      name="group"
-      onChange={this.handleChange}
-      value="second"
-    />
-    Second
-  </label>
-  <label>
-    <RadioButton
-      checked={'third' === value}
-      index={2}
-      name="group"
-      onChange={this.handleChange}
-      value="third"
-    />
-    Third
-  </label>
-</RadioGroup>
-```
+This callback is called whenever the user selects a nested `<Radio />`.
+
+#### Arguments:
+
+- `id`: The value passed as the `<Radio />`'s `id` prop.
+
+### `children`
+
+An arbitrary component tree that should eventually render at least one or more
+[`<Radio />`](./radio)s.
