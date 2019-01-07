@@ -11,47 +11,50 @@ import {
 
 class TransactionBadge extends React.PureComponent {
   static propTypes = {
-    tx: PropTypes.string.isRequired,
+    transaction: PropTypes.string.isRequired,
     shorten: PropTypes.bool,
     fontSize: PropTypes.string,
     networkType: PropTypes.string,
     background: PropTypes.string,
   }
   static defaultProps = {
-    tx: '',
+    transaction: '',
     shorten: true,
     fontSize: 'normal',
     networkType: 'main',
     background: 'none',
   }
-  getMainProps(tx) {
+  getMainProps(transaction) {
     const { networkType } = this.props
     const baseProps = stylingProps(this)
-    if (!tx) {
+    if (!transaction) {
       return baseProps
     }
     return {
       ...baseProps,
       as: SafeLink,
       target: '_blank',
-      href: blockExplorerUrl('tx', tx, { networkType }),
+      href: blockExplorerUrl('transaction', transaction, { networkType }),
       style: { ...baseProps.style, cursor: 'pointer' },
     }
   }
+  getLabel(transaction) {
+    const { shorten } = this.props
+    if (!transaction) {
+      return 'Invalid'
+    }
+    return shorten ? shortenTransaction(transaction) : transaction
+  }
   render() {
-    const { tx, shorten, fontSize, background } = this.props
-    const transaction = isTransaction(tx) ? tx : null
-    const props = this.getMainProps(transaction)
+    const { props } = this
+    const { shorten, fontSize } = props
+    const transaction = isTransaction(props.transaction)
+      ? props.transaction
+      : null
+    const mainProps = this.getMainProps(transaction)
     return (
-      <Main
-        title={transaction}
-        background={background}
-        onClick={this.handleClick}
-        {...props}
-      >
-        <Label size={fontSize}>
-          {transaction && shorten ? shortenTransaction(tx) : tx}
-        </Label>
+      <Main title={transaction} onClick={this.handleClick} {...mainProps}>
+        <Label size={fontSize}>{this.getLabel(transaction)}</Label>
       </Main>
     )
   }
