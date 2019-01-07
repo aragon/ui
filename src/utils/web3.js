@@ -1,6 +1,6 @@
 import { warn } from '../utils'
 
-const TRANSACTION_REGEX = /^(0x)?([A-Fa-f0-9]{64})$/
+const TRANSACTION_REGEX = /^0x[A-Fa-f0-9]{64}$/
 const ADDRESS_REGEX = /^0x[0-9a-fA-F]{40}$/
 
 const ETHERSCAN_NETWORK_TYPES = new Map([
@@ -96,8 +96,8 @@ export function isAddress(address) {
  * @param {string} address the given HEX address
  * @return {boolean}
  */
-export function isTransaction(tx) {
-  return TRANSACTION_REGEX.test(tx)
+export function isTransaction(transaction) {
+  return TRANSACTION_REGEX.test(transaction)
 }
 
 /**
