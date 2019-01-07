@@ -46,7 +46,7 @@ class TransactionBadge extends React.PureComponent {
   }
   render() {
     const { props } = this
-    const { shorten, fontSize } = props
+    const { fontSize } = props
     const transaction = isTransaction(props.transaction)
       ? props.transaction
       : null
