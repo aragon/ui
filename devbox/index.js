@@ -10,6 +10,7 @@ import EmptyStateCard from './apps/EmptyStateCard'
 import TabBar from './apps/TabBar'
 import IdentityBadge from './apps/IdentityBadge'
 import Popover from './apps/Popover'
+import TransactionBadge from './apps/TransactionBadge'
 import TransactionProgress from './apps/TransactionProgress'
 
 const APPS = {
@@ -22,6 +23,7 @@ const APPS = {
   TabBar,
   IdentityBadge,
   Popover,
+  TransactionBadge,
   TransactionProgress,
 }
 
