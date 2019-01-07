@@ -2,7 +2,8 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 
 import LinkedSliders from './apps/LinkedSliders'
-import RadioButton from './apps/RadioButton'
+import Radio from './apps/Radio'
+import Checkbox from './apps/Checkbox'
 import SidePanel from './apps/SidePanel'
 import NavigationBar from './apps/NavigationBar'
 import Button from './apps/Button'
@@ -12,10 +13,13 @@ import IdentityBadge from './apps/IdentityBadge'
 import Popover from './apps/Popover'
 import TransactionBadge from './apps/TransactionBadge'
 import TransactionProgress from './apps/TransactionProgress'
+import LineChart from './apps/LineChart'
+import Timer from './apps/Timer'
 
 const APPS = {
   LinkedSliders,
-  RadioButton,
+  Radio,
+  Checkbox,
   SidePanel,
   NavigationBar,
   Button,
@@ -25,6 +29,8 @@ const APPS = {
   Popover,
   TransactionBadge,
   TransactionProgress,
+  LineChart,
+  Timer,
 }
 
 class Index extends React.Component {
