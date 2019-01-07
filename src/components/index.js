@@ -39,6 +39,9 @@ export { default as TextInput } from './Input/TextInput'
 export { default as Timer } from './Timer/Timer'
 export { ToastHub, Toast } from './ToastHub/ToastHub'
 export {
+  default as TransactionBadge,
+} from './TransactionBadge/TransactionBadge'
+export {
   default as TransactionProgress,
 } from './TransactionProgress/TransactionProgress'
 export { default as LineChart } from './LineChart/LineChart'

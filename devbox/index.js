@@ -11,6 +11,7 @@ import EmptyStateCard from './apps/EmptyStateCard'
 import TabBar from './apps/TabBar'
 import IdentityBadge from './apps/IdentityBadge'
 import Popover from './apps/Popover'
+import TransactionBadge from './apps/TransactionBadge'
 import TransactionProgress from './apps/TransactionProgress'
 import LineChart from './apps/LineChart'
 import Timer from './apps/Timer'
@@ -26,6 +27,7 @@ const APPS = {
   TabBar,
   IdentityBadge,
   Popover,
+  TransactionBadge,
   TransactionProgress,
   LineChart,
   Timer,
