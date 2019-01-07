@@ -22,7 +22,6 @@ class TransactionBadge extends React.PureComponent {
     shorten: true,
     fontSize: 'normal',
     networkType: 'main',
-    background: 'none',
   }
   getMainProps(transaction) {
     const { networkType } = this.props
@@ -64,11 +63,10 @@ const Main = styled.div`
   overflow: hidden;
   display: inline-flex;
   align-items: center;
-  ${props =>
-    props.background && `background: ${props.background};`}
   border-radius: 3px;
   cursor: default;
   text-decoration: none;
+  background: #daeaef;
 `
 
 const Label = styled(Text)`
