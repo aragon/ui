@@ -52,16 +52,24 @@ class App extends React.Component {
         <Main>
           <div>
             <Container>
-              <h2>No Caption</h2>
-              <PartitionBar data={ITEMS} caption={false} />
-            </Container>
-            <Container>
               <h2>Default Caption</h2>
               <PartitionBar data={ITEMS} />
             </Container>
             <Container>
               <h2>Custom Caption</h2>
-              <PartitionBar data={itemsWithDescripttion} />
+              <PartitionBar
+                data={itemsWithDescripttion}
+                caption={({ index, bullet }) => (
+                  <React.Fragment>
+                    {bullet}
+                    <Description {...ITEMS_DESCRIPTION[index]} />
+                  </React.Fragment>
+                )}
+              />
+            </Container>
+            <Container>
+              <h2>No Caption</h2>
+              <PartitionBar data={ITEMS} caption={null} />
             </Container>
           </div>
         </Main>

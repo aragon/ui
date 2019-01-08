@@ -32,26 +32,13 @@ const PartitionBar = ({ data, caption, colors = DEFAULT_COLORS }) => {
         </Bar>
         {caption && (
           <Caption>
-            {partitions.map(({ name, description, percentage }, index) => {
+            {partitions.map(({ name, percentage }, index) => {
               const bullet = <Bullet color={colors[index]} />
-              const item = description ? (
-                <React.Fragment>
-                  {bullet}
-                  {description}
-                </React.Fragment>
-              ) : (
-                <React.Fragment>
-                  <DefaultItem>
-                    {bullet}
-                    <Text title={name} color={theme.textSecondary}>
-                      {name}
-                    </Text>
-                  </DefaultItem>
-                  <Percentage>{percentage}%</Percentage>
-                </React.Fragment>
+              return (
+                <CaptionItem key={name + index}>
+                  {caption({ name, bullet, percentage, index })}
+                </CaptionItem>
               )
-
-              return <CaptionItem key={name + index}>{item}</CaptionItem>
             })}
           </Caption>
         )}
@@ -67,15 +54,24 @@ PartitionBar.propTypes = {
     PropTypes.shape({
       name: PropTypes.string.isRequired,
       percentage: PropTypes.number.isRequired,
-      description: PropTypes.node,
     })
   ).isRequired,
   colors: PropTypes.arrayOf(PropTypes.string),
-  caption: PropTypes.bool,
+  caption: PropTypes.func,
 }
 
 PartitionBar.defaultProps = {
-  caption: true,
+  caption: ({ name, bullet, percentage }) => (
+    <React.Fragment>
+      <DefaultItem>
+        {bullet}
+        <Text title={name} color={theme.textSecondary}>
+          {name}
+        </Text>
+      </DefaultItem>
+      <Percentage>{percentage}%</Percentage>
+    </React.Fragment>
+  ),
 }
 
 const Bar = styled.div`
