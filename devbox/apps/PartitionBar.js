@@ -14,7 +14,7 @@ const ITEMS = [
   {
     name: '0xb5c994DBaC8c086f574867D6791eb6F356141BA5',
     percentage: 10,
-  }
+  },
 ]
 
 const ITEMS_DESCRIPTION = [
@@ -22,28 +22,28 @@ const ITEMS_DESCRIPTION = [
     name: 'ETH',
     percentage: 46,
     tokenAmount: '3.129325 ETH',
-    proportion: '3,500.83 USD'
+    proportion: '3,500.83 USD',
   },
   {
     name: 'ANT',
     percentage: 24,
     tokenAmount: '352.2342 ANT',
-    proportion: '2,253.22 USD'
+    proportion: '2,253.22 USD',
   },
   {
     name: 'SNT',
     percentage: 12,
     tokenAmount: '215.3950 SNT',
-    proportion: '1,242.25 USD'
+    proportion: '1,242.25 USD',
   },
 ]
 
 class App extends React.Component {
   render() {
-    const itemsWithDescripttion = ITEMS_DESCRIPTION.map((item) => {
+    const itemsWithDescripttion = ITEMS_DESCRIPTION.map(item => {
       return {
         ...item,
-        description: <Description {...item} />
+        description: <Description {...item} />,
       }
     })
 
@@ -68,34 +68,24 @@ class App extends React.Component {
   }
 }
 
-const Description = (props) => {
+const Description = props => {
   const { name, tokenAmount, proportion, percentage } = props
 
   return (
-    <React.Fragment>
-      <AllocationDescription>
-        <div>
-          <Text color={theme.textSecondary}>
-            {name}
-          </Text>
-        </div>
-        <div>
-          <Text weight='bold'>
-            {tokenAmount}
-          </Text>
-        </div>
-        <div>
-          <StyledFormattedProportion>
-            {proportion}
-          </StyledFormattedProportion>
-        </div>
-        <div>
-          <Text weight='bolder'>
-            {percentage}%
-          </Text>
-        </div>
-      </AllocationDescription>
-    </React.Fragment>
+    <AllocationDescription>
+      <div>
+        <Text color={theme.textSecondary}>{name}</Text>
+      </div>
+      <div>
+        <Text weight="bold">{tokenAmount}</Text>
+      </div>
+      <div>
+        <StyledFormattedProportion>{proportion}</StyledFormattedProportion>
+      </div>
+      <div>
+        <Text weight="bolder">{percentage}%</Text>
+      </div>
+    </AllocationDescription>
   )
 }
 
