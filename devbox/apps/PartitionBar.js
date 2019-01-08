@@ -50,18 +50,20 @@ class App extends React.Component {
     return (
       <AragonApp publicUrl="/aragon-ui/">
         <Main>
-          <Container>
-            <h2>No Caption</h2>
-            <PartitionBar data={ITEMS} caption={false} />
-          </Container>
-          <Container>
-            <h2>Default Caption</h2>
-            <PartitionBar data={ITEMS} />
-          </Container>
-          <Container>
-            <h2>Custom Caption</h2>
-            <PartitionBar data={itemsWithDescripttion} />
-          </Container>
+          <div>
+            <Container>
+              <h2>No Caption</h2>
+              <PartitionBar data={ITEMS} caption={false} />
+            </Container>
+            <Container>
+              <h2>Default Caption</h2>
+              <PartitionBar data={ITEMS} />
+            </Container>
+            <Container>
+              <h2>Custom Caption</h2>
+              <PartitionBar data={itemsWithDescripttion} />
+            </Container>
+          </div>
         </Main>
       </AragonApp>
     )
@@ -90,24 +92,16 @@ const Description = props => {
 }
 
 const Main = styled.div`
-  display: flex;
-  flex-direction: column;
+  display: grid;
   align-items: center;
   justify-content: center;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  overflow-y: scroll;
-  overflow-x: hidden;
+  height: 100vh;
+  grid-gap: 0;
 `
 
 const Container = styled.div`
-  display: flex;
-  flex-direction: column;
   width: 400px;
-  margin-bottom: 60px;
+  margin: 60px 0;
 `
 
 const AllocationDescription = styled.div`
