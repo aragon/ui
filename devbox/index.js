@@ -1,30 +1,38 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import LinkedSliders from './apps/LinkedSliders'
-import RadioButton from './apps/RadioButton'
-import SidePanel from './apps/SidePanel'
-import NavigationBar from './apps/NavigationBar'
 import Button from './apps/Button'
+import Checkbox from './apps/Checkbox'
 import EmptyStateCard from './apps/EmptyStateCard'
-import TabBar from './apps/TabBar'
 import IdentityBadge from './apps/IdentityBadge'
-import Popover from './apps/Popover'
-import TransactionProgress from './apps/TransactionProgress'
+import LineChart from './apps/LineChart'
+import LinkedSliders from './apps/LinkedSliders'
+import NavigationBar from './apps/NavigationBar'
 import PartitionBar from './apps/PartitionBar'
+import Popover from './apps/Popover'
+import Radio from './apps/Radio'
+import SidePanel from './apps/SidePanel'
+import TabBar from './apps/TabBar'
+import Timer from './apps/Timer'
+import TransactionBadge from './apps/TransactionBadge'
+import TransactionProgress from './apps/TransactionProgress'
 
 const APPS = {
-  LinkedSliders,
-  RadioButton,
-  SidePanel,
-  NavigationBar,
   Button,
+  Checkbox,
   EmptyStateCard,
-  TabBar,
   IdentityBadge,
-  Popover,
-  TransactionProgress,
+  LineChart,
+  LinkedSliders,
+  NavigationBar,
   PartitionBar,
+  Popover,
+  Radio,
+  SidePanel,
+  TabBar,
+  Timer,
+  TransactionBadge,
+  TransactionProgress,
 }
 
 class Index extends React.Component {

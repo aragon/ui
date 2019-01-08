@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import Text from '../Text/Text'
 import RadioGroup from './RadioGroup'
 import RadioListItem from './RadioListItem'
+import { noop, stylingProps } from '../../utils'
 
 class RadioList extends React.Component {
   static propTypes = {
@@ -12,9 +13,9 @@ class RadioList extends React.Component {
       PropTypes.shape({
         description: PropTypes.node.isRequired,
         title: PropTypes.node.isRequired,
-        value: PropTypes.string,
       })
     ),
+    onChange: PropTypes.func,
     selected: ({ items, selected }, _, componentName) => {
       if (!Number.isInteger(selected) || selected >= items.length) {
         throw new Error(
@@ -28,12 +29,13 @@ class RadioList extends React.Component {
   }
   static defaultProps = {
     items: [],
+    onChange: noop,
     selected: 0,
   }
   render() {
-    const { description, items, selected, title, ...props } = this.props
+    const { description, items, onChange, selected, title } = this.props
     return (
-      <div>
+      <div {...stylingProps(this)}>
         {title && (
           <Title>
             <Text size="large" weight="bold">
@@ -42,18 +44,16 @@ class RadioList extends React.Component {
           </Title>
         )}
         {description && <Description>{description}</Description>}
-        <Group {...props}>
-          {items.map(({ description, title, value }, i) => (
+        <StyledRadioGroup onChange={onChange} selected={selected}>
+          {items.map(({ description, title }, i) => (
             <RadioListItem
               key={i}
-              index={i}
-              selected={i === selected}
               description={description}
+              index={i}
               title={title}
-              value={value}
             />
           ))}
-        </Group>
+        </StyledRadioGroup>
       </div>
     )
   }
@@ -67,7 +67,7 @@ const Description = styled(Text.Block)`
   margin-bottom: 18px;
 `
 
-const Group = styled(RadioGroup)`
+const StyledRadioGroup = styled(RadioGroup)`
   display: flex;
   flex-direction: column;
 `

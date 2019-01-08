@@ -11,7 +11,6 @@ import overpassRegularWoff2 from './assets/overpass/overpass-regular.woff2'
 import overpassSemiBoldWoff from './assets/overpass/overpass-semibold.woff'
 import overpassSemiBoldWoff2 from './assets/overpass/overpass-semibold.woff2'
 
-
 const DEFAULT_FONT_FAMILY = 'overpass'
 
 const DEFAULT_FONTS = {
