@@ -1,3 +1,4 @@
+export { ToastHub, Toast } from './ToastHub/ToastHub'
 export { default as AppBar } from './AragonApp/AppBar'
 export { default as AppView } from './AragonApp/AppView'
 export { default as AragonApp } from './AragonApp/AragonApp'
@@ -17,7 +18,9 @@ export { default as Field } from './Field/Field'
 export { default as FocusVisible } from './FocusVisible/FocusVisible'
 export { default as IdentityBadge } from './IdentityBadge/IdentityBadge'
 export { default as Info } from './Info/Info'
+export { default as LineChart } from './LineChart/LineChart'
 export { default as NavigationBar } from './NavigationBar/NavigationBar'
+export { default as PartitionBar } from './PartitionBar/PartitionBar'
 export { default as Popover } from './Popover/Popover'
 export { default as ProgressBar } from './ProgressBar/ProgressBar'
 export { default as Radio } from './Input/Radio'
@@ -37,11 +40,9 @@ export { default as TableRow } from './Table/TableRow'
 export { default as Text } from './Text/Text'
 export { default as TextInput } from './Input/TextInput'
 export { default as Timer } from './Timer/Timer'
-export { ToastHub, Toast } from './ToastHub/ToastHub'
 export {
   default as TransactionBadge,
 } from './TransactionBadge/TransactionBadge'
 export {
   default as TransactionProgress,
 } from './TransactionProgress/TransactionProgress'
-export { default as LineChart } from './LineChart/LineChart'
