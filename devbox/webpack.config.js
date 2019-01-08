@@ -23,10 +23,7 @@ function base() {
         },
       ],
     },
-    plugins: [
-      new CleanWebpackPlugin(['dist']),
-      new HtmlWebpackPlugin({ title: 'devbox' }),
-    ],
+    plugins: [new HtmlWebpackPlugin({ title: 'devbox' })],
   }
 }
 
@@ -38,6 +35,7 @@ function production() {
     devtool: 'source-map',
     plugins: [
       ...config.plugins,
+      new CleanWebpackPlugin(['dist']),
       new BundleAnalyzerPlugin({
         analyzerMode: 'static',
         reportFilename: 'bundle-report.html',
