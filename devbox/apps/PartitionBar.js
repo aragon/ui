@@ -20,13 +20,13 @@ const ITEMS = [
 const ITEMS_DESCRIPTION = [
   {
     name: 'ETH',
-    percentage: 46,
+    percentage: 51,
     tokenAmount: '3.129325 ETH',
     proportion: '3,500.83 USD',
   },
   {
     name: 'ANT',
-    percentage: 24,
+    percentage: 31,
     tokenAmount: '352.2342 ANT',
     proportion: '2,253.22 USD',
   },
@@ -36,35 +36,42 @@ const ITEMS_DESCRIPTION = [
     tokenAmount: '215.3950 SNT',
     proportion: '1,242.25 USD',
   },
+  {
+    name: 'MANA',
+    percentage: 6,
+    tokenAmount: '4.22 MANA',
+    proportion: '22.5 USD',
+  },
+]
+
+const CUSTOM_COLORS = [
+  'hsl(40, 70%, 60%)',
+  'hsl(80, 70%, 60%)',
+  'hsl(120, 70%, 60%)',
+  'hsl(180, 70%, 60%)',
 ]
 
 class App extends React.Component {
   render() {
-    const itemsWithDescripttion = ITEMS_DESCRIPTION.map(item => {
-      return {
-        ...item,
-        description: <Description {...item} />,
-      }
-    })
-
     return (
       <AragonApp publicUrl="/aragon-ui/">
         <Main>
           <div>
             <Container>
-              <h2>Default Caption</h2>
+              <h2>Default</h2>
               <PartitionBar data={ITEMS} />
             </Container>
             <Container>
-              <h2>Custom Caption</h2>
+              <h2>Custom caption and colors</h2>
               <PartitionBar
-                data={itemsWithDescripttion}
-                caption={({ index, bullet }) => (
+                data={ITEMS_DESCRIPTION}
+                caption={({ index, bullet, color }) => (
                   <React.Fragment>
                     {bullet}
-                    <Description {...ITEMS_DESCRIPTION[index]} />
+                    <Description {...ITEMS_DESCRIPTION[index]} color={color} />
                   </React.Fragment>
                 )}
+                colors={CUSTOM_COLORS}
               />
             </Container>
             <Container>
@@ -79,7 +86,7 @@ class App extends React.Component {
 }
 
 const Description = props => {
-  const { name, tokenAmount, proportion, percentage } = props
+  const { name, tokenAmount, proportion, percentage, color } = props
 
   return (
     <AllocationDescription>
@@ -93,7 +100,9 @@ const Description = props => {
         <StyledFormattedProportion>{proportion}</StyledFormattedProportion>
       </div>
       <div>
-        <Text weight="bolder">{percentage}%</Text>
+        <Text weight="bolder" color={color}>
+          {percentage}%
+        </Text>
       </div>
     </AllocationDescription>
   )
