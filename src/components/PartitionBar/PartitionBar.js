@@ -81,7 +81,6 @@ PartitionBar.propTypes = {
 }
 
 PartitionBar.defaultProps = {
-  data: [],
   colors: DEFAULT_COLORS,
   caption: DEFAULT_CAPTION,
 }
