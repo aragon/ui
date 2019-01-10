@@ -55,14 +55,17 @@ const PartitionBar = ({ data, caption, colors }) => {
       </Bar>
       {caption && (
         <Caption>
-          {partitions.map(({ name, percentage, color }, index) => {
-            const bullet = <Bullet color={color} />
-            return (
-              <CaptionItem key={name + index}>
-                {caption({ name, bullet, percentage, index, color })}
-              </CaptionItem>
-            )
-          })}
+          {partitions.map(({ name, percentage, color }, index) => (
+            <CaptionItem key={name + index}>
+              {caption({
+                name,
+                bullet: <Bullet color={color} />,
+                percentage,
+                index,
+                color,
+              })}
+            </CaptionItem>
+          ))}
         </Caption>
       )}
     </React.Fragment>
