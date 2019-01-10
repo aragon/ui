@@ -33,26 +33,33 @@ const PartitionBar = ({ data, caption, colors }) => {
     return null
   }
 
-  const partitions = data.sort((p1, p2) => p2.percentage - p1.percentage)
+  const partitions = data
+    .sort((p1, p2) => p2.percentage - p1.percentage)
+    .map(({ name, percentage }, index) => ({
+      name,
+      percentage,
+      color: colors[index % colors.length],
+    }))
+
   return (
     <React.Fragment>
       <Bar>
-        {partitions.map(({ name, percentage }, index) => (
+        {partitions.map(({ name, percentage, color }, index) => (
           <Partition
             key={index}
             title={`${name}: ${percentage}%`}
             value={percentage}
-            color={colors[index]}
+            color={color}
           />
         ))}
       </Bar>
       {caption && (
         <Caption>
-          {partitions.map(({ name, percentage }, index) => {
-            const bullet = <Bullet color={colors[index]} />
+          {partitions.map(({ name, percentage, color }, index) => {
+            const bullet = <Bullet color={color} />
             return (
               <CaptionItem key={name + index}>
-                {caption({ name, bullet, percentage, index })}
+                {caption({ name, bullet, percentage, index, color })}
               </CaptionItem>
             )
           })}
