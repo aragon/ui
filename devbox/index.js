@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom'
 import Button from './apps/Button'
 import Checkbox from './apps/Checkbox'
 import EmptyStateCard from './apps/EmptyStateCard'
+import EthIcon from './apps/EthIcon'
 import IdentityBadge from './apps/IdentityBadge'
 import LineChart from './apps/LineChart'
 import LinkedSliders from './apps/LinkedSliders'
@@ -21,6 +22,7 @@ const APPS = {
   Button,
   Checkbox,
   EmptyStateCard,
+  EthIcon,
   IdentityBadge,
   LineChart,
   LinkedSliders,
