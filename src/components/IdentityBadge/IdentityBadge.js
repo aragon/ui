@@ -63,15 +63,15 @@ const Main = styled.div`
   border-radius: 3px;
   cursor: default;
   text-decoration: none;
-  line-height: 0;
 `
 
 const Identicon = styled.div`
+  display: flex;
   margin-right: -3px;
+  line-height: 0;
 `
 
 const Label = styled(Text)`
-  line-height: 1.5;
   padding: 0 8px;
   white-space: nowrap;
 `
