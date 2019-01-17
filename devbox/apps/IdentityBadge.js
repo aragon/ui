@@ -27,6 +27,7 @@ const Main = styled.div`
 `
 
 const Item = styled.div`
+  display: flex;
   padding: 20px;
 `
 
