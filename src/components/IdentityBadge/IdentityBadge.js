@@ -68,7 +68,6 @@ const Main = styled.div`
 const Identicon = styled.div`
   display: flex;
   margin-right: -3px;
-  line-height: 0;
 `
 
 const Label = styled(Text)`
