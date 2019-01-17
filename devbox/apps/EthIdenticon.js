@@ -25,7 +25,7 @@ class App extends React.Component {
         <Main>
           <Wrapper>
             {[...Array(9)].map((_, i) => (
-              <Group>
+              <Group key={i}>
                 {[...Array(4 + 5 - i)].map((_, j) => {
                   const addr = address()
                   const scale = 1 + i / 2
