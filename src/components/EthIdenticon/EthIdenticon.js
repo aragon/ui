@@ -7,7 +7,7 @@ const PX_RATIO = typeof devicePixelRatio === 'undefined' ? 2 : devicePixelRatio
 const BLOCKIES_SQUARES = 8 // commonly used to represent Ethereum addresses
 const BASE_SCALE = 3
 
-class EthIcon extends React.Component {
+class EthIdenticon extends React.Component {
   static propTypes = {
     address: PropTypes.string.isRequired,
     scale: PropTypes.number,
@@ -63,4 +63,4 @@ const BlockiesScaling = styled.div`
   transform-origin: 0 0;
 `
 
-export default EthIcon
+export default EthIdenticon

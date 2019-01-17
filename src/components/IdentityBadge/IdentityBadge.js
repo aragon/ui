@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { Text, SafeLink, EthIcon } from '..'
+import { Text, SafeLink, EthIdenticon } from '..'
 import {
   isAddress,
   shortenAddress,
@@ -44,7 +44,7 @@ class IdentityBadge extends React.PureComponent {
       <Main title={address} onClick={this.handleClick} {...props}>
         {address && (
           <Identicon>
-            <EthIcon scale={1} address={address} />
+            <EthIdenticon scale={1} address={address} />
           </Identicon>
         )}
         <Label size={fontSize}>

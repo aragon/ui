@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { AragonApp, EthIcon, blockExplorerUrl } from '@aragon/ui'
+import { AragonApp, EthIdenticon, blockExplorerUrl } from '@aragon/ui'
 
 const ADDRESS_START = '0x2c9341a52c'
 const ADDRESS_END = '134137b936'
@@ -38,7 +38,7 @@ class App extends React.Component {
                       href={blockExplorerUrl('address', addr)}
                       title={addr}
                     >
-                      <EthIcon
+                      <EthIdenticon
                         address={addr}
                         scale={scale}
                         radius={1 + scale}
