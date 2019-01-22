@@ -7,45 +7,29 @@ import { RootProvider, Popover, TransactionProgress } from '@aragon/ui'
 
 class PageTransactionProgress extends React.Component {
   state = {
-    top: '0px',
-    left: '0px',
-    hide: true,
+    showPopover: false,
   }
+  _opener = React.createRef()
   render() {
-    const { top, left, hide } = this.state
+    const { showPopover } = this.state
 
     return (
       <RootProvider>
         <div>
-          <div
-            ref={ref => {
-              this.openerRef = ref
-            }}
-          >
-            <Button
-              onClick={e =>
-                this.setState({
-                  top: e.clientY + 'px',
-                  left: e.clientX + 'px',
-                  hide: !hide,
-                })
-              }
-            >
-              Show component
+          <div ref={this._opener}>
+            <Button onClick={() => this.setState({ showPopover: true })}>
+              Transaction progress
             </Button>
           </div>
-          {!hide && (
-            <TransactionProgress
-              transactionHashUrl="https://etherscan.io/tx/0x5c504ed432cb51138bcf09aa5e8a410dd4a1e204ef84bfed1be16dfba1b22060"
-              progress={0.3}
-              endTime={new Date(Date.now() + 100000)}
-              handleClose={() => this.setState({ hide: true })}
-              top={top}
-              left={left}
-              openerRef={this.openerRef}
-              slow
-            />
-          )}
+          <TransactionProgress
+            transactionHashUrl="https://etherscan.io/tx/0x5c504ed432cb51138bcf09aa5e8a410dd4a1e204ef84bfed1be16dfba1b22060"
+            progress={0.3}
+            endTime={new Date(Date.now() + 100000)}
+            onClose={() => this.setState({ showPopover: false })}
+            visible={showPopover}
+            opener={this._opener.current}
+            slow
+          />
         </div>
       </RootProvider>
     )

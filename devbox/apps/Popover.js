@@ -3,17 +3,15 @@ import styled from 'styled-components'
 import { AragonApp, Popover, Root, Button } from '@aragon/ui'
 
 class App extends React.Component {
+  _opener = React.createRef()
   state = {
     show: false,
   }
   handleClose = () => {
     this.setState({ show: false })
   }
-  handleClick = () => {
-    this.setState(({ show }) => ({ show: !show }))
-  }
-  handleRef = ref => {
-    this.openerRef = ref
+  handleOpen = () => {
+    this.setState({ show: true })
   }
   render() {
     const { title } = this.props
@@ -22,22 +20,27 @@ class App extends React.Component {
       <AragonApp publicUrl="/aragon-ui/">
         <Root.Provider>
           <Wrapper>
-            <div ref={this.handleRef}>
-              <Button mode="secondary" onClick={this.handleClick} compact>
+            <div>
+              <Button
+                ref={this._opener}
+                onClick={this.handleOpen}
+                size="small"
+                mode="strong"
+              >
                 Open
               </Button>
-            </div>
-            <div>
-              {show && (
-                <Popover
-                  placement="top"
-                  gutter="20px"
-                  openerRef={this.openerRef}
-                  onClose={this.handleClose}
-                >
-                  <Box>hi</Box>
-                </Popover>
-              )}
+              <Popover
+                opener={this._opener.current}
+                visible={show}
+                onClose={this.handleClose}
+              >
+                <Box>
+                  <span>hello </span>
+                  <Button mode="strong" size="mini">
+                    focus me
+                  </Button>
+                </Box>
+              </Popover>
             </div>
           </Wrapper>
         </Root.Provider>
@@ -47,19 +50,16 @@ class App extends React.Component {
 }
 
 const Wrapper = styled.div`
-  display: flex;
+  display: grid;
+  width: 800px;
+  margin: 0 auto;
   justify-content: center;
   align-items: center;
-  width: 100%;
   height: 100vh;
 `
 
 const Box = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 200px;
-  height: 100px;
+  padding: 50px;
 `
 
 export default App
