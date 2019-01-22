@@ -6,6 +6,7 @@ import ButtonIcon from '../Button/ButtonIcon'
 import EthIdenticon from '../EthIdenticon/EthIdenticon'
 import { Toast } from '../ToastHub/ToastHub'
 import { theme } from '../../theme'
+import { noop } from '../../utils'
 
 class AddressField extends React.PureComponent {
   static propTypes = {
@@ -26,7 +27,7 @@ class AddressField extends React.PureComponent {
     this._input.current.select()
     try {
       document.execCommand('copy')
-      onCopy('Address copied')
+      onCopy(null, 'Address copied')
     } catch (err) {
       onCopy('Copying is not supported on this browser')
     }
@@ -106,8 +107,8 @@ class AddressField extends React.PureComponent {
 }
 
 export default props =>
-  props.onCopy ? (
-    <AddressField {...props} />
+  props.onCopy || props.onCopy === null ? (
+    <AddressField {...props} onCopy={props.onCopy || noop} />
   ) : (
     <Toast>{add => <AddressField onCopy={add} {...props} />}</Toast>
   )
