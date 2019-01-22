@@ -10,29 +10,24 @@ import { theme } from '../../theme'
 import { noop } from '../../utils'
 import { springs } from '../../utils/styles'
 
-const popoverPropTypes = {
-  visible: PropTypes.bool,
-  opener: PropTypes.instanceOf(Element),
-  placement: PropTypes.oneOf(
-    // See https://popper.js.org/popper-documentation.html#Popper.placements
-    // "center" is a value that doesn’t exits in Popper.
-    ['center'].concat(
-      ...['auto', 'top', 'right', 'bottom', 'left'].map(position => [
-        position,
-        `${position}-start`,
-        `${position}-end`,
-      ])
-    )
-  ),
-  zIndex: PropTypes.number,
-  onClose: PropTypes.func,
-  children: PropTypes.node,
-  transitionStyles: PropTypes.object,
-}
-
 class PopoverBase extends React.Component {
   static propTypes = {
-    ...popoverPropTypes,
+    visible: PropTypes.bool,
+    opener: PropTypes.instanceOf(Element),
+    placement: PropTypes.oneOf(
+      // See https://popper.js.org/popper-documentation.html#Popper.placements
+      // "center" is a value that doesn’t exits in Popper.
+      ['center'].concat(
+        ...['auto', 'top', 'right', 'bottom', 'left'].map(position => [
+          position,
+          `${position}-start`,
+          `${position}-end`,
+        ])
+      )
+    ),
+    zIndex: PropTypes.number,
+    onClose: PropTypes.func,
+    children: PropTypes.node,
     transitionStyles: PropTypes.object,
   }
 
@@ -185,9 +180,7 @@ const Popover = props => (
   <Root>
     {rootElement => {
       if (!rootElement) {
-        throw new Error(
-          '<Popover> need to be nested in <Root.Provider>.'
-        )
+        throw new Error('<Popover> need to be nested in <Root.Provider>.')
       }
       return ReactDOM.createPortal(
         <Transition
@@ -211,6 +204,6 @@ const Popover = props => (
   </Root>
 )
 
-Popover.propTypes = popoverPropTypes
+Popover.propTypes = PopoverBase.propTypes
 
 export default Popover
