@@ -6,8 +6,14 @@ class ButtonIcon extends React.PureComponent {
     return (
       <ButtonBase
         css={`
-          width: 22px;
-          height: 22px;
+          display: inline-flex;
+          justify-content: center;
+          align-items: center;
+          width: 32px;
+          height: 32px;
+          &:active {
+            background: rgba(220, 234, 239, 0.3);
+          }
         `}
         {...this.props}
       />
