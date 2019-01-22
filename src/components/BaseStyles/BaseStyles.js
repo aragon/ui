@@ -136,6 +136,10 @@ const GlobalStyle = createGlobalStyle`
   b {
     font-weight: 600;
   }
+  ::selection {
+    color: {theme.textPrimary};
+    background: #B2D7FF;
+  }
 `
 
 export default PublicUrl.hocWrap(BaseStyles)
