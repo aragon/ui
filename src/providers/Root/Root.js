@@ -7,16 +7,19 @@ class RootProvider extends React.Component {
   static propTypes = {
     children: PropTypes.node,
   }
-  state = { element: null }
-  handleRef = element => {
-    this.setState({ element })
+  _element = React.createRef()
+  state = {
+    element: null,
+  }
+  componentDidMount() {
+    this.setState({ element: this._element.current })
   }
   render() {
     const { element } = this.state
     const { children } = this.props
     return (
       <Provider value={element}>
-        <div ref={this.handleRef}>{children}</div>
+        <div ref={this._element}>{element ? children : null}</div>
       </Provider>
     )
   }
