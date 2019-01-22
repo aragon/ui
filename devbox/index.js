@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
+import AddressField from './apps/AddressField'
 import Button from './apps/Button'
 import Checkbox from './apps/Checkbox'
 import EmptyStateCard from './apps/EmptyStateCard'
@@ -19,6 +20,7 @@ import TransactionBadge from './apps/TransactionBadge'
 import TransactionProgress from './apps/TransactionProgress'
 
 const APPS = {
+  AddressField,
   Button,
   Checkbox,
   EmptyStateCard,
