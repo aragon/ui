@@ -6,7 +6,7 @@ import ButtonIcon from '../Button/ButtonIcon'
 import EthIdenticon from '../EthIdenticon/EthIdenticon'
 import { Toast } from '../ToastHub/ToastHub'
 import { theme } from '../../theme'
-import { noop } from '../../utils'
+import { noop, warn } from '../../utils'
 
 class AddressField extends React.PureComponent {
   static propTypes = {
@@ -25,12 +25,14 @@ class AddressField extends React.PureComponent {
     const { onCopy } = this.props
     this._input.current.focus()
     this._input.current.select()
+
     try {
       document.execCommand('copy')
-      onCopy(null, 'Address copied')
+      onCopy('Address copied')
     } catch (err) {
-      onCopy('Copying is not supported on this browser')
+      warn(err)
     }
+
     this._input.current.focus()
   }
   render() {
@@ -108,6 +110,7 @@ class AddressField extends React.PureComponent {
 }
 
 export default props =>
+  // If onCopy is set (either to a function or null), Toast is not used.
   props.onCopy || props.onCopy === null ? (
     <AddressField {...props} onCopy={props.onCopy || noop} />
   ) : (
