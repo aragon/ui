@@ -16,7 +16,9 @@ class AddressField extends React.PureComponent {
   _input = React.createRef()
   _button = React.createRef()
   componentDidMount() {
-    this._input.current.focus()
+    setTimeout(() => {
+      this._input.current.focus()
+    }, 0)
   }
   handleFocus = () => {
     this._input.current.select()
