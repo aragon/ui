@@ -74,7 +74,7 @@ class AddressField extends React.PureComponent {
           onFocus={this.handleFocus}
           readOnly
           css={`
-            width: 340px;
+            width: 350px;
             border: 0;
             box-shadow: none;
             background: transparent;
