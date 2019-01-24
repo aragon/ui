@@ -42,6 +42,9 @@ class AddressField extends React.PureComponent {
     return (
       <div
         css={`
+          display: inline-flex;
+          max-width: 100%;
+          height: 40px;
           position: relative;
           background: ${theme.contentBackground};
           border: 1px solid ${theme.contentBorder};
@@ -54,18 +57,19 @@ class AddressField extends React.PureComponent {
         <div
           css={`
             position: absolute;
-            top: 0;
-            left: 0;
-            bottom: 0;
-            border-radius: 3px;
+            top: -1px;
+            left: -1px;
+            height: 40px;
             overflow: hidden;
+            border-radius: 3px 0 0 3px;
+            border: 1px solid transparent;
           `}
         >
           <EthIdenticon
             address={address}
             scale={2}
             css={`
-              transform: scale(calc(40 / 48));
+              transform: scale(calc(38 / 48));
               transform-origin: 0 0;
             `}
           />
@@ -96,11 +100,12 @@ class AddressField extends React.PureComponent {
             position: absolute;
             top: 0;
             right: 0;
-            width: 40px;
-            height: 40px;
+            width: 39px;
+            height: 38px;
             display: flex;
             align-items: center;
             justify-content: center;
+            border-radius: 0 3px 3px 0;
             &:active {
               background: rgba(220, 234, 239, 0.3);
             }
