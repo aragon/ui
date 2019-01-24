@@ -29,7 +29,10 @@ export default {
       ],
       emitFiles: true,
     }),
-    babel({ exclude: 'node_modules/**' }),
+    babel({
+      runtimeHelpers: true,
+      exclude: 'node_modules/**',
+    }),
     resolve(),
     commonjs(),
   ],

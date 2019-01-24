@@ -12,6 +12,7 @@
   "plugins": [
     ["inline-json-import", {}],
     ["styled-components", { "displayName": true }],
+    "@babel/plugin-transform-runtime",
     "@babel/plugin-proposal-class-properties"
   ]
 }

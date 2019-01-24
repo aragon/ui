@@ -38,6 +38,7 @@
     "@babel/cli": "^7.1.5",
     "@babel/plugin-proposal-class-properties": "^7.1.0",
     "@babel/plugin-transform-react-jsx": "^7.0.0",
+    "@babel/plugin-transform-runtime": "^7.2.0",
     "@babel/preset-env": "^7.1.5",
     "@babel/preset-react": "^7.0.0",
     "babel-eslint": "^10.0.1",
@@ -74,6 +75,7 @@
     "svgr": "^1.1.0"
   },
   "dependencies": {
+    "@babel/runtime": "^7.3.1",
     "airbnb-prop-types": "^2.9.0",
     "arg": "^2.0.0",
     "command-exists": "^1.2.6",
