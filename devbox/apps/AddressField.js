@@ -5,7 +5,12 @@ import { AddressField, AragonApp, ToastHub } from '@aragon/ui'
 class App extends React.Component {
   render() {
     return (
-      <AragonApp publicUrl="/aragon-ui/">
+      <AragonApp
+        publicUrl="/aragon-ui/"
+        css={`
+          min-width: 0;
+        `}
+      >
         <ToastHub>
           <Main>
             <AddressField address="0x2c9341a52cfa3f2c2554ca1803134137b9366b3c" />
