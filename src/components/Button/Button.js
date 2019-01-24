@@ -236,11 +236,14 @@ const StyledButton = styled.button.attrs({ type: 'button' })`
   }};
 `
 
-const Button = PublicUrl.hocWrap(StyledButton)
-const Anchor = PublicUrl.hocWrap(props => (
-  <StyledButton as={SafeLink} {...props} />
+const Button = React.forwardRef((props, ref) => (
+  <PublicUrl>
+    {url => <StyledButton ref={ref} publicUrl={url} {...props} />}
+  </PublicUrl>
 ))
 
-Button.Anchor = Anchor
+Button.Anchor = React.forwardRef((props, ref) => (
+  <Button ref={ref} as={SafeLink} {...props} />
+))
 
 export default Button
