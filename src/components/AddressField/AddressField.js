@@ -42,6 +42,8 @@ class AddressField extends React.PureComponent {
     return (
       <div
         css={`
+          display: inline-flex;
+          max-width: 100%;
           position: relative;
           background: ${theme.contentBackground};
           border: 1px solid ${theme.contentBorder};
