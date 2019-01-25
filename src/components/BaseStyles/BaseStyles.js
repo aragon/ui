@@ -136,6 +136,10 @@ const GlobalStyle = createGlobalStyle`
   b {
     font-weight: 600;
   }
+  ::selection {
+    color: ${theme.selectionForeground};
+    background: ${theme.selectionBackground};
+  }
 `
 
 export default PublicUrl.hocWrap(BaseStyles)
