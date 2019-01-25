@@ -137,8 +137,8 @@ const GlobalStyle = createGlobalStyle`
     font-weight: 600;
   }
   ::selection {
-    color: {theme.textPrimary};
-    background: #B2D7FF;
+    color: ${theme.selectionForeground};
+    background: ${theme.selectionBackground};
   }
 `
 
