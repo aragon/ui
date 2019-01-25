@@ -30,7 +30,6 @@ const Main = styled.button.attrs({ type: 'button' })`
   background: none;
   border: 0;
   border-radius: 3px;
-  cursor: pointer;
   outline: 0;
 
   cursor: ${({ disabled }) => (disabled ? 'default' : 'pointer')};
