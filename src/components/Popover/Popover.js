@@ -180,7 +180,7 @@ const Popover = props => (
   <Root>
     {rootElement => {
       if (!rootElement) {
-        throw new Error('<Popover> need to be nested in <Root.Provider>.')
+        throw new Error('<Popover> needs to be nested in <Root.Provider>.')
       }
       return ReactDOM.createPortal(
         <Transition
