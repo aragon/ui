@@ -15,9 +15,8 @@ import { noop } from '../../utils'
 
 class TransactionProgress extends React.Component {
   static propTypes = {
-    openerRef: PropTypes.instanceOf(Element).isRequired,
-    top: PropTypes.string,
-    left: PropTypes.string,
+    visible: PropTypes.bool,
+    opener: PropTypes.instanceOf(Element),
     slow: PropTypes.bool,
     transactionHashUrl: PropTypes.string,
     endTime: PropTypes.instanceOf(Date),
@@ -25,28 +24,26 @@ class TransactionProgress extends React.Component {
     progress: PropTypes.number,
   }
   static defaultProps = {
+    visible: false,
     onClose: noop,
   }
 
   render() {
     const {
+      visible,
       slow,
       progress,
       endTime,
       transactionHashUrl,
       onClose,
-      openerRef,
-      top,
-      left,
+      opener,
     } = this.props
 
     return (
       <Popover
-        top={top}
-        left={left}
+        visible={visible}
         placement="auto"
-        zIndex={100}
-        openerRef={openerRef}
+        opener={opener}
         onClose={onClose}
       >
         <CloseButton type="button" onClick={onClose}>

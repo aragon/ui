@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import Popper from 'popper.js'
-import { Spring, animated } from 'react-spring'
+import { Transition, animated } from 'react-spring'
 
 import { Root } from '../../providers'
 import { theme } from '../../theme'
@@ -12,138 +12,198 @@ import { springs } from '../../utils/styles'
 
 class PopoverBase extends React.Component {
   static propTypes = {
-    openerRef: PropTypes.instanceOf(Element).isRequired,
-    rootElement: PropTypes.instanceOf(Element),
-    placement: PropTypes.string,
-    gutter: PropTypes.string,
-    top: PropTypes.string,
-    left: PropTypes.string,
+    visible: PropTypes.bool,
+    opener: PropTypes.instanceOf(Element),
+    placement: PropTypes.oneOf(
+      // See https://popper.js.org/popper-documentation.html#Popper.placements
+      // "center" is a value that doesn’t exits in Popper.
+      ['center'].concat(
+        ...['auto', 'top', 'right', 'bottom', 'left'].map(position => [
+          position,
+          `${position}-start`,
+          `${position}-end`,
+        ])
+      )
+    ),
     zIndex: PropTypes.number,
     onClose: PropTypes.func,
+    children: PropTypes.node,
+    transitionStyles: PropTypes.object,
   }
 
   static defaultProps = {
-    gutter: '20px',
+    visible: true,
+    opener: null,
+    placement: 'center',
     onClose: noop,
+    zIndex: 999,
   }
 
   _element = React.createRef()
+  _document = null
+  _popper = null
+  _openerRect = null
+
+  constructor(props) {
+    super(props)
+    this._openerRect = this.props.opener.getBoundingClientRect()
+  }
 
   componentDidMount() {
-    const ownerDocument = this._element.current.ownerDocument
-
+    this._document = this._element.current.ownerDocument
+    this._document.addEventListener('keydown', this.handleEscape)
+    this._element.current.focus()
     this.initPopper()
-    ownerDocument.addEventListener('keydown', this.handleEscape)
-    ownerDocument.addEventListener('click', this.handleClick, true)
-    ownerDocument.addEventListener('touchend', this.handleClick, true)
   }
 
   componentWillUnmount() {
-    const ownerDocument = this._element.current.ownerDocument
-
     this.destroyPopper()
-    ownerDocument.removeEventListener('keydown', this.handleEscape)
-    ownerDocument.removeEventListener('click', this.handleClick, true)
-    ownerDocument.removeEventListener('touchend', this.handleClick, true)
+    this._document.removeEventListener('keydown', this.handleEscape)
+    delete this._document
+    delete this._popper
+    delete this._openerRect
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const { placement, children } = this.props
-    if (prevProps.placement !== placement || prevProps.children !== children) {
+    const { placement, children, opener } = this.props
+    if (
+      prevProps.placement !== placement ||
+      prevProps.children !== children ||
+      prevProps.opener !== opener
+    ) {
       this.destroyPopper()
       this.initPopper()
     }
   }
 
-  // check if a point is inside a DOM rect
-  insideRect(rect, x, y) {
-    return rect.top < y && rect.bottom > y && rect.left < x && rect.right > x
-  }
-
-  handleEscape = e => {
-    const { onClose } = this.props
-    if (e.keyCode === 27) {
-      onClose()
-    }
-  }
-
-  handleClick = e => {
-    const { onClose, openerRef } = this.props
-
-    if (!openerRef || !this._element.current) {
+  initPopper() {
+    const { opener, placement } = this.props
+    if (this._popper) {
       return
     }
 
-    const thisRefContent = this._element.current.getBoundingClientRect()
-    const openerRefContent = openerRef.getBoundingClientRect()
+    const modifiers = {}
+    if (placement === 'center') {
+      modifiers.inner = { enabled: true }
+    }
 
-    const insidePopover = this.insideRect(thisRefContent, e.clientX, e.clientY)
-    const insideOpener = this.insideRect(openerRefContent, e.clientX, e.clientY)
+    this._popper = new Popper(opener, this._element.current, {
+      placement: placement === 'center' ? 'top' : placement,
+      modifiers,
+    })
+  }
 
-    if (!insidePopover && !insideOpener) {
+  destroyPopper() {
+    if (!this._popper) {
+      return
+    }
+
+    this._popper.destroy()
+    this._popper = null
+  }
+
+  handleEscape = ({ keyCode }) => {
+    const { opener, onClose } = this.props
+    if (keyCode === 27) {
+      // On escape, we always move the focus back to the opener.
+      opener.focus()
       onClose()
     }
   }
 
-  initPopper() {
-    const { openerRef, placement, gutter } = this.props
-    if (placement && !this.popper) {
-      this.popper = new Popper(openerRef, this._element.current, {
-        placement,
-        modifiers: {
-          offset: { offset: `0, ${gutter}` },
-        },
-      })
+  handleBlur = event => {
+    const { opener, onClose } = this.props
+    const focusedElement = event.relatedTarget
+    if (this._element.current.contains(focusedElement)) {
+      return
     }
-  }
 
-  destroyPopper() {
-    if (this.props.placement && this.popper) {
-      this.popper.destroy()
-      this.popper = undefined
+    // Probably a click outside, that doesn’t focus anything else: move the
+    // focus back to the opener.
+    if (!focusedElement) {
+      opener.focus()
     }
+    onClose()
   }
 
   render() {
-    const { top, left, zIndex, children, rootElement } = this.props
-    return ReactDOM.createPortal(
-      <div
+    const { zIndex, children, transitionStyles, placement } = this.props
+    const { scale, opacity } = transitionStyles
+    const openerHeight = this._openerRect ? this._openerRect.height : 0
+    return (
+      <Main
         ref={this._element}
-        style={{ position: 'absolute', top, left, zIndex }}
+        tabIndex="0"
+        onBlur={this.handleBlur}
+        style={{ zIndex }}
       >
-        <Spring
-          config={springs.swift}
-          from={{ scale: 0.9, opacity: 0 }}
-          to={{ scale: 1, opacity: 1 }}
-          native
+        <Card
+          style={{
+            opacity,
+            transform: scale.interpolate(
+              placement === 'center'
+                ? v =>
+                    `
+                      translate3d(0, calc(-50% + ${openerHeight / 2}px), 0)
+                      scale3d(${v}, ${v}, 1)
+                    `
+                : v => `scale3d(${v}, ${v}, 1)`
+            ),
+          }}
         >
-          {({ scale, opacity }) => (
-            <Card
-              style={{
-                opacity,
-                transform: scale.interpolate(t => `scale3d(${t},${t},1)`),
-              }}
-            >
-              {children}
-            </Card>
-          )}
-        </Spring>
-      </div>,
-      rootElement
+          {children}
+        </Card>
+      </Main>
     )
   }
 }
+
+const Main = styled(animated.div)`
+  /* The positioning acts as a default until Popper takes over. */
+  position: absolute;
+  top: 0;
+  left: 0;
+  &:focus {
+    /* Having the popover visible already means that it focused. */
+    outline: 0;
+  }
+`
 
 const Card = styled(animated.div)`
   background: ${theme.contentBackground};
   border: 1px solid #e6e6e6;
   border-radius: 3px;
-  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.06);
+  filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.06));
 `
 
 const Popover = props => (
-  <Root>{el => <PopoverBase rootElement={el} {...props} />}</Root>
+  <Root>
+    {rootElement => {
+      if (!rootElement) {
+        throw new Error('<Popover> needs to be nested in <Root.Provider>.')
+      }
+      return ReactDOM.createPortal(
+        <Transition
+          items={props.visible}
+          config={springs.swift}
+          from={{ scale: 0.9, opacity: 0 }}
+          enter={{ scale: 1, opacity: 1 }}
+          leave={{ scale: 0.9, opacity: 0 }}
+          native
+        >
+          {visible =>
+            visible &&
+            (transitionStyles => (
+              <PopoverBase {...props} transitionStyles={transitionStyles} />
+            ))
+          }
+        </Transition>,
+        rootElement
+      )
+    }}
+  </Root>
 )
+
 Popover.propTypes = PopoverBase.propTypes
 
 export default Popover
