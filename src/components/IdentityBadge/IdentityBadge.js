@@ -1,13 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { Text, SafeLink, EthIdenticon } from '..'
-import {
-  isAddress,
-  shortenAddress,
-  blockExplorerUrl,
-  stylingProps,
-} from '../../utils'
+import { Text, EthIdenticon, ButtonBase } from '../..'
+import { isAddress, shortenAddress, stylingProps } from '../../utils'
+import { theme } from '../../theme'
+import IdentityBadgePopover from './IdentityBadgePopover'
 
 class IdentityBadge extends React.PureComponent {
   static propTypes = {
@@ -15,53 +12,77 @@ class IdentityBadge extends React.PureComponent {
     shorten: PropTypes.bool,
     fontSize: PropTypes.string,
     networkType: PropTypes.string,
+    connectedAccount: PropTypes.bool,
   }
   static defaultProps = {
     entity: '',
     shorten: true,
     fontSize: 'normal',
     networkType: 'main',
+    connectedAccount: false,
   }
-  getMainProps(address) {
-    const { networkType } = this.props
-    const baseProps = stylingProps(this)
-    if (!address) {
-      return baseProps
-    }
-    return {
-      ...baseProps,
-      as: SafeLink,
-      target: '_blank',
-      href: blockExplorerUrl('address', address, { networkType }),
-      style: { ...baseProps.style, cursor: 'pointer' },
-    }
+  _element = React.createRef()
+  state = { opened: false }
+  handleClose = () => {
+    this.setState({ opened: false })
+  }
+  handleOpen = () => {
+    this.setState({ opened: true })
   }
   render() {
-    const { entity, shorten, fontSize } = this.props
+    const { opened } = this.state
+    const {
+      entity,
+      shorten,
+      fontSize,
+      networkType,
+      connectedAccount,
+    } = this.props
     const address = isAddress(entity) ? entity : null
-    const props = this.getMainProps(address)
+
     return (
-      <Main title={address} onClick={this.handleClick} {...props}>
+      <React.Fragment>
+        <ButtonBase
+          ref={this._element}
+          title={address}
+          onClick={address && this.handleOpen}
+          css={`
+            display: inline-flex;
+            color: ${theme.textPrimary};
+          `}
+        >
+          <Main {...stylingProps(this)}>
+            {address && (
+              <Identicon>
+                <EthIdenticon scale={1} address={address} />
+              </Identicon>
+            )}
+            <Label size={fontSize}>
+              {address && shorten ? shortenAddress(address) : entity}
+            </Label>
+          </Main>
+        </ButtonBase>
         {address && (
-          <Identicon>
-            <EthIdenticon scale={1} address={address} />
-          </Identicon>
+          <IdentityBadgePopover
+            address={address}
+            visible={opened}
+            connectedAccount={connectedAccount}
+            networkType={networkType}
+            opener={this._element.current}
+            onClose={this.handleClose}
+          />
         )}
-        <Label size={fontSize}>
-          {address && shorten ? shortenAddress(address) : entity}
-        </Label>
-      </Main>
+      </React.Fragment>
     )
   }
 }
 
 const Main = styled.div`
   overflow: hidden;
-  display: inline-flex;
+  display: flex;
   align-items: center;
   background: #daeaef;
   border-radius: 3px;
-  cursor: default;
   text-decoration: none;
 `
 

@@ -14,8 +14,14 @@ class ButtonBase extends React.PureComponent {
     showFocusRing: true,
   }
   render() {
-    const { focusVisible, showFocusRing, ...props } = this.props
-    return <Main focusRing={focusVisible && showFocusRing} {...props} />
+    const { focusVisible, showFocusRing, innerRef, ...props } = this.props
+    return (
+      <Main
+        ref={innerRef}
+        focusRing={focusVisible && showFocusRing}
+        {...props}
+      />
+    )
   }
 }
 
@@ -43,10 +49,15 @@ const Main = styled.button.attrs({ type: 'button' })`
   }
 `
 
-export default props => (
+export default React.forwardRef((props, ref) => (
   <FocusVisible>
     {({ focusVisible, onFocus }) => (
-      <ButtonBase onFocus={onFocus} focusVisible={focusVisible} {...props} />
+      <ButtonBase
+        innerRef={ref}
+        onFocus={onFocus}
+        focusVisible={focusVisible}
+        {...props}
+      />
     )}
   </FocusVisible>
-)
+))
