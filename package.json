@@ -70,7 +70,6 @@
     "rollup-plugin-progress": "^0.4.0",
     "rollup-plugin-uglify": "^6.0.0",
     "rollup-plugin-url": "^2.0.1",
-    "styled-components": "^4.0.2",
     "svgo": "^1.0.3",
     "svgr": "^1.1.0"
   },
