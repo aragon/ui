@@ -1,17 +1,15 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import {
-  Text,
-  SafeLink,
-  Countdown,
-  Info,
-  ProgressBar,
-  Popover,
-  IconClose,
-  theme,
-} from '../..'
+import { theme } from '../../theme'
 import { noop } from '../../utils'
+import Text from '../Text/Text'
+import SafeLink from '../Link/SafeLink'
+import Countdown from '../Countdown/Countdown'
+import Info from '../Info'
+import ProgressBar from '../ProgressBar/ProgressBar'
+import Popover from '../Popover/Popover'
+import { IconClose } from '../../icons'
 
 class TransactionProgress extends React.Component {
   static propTypes = {

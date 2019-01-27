@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { Text } from '..'
 import { theme } from '../../theme'
+import Text from '../Text/Text'
 
 const DEFAULT_COLORS = [
   '#000000',

@@ -2,7 +2,6 @@ import React from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import { theme } from '../../theme'
-import { Action, Alert, Permissions } from './IconInfo'
 
 const Info = ({ children, title, ...props }) => (
   <Main {...props}>
@@ -29,9 +28,5 @@ const Main = styled.section`
 const Title = styled.h1`
   display: flex;
 `
-
-Info.Action = Action
-Info.Alert = Alert
-Info.Permissions = Permissions
 
 export default Info
