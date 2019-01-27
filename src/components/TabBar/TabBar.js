@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-
-import { theme, font, unselectable, noop } from '../..'
+import { theme } from '../../theme'
+import { font, unselectable, noop } from '../../utils'
 
 class TabBar extends React.Component {
   static propTypes = {

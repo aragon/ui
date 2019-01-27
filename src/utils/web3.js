@@ -1,4 +1,4 @@
-import { warn } from '../utils'
+import { warn } from './environment'
 
 const TRANSACTION_REGEX = /^0x[A-Fa-f0-9]{64}$/
 const ADDRESS_REGEX = /^0x[0-9a-fA-F]{40}$/

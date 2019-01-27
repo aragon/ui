@@ -1,9 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { Text, EthIdenticon, ButtonBase } from '../..'
 import { isAddress, shortenAddress, stylingProps } from '../../utils'
 import { theme } from '../../theme'
+import Text from '../Text/Text'
+import EthIdenticon from '../EthIdenticon/EthIdenticon'
+import ButtonBase from '../Button/ButtonBase'
 import IdentityBadgePopover from './IdentityBadgePopover'
 
 class IdentityBadge extends React.PureComponent {

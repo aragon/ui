@@ -1,6 +1,5 @@
 import styled from 'styled-components'
-
-import { theme } from '../..'
+import { theme } from '../../theme'
 
 const StyledCard = styled.div`
   width: ${({ width }) => width || '282px'};

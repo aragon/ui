@@ -1,15 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {
-  SafeLink,
-  Popover,
-  ButtonIcon,
-  IconClose,
-  AddressField,
-  Badge,
-} from '../..'
 import { blockExplorerUrl, font } from '../../utils'
 import { theme } from '../../theme'
+import { IconClose } from '../../icons'
+import SafeLink from '../Link/SafeLink'
+import Popover from '../Popover/Popover'
+import ButtonIcon from '../Button/ButtonIcon'
+import AddressField from '../AddressField/AddressField'
+import Badge from '../Badge/Badge'
 
 class IdentityBadgePopover extends React.PureComponent {
   static propTypes = {
