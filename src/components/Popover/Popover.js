@@ -12,7 +12,6 @@ import { springs } from '../../utils/styles'
 
 class PopoverBase extends React.Component {
   static propTypes = {
-    visible: PropTypes.bool,
     opener: PropTypes.instanceOf(Element),
     placement: PropTypes.oneOf(
       // See https://popper.js.org/popper-documentation.html#Popper.placements
@@ -32,7 +31,6 @@ class PopoverBase extends React.Component {
   }
 
   static defaultProps = {
-    visible: true,
     opener: null,
     placement: 'center',
     onClose: noop,
@@ -204,6 +202,13 @@ const Popover = props => (
   </Root>
 )
 
-Popover.propTypes = PopoverBase.propTypes
+Popover.propTypes = {
+  ...PopoverBase.propTypes,
+  visible: PropTypes.bool,
+}
+Popover.defaultProps = {
+  ...PopoverBase.defaultProps,
+  visible: true,
+}
 
 export default Popover

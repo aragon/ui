@@ -41,6 +41,7 @@ const Field = ({ children, label, ...props }) => {
 Field.propTypes = {
   children: PropTypes.node,
   label: PropTypes.string,
+  required: PropTypes.bool,
 }
 
 export default Field
