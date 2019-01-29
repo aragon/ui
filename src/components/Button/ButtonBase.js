@@ -7,6 +7,7 @@ import { unselectable, font } from '../../utils/styles'
 
 class ButtonBase extends React.PureComponent {
   static propTypes = {
+    innerRef: PropTypes.any,
     focusVisible: PropTypes.bool,
     showFocusRing: PropTypes.bool,
   }

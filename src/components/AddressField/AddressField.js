@@ -8,7 +8,7 @@ import { Toast } from '../ToastHub/ToastHub'
 import { theme } from '../../theme'
 import { noop, warn } from '../../utils'
 
-class AddressField extends React.PureComponent {
+class AddressFieldBase extends React.PureComponent {
   static propTypes = {
     address: PropTypes.string.isRequired,
     onCopy: PropTypes.func,
@@ -118,10 +118,14 @@ class AddressField extends React.PureComponent {
   }
 }
 
-export default props =>
+const AddressField = props =>
   // If onCopy is set (either to a function or null), Toast is not used.
   props.onCopy || props.onCopy === null ? (
-    <AddressField {...props} onCopy={props.onCopy || noop} />
+    <AddressFieldBase {...props} onCopy={props.onCopy || noop} />
   ) : (
-    <Toast>{add => <AddressField onCopy={add} {...props} />}</Toast>
+    <Toast>{add => <AddressFieldBase onCopy={add} {...props} />}</Toast>
   )
+
+AddressField.propTypes = AddressFieldBase.propTypes
+
+export default AddressField

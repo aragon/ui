@@ -58,14 +58,7 @@ class Checkbox extends React.PureComponent {
     )
   }
   render() {
-    const {
-      checked,
-      focusVisible,
-      indeterminate,
-      variant,
-      tabIndex,
-      ...props
-    } = this.props
+    const { checked, indeterminate, variant, tabIndex, ...props } = this.props
     return (
       <FocusVisible>
         {({ focusVisible, onFocus }) => (
