@@ -180,4 +180,7 @@ const PanelCloseButton = styled.button`
   }
 `
 
+// Used for spacing in SidePanelSplit and SidePanelSeparator
+SidePanel.HORIZONTAL_PADDING = CONTENT_PADDING
+
 export default SidePanel
