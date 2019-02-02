@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Main, WinDimensions } from '@aragon/ui'
+import { Main, Viewport } from '@aragon/ui'
 
 const yesno = condition =>
   condition ? (
@@ -34,7 +34,7 @@ class App extends React.Component {
   render() {
     return (
       <Main>
-        <WinDimensions>
+        <Viewport>
           {({ width, height, within, below, above, breakpoints }) => (
             <div
               css={`
@@ -155,7 +155,7 @@ class App extends React.Component {
               </div>
             </div>
           )}
-        </WinDimensions>
+        </Viewport>
       </Main>
     )
   }

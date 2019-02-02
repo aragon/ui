@@ -12,7 +12,7 @@ const WINDOW_SIZE_BASE = { breakpoints: BREAKPOINTS, ...windowSize() }
 
 const { Provider, Consumer } = React.createContext(WINDOW_SIZE_BASE)
 
-class WinDimensionsProvider extends React.Component {
+class ViewportProvider extends React.Component {
   static propTypes = {
     children: PropTypes.node,
     throttleWait: PropTypes.number,
@@ -83,10 +83,10 @@ class WinDimensionsProvider extends React.Component {
     if (typeof max === 'string') max = BREAKPOINTS[max]
 
     if (typeof min !== 'number') {
-      throw new Error('WinDimensions: invalid minimum value.')
+      throw new Error('Viewport: invalid minimum value.')
     }
     if (typeof max !== 'number') {
-      throw new Error('WinDimensions: invalid maximum value.')
+      throw new Error('Viewport: invalid maximum value.')
     }
 
     return (min === -1 || width >= min) && (max === -1 || width < max)
@@ -107,9 +107,9 @@ class WinDimensionsProvider extends React.Component {
   }
 }
 
-const WinDimensions = props => <Consumer {...props} />
+const Viewport = props => <Consumer {...props} />
 
-WinDimensions.Provider = WinDimensionsProvider
+Viewport.Provider = ViewportProvider
 
-export { WinDimensions }
-export default WinDimensions
+export { Viewport }
+export default Viewport
