@@ -2,33 +2,30 @@ import React from 'react'
 import styled from 'styled-components'
 import { Main, Viewport } from '@aragon/ui'
 
-const yesno = condition =>
-  condition ? (
+const CodeItem = ({ label, ok }) => (
+  <div
+    css={`
+      display: flex;
+      justify-content: space-between;
+      padding: 2px 0;
+      font-size: 13px;
+    `}
+  >
+    <span>
+      {label}:{' '}
+    </span>
     <span
       css={`
         display: inline-block;
         width: 20px;
-        color: hsl(100, 60%, 50%);
+        color: ${ok ? 'hsl(100, 60%, 50%)' : 'hsl(0, 70%, 70%)'};
+        margin-left: 20px;
       `}
     >
-      yes
+      {ok ? 'YES' : 'NO'}
     </span>
-  ) : (
-    <span
-      css={`
-        display: inline-block;
-        width: 20px;
-        color: hsl(0, 70%, 70%);
-      `}
-    >
-      no
-    </span>
-  )
-
-const Item = styled.div`
-  padding: 2px 0;
-  font-size: 13px;
-`
+  </div>
+)
 
 class App extends React.Component {
   render() {
@@ -53,37 +50,30 @@ class App extends React.Component {
                   z-index: 2;
                   padding: 10px 20px;
                   white-space: nowrap;
-                  border-radius: 0 0 10px 0;
+                  border-radius: 0 0 5px 0;
                   background: hsl(180, 60%, 90%, 0.5);
                   max-width: 100vw;
                   overflow-x: auto;
                 `}
               >
-                <Item>
+                <div
+                  css={`
+                    padding: 2px 0;
+                    font-size: 13px;
+                  `}
+                >
                   Current size: {width}x{height}
-                </Item>
-                <Item>
-                  <code>within(400, 500)</code>: {yesno(within(400, 500))}
-                </Item>
-                <Item>
-                  <code>within(500, 600)</code>: {yesno(within(500, 600))}
-                </Item>
-                <Item>
-                  <code>within('small', 'medium')</code>:{' '}
-                  {yesno(within('small', 'medium'))}
-                </Item>
-                <Item>
-                  <code>above('small')</code>: {yesno(above('small'))}
-                </Item>
-                <Item>
-                  <code>below('medium')</code>: {yesno(below('medium'))}
-                </Item>
-                <Item>
-                  <code>above('medium')</code>: {yesno(above('medium'))}
-                </Item>
-                <Item>
-                  <code>above('large')</code>: {yesno(above('large'))}
-                </Item>
+                </div>
+                <CodeItem label={'within(400, 500)'} ok={within(400, 500)} />
+                <CodeItem label={'within(500, 600)'} ok={within(500, 600)} />
+                <CodeItem
+                  label={'within("small", "medium")'}
+                  ok={within('small', 'medium')}
+                />
+                <CodeItem label={'above("small")'} ok={above('small')} />
+                <CodeItem label={'below("medium")'} ok={below('medium')} />
+                <CodeItem label={'above("medium")'} ok={above('medium')} />
+                <CodeItem label={'above("large")'} ok={above('large')} />
               </div>
 
               <div
@@ -131,7 +121,7 @@ class App extends React.Component {
                           style={{
                             position: 'absolute',
                             top: '-25px',
-                            right: '-2px',
+                            right: '-3px',
                           }}
                         >
                           {name} ↓
