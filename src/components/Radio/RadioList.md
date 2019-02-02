@@ -34,7 +34,7 @@ class App extends Component {
         description="You have two options:"
         items={items}
         selected={this.state.selected}
-        onChange={this.handleChange}
+        onSelect={this.handleChange}
       />
     )
   }
@@ -61,7 +61,7 @@ Use this property to add a description to the radio list.
 
 Use this property to define the radio items.
 
-### `onChange`
+### `onSelect`
 
 - Type: `Function`
 
