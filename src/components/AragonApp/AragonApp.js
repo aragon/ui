@@ -5,6 +5,7 @@ import BaseStyles from '../BaseStyles/BaseStyles'
 import { theme } from '../../theme'
 import { PublicUrl } from '../../providers/PublicUrl'
 import { ensureTrailingSlash } from '../../utils/url'
+import { warn } from '../../utils/environment'
 import logo from './assets/logo-background.svg'
 
 const StyledAragonApp = styled.main`
@@ -38,6 +39,11 @@ class AragonApp extends React.Component {
   }
 
   render() {
+    if (!AragonApp._warned) {
+      warn('<AragonApp /> is deprecated: please use <Main /> instead.')
+      AragonApp._warned = true
+    }
+
     const {
       children,
       backgroundLogo,
