@@ -18,6 +18,7 @@ import TabBar from './apps/TabBar'
 import Timer from './apps/Timer'
 import TransactionBadge from './apps/TransactionBadge'
 import TransactionProgress from './apps/TransactionProgress'
+import WinDimensions from './apps/WinDimensions'
 
 const APPS = {
   AddressField,
@@ -37,6 +38,7 @@ const APPS = {
   Timer,
   TransactionBadge,
   TransactionProgress,
+  WinDimensions,
 }
 
 class Index extends React.Component {
