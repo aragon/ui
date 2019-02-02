@@ -11,15 +11,14 @@ const CodeItem = ({ label, ok }) => (
       font-size: 13px;
     `}
   >
-    <span>
-      {label}:{' '}
-    </span>
+    <span>{label}: </span>
     <span
       css={`
         display: inline-block;
         width: 20px;
         color: ${ok ? 'hsl(100, 60%, 50%)' : 'hsl(0, 70%, 70%)'};
         margin-left: 20px;
+        font-size: 11px;
       `}
     >
       {ok ? 'YES' : 'NO'}
