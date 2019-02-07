@@ -87,10 +87,11 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
   }
   html {
-    min-height: 100%;
     -webkit-overflow-scrolling: touch;
   }
   body {
+    height: 0;
+    min-height: 100vh;
     font-family: ${props => props.fontFamily};
     font-size: 15px;
     font-weight: 400;
