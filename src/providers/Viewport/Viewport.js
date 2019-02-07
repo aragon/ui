@@ -48,12 +48,12 @@ class ViewportProvider extends React.Component {
   }
 
   resizeStop() {
-    if (this._handleResize) {
-      window.removeEventListener('resize', this._handleResize)
-      this._handleResize.cancel()
-      delete this._handleResize
+    if (!this._handleResize) {
+      return
     }
-    this.updateWindowSize()
+    window.removeEventListener('resize', this._handleResize)
+    this._handleResize.cancel()
+    delete this._handleResize
   }
 
   updateWindowSize = () => {
