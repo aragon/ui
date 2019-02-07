@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 import { Main } from '@aragon/ui'
 
 import AddressField from './apps/AddressField'
+import AppView from './apps/AppView'
 import Button from './apps/Button'
 import Checkbox from './apps/Checkbox'
 import EmptyStateCard from './apps/EmptyStateCard'
@@ -22,6 +23,7 @@ import TransactionProgress from './apps/TransactionProgress'
 
 const APPS = {
   AddressField,
+  AppView,
   Button,
   Checkbox,
   EmptyStateCard,
