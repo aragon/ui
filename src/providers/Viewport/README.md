@@ -112,7 +112,7 @@ Returns `true` if the viewport `width` is below `x`, `false` otherwise.
 
 #### `breakpoint`
 
-Contains the number values of the different breakpoints. This can be useful to use these values in CSS for example.
+An object that contains the number values of the different recommended breakpoints. It can be useful to set these values in CSS, for example.
 
 Available breakpoints: `"min"` (320), `"small"` (540), `"medium"` (768), `"large"` (1170).
 
