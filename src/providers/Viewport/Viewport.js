@@ -82,10 +82,10 @@ class ViewportProvider extends React.Component {
     if (typeof max === 'string') max = BREAKPOINTS[max]
 
     if (typeof min !== 'number') {
-      throw new Error('Viewport: invalid minimum value.')
+      throw new Error(`Viewport: invalid minimum value (${min}).`)
     }
     if (typeof max !== 'number') {
-      throw new Error('Viewport: invalid maximum value.')
+      throw new Error(`Viewport: invalid maximum value (${max}).`)
     }
 
     return (min === -1 || width >= min) && (max === -1 || width < max)
