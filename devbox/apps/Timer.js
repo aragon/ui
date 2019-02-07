@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { AragonApp, Timer } from '@aragon/ui'
+import { Timer } from '@aragon/ui'
 
 const SECONDS = 1000
 const MINUTES = SECONDS * 60
@@ -27,22 +27,20 @@ const timers = [
 class App extends React.Component {
   render() {
     return (
-      <AragonApp publicUrl="/aragon-ui/">
-        <Main>
-          <div>
-            {timers.map((props, i) => (
-              <div
-                key={i}
-                css={`
-                  padding: 5px 0;
-                `}
-              >
-                <Timer {...props} />
-              </div>
-            ))}
-          </div>
-        </Main>
-      </AragonApp>
+      <Main>
+        <div>
+          {timers.map((props, i) => (
+            <div
+              key={i}
+              css={`
+                padding: 5px 0;
+              `}
+            >
+              <Timer {...props} />
+            </div>
+          ))}
+        </div>
+      </Main>
     )
   }
 }

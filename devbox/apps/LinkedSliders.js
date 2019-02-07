@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { AragonApp, Slider, Button, unselectable } from '@aragon/ui'
+import { Slider, Button, unselectable } from '@aragon/ui'
 
 const ROWS_MIN = 2
 const ROWS_MAX = 7
@@ -36,10 +36,10 @@ class App extends React.Component {
     const updateOtherValue = prevValue =>
       prevValue === 0
         ? 0
-        : prevValue - (othersTotal + value - 1) * prevValue / othersTotal
+        : prevValue - ((othersTotal + value - 1) * prevValue) / othersTotal
 
-    return distribution.map(
-      (prevValue, i) => (i === index ? value : updateOtherValue(prevValue))
+    return distribution.map((prevValue, i) =>
+      i === index ? value : updateOtherValue(prevValue)
     )
   }
 
@@ -72,29 +72,27 @@ class App extends React.Component {
   render() {
     const distributionPairs = this.distributionPairs()
     return (
-      <AragonApp publicUrl="/aragon-ui/">
-        <Main>
-          <Col>
-            {distributionPairs.map(({ value, percentage }, i) => (
-              <PercentageRow
-                key={i}
-                index={i}
-                value={value}
-                percentage={percentage}
-                onUpdate={this.handleUpdate}
-              />
-            ))}
-          </Col>
-          <Buttons>
-            <Button mode="secondary" compact onClick={this.remove}>
-              remove
-            </Button>
-            <Button mode="secondary" compact onClick={this.add}>
-              add
-            </Button>
-          </Buttons>
-        </Main>
-      </AragonApp>
+      <Main>
+        <Col>
+          {distributionPairs.map(({ value, percentage }, i) => (
+            <PercentageRow
+              key={i}
+              index={i}
+              value={value}
+              percentage={percentage}
+              onUpdate={this.handleUpdate}
+            />
+          ))}
+        </Col>
+        <Buttons>
+          <Button mode="secondary" compact onClick={this.remove}>
+            remove
+          </Button>
+          <Button mode="secondary" compact onClick={this.add}>
+            add
+          </Button>
+        </Buttons>
+      </Main>
     )
   }
 }

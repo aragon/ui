@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { AragonApp, Checkbox, unselectable } from '@aragon/ui'
+import { Checkbox, unselectable } from '@aragon/ui'
 
 const ITEMS = ['Strawberry', 'Banana', 'Apple', 'Cherry']
 
@@ -32,39 +32,35 @@ class App extends React.Component {
     const allChecked = checkedItems.length === ITEMS.length
     const noneChecked = checkedItems.length === 0
     return (
-      <AragonApp publicUrl="/aragon-ui/">
-        <Main>
-          <List>
-            <li>
+      <Main>
+        <List>
+          <li>
+            <Label>
+              <Checkbox
+                indeterminate={!(allChecked ^ noneChecked)}
+                checked={allChecked}
+                onChange={check => {
+                  this.setState({
+                    selectedItems: check ? Object.keys(items).map(Number) : [],
+                  })
+                }}
+              />
+              <Item>Check all</Item>
+            </Label>
+          </li>
+          {items.map(({ name, checked }, i) => (
+            <li key={name}>
               <Label>
                 <Checkbox
-                  indeterminate={!(allChecked ^ noneChecked)}
-                  checked={allChecked}
-                  onChange={check => {
-                    this.setState({
-                      selectedItems: check
-                        ? Object.keys(items).map(Number)
-                        : [],
-                    })
-                  }}
+                  checked={checked}
+                  onChange={check => this.onCheckboxClick(i, check)}
                 />
-                <Item>Check all</Item>
+                <Item>{name}</Item>
               </Label>
             </li>
-            {items.map(({ name, checked }, i) => (
-              <li key={name}>
-                <Label>
-                  <Checkbox
-                    checked={checked}
-                    onChange={check => this.onCheckboxClick(i, check)}
-                  />
-                  <Item>{name}</Item>
-                </Label>
-              </li>
-            ))}
-          </List>
-        </Main>
-      </AragonApp>
+          ))}
+        </List>
+      </Main>
     )
   }
 }

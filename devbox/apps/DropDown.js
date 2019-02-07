@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { AragonApp, DropDown, unselectable } from '@aragon/ui'
+import { DropDown, unselectable } from '@aragon/ui'
 
 const items = ['Strawberry', 'Banana', 'Apple', 'Cherry']
 
@@ -12,17 +12,15 @@ class App extends React.Component {
   render() {
     const { active } = this.state
     return (
-      <AragonApp publicUrl="/aragon-ui/">
-        <Main>
-          <Container>
-            <DropDown
-              items={items}
-              active={active}
-              onChange={this.handleChange}
-            />
-          </Container>
-        </Main>
-      </AragonApp>
+      <Main>
+        <Container>
+          <DropDown
+            items={items}
+            active={active}
+            onChange={this.handleChange}
+          />
+        </Container>
+      </Main>
     )
   }
 }

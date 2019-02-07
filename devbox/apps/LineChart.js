@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { AragonApp, LineChart, unselectable } from '@aragon/ui'
+import { LineChart, unselectable } from '@aragon/ui'
 
 class App extends React.Component {
   _cachedLines = [[], [], []]
@@ -25,23 +25,21 @@ class App extends React.Component {
     const { count, total } = this.state
     const lines = this.getLines(count)
     return (
-      <AragonApp publicUrl="/aragon-ui/">
-        <Main>
-          <Container>
-            <ButtonGroup>
-              <button onClick={() => this.updateCount(-1)}>-</button>
-              <span>Values: {count}</span>
-              <button onClick={() => this.updateCount(1)}>+</button>
-            </ButtonGroup>
-            <ButtonGroup>
-              <button onClick={() => this.updateTotal(-1)}>-</button>
-              <span>Total: {total}</span>
-              <button onClick={() => this.updateTotal(1)}>+</button>
-            </ButtonGroup>
-            <LineChart lines={lines} total={total} captionsHeight={20} />
-          </Container>
-        </Main>
-      </AragonApp>
+      <Main>
+        <Container>
+          <ButtonGroup>
+            <button onClick={() => this.updateCount(-1)}>-</button>
+            <span>Values: {count}</span>
+            <button onClick={() => this.updateCount(1)}>+</button>
+          </ButtonGroup>
+          <ButtonGroup>
+            <button onClick={() => this.updateTotal(-1)}>-</button>
+            <span>Total: {total}</span>
+            <button onClick={() => this.updateTotal(1)}>+</button>
+          </ButtonGroup>
+          <LineChart lines={lines} total={total} captionsHeight={20} />
+        </Container>
+      </Main>
     )
   }
 }

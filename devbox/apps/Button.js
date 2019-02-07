@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { AragonApp, Button, Text, theme } from '@aragon/ui'
+import { Button, Text, theme } from '@aragon/ui'
 
 const MODES = ['normal', 'secondary', 'strong', 'outline', 'text']
 const SIZES = ['normal', 'small', 'mini']
@@ -74,16 +74,14 @@ class App extends React.Component {
     // const buttons = this.renderSomeButtons()
     const buttons = this.renderAllButtons()
     return (
-      <AragonApp publicUrl="/aragon-ui/">
-        <Main>
-          <Container>
-            <h1>
-              <Text size="xxlarge">Button variations</Text>
-            </h1>
-            {buttons}
-          </Container>
-        </Main>
-      </AragonApp>
+      <Main>
+        <Container>
+          <h1>
+            <Text size="xxlarge">Button variations</Text>
+          </h1>
+          {buttons}
+        </Container>
+      </Main>
     )
   }
 }
