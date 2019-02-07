@@ -1,7 +1,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import { Main } from '@aragon/ui'
 
 import AddressField from './apps/AddressField'
+import AppView from './apps/AppView'
 import Button from './apps/Button'
 import Checkbox from './apps/Checkbox'
 import EmptyStateCard from './apps/EmptyStateCard'
@@ -21,6 +23,7 @@ import TransactionProgress from './apps/TransactionProgress'
 
 const APPS = {
   AddressField,
+  AppView,
   Button,
   Checkbox,
   EmptyStateCard,
@@ -61,7 +64,9 @@ class Index extends React.Component {
     const { appName } = this.state
     const CurrentApp = APPS[appName]
     return CurrentApp ? (
-      <CurrentApp />
+      <Main>
+        <CurrentApp />
+      </Main>
     ) : (
       <React.Fragment>
         <style>{STYLES}</style>

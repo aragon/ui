@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { AragonApp, TransactionBadge } from '@aragon/ui'
+import { TransactionBadge } from '@aragon/ui'
 
 const txHash =
   '0x96e31e4f272600413ec39b5ed4094e5b7b3e0da2c8780ef63267e894fc2c9f16'
@@ -8,22 +8,20 @@ const txHash =
 class App extends React.Component {
   render() {
     return (
-      <AragonApp publicUrl="/aragon-ui/">
-        <Main>
-          <div>
-            <span>Transaction</span>
-            <TransactionBadge transaction={txHash} />
-          </div>
-          <div>
-            <span>Unshortened</span>
-            <TransactionBadge transaction={txHash} shorten={false} />
-          </div>
-          <div>
-            <span>Invalid</span>
-            <TransactionBadge transaction={txHash.slice(1)} />
-          </div>
-        </Main>
-      </AragonApp>
+      <Main>
+        <div>
+          <span>Transaction</span>
+          <TransactionBadge transaction={txHash} />
+        </div>
+        <div>
+          <span>Unshortened</span>
+          <TransactionBadge transaction={txHash} shorten={false} />
+        </div>
+        <div>
+          <span>Invalid</span>
+          <TransactionBadge transaction={txHash.slice(1)} />
+        </div>
+      </Main>
     )
   }
 }

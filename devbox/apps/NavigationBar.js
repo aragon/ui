@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import {
   AppBar,
   AppView,
-  AragonApp,
   Badge,
   Button,
   NavigationBar,
@@ -44,27 +43,25 @@ class App extends React.Component {
   render() {
     const { items } = this.state
     return (
-      <AragonApp publicUrl="/aragon-ui/">
-        <AppView
-          appBar={
-            <AppBar>
-              <NavigationBar items={items} onBack={this.backward} />
-            </AppBar>
-          }
-        >
-          <Main>
-            <div>
-              <button onClick={this.backward} disabled={items.length < 2}>
-                ⬅
-              </button>
-              <button onClick={this.reset} disabled={items.length < 2}>
-                reset
-              </button>
-              <button onClick={this.forward}>➡</button>
-            </div>
-          </Main>
-        </AppView>
-      </AragonApp>
+      <AppView
+        appBar={
+          <AppBar>
+            <NavigationBar items={items} onBack={this.backward} />
+          </AppBar>
+        }
+      >
+        <Main>
+          <div>
+            <button onClick={this.backward} disabled={items.length < 2}>
+              ⬅
+            </button>
+            <button onClick={this.reset} disabled={items.length < 2}>
+              reset
+            </button>
+            <button onClick={this.forward}>➡</button>
+          </div>
+        </Main>
+      </AppView>
     )
   }
 }

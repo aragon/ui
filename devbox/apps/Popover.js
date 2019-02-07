@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { AragonApp, Popover, Root, Button } from '@aragon/ui'
+import { Popover, Root, Button } from '@aragon/ui'
 
 class App extends React.Component {
   _opener = React.createRef()
@@ -17,39 +17,35 @@ class App extends React.Component {
     const { title } = this.props
     const { show } = this.state
     return (
-      <AragonApp publicUrl="/aragon-ui/">
-        <Root.Provider>
-          <Wrapper>
-            <div>
-              <Button
-                ref={this._opener}
-                onClick={this.handleOpen}
-                size="small"
-                mode="strong"
-              >
-                Open
+      <Main>
+        <div>
+          <Button
+            ref={this._opener}
+            onClick={this.handleOpen}
+            size="small"
+            mode="strong"
+          >
+            Open
+          </Button>
+          <Popover
+            opener={this._opener.current}
+            visible={show}
+            onClose={this.handleClose}
+          >
+            <Box>
+              <span>hello </span>
+              <Button mode="strong" size="mini">
+                focus me
               </Button>
-              <Popover
-                opener={this._opener.current}
-                visible={show}
-                onClose={this.handleClose}
-              >
-                <Box>
-                  <span>hello </span>
-                  <Button mode="strong" size="mini">
-                    focus me
-                  </Button>
-                </Box>
-              </Popover>
-            </div>
-          </Wrapper>
-        </Root.Provider>
-      </AragonApp>
+            </Box>
+          </Popover>
+        </div>
+      </Main>
     )
   }
 }
 
-const Wrapper = styled.div`
+const Main = styled.div`
   display: grid;
   width: 800px;
   margin: 0 auto;

@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { AragonApp, PartitionBar, theme, Text } from '@aragon/ui'
+import { PartitionBar, theme, Text } from '@aragon/ui'
 
 const ITEMS = [
   {
@@ -54,33 +54,31 @@ const CUSTOM_COLORS = [
 class App extends React.Component {
   render() {
     return (
-      <AragonApp publicUrl="/aragon-ui/">
-        <Main>
-          <div>
-            <Container>
-              <h2>Default</h2>
-              <PartitionBar data={ITEMS} />
-            </Container>
-            <Container>
-              <h2>Custom caption and colors</h2>
-              <PartitionBar
-                data={ITEMS_DESCRIPTION}
-                caption={({ index, bullet, color }) => (
-                  <React.Fragment>
-                    {bullet}
-                    <Description {...ITEMS_DESCRIPTION[index]} color={color} />
-                  </React.Fragment>
-                )}
-                colors={CUSTOM_COLORS}
-              />
-            </Container>
-            <Container>
-              <h2>No Caption</h2>
-              <PartitionBar data={ITEMS} caption={null} />
-            </Container>
-          </div>
-        </Main>
-      </AragonApp>
+      <Main>
+        <div>
+          <Container>
+            <h2>Default</h2>
+            <PartitionBar data={ITEMS} />
+          </Container>
+          <Container>
+            <h2>Custom caption and colors</h2>
+            <PartitionBar
+              data={ITEMS_DESCRIPTION}
+              caption={({ index, bullet, color }) => (
+                <React.Fragment>
+                  {bullet}
+                  <Description {...ITEMS_DESCRIPTION[index]} color={color} />
+                </React.Fragment>
+              )}
+              colors={CUSTOM_COLORS}
+            />
+          </Container>
+          <Container>
+            <h2>No Caption</h2>
+            <PartitionBar data={ITEMS} caption={null} />
+          </Container>
+        </div>
+      </Main>
     )
   }
 }
