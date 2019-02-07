@@ -3,12 +3,12 @@ import PropTypes from 'prop-types'
 import { BREAKPOINTS } from '../../utils/styles/breakpoint'
 import throttle from 'lodash-es/throttle'
 
-const windowSize = () => ({
+const getCurrentWindowSize = () => ({
   width: window.innerWidth,
   height: window.innerHeight,
 })
 
-const WINDOW_SIZE_BASE = { breakpoints: BREAKPOINTS, ...windowSize() }
+const WINDOW_SIZE_BASE = { breakpoints: BREAKPOINTS, ...getCurrentWindowSize() }
 
 const { Provider, Consumer } = React.createContext(WINDOW_SIZE_BASE)
 
@@ -60,7 +60,7 @@ class ViewportProvider extends React.Component {
   }
 
   getWindowSize() {
-    const { width, height } = windowSize()
+    const { width, height } = getCurrentWindowSize()
     return {
       ...WINDOW_SIZE_BASE,
       width,
