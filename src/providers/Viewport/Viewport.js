@@ -61,18 +61,16 @@ class ViewportProvider extends React.Component {
   }
 
   getWindowSize() {
-    const { width, height } = getCurrentWindowSize()
     return {
       ...WINDOW_SIZE_BASE,
-      width,
-      height,
+      ...getCurrentWindowSize(),
     }
   }
 
   // Check if the current width is between two points.
   // Accepts a breakpoint string ('small', 'large') or numbers (width in pixels).
   // `min` is inclusive and `max` is exclusive.
-  within = (...[min, max]) => {
+  within = (min, max) => {
     const { width } = this.state.windowSize
 
     // Accept "" or -1 indifferently
