@@ -106,6 +106,8 @@ class ViewportProvider extends React.Component {
   }
 }
 
+// React emits a warning message if `Provider` is attached to `Consumer`, this
+// is only to prevent it.
 const Viewport = props => <Consumer {...props} />
 
 Viewport.Provider = ViewportProvider
