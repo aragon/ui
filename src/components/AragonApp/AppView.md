@@ -22,6 +22,13 @@ const App = () => (
 
 Set to the desired title of your choice.
 
+### `height`
+
+- Type: `String`
+- Default: `100vh`
+
+Set `height` to adapt `AppView` to another size than the viewport height.
+
 ### `padding`
 
 - Type: `Number`
