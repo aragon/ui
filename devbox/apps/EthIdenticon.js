@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { AragonApp, EthIdenticon, blockExplorerUrl } from '@aragon/ui'
+import { EthIdenticon, blockExplorerUrl } from '@aragon/ui'
 
 const ADDRESS_START = '0x2c9341a52c'
 const ADDRESS_END = '134137b936'
@@ -21,36 +21,34 @@ class App extends React.Component {
   render() {
     const address = createAddress()
     return (
-      <AragonApp publicUrl="/aragon-ui/">
-        <Main>
-          <Wrapper>
-            {[...Array(9)].map((_, i) => (
-              <Group key={i}>
-                {[...Array(4 + 5 - i)].map((_, j) => {
-                  const addr = address()
-                  const scale = 1 + i / 2
-                  return (
-                    <IconLink
-                      key={i + '' + j}
-                      style={{
-                        margin: `${2 + scale / 1.5}px ${2 + scale / 1.5}px`,
-                      }}
-                      href={blockExplorerUrl('address', addr)}
-                      title={addr}
-                    >
-                      <EthIdenticon
-                        address={addr}
-                        scale={scale}
-                        radius={1 + scale}
-                      />
-                    </IconLink>
-                  )
-                })}
-              </Group>
-            ))}
-          </Wrapper>
-        </Main>
-      </AragonApp>
+      <Main>
+        <Wrapper>
+          {[...Array(9)].map((_, i) => (
+            <Group key={i}>
+              {[...Array(4 + 5 - i)].map((_, j) => {
+                const addr = address()
+                const scale = 1 + i / 2
+                return (
+                  <IconLink
+                    key={i + '' + j}
+                    style={{
+                      margin: `${2 + scale / 1.5}px ${2 + scale / 1.5}px`,
+                    }}
+                    href={blockExplorerUrl('address', addr)}
+                    title={addr}
+                  >
+                    <EthIdenticon
+                      address={addr}
+                      scale={scale}
+                      radius={1 + scale}
+                    />
+                  </IconLink>
+                )
+              })}
+            </Group>
+          ))}
+        </Wrapper>
+      </Main>
     )
   }
 }

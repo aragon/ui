@@ -1,12 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import {
-  AragonApp,
-  RadioGroup,
-  Radio,
-  RadioList,
-  unselectable,
-} from '@aragon/ui'
+import { RadioGroup, Radio, RadioList, unselectable } from '@aragon/ui'
 
 const items = [
   ['Strawberry', 'Banana', 'Apple', 'Cherry'],
@@ -22,44 +16,42 @@ class App extends React.Component {
   render() {
     const { selected } = this.state
     return (
-      <AragonApp publicUrl="/aragon-ui/">
-        <Main>
-          <div style={{ display: 'flex' }}>
-            {!showRadioList &&
-              items.map((localItems, i) => (
-                <List key={i}>
-                  <RadioGroup
-                    selected={selected[i]}
-                    onChange={id => {
-                      const newSelected = [...selected]
-                      newSelected[i] = id
-                      this.setState({ selected: newSelected })
-                    }}
-                  >
-                    {localItems.map((item, i) => (
-                      <li key={item}>
-                        <Label>
-                          <Radio id={item} />
-                          <Item>{item}</Item>
-                        </Label>
-                      </li>
-                    ))}
-                  </RadioGroup>
-                </List>
-              ))}
-          </div>
+      <Main>
+        <div style={{ display: 'flex' }}>
+          {!showRadioList &&
+            items.map((localItems, i) => (
+              <List key={i}>
+                <RadioGroup
+                  selected={selected[i]}
+                  onChange={id => {
+                    const newSelected = [...selected]
+                    newSelected[i] = id
+                    this.setState({ selected: newSelected })
+                  }}
+                >
+                  {localItems.map((item, i) => (
+                    <li key={item}>
+                      <Label>
+                        <Radio id={item} />
+                        <Item>{item}</Item>
+                      </Label>
+                    </li>
+                  ))}
+                </RadioGroup>
+              </List>
+            ))}
+        </div>
 
-          {showRadioList && (
-            <RadioList
-              title="Action Requirement"
-              description="Here are some options you can use to perform it:"
-              items={items.map(item => ({ title: item, description: item }))}
-              onSelect={selected => this.setState({ selected })}
-              selected={selected}
-            />
-          )}
-        </Main>
-      </AragonApp>
+        {showRadioList && (
+          <RadioList
+            title="Action Requirement"
+            description="Here are some options you can use to perform it:"
+            items={items.map(item => ({ title: item, description: item }))}
+            onSelect={selected => this.setState({ selected })}
+            selected={selected}
+          />
+        )}
+      </Main>
     )
   }
 }

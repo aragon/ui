@@ -1,13 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import {
-  AragonApp,
-  Button,
-  EmptyStateCard,
-  Text,
-  theme,
-  IconBlank,
-} from '@aragon/ui'
+import { Button, EmptyStateCard, Text, theme, IconBlank } from '@aragon/ui'
 
 class App extends React.Component {
   render() {
@@ -19,32 +12,30 @@ class App extends React.Component {
       </Button>
     )
     return (
-      <AragonApp publicUrl="/aragon-ui/">
-        <Main>
-          <Items>
-            <Item>
-              <EmptyStateCard />
-            </Item>
-            <Item>
-              <EmptyStateCard text={text} icon={icon} action={button} />
-            </Item>
-            <Item>
-              <EmptyStateCard
-                text={text}
-                icon={() => icon}
-                actionText="Click me"
-                actionButton={Button}
-              />
-            </Item>
-            <Item>
-              <EmptyStateCard icon={() => icon} actionText="Click me" />
-            </Item>
-            <Item>
-              <EmptyStateCard icon={() => icon} />
-            </Item>
-          </Items>
-        </Main>
-      </AragonApp>
+      <Main>
+        <Items>
+          <Item>
+            <EmptyStateCard />
+          </Item>
+          <Item>
+            <EmptyStateCard text={text} icon={icon} action={button} />
+          </Item>
+          <Item>
+            <EmptyStateCard
+              text={text}
+              icon={() => icon}
+              actionText="Click me"
+              actionButton={Button}
+            />
+          </Item>
+          <Item>
+            <EmptyStateCard icon={() => icon} actionText="Click me" />
+          </Item>
+          <Item>
+            <EmptyStateCard icon={() => icon} />
+          </Item>
+        </Items>
+      </Main>
     )
   }
 }
