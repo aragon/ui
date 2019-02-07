@@ -7,29 +7,25 @@ import { Viewport } from '../../providers/Viewport'
 import BaseStyles from '../BaseStyles/BaseStyles'
 import { ToastHub } from '../ToastHub/ToastHub'
 
-class Main extends React.Component {
-  static propTypes = {
-    children: PropTypes.node,
-    legacyFonts: PropTypes.bool,
-    assetsUrl: PropTypes.string,
-  }
-  static defaultProps = {
-    legacyFonts: false,
-    assetsUrl: '/aragon-ui/',
-  }
-  render() {
-    const { children, assetsUrl, legacyFonts } = this.props
-    return (
-      <Root.Provider>
-        <Viewport.Provider>
-          <PublicUrl.Provider url={ensureTrailingSlash(assetsUrl)}>
-            <BaseStyles enableLegacyFonts={legacyFonts} />
-            <ToastHub>{children}</ToastHub>
-          </PublicUrl.Provider>
-        </Viewport.Provider>
-      </Root.Provider>
-    )
-  }
+const Main = ({ children, assetsUrl, legacyFonts }) => (
+  <Root.Provider>
+    <Viewport.Provider>
+      <PublicUrl.Provider url={ensureTrailingSlash(assetsUrl)}>
+        <BaseStyles enableLegacyFonts={legacyFonts} />
+        <ToastHub>{children}</ToastHub>
+      </PublicUrl.Provider>
+    </Viewport.Provider>
+  </Root.Provider>
+)
+
+Main.propTypes = {
+  children: PropTypes.node,
+  legacyFonts: PropTypes.bool,
+  assetsUrl: PropTypes.string,
+}
+Main.defaultProps = {
+  legacyFonts: false,
+  assetsUrl: '/aragon-ui/',
 }
 
 export default Main
