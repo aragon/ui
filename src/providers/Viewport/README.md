@@ -1,6 +1,8 @@
 # Viewport
 
-The Viewport components can be used to get informations about the app window.
+The Viewport component can be used to get some information about the app
+window. It provides the viewport dimensions and a set of convenient functions
+to help building responsive apps.
 
 ## Usage
 
