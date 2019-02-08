@@ -43,8 +43,16 @@ class EthIdenticon extends React.Component {
   }
 }
 
+/*
+ * `vertical-align` prevents the inline parent to have an incorrect height.
+ *
+ * See
+ * - https://bugzilla.mozilla.org/show_bug.cgi?id=491549#c9
+ * - https://bugzilla.mozilla.org/show_bug.cgi?id=737757#c1
+ */
 const Main = styled.div`
   display: inline-flex;
+  vertical-align: middle;
   overflow: hidden;
   width: ${p => p.size}px;
   height: ${p => p.size}px;
