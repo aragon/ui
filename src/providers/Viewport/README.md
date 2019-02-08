@@ -18,12 +18,12 @@ The Viewport components can be used to get informations about the app window.
 
 ## Properties
 
-### `throttleWait`
+### `throttle`
 
 - Type: `Number`
 - Default value: `100`
 
-Increase the throttle wait time by changing this value.
+Change the throttle wait time.
 
 ### `children`
 

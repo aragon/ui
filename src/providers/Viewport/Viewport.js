@@ -15,11 +15,11 @@ const { Provider, Consumer } = React.createContext(WINDOW_SIZE_BASE)
 class ViewportProvider extends React.Component {
   static propTypes = {
     children: PropTypes.node,
-    throttleWait: PropTypes.number,
+    throttle: PropTypes.number,
   }
 
   static defaultProps = {
-    throttleWait: 100,
+    throttle: 100,
   }
 
   state = { windowSize: this.getWindowSize() }
@@ -33,16 +33,15 @@ class ViewportProvider extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { throttleWait } = this.props
-    if (prevProps.throttleWait !== throttleWait) {
+    const { throttle } = this.props
+    if (prevProps.throttle !== throttle) {
       this.resizeStop()
       this.resizeStart()
     }
   }
 
   resizeStart() {
-    const { throttleWait } = this.props
-    this._handleResize = throttle(this.updateWindowSize, throttleWait)
+    this._handleResize = throttle(this.updateWindowSize, this.props.throttle)
     this.updateWindowSize()
     window.addEventListener('resize', this._handleResize)
   }
