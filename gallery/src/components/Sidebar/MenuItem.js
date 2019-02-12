@@ -9,6 +9,9 @@ const StyledMenuItem = styled.li`
   font-size: 18px;
   line-height: 24px;
   font-weight: ${({ active }) => (active ? '600' : '400')};
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
   &:before {
     display: ${({ active }) => (active ? 'block' : 'none')};
     content: 'I';
@@ -32,7 +35,7 @@ class MenuItem extends React.Component {
   render() {
     const { active, path, name, onOpen } = this.props
     return (
-      <StyledMenuItem active={active}>
+      <StyledMenuItem active={active} title={name}>
         <a href={path} onClick={this.handleClick}>
           {name}
         </a>

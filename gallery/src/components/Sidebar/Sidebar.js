@@ -28,16 +28,15 @@ class Sidebar extends React.PureComponent {
                     </Text>
                   </GroupName>
                   <ul>
-                    {pages
-                      .map((page, i) => (
-                        <MenuItem
-                          key={page.path}
-                          active={page === activePage}
-                          path={page.path}
-                          name={page.name}
-                          onOpen={onOpen}
-                        />
-                      ))}
+                    {pages.map((page, i) => (
+                      <MenuItem
+                        key={page.path}
+                        active={page === activePage}
+                        path={page.path}
+                        name={page.name}
+                        onOpen={onOpen}
+                      />
+                    ))}
                   </ul>
                 </li>
               ))}
@@ -50,7 +49,7 @@ class Sidebar extends React.PureComponent {
 }
 
 const Main = styled.div`
-  width: 200px;
+  width: 240px;
   flex-shrink: 0;
 `
 
