@@ -1,5 +1,7 @@
 # AragonApp
 
+deprecated: AragonApp is deprecated, please use [Main](/main/) instead.
+
 AragonApp provides everything needed to start an Aragon App.
 
 ## Usage

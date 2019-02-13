@@ -28,6 +28,7 @@ import PageTransactionProgress from './pages/PageTransactionProgress'
 import PagePopover from './pages/PagePopover'
 
 // Containers
+import PageMain from './pages/PageMain'
 import PageAragonApp from './pages/PageAragonApp'
 import PageAppBar from './pages/PageAppBar'
 import PageNavigationBar from './pages/PageNavigationBar'
@@ -57,7 +58,7 @@ export const PAGE_GROUPS = [
       [PageTheme, 'Theme', '/theme'],
       [PageText, 'Text', '/text'],
       [PageIcons, 'Icons', '/icons'],
-    ].map(preparePage),
+    ],
   },
   {
     name: 'Controls',
@@ -73,11 +74,12 @@ export const PAGE_GROUPS = [
       [PageField, 'Field', '/field'],
       [PageSafeLink, 'SafeLink', '/safe-link'],
       [PageSlider, 'Slider', '/slider'],
-    ].map(preparePage),
+    ],
   },
   {
     name: 'Containers',
     pages: [
+      [PageMain, 'Main', '/main'],
       [PageAragonApp, 'AragonApp', '/aragon-app'],
       [PageAppBar, 'AppBar', '/app-bar'],
       [PageNavigationBar, 'NavigationBar', '/navigation-bar'],
@@ -86,7 +88,7 @@ export const PAGE_GROUPS = [
       [PageCard, 'Card', '/card'],
       [PageEmptyStateCard, 'EmptyStateCard', '/empty-state-card'],
       [PageTable, 'Table', '/table'],
-    ].map(preparePage),
+    ],
   },
   {
     name: 'Components',
@@ -98,7 +100,7 @@ export const PAGE_GROUPS = [
       [PageProgressBar, 'ProgressBar', '/progress-bar'],
       [PageTransactionProgress, 'TransactionProgress', '/transaction-progress'],
       [PagePopover, 'Popover', '/Popover'],
-    ].map(preparePage),
+    ],
   },
   {
     name: 'Providers',
@@ -107,9 +109,9 @@ export const PAGE_GROUPS = [
       [PageRedrawFromDate, 'RedrawFromDate', '/redraw-from-date'],
       [PageObserve, 'Observe', '/observe'],
       [PageToastHub, 'ToastHub', '/toast-hub'],
-    ].map(preparePage),
+    ],
   },
-]
+].map(group => ({ ...group, pages: group.pages.map(preparePage) }))
 
 export const PAGES = [
   preparePage([PageHome, 'Aragon UI', '/']),
