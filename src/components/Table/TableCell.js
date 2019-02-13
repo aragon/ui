@@ -13,28 +13,34 @@ const StyledTableCell = styled.td`
   text-align: ${({ align }) => align};
 
   /* First and last cell styling */
-  &:first-child {
-    border-left: 1px solid ${contentBorder};
-  }
-  &:last-child {
-    border-right: 1px solid ${contentBorder};
-  }
-
-  /* First and last row styling */
   ${TableRow}:first-child & {
     border-top: 1px solid ${contentBorder};
   }
+  &:first-child {
+    border-left: ${({ noSideBorders }) =>
+      noSideBorders ? 0 : `1px solid ${contentBorder}`};
+  }
+  &:last-child {
+    border-right: ${({ noSideBorders }) =>
+      noSideBorders ? 0 : `1px solid ${contentBorder}`};
+  }
+
+  /* First and last row styling */
   ${TableRow}:first-child &:first-child {
-    border-top-left-radius: 3px;
+    border-top-left-radius: ${({ noSideBorders }) =>
+      noSideBorders ? 0 : '3px'};
   }
   ${TableRow}:first-child &:last-child {
-    border-top-right-radius: 3px;
+    border-top-right-radius: ${({ noSideBorders }) =>
+      noSideBorders ? 0 : '3px'};
   }
   ${TableRow}:last-child &:first-child {
-    border-bottom-left-radius: 3px;
+    border-bottom-left-radius: ${({ noSideBorders }) =>
+      noSideBorders ? 0 : '3px'};
   }
   ${TableRow}:last-child &:last-child {
-    border-bottom-right-radius: 3px;
+    border-bottom-right-radius: ${({ noSideBorders }) =>
+      noSideBorders ? 0 : '3px'};
   }
 `
 
