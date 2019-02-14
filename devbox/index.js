@@ -21,6 +21,7 @@ import Timer from './apps/Timer'
 import TransactionBadge from './apps/TransactionBadge'
 import TransactionProgress from './apps/TransactionProgress'
 import Viewport from './apps/Viewport'
+import Scratchpad from './apps/Scratchpad'
 
 const APPS = {
   AddressField,
@@ -64,7 +65,7 @@ class Index extends React.Component {
   }
   render() {
     const { appName } = this.state
-    const CurrentApp = APPS[appName]
+    const CurrentApp = appName === 'Scratchpad' ? Scratchpad : APPS[appName]
     return CurrentApp ? (
       <Main>
         <CurrentApp />
@@ -75,6 +76,10 @@ class Index extends React.Component {
         <main>
           <h1>Devbox</h1>
           <ul>
+            <li>
+              <a href="#Scratchpad">Scratchpad</a>
+            </li>
+
             {Object.keys(APPS)
               .sort()
               .map(appName => (
