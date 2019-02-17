@@ -128,7 +128,6 @@ class Slider extends React.Component {
               <Bars>
                 <BaseBar />
                 <ActiveBar
-                  pressed={pressed}
                   style={this.getActiveBarStyles(value, pressProgress)}
                 />
               </Bars>
@@ -137,10 +136,7 @@ class Slider extends React.Component {
                 <HandlePosition
                   style={this.getHandlePositionStyles(value, pressProgress)}
                 >
-                  <Handle
-                    pressed={pressed}
-                    style={this.getHandleStyles(pressProgress)}
-                  />
+                  <Handle style={this.getHandleStyles(pressProgress)} />
                 </HandlePosition>
               </HandleClip>
             </Area>
