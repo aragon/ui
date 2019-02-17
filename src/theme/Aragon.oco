@@ -98,6 +98,8 @@ Aragon UI:
   badgeNotificationForeground: =Aragon UI.positiveText
   badgeInfoBackground: =Rain.Rain Sky
   badgeInfoForeground: =Rain.Slate
+  selectionBackground: #B2D7FF
+  selectionForeground: =Aragon UI.textPrimary
 Aragon UI Dark:
   oct/
     view: List
@@ -139,4 +141,6 @@ Aragon UI Dark:
   badgeNotificationForeground: =Aragon UI Dark.positiveText
   badgeInfoBackground: =Rain.Rain Sky
   badgeInfoForeground: =Rain.Slate
+  selectionBackground: #B2D7FF
+  selectionForeground: =Aragon UI.textPrimary
   

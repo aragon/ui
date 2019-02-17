@@ -8,17 +8,19 @@ class AppView extends React.Component {
   static defaultProps = {
     title: '',
     padding: 30,
+    height: '100vh',
   }
   static propTypes = {
     appBar: PropTypes.element,
     title: PropTypes.string,
     children: PropTypes.node,
     padding: PropTypes.number,
+    height: PropTypes.string,
   }
   render() {
-    const { appBar, title, children, padding } = this.props
+    const { appBar, title, children, padding, height } = this.props
     return (
-      <Main {...stylingProps(this)}>
+      <Main height={height} {...stylingProps(this)}>
         <Header>{appBar || <AppBar title={title} />}</Header>
         <ScrollWrapper>
           <Content padding={padding}>{children}</Content>
@@ -30,7 +32,7 @@ class AppView extends React.Component {
 
 const Main = styled.div`
   display: flex;
-  height: 100%;
+  height: ${p => p.height};
   flex-direction: column;
   align-items: stretch;
   justify-content: stretch;

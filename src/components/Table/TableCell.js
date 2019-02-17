@@ -1,5 +1,5 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+import PropTypes from '../../proptypes'
 import styled from 'styled-components'
 import { theme } from '../../theme'
 import TableRow from './TableRow'
@@ -58,7 +58,7 @@ const TableCell = ({
 
 TableCell.propTypes = {
   align: PropTypes.string,
-  contentContainer: PropTypes.func,
+  contentContainer: PropTypes._component,
   children: PropTypes.node,
 }
 

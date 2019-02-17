@@ -24,7 +24,17 @@ const splitIntro = html => {
   const container = document.createElement('div')
   container.innerHTML = html
 
-  const children = [...container.childNodes]
+  const children = [...container.childNodes].map(node => {
+
+    // deprecated notices
+    if (node.innerHTML && node.innerHTML.startsWith('deprecated: ')) {
+      node.innerHTML = node.innerHTML.replace(/^deprecated: /, '')
+      node.className = 'deprecated'
+    }
+
+    return node
+  })
+
   const docIndex = children.findIndex(
     elt =>
       elt.tagName === 'H2' &&

@@ -2,8 +2,11 @@ import resolve from 'rollup-plugin-node-resolve'
 import commonjs from 'rollup-plugin-commonjs'
 import babel from 'rollup-plugin-babel'
 import url from 'rollup-plugin-url'
+import filesize from 'rollup-plugin-filesize'
 import progress from 'rollup-plugin-progress'
 import pkg from './package.json'
+
+const production = !process.env.ROLLUP_WATCH
 
 export default {
   input: 'src/index.js',
@@ -14,6 +17,7 @@ export default {
   external: ['react', 'react-dom', 'styled-components'],
   plugins: [
     progress(),
+    production && filesize(),
     url({
       limit: 5 * 1024, // inline files smaller than 5k
       publicPath: '',
@@ -27,7 +31,10 @@ export default {
       ],
       emitFiles: true,
     }),
-    babel({ exclude: 'node_modules/**', plugins: ['external-helpers'] }),
+    babel({
+      runtimeHelpers: true,
+      exclude: 'node_modules/**',
+    }),
     resolve(),
     commonjs(),
   ],

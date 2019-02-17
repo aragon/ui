@@ -8,8 +8,9 @@ import PageIcons from './pages/PageIcons'
 // Controls
 import PageButton from './pages/PageButton'
 import PageDropDown from './pages/PageDropDown'
+import PageCheckBox from './pages/PageCheckBox'
 import PageContextMenu from './pages/PageContextMenu'
-import PageRadioButton from './pages/PageRadioButton'
+import PageRadio from './pages/PageRadio'
 import PageRadioGroup from './pages/PageRadioGroup'
 import PageRadioList from './pages/PageRadioList'
 import PageTextInput from './pages/PageTextInput'
@@ -27,6 +28,7 @@ import PageTransactionProgress from './pages/PageTransactionProgress'
 import PagePopover from './pages/PagePopover'
 
 // Containers
+import PageMain from './pages/PageMain'
 import PageAragonApp from './pages/PageAragonApp'
 import PageAppBar from './pages/PageAppBar'
 import PageNavigationBar from './pages/PageNavigationBar'
@@ -42,72 +44,81 @@ import PageRedrawFromDate from './pages/PageRedrawFromDate'
 import PageObserve from './pages/PageObserve'
 import PageToastHub from './pages/PageToastHub'
 
-const preparePage = ([comp, name, path]) => ({
+const preparePage = ([comp, name, path = camelCaseToDashes(name)]) => ({
   comp,
   name,
   path: '/' + path.replace(/^\//, '') + (path === '/' ? '' : '/'),
 })
 
+const camelCaseToDashes = str =>
+  [...str].reduce(
+    (str, char, i) =>
+      str + (/[A-Z]/.test(char) && i > 0 ? '-' : '') + char.toLowerCase(),
+    ''
+  )
+
 export const PAGE_GROUPS = [
   {
     name: 'Styles',
     pages: [
-      [PageColors, 'Colors', '/colors'],
-      [PageTheme, 'Theme', '/theme'],
-      [PageText, 'Text', '/text'],
-      [PageIcons, 'Icons', '/icons'],
-    ].map(preparePage),
+      [PageColors, 'Colors'],
+      [PageTheme, 'Theme'],
+      [PageText, 'Text'],
+      [PageIcons, 'Icons'],
+    ],
   },
   {
     name: 'Controls',
     pages: [
-      [PageButton, 'Button', '/button'],
-      [PageDropDown, 'DropDown', '/drop-down'],
-      [PageContextMenu, 'ContextMenu', '/context-menu'],
-      [PageRadioGroup, 'RadioGroup', '/radio-group'],
-      [PageRadioList, 'RadioList', '/radio-list'],
-      [PageRadioButton, 'RadioButton', '/radio-button'],
-      [PageTextInput, 'TextInput', '/text-input'],
-      [PageField, 'Field', '/field'],
-      [PageSafeLink, 'SafeLink', '/safe-link'],
-      [PageSlider, 'Slider', '/slider'],
-    ].map(preparePage),
+      [PageButton, 'Button'],
+      [PageDropDown, 'DropDown'],
+      [PageContextMenu, 'ContextMenu'],
+      [PageCheckBox, 'CheckBox'],
+      [PageRadioGroup, 'RadioGroup'],
+      [PageRadioList, 'RadioList'],
+      [PageRadio, 'Radio'],
+      [PageTextInput, 'TextInput'],
+      [PageField, 'Field'],
+      [PageSafeLink, 'SafeLink'],
+      [PageSlider, 'Slider'],
+    ],
   },
   {
     name: 'Containers',
     pages: [
-      [PageAragonApp, 'AragonApp', '/aragon-app'],
-      [PageAppBar, 'AppBar', '/app-bar'],
-      [PageNavigationBar, 'NavigationBar', '/navigation-bar'],
-      [PageAppView, 'AppView', '/app-view'],
-      [PageSidePanel, 'SidePanel', '/side-panel'],
-      [PageCard, 'Card', '/card'],
-      [PageEmptyStateCard, 'EmptyStateCard', '/empty-state-card'],
-      [PageTable, 'Table', '/table'],
-    ].map(preparePage),
+      [PageMain, 'Main'],
+      [PageAragonApp, 'AragonApp'],
+      [PageAppBar, 'AppBar'],
+      [PageNavigationBar, 'NavigationBar'],
+      [PageAppView, 'AppView'],
+      [PageSidePanel, 'SidePanel'],
+      [PageCard, 'Card'],
+      [PageEmptyStateCard, 'EmptyStateCard'],
+      [PageTable, 'Table'],
+    ],
   },
   {
     name: 'Components',
     pages: [
-      [PageBadge, 'Badge', '/badge'],
-      [PageCircleGraph, 'CircleGraph', '/circle-graph'],
-      [PageCountdown, 'Countdown', '/countdown'],
-      [PageInfo, 'Info', '/info'],
-      [PageProgressBar, 'ProgressBar', '/progress-bar'],
-      [PageTransactionProgress, 'TransactionProgress', '/transaction-progress'],
-      [PagePopover, 'Popover', '/Popover'],
-    ].map(preparePage),
+      [PageBadge, 'Badge'],
+      [PageCircleGraph, 'CircleGraph'],
+      [PageCountdown, 'Countdown'],
+      [PageInfo, 'Info'],
+      [PageProgressBar, 'ProgressBar'],
+      [PageTransactionProgress, 'TransactionProgress'],
+      [PagePopover, 'Popover'],
+    ],
   },
   {
     name: 'Providers',
     pages: [
-      [PageRedraw, 'Redraw', '/redraw'],
-      [PageRedrawFromDate, 'RedrawFromDate', '/redraw-from-date'],
-      [PageObserve, 'Observe', '/observe'],
-      [PageToastHub, 'ToastHub', '/toast-hub'],
-    ].map(preparePage),
+      [PageRedraw, 'Redraw'],
+      [PageRedrawFromDate, 'RedrawFromDate'],
+      [PageObserve, 'Observe'],
+      [PageToastHub, 'ToastHub'],
+    ],
   },
-]
+].map(group => ({ ...group, pages: group.pages.map(preparePage) }))
 
 export const PAGES = [
   preparePage([PageHome, 'Aragon UI', '/']),

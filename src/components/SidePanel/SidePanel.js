@@ -1,16 +1,12 @@
 import PropTypes from 'prop-types'
 import React from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { IconClose } from '../../icons'
 import { Spring, animated } from 'react-spring'
 import Text from '../Text/Text'
-import { springs, unselectable } from '../../utils/styles'
+import { springs, unselectable, breakpoint } from '../../utils/styles'
 
-const PANEL_WIDTH = 450
 const CONTENT_PADDING = 30
-const PANEL_EXTRA_PADDING = PANEL_WIDTH * 0.2
-const PANEL_OUTER_WIDTH = PANEL_WIDTH + PANEL_EXTRA_PADDING
-const PANEL_INNER_WIDTH = PANEL_WIDTH - CONTENT_PADDING * 2
 
 class SidePanel extends React.PureComponent {
   componentDidMount() {
@@ -35,9 +31,6 @@ class SidePanel extends React.PureComponent {
   renderIn = ({ progress }) => {
     const { children, title, opened, blocking } = this.props
 
-    // When hiding the panel, add 40px more for the shadow
-    const panelRight = opened ? -PANEL_EXTRA_PADDING : -PANEL_OUTER_WIDTH - 40
-
     return (
       <Main opened={opened}>
         <Overlay
@@ -49,12 +42,11 @@ class SidePanel extends React.PureComponent {
         />
         <Panel
           style={{
-            right: `${panelRight}px`,
             transform: progress.interpolate(
-              t =>
-                `translate3d(${(Number(opened) - t) *
-                  (PANEL_WIDTH + 40)}px, 0, 0)`
+              v =>
+                `translate3d(calc(${100 * (1 - v)}% + ${36 * (1 - v)}px), 0, 0)`
             ),
+            opacity: progress.interpolate(v => (v > 0 ? 1 : 0)),
           }}
         >
           <PanelHeader>
@@ -79,7 +71,8 @@ class SidePanel extends React.PureComponent {
     return (
       <Spring
         config={springs.lazy}
-        to={{ progress: Number(opened) }}
+        from={{ progress: 0 }}
+        to={{ progress: !!opened }}
         onRest={this.handleTransitionRest}
         native
       >
@@ -124,17 +117,22 @@ const Overlay = styled(animated.div)`
   background: rgba(68, 81, 89, 0.65);
 `
 
+const maxWidth = css`
+  max-width: ${({ maxwidth = 450 }) => maxwidth}px;
+`
+
 const Panel = styled(animated.aside)`
   position: absolute;
   top: 0;
   right: 0;
   display: flex;
   flex-direction: column;
-  width: ${PANEL_WIDTH + PANEL_EXTRA_PADDING}px;
+  width: 100vw;
   height: 100vh;
-  padding-right: ${PANEL_EXTRA_PADDING}px;
   background: white;
   box-shadow: -2px 0 36px rgba(0, 0, 0, 0.2);
+
+  ${breakpoint('medium', maxWidth)}
 `
 
 const PanelHeader = styled.header`
@@ -182,14 +180,7 @@ const PanelCloseButton = styled.button`
   }
 `
 
-SidePanel.PANEL_WIDTH = PANEL_WIDTH
-SidePanel.PANEL_OUTER_WIDTH = PANEL_OUTER_WIDTH
-SidePanel.PANEL_EXTRA_PADDING = PANEL_EXTRA_PADDING
-SidePanel.PANEL_INNER_WIDTH = PANEL_INNER_WIDTH
+// Used for spacing in SidePanelSplit and SidePanelSeparator
 SidePanel.HORIZONTAL_PADDING = CONTENT_PADDING
-
-// legacy
-SidePanel.PANEL_OVERFLOW = PANEL_EXTRA_PADDING
-SidePanel.PANEL_HIDE_RIGHT = -PANEL_OUTER_WIDTH
 
 export default SidePanel

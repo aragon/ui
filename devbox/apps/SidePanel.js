@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { AragonApp, AppView, SidePanel, Button, unselectable } from '@aragon/ui'
+import { AppView, SidePanel, Button, unselectable } from '@aragon/ui'
 
 class App extends React.Component {
   state = {
@@ -16,7 +16,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <AragonApp publicUrl="/aragon-ui/">
+      <React.Fragment>
         <Main>
           <Button mode="secondary" compact onClick={this.open}>
             Open
@@ -29,7 +29,7 @@ class App extends React.Component {
         >
           panel
         </SidePanel>
-      </AragonApp>
+      </React.Fragment>
     )
   }
 }

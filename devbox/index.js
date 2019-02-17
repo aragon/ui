@@ -1,31 +1,98 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import { Main } from '@aragon/ui'
 
-import LinkedSliders from './apps/LinkedSliders'
-import RadioButton from './apps/RadioButton'
-import SidePanel from './apps/SidePanel'
-import NavigationBar from './apps/NavigationBar'
+import AddressField from './apps/AddressField'
+import AppView from './apps/AppView'
 import Button from './apps/Button'
+import Checkbox from './apps/Checkbox'
 import EmptyStateCard from './apps/EmptyStateCard'
-import TabBar from './apps/TabBar'
+import EthIdenticon from './apps/EthIdenticon'
 import IdentityBadge from './apps/IdentityBadge'
+import LineChart from './apps/LineChart'
+import LinkedSliders from './apps/LinkedSliders'
+import NavigationBar from './apps/NavigationBar'
+import PartitionBar from './apps/PartitionBar'
 import Popover from './apps/Popover'
+import Radio from './apps/Radio'
+import SidePanel from './apps/SidePanel'
+import TabBar from './apps/TabBar'
+import Timer from './apps/Timer'
+import TransactionBadge from './apps/TransactionBadge'
 import TransactionProgress from './apps/TransactionProgress'
+import Viewport from './apps/Viewport'
+import Scratchpad from './apps/Scratchpad'
 
-const APPS = new Map(
-  Object.entries({
-    LinkedSliders,
-    RadioButton,
-    SidePanel,
-    NavigationBar,
-    Button,
-    EmptyStateCard,
-    TabBar,
-    IdentityBadge,
-    Popover,
-    TransactionProgress,
-  })
-)
+const APPS = {
+  AddressField,
+  AppView,
+  Button,
+  Checkbox,
+  EmptyStateCard,
+  EthIdenticon,
+  IdentityBadge,
+  LineChart,
+  LinkedSliders,
+  NavigationBar,
+  PartitionBar,
+  Popover,
+  Radio,
+  SidePanel,
+  TabBar,
+  Timer,
+  TransactionBadge,
+  TransactionProgress,
+  Viewport,
+}
+
+class Index extends React.Component {
+  state = {
+    appName: '',
+  }
+  componentDidMount() {
+    this.handleHashChange()
+    window.addEventListener('hashchange', this.handleHashChange)
+  }
+  componentWillUnmount() {
+    window.removeEventListener('hashchange', this.handleHashChange)
+  }
+  appNameFromHash(hash) {
+    return hash.replace(/^#/, '')
+  }
+  handleHashChange = () => {
+    const appName = this.appNameFromHash(window.location.hash)
+    this.setState({ appName })
+  }
+  render() {
+    const { appName } = this.state
+    const CurrentApp = appName === 'Scratchpad' ? Scratchpad : APPS[appName]
+    return CurrentApp ? (
+      <Main>
+        <CurrentApp />
+      </Main>
+    ) : (
+      <React.Fragment>
+        <style>{STYLES}</style>
+        <main>
+          <h1>Devbox</h1>
+          <ul>
+            <li>
+              <a href="#Scratchpad">Scratchpad</a>
+            </li>
+
+            {Object.keys(APPS)
+              .sort()
+              .map(appName => (
+                <li key={appName}>
+                  <a href={`#${appName}`}>{appName}</a>
+                </li>
+              ))}
+          </ul>
+        </main>
+      </React.Fragment>
+    )
+  }
+}
 
 const STYLES = `
 *, *:before, *:after {
@@ -96,45 +163,7 @@ li a:active {
 }
 `
 
-class Index extends React.Component {
-  state = {
-    appName: '',
-  }
-  componentDidMount() {
-    this.handleHashChange()
-    window.addEventListener('hashchange', this.handleHashChange)
-  }
-  componentWillUnmount() {
-    window.removeEventListener('hashchange', this.handleHashChange)
-  }
-  appNameFromHash(hash) {
-    return hash.replace(/^#/, '')
-  }
-  handleHashChange = () => {
-    const appName = this.appNameFromHash(window.location.hash)
-    this.setState({ appName })
-  }
-  render() {
-    const { appName } = this.state
-    const CurrentApp = APPS.get(appName)
-    return CurrentApp ? (
-      <CurrentApp />
-    ) : (
-      <React.Fragment>
-        <style>{STYLES}</style>
-        <main>
-          <h1>Devbox</h1>
-          <ul>
-            {[...APPS.keys()].sort().map(appName => (
-              <li key={appName}>
-                <a href={`#${appName}`}>{appName}</a>
-              </li>
-            ))}
-          </ul>
-        </main>
-      </React.Fragment>
-    )
-  }
-}
-
-ReactDOM.render(<Index />, document.getElementById('app'))
+ReactDOM.render(
+  <Index />,
+  document.body.appendChild(document.createElement('div'))
+)

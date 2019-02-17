@@ -11,7 +11,6 @@ import overpassRegularWoff2 from './assets/overpass/overpass-regular.woff2'
 import overpassSemiBoldWoff from './assets/overpass/overpass-semibold.woff'
 import overpassSemiBoldWoff2 from './assets/overpass/overpass-semibold.woff2'
 
-
 const DEFAULT_FONT_FAMILY = 'overpass'
 
 const DEFAULT_FONTS = {
@@ -88,10 +87,11 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
   }
   html {
-    min-height: 100%;
     -webkit-overflow-scrolling: touch;
   }
   body {
+    height: 0;
+    min-height: 100vh;
     font-family: ${props => props.fontFamily};
     font-size: 15px;
     font-weight: 400;
@@ -136,6 +136,10 @@ const GlobalStyle = createGlobalStyle`
   strong,
   b {
     font-weight: 600;
+  }
+  ::selection {
+    color: ${theme.selectionForeground};
+    background: ${theme.selectionBackground};
   }
 `
 

@@ -8,8 +8,8 @@ import { AdornmentStyled, inputPaddingCss } from './Adornment.js'
 const baseStyles = css`
   ${font({ size: 'small', weight: 'normal' })};
   width: ${({ wide }) => (wide ? '100%' : 'auto')};
-
-  padding: 5px 10px;
+  height: 40px;
+  padding: 0 10px;
   background: ${theme.contentBackground};
   border: 1px solid ${theme.contentBorder};
   border-radius: 3px;

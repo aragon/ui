@@ -2,10 +2,6 @@ import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 import { colors } from '../../theme'
 import { font } from '../../utils/styles'
-import BadgeInfo from './Badge.Info'
-import BadgeNotification from './Badge.Notification'
-import BadgeIdentity from './Badge.Identity'
-import BadgeApp from './Badge.App'
 
 const shapeStyles = shape => {
   if (shape === 'disc') {
@@ -71,10 +67,5 @@ Badge.propTypes = {
   background: PropTypes.string,
   foreground: PropTypes.string,
 }
-
-Badge.Info = BadgeInfo
-Badge.Notification = BadgeNotification
-Badge.Identity = BadgeIdentity
-Badge.App = BadgeApp
 
 export default Badge

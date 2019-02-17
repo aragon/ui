@@ -4,41 +4,36 @@ import styled from 'styled-components'
 import Page from 'comps/Page/Page'
 
 import readme from 'ui-src/components/Radio/RadioGroup.md'
-import { RadioButton, RadioGroup } from '@aragon/ui'
+import { Radio, RadioGroup } from '@aragon/ui'
 import Container from '../components/Page/DemoContainer'
-
-const RADIO_LABELS = ['First', 'Second', 'Third']
 
 class PageRadioGroup extends React.Component {
   state = {
-    value: '',
+    activeId: '1',
   }
-  handleChange = event => {
-    this.setState({ value: event.target.value })
+  handleChange = activeId => {
+    this.setState({ activeId })
   }
   render() {
     const { title } = this.props
-    const { value } = this.state
+    const { activeId } = this.state
     return (
       <Page title={title} readme={readme}>
-        <Page.Demo height={100}>
-          <Container centered style={{ height: '100vh' }}>
-            <RadioGroup name="group" onChange={this.handleChange}>
-              {RADIO_LABELS.map((label, i) => {
-                const radioValue = label.toLowerCase()
-                return (
-                  <Label key={i}>
-                    <RadioButton
-                      inline
-                      checked={radioValue === value}
-                      onChange={() => {}}
-                      value={radioValue}
-                    />
-                    {label}
-                  </Label>
-                )
-              })}
-            </RadioGroup>
+        <Page.Demo opaque>
+          <Container>
+            <div>
+              <h1 style={{ marginBottom: '20px' }}>
+                Selected item: {activeId}
+              </h1>
+              <RadioGroup onChange={this.handleChange} selected={activeId}>
+                {[...Array(3)].map((_, i) => (
+                  <Item key={i}>
+                    <Radio id={String(i + 1)} />
+                    Item {i + 1}
+                  </Item>
+                ))}
+              </RadioGroup>
+            </div>
           </Container>
         </Page.Demo>
       </Page>
@@ -46,11 +41,15 @@ class PageRadioGroup extends React.Component {
   }
 }
 
-const Label = styled.label`
-  display: inline-flex;
+const Item = styled.label`
+  display: flex;
   align-items: center;
-  margin-right: 10px;
+  height: 40px;
   cursor: pointer;
+  color: #000;
+  &:active {
+    color: #666;
+  }
 `
 
 export default PageRadioGroup

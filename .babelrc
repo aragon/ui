@@ -1,9 +1,18 @@
 {
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "modules": false,
+        "useBuiltIns": false
+      }
+    ],
+    "@babel/preset-react"
+  ],
   "plugins": [
     ["inline-json-import", {}],
     ["styled-components", { "displayName": true }],
-    ["transform-react-jsx", {}],
-    ["transform-react-display-name", {}]
-  ],
-  "presets": [["env", { "modules": false }], "stage-2"]
+    "@babel/plugin-transform-runtime",
+    "@babel/plugin-proposal-class-properties"
+  ]
 }

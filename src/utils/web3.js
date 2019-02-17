@@ -1,8 +1,35 @@
-import { warn } from '../utils'
+import { warn } from './environment'
 
+const TRANSACTION_REGEX = /^0x[A-Fa-f0-9]{64}$/
 const ADDRESS_REGEX = /^0x[0-9a-fA-F]{40}$/
-const ETHERSCAN_NETWORK_TYPES = ['main', 'kovan', 'rinkeby', 'ropsten']
-const ETHERSCAN_TYPES = ['block', 'transaction', 'address', 'token']
+
+const ETHERSCAN_NETWORK_TYPES = new Map([
+  ['main', ''],
+  ['kovan', 'kovan.'],
+  ['rinkeby', 'rinkeby.'],
+  ['ropsten', 'ropsten.'],
+])
+const ETHERSCAN_TYPES = new Map([
+  ['block', 'block'],
+  ['transaction', 'tx'],
+  ['address', 'address'],
+  ['token', 'token'],
+])
+
+const BLOCK_EXPLORERS = {
+  etherscan: ({ type, value, networkType }) => {
+    if (!ETHERSCAN_NETWORK_TYPES.has(networkType)) {
+      throw new Error('provider not supported.')
+    }
+    if (!ETHERSCAN_TYPES.has(type)) {
+      throw new Error('type not supported.')
+    }
+
+    const subdomain = ETHERSCAN_NETWORK_TYPES.get(networkType)
+    const typePart = ETHERSCAN_TYPES.get(type)
+    return `https://${subdomain}etherscan.io/${typePart}/${value}`
+  },
+}
 
 /**
  * Check address equality without checksums
@@ -45,6 +72,11 @@ export function shortenAddress(address, charsLength = 4) {
 }
 
 /**
+ * Alias for shortenAddress (to generalize its use)
+ */
+export const shortenTransaction = shortenAddress
+
+/**
  *
  * Checks if the given string is an address
  *
@@ -54,6 +86,18 @@ export function shortenAddress(address, charsLength = 4) {
  */
 export function isAddress(address) {
   return ADDRESS_REGEX.test(address)
+}
+
+/**
+ *
+ * Checks if the given string is a transaction
+ *
+ * @method isTransaction
+ * @param {string} address the given HEX address
+ * @return {boolean}
+ */
+export function isTransaction(transaction) {
+  return TRANSACTION_REGEX.test(transaction)
 }
 
 /**
@@ -71,23 +115,17 @@ export function blockExplorerUrl(
   value,
   { networkType = 'main', provider = 'etherscan' } = {}
 ) {
-  // Only Etherscan is supported for now.
-  if (provider !== 'etherscan') {
+  const explorer = BLOCK_EXPLORERS[provider]
+
+  if (!explorer) {
     warn('blockExplorerUrl(): provider not supported.')
     return ''
   }
 
-  if (!ETHERSCAN_NETWORK_TYPES.includes(networkType)) {
-    warn('blockExplorerUrl(): network type not supported.')
+  try {
+    return explorer({ type, value, networkType })
+  } catch (err) {
+    warn(`blockExplorerUrl(): ${err.message}`)
     return ''
   }
-
-  if (!ETHERSCAN_TYPES.includes(type)) {
-    warn('blockExplorerUrl(): type not supported.')
-    return ''
-  }
-
-  const subdomain = networkType === 'main' ? '' : `${networkType}.`
-
-  return `https://${subdomain}etherscan.io/${type}/${value}`
 }
