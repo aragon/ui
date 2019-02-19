@@ -31,7 +31,7 @@ class TabBarDemo extends React.Component {
     const { index } = this.state
     const { items } = this.props
     return (
-      <TabBar onSelect={this.handleSelect} selected={index} items={items} />
+      <TabBar onChange={this.handleSelect} selected={index} items={items} />
     )
   }
 }
