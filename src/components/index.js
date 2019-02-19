@@ -1,6 +1,7 @@
 export { ToastHub, Toast } from './ToastHub/ToastHub'
 export { default as AddressField } from './AddressField/AddressField'
 export { default as AppBar } from './AragonApp/AppBar'
+export { default as AppLayout } from './AragonApp/AppLayout'
 export { default as AppView } from './AragonApp/AppView'
 export { default as AragonApp } from './AragonApp/AragonApp'
 export { default as Badge } from './Badge'
