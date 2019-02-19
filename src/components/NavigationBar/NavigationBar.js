@@ -115,7 +115,6 @@ const Title = styled.span`
 `
 
 const Label = styled.span`
-  padding-left: 30px;
   white-space: nowrap;
   font-size: 22px;
 `
@@ -124,7 +123,7 @@ const BackButton = styled.span`
   display: flex;
   align-items: center;
   height: 63px;
-  padding: 0 30px;
+  padding: 0 20px;
   cursor: pointer;
   svg {
     color: hsl(179, 76%, 48%);
