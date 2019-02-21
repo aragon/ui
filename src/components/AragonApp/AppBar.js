@@ -8,6 +8,9 @@ import { unselectable } from '../../utils/styles'
 
 import chevronSvg from './assets/chevron.svg'
 
+// The app bar height includes its border.
+const BAR_HEIGHT = 64
+
 const AppBar = ({
   children,
   endContent,
@@ -21,7 +24,7 @@ const AppBar = ({
       display: flex;
       flex-direction: column;
       width: 100%;
-      min-height: 64px;
+      min-height: ${BAR_HEIGHT}px;
       background: ${theme.contentBackground};
       border-bottom: ${tabs ? '0' : '1px'} solid ${theme.contentBorder};
       ${unselectable()};
@@ -33,7 +36,7 @@ const AppBar = ({
         align-items: center;
         justify-content: flex-start;
         width: 100%;
-        height: 63px;
+        height: ${BAR_HEIGHT - 1}px;
       `}
       {...props}
     >
