@@ -30,6 +30,12 @@ const App = () => (
 )
 ```
 
+### `tabs`
+
+- Type: `TabBar`
+
+Pass a `TabBar` instance to get tabs integrated to the header.
+
 ### `onTitleClick`
 
 - Type: `Function`
