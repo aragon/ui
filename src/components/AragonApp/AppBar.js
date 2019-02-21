@@ -2,9 +2,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 import { PublicUrl } from '../../providers/PublicUrl'
+import { noop, unselectable } from '../../utils'
 import { theme } from '../../theme'
 import Text from '../Text/Text'
-import { unselectable } from '../../utils/styles'
 
 import chevronSvg from './assets/chevron.svg'
 
@@ -77,17 +77,6 @@ const AppBar = ({
   </div>
 )
 
-const AppBarTitle = PublicUrl.hocWrap(styled.h1`
-  padding-right: 20px;
-  margin-right: calc(20px - 7px);
-  white-space: nowrap;
-  background-image: ${({ chevron }) =>
-    chevron ? css`url(${PublicUrl.styledUrl(chevronSvg)})` : 'none'};
-  background-position: 100% 50%;
-  background-repeat: no-repeat;
-  cursor: ${({ clickable }) => (clickable ? 'pointer' : 'default')};
-`)
-
 AppBar.propTypes = {
   children: PropTypes.node,
   title: PropTypes.node,
@@ -98,7 +87,18 @@ AppBar.propTypes = {
 
 AppBar.defaultProps = {
   title: '',
-  onTitleClick: () => {},
+  onTitleClick: noop,
 }
+
+const AppBarTitle = PublicUrl.hocWrap(styled.h1`
+  padding-right: 20px;
+  margin-right: calc(20px - 7px);
+  white-space: nowrap;
+  background-image: ${({ chevron }) =>
+    chevron ? css`url(${PublicUrl.styledUrl(chevronSvg)})` : 'none'};
+  background-position: 100% 50%;
+  background-repeat: no-repeat;
+  cursor: ${({ clickable }) => (clickable ? 'pointer' : 'default')};
+`)
 
 export default AppBar
