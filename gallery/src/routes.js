@@ -17,6 +17,7 @@ import PageTextInput from './pages/PageTextInput'
 import PageField from './pages/PageField'
 import PageSafeLink from './pages/PageSafeLink'
 import PageSlider from './pages/PageSlider'
+import PageTabBar from './pages/PageTabBar'
 
 // Other components
 import PageBadge from './pages/PageBadge'
@@ -81,6 +82,7 @@ export const PAGE_GROUPS = [
       [PageField, 'Field'],
       [PageSafeLink, 'SafeLink'],
       [PageSlider, 'Slider'],
+      [PageTabBar, 'TabBar'],
     ],
   },
   {
