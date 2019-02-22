@@ -16,10 +16,25 @@ const BAR_HEIGHT = 64
 export const InAppBarContext = React.createContext(false)
 
 class AppBar extends React.Component {
+  static propTypes = {
+    children: PropTypes.node,
+    endContent: PropTypes.node,
+    onTitleClick: PropTypes.func,
+    padding: PropTypes.number,
+    tabs: PropTypes.element,
+    title: PropTypes.node,
+  }
+  static defaultProps = {
+    onTitleClick: noop,
+    padding: 30,
+    title: '',
+  }
+
   state = {
     tabsHeight: 0,
   }
   _tabsRef = React.createRef()
+
   componentDidMount() {
     this.updateTabsHeight()
   }
@@ -134,21 +149,6 @@ class AppBar extends React.Component {
       </InAppBarContext.Provider>
     )
   }
-}
-
-AppBar.propTypes = {
-  children: PropTypes.node,
-  endContent: PropTypes.node,
-  onTitleClick: PropTypes.func,
-  padding: PropTypes.number,
-  tabs: PropTypes.element,
-  title: PropTypes.node,
-}
-
-AppBar.defaultProps = {
-  onTitleClick: noop,
-  padding: 30,
-  title: '',
 }
 
 const AppBarTitle = PublicUrl.hocWrap(styled.h1`
