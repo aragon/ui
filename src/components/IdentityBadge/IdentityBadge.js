@@ -89,7 +89,7 @@ const Main = styled.div`
 `
 
 const Identicon = styled.div`
-  display: flex;
+  display: block;
   margin-right: -3px;
 `
 
