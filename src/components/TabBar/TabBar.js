@@ -3,26 +3,33 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { theme } from '../../theme'
 import { font, unselectable, noop } from '../../utils'
+import { warn } from '../../utils/environment'
 
 class TabBar extends React.Component {
   static propTypes = {
     items: PropTypes.arrayOf(PropTypes.node).isRequired,
     selected: PropTypes.number,
     onSelect: PropTypes.func,
+    onChange: PropTypes.func,
   }
   static defaultProps = {
     selected: 0,
-    onSelect: noop,
+    onChange: noop,
   }
+
   state = {
     displayFocusRing: false,
   }
+
+  _barRef = React.createRef()
+
   componentDidMount() {
     document.addEventListener('keydown', this.handleKeydown)
   }
   componentWillUnmount() {
     document.removeEventListener('keydown', this.handleKeydown)
   }
+
   enableFocusRing() {
     this.setState({ displayFocusRing: true })
   }
@@ -30,12 +37,27 @@ class TabBar extends React.Component {
     this.setState({ displayFocusRing: false })
   }
   selectElement(element) {
-    if (!element || !this.barElement) {
+    const { onChange } = this.props
+    if (!element || !this._barRef.current) {
       return
     }
-    const index = [...this.barElement.childNodes].indexOf(element)
-    if (index > -1) {
+    const index = [...this._barRef.current.childNodes].indexOf(element)
+    if (index === -1) {
+      return
+    }
+
+    onChange(index)
+
+    // onSelect compatibility
+    if (this.props.onSelect) {
       this.props.onSelect(index)
+
+      if (!TabBar._onSelectWarned) {
+        warn(
+          'TabBar: the `onSelect` prop has been renamed: please use `onChange` instead.'
+        )
+        TabBar._onSelectWarned = true
+      }
     }
   }
   handleMouseDown = () => {
@@ -59,15 +81,12 @@ class TabBar extends React.Component {
     // pointer device too.
     this.selectElement(currentTarget)
   }
-  handleBarRef = el => {
-    this.barElement = el
-  }
   render() {
     const { displayFocusRing } = this.state
     const { items, selected } = this.props
     return (
       <nav onMouseDown={this.handleMouseDown}>
-        <Bar ref={this.handleBarRef}>
+        <Bar ref={this._barRef}>
           {items.map((item, i) => (
             <Tab
               key={i}
