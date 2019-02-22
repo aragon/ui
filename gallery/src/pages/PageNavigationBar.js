@@ -49,7 +49,7 @@ class PageAppBar extends React.Component {
         <Page.Demo>
           <AppView
             appBar={
-              <AppBar>
+              <AppBar padding={10}>
                 <NavigationBar items={items} onBack={this.backward} />
               </AppBar>
             }
