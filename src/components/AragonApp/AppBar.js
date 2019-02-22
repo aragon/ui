@@ -1,8 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
+import { Transition, animated } from 'react-spring'
 import { PublicUrl } from '../../providers/PublicUrl'
 import { noop, unselectable } from '../../utils'
+import { springs } from '../../utils/styles/spring'
 import { theme } from '../../theme'
 import Text from '../Text/Text'
 
@@ -11,71 +13,123 @@ import chevronSvg from './assets/chevron.svg'
 // The app bar height includes its border.
 const BAR_HEIGHT = 64
 
-const AppBar = ({
-  children,
-  endContent,
-  title,
-  onTitleClick,
-  tabs,
-  ...props
-}) => (
-  <div
-    css={`
-      display: flex;
-      flex-direction: column;
-      width: 100%;
-      min-height: ${BAR_HEIGHT}px;
-      background: ${theme.contentBackground};
-      border-bottom: ${tabs ? '0' : '1px'} solid ${theme.contentBorder};
-      ${unselectable()};
-    `}
-  >
-    <div
-      css={`
-        display: flex;
-        align-items: center;
-        justify-content: flex-start;
-        width: 100%;
-        height: ${BAR_HEIGHT - 1}px;
-      `}
-      {...props}
-    >
-      {title && (
+export const InAppBarContext = React.createContext(false)
+
+class AppBar extends React.Component {
+  state = {
+    tabsHeight: 0,
+  }
+  _tabsRef = React.createRef()
+  componentDidMount() {
+    this.updateTabsHeight()
+  }
+  componentDidUpdate(prevProps) {
+    if (Boolean(prevProps.tabs) !== Boolean(this.props.tabs)) {
+      this.updateTabsHeight()
+    }
+  }
+  updateTabsHeight() {
+    const el = this._tabsRef.current
+    if (el) {
+      this.setState({ tabsHeight: el.clientHeight })
+    }
+  }
+  render() {
+    const { tabsHeight } = this.state
+    const {
+      children,
+      endContent,
+      title,
+      onTitleClick,
+      tabs,
+      ...props
+    } = this.props
+    return (
+      <InAppBarContext.Provider value={true}>
         <div
           css={`
             display: flex;
-            align-items: center;
-            padding-left: 30px;
+            flex-direction: column;
+            width: 100%;
+            min-height: ${BAR_HEIGHT}px;
+            background: ${theme.contentBackground};
+            border-bottom: 1px solid ${theme.contentBorder};
+            ${unselectable()};
           `}
         >
-          <AppBarTitle
-            chevron={Boolean(children)}
-            clickable={Boolean(onTitleClick)}
-            onClick={onTitleClick}
+          <div
+            css={`
+              display: flex;
+              align-items: center;
+              justify-content: flex-start;
+              width: 100%;
+              height: ${BAR_HEIGHT - 1}px;
+            `}
+            {...props}
           >
-            {typeof title === 'string' ? (
-              <Text size="xxlarge">{title}</Text>
-            ) : (
-              title
+            {title && (
+              <div
+                css={`
+                  display: flex;
+                  align-items: center;
+                  padding-left: 30px;
+                `}
+              >
+                <AppBarTitle
+                  chevron={Boolean(children)}
+                  clickable={Boolean(onTitleClick)}
+                  onClick={onTitleClick}
+                >
+                  {typeof title === 'string' ? (
+                    <Text size="xxlarge">{title}</Text>
+                  ) : (
+                    title
+                  )}
+                </AppBarTitle>
+              </div>
             )}
-          </AppBarTitle>
+            {children}
+            {endContent && (
+              <div
+                css={`
+                  margin-left: auto;
+                  padding-right: 30px;
+                `}
+              >
+                {endContent}
+              </div>
+            )}
+          </div>
+          <Transition
+            items={tabs}
+            from={{ opacity: 0, height: 0 }}
+            enter={{ opacity: 1, height: tabsHeight || 'auto' }}
+            leave={{ opacity: 0, height: 0 }}
+            initial={null}
+            config={springs.smooth}
+            native
+          >
+            {tabs =>
+              tabs &&
+              (styles => (
+                <TabsWrapper style={styles}>
+                  <div
+                    ref={this._tabsRef}
+                    css={`
+                      /*margin-bottom: -1px;*/
+                    `}
+                  >
+                    {tabs}
+                  </div>
+                </TabsWrapper>
+              ))
+            }
+          </Transition>
         </div>
-      )}
-      {children}
-      {endContent && (
-        <div
-          css={`
-            margin-left: auto;
-            padding-right: 30px;
-          `}
-        >
-          {endContent}
-        </div>
-      )}
-    </div>
-    {tabs}
-  </div>
-)
+      </InAppBarContext.Provider>
+    )
+  }
+}
 
 AppBar.propTypes = {
   children: PropTypes.node,
@@ -100,5 +154,9 @@ const AppBarTitle = PublicUrl.hocWrap(styled.h1`
   background-repeat: no-repeat;
   cursor: ${({ clickable }) => (clickable ? 'pointer' : 'default')};
 `)
+
+const TabsWrapper = styled(animated.div)`
+  overflow: hidden;
+`
 
 export default AppBar
