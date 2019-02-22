@@ -22,11 +22,15 @@ const StyledAppBar = styled.div`
 const StyledAppBarStart = styled.div`
   display: flex;
   align-items: center;
-  padding-left: 30px;
+  height: 100%;
+  padding-left: ${({ padding }) => `${padding}px`};
 `
 const StyledAppBarEnd = styled.div`
+  display: flex;
+  align-items: center;
+  height: 100%;
   margin-left: auto;
-  padding-right: 30px;
+  padding-right: ${({ padding }) => `${padding}px`};
 `
 
 const StyledAppBarTitle = PublicUrl.hocWrap(styled.h1`
@@ -40,10 +44,17 @@ const StyledAppBarTitle = PublicUrl.hocWrap(styled.h1`
   cursor: ${({ clickable }) => (clickable ? 'pointer' : 'default')};
 `)
 
-const AppBar = ({ children, endContent, title, onTitleClick, ...props }) => (
+const AppBar = ({
+  children,
+  padding,
+  endContent,
+  title,
+  onTitleClick,
+  ...props
+}) => (
   <StyledAppBar {...props}>
     {title && (
-      <StyledAppBarStart>
+      <StyledAppBarStart padding={padding}>
         <StyledAppBarTitle
           chevron={Boolean(children)}
           clickable={Boolean(onTitleClick)}
@@ -58,20 +69,24 @@ const AppBar = ({ children, endContent, title, onTitleClick, ...props }) => (
       </StyledAppBarStart>
     )}
     {children}
-    {endContent && <StyledAppBarEnd>{endContent}</StyledAppBarEnd>}
+    {endContent && (
+      <StyledAppBarEnd padding={padding}>{endContent}</StyledAppBarEnd>
+    )}
   </StyledAppBar>
 )
 
 AppBar.propTypes = {
   children: PropTypes.node,
-  title: PropTypes.node,
   endContent: PropTypes.node,
   onTitleClick: PropTypes.func,
+  padding: PropTypes.number,
+  title: PropTypes.node,
 }
 
 AppBar.defaultProps = {
-  title: '',
   onTitleClick: () => {},
+  padding: 30,
+  title: '',
 }
 
 export default AppBar
