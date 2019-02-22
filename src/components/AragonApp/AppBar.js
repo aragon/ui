@@ -39,9 +39,10 @@ class AppBar extends React.Component {
     const {
       children,
       endContent,
-      title,
       onTitleClick,
+      padding,
       tabs,
+      title,
       ...props
     } = this.props
     return (
@@ -72,7 +73,8 @@ class AppBar extends React.Component {
                 css={`
                   display: flex;
                   align-items: center;
-                  padding-left: 30px;
+                  height: 100%;
+                  padding-left: ${padding}px;
                 `}
               >
                 <AppBarTitle
@@ -92,8 +94,11 @@ class AppBar extends React.Component {
             {endContent && (
               <div
                 css={`
+                  display: flex;
+                  align-items: center;
+                  height: 100%;
                   margin-left: auto;
-                  padding-right: 30px;
+                  padding-right: ${padding}px;
                 `}
               >
                 {endContent}
@@ -133,15 +138,17 @@ class AppBar extends React.Component {
 
 AppBar.propTypes = {
   children: PropTypes.node,
-  title: PropTypes.node,
   endContent: PropTypes.node,
   onTitleClick: PropTypes.func,
+  padding: PropTypes.number,
   tabs: PropTypes.element,
+  title: PropTypes.node,
 }
 
 AppBar.defaultProps = {
-  title: '',
   onTitleClick: noop,
+  padding: 30,
+  title: '',
 }
 
 const AppBarTitle = PublicUrl.hocWrap(styled.h1`

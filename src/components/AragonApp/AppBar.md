@@ -63,3 +63,9 @@ const App = () => (
   <AppBar title="Aragon Dashboard" endContent={<LoginButton />} />
 )
 ```
+
+### `padding`
+
+- Type: `Number`
+
+Sets the padding you want on both sides of the AppBar.

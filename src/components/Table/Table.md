@@ -58,3 +58,10 @@ const MyTable = (props) => (
   </Table>
 )
 ```
+
+### `noSideBorders`
+
+- Type: `Boolean`
+- Default: `false`
+
+Set this to `true` to remove the borders on the side of the table. Useful when the table need to take the full width of the screen.
