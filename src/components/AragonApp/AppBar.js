@@ -64,13 +64,25 @@ class AppBar extends React.Component {
       <InAppBarContext.Provider value={true}>
         <div
           css={`
+            overflow: hidden;
             display: flex;
             flex-direction: column;
             width: 100%;
             min-height: ${BAR_HEIGHT}px;
             background: ${theme.contentBackground};
-            border-bottom: 1px solid ${theme.contentBorder};
             ${unselectable()};
+
+            /* We are using an “inner border” to allow components like TabBar
+               to draw over the border while having overflow:hidden set. */
+            padding-bottom: 1px;
+            &:after {
+              content: '';
+              position: absolute;
+              left: 0;
+              right: 0;
+              bottom: 0;
+              border-bottom: 1px solid ${theme.contentBorder};
+            }
           `}
         >
           <div
@@ -133,14 +145,7 @@ class AppBar extends React.Component {
               tabs &&
               (styles => (
                 <TabsWrapper style={styles}>
-                  <div
-                    ref={this._tabsRef}
-                    css={`
-                      /*margin-bottom: -1px;*/
-                    `}
-                  >
-                    {tabs}
-                  </div>
+                  <div ref={this._tabsRef}>{tabs}</div>
                 </TabsWrapper>
               ))
             }
@@ -163,7 +168,8 @@ const AppBarTitle = PublicUrl.hocWrap(styled.h1`
 `)
 
 const TabsWrapper = styled(animated.div)`
-  overflow: hidden;
+  position: relative;
+  z-index: 1;
 `
 
 export default AppBar
