@@ -5,28 +5,34 @@ import { theme } from '../../theme'
 import { IconClose } from '../../icons'
 import SafeLink from '../Link/SafeLink'
 import Popover from '../Popover/Popover'
+import Button from '../Button/Button'
 import ButtonIcon from '../Button/ButtonIcon'
 import AddressField from '../AddressField/AddressField'
 import Badge from '../Badge/Badge'
+import PopoverActionType from './PopoverActionType'
 
 class IdentityBadgePopover extends React.PureComponent {
   static propTypes = {
     address: PropTypes.string,
-    visible: PropTypes.bool,
-    opener: PropTypes.instanceOf(Element),
-    onClose: PropTypes.func,
-    networkType: PropTypes.string,
     connectedAccount: PropTypes.bool,
+    popoverAction: PopoverActionType,
+    networkType: PropTypes.string,
+    onClose: PropTypes.func,
+    opener: PropTypes.instanceOf(Element),
+    visible: PropTypes.bool,
   }
   render() {
     const {
       address,
-      visible,
-      opener,
-      onClose,
-      networkType,
       connectedAccount,
+      popoverAction,
+      networkType,
+      onClose,
+      opener,
+      visible,
     } = this.props
+    const { title = 'Address' } = popoverAction || {}
+
     return (
       <Popover visible={visible} opener={opener} onClose={onClose}>
         <section
@@ -62,7 +68,7 @@ class IdentityBadgePopover extends React.PureComponent {
                 color: ${theme.textSecondary};
               `}
             >
-              Address
+              {title}
             </h1>
             {connectedAccount && (
               <Badge.Identity
@@ -95,9 +101,25 @@ class IdentityBadgePopover extends React.PureComponent {
               See on Etherscan
             </SafeLink>
           </p>
+          {popoverAction && (
+            <Button
+              mode="outline"
+              onClick={this.handlePopoverActionClick(onClose)}
+            >
+              {popoverAction.label}
+            </Button>
+          )}
         </section>
       </Popover>
     )
+  }
+
+  handlePopoverActionClick = onClose => () => {
+    onClose()
+    const {
+      popoverAction: { onClick = () => {} },
+    } = this.props
+    onClick()
   }
 }
 
