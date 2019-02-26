@@ -7,14 +7,16 @@ import Text from '../Text/Text'
 import EthIdenticon from '../EthIdenticon/EthIdenticon'
 import ButtonBase from '../Button/ButtonBase'
 import IdentityBadgePopover from './IdentityBadgePopover'
+import PopoverActionType from './PopoverActionType'
 
 class IdentityBadge extends React.PureComponent {
   static propTypes = {
+    connectedAccount: PropTypes.bool,
+    popoverAction: PopoverActionType,
     entity: PropTypes.string,
-    shorten: PropTypes.bool,
     fontSize: PropTypes.string,
     networkType: PropTypes.string,
-    connectedAccount: PropTypes.bool,
+    shorten: PropTypes.bool,
   }
   static defaultProps = {
     entity: '',
@@ -34,11 +36,12 @@ class IdentityBadge extends React.PureComponent {
   render() {
     const { opened } = this.state
     const {
+      connectedAccount,
+      popoverAction,
       entity,
-      shorten,
       fontSize,
       networkType,
-      connectedAccount,
+      shorten,
     } = this.props
     const address = isAddress(entity) ? entity : null
 
@@ -72,6 +75,7 @@ class IdentityBadge extends React.PureComponent {
             networkType={networkType}
             opener={this._element.current}
             onClose={this.handleClose}
+            popoverAction={popoverAction}
           />
         )}
       </React.Fragment>
