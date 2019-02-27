@@ -25,7 +25,7 @@ Install it from npm:
 npm install --save @aragon/ui
 ```
 
-Copy its assets in your public directory:
+Copy its assets into your public directory:
 
 ```sh
 npx copy-aragon-ui-assets ./public
