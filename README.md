@@ -23,6 +23,7 @@ Install it from npm:
 
 ```sh
 npm install --save @aragon/ui
+```
 
 Copy its assets in your public directory:
 
