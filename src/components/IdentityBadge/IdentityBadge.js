@@ -15,6 +15,7 @@ class IdentityBadge extends React.PureComponent {
     popoverAction: PopoverActionType,
     entity: PropTypes.string,
     fontSize: PropTypes.string,
+    customLabel: PropTypes.string,
     networkType: PropTypes.string,
     shorten: PropTypes.bool,
   }
@@ -40,10 +41,13 @@ class IdentityBadge extends React.PureComponent {
       popoverAction,
       entity,
       fontSize,
+      customLabel,
       networkType,
       shorten,
     } = this.props
     const address = isAddress(entity) ? entity : null
+    const label =
+      customLabel || (address && shorten ? shortenAddress(address) : entity)
 
     return (
       <React.Fragment>
@@ -62,9 +66,7 @@ class IdentityBadge extends React.PureComponent {
                 <EthIdenticon scale={1} address={address} />
               </Identicon>
             )}
-            <Label size={fontSize}>
-              {address && shorten ? shortenAddress(address) : entity}
-            </Label>
+            <Label size={fontSize}>{label}</Label>
           </Main>
         </ButtonBase>
         {address && (
