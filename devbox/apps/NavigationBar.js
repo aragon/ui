@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import {
   AppBar,
@@ -6,67 +6,76 @@ import {
   Badge,
   Button,
   NavigationBar,
+  IconMenu,
+  ButtonIcon,
   SidePanel,
   unselectable,
 } from '@aragon/ui'
 
-class App extends React.Component {
-  state = {
-    items: ['Level 1'],
-  }
-  addLevel(items) {
-    const label = `Level ${items.length + 1}`
-    return [
-      ...items,
-      items.length === 1 ? (
-        <span style={{ display: 'flex', alignItems: 'center' }}>
-          <span style={{ marginRight: '20px' }}>{label}</span>
-          <Badge.App>ANT</Badge.App>
-        </span>
-      ) : (
-        label
-      ),
-    ]
-  }
-  removeLevel(items) {
-    return items.length > 1 ? items.slice(0, -1) : items
-  }
-  reset = () => {
-    this.setState(({ items }) => ({ items: ['Level 1'] }))
-  }
-  forward = () => {
-    this.setState(({ items }) => ({ items: this.addLevel(items) }))
-  }
-  backward = () => {
-    this.setState(({ items }) => ({ items: this.removeLevel(items) }))
-  }
-  render() {
-    const { items } = this.state
-    return (
-      <AppView
-        appBar={
-          <AppBar>
-            <NavigationBar items={items} onBack={this.backward} />
-          </AppBar>
+const useItems = addItem => {
+  const [items, setItems] = useState([addItem(1)])
+  return [
+    items,
+    {
+      reset() {
+        setItems([addItem(1)])
+      },
+      forward() {
+        setItems([...items, addItem(items.length + 1)])
+      },
+      backward() {
+        if (items.length > 1) {
+          setItems(items.slice(0, -1))
         }
-      >
-        <Main>
-          <div>
-            <button onClick={this.backward} disabled={items.length < 2}>
-              ⬅
-            </button>
-            <button onClick={this.reset} disabled={items.length < 2}>
-              reset
-            </button>
-            <button onClick={this.forward}>➡</button>
-          </div>
-        </Main>
-      </AppView>
-    )
-  }
+      },
+    },
+  ]
 }
 
-const Main = styled.div`
+const Item = ({ level }) => (
+  <span css="display: flex; align-items: center ">
+    {level === 1 && (
+      <ButtonIcon label="Menu" css="margin: 0 10px 0 -10px">
+        <IconMenu />
+      </ButtonIcon>
+    )}
+    <span>Level {level}</span>
+    {level === 2 && (
+      <span css="margin-left: 20px">
+        <Badge.App>ANT</Badge.App>
+      </span>
+    )}
+  </span>
+)
+
+const App = () => {
+  const [items, { back, forward, reset }] = useItems(level => (
+    <Item level={level} />
+  ))
+  return (
+    <AppView
+      appBar={
+        <AppBar>
+          <NavigationBar items={items} onBack={back} />
+        </AppBar>
+      }
+    >
+      <Demo>
+        <div>
+          <button onClick={back} disabled={items.length < 2}>
+            ⬅
+          </button>
+          <button onClick={reset} disabled={items.length < 2}>
+            reset
+          </button>
+          <button onClick={forward}>➡</button>
+        </div>
+      </Demo>
+    </AppView>
+  )
+}
+
+const Demo = styled.div`
   ${unselectable};
   display: flex;
   flex-direction: column;
