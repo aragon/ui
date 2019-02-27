@@ -3,13 +3,11 @@ import PropTypes from 'prop-types'
 import getDisplayName from 'react-display-name'
 import { prefixUrl } from '../../utils/url'
 
-const DEFAULT_URL = ''
-
-const { Provider, Consumer } = React.createContext(DEFAULT_URL)
+const { Provider, Consumer } = React.createContext('')
 
 class PublicUrlProvider extends React.Component {
   static propTypes = {
-    url: PropTypes.string,
+    url: PropTypes.string.isRequired,
     children: PropTypes.node,
   }
   render() {
