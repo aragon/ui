@@ -1,6 +1,6 @@
 # NavigationBar
 
-A component to handle the navigation state in the header.
+Handles the navigation state in the header. This component can work independently, but is meant to be used as a child of the `AppBar` component.
 
 ## Usage
 
