@@ -47,7 +47,7 @@ const App = () => (
 
 Open https://ui.aragon.org/ to see the list of the available components and learn how to use them.
 
-### Aragon UI assets
+### Assets
 
 Aragon UI require some assets (e.g. fonts) in order to work properly. These need to be copied where they can be accessed by the library, like the `public/` directory of a project using [Create React App](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#adding-assets-outside-of-the-module-system).
 
