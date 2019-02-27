@@ -4,26 +4,27 @@ import {
   AppBar,
   AppView,
   Badge,
-  Button,
   NavigationBar,
+  Field,
   IconMenu,
   ButtonIcon,
   SidePanel,
+  Checkbox,
   unselectable,
 } from '@aragon/ui'
 
-const useItems = addItem => {
-  const [items, setItems] = useState([addItem(1)])
+const useItems = () => {
+  const [items, setItems] = useState([1])
   return [
     items,
     {
       reset() {
-        setItems([addItem(1)])
+        setItems([1])
       },
       forward() {
-        setItems([...items, addItem(items.length + 1)])
+        setItems([...items, items.length + 1])
       },
-      backward() {
+      back() {
         if (items.length > 1) {
           setItems(items.slice(0, -1))
         }
@@ -32,48 +33,85 @@ const useItems = addItem => {
   ]
 }
 
-const Item = ({ level }) => (
+const MenuButton = () => (
+  <ButtonIcon label="Menu" css="margin: 0 10px 0 -10px">
+    <IconMenu />
+  </ButtonIcon>
+)
+
+const DemoBadge = () => (
+  <span css="margin-left: 20px">
+    <Badge.App>ANT</Badge.App>
+  </span>
+)
+
+const Item = ({ showMenu, showBadge, level }) => (
   <span css="display: flex; align-items: center ">
-    {level === 1 && (
-      <ButtonIcon label="Menu" css="margin: 0 10px 0 -10px">
-        <IconMenu />
-      </ButtonIcon>
-    )}
+    {showMenu && <MenuButton />}
     <span>Level {level}</span>
-    {level === 2 && (
-      <span css="margin-left: 20px">
-        <Badge.App>ANT</Badge.App>
-      </span>
-    )}
+    {showBadge && <DemoBadge />}
   </span>
 )
 
 const App = () => {
-  const [items, { back, forward, reset }] = useItems(level => (
-    <Item level={level} />
-  ))
+  const [showMenu, setShowMenu] = useState(false)
+  const [items, { back, forward, reset }] = useItems()
   return (
     <AppView
       appBar={
         <AppBar>
-          <NavigationBar items={items} onBack={back} />
+          <NavigationBar
+            items={items.map(level => (
+              <Item
+                level={level}
+                showMenu={showMenu && level === 1}
+                showBadge={level === 2}
+              />
+            ))}
+            onBack={back}
+          />
         </AppBar>
       }
     >
       <Demo>
-        <div>
-          <button onClick={back} disabled={items.length < 2}>
-            ⬅
-          </button>
-          <button onClick={reset} disabled={items.length < 2}>
-            reset
-          </button>
-          <button onClick={forward}>➡</button>
+        <div css="display: flex; flex-direction: column">
+          <div>
+            <Button onClick={back} disabled={items.length < 2}>
+              ⬅
+            </Button>
+            <Button onClick={reset} disabled={items.length < 2}>
+              reset
+            </Button>
+            <Button onClick={forward}>➡</Button>
+          </div>
+          <div css="align-self: flex-start;margin-top: 20px">
+            <label css="cursor: pointer">
+              <Checkbox onChange={setShowMenu} checked={showMenu} /> Menu button
+            </label>
+          </div>
         </div>
       </Demo>
     </AppView>
   )
 }
+
+const Button = styled.button`
+  margin-right: 20px;
+  color: #333;
+  background: #eee;
+  border-radius: 3px;
+  padding: 10px 20px;
+  cursor: pointer;
+  border: 0;
+  outline: 0;
+  &:active {
+    background: #e5e5e5;
+  }
+  &:disabled {
+    color: #999;
+    border-color: #999;
+  }
+`
 
 const Demo = styled.div`
   ${unselectable};
@@ -82,26 +120,6 @@ const Demo = styled.div`
   justify-content: center;
   align-items: center;
   height: 400px;
-
-  button {
-    margin-right: 20px;
-    color: #333;
-    background: #eee;
-    border-radius: 3px;
-    padding: 10px 20px;
-    cursor: pointer;
-    border: 0;
-    outline: 0;
-  }
-
-  button:active {
-    background: #e5e5e5;
-  }
-
-  button:disabled {
-    color: #999;
-    border-color: #999;
-  }
 `
 
 export default App
