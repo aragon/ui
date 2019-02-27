@@ -108,6 +108,7 @@ const Title = styled.span`
 `
 
 const Label = styled.span`
+  padding-left: 30px;
   white-space: nowrap;
   font-size: 22px;
 `
