@@ -47,7 +47,7 @@ class PageAppBar extends React.Component {
     const { title } = this.props
     return (
       <Page title={title} readme={readme}>
-        <Page.Demo>
+        <Page.Demo height={200}>
           <AppView
             appBar={
               <AppBar padding={10}>
