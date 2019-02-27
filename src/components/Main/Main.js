@@ -25,7 +25,7 @@ Main.propTypes = {
 }
 Main.defaultProps = {
   legacyFonts: false,
-  assetsUrl: '/aragon-ui/',
+  assetsUrl: './aragon-ui/',
 }
 
 export default Main

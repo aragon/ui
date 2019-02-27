@@ -17,39 +17,61 @@ Used by:
 
 ## Getting Started
 
+### Quick setup
+
 Install it from npm:
 
 ```sh
 npm install --save @aragon/ui
 ```
 
-Aragon UI require some assets (e.g. fonts) in order to work properly. These need to be copied where they can be accessed by the library, like the `public/` directory of a project using [Create React App](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#adding-assets-outside-of-the-module-system).
-
-To copy these assets, use the `copy-aragon-ui-assets` command provided by Aragon UI:
+Copy its assets into your public directory:
 
 ```sh
 npx copy-aragon-ui-assets ./public
 ```
 
-This emplacement has to be communicated to the library using `<AragonApp>`, so that the assets can be accessed by the components down the tree.
+Wrap your app with the `Main` component:
 
 ```jsx
-import { AragonApp } from '@aragon/ui'
+import { Main } from '@aragon/ui'
 
 const App = () => (
-  <AragonApp publicUrl="/aragon-ui-assets/">
-    <h1>Hello Aragon UI</h1>
-  </AragonApp>
+  <Main>
+    <h1>Hello Aragon UI!</h1>
+  </Main>
 )
 ```
 
 *Your project is now ready to use Aragon UI. 💫*
 
-Open https://ui.aragon.org/ for a list of the available components and how to use them.
+Open https://ui.aragon.org/ to see the list of the available components and learn how to use them.
 
-### Assets Synchronization (optional)
+### Assets
 
-You may also want to add it as a step in your project scripts, so that upgrading Aragon UI can be done without having to worry about these.
+Aragon UI require some assets (e.g. fonts) in order to work properly. These need to be copied where they can be accessed by the library, like the `public/` directory of a project using [Create React App](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#adding-assets-outside-of-the-module-system).
+
+Copy these assets using the provided `copy-aragon-ui-assets` command:
+
+```sh
+npx copy-aragon-ui-assets ./public
+```
+
+By default, it will create a directory named `aragon-ui` in the specified directory.
+
+This emplacement is communicated to the library through the `<Main>` component. The default path is `./aragon-ui/`, but you can change it using the `assetsUrl` prop:
+
+```jsx
+import { Main } from '@aragon/ui'
+
+const App = () => (
+  <Main assetsUrl="http://example.com/aragon-ui-assets/">
+    <h1>Hello Aragon UI!</h1>
+  </Main>
+)
+```
+
+You may also want to add it as a build step in your project, so that Aragon UI can be upgraded without having to worry about this.
 
 ```json
 "scripts": {
