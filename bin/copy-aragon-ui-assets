@@ -51,7 +51,7 @@ async function main(argv, argspec) {
   const destination = path.resolve(
     process.cwd(),
     args._[0],
-    args['--dirname'] || 'aragon-ui-assets'
+    args['--dirname'] || 'aragon-ui'
   )
 
   const copy = commandExists('rsync') ? rsyncCopy : nodeCopy
