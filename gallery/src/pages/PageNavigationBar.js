@@ -10,6 +10,7 @@ import {
 } from '@aragon/ui'
 import Page from 'comps/Page/Page'
 import Container from 'comps/Page/DemoContainer'
+import readme from 'ui-src/components/NavigationBar/README.md'
 
 class PageAppBar extends React.Component {
   state = {
@@ -45,7 +46,7 @@ class PageAppBar extends React.Component {
     const { items } = this.state
     const { title } = this.props
     return (
-      <Page title={title}>
+      <Page title={title} readme={readme}>
         <Page.Demo>
           <AppView
             appBar={
