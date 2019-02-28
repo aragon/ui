@@ -30,6 +30,12 @@ const App = () => (
 )
 ```
 
+### `tabs`
+
+- Type: `TabBar`
+
+Pass a `TabBar` instance to get tabs integrated to the header.
+
 ### `onTitleClick`
 
 - Type: `Function`
@@ -57,3 +63,9 @@ const App = () => (
   <AppBar title="Aragon Dashboard" endContent={<LoginButton />} />
 )
 ```
+
+### `padding`
+
+- Type: `Number`
+
+Sets the padding you want on both sides of the AppBar.

@@ -68,6 +68,18 @@ var Apps = function Apps(props) {
   })));
 };
 
+var ArrowRight = function ArrowRight(props) {
+  return React.createElement("svg", _extends_1({
+    width: 12,
+    height: 19,
+    viewBox: "0 0 12 19",
+    fill: "none"
+  }, props), React.createElement("path", {
+    d: "M1.613 1L10.5 8.988m-9.049 8.779l9-8.795",
+    stroke: "currentColor"
+  }));
+};
+
 var Attention = function Attention(props) {
   return React.createElement("svg", _extends_1({
     width: 22,
@@ -236,6 +248,17 @@ var Identity = function Identity(props) {
   })));
 };
 
+var Menu = function Menu(props) {
+  return React.createElement("svg", _extends_1({
+    width: 18,
+    height: 14,
+    viewBox: "0 0 18 14"
+  }, props), React.createElement("path", {
+    d: "M1 1h16M1 7h16M1 13h16",
+    stroke: "currentColor"
+  }));
+};
+
 var Notifications = function Notifications(props) {
   return React.createElement("svg", _extends_1({
     width: 22,
@@ -271,6 +294,17 @@ var Permissions = function Permissions(props) {
   }), React.createElement("path", {
     d: "M5 7v8.034M8 7v8.275M11 7v8.034M14 7v8.275M17 7v8.275"
   }))));
+};
+
+var Plus = function Plus(props) {
+  return React.createElement("svg", _extends_1({
+    width: 24,
+    height: 24,
+    viewBox: "0 0 24 24"
+  }, props), React.createElement("path", {
+    d: "M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z",
+    fill: "currentColor"
+  }));
 };
 
 var Remove = function Remove(props) {
@@ -4259,910 +4293,40 @@ if (process.env.NODE_ENV !== 'production') {
 }
 });
 
-function createCommonjsModule$1(fn, module) {
-	return module = { exports: {} }, fn(module, module.exports), module.exports;
+function _inheritsLoose(subClass, superClass) {
+  subClass.prototype = Object.create(superClass.prototype);
+  subClass.prototype.constructor = subClass;
+  subClass.__proto__ = superClass;
 }
 
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- * 
- */
-
-function makeEmptyFunction(arg) {
-  return function () {
-    return arg;
-  };
-}
-
-/**
- * This function accepts and discards inputs; it has no side effects. This is
- * primarily useful idiomatically for overridable function endpoints which
- * always need to be callable, since JS lacks a null-call idiom ala Cocoa.
- */
-var emptyFunction$1 = function emptyFunction() {};
-
-emptyFunction$1.thatReturns = makeEmptyFunction;
-emptyFunction$1.thatReturnsFalse = makeEmptyFunction(false);
-emptyFunction$1.thatReturnsTrue = makeEmptyFunction(true);
-emptyFunction$1.thatReturnsNull = makeEmptyFunction(null);
-emptyFunction$1.thatReturnsThis = function () {
-  return this;
-};
-emptyFunction$1.thatReturnsArgument = function (arg) {
-  return arg;
-};
-
-var emptyFunction_1 = emptyFunction$1;
-
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-/**
- * Use invariant() to assert state which your program assumes to be true.
- *
- * Provide sprintf-style format (only %s is supported) and arguments
- * to provide information about what broke and what you were
- * expecting.
- *
- * The invariant message will be stripped in production, but the invariant
- * will remain to ensure logic does not differ in production.
- */
-
-var validateFormat = function validateFormat(format) {};
-
-if (process.env.NODE_ENV !== 'production') {
-  validateFormat = function validateFormat(format) {
-    if (format === undefined) {
-      throw new Error('invariant requires an error message argument');
-    }
-  };
-}
-
-function invariant(condition, format, a, b, c, d, e, f) {
-  validateFormat(format);
-
-  if (!condition) {
-    var error;
-    if (format === undefined) {
-      error = new Error('Minified exception occurred; use the non-minified dev environment ' + 'for the full error message and additional helpful warnings.');
-    } else {
-      var args = [a, b, c, d, e, f];
-      var argIndex = 0;
-      error = new Error(format.replace(/%s/g, function () {
-        return args[argIndex++];
-      }));
-      error.name = 'Invariant Violation';
-    }
-
-    error.framesToPop = 1; // we don't care about invariant's own frame
-    throw error;
+function _assertThisInitialized(self) {
+  if (self === void 0) {
+    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
   }
+
+  return self;
 }
 
-var invariant_1 = invariant;
-
-/**
- * Similar to invariant but only logs a warning if the condition is not met.
- * This can be used to log issues in development environments in critical
- * paths. Removing the logging code for production environments will keep the
- * same logic and follow the same code paths.
- */
-
-var warning = emptyFunction_1;
-
-if (process.env.NODE_ENV !== 'production') {
-  var printWarning$2 = function printWarning(format) {
-    for (var _len = arguments.length, args = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-      args[_key - 1] = arguments[_key];
-    }
-
-    var argIndex = 0;
-    var message = 'Warning: ' + format.replace(/%s/g, function () {
-      return args[argIndex++];
+function _defineProperty(obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
     });
-    if (typeof console !== 'undefined') {
-      console.error(message);
-    }
-    try {
-      // --- Welcome to debugging React ---
-      // This error was thrown as a convenience so that you can use this stack
-      // to find the callsite that caused this warning to fire.
-      throw new Error(message);
-    } catch (x) {}
-  };
+  } else {
+    obj[key] = value;
+  }
 
-  warning = function warning(condition, format) {
-    if (format === undefined) {
-      throw new Error('`warning(condition, format, ...args)` requires a warning ' + 'message argument');
-    }
-
-    if (format.indexOf('Failed Composite propType: ') === 0) {
-      return; // Ignore CompositeComponent proptype check.
-    }
-
-    if (!condition) {
-      for (var _len2 = arguments.length, args = Array(_len2 > 2 ? _len2 - 2 : 0), _key2 = 2; _key2 < _len2; _key2++) {
-        args[_key2 - 2] = arguments[_key2];
-      }
-
-      printWarning$2.apply(undefined, [format].concat(args));
-    }
-  };
+  return obj;
 }
-
-var warning_1 = warning;
-
-/*
-object-assign
-(c) Sindre Sorhus
-@license MIT
-*/
-
-/* eslint-disable no-unused-vars */
-var getOwnPropertySymbols$1 = Object.getOwnPropertySymbols;
-var hasOwnProperty$1 = Object.prototype.hasOwnProperty;
-var propIsEnumerable$1 = Object.prototype.propertyIsEnumerable;
-
-function toObject$1(val) {
-	if (val === null || val === undefined) {
-		throw new TypeError('Object.assign cannot be called with null or undefined');
-	}
-
-	return Object(val);
-}
-
-function shouldUseNative$1() {
-	try {
-		if (!Object.assign) {
-			return false;
-		}
-
-		// Detect buggy property enumeration order in older V8 versions.
-
-		// https://bugs.chromium.org/p/v8/issues/detail?id=4118
-		var test1 = new String('abc');  // eslint-disable-line no-new-wrappers
-		test1[5] = 'de';
-		if (Object.getOwnPropertyNames(test1)[0] === '5') {
-			return false;
-		}
-
-		// https://bugs.chromium.org/p/v8/issues/detail?id=3056
-		var test2 = {};
-		for (var i = 0; i < 10; i++) {
-			test2['_' + String.fromCharCode(i)] = i;
-		}
-		var order2 = Object.getOwnPropertyNames(test2).map(function (n) {
-			return test2[n];
-		});
-		if (order2.join('') !== '0123456789') {
-			return false;
-		}
-
-		// https://bugs.chromium.org/p/v8/issues/detail?id=3056
-		var test3 = {};
-		'abcdefghijklmnopqrst'.split('').forEach(function (letter) {
-			test3[letter] = letter;
-		});
-		if (Object.keys(Object.assign({}, test3)).join('') !==
-				'abcdefghijklmnopqrst') {
-			return false;
-		}
-
-		return true;
-	} catch (err) {
-		// We don't expect any of the above to throw, but better to be safe.
-		return false;
-	}
-}
-
-var objectAssign$1 = shouldUseNative$1() ? Object.assign : function (target, source) {
-	var from;
-	var to = toObject$1(target);
-	var symbols;
-
-	for (var s = 1; s < arguments.length; s++) {
-		from = Object(arguments[s]);
-
-		for (var key in from) {
-			if (hasOwnProperty$1.call(from, key)) {
-				to[key] = from[key];
-			}
-		}
-
-		if (getOwnPropertySymbols$1) {
-			symbols = getOwnPropertySymbols$1(from);
-			for (var i = 0; i < symbols.length; i++) {
-				if (propIsEnumerable$1.call(from, symbols[i])) {
-					to[symbols[i]] = from[symbols[i]];
-				}
-			}
-		}
-	}
-
-	return to;
-};
 
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
- */
-
-var ReactPropTypesSecret$2 = 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED';
-
-var ReactPropTypesSecret_1$1 = ReactPropTypesSecret$2;
-
-if (process.env.NODE_ENV !== 'production') {
-  var invariant$1 = invariant_1;
-  var warning$1 = warning_1;
-  var ReactPropTypesSecret$1$1 = ReactPropTypesSecret_1$1;
-  var loggedTypeFailures$1 = {};
-}
-
-/**
- * Assert that the values match with the type specs.
- * Error messages are memorized and will only be shown once.
- *
- * @param {object} typeSpecs Map of name to a ReactPropType
- * @param {object} values Runtime values that need to be type-checked
- * @param {string} location e.g. "prop", "context", "child context"
- * @param {string} componentName Name of the component for error messages.
- * @param {?Function} getStack Returns the component stack.
- * @private
- */
-function checkPropTypes$1(typeSpecs, values, location, componentName, getStack) {
-  if (process.env.NODE_ENV !== 'production') {
-    for (var typeSpecName in typeSpecs) {
-      if (typeSpecs.hasOwnProperty(typeSpecName)) {
-        var error;
-        // Prop type validation may throw. In case they do, we don't want to
-        // fail the render phase where it didn't fail before. So we log it.
-        // After these have been cleaned up, we'll let them throw.
-        try {
-          // This is intentionally an invariant that gets caught. It's the same
-          // behavior as without this statement except with a better message.
-          invariant$1(typeof typeSpecs[typeSpecName] === 'function', '%s: %s type `%s` is invalid; it must be a function, usually from ' + 'the `prop-types` package, but received `%s`.', componentName || 'React class', location, typeSpecName, typeof typeSpecs[typeSpecName]);
-          error = typeSpecs[typeSpecName](values, typeSpecName, componentName, location, null, ReactPropTypesSecret$1$1);
-        } catch (ex) {
-          error = ex;
-        }
-        warning$1(!error || error instanceof Error, '%s: type specification of %s `%s` is invalid; the type checker ' + 'function must return `null` or an `Error` but returned a %s. ' + 'You may have forgotten to pass an argument to the type checker ' + 'creator (arrayOf, instanceOf, objectOf, oneOf, oneOfType, and ' + 'shape all require an argument).', componentName || 'React class', location, typeSpecName, typeof error);
-        if (error instanceof Error && !(error.message in loggedTypeFailures$1)) {
-          // Only monitor this failure once because there tends to be a lot of the
-          // same error.
-          loggedTypeFailures$1[error.message] = true;
-
-          var stack = getStack ? getStack() : '';
-
-          warning$1(false, 'Failed %s type: %s%s', location, error.message, stack != null ? stack : '');
-        }
-      }
-    }
-  }
-}
-
-var checkPropTypes_1$1 = checkPropTypes$1;
-
-var factoryWithTypeCheckers$1 = function(isValidElement, throwOnDirectAccess) {
-  /* global Symbol */
-  var ITERATOR_SYMBOL = typeof Symbol === 'function' && Symbol.iterator;
-  var FAUX_ITERATOR_SYMBOL = '@@iterator'; // Before Symbol spec.
-
-  /**
-   * Returns the iterator method function contained on the iterable object.
-   *
-   * Be sure to invoke the function with the iterable as context:
-   *
-   *     var iteratorFn = getIteratorFn(myIterable);
-   *     if (iteratorFn) {
-   *       var iterator = iteratorFn.call(myIterable);
-   *       ...
-   *     }
-   *
-   * @param {?object} maybeIterable
-   * @return {?function}
-   */
-  function getIteratorFn(maybeIterable) {
-    var iteratorFn = maybeIterable && (ITERATOR_SYMBOL && maybeIterable[ITERATOR_SYMBOL] || maybeIterable[FAUX_ITERATOR_SYMBOL]);
-    if (typeof iteratorFn === 'function') {
-      return iteratorFn;
-    }
-  }
-
-  /**
-   * Collection of methods that allow declaration and validation of props that are
-   * supplied to React components. Example usage:
-   *
-   *   var Props = require('ReactPropTypes');
-   *   var MyArticle = React.createClass({
-   *     propTypes: {
-   *       // An optional string prop named "description".
-   *       description: Props.string,
-   *
-   *       // A required enum prop named "category".
-   *       category: Props.oneOf(['News','Photos']).isRequired,
-   *
-   *       // A prop named "dialog" that requires an instance of Dialog.
-   *       dialog: Props.instanceOf(Dialog).isRequired
-   *     },
-   *     render: function() { ... }
-   *   });
-   *
-   * A more formal specification of how these methods are used:
-   *
-   *   type := array|bool|func|object|number|string|oneOf([...])|instanceOf(...)
-   *   decl := ReactPropTypes.{type}(.isRequired)?
-   *
-   * Each and every declaration produces a function with the same signature. This
-   * allows the creation of custom validation functions. For example:
-   *
-   *  var MyLink = React.createClass({
-   *    propTypes: {
-   *      // An optional string or URI prop named "href".
-   *      href: function(props, propName, componentName) {
-   *        var propValue = props[propName];
-   *        if (propValue != null && typeof propValue !== 'string' &&
-   *            !(propValue instanceof URI)) {
-   *          return new Error(
-   *            'Expected a string or an URI for ' + propName + ' in ' +
-   *            componentName
-   *          );
-   *        }
-   *      }
-   *    },
-   *    render: function() {...}
-   *  });
-   *
-   * @internal
-   */
-
-  var ANONYMOUS = '<<anonymous>>';
-
-  // Important!
-  // Keep this list in sync with production version in `./factoryWithThrowingShims.js`.
-  var ReactPropTypes = {
-    array: createPrimitiveTypeChecker('array'),
-    bool: createPrimitiveTypeChecker('boolean'),
-    func: createPrimitiveTypeChecker('function'),
-    number: createPrimitiveTypeChecker('number'),
-    object: createPrimitiveTypeChecker('object'),
-    string: createPrimitiveTypeChecker('string'),
-    symbol: createPrimitiveTypeChecker('symbol'),
-
-    any: createAnyTypeChecker(),
-    arrayOf: createArrayOfTypeChecker,
-    element: createElementTypeChecker(),
-    instanceOf: createInstanceTypeChecker,
-    node: createNodeChecker(),
-    objectOf: createObjectOfTypeChecker,
-    oneOf: createEnumTypeChecker,
-    oneOfType: createUnionTypeChecker,
-    shape: createShapeTypeChecker,
-    exact: createStrictShapeTypeChecker,
-  };
-
-  /**
-   * inlined Object.is polyfill to avoid requiring consumers ship their own
-   * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is
-   */
-  /*eslint-disable no-self-compare*/
-  function is(x, y) {
-    // SameValue algorithm
-    if (x === y) {
-      // Steps 1-5, 7-10
-      // Steps 6.b-6.e: +0 != -0
-      return x !== 0 || 1 / x === 1 / y;
-    } else {
-      // Step 6.a: NaN == NaN
-      return x !== x && y !== y;
-    }
-  }
-  /*eslint-enable no-self-compare*/
-
-  /**
-   * We use an Error-like object for backward compatibility as people may call
-   * PropTypes directly and inspect their output. However, we don't use real
-   * Errors anymore. We don't inspect their stack anyway, and creating them
-   * is prohibitively expensive if they are created too often, such as what
-   * happens in oneOfType() for any type before the one that matched.
-   */
-  function PropTypeError(message) {
-    this.message = message;
-    this.stack = '';
-  }
-  // Make `instanceof Error` still work for returned errors.
-  PropTypeError.prototype = Error.prototype;
-
-  function createChainableTypeChecker(validate) {
-    if (process.env.NODE_ENV !== 'production') {
-      var manualPropTypeCallCache = {};
-      var manualPropTypeWarningCount = 0;
-    }
-    function checkType(isRequired, props, propName, componentName, location, propFullName, secret) {
-      componentName = componentName || ANONYMOUS;
-      propFullName = propFullName || propName;
-
-      if (secret !== ReactPropTypesSecret_1$1) {
-        if (throwOnDirectAccess) {
-          // New behavior only for users of `prop-types` package
-          invariant_1(
-            false,
-            'Calling PropTypes validators directly is not supported by the `prop-types` package. ' +
-            'Use `PropTypes.checkPropTypes()` to call them. ' +
-            'Read more at http://fb.me/use-check-prop-types'
-          );
-        } else if (process.env.NODE_ENV !== 'production' && typeof console !== 'undefined') {
-          // Old behavior for people using React.PropTypes
-          var cacheKey = componentName + ':' + propName;
-          if (
-            !manualPropTypeCallCache[cacheKey] &&
-            // Avoid spamming the console because they are often not actionable except for lib authors
-            manualPropTypeWarningCount < 3
-          ) {
-            warning_1(
-              false,
-              'You are manually calling a React.PropTypes validation ' +
-              'function for the `%s` prop on `%s`. This is deprecated ' +
-              'and will throw in the standalone `prop-types` package. ' +
-              'You may be seeing this warning due to a third-party PropTypes ' +
-              'library. See https://fb.me/react-warning-dont-call-proptypes ' + 'for details.',
-              propFullName,
-              componentName
-            );
-            manualPropTypeCallCache[cacheKey] = true;
-            manualPropTypeWarningCount++;
-          }
-        }
-      }
-      if (props[propName] == null) {
-        if (isRequired) {
-          if (props[propName] === null) {
-            return new PropTypeError('The ' + location + ' `' + propFullName + '` is marked as required ' + ('in `' + componentName + '`, but its value is `null`.'));
-          }
-          return new PropTypeError('The ' + location + ' `' + propFullName + '` is marked as required in ' + ('`' + componentName + '`, but its value is `undefined`.'));
-        }
-        return null;
-      } else {
-        return validate(props, propName, componentName, location, propFullName);
-      }
-    }
-
-    var chainedCheckType = checkType.bind(null, false);
-    chainedCheckType.isRequired = checkType.bind(null, true);
-
-    return chainedCheckType;
-  }
-
-  function createPrimitiveTypeChecker(expectedType) {
-    function validate(props, propName, componentName, location, propFullName, secret) {
-      var propValue = props[propName];
-      var propType = getPropType(propValue);
-      if (propType !== expectedType) {
-        // `propValue` being instance of, say, date/regexp, pass the 'object'
-        // check, but we can offer a more precise error message here rather than
-        // 'of type `object`'.
-        var preciseType = getPreciseType(propValue);
-
-        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + preciseType + '` supplied to `' + componentName + '`, expected ') + ('`' + expectedType + '`.'));
-      }
-      return null;
-    }
-    return createChainableTypeChecker(validate);
-  }
-
-  function createAnyTypeChecker() {
-    return createChainableTypeChecker(emptyFunction_1.thatReturnsNull);
-  }
-
-  function createArrayOfTypeChecker(typeChecker) {
-    function validate(props, propName, componentName, location, propFullName) {
-      if (typeof typeChecker !== 'function') {
-        return new PropTypeError('Property `' + propFullName + '` of component `' + componentName + '` has invalid PropType notation inside arrayOf.');
-      }
-      var propValue = props[propName];
-      if (!Array.isArray(propValue)) {
-        var propType = getPropType(propValue);
-        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + propType + '` supplied to `' + componentName + '`, expected an array.'));
-      }
-      for (var i = 0; i < propValue.length; i++) {
-        var error = typeChecker(propValue, i, componentName, location, propFullName + '[' + i + ']', ReactPropTypesSecret_1$1);
-        if (error instanceof Error) {
-          return error;
-        }
-      }
-      return null;
-    }
-    return createChainableTypeChecker(validate);
-  }
-
-  function createElementTypeChecker() {
-    function validate(props, propName, componentName, location, propFullName) {
-      var propValue = props[propName];
-      if (!isValidElement(propValue)) {
-        var propType = getPropType(propValue);
-        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + propType + '` supplied to `' + componentName + '`, expected a single ReactElement.'));
-      }
-      return null;
-    }
-    return createChainableTypeChecker(validate);
-  }
-
-  function createInstanceTypeChecker(expectedClass) {
-    function validate(props, propName, componentName, location, propFullName) {
-      if (!(props[propName] instanceof expectedClass)) {
-        var expectedClassName = expectedClass.name || ANONYMOUS;
-        var actualClassName = getClassName(props[propName]);
-        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + actualClassName + '` supplied to `' + componentName + '`, expected ') + ('instance of `' + expectedClassName + '`.'));
-      }
-      return null;
-    }
-    return createChainableTypeChecker(validate);
-  }
-
-  function createEnumTypeChecker(expectedValues) {
-    if (!Array.isArray(expectedValues)) {
-      process.env.NODE_ENV !== 'production' ? warning_1(false, 'Invalid argument supplied to oneOf, expected an instance of array.') : void 0;
-      return emptyFunction_1.thatReturnsNull;
-    }
-
-    function validate(props, propName, componentName, location, propFullName) {
-      var propValue = props[propName];
-      for (var i = 0; i < expectedValues.length; i++) {
-        if (is(propValue, expectedValues[i])) {
-          return null;
-        }
-      }
-
-      var valuesString = JSON.stringify(expectedValues);
-      return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of value `' + propValue + '` ' + ('supplied to `' + componentName + '`, expected one of ' + valuesString + '.'));
-    }
-    return createChainableTypeChecker(validate);
-  }
-
-  function createObjectOfTypeChecker(typeChecker) {
-    function validate(props, propName, componentName, location, propFullName) {
-      if (typeof typeChecker !== 'function') {
-        return new PropTypeError('Property `' + propFullName + '` of component `' + componentName + '` has invalid PropType notation inside objectOf.');
-      }
-      var propValue = props[propName];
-      var propType = getPropType(propValue);
-      if (propType !== 'object') {
-        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + propType + '` supplied to `' + componentName + '`, expected an object.'));
-      }
-      for (var key in propValue) {
-        if (propValue.hasOwnProperty(key)) {
-          var error = typeChecker(propValue, key, componentName, location, propFullName + '.' + key, ReactPropTypesSecret_1$1);
-          if (error instanceof Error) {
-            return error;
-          }
-        }
-      }
-      return null;
-    }
-    return createChainableTypeChecker(validate);
-  }
-
-  function createUnionTypeChecker(arrayOfTypeCheckers) {
-    if (!Array.isArray(arrayOfTypeCheckers)) {
-      process.env.NODE_ENV !== 'production' ? warning_1(false, 'Invalid argument supplied to oneOfType, expected an instance of array.') : void 0;
-      return emptyFunction_1.thatReturnsNull;
-    }
-
-    for (var i = 0; i < arrayOfTypeCheckers.length; i++) {
-      var checker = arrayOfTypeCheckers[i];
-      if (typeof checker !== 'function') {
-        warning_1(
-          false,
-          'Invalid argument supplied to oneOfType. Expected an array of check functions, but ' +
-          'received %s at index %s.',
-          getPostfixForTypeWarning(checker),
-          i
-        );
-        return emptyFunction_1.thatReturnsNull;
-      }
-    }
-
-    function validate(props, propName, componentName, location, propFullName) {
-      for (var i = 0; i < arrayOfTypeCheckers.length; i++) {
-        var checker = arrayOfTypeCheckers[i];
-        if (checker(props, propName, componentName, location, propFullName, ReactPropTypesSecret_1$1) == null) {
-          return null;
-        }
-      }
-
-      return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` supplied to ' + ('`' + componentName + '`.'));
-    }
-    return createChainableTypeChecker(validate);
-  }
-
-  function createNodeChecker() {
-    function validate(props, propName, componentName, location, propFullName) {
-      if (!isNode(props[propName])) {
-        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` supplied to ' + ('`' + componentName + '`, expected a ReactNode.'));
-      }
-      return null;
-    }
-    return createChainableTypeChecker(validate);
-  }
-
-  function createShapeTypeChecker(shapeTypes) {
-    function validate(props, propName, componentName, location, propFullName) {
-      var propValue = props[propName];
-      var propType = getPropType(propValue);
-      if (propType !== 'object') {
-        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type `' + propType + '` ' + ('supplied to `' + componentName + '`, expected `object`.'));
-      }
-      for (var key in shapeTypes) {
-        var checker = shapeTypes[key];
-        if (!checker) {
-          continue;
-        }
-        var error = checker(propValue, key, componentName, location, propFullName + '.' + key, ReactPropTypesSecret_1$1);
-        if (error) {
-          return error;
-        }
-      }
-      return null;
-    }
-    return createChainableTypeChecker(validate);
-  }
-
-  function createStrictShapeTypeChecker(shapeTypes) {
-    function validate(props, propName, componentName, location, propFullName) {
-      var propValue = props[propName];
-      var propType = getPropType(propValue);
-      if (propType !== 'object') {
-        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type `' + propType + '` ' + ('supplied to `' + componentName + '`, expected `object`.'));
-      }
-      // We need to check all keys in case some are required but missing from
-      // props.
-      var allKeys = objectAssign$1({}, props[propName], shapeTypes);
-      for (var key in allKeys) {
-        var checker = shapeTypes[key];
-        if (!checker) {
-          return new PropTypeError(
-            'Invalid ' + location + ' `' + propFullName + '` key `' + key + '` supplied to `' + componentName + '`.' +
-            '\nBad object: ' + JSON.stringify(props[propName], null, '  ') +
-            '\nValid keys: ' +  JSON.stringify(Object.keys(shapeTypes), null, '  ')
-          );
-        }
-        var error = checker(propValue, key, componentName, location, propFullName + '.' + key, ReactPropTypesSecret_1$1);
-        if (error) {
-          return error;
-        }
-      }
-      return null;
-    }
-
-    return createChainableTypeChecker(validate);
-  }
-
-  function isNode(propValue) {
-    switch (typeof propValue) {
-      case 'number':
-      case 'string':
-      case 'undefined':
-        return true;
-      case 'boolean':
-        return !propValue;
-      case 'object':
-        if (Array.isArray(propValue)) {
-          return propValue.every(isNode);
-        }
-        if (propValue === null || isValidElement(propValue)) {
-          return true;
-        }
-
-        var iteratorFn = getIteratorFn(propValue);
-        if (iteratorFn) {
-          var iterator = iteratorFn.call(propValue);
-          var step;
-          if (iteratorFn !== propValue.entries) {
-            while (!(step = iterator.next()).done) {
-              if (!isNode(step.value)) {
-                return false;
-              }
-            }
-          } else {
-            // Iterator will provide entry [k,v] tuples rather than values.
-            while (!(step = iterator.next()).done) {
-              var entry = step.value;
-              if (entry) {
-                if (!isNode(entry[1])) {
-                  return false;
-                }
-              }
-            }
-          }
-        } else {
-          return false;
-        }
-
-        return true;
-      default:
-        return false;
-    }
-  }
-
-  function isSymbol(propType, propValue) {
-    // Native Symbol.
-    if (propType === 'symbol') {
-      return true;
-    }
-
-    // 19.4.3.5 Symbol.prototype[@@toStringTag] === 'Symbol'
-    if (propValue['@@toStringTag'] === 'Symbol') {
-      return true;
-    }
-
-    // Fallback for non-spec compliant Symbols which are polyfilled.
-    if (typeof Symbol === 'function' && propValue instanceof Symbol) {
-      return true;
-    }
-
-    return false;
-  }
-
-  // Equivalent of `typeof` but with special handling for array and regexp.
-  function getPropType(propValue) {
-    var propType = typeof propValue;
-    if (Array.isArray(propValue)) {
-      return 'array';
-    }
-    if (propValue instanceof RegExp) {
-      // Old webkits (at least until Android 4.0) return 'function' rather than
-      // 'object' for typeof a RegExp. We'll normalize this here so that /bla/
-      // passes PropTypes.object.
-      return 'object';
-    }
-    if (isSymbol(propType, propValue)) {
-      return 'symbol';
-    }
-    return propType;
-  }
-
-  // This handles more types than `getPropType`. Only used for error messages.
-  // See `createPrimitiveTypeChecker`.
-  function getPreciseType(propValue) {
-    if (typeof propValue === 'undefined' || propValue === null) {
-      return '' + propValue;
-    }
-    var propType = getPropType(propValue);
-    if (propType === 'object') {
-      if (propValue instanceof Date) {
-        return 'date';
-      } else if (propValue instanceof RegExp) {
-        return 'regexp';
-      }
-    }
-    return propType;
-  }
-
-  // Returns a string that is postfixed to a warning about an invalid type.
-  // For example, "undefined" or "of type array"
-  function getPostfixForTypeWarning(value) {
-    var type = getPreciseType(value);
-    switch (type) {
-      case 'array':
-      case 'object':
-        return 'an ' + type;
-      case 'boolean':
-      case 'date':
-      case 'regexp':
-        return 'a ' + type;
-      default:
-        return type;
-    }
-  }
-
-  // Returns class name of the object, if any.
-  function getClassName(propValue) {
-    if (!propValue.constructor || !propValue.constructor.name) {
-      return ANONYMOUS;
-    }
-    return propValue.constructor.name;
-  }
-
-  ReactPropTypes.checkPropTypes = checkPropTypes_1$1;
-  ReactPropTypes.PropTypes = ReactPropTypes;
-
-  return ReactPropTypes;
-};
-
-var factoryWithThrowingShims$1 = function() {
-  function shim(props, propName, componentName, location, propFullName, secret) {
-    if (secret === ReactPropTypesSecret_1$1) {
-      // It is still safe when called from React.
-      return;
-    }
-    invariant_1(
-      false,
-      'Calling PropTypes validators directly is not supported by the `prop-types` package. ' +
-      'Use PropTypes.checkPropTypes() to call them. ' +
-      'Read more at http://fb.me/use-check-prop-types'
-    );
-  }
-  shim.isRequired = shim;
-  function getShim() {
-    return shim;
-  }
-  // Important!
-  // Keep this list in sync with production version in `./factoryWithTypeCheckers.js`.
-  var ReactPropTypes = {
-    array: shim,
-    bool: shim,
-    func: shim,
-    number: shim,
-    object: shim,
-    string: shim,
-    symbol: shim,
-
-    any: shim,
-    arrayOf: getShim,
-    element: shim,
-    instanceOf: getShim,
-    node: shim,
-    objectOf: getShim,
-    oneOf: getShim,
-    oneOfType: getShim,
-    shape: getShim,
-    exact: getShim
-  };
-
-  ReactPropTypes.checkPropTypes = emptyFunction_1;
-  ReactPropTypes.PropTypes = ReactPropTypes;
-
-  return ReactPropTypes;
-};
-
-var propTypes$1 = createCommonjsModule$1(function (module) {
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
-if (process.env.NODE_ENV !== 'production') {
-  var REACT_ELEMENT_TYPE = (typeof Symbol === 'function' &&
-    Symbol.for &&
-    Symbol.for('react.element')) ||
-    0xeac7;
-
-  var isValidElement = function(object) {
-    return typeof object === 'object' &&
-      object !== null &&
-      object.$$typeof === REACT_ELEMENT_TYPE;
-  };
-
-  // By explicitly using `prop-types` you are opting into new development behavior.
-  // http://fb.me/prop-types-in-prod
-  var throwOnDirectAccess = true;
-  module.exports = factoryWithTypeCheckers$1(isValidElement, throwOnDirectAccess);
-} else {
-  // By explicitly using `prop-types` you are opting into new production behavior.
-  // http://fb.me/prop-types-in-prod
-  module.exports = factoryWithThrowingShims$1();
-}
-});
-
-/**
- * Copyright 2013-2015, Facebook, Inc.
- * All rights reserved.
- *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
  */
 
 /**
@@ -5178,7 +4342,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 var NODE_ENV = process.env.NODE_ENV;
 
-var invariant$3 = function(condition, format, a, b, c, d, e, f) {
+var invariant = function(condition, format, a, b, c, d, e, f) {
   if (NODE_ENV !== 'production') {
     if (format === undefined) {
       throw new Error('invariant requires an error message argument');
@@ -5206,7 +4370,7 @@ var invariant$3 = function(condition, format, a, b, c, d, e, f) {
   }
 };
 
-var invariant_1$2 = invariant$3;
+var invariant_1 = invariant;
 
 var camel2hyphen = function (str) {
   return str
@@ -5268,139 +4432,121 @@ var json2mq = function (query) {
 
 var json2mq_1 = json2mq;
 
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) {
-  return typeof obj;
-} : function (obj) {
-  return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
-};
+var MediaQueryList =
+/*#__PURE__*/
+function () {
+  function MediaQueryList(targetWindow, query, listener) {
+    var _this = this;
 
+    this.nativeMediaQueryList = targetWindow.matchMedia(query);
+    this.active = true; // Safari doesn't clear up listener with removeListener
+    // when the listener is already waiting in the event queue.
+    // Having an active flag to make sure the listener is not called
+    // after we removeListener.
 
+    this.cancellableListener = function () {
+      _this.matches = _this.nativeMediaQueryList.matches;
 
+      if (_this.active) {
+        listener.apply(void 0, arguments);
+      }
+    };
 
-
-
-
-
-
-
-
-var classCallCheck = function (instance, Constructor) {
-  if (!(instance instanceof Constructor)) {
-    throw new TypeError("Cannot call a class as a function");
-  }
-};
-
-
-
-
-
-
-
-
-
-
-
-var inherits = function (subClass, superClass) {
-  if (typeof superClass !== "function" && superClass !== null) {
-    throw new TypeError("Super expression must either be null or a function, not " + typeof superClass);
+    this.nativeMediaQueryList.addListener(this.cancellableListener);
+    this.matches = this.nativeMediaQueryList.matches;
   }
 
-  subClass.prototype = Object.create(superClass && superClass.prototype, {
-    constructor: {
-      value: subClass,
-      enumerable: false,
-      writable: true,
-      configurable: true
-    }
-  });
-  if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
-};
+  var _proto = MediaQueryList.prototype;
 
+  _proto.cancel = function cancel() {
+    this.active = false;
+    this.nativeMediaQueryList.removeListener(this.cancellableListener);
+  };
 
-
-
-
-
-
-
-
-
-
-var possibleConstructorReturn = function (self, call) {
-  if (!self) {
-    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-  }
-
-  return call && (typeof call === "object" || typeof call === "function") ? call : self;
-};
+  return MediaQueryList;
+}();
 
 /**
  * Conditionally renders based on whether or not a media query matches.
  */
 
-var Media = function (_React$Component) {
-  inherits(Media, _React$Component);
+var Media =
+/*#__PURE__*/
+function (_React$Component) {
+  _inheritsLoose(Media, _React$Component);
 
   function Media() {
-    var _temp, _this, _ret;
+    var _this;
 
-    classCallCheck(this, Media);
-
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = possibleConstructorReturn(this, _React$Component.call.apply(_React$Component, [this].concat(args))), _this), _this.state = {
+    _this = _React$Component.call.apply(_React$Component, [this].concat(args)) || this;
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "state", {
       matches: _this.props.defaultMatches
-    }, _this.updateMatches = function () {
-      return _this.setState({ matches: _this.mediaQueryList.matches });
-    }, _temp), possibleConstructorReturn(_this, _ret);
+    });
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "updateMatches", function () {
+      var matches = _this.mediaQueryList.matches;
+
+      _this.setState({
+        matches: matches
+      });
+
+      var onChange = _this.props.onChange;
+
+      if (onChange) {
+        onChange(matches);
+      }
+    });
+
+    return _this;
   }
 
-  Media.prototype.componentWillMount = function componentWillMount() {
-    if ((typeof window === "undefined" ? "undefined" : _typeof(window)) !== "object") return;
+  var _proto = Media.prototype;
 
+  _proto.componentWillMount = function componentWillMount() {
+    if (typeof window !== 'object') return;
     var targetWindow = this.props.targetWindow || window;
-
-    invariant_1$2(typeof targetWindow.matchMedia === "function", "<Media targetWindow> does not support `matchMedia`.");
-
+    !(typeof targetWindow.matchMedia === 'function') ? process.env.NODE_ENV !== "production" ? invariant_1(false, '<Media targetWindow> does not support `matchMedia`.') : invariant_1(false) : void 0;
     var query = this.props.query;
-
-    if (typeof query !== "string") query = json2mq_1(query);
-
-    this.mediaQueryList = targetWindow.matchMedia(query);
-    this.mediaQueryList.addListener(this.updateMatches);
+    if (typeof query !== 'string') query = json2mq_1(query);
+    this.mediaQueryList = new MediaQueryList(targetWindow, query, this.updateMatches);
     this.updateMatches();
   };
 
-  Media.prototype.componentWillUnmount = function componentWillUnmount() {
-    this.mediaQueryList.removeListener(this.updateMatches);
+  _proto.componentWillUnmount = function componentWillUnmount() {
+    this.mediaQueryList.cancel();
   };
 
-  Media.prototype.render = function render() {
-    var _props = this.props,
-        children = _props.children,
-        render = _props.render;
+  _proto.render = function render() {
+    var _this$props = this.props,
+        children = _this$props.children,
+        render = _this$props.render;
     var matches = this.state.matches;
-
-
-    return render ? matches ? render() : null : children ? typeof children === "function" ? children(matches) : !Array.isArray(children) || children.length // Preact defaults to empty children array
+    return render ? matches ? render() : null : children ? typeof children === 'function' ? children(matches) : !Array.isArray(children) || children.length // Preact defaults to empty children array
     ? matches ? React.Children.only(children) : null : null : null;
   };
 
   return Media;
 }(React.Component);
 
-Media.propTypes = {
-  defaultMatches: propTypes$1.bool,
-  query: propTypes$1.oneOfType([propTypes$1.string, propTypes$1.object, propTypes$1.arrayOf(propTypes$1.object.isRequired)]).isRequired,
-  render: propTypes$1.func,
-  children: propTypes$1.oneOfType([propTypes$1.node, propTypes$1.func]),
-  targetWindow: propTypes$1.object
-};
-Media.defaultProps = {
+_defineProperty(Media, "defaultProps", {
   defaultMatches: true
-};
+});
+
+if (process.env.NODE_ENV !== "production") {
+  Media.propTypes = {
+    defaultMatches: propTypes.bool,
+    query: propTypes.oneOfType([propTypes.string, propTypes.object, propTypes.arrayOf(propTypes.object.isRequired)]).isRequired,
+    render: propTypes.func,
+    children: propTypes.oneOfType([propTypes.node, propTypes.func]),
+    targetWindow: propTypes.object,
+    onChange: propTypes.func
+  };
+}
 
 var BREAKPOINTS = {
   min: 320,
@@ -5437,7 +4583,7 @@ var BreakPoint = function BreakPoint(_ref) {
     return ok ? children : null;
   });
 };
-var BreakPointName = propTypes.oneOf(toConsumableArray(Object.keys(BREAKPOINTS)).concat(['']));
+var BreakPointName = propTypes.oneOf([].concat(toConsumableArray(Object.keys(BREAKPOINTS)), ['']));
 BreakPoint.propTypes = {
   from: BreakPointName,
   to: BreakPointName,
@@ -5740,7 +4886,7 @@ function _classCallCheck(instance, Constructor) {
   }
 }
 
-var classCallCheck$1 = _classCallCheck;
+var classCallCheck = _classCallCheck;
 
 function _defineProperties(target, props) {
   for (var i = 0; i < props.length; i++) {
@@ -5780,7 +4926,7 @@ function _typeof(obj) {
 module.exports = _typeof;
 });
 
-function _assertThisInitialized(self) {
+function _assertThisInitialized$1(self) {
   if (self === void 0) {
     throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
   }
@@ -5788,7 +4934,7 @@ function _assertThisInitialized(self) {
   return self;
 }
 
-var assertThisInitialized = _assertThisInitialized;
+var assertThisInitialized = _assertThisInitialized$1;
 
 function _possibleConstructorReturn(self, call) {
   if (call && (_typeof_1(call) === "object" || typeof call === "function")) {
@@ -5798,7 +4944,7 @@ function _possibleConstructorReturn(self, call) {
   return assertThisInitialized(self);
 }
 
-var possibleConstructorReturn$1 = _possibleConstructorReturn;
+var possibleConstructorReturn = _possibleConstructorReturn;
 
 var getPrototypeOf = createCommonjsModule(function (module) {
 function _getPrototypeOf(o) {
@@ -5839,9 +4985,9 @@ function _inherits(subClass, superClass) {
   if (superClass) setPrototypeOf(subClass, superClass);
 }
 
-var inherits$1 = _inherits;
+var inherits = _inherits;
 
-function _defineProperty(obj, key, value) {
+function _defineProperty$1(obj, key, value) {
   if (key in obj) {
     Object.defineProperty(obj, key, {
       value: value,
@@ -5856,7 +5002,7 @@ function _defineProperty(obj, key, value) {
   return obj;
 }
 
-var defineProperty = _defineProperty;
+var defineProperty = _defineProperty$1;
 
 var getDisplayName_1 = createCommonjsModule(function (module, exports) {
 
@@ -5879,20 +5025,20 @@ var observe = function observe(_observe) {
     return _temp = _class =
     /*#__PURE__*/
     function (_React$Component) {
-      inherits$1(_class, _React$Component);
+      inherits(_class, _React$Component);
 
       function _class() {
         var _getPrototypeOf2;
 
         var _this;
 
-        classCallCheck$1(this, _class);
+        classCallCheck(this, _class);
 
         for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
           args[_key] = arguments[_key];
         }
 
-        _this = possibleConstructorReturn$1(this, (_getPrototypeOf2 = getPrototypeOf(_class)).call.apply(_getPrototypeOf2, [this].concat(args)));
+        _this = possibleConstructorReturn(this, (_getPrototypeOf2 = getPrototypeOf(_class)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
         defineProperty(assertThisInitialized(assertThisInitialized(_this)), "state", initialState);
 
@@ -5967,21 +5113,19 @@ var ensureTrailingSlash = function ensureTrailingSlash(path) {
   return path.endsWith('/') ? path : "".concat(path, "/");
 };
 
-var DEFAULT_URL = '';
-
-var _React$createContext = React.createContext(DEFAULT_URL),
+var _React$createContext = React.createContext(''),
     Provider = _React$createContext.Provider,
     Consumer = _React$createContext.Consumer;
 
 var PublicUrlProvider =
 /*#__PURE__*/
 function (_React$Component) {
-  inherits$1(PublicUrlProvider, _React$Component);
+  inherits(PublicUrlProvider, _React$Component);
 
   function PublicUrlProvider() {
-    classCallCheck$1(this, PublicUrlProvider);
+    classCallCheck(this, PublicUrlProvider);
 
-    return possibleConstructorReturn$1(this, getPrototypeOf(PublicUrlProvider).apply(this, arguments));
+    return possibleConstructorReturn(this, getPrototypeOf(PublicUrlProvider).apply(this, arguments));
   }
 
   createClass(PublicUrlProvider, [{
@@ -6001,7 +5145,7 @@ function (_React$Component) {
 
 
 defineProperty(PublicUrlProvider, "propTypes", {
-  url: propTypes.string,
+  url: propTypes.string.isRequired,
   children: propTypes.node
 });
 
@@ -6040,20 +5184,20 @@ PublicUrl.styledUrl = styledUrl;
 var Redraw =
 /*#__PURE__*/
 function (_React$Component) {
-  inherits$1(Redraw, _React$Component);
+  inherits(Redraw, _React$Component);
 
   function Redraw() {
     var _getPrototypeOf2;
 
     var _this;
 
-    classCallCheck$1(this, Redraw);
+    classCallCheck(this, Redraw);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    _this = possibleConstructorReturn$1(this, (_getPrototypeOf2 = getPrototypeOf(Redraw)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this = possibleConstructorReturn(this, (_getPrototypeOf2 = getPrototypeOf(Redraw)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
     defineProperty(assertThisInitialized(assertThisInitialized(_this)), "state", {
       lastDraw: -1
@@ -6142,20 +5286,20 @@ var getRedrawTime = function getRedrawTime(fromDate) {
 var RedrawFromDate =
 /*#__PURE__*/
 function (_React$Component) {
-  inherits$1(RedrawFromDate, _React$Component);
+  inherits(RedrawFromDate, _React$Component);
 
   function RedrawFromDate() {
     var _getPrototypeOf2;
 
     var _this;
 
-    classCallCheck$1(this, RedrawFromDate);
+    classCallCheck(this, RedrawFromDate);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    _this = possibleConstructorReturn$1(this, (_getPrototypeOf2 = getPrototypeOf(RedrawFromDate)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this = possibleConstructorReturn(this, (_getPrototypeOf2 = getPrototypeOf(RedrawFromDate)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
     defineProperty(assertThisInitialized(assertThisInitialized(_this)), "state", {
       redrawTime: EVERY_HOUR,
@@ -6250,20 +5394,20 @@ var _React$createContext$1 = React.createContext(null),
 var RootProvider =
 /*#__PURE__*/
 function (_React$Component) {
-  inherits$1(RootProvider, _React$Component);
+  inherits(RootProvider, _React$Component);
 
   function RootProvider() {
     var _getPrototypeOf2;
 
     var _this;
 
-    classCallCheck$1(this, RootProvider);
+    classCallCheck(this, RootProvider);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    _this = possibleConstructorReturn$1(this, (_getPrototypeOf2 = getPrototypeOf(RootProvider)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this = possibleConstructorReturn(this, (_getPrototypeOf2 = getPrototypeOf(RootProvider)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
     defineProperty(assertThisInitialized(assertThisInitialized(_this)), "_element", React.createRef());
 
@@ -6406,7 +5550,7 @@ var Symbol$1 = root.Symbol;
 var objectProto = Object.prototype;
 
 /** Used to check objects for own properties. */
-var hasOwnProperty$2 = objectProto.hasOwnProperty;
+var hasOwnProperty$1 = objectProto.hasOwnProperty;
 
 /**
  * Used to resolve the
@@ -6426,7 +5570,7 @@ var symToStringTag = Symbol$1 ? Symbol$1.toStringTag : undefined;
  * @returns {string} Returns the raw `toStringTag`.
  */
 function getRawTag(value) {
-  var isOwn = hasOwnProperty$2.call(value, symToStringTag),
+  var isOwn = hasOwnProperty$1.call(value, symToStringTag),
       tag = value[symToStringTag];
 
   try {
@@ -6871,20 +6015,20 @@ var _React$createContext$2 = React.createContext(WINDOW_SIZE_BASE),
 var ViewportProvider =
 /*#__PURE__*/
 function (_React$Component) {
-  inherits$1(ViewportProvider, _React$Component);
+  inherits(ViewportProvider, _React$Component);
 
   function ViewportProvider() {
     var _getPrototypeOf2;
 
     var _this;
 
-    classCallCheck$1(this, ViewportProvider);
+    classCallCheck(this, ViewportProvider);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    _this = possibleConstructorReturn$1(this, (_getPrototypeOf2 = getPrototypeOf(ViewportProvider)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this = possibleConstructorReturn(this, (_getPrototypeOf2 = getPrototypeOf(ViewportProvider)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
     defineProperty(assertThisInitialized(assertThisInitialized(_this)), "state", {
       windowSize: _this.getWindowSize()
@@ -7830,13 +6974,13 @@ function _extends() {
   return _extends.apply(this, arguments);
 }
 
-function _inheritsLoose(subClass, superClass) {
+function _inheritsLoose$1(subClass, superClass) {
   subClass.prototype = Object.create(superClass.prototype);
   subClass.prototype.constructor = subClass;
   subClass.__proto__ = superClass;
 }
 
-function _assertThisInitialized$1(self) {
+function _assertThisInitialized$2(self) {
   if (self === void 0) {
     throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
   }
@@ -8402,7 +7546,7 @@ var getValues = function getValues(object) {
 var AnimatedWithChildren =
 /*#__PURE__*/
 function (_Animated) {
-  _inheritsLoose(AnimatedWithChildren, _Animated);
+  _inheritsLoose$1(AnimatedWithChildren, _Animated);
 
   function AnimatedWithChildren() {
     var _this;
@@ -8423,7 +7567,7 @@ function (_Animated) {
         index = undefined;
       }
 
-      return index !== void 0 && _this.payload ? _this.payload[index] : _this.payload || _assertThisInitialized$1(_assertThisInitialized$1(_this));
+      return index !== void 0 && _this.payload ? _this.payload[index] : _this.payload || _assertThisInitialized$2(_assertThisInitialized$2(_this));
     };
 
     return _this;
@@ -8456,7 +7600,7 @@ function (_Animated) {
 var AnimatedArrayWithChildren =
 /*#__PURE__*/
 function (_AnimatedWithChildren) {
-  _inheritsLoose(AnimatedArrayWithChildren, _AnimatedWithChildren);
+  _inheritsLoose$1(AnimatedArrayWithChildren, _AnimatedWithChildren);
 
   function AnimatedArrayWithChildren() {
     var _this2;
@@ -8474,13 +7618,13 @@ function (_AnimatedWithChildren) {
 
     _this2.attach = function () {
       return _this2.payload.forEach(function (p) {
-        return p instanceof Animated && p.addChild(_assertThisInitialized$1(_assertThisInitialized$1(_this2)));
+        return p instanceof Animated && p.addChild(_assertThisInitialized$2(_assertThisInitialized$2(_this2)));
       });
     };
 
     _this2.detach = function () {
       return _this2.payload.forEach(function (p) {
-        return p instanceof Animated && p.removeChild(_assertThisInitialized$1(_assertThisInitialized$1(_this2)));
+        return p instanceof Animated && p.removeChild(_assertThisInitialized$2(_assertThisInitialized$2(_this2)));
       });
     };
 
@@ -8492,7 +7636,7 @@ function (_AnimatedWithChildren) {
 var AnimatedObjectWithChildren =
 /*#__PURE__*/
 function (_AnimatedWithChildren2) {
-  _inheritsLoose(AnimatedObjectWithChildren, _AnimatedWithChildren2);
+  _inheritsLoose$1(AnimatedObjectWithChildren, _AnimatedWithChildren2);
 
   function AnimatedObjectWithChildren() {
     var _this3;
@@ -8510,13 +7654,13 @@ function (_AnimatedWithChildren2) {
 
     _this3.attach = function () {
       return getValues(_this3.payload).forEach(function (s) {
-        return s instanceof Animated && s.addChild(_assertThisInitialized$1(_assertThisInitialized$1(_this3)));
+        return s instanceof Animated && s.addChild(_assertThisInitialized$2(_assertThisInitialized$2(_this3)));
       });
     };
 
     _this3.detach = function () {
       return getValues(_this3.payload).forEach(function (s) {
-        return s instanceof Animated && s.removeChild(_assertThisInitialized$1(_assertThisInitialized$1(_this3)));
+        return s instanceof Animated && s.removeChild(_assertThisInitialized$2(_assertThisInitialized$2(_this3)));
       });
     };
 
@@ -8547,7 +7691,7 @@ function (_AnimatedWithChildren2) {
 var AnimatedInterpolation =
 /*#__PURE__*/
 function (_AnimatedArrayWithChi) {
-  _inheritsLoose(AnimatedInterpolation, _AnimatedArrayWithChi);
+  _inheritsLoose$1(AnimatedInterpolation, _AnimatedArrayWithChi);
 
   function AnimatedInterpolation(parents, _config, _arg) {
     var _this;
@@ -8567,7 +7711,7 @@ function (_AnimatedArrayWithChi) {
     };
 
     _this.interpolate = function (config, arg) {
-      return new AnimatedInterpolation(_assertThisInitialized$1(_assertThisInitialized$1(_this)), config, arg);
+      return new AnimatedInterpolation(_assertThisInitialized$2(_assertThisInitialized$2(_this)), config, arg);
     };
 
     _this.payload = // AnimatedArrays should unfold, except AnimatedInterpolation which is taken as is
@@ -8618,7 +7762,7 @@ function findAnimatedStyles(node, styles) {
 var AnimatedValue =
 /*#__PURE__*/
 function (_AnimatedWithChildren) {
-  _inheritsLoose(AnimatedValue, _AnimatedWithChildren);
+  _inheritsLoose$1(AnimatedValue, _AnimatedWithChildren);
 
   function AnimatedValue(_value) {
     var _this;
@@ -8630,7 +7774,7 @@ function (_AnimatedWithChildren) {
     };
 
     _this.updateStyles = function () {
-      return findAnimatedStyles(_assertThisInitialized$1(_assertThisInitialized$1(_this)), _this.animatedStyles);
+      return findAnimatedStyles(_assertThisInitialized$2(_assertThisInitialized$2(_this)), _this.animatedStyles);
     };
 
     _this.updateValue = function (value) {
@@ -8638,7 +7782,7 @@ function (_AnimatedWithChildren) {
     };
 
     _this.interpolate = function (config, arg) {
-      return new AnimatedInterpolation(_assertThisInitialized$1(_assertThisInitialized$1(_this)), config, arg);
+      return new AnimatedInterpolation(_assertThisInitialized$2(_assertThisInitialized$2(_this)), config, arg);
     };
 
     _this.value = _value;
@@ -8682,7 +7826,7 @@ function (_AnimatedWithChildren) {
 var AnimatedArray =
 /*#__PURE__*/
 function (_AnimatedArrayWithChi) {
-  _inheritsLoose(AnimatedArray, _AnimatedArrayWithChi);
+  _inheritsLoose$1(AnimatedArray, _AnimatedArrayWithChi);
 
   function AnimatedArray(array) {
     var _this;
@@ -8702,7 +7846,7 @@ function (_AnimatedArrayWithChi) {
     };
 
     _this.interpolate = function (config, arg) {
-      return new AnimatedInterpolation(_assertThisInitialized$1(_assertThisInitialized$1(_this)), config, arg);
+      return new AnimatedInterpolation(_assertThisInitialized$2(_assertThisInitialized$2(_this)), config, arg);
     };
 
     _this.payload = array instanceof AnimatedArray ? array.payload : array.map(function (n) {
@@ -8976,7 +8120,7 @@ injectApplyAnimatedValues(function (instance, props) {
 var AnimatedStyle =
 /*#__PURE__*/
 function (_AnimatedObjectWithCh) {
-  _inheritsLoose(AnimatedStyle, _AnimatedObjectWithCh);
+  _inheritsLoose$1(AnimatedStyle, _AnimatedObjectWithCh);
 
   function AnimatedStyle(style) {
     var _this;
@@ -8994,7 +8138,7 @@ function (_AnimatedObjectWithCh) {
 var AnimatedProps =
 /*#__PURE__*/
 function (_AnimatedObjectWithCh) {
-  _inheritsLoose(AnimatedProps, _AnimatedObjectWithCh);
+  _inheritsLoose$1(AnimatedProps, _AnimatedObjectWithCh);
 
   function AnimatedProps(props, callback) {
     var _this;
@@ -9398,7 +8542,7 @@ function createAnimatedComponent(Component) {
   var AnimatedComponent =
   /*#__PURE__*/
   function (_React$Component) {
-    _inheritsLoose(AnimatedComponent, _React$Component);
+    _inheritsLoose$1(AnimatedComponent, _React$Component);
 
     function AnimatedComponent(props) {
       var _this;
@@ -9407,7 +8551,7 @@ function createAnimatedComponent(Component) {
 
       _this.callback = function () {
         if (_this.node) {
-          var didUpdate = applyAnimatedValues.fn(_this.node, _this.propsAnimated.getAnimatedValue(), _assertThisInitialized$1(_assertThisInitialized$1(_this)));
+          var didUpdate = applyAnimatedValues.fn(_this.node, _this.propsAnimated.getAnimatedValue(), _assertThisInitialized$2(_assertThisInitialized$2(_this)));
           if (didUpdate === false) _this.forceUpdate();
         }
       };
@@ -9530,7 +8674,7 @@ if (process.env.NODE_ENV !== 'production' && (v[0] < 16 || v[1] < 4)) {
 var Spring =
 /*#__PURE__*/
 function (_React$Component) {
-  _inheritsLoose(Spring, _React$Component);
+  _inheritsLoose$1(Spring, _React$Component);
 
   function Spring() {
     var _this;
@@ -9713,7 +8857,7 @@ Spring.defaultProps = {
 var Trail =
 /*#__PURE__*/
 function (_React$PureComponent) {
-  _inheritsLoose(Trail, _React$PureComponent);
+  _inheritsLoose$1(Trail, _React$PureComponent);
 
   function Trail() {
     var _this;
@@ -9793,7 +8937,7 @@ var DEFAULT = '__default';
 var KeyframesImpl =
 /*#__PURE__*/
 function (_React$PureComponent) {
-  _inheritsLoose(KeyframesImpl, _React$PureComponent);
+  _inheritsLoose$1(KeyframesImpl, _React$PureComponent);
 
   function KeyframesImpl() {
     var _this;
@@ -10006,7 +9150,7 @@ var get = function get(props) {
 var Transition =
 /*#__PURE__*/
 function (_React$PureComponent) {
-  _inheritsLoose(Transition, _React$PureComponent);
+  _inheritsLoose$1(Transition, _React$PureComponent);
 
   var _proto = Transition.prototype;
 
@@ -10319,20 +9463,20 @@ var _React$createContext$3 = React.createContext(function () {
 var ToastHub =
 /*#__PURE__*/
 function (_React$PureComponent) {
-  inherits$1(ToastHub, _React$PureComponent);
+  inherits(ToastHub, _React$PureComponent);
 
   function ToastHub() {
     var _getPrototypeOf2;
 
     var _this;
 
-    classCallCheck$1(this, ToastHub);
+    classCallCheck(this, ToastHub);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    _this = possibleConstructorReturn$1(this, (_getPrototypeOf2 = getPrototypeOf(ToastHub)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this = possibleConstructorReturn(this, (_getPrototypeOf2 = getPrototypeOf(ToastHub)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
     defineProperty(assertThisInitialized(assertThisInitialized(_this)), "state", {
       items: [],
@@ -10350,7 +9494,7 @@ function (_React$PureComponent) {
           return _this.cancel(item, true);
         });
         return {
-          items: toConsumableArray(state.items).concat([{
+          items: [].concat(toConsumableArray(state.items), [{
             key: id++,
             msg: msg
           }])
@@ -10568,6 +9712,20 @@ var Life = styled(extendedAnimated.div).withConfig({
   return props.top ? '10px' : '0';
 });
 
+function _taggedTemplateLiteral(strings, raw) {
+  if (!raw) {
+    raw = strings.slice(0);
+  }
+
+  return Object.freeze(Object.defineProperties(strings, {
+    raw: {
+      value: Object.freeze(raw)
+    }
+  }));
+}
+
+var taggedTemplateLiteral = _taggedTemplateLiteral;
+
 var baseStyles = css(["", ";width:", ";height:40px;padding:0 10px;background:", ";border:1px solid ", ";border-radius:3px;box-shadow:inset 0 1px 2px rgba(0,0,0,0.06);color:", ";appearance:none;&:focus{outline:none;border-color:", ";}&:read-only{color:transparent;text-shadow:0 0 0 ", ";}"], font({
   size: 'small',
   weight: 'normal'
@@ -10623,24 +9781,25 @@ TextInput.Multiline = TextInputMultiline;
 var FocusVisible =
 /*#__PURE__*/
 function (_React$PureComponent) {
-  inherits$1(FocusVisible, _React$PureComponent);
+  inherits(FocusVisible, _React$PureComponent);
 
   function FocusVisible() {
     var _getPrototypeOf2;
 
     var _this;
 
-    classCallCheck$1(this, FocusVisible);
+    classCallCheck(this, FocusVisible);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    _this = possibleConstructorReturn$1(this, (_getPrototypeOf2 = getPrototypeOf(FocusVisible)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this = possibleConstructorReturn(this, (_getPrototypeOf2 = getPrototypeOf(FocusVisible)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
     defineProperty(assertThisInitialized(assertThisInitialized(_this)), "_element", React.createRef());
 
     defineProperty(assertThisInitialized(assertThisInitialized(_this)), "state", {
+      document: null,
       focusVisible: false
     });
 
@@ -10667,39 +9826,36 @@ function (_React$PureComponent) {
   createClass(FocusVisible, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      this._document = this._element.current.ownerDocument;
-
-      this._document.addEventListener('mousedown', this.handlePointerEvent);
-
-      this._document.addEventListener('mouseup', this.handlePointerEvent);
-
-      this._document.addEventListener('touchstart', this.handlePointerEvent);
-
-      this._document.addEventListener('touchend', this.handlePointerEvent);
+      var document = this._element.current.ownerDocument;
+      document.addEventListener('mousedown', this.handlePointerEvent);
+      document.addEventListener('mouseup', this.handlePointerEvent);
+      document.addEventListener('touchstart', this.handlePointerEvent);
+      document.addEventListener('touchend', this.handlePointerEvent);
+      this.setState({
+        document: document
+      });
     }
   }, {
     key: "componentWillUnmount",
     value: function componentWillUnmount() {
-      this._document.removeEventListener('mousedown', this.handlePointerEvent);
-
-      this._document.removeEventListener('mouseup', this.handlePointerEvent);
-
-      this._document.removeEventListener('touchstart', this.handlePointerEvent);
-
-      this._document.removeEventListener('touchend', this.handlePointerEvent);
-
-      delete this._document;
+      var document = this.state.document;
+      document.removeEventListener('mousedown', this.handlePointerEvent);
+      document.removeEventListener('mouseup', this.handlePointerEvent);
+      document.removeEventListener('touchstart', this.handlePointerEvent);
+      document.removeEventListener('touchend', this.handlePointerEvent);
     } // It doesn’t seem to be specified, but pointer events happen before focus
     // events on modern browsers.
 
   }, {
     key: "render",
     value: function render() {
-      var focusVisible = this.state.focusVisible;
+      var _this$state = this.state,
+          focusVisible = _this$state.focusVisible,
+          document = _this$state.document;
       return React.createElement(React.Fragment, null, this.props.children({
         focusVisible: focusVisible,
         onFocus: this.handleFocus
-      }), !this._document && React.createElement("span", {
+      }), !document && React.createElement("span", {
         ref: this._element
       }));
     }
@@ -10718,12 +9874,12 @@ defineProperty(FocusVisible, "propTypes", {
 var ButtonBase =
 /*#__PURE__*/
 function (_React$PureComponent) {
-  inherits$1(ButtonBase, _React$PureComponent);
+  inherits(ButtonBase, _React$PureComponent);
 
   function ButtonBase() {
-    classCallCheck$1(this, ButtonBase);
+    classCallCheck(this, ButtonBase);
 
-    return possibleConstructorReturn$1(this, getPrototypeOf(ButtonBase).apply(this, arguments));
+    return possibleConstructorReturn(this, getPrototypeOf(ButtonBase).apply(this, arguments));
   }
 
   createClass(ButtonBase, [{
@@ -10781,31 +9937,50 @@ var ButtonBase$1 = React.forwardRef(function (props, ref) {
   });
 });
 
+function _templateObject() {
+  var data = taggedTemplateLiteral(["\n          display: inline-flex;\n          justify-content: center;\n          align-items: center;\n          width: 32px;\n          height: 32px;\n          &:active {\n            background: rgba(220, 234, 239, 0.3);\n          }\n        "]);
+
+  _templateObject = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+
 var ButtonIcon =
 /*#__PURE__*/
 function (_React$PureComponent) {
-  inherits$1(ButtonIcon, _React$PureComponent);
+  inherits(ButtonIcon, _React$PureComponent);
 
   function ButtonIcon() {
-    classCallCheck$1(this, ButtonIcon);
+    classCallCheck(this, ButtonIcon);
 
-    return possibleConstructorReturn$1(this, getPrototypeOf(ButtonIcon).apply(this, arguments));
+    return possibleConstructorReturn(this, getPrototypeOf(ButtonIcon).apply(this, arguments));
   }
 
   createClass(ButtonIcon, [{
     key: "render",
     value: function render() {
-      return React.createElement(_StyledButtonBase, this.props);
+      var _this$props = this.props,
+          label = _this$props.label,
+          children = _this$props.children,
+          props = objectWithoutProperties(_this$props, ["label", "children"]);
+
+      return React.createElement(_StyledButtonBase, _extends_1({
+        title: label
+      }, props), children);
     }
   }]);
 
   return ButtonIcon;
 }(React.PureComponent);
 
-var _StyledButtonBase = styled(ButtonBase$1).withConfig({
-  displayName: "ButtonIcon___StyledButtonBase",
-  componentId: "sc-1e3i514-0"
-})(["display:inline-flex;justify-content:center;align-items:center;width:32px;height:32px;&:active{background:rgba(220,234,239,0.3);}"]);
+ButtonIcon.propTypes = {
+  label: propTypes.string.isRequired,
+  children: propTypes.node.isRequired
+};
+
+var _StyledButtonBase = styled(ButtonBase$1)(_templateObject());
 
 var main = createCommonjsModule(function (module, exports) {
 
@@ -11032,12 +10207,12 @@ var BASE_SCALE = 3;
 var EthIdenticon =
 /*#__PURE__*/
 function (_React$Component) {
-  inherits$1(EthIdenticon, _React$Component);
+  inherits(EthIdenticon, _React$Component);
 
   function EthIdenticon() {
-    classCallCheck$1(this, EthIdenticon);
+    classCallCheck(this, EthIdenticon);
 
-    return possibleConstructorReturn$1(this, getPrototypeOf(EthIdenticon).apply(this, arguments));
+    return possibleConstructorReturn(this, getPrototypeOf(EthIdenticon).apply(this, arguments));
   }
 
   createClass(EthIdenticon, [{
@@ -11113,23 +10288,73 @@ var BlockiesScaling = styled.div.withConfig({
   return p.size;
 }, 1 / PX_RATIO, 1 / PX_RATIO);
 
+function _templateObject5() {
+  var data = taggedTemplateLiteral(["\n            position: absolute;\n            top: 0;\n            right: 0;\n            width: 39px;\n            height: 38px;\n            display: flex;\n            align-items: center;\n            justify-content: center;\n            border-radius: 0 3px 3px 0;\n            &:active {\n              background: rgba(220, 234, 239, 0.3);\n            }\n          "]);
+
+  _templateObject5 = function _templateObject5() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject4() {
+  var data = taggedTemplateLiteral(["\n            text-overflow: ellipsis;\n            width: 350px;\n            max-width: 100%;\n            border: 0;\n            box-shadow: none;\n            background: transparent;\n            &:read-only {\n              color: ", ";\n              text-shadow: none;\n            }\n          "]);
+
+  _templateObject4 = function _templateObject4() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject3() {
+  var data = taggedTemplateLiteral(["\n              transform: scale(calc(38 / 48));\n              transform-origin: 0 0;\n            "]);
+
+  _templateObject3 = function _templateObject3() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject2() {
+  var data = taggedTemplateLiteral(["\n            position: absolute;\n            top: -1px;\n            left: -1px;\n            height: 40px;\n            overflow: hidden;\n            border-radius: 3px 0 0 3px;\n            border: 1px solid transparent;\n          "]);
+
+  _templateObject2 = function _templateObject2() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject$1() {
+  var data = taggedTemplateLiteral(["\n          display: inline-flex;\n          max-width: 100%;\n          height: 40px;\n          position: relative;\n          background: ", ";\n          border: 1px solid ", ";\n          border-radius: 3px;\n          box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.06);\n          padding-left: 40px;\n          padding-right: 30px;\n        "]);
+
+  _templateObject$1 = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+
 var AddressFieldBase =
 /*#__PURE__*/
 function (_React$PureComponent) {
-  inherits$1(AddressFieldBase, _React$PureComponent);
+  inherits(AddressFieldBase, _React$PureComponent);
 
   function AddressFieldBase() {
     var _getPrototypeOf2;
 
     var _this;
 
-    classCallCheck$1(this, AddressFieldBase);
+    classCallCheck(this, AddressFieldBase);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    _this = possibleConstructorReturn$1(this, (_getPrototypeOf2 = getPrototypeOf(AddressFieldBase)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this = possibleConstructorReturn(this, (_getPrototypeOf2 = getPrototypeOf(AddressFieldBase)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
     defineProperty(assertThisInitialized(assertThisInitialized(_this)), "_input", React.createRef());
 
@@ -11173,8 +10398,8 @@ function (_React$PureComponent) {
     value: function render() {
       var address = this.props.address;
       return React.createElement(_StyledDiv, {
-        _$p_: theme.contentBackground,
-        _$p_2: theme.contentBorder
+        _css: theme.contentBackground,
+        _css2: theme.contentBorder
       }, React.createElement(_StyledDiv2, null, React.createElement(_StyledEthIdenticon, {
         address: address,
         scale: 2
@@ -11183,11 +10408,11 @@ function (_React$PureComponent) {
         value: address,
         onFocus: this.handleFocus,
         readOnly: true,
-        _$p_3: theme.textPrimary
+        _css3: theme.textPrimary
       }), React.createElement(_StyledButtonIcon, {
         ref: this._button,
         onClick: this.handleCopy,
-        title: "Copy"
+        label: "Copy"
       }, React.createElement(Copy, null)));
     }
   }]);
@@ -11214,54 +10439,204 @@ var AddressField = function AddressField(props) {
 
 AddressField.propTypes = AddressFieldBase.propTypes;
 
-var _StyledDiv = styled("div").withConfig({
-  displayName: "AddressField___StyledDiv",
-  componentId: "m75adw-0"
-})(["display:inline-flex;max-width:100%;height:40px;position:relative;background:", ";border:1px solid ", ";border-radius:3px;box-shadow:inset 0 1px 2px rgba(0,0,0,0.06);padding-left:40px;padding-right:30px;"], function (p) {
-  return p._$p_;
+var _StyledDiv = styled("div")(_templateObject$1(), function (p) {
+  return p._css;
 }, function (p) {
-  return p._$p_2;
+  return p._css2;
 });
 
-var _StyledDiv2 = styled("div").withConfig({
-  displayName: "AddressField___StyledDiv2",
-  componentId: "m75adw-1"
-})(["position:absolute;top:-1px;left:-1px;height:40px;overflow:hidden;border-radius:3px 0 0 3px;border:1px solid transparent;"]);
+var _StyledDiv2 = styled("div")(_templateObject2());
 
-var _StyledEthIdenticon = styled(EthIdenticon).withConfig({
-  displayName: "AddressField___StyledEthIdenticon",
-  componentId: "m75adw-2"
-})(["transform:scale(calc(38 / 48));transform-origin:0 0;"]);
+var _StyledEthIdenticon = styled(EthIdenticon)(_templateObject3());
 
-var _StyledTextInput = styled(TextInput).withConfig({
-  displayName: "AddressField___StyledTextInput",
-  componentId: "m75adw-3"
-})(["text-overflow:ellipsis;width:350px;max-width:100%;border:0;box-shadow:none;background:transparent;&:read-only{color:", ";text-shadow:none;}"], function (p) {
-  return p._$p_3;
+var _StyledTextInput = styled(TextInput)(_templateObject4(), function (p) {
+  return p._css3;
 });
 
-var _StyledButtonIcon = styled(ButtonIcon).withConfig({
-  displayName: "AddressField___StyledButtonIcon",
-  componentId: "m75adw-4"
-})(["position:absolute;top:0;right:0;width:39px;height:38px;display:flex;align-items:center;justify-content:center;border-radius:0 3px 3px 0;&:active{background:rgba(220,234,239,0.3);}"]);
+var _StyledButtonIcon = styled(ButtonIcon)(_templateObject5());
 
 var chevronSvg = "data:image/svg+xml,%3Csvg%20width%3D%227%22%20height%3D%2212%22%20viewBox%3D%220%200%207%2012%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M.446%2012a.512.512%200%200%201-.172-.03.422.422%200%200%201-.146-.087A.37.37%200%200%201%200%2011.6a.37.37%200%200%201%20.128-.281l5.826-5.361L.217.692A.376.376%200%200%201%20.089.405.378.378%200%200%201%20.217.117.444.444%200%200%201%20.529%200c.123%200%20.228.04.313.117l6.03%205.56A.37.37%200%200%201%207%205.96a.37.37%200%200%201-.128.281l-6.12%205.643A.477.477%200%200%201%20.446%2012z%22%20fill%3D%22%2300CBE6%22%20fill-rule%3D%22evenodd%22%2F%3E%3C%2Fsvg%3E";
 
-var StyledAppBar = styled.div.withConfig({
-  displayName: "AppBar__StyledAppBar",
+function _templateObject4$1() {
+  var data = taggedTemplateLiteral(["\n                  display: flex;\n                  align-items: center;\n                  height: 100%;\n                  margin-left: auto;\n                  padding-right: ", "px;\n                "]);
+
+  _templateObject4$1 = function _templateObject4() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject3$1() {
+  var data = taggedTemplateLiteral(["\n                  display: flex;\n                  align-items: center;\n                  height: 100%;\n                  padding-left: ", "px;\n                "]);
+
+  _templateObject3$1 = function _templateObject3() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject2$1() {
+  var data = taggedTemplateLiteral(["\n              display: flex;\n              align-items: center;\n              justify-content: flex-start;\n              width: 100%;\n              height: ", "px;\n            "]);
+
+  _templateObject2$1 = function _templateObject2() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject$2() {
+  var data = taggedTemplateLiteral(["\n            overflow: hidden;\n            display: flex;\n            flex-direction: column;\n            width: 100%;\n            min-height: ", "px;\n            background: ", ";\n            ", ";\n\n            /* We are using an \u201Cinner border\u201D to allow components like TabBar\n               to draw over the border while having overflow:hidden set. */\n            padding-bottom: 1px;\n            &:after {\n              content: '';\n              position: absolute;\n              left: 0;\n              right: 0;\n              bottom: 0;\n              border-bottom: 1px solid ", ";\n            }\n          "]);
+
+  _templateObject$2 = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+
+var BAR_HEIGHT = 64;
+var InAppBarContext = React.createContext(false);
+
+var AppBar =
+/*#__PURE__*/
+function (_React$Component) {
+  inherits(AppBar, _React$Component);
+
+  function AppBar() {
+    var _getPrototypeOf2;
+
+    var _this;
+
+    classCallCheck(this, AppBar);
+
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    _this = possibleConstructorReturn(this, (_getPrototypeOf2 = getPrototypeOf(AppBar)).call.apply(_getPrototypeOf2, [this].concat(args)));
+
+    defineProperty(assertThisInitialized(assertThisInitialized(_this)), "state", {
+      tabsHeight: 0
+    });
+
+    defineProperty(assertThisInitialized(assertThisInitialized(_this)), "_tabsRef", React.createRef());
+
+    return _this;
+  }
+
+  createClass(AppBar, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.updateTabsHeight();
+    }
+  }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps) {
+      if (Boolean(prevProps.tabs) !== Boolean(this.props.tabs)) {
+        this.updateTabsHeight();
+      }
+    }
+  }, {
+    key: "updateTabsHeight",
+    value: function updateTabsHeight() {
+      var el = this._tabsRef.current;
+
+      if (el) {
+        this.setState({
+          tabsHeight: el.clientHeight
+        });
+      }
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this2 = this;
+
+      var tabsHeight = this.state.tabsHeight;
+
+      var _this$props = this.props,
+          children = _this$props.children,
+          endContent = _this$props.endContent,
+          onTitleClick = _this$props.onTitleClick,
+          padding = _this$props.padding,
+          tabs = _this$props.tabs,
+          title = _this$props.title,
+          props = objectWithoutProperties(_this$props, ["children", "endContent", "onTitleClick", "padding", "tabs", "title"]);
+
+      return React.createElement(InAppBarContext.Provider, {
+        value: true
+      }, React.createElement(_StyledDiv$1, {
+        _css: theme.contentBackground,
+        _css2: unselectable(),
+        _css3: theme.contentBorder
+      }, React.createElement(_StyledDiv2$1, _extends_1({}, props, {
+        _css4: BAR_HEIGHT - 1
+      }), title && React.createElement(_StyledDiv3, {
+        _css5: padding
+      }, React.createElement(AppBarTitle, {
+        chevron: Boolean(children),
+        clickable: Boolean(onTitleClick),
+        onClick: onTitleClick
+      }, typeof title === 'string' ? React.createElement(Text, {
+        size: "xxlarge"
+      }, title) : title)), children, endContent && React.createElement(_StyledDiv4, {
+        _css6: padding
+      }, endContent)), React.createElement(Transition, {
+        items: tabs,
+        from: {
+          opacity: 0,
+          height: 0
+        },
+        enter: {
+          opacity: 1,
+          height: tabsHeight || 'auto'
+        },
+        leave: {
+          opacity: 0,
+          height: 0
+        },
+        initial: null,
+        config: springs.smooth,
+        native: true
+      }, function (tabs) {
+        return tabs && function (styles) {
+          return React.createElement(TabsWrapper, {
+            style: styles
+          }, React.createElement("div", {
+            ref: _this2._tabsRef
+          }, tabs));
+        };
+      })));
+    }
+  }]);
+
+  return AppBar;
+}(React.Component);
+
+defineProperty(AppBar, "propTypes", {
+  children: propTypes.node,
+  endContent: propTypes.node,
+  onTitleClick: propTypes.func,
+  padding: propTypes.number,
+  tabs: propTypes.element,
+  title: propTypes.node
+});
+
+defineProperty(AppBar, "defaultProps", {
+  onTitleClick: noop,
+  padding: 30,
+  title: '' // Let external components have the possibility to know they are in AppBar
+
+});
+
+defineProperty(AppBar, "InAppBar", InAppBarContext.Consumer);
+
+var AppBarTitle = PublicUrl.hocWrap(styled.h1.withConfig({
+  displayName: "AppBar__AppBarTitle",
   componentId: "sc-1861a4z-0"
-})(["display:flex;align-items:center;justify-content:flex-start;width:100%;height:64px;background:", ";border-bottom:1px solid ", ";", ";"], theme.contentBackground, theme.contentBorder, unselectable());
-var StyledAppBarStart = styled.div.withConfig({
-  displayName: "AppBar__StyledAppBarStart",
-  componentId: "sc-1861a4z-1"
-})(["display:flex;align-items:center;padding-left:30px;"]);
-var StyledAppBarEnd = styled.div.withConfig({
-  displayName: "AppBar__StyledAppBarEnd",
-  componentId: "sc-1861a4z-2"
-})(["margin-left:auto;padding-right:30px;"]);
-var StyledAppBarTitle = PublicUrl.hocWrap(styled.h1.withConfig({
-  displayName: "AppBar__StyledAppBarTitle",
-  componentId: "sc-1861a4z-3"
 })(["padding-right:20px;margin-right:calc(20px - 7px);white-space:nowrap;background-image:", ";background-position:100% 50%;background-repeat:no-repeat;cursor:", ";"], function (_ref) {
   var chevron = _ref.chevron;
   return chevron ? css(["url(", ")"], PublicUrl.styledUrl(chevronSvg)) : 'none';
@@ -11269,43 +10644,40 @@ var StyledAppBarTitle = PublicUrl.hocWrap(styled.h1.withConfig({
   var clickable = _ref2.clickable;
   return clickable ? 'pointer' : 'default';
 }));
+var TabsWrapper = styled(extendedAnimated.div).withConfig({
+  displayName: "AppBar__TabsWrapper",
+  componentId: "sc-1861a4z-1"
+})(["position:relative;z-index:1;"]);
 
-var AppBar = function AppBar(_ref3) {
-  var children = _ref3.children,
-      endContent = _ref3.endContent,
-      title = _ref3.title,
-      onTitleClick = _ref3.onTitleClick,
-      props = objectWithoutProperties(_ref3, ["children", "endContent", "title", "onTitleClick"]);
+var _StyledDiv$1 = styled("div")(_templateObject$2(), BAR_HEIGHT, function (p) {
+  return p._css;
+}, function (p) {
+  return p._css2;
+}, function (p) {
+  return p._css3;
+});
 
-  return React.createElement(StyledAppBar, props, title && React.createElement(StyledAppBarStart, null, React.createElement(StyledAppBarTitle, {
-    chevron: Boolean(children),
-    clickable: Boolean(onTitleClick),
-    onClick: onTitleClick
-  }, typeof title === 'string' ? React.createElement(Text, {
-    size: "xxlarge"
-  }, title) : title)), children, endContent && React.createElement(StyledAppBarEnd, null, endContent));
-};
+var _StyledDiv2$1 = styled("div")(_templateObject2$1(), function (p) {
+  return p._css4;
+});
 
-AppBar.propTypes = {
-  children: propTypes.node,
-  title: propTypes.node,
-  endContent: propTypes.node,
-  onTitleClick: propTypes.func
-};
-AppBar.defaultProps = {
-  title: '',
-  onTitleClick: function onTitleClick() {}
-};
+var _StyledDiv3 = styled("div")(_templateObject3$1(), function (p) {
+  return p._css5;
+});
+
+var _StyledDiv4 = styled("div")(_templateObject4$1(), function (p) {
+  return p._css6;
+});
 
 var AppView =
 /*#__PURE__*/
 function (_React$Component) {
-  inherits$1(AppView, _React$Component);
+  inherits(AppView, _React$Component);
 
   function AppView() {
-    classCallCheck$1(this, AppView);
+    classCallCheck(this, AppView);
 
-    return possibleConstructorReturn$1(this, getPrototypeOf(AppView).apply(this, arguments));
+    return possibleConstructorReturn(this, getPrototypeOf(AppView).apply(this, arguments));
   }
 
   createClass(AppView, [{
@@ -11313,14 +10685,16 @@ function (_React$Component) {
     value: function render() {
       var _this$props = this.props,
           appBar = _this$props.appBar,
-          title = _this$props.title,
           children = _this$props.children,
+          height = _this$props.height,
           padding = _this$props.padding,
-          height = _this$props.height;
+          tabs = _this$props.tabs,
+          title = _this$props.title;
       return React.createElement(Main$2, _extends_1({
         height: height
       }, stylingProps(this)), React.createElement(Header, null, appBar || React.createElement(AppBar, {
-        title: title
+        title: title,
+        tabs: tabs
       })), React.createElement(ScrollWrapper, null, React.createElement(Content$1, {
         padding: padding
       }, children)));
@@ -11341,7 +10715,8 @@ defineProperty(AppView, "propTypes", {
   title: propTypes.string,
   children: propTypes.node,
   padding: propTypes.number,
-  height: propTypes.string
+  height: propTypes.string,
+  tabs: propTypes.element
 });
 
 var Main$2 = styled.div.withConfig({
@@ -11366,20 +10741,6 @@ var Content$1 = styled.div.withConfig({
   return "".concat(padding, "px");
 });
 
-function _taggedTemplateLiteral(strings, raw) {
-  if (!raw) {
-    raw = strings.slice(0);
-  }
-
-  return Object.freeze(Object.defineProperties(strings, {
-    raw: {
-      value: Object.freeze(raw)
-    }
-  }));
-}
-
-var taggedTemplateLiteral = _taggedTemplateLiteral;
-
 var overpassLightWoff = "fd48a701d84ebf69.woff";
 
 var overpassLightWoff2 = "cf790334a5a6d45c.woff2";
@@ -11392,10 +10753,10 @@ var overpassSemiBoldWoff = "f8ba2d7a9af0db1f.woff";
 
 var overpassSemiBoldWoff2 = "5cfe62515c2f9b42.woff2";
 
-function _templateObject() {
+function _templateObject$3() {
   var data = taggedTemplateLiteral(["\n  ", "\n  *,\n  *:before,\n  *:after {\n    box-sizing: border-box;\n  }\n  html {\n    -webkit-overflow-scrolling: touch;\n  }\n  body {\n    height: 0;\n    min-height: 100vh;\n    font-family: ", ";\n    font-size: 15px;\n    font-weight: 400;\n    line-height: 1.5;\n    color: ", ";\n    background: ", ";\n  }\n  body,\n  ul,\n  p,\n  h1,\n  h2,\n  h3,\n  h4,\n  h5,\n  h6 {\n    margin: 0;\n    padding: 0;\n  }\n  button,\n  select,\n  input,\n  textarea,\n  h1,\n  h2,\n  h3,\n  h4,\n  h5,\n  h6 {\n    font-size: inherit;\n    font-family: inherit;\n    font-weight: inherit;\n    line-height: inherit;\n  }\n  a,\n  button,\n  select,\n  input,\n  textarea {\n    color: inherit;\n  }\n  strong,\n  b {\n    font-weight: 600;\n  }\n  ::selection {\n    color: ", ";\n    background: ", ";\n  }\n"]);
 
-  _templateObject = function _templateObject() {
+  _templateObject$3 = function _templateObject() {
     return data;
   };
 
@@ -11432,12 +10793,12 @@ var DEFAULT_FONTS = {
 var BaseStyles =
 /*#__PURE__*/
 function (_React$PureComponent) {
-  inherits$1(BaseStyles, _React$PureComponent);
+  inherits(BaseStyles, _React$PureComponent);
 
   function BaseStyles() {
-    classCallCheck$1(this, BaseStyles);
+    classCallCheck(this, BaseStyles);
 
-    return possibleConstructorReturn$1(this, getPrototypeOf(BaseStyles).apply(this, arguments));
+    return possibleConstructorReturn(this, getPrototypeOf(BaseStyles).apply(this, arguments));
   }
 
   createClass(BaseStyles, [{
@@ -11489,7 +10850,7 @@ defineProperty(BaseStyles, "defaultProps", {
   fontFamily: "".concat(DEFAULT_FONT_FAMILY, ", sans-serif")
 });
 
-var GlobalStyle = createGlobalStyle(_templateObject(), function (props) {
+var GlobalStyle = createGlobalStyle(_templateObject$3(), function (props) {
   return props.fontFaces ? props.fontFaces : '';
 }, function (props) {
   return props.fontFamily;
@@ -11509,12 +10870,12 @@ var StyledAragonApp = styled.main.withConfig({
 var AragonApp =
 /*#__PURE__*/
 function (_React$Component) {
-  inherits$1(AragonApp, _React$Component);
+  inherits(AragonApp, _React$Component);
 
   function AragonApp() {
-    classCallCheck$1(this, AragonApp);
+    classCallCheck(this, AragonApp);
 
-    return possibleConstructorReturn$1(this, getPrototypeOf(AragonApp).apply(this, arguments));
+    return possibleConstructorReturn(this, getPrototypeOf(AragonApp).apply(this, arguments));
   }
 
   createClass(AragonApp, [{
@@ -11873,20 +11234,20 @@ var StyledCard = styled.div.withConfig({
 var Checkbox =
 /*#__PURE__*/
 function (_React$PureComponent) {
-  inherits$1(Checkbox, _React$PureComponent);
+  inherits(Checkbox, _React$PureComponent);
 
   function Checkbox() {
     var _getPrototypeOf2;
 
     var _this;
 
-    classCallCheck$1(this, Checkbox);
+    classCallCheck(this, Checkbox);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    _this = possibleConstructorReturn$1(this, (_getPrototypeOf2 = getPrototypeOf(Checkbox)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this = possibleConstructorReturn(this, (_getPrototypeOf2 = getPrototypeOf(Checkbox)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
     defineProperty(assertThisInitialized(assertThisInitialized(_this)), "_element", React.createRef());
 
@@ -12259,20 +11620,20 @@ var BASE_HEIGHT = 32;
 var ContextMenu =
 /*#__PURE__*/
 function (_React$Component) {
-  inherits$1(ContextMenu, _React$Component);
+  inherits(ContextMenu, _React$Component);
 
   function ContextMenu() {
     var _getPrototypeOf2;
 
     var _this;
 
-    classCallCheck$1(this, ContextMenu);
+    classCallCheck(this, ContextMenu);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    _this = possibleConstructorReturn$1(this, (_getPrototypeOf2 = getPrototypeOf(ContextMenu)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this = possibleConstructorReturn(this, (_getPrototypeOf2 = getPrototypeOf(ContextMenu)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
     defineProperty(assertThisInitialized(assertThisInitialized(_this)), "state", {
       opened: false
@@ -12482,11 +11843,11 @@ var funcProto$1 = Function.prototype,
 var funcToString$1 = funcProto$1.toString;
 
 /** Used to check objects for own properties. */
-var hasOwnProperty$3 = objectProto$2.hasOwnProperty;
+var hasOwnProperty$2 = objectProto$2.hasOwnProperty;
 
 /** Used to detect if a method is native. */
 var reIsNative = RegExp('^' +
-  funcToString$1.call(hasOwnProperty$3).replace(reRegExpChar, '\\$&')
+  funcToString$1.call(hasOwnProperty$2).replace(reRegExpChar, '\\$&')
   .replace(/hasOwnProperty|(function).*?(?=\\\()| for .+?(?=\\\])/g, '$1.*?') + '$'
 );
 
@@ -12569,7 +11930,7 @@ var HASH_UNDEFINED = '__lodash_hash_undefined__';
 var objectProto$3 = Object.prototype;
 
 /** Used to check objects for own properties. */
-var hasOwnProperty$4 = objectProto$3.hasOwnProperty;
+var hasOwnProperty$3 = objectProto$3.hasOwnProperty;
 
 /**
  * Gets the hash value for `key`.
@@ -12586,14 +11947,14 @@ function hashGet(key) {
     var result = data[key];
     return result === HASH_UNDEFINED ? undefined : result;
   }
-  return hasOwnProperty$4.call(data, key) ? data[key] : undefined;
+  return hasOwnProperty$3.call(data, key) ? data[key] : undefined;
 }
 
 /** Used for built-in method references. */
 var objectProto$4 = Object.prototype;
 
 /** Used to check objects for own properties. */
-var hasOwnProperty$5 = objectProto$4.hasOwnProperty;
+var hasOwnProperty$4 = objectProto$4.hasOwnProperty;
 
 /**
  * Checks if a hash value for `key` exists.
@@ -12606,7 +11967,7 @@ var hasOwnProperty$5 = objectProto$4.hasOwnProperty;
  */
 function hashHas(key) {
   var data = this.__data__;
-  return nativeCreate ? (data[key] !== undefined) : hasOwnProperty$5.call(data, key);
+  return nativeCreate ? (data[key] !== undefined) : hasOwnProperty$4.call(data, key);
 }
 
 /** Used to stand-in for `undefined` hash values. */
@@ -13105,20 +12466,20 @@ var getTime$1 = function getTime(start, end, format, showEmpty) {
 var Timer =
 /*#__PURE__*/
 function (_React$Component) {
-  inherits$1(Timer, _React$Component);
+  inherits(Timer, _React$Component);
 
   function Timer() {
     var _getPrototypeOf2;
 
     var _this;
 
-    classCallCheck$1(this, Timer);
+    classCallCheck(this, Timer);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    _this = possibleConstructorReturn$1(this, (_getPrototypeOf2 = getPrototypeOf(Timer)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this = possibleConstructorReturn(this, (_getPrototypeOf2 = getPrototypeOf(Timer)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
     defineProperty(assertThisInitialized(assertThisInitialized(_this)), "renderTime", function () {
       var _this$props = _this.props,
@@ -13209,12 +12570,12 @@ var TimeOut = styled.span.withConfig({
 var Countdown =
 /*#__PURE__*/
 function (_React$Component) {
-  inherits$1(Countdown, _React$Component);
+  inherits(Countdown, _React$Component);
 
   function Countdown() {
-    classCallCheck$1(this, Countdown);
+    classCallCheck(this, Countdown);
 
-    return possibleConstructorReturn$1(this, getPrototypeOf(Countdown).apply(this, arguments));
+    return possibleConstructorReturn(this, getPrototypeOf(Countdown).apply(this, arguments));
   }
 
   createClass(Countdown, [{
@@ -13249,20 +12610,20 @@ var accent = theme.accent,
 var DropDownItem =
 /*#__PURE__*/
 function (_React$Component) {
-  inherits$1(DropDownItem, _React$Component);
+  inherits(DropDownItem, _React$Component);
 
   function DropDownItem() {
     var _getPrototypeOf2;
 
     var _this;
 
-    classCallCheck$1(this, DropDownItem);
+    classCallCheck(this, DropDownItem);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    _this = possibleConstructorReturn$1(this, (_getPrototypeOf2 = getPrototypeOf(DropDownItem)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this = possibleConstructorReturn(this, (_getPrototypeOf2 = getPrototypeOf(DropDownItem)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
     defineProperty(assertThisInitialized(assertThisInitialized(_this)), "state", {
       pressed: false,
@@ -13385,20 +12746,20 @@ var DropDownActiveItem = styled(PublicUrl.hocWrap(DropDownItem)).withConfig({
 var DropDown =
 /*#__PURE__*/
 function (_React$Component) {
-  inherits$1(DropDown, _React$Component);
+  inherits(DropDown, _React$Component);
 
   function DropDown() {
     var _getPrototypeOf2;
 
     var _this;
 
-    classCallCheck$1(this, DropDown);
+    classCallCheck(this, DropDown);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    _this = possibleConstructorReturn$1(this, (_getPrototypeOf2 = getPrototypeOf(DropDown)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this = possibleConstructorReturn(this, (_getPrototypeOf2 = getPrototypeOf(DropDown)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
     defineProperty(assertThisInitialized(assertThisInitialized(_this)), "state", {
       opened: false
@@ -13717,7 +13078,7 @@ function baseAssignValue(object, key, value) {
 var objectProto$5 = Object.prototype;
 
 /** Used to check objects for own properties. */
-var hasOwnProperty$6 = objectProto$5.hasOwnProperty;
+var hasOwnProperty$5 = objectProto$5.hasOwnProperty;
 
 /**
  * Assigns `value` to `key` of `object` if the existing value is not equivalent
@@ -13731,7 +13092,7 @@ var hasOwnProperty$6 = objectProto$5.hasOwnProperty;
  */
 function assignValue(object, key, value) {
   var objValue = object[key];
-  if (!(hasOwnProperty$6.call(object, key) && eq(objValue, value)) ||
+  if (!(hasOwnProperty$5.call(object, key) && eq(objValue, value)) ||
       (value === undefined && !(key in object))) {
     baseAssignValue(object, key, value);
   }
@@ -13810,7 +13171,7 @@ function baseIsArguments(value) {
 var objectProto$6 = Object.prototype;
 
 /** Used to check objects for own properties. */
-var hasOwnProperty$7 = objectProto$6.hasOwnProperty;
+var hasOwnProperty$6 = objectProto$6.hasOwnProperty;
 
 /** Built-in value references. */
 var propertyIsEnumerable = objectProto$6.propertyIsEnumerable;
@@ -13834,7 +13195,7 @@ var propertyIsEnumerable = objectProto$6.propertyIsEnumerable;
  * // => false
  */
 var isArguments = baseIsArguments(function() { return arguments; }()) ? baseIsArguments : function(value) {
-  return isObjectLike(value) && hasOwnProperty$7.call(value, 'callee') &&
+  return isObjectLike(value) && hasOwnProperty$6.call(value, 'callee') &&
     !propertyIsEnumerable.call(value, 'callee');
 };
 
@@ -14093,7 +13454,7 @@ var isTypedArray = nodeIsTypedArray ? baseUnary(nodeIsTypedArray) : baseIsTypedA
 var objectProto$7 = Object.prototype;
 
 /** Used to check objects for own properties. */
-var hasOwnProperty$8 = objectProto$7.hasOwnProperty;
+var hasOwnProperty$7 = objectProto$7.hasOwnProperty;
 
 /**
  * Creates an array of the enumerable property names of the array-like `value`.
@@ -14113,7 +13474,7 @@ function arrayLikeKeys(value, inherited) {
       length = result.length;
 
   for (var key in value) {
-    if ((inherited || hasOwnProperty$8.call(value, key)) &&
+    if ((inherited || hasOwnProperty$7.call(value, key)) &&
         !(skipIndexes && (
            // Safari 9 has enumerable `arguments.length` in strict mode.
            key == 'length' ||
@@ -14168,7 +13529,7 @@ var nativeKeys = overArg(Object.keys, Object);
 var objectProto$9 = Object.prototype;
 
 /** Used to check objects for own properties. */
-var hasOwnProperty$9 = objectProto$9.hasOwnProperty;
+var hasOwnProperty$8 = objectProto$9.hasOwnProperty;
 
 /**
  * The base implementation of `_.keys` which doesn't treat sparse arrays as dense.
@@ -14183,7 +13544,7 @@ function baseKeys(object) {
   }
   var result = [];
   for (var key in Object(object)) {
-    if (hasOwnProperty$9.call(object, key) && key != 'constructor') {
+    if (hasOwnProperty$8.call(object, key) && key != 'constructor') {
       result.push(key);
     }
   }
@@ -14287,7 +13648,7 @@ function nativeKeysIn(object) {
 var objectProto$a = Object.prototype;
 
 /** Used to check objects for own properties. */
-var hasOwnProperty$a = objectProto$a.hasOwnProperty;
+var hasOwnProperty$9 = objectProto$a.hasOwnProperty;
 
 /**
  * The base implementation of `_.keysIn` which doesn't treat sparse arrays as dense.
@@ -14304,7 +13665,7 @@ function baseKeysIn(object) {
       result = [];
 
   for (var key in object) {
-    if (!(key == 'constructor' && (isProto || !hasOwnProperty$a.call(object, key)))) {
+    if (!(key == 'constructor' && (isProto || !hasOwnProperty$9.call(object, key)))) {
       result.push(key);
     }
   }
@@ -14645,7 +14006,7 @@ var getTag$1 = getTag;
 var objectProto$c = Object.prototype;
 
 /** Used to check objects for own properties. */
-var hasOwnProperty$b = objectProto$c.hasOwnProperty;
+var hasOwnProperty$a = objectProto$c.hasOwnProperty;
 
 /**
  * Initializes an array clone.
@@ -14659,7 +14020,7 @@ function initCloneArray(array) {
       result = new array.constructor(length);
 
   // Add properties assigned by `RegExp#exec`.
-  if (length && typeof array[0] == 'string' && hasOwnProperty$b.call(array, 'index')) {
+  if (length && typeof array[0] == 'string' && hasOwnProperty$a.call(array, 'index')) {
     result.index = array.index;
     result.input = array.input;
   }
@@ -15336,7 +14697,7 @@ var funcProto$2 = Function.prototype,
 var funcToString$2 = funcProto$2.toString;
 
 /** Used to check objects for own properties. */
-var hasOwnProperty$c = objectProto$d.hasOwnProperty;
+var hasOwnProperty$b = objectProto$d.hasOwnProperty;
 
 /** Used to infer the `Object` constructor. */
 var objectCtorString = funcToString$2.call(Object);
@@ -15377,7 +14738,7 @@ function isPlainObject(value) {
   if (proto === null) {
     return true;
   }
-  var Ctor = hasOwnProperty$c.call(proto, 'constructor') && proto.constructor;
+  var Ctor = hasOwnProperty$b.call(proto, 'constructor') && proto.constructor;
   return typeof Ctor == 'function' && Ctor instanceof Ctor &&
     funcToString$2.call(Ctor) == objectCtorString;
 }
@@ -15685,14 +15046,14 @@ var omit = flatRest(function(object, paths) {
 var EmptyStateCard =
 /*#__PURE__*/
 function (_React$Component) {
-  inherits$1(EmptyStateCard, _React$Component);
+  inherits(EmptyStateCard, _React$Component);
 
   function EmptyStateCard(props) {
     var _this;
 
-    classCallCheck$1(this, EmptyStateCard);
+    classCallCheck(this, EmptyStateCard);
 
-    _this = possibleConstructorReturn$1(this, getPrototypeOf(EmptyStateCard).call(this, props));
+    _this = possibleConstructorReturn(this, getPrototypeOf(EmptyStateCard).call(this, props));
 
     _this.displayWarnings({}, props);
 
@@ -16204,7 +15565,7 @@ function getWindowSizes(document) {
   };
 }
 
-var classCallCheck$2 = function (instance, Constructor) {
+var classCallCheck$1 = function (instance, Constructor) {
   if (!(instance instanceof Constructor)) {
     throw new TypeError("Cannot call a class as a function");
   }
@@ -18280,7 +17641,7 @@ var Popper = function () {
     var _this = this;
 
     var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
-    classCallCheck$2(this, Popper);
+    classCallCheck$1(this, Popper);
 
     this.scheduleUpdate = function () {
       return requestAnimationFrame(_this.update);
@@ -18425,14 +17786,14 @@ var _ref2;
 var PopoverBase =
 /*#__PURE__*/
 function (_React$Component) {
-  inherits$1(PopoverBase, _React$Component);
+  inherits(PopoverBase, _React$Component);
 
   function PopoverBase(props) {
     var _this;
 
-    classCallCheck$1(this, PopoverBase);
+    classCallCheck(this, PopoverBase);
 
-    _this = possibleConstructorReturn$1(this, getPrototypeOf(PopoverBase).call(this, props));
+    _this = possibleConstructorReturn(this, getPrototypeOf(PopoverBase).call(this, props));
 
     defineProperty(assertThisInitialized(assertThisInitialized(_this)), "_element", React.createRef());
 
@@ -18650,15 +18011,85 @@ Popover.defaultProps = objectSpread({}, PopoverBase.defaultProps, {
   visible: true
 });
 
+function _templateObject7() {
+  var data = taggedTemplateLiteral(["\n                color: ", ";\n              "]);
+
+  _templateObject7 = function _templateObject7() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject6() {
+  var data = taggedTemplateLiteral(["\n              padding: 10px 0 0;\n              text-align: right;\n              ", ";\n            "]);
+
+  _templateObject6 = function _templateObject6() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject5$1() {
+  var data = taggedTemplateLiteral(["\n                  margin: -1px 0 0 5px;\n                  text-transform: uppercase;\n                  ", ";\n                "]);
+
+  _templateObject5$1 = function _templateObject5() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject4$2() {
+  var data = taggedTemplateLiteral(["\n                ", ";\n                color: ", ";\n              "]);
+
+  _templateObject4$2 = function _templateObject4() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject3$2() {
+  var data = taggedTemplateLiteral(["\n              display: flex;\n              align-items: center;\n              padding: 5px 0;\n            "]);
+
+  _templateObject3$2 = function _templateObject3() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject2$2() {
+  var data = taggedTemplateLiteral(["\n              position: absolute;\n              top: 0;\n              right: 0;\n              width: 46px;\n              height: 40px;\n            "]);
+
+  _templateObject2$2 = function _templateObject2() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject$4() {
+  var data = taggedTemplateLiteral(["\n            position: relative;\n            padding: 10px 18px 20px;\n            max-width: calc(100vw - 20px);\n            min-width: 300px;\n          "]);
+
+  _templateObject$4 = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+
 var IdentityBadgePopover =
 /*#__PURE__*/
 function (_React$PureComponent) {
-  inherits$1(IdentityBadgePopover, _React$PureComponent);
+  inherits(IdentityBadgePopover, _React$PureComponent);
 
   function IdentityBadgePopover() {
-    classCallCheck$1(this, IdentityBadgePopover);
+    classCallCheck(this, IdentityBadgePopover);
 
-    return possibleConstructorReturn$1(this, getPrototypeOf(IdentityBadgePopover).apply(this, arguments));
+    return possibleConstructorReturn(this, getPrototypeOf(IdentityBadgePopover).apply(this, arguments));
   }
 
   createClass(IdentityBadgePopover, [{
@@ -18678,19 +18109,19 @@ function (_React$PureComponent) {
       }, React.createElement(_StyledSection, null, React.createElement(_StyledButtonIcon$1, {
         onClick: onClose
       }, React.createElement(Close, null)), React.createElement(_StyledHeader, null, React.createElement(_StyledH, {
-        _$p_: font({
+        _css: font({
           size: 'large'
         }),
-        _$p_2: theme.textSecondary
+        _css2: theme.textSecondary
       }, "Address"), connectedAccount && React.createElement(_StyledBadgeIdentity, {
         title: "This is your Ethereum address",
-        _$p_3: font({
+        _css3: font({
           size: 'xxsmall'
         })
       }, "You")), React.createElement(AddressField, {
         address: address
       }), React.createElement(_StyledP, {
-        _$p_4: font({
+        _css4: font({
           size: 'small'
         })
       }, React.createElement(_StyledSafeLink, {
@@ -18698,7 +18129,7 @@ function (_React$PureComponent) {
           networkType: networkType
         }),
         target: "_blank",
-        _$p_5: theme.accent
+        _css5: theme.accent
       }, "See on Etherscan"))));
     }
   }]);
@@ -18715,68 +18146,57 @@ defineProperty(IdentityBadgePopover, "propTypes", {
   connectedAccount: propTypes.bool
 });
 
-var _StyledSection = styled("section").withConfig({
-  displayName: "IdentityBadgePopover___StyledSection",
-  componentId: "sc-1yeyfty-0"
-})(["position:relative;padding:10px 18px 20px;max-width:calc(100vw - 20px);min-width:300px;"]);
+var _StyledSection = styled("section")(_templateObject$4());
 
-var _StyledButtonIcon$1 = styled(ButtonIcon).withConfig({
-  displayName: "IdentityBadgePopover___StyledButtonIcon",
-  componentId: "sc-1yeyfty-1"
-})(["position:absolute;top:0;right:0;width:46px;height:40px;"]);
+var _StyledButtonIcon$1 = styled(ButtonIcon)(_templateObject2$2());
 
-var _StyledHeader = styled("header").withConfig({
-  displayName: "IdentityBadgePopover___StyledHeader",
-  componentId: "sc-1yeyfty-2"
-})(["display:flex;align-items:center;padding:5px 0;"]);
+var _StyledHeader = styled("header")(_templateObject3$2());
 
-var _StyledH = styled("h1").withConfig({
-  displayName: "IdentityBadgePopover___StyledH",
-  componentId: "sc-1yeyfty-3"
-})(["", ";color:", ";"], function (p) {
-  return p._$p_;
+var _StyledH = styled("h1")(_templateObject4$2(), function (p) {
+  return p._css;
 }, function (p) {
-  return p._$p_2;
+  return p._css2;
 });
 
-var _StyledBadgeIdentity = styled(Badge.Identity).withConfig({
-  displayName: "IdentityBadgePopover___StyledBadgeIdentity",
-  componentId: "sc-1yeyfty-4"
-})(["margin:-1px 0 0 5px;text-transform:uppercase;", ";"], function (p) {
-  return p._$p_3;
+var _StyledBadgeIdentity = styled(Badge.Identity)(_templateObject5$1(), function (p) {
+  return p._css3;
 });
 
-var _StyledP = styled("p").withConfig({
-  displayName: "IdentityBadgePopover___StyledP",
-  componentId: "sc-1yeyfty-5"
-})(["padding:10px 0 0;text-align:right;", ";"], function (p) {
-  return p._$p_4;
+var _StyledP = styled("p")(_templateObject6(), function (p) {
+  return p._css4;
 });
 
-var _StyledSafeLink = styled(SafeLink).withConfig({
-  displayName: "IdentityBadgePopover___StyledSafeLink",
-  componentId: "sc-1yeyfty-6"
-})(["color:", ";"], function (p) {
-  return p._$p_5;
+var _StyledSafeLink = styled(SafeLink)(_templateObject7(), function (p) {
+  return p._css5;
 });
+
+function _templateObject$5() {
+  var data = taggedTemplateLiteral(["\n            display: inline-flex;\n            color: ", ";\n          "]);
+
+  _templateObject$5 = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
 
 var IdentityBadge =
 /*#__PURE__*/
 function (_React$PureComponent) {
-  inherits$1(IdentityBadge, _React$PureComponent);
+  inherits(IdentityBadge, _React$PureComponent);
 
   function IdentityBadge() {
     var _getPrototypeOf2;
 
     var _this;
 
-    classCallCheck$1(this, IdentityBadge);
+    classCallCheck(this, IdentityBadge);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    _this = possibleConstructorReturn$1(this, (_getPrototypeOf2 = getPrototypeOf(IdentityBadge)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this = possibleConstructorReturn(this, (_getPrototypeOf2 = getPrototypeOf(IdentityBadge)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
     defineProperty(assertThisInitialized(assertThisInitialized(_this)), "_element", React.createRef());
 
@@ -18814,7 +18234,7 @@ function (_React$PureComponent) {
         ref: this._element,
         title: address,
         onClick: address && this.handleOpen,
-        _$p_: theme.textPrimary
+        _css: theme.textPrimary
       }, React.createElement(Main$9, stylingProps(this), address && React.createElement(Identicon, null, React.createElement(EthIdenticon, {
         scale: 1,
         address: address
@@ -18857,17 +18277,14 @@ var Main$9 = styled.div.withConfig({
 var Identicon = styled.div.withConfig({
   displayName: "IdentityBadge__Identicon",
   componentId: "q71pax-1"
-})(["display:flex;margin-right:-3px;"]);
+})(["display:block;margin-right:-3px;"]);
 var Label$1 = styled(Text).withConfig({
   displayName: "IdentityBadge__Label",
   componentId: "q71pax-2"
 })(["padding:0 8px;white-space:nowrap;"]);
 
-var _StyledButtonBase$1 = styled(ButtonBase$1).withConfig({
-  displayName: "IdentityBadge___StyledButtonBase",
-  componentId: "q71pax-3"
-})(["display:inline-flex;color:", ";"], function (p) {
-  return p._$p_;
+var _StyledButtonBase$1 = styled(ButtonBase$1)(_templateObject$5(), function (p) {
+  return p._css;
 });
 
 var Info$1 = function Info(_ref) {
@@ -19873,12 +19290,12 @@ var LABELS_HEIGHT = 30;
 var LineChart =
 /*#__PURE__*/
 function (_React$Component) {
-  inherits$1(LineChart, _React$Component);
+  inherits(LineChart, _React$Component);
 
   function LineChart() {
-    classCallCheck$1(this, LineChart);
+    classCallCheck(this, LineChart);
 
-    return possibleConstructorReturn$1(this, getPrototypeOf(LineChart).apply(this, arguments));
+    return possibleConstructorReturn(this, getPrototypeOf(LineChart).apply(this, arguments));
   }
 
   createClass(LineChart, [{
@@ -20097,7 +19514,7 @@ Main$b.propTypes = {
 };
 Main$b.defaultProps = {
   legacyFonts: false,
-  assetsUrl: '/aragon-ui/'
+  assetsUrl: './aragon-ui/'
 };
 
 var LeftIcon = function LeftIcon() {
@@ -20119,45 +19536,36 @@ var LeftIcon = function LeftIcon() {
 var NavigationBar =
 /*#__PURE__*/
 function (_React$Component) {
-  inherits$1(NavigationBar, _React$Component);
+  inherits(NavigationBar, _React$Component);
 
   function NavigationBar() {
     var _getPrototypeOf2;
 
     var _this;
 
-    classCallCheck$1(this, NavigationBar);
+    classCallCheck(this, NavigationBar);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    _this = possibleConstructorReturn$1(this, (_getPrototypeOf2 = getPrototypeOf(NavigationBar)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this = possibleConstructorReturn(this, (_getPrototypeOf2 = getPrototypeOf(NavigationBar)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
     defineProperty(assertThisInitialized(assertThisInitialized(_this)), "state", {
       cachedItems: null,
-      direction: -1,
-      // only animate after the first rendering
-      animate: false
+      direction: -1
     });
 
     return _this;
   }
 
   createClass(NavigationBar, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      this.setState({
-        animate: true
-      });
-    }
-  }, {
     key: "render",
     value: function render() {
       var _this$props = this.props,
           onBack = _this$props.onBack,
-          items = _this$props.items;
-      var animate = this.state.animate;
+          items = _this$props.items,
+          compact = _this$props.compact;
       var displayedItems = items.map(function (node, index) {
         return {
           node: node,
@@ -20173,6 +19581,7 @@ function (_React$Component) {
           return items.length === 1 ? -1 : item.index;
         }),
         config: springs.smooth,
+        initial: null,
         from: {
           opacity: 0,
           position: this.state.direction * -1
@@ -20185,14 +19594,14 @@ function (_React$Component) {
           opacity: 0,
           position: this.state.direction
         },
-        immediate: !animate,
         native: true
       }, function (item) {
         return function (styles) {
           return React.createElement(Item, _extends_1({
             label: item.node,
             onBack: onBack,
-            displayBack: items.length > 1 && item.index > 0
+            displayBack: item.index > 0,
+            compact: compact
           }, styles));
         };
       }));
@@ -20219,12 +19628,14 @@ function (_React$Component) {
 
 defineProperty(NavigationBar, "propTypes", {
   onBack: propTypes.func,
-  items: propTypes.arrayOf(propTypes.node)
+  items: propTypes.arrayOf(propTypes.node),
+  compact: propTypes.bool
 });
 
 defineProperty(NavigationBar, "defaultProps", {
   onBack: function onBack() {},
-  items: []
+  items: [],
+  compact: false
 });
 
 var Item = function Item(_ref) {
@@ -20232,7 +19643,8 @@ var Item = function Item(_ref) {
       position = _ref.position,
       displayBack = _ref.displayBack,
       onBack = _ref.onBack,
-      label = _ref.label;
+      label = _ref.label,
+      compact = _ref.compact;
   return React.createElement(extendedAnimated.span, {
     style: {
       display: 'flex',
@@ -20243,16 +19655,18 @@ var Item = function Item(_ref) {
       })
     }
   }, React.createElement(Title$2, null, displayBack && React.createElement(BackButton, {
-    onClick: onBack
+    onClick: onBack,
+    compact: compact
   }, React.createElement(LeftIcon, null)), React.createElement(Label$2, null, label)));
 };
 
 Item.propTypes = {
-  opacity: propTypes.object,
-  position: propTypes.object,
+  compact: propTypes.bool,
   displayBack: propTypes.bool,
+  label: propTypes.node,
   onBack: propTypes.func,
-  label: propTypes.node
+  opacity: propTypes.object,
+  position: propTypes.object
 };
 var Container$1 = styled.span.withConfig({
   displayName: "NavigationBar__Container",
@@ -20265,11 +19679,13 @@ var Title$2 = styled.span.withConfig({
 var Label$2 = styled.span.withConfig({
   displayName: "NavigationBar__Label",
   componentId: "pd4tzi-2"
-})(["padding-left:30px;white-space:nowrap;font-size:22px;"]);
+})(["display:flex;height:100%;align-items:center;padding-left:30px;white-space:nowrap;font-size:22px;"]);
 var BackButton = styled.span.withConfig({
   displayName: "NavigationBar__BackButton",
   componentId: "pd4tzi-3"
-})(["display:flex;align-items:center;height:63px;padding:0 30px;cursor:pointer;svg{color:hsl(179,76%,48%);}:active svg{color:hsl(179,76%,63%);}& + ", "{padding-left:0;}"], Label$2);
+})(["display:flex;align-items:center;height:63px;padding:", ";cursor:pointer;svg{color:hsl(179,76%,48%);}:active svg{color:hsl(179,76%,63%);}& + ", "{padding-left:0;}"], function (p) {
+  return p.compact ? '0 16px' : '0 20px 0 30px';
+}, Label$2);
 
 var DEFAULT_COLORS = ['#000000', '#57666F', '#028CD1', '#21AAE7', '#39CAD0', '#ADE9EC', '#80AEDC'];
 /* eslint-disable react/prop-types */
@@ -20441,20 +19857,20 @@ var _React$createContext$4 = React.createContext({}),
 var RadioGroup =
 /*#__PURE__*/
 function (_React$PureComponent) {
-  inherits$1(RadioGroup, _React$PureComponent);
+  inherits(RadioGroup, _React$PureComponent);
 
   function RadioGroup() {
     var _getPrototypeOf2;
 
     var _this;
 
-    classCallCheck$1(this, RadioGroup);
+    classCallCheck(this, RadioGroup);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    _this = possibleConstructorReturn$1(this, (_getPrototypeOf2 = getPrototypeOf(RadioGroup)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this = possibleConstructorReturn(this, (_getPrototypeOf2 = getPrototypeOf(RadioGroup)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
     defineProperty(assertThisInitialized(assertThisInitialized(_this)), "state", {
       // keep track of the radios buttons to handle keyboard navigation
@@ -20581,20 +19997,20 @@ var KEYS_NEXT = ['ArrowDown', 'ArrowRight', // IE / Edge support
 var RadioButton =
 /*#__PURE__*/
 function (_React$PureComponent) {
-  inherits$1(RadioButton, _React$PureComponent);
+  inherits(RadioButton, _React$PureComponent);
 
   function RadioButton() {
     var _getPrototypeOf2;
 
     var _this;
 
-    classCallCheck$1(this, RadioButton);
+    classCallCheck(this, RadioButton);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    _this = possibleConstructorReturn$1(this, (_getPrototypeOf2 = getPrototypeOf(RadioButton)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this = possibleConstructorReturn(this, (_getPrototypeOf2 = getPrototypeOf(RadioButton)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
     defineProperty(assertThisInitialized(assertThisInitialized(_this)), "_element", React.createRef());
 
@@ -20707,12 +20123,12 @@ defineProperty(RadioButton, "defaultProps", {
 var Radio =
 /*#__PURE__*/
 function (_React$PureComponent2) {
-  inherits$1(Radio, _React$PureComponent2);
+  inherits(Radio, _React$PureComponent2);
 
   function Radio() {
-    classCallCheck$1(this, Radio);
+    classCallCheck(this, Radio);
 
-    return possibleConstructorReturn$1(this, getPrototypeOf(Radio).apply(this, arguments));
+    return possibleConstructorReturn(this, getPrototypeOf(Radio).apply(this, arguments));
   }
 
   createClass(Radio, [{
@@ -20791,12 +20207,12 @@ var RadioWrapper = styled(Radio).withConfig({
 var RadioList =
 /*#__PURE__*/
 function (_React$Component) {
-  inherits$1(RadioList, _React$Component);
+  inherits(RadioList, _React$Component);
 
   function RadioList() {
-    classCallCheck$1(this, RadioList);
+    classCallCheck(this, RadioList);
 
-    return possibleConstructorReturn$1(this, getPrototypeOf(RadioList).apply(this, arguments));
+    return possibleConstructorReturn(this, getPrototypeOf(RadioList).apply(this, arguments));
   }
 
   createClass(RadioList, [{
@@ -20872,20 +20288,20 @@ var CONTENT_PADDING = 30;
 var SidePanel =
 /*#__PURE__*/
 function (_React$PureComponent) {
-  inherits$1(SidePanel, _React$PureComponent);
+  inherits(SidePanel, _React$PureComponent);
 
   function SidePanel() {
     var _getPrototypeOf2;
 
     var _this;
 
-    classCallCheck$1(this, SidePanel);
+    classCallCheck(this, SidePanel);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    _this = possibleConstructorReturn$1(this, (_getPrototypeOf2 = getPrototypeOf(SidePanel)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this = possibleConstructorReturn(this, (_getPrototypeOf2 = getPrototypeOf(SidePanel)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
     defineProperty(assertThisInitialized(assertThisInitialized(_this)), "handleClose", function () {
       if (!_this.props.blocking) {
@@ -21046,30 +20462,30 @@ var Part$1 = styled.div.withConfig({
   componentId: "d0csv3-1"
 })(["width:50%;padding:20px ", "px;&:first-child{border-right:1px solid ", ";}"], SidePanel.HORIZONTAL_PADDING, theme.contentBorder);
 
-var BAR_HEIGHT = 6;
+var BAR_HEIGHT$1 = 6;
 var HANDLE_SIZE = 24;
 var HANDLE_SHADOW_MARGIN = 15;
 var PADDING = 5;
 var MIN_WIDTH = HANDLE_SIZE * 10;
-var HEIGHT = Math.max(HANDLE_SIZE, BAR_HEIGHT) + PADDING * 2;
+var HEIGHT = Math.max(HANDLE_SIZE, BAR_HEIGHT$1) + PADDING * 2;
 
 var Slider =
 /*#__PURE__*/
 function (_React$Component) {
-  inherits$1(Slider, _React$Component);
+  inherits(Slider, _React$Component);
 
   function Slider() {
     var _getPrototypeOf2;
 
     var _this;
 
-    classCallCheck$1(this, Slider);
+    classCallCheck(this, Slider);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    _this = possibleConstructorReturn$1(this, (_getPrototypeOf2 = getPrototypeOf(Slider)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this = possibleConstructorReturn(this, (_getPrototypeOf2 = getPrototypeOf(Slider)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
     defineProperty(assertThisInitialized(assertThisInitialized(_this)), "state", {
       pressed: false
@@ -21212,12 +20628,10 @@ function (_React$Component) {
           onMouseDown: _this2.dragStart,
           onTouchStart: _this2.dragStart
         }, React.createElement(Bars, null, React.createElement(BaseBar, null), React.createElement(ActiveBar, {
-          pressed: pressed,
           style: _this2.getActiveBarStyles(value, pressProgress)
         })), React.createElement(HandleClip, null, React.createElement(HandlePosition, {
           style: _this2.getHandlePositionStyles(value, pressProgress)
         }, React.createElement(Handle, {
-          pressed: pressed,
           style: _this2.getHandleStyles(pressProgress)
         })))));
       });
@@ -21248,7 +20662,7 @@ var Area = styled.div.withConfig({
 var Bars = styled(extendedAnimated.div).withConfig({
   displayName: "Slider__Bars",
   componentId: "sc-94djfe-2"
-})(["position:absolute;left:0;right:0;top:50%;transform:translateY(-50%);overflow:hidden;border-radius:2px;height:", "px;"], BAR_HEIGHT);
+})(["position:absolute;left:0;right:0;top:50%;transform:translateY(-50%);overflow:hidden;border-radius:2px;height:", "px;"], BAR_HEIGHT$1);
 var Bar$1 = styled(extendedAnimated.div).withConfig({
   displayName: "Slider__Bar",
   componentId: "sc-94djfe-3"
@@ -21277,24 +20691,26 @@ var Handle = styled(extendedAnimated.div).withConfig({
 var TabBar =
 /*#__PURE__*/
 function (_React$Component) {
-  inherits$1(TabBar, _React$Component);
+  inherits(TabBar, _React$Component);
 
   function TabBar() {
     var _getPrototypeOf2;
 
     var _this;
 
-    classCallCheck$1(this, TabBar);
+    classCallCheck(this, TabBar);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    _this = possibleConstructorReturn$1(this, (_getPrototypeOf2 = getPrototypeOf(TabBar)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this = possibleConstructorReturn(this, (_getPrototypeOf2 = getPrototypeOf(TabBar)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
     defineProperty(assertThisInitialized(assertThisInitialized(_this)), "state", {
       displayFocusRing: false
     });
+
+    defineProperty(assertThisInitialized(assertThisInitialized(_this)), "_barRef", React.createRef());
 
     defineProperty(assertThisInitialized(assertThisInitialized(_this)), "handleMouseDown", function () {
       _this.disableFocusRing();
@@ -21324,10 +20740,6 @@ function (_React$Component) {
       // `e.currentTarget` in the event object, we might as well use it for the
       // pointer device too.
       _this.selectElement(currentTarget);
-    });
-
-    defineProperty(assertThisInitialized(assertThisInitialized(_this)), "handleBarRef", function (el) {
-      _this.barElement = el;
     });
 
     return _this;
@@ -21360,14 +20772,27 @@ function (_React$Component) {
   }, {
     key: "selectElement",
     value: function selectElement(element) {
-      if (!element || !this.barElement) {
+      var onChange = this.props.onChange;
+
+      if (!element || !this._barRef.current) {
         return;
       }
 
-      var index = toConsumableArray(this.barElement.childNodes).indexOf(element);
+      var index = toConsumableArray(this._barRef.current.childNodes).indexOf(element);
 
-      if (index > -1) {
+      if (index === -1) {
+        return;
+      }
+
+      onChange(index); // onSelect compatibility
+
+      if (this.props.onSelect) {
         this.props.onSelect(index);
+
+        if (!TabBar._onSelectWarned) {
+          warn('TabBar: the `onSelect` prop has been renamed: please use `onChange` instead.');
+          TabBar._onSelectWarned = true;
+        }
       }
     }
   }, {
@@ -21379,21 +20804,24 @@ function (_React$Component) {
       var _this$props = this.props,
           items = _this$props.items,
           selected = _this$props.selected;
-      return React.createElement("nav", {
-        onMouseDown: this.handleMouseDown
-      }, React.createElement(Bar$2, {
-        ref: this.handleBarRef
-      }, items.map(function (item, i) {
-        return React.createElement(Tab, {
-          key: i,
-          tabIndex: "0",
-          selected: i === selected,
-          focusRing: displayFocusRing,
-          onMouseDown: _this2.handleTabMouseDown
-        }, React.createElement(Label$4, {
-          selected: i === selected
-        }, item), displayFocusRing && React.createElement(FocusRing$1, null));
-      })));
+      return React.createElement(InAppBarContext.Consumer, null, function (inAppBar) {
+        return React.createElement("nav", {
+          onMouseDown: _this2.handleMouseDown
+        }, React.createElement(Bar$2, {
+          ref: _this2._barRef,
+          border: !inAppBar
+        }, items.map(function (item, i) {
+          return React.createElement(Tab, {
+            key: i,
+            tabIndex: "0",
+            selected: i === selected,
+            focusRing: displayFocusRing,
+            onMouseDown: _this2.handleTabMouseDown
+          }, React.createElement(Label$4, {
+            selected: i === selected
+          }, item), displayFocusRing && React.createElement(FocusRing$1, null));
+        })));
+      });
     }
   }]);
 
@@ -21403,18 +20831,21 @@ function (_React$Component) {
 defineProperty(TabBar, "propTypes", {
   items: propTypes.arrayOf(propTypes.node).isRequired,
   selected: propTypes.number,
-  onSelect: propTypes.func
+  onSelect: propTypes.func,
+  onChange: propTypes.func
 });
 
 defineProperty(TabBar, "defaultProps", {
   selected: 0,
-  onSelect: noop
+  onChange: noop
 });
 
 var Bar$2 = styled.ul.withConfig({
   displayName: "TabBar__Bar",
   componentId: "sc-1rsszd9-0"
-})(["display:flex;border-bottom:1px solid ", ";"], theme.contentBorder);
+})(["display:flex;border-bottom:", ";"], function (p) {
+  return p.border ? "1px solid ".concat(theme.contentBorder) : '0';
+});
 var FocusRing$1 = styled.span.withConfig({
   displayName: "TabBar__FocusRing",
   componentId: "sc-1rsszd9-1"
@@ -21434,6 +20865,13 @@ var Label$4 = styled.span.withConfig({
   return p.selected ? theme.accent : 'transparent';
 });
 
+var StyledTableRow = styled.tr.withConfig({
+  displayName: "TableRow__StyledTableRow",
+  componentId: "sc-3jn6yz-0"
+})([""]);
+
+var contentBorder$3 = theme.contentBorder;
+
 var Table = function Table(_ref) {
   var header = _ref.header,
       children = _ref.children,
@@ -21444,27 +20882,43 @@ var Table = function Table(_ref) {
 
 Table.propTypes = {
   children: propTypes.node,
-  header: propTypes.node
+  header: propTypes.node,
+  noSideBorders: propTypes.bool
+};
+Table.defaultProps = {
+  noSideBorders: false
 };
 var StyledTable = styled.table.withConfig({
   displayName: "Table__StyledTable",
   componentId: "uvcan9-0"
-})(["width:100%;border-spacing:0;"]);
+})(["width:100%;border-spacing:0;td{border-bottom:1px solid ", ";}", ":first-child td{border-top:1px solid ", ";}td:first-child{border-left:", ";}td:last-child{border-right:", ";}", ":first-child td:first-child{border-top-left-radius:", ";}", ":first-child td:last-child{border-top-right-radius:", ";}", ":last-child td:first-child{border-bottom-left-radius:", ";}", ":last-child td:last-child{border-bottom-right-radius:", ";}"], contentBorder$3, StyledTableRow, contentBorder$3, function (_ref2) {
+  var noSideBorders = _ref2.noSideBorders;
+  return noSideBorders ? 0 : "1px solid ".concat(contentBorder$3);
+}, function (_ref3) {
+  var noSideBorders = _ref3.noSideBorders;
+  return noSideBorders ? 0 : "1px solid ".concat(contentBorder$3);
+}, StyledTableRow, function (_ref4) {
+  var noSideBorders = _ref4.noSideBorders;
+  return noSideBorders ? 0 : '3px';
+}, StyledTableRow, function (_ref5) {
+  var noSideBorders = _ref5.noSideBorders;
+  return noSideBorders ? 0 : '3px';
+}, StyledTableRow, function (_ref6) {
+  var noSideBorders = _ref6.noSideBorders;
+  return noSideBorders ? 0 : '3px';
+}, StyledTableRow, function (_ref7) {
+  var noSideBorders = _ref7.noSideBorders;
+  return noSideBorders ? 0 : '3px';
+});
 
-var StyledTableRow = styled.tr.withConfig({
-  displayName: "TableRow__StyledTableRow",
-  componentId: "sc-3jn6yz-0"
-})([""]);
-
-var contentBackground$2 = theme.contentBackground,
-    contentBorder$3 = theme.contentBorder;
+var contentBackground$2 = theme.contentBackground;
 var StyledTableCell = styled.td.withConfig({
   displayName: "TableCell__StyledTableCell",
   componentId: "sc-110j155-0"
-})(["padding:20px;background:", ";border-bottom:1px solid ", ";text-align:", ";&:first-child{border-left:1px solid ", ";}&:last-child{border-right:1px solid ", ";}", ":first-child &{border-top:1px solid ", ";}", ":first-child &:first-child{border-top-left-radius:3px;}", ":first-child &:last-child{border-top-right-radius:3px;}", ":last-child &:first-child{border-bottom-left-radius:3px;}", ":last-child &:last-child{border-bottom-right-radius:3px;}"], contentBackground$2, contentBorder$3, function (_ref) {
+})(["padding:20px;background:", ";text-align:", ";"], contentBackground$2, function (_ref) {
   var align = _ref.align;
   return align;
-}, contentBorder$3, contentBorder$3, StyledTableRow, contentBorder$3, StyledTableRow, StyledTableRow, StyledTableRow, StyledTableRow);
+});
 var StyledTableCellContent = styled.div.withConfig({
   displayName: "TableCell__StyledTableCellContent",
   componentId: "sc-110j155-1"
@@ -21534,12 +20988,12 @@ TableHeader.defaultProps = {
 var TransactionBadge =
 /*#__PURE__*/
 function (_React$PureComponent) {
-  inherits$1(TransactionBadge, _React$PureComponent);
+  inherits(TransactionBadge, _React$PureComponent);
 
   function TransactionBadge() {
-    classCallCheck$1(this, TransactionBadge);
+    classCallCheck(this, TransactionBadge);
 
-    return possibleConstructorReturn$1(this, getPrototypeOf(TransactionBadge).apply(this, arguments));
+    return possibleConstructorReturn(this, getPrototypeOf(TransactionBadge).apply(this, arguments));
   }
 
   createClass(TransactionBadge, [{
@@ -21620,12 +21074,12 @@ var Label$5 = styled(Text).withConfig({
 var TransactionProgress =
 /*#__PURE__*/
 function (_React$Component) {
-  inherits$1(TransactionProgress, _React$Component);
+  inherits(TransactionProgress, _React$Component);
 
   function TransactionProgress() {
-    classCallCheck$1(this, TransactionProgress);
+    classCallCheck(this, TransactionProgress);
 
-    return possibleConstructorReturn$1(this, getPrototypeOf(TransactionProgress).apply(this, arguments));
+    return possibleConstructorReturn(this, getPrototypeOf(TransactionProgress).apply(this, arguments));
   }
 
   createClass(TransactionProgress, [{
@@ -21713,4 +21167,4 @@ var SlowTransaction = styled.div.withConfig({
   componentId: "vvbhu5-5"
 })(["margin-right:10px;"]);
 
-export { Add as IconAdd, Apps as IconApps, Attention as IconAttention, Blank as IconBlank, Check as IconCheck, Close as IconClose, Copy as IconCopy, Cross as IconCross, Error$1 as IconError, Fundraising as IconFundraising, Groups as IconGroups, Home as IconHome, Identity as IconIdentity, Notifications as IconNotifications, Permissions as IconPermissions, Remove as IconRemove, Settings as IconSettings, Share as IconShare, Time as IconTime, Wallet as IconWallet, theme, themeDark, brand, colors, difference, formatHtmlDatetime, formatIntegerRange, unselectable, BREAKPOINTS, breakpoint, BreakPoint, font, grid, springs, spring, addressesEqual, shortenAddress, shortenTransaction, isAddress, isTransaction, blockExplorerUrl, forwardProps, stylingProps, devOnly, log, warn, noop, observe, PublicUrl, Redraw, RedrawFromDate, Root, Viewport, ToastHub, Toast, AddressField, AppBar, AppView, AragonApp, Badge, BadgeNumber, BaseStyles$1 as BaseStyles, Button, ButtonBase$1 as ButtonBase, ButtonIcon, StyledCard as Card, Checkbox, CircleGraph, ContextMenu, ContextMenuItem, Countdown, DropDown, EmptyStateCard, EthIdenticon, Field, FocusVisible, IdentityBadge, Info$1 as Info, LineChart, Main$b as Main, NavigationBar, PartitionBar, Popover, ProgressBar, Radio, Radio as RadioButton, RadioGroup, RadioList, SafeLink, SidePanel, SidePanelSeparator, SidePanelSplit, Slider, TabBar, Table, TableCell, TableHeader, StyledTableRow as TableRow, Text, TextInput, Timer, TransactionBadge, TransactionProgress };
+export { Add as IconAdd, Apps as IconApps, ArrowRight as IconArrowRight, Attention as IconAttention, Blank as IconBlank, Check as IconCheck, Close as IconClose, Copy as IconCopy, Cross as IconCross, Error$1 as IconError, Fundraising as IconFundraising, Groups as IconGroups, Home as IconHome, Identity as IconIdentity, Menu as IconMenu, Notifications as IconNotifications, Permissions as IconPermissions, Plus as IconPlus, Remove as IconRemove, Settings as IconSettings, Share as IconShare, Time as IconTime, Wallet as IconWallet, theme, themeDark, brand, colors, difference, formatHtmlDatetime, formatIntegerRange, unselectable, BREAKPOINTS, breakpoint, BreakPoint, font, grid, springs, spring, addressesEqual, shortenAddress, shortenTransaction, isAddress, isTransaction, blockExplorerUrl, forwardProps, stylingProps, devOnly, log, warn, noop, observe, PublicUrl, Redraw, RedrawFromDate, Root, Viewport, ToastHub, Toast, AddressField, AppBar, AppView, AragonApp, Badge, BadgeNumber, BaseStyles$1 as BaseStyles, Button, ButtonBase$1 as ButtonBase, ButtonIcon, StyledCard as Card, Checkbox, CircleGraph, ContextMenu, ContextMenuItem, Countdown, DropDown, EmptyStateCard, EthIdenticon, Field, FocusVisible, IdentityBadge, Info$1 as Info, LineChart, Main$b as Main, NavigationBar, PartitionBar, Popover, ProgressBar, Radio, Radio as RadioButton, RadioGroup, RadioList, SafeLink, SidePanel, SidePanelSeparator, SidePanelSplit, Slider, TabBar, Table, TableCell, TableHeader, StyledTableRow as TableRow, Text, TextInput, Timer, TransactionBadge, TransactionProgress };
