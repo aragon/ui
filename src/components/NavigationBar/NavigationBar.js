@@ -112,6 +112,9 @@ const Title = styled.span`
 `
 
 const Label = styled.span`
+  display: flex;
+  height: 100%;
+  align-items: center;
   padding-left: 30px;
   white-space: nowrap;
   font-size: 22px;
