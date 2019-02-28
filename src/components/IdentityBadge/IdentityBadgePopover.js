@@ -44,6 +44,7 @@ class IdentityBadgePopover extends React.PureComponent {
           `}
         >
           <ButtonIcon
+            label="Close"
             onClick={onClose}
             css={`
               position: absolute;
