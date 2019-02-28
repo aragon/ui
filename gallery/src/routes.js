@@ -123,6 +123,6 @@ export const PAGE_GROUPS = [
 ].map(group => ({ ...group, pages: group.pages.map(preparePage) }))
 
 export const PAGES = [
-  preparePage([PageHome, 'Aragon UI', '/']),
+  preparePage([PageHome, 'aragonUI', '/']),
   ...PAGE_GROUPS.reduce((pages, group) => pages.concat(group.pages), []),
 ]

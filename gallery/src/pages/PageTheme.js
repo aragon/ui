@@ -7,7 +7,7 @@ import readme from 'ui-src/theme/README.md'
 
 const PageButton = ({ title }) => (
   <Page title={title} readme={readme}>
-    <ColorGroup name="Aragon UI Theme" colors={theme} />
+    <ColorGroup name="aragonUI Theme" colors={theme} />
   </Page>
 )
 
