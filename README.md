@@ -1,10 +1,8 @@
-# aragonUI
-
 <p align=center>
-  <img src="https://user-images.githubusercontent.com/36158/40653789-19f2d150-6334-11e8-9f78-8b32648698b4.png" alt="">
+  <img src="https://user-images.githubusercontent.com/36158/53582039-04dd2d00-3b7f-11e9-8460-803ed3b84cc6.png" alt="aragonUI">
 </p>
 
-## What is it?
+## Overview
 
 aragonUI is a React library used to build user interfaces for Aragon and its related projects. It provides the components needed to build experiences that feel integrated with Aragon ecosystem, and can be used both client or server side.
 
