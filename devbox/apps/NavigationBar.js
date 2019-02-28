@@ -34,7 +34,15 @@ const useItems = () => {
 }
 
 const MenuButton = () => (
-  <ButtonIcon label="Menu" css="margin: 0 10px 0 -10px">
+  <ButtonIcon
+    label="Menu"
+    css={`
+      width: auto;
+      height: 100%;
+      margin: 0 8px 0 -30px;
+      padding: 0 8px 0 16px;
+    `}
+  >
     <IconMenu />
   </ButtonIcon>
 )
@@ -46,7 +54,13 @@ const DemoBadge = () => (
 )
 
 const Item = ({ showMenu, showBadge, level }) => (
-  <span css="display: flex; align-items: center ">
+  <span
+    css={`
+      display: flex;
+      align-items: center;
+      height: 100%;
+    `}
+  >
     {showMenu && <MenuButton />}
     <span>Level {level}</span>
     {showBadge && <DemoBadge />}
@@ -54,8 +68,9 @@ const Item = ({ showMenu, showBadge, level }) => (
 )
 
 const App = () => {
-  const [showMenu, setShowMenu] = useState(false)
   const [items, { back, forward, reset }] = useItems()
+  const [showMenu, setShowMenu] = useState(false)
+  const [compactMode, setCompactMode] = useState(false)
   return (
     <AppView
       appBar={
@@ -69,6 +84,7 @@ const App = () => {
               />
             ))}
             onBack={back}
+            compact={compactMode}
           />
         </AppBar>
       }
@@ -85,9 +101,18 @@ const App = () => {
             <Button onClick={forward}>➡</Button>
           </div>
           <div css="align-self: flex-start;margin-top: 20px">
-            <label css="cursor: pointer">
-              <Checkbox onChange={setShowMenu} checked={showMenu} /> Menu button
-            </label>
+            <div>
+              <label css="cursor: pointer">
+                <Checkbox onChange={setShowMenu} checked={showMenu} />
+                <span>Menu button</span>
+              </label>
+            </div>
+            <div>
+              <label css="cursor: pointer">
+                <Checkbox onChange={setCompactMode} checked={compactMode} />
+                <span>Compact mode</span>
+              </label>
+            </div>
           </div>
         </div>
       </Demo>
