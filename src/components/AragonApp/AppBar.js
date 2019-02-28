@@ -30,6 +30,9 @@ class AppBar extends React.Component {
     title: '',
   }
 
+  // Let external components have the possibility to know they are in AppBar
+  static InAppBar = InAppBarContext.Consumer
+
   state = {
     tabsHeight: 0,
   }
