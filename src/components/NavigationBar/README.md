@@ -60,3 +60,9 @@ The navigation items, representing the navigation history. The last one is the c
 - Type: `Function`
 
 Called when the back action is initiated by the user.
+
+### `compact`
+
+- Type: `Boolean`
+
+Set to `true` to make the navigation bar more compact (useful on small screens).
