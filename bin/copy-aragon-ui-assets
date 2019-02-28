@@ -58,7 +58,7 @@ async function main(argv, argspec) {
 
   return copy(source, destination).then(
     () =>
-      `\nAragon UI assets copied to ${path.relative(
+      `\naragonUI assets copied to ${path.relative(
         process.cwd(),
         destination
       )}`

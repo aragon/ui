@@ -28,4 +28,4 @@ Set this to `true` if you wish to support for WOFF 1.0 browsers (like Internet E
 - Type: `String`
 - Default: `./aragon-ui/`
 
-Set this to configure the URL of the directory containing your Aragon UI assets.
+Set this to configure the URL of the directory containing your aragonUI assets.

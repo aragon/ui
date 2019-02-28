@@ -11,7 +11,7 @@ const PageButton = ({ title }) => (
       <h2>Aragon Colors</h2>
       <p>
         These palettes contain the colors used by Aragon. It is not recommended
-        to refer to them in your Aragon apps, prefer using the Aragon UI Theme.
+        to refer to them in your Aragon apps, prefer using the aragonUI Theme.
       </p>
       {Object.entries(colors).map(([name, colors]) => (
         <ColorGroup

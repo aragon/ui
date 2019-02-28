@@ -1,6 +1,6 @@
 # Theme
 
-The Aragon UI Theme can be used to style your applications.
+The aragonUI theme can be used to style your applications.
 
 ## Usage
 
