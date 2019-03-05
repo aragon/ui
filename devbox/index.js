@@ -22,6 +22,7 @@ import TransactionBadge from './apps/TransactionBadge'
 import TransactionProgress from './apps/TransactionProgress'
 import Viewport from './apps/Viewport'
 import Scratchpad from './apps/Scratchpad'
+import TokenBadge from './apps/TokenBadge'
 
 const APPS = {
   AddressField,
@@ -43,6 +44,7 @@ const APPS = {
   TransactionBadge,
   TransactionProgress,
   Viewport,
+  TokenBadge
 }
 
 class Index extends React.Component {

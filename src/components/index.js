@@ -45,6 +45,7 @@ export { default as TableRow } from './Table/TableRow'
 export { default as Text } from './Text/Text'
 export { default as TextInput } from './Input/TextInput'
 export { default as Timer } from './Timer/Timer'
+export { default as TokenBadge } from './TokenBadge/TokenBadge'
 export {
   default as TransactionBadge,
 } from './TransactionBadge/TransactionBadge'
