@@ -15,10 +15,10 @@ class IdentityBadgePopover extends React.PureComponent {
   static propTypes = {
     address: PropTypes.string,
     connectedAccount: PropTypes.bool,
-    popoverAction: PopoverActionType,
     networkType: PropTypes.string,
     onClose: PropTypes.func,
     opener: PropTypes.instanceOf(Element),
+    popoverAction: PopoverActionType,
     visible: PropTypes.bool,
   }
   render() {
