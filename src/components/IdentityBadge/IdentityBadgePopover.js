@@ -105,6 +105,7 @@ class IdentityBadgePopover extends React.PureComponent {
           {popoverAction && (
             <Button
               mode="outline"
+              size="small"
               onClick={this.handlePopoverActionClick(onClose)}
             >
               {popoverAction.label}
