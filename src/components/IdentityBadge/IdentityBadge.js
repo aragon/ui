@@ -12,11 +12,12 @@ import PopoverActionType from './PopoverActionType'
 class IdentityBadge extends React.PureComponent {
   static propTypes = {
     connectedAccount: PropTypes.bool,
-    popoverAction: PopoverActionType,
+    customLabel: PropTypes.string,
     entity: PropTypes.string,
     fontSize: PropTypes.string,
-    customLabel: PropTypes.string,
     networkType: PropTypes.string,
+    popoverTitle: PropTypes.node,
+    popoverAction: PopoverActionType,
     shorten: PropTypes.bool,
   }
   static defaultProps = {
@@ -39,6 +40,7 @@ class IdentityBadge extends React.PureComponent {
     const {
       connectedAccount,
       popoverAction,
+      popoverTitle,
       entity,
       fontSize,
       customLabel,
@@ -78,6 +80,7 @@ class IdentityBadge extends React.PureComponent {
             opener={this._element.current}
             onClose={this.handleClose}
             popoverAction={popoverAction}
+            title={popoverTitle}
           />
         )}
       </React.Fragment>
