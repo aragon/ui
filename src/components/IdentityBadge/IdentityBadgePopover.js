@@ -19,8 +19,12 @@ class IdentityBadgePopover extends React.PureComponent {
     onClose: PropTypes.func,
     opener: PropTypes.instanceOf(Element),
     popoverAction: PopoverActionType,
+    title: PropTypes.node,
     visible: PropTypes.bool,
   }
+
+  static defaultProps = { title: 'Address' }
+
   render() {
     const {
       address,
@@ -29,9 +33,9 @@ class IdentityBadgePopover extends React.PureComponent {
       networkType,
       onClose,
       opener,
+      title,
       visible,
     } = this.props
-    const { title = 'Address' } = popoverAction || {}
 
     return (
       <Popover visible={visible} opener={opener} onClose={onClose}>
@@ -106,7 +110,7 @@ class IdentityBadgePopover extends React.PureComponent {
             <Button
               mode="outline"
               size="small"
-              onClick={this.handlePopoverActionClick(onClose)}
+              onClick={this.handlePopoverActionClick}
             >
               {popoverAction.label}
             </Button>
@@ -116,11 +120,12 @@ class IdentityBadgePopover extends React.PureComponent {
     )
   }
 
-  handlePopoverActionClick = onClose => () => {
-    onClose()
+  handlePopoverActionClick = () => {
     const {
-      popoverAction: { onClick = () => {} },
+      onClose = () => null,
+      popoverAction: { onClick = () => null },
     } = this.props
+    onClose()
     onClick()
   }
 }
