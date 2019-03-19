@@ -18,7 +18,7 @@ const HELP = `
 
     -h, --help               display this help and exit
     -v, --version            display the version number
-    -n, --dirname <dirname>  set the directory name (default: aragon-ui-assets)
+    -n, --dirname <dirname>  set the directory name (default: aragon-ui)
 
   Examples:
 
