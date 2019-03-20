@@ -1,32 +1,42 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { blockExplorerUrl, font } from '../../utils'
+import { blockExplorerUrl, noop, font } from '../../utils'
 import { theme } from '../../theme'
 import { IconClose } from '../../icons'
 import SafeLink from '../Link/SafeLink'
 import Popover from '../Popover/Popover'
+import Button from '../Button/Button'
 import ButtonIcon from '../Button/ButtonIcon'
 import AddressField from '../AddressField/AddressField'
 import Badge from '../Badge/Badge'
+import PopoverActionType from './PopoverActionType'
 
 class IdentityBadgePopover extends React.PureComponent {
   static propTypes = {
     address: PropTypes.string,
-    visible: PropTypes.bool,
-    opener: PropTypes.instanceOf(Element),
-    onClose: PropTypes.func,
-    networkType: PropTypes.string,
     connectedAccount: PropTypes.bool,
+    networkType: PropTypes.string,
+    onClose: PropTypes.func,
+    opener: PropTypes.instanceOf(Element),
+    popoverAction: PopoverActionType,
+    title: PropTypes.node,
+    visible: PropTypes.bool,
   }
+
+  static defaultProps = { title: 'Address', onClose: noop }
+
   render() {
     const {
       address,
-      visible,
-      opener,
-      onClose,
-      networkType,
       connectedAccount,
+      popoverAction,
+      networkType,
+      onClose,
+      opener,
+      title,
+      visible,
     } = this.props
+
     return (
       <Popover visible={visible} opener={opener} onClose={onClose}>
         <section
@@ -38,6 +48,7 @@ class IdentityBadgePopover extends React.PureComponent {
           `}
         >
           <ButtonIcon
+            label="Close"
             onClick={onClose}
             css={`
               position: absolute;
@@ -62,7 +73,7 @@ class IdentityBadgePopover extends React.PureComponent {
                 color: ${theme.textSecondary};
               `}
             >
-              Address
+              {title}
             </h1>
             {connectedAccount && (
               <Badge.Identity
@@ -95,9 +106,27 @@ class IdentityBadgePopover extends React.PureComponent {
               See on Etherscan
             </SafeLink>
           </p>
+          {popoverAction && (
+            <Button
+              mode="outline"
+              size="small"
+              onClick={this.handlePopoverActionClick}
+            >
+              {popoverAction.label}
+            </Button>
+          )}
         </section>
       </Popover>
     )
+  }
+
+  handlePopoverActionClick = () => {
+    const {
+      onClose,
+      popoverAction: { onClick = noop },
+    } = this.props
+    onClose()
+    onClick()
   }
 }
 
