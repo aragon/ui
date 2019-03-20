@@ -59,6 +59,7 @@ class IdentityBadge extends React.PureComponent {
           onClick={address && this.handleOpen}
           css={`
             display: inline-flex;
+            overflow: hidden;
             color: ${theme.textPrimary};
           `}
         >
@@ -104,7 +105,10 @@ const Identicon = styled.div`
 
 const Label = styled(Text)`
   padding: 0 8px;
+  display: inline-block;
   white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 `
 
 export default IdentityBadge
