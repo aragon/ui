@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { blockExplorerUrl, font } from '../../utils'
+import { blockExplorerUrl, noop, font } from '../../utils'
 import { theme } from '../../theme'
 import { IconClose } from '../../icons'
 import SafeLink from '../Link/SafeLink'
@@ -23,7 +23,7 @@ class IdentityBadgePopover extends React.PureComponent {
     visible: PropTypes.bool,
   }
 
-  static defaultProps = { title: 'Address' }
+  static defaultProps = { title: 'Address', onClose: noop }
 
   render() {
     const {
@@ -122,8 +122,8 @@ class IdentityBadgePopover extends React.PureComponent {
 
   handlePopoverActionClick = () => {
     const {
-      onClose = () => null,
-      popoverAction: { onClick = () => null },
+      onClose,
+      popoverAction: { onClick = noop },
     } = this.props
     onClose()
     onClick()
