@@ -105,7 +105,6 @@ const Identicon = styled.div`
 
 const Label = styled(Text)`
   padding: 0 8px;
-  display: inline-block;
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
