@@ -12,21 +12,25 @@ class EscapeOutside extends React.Component {
     onEscapeOutside: noop,
   }
 
+  _element = React.createRef()
+  _document = null
+
   componentDidMount() {
-    document.addEventListener('keydown', this.handleEscape)
-    document.addEventListener('click', this.handleClick, true)
-    document.addEventListener('touchend', this.handleClick, true)
+    this._document = this._element.ownerDocument
+    this._document.addEventListener('keydown', this.handleEscape)
+    this._document.addEventListener('click', this.handleClick)
+    this._document.addEventListener('touchend', this.handleClick)
   }
 
   componentWillUnmount() {
-    document.removeEventListener('keydown', this.handleEscape)
-    document.removeEventListener('click', this.handleClick, true)
-    document.removeEventListener('touchend', this.handleClick, true)
+    this._document.removeEventListener('keydown', this.handleEscape)
+    this._document.removeEventListener('click', this.handleClick)
+    this._document.removeEventListener('touchend', this.handleClick)
   }
 
   handleClick = e => {
     const { onEscapeOutside } = this.props
-    if (!this.node.contains(e.target)) {
+    if (!this._element.contains(e.target)) {
       onEscapeOutside()
     }
   }
@@ -42,7 +46,7 @@ class EscapeOutside extends React.Component {
     const { children, onEscapeOutside, ...rest } = this.props
 
     return (
-      <div {...rest} ref={n => (this.node = n)}>
+      <div {...rest} ref={n => (this._element = n)}>
         {children}
       </div>
     )
