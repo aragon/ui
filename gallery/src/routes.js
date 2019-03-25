@@ -27,7 +27,6 @@ import PageInfo from './pages/PageInfo'
 import PageProgressBar from './pages/PageProgressBar'
 import PageTransactionProgress from './pages/PageTransactionProgress'
 import PagePopover from './pages/PagePopover'
-import PageModalManager from './pages/PageModalManager'
 import PageModal from './pages/PageModal'
 
 // Containers

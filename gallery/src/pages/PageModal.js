@@ -1,36 +1,74 @@
 import React from 'react'
-import { Modal, Button } from '@aragon/ui'
+import styled from 'styled-components'
+import { Button, Modal, Root } from '@aragon/ui'
 import Page from 'comps/Page/Page'
-import DemoContainer from 'comps/Page/DemoContainer'
-import readme from 'ui-src/components/ModalManager/Modal.md'
+import Container from 'comps/Page/DemoContainer'
+import readme from 'ui-src/components/Modal/README.md'
 
-const PageModal = ({ title }) => (
-  <Page title={title} readme={readme}>
-    <Page.Demo opaque>
-      <DemoContainer>
-        <Modal
-          title="Title"
-          body={
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-              sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </p>
-          }
-          onHide={() => console.log('Hide modal callback')}
-          More={
-            <Button.Anchor href="https://ui.aragon.org/Modal" mode="strong" target="_blank">
-              More button
-            </Button.Anchor>
-          }
-        />
-      </DemoContainer>
-    </Page.Demo>
-  </Page>
-)
+class PageModal extends React.Component {
+  state = {
+    openModal: false,
+  }
+  render() {
+    const { title } = this.props
+    const { openModal } = this.state
+    return (
+      <Page title={title} readme={readme}>
+        <Page.Demo>
+          <Root.Provider>
+            <Container>
+              <Wrapper>
+                <Button
+                  onClick={() => {
+                    this.setState({
+                      openModal: true,
+                    })
+                  }}
+                >
+                  Open Modal
+                </Button>
+                <Modal visible={openModal} onClose={this.handleClose}>
+                  <div
+                    css={`
+                      height: 200px;
+                      width: 300px;
+                      display: flex;
+                      align-items: center;
+                      justify-content: center;
+                    `}
+                  >
+                    <Button mode="secondary" onClick={this.handleClose}>
+                      Close modal
+                    </Button>
+                  </div>
+                </Modal>
+              </Wrapper>
+            </Container>
+          </Root.Provider>
+        </Page.Demo>
+      </Page>
+    )
+  }
+
+  handleClose = () => {
+    this.setState({ openModal: false })
+  }
+}
+
+const Wrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 400px;
+`
+
+const Box = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 100px;
+`
 
 export default PageModal
