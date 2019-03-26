@@ -1,3 +1,4 @@
+import React from 'react'
 import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 import { theme } from '../../theme'
@@ -24,10 +25,11 @@ const baseStyles = css`
   }
 `
 
-// Simple input
+// Simple text input
 const TextInput = styled.input`
   ${baseStyles};
 `
+
 TextInput.propTypes = {
   required: PropTypes.bool,
   type: PropTypes.oneOf([
@@ -40,9 +42,83 @@ TextInput.propTypes = {
     'url',
   ]),
 }
+
 TextInput.defaultProps = {
   required: false,
   type: 'text',
+}
+
+// Text input wrapped to allow adornments
+const WrapperTextInput = React.forwardRef(
+  (
+    {
+      adornment,
+      adornmentPosition,
+      adornmentSettings: {
+        width: adornmentWidth = 34,
+        padding: adornmentPadding = 4,
+      },
+      ...props
+    },
+    ref
+  ) => {
+    if (!adornment) {
+      return <TextInput ref={ref} {...props} />
+    }
+    return (
+      <div
+        css={`
+          display: inline-flex;
+          position: relative;
+          width: max-content;
+        `}
+      >
+        <TextInput
+          ref={ref}
+          css={`
+            ${adornmentPosition === 'end'
+              ? 'padding-right'
+              : 'padding-left'}: ${adornmentWidth - adornmentPadding * 2}px;
+          `}
+          {...props}
+        />
+        <div
+          css={`
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            height: 100%;
+            ${adornmentPosition === 'end'
+              ? 'right'
+              : 'left'}: ${adornmentPadding}px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: ${theme.textSecondary};
+          `}
+        >
+          {adornment}
+        </div>
+      </div>
+    )
+  }
+)
+
+WrapperTextInput.propTypes = {
+  ...TextInput.propTypes,
+  adornment: PropTypes.node,
+  adornmentPosition: PropTypes.oneOf(['start', 'end']),
+  adornmentSettings: PropTypes.shape({
+    width: PropTypes.number,
+    padding: PropTypes.number,
+  }),
+}
+
+WrapperTextInput.defaultProps = {
+  ...TextInput.defaultProps,
+  adornment: null,
+  adornmentPosition: 'start',
+  adornmentSettings: {},
 }
 
 // <input type=number> (only for compat)
@@ -62,7 +138,7 @@ TextInputMultiline.defaultProps = {
   required: false,
 }
 
-TextInput.Number = TextInputNumber
-TextInput.Multiline = TextInputMultiline
+WrapperTextInput.Number = TextInputNumber
+WrapperTextInput.Multiline = TextInputMultiline
 
-export default TextInput
+export default WrapperTextInput

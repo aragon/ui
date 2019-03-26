@@ -10,6 +10,7 @@ import Checkbox from './apps/Checkbox'
 import EmptyStateCard from './apps/EmptyStateCard'
 import EthIdenticon from './apps/EthIdenticon'
 import IdentityBadge from './apps/IdentityBadge'
+import Input from './apps/Input'
 import LineChart from './apps/LineChart'
 import LinkedSliders from './apps/LinkedSliders'
 import NavigationBar from './apps/NavigationBar'
@@ -33,6 +34,7 @@ const APPS = {
   EmptyStateCard,
   EthIdenticon,
   IdentityBadge,
+  Input,
   LineChart,
   LinkedSliders,
   NavigationBar,
