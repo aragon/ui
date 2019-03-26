@@ -38,10 +38,23 @@ const smallcapsCss = smallcaps =>
     `
     : ''
 
-export const font = ({ size, weight, smallcaps = false, inherit = false }) => {
+const monospaceCss = monospace =>
+  monospace
+    ? `
+      font-family: aragon-ui-monospace, monospace;
+    `
+    : ''
+
+export const font = ({
+  size,
+  weight,
+  smallcaps = false,
+  monospace = false,
+}) => {
   return `
-    ${fontSizeCss(size, inherit)};
-    ${weightCss(weight, inherit)};
-    ${smallcapsCss(smallcaps, inherit)};
+    ${fontSizeCss(size)};
+    ${weightCss(weight)};
+    ${smallcapsCss(smallcaps)};
+    ${monospaceCss(monospace)};
   `
 }
