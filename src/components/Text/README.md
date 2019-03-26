@@ -36,7 +36,7 @@ Set this property to a color value to change the text color.
 Set this property to a `true` to render the text using a monospace font.
 
 ```jsx
-<Text smallcaps>Title Example</Text>
+<Text monospace>0xcafe</Text>
 ```
 
 ### `size`
