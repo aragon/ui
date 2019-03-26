@@ -23,7 +23,15 @@ function base() {
         },
       ],
     },
-    plugins: [new HtmlWebpackPlugin({ title: 'devbox' })],
+    plugins: [
+      new HtmlWebpackPlugin({
+        title: 'devbox',
+        meta: {
+          viewport:
+            'width=device-width, initial-scale=1, shrink-to-fit=no, maximum-scale=1, user-scalable=no',
+        },
+      }),
+    ],
   }
 }
 
@@ -81,7 +89,9 @@ function devserver() {
   const config = development()
   return {
     ...config,
-    devServer: { contentBase: './dist' },
+    devServer: {
+      contentBase: path.join(__dirname, 'dist'),
+    },
   }
 }
 
