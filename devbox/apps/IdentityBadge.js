@@ -16,11 +16,12 @@ class App extends React.Component {
         `}
       >
         <IdentityBadge
-          entity="0x2c9341a52cfa3f2c2554ca1803134137b9366b3c"
+          customLabel="Olive Oyl"
+          entity="0xc41e4c10b37d3397a99d4a90e7d85508a69a5c4c"
           connectedAccount
         />
         <IdentityBadge
-          entity="0xc41e4c10b37d3397a99d4a90e7d85508a69a5c4c"
+          entity="0x2c9341a52cfa3f2c2554ca1803134137b9366b3c"
           connectedAccount
         />
         <IdentityBadge

@@ -91,7 +91,7 @@ class IdentityBadge extends React.PureComponent {
                 overflow: hidden;
               `}
               size={fontSize}
-              monospace
+              monospace={Boolean(!customLabel && address)}
             >
               {label}
             </Text>
