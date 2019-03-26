@@ -1,9 +1,11 @@
 import React from 'react'
+import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { Transition, animated } from 'react-spring'
 import EscapeOutside from '../EscapeOutside/EscapeOutside'
 import { breakpoint, springs } from '../../utils/styles'
+import { Root } from '../../providers'
 
 const Modal = ({ visible, children, zIndex, onClose }) => (
   <Transition
@@ -102,4 +104,13 @@ const AnimatedWrap = styled(animated.div)`
   min-height: 0;
 `
 
-export default Modal
+export default props => (
+  <Root>
+    {rootElement => {
+      if (!rootElement) {
+        throw new Error('<Modal> needs to be nested in <Root.Provider>.')
+      }
+      return ReactDOM.createPortal(<Modal {...props} />, rootElement)
+    }}
+  </Root>
+)
