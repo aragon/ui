@@ -18,7 +18,7 @@ const HELP = `
 
     -h, --help               display this help and exit
     -v, --version            display the version number
-    -n, --dirname <dirname>  set the directory name (default: aragon-ui-assets)
+    -n, --dirname <dirname>  set the directory name (default: aragon-ui)
 
   Examples:
 
@@ -51,14 +51,14 @@ async function main(argv, argspec) {
   const destination = path.resolve(
     process.cwd(),
     args._[0],
-    args['--dirname'] || 'aragon-ui-assets'
+    args['--dirname'] || 'aragon-ui'
   )
 
   const copy = commandExists('rsync') ? rsyncCopy : nodeCopy
 
   return copy(source, destination).then(
     () =>
-      `\nAragon UI assets copied to ${path.relative(
+      `\naragonUI assets copied to ${path.relative(
         process.cwd(),
         destination
       )}`

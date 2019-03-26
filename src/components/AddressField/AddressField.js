@@ -95,7 +95,7 @@ class AddressFieldBase extends React.PureComponent {
         <ButtonIcon
           ref={this._button}
           onClick={this.handleCopy}
-          title="Copy"
+          label="Copy"
           css={`
             position: absolute;
             top: 0;

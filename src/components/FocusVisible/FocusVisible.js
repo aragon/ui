@@ -21,21 +21,23 @@ class FocusVisible extends React.PureComponent {
   }
   _element = React.createRef()
   state = {
+    document: null,
     focusVisible: false,
   }
   componentDidMount() {
-    this._document = this._element.current.ownerDocument
-    this._document.addEventListener('mousedown', this.handlePointerEvent)
-    this._document.addEventListener('mouseup', this.handlePointerEvent)
-    this._document.addEventListener('touchstart', this.handlePointerEvent)
-    this._document.addEventListener('touchend', this.handlePointerEvent)
+    const document = this._element.current.ownerDocument
+    document.addEventListener('mousedown', this.handlePointerEvent)
+    document.addEventListener('mouseup', this.handlePointerEvent)
+    document.addEventListener('touchstart', this.handlePointerEvent)
+    document.addEventListener('touchend', this.handlePointerEvent)
+    this.setState({ document })
   }
   componentWillUnmount() {
-    this._document.removeEventListener('mousedown', this.handlePointerEvent)
-    this._document.removeEventListener('mouseup', this.handlePointerEvent)
-    this._document.removeEventListener('touchstart', this.handlePointerEvent)
-    this._document.removeEventListener('touchend', this.handlePointerEvent)
-    delete this._document
+    const { document } = this.state
+    document.removeEventListener('mousedown', this.handlePointerEvent)
+    document.removeEventListener('mouseup', this.handlePointerEvent)
+    document.removeEventListener('touchstart', this.handlePointerEvent)
+    document.removeEventListener('touchend', this.handlePointerEvent)
   }
   // It doesn’t seem to be specified, but pointer events happen before focus
   // events on modern browsers.
@@ -51,11 +53,11 @@ class FocusVisible extends React.PureComponent {
     this.setState({ focusVisible: !this._pointerActive })
   }
   render() {
-    const { focusVisible } = this.state
+    const { focusVisible, document } = this.state
     return (
       <React.Fragment>
         {this.props.children({ focusVisible, onFocus: this.handleFocus })}
-        {!this._document && <span ref={this._element} />}
+        {!document && <span ref={this._element} />}
       </React.Fragment>
     )
   }

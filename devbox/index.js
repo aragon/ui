@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 import { Main } from '@aragon/ui'
 
 import AddressField from './apps/AddressField'
+import AppBarTabs from './apps/AppBarTabs'
 import AppView from './apps/AppView'
 import Button from './apps/Button'
 import Checkbox from './apps/Checkbox'
@@ -16,16 +17,17 @@ import NavigationBar from './apps/NavigationBar'
 import PartitionBar from './apps/PartitionBar'
 import Popover from './apps/Popover'
 import Radio from './apps/Radio'
+import Scratchpad from './apps/Scratchpad'
 import SidePanel from './apps/SidePanel'
 import TabBar from './apps/TabBar'
 import Timer from './apps/Timer'
 import TransactionBadge from './apps/TransactionBadge'
 import TransactionProgress from './apps/TransactionProgress'
 import Viewport from './apps/Viewport'
-import Scratchpad from './apps/Scratchpad'
 
 const APPS = {
   AddressField,
+  AppBarTabs,
   AppView,
   Button,
   Checkbox,

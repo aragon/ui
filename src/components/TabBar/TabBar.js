@@ -2,27 +2,34 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { theme } from '../../theme'
-import { font, unselectable, noop } from '../../utils'
+import { font, unselectable, noop, warn } from '../../utils'
+import { InAppBarContext } from '../AragonApp/AppBar'
 
 class TabBar extends React.Component {
   static propTypes = {
     items: PropTypes.arrayOf(PropTypes.node).isRequired,
     selected: PropTypes.number,
     onSelect: PropTypes.func,
+    onChange: PropTypes.func,
   }
   static defaultProps = {
     selected: 0,
-    onSelect: noop,
+    onChange: noop,
   }
+
   state = {
     displayFocusRing: false,
   }
+
+  _barRef = React.createRef()
+
   componentDidMount() {
     document.addEventListener('keydown', this.handleKeydown)
   }
   componentWillUnmount() {
     document.removeEventListener('keydown', this.handleKeydown)
   }
+
   enableFocusRing() {
     this.setState({ displayFocusRing: true })
   }
@@ -30,12 +37,27 @@ class TabBar extends React.Component {
     this.setState({ displayFocusRing: false })
   }
   selectElement(element) {
-    if (!element || !this.barElement) {
+    const { onChange } = this.props
+    if (!element || !this._barRef.current) {
       return
     }
-    const index = [...this.barElement.childNodes].indexOf(element)
-    if (index > -1) {
+    const index = [...this._barRef.current.childNodes].indexOf(element)
+    if (index === -1) {
+      return
+    }
+
+    onChange(index)
+
+    // onSelect compatibility
+    if (this.props.onSelect) {
       this.props.onSelect(index)
+
+      if (!TabBar._onSelectWarned) {
+        warn(
+          'TabBar: the `onSelect` prop has been renamed: please use `onChange` instead.'
+        )
+        TabBar._onSelectWarned = true
+      }
     }
   }
   handleMouseDown = () => {
@@ -59,36 +81,37 @@ class TabBar extends React.Component {
     // pointer device too.
     this.selectElement(currentTarget)
   }
-  handleBarRef = el => {
-    this.barElement = el
-  }
   render() {
     const { displayFocusRing } = this.state
     const { items, selected } = this.props
     return (
-      <nav onMouseDown={this.handleMouseDown}>
-        <Bar ref={this.handleBarRef}>
-          {items.map((item, i) => (
-            <Tab
-              key={i}
-              tabIndex="0"
-              selected={i === selected}
-              focusRing={displayFocusRing}
-              onMouseDown={this.handleTabMouseDown}
-            >
-              <Label selected={i === selected}>{item}</Label>
-              {displayFocusRing && <FocusRing />}
-            </Tab>
-          ))}
-        </Bar>
-      </nav>
+      <InAppBarContext.Consumer>
+        {inAppBar => (
+          <nav onMouseDown={this.handleMouseDown}>
+            <Bar ref={this._barRef} border={!inAppBar}>
+              {items.map((item, i) => (
+                <Tab
+                  key={i}
+                  tabIndex="0"
+                  selected={i === selected}
+                  focusRing={displayFocusRing}
+                  onMouseDown={this.handleTabMouseDown}
+                >
+                  <Label selected={i === selected}>{item}</Label>
+                  {displayFocusRing && <FocusRing />}
+                </Tab>
+              ))}
+            </Bar>
+          </nav>
+        )}
+      </InAppBarContext.Consumer>
     )
   }
 }
 
 const Bar = styled.ul`
   display: flex;
-  border-bottom: 1px solid ${theme.contentBorder};
+  border-bottom: ${p => (p.border ? `1px solid ${theme.contentBorder}` : '0')};
 `
 
 const FocusRing = styled.span`

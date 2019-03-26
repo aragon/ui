@@ -16,12 +16,13 @@ class AppView extends React.Component {
     children: PropTypes.node,
     padding: PropTypes.number,
     height: PropTypes.string,
+    tabs: PropTypes.element,
   }
   render() {
-    const { appBar, title, children, padding, height } = this.props
+    const { appBar, children, height, padding, tabs, title } = this.props
     return (
       <Main height={height} {...stylingProps(this)}>
-        <Header>{appBar || <AppBar title={title} />}</Header>
+        <Header>{appBar || <AppBar title={title} tabs={tabs} />}</Header>
         <ScrollWrapper>
           <Content padding={padding}>{children}</Content>
         </ScrollWrapper>
