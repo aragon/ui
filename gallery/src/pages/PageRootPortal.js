@@ -24,15 +24,22 @@ const PageRootPortal = ({ title }) => {
         background: hsla(0, 100%, 100%, 0.8);
       `}
     >
-      <div css="margin-bottom: 20px">
-        This gets rendered {inside ? 'through' : 'outside'} the portal.
+      <div
+        css={`
+          padding: 20px;
+          margin-bottom: 20px;
+          border: 2px solid hsla(20, 40%, 80%, 0.8);
+          border-radius: 4px;
+        `}
+      >
+        This component is rendered {inside ? 'through' : 'without'} RootPortal.
       </div>
       <Button
         mode="secondary"
         size="compact"
         onClick={() => setInside(v => !v)}
       >
-        Render {inside ? 'without RootPortal' : 'through RootPortal'}
+        Render {inside ? 'without' : 'through'} RootPortal
       </Button>
     </div>
   )
