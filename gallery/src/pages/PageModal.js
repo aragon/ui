@@ -19,6 +19,7 @@ class PageModal extends React.Component {
             <Container>
               <Wrapper>
                 <Button
+                  mode="primary"
                   onClick={() => {
                     this.setState({
                       openModal: true,
@@ -30,11 +31,10 @@ class PageModal extends React.Component {
                 <Modal visible={openModal} onClose={this.handleClose}>
                   <div
                     css={`
-                      height: 200px;
-                      width: 300px;
                       display: flex;
                       align-items: center;
                       justify-content: center;
+                      height: 300px;
                     `}
                   >
                     <Button mode="secondary" onClick={this.handleClose}>
