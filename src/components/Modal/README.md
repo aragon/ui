@@ -12,14 +12,21 @@ const App = () => {
   return (
     <Main>
       <Button onClick={() => setOpened(true)}>
-        Open Modal
+        Open modal
       </Button>
+
       <Modal
         visible={opened}
         onClose={() => setOpened(false)}
       >
-        {/* modal content */}
+
+        {/* content goes here */}
+        <Button onClick={() => setOpened(false)}>
+          Close modal
+        </Button>
+
       </Modal>
+
     </Main>
   )
 }
