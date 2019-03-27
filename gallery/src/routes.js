@@ -28,6 +28,7 @@ import PageProgressBar from './pages/PageProgressBar'
 import PageTransactionProgress from './pages/PageTransactionProgress'
 import PagePopover from './pages/PagePopover'
 import PageModal from './pages/PageModal'
+import PageRootPortal from './pages/PageRootPortal'
 
 // Containers
 import PageMain from './pages/PageMain'
@@ -111,6 +112,7 @@ export const PAGE_GROUPS = [
       [PageProgressBar, 'ProgressBar'],
       [PageTransactionProgress, 'TransactionProgress'],
       [PagePopover, 'Popover'],
+      [PageRootPortal, 'RootPortal'],
     ],
   },
   {
