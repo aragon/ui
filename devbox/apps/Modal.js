@@ -4,6 +4,7 @@ import { Button, Modal } from '@aragon/ui'
 
 function App() {
   const [opened, setOpened] = useState(true)
+  const [paragraphs, setParagraphs] = useState(3)
   return (
     <div
       css={`
@@ -42,8 +43,30 @@ function App() {
             }
           `}
         >
-          <h1>Modal title</h1>
-          {[...Array(10)].map((_, i) => (
+          <h1
+            css={`
+              display: flex;
+              align-items: center;
+              gap: 10px;
+            `}
+          >
+            <span>Modal title </span>
+            <Button
+              mode="secondary"
+              size="mini"
+              onClick={() => setParagraphs(Math.max(1, paragraphs - 1))}
+            >
+              -
+            </Button>
+            <Button
+              mode="secondary"
+              size="mini"
+              onClick={() => setParagraphs(paragraphs + 1)}
+            >
+              +
+            </Button>
+          </h1>
+          {[...Array(paragraphs)].map((_, i) => (
             <p key={i}>
               Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
               nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
