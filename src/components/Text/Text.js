@@ -4,7 +4,8 @@ import styled from 'styled-components'
 import { font } from '../../utils/styles'
 
 const Text = styled.span`
-  ${({ size, weight, smallcaps }) => font({ size, weight, smallcaps })};
+  ${({ size, weight, smallcaps, monospace }) =>
+    font({ size, weight, smallcaps, monospace })};
   ${({ color }) => (color ? `color: ${color}` : '')};
 `
 
@@ -17,6 +18,7 @@ Text.propTypes = Block.propTypes = Paragraph.propTypes = {
   size: PropTypes.string,
   smallcaps: PropTypes.bool,
   weight: PropTypes.string,
+  monospace: PropTypes.bool,
 }
 
 Text.Block = Block

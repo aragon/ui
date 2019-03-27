@@ -7,6 +7,7 @@ import EthIdenticon from '../EthIdenticon/EthIdenticon'
 import { Toast } from '../ToastHub/ToastHub'
 import { theme } from '../../theme'
 import { noop, warn } from '../../utils'
+import { font } from '../../utils/styles/font'
 
 class AddressFieldBase extends React.PureComponent {
   static propTypes = {
@@ -81,11 +82,12 @@ class AddressFieldBase extends React.PureComponent {
           readOnly
           css={`
             text-overflow: ellipsis;
-            width: 350px;
+            width: 390px;
             max-width: 100%;
             border: 0;
             box-shadow: none;
             background: transparent;
+            ${font({ monospace: true })};
             &:read-only {
               color: ${theme.textPrimary};
               text-shadow: none;

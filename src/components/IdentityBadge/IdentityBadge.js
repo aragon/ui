@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import styled from 'styled-components'
 import { isAddress, shortenAddress, stylingProps } from '../../utils'
 import { theme } from '../../theme'
 import Text from '../Text/Text'
@@ -63,14 +62,40 @@ class IdentityBadge extends React.PureComponent {
             color: ${theme.textPrimary};
           `}
         >
-          <Main {...stylingProps(this)}>
+          <div
+            css={`
+              overflow: hidden;
+              display: flex;
+              align-items: center;
+              background: #daeaef;
+              border-radius: 3px;
+              text-decoration: none;
+            `}
+            {...stylingProps(this)}
+          >
             {address && (
-              <Identicon>
+              <div
+                css={`
+                  display: block;
+                  margin-right: -3px;
+                `}
+              >
                 <EthIdenticon scale={1} address={address} />
-              </Identicon>
+              </div>
             )}
-            <Label size={fontSize}>{label}</Label>
-          </Main>
+            <Text
+              css={`
+                padding: 0 8px;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                overflow: hidden;
+              `}
+              size={fontSize}
+              monospace={Boolean(!customLabel && address)}
+            >
+              {label}
+            </Text>
+          </div>
         </ButtonBase>
         {address && (
           <IdentityBadgePopover
@@ -88,26 +113,5 @@ class IdentityBadge extends React.PureComponent {
     )
   }
 }
-
-const Main = styled.div`
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  background: #daeaef;
-  border-radius: 3px;
-  text-decoration: none;
-`
-
-const Identicon = styled.div`
-  display: block;
-  margin-right: -3px;
-`
-
-const Label = styled(Text)`
-  padding: 0 8px;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
-`
 
 export default IdentityBadge
