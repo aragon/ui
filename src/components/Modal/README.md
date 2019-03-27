@@ -62,4 +62,4 @@ The callback that is called when the `ESC` i pressed or the user clicks outside 
 - Type: `number`
 - Default: `1`
 
-`z-index` of Modal wrapper.
+`z-index` of Modal wrapper. Setting this prop shouldn’t be needed as `Modal` always renders at the top level of your aragonUI app, but it is available if needed.
