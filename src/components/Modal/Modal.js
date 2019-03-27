@@ -108,7 +108,7 @@ export default props => (
   <Root>
     {rootElement => {
       if (!rootElement) {
-        throw new Error('<Modal> needs to be nested in <Root.Provider>.')
+        throw new Error('<Modal> needs to be nested in <Root.Provider>. Have you declared <Main>?')
       }
       return ReactDOM.createPortal(<Modal {...props} />, rootElement)
     }}
