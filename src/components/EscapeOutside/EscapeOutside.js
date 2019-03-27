@@ -1,5 +1,5 @@
 import React from 'react'
-import PropsTypes from 'prop-types'
+import PropTypes from 'prop-types'
 import { noop } from '../../utils'
 
 class EscapeOutside extends React.Component {
