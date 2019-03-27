@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import ReactDOM from 'react-dom'
 import { Root } from '../../providers/Root'
 
-const RootPortal = ({ children }) => (
+const RootPortal = props => (
   <Root>
     {rootElement => {
       if (!rootElement) {
@@ -11,7 +11,7 @@ const RootPortal = ({ children }) => (
           '<RootPortal> needs to be nested in <Root.Provider>. Have you declared <Main>?'
         )
       }
-      return ReactDOM.createPortal(children, rootElement)
+      return ReactDOM.createPortal(props.children, rootElement)
     }}
   </Root>
 )

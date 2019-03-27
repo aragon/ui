@@ -21,3 +21,12 @@ const App = () => (
   </Main>
 )
 ```
+
+## Properties
+
+### `children`
+
+- Type: React node
+- Required
+
+Pass anything here and it will get rendered at the `<Root />` level.
