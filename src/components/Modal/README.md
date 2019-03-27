@@ -7,37 +7,21 @@ The `Modal` component is used to render a structured container for modal windows
 ```jsx
 import { Main, Modal, Button } from '@aragon/ui'
 
-class App extends React.Component {
-  state = {
-    openModal: false,
-  }
-
-  render() {
-    const { openModal } = this.state
-
-    return (
-      <Main>
-        <Button
-          onClick={() => {
-            this.setState({
-              openModal: true,
-            })
-          }}
-        >
-          Open Modal
-        </Button>
-        <Modal visible={openModal} onClose={this.handleClose}>
-          <Button mode="secondary" onClick={this.handleClose}>
-            Close modal
-          </Button>
-        </Modal>
-      </Main>
-    )
-  }
-
-  handleClose = () => {
-    this.setState({ openModal: false })
-  }
+const App = () => {
+  const [opened, setOpened] = useState(false)
+  return (
+    <Main>
+      <Button onClick={() => setOpened(true)}>
+        Open Modal
+      </Button>
+      <Modal
+        visible={opened}
+        onClose={() => setOpened(false)}
+      >
+        {/* modal content */}
+      </Modal>
+    </Main>
+  )
 }
 ```
 
