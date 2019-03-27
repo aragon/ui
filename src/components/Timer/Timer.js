@@ -13,6 +13,10 @@ const FRAME_EVERY = 1000 / 30 // 30 FPS is enough for a ticker
 const formatUnit = v => String(v).padStart(2, '0')
 
 const formats = {
+  Mdhms: 'Mdhms',
+  Mdhm: 'Mdhm',
+  Mdh: 'Mdh',
+  Md: 'Md',
   dhms: 'dhms',
   dhm: 'dhm',
   hms: 'hms',
@@ -23,14 +27,25 @@ const formats = {
 }
 
 const getFormat = memoize(format =>
-  ['d', 'h', 'm', 's'].map(symbol => formats[format].includes(symbol))
+  ['M', 'd', 'h', 'm', 's'].map(symbol => formats[format].includes(symbol))
 )
 
 const getTime = (start, end, format, showEmpty) => {
-  const [showDays, showHours, showMinutes, showSeconds] = getFormat(format)
-  let { days, hours, minutes, seconds, totalInSeconds } = difference(
+  const [showMonths, showDays, showHours, showMinutes, showSeconds] = getFormat(format)
+  let { months, days, hours, minutes, seconds, totalInSeconds } = difference(
     ...(end ? [end, new Date()] : [new Date(), start])
   )
+
+  console.log('months: ' + months)
+  console.log('days: ' + days)
+   console.log('hours: ' + hours)
+
+  if (!showMonths) {
+    days += months * 30
+    months = null
+  } else if (months === 0 && !showEmpty) {
+    months = null
+  } 
 
   if (!showDays) {
     hours += days * 24
@@ -57,7 +72,7 @@ const getTime = (start, end, format, showEmpty) => {
     seconds = null
   }
 
-  return { days, hours, minutes, seconds, totalInSeconds }
+  return { months, days, hours, minutes, seconds, totalInSeconds }
 }
 
 class Timer extends React.Component {
@@ -88,7 +103,7 @@ class Timer extends React.Component {
   renderTime = () => {
     const { start, end, format, showEmpty } = this.props
 
-    const { days, hours, minutes, seconds, totalInSeconds } = getTime(
+    const { months, days, hours, minutes, seconds, totalInSeconds } = getTime(
       start,
       end,
       format,
@@ -101,6 +116,15 @@ class Timer extends React.Component {
 
     return (
       <span>
+        {months !== null && (
+          <React.Fragment>
+            <Part>
+              {formatUnit(months)}
+              <Unit>M</Unit>
+            </Part>
+            <Separator />
+          </React.Fragment>
+        )}
         {days !== null && (
           <React.Fragment>
             <Part>

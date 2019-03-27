@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { Timer } from '@aragon/ui'
 
+
 const SECONDS = 1000
 const MINUTES = SECONDS * 60
 const HOURS = MINUTES * 60
@@ -12,10 +13,10 @@ const now = Date.now()
 const timers = [
   { start: -40 * SECONDS },
   { start: -40 * SECONDS, showEmpty: true },
-  { start: -4 * HOURS, end: 8 * HOURS },
+  { start: -4 * DAYS, end: 99999999 * DAYS },
   { end: 1 * DAYS },
-  ...['dhms', 'dhm', 'hms', 'hm', 'ms', 'm', 's'].map(format => ({
-    end: 2 * DAYS - 55 * SECONDS,
+  ...['Mdhms', 'Mdhm','Mdh', 'Md', 'dhms', 'dhm', 'hms', 'hm', 'ms', 'm', 's'].map(format => ({
+    end: 33 * DAYS - 55 * SECONDS,
     format,
   })),
 ].map(timer => {
@@ -26,6 +27,7 @@ const timers = [
 
 class App extends React.Component {
   render() {
+
     return (
       <Main>
         <div>
