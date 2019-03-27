@@ -5,7 +5,7 @@ The `Modal` component is used to render a structured container for modal windows
 ## Usage
 
 ```jsx
-import { RootProvider, Modal, Button } from '@aragon/ui'
+import { Main, Modal, Button } from '@aragon/ui'
 
 class App extends React.Component {
   state = {
@@ -16,7 +16,7 @@ class App extends React.Component {
     const { openModal } = this.state
 
     return (
-      <RootProvider>
+      <Main>
         <Button
           onClick={() => {
             this.setState({
@@ -31,7 +31,7 @@ class App extends React.Component {
             Close modal
           </Button>
         </Modal>
-      </RootProvider>
+      </Main>
     )
   }
 
