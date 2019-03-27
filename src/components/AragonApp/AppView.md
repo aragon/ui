@@ -22,6 +22,19 @@ const App = () => (
 
 Set to the desired title of your choice.
 
+### `tabs`
+
+- Type: `TabBar`
+
+Pass a `TabBar` instance to get tabs integrated to the header.
+
+### `height`
+
+- Type: `String`
+- Default: `100vh`
+
+Set `height` to adapt `AppView` to another size than the viewport height.
+
 ### `padding`
 
 - Type: `Number`

@@ -1,28 +1,10 @@
 import React from 'react'
 import createHistory from 'history/createBrowserHistory'
 import styled from 'styled-components'
-import { AragonApp } from '@aragon/ui'
+import { Main } from '@aragon/ui'
 import Sidebar from 'comps/Sidebar/Sidebar'
 import GlobalStyles from './global-styles'
 import { PAGE_GROUPS, PAGES } from './routes'
-
-const Main = styled.div`
-  display: flex;
-  height: 100vh;
-  > :first-child {
-    margin-right: 20px;
-  }
-`
-const Menu = styled.div`
-  flex-shrink: 0;
-  height: 100%;
-  overflow: auto;
-`
-const Content = styled.div`
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-`
 
 class App extends React.Component {
   state = {
@@ -51,8 +33,16 @@ class App extends React.Component {
     const { pages, activePage } = this.state
     const Page = activePage && activePage.comp
     return (
-      <AragonApp publicUrl={ARAGON_UI_PATH} supportLegacyAgents>
-        <Main>
+      <Main assetsUrl={ARAGON_UI_PATH} legacyFonts>
+        <div
+          css={`
+            display: flex;
+            height: 100vh;
+            > :first-child {
+              margin-right: 20px;
+            }
+          `}
+        >
           <Menu>
             <Sidebar
               title={pages[0].name}
@@ -63,11 +53,22 @@ class App extends React.Component {
             />
           </Menu>
           <Content>{Page && <Page title={activePage.name} />}</Content>
-        </Main>
+        </div>
         <GlobalStyles />
-      </AragonApp>
+      </Main>
     )
   }
 }
+
+const Menu = styled.div`
+  flex-shrink: 0;
+  height: 100%;
+  overflow: auto;
+`
+const Content = styled.div`
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+`
 
 export default App

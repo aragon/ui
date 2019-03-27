@@ -1,32 +1,56 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import { Main } from '@aragon/ui'
 
-import LinkedSliders from './apps/LinkedSliders'
-import RadioButton from './apps/RadioButton'
-import SidePanel from './apps/SidePanel'
-import NavigationBar from './apps/NavigationBar'
+import AddressField from './apps/AddressField'
+import AppBarTabs from './apps/AppBarTabs'
+import AppView from './apps/AppView'
 import Button from './apps/Button'
+import Checkbox from './apps/Checkbox'
 import EmptyStateCard from './apps/EmptyStateCard'
-import TabBar from './apps/TabBar'
+import EthIdenticon from './apps/EthIdenticon'
 import IdentityBadge from './apps/IdentityBadge'
+import Input from './apps/Input'
+import LineChart from './apps/LineChart'
+import LinkedSliders from './apps/LinkedSliders'
+import NavigationBar from './apps/NavigationBar'
+import PartitionBar from './apps/PartitionBar'
 import Popover from './apps/Popover'
+import Radio from './apps/Radio'
+import Scratchpad from './apps/Scratchpad'
+import SidePanel from './apps/SidePanel'
+import TabBar from './apps/TabBar'
+import Timer from './apps/Timer'
+import TransactionBadge from './apps/TransactionBadge'
 import TransactionProgress from './apps/TransactionProgress'
 import DatePicker from './apps/DatePicker'
 import DateInput from './apps/DateInput'
+import Viewport from './apps/Viewport'
 
 const APPS = {
-  LinkedSliders,
-  RadioButton,
-  SidePanel,
-  NavigationBar,
+  AddressField,
+  AppBarTabs,
+  AppView,
   Button,
+  Checkbox,
   EmptyStateCard,
-  TabBar,
+  EthIdenticon,
   IdentityBadge,
+  Input,
+  LineChart,
+  LinkedSliders,
+  NavigationBar,
+  PartitionBar,
   Popover,
+  Radio,
+  SidePanel,
+  TabBar,
+  Timer,
+  TransactionBadge,
   TransactionProgress,
   DatePicker,
   DateInput,
+  Viewport,
 }
 
 class Index extends React.Component {
@@ -49,15 +73,21 @@ class Index extends React.Component {
   }
   render() {
     const { appName } = this.state
-    const CurrentApp = APPS[appName]
+    const CurrentApp = appName === 'Scratchpad' ? Scratchpad : APPS[appName]
     return CurrentApp ? (
-      <CurrentApp />
+      <Main>
+        <CurrentApp />
+      </Main>
     ) : (
       <React.Fragment>
         <style>{STYLES}</style>
         <main>
           <h1>Devbox</h1>
           <ul>
+            <li>
+              <a href="#Scratchpad">Scratchpad</a>
+            </li>
+
             {Object.keys(APPS)
               .sort()
               .map(appName => (

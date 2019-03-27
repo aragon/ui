@@ -1,41 +1,14 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+import PropTypes from '../../proptypes'
 import styled from 'styled-components'
 import { theme } from '../../theme'
-import TableRow from './TableRow'
 
-const { contentBackground, contentBorder } = theme
+const { contentBackground } = theme
 
 const StyledTableCell = styled.td`
   padding: 20px;
   background: ${contentBackground};
-  border-bottom: 1px solid ${contentBorder};
   text-align: ${({ align }) => align};
-
-  /* First and last cell styling */
-  &:first-child {
-    border-left: 1px solid ${contentBorder};
-  }
-  &:last-child {
-    border-right: 1px solid ${contentBorder};
-  }
-
-  /* First and last row styling */
-  ${TableRow}:first-child & {
-    border-top: 1px solid ${contentBorder};
-  }
-  ${TableRow}:first-child &:first-child {
-    border-top-left-radius: 3px;
-  }
-  ${TableRow}:first-child &:last-child {
-    border-top-right-radius: 3px;
-  }
-  ${TableRow}:last-child &:first-child {
-    border-bottom-left-radius: 3px;
-  }
-  ${TableRow}:last-child &:last-child {
-    border-bottom-right-radius: 3px;
-  }
 `
 
 const StyledTableCellContent = styled.div`
@@ -58,7 +31,7 @@ const TableCell = ({
 
 TableCell.propTypes = {
   align: PropTypes.string,
-  contentContainer: PropTypes.func,
+  contentContainer: PropTypes._component,
   children: PropTypes.node,
 }
 

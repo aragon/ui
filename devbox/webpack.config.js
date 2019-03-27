@@ -24,8 +24,13 @@ function base() {
       ],
     },
     plugins: [
-      new CleanWebpackPlugin(['dist']),
-      new HtmlWebpackPlugin({ title: 'devbox' }),
+      new HtmlWebpackPlugin({
+        title: 'devbox',
+        meta: {
+          viewport:
+            'width=device-width, initial-scale=1, shrink-to-fit=no, maximum-scale=1, user-scalable=no',
+        },
+      }),
     ],
   }
 }
@@ -38,6 +43,7 @@ function production() {
     devtool: 'source-map',
     plugins: [
       ...config.plugins,
+      new CleanWebpackPlugin(['dist']),
       new BundleAnalyzerPlugin({
         analyzerMode: 'static',
         reportFilename: 'bundle-report.html',
@@ -83,7 +89,9 @@ function devserver() {
   const config = development()
   return {
     ...config,
-    devServer: { contentBase: './dist' },
+    devServer: {
+      contentBase: path.join(__dirname, 'dist'),
+    },
   }
 }
 

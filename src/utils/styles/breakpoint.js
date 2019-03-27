@@ -4,8 +4,9 @@ import Media from 'react-media'
 import { css } from 'styled-components'
 
 // These breakpoints values represent minimum screen sizes.
-// Small screen sizes should be targetted by default (mobile first).
-const BREAKPOINTS = {
+export const BREAKPOINTS = {
+  min: 320,
+  small: 540,
   medium: 768,
   large: 1170,
 }
@@ -19,7 +20,7 @@ export const breakpoint = (name, styles) => css`
 
 // Rendering breakpoints
 export const BreakPoint = ({ from, to, children, ...props }) => {
-  const names = ['medium', 'large']
+  const names = Object.keys(BREAKPOINTS)
   const query = {}
   if (from && names.includes(from)) {
     query.minWidth = BREAKPOINTS[from]

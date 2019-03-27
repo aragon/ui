@@ -9,17 +9,16 @@ class NavigationBar extends React.Component {
   static propTypes = {
     onBack: PropTypes.func,
     items: PropTypes.arrayOf(PropTypes.node),
+    compact: PropTypes.bool,
   }
   static defaultProps = {
     onBack: () => {},
     items: [],
+    compact: false,
   }
   state = {
     cachedItems: null,
     direction: -1,
-
-    // only animate after the first rendering
-    animate: false,
   }
   static getDerivedStateFromProps(props, state) {
     const updatedState = { cachedItems: props.items }
@@ -31,12 +30,8 @@ class NavigationBar extends React.Component {
       direction: state.cachedItems.length > props.items.length ? 1 : -1,
     }
   }
-  componentDidMount() {
-    this.setState({ animate: true })
-  }
   render() {
-    const { onBack, items } = this.props
-    const { animate } = this.state
+    const { onBack, items, compact } = this.props
     const displayedItems = items
       .map((node, index) => ({ node, index }))
       .slice(-1)
@@ -51,17 +46,18 @@ class NavigationBar extends React.Component {
             item => (items.length === 1 ? -1 : item.index)
           )}
           config={springs.smooth}
+          initial={null}
           from={{ opacity: 0, position: this.state.direction * -1 }}
           enter={{ opacity: 1, position: 0 }}
           leave={{ opacity: 0, position: this.state.direction }}
-          immediate={!animate}
           native
         >
           {item => styles => (
             <Item
               label={item.node}
               onBack={onBack}
-              displayBack={items.length > 1 && item.index > 0}
+              displayBack={item.index > 0}
+              compact={compact}
               {...styles}
             />
           )}
@@ -71,7 +67,7 @@ class NavigationBar extends React.Component {
   }
 }
 
-const Item = ({ opacity, position, displayBack, onBack, label }) => (
+const Item = ({ opacity, position, displayBack, onBack, label, compact }) => (
   <animated.span
     style={{
       display: 'flex',
@@ -82,7 +78,7 @@ const Item = ({ opacity, position, displayBack, onBack, label }) => (
   >
     <Title>
       {displayBack && (
-        <BackButton onClick={onBack}>
+        <BackButton onClick={onBack} compact={compact}>
           <LeftIcon />
         </BackButton>
       )}
@@ -92,11 +88,12 @@ const Item = ({ opacity, position, displayBack, onBack, label }) => (
 )
 
 Item.propTypes = {
+  compact: PropTypes.bool,
+  displayBack: PropTypes.bool,
+  label: PropTypes.node,
+  onBack: PropTypes.func,
   opacity: PropTypes.object,
   position: PropTypes.object,
-  displayBack: PropTypes.bool,
-  onBack: PropTypes.func,
-  label: PropTypes.node,
 }
 
 const Container = styled.span`
@@ -115,6 +112,9 @@ const Title = styled.span`
 `
 
 const Label = styled.span`
+  display: flex;
+  height: 100%;
+  align-items: center;
   padding-left: 30px;
   white-space: nowrap;
   font-size: 22px;
@@ -124,7 +124,7 @@ const BackButton = styled.span`
   display: flex;
   align-items: center;
   height: 63px;
-  padding: 0 30px;
+  padding: ${p => (p.compact ? '0 16px' : '0 20px 0 30px')};
   cursor: pointer;
   svg {
     color: hsl(179, 76%, 48%);

@@ -18,10 +18,10 @@ const illustrations = [
 const positions = [0, 0.5, 0.85, 1]
 
 const PageHome = () => (
-  <Page title="Aragon UI">
+  <Page title="aragonUI">
     <div>
       <p>
-        Aragon UI allows you to develop apps that look and feel like Aragon
+        aragonUI allows you to develop apps that look and feel like Aragon
         apps.
       </p>
       <Illustrations>

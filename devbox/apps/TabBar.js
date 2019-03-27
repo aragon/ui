@@ -1,23 +1,21 @@
 import React from 'react'
 import styled from 'styled-components'
-import { AragonApp, TabBar } from '@aragon/ui'
+import { TabBar } from '@aragon/ui'
 
 const ITEMS = ['One', 'Two', 'Three', 'Four', 'Five']
 
 class App extends React.Component {
   render() {
     return (
-      <AragonApp publicUrl="/aragon-ui/">
-        <Main>
-          <Container>
-            {ITEMS.map((item, i) => (
-              <div style={{ marginBottom: '20px' }}>
-                <TabBarDemo items={ITEMS.slice(0, i + 1)} />
-              </div>
-            ))}
-          </Container>
-        </Main>
-      </AragonApp>
+      <Main>
+        <Container>
+          {ITEMS.map((item, i) => (
+            <div style={{ marginBottom: '20px' }}>
+              <TabBarDemo items={ITEMS.slice(0, i + 1)} />
+            </div>
+          ))}
+        </Container>
+      </Main>
     )
   }
 }
@@ -33,7 +31,7 @@ class TabBarDemo extends React.Component {
     const { index } = this.state
     const { items } = this.props
     return (
-      <TabBar onSelect={this.handleSelect} selected={index} items={items} />
+      <TabBar onChange={this.handleSelect} selected={index} items={items} />
     )
   }
 }

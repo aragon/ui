@@ -9,10 +9,8 @@ class PageRadioList extends React.Component {
   state = {
     selectedItem: 0,
   }
-  handleChange = event => {
-    console.log(`Selected radio with value: ${event.target.value}`)
-  }
-  handleSelect = index => {
+  handleChange = index => {
+    console.log(`Selected radio at index: ${index}`)
     this.setState({ selectedItem: index })
   }
   render() {
@@ -26,23 +24,19 @@ class PageRadioList extends React.Component {
               title="This is a radio list"
               description="Make a choice: "
               onChange={this.handleChange}
-              onSelect={this.handleSelect}
               items={[
                 {
                   title: 'First choice',
                   description: 'A description of the choice',
-                  value: 'first',
                 },
                 {
                   title: 'Second choice',
                   description:
                     'A long, long description of the choice, which should wrap around if we give it a lot of text!',
-                  value: 'second',
                 },
                 {
                   title: 'A third choice',
                   description: 'Yet another choice!',
-                  value: 'third',
                 },
               ]}
               selected={selectedItem}

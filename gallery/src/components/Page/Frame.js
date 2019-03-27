@@ -101,6 +101,7 @@ class Frame extends React.Component {
               style={{
                 background: opaque ? theme.contentBackground : 'none',
                 overflow: 'hidden',
+                height: 'auto',
                 minHeight: '100vh',
                 borderRadius: '3px 0 0 3px',
               }}
