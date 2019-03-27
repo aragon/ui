@@ -4,7 +4,7 @@ import { noop } from '../../utils'
 
 class EscapeOutside extends React.Component {
   static propTypes = {
-    children: PropsTypes.node.isRequired,
+    children: PropTypes.node.isRequired,
     onEscapeOutside: PropsTypes.func,
   }
 
