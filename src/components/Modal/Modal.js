@@ -1,72 +1,73 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { Transition, animated, interpolate } from 'react-spring'
 import { Viewport } from '../../providers/Viewport'
 import EscapeOutside from '../EscapeOutside/EscapeOutside'
+import RootPortal from '../RootPortal/RootPortal'
 import { springs } from '../../utils/styles'
-import { Root } from '../../providers'
 import { noop } from '../../utils'
 
 const cssPx = value => (typeof value === 'number' ? value + 'px' : value)
 
 const Modal = ({ children, onClose, padding, visible, width }) => (
-  <Viewport>
-    {viewport => (
-      <Transition
-        native
-        items={visible}
-        from={{ opacity: 0, position: 1, scale: 0.97 }}
-        enter={{ opacity: 1, position: 0, scale: 1 }}
-        leave={{ opacity: 0, position: 0, scale: 0.97 }}
-        config={springs.smooth}
-      >
-        {show =>
-          show &&
-          /* eslint-disable react/prop-types */
-          (({ opacity, position, scale }) => (
-            <React.Fragment>
-              <Overlay style={{ opacity }} />
-              <ContentWrapper
-                style={{
-                  pointerEvents: visible ? 'auto' : 'none',
-                  opacity,
-                  transform: interpolate(
-                    [position, scale],
-                    (p, s) => `
+  <RootPortal>
+    <Viewport>
+      {viewport => (
+        <Transition
+          native
+          items={visible}
+          from={{ opacity: 0, position: 1, scale: 0.97 }}
+          enter={{ opacity: 1, position: 0, scale: 1 }}
+          leave={{ opacity: 0, position: 0, scale: 0.97 }}
+          config={springs.smooth}
+        >
+          {show =>
+            show &&
+            /* eslint-disable react/prop-types */
+            (({ opacity, position, scale }) => (
+              <React.Fragment>
+                <Overlay style={{ opacity }} />
+                <ContentWrapper
+                  style={{
+                    pointerEvents: visible ? 'auto' : 'none',
+                    opacity,
+                    transform: interpolate(
+                      [position, scale],
+                      (p, s) => `
                       translate3d(0, ${p * 5}px, 0)
                       scale3d(${s}, ${s}, 1)
                     `
-                  ),
-                }}
-              >
-                <div css="padding: 24px 12px">
-                  <Content
-                    role="alertdialog"
-                    onEscapeOutside={onClose}
-                    style={{
-                      padding: cssPx(
-                        typeof padding === 'function'
-                          ? padding(viewport)
-                          : padding
-                      ),
-                      width: cssPx(
-                        typeof width === 'function' ? width(viewport) : width
-                      ),
-                    }}
-                  >
-                    {children}
-                  </Content>
-                </div>
-              </ContentWrapper>
-            </React.Fragment>
-          ))
-        /* eslint-enable react/prop-types */
-        }
-      </Transition>
-    )}
-  </Viewport>
+                    ),
+                  }}
+                >
+                  <div css="padding: 24px 12px">
+                    <Content
+                      role="alertdialog"
+                      onEscapeOutside={onClose}
+                      style={{
+                        padding: cssPx(
+                          typeof padding === 'function'
+                            ? padding(viewport)
+                            : padding
+                        ),
+                        width: cssPx(
+                          typeof width === 'function' ? width(viewport) : width
+                        ),
+                      }}
+                    >
+                      {children}
+                    </Content>
+                  </div>
+                </ContentWrapper>
+              </React.Fragment>
+            ))
+          /* eslint-enable react/prop-types */
+          }
+        </Transition>
+      )}
+    </Viewport>
+  </RootPortal>
 )
 
 Modal.defaultProps = {
@@ -121,15 +122,4 @@ const Overlay = styled(animated.div)`
   background: rgba(0, 0, 0, 0.5);
 `
 
-export default props => (
-  <Root>
-    {rootElement => {
-      if (!rootElement) {
-        throw new Error(
-          '<Modal> needs to be nested in <Root.Provider>. Have you declared <Main>?'
-        )
-      }
-      return ReactDOM.createPortal(<Modal {...props} />, rootElement)
-    }}
-  </Root>
-)
+export default Modal
