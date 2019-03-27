@@ -50,16 +50,31 @@ class App extends React.Component {
 
 Use this property to show/hide the Modal.
 
+### `width`
+
+- Type: `Function`, `Number` or `String`
+- Default: `viewport => Math.min(viewport.width - 48, 600)`
+
+Use this property to assign a dynamic width to the modal.
+
+If a function is set, the data coming from Viewport will be passed to it.
+
+If a number is set or returned from the function, `px` will automatically be added to it.
+
+### `padding`
+
+- Type: `Function`, `Number` or `String`
+- Default: `24`
+
+The inner padding of the modal.
+
+If a function is set, the data coming from Viewport will be passed to it.
+
+If a number is set or returned from the function, `px` will automatically be added to it.
+
 ### `onClose`
 
 - Type: `function`
 - Default: `noop`
 
 The callback that is called when the `ESC` i pressed or the user clicks outside of the modal container.
-
-### `zIndex`
-
-- Type: `number`
-- Default: `1`
-
-`z-index` of Modal wrapper. Setting this prop shouldn’t be needed as `Modal` always renders at the top level of your aragonUI app, but it is available if needed.

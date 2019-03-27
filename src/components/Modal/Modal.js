@@ -2,78 +2,114 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { Transition, animated } from 'react-spring'
+import { Transition, animated, interpolate } from 'react-spring'
+import Viewport from '../../providers/Viewport/Viewport'
 import EscapeOutside from '../EscapeOutside/EscapeOutside'
-import { breakpoint, springs } from '../../utils/styles'
+import { springs } from '../../utils/styles'
 import { Root } from '../../providers'
+import { noop } from '../../utils'
 
-const Modal = ({ visible, children, zIndex, onClose }) => (
-  <Transition
-    native
-    items={visible}
-    from={{ opacity: 0, enterProgress: 0, blocking: false }}
-    enter={{ opacity: 1, enterProgress: 1, blocking: true }}
-    leave={{ opacity: 0, enterProgress: 1, blocking: false }}
-    config={springs.lazy}
-  >
-    {show =>
-      show &&
-      /* eslint-disable react/prop-types */
-      (({ opacity, enterProgress, blocking }) => (
-        <Wrap
-          style={{
-            pointerEvents: blocking ? 'auto' : 'none',
-            zIndex,
-          }}
-        >
-          <Overlay style={{ opacity: opacity.interpolate(v => v * 0.5) }} />
-          <AnimatedWrap
-            style={{
-              opacity,
-              transform: enterProgress.interpolate(
-                v => `
-                    translate3d(0, ${(1 - v) * 10}px, 0)
-                    scale3d(${1 - (1 - v) * 0.03}, ${1 - (1 - v) * 0.03}, 1)
-                  `
-              ),
-            }}
-          >
-            <WrapModal role="alertdialog" onEscapeOutside={onClose}>
-              {children}
-            </WrapModal>
-          </AnimatedWrap>
-        </Wrap>
-      ))
-    /* eslint-enable react/prop-types */
-    }
-  </Transition>
+const cssPx = value => (typeof value === 'number' ? value + 'px' : value)
+
+const Modal = ({ children, onClose, padding, visible, width }) => (
+  <Viewport>
+    {viewport => (
+      <Transition
+        native
+        items={visible}
+        from={{ opacity: 0, position: 1, scale: 0.97 }}
+        enter={{ opacity: 1, position: 0, scale: 1 }}
+        leave={{ opacity: 0, position: 0, scale: 0.97 }}
+        config={springs.smooth}
+      >
+        {show =>
+          show &&
+          /* eslint-disable react/prop-types */
+          (({ opacity, position, scale }) => (
+            <React.Fragment>
+              <Overlay style={{ opacity }} />
+              <ContentWrapper
+                style={{
+                  pointerEvents: visible ? 'auto' : 'none',
+                  opacity,
+                  transform: interpolate(
+                    [position, scale],
+                    (p, s) => `
+                      translate3d(0, ${p * 5}px, 0)
+                      scale3d(${s}, ${s}, 1)
+                    `
+                  ),
+                }}
+              >
+                <div css="padding: 24px 12px">
+                  <Content
+                    role="alertdialog"
+                    onEscapeOutside={onClose}
+                    style={{
+                      padding: cssPx(
+                        typeof padding === 'function'
+                          ? padding(viewport)
+                          : padding
+                      ),
+                      width: cssPx(
+                        typeof width === 'function' ? width(viewport) : width
+                      ),
+                    }}
+                  >
+                    {children}
+                  </Content>
+                </div>
+              </ContentWrapper>
+            </React.Fragment>
+          ))
+        /* eslint-enable react/prop-types */
+        }
+      </Transition>
+    )}
+  </Viewport>
 )
 
-Modal.defaultProps = { zIndex: 1 }
-
-Modal.propTypes = {
-  visible: PropTypes.bool.isRequired,
-  zIndex: PropTypes.number,
-  children: PropTypes.node.isRequired,
-  onClose: PropTypes.func,
+Modal.defaultProps = {
+  onClose: noop,
+  padding: 24,
+  width: viewport => Math.min(viewport.width - 48, 600),
 }
 
-const WrapModal = styled(EscapeOutside)`
-  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.2);
+Modal.propTypes = {
+  children: PropTypes.node.isRequired,
+  onClose: PropTypes.func,
+  padding: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.number,
+    PropTypes.string,
+  ]),
+  visible: PropTypes.bool.isRequired,
+  width: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.number,
+    PropTypes.string,
+  ]),
+}
+
+const ContentWrapper = styled(animated.div)`
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  overflow: auto;
+`
+
+const Content = styled(EscapeOutside)`
+  overflow: hidden;
+  min-width: 288px; /* 320px - 2 * 16px */
   border-radius: 4px;
   background: #fff;
-  padding: 16px;
-  max-width: calc(100vw - 32px);
-  margin: 16px 0;
-
-  ${breakpoint(
-    'medium',
-    `
-      max-width: 50vw;
-      max-height: 75vh;
-      overflow: auto;
-    `
-  )}
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.2);
 `
 
 const Overlay = styled(animated.div)`
@@ -82,26 +118,7 @@ const Overlay = styled(animated.div)`
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgb(59, 59, 59);
-`
-
-const Wrap = styled.div`
-  position: fixed;
-  z-index: ${({ zIndex }) => zIndex};
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  overflow-y: auto;
-`
-
-const AnimatedWrap = styled(animated.div)`
-  position: relative;
-  min-height: 0;
+  background: rgba(0, 0, 0, 0.5);
 `
 
 export default props => (
