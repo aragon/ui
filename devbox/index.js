@@ -13,6 +13,7 @@ import IdentityBadge from './apps/IdentityBadge'
 import Input from './apps/Input'
 import LineChart from './apps/LineChart'
 import LinkedSliders from './apps/LinkedSliders'
+import Modal from './apps/Modal'
 import NavigationBar from './apps/NavigationBar'
 import PartitionBar from './apps/PartitionBar'
 import Popover from './apps/Popover'
@@ -37,6 +38,7 @@ const APPS = {
   Input,
   LineChart,
   LinkedSliders,
+  Modal,
   NavigationBar,
   PartitionBar,
   Popover,
