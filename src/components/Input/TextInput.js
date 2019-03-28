@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 import { theme } from '../../theme'
 import { font } from '../../utils/styles'
-import { IconStyled, inputPaddingCss } from './Icon.js'
 
 const baseStyles = css`
   ${font({ size: 'small', weight: 'normal' })};

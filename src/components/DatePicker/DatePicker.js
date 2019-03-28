@@ -1,7 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
-import { Button, Text } from '..'
+import Button from '../Button/Button'
+import Text from '../Text/Text'
 import { theme } from '../../theme'
 import {
   addMonths,
@@ -26,8 +27,8 @@ class DatePicker extends React.PureComponent {
   handleSelection = date => event => {
     event.preventDefault()
 
-    if (typeof this.props.onSelect === 'function') {
-      this.props.onSelect(date)
+    if (typeof this.props.onChange === 'function') {
+      this.props.onChange(date)
     }
   }
 
@@ -131,7 +132,7 @@ DatePicker.propTypes = {
   currentDate: PropTypes.instanceOf(Date),
 
   // Events
-  onSelect: PropTypes.func,
+  onChange: PropTypes.func,
 
   // Visibility
   hideMonthSelector: PropTypes.bool,
@@ -148,7 +149,7 @@ DatePicker.propTypes = {
 }
 
 DatePicker.defaultProps = {
-  onSelect: () => {},
+  onChange: () => {},
   dayFormat: 'd',
   monthFormat: 'MMMM',
   monthYearFormat: 'MMMM yyyy',

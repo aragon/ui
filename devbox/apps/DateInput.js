@@ -12,7 +12,7 @@ class App extends React.Component {
   }
 
   handleDateInputChange = (date) => {
-    this.setState({ currentDate: date })
+    this.setState({ dateInput: date })
   }
 
   handleStartDateChange = (date) => {

@@ -3,7 +3,8 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { isDate, format as formatDate } from 'date-fns'
 
-import { TextInput, DatePicker } from '..'
+import TextInput from './TextInput'
+import DatePicker from '../DatePicker/DatePicker'
 import { IconCalendar } from '../../icons'
 import { theme } from '../../theme'
 
@@ -13,9 +14,9 @@ class DateInput extends React.PureComponent {
   }
 
   get formattedValue() {
-    const { value } = this.props
+    const { value, format } = this.props
 
-    return isDate(value) ? formatDate(value, this.props.format) : ''
+    return isDate(value) ? formatDate(value, format) : ''
   }
 
   componentWillUnmount() {
@@ -52,9 +53,11 @@ class DateInput extends React.PureComponent {
   }
 
   render() {
-    const icon = this.state.showPicker
-      ? <IconCalendarSelected />
-      : <IconCalendar />
+    const icon = this.state.showPicker ? (
+      <IconCalendarSelected />
+    ) : (
+      <IconCalendar />
+    )
 
     return (
       <Container ref={el => (this.rootRef = el)} onClick={this.handleClick}>
@@ -68,7 +71,7 @@ class DateInput extends React.PureComponent {
         {this.state.showPicker && (
           <DatePicker
             currentDate={this.props.value}
-            onSelect={this.handleSelect}
+            onChange={this.handleSelect}
             overlay
           />
         )}
@@ -93,7 +96,7 @@ const Container = styled.div`
 `
 
 const IconCalendarSelected = styled(IconCalendar)`
-  color: ${theme.accent}
+  color: ${theme.accent};
 `
 
 export default DateInput

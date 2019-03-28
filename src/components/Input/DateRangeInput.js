@@ -2,15 +2,20 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import {
-  isAfter, isBefore, isEqual, isDate,
+  isAfter,
+  isBefore,
+  isEqual,
+  isDate,
   format as formatDate,
-  startOfDay, endOfDay
+  startOfDay,
+  endOfDay,
 } from 'date-fns'
 
 import { IconCalendar } from '../../icons'
 import { theme } from '../../theme'
 
-import { TextInput, DatePicker } from '..'
+import TextInput from './TextInput'
+import DatePicker from '../DatePicker/DatePicker'
 
 class DateRangeInput extends React.PureComponent {
   state = {
@@ -20,26 +25,26 @@ class DateRangeInput extends React.PureComponent {
     startPicker: null,
     endPicker: null,
     startDateSelected: false,
-    endDateSelected: false
+    endDateSelected: false,
   }
 
-  get formattedStartDate () {
+  get formattedStartDate() {
     const { startDate } = this.state
 
     return isDate(startDate) ? formatDate(startDate, this.props.format) : ''
   }
 
-  get formattedEndDate () {
+  get formattedEndDate() {
     const { endDate } = this.state
 
     return isDate(endDate) ? formatDate(endDate, this.props.format) : ''
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     document.removeEventListener('mousedown', this.handleClickOutside)
   }
 
-  componentDidUpdate (prevProps, prevState) {
+  componentDidUpdate(prevProps, prevState) {
     if (this.state.showPicker !== prevState.showPicker) {
       if (this.state.showPicker) {
         document.addEventListener('mousedown', this.handleClickOutside)
@@ -49,18 +54,18 @@ class DateRangeInput extends React.PureComponent {
     }
   }
 
-  handleClick = (event) => {
+  handleClick = event => {
     event.stopPropagation()
     this.setState({ showPicker: true })
   }
 
-  handleClickOutside = (event) => {
+  handleClickOutside = event => {
     if (this.rootRef && !this.rootRef.contains(event.target)) {
       this.setState({ showPicker: false })
     }
   }
 
-  handleSelectStartDate = (date) => {
+  handleChangeStartDate = date => {
     const { endDate } = this.state
     const isValidDate = isBefore(date, endDate) || isEqual(date, endDate)
     if (typeof this.props.onStartDateChange === 'function' && isValidDate) {
@@ -69,7 +74,7 @@ class DateRangeInput extends React.PureComponent {
     }
   }
 
-  handleSelectEndDate = (date) => {
+  handleChangeEndDate = date => {
     const { startDate } = this.state
     const isValidDate = isAfter(date, startDate) || isEqual(date, startDate)
     if (typeof this.props.onEndDateChange === 'function' && isValidDate) {
@@ -78,23 +83,25 @@ class DateRangeInput extends React.PureComponent {
     }
   }
 
-  render () {
+  render() {
     const { startDate, endDate } = this.state
 
-    const icon = this.state.showPicker
-      ? <IconCalendarSelected />
-      : <IconCalendar />
+    const icon = this.state.showPicker ? (
+      <IconCalendarSelected />
+    ) : (
+      <IconCalendar />
+    )
 
     return (
       <StyledContainer
-        ref={el => this.rootRef = el}
+        ref={el => (this.rootRef = el)}
         onClick={this.handleClick}
       >
         <StyledTextInput
           value={`${this.formattedStartDate} - ${this.formattedEndDate}`}
           readOnly={true}
           icon={icon}
-          iconPosition='right'
+          iconPosition="right"
           height={39}
         />
         {this.state.showPicker && (
@@ -104,17 +111,17 @@ class DateRangeInput extends React.PureComponent {
                 key={`start-picker-${startDate}`}
                 name="start-date-picker"
                 currentDate={startDate}
-                onSelect={this.handleSelectStartDate}
+                onChange={this.handleChangeStartDate}
                 overlay={false}
               />
               <DatePicker
                 key={`end-picker-${endDate}`}
                 name="end-date-picker"
                 currentDate={endDate}
-                onSelect={this.handleSelectEndDate}
+                onChange={this.handleChangeEndDate}
                 overlay={false}
               />
-          </StyledDatePickersContainer>
+            </StyledDatePickersContainer>
           </React.Fragment>
         )}
       </StyledContainer>
@@ -124,14 +131,16 @@ class DateRangeInput extends React.PureComponent {
 
 DateRangeInput.propTypes = {
   endDate: PropTypes.instanceOf(Date),
+  startDate: PropTypes.instanceOf(Date),
   format: PropTypes.string,
-  onChange: PropTypes.func,
-  startDate: PropTypes.instanceOf(Date)
+  onStartDateChange: PropTypes.func,
+  onEndDateChange: PropTypes.func,
 }
 
 DateRangeInput.defaultProps = {
   format: 'LL/dd/yyyy',
-  onChange: () => {}
+  onStartDateChange: () => {},
+  onEndDateChange: () => {},
 }
 
 const StyledContainer = styled.div`
@@ -160,7 +169,7 @@ const StyledDatePickersContainer = styled.div`
 `
 
 const IconCalendarSelected = styled(IconCalendar)`
-  color: ${theme.accent}
+  color: ${theme.accent};
 `
 
 export default DateRangeInput

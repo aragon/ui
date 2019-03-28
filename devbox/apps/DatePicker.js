@@ -27,14 +27,12 @@ class App extends React.Component {
   }
 
   handleClickOutside = (event) => {
-    console.log('handleClickOutside', this.rootRef)
     if (this.rootRef && !this.rootRef.contains(event.target)) {
       this.setState({ showPicker: false })
     }
   }
 
   handleSelect = (date) => {
-    console.log('handleSelect', date)
     this.setState({ currentDate: date, showPicker: false })
   }
 
@@ -54,7 +52,7 @@ class App extends React.Component {
             {this.state.showPicker && (
               <DatePicker
                 currentDate={currentDate}
-                onSelect={this.handleSelect}
+                onChange={this.handleSelect}
                 overlay={true}
               />
             )}
