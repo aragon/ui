@@ -1,11 +1,10 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import Popper from 'popper.js'
 import { Transition, animated } from 'react-spring'
 
-import { Root } from '../../providers'
+import RootPortal from '../RootPortal/RootPortal'
 import { theme } from '../../theme'
 import { noop } from '../../utils'
 import { springs } from '../../utils/styles'
@@ -37,20 +36,16 @@ class PopoverBase extends React.Component {
     zIndex: 999,
   }
 
-  _element = React.createRef()
+  _cardElement = React.createRef()
+  _popperElement = React.createRef()
   _document = null
   _popper = null
   _openerRect = null
 
-  constructor(props) {
-    super(props)
-    this._openerRect = this.props.opener.getBoundingClientRect()
-  }
-
   componentDidMount() {
-    this._document = this._element.current.ownerDocument
+    this._document = this._popperElement.current.ownerDocument
     this._document.addEventListener('keydown', this.handleEscape)
-    this._element.current.focus()
+    this._cardElement.current.focus()
     this.initPopper()
   }
 
@@ -76,6 +71,9 @@ class PopoverBase extends React.Component {
 
   initPopper() {
     const { opener, placement } = this.props
+
+    this._openerRect = opener ? opener.getBoundingClientRect() : null
+
     if (this._popper) {
       return
     }
@@ -85,7 +83,7 @@ class PopoverBase extends React.Component {
       modifiers.inner = { enabled: true }
     }
 
-    this._popper = new Popper(opener, this._element.current, {
+    this._popper = new Popper(opener, this._popperElement.current, {
       placement: placement === 'center' ? 'top' : placement,
       modifiers,
     })
@@ -112,7 +110,7 @@ class PopoverBase extends React.Component {
   handleBlur = event => {
     const { opener, onClose } = this.props
     const focusedElement = event.relatedTarget
-    if (this._element.current.contains(focusedElement)) {
+    if (this._cardElement.current.contains(focusedElement)) {
       return
     }
 
@@ -127,26 +125,26 @@ class PopoverBase extends React.Component {
   render() {
     const { zIndex, children, transitionStyles, placement } = this.props
     const { scale, opacity } = transitionStyles
-    const openerHeight = this._openerRect ? this._openerRect.height : 0
     return (
-      <Main
-        ref={this._element}
-        tabIndex="0"
-        onBlur={this.handleBlur}
-        style={{ zIndex }}
-      >
+      <Main ref={this._popperElement} style={{ zIndex }}>
         <Card
+          tabIndex="0"
+          onBlur={this.handleBlur}
+          ref={this._cardElement}
           style={{
             opacity,
-            transform: scale.interpolate(
-              placement === 'center'
-                ? v =>
-                    `
-                      translate3d(0, calc(-50% + ${openerHeight / 2}px), 0)
-                      scale3d(${v}, ${v}, 1)
-                    `
-                : v => `scale3d(${v}, ${v}, 1)`
-            ),
+            transform: scale.interpolate(v => {
+              const openerHeight = this._openerRect
+                ? this._openerRect.height
+                : 0
+              if (placement === 'center') {
+                return `
+                  translate3d(0, calc(-50% + ${openerHeight / 2}px), 0)
+                  scale3d(${v}, ${v}, 1)
+                `
+              }
+              return `scale3d(${v}, ${v}, 1)`
+            }),
           }}
         >
           {children}
@@ -161,10 +159,6 @@ const Main = styled(animated.div)`
   position: absolute;
   top: 0;
   left: 0;
-  &:focus {
-    /* Having the popover visible already means that it focused. */
-    outline: 0;
-  }
 `
 
 const Card = styled(animated.div)`
@@ -172,34 +166,30 @@ const Card = styled(animated.div)`
   border: 1px solid #e6e6e6;
   border-radius: 3px;
   filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.06));
+  &:focus {
+    /* Having the popover visible already means that it focused. */
+    outline: 0;
+  }
 `
 
 const Popover = props => (
-  <Root>
-    {rootElement => {
-      if (!rootElement) {
-        throw new Error('<Popover> needs to be nested in <Root.Provider>.')
+  <RootPortal>
+    <Transition
+      items={props.visible}
+      config={springs.swift}
+      from={{ scale: 0.9, opacity: 0 }}
+      enter={{ scale: 1, opacity: 1 }}
+      leave={{ scale: 0.9, opacity: 0 }}
+      native
+    >
+      {visible =>
+        visible &&
+        (transitionStyles => (
+          <PopoverBase {...props} transitionStyles={transitionStyles} />
+        ))
       }
-      return ReactDOM.createPortal(
-        <Transition
-          items={props.visible}
-          config={springs.swift}
-          from={{ scale: 0.9, opacity: 0 }}
-          enter={{ scale: 1, opacity: 1 }}
-          leave={{ scale: 0.9, opacity: 0 }}
-          native
-        >
-          {visible =>
-            visible &&
-            (transitionStyles => (
-              <PopoverBase {...props} transitionStyles={transitionStyles} />
-            ))
-          }
-        </Transition>,
-        rootElement
-      )
-    }}
-  </Root>
+    </Transition>
+  </RootPortal>
 )
 
 Popover.propTypes = {
