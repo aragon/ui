@@ -110,7 +110,7 @@ class ViewportProvider extends React.Component {
 const Viewport = props => <ViewportContext.Consumer {...props} />
 
 Viewport.Provider = ViewportProvider
-Viewport.Context = ViewportContext
 
+export const useViewport = () => React.useContext(ViewportContext)
 export { Viewport }
 export default Viewport
