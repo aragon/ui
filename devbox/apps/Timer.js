@@ -13,10 +13,10 @@ const now = Date.now()
 const timers = [
   { start: -40 * SECONDS },
   { start: -40 * SECONDS, showEmpty: true },
-  { start: -4 * DAYS, end: 99999999 * DAYS },
+  { start: -4 * DAYS, end: 20 * DAYS },
   { end: 1 * DAYS },
-  ...['Mdhms', 'Mdhm','Mdh', 'Md', 'dhms', 'dhm', 'hms', 'hm', 'ms', 'm', 's'].map(format => ({
-    end: 33 * DAYS - 55 * SECONDS,
+  ...['yMd','yM','Mdhms', 'Mdhm','Mdh', 'Md', 'dhms', 'dhm', 'hms', 'hm', 'ms', 'm', 's'].map(format => ({
+    end: 398 * DAYS - 55 * SECONDS,
     format,
   })),
 ].map(timer => {

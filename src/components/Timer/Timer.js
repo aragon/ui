@@ -13,6 +13,10 @@ const FRAME_EVERY = 1000 / 30 // 30 FPS is enough for a ticker
 const formatUnit = v => String(v).padStart(2, '0')
 
 const formats = {
+  yMdms: 'yMdms',
+  yMdm: 'yMdm',
+  yMd: 'yMd',
+  yM: 'yM',
   Mdhms: 'Mdhms',
   Mdhm: 'Mdhm',
   Mdh: 'Mdh',
@@ -27,18 +31,21 @@ const formats = {
 }
 
 const getFormat = memoize(format =>
-  ['M', 'd', 'h', 'm', 's'].map(symbol => formats[format].includes(symbol))
+  ['y','M', 'd', 'h', 'm', 's'].map(symbol => formats[format].includes(symbol))
 )
 
 const getTime = (start, end, format, showEmpty) => {
-  const [showMonths, showDays, showHours, showMinutes, showSeconds] = getFormat(format)
-  let { months, days, hours, minutes, seconds, totalInSeconds } = difference(
+  const [showYears,showMonths, showDays, showHours, showMinutes, showSeconds] = getFormat(format)
+  let { years, months, days, hours, minutes, seconds, totalInSeconds } = difference(
     ...(end ? [end, new Date()] : [new Date(), start])
   )
 
-  console.log('months: ' + months)
-  console.log('days: ' + days)
-   console.log('hours: ' + hours)
+  if (!showYears) {
+    months += years * 12
+    years = null
+  } else if (years === 0 && !showEmpty) {
+    years = null
+  } 
 
   if (!showMonths) {
     days += months * 30
@@ -72,7 +79,7 @@ const getTime = (start, end, format, showEmpty) => {
     seconds = null
   }
 
-  return { months, days, hours, minutes, seconds, totalInSeconds }
+  return { years, months, days, hours, minutes, seconds, totalInSeconds }
 }
 
 class Timer extends React.Component {
@@ -103,7 +110,7 @@ class Timer extends React.Component {
   renderTime = () => {
     const { start, end, format, showEmpty } = this.props
 
-    const { months, days, hours, minutes, seconds, totalInSeconds } = getTime(
+    const { years, months, days, hours, minutes, seconds, totalInSeconds } = getTime(
       start,
       end,
       format,
@@ -116,6 +123,15 @@ class Timer extends React.Component {
 
     return (
       <span>
+        {years !== null && (
+          <React.Fragment>
+            <Part>
+              {formatUnit(years)}
+              <Unit>Y</Unit>
+            </Part>
+            <Separator />
+          </React.Fragment>
+        )}
         {months !== null && (
           <React.Fragment>
             <Part>
