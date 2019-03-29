@@ -5,9 +5,7 @@ import { Spring, animated } from 'react-spring'
 import ClickOutHandler from 'react-onclickout'
 import { theme } from '../../theme'
 import { springs, unselectable } from '../../utils/styles'
-
-import Ellipsis from '../../icons/components/Ellipsis'
-import ArrowDown from '../../icons/components/ArrowDown'
+import { IconEllipsis, IconArrowDown } from '../../icons/components'
 
 const BASE_WIDTH = 46
 const BASE_HEIGHT = 32
@@ -46,7 +44,7 @@ class ContextMenu extends React.Component {
             >
               <BaseButton onClick={this.handleBaseButtonClick} opened={opened}>
                 <span>
-                  <Ellipsis
+                  <IconEllipsis
                     style={{
                       color: opened ? theme.accent : theme.textSecondary,
                     }}
@@ -61,7 +59,7 @@ class ContextMenu extends React.Component {
                       ),
                     }}
                   >
-                    <ArrowDown />
+                    <IconArrowDown />
                   </animated.div>
                 </span>
               </BaseButton>

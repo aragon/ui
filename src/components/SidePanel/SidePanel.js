@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types'
 import React from 'react'
 import styled, { css } from 'styled-components'
-import { IconClose } from '../../icons'
 import { Spring, animated } from 'react-spring'
+import { IconClose } from '../../icons/components'
 import Text from '../Text/Text'
 import { springs, unselectable, breakpoint } from '../../utils/styles'
 

@@ -1,4 +1,4 @@
-export * from './icons'
+export * from './icons/components'
 export * from './theme'
 export * from './utils'
 export * from './providers'
