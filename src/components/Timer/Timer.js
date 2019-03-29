@@ -31,28 +31,41 @@ const formats = {
 }
 
 const getFormat = memoize(format =>
-  ['y','M', 'd', 'h', 'm', 's'].map(symbol => formats[format].includes(symbol))
+  ['y', 'M', 'd', 'h', 'm', 's'].map(symbol => formats[format].includes(symbol))
 )
 
 const getTime = (start, end, format, showEmpty) => {
-  const [showYears,showMonths, showDays, showHours, showMinutes, showSeconds] = getFormat(format)
-  let { years, months, days, hours, minutes, seconds, totalInSeconds } = difference(
-    ...(end ? [end, new Date()] : [new Date(), start])
-  )
+  const [
+    showYears,
+    showMonths,
+    showDays,
+    showHours,
+    showMinutes,
+    showSeconds,
+  ] = getFormat(format)
+  let {
+    years,
+    months,
+    days,
+    hours,
+    minutes,
+    seconds,
+    totalInSeconds,
+  } = difference(...(end ? [end, new Date()] : [new Date(), start]))
 
   if (!showYears) {
     months += years * 12
     years = null
   } else if (years === 0 && !showEmpty) {
     years = null
-  } 
+  }
 
   if (!showMonths) {
     days += months * 30
     months = null
   } else if (months === 0 && !showEmpty) {
     months = null
-  } 
+  }
 
   if (!showDays) {
     hours += days * 24
@@ -110,12 +123,15 @@ class Timer extends React.Component {
   renderTime = () => {
     const { start, end, format, showEmpty } = this.props
 
-    const { years, months, days, hours, minutes, seconds, totalInSeconds } = getTime(
-      start,
-      end,
-      format,
-      showEmpty
-    )
+    const {
+      years,
+      months,
+      days,
+      hours,
+      minutes,
+      seconds,
+      totalInSeconds,
+    } = getTime(start, end, format, showEmpty)
 
     if (end && totalInSeconds <= 0) {
       return <TimeOut>Time out</TimeOut>

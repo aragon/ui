@@ -11,10 +11,10 @@ export const difference = (date1, date2) => {
 
   let seconds = totalInSeconds
 
-  const years =  Math.floor(seconds / YEAR_IN_SECONDS)
+  const years = Math.floor(seconds / YEAR_IN_SECONDS)
   seconds = seconds % YEAR_IN_SECONDS
 
-  const months =  Math.floor(seconds / MONTH_IN_SECONDS)
+  const months = Math.floor(seconds / MONTH_IN_SECONDS)
   seconds = seconds % MONTH_IN_SECONDS
 
   const days = Math.floor(seconds / DAY_IN_SECONDS)
