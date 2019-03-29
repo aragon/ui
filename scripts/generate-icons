@@ -54,7 +54,6 @@ const SVGO_PLUGINS = [
   { mergePaths: true },
   { convertShapeToPath: true },
   { sortAttrs: true },
-  { removeDimensions: true },
 ]
 
 const svgo = new SVGO({ plugins: SVGO_PLUGINS })

@@ -1,7 +1,7 @@
 import React from 'react'
 
 const IconError = props => (
-  <svg fill="none" viewBox="0 0 22 22" {...props}>
+  <svg width={22} height={22} fill="none" viewBox="0 0 22 22" {...props}>
     <path fill="#FF445D" d="M18 11a7 7 0 1 0-14 0 7 7 0 0 0 14 0z" />
     <path
       fill="#fff"

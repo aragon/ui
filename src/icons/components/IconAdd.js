@@ -1,7 +1,7 @@
 import React from 'react'
 
 const IconAdd = props => (
-  <svg fill="none" viewBox="0 0 22 22" {...props}>
+  <svg width={22} height={22} fill="none" viewBox="0 0 22 22" {...props}>
     <path fill="#fff" d="M0 0h22v22H0z" />
     <path
       stroke="currentColor"

@@ -1,7 +1,7 @@
 import React from 'react'
 
 const IconCross = props => (
-  <svg fill="none" viewBox="0 0 22 22" {...props}>
+  <svg width={22} height={22} fill="none" viewBox="0 0 22 22" {...props}>
     <path
       fill="#FB7777"
       fillRule="evenodd"
