@@ -43,38 +43,40 @@ class ContextMenu extends React.Component {
               }}
             >
               <BaseButton onClick={this.handleBaseButtonClick} opened={opened}>
-                <span>
-                  <IconEllipsis
-                    style={{
-                      color: opened ? theme.accent : theme.textSecondary,
-                    }}
-                  />
-                </span>
-                <span>
-                  <animated.div
-                    style={{
-                      color: theme.textTertiary,
-                      transform: openProgress.interpolate(
-                        t => `rotate(${t * 180}deg)`
-                      ),
-                    }}
-                  >
-                    <IconArrowDown />
-                  </animated.div>
-                </span>
+                <IconEllipsis
+                  css={`
+                    position: relative;
+                    left: 4.5px;
+                    width: 22px;
+                  `}
+                  style={{
+                    color: opened ? theme.accent : theme.textSecondary,
+                  }}
+                />
+                <Arrow
+                  style={{
+                    transformOrigin: '10px 9.5px',
+                    transform: openProgress.interpolate(
+                      v => `rotate(${v * 180}deg)`
+                    ),
+                  }}
+                >
+                  <IconArrowDown />
+                </Arrow>
               </BaseButton>
-              <Popup
-                onClick={this.handleClose}
-                style={{
-                  display: opened ? 'block' : 'none',
-                  opacity: openProgress,
-                  boxShadow: openProgress.interpolate(
-                    t => `0 4px 4px rgba(0, 0, 0, ${t * 0.03})`
-                  ),
-                }}
-              >
-                {children}
-              </Popup>
+              {opened && (
+                <Popup
+                  onClick={this.handleClose}
+                  style={{
+                    opacity: openProgress,
+                    boxShadow: openProgress.interpolate(
+                      t => `0 4px 4px rgba(0, 0, 0, ${t * 0.03})`
+                    ),
+                  }}
+                >
+                  {children}
+                </Popup>
+              )}
             </Main>
           )}
         </Spring>
@@ -82,6 +84,12 @@ class ContextMenu extends React.Component {
     )
   }
 }
+
+const Arrow = styled(animated.div)`
+  margin-top: 10px;
+  transform-origin: 10px 9.5px;
+  color: ${theme.textTertiary};
+`
 
 const Main = styled(animated.div)`
   position: relative;
@@ -118,13 +126,6 @@ const BaseButton = styled.div`
     width: 1px;
     height: 2px;
     background: ${theme.contentBorder};
-  }
-  & > span {
-    display: flex;
-    align-items: center;
-    &:first-child {
-      margin-right: 5px;
-    }
   }
 `
 

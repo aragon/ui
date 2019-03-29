@@ -12,22 +12,17 @@ const endDate = new Date(Date.now() + 5 * DAY_IN_MS)
 
 const PageContextMenu = ({ title }) => (
   <Page title={title} readme={readme}>
-    <Page.Demo>
-      <Container style={{ maxWidth: 'none' }}>
-        <Table
-          header={
-            <TableRow>
-              <TableHeader />
-            </TableRow>
-          }
-        >
-          <TableRow>
-            <TableCell>
-              <Countdown end={endDate} />
-            </TableCell>
-          </TableRow>
-        </Table>
-      </Container>
+    <Page.Demo opaque>
+      <div
+        css={`
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          height: 200px;
+        `}
+      >
+        <Countdown end={endDate} />
+      </div>
     </Page.Demo>
   </Page>
 )

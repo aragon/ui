@@ -138,12 +138,18 @@ class Timer extends React.Component {
 }
 
 const Main = styled.time`
+  display: flex;
+  align-items: center;
   white-space: nowrap;
   ${unselectable()};
 `
 
 const IconWrapper = styled.span`
+  display: flex;
+  align-items: center;
   margin-right: 15px;
+  margin-top: -3px;
+  color: ${theme.textSecondary};
 `
 
 const Part = styled.span`
