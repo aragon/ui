@@ -87,6 +87,7 @@ Modal.defaultProps = {
 Modal.propTypes = {
   children: PropTypes.node.isRequired,
   onClose: PropTypes.func,
+  overlayColor: PropTypes.string,
   padding: PropTypes.oneOfType([
     PropTypes.func,
     PropTypes.number,
