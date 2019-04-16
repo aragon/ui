@@ -123,6 +123,7 @@ const Content = styled(EscapeOutside)`
 
 const Overlay = styled(animated.div)`
   position: absolute;
+  z-index: 1;
   top: 0;
   left: 0;
   right: 0;
