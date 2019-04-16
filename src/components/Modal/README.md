@@ -69,3 +69,10 @@ If a number is set or returned from the function, `px` will automatically be add
 - Default: `noop`
 
 The callback that is called when the `ESC` i pressed or the user clicks outside of the modal container.
+
+### `overlayColor`
+
+- Type: `String`
+- Default: `rgba(0, 0, 0, 0.5)`
+
+The color of the overlay.
