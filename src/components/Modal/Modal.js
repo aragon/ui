@@ -54,13 +54,13 @@ const Modal = ({
                       role="alertdialog"
                       onEscapeOutside={onClose}
                       style={{
+                        width: cssPx(
+                          typeof width === 'function' ? width(viewport) : width
+                        ),
                         padding: cssPx(
                           typeof padding === 'function'
                             ? padding(viewport)
                             : padding
-                        ),
-                        width: cssPx(
-                          typeof width === 'function' ? width(viewport) : width
                         ),
                         borderRadius: `${radius}px`,
                       }}
@@ -81,10 +81,10 @@ const Modal = ({
 
 Modal.defaultProps = {
   onClose: noop,
+  overlayColor: 'rgba(0, 0, 0, 0.5)',
   padding: 24,
   radius: 4,
   width: viewport => Math.min(viewport.width - 48, 600),
-  overlayColor: 'rgba(0, 0, 0, 0.5)',
 }
 
 Modal.propTypes = {
@@ -122,7 +122,7 @@ const Content = styled(EscapeOutside)`
   overflow: hidden;
   min-width: 288px; /* 320px - 2 * 16px */
   background: #fff;
-  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.2);
+  filter: drop-shadow(0 10px 28px rgba(0, 0, 0, 0.2));
 `
 
 const Overlay = styled(animated.div)`
