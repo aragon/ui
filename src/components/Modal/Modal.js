@@ -14,6 +14,7 @@ const Modal = ({
   children,
   onClose,
   padding,
+  radius,
   visible,
   width,
   overlayColor,
@@ -61,6 +62,7 @@ const Modal = ({
                         width: cssPx(
                           typeof width === 'function' ? width(viewport) : width
                         ),
+                        borderRadius: `${radius}px`,
                       }}
                     >
                       {children}
@@ -80,6 +82,7 @@ const Modal = ({
 Modal.defaultProps = {
   onClose: noop,
   padding: 24,
+  radius: 4,
   width: viewport => Math.min(viewport.width - 48, 600),
   overlayColor: 'rgba(0, 0, 0, 0.5)',
 }
@@ -93,6 +96,7 @@ Modal.propTypes = {
     PropTypes.number,
     PropTypes.string,
   ]),
+  radius: PropTypes.number,
   visible: PropTypes.bool.isRequired,
   width: PropTypes.oneOfType([
     PropTypes.func,
@@ -117,7 +121,6 @@ const ContentWrapper = styled(animated.div)`
 const Content = styled(EscapeOutside)`
   overflow: hidden;
   min-width: 288px; /* 320px - 2 * 16px */
-  border-radius: 4px;
   background: #fff;
   box-shadow: 0 10px 28px rgba(0, 0, 0, 0.2);
 `

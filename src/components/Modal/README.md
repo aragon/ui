@@ -76,3 +76,10 @@ The callback that is called when the `ESC` i pressed or the user clicks outside 
 - Default: `rgba(0, 0, 0, 0.5)`
 
 The color of the overlay.
+
+### `radius`
+
+- Type: `Number`
+- Default: `4`
+
+The radius used by the modal corners (in CSS px).
