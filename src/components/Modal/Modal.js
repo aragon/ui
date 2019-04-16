@@ -10,7 +10,14 @@ import { noop } from '../../utils'
 
 const cssPx = value => (typeof value === 'number' ? value + 'px' : value)
 
-const Modal = ({ children, onClose, padding, visible, width }) => (
+const Modal = ({
+  children,
+  onClose,
+  padding,
+  visible,
+  width,
+  overlayColor,
+}) => (
   <RootPortal>
     <Viewport>
       {viewport => (
@@ -27,7 +34,7 @@ const Modal = ({ children, onClose, padding, visible, width }) => (
             /* eslint-disable react/prop-types */
             (({ opacity, position, scale }) => (
               <React.Fragment>
-                <Overlay style={{ opacity }} />
+                <Overlay style={{ opacity, background: overlayColor }} />
                 <ContentWrapper
                   style={{
                     pointerEvents: visible ? 'auto' : 'none',
@@ -74,6 +81,7 @@ Modal.defaultProps = {
   onClose: noop,
   padding: 24,
   width: viewport => Math.min(viewport.width - 48, 600),
+  overlayColor: 'rgba(0, 0, 0, 0.5)',
 }
 
 Modal.propTypes = {
@@ -119,7 +127,6 @@ const Overlay = styled(animated.div)`
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
 `
 
 export default Modal
