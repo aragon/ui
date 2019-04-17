@@ -85,6 +85,7 @@ Modal.defaultProps = {
   padding: 24,
   radius: 4,
   width: viewport => Math.min(viewport.width - 48, 600),
+  overlayColor: 'rgba(0, 0, 0, 0.5)',
 }
 
 Modal.propTypes = {
