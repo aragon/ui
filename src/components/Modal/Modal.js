@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { Transition, animated, interpolate } from 'react-spring'
+import { Transition, animated } from 'react-spring'
 import { Viewport } from '../../providers/Viewport'
 import EscapeOutside from '../EscapeOutside/EscapeOutside'
 import RootPortal from '../RootPortal/RootPortal'
@@ -25,28 +25,20 @@ const Modal = ({
         <Transition
           native
           items={visible}
-          from={{ opacity: 0, position: 1, scale: 0.97 }}
-          enter={{ opacity: 1, position: 0, scale: 1 }}
-          leave={{ opacity: 0, position: 0, scale: 0.97 }}
+          from={{ opacity: 0, scale: 0.98 }}
+          enter={{ opacity: 1, scale: 1 }}
+          leave={{ opacity: 0, scale: 0.98 }}
           config={springs.smooth}
         >
           {show =>
             show &&
             /* eslint-disable react/prop-types */
-            (({ opacity, position, scale }) => (
-              <React.Fragment>
-                <Overlay style={{ opacity, background: overlayColor }} />
+            (({ opacity, scale }) => (
+              <Overlay style={{ opacity, background: overlayColor }}>
                 <ContentWrapper
                   style={{
                     pointerEvents: visible ? 'auto' : 'none',
-                    opacity,
-                    transform: interpolate(
-                      [position, scale],
-                      (p, s) => `
-                      translate3d(0, ${p * 5}px, 0)
-                      scale3d(${s}, ${s}, 1)
-                    `
-                    ),
+                    transform: scale.interpolate(v => `scale3d(${v}, ${v}, 1)`),
                   }}
                 >
                   <div css="padding: 24px 12px">
@@ -69,7 +61,7 @@ const Modal = ({
                     </Content>
                   </div>
                 </ContentWrapper>
-              </React.Fragment>
+              </Overlay>
             ))
           /* eslint-enable react/prop-types */
           }
@@ -122,7 +114,7 @@ const Content = styled(EscapeOutside)`
   overflow: hidden;
   min-width: 288px; /* 320px - 2 * 16px */
   background: #fff;
-  filter: drop-shadow(0 10px 28px rgba(0, 0, 0, 0.2));
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.2);
 `
 
 const Overlay = styled(animated.div)`
