@@ -20,8 +20,8 @@ class FocusVisible extends React.PureComponent {
     children: PropTypes.func.isRequired,
   }
   _element = React.createRef()
+  _document = null
   state = {
-    document: null,
     focusVisible: false,
   }
   componentDidMount() {
@@ -30,14 +30,28 @@ class FocusVisible extends React.PureComponent {
     document.addEventListener('mouseup', this.handlePointerEvent)
     document.addEventListener('touchstart', this.handlePointerEvent)
     document.addEventListener('touchend', this.handlePointerEvent)
-    this.setState({ document })
+
+    // `document` was previously set as a state entry, which was having the
+    // advantages of keeping track of it, and also triggering a rerender to
+    // remove the injected span.
+    //
+    // The issue with this approach is that the component can get unmounted
+    // before the state gets updated (e.g. in case of an error in the tree),
+    // preventing to remove the event listeners.
+    //
+    // this._document is now set on the instance directly, and
+    // this.forceUpdate() is used to trigger the second render needed to remove
+    // the injected span.
+    this._document = document
+    this.forceUpdate()
   }
   componentWillUnmount() {
-    const { document } = this.state
+    const document = this._document
     document.removeEventListener('mousedown', this.handlePointerEvent)
     document.removeEventListener('mouseup', this.handlePointerEvent)
     document.removeEventListener('touchstart', this.handlePointerEvent)
     document.removeEventListener('touchend', this.handlePointerEvent)
+    this._document = null
   }
   // It doesn’t seem to be specified, but pointer events happen before focus
   // events on modern browsers.
@@ -53,11 +67,11 @@ class FocusVisible extends React.PureComponent {
     this.setState({ focusVisible: !this._pointerActive })
   }
   render() {
-    const { focusVisible, document } = this.state
+    const { focusVisible } = this.state
     return (
       <React.Fragment>
         {this.props.children({ focusVisible, onFocus: this.handleFocus })}
-        {!document && <span ref={this._element} />}
+        {!this._document && <span ref={this._element} />}
       </React.Fragment>
     )
   }
