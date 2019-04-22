@@ -13,8 +13,8 @@ class PopoverBase extends React.Component {
   static propTypes = {
     opener: PropTypes.instanceOf(Element),
     placement: PropTypes.oneOf(
-      // See https://popper.js.org/popper-documentation.html#Popper.placements
-      // "center" is a value that doesn’t exits in Popper.
+      // "center" is a value that doesn’t exits in Popper, but we are using it
+      // from our custom Popper modifier, centerIn (see below).
       ['center'].concat(
         ...['auto', 'top', 'right', 'bottom', 'left'].map(position => [
           position,
@@ -40,7 +40,6 @@ class PopoverBase extends React.Component {
   _popperElement = React.createRef()
   _document = null
   _popper = null
-  _openerRect = null
 
   componentDidMount() {
     this._document = this._popperElement.current.ownerDocument
@@ -54,7 +53,6 @@ class PopoverBase extends React.Component {
     this._document.removeEventListener('keydown', this.handleEscape)
     delete this._document
     delete this._popper
-    delete this._openerRect
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -70,21 +68,32 @@ class PopoverBase extends React.Component {
   }
 
   initPopper() {
-    const { opener, placement } = this.props
-
-    this._openerRect = opener ? opener.getBoundingClientRect() : null
+    const { opener } = this.props
+    let { placement } = this.props
 
     if (this._popper) {
       return
     }
 
-    const modifiers = {}
+    const modifiers = {
+      preventOverflow: { padding: 10 },
+    }
+
     if (placement === 'center') {
-      modifiers.inner = { enabled: true }
+      modifiers.centerIn = {
+        enabled: true,
+        order: 1,
+        fn: data => {
+          const { popper, reference } = data.offsets
+          popper.top = reference.top + reference.height / 2 - popper.height / 2
+          return data
+        },
+      }
+      placement = 'top'
     }
 
     this._popper = new Popper(opener, this._popperElement.current, {
-      placement: placement === 'center' ? 'top' : placement,
+      placement,
       modifiers,
     })
   }
@@ -133,18 +142,7 @@ class PopoverBase extends React.Component {
           ref={this._cardElement}
           style={{
             opacity,
-            transform: scale.interpolate(v => {
-              const openerHeight = this._openerRect
-                ? this._openerRect.height
-                : 0
-              if (placement === 'center') {
-                return `
-                  translate3d(0, calc(-50% + ${openerHeight / 2}px), 0)
-                  scale3d(${v}, ${v}, 1)
-                `
-              }
-              return `scale3d(${v}, ${v}, 1)`
-            }),
+            transform: scale.interpolate(v => `scale3d(${v}, ${v}, 1)`),
           }}
         >
           {children}
