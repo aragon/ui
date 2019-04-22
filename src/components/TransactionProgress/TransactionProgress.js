@@ -40,7 +40,6 @@ class TransactionProgress extends React.Component {
     return (
       <Popover
         visible={visible}
-        placement="auto"
         opener={opener}
         onClose={onClose}
       >
