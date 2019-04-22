@@ -25,15 +25,21 @@ const MyComponent = () => {
 ### Render prop
 
 ```jsx
-<Viewport>
-  {({ within, below, above }) => (
-    <div>
-      {below('medium') && <div>small</div>}
-      {within('medium', 'large') && <div>medium</div>}
-      {above('large') && <div>large</div>}
-    </div>
-  )}
-</Viewport>
+import Viewport from '@aragon/ui'
+
+const MyComponent = () => {
+  return (
+    <Viewport>
+      {({ within, below, above }) => (
+        <div>
+          {below('medium') && <div>small</div>}
+          {within('medium', 'large') && <div>medium</div>}
+          {above('large') && <div>large</div>}
+        </div>
+      )}
+    </Viewport>
+  )
+}
 ```
 
 ## Properties
