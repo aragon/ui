@@ -7,15 +7,39 @@ to help building responsive apps.
 ## Usage
 
 ```jsx
-<Viewport>
-  {({ within, below, above }) => (
+import { useViewport } from '@aragon/ui'
+
+const MyComponent = () => {
+  const { within, below, above } = useViewport()
+
+  return (
     <div>
       {below('medium') && <div>small</div>}
       {within('medium', 'large') && <div>medium</div>}
       {above('large') && <div>large</div>}
     </div>
-  )}
-</Viewport>
+  )
+}
+```
+
+### Render prop
+
+```jsx
+import Viewport from '@aragon/ui'
+
+const MyComponent = () => {
+  return (
+    <Viewport>
+      {({ within, below, above }) => (
+        <div>
+          {below('medium') && <div>small</div>}
+          {within('medium', 'large') && <div>medium</div>}
+          {above('large') && <div>large</div>}
+        </div>
+      )}
+    </Viewport>
+  )
+}
 ```
 
 ## Properties
@@ -42,11 +66,8 @@ The current width of the viewport.
 ##### Example:
 
 ```jsx
-<Viewport>
-  {({ width }) => (
-    <MyComponent compact={width < 400} />
-  )}
-</Viewport>
+const { width } = useViewport()
+return <MyComponent compact={width < 400} />
 ```
 
 #### `height`
@@ -68,19 +89,15 @@ If `-1` is passed as either `min` or `max`, there will be no minimum or maximum.
 ##### Example:
 
 ```jsx
-<Viewport>
-  {({ within }) => (
-    <div>
-      <p>
-        {within(400, 500) ? 'viewport width within 400 and 500' : 'nope'}
-      </p>
-      {within('min', 'small') && <div>A</div>}
-      {within('small', 'medium') && <div>B</div>}
-      {within('medium', 'large') && <div>C</div>}
-      {within('large', -1) && <div>D</div>}
-    </div>
-  )}
-</Viewport>
+const { within } = useViewport()
+return (
+  <div>
+    <p>{within(400, 500) ? 'viewport width within 400 and 500' : 'nope'}</p>
+    {within('min', 'small') && <div>A</div>}
+    {within('small', 'medium') && <div>B</div>}
+    {within('medium', 'large') && <div>C</div>}
+    {within('large', -1) && <div>D</div>}
+  </div>
 )
 ```
 
@@ -94,23 +111,21 @@ Returns `true` if the viewport `width` is above `x`, `false` otherwise.
 
 #### `below(x)`
 
-Returns `true` if the viewport `width` is below `x`, `false` otherwise. 
+Returns `true` if the viewport `width` is below `x`, `false` otherwise.
 
 `x` can be any number, or one of the available breakpoints (see `breakpoint` below).
 
 ##### Example:
 
 ```jsx
-<Viewport>
-  {({ below, above }) => (
-    <div>
-      {above('medium') && <div>A</div>}
-      {below('medium') && <div>B</div>}
-    </div>
-  )}
-</Viewport>
+const { below, above } = useViewport()
+return (
+  <div>
+    {above('medium') && <div>A</div>}
+    {below('medium') && <div>B</div>}
+  </div>
+)
 ```
-
 
 #### `breakpoint`
 
@@ -121,12 +136,10 @@ Available breakpoints: `"min"` (320), `"small"` (540), `"medium"` (768), `"large
 ##### Example:
 
 ```jsx
-<Viewport>
-  {({ width, breakpoint }) => (
-    <div css={`min-width: ${breakpoint.min}`}>
-      <MyComponent compact={width < breakpoint.medium} />
-    </div>
-  )}
-</Viewport>
+const { breakpoint } = useViewport()
+return (
+  <div css={`min-width: ${breakpoint.min}`}>
+    <MyComponent compact={width < breakpoint.medium} />
+  </div>
+)
 ```
-
