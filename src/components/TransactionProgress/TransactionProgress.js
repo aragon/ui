@@ -38,11 +38,7 @@ class TransactionProgress extends React.Component {
     } = this.props
 
     return (
-      <Popover
-        visible={visible}
-        opener={opener}
-        onClose={onClose}
-      >
+      <Popover visible={visible} opener={opener} onClose={onClose}>
         <CloseButton type="button" onClick={onClose}>
           <IconClose />
         </CloseButton>

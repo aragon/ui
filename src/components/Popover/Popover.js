@@ -132,7 +132,7 @@ class PopoverBase extends React.Component {
   }
 
   render() {
-    const { zIndex, children, transitionStyles, placement } = this.props
+    const { zIndex, children, transitionStyles } = this.props
     const { scale, opacity } = transitionStyles
     return (
       <Main ref={this._popperElement} style={{ zIndex }}>
