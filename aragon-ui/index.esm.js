@@ -178,6 +178,18 @@ var Error$1 = function Error(props) {
   })));
 };
 
+var Filter = function Filter(props) {
+  return React.createElement("svg", _extends_1({
+    width: 22,
+    height: 22,
+    viewBox: "0 0 22 22",
+    fill: "none"
+  }, props), React.createElement("path", {
+    d: "M13.421 6.667h-9.79C3.275 6.667 3 6.377 3 6c0-.378.274-.667.632-.667h9.79C13.694 4.556 14.388 4 15.21 4c.822 0 1.537.556 1.79 1.333h1.368c.358 0 .632.29.632.667 0 .378-.274.667-.632.667H17C16.726 7.444 16.032 8 15.21 8c-.82 0-1.536-.556-1.789-1.333zM19 11c0 .378-.274.667-.632.667h-9.79C8.327 12.444 7.612 13 6.79 13c-.82 0-1.516-.556-1.79-1.333H3.632c-.358 0-.632-.29-.632-.667 0-.378.274-.667.632-.667H5C5.253 9.556 5.968 9 6.79 9c.82 0 1.515.556 1.789 1.333h9.79c.357 0 .631.29.631.667zm-.632 4.333H12.79C12.537 14.556 11.821 14 11 14c-.821 0-1.516.556-1.79 1.333H3.633c-.358 0-.632.29-.632.667 0 .378.274.667.632.667H9.21C9.463 17.444 10.179 18 11 18c.821 0 1.516-.556 1.79-1.333h5.578c.358 0 .632-.29.632-.667 0-.378-.274-.667-.632-.667z",
+    fill: "currentColor"
+  }));
+};
+
 var Fundraising = function Fundraising(props) {
   return React.createElement("svg", _extends_1({
     width: 22,
@@ -4293,33 +4305,8 @@ if (process.env.NODE_ENV !== 'production') {
 }
 });
 
-function _inheritsLoose(subClass, superClass) {
-  subClass.prototype = Object.create(superClass.prototype);
-  subClass.prototype.constructor = subClass;
-  subClass.__proto__ = superClass;
-}
-
-function _assertThisInitialized(self) {
-  if (self === void 0) {
-    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-  }
-
-  return self;
-}
-
-function _defineProperty(obj, key, value) {
-  if (key in obj) {
-    Object.defineProperty(obj, key, {
-      value: value,
-      enumerable: true,
-      configurable: true,
-      writable: true
-    });
-  } else {
-    obj[key] = value;
-  }
-
-  return obj;
+function createCommonjsModule$1(fn, module) {
+	return module = { exports: {} }, fn(module, module.exports), module.exports;
 }
 
 /**
@@ -4327,6 +4314,901 @@ function _defineProperty(obj, key, value) {
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
+ *
+ * 
+ */
+
+function makeEmptyFunction(arg) {
+  return function () {
+    return arg;
+  };
+}
+
+/**
+ * This function accepts and discards inputs; it has no side effects. This is
+ * primarily useful idiomatically for overridable function endpoints which
+ * always need to be callable, since JS lacks a null-call idiom ala Cocoa.
+ */
+var emptyFunction$1 = function emptyFunction() {};
+
+emptyFunction$1.thatReturns = makeEmptyFunction;
+emptyFunction$1.thatReturnsFalse = makeEmptyFunction(false);
+emptyFunction$1.thatReturnsTrue = makeEmptyFunction(true);
+emptyFunction$1.thatReturnsNull = makeEmptyFunction(null);
+emptyFunction$1.thatReturnsThis = function () {
+  return this;
+};
+emptyFunction$1.thatReturnsArgument = function (arg) {
+  return arg;
+};
+
+var emptyFunction_1 = emptyFunction$1;
+
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ */
+
+/**
+ * Use invariant() to assert state which your program assumes to be true.
+ *
+ * Provide sprintf-style format (only %s is supported) and arguments
+ * to provide information about what broke and what you were
+ * expecting.
+ *
+ * The invariant message will be stripped in production, but the invariant
+ * will remain to ensure logic does not differ in production.
+ */
+
+var validateFormat = function validateFormat(format) {};
+
+if (process.env.NODE_ENV !== 'production') {
+  validateFormat = function validateFormat(format) {
+    if (format === undefined) {
+      throw new Error('invariant requires an error message argument');
+    }
+  };
+}
+
+function invariant(condition, format, a, b, c, d, e, f) {
+  validateFormat(format);
+
+  if (!condition) {
+    var error;
+    if (format === undefined) {
+      error = new Error('Minified exception occurred; use the non-minified dev environment ' + 'for the full error message and additional helpful warnings.');
+    } else {
+      var args = [a, b, c, d, e, f];
+      var argIndex = 0;
+      error = new Error(format.replace(/%s/g, function () {
+        return args[argIndex++];
+      }));
+      error.name = 'Invariant Violation';
+    }
+
+    error.framesToPop = 1; // we don't care about invariant's own frame
+    throw error;
+  }
+}
+
+var invariant_1 = invariant;
+
+/**
+ * Similar to invariant but only logs a warning if the condition is not met.
+ * This can be used to log issues in development environments in critical
+ * paths. Removing the logging code for production environments will keep the
+ * same logic and follow the same code paths.
+ */
+
+var warning = emptyFunction_1;
+
+if (process.env.NODE_ENV !== 'production') {
+  var printWarning$2 = function printWarning(format) {
+    for (var _len = arguments.length, args = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+      args[_key - 1] = arguments[_key];
+    }
+
+    var argIndex = 0;
+    var message = 'Warning: ' + format.replace(/%s/g, function () {
+      return args[argIndex++];
+    });
+    if (typeof console !== 'undefined') {
+      console.error(message);
+    }
+    try {
+      // --- Welcome to debugging React ---
+      // This error was thrown as a convenience so that you can use this stack
+      // to find the callsite that caused this warning to fire.
+      throw new Error(message);
+    } catch (x) {}
+  };
+
+  warning = function warning(condition, format) {
+    if (format === undefined) {
+      throw new Error('`warning(condition, format, ...args)` requires a warning ' + 'message argument');
+    }
+
+    if (format.indexOf('Failed Composite propType: ') === 0) {
+      return; // Ignore CompositeComponent proptype check.
+    }
+
+    if (!condition) {
+      for (var _len2 = arguments.length, args = Array(_len2 > 2 ? _len2 - 2 : 0), _key2 = 2; _key2 < _len2; _key2++) {
+        args[_key2 - 2] = arguments[_key2];
+      }
+
+      printWarning$2.apply(undefined, [format].concat(args));
+    }
+  };
+}
+
+var warning_1 = warning;
+
+/*
+object-assign
+(c) Sindre Sorhus
+@license MIT
+*/
+
+/* eslint-disable no-unused-vars */
+var getOwnPropertySymbols$1 = Object.getOwnPropertySymbols;
+var hasOwnProperty$1 = Object.prototype.hasOwnProperty;
+var propIsEnumerable$1 = Object.prototype.propertyIsEnumerable;
+
+function toObject$1(val) {
+	if (val === null || val === undefined) {
+		throw new TypeError('Object.assign cannot be called with null or undefined');
+	}
+
+	return Object(val);
+}
+
+function shouldUseNative$1() {
+	try {
+		if (!Object.assign) {
+			return false;
+		}
+
+		// Detect buggy property enumeration order in older V8 versions.
+
+		// https://bugs.chromium.org/p/v8/issues/detail?id=4118
+		var test1 = new String('abc');  // eslint-disable-line no-new-wrappers
+		test1[5] = 'de';
+		if (Object.getOwnPropertyNames(test1)[0] === '5') {
+			return false;
+		}
+
+		// https://bugs.chromium.org/p/v8/issues/detail?id=3056
+		var test2 = {};
+		for (var i = 0; i < 10; i++) {
+			test2['_' + String.fromCharCode(i)] = i;
+		}
+		var order2 = Object.getOwnPropertyNames(test2).map(function (n) {
+			return test2[n];
+		});
+		if (order2.join('') !== '0123456789') {
+			return false;
+		}
+
+		// https://bugs.chromium.org/p/v8/issues/detail?id=3056
+		var test3 = {};
+		'abcdefghijklmnopqrst'.split('').forEach(function (letter) {
+			test3[letter] = letter;
+		});
+		if (Object.keys(Object.assign({}, test3)).join('') !==
+				'abcdefghijklmnopqrst') {
+			return false;
+		}
+
+		return true;
+	} catch (err) {
+		// We don't expect any of the above to throw, but better to be safe.
+		return false;
+	}
+}
+
+var objectAssign$1 = shouldUseNative$1() ? Object.assign : function (target, source) {
+	var from;
+	var to = toObject$1(target);
+	var symbols;
+
+	for (var s = 1; s < arguments.length; s++) {
+		from = Object(arguments[s]);
+
+		for (var key in from) {
+			if (hasOwnProperty$1.call(from, key)) {
+				to[key] = from[key];
+			}
+		}
+
+		if (getOwnPropertySymbols$1) {
+			symbols = getOwnPropertySymbols$1(from);
+			for (var i = 0; i < symbols.length; i++) {
+				if (propIsEnumerable$1.call(from, symbols[i])) {
+					to[symbols[i]] = from[symbols[i]];
+				}
+			}
+		}
+	}
+
+	return to;
+};
+
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+var ReactPropTypesSecret$2 = 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED';
+
+var ReactPropTypesSecret_1$1 = ReactPropTypesSecret$2;
+
+if (process.env.NODE_ENV !== 'production') {
+  var invariant$1 = invariant_1;
+  var warning$1 = warning_1;
+  var ReactPropTypesSecret$1$1 = ReactPropTypesSecret_1$1;
+  var loggedTypeFailures$1 = {};
+}
+
+/**
+ * Assert that the values match with the type specs.
+ * Error messages are memorized and will only be shown once.
+ *
+ * @param {object} typeSpecs Map of name to a ReactPropType
+ * @param {object} values Runtime values that need to be type-checked
+ * @param {string} location e.g. "prop", "context", "child context"
+ * @param {string} componentName Name of the component for error messages.
+ * @param {?Function} getStack Returns the component stack.
+ * @private
+ */
+function checkPropTypes$1(typeSpecs, values, location, componentName, getStack) {
+  if (process.env.NODE_ENV !== 'production') {
+    for (var typeSpecName in typeSpecs) {
+      if (typeSpecs.hasOwnProperty(typeSpecName)) {
+        var error;
+        // Prop type validation may throw. In case they do, we don't want to
+        // fail the render phase where it didn't fail before. So we log it.
+        // After these have been cleaned up, we'll let them throw.
+        try {
+          // This is intentionally an invariant that gets caught. It's the same
+          // behavior as without this statement except with a better message.
+          invariant$1(typeof typeSpecs[typeSpecName] === 'function', '%s: %s type `%s` is invalid; it must be a function, usually from ' + 'the `prop-types` package, but received `%s`.', componentName || 'React class', location, typeSpecName, typeof typeSpecs[typeSpecName]);
+          error = typeSpecs[typeSpecName](values, typeSpecName, componentName, location, null, ReactPropTypesSecret$1$1);
+        } catch (ex) {
+          error = ex;
+        }
+        warning$1(!error || error instanceof Error, '%s: type specification of %s `%s` is invalid; the type checker ' + 'function must return `null` or an `Error` but returned a %s. ' + 'You may have forgotten to pass an argument to the type checker ' + 'creator (arrayOf, instanceOf, objectOf, oneOf, oneOfType, and ' + 'shape all require an argument).', componentName || 'React class', location, typeSpecName, typeof error);
+        if (error instanceof Error && !(error.message in loggedTypeFailures$1)) {
+          // Only monitor this failure once because there tends to be a lot of the
+          // same error.
+          loggedTypeFailures$1[error.message] = true;
+
+          var stack = getStack ? getStack() : '';
+
+          warning$1(false, 'Failed %s type: %s%s', location, error.message, stack != null ? stack : '');
+        }
+      }
+    }
+  }
+}
+
+var checkPropTypes_1$1 = checkPropTypes$1;
+
+var factoryWithTypeCheckers$1 = function(isValidElement, throwOnDirectAccess) {
+  /* global Symbol */
+  var ITERATOR_SYMBOL = typeof Symbol === 'function' && Symbol.iterator;
+  var FAUX_ITERATOR_SYMBOL = '@@iterator'; // Before Symbol spec.
+
+  /**
+   * Returns the iterator method function contained on the iterable object.
+   *
+   * Be sure to invoke the function with the iterable as context:
+   *
+   *     var iteratorFn = getIteratorFn(myIterable);
+   *     if (iteratorFn) {
+   *       var iterator = iteratorFn.call(myIterable);
+   *       ...
+   *     }
+   *
+   * @param {?object} maybeIterable
+   * @return {?function}
+   */
+  function getIteratorFn(maybeIterable) {
+    var iteratorFn = maybeIterable && (ITERATOR_SYMBOL && maybeIterable[ITERATOR_SYMBOL] || maybeIterable[FAUX_ITERATOR_SYMBOL]);
+    if (typeof iteratorFn === 'function') {
+      return iteratorFn;
+    }
+  }
+
+  /**
+   * Collection of methods that allow declaration and validation of props that are
+   * supplied to React components. Example usage:
+   *
+   *   var Props = require('ReactPropTypes');
+   *   var MyArticle = React.createClass({
+   *     propTypes: {
+   *       // An optional string prop named "description".
+   *       description: Props.string,
+   *
+   *       // A required enum prop named "category".
+   *       category: Props.oneOf(['News','Photos']).isRequired,
+   *
+   *       // A prop named "dialog" that requires an instance of Dialog.
+   *       dialog: Props.instanceOf(Dialog).isRequired
+   *     },
+   *     render: function() { ... }
+   *   });
+   *
+   * A more formal specification of how these methods are used:
+   *
+   *   type := array|bool|func|object|number|string|oneOf([...])|instanceOf(...)
+   *   decl := ReactPropTypes.{type}(.isRequired)?
+   *
+   * Each and every declaration produces a function with the same signature. This
+   * allows the creation of custom validation functions. For example:
+   *
+   *  var MyLink = React.createClass({
+   *    propTypes: {
+   *      // An optional string or URI prop named "href".
+   *      href: function(props, propName, componentName) {
+   *        var propValue = props[propName];
+   *        if (propValue != null && typeof propValue !== 'string' &&
+   *            !(propValue instanceof URI)) {
+   *          return new Error(
+   *            'Expected a string or an URI for ' + propName + ' in ' +
+   *            componentName
+   *          );
+   *        }
+   *      }
+   *    },
+   *    render: function() {...}
+   *  });
+   *
+   * @internal
+   */
+
+  var ANONYMOUS = '<<anonymous>>';
+
+  // Important!
+  // Keep this list in sync with production version in `./factoryWithThrowingShims.js`.
+  var ReactPropTypes = {
+    array: createPrimitiveTypeChecker('array'),
+    bool: createPrimitiveTypeChecker('boolean'),
+    func: createPrimitiveTypeChecker('function'),
+    number: createPrimitiveTypeChecker('number'),
+    object: createPrimitiveTypeChecker('object'),
+    string: createPrimitiveTypeChecker('string'),
+    symbol: createPrimitiveTypeChecker('symbol'),
+
+    any: createAnyTypeChecker(),
+    arrayOf: createArrayOfTypeChecker,
+    element: createElementTypeChecker(),
+    instanceOf: createInstanceTypeChecker,
+    node: createNodeChecker(),
+    objectOf: createObjectOfTypeChecker,
+    oneOf: createEnumTypeChecker,
+    oneOfType: createUnionTypeChecker,
+    shape: createShapeTypeChecker,
+    exact: createStrictShapeTypeChecker,
+  };
+
+  /**
+   * inlined Object.is polyfill to avoid requiring consumers ship their own
+   * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is
+   */
+  /*eslint-disable no-self-compare*/
+  function is(x, y) {
+    // SameValue algorithm
+    if (x === y) {
+      // Steps 1-5, 7-10
+      // Steps 6.b-6.e: +0 != -0
+      return x !== 0 || 1 / x === 1 / y;
+    } else {
+      // Step 6.a: NaN == NaN
+      return x !== x && y !== y;
+    }
+  }
+  /*eslint-enable no-self-compare*/
+
+  /**
+   * We use an Error-like object for backward compatibility as people may call
+   * PropTypes directly and inspect their output. However, we don't use real
+   * Errors anymore. We don't inspect their stack anyway, and creating them
+   * is prohibitively expensive if they are created too often, such as what
+   * happens in oneOfType() for any type before the one that matched.
+   */
+  function PropTypeError(message) {
+    this.message = message;
+    this.stack = '';
+  }
+  // Make `instanceof Error` still work for returned errors.
+  PropTypeError.prototype = Error.prototype;
+
+  function createChainableTypeChecker(validate) {
+    if (process.env.NODE_ENV !== 'production') {
+      var manualPropTypeCallCache = {};
+      var manualPropTypeWarningCount = 0;
+    }
+    function checkType(isRequired, props, propName, componentName, location, propFullName, secret) {
+      componentName = componentName || ANONYMOUS;
+      propFullName = propFullName || propName;
+
+      if (secret !== ReactPropTypesSecret_1$1) {
+        if (throwOnDirectAccess) {
+          // New behavior only for users of `prop-types` package
+          invariant_1(
+            false,
+            'Calling PropTypes validators directly is not supported by the `prop-types` package. ' +
+            'Use `PropTypes.checkPropTypes()` to call them. ' +
+            'Read more at http://fb.me/use-check-prop-types'
+          );
+        } else if (process.env.NODE_ENV !== 'production' && typeof console !== 'undefined') {
+          // Old behavior for people using React.PropTypes
+          var cacheKey = componentName + ':' + propName;
+          if (
+            !manualPropTypeCallCache[cacheKey] &&
+            // Avoid spamming the console because they are often not actionable except for lib authors
+            manualPropTypeWarningCount < 3
+          ) {
+            warning_1(
+              false,
+              'You are manually calling a React.PropTypes validation ' +
+              'function for the `%s` prop on `%s`. This is deprecated ' +
+              'and will throw in the standalone `prop-types` package. ' +
+              'You may be seeing this warning due to a third-party PropTypes ' +
+              'library. See https://fb.me/react-warning-dont-call-proptypes ' + 'for details.',
+              propFullName,
+              componentName
+            );
+            manualPropTypeCallCache[cacheKey] = true;
+            manualPropTypeWarningCount++;
+          }
+        }
+      }
+      if (props[propName] == null) {
+        if (isRequired) {
+          if (props[propName] === null) {
+            return new PropTypeError('The ' + location + ' `' + propFullName + '` is marked as required ' + ('in `' + componentName + '`, but its value is `null`.'));
+          }
+          return new PropTypeError('The ' + location + ' `' + propFullName + '` is marked as required in ' + ('`' + componentName + '`, but its value is `undefined`.'));
+        }
+        return null;
+      } else {
+        return validate(props, propName, componentName, location, propFullName);
+      }
+    }
+
+    var chainedCheckType = checkType.bind(null, false);
+    chainedCheckType.isRequired = checkType.bind(null, true);
+
+    return chainedCheckType;
+  }
+
+  function createPrimitiveTypeChecker(expectedType) {
+    function validate(props, propName, componentName, location, propFullName, secret) {
+      var propValue = props[propName];
+      var propType = getPropType(propValue);
+      if (propType !== expectedType) {
+        // `propValue` being instance of, say, date/regexp, pass the 'object'
+        // check, but we can offer a more precise error message here rather than
+        // 'of type `object`'.
+        var preciseType = getPreciseType(propValue);
+
+        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + preciseType + '` supplied to `' + componentName + '`, expected ') + ('`' + expectedType + '`.'));
+      }
+      return null;
+    }
+    return createChainableTypeChecker(validate);
+  }
+
+  function createAnyTypeChecker() {
+    return createChainableTypeChecker(emptyFunction_1.thatReturnsNull);
+  }
+
+  function createArrayOfTypeChecker(typeChecker) {
+    function validate(props, propName, componentName, location, propFullName) {
+      if (typeof typeChecker !== 'function') {
+        return new PropTypeError('Property `' + propFullName + '` of component `' + componentName + '` has invalid PropType notation inside arrayOf.');
+      }
+      var propValue = props[propName];
+      if (!Array.isArray(propValue)) {
+        var propType = getPropType(propValue);
+        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + propType + '` supplied to `' + componentName + '`, expected an array.'));
+      }
+      for (var i = 0; i < propValue.length; i++) {
+        var error = typeChecker(propValue, i, componentName, location, propFullName + '[' + i + ']', ReactPropTypesSecret_1$1);
+        if (error instanceof Error) {
+          return error;
+        }
+      }
+      return null;
+    }
+    return createChainableTypeChecker(validate);
+  }
+
+  function createElementTypeChecker() {
+    function validate(props, propName, componentName, location, propFullName) {
+      var propValue = props[propName];
+      if (!isValidElement(propValue)) {
+        var propType = getPropType(propValue);
+        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + propType + '` supplied to `' + componentName + '`, expected a single ReactElement.'));
+      }
+      return null;
+    }
+    return createChainableTypeChecker(validate);
+  }
+
+  function createInstanceTypeChecker(expectedClass) {
+    function validate(props, propName, componentName, location, propFullName) {
+      if (!(props[propName] instanceof expectedClass)) {
+        var expectedClassName = expectedClass.name || ANONYMOUS;
+        var actualClassName = getClassName(props[propName]);
+        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + actualClassName + '` supplied to `' + componentName + '`, expected ') + ('instance of `' + expectedClassName + '`.'));
+      }
+      return null;
+    }
+    return createChainableTypeChecker(validate);
+  }
+
+  function createEnumTypeChecker(expectedValues) {
+    if (!Array.isArray(expectedValues)) {
+      process.env.NODE_ENV !== 'production' ? warning_1(false, 'Invalid argument supplied to oneOf, expected an instance of array.') : void 0;
+      return emptyFunction_1.thatReturnsNull;
+    }
+
+    function validate(props, propName, componentName, location, propFullName) {
+      var propValue = props[propName];
+      for (var i = 0; i < expectedValues.length; i++) {
+        if (is(propValue, expectedValues[i])) {
+          return null;
+        }
+      }
+
+      var valuesString = JSON.stringify(expectedValues);
+      return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of value `' + propValue + '` ' + ('supplied to `' + componentName + '`, expected one of ' + valuesString + '.'));
+    }
+    return createChainableTypeChecker(validate);
+  }
+
+  function createObjectOfTypeChecker(typeChecker) {
+    function validate(props, propName, componentName, location, propFullName) {
+      if (typeof typeChecker !== 'function') {
+        return new PropTypeError('Property `' + propFullName + '` of component `' + componentName + '` has invalid PropType notation inside objectOf.');
+      }
+      var propValue = props[propName];
+      var propType = getPropType(propValue);
+      if (propType !== 'object') {
+        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + propType + '` supplied to `' + componentName + '`, expected an object.'));
+      }
+      for (var key in propValue) {
+        if (propValue.hasOwnProperty(key)) {
+          var error = typeChecker(propValue, key, componentName, location, propFullName + '.' + key, ReactPropTypesSecret_1$1);
+          if (error instanceof Error) {
+            return error;
+          }
+        }
+      }
+      return null;
+    }
+    return createChainableTypeChecker(validate);
+  }
+
+  function createUnionTypeChecker(arrayOfTypeCheckers) {
+    if (!Array.isArray(arrayOfTypeCheckers)) {
+      process.env.NODE_ENV !== 'production' ? warning_1(false, 'Invalid argument supplied to oneOfType, expected an instance of array.') : void 0;
+      return emptyFunction_1.thatReturnsNull;
+    }
+
+    for (var i = 0; i < arrayOfTypeCheckers.length; i++) {
+      var checker = arrayOfTypeCheckers[i];
+      if (typeof checker !== 'function') {
+        warning_1(
+          false,
+          'Invalid argument supplied to oneOfType. Expected an array of check functions, but ' +
+          'received %s at index %s.',
+          getPostfixForTypeWarning(checker),
+          i
+        );
+        return emptyFunction_1.thatReturnsNull;
+      }
+    }
+
+    function validate(props, propName, componentName, location, propFullName) {
+      for (var i = 0; i < arrayOfTypeCheckers.length; i++) {
+        var checker = arrayOfTypeCheckers[i];
+        if (checker(props, propName, componentName, location, propFullName, ReactPropTypesSecret_1$1) == null) {
+          return null;
+        }
+      }
+
+      return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` supplied to ' + ('`' + componentName + '`.'));
+    }
+    return createChainableTypeChecker(validate);
+  }
+
+  function createNodeChecker() {
+    function validate(props, propName, componentName, location, propFullName) {
+      if (!isNode(props[propName])) {
+        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` supplied to ' + ('`' + componentName + '`, expected a ReactNode.'));
+      }
+      return null;
+    }
+    return createChainableTypeChecker(validate);
+  }
+
+  function createShapeTypeChecker(shapeTypes) {
+    function validate(props, propName, componentName, location, propFullName) {
+      var propValue = props[propName];
+      var propType = getPropType(propValue);
+      if (propType !== 'object') {
+        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type `' + propType + '` ' + ('supplied to `' + componentName + '`, expected `object`.'));
+      }
+      for (var key in shapeTypes) {
+        var checker = shapeTypes[key];
+        if (!checker) {
+          continue;
+        }
+        var error = checker(propValue, key, componentName, location, propFullName + '.' + key, ReactPropTypesSecret_1$1);
+        if (error) {
+          return error;
+        }
+      }
+      return null;
+    }
+    return createChainableTypeChecker(validate);
+  }
+
+  function createStrictShapeTypeChecker(shapeTypes) {
+    function validate(props, propName, componentName, location, propFullName) {
+      var propValue = props[propName];
+      var propType = getPropType(propValue);
+      if (propType !== 'object') {
+        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type `' + propType + '` ' + ('supplied to `' + componentName + '`, expected `object`.'));
+      }
+      // We need to check all keys in case some are required but missing from
+      // props.
+      var allKeys = objectAssign$1({}, props[propName], shapeTypes);
+      for (var key in allKeys) {
+        var checker = shapeTypes[key];
+        if (!checker) {
+          return new PropTypeError(
+            'Invalid ' + location + ' `' + propFullName + '` key `' + key + '` supplied to `' + componentName + '`.' +
+            '\nBad object: ' + JSON.stringify(props[propName], null, '  ') +
+            '\nValid keys: ' +  JSON.stringify(Object.keys(shapeTypes), null, '  ')
+          );
+        }
+        var error = checker(propValue, key, componentName, location, propFullName + '.' + key, ReactPropTypesSecret_1$1);
+        if (error) {
+          return error;
+        }
+      }
+      return null;
+    }
+
+    return createChainableTypeChecker(validate);
+  }
+
+  function isNode(propValue) {
+    switch (typeof propValue) {
+      case 'number':
+      case 'string':
+      case 'undefined':
+        return true;
+      case 'boolean':
+        return !propValue;
+      case 'object':
+        if (Array.isArray(propValue)) {
+          return propValue.every(isNode);
+        }
+        if (propValue === null || isValidElement(propValue)) {
+          return true;
+        }
+
+        var iteratorFn = getIteratorFn(propValue);
+        if (iteratorFn) {
+          var iterator = iteratorFn.call(propValue);
+          var step;
+          if (iteratorFn !== propValue.entries) {
+            while (!(step = iterator.next()).done) {
+              if (!isNode(step.value)) {
+                return false;
+              }
+            }
+          } else {
+            // Iterator will provide entry [k,v] tuples rather than values.
+            while (!(step = iterator.next()).done) {
+              var entry = step.value;
+              if (entry) {
+                if (!isNode(entry[1])) {
+                  return false;
+                }
+              }
+            }
+          }
+        } else {
+          return false;
+        }
+
+        return true;
+      default:
+        return false;
+    }
+  }
+
+  function isSymbol(propType, propValue) {
+    // Native Symbol.
+    if (propType === 'symbol') {
+      return true;
+    }
+
+    // 19.4.3.5 Symbol.prototype[@@toStringTag] === 'Symbol'
+    if (propValue['@@toStringTag'] === 'Symbol') {
+      return true;
+    }
+
+    // Fallback for non-spec compliant Symbols which are polyfilled.
+    if (typeof Symbol === 'function' && propValue instanceof Symbol) {
+      return true;
+    }
+
+    return false;
+  }
+
+  // Equivalent of `typeof` but with special handling for array and regexp.
+  function getPropType(propValue) {
+    var propType = typeof propValue;
+    if (Array.isArray(propValue)) {
+      return 'array';
+    }
+    if (propValue instanceof RegExp) {
+      // Old webkits (at least until Android 4.0) return 'function' rather than
+      // 'object' for typeof a RegExp. We'll normalize this here so that /bla/
+      // passes PropTypes.object.
+      return 'object';
+    }
+    if (isSymbol(propType, propValue)) {
+      return 'symbol';
+    }
+    return propType;
+  }
+
+  // This handles more types than `getPropType`. Only used for error messages.
+  // See `createPrimitiveTypeChecker`.
+  function getPreciseType(propValue) {
+    if (typeof propValue === 'undefined' || propValue === null) {
+      return '' + propValue;
+    }
+    var propType = getPropType(propValue);
+    if (propType === 'object') {
+      if (propValue instanceof Date) {
+        return 'date';
+      } else if (propValue instanceof RegExp) {
+        return 'regexp';
+      }
+    }
+    return propType;
+  }
+
+  // Returns a string that is postfixed to a warning about an invalid type.
+  // For example, "undefined" or "of type array"
+  function getPostfixForTypeWarning(value) {
+    var type = getPreciseType(value);
+    switch (type) {
+      case 'array':
+      case 'object':
+        return 'an ' + type;
+      case 'boolean':
+      case 'date':
+      case 'regexp':
+        return 'a ' + type;
+      default:
+        return type;
+    }
+  }
+
+  // Returns class name of the object, if any.
+  function getClassName(propValue) {
+    if (!propValue.constructor || !propValue.constructor.name) {
+      return ANONYMOUS;
+    }
+    return propValue.constructor.name;
+  }
+
+  ReactPropTypes.checkPropTypes = checkPropTypes_1$1;
+  ReactPropTypes.PropTypes = ReactPropTypes;
+
+  return ReactPropTypes;
+};
+
+var factoryWithThrowingShims$1 = function() {
+  function shim(props, propName, componentName, location, propFullName, secret) {
+    if (secret === ReactPropTypesSecret_1$1) {
+      // It is still safe when called from React.
+      return;
+    }
+    invariant_1(
+      false,
+      'Calling PropTypes validators directly is not supported by the `prop-types` package. ' +
+      'Use PropTypes.checkPropTypes() to call them. ' +
+      'Read more at http://fb.me/use-check-prop-types'
+    );
+  }
+  shim.isRequired = shim;
+  function getShim() {
+    return shim;
+  }
+  // Important!
+  // Keep this list in sync with production version in `./factoryWithTypeCheckers.js`.
+  var ReactPropTypes = {
+    array: shim,
+    bool: shim,
+    func: shim,
+    number: shim,
+    object: shim,
+    string: shim,
+    symbol: shim,
+
+    any: shim,
+    arrayOf: getShim,
+    element: shim,
+    instanceOf: getShim,
+    node: shim,
+    objectOf: getShim,
+    oneOf: getShim,
+    oneOfType: getShim,
+    shape: getShim,
+    exact: getShim
+  };
+
+  ReactPropTypes.checkPropTypes = emptyFunction_1;
+  ReactPropTypes.PropTypes = ReactPropTypes;
+
+  return ReactPropTypes;
+};
+
+var propTypes$1 = createCommonjsModule$1(function (module) {
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+if (process.env.NODE_ENV !== 'production') {
+  var REACT_ELEMENT_TYPE = (typeof Symbol === 'function' &&
+    Symbol.for &&
+    Symbol.for('react.element')) ||
+    0xeac7;
+
+  var isValidElement = function(object) {
+    return typeof object === 'object' &&
+      object !== null &&
+      object.$$typeof === REACT_ELEMENT_TYPE;
+  };
+
+  // By explicitly using `prop-types` you are opting into new development behavior.
+  // http://fb.me/prop-types-in-prod
+  var throwOnDirectAccess = true;
+  module.exports = factoryWithTypeCheckers$1(isValidElement, throwOnDirectAccess);
+} else {
+  // By explicitly using `prop-types` you are opting into new production behavior.
+  // http://fb.me/prop-types-in-prod
+  module.exports = factoryWithThrowingShims$1();
+}
+});
+
+/**
+ * Copyright 2013-2015, Facebook, Inc.
+ * All rights reserved.
+ *
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  */
 
 /**
@@ -4342,7 +5224,7 @@ function _defineProperty(obj, key, value) {
 
 var NODE_ENV = process.env.NODE_ENV;
 
-var invariant = function(condition, format, a, b, c, d, e, f) {
+var invariant$3 = function(condition, format, a, b, c, d, e, f) {
   if (NODE_ENV !== 'production') {
     if (format === undefined) {
       throw new Error('invariant requires an error message argument');
@@ -4370,7 +5252,7 @@ var invariant = function(condition, format, a, b, c, d, e, f) {
   }
 };
 
-var invariant_1 = invariant;
+var invariant_1$2 = invariant$3;
 
 var camel2hyphen = function (str) {
   return str
@@ -4432,121 +5314,139 @@ var json2mq = function (query) {
 
 var json2mq_1 = json2mq;
 
-var MediaQueryList =
-/*#__PURE__*/
-function () {
-  function MediaQueryList(targetWindow, query, listener) {
-    var _this = this;
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) {
+  return typeof obj;
+} : function (obj) {
+  return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+};
 
-    this.nativeMediaQueryList = targetWindow.matchMedia(query);
-    this.active = true; // Safari doesn't clear up listener with removeListener
-    // when the listener is already waiting in the event queue.
-    // Having an active flag to make sure the listener is not called
-    // after we removeListener.
 
-    this.cancellableListener = function () {
-      _this.matches = _this.nativeMediaQueryList.matches;
 
-      if (_this.active) {
-        listener.apply(void 0, arguments);
-      }
-    };
 
-    this.nativeMediaQueryList.addListener(this.cancellableListener);
-    this.matches = this.nativeMediaQueryList.matches;
+
+
+
+
+
+
+
+var classCallCheck = function (instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+};
+
+
+
+
+
+
+
+
+
+
+
+var inherits = function (subClass, superClass) {
+  if (typeof superClass !== "function" && superClass !== null) {
+    throw new TypeError("Super expression must either be null or a function, not " + typeof superClass);
   }
 
-  var _proto = MediaQueryList.prototype;
+  subClass.prototype = Object.create(superClass && superClass.prototype, {
+    constructor: {
+      value: subClass,
+      enumerable: false,
+      writable: true,
+      configurable: true
+    }
+  });
+  if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
+};
 
-  _proto.cancel = function cancel() {
-    this.active = false;
-    this.nativeMediaQueryList.removeListener(this.cancellableListener);
-  };
 
-  return MediaQueryList;
-}();
+
+
+
+
+
+
+
+
+
+var possibleConstructorReturn = function (self, call) {
+  if (!self) {
+    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+  }
+
+  return call && (typeof call === "object" || typeof call === "function") ? call : self;
+};
 
 /**
  * Conditionally renders based on whether or not a media query matches.
  */
 
-var Media =
-/*#__PURE__*/
-function (_React$Component) {
-  _inheritsLoose(Media, _React$Component);
+var Media = function (_React$Component) {
+  inherits(Media, _React$Component);
 
   function Media() {
-    var _this;
+    var _temp, _this, _ret;
 
-    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+    classCallCheck(this, Media);
+
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    _this = _React$Component.call.apply(_React$Component, [this].concat(args)) || this;
-
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "state", {
+    return _ret = (_temp = (_this = possibleConstructorReturn(this, _React$Component.call.apply(_React$Component, [this].concat(args))), _this), _this.state = {
       matches: _this.props.defaultMatches
-    });
-
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "updateMatches", function () {
-      var matches = _this.mediaQueryList.matches;
-
-      _this.setState({
-        matches: matches
-      });
-
-      var onChange = _this.props.onChange;
-
-      if (onChange) {
-        onChange(matches);
-      }
-    });
-
-    return _this;
+    }, _this.updateMatches = function () {
+      return _this.setState({ matches: _this.mediaQueryList.matches });
+    }, _temp), possibleConstructorReturn(_this, _ret);
   }
 
-  var _proto = Media.prototype;
+  Media.prototype.componentWillMount = function componentWillMount() {
+    if ((typeof window === "undefined" ? "undefined" : _typeof(window)) !== "object") return;
 
-  _proto.componentWillMount = function componentWillMount() {
-    if (typeof window !== 'object') return;
     var targetWindow = this.props.targetWindow || window;
-    !(typeof targetWindow.matchMedia === 'function') ? process.env.NODE_ENV !== "production" ? invariant_1(false, '<Media targetWindow> does not support `matchMedia`.') : invariant_1(false) : void 0;
+
+    invariant_1$2(typeof targetWindow.matchMedia === "function", "<Media targetWindow> does not support `matchMedia`.");
+
     var query = this.props.query;
-    if (typeof query !== 'string') query = json2mq_1(query);
-    this.mediaQueryList = new MediaQueryList(targetWindow, query, this.updateMatches);
+
+    if (typeof query !== "string") query = json2mq_1(query);
+
+    this.mediaQueryList = targetWindow.matchMedia(query);
+    this.mediaQueryList.addListener(this.updateMatches);
     this.updateMatches();
   };
 
-  _proto.componentWillUnmount = function componentWillUnmount() {
-    this.mediaQueryList.cancel();
+  Media.prototype.componentWillUnmount = function componentWillUnmount() {
+    this.mediaQueryList.removeListener(this.updateMatches);
   };
 
-  _proto.render = function render() {
-    var _this$props = this.props,
-        children = _this$props.children,
-        render = _this$props.render;
+  Media.prototype.render = function render() {
+    var _props = this.props,
+        children = _props.children,
+        render = _props.render;
     var matches = this.state.matches;
-    return render ? matches ? render() : null : children ? typeof children === 'function' ? children(matches) : !Array.isArray(children) || children.length // Preact defaults to empty children array
+
+
+    return render ? matches ? render() : null : children ? typeof children === "function" ? children(matches) : !Array.isArray(children) || children.length // Preact defaults to empty children array
     ? matches ? React.Children.only(children) : null : null : null;
   };
 
   return Media;
 }(React.Component);
 
-_defineProperty(Media, "defaultProps", {
+Media.propTypes = {
+  defaultMatches: propTypes$1.bool,
+  query: propTypes$1.oneOfType([propTypes$1.string, propTypes$1.object, propTypes$1.arrayOf(propTypes$1.object.isRequired)]).isRequired,
+  render: propTypes$1.func,
+  children: propTypes$1.oneOfType([propTypes$1.node, propTypes$1.func]),
+  targetWindow: propTypes$1.object
+};
+Media.defaultProps = {
   defaultMatches: true
-});
-
-if (process.env.NODE_ENV !== "production") {
-  Media.propTypes = {
-    defaultMatches: propTypes.bool,
-    query: propTypes.oneOfType([propTypes.string, propTypes.object, propTypes.arrayOf(propTypes.object.isRequired)]).isRequired,
-    render: propTypes.func,
-    children: propTypes.oneOfType([propTypes.node, propTypes.func]),
-    targetWindow: propTypes.object,
-    onChange: propTypes.func
-  };
-}
+};
 
 var BREAKPOINTS = {
   min: 320,
@@ -4583,7 +5483,7 @@ var BreakPoint = function BreakPoint(_ref) {
     return ok ? children : null;
   });
 };
-var BreakPointName = propTypes.oneOf([].concat(toConsumableArray(Object.keys(BREAKPOINTS)), ['']));
+var BreakPointName = propTypes.oneOf(toConsumableArray(Object.keys(BREAKPOINTS)).concat(['']));
 BreakPoint.propTypes = {
   from: BreakPointName,
   to: BreakPointName,
@@ -4624,14 +5524,18 @@ var smallcapsCss = function smallcapsCss(smallcaps) {
   return smallcaps ? "\n      text-transform: lowercase;\n      font-variant: small-caps;\n    " : '';
 };
 
+var monospaceCss = function monospaceCss(monospace) {
+  return monospace ? "\n      font-family: aragon-ui-monospace, monospace;\n    " : '';
+};
+
 var font = function font(_ref) {
   var size = _ref.size,
       weight = _ref.weight,
       _ref$smallcaps = _ref.smallcaps,
       smallcaps = _ref$smallcaps === void 0 ? false : _ref$smallcaps,
-      _ref$inherit = _ref.inherit,
-      inherit = _ref$inherit === void 0 ? false : _ref$inherit;
-  return "\n    ".concat(fontSizeCss(size, inherit), ";\n    ").concat(weightCss(weight, inherit), ";\n    ").concat(smallcapsCss(smallcaps, inherit), ";\n  ");
+      _ref$monospace = _ref.monospace,
+      monospace = _ref$monospace === void 0 ? false : _ref$monospace;
+  return "\n    ".concat(fontSizeCss(size), ";\n    ").concat(weightCss(weight), ";\n    ").concat(smallcapsCss(smallcaps), ";\n    ").concat(monospaceCss(monospace), ";\n  ");
 };
 
 var GRID = {
@@ -4886,7 +5790,7 @@ function _classCallCheck(instance, Constructor) {
   }
 }
 
-var classCallCheck = _classCallCheck;
+var classCallCheck$1 = _classCallCheck;
 
 function _defineProperties(target, props) {
   for (var i = 0; i < props.length; i++) {
@@ -4926,7 +5830,7 @@ function _typeof(obj) {
 module.exports = _typeof;
 });
 
-function _assertThisInitialized$1(self) {
+function _assertThisInitialized(self) {
   if (self === void 0) {
     throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
   }
@@ -4934,7 +5838,7 @@ function _assertThisInitialized$1(self) {
   return self;
 }
 
-var assertThisInitialized = _assertThisInitialized$1;
+var assertThisInitialized = _assertThisInitialized;
 
 function _possibleConstructorReturn(self, call) {
   if (call && (_typeof_1(call) === "object" || typeof call === "function")) {
@@ -4944,7 +5848,7 @@ function _possibleConstructorReturn(self, call) {
   return assertThisInitialized(self);
 }
 
-var possibleConstructorReturn = _possibleConstructorReturn;
+var possibleConstructorReturn$1 = _possibleConstructorReturn;
 
 var getPrototypeOf = createCommonjsModule(function (module) {
 function _getPrototypeOf(o) {
@@ -4985,9 +5889,9 @@ function _inherits(subClass, superClass) {
   if (superClass) setPrototypeOf(subClass, superClass);
 }
 
-var inherits = _inherits;
+var inherits$1 = _inherits;
 
-function _defineProperty$1(obj, key, value) {
+function _defineProperty(obj, key, value) {
   if (key in obj) {
     Object.defineProperty(obj, key, {
       value: value,
@@ -5002,7 +5906,7 @@ function _defineProperty$1(obj, key, value) {
   return obj;
 }
 
-var defineProperty = _defineProperty$1;
+var defineProperty = _defineProperty;
 
 var getDisplayName_1 = createCommonjsModule(function (module, exports) {
 
@@ -5025,20 +5929,20 @@ var observe = function observe(_observe) {
     return _temp = _class =
     /*#__PURE__*/
     function (_React$Component) {
-      inherits(_class, _React$Component);
+      inherits$1(_class, _React$Component);
 
       function _class() {
         var _getPrototypeOf2;
 
         var _this;
 
-        classCallCheck(this, _class);
+        classCallCheck$1(this, _class);
 
         for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
           args[_key] = arguments[_key];
         }
 
-        _this = possibleConstructorReturn(this, (_getPrototypeOf2 = getPrototypeOf(_class)).call.apply(_getPrototypeOf2, [this].concat(args)));
+        _this = possibleConstructorReturn$1(this, (_getPrototypeOf2 = getPrototypeOf(_class)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
         defineProperty(assertThisInitialized(assertThisInitialized(_this)), "state", initialState);
 
@@ -5120,12 +6024,12 @@ var _React$createContext = React.createContext(''),
 var PublicUrlProvider =
 /*#__PURE__*/
 function (_React$Component) {
-  inherits(PublicUrlProvider, _React$Component);
+  inherits$1(PublicUrlProvider, _React$Component);
 
   function PublicUrlProvider() {
-    classCallCheck(this, PublicUrlProvider);
+    classCallCheck$1(this, PublicUrlProvider);
 
-    return possibleConstructorReturn(this, getPrototypeOf(PublicUrlProvider).apply(this, arguments));
+    return possibleConstructorReturn$1(this, getPrototypeOf(PublicUrlProvider).apply(this, arguments));
   }
 
   createClass(PublicUrlProvider, [{
@@ -5184,20 +6088,20 @@ PublicUrl.styledUrl = styledUrl;
 var Redraw =
 /*#__PURE__*/
 function (_React$Component) {
-  inherits(Redraw, _React$Component);
+  inherits$1(Redraw, _React$Component);
 
   function Redraw() {
     var _getPrototypeOf2;
 
     var _this;
 
-    classCallCheck(this, Redraw);
+    classCallCheck$1(this, Redraw);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    _this = possibleConstructorReturn(this, (_getPrototypeOf2 = getPrototypeOf(Redraw)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this = possibleConstructorReturn$1(this, (_getPrototypeOf2 = getPrototypeOf(Redraw)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
     defineProperty(assertThisInitialized(assertThisInitialized(_this)), "state", {
       lastDraw: -1
@@ -5286,20 +6190,20 @@ var getRedrawTime = function getRedrawTime(fromDate) {
 var RedrawFromDate =
 /*#__PURE__*/
 function (_React$Component) {
-  inherits(RedrawFromDate, _React$Component);
+  inherits$1(RedrawFromDate, _React$Component);
 
   function RedrawFromDate() {
     var _getPrototypeOf2;
 
     var _this;
 
-    classCallCheck(this, RedrawFromDate);
+    classCallCheck$1(this, RedrawFromDate);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    _this = possibleConstructorReturn(this, (_getPrototypeOf2 = getPrototypeOf(RedrawFromDate)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this = possibleConstructorReturn$1(this, (_getPrototypeOf2 = getPrototypeOf(RedrawFromDate)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
     defineProperty(assertThisInitialized(assertThisInitialized(_this)), "state", {
       redrawTime: EVERY_HOUR,
@@ -5394,20 +6298,20 @@ var _React$createContext$1 = React.createContext(null),
 var RootProvider =
 /*#__PURE__*/
 function (_React$Component) {
-  inherits(RootProvider, _React$Component);
+  inherits$1(RootProvider, _React$Component);
 
   function RootProvider() {
     var _getPrototypeOf2;
 
     var _this;
 
-    classCallCheck(this, RootProvider);
+    classCallCheck$1(this, RootProvider);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    _this = possibleConstructorReturn(this, (_getPrototypeOf2 = getPrototypeOf(RootProvider)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this = possibleConstructorReturn$1(this, (_getPrototypeOf2 = getPrototypeOf(RootProvider)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
     defineProperty(assertThisInitialized(assertThisInitialized(_this)), "_element", React.createRef());
 
@@ -5550,7 +6454,7 @@ var Symbol$1 = root.Symbol;
 var objectProto = Object.prototype;
 
 /** Used to check objects for own properties. */
-var hasOwnProperty$1 = objectProto.hasOwnProperty;
+var hasOwnProperty$2 = objectProto.hasOwnProperty;
 
 /**
  * Used to resolve the
@@ -5570,7 +6474,7 @@ var symToStringTag = Symbol$1 ? Symbol$1.toStringTag : undefined;
  * @returns {string} Returns the raw `toStringTag`.
  */
 function getRawTag(value) {
-  var isOwn = hasOwnProperty$1.call(value, symToStringTag),
+  var isOwn = hasOwnProperty$2.call(value, symToStringTag),
       tag = value[symToStringTag];
 
   try {
@@ -6008,27 +6912,25 @@ var WINDOW_SIZE_BASE = objectSpread({
   breakpoints: BREAKPOINTS
 }, getCurrentWindowSize());
 
-var _React$createContext$2 = React.createContext(WINDOW_SIZE_BASE),
-    Provider$2 = _React$createContext$2.Provider,
-    Consumer$2 = _React$createContext$2.Consumer;
+var ViewportContext = React.createContext(WINDOW_SIZE_BASE);
 
 var ViewportProvider =
 /*#__PURE__*/
 function (_React$Component) {
-  inherits(ViewportProvider, _React$Component);
+  inherits$1(ViewportProvider, _React$Component);
 
   function ViewportProvider() {
     var _getPrototypeOf2;
 
     var _this;
 
-    classCallCheck(this, ViewportProvider);
+    classCallCheck$1(this, ViewportProvider);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    _this = possibleConstructorReturn(this, (_getPrototypeOf2 = getPrototypeOf(ViewportProvider)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this = possibleConstructorReturn$1(this, (_getPrototypeOf2 = getPrototypeOf(ViewportProvider)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
     defineProperty(assertThisInitialized(assertThisInitialized(_this)), "state", {
       windowSize: _this.getWindowSize()
@@ -6127,7 +7029,7 @@ function (_React$Component) {
       var within = this.within,
           above = this.above,
           below = this.below;
-      return React.createElement(Provider$2, {
+      return React.createElement(ViewportContext.Provider, {
         value: objectSpread({}, windowSize, {
           within: within,
           above: above,
@@ -6152,10 +7054,13 @@ defineProperty(ViewportProvider, "defaultProps", {
 });
 
 var Viewport = function Viewport(props) {
-  return React.createElement(Consumer$2, props);
+  return React.createElement(ViewportContext.Consumer, props);
 };
 
 Viewport.Provider = ViewportProvider;
+var useViewport = function useViewport() {
+  return React.useContext(ViewportContext);
+};
 
 var runtime = createCommonjsModule(function (module) {
 /**
@@ -6974,13 +7879,13 @@ function _extends() {
   return _extends.apply(this, arguments);
 }
 
-function _inheritsLoose$1(subClass, superClass) {
+function _inheritsLoose(subClass, superClass) {
   subClass.prototype = Object.create(superClass.prototype);
   subClass.prototype.constructor = subClass;
   subClass.__proto__ = superClass;
 }
 
-function _assertThisInitialized$2(self) {
+function _assertThisInitialized$1(self) {
   if (self === void 0) {
     throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
   }
@@ -7546,7 +8451,7 @@ var getValues = function getValues(object) {
 var AnimatedWithChildren =
 /*#__PURE__*/
 function (_Animated) {
-  _inheritsLoose$1(AnimatedWithChildren, _Animated);
+  _inheritsLoose(AnimatedWithChildren, _Animated);
 
   function AnimatedWithChildren() {
     var _this;
@@ -7567,7 +8472,7 @@ function (_Animated) {
         index = undefined;
       }
 
-      return index !== void 0 && _this.payload ? _this.payload[index] : _this.payload || _assertThisInitialized$2(_assertThisInitialized$2(_this));
+      return index !== void 0 && _this.payload ? _this.payload[index] : _this.payload || _assertThisInitialized$1(_assertThisInitialized$1(_this));
     };
 
     return _this;
@@ -7600,7 +8505,7 @@ function (_Animated) {
 var AnimatedArrayWithChildren =
 /*#__PURE__*/
 function (_AnimatedWithChildren) {
-  _inheritsLoose$1(AnimatedArrayWithChildren, _AnimatedWithChildren);
+  _inheritsLoose(AnimatedArrayWithChildren, _AnimatedWithChildren);
 
   function AnimatedArrayWithChildren() {
     var _this2;
@@ -7618,13 +8523,13 @@ function (_AnimatedWithChildren) {
 
     _this2.attach = function () {
       return _this2.payload.forEach(function (p) {
-        return p instanceof Animated && p.addChild(_assertThisInitialized$2(_assertThisInitialized$2(_this2)));
+        return p instanceof Animated && p.addChild(_assertThisInitialized$1(_assertThisInitialized$1(_this2)));
       });
     };
 
     _this2.detach = function () {
       return _this2.payload.forEach(function (p) {
-        return p instanceof Animated && p.removeChild(_assertThisInitialized$2(_assertThisInitialized$2(_this2)));
+        return p instanceof Animated && p.removeChild(_assertThisInitialized$1(_assertThisInitialized$1(_this2)));
       });
     };
 
@@ -7636,7 +8541,7 @@ function (_AnimatedWithChildren) {
 var AnimatedObjectWithChildren =
 /*#__PURE__*/
 function (_AnimatedWithChildren2) {
-  _inheritsLoose$1(AnimatedObjectWithChildren, _AnimatedWithChildren2);
+  _inheritsLoose(AnimatedObjectWithChildren, _AnimatedWithChildren2);
 
   function AnimatedObjectWithChildren() {
     var _this3;
@@ -7654,13 +8559,13 @@ function (_AnimatedWithChildren2) {
 
     _this3.attach = function () {
       return getValues(_this3.payload).forEach(function (s) {
-        return s instanceof Animated && s.addChild(_assertThisInitialized$2(_assertThisInitialized$2(_this3)));
+        return s instanceof Animated && s.addChild(_assertThisInitialized$1(_assertThisInitialized$1(_this3)));
       });
     };
 
     _this3.detach = function () {
       return getValues(_this3.payload).forEach(function (s) {
-        return s instanceof Animated && s.removeChild(_assertThisInitialized$2(_assertThisInitialized$2(_this3)));
+        return s instanceof Animated && s.removeChild(_assertThisInitialized$1(_assertThisInitialized$1(_this3)));
       });
     };
 
@@ -7691,7 +8596,7 @@ function (_AnimatedWithChildren2) {
 var AnimatedInterpolation =
 /*#__PURE__*/
 function (_AnimatedArrayWithChi) {
-  _inheritsLoose$1(AnimatedInterpolation, _AnimatedArrayWithChi);
+  _inheritsLoose(AnimatedInterpolation, _AnimatedArrayWithChi);
 
   function AnimatedInterpolation(parents, _config, _arg) {
     var _this;
@@ -7711,7 +8616,7 @@ function (_AnimatedArrayWithChi) {
     };
 
     _this.interpolate = function (config, arg) {
-      return new AnimatedInterpolation(_assertThisInitialized$2(_assertThisInitialized$2(_this)), config, arg);
+      return new AnimatedInterpolation(_assertThisInitialized$1(_assertThisInitialized$1(_this)), config, arg);
     };
 
     _this.payload = // AnimatedArrays should unfold, except AnimatedInterpolation which is taken as is
@@ -7762,7 +8667,7 @@ function findAnimatedStyles(node, styles) {
 var AnimatedValue =
 /*#__PURE__*/
 function (_AnimatedWithChildren) {
-  _inheritsLoose$1(AnimatedValue, _AnimatedWithChildren);
+  _inheritsLoose(AnimatedValue, _AnimatedWithChildren);
 
   function AnimatedValue(_value) {
     var _this;
@@ -7774,7 +8679,7 @@ function (_AnimatedWithChildren) {
     };
 
     _this.updateStyles = function () {
-      return findAnimatedStyles(_assertThisInitialized$2(_assertThisInitialized$2(_this)), _this.animatedStyles);
+      return findAnimatedStyles(_assertThisInitialized$1(_assertThisInitialized$1(_this)), _this.animatedStyles);
     };
 
     _this.updateValue = function (value) {
@@ -7782,7 +8687,7 @@ function (_AnimatedWithChildren) {
     };
 
     _this.interpolate = function (config, arg) {
-      return new AnimatedInterpolation(_assertThisInitialized$2(_assertThisInitialized$2(_this)), config, arg);
+      return new AnimatedInterpolation(_assertThisInitialized$1(_assertThisInitialized$1(_this)), config, arg);
     };
 
     _this.value = _value;
@@ -7826,7 +8731,7 @@ function (_AnimatedWithChildren) {
 var AnimatedArray =
 /*#__PURE__*/
 function (_AnimatedArrayWithChi) {
-  _inheritsLoose$1(AnimatedArray, _AnimatedArrayWithChi);
+  _inheritsLoose(AnimatedArray, _AnimatedArrayWithChi);
 
   function AnimatedArray(array) {
     var _this;
@@ -7846,7 +8751,7 @@ function (_AnimatedArrayWithChi) {
     };
 
     _this.interpolate = function (config, arg) {
-      return new AnimatedInterpolation(_assertThisInitialized$2(_assertThisInitialized$2(_this)), config, arg);
+      return new AnimatedInterpolation(_assertThisInitialized$1(_assertThisInitialized$1(_this)), config, arg);
     };
 
     _this.payload = array instanceof AnimatedArray ? array.payload : array.map(function (n) {
@@ -8120,7 +9025,7 @@ injectApplyAnimatedValues(function (instance, props) {
 var AnimatedStyle =
 /*#__PURE__*/
 function (_AnimatedObjectWithCh) {
-  _inheritsLoose$1(AnimatedStyle, _AnimatedObjectWithCh);
+  _inheritsLoose(AnimatedStyle, _AnimatedObjectWithCh);
 
   function AnimatedStyle(style) {
     var _this;
@@ -8138,7 +9043,7 @@ function (_AnimatedObjectWithCh) {
 var AnimatedProps =
 /*#__PURE__*/
 function (_AnimatedObjectWithCh) {
-  _inheritsLoose$1(AnimatedProps, _AnimatedObjectWithCh);
+  _inheritsLoose(AnimatedProps, _AnimatedObjectWithCh);
 
   function AnimatedProps(props, callback) {
     var _this;
@@ -8542,7 +9447,7 @@ function createAnimatedComponent(Component) {
   var AnimatedComponent =
   /*#__PURE__*/
   function (_React$Component) {
-    _inheritsLoose$1(AnimatedComponent, _React$Component);
+    _inheritsLoose(AnimatedComponent, _React$Component);
 
     function AnimatedComponent(props) {
       var _this;
@@ -8551,7 +9456,7 @@ function createAnimatedComponent(Component) {
 
       _this.callback = function () {
         if (_this.node) {
-          var didUpdate = applyAnimatedValues.fn(_this.node, _this.propsAnimated.getAnimatedValue(), _assertThisInitialized$2(_assertThisInitialized$2(_this)));
+          var didUpdate = applyAnimatedValues.fn(_this.node, _this.propsAnimated.getAnimatedValue(), _assertThisInitialized$1(_assertThisInitialized$1(_this)));
           if (didUpdate === false) _this.forceUpdate();
         }
       };
@@ -8674,7 +9579,7 @@ if (process.env.NODE_ENV !== 'production' && (v[0] < 16 || v[1] < 4)) {
 var Spring =
 /*#__PURE__*/
 function (_React$Component) {
-  _inheritsLoose$1(Spring, _React$Component);
+  _inheritsLoose(Spring, _React$Component);
 
   function Spring() {
     var _this;
@@ -8857,7 +9762,7 @@ Spring.defaultProps = {
 var Trail =
 /*#__PURE__*/
 function (_React$PureComponent) {
-  _inheritsLoose$1(Trail, _React$PureComponent);
+  _inheritsLoose(Trail, _React$PureComponent);
 
   function Trail() {
     var _this;
@@ -8937,7 +9842,7 @@ var DEFAULT = '__default';
 var KeyframesImpl =
 /*#__PURE__*/
 function (_React$PureComponent) {
-  _inheritsLoose$1(KeyframesImpl, _React$PureComponent);
+  _inheritsLoose(KeyframesImpl, _React$PureComponent);
 
   function KeyframesImpl() {
     var _this;
@@ -9150,7 +10055,7 @@ var get = function get(props) {
 var Transition =
 /*#__PURE__*/
 function (_React$PureComponent) {
-  _inheritsLoose$1(Transition, _React$PureComponent);
+  _inheritsLoose(Transition, _React$PureComponent);
 
   var _proto = Transition.prototype;
 
@@ -9415,11 +10320,13 @@ var Text = styled.span.withConfig({
 })(["", ";", ";"], function (_ref) {
   var size = _ref.size,
       weight = _ref.weight,
-      smallcaps = _ref.smallcaps;
+      smallcaps = _ref.smallcaps,
+      monospace = _ref.monospace;
   return font({
     size: size,
     weight: weight,
-    smallcaps: smallcaps
+    smallcaps: smallcaps,
+    monospace: monospace
   });
 }, function (_ref2) {
   var color = _ref2.color;
@@ -9443,7 +10350,8 @@ Text.propTypes = Block.propTypes = Paragraph.propTypes = {
   color: propTypes.string,
   size: propTypes.string,
   smallcaps: propTypes.bool,
-  weight: propTypes.string
+  weight: propTypes.string,
+  monospace: propTypes.bool
 };
 Text.Block = Block;
 Text.Paragraph = Paragraph;
@@ -9454,29 +10362,29 @@ var move = function move(pixel) {
   return "translate3d(0,".concat(pixel, "px,0)");
 };
 
-var _React$createContext$3 = React.createContext(function () {
+var _React$createContext$2 = React.createContext(function () {
   throw new Error("For Toast to work it needs to be part of a ToastHub's tree, which has to be declared at an upper level!");
 }),
-    Provider$3 = _React$createContext$3.Provider,
-    Toast = _React$createContext$3.Consumer;
+    Provider$2 = _React$createContext$2.Provider,
+    Toast = _React$createContext$2.Consumer;
 
 var ToastHub =
 /*#__PURE__*/
 function (_React$PureComponent) {
-  inherits(ToastHub, _React$PureComponent);
+  inherits$1(ToastHub, _React$PureComponent);
 
   function ToastHub() {
     var _getPrototypeOf2;
 
     var _this;
 
-    classCallCheck(this, ToastHub);
+    classCallCheck$1(this, ToastHub);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    _this = possibleConstructorReturn(this, (_getPrototypeOf2 = getPrototypeOf(ToastHub)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this = possibleConstructorReturn$1(this, (_getPrototypeOf2 = getPrototypeOf(ToastHub)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
     defineProperty(assertThisInitialized(assertThisInitialized(_this)), "state", {
       items: [],
@@ -9494,7 +10402,7 @@ function (_React$PureComponent) {
           return _this.cancel(item, true);
         });
         return {
-          items: [].concat(toConsumableArray(state.items), [{
+          items: toConsumableArray(state.items).concat([{
             key: id++,
             msg: msg
           }])
@@ -9606,7 +10514,7 @@ function (_React$PureComponent) {
           showIndicator = _this$props.showIndicator,
           position = _this$props.position,
           top = _this$props.top;
-      return React.createElement(React.Fragment, null, React.createElement(Provider$3, {
+      return React.createElement(React.Fragment, null, React.createElement(Provider$2, {
         value: this.add,
         children: children
       }), React.createElement(Container, _extends_1({}, stylingProps(this), {
@@ -9712,27 +10620,13 @@ var Life = styled(extendedAnimated.div).withConfig({
   return props.top ? '10px' : '0';
 });
 
-function _taggedTemplateLiteral(strings, raw) {
-  if (!raw) {
-    raw = strings.slice(0);
-  }
-
-  return Object.freeze(Object.defineProperties(strings, {
-    raw: {
-      value: Object.freeze(raw)
-    }
-  }));
-}
-
-var taggedTemplateLiteral = _taggedTemplateLiteral;
-
 var baseStyles = css(["", ";width:", ";height:40px;padding:0 10px;background:", ";border:1px solid ", ";border-radius:3px;box-shadow:inset 0 1px 2px rgba(0,0,0,0.06);color:", ";appearance:none;&:focus{outline:none;border-color:", ";}&:read-only{color:transparent;text-shadow:0 0 0 ", ";}"], font({
   size: 'small',
   weight: 'normal'
 }), function (_ref) {
   var wide = _ref.wide;
   return wide ? '100%' : 'auto';
-}, theme.contentBackground, theme.contentBorder, theme.textPrimary, theme.contentBorderActive, theme.textSecondary); // Simple input
+}, theme.contentBackground, theme.contentBorder, theme.textPrimary, theme.contentBorderActive, theme.textSecondary); // Simple text input
 
 var TextInput = styled.input.withConfig({
   displayName: "TextInput",
@@ -9744,9 +10638,50 @@ TextInput.propTypes = {
 };
 TextInput.defaultProps = {
   required: false,
-  type: 'text' // <input type=number> (only for compat)
+  type: 'text' // Text input wrapped to allow adornments
 
 };
+var WrapperTextInput = React.forwardRef(function (_ref2, ref) {
+  var adornment = _ref2.adornment,
+      adornmentPosition = _ref2.adornmentPosition,
+      _ref2$adornmentSettin = _ref2.adornmentSettings,
+      _ref2$adornmentSettin2 = _ref2$adornmentSettin.width,
+      adornmentWidth = _ref2$adornmentSettin2 === void 0 ? 34 : _ref2$adornmentSettin2,
+      _ref2$adornmentSettin3 = _ref2$adornmentSettin.padding,
+      adornmentPadding = _ref2$adornmentSettin3 === void 0 ? 4 : _ref2$adornmentSettin3,
+      props = objectWithoutProperties(_ref2, ["adornment", "adornmentPosition", "adornmentSettings"]);
+
+  if (!adornment) {
+    return React.createElement(TextInput, _extends_1({
+      ref: ref
+    }, props));
+  }
+
+  return React.createElement(_StyledDiv, null, React.createElement(_StyledTextInput, _extends_1({
+    ref: ref
+  }, props, {
+    _$p_: adornmentPosition === 'end' ? 'padding-right' : 'padding-left',
+    _$p_2: adornmentWidth - adornmentPadding * 2
+  })), React.createElement(_StyledDiv2, {
+    _$p_3: adornmentPosition === 'end' ? 'right' : 'left',
+    _$p_4: adornmentPadding,
+    _$p_5: theme.textSecondary
+  }, adornment));
+});
+WrapperTextInput.propTypes = objectSpread({}, TextInput.propTypes, {
+  adornment: propTypes.node,
+  adornmentPosition: propTypes.oneOf(['start', 'end']),
+  adornmentSettings: propTypes.shape({
+    width: propTypes.number,
+    padding: propTypes.number
+  })
+});
+WrapperTextInput.defaultProps = objectSpread({}, TextInput.defaultProps, {
+  adornment: null,
+  adornmentPosition: 'start',
+  adornmentSettings: {} // <input type=number> (only for compat)
+
+});
 var TextInputNumber = styled.input.attrs({
   type: 'number'
 }).withConfig({
@@ -9764,8 +10699,33 @@ TextInputMultiline.propTypes = {
 TextInputMultiline.defaultProps = {
   required: false
 };
-TextInput.Number = TextInputNumber;
-TextInput.Multiline = TextInputMultiline;
+WrapperTextInput.Number = TextInputNumber;
+WrapperTextInput.Multiline = TextInputMultiline;
+
+var _StyledDiv = styled("div").withConfig({
+  displayName: "TextInput___StyledDiv",
+  componentId: "gngg3n-3"
+})(["display:inline-flex;position:relative;width:max-content;"]);
+
+var _StyledTextInput = styled(TextInput).withConfig({
+  displayName: "TextInput___StyledTextInput",
+  componentId: "gngg3n-4"
+})(["", ":", "px;"], function (p) {
+  return p._$p_;
+}, function (p) {
+  return p._$p_2;
+});
+
+var _StyledDiv2 = styled("div").withConfig({
+  displayName: "TextInput___StyledDiv2",
+  componentId: "gngg3n-5"
+})(["position:absolute;top:0;bottom:0;height:100%;", ":", "px;display:flex;align-items:center;justify-content:center;color:", ";"], function (p) {
+  return p._$p_3;
+}, function (p) {
+  return p._$p_4;
+}, function (p) {
+  return p._$p_5;
+});
 
 // supporting it yet.
 //
@@ -9781,25 +10741,26 @@ TextInput.Multiline = TextInputMultiline;
 var FocusVisible =
 /*#__PURE__*/
 function (_React$PureComponent) {
-  inherits(FocusVisible, _React$PureComponent);
+  inherits$1(FocusVisible, _React$PureComponent);
 
   function FocusVisible() {
     var _getPrototypeOf2;
 
     var _this;
 
-    classCallCheck(this, FocusVisible);
+    classCallCheck$1(this, FocusVisible);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    _this = possibleConstructorReturn(this, (_getPrototypeOf2 = getPrototypeOf(FocusVisible)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this = possibleConstructorReturn$1(this, (_getPrototypeOf2 = getPrototypeOf(FocusVisible)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
     defineProperty(assertThisInitialized(assertThisInitialized(_this)), "_element", React.createRef());
 
+    defineProperty(assertThisInitialized(assertThisInitialized(_this)), "_document", null);
+
     defineProperty(assertThisInitialized(assertThisInitialized(_this)), "state", {
-      document: null,
       focusVisible: false
     });
 
@@ -9830,32 +10791,41 @@ function (_React$PureComponent) {
       document.addEventListener('mousedown', this.handlePointerEvent);
       document.addEventListener('mouseup', this.handlePointerEvent);
       document.addEventListener('touchstart', this.handlePointerEvent);
-      document.addEventListener('touchend', this.handlePointerEvent);
-      this.setState({
-        document: document
-      });
+      document.addEventListener('touchend', this.handlePointerEvent); // `document` was previously set as a state entry, which was having the
+      // advantages of keeping track of it, and also triggering a rerender to
+      // remove the injected span.
+      //
+      // The issue with this approach is that the component can get unmounted
+      // before the state gets updated (e.g. in case of an error in the tree),
+      // preventing to remove the event listeners.
+      //
+      // this._document is now set on the instance directly, and
+      // this.forceUpdate() is used to trigger the second render needed to remove
+      // the injected span.
+
+      this._document = document;
+      this.forceUpdate();
     }
   }, {
     key: "componentWillUnmount",
     value: function componentWillUnmount() {
-      var document = this.state.document;
+      var document = this._document;
       document.removeEventListener('mousedown', this.handlePointerEvent);
       document.removeEventListener('mouseup', this.handlePointerEvent);
       document.removeEventListener('touchstart', this.handlePointerEvent);
       document.removeEventListener('touchend', this.handlePointerEvent);
+      this._document = null;
     } // It doesn’t seem to be specified, but pointer events happen before focus
     // events on modern browsers.
 
   }, {
     key: "render",
     value: function render() {
-      var _this$state = this.state,
-          focusVisible = _this$state.focusVisible,
-          document = _this$state.document;
+      var focusVisible = this.state.focusVisible;
       return React.createElement(React.Fragment, null, this.props.children({
         focusVisible: focusVisible,
         onFocus: this.handleFocus
-      }), !document && React.createElement("span", {
+      }), !this._document && React.createElement("span", {
         ref: this._element
       }));
     }
@@ -9874,12 +10844,12 @@ defineProperty(FocusVisible, "propTypes", {
 var ButtonBase =
 /*#__PURE__*/
 function (_React$PureComponent) {
-  inherits(ButtonBase, _React$PureComponent);
+  inherits$1(ButtonBase, _React$PureComponent);
 
   function ButtonBase() {
-    classCallCheck(this, ButtonBase);
+    classCallCheck$1(this, ButtonBase);
 
-    return possibleConstructorReturn(this, getPrototypeOf(ButtonBase).apply(this, arguments));
+    return possibleConstructorReturn$1(this, getPrototypeOf(ButtonBase).apply(this, arguments));
   }
 
   createClass(ButtonBase, [{
@@ -9937,25 +10907,15 @@ var ButtonBase$1 = React.forwardRef(function (props, ref) {
   });
 });
 
-function _templateObject() {
-  var data = taggedTemplateLiteral(["\n          display: inline-flex;\n          justify-content: center;\n          align-items: center;\n          width: 32px;\n          height: 32px;\n          &:active {\n            background: rgba(220, 234, 239, 0.3);\n          }\n        "]);
-
-  _templateObject = function _templateObject() {
-    return data;
-  };
-
-  return data;
-}
-
 var ButtonIcon =
 /*#__PURE__*/
 function (_React$PureComponent) {
-  inherits(ButtonIcon, _React$PureComponent);
+  inherits$1(ButtonIcon, _React$PureComponent);
 
   function ButtonIcon() {
-    classCallCheck(this, ButtonIcon);
+    classCallCheck$1(this, ButtonIcon);
 
-    return possibleConstructorReturn(this, getPrototypeOf(ButtonIcon).apply(this, arguments));
+    return possibleConstructorReturn$1(this, getPrototypeOf(ButtonIcon).apply(this, arguments));
   }
 
   createClass(ButtonIcon, [{
@@ -9980,7 +10940,10 @@ ButtonIcon.propTypes = {
   children: propTypes.node.isRequired
 };
 
-var _StyledButtonBase = styled(ButtonBase$1)(_templateObject());
+var _StyledButtonBase = styled(ButtonBase$1).withConfig({
+  displayName: "ButtonIcon___StyledButtonBase",
+  componentId: "sc-1e3i514-0"
+})(["display:inline-flex;justify-content:center;align-items:center;width:32px;height:32px;&:active{background:rgba(220,234,239,0.3);}"]);
 
 var main = createCommonjsModule(function (module, exports) {
 
@@ -10207,12 +11170,12 @@ var BASE_SCALE = 3;
 var EthIdenticon =
 /*#__PURE__*/
 function (_React$Component) {
-  inherits(EthIdenticon, _React$Component);
+  inherits$1(EthIdenticon, _React$Component);
 
   function EthIdenticon() {
-    classCallCheck(this, EthIdenticon);
+    classCallCheck$1(this, EthIdenticon);
 
-    return possibleConstructorReturn(this, getPrototypeOf(EthIdenticon).apply(this, arguments));
+    return possibleConstructorReturn$1(this, getPrototypeOf(EthIdenticon).apply(this, arguments));
   }
 
   createClass(EthIdenticon, [{
@@ -10288,73 +11251,23 @@ var BlockiesScaling = styled.div.withConfig({
   return p.size;
 }, 1 / PX_RATIO, 1 / PX_RATIO);
 
-function _templateObject5() {
-  var data = taggedTemplateLiteral(["\n            position: absolute;\n            top: 0;\n            right: 0;\n            width: 39px;\n            height: 38px;\n            display: flex;\n            align-items: center;\n            justify-content: center;\n            border-radius: 0 3px 3px 0;\n            &:active {\n              background: rgba(220, 234, 239, 0.3);\n            }\n          "]);
-
-  _templateObject5 = function _templateObject5() {
-    return data;
-  };
-
-  return data;
-}
-
-function _templateObject4() {
-  var data = taggedTemplateLiteral(["\n            text-overflow: ellipsis;\n            width: 350px;\n            max-width: 100%;\n            border: 0;\n            box-shadow: none;\n            background: transparent;\n            &:read-only {\n              color: ", ";\n              text-shadow: none;\n            }\n          "]);
-
-  _templateObject4 = function _templateObject4() {
-    return data;
-  };
-
-  return data;
-}
-
-function _templateObject3() {
-  var data = taggedTemplateLiteral(["\n              transform: scale(calc(38 / 48));\n              transform-origin: 0 0;\n            "]);
-
-  _templateObject3 = function _templateObject3() {
-    return data;
-  };
-
-  return data;
-}
-
-function _templateObject2() {
-  var data = taggedTemplateLiteral(["\n            position: absolute;\n            top: -1px;\n            left: -1px;\n            height: 40px;\n            overflow: hidden;\n            border-radius: 3px 0 0 3px;\n            border: 1px solid transparent;\n          "]);
-
-  _templateObject2 = function _templateObject2() {
-    return data;
-  };
-
-  return data;
-}
-
-function _templateObject$1() {
-  var data = taggedTemplateLiteral(["\n          display: inline-flex;\n          max-width: 100%;\n          height: 40px;\n          position: relative;\n          background: ", ";\n          border: 1px solid ", ";\n          border-radius: 3px;\n          box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.06);\n          padding-left: 40px;\n          padding-right: 30px;\n        "]);
-
-  _templateObject$1 = function _templateObject() {
-    return data;
-  };
-
-  return data;
-}
-
 var AddressFieldBase =
 /*#__PURE__*/
 function (_React$PureComponent) {
-  inherits(AddressFieldBase, _React$PureComponent);
+  inherits$1(AddressFieldBase, _React$PureComponent);
 
   function AddressFieldBase() {
     var _getPrototypeOf2;
 
     var _this;
 
-    classCallCheck(this, AddressFieldBase);
+    classCallCheck$1(this, AddressFieldBase);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    _this = possibleConstructorReturn(this, (_getPrototypeOf2 = getPrototypeOf(AddressFieldBase)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this = possibleConstructorReturn$1(this, (_getPrototypeOf2 = getPrototypeOf(AddressFieldBase)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
     defineProperty(assertThisInitialized(assertThisInitialized(_this)), "_input", React.createRef());
 
@@ -10397,18 +11310,21 @@ function (_React$PureComponent) {
     key: "render",
     value: function render() {
       var address = this.props.address;
-      return React.createElement(_StyledDiv, {
-        _css: theme.contentBackground,
-        _css2: theme.contentBorder
-      }, React.createElement(_StyledDiv2, null, React.createElement(_StyledEthIdenticon, {
+      return React.createElement(_StyledDiv$1, {
+        _$p_: theme.contentBackground,
+        _$p_2: theme.contentBorder
+      }, React.createElement(_StyledDiv2$1, null, React.createElement(_StyledEthIdenticon, {
         address: address,
         scale: 2
-      })), React.createElement(_StyledTextInput, {
+      })), React.createElement(_StyledTextInput$1, {
         ref: this._input,
         value: address,
         onFocus: this.handleFocus,
         readOnly: true,
-        _css3: theme.textPrimary
+        _$p_3: font({
+          monospace: true
+        }),
+        _$p_4: theme.textPrimary
       }), React.createElement(_StyledButtonIcon, {
         ref: this._button,
         onClick: this.handleCopy,
@@ -10439,63 +11355,40 @@ var AddressField = function AddressField(props) {
 
 AddressField.propTypes = AddressFieldBase.propTypes;
 
-var _StyledDiv = styled("div")(_templateObject$1(), function (p) {
-  return p._css;
+var _StyledDiv$1 = styled("div").withConfig({
+  displayName: "AddressField___StyledDiv",
+  componentId: "m75adw-0"
+})(["display:inline-flex;max-width:100%;height:40px;position:relative;background:", ";border:1px solid ", ";border-radius:3px;box-shadow:inset 0 1px 2px rgba(0,0,0,0.06);padding-left:40px;padding-right:30px;"], function (p) {
+  return p._$p_;
 }, function (p) {
-  return p._css2;
+  return p._$p_2;
 });
 
-var _StyledDiv2 = styled("div")(_templateObject2());
+var _StyledDiv2$1 = styled("div").withConfig({
+  displayName: "AddressField___StyledDiv2",
+  componentId: "m75adw-1"
+})(["position:absolute;top:-1px;left:-1px;height:40px;overflow:hidden;border-radius:3px 0 0 3px;border:1px solid transparent;"]);
 
-var _StyledEthIdenticon = styled(EthIdenticon)(_templateObject3());
+var _StyledEthIdenticon = styled(EthIdenticon).withConfig({
+  displayName: "AddressField___StyledEthIdenticon",
+  componentId: "m75adw-2"
+})(["transform:scale(calc(38 / 48));transform-origin:0 0;"]);
 
-var _StyledTextInput = styled(TextInput)(_templateObject4(), function (p) {
-  return p._css3;
+var _StyledTextInput$1 = styled(WrapperTextInput).withConfig({
+  displayName: "AddressField___StyledTextInput",
+  componentId: "m75adw-3"
+})(["text-overflow:ellipsis;width:390px;max-width:100%;border:0;box-shadow:none;background:transparent;", ";&:read-only{color:", ";text-shadow:none;}"], function (p) {
+  return p._$p_3;
+}, function (p) {
+  return p._$p_4;
 });
 
-var _StyledButtonIcon = styled(ButtonIcon)(_templateObject5());
+var _StyledButtonIcon = styled(ButtonIcon).withConfig({
+  displayName: "AddressField___StyledButtonIcon",
+  componentId: "m75adw-4"
+})(["position:absolute;top:0;right:0;width:39px;height:38px;display:flex;align-items:center;justify-content:center;border-radius:0 3px 3px 0;&:active{background:rgba(220,234,239,0.3);}"]);
 
 var chevronSvg = "data:image/svg+xml,%3Csvg%20width%3D%227%22%20height%3D%2212%22%20viewBox%3D%220%200%207%2012%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M.446%2012a.512.512%200%200%201-.172-.03.422.422%200%200%201-.146-.087A.37.37%200%200%201%200%2011.6a.37.37%200%200%201%20.128-.281l5.826-5.361L.217.692A.376.376%200%200%201%20.089.405.378.378%200%200%201%20.217.117.444.444%200%200%201%20.529%200c.123%200%20.228.04.313.117l6.03%205.56A.37.37%200%200%201%207%205.96a.37.37%200%200%201-.128.281l-6.12%205.643A.477.477%200%200%201%20.446%2012z%22%20fill%3D%22%2300CBE6%22%20fill-rule%3D%22evenodd%22%2F%3E%3C%2Fsvg%3E";
-
-function _templateObject4$1() {
-  var data = taggedTemplateLiteral(["\n                  display: flex;\n                  align-items: center;\n                  height: 100%;\n                  margin-left: auto;\n                  padding-right: ", "px;\n                "]);
-
-  _templateObject4$1 = function _templateObject4() {
-    return data;
-  };
-
-  return data;
-}
-
-function _templateObject3$1() {
-  var data = taggedTemplateLiteral(["\n                  display: flex;\n                  align-items: center;\n                  height: 100%;\n                  padding-left: ", "px;\n                "]);
-
-  _templateObject3$1 = function _templateObject3() {
-    return data;
-  };
-
-  return data;
-}
-
-function _templateObject2$1() {
-  var data = taggedTemplateLiteral(["\n              display: flex;\n              align-items: center;\n              justify-content: flex-start;\n              width: 100%;\n              height: ", "px;\n            "]);
-
-  _templateObject2$1 = function _templateObject2() {
-    return data;
-  };
-
-  return data;
-}
-
-function _templateObject$2() {
-  var data = taggedTemplateLiteral(["\n            overflow: hidden;\n            display: flex;\n            flex-direction: column;\n            width: 100%;\n            min-height: ", "px;\n            background: ", ";\n            ", ";\n\n            /* We are using an \u201Cinner border\u201D to allow components like TabBar\n               to draw over the border while having overflow:hidden set. */\n            padding-bottom: 1px;\n            &:after {\n              content: '';\n              position: absolute;\n              left: 0;\n              right: 0;\n              bottom: 0;\n              border-bottom: 1px solid ", ";\n            }\n          "]);
-
-  _templateObject$2 = function _templateObject() {
-    return data;
-  };
-
-  return data;
-}
 
 var BAR_HEIGHT = 64;
 var InAppBarContext = React.createContext(false);
@@ -10503,20 +11396,20 @@ var InAppBarContext = React.createContext(false);
 var AppBar =
 /*#__PURE__*/
 function (_React$Component) {
-  inherits(AppBar, _React$Component);
+  inherits$1(AppBar, _React$Component);
 
   function AppBar() {
     var _getPrototypeOf2;
 
     var _this;
 
-    classCallCheck(this, AppBar);
+    classCallCheck$1(this, AppBar);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    _this = possibleConstructorReturn(this, (_getPrototypeOf2 = getPrototypeOf(AppBar)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this = possibleConstructorReturn$1(this, (_getPrototypeOf2 = getPrototypeOf(AppBar)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
     defineProperty(assertThisInitialized(assertThisInitialized(_this)), "state", {
       tabsHeight: 0
@@ -10568,14 +11461,14 @@ function (_React$Component) {
 
       return React.createElement(InAppBarContext.Provider, {
         value: true
-      }, React.createElement(_StyledDiv$1, {
-        _css: theme.contentBackground,
-        _css2: unselectable(),
-        _css3: theme.contentBorder
-      }, React.createElement(_StyledDiv2$1, _extends_1({}, props, {
-        _css4: BAR_HEIGHT - 1
+      }, React.createElement(_StyledDiv$2, {
+        _$p_: theme.contentBackground,
+        _$p_2: unselectable(),
+        _$p_3: theme.contentBorder
+      }, React.createElement(_StyledDiv2$2, _extends_1({}, props, {
+        _$p_4: BAR_HEIGHT - 1
       }), title && React.createElement(_StyledDiv3, {
-        _css5: padding
+        _$p_5: padding
       }, React.createElement(AppBarTitle, {
         chevron: Boolean(children),
         clickable: Boolean(onTitleClick),
@@ -10583,7 +11476,7 @@ function (_React$Component) {
       }, typeof title === 'string' ? React.createElement(Text, {
         size: "xxlarge"
       }, title) : title)), children, endContent && React.createElement(_StyledDiv4, {
-        _css6: padding
+        _$p_6: padding
       }, endContent)), React.createElement(Transition, {
         items: tabs,
         from: {
@@ -10649,35 +11542,47 @@ var TabsWrapper = styled(extendedAnimated.div).withConfig({
   componentId: "sc-1861a4z-1"
 })(["position:relative;z-index:1;"]);
 
-var _StyledDiv$1 = styled("div")(_templateObject$2(), BAR_HEIGHT, function (p) {
-  return p._css;
+var _StyledDiv$2 = styled("div").withConfig({
+  displayName: "AppBar___StyledDiv",
+  componentId: "sc-1861a4z-2"
+})(["overflow:hidden;display:flex;flex-direction:column;width:100%;min-height:", "px;background:", ";", ";padding-bottom:1px;&:after{content:'';position:absolute;left:0;right:0;bottom:0;border-bottom:1px solid ", ";}"], BAR_HEIGHT, function (p) {
+  return p._$p_;
 }, function (p) {
-  return p._css2;
+  return p._$p_2;
 }, function (p) {
-  return p._css3;
+  return p._$p_3;
 });
 
-var _StyledDiv2$1 = styled("div")(_templateObject2$1(), function (p) {
-  return p._css4;
+var _StyledDiv2$2 = styled("div").withConfig({
+  displayName: "AppBar___StyledDiv2",
+  componentId: "sc-1861a4z-3"
+})(["display:flex;align-items:center;justify-content:flex-start;width:100%;height:", "px;"], function (p) {
+  return p._$p_4;
 });
 
-var _StyledDiv3 = styled("div")(_templateObject3$1(), function (p) {
-  return p._css5;
+var _StyledDiv3 = styled("div").withConfig({
+  displayName: "AppBar___StyledDiv3",
+  componentId: "sc-1861a4z-4"
+})(["display:flex;align-items:center;height:100%;padding-left:", "px;"], function (p) {
+  return p._$p_5;
 });
 
-var _StyledDiv4 = styled("div")(_templateObject4$1(), function (p) {
-  return p._css6;
+var _StyledDiv4 = styled("div").withConfig({
+  displayName: "AppBar___StyledDiv4",
+  componentId: "sc-1861a4z-5"
+})(["display:flex;align-items:center;height:100%;margin-left:auto;padding-right:", "px;"], function (p) {
+  return p._$p_6;
 });
 
 var AppView =
 /*#__PURE__*/
 function (_React$Component) {
-  inherits(AppView, _React$Component);
+  inherits$1(AppView, _React$Component);
 
   function AppView() {
-    classCallCheck(this, AppView);
+    classCallCheck$1(this, AppView);
 
-    return possibleConstructorReturn(this, getPrototypeOf(AppView).apply(this, arguments));
+    return possibleConstructorReturn$1(this, getPrototypeOf(AppView).apply(this, arguments));
   }
 
   createClass(AppView, [{
@@ -10741,6 +11646,20 @@ var Content$1 = styled.div.withConfig({
   return "".concat(padding, "px");
 });
 
+function _taggedTemplateLiteral(strings, raw) {
+  if (!raw) {
+    raw = strings.slice(0);
+  }
+
+  return Object.freeze(Object.defineProperties(strings, {
+    raw: {
+      value: Object.freeze(raw)
+    }
+  }));
+}
+
+var taggedTemplateLiteral = _taggedTemplateLiteral;
+
 var overpassLightWoff = "fd48a701d84ebf69.woff";
 
 var overpassLightWoff2 = "cf790334a5a6d45c.woff2";
@@ -10753,16 +11672,23 @@ var overpassSemiBoldWoff = "f8ba2d7a9af0db1f.woff";
 
 var overpassSemiBoldWoff2 = "5cfe62515c2f9b42.woff2";
 
-function _templateObject$3() {
+var overpassMonoLightWoff = "e6cc295577142efd.woff";
+
+var overpassMonoLightWoff2 = "3dd21d4f0d28fecb.woff2";
+
+function _templateObject() {
   var data = taggedTemplateLiteral(["\n  ", "\n  *,\n  *:before,\n  *:after {\n    box-sizing: border-box;\n  }\n  html {\n    -webkit-overflow-scrolling: touch;\n  }\n  body {\n    height: 0;\n    min-height: 100vh;\n    font-family: ", ";\n    font-size: 15px;\n    font-weight: 400;\n    line-height: 1.5;\n    color: ", ";\n    background: ", ";\n  }\n  body,\n  ul,\n  p,\n  h1,\n  h2,\n  h3,\n  h4,\n  h5,\n  h6 {\n    margin: 0;\n    padding: 0;\n  }\n  button,\n  select,\n  input,\n  textarea,\n  h1,\n  h2,\n  h3,\n  h4,\n  h5,\n  h6 {\n    font-size: inherit;\n    font-family: inherit;\n    font-weight: inherit;\n    line-height: inherit;\n  }\n  a,\n  button,\n  select,\n  input,\n  textarea {\n    color: inherit;\n  }\n  strong,\n  b {\n    font-weight: 600;\n  }\n  ::selection {\n    color: ", ";\n    background: ", ";\n  }\n"]);
 
-  _templateObject$3 = function _templateObject() {
+  _templateObject = function _templateObject() {
     return data;
   };
 
   return data;
 }
-var DEFAULT_FONT_FAMILY = 'overpass';
+// generic names in our components.
+
+var DEFAULT_FONT_FAMILY = 'aragon-ui';
+var MONOSPACE_FONT_FAMILY = 'aragon-ui-monospace';
 var DEFAULT_FONTS = {
   '400': [{
     url: overpassLightWoff2,
@@ -10789,16 +11715,26 @@ var DEFAULT_FONTS = {
     legacy: true
   }]
 };
+var MONOSPACE_FONTS = {
+  '400': [{
+    url: overpassMonoLightWoff2,
+    format: 'woff2'
+  }, {
+    url: overpassMonoLightWoff,
+    format: 'woff',
+    legacy: true
+  }]
+};
 
 var BaseStyles =
 /*#__PURE__*/
 function (_React$PureComponent) {
-  inherits(BaseStyles, _React$PureComponent);
+  inherits$1(BaseStyles, _React$PureComponent);
 
   function BaseStyles() {
-    classCallCheck(this, BaseStyles);
+    classCallCheck$1(this, BaseStyles);
 
-    return possibleConstructorReturn(this, getPrototypeOf(BaseStyles).apply(this, arguments));
+    return possibleConstructorReturn$1(this, getPrototypeOf(BaseStyles).apply(this, arguments));
   }
 
   createClass(BaseStyles, [{
@@ -10824,7 +11760,7 @@ function (_React$PureComponent) {
         return '';
       }
 
-      return "\n      @font-face {\n        font-family: ".concat(DEFAULT_FONT_FAMILY, ";\n        src: ").concat(this.fontSrc(DEFAULT_FONTS['400'], props), ";\n        font-weight: 400;\n        font-style: normal;\n      }\n      @font-face {\n        font-family: ").concat(DEFAULT_FONT_FAMILY, ";\n        src: ").concat(this.fontSrc(DEFAULT_FONTS['600'], props), ";\n        font-weight: 600;\n        font-style: normal;\n      }\n      @font-face {\n        font-family: ").concat(DEFAULT_FONT_FAMILY, ";\n        src: ").concat(this.fontSrc(DEFAULT_FONTS['800'], props), ";\n        font-weight: 800;\n        font-style: normal;\n      }\n    ");
+      return "\n      @font-face {\n        font-family: ".concat(DEFAULT_FONT_FAMILY, ";\n        src: ").concat(this.fontSrc(DEFAULT_FONTS['400'], props), ";\n        font-weight: 400;\n        font-style: normal;\n      }\n      @font-face {\n        font-family: ").concat(DEFAULT_FONT_FAMILY, ";\n        src: ").concat(this.fontSrc(DEFAULT_FONTS['600'], props), ";\n        font-weight: 600;\n        font-style: normal;\n      }\n      @font-face {\n        font-family: ").concat(DEFAULT_FONT_FAMILY, ";\n        src: ").concat(this.fontSrc(DEFAULT_FONTS['800'], props), ";\n        font-weight: 800;\n        font-style: normal;\n      }\n      @font-face {\n        font-family: ").concat(MONOSPACE_FONT_FAMILY, ";\n        src: ").concat(this.fontSrc(MONOSPACE_FONTS['400'], props), ";\n        font-weight: 400;\n        font-style: normal;\n      }\n    ");
     }
   }, {
     key: "render",
@@ -10850,7 +11786,7 @@ defineProperty(BaseStyles, "defaultProps", {
   fontFamily: "".concat(DEFAULT_FONT_FAMILY, ", sans-serif")
 });
 
-var GlobalStyle = createGlobalStyle(_templateObject$3(), function (props) {
+var GlobalStyle = createGlobalStyle(_templateObject(), function (props) {
   return props.fontFaces ? props.fontFaces : '';
 }, function (props) {
   return props.fontFamily;
@@ -10870,12 +11806,12 @@ var StyledAragonApp = styled.main.withConfig({
 var AragonApp =
 /*#__PURE__*/
 function (_React$Component) {
-  inherits(AragonApp, _React$Component);
+  inherits$1(AragonApp, _React$Component);
 
   function AragonApp() {
-    classCallCheck(this, AragonApp);
+    classCallCheck$1(this, AragonApp);
 
-    return possibleConstructorReturn(this, getPrototypeOf(AragonApp).apply(this, arguments));
+    return possibleConstructorReturn$1(this, getPrototypeOf(AragonApp).apply(this, arguments));
   }
 
   createClass(AragonApp, [{
@@ -11234,20 +12170,20 @@ var StyledCard = styled.div.withConfig({
 var Checkbox =
 /*#__PURE__*/
 function (_React$PureComponent) {
-  inherits(Checkbox, _React$PureComponent);
+  inherits$1(Checkbox, _React$PureComponent);
 
   function Checkbox() {
     var _getPrototypeOf2;
 
     var _this;
 
-    classCallCheck(this, Checkbox);
+    classCallCheck$1(this, Checkbox);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    _this = possibleConstructorReturn(this, (_getPrototypeOf2 = getPrototypeOf(Checkbox)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this = possibleConstructorReturn$1(this, (_getPrototypeOf2 = getPrototypeOf(Checkbox)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
     defineProperty(assertThisInitialized(assertThisInitialized(_this)), "_element", React.createRef());
 
@@ -11620,20 +12556,20 @@ var BASE_HEIGHT = 32;
 var ContextMenu =
 /*#__PURE__*/
 function (_React$Component) {
-  inherits(ContextMenu, _React$Component);
+  inherits$1(ContextMenu, _React$Component);
 
   function ContextMenu() {
     var _getPrototypeOf2;
 
     var _this;
 
-    classCallCheck(this, ContextMenu);
+    classCallCheck$1(this, ContextMenu);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    _this = possibleConstructorReturn(this, (_getPrototypeOf2 = getPrototypeOf(ContextMenu)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this = possibleConstructorReturn$1(this, (_getPrototypeOf2 = getPrototypeOf(ContextMenu)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
     defineProperty(assertThisInitialized(assertThisInitialized(_this)), "state", {
       opened: false
@@ -11843,11 +12779,11 @@ var funcProto$1 = Function.prototype,
 var funcToString$1 = funcProto$1.toString;
 
 /** Used to check objects for own properties. */
-var hasOwnProperty$2 = objectProto$2.hasOwnProperty;
+var hasOwnProperty$3 = objectProto$2.hasOwnProperty;
 
 /** Used to detect if a method is native. */
 var reIsNative = RegExp('^' +
-  funcToString$1.call(hasOwnProperty$2).replace(reRegExpChar, '\\$&')
+  funcToString$1.call(hasOwnProperty$3).replace(reRegExpChar, '\\$&')
   .replace(/hasOwnProperty|(function).*?(?=\\\()| for .+?(?=\\\])/g, '$1.*?') + '$'
 );
 
@@ -11930,7 +12866,7 @@ var HASH_UNDEFINED = '__lodash_hash_undefined__';
 var objectProto$3 = Object.prototype;
 
 /** Used to check objects for own properties. */
-var hasOwnProperty$3 = objectProto$3.hasOwnProperty;
+var hasOwnProperty$4 = objectProto$3.hasOwnProperty;
 
 /**
  * Gets the hash value for `key`.
@@ -11947,14 +12883,14 @@ function hashGet(key) {
     var result = data[key];
     return result === HASH_UNDEFINED ? undefined : result;
   }
-  return hasOwnProperty$3.call(data, key) ? data[key] : undefined;
+  return hasOwnProperty$4.call(data, key) ? data[key] : undefined;
 }
 
 /** Used for built-in method references. */
 var objectProto$4 = Object.prototype;
 
 /** Used to check objects for own properties. */
-var hasOwnProperty$4 = objectProto$4.hasOwnProperty;
+var hasOwnProperty$5 = objectProto$4.hasOwnProperty;
 
 /**
  * Checks if a hash value for `key` exists.
@@ -11967,7 +12903,7 @@ var hasOwnProperty$4 = objectProto$4.hasOwnProperty;
  */
 function hashHas(key) {
   var data = this.__data__;
-  return nativeCreate ? (data[key] !== undefined) : hasOwnProperty$4.call(data, key);
+  return nativeCreate ? (data[key] !== undefined) : hasOwnProperty$5.call(data, key);
 }
 
 /** Used to stand-in for `undefined` hash values. */
@@ -12466,20 +13402,20 @@ var getTime$1 = function getTime(start, end, format, showEmpty) {
 var Timer =
 /*#__PURE__*/
 function (_React$Component) {
-  inherits(Timer, _React$Component);
+  inherits$1(Timer, _React$Component);
 
   function Timer() {
     var _getPrototypeOf2;
 
     var _this;
 
-    classCallCheck(this, Timer);
+    classCallCheck$1(this, Timer);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    _this = possibleConstructorReturn(this, (_getPrototypeOf2 = getPrototypeOf(Timer)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this = possibleConstructorReturn$1(this, (_getPrototypeOf2 = getPrototypeOf(Timer)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
     defineProperty(assertThisInitialized(assertThisInitialized(_this)), "renderTime", function () {
       var _this$props = _this.props,
@@ -12570,12 +13506,12 @@ var TimeOut = styled.span.withConfig({
 var Countdown =
 /*#__PURE__*/
 function (_React$Component) {
-  inherits(Countdown, _React$Component);
+  inherits$1(Countdown, _React$Component);
 
   function Countdown() {
-    classCallCheck(this, Countdown);
+    classCallCheck$1(this, Countdown);
 
-    return possibleConstructorReturn(this, getPrototypeOf(Countdown).apply(this, arguments));
+    return possibleConstructorReturn$1(this, getPrototypeOf(Countdown).apply(this, arguments));
   }
 
   createClass(Countdown, [{
@@ -12610,20 +13546,20 @@ var accent = theme.accent,
 var DropDownItem =
 /*#__PURE__*/
 function (_React$Component) {
-  inherits(DropDownItem, _React$Component);
+  inherits$1(DropDownItem, _React$Component);
 
   function DropDownItem() {
     var _getPrototypeOf2;
 
     var _this;
 
-    classCallCheck(this, DropDownItem);
+    classCallCheck$1(this, DropDownItem);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    _this = possibleConstructorReturn(this, (_getPrototypeOf2 = getPrototypeOf(DropDownItem)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this = possibleConstructorReturn$1(this, (_getPrototypeOf2 = getPrototypeOf(DropDownItem)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
     defineProperty(assertThisInitialized(assertThisInitialized(_this)), "state", {
       pressed: false,
@@ -12746,20 +13682,20 @@ var DropDownActiveItem = styled(PublicUrl.hocWrap(DropDownItem)).withConfig({
 var DropDown =
 /*#__PURE__*/
 function (_React$Component) {
-  inherits(DropDown, _React$Component);
+  inherits$1(DropDown, _React$Component);
 
   function DropDown() {
     var _getPrototypeOf2;
 
     var _this;
 
-    classCallCheck(this, DropDown);
+    classCallCheck$1(this, DropDown);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    _this = possibleConstructorReturn(this, (_getPrototypeOf2 = getPrototypeOf(DropDown)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this = possibleConstructorReturn$1(this, (_getPrototypeOf2 = getPrototypeOf(DropDown)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
     defineProperty(assertThisInitialized(assertThisInitialized(_this)), "state", {
       opened: false
@@ -13078,7 +14014,7 @@ function baseAssignValue(object, key, value) {
 var objectProto$5 = Object.prototype;
 
 /** Used to check objects for own properties. */
-var hasOwnProperty$5 = objectProto$5.hasOwnProperty;
+var hasOwnProperty$6 = objectProto$5.hasOwnProperty;
 
 /**
  * Assigns `value` to `key` of `object` if the existing value is not equivalent
@@ -13092,7 +14028,7 @@ var hasOwnProperty$5 = objectProto$5.hasOwnProperty;
  */
 function assignValue(object, key, value) {
   var objValue = object[key];
-  if (!(hasOwnProperty$5.call(object, key) && eq(objValue, value)) ||
+  if (!(hasOwnProperty$6.call(object, key) && eq(objValue, value)) ||
       (value === undefined && !(key in object))) {
     baseAssignValue(object, key, value);
   }
@@ -13171,7 +14107,7 @@ function baseIsArguments(value) {
 var objectProto$6 = Object.prototype;
 
 /** Used to check objects for own properties. */
-var hasOwnProperty$6 = objectProto$6.hasOwnProperty;
+var hasOwnProperty$7 = objectProto$6.hasOwnProperty;
 
 /** Built-in value references. */
 var propertyIsEnumerable = objectProto$6.propertyIsEnumerable;
@@ -13195,7 +14131,7 @@ var propertyIsEnumerable = objectProto$6.propertyIsEnumerable;
  * // => false
  */
 var isArguments = baseIsArguments(function() { return arguments; }()) ? baseIsArguments : function(value) {
-  return isObjectLike(value) && hasOwnProperty$6.call(value, 'callee') &&
+  return isObjectLike(value) && hasOwnProperty$7.call(value, 'callee') &&
     !propertyIsEnumerable.call(value, 'callee');
 };
 
@@ -13454,7 +14390,7 @@ var isTypedArray = nodeIsTypedArray ? baseUnary(nodeIsTypedArray) : baseIsTypedA
 var objectProto$7 = Object.prototype;
 
 /** Used to check objects for own properties. */
-var hasOwnProperty$7 = objectProto$7.hasOwnProperty;
+var hasOwnProperty$8 = objectProto$7.hasOwnProperty;
 
 /**
  * Creates an array of the enumerable property names of the array-like `value`.
@@ -13474,7 +14410,7 @@ function arrayLikeKeys(value, inherited) {
       length = result.length;
 
   for (var key in value) {
-    if ((inherited || hasOwnProperty$7.call(value, key)) &&
+    if ((inherited || hasOwnProperty$8.call(value, key)) &&
         !(skipIndexes && (
            // Safari 9 has enumerable `arguments.length` in strict mode.
            key == 'length' ||
@@ -13529,7 +14465,7 @@ var nativeKeys = overArg(Object.keys, Object);
 var objectProto$9 = Object.prototype;
 
 /** Used to check objects for own properties. */
-var hasOwnProperty$8 = objectProto$9.hasOwnProperty;
+var hasOwnProperty$9 = objectProto$9.hasOwnProperty;
 
 /**
  * The base implementation of `_.keys` which doesn't treat sparse arrays as dense.
@@ -13544,7 +14480,7 @@ function baseKeys(object) {
   }
   var result = [];
   for (var key in Object(object)) {
-    if (hasOwnProperty$8.call(object, key) && key != 'constructor') {
+    if (hasOwnProperty$9.call(object, key) && key != 'constructor') {
       result.push(key);
     }
   }
@@ -13648,7 +14584,7 @@ function nativeKeysIn(object) {
 var objectProto$a = Object.prototype;
 
 /** Used to check objects for own properties. */
-var hasOwnProperty$9 = objectProto$a.hasOwnProperty;
+var hasOwnProperty$a = objectProto$a.hasOwnProperty;
 
 /**
  * The base implementation of `_.keysIn` which doesn't treat sparse arrays as dense.
@@ -13665,7 +14601,7 @@ function baseKeysIn(object) {
       result = [];
 
   for (var key in object) {
-    if (!(key == 'constructor' && (isProto || !hasOwnProperty$9.call(object, key)))) {
+    if (!(key == 'constructor' && (isProto || !hasOwnProperty$a.call(object, key)))) {
       result.push(key);
     }
   }
@@ -14006,7 +14942,7 @@ var getTag$1 = getTag;
 var objectProto$c = Object.prototype;
 
 /** Used to check objects for own properties. */
-var hasOwnProperty$a = objectProto$c.hasOwnProperty;
+var hasOwnProperty$b = objectProto$c.hasOwnProperty;
 
 /**
  * Initializes an array clone.
@@ -14020,7 +14956,7 @@ function initCloneArray(array) {
       result = new array.constructor(length);
 
   // Add properties assigned by `RegExp#exec`.
-  if (length && typeof array[0] == 'string' && hasOwnProperty$a.call(array, 'index')) {
+  if (length && typeof array[0] == 'string' && hasOwnProperty$b.call(array, 'index')) {
     result.index = array.index;
     result.input = array.input;
   }
@@ -14697,7 +15633,7 @@ var funcProto$2 = Function.prototype,
 var funcToString$2 = funcProto$2.toString;
 
 /** Used to check objects for own properties. */
-var hasOwnProperty$b = objectProto$d.hasOwnProperty;
+var hasOwnProperty$c = objectProto$d.hasOwnProperty;
 
 /** Used to infer the `Object` constructor. */
 var objectCtorString = funcToString$2.call(Object);
@@ -14738,7 +15674,7 @@ function isPlainObject(value) {
   if (proto === null) {
     return true;
   }
-  var Ctor = hasOwnProperty$b.call(proto, 'constructor') && proto.constructor;
+  var Ctor = hasOwnProperty$c.call(proto, 'constructor') && proto.constructor;
   return typeof Ctor == 'function' && Ctor instanceof Ctor &&
     funcToString$2.call(Ctor) == objectCtorString;
 }
@@ -15046,14 +15982,14 @@ var omit = flatRest(function(object, paths) {
 var EmptyStateCard =
 /*#__PURE__*/
 function (_React$Component) {
-  inherits(EmptyStateCard, _React$Component);
+  inherits$1(EmptyStateCard, _React$Component);
 
   function EmptyStateCard(props) {
     var _this;
 
-    classCallCheck(this, EmptyStateCard);
+    classCallCheck$1(this, EmptyStateCard);
 
-    _this = possibleConstructorReturn(this, getPrototypeOf(EmptyStateCard).call(this, props));
+    _this = possibleConstructorReturn$1(this, getPrototypeOf(EmptyStateCard).call(this, props));
 
     _this.displayWarnings({}, props);
 
@@ -15174,6 +16110,103 @@ var ActionWrapper = styled.div.withConfig({
   displayName: "EmptyStateCard__ActionWrapper",
   componentId: "ov2yly-3"
 })(["margin-top:20px;"]);
+
+var EscapeOutside =
+/*#__PURE__*/
+function (_React$Component) {
+  inherits$1(EscapeOutside, _React$Component);
+
+  function EscapeOutside() {
+    var _getPrototypeOf2;
+
+    var _this;
+
+    classCallCheck$1(this, EscapeOutside);
+
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    _this = possibleConstructorReturn$1(this, (_getPrototypeOf2 = getPrototypeOf(EscapeOutside)).call.apply(_getPrototypeOf2, [this].concat(args)));
+
+    defineProperty(assertThisInitialized(assertThisInitialized(_this)), "_element", React.createRef());
+
+    defineProperty(assertThisInitialized(assertThisInitialized(_this)), "_document", null);
+
+    defineProperty(assertThisInitialized(assertThisInitialized(_this)), "handleClick", function (e) {
+      var onEscapeOutside = _this.props.onEscapeOutside;
+
+      if (!_this._element.contains(e.target)) {
+        onEscapeOutside();
+      }
+    });
+
+    defineProperty(assertThisInitialized(assertThisInitialized(_this)), "handleEscape", function (e) {
+      var onEscapeOutside = _this.props.onEscapeOutside;
+
+      if (e.keyCode === 27) {
+        onEscapeOutside();
+      }
+    });
+
+    return _this;
+  }
+
+  createClass(EscapeOutside, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this._document = this._element.ownerDocument;
+
+      this._document.addEventListener('keydown', this.handleEscape);
+
+      this._document.addEventListener('click', this.handleClick);
+
+      this._document.addEventListener('touchend', this.handleClick);
+    }
+  }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      this._document.removeEventListener('keydown', this.handleEscape);
+
+      this._document.removeEventListener('click', this.handleClick);
+
+      this._document.removeEventListener('touchend', this.handleClick);
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this2 = this;
+
+      var _this$props = this.props,
+          children = _this$props.children,
+          onEscapeOutside = _this$props.onEscapeOutside,
+          rest = objectWithoutProperties(_this$props, ["children", "onEscapeOutside"]);
+
+      return React.createElement("div", _extends_1({}, rest, {
+        ref: function ref(n) {
+          return _this2._element = n;
+        }
+      }), children);
+    }
+  }]);
+
+  return EscapeOutside;
+}(React.Component);
+
+defineProperty(EscapeOutside, "propTypes", {
+  children: propTypes.node.isRequired,
+  onEscapeOutside: propTypes.func
+});
+
+defineProperty(EscapeOutside, "defaultProps", {
+  onEscapeOutside: noop
+});
+
+var ExternalLink = function ExternalLink(props) {
+  return React.createElement(SafeLink, _extends_1({
+    target: "_blank"
+  }, props));
+};
 
 var StyledField = styled.div.withConfig({
   displayName: "Field__StyledField",
@@ -15565,7 +16598,7 @@ function getWindowSizes(document) {
   };
 }
 
-var classCallCheck$1 = function (instance, Constructor) {
+var classCallCheck$2 = function (instance, Constructor) {
   if (!(instance instanceof Constructor)) {
     throw new TypeError("Cannot call a class as a function");
   }
@@ -17641,7 +18674,7 @@ var Popper = function () {
     var _this = this;
 
     var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
-    classCallCheck$1(this, Popper);
+    classCallCheck$2(this, Popper);
 
     this.scheduleUpdate = function () {
       return requestAnimationFrame(_this.update);
@@ -17781,27 +18814,47 @@ Popper.Utils = (typeof window !== 'undefined' ? window : global).PopperUtils;
 Popper.placements = placements;
 Popper.Defaults = Defaults;
 
+var RootPortal = function RootPortal(props) {
+  return React.createElement(Root, null, function (rootElement) {
+    if (!rootElement) {
+      throw new Error('<RootPortal> needs to be nested in <Root.Provider>. Have you declared <Main>?');
+    }
+
+    return ReactDOM.createPortal(props.children, rootElement);
+  });
+};
+
+RootPortal.propTypes = {
+  children: propTypes.node.isRequired
+};
+
 var _ref2;
 
 var PopoverBase =
 /*#__PURE__*/
 function (_React$Component) {
-  inherits(PopoverBase, _React$Component);
+  inherits$1(PopoverBase, _React$Component);
 
-  function PopoverBase(props) {
+  function PopoverBase() {
+    var _getPrototypeOf2;
+
     var _this;
 
-    classCallCheck(this, PopoverBase);
+    classCallCheck$1(this, PopoverBase);
 
-    _this = possibleConstructorReturn(this, getPrototypeOf(PopoverBase).call(this, props));
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
 
-    defineProperty(assertThisInitialized(assertThisInitialized(_this)), "_element", React.createRef());
+    _this = possibleConstructorReturn$1(this, (_getPrototypeOf2 = getPrototypeOf(PopoverBase)).call.apply(_getPrototypeOf2, [this].concat(args)));
+
+    defineProperty(assertThisInitialized(assertThisInitialized(_this)), "_cardElement", React.createRef());
+
+    defineProperty(assertThisInitialized(assertThisInitialized(_this)), "_popperElement", React.createRef());
 
     defineProperty(assertThisInitialized(assertThisInitialized(_this)), "_document", null);
 
     defineProperty(assertThisInitialized(assertThisInitialized(_this)), "_popper", null);
-
-    defineProperty(assertThisInitialized(assertThisInitialized(_this)), "_openerRect", null);
 
     defineProperty(assertThisInitialized(assertThisInitialized(_this)), "handleEscape", function (_ref) {
       var keyCode = _ref.keyCode;
@@ -17822,7 +18875,7 @@ function (_React$Component) {
           onClose = _this$props2.onClose;
       var focusedElement = event.relatedTarget;
 
-      if (_this._element.current.contains(focusedElement)) {
+      if (_this._cardElement.current.contains(focusedElement)) {
         return;
       } // Probably a click outside, that doesn’t focus anything else: move the
       // focus back to the opener.
@@ -17835,18 +18888,17 @@ function (_React$Component) {
       onClose();
     });
 
-    _this._openerRect = _this.props.opener.getBoundingClientRect();
     return _this;
   }
 
   createClass(PopoverBase, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      this._document = this._element.current.ownerDocument;
+      this._document = this._popperElement.current.ownerDocument;
 
       this._document.addEventListener('keydown', this.handleEscape);
 
-      this._element.current.focus();
+      this._cardElement.current.focus();
 
       this.initPopper();
     }
@@ -17859,7 +18911,6 @@ function (_React$Component) {
 
       delete this._document;
       delete this._popper;
-      delete this._openerRect;
     }
   }, {
     key: "componentDidUpdate",
@@ -17875,64 +18926,80 @@ function (_React$Component) {
       }
     }
   }, {
+    key: "getPopperSettings",
+    value: function getPopperSettings() {
+      var placement = this.props.placement;
+      var settings = {
+        placement: placement,
+        modifiers: {
+          preventOverflow: {
+            enabled: true,
+            padding: 10,
+            boundariesElement: 'window'
+          }
+        },
+        positionFixed: false
+      };
+
+      if (placement !== 'center') {
+        return settings;
+      }
+
+      return objectSpread({}, settings, {
+        placement: 'top-start',
+        modifiers: objectSpread({}, settings.modifiers, {
+          arrow: {
+            enabled: false
+          },
+          flip: {
+            enabled: false
+          },
+          offset: {
+            enabled: true,
+            offset: '50% - 50%p, -50%p - 50%'
+          }
+        })
+      });
+    }
+  }, {
     key: "initPopper",
     value: function initPopper() {
-      var _this$props4 = this.props,
-          opener = _this$props4.opener,
-          placement = _this$props4.placement;
+      var opener = this.props.opener;
 
-      if (this._popper) {
-        return;
+      if (!this._popper) {
+        this._popper = new Popper(opener, this._popperElement.current, this.getPopperSettings());
       }
-
-      var modifiers = {};
-
-      if (placement === 'center') {
-        modifiers.inner = {
-          enabled: true
-        };
-      }
-
-      this._popper = new Popper(opener, this._element.current, {
-        placement: placement === 'center' ? 'top' : placement,
-        modifiers: modifiers
-      });
     }
   }, {
     key: "destroyPopper",
     value: function destroyPopper() {
-      if (!this._popper) {
-        return;
+      if (this._popper) {
+        this._popper.destroy();
+
+        this._popper = null;
       }
-
-      this._popper.destroy();
-
-      this._popper = null;
     }
   }, {
     key: "render",
     value: function render() {
-      var _this$props5 = this.props,
-          zIndex = _this$props5.zIndex,
-          children = _this$props5.children,
-          transitionStyles = _this$props5.transitionStyles,
-          placement = _this$props5.placement;
+      var _this$props4 = this.props,
+          zIndex = _this$props4.zIndex,
+          children = _this$props4.children,
+          transitionStyles = _this$props4.transitionStyles;
       var scale = transitionStyles.scale,
           opacity = transitionStyles.opacity;
-      var openerHeight = this._openerRect ? this._openerRect.height : 0;
       return React.createElement(Main$8, {
-        ref: this._element,
-        tabIndex: "0",
-        onBlur: this.handleBlur,
+        ref: this._popperElement,
         style: {
           zIndex: zIndex
         }
       }, React.createElement(Card, {
+        tabIndex: "0",
+        onBlur: this.handleBlur,
+        ref: this._cardElement,
         style: {
           opacity: opacity,
-          transform: scale.interpolate(placement === 'center' ? function (v) {
-            return "\n                      translate3d(0, calc(-50% + ".concat(openerHeight / 2, "px), 0)\n                      scale3d(").concat(v, ", ").concat(v, ", 1)\n                    ");
-          } : function (v) {
+          transform: scale.interpolate(function (v) {
             return "scale3d(".concat(v, ", ").concat(v, ", 1)");
           })
         }
@@ -17945,8 +19012,8 @@ function (_React$Component) {
 
 defineProperty(PopoverBase, "propTypes", {
   opener: propTypes.instanceOf(Element),
-  placement: propTypes.oneOf( // See https://popper.js.org/popper-documentation.html#Popper.placements
-  // "center" is a value that doesn’t exits in Popper.
+  placement: propTypes.oneOf( // "center" is a value that doesn’t exist in Popper, but we are using it
+  // to define custom Popper settings (see getPopperSettings() below).
   (_ref2 = ['center']).concat.apply(_ref2, toConsumableArray(['auto', 'top', 'right', 'bottom', 'left'].map(function (position) {
     return [position, "".concat(position, "-start"), "".concat(position, "-end")];
   })))),
@@ -17966,42 +19033,36 @@ defineProperty(PopoverBase, "defaultProps", {
 var Main$8 = styled(extendedAnimated.div).withConfig({
   displayName: "Popover__Main",
   componentId: "sc-1hohxqp-0"
-})(["position:absolute;top:0;left:0;&:focus{outline:0;}"]);
+})(["position:absolute;top:0;left:0;"]);
 var Card = styled(extendedAnimated.div).withConfig({
   displayName: "Popover__Card",
   componentId: "sc-1hohxqp-1"
-})(["background:", ";border:1px solid #e6e6e6;border-radius:3px;filter:drop-shadow(0 4px 4px rgba(0,0,0,0.06));"], theme.contentBackground);
+})(["background:", ";border:1px solid #e6e6e6;border-radius:3px;filter:drop-shadow(0 4px 4px rgba(0,0,0,0.06));&:focus{outline:0;}"], theme.contentBackground);
 
 var Popover = function Popover(props) {
-  return React.createElement(Root, null, function (rootElement) {
-    if (!rootElement) {
-      throw new Error('<Popover> needs to be nested in <Root.Provider>.');
-    }
-
-    return ReactDOM.createPortal(React.createElement(Transition, {
-      items: props.visible,
-      config: springs.swift,
-      from: {
-        scale: 0.9,
-        opacity: 0
-      },
-      enter: {
-        scale: 1,
-        opacity: 1
-      },
-      leave: {
-        scale: 0.9,
-        opacity: 0
-      },
-      native: true
-    }, function (visible) {
-      return visible && function (transitionStyles) {
-        return React.createElement(PopoverBase, _extends_1({}, props, {
-          transitionStyles: transitionStyles
-        }));
-      };
-    }), rootElement);
-  });
+  return React.createElement(RootPortal, null, React.createElement(Transition, {
+    items: props.visible,
+    config: springs.swift,
+    from: {
+      scale: 0.9,
+      opacity: 0
+    },
+    enter: {
+      scale: 1,
+      opacity: 1
+    },
+    leave: {
+      scale: 0.9,
+      opacity: 0
+    },
+    native: true
+  }, function (visible) {
+    return visible && function (transitionStyles) {
+      return React.createElement(PopoverBase, _extends_1({}, props, {
+        transitionStyles: transitionStyles
+      }));
+    };
+  }));
 };
 
 Popover.propTypes = objectSpread({}, PopoverBase.propTypes, {
@@ -18011,117 +19072,74 @@ Popover.defaultProps = objectSpread({}, PopoverBase.defaultProps, {
   visible: true
 });
 
-function _templateObject7() {
-  var data = taggedTemplateLiteral(["\n                color: ", ";\n              "]);
-
-  _templateObject7 = function _templateObject7() {
-    return data;
-  };
-
-  return data;
-}
-
-function _templateObject6() {
-  var data = taggedTemplateLiteral(["\n              padding: 10px 0 0;\n              text-align: right;\n              ", ";\n            "]);
-
-  _templateObject6 = function _templateObject6() {
-    return data;
-  };
-
-  return data;
-}
-
-function _templateObject5$1() {
-  var data = taggedTemplateLiteral(["\n                  margin: -1px 0 0 5px;\n                  text-transform: uppercase;\n                  ", ";\n                "]);
-
-  _templateObject5$1 = function _templateObject5() {
-    return data;
-  };
-
-  return data;
-}
-
-function _templateObject4$2() {
-  var data = taggedTemplateLiteral(["\n                ", ";\n                color: ", ";\n              "]);
-
-  _templateObject4$2 = function _templateObject4() {
-    return data;
-  };
-
-  return data;
-}
-
-function _templateObject3$2() {
-  var data = taggedTemplateLiteral(["\n              display: flex;\n              align-items: center;\n              padding: 5px 0;\n            "]);
-
-  _templateObject3$2 = function _templateObject3() {
-    return data;
-  };
-
-  return data;
-}
-
-function _templateObject2$2() {
-  var data = taggedTemplateLiteral(["\n              position: absolute;\n              top: 0;\n              right: 0;\n              width: 46px;\n              height: 40px;\n            "]);
-
-  _templateObject2$2 = function _templateObject2() {
-    return data;
-  };
-
-  return data;
-}
-
-function _templateObject$4() {
-  var data = taggedTemplateLiteral(["\n            position: relative;\n            padding: 10px 18px 20px;\n            max-width: calc(100vw - 20px);\n            min-width: 300px;\n          "]);
-
-  _templateObject$4 = function _templateObject() {
-    return data;
-  };
-
-  return data;
-}
+var PopoverActionType = propTypes.shape({
+  label: propTypes.string.isRequired,
+  onClick: propTypes.func.isRequired
+});
 
 var IdentityBadgePopover =
 /*#__PURE__*/
 function (_React$PureComponent) {
-  inherits(IdentityBadgePopover, _React$PureComponent);
+  inherits$1(IdentityBadgePopover, _React$PureComponent);
 
   function IdentityBadgePopover() {
-    classCallCheck(this, IdentityBadgePopover);
+    var _getPrototypeOf2;
 
-    return possibleConstructorReturn(this, getPrototypeOf(IdentityBadgePopover).apply(this, arguments));
+    var _this;
+
+    classCallCheck$1(this, IdentityBadgePopover);
+
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    _this = possibleConstructorReturn$1(this, (_getPrototypeOf2 = getPrototypeOf(IdentityBadgePopover)).call.apply(_getPrototypeOf2, [this].concat(args)));
+
+    defineProperty(assertThisInitialized(assertThisInitialized(_this)), "handlePopoverActionClick", function () {
+      var _this$props = _this.props,
+          onClose = _this$props.onClose,
+          _this$props$popoverAc = _this$props.popoverAction.onClick,
+          onClick = _this$props$popoverAc === void 0 ? noop : _this$props$popoverAc;
+      onClose();
+      onClick();
+    });
+
+    return _this;
   }
 
   createClass(IdentityBadgePopover, [{
     key: "render",
     value: function render() {
-      var _this$props = this.props,
-          address = _this$props.address,
-          visible = _this$props.visible,
-          opener = _this$props.opener,
-          onClose = _this$props.onClose,
-          networkType = _this$props.networkType,
-          connectedAccount = _this$props.connectedAccount;
+      var _this$props2 = this.props,
+          address = _this$props2.address,
+          connectedAccount = _this$props2.connectedAccount,
+          popoverAction = _this$props2.popoverAction,
+          networkType = _this$props2.networkType,
+          onClose = _this$props2.onClose,
+          opener = _this$props2.opener,
+          title = _this$props2.title,
+          visible = _this$props2.visible;
       return React.createElement(Popover, {
         visible: visible,
         opener: opener,
         onClose: onClose
       }, React.createElement(_StyledSection, null, React.createElement(_StyledButtonIcon$1, {
+        label: "Close",
         onClick: onClose
       }, React.createElement(Close, null)), React.createElement(_StyledHeader, null, React.createElement(_StyledH, {
-        _css: font({
+        _$p_: font({
           size: 'large'
         }),
-        _css2: theme.textSecondary
-      }, "Address"), connectedAccount && React.createElement(_StyledBadgeIdentity, {
+        _$p_2: theme.textSecondary
+      }, title), connectedAccount && React.createElement(_StyledBadgeIdentity, {
         title: "This is your Ethereum address",
-        _css3: font({
+        _$p_3: font({
           size: 'xxsmall'
         })
       }, "You")), React.createElement(AddressField, {
         address: address
       }), React.createElement(_StyledP, {
-        _css4: font({
+        _$p_4: font({
           size: 'small'
         })
       }, React.createElement(_StyledSafeLink, {
@@ -18129,8 +19147,12 @@ function (_React$PureComponent) {
           networkType: networkType
         }),
         target: "_blank",
-        _css5: theme.accent
-      }, "See on Etherscan"))));
+        _$p_5: theme.accent
+      }, "See on Etherscan")), popoverAction && React.createElement(Button, {
+        mode: "outline",
+        size: "small",
+        onClick: this.handlePopoverActionClick
+      }, popoverAction.label)));
     }
   }]);
 
@@ -18139,64 +19161,82 @@ function (_React$PureComponent) {
 
 defineProperty(IdentityBadgePopover, "propTypes", {
   address: propTypes.string,
-  visible: propTypes.bool,
-  opener: propTypes.instanceOf(Element),
-  onClose: propTypes.func,
+  connectedAccount: propTypes.bool,
   networkType: propTypes.string,
-  connectedAccount: propTypes.bool
+  onClose: propTypes.func,
+  opener: propTypes.instanceOf(Element),
+  popoverAction: PopoverActionType,
+  title: propTypes.node,
+  visible: propTypes.bool
 });
 
-var _StyledSection = styled("section")(_templateObject$4());
+defineProperty(IdentityBadgePopover, "defaultProps", {
+  title: 'Address',
+  onClose: noop
+});
 
-var _StyledButtonIcon$1 = styled(ButtonIcon)(_templateObject2$2());
+var _StyledSection = styled("section").withConfig({
+  displayName: "IdentityBadgePopover___StyledSection",
+  componentId: "sc-1yeyfty-0"
+})(["position:relative;padding:10px 18px 20px;max-width:calc(100vw - 20px);min-width:300px;"]);
 
-var _StyledHeader = styled("header")(_templateObject3$2());
+var _StyledButtonIcon$1 = styled(ButtonIcon).withConfig({
+  displayName: "IdentityBadgePopover___StyledButtonIcon",
+  componentId: "sc-1yeyfty-1"
+})(["position:absolute;top:0;right:0;width:46px;height:40px;"]);
 
-var _StyledH = styled("h1")(_templateObject4$2(), function (p) {
-  return p._css;
+var _StyledHeader = styled("header").withConfig({
+  displayName: "IdentityBadgePopover___StyledHeader",
+  componentId: "sc-1yeyfty-2"
+})(["display:flex;align-items:center;padding:5px 0;"]);
+
+var _StyledH = styled("h1").withConfig({
+  displayName: "IdentityBadgePopover___StyledH",
+  componentId: "sc-1yeyfty-3"
+})(["", ";color:", ";"], function (p) {
+  return p._$p_;
 }, function (p) {
-  return p._css2;
+  return p._$p_2;
 });
 
-var _StyledBadgeIdentity = styled(Badge.Identity)(_templateObject5$1(), function (p) {
-  return p._css3;
+var _StyledBadgeIdentity = styled(Badge.Identity).withConfig({
+  displayName: "IdentityBadgePopover___StyledBadgeIdentity",
+  componentId: "sc-1yeyfty-4"
+})(["margin:-1px 0 0 5px;text-transform:uppercase;", ";"], function (p) {
+  return p._$p_3;
 });
 
-var _StyledP = styled("p")(_templateObject6(), function (p) {
-  return p._css4;
+var _StyledP = styled("p").withConfig({
+  displayName: "IdentityBadgePopover___StyledP",
+  componentId: "sc-1yeyfty-5"
+})(["padding:10px 0 0;text-align:right;", ";"], function (p) {
+  return p._$p_4;
 });
 
-var _StyledSafeLink = styled(SafeLink)(_templateObject7(), function (p) {
-  return p._css5;
+var _StyledSafeLink = styled(SafeLink).withConfig({
+  displayName: "IdentityBadgePopover___StyledSafeLink",
+  componentId: "sc-1yeyfty-6"
+})(["color:", ";"], function (p) {
+  return p._$p_5;
 });
-
-function _templateObject$5() {
-  var data = taggedTemplateLiteral(["\n            display: inline-flex;\n            color: ", ";\n          "]);
-
-  _templateObject$5 = function _templateObject() {
-    return data;
-  };
-
-  return data;
-}
 
 var IdentityBadge =
 /*#__PURE__*/
 function (_React$PureComponent) {
-  inherits(IdentityBadge, _React$PureComponent);
+  inherits$1(IdentityBadge, _React$PureComponent);
 
   function IdentityBadge() {
     var _getPrototypeOf2;
 
     var _this;
 
-    classCallCheck(this, IdentityBadge);
+    classCallCheck$1(this, IdentityBadge);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    _this = possibleConstructorReturn(this, (_getPrototypeOf2 = getPrototypeOf(IdentityBadge)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this = possibleConstructorReturn$1(this, (_getPrototypeOf2 = getPrototypeOf(IdentityBadge)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
     defineProperty(assertThisInitialized(assertThisInitialized(_this)), "_element", React.createRef());
 
@@ -18224,29 +19264,36 @@ function (_React$PureComponent) {
     value: function render() {
       var opened = this.state.opened;
       var _this$props = this.props,
+          connectedAccount = _this$props.connectedAccount,
+          popoverAction = _this$props.popoverAction,
+          popoverTitle = _this$props.popoverTitle,
           entity = _this$props.entity,
-          shorten = _this$props.shorten,
           fontSize = _this$props.fontSize,
+          customLabel = _this$props.customLabel,
           networkType = _this$props.networkType,
-          connectedAccount = _this$props.connectedAccount;
+          shorten = _this$props.shorten;
       var address = isAddress(entity) ? entity : null;
+      var label = customLabel || (address && shorten ? shortenAddress(address) : entity);
       return React.createElement(React.Fragment, null, React.createElement(_StyledButtonBase$1, {
         ref: this._element,
         title: address,
         onClick: address && this.handleOpen,
-        _css: theme.textPrimary
-      }, React.createElement(Main$9, stylingProps(this), address && React.createElement(Identicon, null, React.createElement(EthIdenticon, {
+        _$p_: theme.textPrimary
+      }, React.createElement(_StyledDiv$3, stylingProps(this), address && React.createElement(_StyledDiv2$3, null, React.createElement(EthIdenticon, {
         scale: 1,
         address: address
-      })), React.createElement(Label$1, {
-        size: fontSize
-      }, address && shorten ? shortenAddress(address) : entity))), address && React.createElement(IdentityBadgePopover, {
+      })), React.createElement(_StyledText, {
+        size: fontSize,
+        monospace: Boolean(!customLabel && address)
+      }, label))), address && React.createElement(IdentityBadgePopover, {
         address: address,
         visible: opened,
         connectedAccount: connectedAccount,
         networkType: networkType,
         opener: this._element.current,
-        onClose: this.handleClose
+        onClose: this.handleClose,
+        popoverAction: popoverAction,
+        title: popoverTitle
       }));
     }
   }]);
@@ -18255,11 +19302,14 @@ function (_React$PureComponent) {
 }(React.PureComponent);
 
 defineProperty(IdentityBadge, "propTypes", {
+  connectedAccount: propTypes.bool,
+  customLabel: propTypes.string,
   entity: propTypes.string,
-  shorten: propTypes.bool,
   fontSize: propTypes.string,
   networkType: propTypes.string,
-  connectedAccount: propTypes.bool
+  popoverTitle: propTypes.node,
+  popoverAction: PopoverActionType,
+  shorten: propTypes.bool
 });
 
 defineProperty(IdentityBadge, "defaultProps", {
@@ -18270,29 +19320,34 @@ defineProperty(IdentityBadge, "defaultProps", {
   connectedAccount: false
 });
 
-var Main$9 = styled.div.withConfig({
-  displayName: "IdentityBadge__Main",
+var _StyledButtonBase$1 = styled(ButtonBase$1).withConfig({
+  displayName: "IdentityBadge___StyledButtonBase",
   componentId: "q71pax-0"
-})(["overflow:hidden;display:flex;align-items:center;background:#daeaef;border-radius:3px;text-decoration:none;"]);
-var Identicon = styled.div.withConfig({
-  displayName: "IdentityBadge__Identicon",
-  componentId: "q71pax-1"
-})(["display:block;margin-right:-3px;"]);
-var Label$1 = styled(Text).withConfig({
-  displayName: "IdentityBadge__Label",
-  componentId: "q71pax-2"
-})(["padding:0 8px;white-space:nowrap;"]);
-
-var _StyledButtonBase$1 = styled(ButtonBase$1)(_templateObject$5(), function (p) {
-  return p._css;
+})(["display:inline-flex;overflow:hidden;color:", ";"], function (p) {
+  return p._$p_;
 });
+
+var _StyledDiv$3 = styled("div").withConfig({
+  displayName: "IdentityBadge___StyledDiv",
+  componentId: "q71pax-1"
+})(["overflow:hidden;display:flex;align-items:center;background:#daeaef;border-radius:3px;text-decoration:none;"]);
+
+var _StyledDiv2$3 = styled("div").withConfig({
+  displayName: "IdentityBadge___StyledDiv2",
+  componentId: "q71pax-2"
+})(["display:block;margin-right:-3px;"]);
+
+var _StyledText = styled(Text).withConfig({
+  displayName: "IdentityBadge___StyledText",
+  componentId: "q71pax-3"
+})(["padding:0 8px;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;"]);
 
 var Info$1 = function Info(_ref) {
   var children = _ref.children,
       title = _ref.title,
       props = objectWithoutProperties(_ref, ["children", "title"]);
 
-  return React.createElement(Main$a, props, title && React.createElement(Title, null, title), children);
+  return React.createElement(Main$9, props, title && React.createElement(Title, null, title), children);
 };
 
 Info$1.propTypes = {
@@ -18303,7 +19358,7 @@ Info$1.propTypes = {
 Info$1.defaultProps = {
   background: theme.infoBackground
 };
-var Main$a = styled.section.withConfig({
+var Main$9 = styled.section.withConfig({
   displayName: "Info__Main",
   componentId: "sc-1kgnlbm-0"
 })(["background:", ";padding:15px;border-radius:3px;word-wrap:break-word;"], function (_ref2) {
@@ -19290,12 +20345,12 @@ var LABELS_HEIGHT = 30;
 var LineChart =
 /*#__PURE__*/
 function (_React$Component) {
-  inherits(LineChart, _React$Component);
+  inherits$1(LineChart, _React$Component);
 
   function LineChart() {
-    classCallCheck(this, LineChart);
+    classCallCheck$1(this, LineChart);
 
-    return possibleConstructorReturn(this, getPrototypeOf(LineChart).apply(this, arguments));
+    return possibleConstructorReturn$1(this, getPrototypeOf(LineChart).apply(this, arguments));
   }
 
   createClass(LineChart, [{
@@ -19496,7 +20551,7 @@ var LabelText = styled.text.withConfig({
   componentId: "sc-8kiakb-1"
 })(["alignment-baseline:middle;font-size:12px;font-weight:300;", ";"], unselectable);
 
-var Main$b = function Main(_ref) {
+var Main$a = function Main(_ref) {
   var children = _ref.children,
       assetsUrl = _ref.assetsUrl,
       legacyFonts = _ref.legacyFonts;
@@ -19507,15 +20562,114 @@ var Main$b = function Main(_ref) {
   }), React.createElement(ToastHub, null, children))));
 };
 
-Main$b.propTypes = {
+Main$a.propTypes = {
   children: propTypes.node,
   legacyFonts: propTypes.bool,
   assetsUrl: propTypes.string
 };
-Main$b.defaultProps = {
+Main$a.defaultProps = {
   legacyFonts: false,
   assetsUrl: './aragon-ui/'
 };
+
+var cssPx = function cssPx(value) {
+  return typeof value === 'number' ? value + 'px' : value;
+};
+
+var Modal = function Modal(_ref) {
+  var children = _ref.children,
+      onClose = _ref.onClose,
+      padding = _ref.padding,
+      radius = _ref.radius,
+      visible = _ref.visible,
+      width = _ref.width,
+      overlayColor = _ref.overlayColor;
+  return React.createElement(RootPortal, null, React.createElement(Viewport, null, function (viewport) {
+    return React.createElement(Transition, {
+      native: true,
+      items: visible,
+      from: {
+        opacity: 0,
+        scale: 0.98
+      },
+      enter: {
+        opacity: 1,
+        scale: 1
+      },
+      leave: {
+        opacity: 0,
+        scale: 0.98
+      },
+      config: springs.smooth
+    }, function (show) {
+      return show &&
+      /* eslint-disable react/prop-types */
+      function (_ref2) {
+        var opacity = _ref2.opacity,
+            scale = _ref2.scale;
+        return React.createElement(Overlay, {
+          style: {
+            opacity: opacity,
+            background: overlayColor
+          }
+        }, React.createElement(ContentWrapper, {
+          style: {
+            pointerEvents: visible ? 'auto' : 'none',
+            transform: scale.interpolate(function (v) {
+              return "scale3d(".concat(v, ", ").concat(v, ", 1)");
+            })
+          }
+        }, React.createElement(_StyledDiv$4, null, React.createElement(Content$2, {
+          role: "alertdialog",
+          onEscapeOutside: onClose,
+          style: {
+            width: cssPx(typeof width === 'function' ? width(viewport) : width),
+            padding: cssPx(typeof padding === 'function' ? padding(viewport) : padding),
+            borderRadius: "".concat(radius, "px")
+          }
+        }, children))));
+      };
+    }
+    /* eslint-enable react/prop-types */
+    );
+  }));
+};
+
+Modal.defaultProps = {
+  onClose: noop,
+  overlayColor: 'rgba(0, 0, 0, 0.5)',
+  padding: 24,
+  radius: 4,
+  width: function width(viewport) {
+    return Math.min(viewport.width - 48, 600);
+  }
+};
+Modal.propTypes = {
+  children: propTypes.node.isRequired,
+  onClose: propTypes.func,
+  overlayColor: propTypes.string,
+  padding: propTypes.oneOfType([propTypes.func, propTypes.number, propTypes.string]),
+  radius: propTypes.number,
+  visible: propTypes.bool.isRequired,
+  width: propTypes.oneOfType([propTypes.func, propTypes.number, propTypes.string])
+};
+var ContentWrapper = styled(extendedAnimated.div).withConfig({
+  displayName: "Modal__ContentWrapper",
+  componentId: "sc-1ofisn3-0"
+})(["position:absolute;z-index:1;top:0;left:0;right:0;bottom:0;display:grid;align-items:center;justify-items:center;overflow:auto;"]);
+var Content$2 = styled(EscapeOutside).withConfig({
+  displayName: "Modal__Content",
+  componentId: "sc-1ofisn3-1"
+})(["overflow:hidden;min-width:288px;background:#fff;box-shadow:0 10px 28px rgba(0,0,0,0.2);"]);
+var Overlay = styled(extendedAnimated.div).withConfig({
+  displayName: "Modal__Overlay",
+  componentId: "sc-1ofisn3-2"
+})(["position:absolute;z-index:1;top:0;left:0;right:0;bottom:0;"]);
+
+var _StyledDiv$4 = styled("div").withConfig({
+  displayName: "Modal___StyledDiv",
+  componentId: "sc-1ofisn3-3"
+})(["undefined"]);
 
 var LeftIcon = function LeftIcon() {
   return React.createElement("svg", {
@@ -19536,20 +20690,20 @@ var LeftIcon = function LeftIcon() {
 var NavigationBar =
 /*#__PURE__*/
 function (_React$Component) {
-  inherits(NavigationBar, _React$Component);
+  inherits$1(NavigationBar, _React$Component);
 
   function NavigationBar() {
     var _getPrototypeOf2;
 
     var _this;
 
-    classCallCheck(this, NavigationBar);
+    classCallCheck$1(this, NavigationBar);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    _this = possibleConstructorReturn(this, (_getPrototypeOf2 = getPrototypeOf(NavigationBar)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this = possibleConstructorReturn$1(this, (_getPrototypeOf2 = getPrototypeOf(NavigationBar)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
     defineProperty(assertThisInitialized(assertThisInitialized(_this)), "state", {
       cachedItems: null,
@@ -19657,7 +20811,7 @@ var Item = function Item(_ref) {
   }, React.createElement(Title$2, null, displayBack && React.createElement(BackButton, {
     onClick: onBack,
     compact: compact
-  }, React.createElement(LeftIcon, null)), React.createElement(Label$2, null, label)));
+  }, React.createElement(LeftIcon, null)), React.createElement(Label$1, null, label)));
 };
 
 Item.propTypes = {
@@ -19676,7 +20830,7 @@ var Title$2 = styled.span.withConfig({
   displayName: "NavigationBar__Title",
   componentId: "pd4tzi-1"
 })(["display:flex;align-items:center;position:absolute;left:0;top:0;bottom:0;"]);
-var Label$2 = styled.span.withConfig({
+var Label$1 = styled.span.withConfig({
   displayName: "NavigationBar__Label",
   componentId: "pd4tzi-2"
 })(["display:flex;height:100%;align-items:center;padding-left:30px;white-space:nowrap;font-size:22px;"]);
@@ -19685,7 +20839,7 @@ var BackButton = styled.span.withConfig({
   componentId: "pd4tzi-3"
 })(["display:flex;align-items:center;height:63px;padding:", ";cursor:pointer;svg{color:hsl(179,76%,48%);}:active svg{color:hsl(179,76%,63%);}& + ", "{padding-left:0;}"], function (p) {
   return p.compact ? '0 16px' : '0 20px 0 30px';
-}, Label$2);
+}, Label$1);
 
 var DEFAULT_COLORS = ['#000000', '#57666F', '#028CD1', '#21AAE7', '#39CAD0', '#ADE9EC', '#80AEDC'];
 /* eslint-disable react/prop-types */
@@ -19816,7 +20970,7 @@ var ProgressBar = function ProgressBar(_ref) {
     }
   }, function (_ref2) {
     var progressValue = _ref2.progressValue;
-    return React.createElement(Main$c, null, React.createElement(Base, null, React.createElement(Progress, {
+    return React.createElement(Main$b, null, React.createElement(Base, null, React.createElement(Progress, {
       color: color,
       style: {
         transform: progressValue.interpolate(function (t) {
@@ -19834,7 +20988,7 @@ ProgressBar.propTypes = {
   color: propTypes.string,
   progress: propTypes.number
 };
-var Main$c = styled.div.withConfig({
+var Main$b = styled.div.withConfig({
   displayName: "ProgressBar__Main",
   componentId: "sc-1gly9sn-0"
 })(["width:100%;align-items:center;"]);
@@ -19850,27 +21004,27 @@ var Progress = styled(extendedAnimated.div).withConfig({
   return color || theme.accent;
 });
 
-var _React$createContext$4 = React.createContext({}),
-    Provider$4 = _React$createContext$4.Provider,
-    Consumer$3 = _React$createContext$4.Consumer;
+var _React$createContext$3 = React.createContext({}),
+    Provider$3 = _React$createContext$3.Provider,
+    Consumer$2 = _React$createContext$3.Consumer;
 
 var RadioGroup =
 /*#__PURE__*/
 function (_React$PureComponent) {
-  inherits(RadioGroup, _React$PureComponent);
+  inherits$1(RadioGroup, _React$PureComponent);
 
   function RadioGroup() {
     var _getPrototypeOf2;
 
     var _this;
 
-    classCallCheck(this, RadioGroup);
+    classCallCheck$1(this, RadioGroup);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    _this = possibleConstructorReturn(this, (_getPrototypeOf2 = getPrototypeOf(RadioGroup)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this = possibleConstructorReturn$1(this, (_getPrototypeOf2 = getPrototypeOf(RadioGroup)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
     defineProperty(assertThisInitialized(assertThisInitialized(_this)), "state", {
       // keep track of the radios buttons to handle keyboard navigation
@@ -19960,7 +21114,7 @@ function (_React$PureComponent) {
           children = _this$props.children,
           selected = _this$props.selected;
       var focusableId = radios.has(selected) ? selected : toConsumableArray(radios)[0];
-      return React.createElement(Provider$4, {
+      return React.createElement(Provider$3, {
         value: {
           selected: selected,
           focusableId: focusableId,
@@ -19997,20 +21151,20 @@ var KEYS_NEXT = ['ArrowDown', 'ArrowRight', // IE / Edge support
 var RadioButton =
 /*#__PURE__*/
 function (_React$PureComponent) {
-  inherits(RadioButton, _React$PureComponent);
+  inherits$1(RadioButton, _React$PureComponent);
 
   function RadioButton() {
     var _getPrototypeOf2;
 
     var _this;
 
-    classCallCheck(this, RadioButton);
+    classCallCheck$1(this, RadioButton);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    _this = possibleConstructorReturn(this, (_getPrototypeOf2 = getPrototypeOf(RadioButton)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this = possibleConstructorReturn$1(this, (_getPrototypeOf2 = getPrototypeOf(RadioButton)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
     defineProperty(assertThisInitialized(assertThisInitialized(_this)), "_element", React.createRef());
 
@@ -20123,19 +21277,19 @@ defineProperty(RadioButton, "defaultProps", {
 var Radio =
 /*#__PURE__*/
 function (_React$PureComponent2) {
-  inherits(Radio, _React$PureComponent2);
+  inherits$1(Radio, _React$PureComponent2);
 
   function Radio() {
-    classCallCheck(this, Radio);
+    classCallCheck$1(this, Radio);
 
-    return possibleConstructorReturn(this, getPrototypeOf(Radio).apply(this, arguments));
+    return possibleConstructorReturn$1(this, getPrototypeOf(Radio).apply(this, arguments));
   }
 
   createClass(Radio, [{
     key: "render",
     value: function render() {
       var props = this.props;
-      return React.createElement(Consumer$3, null, function (_ref) {
+      return React.createElement(Consumer$2, null, function (_ref) {
         var onChange = _ref.onChange,
             selected = _ref.selected,
             focusableId = _ref.focusableId,
@@ -20170,7 +21324,7 @@ var RadioListItem = function RadioListItem(_ref) {
   var description = _ref.description,
       index = _ref.index,
       title = _ref.title;
-  return React.createElement(Label$3, null, React.createElement(RadioWrapper, {
+  return React.createElement(Label$2, null, React.createElement(RadioWrapper, {
     id: index
   }), React.createElement(LabelBox, null, React.createElement(Title$3, null, title), React.createElement(Description, null, description)));
 };
@@ -20181,7 +21335,7 @@ RadioListItem.propTypes = {
   title: propTypes.node.isRequired // Styled components
 
 };
-var Label$3 = styled.label.withConfig({
+var Label$2 = styled.label.withConfig({
   displayName: "RadioListItem__Label",
   componentId: "sc-1utxw89-0"
 })(["display:flex;&:not(:first-child){margin-top:10px;}", ";"], unselectable());
@@ -20207,12 +21361,12 @@ var RadioWrapper = styled(Radio).withConfig({
 var RadioList =
 /*#__PURE__*/
 function (_React$Component) {
-  inherits(RadioList, _React$Component);
+  inherits$1(RadioList, _React$Component);
 
   function RadioList() {
-    classCallCheck(this, RadioList);
+    classCallCheck$1(this, RadioList);
 
-    return possibleConstructorReturn(this, getPrototypeOf(RadioList).apply(this, arguments));
+    return possibleConstructorReturn$1(this, getPrototypeOf(RadioList).apply(this, arguments));
   }
 
   createClass(RadioList, [{
@@ -20288,20 +21442,20 @@ var CONTENT_PADDING = 30;
 var SidePanel =
 /*#__PURE__*/
 function (_React$PureComponent) {
-  inherits(SidePanel, _React$PureComponent);
+  inherits$1(SidePanel, _React$PureComponent);
 
   function SidePanel() {
     var _getPrototypeOf2;
 
     var _this;
 
-    classCallCheck(this, SidePanel);
+    classCallCheck$1(this, SidePanel);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    _this = possibleConstructorReturn(this, (_getPrototypeOf2 = getPrototypeOf(SidePanel)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this = possibleConstructorReturn$1(this, (_getPrototypeOf2 = getPrototypeOf(SidePanel)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
     defineProperty(assertThisInitialized(assertThisInitialized(_this)), "handleClose", function () {
       if (!_this.props.blocking) {
@@ -20326,9 +21480,9 @@ function (_React$PureComponent) {
           title = _this$props.title,
           opened = _this$props.opened,
           blocking = _this$props.blocking;
-      return React.createElement(Main$d, {
+      return React.createElement(Main$c, {
         opened: opened
-      }, React.createElement(Overlay, {
+      }, React.createElement(Overlay$1, {
         style: {
           opacity: progress,
           pointerEvents: opened ? 'auto' : 'none'
@@ -20399,14 +21553,14 @@ SidePanel.defaultProps = {
   onClose: function onClose() {},
   onTransitionEnd: function onTransitionEnd() {}
 };
-var Main$d = styled.div.withConfig({
+var Main$c = styled.div.withConfig({
   displayName: "SidePanel__Main",
   componentId: "sc-1kjx6mk-0"
 })(["position:fixed;z-index:3;top:0;left:0;right:0;bottom:0;pointer-events:", ";"], function (_ref2) {
   var opened = _ref2.opened;
   return opened ? 'auto' : 'none';
 });
-var Overlay = styled(extendedAnimated.div).withConfig({
+var Overlay$1 = styled(extendedAnimated.div).withConfig({
   displayName: "SidePanel__Overlay",
   componentId: "sc-1kjx6mk-1"
 })(["position:absolute;top:0;left:0;right:0;bottom:0;background:rgba(68,81,89,0.65);"]);
@@ -20447,13 +21601,13 @@ var SidePanelSplit = function SidePanelSplit(_ref) {
   var children = _ref.children,
       props = objectWithoutProperties(_ref, ["children"]);
 
-  return React.createElement(Main$e, props, React.createElement(Part$1, null, children[0]), React.createElement(Part$1, null, children[1]));
+  return React.createElement(Main$d, props, React.createElement(Part$1, null, children[0]), React.createElement(Part$1, null, children[1]));
 };
 
 SidePanelSplit.propTypes = {
   children: propTypes.node
 };
-var Main$e = styled.div.withConfig({
+var Main$d = styled.div.withConfig({
   displayName: "SidePanelSplit__Main",
   componentId: "d0csv3-0"
 })(["display:flex;width:calc(100% + ", "px);margin:0 -", "px;border:1px solid ", ";border-width:1px 0;"], SidePanel.HORIZONTAL_PADDING * 2, SidePanel.HORIZONTAL_PADDING, theme.contentBorder);
@@ -20472,20 +21626,20 @@ var HEIGHT = Math.max(HANDLE_SIZE, BAR_HEIGHT$1) + PADDING * 2;
 var Slider =
 /*#__PURE__*/
 function (_React$Component) {
-  inherits(Slider, _React$Component);
+  inherits$1(Slider, _React$Component);
 
   function Slider() {
     var _getPrototypeOf2;
 
     var _this;
 
-    classCallCheck(this, Slider);
+    classCallCheck$1(this, Slider);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    _this = possibleConstructorReturn(this, (_getPrototypeOf2 = getPrototypeOf(Slider)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this = possibleConstructorReturn$1(this, (_getPrototypeOf2 = getPrototypeOf(Slider)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
     defineProperty(assertThisInitialized(assertThisInitialized(_this)), "state", {
       pressed: false
@@ -20623,7 +21777,7 @@ function (_React$Component) {
       }, function (_ref) {
         var value = _ref.value,
             pressProgress = _ref.pressProgress;
-        return React.createElement(Main$f, null, React.createElement(Area, {
+        return React.createElement(Main$e, null, React.createElement(Area, {
           ref: _this2.handleRef,
           onMouseDown: _this2.dragStart,
           onTouchStart: _this2.dragStart
@@ -20651,7 +21805,7 @@ defineProperty(Slider, "defaultProps", {
   onUpdate: function onUpdate() {}
 });
 
-var Main$f = styled.div.withConfig({
+var Main$e = styled.div.withConfig({
   displayName: "Slider__Main",
   componentId: "sc-94djfe-0"
 })(["min-width:", "px;padding:0 ", "px;", ";"], MIN_WIDTH, HANDLE_SIZE / 2 + PADDING, unselectable);
@@ -20691,20 +21845,20 @@ var Handle = styled(extendedAnimated.div).withConfig({
 var TabBar =
 /*#__PURE__*/
 function (_React$Component) {
-  inherits(TabBar, _React$Component);
+  inherits$1(TabBar, _React$Component);
 
   function TabBar() {
     var _getPrototypeOf2;
 
     var _this;
 
-    classCallCheck(this, TabBar);
+    classCallCheck$1(this, TabBar);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    _this = possibleConstructorReturn(this, (_getPrototypeOf2 = getPrototypeOf(TabBar)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this = possibleConstructorReturn$1(this, (_getPrototypeOf2 = getPrototypeOf(TabBar)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
     defineProperty(assertThisInitialized(assertThisInitialized(_this)), "state", {
       displayFocusRing: false
@@ -20817,7 +21971,7 @@ function (_React$Component) {
             selected: i === selected,
             focusRing: displayFocusRing,
             onMouseDown: _this2.handleTabMouseDown
-          }, React.createElement(Label$4, {
+          }, React.createElement(Label$3, {
             selected: i === selected
           }, item), displayFocusRing && React.createElement(FocusRing$1, null));
         })));
@@ -20858,7 +22012,7 @@ var Tab = styled.li.withConfig({
     weight: p.selected ? 'bold' : 'normal'
   });
 }, unselectable(), FocusRing$1);
-var Label$4 = styled.span.withConfig({
+var Label$3 = styled.span.withConfig({
   displayName: "TabBar__Label",
   componentId: "sc-1rsszd9-3"
 })(["display:flex;margin-bottom:-1px;padding:5px 0 3px;border-bottom:4px solid ", ";"], function (p) {
@@ -20988,12 +22142,12 @@ TableHeader.defaultProps = {
 var TransactionBadge =
 /*#__PURE__*/
 function (_React$PureComponent) {
-  inherits(TransactionBadge, _React$PureComponent);
+  inherits$1(TransactionBadge, _React$PureComponent);
 
   function TransactionBadge() {
-    classCallCheck(this, TransactionBadge);
+    classCallCheck$1(this, TransactionBadge);
 
-    return possibleConstructorReturn(this, getPrototypeOf(TransactionBadge).apply(this, arguments));
+    return possibleConstructorReturn$1(this, getPrototypeOf(TransactionBadge).apply(this, arguments));
   }
 
   createClass(TransactionBadge, [{
@@ -21035,10 +22189,10 @@ function (_React$PureComponent) {
       var fontSize = props.fontSize;
       var transaction = isTransaction(props.transaction) ? props.transaction : null;
       var mainProps = this.getMainProps(transaction);
-      return React.createElement(Main$g, _extends_1({
+      return React.createElement(Main$f, _extends_1({
         title: transaction,
         onClick: this.handleClick
-      }, mainProps), React.createElement(Label$5, {
+      }, mainProps), React.createElement(Label$4, {
         size: fontSize
       }, this.getLabel(transaction)));
     }
@@ -21062,11 +22216,11 @@ defineProperty(TransactionBadge, "defaultProps", {
   networkType: 'main'
 });
 
-var Main$g = styled.div.withConfig({
+var Main$f = styled.div.withConfig({
   displayName: "TransactionBadge__Main",
   componentId: "sc-1ceh9ki-0"
 })(["overflow:hidden;display:inline-flex;align-items:center;border-radius:3px;cursor:default;text-decoration:none;background:#daeaef;"]);
-var Label$5 = styled(Text).withConfig({
+var Label$4 = styled(Text).withConfig({
   displayName: "TransactionBadge__Label",
   componentId: "sc-1ceh9ki-1"
 })(["padding:0 8px;white-space:nowrap;"]);
@@ -21074,12 +22228,12 @@ var Label$5 = styled(Text).withConfig({
 var TransactionProgress =
 /*#__PURE__*/
 function (_React$Component) {
-  inherits(TransactionProgress, _React$Component);
+  inherits$1(TransactionProgress, _React$Component);
 
   function TransactionProgress() {
-    classCallCheck(this, TransactionProgress);
+    classCallCheck$1(this, TransactionProgress);
 
-    return possibleConstructorReturn(this, getPrototypeOf(TransactionProgress).apply(this, arguments));
+    return possibleConstructorReturn$1(this, getPrototypeOf(TransactionProgress).apply(this, arguments));
   }
 
   createClass(TransactionProgress, [{
@@ -21095,7 +22249,6 @@ function (_React$Component) {
           opener = _this$props.opener;
       return React.createElement(Popover, {
         visible: visible,
-        placement: "auto",
         opener: opener,
         onClose: onClose
       }, React.createElement(CloseButton, {
@@ -21104,7 +22257,7 @@ function (_React$Component) {
       }, React.createElement(Close, null)), React.createElement(Wrapper, null, React.createElement(Text, {
         size: "large",
         weight: "bold"
-      }, "Pending transaction"), React.createElement(ContentWrapper, null, React.createElement(Text, {
+      }, "Pending transaction"), React.createElement(ContentWrapper$1, null, React.createElement(Text, {
         smallcaps: true,
         color: theme.textSecondary
       }, "Estimated time:"), React.createElement(Countdown, {
@@ -21147,7 +22300,7 @@ var CloseButton = styled.button.withConfig({
   displayName: "TransactionProgress__CloseButton",
   componentId: "vvbhu5-1"
 })(["position:absolute;top:10px;right:10px;cursor:pointer;background:none;border:0;outline:0;&::-moz-focus-inner{border:0;}"]);
-var ContentWrapper = styled.div.withConfig({
+var ContentWrapper$1 = styled.div.withConfig({
   displayName: "TransactionProgress__ContentWrapper",
   componentId: "vvbhu5-2"
 })(["display:flex;justify-content:space-between;margin-top:1rem;margin-bottom:0.5rem;"]);
@@ -21167,4 +22320,4 @@ var SlowTransaction = styled.div.withConfig({
   componentId: "vvbhu5-5"
 })(["margin-right:10px;"]);
 
-export { Add as IconAdd, Apps as IconApps, ArrowRight as IconArrowRight, Attention as IconAttention, Blank as IconBlank, Check as IconCheck, Close as IconClose, Copy as IconCopy, Cross as IconCross, Error$1 as IconError, Fundraising as IconFundraising, Groups as IconGroups, Home as IconHome, Identity as IconIdentity, Menu as IconMenu, Notifications as IconNotifications, Permissions as IconPermissions, Plus as IconPlus, Remove as IconRemove, Settings as IconSettings, Share as IconShare, Time as IconTime, Wallet as IconWallet, theme, themeDark, brand, colors, difference, formatHtmlDatetime, formatIntegerRange, unselectable, BREAKPOINTS, breakpoint, BreakPoint, font, grid, springs, spring, addressesEqual, shortenAddress, shortenTransaction, isAddress, isTransaction, blockExplorerUrl, forwardProps, stylingProps, devOnly, log, warn, noop, observe, PublicUrl, Redraw, RedrawFromDate, Root, Viewport, ToastHub, Toast, AddressField, AppBar, AppView, AragonApp, Badge, BadgeNumber, BaseStyles$1 as BaseStyles, Button, ButtonBase$1 as ButtonBase, ButtonIcon, StyledCard as Card, Checkbox, CircleGraph, ContextMenu, ContextMenuItem, Countdown, DropDown, EmptyStateCard, EthIdenticon, Field, FocusVisible, IdentityBadge, Info$1 as Info, LineChart, Main$b as Main, NavigationBar, PartitionBar, Popover, ProgressBar, Radio, Radio as RadioButton, RadioGroup, RadioList, SafeLink, SidePanel, SidePanelSeparator, SidePanelSplit, Slider, TabBar, Table, TableCell, TableHeader, StyledTableRow as TableRow, Text, TextInput, Timer, TransactionBadge, TransactionProgress };
+export { Add as IconAdd, Apps as IconApps, ArrowRight as IconArrowRight, Attention as IconAttention, Blank as IconBlank, Check as IconCheck, Close as IconClose, Copy as IconCopy, Cross as IconCross, Error$1 as IconError, Filter as IconFilter, Fundraising as IconFundraising, Groups as IconGroups, Home as IconHome, Identity as IconIdentity, Menu as IconMenu, Notifications as IconNotifications, Permissions as IconPermissions, Plus as IconPlus, Remove as IconRemove, Settings as IconSettings, Share as IconShare, Time as IconTime, Wallet as IconWallet, theme, themeDark, brand, colors, difference, formatHtmlDatetime, formatIntegerRange, unselectable, BREAKPOINTS, breakpoint, BreakPoint, font, grid, springs, spring, addressesEqual, shortenAddress, shortenTransaction, isAddress, isTransaction, blockExplorerUrl, forwardProps, stylingProps, devOnly, log, warn, noop, observe, PublicUrl, Redraw, RedrawFromDate, Root, Viewport, useViewport, ToastHub, Toast, AddressField, AppBar, AppView, AragonApp, Badge, BadgeNumber, BaseStyles$1 as BaseStyles, Button, ButtonBase$1 as ButtonBase, ButtonIcon, StyledCard as Card, Checkbox, CircleGraph, ContextMenu, ContextMenuItem, Countdown, DropDown, EmptyStateCard, EscapeOutside, EthIdenticon, ExternalLink, Field, FocusVisible, IdentityBadge, Info$1 as Info, LineChart, Main$a as Main, Modal, NavigationBar, PartitionBar, Popover, ProgressBar, Radio, Radio as RadioButton, RadioGroup, RadioList, RootPortal, SafeLink, SidePanel, SidePanelSeparator, SidePanelSplit, Slider, TabBar, Table, TableCell, TableHeader, StyledTableRow as TableRow, Text, WrapperTextInput as TextInput, Timer, TransactionBadge, TransactionProgress };
