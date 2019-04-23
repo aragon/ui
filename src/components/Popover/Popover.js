@@ -13,7 +13,7 @@ class PopoverBase extends React.Component {
   static propTypes = {
     opener: PropTypes.instanceOf(Element),
     placement: PropTypes.oneOf(
-      // "center" is a value that doesn’t exits in Popper, but we are using it
+      // "center" is a value that doesn’t exist in Popper, but we are using it
       // to define custom Popper settings (see getPopperSettings() below).
       ['center'].concat(
         ...['auto', 'top', 'right', 'bottom', 'left'].map(position => [
