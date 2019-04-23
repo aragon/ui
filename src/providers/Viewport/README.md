@@ -25,7 +25,7 @@ const MyComponent = () => {
 ### Render prop
 
 ```jsx
-import Viewport from '@aragon/ui'
+import { Viewport } from '@aragon/ui'
 
 const MyComponent = () => {
   return (
