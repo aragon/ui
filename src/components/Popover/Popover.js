@@ -14,7 +14,7 @@ class PopoverBase extends React.Component {
     opener: PropTypes.instanceOf(Element),
     placement: PropTypes.oneOf(
       // "center" is a value that doesn’t exits in Popper, but we are using it
-      // from our custom Popper modifier, centerIn (see below).
+      // to define custom Popper settings (see getPopperSettings() below).
       ['center'].concat(
         ...['auto', 'top', 'right', 'bottom', 'left'].map(position => [
           position,
@@ -67,44 +67,53 @@ class PopoverBase extends React.Component {
     }
   }
 
+  getPopperSettings() {
+    const { placement } = this.props
+
+    const settings = {
+      placement,
+      modifiers: {
+        preventOverflow: {
+          enabled: true,
+          padding: 10,
+          boundariesElement: 'window',
+        },
+      },
+      positionFixed: false,
+    }
+
+    if (placement !== 'center') {
+      return settings
+    }
+
+    return {
+      ...settings,
+      placement: 'top-start',
+      modifiers: {
+        ...settings.modifiers,
+        arrow: { enabled: false },
+        flip: { enabled: false },
+        offset: { enabled: true, offset: '50% - 50%p, -50%p - 50%' },
+      },
+    }
+  }
+
   initPopper() {
     const { opener } = this.props
-    let { placement } = this.props
-
-    if (this._popper) {
-      return
+    if (!this._popper) {
+      this._popper = new Popper(
+        opener,
+        this._popperElement.current,
+        this.getPopperSettings()
+      )
     }
-
-    const modifiers = {
-      preventOverflow: { padding: 10 },
-    }
-
-    if (placement === 'center') {
-      modifiers.centerIn = {
-        enabled: true,
-        order: 1,
-        fn: data => {
-          const { popper, reference } = data.offsets
-          popper.top = reference.top + reference.height / 2 - popper.height / 2
-          return data
-        },
-      }
-      placement = 'top'
-    }
-
-    this._popper = new Popper(opener, this._popperElement.current, {
-      placement,
-      modifiers,
-    })
   }
 
   destroyPopper() {
-    if (!this._popper) {
-      return
+    if (this._popper) {
+      this._popper.destroy()
+      this._popper = null
     }
-
-    this._popper.destroy()
-    this._popper = null
   }
 
   handleEscape = ({ keyCode }) => {
