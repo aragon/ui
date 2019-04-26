@@ -1,12 +1,10 @@
-# Aragon UI
-
 <p align=center>
-  <img src="https://user-images.githubusercontent.com/36158/40653789-19f2d150-6334-11e8-9f78-8b32648698b4.png" alt="">
+  <img src="https://user-images.githubusercontent.com/36158/53582039-04dd2d00-3b7f-11e9-8460-803ed3b84cc6.png" alt="aragonUI">
 </p>
 
-## What is it?
+## Overview
 
-Aragon UI is a React library used to build user interfaces for Aragon and its related projects. It provides the components needed to build experiences that feel integrated with Aragon ecosystem, and can be used both client or server side.
+aragonUI is a React library used to build user interfaces for Aragon and its related projects. It provides the components needed to build experiences that feel integrated with Aragon ecosystem, and can be used both client or server side.
 
 Used by:
 
@@ -43,13 +41,13 @@ const App = () => (
 )
 ```
 
-*Your project is now ready to use Aragon UI. 💫*
+*Your project is now ready to use aragonUI. 💫*
 
 Open https://ui.aragon.org/ to see the list of the available components and learn how to use them.
 
 ### Assets
 
-Aragon UI require some assets (e.g. fonts) in order to work properly. These need to be copied where they can be accessed by the library, like the `public/` directory of a project using [Create React App](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#adding-assets-outside-of-the-module-system).
+aragonUI require some assets (e.g. fonts) in order to work properly. These need to be copied where they can be accessed by the library, like the `public/` directory of a project using [Create React App](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#adding-assets-outside-of-the-module-system).
 
 Copy these assets using the provided `copy-aragon-ui-assets` command:
 

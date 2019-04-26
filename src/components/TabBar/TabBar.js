@@ -2,8 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { theme } from '../../theme'
-import { font, unselectable, noop } from '../../utils'
-import { warn } from '../../utils/environment'
+import { font, unselectable, noop, warn } from '../../utils'
+import { InAppBarContext } from '../AragonApp/AppBar'
 
 class TabBar extends React.Component {
   static propTypes = {
@@ -85,29 +85,33 @@ class TabBar extends React.Component {
     const { displayFocusRing } = this.state
     const { items, selected } = this.props
     return (
-      <nav onMouseDown={this.handleMouseDown}>
-        <Bar ref={this._barRef}>
-          {items.map((item, i) => (
-            <Tab
-              key={i}
-              tabIndex="0"
-              selected={i === selected}
-              focusRing={displayFocusRing}
-              onMouseDown={this.handleTabMouseDown}
-            >
-              <Label selected={i === selected}>{item}</Label>
-              {displayFocusRing && <FocusRing />}
-            </Tab>
-          ))}
-        </Bar>
-      </nav>
+      <InAppBarContext.Consumer>
+        {inAppBar => (
+          <nav onMouseDown={this.handleMouseDown}>
+            <Bar ref={this._barRef} border={!inAppBar}>
+              {items.map((item, i) => (
+                <Tab
+                  key={i}
+                  tabIndex="0"
+                  selected={i === selected}
+                  focusRing={displayFocusRing}
+                  onMouseDown={this.handleTabMouseDown}
+                >
+                  <Label selected={i === selected}>{item}</Label>
+                  {displayFocusRing && <FocusRing />}
+                </Tab>
+              ))}
+            </Bar>
+          </nav>
+        )}
+      </InAppBarContext.Consumer>
     )
   }
 }
 
 const Bar = styled.ul`
   display: flex;
-  border-bottom: 1px solid ${theme.contentBorder};
+  border-bottom: ${p => (p.border ? `1px solid ${theme.contentBorder}` : '0')};
 `
 
 const FocusRing = styled.span`
