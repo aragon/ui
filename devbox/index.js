@@ -17,6 +17,7 @@ import Modal from './apps/Modal'
 import NavigationBar from './apps/NavigationBar'
 import PartitionBar from './apps/PartitionBar'
 import Popover from './apps/Popover'
+import ProgressBar from './apps/ProgressBar'
 import Radio from './apps/Radio'
 import Scratchpad from './apps/Scratchpad'
 import SidePanel from './apps/SidePanel'
@@ -42,6 +43,7 @@ const APPS = {
   NavigationBar,
   PartitionBar,
   Popover,
+  ProgressBar,
   Radio,
   SidePanel,
   TabBar,
