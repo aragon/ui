@@ -5,7 +5,6 @@ import { useSpring, animated } from 'react-spring'
 import { springs } from '../../utils/styles'
 import { pause } from '../../utils/miscellaneous'
 import { warn } from '../../utils/environment'
-import { lerp } from '../../utils/math'
 import { theme } from '../../theme'
 
 const BAR_HEIGHT = 6
