@@ -7,9 +7,6 @@ export const springs = {
   // Super slow spring, for debugging purposes
   debug: { mass: 1, tension: 10, friction: 40 },
 
-  // Super slow spring, used for looping animations, like loaders, progress bars, etc.
-  sluggish: { mass: 10, tension: 20, friction: 17 },
-
   // Slow spring, can be used to move large things (e.g. a side panel).
   lazy: { mass: 1, tension: 120, friction: 20 },
 
