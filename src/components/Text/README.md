@@ -28,6 +28,17 @@ Set this property to a color value to change the text color.
 <Text color='tomato'>Text Example</Text>
 ```
 
+### `monospace`
+
+- Type: `Boolean`
+- Default value: `false`
+
+Set this property to a `true` to render the text using a monospace font.
+
+```jsx
+<Text monospace>0xcafe</Text>
+```
+
 ### `size`
 
 - Type: one of `'xsmall'`, `'small'`, `'normal'`, `'large'`, `'xlarge'`,` 'xxlarge'`

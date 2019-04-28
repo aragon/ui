@@ -10,7 +10,7 @@ const getCurrentWindowSize = () => ({
 
 const WINDOW_SIZE_BASE = { breakpoints: BREAKPOINTS, ...getCurrentWindowSize() }
 
-const { Provider, Consumer } = React.createContext(WINDOW_SIZE_BASE)
+const ViewportContext = React.createContext(WINDOW_SIZE_BASE)
 
 class ViewportProvider extends React.Component {
   static propTypes = {
@@ -98,18 +98,19 @@ class ViewportProvider extends React.Component {
     const { children } = this.props
     const { within, above, below } = this
     return (
-      <Provider value={{ ...windowSize, within, above, below }}>
+      <ViewportContext.Provider value={{ ...windowSize, within, above, below }}>
         {children}
-      </Provider>
+      </ViewportContext.Provider>
     )
   }
 }
 
 // React emits a warning message if `Provider` is attached to `Consumer`, this
 // is only to prevent it.
-const Viewport = props => <Consumer {...props} />
+const Viewport = props => <ViewportContext.Consumer {...props} />
 
 Viewport.Provider = ViewportProvider
 
+export const useViewport = () => React.useContext(ViewportContext)
 export { Viewport }
 export default Viewport

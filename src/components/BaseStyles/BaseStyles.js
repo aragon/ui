@@ -11,7 +11,13 @@ import overpassRegularWoff2 from './assets/overpass/overpass-regular.woff2'
 import overpassSemiBoldWoff from './assets/overpass/overpass-semibold.woff'
 import overpassSemiBoldWoff2 from './assets/overpass/overpass-semibold.woff2'
 
-const DEFAULT_FONT_FAMILY = 'overpass'
+import overpassMonoLightWoff from './assets/overpass-mono/overpass-mono-light.woff'
+import overpassMonoLightWoff2 from './assets/overpass-mono/overpass-mono-light.woff2'
+
+// Using generic names so we can change the font if needed, while using these
+// generic names in our components.
+const DEFAULT_FONT_FAMILY = 'aragon-ui'
+const MONOSPACE_FONT_FAMILY = 'aragon-ui-monospace'
 
 const DEFAULT_FONTS = {
   '400': [
@@ -25,6 +31,13 @@ const DEFAULT_FONTS = {
   '800': [
     { url: overpassSemiBoldWoff2, format: 'woff2' },
     { url: overpassSemiBoldWoff, format: 'woff', legacy: true },
+  ],
+}
+
+const MONOSPACE_FONTS = {
+  '400': [
+    { url: overpassMonoLightWoff2, format: 'woff2' },
+    { url: overpassMonoLightWoff, format: 'woff', legacy: true },
   ],
 }
 
@@ -68,6 +81,12 @@ class BaseStyles extends React.PureComponent {
         font-family: ${DEFAULT_FONT_FAMILY};
         src: ${this.fontSrc(DEFAULT_FONTS['800'], props)};
         font-weight: 800;
+        font-style: normal;
+      }
+      @font-face {
+        font-family: ${MONOSPACE_FONT_FAMILY};
+        src: ${this.fontSrc(MONOSPACE_FONTS['400'], props)};
+        font-weight: 400;
         font-style: normal;
       }
     `

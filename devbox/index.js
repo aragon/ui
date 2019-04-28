@@ -3,37 +3,43 @@ import ReactDOM from 'react-dom'
 import { Main } from '@aragon/ui'
 
 import AddressField from './apps/AddressField'
+import AppBarTabs from './apps/AppBarTabs'
 import AppView from './apps/AppView'
 import Button from './apps/Button'
 import Checkbox from './apps/Checkbox'
 import EmptyStateCard from './apps/EmptyStateCard'
 import EthIdenticon from './apps/EthIdenticon'
 import IdentityBadge from './apps/IdentityBadge'
+import Input from './apps/Input'
 import LineChart from './apps/LineChart'
 import LinkedSliders from './apps/LinkedSliders'
+import Modal from './apps/Modal'
 import NavigationBar from './apps/NavigationBar'
 import PartitionBar from './apps/PartitionBar'
 import Popover from './apps/Popover'
 import Radio from './apps/Radio'
+import Scratchpad from './apps/Scratchpad'
 import SidePanel from './apps/SidePanel'
 import TabBar from './apps/TabBar'
 import Timer from './apps/Timer'
+import TokenBadge from './apps/TokenBadge'
 import TransactionBadge from './apps/TransactionBadge'
 import TransactionProgress from './apps/TransactionProgress'
 import Viewport from './apps/Viewport'
-import Scratchpad from './apps/Scratchpad'
-import TokenBadge from './apps/TokenBadge'
 
 const APPS = {
   AddressField,
+  AppBarTabs,
   AppView,
   Button,
   Checkbox,
   EmptyStateCard,
   EthIdenticon,
   IdentityBadge,
+  Input,
   LineChart,
   LinkedSliders,
+  Modal,
   NavigationBar,
   PartitionBar,
   Popover,
@@ -41,10 +47,10 @@ const APPS = {
   SidePanel,
   TabBar,
   Timer,
+  TokenBadge,
   TransactionBadge,
   TransactionProgress,
   Viewport,
-  TokenBadge
 }
 
 class Index extends React.Component {

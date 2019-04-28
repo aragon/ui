@@ -27,6 +27,8 @@ import PageInfo from './pages/PageInfo'
 import PageProgressBar from './pages/PageProgressBar'
 import PageTransactionProgress from './pages/PageTransactionProgress'
 import PagePopover from './pages/PagePopover'
+import PageModal from './pages/PageModal'
+import PageRootPortal from './pages/PageRootPortal'
 
 // Containers
 import PageMain from './pages/PageMain'
@@ -106,9 +108,11 @@ export const PAGE_GROUPS = [
       [PageCircleGraph, 'CircleGraph'],
       [PageCountdown, 'Countdown'],
       [PageInfo, 'Info'],
+      [PageModal, 'Modal', '/Modal'],
       [PageProgressBar, 'ProgressBar'],
       [PageTransactionProgress, 'TransactionProgress'],
       [PagePopover, 'Popover'],
+      [PageRootPortal, 'RootPortal'],
     ],
   },
   {
@@ -123,6 +127,6 @@ export const PAGE_GROUPS = [
 ].map(group => ({ ...group, pages: group.pages.map(preparePage) }))
 
 export const PAGES = [
-  preparePage([PageHome, 'Aragon UI', '/']),
+  preparePage([PageHome, 'aragonUI', '/']),
   ...PAGE_GROUPS.reduce((pages, group) => pages.concat(group.pages), []),
 ]
