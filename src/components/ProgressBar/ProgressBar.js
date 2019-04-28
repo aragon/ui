@@ -1,43 +1,49 @@
 import React from 'react'
 import PropTypes from '../../proptypes'
-import styled from 'styled-components'
-import { useSpring, animated } from 'react-spring'
+import { useSpring, animated, interpolate } from 'react-spring'
 import { springs } from '../../utils/styles'
 import { pause } from '../../utils/miscellaneous'
 import { warn } from '../../utils/environment'
 import { theme } from '../../theme'
 
-const BAR_HEIGHT = 6
 const RADIUS = 2
+const BAR_HEIGHT = 6
 
-const transformCss = (scale, translate) =>
-  `scale3d(${scale}, 1, 1) translate3d(${translate}%, 0, 0)`
+const INDETERMINATE_BAR_WIDTH = 1 / 4
+const INDETERMINATE_ANIM_DURATION = [1200, 400]
 
-const springNormal = value => ({
+const springNormal = (value, restart, animate) => ({
   config: { ...springs.smooth, precision: 0.001 },
-  from: { transform: transformCss(0, 0) },
-  to: { transform: transformCss(value, 0) },
-  reset: false,
+  from: { scale: 0, x: 0 },
+  to: { scale: restart ? 0 : value, x: 0 },
+  reset: restart,
+  immediate: restart || !animate,
 })
 
-const springIndeterminate = () => ({
-  config: {
-    ...springs.sluggish,
-    precision: 0.01,
-    clamp: true,
-  },
-  from: { transform: transformCss(0.5, -100) },
+const springIndeterminate = (restart, animate) => ({
+  config: { duration: INDETERMINATE_ANIM_DURATION[0] },
+  from: { scale: INDETERMINATE_BAR_WIDTH, x: -INDETERMINATE_BAR_WIDTH },
   to: async next => {
+    const scale = INDETERMINATE_BAR_WIDTH
+
+    // Center the bar when not animated.
+    if (!animate) {
+      await next({ scale, x: 0.5 - scale / 2 })
+      return
+    }
+
+    // Indeterminate animation.
     while (true) {
-      await next({ transform: transformCss(0.5, 200) })
-      await pause(800)
+      await next({ scale, x: 1 })
+      await pause(INDETERMINATE_ANIM_DURATION[1])
     }
   },
-  reset: true,
+  reset: animate,
+  immediate: restart || !animate,
 })
 
-function ProgressBar({ color, progress, value }) {
-  // Support `progress` for a while
+const ProgressBar = React.memo(({ animate, color, progress, value }) => {
+  // Support `progress` for a while but warn if being used.
   if (value === -1 && typeof progress === 'number') {
     value = progress
     if (!ProgressBar._warned) {
@@ -53,46 +59,56 @@ function ProgressBar({ color, progress, value }) {
   // convenience in React).
   const indeterminate = value === -1
 
+  // `isSwitching` is set to `true` to reset the transition between the normal
+  // and indeterminate state, then set to `false` immediatly after.
+  const [isSwitching, setIsSwitching] = React.useState(false)
+  React.useEffect(() => setIsSwitching(!isSwitching), [indeterminate])
+  React.useEffect(() => setIsSwitching(false), [isSwitching])
+
   const transition = useSpring(
-    indeterminate ? springIndeterminate() : springNormal(value)
+    indeterminate
+      ? springIndeterminate(isSwitching, animate)
+      : springNormal(value, isSwitching, animate)
   )
 
   return (
     <div
       css={`
         width: 100%;
-        align-items: center;
+        height: ${BAR_HEIGHT}px;
+        background: ${theme.secondaryBackground};
+        border-radius: ${RADIUS}px;
+        overflow: hidden;
       `}
     >
-      <div
-        css={`
-          width: 100%;
-          height: ${BAR_HEIGHT}px;
-          background: ${theme.secondaryBackground};
-          border-radius: ${RADIUS}px;
-          overflow: hidden;
-        `}
-      >
-        <Bar color={color} style={transition} />
-      </div>
+      <animated.div
+        style={{
+          width: '100%',
+          height: `${BAR_HEIGHT}px`,
+          background: color,
+          borderRadius: `${indeterminate ? RADIUS : 0}px`,
+          transformOrigin: '0 0',
+          transform: interpolate(
+            [transition.x, transition.scale],
+            (x, s) => `translate3d(${x * 100}%, 0, 0) scale3d(${s}, 1, 1)`
+          ),
+        }}
+      />
     </div>
   )
-}
+})
 
 ProgressBar.defaultProps = {
+  animate: true,
+  color: theme.accent,
   value: -1,
 }
 
 ProgressBar.propTypes = {
+  animate: PropTypes.bool,
   color: PropTypes.string,
   progress: PropTypes._0to1,
   value: PropTypes.oneOfType([PropTypes._0to1, PropTypes.oneOf([-1])]),
 }
-
-const Bar = styled(animated.div)`
-  height: ${BAR_HEIGHT}px;
-  background: ${({ color }) => color || theme.accent};
-  transform-origin: 0 0;
-`
 
 export default ProgressBar
