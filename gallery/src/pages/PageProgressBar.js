@@ -9,7 +9,7 @@ const PageProgressBar = ({ title }) => (
   <Page title={title} readme={readme}>
     <Page.Demo>
       <Container>
-        <ProgressBar progress={0.3} />
+        <ProgressBar value={0.3} />
       </Container>
     </Page.Demo>
   </Page>
