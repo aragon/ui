@@ -9,27 +9,28 @@ import Text from '../Text/Text'
 let id = 0
 
 const move = pixel => `translate3d(0,${pixel}px,0)`
+
 const { Provider, Consumer: Toast } = React.createContext(() => {
   throw new Error(
     "For Toast to work it needs to be part of a ToastHub's tree, which has to be declared at an upper level!"
   )
 })
 
-class ToastHub extends React.PureComponent {
+class ToastHubProvider extends React.PureComponent {
   static propTypes = {
-    timeout: PropTypes.number,
+    children: PropTypes.node,
+    position: PropTypes.PropTypes.oneOf(['left', 'center', 'right']),
     showIndicator: PropTypes.bool,
     threshold: PropTypes.number,
-    position: PropTypes.PropTypes.oneOf(['left', 'center', 'right']),
+    timeout: PropTypes.number,
     top: PropTypes.bool,
-    children: PropTypes.node,
   }
 
   static defaultProps = {
-    timeout: 4000,
+    position: 'right',
     showIndicator: false,
     threshold: Infinity,
-    position: 'right',
+    timeout: 4000,
     top: false,
   }
 
@@ -84,33 +85,72 @@ class ToastHub extends React.PureComponent {
     return (
       <React.Fragment>
         <Provider value={this.add} children={children} />
-        <Container {...stylingProps(this)} position={position} top={top}>
-          <Transition
-            native
-            items={this.state.items}
-            keys={item => item.key}
-            from={{ opacity: 0, height: 0, life: '100%', transform: move(30) }}
-            enter={{ opacity: 1, height: 'auto', transform: move(0) }}
-            leave={this.leave}
-            onRest={this.remove}
-            config={this.config}
-          >
-            {item => ({ life, ...props }) => (
-              <Message style={props}>
-                <Content top={top}>
-                  {showIndicator && <Life top={top} style={{ right: life }} />}
-                  <Text.Paragraph>{item.msg}</Text.Paragraph>
-                </Content>
-              </Message>
-            )}
-          </Transition>
-        </Container>
+        <ToastList
+          config={this.config}
+          items={this.state.items}
+          leave={this.leave}
+          position={position}
+          remove={this.remove}
+          showIndicator={showIndicator}
+          top={top}
+          {...stylingProps(this)}
+        />
       </React.Fragment>
     )
   }
 }
 
-const Container = styled('div')`
+// ToastList is separated from ToastHubProvider so we can skip its rendering
+const ToastList = React.memo(
+  ({
+    config,
+    items,
+    leave,
+    position,
+    remove,
+    showIndicator,
+    top,
+    ...props
+  }) => (
+    <Container position={position} top={top} {...props}>
+      <Transition
+        native
+        items={items}
+        keys={item => item.key}
+        from={{ opacity: 0, height: 0, life: '100%', transform: move(30) }}
+        enter={{ opacity: 1, height: 'auto', transform: move(0) }}
+        leave={leave}
+        onRest={remove}
+        config={config}
+      >
+        {item =>
+          /* eslint-disable react/prop-types */
+          ({ life, ...props }) => (
+            <Message style={props}>
+              <Content top={top}>
+                {showIndicator && <Life top={top} style={{ right: life }} />}
+                <Text.Paragraph>{item.msg}</Text.Paragraph>
+              </Content>
+            </Message>
+          )
+        /* eslint-enable react/prop-types */
+        }
+      </Transition>
+    </Container>
+  )
+)
+
+ToastList.propTypes = {
+  showIndicator: PropTypes.bool,
+  position: PropTypes.PropTypes.oneOf(['left', 'center', 'right']),
+  top: PropTypes.bool,
+  config: PropTypes.func,
+  items: PropTypes.array,
+  leave: PropTypes.func,
+  remove: PropTypes.func,
+}
+
+const Container = styled.div`
   position: fixed;
   z-index: 1000;
   top: ${props => (props.top ? '30px' : 'unset')};
@@ -145,7 +185,7 @@ const Message = styled(animated.div)`
   }
 `
 
-const Content = styled('div')`
+const Content = styled.div`
   color: white;
   background: #445159;
   opacity: 0.9;
@@ -169,4 +209,4 @@ const Life = styled(animated.div)`
   height: 5px;
 `
 
-export { ToastHub, Toast }
+export { ToastHubProvider as ToastHub, Toast }
