@@ -1,39 +1,10 @@
-import React, { useState } from 'react'
+import React, { useCallback, useRef, useState } from 'react'
 import styled from 'styled-components'
-import { Button, ProgressBar } from '@aragon/ui'
+import { Button, ProgressBar, theme } from '@aragon/ui'
 
 function App() {
   const [value, setValue] = useState(-1)
-
-  const R = React.useRef(null)
-
-  const set0 = React.useCallback(
-    () => {
-      setValue(0)
-    },
-    [setValue]
-  )
-
-  const set05 = React.useCallback(
-    () => {
-      setValue(0.5)
-    },
-    [setValue]
-  )
-
-  const set1 = React.useCallback(
-    () => {
-      setValue(1)
-    },
-    [setValue]
-  )
-
-  const setIndeterminate = React.useCallback(
-    () => {
-      setValue(-1)
-    },
-    [setValue]
-  )
+  const clickCallback = value => () => setValue(value)
 
   return (
     <div
@@ -44,7 +15,7 @@ function App() {
         justify-content: center;
         height: 100vh;
         padding: 20px;
-        width: 400px;
+        width: 250px;
         margin: 0 auto;
       `}
     >
@@ -57,26 +28,41 @@ function App() {
           margin-bottom: 10px;
         `}
       >
-        <Button mode="secondary" size="small" onClick={set0} ref={R}>
-          0
-        </Button>
-        <Button mode="secondary" size="small" onClick={set05}>
-          0.5
-        </Button>
-        <Button mode="secondary" size="small" onClick={set1}>
-          1
-        </Button>
-        <Button mode="secondary" size="small" onClick={setIndeterminate}>
-          Indeterminate
-        </Button>
+        {[0, 0.5, 1, -1].map(v => (
+          <Button
+            key={v}
+            mode="secondary"
+            size="small"
+            onClick={clickCallback(v)}
+          >
+            {v}
+            {v === value && (
+              <span
+                css={`
+                  position: absolute;
+                  left: 0;
+                  right: 0;
+                  bottom: 0;
+                  height: 2px;
+                  background: ${theme.accent};
+                `}
+              />
+            )}
+          </Button>
+        ))}
       </div>
-      <div
-        css={`
-          width: 100%;
-        `}
-      >
-        <ProgressBar value={value} />
-      </div>
+      {[100, 50, 30].map(size => (
+        <div
+          key={size}
+          css={`
+            width: ${size}%;
+            margin-top: 20px;
+            align-self: flex-start;
+          `}
+        >
+          <ProgressBar value={value} />
+        </div>
+      ))}
     </div>
   )
 }
