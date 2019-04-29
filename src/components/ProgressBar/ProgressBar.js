@@ -3,7 +3,6 @@ import PropTypes from '../../proptypes'
 import styled, { keyframes } from 'styled-components'
 import { useSpring, animated, interpolate } from 'react-spring/hooks'
 import { springs } from '../../utils/styles'
-import { pause } from '../../utils/miscellaneous'
 import { warn } from '../../utils/environment'
 import { theme } from '../../theme'
 
