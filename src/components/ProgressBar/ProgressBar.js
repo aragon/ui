@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from '../../proptypes'
-import { useSpring, animated, interpolate } from 'react-spring'
+import styled, { keyframes } from 'styled-components'
+import { useSpring, animated, interpolate } from 'react-spring/hooks'
 import { springs } from '../../utils/styles'
 import { pause } from '../../utils/miscellaneous'
 import { warn } from '../../utils/environment'
@@ -9,38 +10,18 @@ import { theme } from '../../theme'
 const RADIUS = 2
 const BAR_HEIGHT = 6
 
-const INDETERMINATE_BAR_WIDTH = 1 / 4
-const INDETERMINATE_ANIM_DURATION = [1200, 400]
+const INDETERMINATE_WIDTH = 1 / 4
+const INDETERMINATE_DURATION = 1600
 
-const springNormal = (value, restart, animate) => ({
-  config: { ...springs.smooth, precision: 0.001 },
-  from: { scale: 0, x: 0 },
-  to: { scale: restart ? 0 : value, x: 0 },
-  reset: restart,
-  immediate: restart || !animate,
-})
-
-const springIndeterminate = (restart, animate) => ({
-  config: { duration: INDETERMINATE_ANIM_DURATION[0] },
-  from: { scale: INDETERMINATE_BAR_WIDTH, x: -INDETERMINATE_BAR_WIDTH },
-  to: async next => {
-    const scale = INDETERMINATE_BAR_WIDTH
-
-    // Center the bar when not animated.
-    if (!animate) {
-      await next({ scale, x: 0.5 - scale / 2 })
-      return
-    }
-
-    // Indeterminate animation.
-    while (true) {
-      await next({ scale, x: 1 })
-      await pause(INDETERMINATE_ANIM_DURATION[1])
-    }
-  },
-  reset: animate,
-  immediate: restart || !animate,
-})
+const indeterminateAnim = keyframes`
+  // x positions use -1px to anticipate any rounding issues
+  0% {
+    transform: translate3d(calc(-100% - 1px), 0, 0);
+  }
+  70%, 100% {
+    transform: translate3d(calc(${100 / INDETERMINATE_WIDTH}% + 1px), 0, 0);
+  }
+`
 
 const ProgressBar = React.memo(({ animate, color, progress, value }) => {
   // Support `progress` for a while but warn if being used.
@@ -59,17 +40,12 @@ const ProgressBar = React.memo(({ animate, color, progress, value }) => {
   // convenience in React).
   const indeterminate = value === -1
 
-  // `isSwitching` is set to `true` to reset the transition between the normal
-  // and indeterminate state, then set to `false` immediatly after.
-  const [isSwitching, setIsSwitching] = React.useState(false)
-  React.useEffect(() => setIsSwitching(!isSwitching), [indeterminate])
-  React.useEffect(() => setIsSwitching(false), [isSwitching])
-
-  const transition = useSpring(
-    indeterminate
-      ? springIndeterminate(isSwitching, animate)
-      : springNormal(value, isSwitching, animate)
-  )
+  const transition = useSpring({
+    config: { ...springs.smooth, precision: 0.001 },
+    from: { scale: 0, x: 0 },
+    to: { scale: value, x: 0 },
+    immediate: !animate,
+  })
 
   return (
     <div
@@ -81,13 +57,12 @@ const ProgressBar = React.memo(({ animate, color, progress, value }) => {
         overflow: hidden;
       `}
     >
-      <animated.div
+      <Bar
         style={{
-          width: '100%',
-          height: `${BAR_HEIGHT}px`,
+          width: `${(indeterminate ? INDETERMINATE_WIDTH : 1) * 100}%`,
           background: color,
           borderRadius: `${indeterminate ? RADIUS : 0}px`,
-          transformOrigin: '0 0',
+          animationName: `${indeterminate ? indeterminateAnim.name : 'none'}`,
           transform: interpolate(
             [transition.x, transition.scale],
             (x, s) => `translate3d(${x * 100}%, 0, 0) scale3d(${s}, 1, 1)`
@@ -97,6 +72,18 @@ const ProgressBar = React.memo(({ animate, color, progress, value }) => {
     </div>
   )
 })
+
+const Bar = styled(animated.div)`
+  width: 100%;
+  height: ${BAR_HEIGHT}px;
+  transform-origin: 0 0;
+
+  // this need to be defined here rather than as a style property, so that
+  // styled can inject the @keyframes (on demand since styled@v4).
+  animation: ${indeterminateAnim} ${INDETERMINATE_DURATION}ms ease-in-out
+    infinite;
+  animation-name: none;
+`
 
 ProgressBar.defaultProps = {
   animate: true,

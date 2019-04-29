@@ -86,7 +86,7 @@
     "react-blockies": "^1.4.0",
     "react-display-name": "^0.2.3",
     "react-onclickout": "^2.0.8",
-    "react-spring": "^8.0.19",
+    "react-spring": "^7.2.11",
     "recursive-copy": "^2.0.9"
   },
   "browserslist": {

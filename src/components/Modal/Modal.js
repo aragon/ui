@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { Transition, animated } from 'react-spring/renderprops'
+import { Transition, animated } from 'react-spring'
 import { Viewport } from '../../providers/Viewport'
 import EscapeOutside from '../EscapeOutside/EscapeOutside'
 import RootPortal from '../RootPortal/RootPortal'
