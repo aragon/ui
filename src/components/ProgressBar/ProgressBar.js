@@ -60,7 +60,7 @@ const ProgressBar = React.memo(({ animate, color, progress, value }) => {
   const indeterminate = value === -1
 
   // `isSwitching` is set to `true` to reset the transition between the normal
-  // and indeterminate state, then set to `false` immediatly after.
+  // and indeterminate state, then set to `false` immediately after.
   const [isSwitching, setIsSwitching] = React.useState(false)
   React.useEffect(() => setIsSwitching(!isSwitching), [indeterminate])
   React.useEffect(() => setIsSwitching(false), [isSwitching])
