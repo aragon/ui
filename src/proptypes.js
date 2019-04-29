@@ -7,7 +7,7 @@ function isEmpty(value) {
 
 // Require a prop to not be empty
 function requireProp(props, propName, componentName) {
-  return isEmpty()
+  return isEmpty(props[propName])
     ? new Error(
         `The prop \`${propName}\` is required for \`${componentName}\`.`
       )
@@ -16,7 +16,7 @@ function requireProp(props, propName, componentName) {
 
 // Accept any number in the 0 => 1 range
 function _0to1(props, propName, componentName) {
-  if (isEmpty()) {
+  if (isEmpty(props[propName])) {
     return null
   }
   if (
