@@ -5,7 +5,7 @@ import { prefixUrl } from '../../utils/url'
 
 const { Provider, Consumer } = React.createContext('')
 
-class PublicUrlProvider extends React.Component {
+class PublicUrlProvider extends React.PureComponent {
   static propTypes = {
     url: PropTypes.string.isRequired,
     children: PropTypes.node,
