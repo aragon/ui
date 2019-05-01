@@ -13,8 +13,9 @@ const FRAME_EVERY = 1000 / 30 // 30 FPS is enough for a ticker
 const formatUnit = v => String(v).padStart(2, '0')
 
 const formats = {
-  yMdms: 'yMdms',
-  yMdm: 'yMdm',
+  yMdhms: 'yMdhms',
+  yMdhm: 'yMdhm',
+  yMdh: 'yMdh',
   yMd: 'yMd',
   yM: 'yM',
   Mdhms: 'Mdhms',

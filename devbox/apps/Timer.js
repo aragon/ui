@@ -8,14 +8,15 @@ const HOURS = MINUTES * 60
 const DAYS = HOURS * 24
 
 const now = Date.now()
+const OVER_A_YEAR_END = 398
 
 const timers = [
   { start: -40 * SECONDS },
   { start: -40 * SECONDS, showEmpty: true },
   { start: -4 * DAYS, end: 20 * DAYS },
   { end: 1 * DAYS },
-  ...['yMd','yM','Mdhms', 'Mdhm','Mdh', 'Md', 'dhms', 'dhm', 'hms', 'hm', 'ms', 'm', 's'].map(format => ({
-    end: 398 * DAYS - 55 * SECONDS,
+  ...['yMdhms', 'yMdhm', 'yMdh', 'yMd', 'yM','Mdhms', 'Mdhm','Mdh', 'Md', 'dhms', 'dhm', 'hms', 'hm', 'ms', 'm', 's'].map(format => ({
+    end: OVER_A_YEAR_END * DAYS - 55 * SECONDS,
     format,
   })),
 ].map(timer => {
