@@ -108,7 +108,7 @@ export const PAGE_GROUPS = [
       [PageCircleGraph, 'CircleGraph'],
       [PageCountdown, 'Countdown'],
       [PageInfo, 'Info'],
-      [PageModal, 'Modal', '/Modal'],
+      [PageModal, 'Modal'],
       [PageProgressBar, 'ProgressBar'],
       [PageTransactionProgress, 'TransactionProgress'],
       [PagePopover, 'Popover'],
