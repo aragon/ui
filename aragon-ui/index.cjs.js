@@ -5,7 +5,8 @@ Object.defineProperty(exports, '__esModule', { value: true });
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
 var ReactDOM = _interopDefault(require('react-dom'));
-var React = _interopDefault(require('react'));
+var React = require('react');
+var React__default = _interopDefault(React);
 var styled = require('styled-components');
 var styled__default = _interopDefault(styled);
 
@@ -40,35 +41,35 @@ module.exports = _extends;
 });
 
 var Add = function Add(props) {
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: 22,
     height: 22,
     viewBox: "0 0 22 22"
-  }, props), React.createElement("g", {
+  }, props), React__default.createElement("g", {
     fill: "none",
     fillRule: "evenodd"
-  }, React.createElement("path", {
+  }, React__default.createElement("path", {
     d: "M0 0h22v22H0z"
-  }), React.createElement("path", {
+  }), React__default.createElement("path", {
     d: "M11 4.744c1.216 0 2.341.304 3.376.912a6.308 6.308 0 0 1 2.368 2.368 6.546 6.546 0 0 1 .912 3.376 6.546 6.546 0 0 1-.912 3.376 6.308 6.308 0 0 1-2.368 2.368 6.546 6.546 0 0 1-3.376.912 6.546 6.546 0 0 1-3.376-.912 6.428 6.428 0 0 1-2.368-2.384 6.517 6.517 0 0 1-.912-3.36c0-1.205.304-2.325.912-3.36A6.55 6.55 0 0 1 7.64 5.656 6.517 6.517 0 0 1 11 4.744z",
     stroke: "currentColor"
-  }), React.createElement("path", {
+  }), React__default.createElement("path", {
     fill: "currentColor",
     d: "M11.656 8.056v2.688h2.688v1.312h-2.688v2.688h-1.312v-2.688H7.656v-1.312h2.688V8.056z"
   })));
 };
 
 var Apps = function Apps(props) {
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: 22,
     height: 22,
     viewBox: "0 0 22 22"
-  }, props), React.createElement("g", {
+  }, props), React__default.createElement("g", {
     fill: "none",
     fillRule: "evenodd"
-  }, React.createElement("path", {
+  }, React__default.createElement("path", {
     d: "M0 0h22v22H0z"
-  }), React.createElement("path", {
+  }), React__default.createElement("path", {
     d: "M4.157 3.07C3.523 3.07 3 3.592 3 4.226v5.012c0 .635.523 1.157 1.157 1.157h5.012c.634 0 1.156-.522 1.156-1.157V4.226c0-.634-.522-1.156-1.156-1.156H4.157zm8.482 0c-.635 0-1.157.522-1.157 1.156v5.012c0 .635.522 1.157 1.157 1.157h5.012c.634 0 1.156-.522 1.156-1.157V4.226c0-.634-.522-1.156-1.156-1.156h-5.012zm-8.482.77h5.012c.22 0 .385.166.385.386v5.012c0 .22-.165.386-.385.386H4.157a.377.377 0 0 1-.386-.386V4.226c0-.22.165-.385.386-.385zm8.482 0h5.012c.22 0 .385.166.385.386v5.012c0 .22-.165.386-.385.386h-5.012a.377.377 0 0 1-.386-.386V4.226c0-.22.165-.385.386-.385zm2.463 7.706a.386.386 0 0 0-.343.391v2.892h-2.892a.386.386 0 1 0 0 .77h2.892v2.893a.386.386 0 1 0 .771 0V15.6h2.892a.386.386 0 1 0 0-.771H15.53v-2.892a.386.386 0 0 0-.428-.391zm-10.945.006c-.634 0-1.157.522-1.157 1.156v5.012c0 .635.523 1.157 1.157 1.157h5.012c.634 0 1.156-.522 1.156-1.157v-5.012c0-.634-.522-1.156-1.156-1.156H4.157zm0 .77h5.012c.22 0 .385.166.385.386v5.012c0 .22-.165.386-.385.386H4.157a.377.377 0 0 1-.386-.386v-5.012c0-.22.165-.385.386-.385z",
     fill: "currentColor",
     fillRule: "nonzero"
@@ -76,54 +77,54 @@ var Apps = function Apps(props) {
 };
 
 var ArrowRight = function ArrowRight(props) {
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: 12,
     height: 19,
     viewBox: "0 0 12 19",
     fill: "none"
-  }, props), React.createElement("path", {
+  }, props), React__default.createElement("path", {
     d: "M1.613 1L10.5 8.988m-9.049 8.779l9-8.795",
     stroke: "currentColor"
   }));
 };
 
 var Attention = function Attention(props) {
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: 22,
     height: 22,
     viewBox: "0 0 22 22"
-  }, props), React.createElement("g", {
+  }, props), React__default.createElement("g", {
     transform: "translate(4 4)",
     fill: "none",
     fillRule: "evenodd"
-  }, React.createElement("rect", {
+  }, React__default.createElement("rect", {
     fill: "#DAEAEF",
     width: 14,
     height: 14,
     rx: 7
-  }), React.createElement("path", {
+  }), React__default.createElement("path", {
     d: "M6.155 8.547h1.298V3.3H6.155v5.247zM6.045 11h1.529V9.537H6.045V11z",
     fill: "#6D777B"
   })));
 };
 
 var Blank = function Blank(props) {
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: 22,
     height: 22,
     viewBox: "0 0 22 22"
-  }, props), React.createElement("path", {
+  }, props), React__default.createElement("path", {
     d: "M17.155 2.375H4.845a.357.357 0 0 0-.345.345v16.559c0 .181.163.345.345.345h9.768c.09 0 .2-.037.254-.11l2.542-2.85a.345.345 0 0 0 .091-.236V2.72a.357.357 0 0 0-.345-.345zm-11.965.69h11.62v12.637h-2.25a.69.69 0 0 0-.69.69v2.542H5.19V3.064v.001zm9.369 15.742v-2.433h2.16l-2.16 2.433z",
     fill: "currentColor"
   }));
 };
 
 var Check = function Check(props) {
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: 14,
     height: 10,
     viewBox: "0 0 14 10"
-  }, props), React.createElement("path", {
+  }, props), React__default.createElement("path", {
     d: "M4.176 7.956L12.114 0l1.062 1.062-9 9L0 5.886l1.044-1.062z",
     fill: "#21D48E",
     fillRule: "evenodd"
@@ -131,10 +132,10 @@ var Check = function Check(props) {
 };
 
 var Close = function Close(props) {
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: 10,
     height: 10
-  }, props), React.createElement("path", {
+  }, props), React__default.createElement("path", {
     d: "M10 1.014L6.014 5 10 8.986 8.986 10 5 6.014 1.014 10 0 8.986 3.986 5 0 1.014 1.014 0 5 3.986 8.986 0z",
     fill: "#6D777B",
     fillRule: "evenodd",
@@ -143,22 +144,22 @@ var Close = function Close(props) {
 };
 
 var Copy = function Copy(props) {
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: 22,
     height: 22,
     viewBox: "0 0 22 22"
-  }, props), React.createElement("path", {
+  }, props), React__default.createElement("path", {
     d: "M12.263 5.806H6.651A1.66 1.66 0 0 0 5 7.457v9.892A1.66 1.66 0 0 0 6.651 19h5.612a1.66 1.66 0 0 0 1.652-1.651V7.457c0-.923-.746-1.651-1.652-1.651zm.994 11.525c0 .55-.443.994-.994.994H6.651a.993.993 0 0 1-.994-.994V7.457c0-.55.444-.994.994-.994h5.612c.55 0 .994.444.994.994v9.874zM16.72 4.65v9.892a1.66 1.66 0 0 1-1.651 1.651.337.337 0 0 1-.338-.337c0-.196.142-.338.338-.338.55 0 .994-.444.994-.994V4.651a.993.993 0 0 0-.994-.994H9.457a.993.993 0 0 0-.994.994.337.337 0 0 1-.338.338.327.327 0 0 1-.337-.338A1.688 1.688 0 0 1 9.458 3h5.61a1.66 1.66 0 0 1 1.652 1.651z",
     fill: "currentColor"
   }));
 };
 
 var Cross = function Cross(props) {
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: 11,
     height: 11,
     viewBox: "0 0 11 11"
-  }, props), React.createElement("path", {
+  }, props), React__default.createElement("path", {
     d: "M10.476 1.524L6.3 5.7l4.176 4.176-1.062 1.062-4.176-4.176-4.176 4.176L0 9.876 4.176 5.7 0 1.524 1.062.462l4.176 4.176L9.414.462z",
     fill: "#FB7777",
     fillRule: "evenodd"
@@ -166,223 +167,223 @@ var Cross = function Cross(props) {
 };
 
 var Error$1 = function Error(props) {
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: 22,
     height: 22,
     viewBox: "0 0 22 22"
-  }, props), React.createElement("g", {
+  }, props), React__default.createElement("g", {
     transform: "translate(4 4)",
     fill: "none",
     fillRule: "evenodd"
-  }, React.createElement("rect", {
+  }, React__default.createElement("rect", {
     fill: "#FF445D",
     width: 14,
     height: 14,
     rx: 7
-  }), React.createElement("path", {
+  }), React__default.createElement("path", {
     d: "M6.155 8.547h1.298V3.3H6.155v5.247zM6.045 11h1.529V9.537H6.045V11z",
     fill: "#FFF"
   })));
 };
 
 var Filter = function Filter(props) {
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: 22,
     height: 22,
     viewBox: "0 0 22 22",
     fill: "none"
-  }, props), React.createElement("path", {
+  }, props), React__default.createElement("path", {
     d: "M13.421 6.667h-9.79C3.275 6.667 3 6.377 3 6c0-.378.274-.667.632-.667h9.79C13.694 4.556 14.388 4 15.21 4c.822 0 1.537.556 1.79 1.333h1.368c.358 0 .632.29.632.667 0 .378-.274.667-.632.667H17C16.726 7.444 16.032 8 15.21 8c-.82 0-1.536-.556-1.789-1.333zM19 11c0 .378-.274.667-.632.667h-9.79C8.327 12.444 7.612 13 6.79 13c-.82 0-1.516-.556-1.79-1.333H3.632c-.358 0-.632-.29-.632-.667 0-.378.274-.667.632-.667H5C5.253 9.556 5.968 9 6.79 9c.82 0 1.515.556 1.789 1.333h9.79c.357 0 .631.29.631.667zm-.632 4.333H12.79C12.537 14.556 11.821 14 11 14c-.821 0-1.516.556-1.79 1.333H3.633c-.358 0-.632.29-.632.667 0 .378.274.667.632.667H9.21C9.463 17.444 10.179 18 11 18c.821 0 1.516-.556 1.79-1.333h5.578c.358 0 .632-.29.632-.667 0-.378-.274-.667-.632-.667z",
     fill: "currentColor"
   }));
 };
 
 var Fundraising = function Fundraising(props) {
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: 22,
     height: 22,
     viewBox: "0 0 22 22"
-  }, props), React.createElement("g", {
+  }, props), React__default.createElement("g", {
     fill: "none",
     fillRule: "evenodd"
-  }, React.createElement("path", {
+  }, React__default.createElement("path", {
     d: "M0 0h22v22H0z"
-  }), React.createElement("g", {
+  }), React__default.createElement("g", {
     stroke: "currentColor"
-  }, React.createElement("path", {
+  }, React__default.createElement("path", {
     d: "M6 12.26C6.402 13.75 9.137 15 12.475 15 16.089 15 19 13.534 19 11.875c0-.886-1.07-1.903-2.967-2.357",
     strokeLinecap: "round",
     strokeLinejoin: "round"
-  }), React.createElement("path", {
+  }), React__default.createElement("path", {
     d: "M16 6.88C16 8.536 13.1 10 9.5 10S3 8.536 3 6.88C3 5.224 5.9 4 9.5 4S16 5.224 16 6.88"
-  }), React.createElement("path", {
+  }), React__default.createElement("path", {
     d: "M6 12v2c0 1.667 2.9 3 6.5 3s6.5-1.333 6.5-3v-2c0 1.643-2.9 3.095-6.5 3.095S6 13.643 6 12z",
     strokeLinecap: "round",
     strokeLinejoin: "round"
-  }), React.createElement("path", {
+  }), React__default.createElement("path", {
     d: "M9.5 10.095C5.9 10.095 3 8.643 3 7v2c0 1.667 2.9 3 6.5 3S16 10.667 16 9V7c0 1.643-2.9 3.095-6.5 3.095"
   }))));
 };
 
 var Groups = function Groups(props) {
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: 22,
     height: 22,
     viewBox: "0 0 22 22"
-  }, props), React.createElement("g", {
+  }, props), React__default.createElement("g", {
     fill: "none",
     fillRule: "evenodd"
-  }, React.createElement("path", {
+  }, React__default.createElement("path", {
     d: "M0 0h22v22H0z"
-  }), React.createElement("path", {
+  }), React__default.createElement("path", {
     d: "M14.928 16.169l.395.22c.264.146.396.337.396.571v1.186a.753.753 0 0 1-.235.564.773.773 0 0 1-.556.227H4.79a.773.773 0 0 1-.557-.227.753.753 0 0 1-.234-.564V16.96c0-.215.132-.4.396-.557l.395-.234 3.032-1.64c-.556-.44-.942-1.026-1.157-1.758-.215-.733-.322-1.314-.322-1.744V9.05c0-.332.102-.662.307-.989.205-.327.474-.623.806-.886.332-.264.71-.479 1.135-.645a3.497 3.497 0 0 1 1.282-.249c.44 0 .87.083 1.29.25.419.165.793.38 1.12.644.327.263.59.559.79.886.2.327.301.657.301.989v1.977c0 .479-.095 1.075-.286 1.787-.19.713-.559 1.29-1.106 1.729l2.945 1.626zM14.78 18v-.835a.391.391 0 0 0-.102-.073l-.117-.059a.071.071 0 0 1-.037-.014.479.479 0 0 0-.051-.03l-2.945-1.626a.99.99 0 0 1-.337-.315.863.863 0 0 1-.146-.432.856.856 0 0 1 .066-.454.913.913 0 0 1 .285-.366c.4-.313.674-.76.82-1.34.147-.581.22-1.058.22-1.429V9.05c0-.342-.256-.733-.769-1.172a2.672 2.672 0 0 0-1.794-.66c-.664 0-1.262.22-1.794.66-.533.44-.799.83-.799 1.172v1.977c0 .371.088.848.264 1.429.176.58.464 1.027.864 1.34.117.098.208.22.271.366a.856.856 0 0 1 .066.454.863.863 0 0 1-.146.432.865.865 0 0 1-.337.3L5.23 17.005a.06.06 0 0 0-.029.007.115.115 0 0 0-.03.022.432.432 0 0 0-.124.059l-.11.073V18h9.844zm3.428-4.16l.395.22c.264.146.396.336.396.57v1.173a.753.753 0 0 1-.234.564.773.773 0 0 1-.557.227h-1.553a5.372 5.372 0 0 0-.183-.542.952.952 0 0 0-.3-.396h1.89v-.835a4.202 4.202 0 0 0-.103-.066.408.408 0 0 0-.117-.05.092.092 0 0 0-.037-.023.402.402 0 0 1-.051-.022l-2.988-1.626a.99.99 0 0 1-.337-.315.863.863 0 0 1-.147-.432.856.856 0 0 1 .066-.454.913.913 0 0 1 .286-.366c.4-.322.68-.774.842-1.355.161-.581.242-1.052.242-1.414V6.721c0-.352-.264-.747-.791-1.187a2.756 2.756 0 0 0-1.817-.659 2.981 2.981 0 0 0-1.787.6 2.301 2.301 0 0 0-.586-.102l-.6-.03c.341-.4.78-.737 1.318-1.01a3.608 3.608 0 0 1 1.655-.41c.44 0 .872.085 1.297.256a4.52 4.52 0 0 1 1.135.652c.332.264.6.562.806.894.205.332.307.664.307.996v1.977c0 .469-.102 1.062-.307 1.78-.205.718-.581 1.292-1.128 1.721l2.988 1.64z",
     fill: "currentColor"
   })));
 };
 
 var Home = function Home(props) {
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: 22,
     height: 22,
     viewBox: "0 0 22 22"
-  }, props), React.createElement("path", {
+  }, props), React__default.createElement("path", {
     d: "M17.884 9.993c.08.085.121.198.115.314a.484.484 0 0 1-.129.312.667.667 0 0 1-.143.09.375.375 0 0 1-.157.033c-.06 0-.12-.01-.176-.033a.338.338 0 0 1-.137-.103l-.586-.614v6.53a.419.419 0 0 1-.13.307.419.419 0 0 1-.307.13h-3.052a.419.419 0 0 1-.307-.13.419.419 0 0 1-.13-.307V12.16H9.268l-.014 4.362a.419.419 0 0 1-.13.307.419.419 0 0 1-.307.13H5.78a.43.43 0 0 1-.437-.437V9.993l-.586.613a.484.484 0 0 1-.314.13.428.428 0 0 1-.312-.117.484.484 0 0 1-.13-.312.428.428 0 0 1 .116-.314L10.7 3.135a.463.463 0 0 1 .15-.102.456.456 0 0 1 .34 0 .339.339 0 0 1 .137.102l6.557 6.858zM15.8 9.147c0-.019.003-.036.013-.054l-4.799-5.016-4.81 5.016a.26.26 0 0 0 .005.054.223.223 0 0 1 .007.055v6.885h2.168l.014-4.363a.419.419 0 0 1 .129-.307.419.419 0 0 1 .307-.13h4.348a.419.419 0 0 1 .307.13c.083.08.13.191.13.307v4.363h2.18v-6.94z",
     fill: "currentColor"
   }));
 };
 
 var Identity = function Identity(props) {
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: 22,
     height: 22,
     viewBox: "0 0 22 22"
-  }, props), React.createElement("g", {
+  }, props), React__default.createElement("g", {
     fill: "none",
     fillRule: "evenodd"
-  }, React.createElement("path", {
+  }, React__default.createElement("path", {
     d: "M0 0h22v22H0z"
-  }), React.createElement("path", {
+  }), React__default.createElement("path", {
     d: "M4.04 16.984V18h11.44v1H4.04a1.02 1.02 0 0 1-.731-.297A.943.943 0 0 1 3 18v-1.5c0-.281.173-.518.52-.71l.52-.29 4.566-2.078a3.891 3.891 0 0 1-.926-1.008 6.536 6.536 0 0 1-.61-1.21 6.431 6.431 0 0 1-.333-1.212A6.209 6.209 0 0 1 6.64 9V6.5c0-.417.135-.833.406-1.25a4.43 4.43 0 0 1 1.073-1.125 5.961 5.961 0 0 1 1.503-.813A4.82 4.82 0 0 1 11.32 3c.574 0 1.14.104 1.698.313a5.819 5.819 0 0 1 1.495.812c.439.333.796.708 1.073 1.125.276.417.414.833.414 1.25V9c0 .302-.032.651-.098 1.047a6.59 6.59 0 0 1-.324 1.21 5.86 5.86 0 0 1-.602 1.188 4.13 4.13 0 0 1-.91.992l1.381.61-.26 1-1.56-.703a1.045 1.045 0 0 1-.406-.32.958.958 0 0 1-.195-.477c-.01-.177.016-.344.082-.5a1.03 1.03 0 0 1 .308-.406c.564-.417.962-1.008 1.195-1.774.233-.765.349-1.388.349-1.867V6.5c0-.27-.108-.552-.325-.844a3.757 3.757 0 0 0-.837-.804 4.941 4.941 0 0 0-1.162-.61A3.744 3.744 0 0 0 11.32 4c-.444 0-.883.08-1.316.242a4.932 4.932 0 0 0-1.17.617 3.65 3.65 0 0 0-.837.813c-.211.292-.317.568-.317.828V9c0 .49.127 1.115.382 1.875.254.76.653 1.349 1.194 1.766a.969.969 0 0 1 .195 1.367c-.108.14-.243.247-.406.32l-4.566 2.078a1.041 1.041 0 0 0-.268.157c-.114.083-.171.223-.171.421zM18.5 16a.48.48 0 0 1 .352.148.48.48 0 0 1 .148.352.48.48 0 0 1-.148.352.48.48 0 0 1-.352.148H17v1.5a.48.48 0 0 1-.148.352.48.48 0 0 1-.352.148.48.48 0 0 1-.352-.148A.48.48 0 0 1 16 18.5V17h-1.5a.48.48 0 0 1-.352-.148A.48.48 0 0 1 14 16.5a.48.48 0 0 1 .148-.352A.48.48 0 0 1 14.5 16H16v-1.5a.48.48 0 0 1 .148-.352A.48.48 0 0 1 16.5 14a.48.48 0 0 1 .352.148.48.48 0 0 1 .148.352V16h1.5z",
     fill: "currentColor"
   })));
 };
 
 var Menu = function Menu(props) {
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: 18,
     height: 14,
     viewBox: "0 0 18 14"
-  }, props), React.createElement("path", {
+  }, props), React__default.createElement("path", {
     d: "M1 1h16M1 7h16M1 13h16",
     stroke: "currentColor"
   }));
 };
 
 var Notifications = function Notifications(props) {
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: 22,
     height: 22,
     viewBox: "0 0 22 22"
-  }, props), React.createElement("g", {
+  }, props), React__default.createElement("g", {
     fill: "none",
     fillRule: "evenodd"
-  }, React.createElement("path", {
+  }, React__default.createElement("path", {
     d: "M0 0h22v22H0z"
-  }), React.createElement("path", {
+  }), React__default.createElement("path", {
     d: "M17.271 13.367c.254.313.455.591.601.835a.731.731 0 0 1 .044.733.718.718 0 0 1-.571.424c-.264.04-.469.059-.616.059H13.99c0 .693-.244 1.284-.732 1.772a2.414 2.414 0 0 1-1.773.733 2.414 2.414 0 0 1-1.772-.733 2.414 2.414 0 0 1-.733-1.772H6.3c-.225 0-.457-.027-.696-.08a.732.732 0 0 1-.52-.403c-.117-.245-.107-.496.03-.755a6.56 6.56 0 0 1 .556-.857c.264-.342.552-.73.864-1.164.313-.435.469-.887.469-1.355V7.742c0-.664.115-1.286.344-1.867.23-.582.545-1.09.945-1.524.4-.434.874-.776 1.42-1.025a4.191 4.191 0 0 1 1.759-.374c.634 0 1.225.125 1.772.374a4.46 4.46 0 0 1 1.428 1.025c.406.435.723.942.953 1.524a5.04 5.04 0 0 1 .344 1.867v3.062c0 .478.149.942.447 1.391.297.45.583.84.856 1.172zm-5.786 3.574c.42 0 .78-.149 1.077-.446.298-.298.447-.657.447-1.077H9.962c0 .42.149.779.447 1.077.298.297.656.446 1.076.446zm5.347-2.52a8.139 8.139 0 0 0-.337-.425c-.322-.39-.657-.856-1.003-1.398a3.262 3.262 0 0 1-.52-1.794V7.742c0-.527-.09-1.02-.271-1.48a3.85 3.85 0 0 0-.74-1.2 3.511 3.511 0 0 0-1.106-.813c-.425-.2-.886-.3-1.384-.3-.489 0-.945.1-1.37.3-.425.2-.793.47-1.106.813a3.744 3.744 0 0 0-.732 1.2 4.102 4.102 0 0 0-.264 1.48v3.062c0 .634-.183 1.218-.55 1.75a46.606 46.606 0 0 1-1.157 1.619c-.063.088-.12.17-.168.249h10.708z",
     fill: "currentColor"
   })));
 };
 
 var Permissions = function Permissions(props) {
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: 22,
     height: 22,
     viewBox: "0 0 22 22"
-  }, props), React.createElement("g", {
+  }, props), React__default.createElement("g", {
     fill: "none",
     fillRule: "evenodd"
-  }, React.createElement("path", {
+  }, React__default.createElement("path", {
     d: "M0 0h22v22H0z"
-  }), React.createElement("g", {
+  }), React__default.createElement("g", {
     stroke: "currentColor"
-  }, React.createElement("path", {
+  }, React__default.createElement("path", {
     d: "M11.036 3.143L3.578 6.357V7.43h14.916V6.357l-7.458-3.214zm6.88 12.393H4.071c-.318 0-.577.242-.577.535v1.072h15V16.07c0-.293-.26-.535-.578-.535z",
     strokeLinecap: "round",
     strokeLinejoin: "round"
-  }), React.createElement("path", {
+  }), React__default.createElement("path", {
     d: "M5 7v8.034M8 7v8.275M11 7v8.034M14 7v8.275M17 7v8.275"
   }))));
 };
 
 var Plus = function Plus(props) {
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: 24,
     height: 24,
     viewBox: "0 0 24 24"
-  }, props), React.createElement("path", {
+  }, props), React__default.createElement("path", {
     d: "M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z",
     fill: "currentColor"
   }));
 };
 
 var Remove = function Remove(props) {
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: 22,
     height: 22,
     viewBox: "0 0 22 22"
-  }, props), React.createElement("g", {
+  }, props), React__default.createElement("g", {
     fill: "none",
     fillRule: "evenodd"
-  }, React.createElement("path", {
+  }, React__default.createElement("path", {
     d: "M0 0h22v22H0z"
-  }), React.createElement("path", {
+  }), React__default.createElement("path", {
     d: "M11 4.744c1.216 0 2.341.304 3.376.912a6.308 6.308 0 0 1 2.368 2.368 6.546 6.546 0 0 1 .912 3.376 6.546 6.546 0 0 1-.912 3.376 6.308 6.308 0 0 1-2.368 2.368 6.546 6.546 0 0 1-3.376.912 6.546 6.546 0 0 1-3.376-.912 6.428 6.428 0 0 1-2.368-2.384 6.517 6.517 0 0 1-.912-3.36c0-1.205.304-2.325.912-3.36A6.55 6.55 0 0 1 7.64 5.656 6.517 6.517 0 0 1 11 4.744z",
     stroke: "currentColor"
-  }), React.createElement("path", {
+  }), React__default.createElement("path", {
     fill: "currentColor",
     d: "M14.344 10.744v1.312H7.656v-1.312z"
   })));
 };
 
 var Settings = function Settings(props) {
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: 22,
     height: 22,
     viewBox: "0 0 22 22"
-  }, props), React.createElement("g", {
+  }, props), React__default.createElement("g", {
     fill: "none",
     fillRule: "evenodd"
-  }, React.createElement("path", {
+  }, React__default.createElement("path", {
     d: "M0 0h22v22H0z"
-  }), React.createElement("path", {
+  }), React__default.createElement("path", {
     d: "M18.063 9.08c.224.038.437.148.637.329.2.18.3.403.3.666v.938c0 .254-.1.459-.3.615-.2.156-.413.264-.637.322l-1.216.293a6.84 6.84 0 0 1-.154.418 4.008 4.008 0 0 1-.183.388l.644 1.084c.127.195.205.42.235.674a.766.766 0 0 1-.235.659l-.659.659a.847.847 0 0 1-.674.256 1.38 1.38 0 0 1-.688-.212l-1.055-.674a7.697 7.697 0 0 1-.41.19 4.595 4.595 0 0 1-.44.162l-.263 1.216a1.29 1.29 0 0 1-.33.637c-.18.2-.403.3-.666.3h-.938a.743.743 0 0 1-.615-.3 1.749 1.749 0 0 1-.322-.637L9.8 15.86a6.001 6.001 0 0 1-.469-.168 4.816 4.816 0 0 1-.454-.213l-1.084.689a1.308 1.308 0 0 1-.681.212.813.813 0 0 1-.667-.256l-.674-.66a.785.785 0 0 1-.22-.658c.03-.254.103-.479.22-.674l.689-1.143a8.068 8.068 0 0 1-.169-.359 3.029 3.029 0 0 1-.139-.388l-1.215-.293a1.749 1.749 0 0 1-.638-.322.743.743 0 0 1-.3-.615v-.938c0-.263.1-.486.3-.666.2-.181.413-.29.638-.33l1.2-.264a3.44 3.44 0 0 1 .147-.41c.059-.136.117-.268.176-.395l-.689-1.143a1.664 1.664 0 0 1-.22-.674.785.785 0 0 1 .22-.659l.674-.659a.813.813 0 0 1 .667-.256c.268.014.495.085.68.212l1.085.689a5.325 5.325 0 0 1 .908-.381l.308-1.202a1.58 1.58 0 0 1 .307-.637.76.76 0 0 1 .63-.3h.938c.263 0 .483.1.659.3.176.2.288.408.337.623l.264 1.23a6.533 6.533 0 0 1 .85.352l1.054-.674a1.38 1.38 0 0 1 .688-.212.847.847 0 0 1 .674.256l.66.66a.766.766 0 0 1 .234.658 1.55 1.55 0 0 1-.235.674l-.644 1.084c.068.137.134.276.198.418.063.141.114.29.153.446l1.201.264zm0 1.86l.014-.836a.515.515 0 0 0-.205-.102l-1.743-.396-.161-.512a2.474 2.474 0 0 0-.117-.352 4.109 4.109 0 0 0-.176-.366l-.235-.469.923-1.538a.474.474 0 0 0 .066-.117.28.28 0 0 0 .022-.088l-.615-.6a.348.348 0 0 0-.19.058l-1.51.967-.483-.25a11.505 11.505 0 0 0-.351-.168 1.904 1.904 0 0 0-.366-.124l-.513-.176-.381-1.772a.431.431 0 0 0-.044-.11l-.03-.051h-.864a.34.34 0 0 0-.058.087.52.52 0 0 0-.044.147l-.425 1.7-.498.16a4.51 4.51 0 0 0-.762.322l-.483.25-1.567-.997-.074-.036a.671.671 0 0 0-.088-.037l-.615.615c0 .03.008.064.022.103a.898.898 0 0 0 .066.132l.952 1.582-.234.454a8.76 8.76 0 0 0-.154.351 2.79 2.79 0 0 0-.11.323l-.16.512-1.773.396a.537.537 0 0 0-.096.044.199.199 0 0 1-.066.03v.863c.02.02.05.037.088.052a.81.81 0 0 0 .147.036l1.714.44.16.498a3.144 3.144 0 0 0 .265.615l.22.454-.953 1.597a.474.474 0 0 0-.066.117.298.298 0 0 0-.022.103l.615.6c.03 0 .062-.007.096-.022a.59.59 0 0 0 .095-.051l1.538-.982.483.25a4.51 4.51 0 0 0 .762.322l.498.16.44 1.73c.01.048.022.09.036.124a.254.254 0 0 0 .051.08h.85a.515.515 0 0 0 .103-.19l.38-1.743.513-.176a5.14 5.14 0 0 0 .703-.293l.484-.249 1.538.982.073.036a.72.72 0 0 0 .088.037l.615-.615a.298.298 0 0 0-.022-.103.826.826 0 0 0-.066-.132l-.923-1.523.235-.469c.058-.107.11-.217.154-.33.044-.112.085-.227.124-.344l.161-.483 1.743-.44a.635.635 0 0 0 .125-.036.254.254 0 0 0 .08-.052zM11.5 7.687c.781 0 1.448.273 2 .82a2.7 2.7 0 0 1 .827 1.992 2.7 2.7 0 0 1-.827 1.992 2.737 2.737 0 0 1-2 .82 2.72 2.72 0 0 1-1.985-.82 2.7 2.7 0 0 1-.828-1.992 2.7 2.7 0 0 1 .828-1.992 2.72 2.72 0 0 1 1.985-.82zm0 4.687c.518 0 .96-.183 1.326-.55.366-.366.549-.807.549-1.325 0-.518-.183-.96-.55-1.326a1.806 1.806 0 0 0-1.325-.549c-.518 0-.96.183-1.326.55a1.804 1.804 0 0 0-.549 1.325c0 .518.183.96.55 1.326.366.366.807.549 1.325.549z",
     fill: "currentColor"
   })));
 };
 
 var Share = function Share(props) {
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: 16,
     height: 14,
     viewBox: "0 0 16 14"
-  }, props), React.createElement("g", {
+  }, props), React__default.createElement("g", {
     fill: "none",
     fillRule: "evenodd"
-  }, React.createElement("path", {
+  }, React__default.createElement("path", {
     d: "M-3-4h22v22H-3z"
-  }), React.createElement("path", {
+  }), React__default.createElement("path", {
     d: "M.531 13.719a.44.44 0 0 1-.312-.117.522.522 0 0 1-.157-.305c0-.042-.018-.3-.054-.774-.037-.474-.013-1.054.07-1.742.083-.687.258-1.43.524-2.226A6.74 6.74 0 0 1 1.89 6.313 6.89 6.89 0 0 1 3.125 5.18a7.514 7.514 0 0 1 1.523-.836 9.899 9.899 0 0 1 1.797-.54c.64-.13 1.326-.205 2.055-.226L8.516.781a.48.48 0 0 1 .078-.273.52.52 0 0 1 .203-.18.537.537 0 0 1 .281-.047c.094.01.177.047.25.11l6.485 5.312a.513.513 0 0 1 .187.39.498.498 0 0 1-.188.391L9.329 11.86a.453.453 0 0 1-.25.11.537.537 0 0 1-.281-.047.501.501 0 0 1-.203-.188.493.493 0 0 1-.078-.265L8.5 8.594c-1.75 0-3.125.234-4.125.703s-1.75.99-2.25 1.562c-.5.573-.815 1.107-.945 1.602-.13.495-.196.763-.196.805a.538.538 0 0 1-.132.32.387.387 0 0 1-.305.133H.53zm8.485-6.125c.062 0 .125.013.187.039a.72.72 0 0 1 .172.101.777.777 0 0 1 .102.164.473.473 0 0 1 .039.196v2.312l5.203-4.312-5.203-4.266v2.25a.48.48 0 0 1-.149.352.48.48 0 0 1-.351.148c-.709 0-1.375.05-2 .149a8.793 8.793 0 0 0-1.743.453 7.012 7.012 0 0 0-1.46.75 5.65 5.65 0 0 0-1.157 1.039 6.162 6.162 0 0 0-1.148 1.89 8.291 8.291 0 0 0-.492 1.922c.27-.375.604-.752 1-1.133.395-.38.903-.72 1.523-1.023.62-.302 1.375-.55 2.266-.742.89-.193 1.96-.29 3.21-.29z",
     fill: "currentColor"
   })));
 };
 
 var Time = function Time(props) {
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: 13,
     height: 13,
     viewBox: "0 0 13 13"
-  }, props), React.createElement("path", {
+  }, props), React__default.createElement("path", {
     d: "M6.5 11.76c.8 0 1.535-.2 2.205-.6.66-.39 1.185-.92 1.575-1.59.39-.67.585-1.405.585-2.205S10.67 5.83 10.28 5.16a4.403 4.403 0 0 0-1.575-1.575A4.305 4.305 0 0 0 6.5 3c-.8 0-1.535.195-2.205.585-.66.39-1.185.915-1.575 1.575a4.305 4.305 0 0 0-.585 2.205c0 .8.195 1.535.585 2.205.39.67.915 1.2 1.575 1.59.67.4 1.405.6 2.205.6zm0-10.02c1.03 0 1.98.255 2.85.765.85.49 1.52 1.16 2.01 2.01.51.87.765 1.82.765 2.85s-.255 1.98-.765 2.85c-.49.85-1.16 1.52-2.01 2.01-.87.51-1.82.765-2.85.765s-1.98-.255-2.85-.765a5.386 5.386 0 0 1-2.01-2.01 5.535 5.535 0 0 1-.765-2.85c0-1.03.255-1.98.765-2.85.49-.85 1.16-1.52 2.01-2.01.87-.51 1.82-.765 2.85-.765zm.33 2.52v3.315L9.32 9.06l-.51.765L5.885 8.01V4.26h.945zM3.95 1.395l-2.895 2.37L.26 2.82 3.125.45l.825.945zm8.79 1.425l-.795.945-2.895-2.46.825-.945 2.865 2.46z",
     fill: "#6D777B",
     fillRule: "evenodd",
@@ -391,16 +392,16 @@ var Time = function Time(props) {
 };
 
 var Wallet = function Wallet(props) {
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: 22,
     height: 22,
     viewBox: "0 0 22 22"
-  }, props), React.createElement("g", {
+  }, props), React__default.createElement("g", {
     fill: "none",
     fillRule: "evenodd"
-  }, React.createElement("path", {
+  }, React__default.createElement("path", {
     d: "M0 0h22v22H0z"
-  }), React.createElement("path", {
+  }), React__default.createElement("path", {
     d: "M19 7.186v8.642c0 .39-.137.723-.41.996-.274.274-.606.41-.996.41H5.406c-.39 0-.722-.136-.996-.41a1.356 1.356 0 0 1-.41-.996v-7.5c0-.38.137-.708.41-.981.274-.274.6-.415.982-.425h.468V5.047c0-.39.14-.723.418-.996a1.36 1.36 0 0 1 .989-.41l10.59 2.109c.528.146.85.38.967.703.117.322.176.567.176.733zM6.798 5.046v1.876h10.327c.186.01.308-.03.366-.117l.088-.132L7.237 4.578a.467.467 0 0 0-.44.469zm11.264 10.782V7.391c0 .156-.1.273-.3.351-.2.078-.412.117-.637.117H5.406a.45.45 0 0 0-.33.14.45.45 0 0 0-.138.33v7.5a.45.45 0 0 0 .139.329.45.45 0 0 0 .33.139h12.187a.45.45 0 0 0 .33-.14.45.45 0 0 0 .139-.329zm-11.25-4.687c.254 0 .474.092.66.278a.901.901 0 0 1 .278.66.894.894 0 0 1-.278.666.913.913 0 0 1-.66.27.906.906 0 0 1-.666-.27.906.906 0 0 1-.271-.667c0-.254.09-.474.271-.66a.894.894 0 0 1 .667-.277z",
     fill: "currentColor"
   })));
@@ -5438,11 +5439,11 @@ var Media = function (_React$Component) {
 
 
     return render ? matches ? render() : null : children ? typeof children === "function" ? children(matches) : !Array.isArray(children) || children.length // Preact defaults to empty children array
-    ? matches ? React.Children.only(children) : null : null : null;
+    ? matches ? React__default.Children.only(children) : null : null : null;
   };
 
   return Media;
-}(React.Component);
+}(React__default.Component);
 
 Media.propTypes = {
   defaultMatches: propTypes$1.bool,
@@ -5483,7 +5484,7 @@ var BreakPoint = function BreakPoint(_ref) {
     query.maxWidth = BREAKPOINTS[to] - 1;
   }
 
-  return React.createElement(Media, _extends_1({
+  return React__default.createElement(Media, _extends_1({
     query: query,
     defaultMatches: false
   }, props), function (ok) {
@@ -5998,12 +5999,12 @@ var observe = function observe(_observe) {
 
 
           delete props.observable;
-          return React.createElement(Component, _extends_1({}, this.state, props));
+          return React__default.createElement(Component, _extends_1({}, this.state, props));
         }
       }]);
 
       return _class;
-    }(React.Component), defineProperty(_class, "displayName", "Observe(".concat(getDisplayName(Component), ")")), defineProperty(_class, "propTypes", {
+    }(React__default.Component), defineProperty(_class, "displayName", "Observe(".concat(getDisplayName(Component), ")")), defineProperty(_class, "propTypes", {
       observable: function observable(_ref2, _, componentName) {
         var _observable = _ref2.observable;
 
@@ -6024,14 +6025,14 @@ var ensureTrailingSlash = function ensureTrailingSlash(path) {
   return path.endsWith('/') ? path : "".concat(path, "/");
 };
 
-var _React$createContext = React.createContext(''),
+var _React$createContext = React__default.createContext(''),
     Provider = _React$createContext.Provider,
     Consumer = _React$createContext.Consumer;
 
 var PublicUrlProvider =
 /*#__PURE__*/
-function (_React$Component) {
-  inherits$1(PublicUrlProvider, _React$Component);
+function (_React$PureComponent) {
+  inherits$1(PublicUrlProvider, _React$PureComponent);
 
   function PublicUrlProvider() {
     classCallCheck$1(this, PublicUrlProvider);
@@ -6045,14 +6046,14 @@ function (_React$Component) {
       var _this$props = this.props,
           url = _this$props.url,
           children = _this$props.children;
-      return React.createElement(Provider, {
+      return React__default.createElement(Provider, {
         value: url
       }, children);
     }
   }]);
 
   return PublicUrlProvider;
-}(React.Component); // HOC wrapper
+}(React__default.PureComponent); // HOC wrapper
 
 
 defineProperty(PublicUrlProvider, "propTypes", {
@@ -6062,8 +6063,8 @@ defineProperty(PublicUrlProvider, "propTypes", {
 
 var hocWrap = function hocWrap(Component) {
   var HOC = function HOC(props) {
-    return React.createElement(Consumer, null, function (url) {
-      return React.createElement(Component, _extends_1({}, props, {
+    return React__default.createElement(Consumer, null, function (url) {
+      return React__default.createElement(Component, _extends_1({}, props, {
         publicUrl: url
       }));
     });
@@ -6082,7 +6083,7 @@ var styledUrl = function styledUrl(url) {
 };
 
 var PublicUrl = function PublicUrl(props) {
-  return React.createElement(Consumer, props);
+  return React__default.createElement(Consumer, props);
 };
 
 PublicUrl.Provider = PublicUrlProvider;
@@ -6150,7 +6151,7 @@ function (_React$Component) {
   }]);
 
   return Redraw;
-}(React.Component);
+}(React__default.Component);
 
 defineProperty(Redraw, "propTypes", {
   interval: propTypes.number,
@@ -6163,10 +6164,10 @@ defineProperty(Redraw, "defaultProps", {
 
 var hocWrap$1 = function hocWrap(Component, interval) {
   var HOC = function HOC(props) {
-    return React.createElement(Redraw, {
+    return React__default.createElement(Redraw, {
       interval: interval
     }, function () {
-      return React.createElement(Component, props);
+      return React__default.createElement(Component, props);
     });
   };
 
@@ -6273,7 +6274,7 @@ function (_React$Component) {
   }]);
 
   return RedrawFromDate;
-}(React.Component);
+}(React__default.Component);
 
 defineProperty(RedrawFromDate, "propTypes", {
   children: propTypes.func.isRequired,
@@ -6282,10 +6283,10 @@ defineProperty(RedrawFromDate, "propTypes", {
 
 var hocWrap$2 = function hocWrap(Component) {
   var HOC = function HOC(props) {
-    return React.createElement(RedrawFromDate, {
+    return React__default.createElement(RedrawFromDate, {
       fromDate: props.fromDate
     }, function () {
-      return React.createElement(Component, props);
+      return React__default.createElement(Component, props);
     });
   };
 
@@ -6298,7 +6299,7 @@ var hocWrap$2 = function hocWrap(Component) {
 
 RedrawFromDate.hocWrap = hocWrap$2;
 
-var _React$createContext$1 = React.createContext(null),
+var _React$createContext$1 = React__default.createContext(null),
     Provider$1 = _React$createContext$1.Provider,
     Consumer$1 = _React$createContext$1.Consumer;
 
@@ -6320,7 +6321,7 @@ function (_React$Component) {
 
     _this = possibleConstructorReturn$1(this, (_getPrototypeOf2 = getPrototypeOf(RootProvider)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
-    defineProperty(assertThisInitialized(assertThisInitialized(_this)), "_element", React.createRef());
+    defineProperty(assertThisInitialized(assertThisInitialized(_this)), "_element", React__default.createRef());
 
     defineProperty(assertThisInitialized(assertThisInitialized(_this)), "state", {
       element: null
@@ -6341,9 +6342,9 @@ function (_React$Component) {
     value: function render() {
       var element = this.state.element;
       var children = this.props.children;
-      return React.createElement(Provider$1, {
+      return React__default.createElement(Provider$1, {
         value: element
-      }, React.createElement("div", {
+      }, React__default.createElement("div", {
         ref: this._element
       },
       /*
@@ -6362,14 +6363,14 @@ function (_React$Component) {
   }]);
 
   return RootProvider;
-}(React.Component);
+}(React__default.Component);
 
 defineProperty(RootProvider, "propTypes", {
   children: propTypes.node
 });
 
 var Root = function Root(props) {
-  return React.createElement(Consumer$1, props);
+  return React__default.createElement(Consumer$1, props);
 };
 
 Root.Provider = RootProvider;
@@ -6919,7 +6920,7 @@ var WINDOW_SIZE_BASE = objectSpread({
   breakpoints: BREAKPOINTS
 }, getCurrentWindowSize());
 
-var ViewportContext = React.createContext(WINDOW_SIZE_BASE);
+var ViewportContext = React__default.createContext(WINDOW_SIZE_BASE);
 
 var ViewportProvider =
 /*#__PURE__*/
@@ -7036,7 +7037,7 @@ function (_React$Component) {
       var within = this.within,
           above = this.above,
           below = this.below;
-      return React.createElement(ViewportContext.Provider, {
+      return React__default.createElement(ViewportContext.Provider, {
         value: objectSpread({}, windowSize, {
           within: within,
           above: above,
@@ -7047,7 +7048,7 @@ function (_React$Component) {
   }]);
 
   return ViewportProvider;
-}(React.Component); // React emits a warning message if `Provider` is attached to `Consumer`, this
+}(React__default.Component); // React emits a warning message if `Provider` is attached to `Consumer`, this
 // is only to prevent it.
 
 
@@ -7061,12 +7062,12 @@ defineProperty(ViewportProvider, "defaultProps", {
 });
 
 var Viewport = function Viewport(props) {
-  return React.createElement(ViewportContext.Consumer, props);
+  return React__default.createElement(ViewportContext.Consumer, props);
 };
 
 Viewport.Provider = ViewportProvider;
 var useViewport = function useViewport() {
-  return React.useContext(ViewportContext);
+  return React__default.useContext(ViewportContext);
 };
 
 var runtime = createCommonjsModule(function (module) {
@@ -7868,6 +7869,20 @@ function _asyncToGenerator(fn) {
 
 var asyncToGenerator = _asyncToGenerator;
 
+function _inheritsLoose(subClass, superClass) {
+  subClass.prototype = Object.create(superClass.prototype);
+  subClass.prototype.constructor = subClass;
+  subClass.__proto__ = superClass;
+}
+
+function _assertThisInitialized$1(self) {
+  if (self === void 0) {
+    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+  }
+
+  return self;
+}
+
 function _extends() {
   _extends = Object.assign || function (target) {
     for (var i = 1; i < arguments.length; i++) {
@@ -7884,20 +7899,6 @@ function _extends() {
   };
 
   return _extends.apply(this, arguments);
-}
-
-function _inheritsLoose(subClass, superClass) {
-  subClass.prototype = Object.create(superClass.prototype);
-  subClass.prototype.constructor = subClass;
-  subClass.__proto__ = superClass;
-}
-
-function _assertThisInitialized$1(self) {
-  if (self === void 0) {
-    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-  }
-
-  return self;
 }
 
 function _objectWithoutPropertiesLoose$1(source, excluded) {
@@ -7929,6 +7930,7 @@ var now$1 = function now() {
   return Date.now();
 };
 var defaultElement = undefined;
+var createAnimatedStyle = undefined;
 var injectApplyAnimatedValues = function injectApplyAnimatedValues(fn, transform) {
   return applyAnimatedValues = {
     fn: fn,
@@ -7955,6 +7957,9 @@ var injectNow = function injectNow(nowFn) {
 var injectDefaultElement = function injectDefaultElement(el) {
   return defaultElement = el;
 };
+var injectCreateAnimatedStyle = function injectCreateAnimatedStyle(factory) {
+  return createAnimatedStyle = factory;
+};
 
 var Globals = /*#__PURE__*/Object.freeze({
   get bugfixes () { return bugfixes; },
@@ -7965,14 +7970,204 @@ var Globals = /*#__PURE__*/Object.freeze({
   get interpolation () { return interpolation; },
   get now () { return now$1; },
   get defaultElement () { return defaultElement; },
+  get createAnimatedStyle () { return createAnimatedStyle; },
   injectApplyAnimatedValues: injectApplyAnimatedValues,
   injectColorNames: injectColorNames,
   injectBugfixes: injectBugfixes,
   injectInterpolation: injectInterpolation,
   injectFrame: injectFrame,
   injectNow: injectNow,
-  injectDefaultElement: injectDefaultElement
+  injectDefaultElement: injectDefaultElement,
+  injectCreateAnimatedStyle: injectCreateAnimatedStyle
 });
+
+var Animated =
+/*#__PURE__*/
+function () {
+  function Animated() {}
+
+  var _proto = Animated.prototype;
+
+  _proto.attach = function attach() {};
+
+  _proto.detach = function detach() {};
+
+  _proto.getValue = function getValue() {};
+
+  _proto.getAnimatedValue = function getAnimatedValue() {
+    return this.getValue();
+  };
+
+  _proto.addChild = function addChild(child) {};
+
+  _proto.removeChild = function removeChild(child) {};
+
+  _proto.getChildren = function getChildren() {
+    return [];
+  };
+
+  return Animated;
+}();
+
+var getValues = function getValues(object) {
+  return Object.keys(object).map(function (k) {
+    return object[k];
+  });
+};
+
+var AnimatedWithChildren =
+/*#__PURE__*/
+function (_Animated) {
+  _inheritsLoose(AnimatedWithChildren, _Animated);
+
+  function AnimatedWithChildren() {
+    var _this;
+
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    _this = _Animated.call.apply(_Animated, [this].concat(args)) || this;
+    _this.children = [];
+
+    _this.getChildren = function () {
+      return _this.children;
+    };
+
+    _this.getPayload = function (index) {
+      if (index === void 0) {
+        index = undefined;
+      }
+
+      return index !== void 0 && _this.payload ? _this.payload[index] : _this.payload || _assertThisInitialized$1(_assertThisInitialized$1(_this));
+    };
+
+    return _this;
+  }
+
+  var _proto = AnimatedWithChildren.prototype;
+
+  _proto.addChild = function addChild(child) {
+    if (this.children.length === 0) this.attach();
+    this.children.push(child);
+  };
+
+  _proto.removeChild = function removeChild(child) {
+    var index = this.children.indexOf(child);
+    this.children.splice(index, 1);
+    if (this.children.length === 0) this.detach();
+  };
+
+  return AnimatedWithChildren;
+}(Animated);
+var AnimatedArrayWithChildren =
+/*#__PURE__*/
+function (_AnimatedWithChildren) {
+  _inheritsLoose(AnimatedArrayWithChildren, _AnimatedWithChildren);
+
+  function AnimatedArrayWithChildren() {
+    var _this2;
+
+    for (var _len2 = arguments.length, args = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+      args[_key2] = arguments[_key2];
+    }
+
+    _this2 = _AnimatedWithChildren.call.apply(_AnimatedWithChildren, [this].concat(args)) || this;
+    _this2.payload = [];
+
+    _this2.getAnimatedValue = function () {
+      return _this2.getValue();
+    };
+
+    _this2.attach = function () {
+      return _this2.payload.forEach(function (p) {
+        return p instanceof Animated && p.addChild(_assertThisInitialized$1(_assertThisInitialized$1(_this2)));
+      });
+    };
+
+    _this2.detach = function () {
+      return _this2.payload.forEach(function (p) {
+        return p instanceof Animated && p.removeChild(_assertThisInitialized$1(_assertThisInitialized$1(_this2)));
+      });
+    };
+
+    return _this2;
+  }
+
+  return AnimatedArrayWithChildren;
+}(AnimatedWithChildren);
+var AnimatedObjectWithChildren =
+/*#__PURE__*/
+function (_AnimatedWithChildren2) {
+  _inheritsLoose(AnimatedObjectWithChildren, _AnimatedWithChildren2);
+
+  function AnimatedObjectWithChildren() {
+    var _this3;
+
+    for (var _len3 = arguments.length, args = new Array(_len3), _key3 = 0; _key3 < _len3; _key3++) {
+      args[_key3] = arguments[_key3];
+    }
+
+    _this3 = _AnimatedWithChildren2.call.apply(_AnimatedWithChildren2, [this].concat(args)) || this;
+    _this3.payload = {};
+
+    _this3.getAnimatedValue = function () {
+      return _this3.getValue(true);
+    };
+
+    _this3.attach = function () {
+      return getValues(_this3.payload).forEach(function (s) {
+        return s instanceof Animated && s.addChild(_assertThisInitialized$1(_assertThisInitialized$1(_this3)));
+      });
+    };
+
+    _this3.detach = function () {
+      return getValues(_this3.payload).forEach(function (s) {
+        return s instanceof Animated && s.removeChild(_assertThisInitialized$1(_assertThisInitialized$1(_this3)));
+      });
+    };
+
+    return _this3;
+  }
+
+  var _proto2 = AnimatedObjectWithChildren.prototype;
+
+  _proto2.getValue = function getValue(animated) {
+    if (animated === void 0) {
+      animated = false;
+    }
+
+    var payload = {};
+
+    for (var key in this.payload) {
+      var value = this.payload[key];
+      if (animated && !(value instanceof Animated)) continue;
+      payload[key] = value instanceof Animated ? value[animated ? 'getAnimatedValue' : 'getValue']() : value;
+    }
+
+    return payload;
+  };
+
+  return AnimatedObjectWithChildren;
+}(AnimatedWithChildren);
+
+var AnimatedStyle =
+/*#__PURE__*/
+function (_AnimatedObjectWithCh) {
+  _inheritsLoose(AnimatedStyle, _AnimatedObjectWithCh);
+
+  function AnimatedStyle(style) {
+    var _this;
+
+    _this = _AnimatedObjectWithCh.call(this) || this;
+    style = style || {};
+    if (style.transform && !(style.transform instanceof Animated)) style = applyAnimatedValues.transform(style);
+    _this.payload = style;
+    return _this;
+  }
+
+  return AnimatedStyle;
+}(AnimatedObjectWithChildren);
 
 // http://www.w3.org/TR/css3-color/#svg-color
 var colors$1 = {
@@ -8133,10 +8328,13 @@ var Interpolation =
 function () {
   function Interpolation() {}
 
-  Interpolation.create = function create(config, arg) {
+  // Default config = config, args
+  // Short config   = range, output, extrapolate
+  Interpolation.create = function create(config, output, extra) {
     if (typeof config === 'function') return config;else if (interpolation && config.output && typeof config.output[0] === 'string') return interpolation(config);else if (Array.isArray(config)) return Interpolation.create({
       range: config,
-      output: arg
+      output: output,
+      extrapolate: extra || 'extend'
     });
     var outputRange = config.output;
     var inputRange = config.range || [0, 1];
@@ -8405,7 +8603,6 @@ function createInterpolation(config) {
       output: outputRanges[i]
     }));
   });
-  var shouldRound = /^rgb/.test(outputRange[0]);
   return function (input) {
     var i = 0;
     return outputRange[0] // 'rgba(0, 100, 200, 0)'
@@ -8420,185 +8617,6 @@ function createInterpolation(config) {
     });
   };
 }
-
-var Animated =
-/*#__PURE__*/
-function () {
-  function Animated() {}
-
-  var _proto = Animated.prototype;
-
-  _proto.attach = function attach() {};
-
-  _proto.detach = function detach() {};
-
-  _proto.getValue = function getValue() {};
-
-  _proto.getAnimatedValue = function getAnimatedValue() {
-    return this.getValue();
-  };
-
-  _proto.addChild = function addChild(child) {};
-
-  _proto.removeChild = function removeChild(child) {};
-
-  _proto.getChildren = function getChildren() {
-    return [];
-  };
-
-  return Animated;
-}();
-
-var getValues = function getValues(object) {
-  return Object.keys(object).map(function (k) {
-    return object[k];
-  });
-};
-
-var AnimatedWithChildren =
-/*#__PURE__*/
-function (_Animated) {
-  _inheritsLoose(AnimatedWithChildren, _Animated);
-
-  function AnimatedWithChildren() {
-    var _this;
-
-    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    _this = _Animated.call.apply(_Animated, [this].concat(args)) || this;
-    _this.children = [];
-
-    _this.getChildren = function () {
-      return _this.children;
-    };
-
-    _this.getPayload = function (index) {
-      if (index === void 0) {
-        index = undefined;
-      }
-
-      return index !== void 0 && _this.payload ? _this.payload[index] : _this.payload || _assertThisInitialized$1(_assertThisInitialized$1(_this));
-    };
-
-    return _this;
-  }
-
-  var _proto = AnimatedWithChildren.prototype;
-
-  _proto.addChild = function addChild(child) {
-    if (this.children.length === 0) this.attach();
-    this.children.push(child);
-  };
-
-  _proto.removeChild = function removeChild(child) {
-    var index = this.children.indexOf(child);
-
-    if (index === -1) {
-      if (process.env.NODEENV !== 'production') {
-        console.warn("Trying to remove a child that doesn't exist");
-      }
-
-      return;
-    }
-
-    this.children.splice(index, 1);
-    if (this.children.length === 0) this.detach();
-  };
-
-  return AnimatedWithChildren;
-}(Animated);
-var AnimatedArrayWithChildren =
-/*#__PURE__*/
-function (_AnimatedWithChildren) {
-  _inheritsLoose(AnimatedArrayWithChildren, _AnimatedWithChildren);
-
-  function AnimatedArrayWithChildren() {
-    var _this2;
-
-    for (var _len2 = arguments.length, args = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
-      args[_key2] = arguments[_key2];
-    }
-
-    _this2 = _AnimatedWithChildren.call.apply(_AnimatedWithChildren, [this].concat(args)) || this;
-    _this2.payload = [];
-
-    _this2.getAnimatedValue = function () {
-      return _this2.getValue();
-    };
-
-    _this2.attach = function () {
-      return _this2.payload.forEach(function (p) {
-        return p instanceof Animated && p.addChild(_assertThisInitialized$1(_assertThisInitialized$1(_this2)));
-      });
-    };
-
-    _this2.detach = function () {
-      return _this2.payload.forEach(function (p) {
-        return p instanceof Animated && p.removeChild(_assertThisInitialized$1(_assertThisInitialized$1(_this2)));
-      });
-    };
-
-    return _this2;
-  }
-
-  return AnimatedArrayWithChildren;
-}(AnimatedWithChildren);
-var AnimatedObjectWithChildren =
-/*#__PURE__*/
-function (_AnimatedWithChildren2) {
-  _inheritsLoose(AnimatedObjectWithChildren, _AnimatedWithChildren2);
-
-  function AnimatedObjectWithChildren() {
-    var _this3;
-
-    for (var _len3 = arguments.length, args = new Array(_len3), _key3 = 0; _key3 < _len3; _key3++) {
-      args[_key3] = arguments[_key3];
-    }
-
-    _this3 = _AnimatedWithChildren2.call.apply(_AnimatedWithChildren2, [this].concat(args)) || this;
-    _this3.payload = {};
-
-    _this3.getAnimatedValue = function () {
-      return _this3.getValue(true);
-    };
-
-    _this3.attach = function () {
-      return getValues(_this3.payload).forEach(function (s) {
-        return s instanceof Animated && s.addChild(_assertThisInitialized$1(_assertThisInitialized$1(_this3)));
-      });
-    };
-
-    _this3.detach = function () {
-      return getValues(_this3.payload).forEach(function (s) {
-        return s instanceof Animated && s.removeChild(_assertThisInitialized$1(_assertThisInitialized$1(_this3)));
-      });
-    };
-
-    return _this3;
-  }
-
-  var _proto2 = AnimatedObjectWithChildren.prototype;
-
-  _proto2.getValue = function getValue(animated) {
-    if (animated === void 0) {
-      animated = false;
-    }
-
-    var payload = {};
-
-    for (var key in this.payload) {
-      var value = this.payload[key];
-      if (animated && !(value instanceof Animated)) continue;
-      payload[key] = value instanceof Animated ? value[animated ? 'getAnimatedValue' : 'getValue']() : value;
-    }
-
-    return payload;
-  };
-
-  return AnimatedObjectWithChildren;
-}(AnimatedWithChildren);
 
 var AnimatedInterpolation =
 /*#__PURE__*/
@@ -8681,6 +8699,15 @@ function (_AnimatedWithChildren) {
 
     _this = _AnimatedWithChildren.call(this) || this;
 
+    _this.setValue = function (value, flush) {
+      if (flush === void 0) {
+        flush = true;
+      }
+
+      _this.value = value;
+      if (flush) _this.flush();
+    };
+
     _this.getValue = function () {
       return _this.value;
     };
@@ -8745,9 +8772,17 @@ function (_AnimatedArrayWithChi) {
 
     _this = _AnimatedArrayWithChi.call(this) || this;
 
-    _this.setValue = function (values) {
-      return values.length === _this.payload.length && values.forEach(function (v, i) {
-        return _this.payload[i].setValue(v);
+    _this.setValue = function (value, flush) {
+      if (flush === void 0) {
+        flush = true;
+      }
+
+      if (Array.isArray(value)) {
+        if (value.length === _this.payload.length) value.forEach(function (v, i) {
+          return _this.payload[i].setValue(v, flush);
+        });
+      } else _this.payload.forEach(function (v, i) {
+        return _this.payload[i].setValue(value, flush);
       });
     };
 
@@ -8761,7 +8796,7 @@ function (_AnimatedArrayWithChi) {
       return new AnimatedInterpolation(_assertThisInitialized$1(_assertThisInitialized$1(_this)), config, arg);
     };
 
-    _this.payload = array instanceof AnimatedArray ? array.payload : array.map(function (n) {
+    _this.payload = array.map(function (n) {
       return new AnimatedValue(n);
     });
     return _this;
@@ -8791,12 +8826,12 @@ function shallowEqual(a, b) {
 
   return i === void 0 ? a === b : true;
 }
-function callProp(obj, state) {
-  for (var _len = arguments.length, args = new Array(_len > 2 ? _len - 2 : 0), _key = 2; _key < _len; _key++) {
-    args[_key - 2] = arguments[_key];
+function callProp(obj) {
+  for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+    args[_key - 1] = arguments[_key];
   }
 
-  return typeof obj === 'function' ? obj.apply(void 0, [state].concat(args)) : obj;
+  return typeof obj === 'function' ? obj.apply(void 0, args) : obj;
 }
 function getValues$1(object) {
   return Object.keys(object).map(function (k) {
@@ -8821,10 +8856,10 @@ function getForwardProps(props) {
       delay = props.delay,
       attach = props.attach,
       destroyed = props.destroyed,
-      track = props.track,
       interpolateTo = props.interpolateTo,
       autoStart = props.autoStart,
-      forward = _objectWithoutPropertiesLoose$1(props, ["to", "from", "config", "native", "onStart", "onRest", "onFrame", "children", "reset", "reverse", "force", "immediate", "impl", "inject", "delay", "attach", "destroyed", "track", "interpolateTo", "autoStart"]);
+      ref = props.ref,
+      forward = _objectWithoutPropertiesLoose$1(props, ["to", "from", "config", "native", "onStart", "onRest", "onFrame", "children", "reset", "reverse", "force", "immediate", "impl", "inject", "delay", "attach", "destroyed", "interpolateTo", "autoStart", "ref"]);
 
   return forward;
 }
@@ -8856,8 +8891,10 @@ function convertValues(props) {
 function handleRef(ref, forward) {
   if (forward) {
     // If it's a function, assume it's a ref callback
-    if (typeof forward === 'function') forward(ref);else if (typeof forward === 'object') // If it's an object and has a 'current' property, assume it's a ref object
+    if (typeof forward === 'function') forward(ref);else if (typeof forward === 'object') {
+      // If it's an object and has a 'current' property, assume it's a ref object
       forward.current = ref;
+    }
   }
 
   return ref;
@@ -8887,10 +8924,18 @@ function fixAuto(props, callback) {
 
   var element = children(convertValues(props)); // A spring can return undefined/null, check against that (#153)
 
-  if (!element) return;
+  if (!element) return; // Or it could be an array (#346) ...
+
+  if (Array.isArray(element)) element = {
+    type: 'div',
+    props: {
+      children: element
+    } // Extract styles
+
+  };
   var elementStyles = element.props.style; // Return v.dom with injected ref
 
-  return React.createElement(element.type, _extends({
+  return React__default.createElement(element.type, _extends({
     key: element.key ? element.key : undefined
   }, element.props, {
     style: _extends({}, elementStyles, {
@@ -8991,6 +9036,9 @@ function dangerousStyleValue(name, value, isCustomProperty) {
 }
 
 var attributeCache = {};
+injectCreateAnimatedStyle(function (style) {
+  return new AnimatedStyle(style);
+});
 injectDefaultElement('div');
 injectInterpolation(createInterpolation);
 injectColorNames(colors$1);
@@ -9029,59 +9077,162 @@ injectApplyAnimatedValues(function (instance, props) {
   return style;
 });
 
-var AnimatedStyle =
-/*#__PURE__*/
-function (_AnimatedObjectWithCh) {
-  _inheritsLoose(AnimatedStyle, _AnimatedObjectWithCh);
+var active = false;
+var controllers = new Set();
 
-  function AnimatedStyle(style) {
-    var _this;
+var frameLoop = function frameLoop() {
+  var time = now$1();
 
-    _this = _AnimatedObjectWithCh.call(this) || this;
-    style = style || {};
-    if (style.transform && !(style.transform instanceof Animated)) style = applyAnimatedValues.transform(style);
-    _this.payload = style;
-    return _this;
+  for (var _iterator = controllers, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
+    var _ref;
+
+    if (_isArray) {
+      if (_i >= _iterator.length) break;
+      _ref = _iterator[_i++];
+    } else {
+      _i = _iterator.next();
+      if (_i.done) break;
+      _ref = _i.value;
+    }
+
+    var controller = _ref;
+    var isDone = true;
+    var noChange = true;
+
+    for (var configIdx = 0; configIdx < controller.configs.length; configIdx++) {
+      var config = controller.configs[configIdx];
+      var endOfAnimation = void 0,
+          lastTime = void 0;
+
+      for (var valIdx = 0; valIdx < config.animatedValues.length; valIdx++) {
+        var animation = config.animatedValues[valIdx]; // If an animation is done, skip, until all of them conclude
+
+        if (animation.done) continue;
+        var from = config.fromValues[valIdx];
+        var to = config.toValues[valIdx];
+        var position = animation.lastPosition;
+        var isAnimated = to instanceof Animated;
+
+        var _velocity = Array.isArray(config.initialVelocity) ? config.initialVelocity[valIdx] : config.initialVelocity;
+
+        if (isAnimated) to = to.getValue(); // Conclude animation if it's either immediate, or from-values match end-state
+
+        if (config.immediate || !isAnimated && !config.decay && from === to) {
+          animation.updateValue(to);
+          animation.done = true;
+          continue;
+        } // Doing delay here instead of setTimeout is one async worry less
+
+
+        if (config.delay && time - controller.startTime < config.delay) {
+          isDone = false;
+          continue;
+        } // Flag change
+
+
+        noChange = false; // Break animation when string values are involved
+
+        if (typeof from === 'string' || typeof to === 'string') {
+          animation.updateValue(to);
+          animation.done = true;
+          continue;
+        }
+
+        if (config.duration !== void 0) {
+          /** Duration easing */
+          position = from + config.easing((time - controller.startTime - config.delay) / config.duration) * (to - from);
+          endOfAnimation = time >= controller.startTime + config.delay + config.duration;
+        } else if (config.decay) {
+          /** Decay easing */
+          position = from + _velocity / (1 - 0.998) * (1 - Math.exp(-(1 - 0.998) * (time - controller.startTime)));
+          endOfAnimation = Math.abs(animation.lastPosition - position) < 0.1;
+          if (endOfAnimation) to = position;
+        } else {
+          /** Spring easing */
+          lastTime = animation.lastTime !== void 0 ? animation.lastTime : time;
+          _velocity = animation.lastVelocity !== void 0 ? animation.lastVelocity : config.initialVelocity; // If we lost a lot of frames just jump to the end.
+
+          if (time > lastTime + 64) lastTime = time; // http://gafferongames.com/game-physics/fix-your-timestep/
+
+          var numSteps = Math.floor(time - lastTime);
+
+          for (var i = 0; i < numSteps; ++i) {
+            var force = -config.tension * (position - to);
+            var damping = -config.friction * _velocity;
+            var acceleration = (force + damping) / config.mass;
+            _velocity = _velocity + acceleration * 1 / 1000;
+            position = position + _velocity * 1 / 1000;
+          } // Conditions for stopping the spring animation
+
+
+          var isOvershooting = config.clamp && config.tension !== 0 ? from < to ? position > to : position < to : false;
+          var isVelocity = Math.abs(_velocity) <= config.precision;
+          var isDisplacement = config.tension !== 0 ? Math.abs(to - position) <= config.precision : true;
+          endOfAnimation = isOvershooting || isVelocity && isDisplacement;
+          animation.lastVelocity = _velocity;
+          animation.lastTime = time;
+        } // Trails aren't done until their parents conclude
+
+
+        if (isAnimated && !config.toValues[valIdx].done) endOfAnimation = false;
+
+        if (endOfAnimation) {
+          // Ensure that we end up with a round value
+          if (animation.value !== to) position = to;
+          animation.done = true;
+        } else isDone = false;
+
+        animation.updateValue(position);
+        animation.lastPosition = position;
+      } // Keep track of updated values only when necessary
+
+
+      if (controller.props.onFrame || !controller.props.native) controller.animatedProps[config.name] = config.interpolation.getValue();
+    } // Update callbacks in the end of the frame
+
+
+    if (controller.props.onFrame || !controller.props.native) {
+      if (!controller.props.native && controller.onUpdate) controller.onUpdate();
+      if (controller.props.onFrame) controller.props.onFrame(controller.animatedProps);
+    } // Either call onEnd or next frame
+
+
+    if (isDone) {
+      controllers.delete(controller);
+      controller.debouncedOnEnd({
+        finished: true,
+        noChange: noChange
+      });
+    }
+  } // Loop over as long as there are controllers ...
+
+
+  if (controllers.size) requestFrame(frameLoop);else active = false;
+};
+
+var addController = function addController(controller) {
+  if (!controllers.has(controller)) {
+    controllers.add(controller);
+    if (!active) requestFrame(frameLoop);
+    active = true;
   }
+};
 
-  return AnimatedStyle;
-}(AnimatedObjectWithChildren);
-
-var AnimatedProps =
-/*#__PURE__*/
-function (_AnimatedObjectWithCh) {
-  _inheritsLoose(AnimatedProps, _AnimatedObjectWithCh);
-
-  function AnimatedProps(props, callback) {
-    var _this;
-
-    _this = _AnimatedObjectWithCh.call(this) || this;
-    if (props.style) props = _extends({}, props, {
-      style: new AnimatedStyle(props.style)
-    });
-    _this.payload = props;
-    _this.update = callback;
-
-    _this.attach();
-
-    return _this;
+var removeController = function removeController(controller) {
+  if (controllers.has(controller)) {
+    controllers.delete(controller);
   }
-
-  return AnimatedProps;
-}(AnimatedObjectWithChildren);
-
-var now$1$1, isDone, noChange, configIdx, valIdx, config, animation, position, from, tracked, to, endOfAnimation, lastTime, velocity, numSteps, force, damping, acceleration, stepIdx, isOvershooting, isVelocity, isDisplacement;
+};
 
 var Controller =
 /*#__PURE__*/
 function () {
-  function Controller(props, _config) {
+  function Controller(props, config) {
     var _this = this;
 
-    if (_config === void 0) {
-      _config = {
+    if (config === void 0) {
+      config = {
         native: true,
-        track: true,
         interpolateTo: true,
         autoStart: true
       };
@@ -9089,93 +9240,6 @@ function () {
 
     this.getValues = function () {
       return _this.props.native ? _this.interpolations : _this.animatedProps;
-    };
-
-    this.raf = function () {
-      now$1$1 = now$1();
-      isDone = true;
-      noChange = true;
-
-      for (configIdx = 0; configIdx < _this.configs.length; configIdx++) {
-        config = _this.configs[configIdx]; // Doing delay here instead of setTimeout is one async worry less
-
-        if (config.delay && now$1$1 - _this.startTime < config.delay) {
-          isDone = false;
-          continue;
-        }
-
-        for (valIdx = 0; valIdx < config.animatedValues.length; valIdx++) {
-          animation = config.animatedValues[valIdx];
-          position = animation.lastPosition;
-          from = config.fromValues[valIdx];
-          tracked = config.parent.track && config.parent.track.getPayload(valIdx);
-          to = tracked ? tracked.getValue() : config.toValues[valIdx]; // If an animation is done, skip, until all of them conclude
-
-          if (animation.done) continue; // Break animation when animation is immediate or string values are involved
-
-          if (config.immediate || typeof from === 'string' || typeof to === 'string') {
-            animation.updateValue(to);
-            animation.done = true;
-            continue;
-          } else noChange = false;
-
-          if (config.duration) {
-            position = from + config.easing((now$1$1 - _this.startTime - config.delay) / config.duration) * (to - from);
-            endOfAnimation = now$1$1 >= _this.startTime + config.delay + config.duration;
-          } else {
-            lastTime = animation.lastTime !== void 0 ? animation.lastTime : now$1$1;
-            velocity = animation.lastVelocity !== void 0 ? animation.lastVelocity : config.initialVelocity; // If we lost a lot of frames just jump to the end.
-
-            if (now$1$1 > lastTime + 64) lastTime = now$1$1; // http://gafferongames.com/game-physics/fix-your-timestep/
-
-            numSteps = Math.floor(now$1$1 - lastTime);
-
-            for (stepIdx = 0; stepIdx < numSteps; ++stepIdx) {
-              force = -config.tension * (position - to);
-              damping = -config.friction * velocity;
-              acceleration = (force + damping) / config.mass;
-              velocity = velocity + acceleration * 1 / 1000;
-              position = position + velocity * 1 / 1000;
-            } // Conditions for stopping the spring animation
-
-
-            isOvershooting = config.clamp && config.tension !== 0 ? from < to ? position > to : position < to : false;
-            isVelocity = Math.abs(velocity) <= config.precision;
-            isDisplacement = config.tension !== 0 ? Math.abs(to - position) <= config.precision : true;
-            endOfAnimation = isOvershooting || isVelocity && isDisplacement;
-            animation.lastVelocity = velocity;
-            animation.lastTime = now$1$1;
-          } // Trails aren't done until their parents conclude
-
-
-          if (config.parent.track && !tracked.done) endOfAnimation = false;
-
-          if (endOfAnimation) {
-            // Ensure that we end up with a round value
-            if (animation.value !== to) position = to;
-            animation.done = true;
-          } else isDone = false;
-
-          animation.updateValue(position);
-          animation.lastPosition = position;
-        } // Keep track of updated values only when necessary
-
-
-        if (_this.props.onFrame || !_this.props.native) _this.animatedProps[config.name] = config.interpolation.getValue();
-      } // Update callbacks in the end of the frame
-
-
-      if (_this.props.onFrame || !_this.props.native) {
-        if (!_this.props.native && _this.onUpdate) _this.onUpdate();
-        if (_this.props.onFrame) _this.props.onFrame(_this.animatedProps);
-      } // Either call onEnd or next frame
-
-
-      if (isDone) return _this.debouncedOnEnd({
-        finished: true,
-        noChange: noChange
-      });
-      _this.frame = requestFrame(_this.raf);
     };
 
     this.dependents = new Set();
@@ -9190,27 +9254,8 @@ function () {
     this.frame = undefined;
     this.startTime = undefined;
     this.lastTime = undefined;
-    this.update(_extends({}, props, _config));
+    this.update(_extends({}, props, config));
   }
-  /**
-   * props: to: { ... }
-   *
-   *  { name: value }             pairs
-   *  { name: AnimatedValue() }   animated values
-   *  { name: [1,2,3] }           plain numeric arrays
-   *  { name: AnimatedArray() }   animated arrays
-   *
-   * Plain values can be:
-   *
-   *  123                         Numbers
-   *  "hello"                     Strings
-   *  "#3d4d5d" ...               Colors (rga, rgba, hex, plain names)
-   *  "something 12 something"    Interpolation patterns with numbers in them
-   *
-   * Additionally, springs are allowed to "attach" to another AnimationController, fetching the
-   * values from there, if present.
-   */
-
 
   var _proto = Controller.prototype;
 
@@ -9232,10 +9277,8 @@ function () {
         attach = _ref.attach,
         reset = _ref.reset,
         immediate = _ref.immediate,
-        native = _ref.native,
-        onFrame = _ref.onFrame,
-        track = _ref.track,
-        autoStart = _ref.autoStart; // Reverse values when requested
+        autoStart = _ref.autoStart,
+        ref = _ref.ref; // Reverse values when requested
 
 
     if (reverse) {
@@ -9256,117 +9299,66 @@ function () {
       var name = _ref3[0],
           value = _ref3[1];
       // Issue cached entries, except on reset
-      var entry = !reset && acc[name] || {}; // Attach allows a spring to fetch its values elsewhere
+      var entry = !reset && acc[name] || {}; // Figure out what the value is supposed to be
 
-      var _value = value,
-          _entry;
+      var isNumber = typeof value === 'number';
+      var isString = typeof value === 'string' && !value.startsWith('#') && !/\d/.test(value) && !colorNames[value];
+      var isArray = !isNumber && !isString && Array.isArray(value);
+      var fromValue = from[name] !== undefined ? from[name] : value;
+      var toValue = isNumber || isArray ? value : isString ? value : 1;
+      var toConfig = callProp(config, name);
+      if (target) toValue = target.animations[name].parent; // Detect changes, animated values will be checked in the raf-loop
 
-      if (target && target.animations[name]) {
-        _entry = target.animations[name];
-        value = _entry.parent;
-      } // Figure out what the value is supposed to be
-
-
-      var isArray, isString, isNumber, isInterpolation;
-      var isAnimated = value instanceof Animated;
-
-      if (!isAnimated) {
-        isArray = Array.isArray(value);
-        isNumber = typeof value === 'number';
-        isString = typeof value === 'string' && !value.startsWith('#') && !/\d/.test(value) && !colorNames[value];
-        isInterpolation = !isNumber && !isString && !isArray;
-      } // Carry actual values (including animated) in order to change detect
-
-
-      var changes = isAnimated ? value.getPayload() : value; // Detect changes, animated values will be checked in the raf-loop
-
-      if (isAnimated || !shallowEqual(entry.changes, changes)) {
+      if (toConfig.decay !== void 0 || !shallowEqual(entry.changes, value)) {
         var _extends2;
 
         _this2.hasChanged = true;
         var parent, interpolation$$1;
-
-        var _from = from[name] !== void 0 ? from[name] : value;
-
-        var _config2 = callProp(config, name);
-
-        if (isAnimated) {
-          // We end up here if the value we're shifting to is an animated value or array
-          parent = entry.parent || new value.constructor(value.getValue());
-          interpolation$$1 = entry.interpolation || parent; // In the next step we're going to check if that value is interpolated
-
-          if (_entry && _entry.interpolation.calc) {
-            var _config3 = {
-              output: [interpolation$$1.calc ? interpolation$$1.calc(parent.value) : _entry.interpolation.calc(0), _value]
-            };
-            if (interpolation$$1.calc) interpolation$$1.updateConfig(_config3);else interpolation$$1 = parent.interpolate(_config3);
-            parent.value = 0;
-          }
-        } else if (isNumber || isString) {
-          parent = interpolation$$1 = entry.parent || new AnimatedValue(_from);
-        } else if (isArray) {
-          parent = interpolation$$1 = entry.parent || new AnimatedArray(_from);
-        } else if (isInterpolation) {
-          // Deal with interpolations
-          var prev = entry.interpolation && entry.interpolation.calc(entry.parent.value); // Interpolations are not addaptive, start with 0
+        if (isNumber || isString) parent = interpolation$$1 = entry.parent || new AnimatedValue(fromValue);else if (isArray) parent = interpolation$$1 = entry.parent || new AnimatedArray(fromValue);else {
+          var prev = entry.interpolation && entry.interpolation.calc(entry.parent.value);
 
           if (entry.parent) {
             parent = entry.parent;
-            parent.value = 0;
-          } else parent = new AnimatedValue(0); // Map from-to on a scale between 0-1
-
+            parent.setValue(0, false);
+          } else parent = new AnimatedValue(0);
 
           var range = {
-            output: [prev !== void 0 ? prev : _from, value]
+            output: [prev !== void 0 ? prev : fromValue, value]
           };
 
           if (entry.interpolation) {
             interpolation$$1 = entry.interpolation;
             entry.interpolation.updateConfig(range);
-          } else interpolation$$1 = parent.interpolate(range); // And stop at 1
+          } else interpolation$$1 = parent.interpolate(range);
+        } // Set immediate values
 
-
-          value = 1;
-        }
-
-        parent.controller = _this2;
-        if (isAnimated && value.controller !== _this2) value.controller.dependents.add(_this2);
-        parent.track = isAnimated ? value : undefined; // Set immediate values
-
-        if (callProp(immediate, name)) parent.value = value; // Map output values to an array so reading out is easier later on
+        if (callProp(immediate, name)) parent.setValue(value, false); // Reset animated values
 
         var animatedValues = toArray(parent.getPayload());
-        var fromValues = toArray(parent.getValue());
-        var toValues = toArray(isAnimated ? value.getValue() : value); // Reset animated values
-
         animatedValues.forEach(function (value) {
           return value.prepare(_this2);
         });
         return _extends({}, acc, (_extends2 = {}, _extends2[name] = _extends({}, entry, {
           name: name,
           parent: parent,
-          // The animated object on which the update-cb is called
           interpolation: interpolation$$1,
-          // The parents interpolation, if any. If not it refers to the parent
           animatedValues: animatedValues,
-          // An array of all animated values taking part in this op
-          fromValues: fromValues,
-          // Raw/numerical start-state values
-          toValues: toValues,
-          // Raw/numerical/end-state values
-          changes: changes,
+          changes: value,
+          fromValues: toArray(parent.getValue()),
+          toValues: toArray(target ? toValue.getPayload() : toValue),
           immediate: callProp(immediate, name),
-          delay: withDefault(_config2.delay, delay || 0),
-          initialVelocity: withDefault(_config2.velocity, 0),
-          clamp: withDefault(_config2.clamp, false),
-          precision: withDefault(_config2.precision, 0.01),
-          tension: withDefault(_config2.tension, 170),
-          friction: withDefault(_config2.friction, 26),
-          mass: withDefault(_config2.mass, 1),
-          duration: withDefault(_config2.duration, 0),
-          easing: withDefault(_config2.easing, function (t) {
+          delay: withDefault(toConfig.delay, delay || 0),
+          initialVelocity: withDefault(toConfig.velocity, 0),
+          clamp: withDefault(toConfig.clamp, false),
+          precision: withDefault(toConfig.precision, 0.01),
+          tension: withDefault(toConfig.tension, 170),
+          friction: withDefault(toConfig.friction, 26),
+          mass: withDefault(toConfig.mass, 1),
+          duration: toConfig.duration,
+          easing: withDefault(toConfig.easing, function (t) {
             return t;
-          })
+          }),
+          decay: toConfig.decay
         }), _extends2));
       } else return acc;
     }, this.animations);
@@ -9380,43 +9372,34 @@ function () {
         this.interpolations[key] = this.animations[key].interpolation;
         this.animatedProps[key] = this.animations[key].interpolation.getValue();
       }
-    }
+    } // TODO: clean up ref in controller
+
 
     for (var _len = arguments.length, start = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
       start[_key - 1] = arguments[_key];
     }
 
-    if (autoStart || start.length) this.start.apply(this, start);
+    if (!ref && (autoStart || start.length)) this.start.apply(this, start);
+    var onEnd = start[0],
+        onUpdate = start[1];
+    this.onEnd = typeof onEnd === 'function' && onEnd;
+    this.onUpdate = onUpdate;
     return this.getValues();
   };
 
   _proto.start = function start(onEnd, onUpdate) {
+    var _this3 = this;
+
     this.startTime = now$1();
     if (this.isActive) this.stop();
     this.isActive = true;
     this.onEnd = typeof onEnd === 'function' && onEnd;
     this.onUpdate = onUpdate;
-    if (this.props.onStart) this.props.onStart(); // Start RAF loop
-
-    this.frame = requestFrame(this.raf); // Call dependent controllers
-
-    if (this.props.track) {
-      for (var _iterator = this.dependents, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
-        var _ref4;
-
-        if (_isArray) {
-          if (_i >= _iterator.length) break;
-          _ref4 = _iterator[_i++];
-        } else {
-          _i = _iterator.next();
-          if (_i.done) break;
-          _ref4 = _i.value;
-        }
-
-        var controller = _ref4;
-        controller.update(_extends({}, controller.props, controller.merged), true);
-      }
-    }
+    if (this.props.onStart) this.props.onStart();
+    addController(this);
+    return new Promise(function (res) {
+      return _this3.resolve = res;
+    });
   };
 
   _proto.stop = function stop(finished) {
@@ -9424,31 +9407,60 @@ function () {
       finished = false;
     }
 
-    config = undefined;
-    animation = undefined;
-    from = undefined;
-    tracked = undefined;
-    to = undefined; // Reset collected changes since the animation has been stopped cold turkey
-
+    // Reset collected changes since the animation has been stopped cold turkey
     if (finished) getValues$1(this.animations).forEach(function (a) {
       return a.changes = undefined;
     });
-    this.isActive = false;
-    cancelFrame(this.frame);
     this.debouncedOnEnd({
       finished: finished
     });
   };
 
+  _proto.destroy = function destroy() {
+    removeController(this);
+    this.props = {};
+    this.merged = {};
+    this.animations = {};
+    this.interpolations = {};
+    this.animatedProps = {};
+    this.configs = [];
+  };
+
   _proto.debouncedOnEnd = function debouncedOnEnd(result) {
+    removeController(this);
     this.isActive = false;
     var onEnd = this.onEnd;
     this.onEnd = null;
-    onEnd && onEnd(result);
+    if (onEnd) onEnd(result);
+    if (this.resolve) this.resolve();
+    this.resolve = null;
   };
 
   return Controller;
 }();
+
+var AnimatedProps =
+/*#__PURE__*/
+function (_AnimatedObjectWithCh) {
+  _inheritsLoose(AnimatedProps, _AnimatedObjectWithCh);
+
+  function AnimatedProps(props, callback) {
+    var _this;
+
+    _this = _AnimatedObjectWithCh.call(this) || this;
+    if (props.style) props = _extends({}, props, {
+      style: createAnimatedStyle(props.style)
+    });
+    _this.payload = props;
+    _this.update = callback;
+
+    _this.attach();
+
+    return _this;
+  }
+
+  return AnimatedProps;
+}(AnimatedObjectWithChildren);
 
 function createAnimatedComponent(Component) {
   var AnimatedComponent =
@@ -9482,13 +9494,13 @@ function createAnimatedComponent(Component) {
     _proto.setNativeProps = function setNativeProps(props) {
       var didUpdate = applyAnimatedValues.fn(this.node, props, this);
       if (didUpdate === false) this.forceUpdate();
-    }; // The system is best designed when setNativeProps is implemented. It is
+    } // The system is best designed when setNativeProps is implemented. It is
     // able to avoid re-rendering and directly set the attributes that
     // changed. However, setNativeProps can only be implemented on leaf
     // native components. If you want to animate a composite component, you
     // need to re-render it. In this case, we have a fallback that uses
     // forceUpdate.
-
+    ;
 
     _proto.attachProps = function attachProps(_ref) {
       var forwardRef = _ref.forwardRef,
@@ -9526,14 +9538,12 @@ function createAnimatedComponent(Component) {
     _proto.render = function render() {
       var _this2 = this;
 
-      var forwardRef = this.props.forwardRef;
-
       var _this$propsAnimated$g = this.propsAnimated.getValue(),
           scrollTop = _this$propsAnimated$g.scrollTop,
           scrollLeft = _this$propsAnimated$g.scrollLeft,
           animatedProps = _objectWithoutPropertiesLoose$1(_this$propsAnimated$g, ["scrollTop", "scrollLeft"]);
 
-      return React.createElement(Component, _extends({}, animatedProps, {
+      return React__default.createElement(Component, _extends({}, animatedProps, {
         ref: function ref(node) {
           return _this2.node = handleRef(node, _this2.props.forwardRef);
         }
@@ -9541,16 +9551,16 @@ function createAnimatedComponent(Component) {
     };
 
     return AnimatedComponent;
-  }(React.Component);
+  }(React__default.Component);
 
-  return React.forwardRef(function (props, ref) {
-    return React.createElement(AnimatedComponent, _extends({}, props, {
+  return React__default.forwardRef(function (props, ref) {
+    return React__default.createElement(AnimatedComponent, _extends({}, props, {
       forwardRef: ref
     }));
   });
 }
 
-var config$1 = {
+var config = {
   default: {
     tension: 170,
     friction: 26
@@ -9576,12 +9586,6 @@ var config$1 = {
     friction: 120
   }
 };
-
-var v = React.version.split('.');
-
-if (process.env.NODE_ENV !== 'production' && (v[0] < 16 || v[1] < 4)) {
-  console.warn('Please consider upgrading to react/react-dom 16.4.x or higher! Older React versions break getDerivedStateFromProps, see https://github.com/facebook/react/issues/12898');
-}
 
 var Spring =
 /*#__PURE__*/
@@ -9625,7 +9629,7 @@ function (_React$Component) {
     };
 
     _this.update = function () {
-      return _this.setState({
+      return _this.mounted && _this.setState({
         internal: true
       });
     };
@@ -9640,7 +9644,7 @@ function (_React$Component) {
         // Only call onRest if either we *were* mounted, or when there were changes
         if (_this.props.onRest && (wasMounted || !noChange)) _this.props.onRest(_this.controller.merged); // Restore end-state
 
-        if (_this.didInject) {
+        if (_this.mounted && _this.didInject) {
           _this.afterInject = convertValues(_this.props);
 
           _this.setState({
@@ -9692,10 +9696,7 @@ function (_React$Component) {
   _proto.render = function render() {
     var _this2 = this;
 
-    var _this$props = this.props,
-        native = _this$props.native,
-        onFrame = _this$props.onFrame,
-        children = _this$props.children;
+    var children = this.props.children;
     var propsChanged = this.state.propsChanged; // Inject phase -----------------------------------------------------------
     // Handle injected frames, for instance targets/web/fix-auto
     // An inject will return an intermediary React node which measures itself out
@@ -9740,7 +9741,7 @@ function (_React$Component) {
     var values = _extends({}, this.controller.getValues(), this.afterInject);
 
     if (this.finished) values = _extends({}, values, this.props.after);
-    return values && Object.keys(values).length ? children(values) : null;
+    return Object.keys(values).length ? children(values) : null;
   };
 
   _proto.componentDidUpdate = function componentDidUpdate() {
@@ -9753,12 +9754,12 @@ function (_React$Component) {
   };
 
   return Spring;
-}(React.Component);
+}(React__default.Component);
 
 Spring.defaultProps = {
   from: {},
   to: {},
-  config: config$1.default,
+  config: config.default,
   native: false,
   immediate: false,
   reset: false,
@@ -9812,7 +9813,7 @@ function (_React$PureComponent) {
 
     var array = toArray(items);
     return toArray(array).map(function (item, i) {
-      return React.createElement(Spring, _extends({
+      return React__default.createElement(Spring, _extends({
         onRest: i === 0 ? onRest : null,
         key: typeof keys === 'function' ? keys(item) : toArray(keys)[i],
         from: _this2.first && initial !== void 0 ? initial || {} : from
@@ -9836,7 +9837,7 @@ function (_React$PureComponent) {
   };
 
   return Trail;
-}(React.PureComponent);
+}(React__default.PureComponent);
 
 Trail.defaultProps = {
   keys: function keys(item) {
@@ -9862,7 +9863,6 @@ function (_React$PureComponent) {
     _this.guid = 0;
     _this.state = {
       props: {},
-      oldProps: {},
       resolve: function resolve() {
         return null;
       },
@@ -9884,7 +9884,6 @@ function (_React$PureComponent) {
         _this.mounted && _this.setState(function (state) {
           return {
             props: props,
-            oldProps: _extends({}, _this.state.props),
             resolve: resolve,
             last: last,
             index: index
@@ -9969,7 +9968,6 @@ function (_React$PureComponent) {
 
     var _this$state = this.state,
         props = _this$state.props,
-        oldProps = _this$state.oldProps,
         resolve = _this$state.resolve,
         last = _this$state.last,
         index = _this$state.index;
@@ -9979,19 +9977,19 @@ function (_React$PureComponent) {
         state = _this$props2.state,
         filter = _this$props2.filter,
         states = _this$props2.states,
-        config$$1 = _this$props2.config,
+        config = _this$props2.config,
         Component = _this$props2.primitive,
         _onRest = _this$props2.onRest,
         forwardRef = _this$props2.forwardRef,
         rest = _objectWithoutPropertiesLoose$1(_this$props2, ["state", "filter", "states", "config", "primitive", "onRest", "forwardRef"]); // Arrayed configs need an index to process
 
 
-    if (Array.isArray(config$$1)) config$$1 = config$$1[index];
-    return React.createElement(Component, _extends({
+    if (Array.isArray(config)) config = config[index];
+    return React__default.createElement(Component, _extends({
       ref: function ref(_ref) {
         return _this3.instance = handleRef(_ref, forwardRef);
       },
-      config: config$$1
+      config: config
     }, rest, props, {
       onRest: function onRest(args) {
         resolve(args);
@@ -10001,13 +9999,13 @@ function (_React$PureComponent) {
   };
 
   return KeyframesImpl;
-}(React.PureComponent);
+}(React__default.PureComponent);
 
 KeyframesImpl.defaultProps = {
   state: DEFAULT
 };
-var Keyframes = React.forwardRef(function (props, ref) {
-  return React.createElement(KeyframesImpl, _extends({}, props, {
+var Keyframes = React__default.forwardRef(function (props, ref) {
+  return React__default.createElement(KeyframesImpl, _extends({}, props, {
     forwardRef: ref
   }));
 });
@@ -10024,7 +10022,7 @@ Keyframes.create = function (primitive) {
 
     if (typeof states === 'function' || Array.isArray(states)) states = (_states = {}, _states[DEFAULT] = states, _states);
     return function (props) {
-      return React.createElement(KeyframesImpl, _extends({
+      return React__default.createElement(KeyframesImpl, _extends({
         primitive: primitive,
         states: states,
         filter: filter
@@ -10128,7 +10126,7 @@ function (_React$PureComponent) {
         _get$trail = _get.trail,
         trail = _get$trail === void 0 ? 0 : _get$trail,
         unique = _get.unique,
-        config$$1 = _get.config;
+        config = _get.config;
 
     var _get2 = get(prevProps),
         _keys = _get2.keys,
@@ -10136,7 +10134,7 @@ function (_React$PureComponent) {
 
     var current = _extends({}, state.current);
 
-    var deleted = state.deleted.concat(); // Compare next keys with current keys
+    var deleted = [].concat(state.deleted); // Compare next keys with current keys
 
     var currentKeys = Object.keys(current);
     var currentSet = new Set(currentKeys);
@@ -10169,7 +10167,7 @@ function (_React$PureComponent) {
         key: unique ? String(key) : guid++,
         item: item,
         trail: delay = delay + trail,
-        config: callProp(config$$1, item, state),
+        config: callProp(config, item, state),
         from: callProp(first ? initial !== void 0 ? initial || {} : from : from, item),
         to: callProp(enter, item)
       };
@@ -10185,7 +10183,7 @@ function (_React$PureComponent) {
         left: _keys[Math.max(0, keyIndex - 1)],
         right: _keys[Math.min(_keys.length, keyIndex + 1)],
         trail: delay = delay + trail,
-        config: callProp(config$$1, item, state),
+        config: callProp(config, item, state),
         to: callProp(leave, item)
       }));
       delete current[key];
@@ -10198,7 +10196,7 @@ function (_React$PureComponent) {
         item: item,
         state: state,
         trail: delay = delay + trail,
-        config: callProp(config$$1, item, state),
+        config: callProp(config, item, state),
         to: callProp(update, item)
       });
     }); // This tries to restore order for deleted items by finding their last known siblings
@@ -10230,7 +10228,7 @@ function (_React$PureComponent) {
       }); // And if nothing else helps, move it to the start ¯\_(ツ)_/¯
 
       pos = Math.max(0, pos);
-      out = out.slice(0, pos).concat([transition], out.slice(pos));
+      out = [].concat(out.slice(0, pos), [transition], out.slice(pos));
     });
     return {
       first: first && added.length === 0,
@@ -10257,7 +10255,7 @@ function (_React$PureComponent) {
         onRest = _this$props2.onRest,
         onStart = _this$props2.onStart,
         trail = _this$props2.trail,
-        config$$1 = _this$props2.config,
+        config = _this$props2.config,
         _children = _this$props2.children,
         unique = _this$props2.unique,
         reset = _this$props2.reset,
@@ -10272,9 +10270,9 @@ function (_React$PureComponent) {
           from = _ref4.from,
           to = _ref4.to,
           trail = _ref4.trail,
-          config$$1 = _ref4.config,
+          config = _ref4.config,
           destroyed = _ref4.destroyed;
-      return React.createElement(Keyframes, _extends({
+      return React__default.createElement(Keyframes, _extends({
         reset: reset && state === 'enter',
         primitive: Spring,
         state: state,
@@ -10291,7 +10289,7 @@ function (_React$PureComponent) {
           return onFrame(item, state, values);
         },
         delay: trail,
-        config: config$$1
+        config: config
       }, extra, {
         from: from,
         children: function children(props) {
@@ -10304,7 +10302,7 @@ function (_React$PureComponent) {
   };
 
   return Transition;
-}(React.PureComponent);
+}(React__default.PureComponent);
 
 Transition.defaultProps = {
   keys: function keys(item) {
@@ -10341,13 +10339,13 @@ var Text = styled__default.span.withConfig({
 });
 
 var Block = function Block(props) {
-  return React.createElement(Text, _extends_1({
+  return React__default.createElement(Text, _extends_1({
     as: "div"
   }, props));
 };
 
 var Paragraph = function Paragraph(props) {
-  return React.createElement(Text, _extends_1({
+  return React__default.createElement(Text, _extends_1({
     as: "p"
   }, props));
 };
@@ -10369,29 +10367,29 @@ var move = function move(pixel) {
   return "translate3d(0,".concat(pixel, "px,0)");
 };
 
-var _React$createContext$2 = React.createContext(function () {
+var _React$createContext$2 = React__default.createContext(function () {
   throw new Error("For Toast to work it needs to be part of a ToastHub's tree, which has to be declared at an upper level!");
 }),
     Provider$2 = _React$createContext$2.Provider,
     Toast = _React$createContext$2.Consumer;
 
-var ToastHub =
+var ToastHubProvider =
 /*#__PURE__*/
 function (_React$PureComponent) {
-  inherits$1(ToastHub, _React$PureComponent);
+  inherits$1(ToastHubProvider, _React$PureComponent);
 
-  function ToastHub() {
+  function ToastHubProvider() {
     var _getPrototypeOf2;
 
     var _this;
 
-    classCallCheck$1(this, ToastHub);
+    classCallCheck$1(this, ToastHubProvider);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    _this = possibleConstructorReturn$1(this, (_getPrototypeOf2 = getPrototypeOf(ToastHub)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this = possibleConstructorReturn$1(this, (_getPrototypeOf2 = getPrototypeOf(ToastHubProvider)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
     defineProperty(assertThisInitialized(assertThisInitialized(_this)), "state", {
       items: [],
@@ -10429,11 +10427,11 @@ function (_React$PureComponent) {
     });
 
     defineProperty(assertThisInitialized(assertThisInitialized(_this)), "config", function (item, state) {
-      var config = springs.lazy; // Return custom configs on leave (includes the life-line duration)
+      var config$$1 = springs.lazy; // Return custom configs on leave (includes the life-line duration)
 
       return state === 'leave' ? [{
         duration: _this.props.timeout
-      }, config, config] : config;
+      }, config$$1, config$$1] : config$$1;
     });
 
     defineProperty(assertThisInitialized(assertThisInitialized(_this)), "cancel", function (item) {
@@ -10513,7 +10511,7 @@ function (_React$PureComponent) {
     return _this;
   }
 
-  createClass(ToastHub, [{
+  createClass(ToastHubProvider, [{
     key: "render",
     value: function render() {
       var _this$props = this.props,
@@ -10521,73 +10519,108 @@ function (_React$PureComponent) {
           showIndicator = _this$props.showIndicator,
           position = _this$props.position,
           top = _this$props.top;
-      return React.createElement(React.Fragment, null, React.createElement(Provider$2, {
+      return React__default.createElement(React__default.Fragment, null, React__default.createElement(Provider$2, {
         value: this.add,
         children: children
-      }), React.createElement(Container, _extends_1({}, stylingProps(this), {
-        position: position,
-        top: top
-      }), React.createElement(Transition, {
-        native: true,
+      }), React__default.createElement(ToastList, _extends_1({
+        config: this.config,
         items: this.state.items,
-        keys: function keys(item) {
-          return item.key;
-        },
-        from: {
-          opacity: 0,
-          height: 0,
-          life: '100%',
-          transform: move(30)
-        },
-        enter: {
-          opacity: 1,
-          height: 'auto',
-          transform: move(0)
-        },
         leave: this.leave,
-        onRest: this.remove,
-        config: this.config
-      }, function (item) {
-        return function (_ref2) {
-          var life = _ref2.life,
-              props = objectWithoutProperties(_ref2, ["life"]);
-
-          return React.createElement(Message, {
-            style: props
-          }, React.createElement(Content, {
-            top: top
-          }, showIndicator && React.createElement(Life, {
-            top: top,
-            style: {
-              right: life
-            }
-          }), React.createElement(Text.Paragraph, null, item.msg)));
-        };
-      })));
+        position: position,
+        remove: this.remove,
+        showIndicator: showIndicator,
+        top: top
+      }, stylingProps(this))));
     }
   }]);
 
-  return ToastHub;
-}(React.PureComponent);
+  return ToastHubProvider;
+}(React__default.PureComponent); // ToastList is separated from ToastHubProvider so we can skip its rendering
 
-defineProperty(ToastHub, "propTypes", {
-  timeout: propTypes.number,
+
+defineProperty(ToastHubProvider, "propTypes", {
+  children: propTypes.node,
+  position: propTypes.PropTypes.oneOf(['left', 'center', 'right']),
   showIndicator: propTypes.bool,
   threshold: propTypes.number,
-  position: propTypes.PropTypes.oneOf(['left', 'center', 'right']),
-  top: propTypes.bool,
-  children: propTypes.node
+  timeout: propTypes.number,
+  top: propTypes.bool
 });
 
-defineProperty(ToastHub, "defaultProps", {
-  timeout: 4000,
+defineProperty(ToastHubProvider, "defaultProps", {
+  position: 'right',
   showIndicator: false,
   threshold: Infinity,
-  position: 'right',
+  timeout: 4000,
   top: false
 });
 
-var Container = styled__default('div').withConfig({
+var ToastList = React__default.memo(function (_ref2) {
+  var config$$1 = _ref2.config,
+      items = _ref2.items,
+      leave = _ref2.leave,
+      position = _ref2.position,
+      remove = _ref2.remove,
+      showIndicator = _ref2.showIndicator,
+      top = _ref2.top,
+      props = objectWithoutProperties(_ref2, ["config", "items", "leave", "position", "remove", "showIndicator", "top"]);
+
+  return React__default.createElement(Container, _extends_1({
+    position: position,
+    top: top
+  }, props), React__default.createElement(Transition, {
+    native: true,
+    items: items,
+    keys: function keys(item) {
+      return item.key;
+    },
+    from: {
+      opacity: 0,
+      height: 0,
+      life: '100%',
+      transform: move(30)
+    },
+    enter: {
+      opacity: 1,
+      height: 'auto',
+      transform: move(0)
+    },
+    leave: leave,
+    onRest: remove,
+    config: config$$1
+  }, function (item) {
+    return (
+      /* eslint-disable react/prop-types */
+      function (_ref3) {
+        var life = _ref3.life,
+            props = objectWithoutProperties(_ref3, ["life"]);
+
+        return React__default.createElement(Message, {
+          style: props
+        }, React__default.createElement(Content, {
+          top: top
+        }, showIndicator && React__default.createElement(Life, {
+          top: top,
+          style: {
+            right: life
+          }
+        }), React__default.createElement(Text.Paragraph, null, item.msg)));
+      }
+    );
+  }
+  /* eslint-enable react/prop-types */
+  ));
+});
+ToastList.propTypes = {
+  showIndicator: propTypes.bool,
+  position: propTypes.PropTypes.oneOf(['left', 'center', 'right']),
+  top: propTypes.bool,
+  config: propTypes.func,
+  items: propTypes.array,
+  leave: propTypes.func,
+  remove: propTypes.func
+};
+var Container = styled__default.div.withConfig({
   displayName: "ToastHub__Container",
   componentId: "sc-1y0i8xl-0"
 })(["position:fixed;z-index:1000;top:", ";bottom:", ";margin:0 auto;left:30px;right:30px;display:flex;flex-direction:", ";pointer-events:none;align-items:center;@media (min-width:700px){align-items:", ";}"], function (props) {
@@ -10612,7 +10645,7 @@ var Message = styled__default(extendedAnimated.div).withConfig({
   displayName: "ToastHub__Message",
   componentId: "sc-1y0i8xl-1"
 })(["box-sizing:border-box;position:relative;width:100%;@media (min-width:700px){width:42ch;}"]);
-var Content = styled__default('div').withConfig({
+var Content = styled__default.div.withConfig({
   displayName: "ToastHub__Content",
   componentId: "sc-1y0i8xl-2"
 })(["color:white;background:#445159;opacity:0.9;margin-top:", ";margin-bottom:", ";padding:12px 22px;font-size:1em;display:grid;grid-template-columns:1fr;grid-gap:10px;border-radius:3px;overflow:hidden;"], function (props) {
@@ -10648,7 +10681,7 @@ TextInput.defaultProps = {
   type: 'text' // Text input wrapped to allow adornments
 
 };
-var WrapperTextInput = React.forwardRef(function (_ref2, ref) {
+var WrapperTextInput = React__default.forwardRef(function (_ref2, ref) {
   var adornment = _ref2.adornment,
       adornmentPosition = _ref2.adornmentPosition,
       _ref2$adornmentSettin = _ref2.adornmentSettings,
@@ -10659,17 +10692,17 @@ var WrapperTextInput = React.forwardRef(function (_ref2, ref) {
       props = objectWithoutProperties(_ref2, ["adornment", "adornmentPosition", "adornmentSettings"]);
 
   if (!adornment) {
-    return React.createElement(TextInput, _extends_1({
+    return React__default.createElement(TextInput, _extends_1({
       ref: ref
     }, props));
   }
 
-  return React.createElement(_StyledDiv, null, React.createElement(_StyledTextInput, _extends_1({
+  return React__default.createElement(_StyledDiv, null, React__default.createElement(_StyledTextInput, _extends_1({
     ref: ref
   }, props, {
     _$p_: adornmentPosition === 'end' ? 'padding-right' : 'padding-left',
     _$p_2: adornmentWidth - adornmentPadding * 2
-  })), React.createElement(_StyledDiv2, {
+  })), React__default.createElement(_StyledDiv2, {
     _$p_3: adornmentPosition === 'end' ? 'right' : 'left',
     _$p_4: adornmentPadding,
     _$p_5: theme.textSecondary
@@ -10763,7 +10796,7 @@ function (_React$PureComponent) {
 
     _this = possibleConstructorReturn$1(this, (_getPrototypeOf2 = getPrototypeOf(FocusVisible)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
-    defineProperty(assertThisInitialized(assertThisInitialized(_this)), "_element", React.createRef());
+    defineProperty(assertThisInitialized(assertThisInitialized(_this)), "_element", React__default.createRef());
 
     defineProperty(assertThisInitialized(assertThisInitialized(_this)), "_document", null);
 
@@ -10829,17 +10862,17 @@ function (_React$PureComponent) {
     key: "render",
     value: function render() {
       var focusVisible = this.state.focusVisible;
-      return React.createElement(React.Fragment, null, this.props.children({
+      return React__default.createElement(React__default.Fragment, null, this.props.children({
         focusVisible: focusVisible,
         onFocus: this.handleFocus
-      }), !this._document && React.createElement("span", {
+      }), !this._document && React__default.createElement("span", {
         ref: this._element
       }));
     }
   }]);
 
   return FocusVisible;
-}(React.PureComponent);
+}(React__default.PureComponent);
 
 defineProperty(FocusVisible, "propTypes", {
   // children is called with an object containing two entries:
@@ -10868,7 +10901,7 @@ function (_React$PureComponent) {
           innerRef = _this$props.innerRef,
           props = objectWithoutProperties(_this$props, ["focusVisible", "showFocusRing", "innerRef"]);
 
-      return React.createElement(Main, _extends_1({
+      return React__default.createElement(Main, _extends_1({
         ref: innerRef,
         focusRing: focusVisible && showFocusRing
       }, props));
@@ -10876,7 +10909,7 @@ function (_React$PureComponent) {
   }]);
 
   return ButtonBase;
-}(React.PureComponent);
+}(React__default.PureComponent);
 
 defineProperty(ButtonBase, "propTypes", {
   innerRef: propTypes.any,
@@ -10902,11 +10935,11 @@ var Main = styled__default.button.attrs({
 }, function (p) {
   return p.focusRing ? "2px solid ".concat(theme.accent) : '0';
 });
-var ButtonBase$1 = React.forwardRef(function (props, ref) {
-  return React.createElement(FocusVisible, null, function (_ref2) {
+var ButtonBase$1 = React__default.forwardRef(function (props, ref) {
+  return React__default.createElement(FocusVisible, null, function (_ref2) {
     var focusVisible = _ref2.focusVisible,
         onFocus = _ref2.onFocus;
-    return React.createElement(ButtonBase, _extends_1({
+    return React__default.createElement(ButtonBase, _extends_1({
       innerRef: ref,
       onFocus: onFocus,
       focusVisible: focusVisible
@@ -10933,14 +10966,14 @@ function (_React$PureComponent) {
           children = _this$props.children,
           props = objectWithoutProperties(_this$props, ["label", "children"]);
 
-      return React.createElement(_StyledButtonBase, _extends_1({
+      return React__default.createElement(_StyledButtonBase, _extends_1({
         title: label
       }, props), children);
     }
   }]);
 
   return ButtonIcon;
-}(React.PureComponent);
+}(React__default.PureComponent);
 
 ButtonIcon.propTypes = {
   label: propTypes.string.isRequired,
@@ -10964,7 +10997,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 
 
-var _react2 = _interopRequireDefault(React);
+var _react2 = _interopRequireDefault(React__default);
 
 
 
@@ -11148,7 +11181,7 @@ var Identicon = function (_Component) {
   }]);
 
   return Identicon;
-}(React.Component);
+}(React__default.Component);
 
 exports.default = Identicon;
 
@@ -11194,14 +11227,14 @@ function (_React$Component) {
           radius = _this$props.radius,
           soften = _this$props.soften;
       var blockiesScale = scale * BASE_SCALE;
-      return React.createElement(Main$1, _extends_1({
+      return React__default.createElement(Main$1, _extends_1({
         size: BLOCKIES_SQUARES * blockiesScale,
         radius: radius
-      }, stylingProps(this)), React.createElement(BlockiesScaling, {
+      }, stylingProps(this)), React__default.createElement(BlockiesScaling, {
         size: BLOCKIES_SQUARES * blockiesScale * PX_RATIO
-      }, React.createElement(BlockiesOpacity, {
+      }, React__default.createElement(BlockiesOpacity, {
         soften: soften
-      }, React.createElement(Blockies, {
+      }, React__default.createElement(Blockies, {
         seed: address.toLowerCase(),
         size: BLOCKIES_SQUARES,
         scale: blockiesScale * PX_RATIO
@@ -11210,7 +11243,7 @@ function (_React$Component) {
   }]);
 
   return EthIdenticon;
-}(React.Component);
+}(React__default.Component);
 /*
  * `vertical-align` prevents the inline parent to have an incorrect height.
  *
@@ -11276,9 +11309,9 @@ function (_React$PureComponent) {
 
     _this = possibleConstructorReturn$1(this, (_getPrototypeOf2 = getPrototypeOf(AddressFieldBase)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
-    defineProperty(assertThisInitialized(assertThisInitialized(_this)), "_input", React.createRef());
+    defineProperty(assertThisInitialized(assertThisInitialized(_this)), "_input", React__default.createRef());
 
-    defineProperty(assertThisInitialized(assertThisInitialized(_this)), "_button", React.createRef());
+    defineProperty(assertThisInitialized(assertThisInitialized(_this)), "_button", React__default.createRef());
 
     defineProperty(assertThisInitialized(assertThisInitialized(_this)), "handleFocus", function () {
       _this._input.current.select();
@@ -11317,13 +11350,13 @@ function (_React$PureComponent) {
     key: "render",
     value: function render() {
       var address = this.props.address;
-      return React.createElement(_StyledDiv$1, {
+      return React__default.createElement(_StyledDiv$1, {
         _$p_: theme.contentBackground,
         _$p_2: theme.contentBorder
-      }, React.createElement(_StyledDiv2$1, null, React.createElement(_StyledEthIdenticon, {
+      }, React__default.createElement(_StyledDiv2$1, null, React__default.createElement(_StyledEthIdenticon, {
         address: address,
         scale: 2
-      })), React.createElement(_StyledTextInput$1, {
+      })), React__default.createElement(_StyledTextInput$1, {
         ref: this._input,
         value: address,
         onFocus: this.handleFocus,
@@ -11332,16 +11365,16 @@ function (_React$PureComponent) {
           monospace: true
         }),
         _$p_4: theme.textPrimary
-      }), React.createElement(_StyledButtonIcon, {
+      }), React__default.createElement(_StyledButtonIcon, {
         ref: this._button,
         onClick: this.handleCopy,
         label: "Copy"
-      }, React.createElement(Copy, null)));
+      }, React__default.createElement(Copy, null)));
     }
   }]);
 
   return AddressFieldBase;
-}(React.PureComponent);
+}(React__default.PureComponent);
 
 defineProperty(AddressFieldBase, "propTypes", {
   address: propTypes.string.isRequired,
@@ -11350,10 +11383,10 @@ defineProperty(AddressFieldBase, "propTypes", {
 
 var AddressField = function AddressField(props) {
   return (// If onCopy is set (either to a function or null), Toast is not used.
-    props.onCopy || props.onCopy === null ? React.createElement(AddressFieldBase, _extends_1({}, props, {
+    props.onCopy || props.onCopy === null ? React__default.createElement(AddressFieldBase, _extends_1({}, props, {
       onCopy: props.onCopy || noop
-    })) : React.createElement(Toast, null, function (add) {
-      return React.createElement(AddressFieldBase, _extends_1({
+    })) : React__default.createElement(Toast, null, function (add) {
+      return React__default.createElement(AddressFieldBase, _extends_1({
         onCopy: add
       }, props));
     })
@@ -11398,7 +11431,7 @@ var _StyledButtonIcon = styled__default(ButtonIcon).withConfig({
 var chevronSvg = "data:image/svg+xml,%3Csvg%20width%3D%227%22%20height%3D%2212%22%20viewBox%3D%220%200%207%2012%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M.446%2012a.512.512%200%200%201-.172-.03.422.422%200%200%201-.146-.087A.37.37%200%200%201%200%2011.6a.37.37%200%200%201%20.128-.281l5.826-5.361L.217.692A.376.376%200%200%201%20.089.405.378.378%200%200%201%20.217.117.444.444%200%200%201%20.529%200c.123%200%20.228.04.313.117l6.03%205.56A.37.37%200%200%201%207%205.96a.37.37%200%200%201-.128.281l-6.12%205.643A.477.477%200%200%201%20.446%2012z%22%20fill%3D%22%2300CBE6%22%20fill-rule%3D%22evenodd%22%2F%3E%3C%2Fsvg%3E";
 
 var BAR_HEIGHT = 64;
-var InAppBarContext = React.createContext(false);
+var InAppBarContext = React__default.createContext(false);
 
 var AppBar =
 /*#__PURE__*/
@@ -11422,7 +11455,7 @@ function (_React$Component) {
       tabsHeight: 0
     });
 
-    defineProperty(assertThisInitialized(assertThisInitialized(_this)), "_tabsRef", React.createRef());
+    defineProperty(assertThisInitialized(assertThisInitialized(_this)), "_tabsRef", React__default.createRef());
 
     return _this;
   }
@@ -11466,25 +11499,25 @@ function (_React$Component) {
           title = _this$props.title,
           props = objectWithoutProperties(_this$props, ["children", "endContent", "onTitleClick", "padding", "tabs", "title"]);
 
-      return React.createElement(InAppBarContext.Provider, {
+      return React__default.createElement(InAppBarContext.Provider, {
         value: true
-      }, React.createElement(_StyledDiv$2, {
+      }, React__default.createElement(_StyledDiv$2, {
         _$p_: theme.contentBackground,
         _$p_2: unselectable(),
         _$p_3: theme.contentBorder
-      }, React.createElement(_StyledDiv2$2, _extends_1({}, props, {
+      }, React__default.createElement(_StyledDiv2$2, _extends_1({}, props, {
         _$p_4: BAR_HEIGHT - 1
-      }), title && React.createElement(_StyledDiv3, {
+      }), title && React__default.createElement(_StyledDiv3, {
         _$p_5: padding
-      }, React.createElement(AppBarTitle, {
+      }, React__default.createElement(AppBarTitle, {
         chevron: Boolean(children),
         clickable: Boolean(onTitleClick),
         onClick: onTitleClick
-      }, typeof title === 'string' ? React.createElement(Text, {
+      }, typeof title === 'string' ? React__default.createElement(Text, {
         size: "xxlarge"
-      }, title) : title)), children, endContent && React.createElement(_StyledDiv4, {
+      }, title) : title)), children, endContent && React__default.createElement(_StyledDiv4, {
         _$p_6: padding
-      }, endContent)), React.createElement(Transition, {
+      }, endContent)), React__default.createElement(Transition, {
         items: tabs,
         from: {
           opacity: 0,
@@ -11503,9 +11536,9 @@ function (_React$Component) {
         native: true
       }, function (tabs) {
         return tabs && function (styles) {
-          return React.createElement(TabsWrapper, {
+          return React__default.createElement(TabsWrapper, {
             style: styles
-          }, React.createElement("div", {
+          }, React__default.createElement("div", {
             ref: _this2._tabsRef
           }, tabs));
         };
@@ -11514,7 +11547,7 @@ function (_React$Component) {
   }]);
 
   return AppBar;
-}(React.Component);
+}(React__default.Component);
 
 defineProperty(AppBar, "propTypes", {
   children: propTypes.node,
@@ -11602,19 +11635,19 @@ function (_React$Component) {
           padding = _this$props.padding,
           tabs = _this$props.tabs,
           title = _this$props.title;
-      return React.createElement(Main$2, _extends_1({
+      return React__default.createElement(Main$2, _extends_1({
         height: height
-      }, stylingProps(this)), React.createElement(Header, null, appBar || React.createElement(AppBar, {
+      }, stylingProps(this)), React__default.createElement(Header, null, appBar || React__default.createElement(AppBar, {
         title: title,
         tabs: tabs
-      })), React.createElement(ScrollWrapper, null, React.createElement(Content$1, {
+      })), React__default.createElement(ScrollWrapper, null, React__default.createElement(Content$1, {
         padding: padding
       }, children)));
     }
   }]);
 
   return AppView;
-}(React.Component);
+}(React__default.Component);
 
 defineProperty(AppView, "defaultProps", {
   title: '',
@@ -11772,14 +11805,14 @@ function (_React$PureComponent) {
   }, {
     key: "render",
     value: function render() {
-      return React.createElement(GlobalStyle, _extends_1({}, this.props, {
+      return React__default.createElement(GlobalStyle, _extends_1({}, this.props, {
         fontFaces: this.fontFaceDeclarations()
       }));
     }
   }]);
 
   return BaseStyles;
-}(React.PureComponent);
+}(React__default.PureComponent);
 
 defineProperty(BaseStyles, "propTypes", {
   publicUrl: propTypes.string,
@@ -11847,16 +11880,16 @@ function (_React$Component) {
         className: className,
         publicUrl: publicUrl
       };
-      return React.createElement(PublicUrl.Provider, {
+      return React__default.createElement(PublicUrl.Provider, {
         url: ensureTrailingSlash(publicUrl)
-      }, React.createElement(BaseStyles$1, {
+      }, React__default.createElement(BaseStyles$1, {
         enableLegacyFonts: supportLegacyAgents
-      }), React.createElement(StyledAragonApp, styledProps, children));
+      }), React__default.createElement(StyledAragonApp, styledProps, children));
     }
   }]);
 
   return AragonApp;
-}(React.Component);
+}(React__default.Component);
 
 defineProperty(AragonApp, "propTypes", {
   className: propTypes.string,
@@ -11933,7 +11966,7 @@ var Info = function Info(_ref) {
       small = _ref.small,
       props = objectWithoutProperties(_ref, ["children", "label", "small"]);
 
-  return React.createElement(Badge, _extends_1({
+  return React__default.createElement(Badge, _extends_1({
     shape: small ? 'smalldisc' : 'disc',
     background: theme.badgeInfoBackground,
     foreground: theme.badgeInfoForeground
@@ -11955,7 +11988,7 @@ var Notification = function Notification(_ref) {
       small = _ref.small,
       props = objectWithoutProperties(_ref, ["children", "label", "small"]);
 
-  return React.createElement(Badge, _extends_1({
+  return React__default.createElement(Badge, _extends_1({
     shape: small ? 'smalldisc' : 'disc',
     background: theme.badgeNotificationBackground,
     foreground: theme.badgeNotificationForeground
@@ -11972,7 +12005,7 @@ Notification.propTypes = {
 };
 
 var Identity$1 = function Identity(props) {
-  return React.createElement(Badge, _extends_1({
+  return React__default.createElement(Badge, _extends_1({
     shape: "compact",
     background: theme.badgeIdentityBackground,
     foreground: theme.badgeIdentityForeground
@@ -11980,7 +12013,7 @@ var Identity$1 = function Identity(props) {
 };
 
 var App = function App(props) {
-  return React.createElement(Badge, _extends_1({
+  return React__default.createElement(Badge, _extends_1({
     shape: "round",
     background: theme.badgeAppBackground,
     foreground: theme.badgeAppForeground
@@ -11999,7 +12032,7 @@ var BadgeNumber = function BadgeNumber(_ref) {
       color = _ref.color,
       props = objectWithoutProperties(_ref, ["number", "small", "background", "color"]);
 
-  return React.createElement(Badge, _extends_1({
+  return React__default.createElement(Badge, _extends_1({
     shape: small ? 'smalldisc' : 'disc',
     background: background,
     foreground: color
@@ -12148,16 +12181,16 @@ var StyledButton = styled__default.button.attrs({
   if (emphasis === 'negative') return negativeStyle;
   return '';
 });
-var Button = React.forwardRef(function (props, ref) {
-  return React.createElement(PublicUrl, null, function (url) {
-    return React.createElement(StyledButton, _extends_1({
+var Button = React__default.forwardRef(function (props, ref) {
+  return React__default.createElement(PublicUrl, null, function (url) {
+    return React__default.createElement(StyledButton, _extends_1({
       ref: ref,
       publicUrl: url
     }, props));
   });
 });
-Button.Anchor = React.forwardRef(function (props, ref) {
-  return React.createElement(Button, _extends_1({
+Button.Anchor = React__default.forwardRef(function (props, ref) {
+  return React__default.createElement(Button, _extends_1({
     ref: ref,
     as: SafeLink
   }, props));
@@ -12192,7 +12225,7 @@ function (_React$PureComponent) {
 
     _this = possibleConstructorReturn$1(this, (_getPrototypeOf2 = getPrototypeOf(Checkbox)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
-    defineProperty(assertThisInitialized(assertThisInitialized(_this)), "_element", React.createRef());
+    defineProperty(assertThisInitialized(assertThisInitialized(_this)), "_element", React__default.createRef());
 
     defineProperty(assertThisInitialized(assertThisInitialized(_this)), "handleClick", function () {
       var _this$props = _this.props,
@@ -12222,7 +12255,7 @@ function (_React$PureComponent) {
   }, {
     key: "renderCheck",
     value: function renderCheck(visible, node) {
-      return React.createElement(Spring, {
+      return React__default.createElement(Spring, {
         from: {
           progress: 0
         },
@@ -12233,7 +12266,7 @@ function (_React$PureComponent) {
         native: true
       }, function (_ref) {
         var progress = _ref.progress;
-        return React.createElement(CheckWrapper, {
+        return React__default.createElement(CheckWrapper, {
           style: {
             opacity: progress,
             transform: progress.interpolate(function (v) {
@@ -12255,10 +12288,10 @@ function (_React$PureComponent) {
           tabIndex = _this$props3.tabIndex,
           props = objectWithoutProperties(_this$props3, ["checked", "indeterminate", "variant", "tabIndex"]);
 
-      return React.createElement(FocusVisible, null, function (_ref2) {
+      return React__default.createElement(FocusVisible, null, function (_ref2) {
         var focusVisible = _ref2.focusVisible,
             onFocus = _ref2.onFocus;
-        return React.createElement(Main$3, _extends_1({
+        return React__default.createElement(Main$3, _extends_1({
           ref: _this2._element,
           role: variant,
           tabIndex: tabIndex,
@@ -12266,7 +12299,7 @@ function (_React$PureComponent) {
           onClick: _this2.handleClick,
           focusVisible: focusVisible,
           onFocus: onFocus
-        }, props), variant === 'checkbox' && _this2.renderCheck(checked && !indeterminate, React.createElement(Check$1, null)), variant === 'checkbox' && _this2.renderCheck(indeterminate, React.createElement(Dash, null)), variant === 'radio' && _this2.renderCheck(checked, React.createElement(Bullet, null)), React.createElement(FocusRing, {
+        }, props), variant === 'checkbox' && _this2.renderCheck(checked && !indeterminate, React__default.createElement(Check$1, null)), variant === 'checkbox' && _this2.renderCheck(indeterminate, React__default.createElement(Dash, null)), variant === 'radio' && _this2.renderCheck(checked, React__default.createElement(Bullet, null)), React__default.createElement(FocusRing, {
           variant: variant
         }));
       });
@@ -12274,7 +12307,7 @@ function (_React$PureComponent) {
   }]);
 
   return Checkbox;
-}(React.PureComponent);
+}(React__default.PureComponent);
 
 defineProperty(Checkbox, "propTypes", {
   checked: propTypes.bool,
@@ -12320,11 +12353,11 @@ var Check$1 = styled__default(Check).withConfig({
 var Dash = function Dash() {
   return (
     /* Use SVG to have subpixels (1.5 storke width) on Chrome */
-    React.createElement("svg", {
+    React__default.createElement("svg", {
       width: "14",
       height: "14",
       viewBox: "0 0 14 14"
-    }, React.createElement("line", {
+    }, React__default.createElement("line", {
       x1: "3",
       y1: "7",
       x2: "11",
@@ -12354,14 +12387,14 @@ var CircleGraph = function CircleGraph(_ref) {
       size = _ref.size;
   var length = Math.PI * 2 * (size - BORDER_WIDTH);
   var radius = (size - BORDER_WIDTH) / 2;
-  return React.createElement(Spring, {
+  return React__default.createElement(Spring, {
     to: {
       progressValue: value
     },
     native: true
   }, function (_ref2) {
     var progressValue = _ref2.progressValue;
-    return React.createElement(Main$4, {
+    return React__default.createElement(Main$4, {
       style: {
         display: 'flex',
         alignItems: 'center',
@@ -12369,15 +12402,15 @@ var CircleGraph = function CircleGraph(_ref) {
         width: "".concat(size, "px"),
         height: "".concat(size, "px")
       }
-    }, React.createElement(CircleSvg, {
+    }, React__default.createElement(CircleSvg, {
       width: size,
       height: size,
       viewBox: "0 0 ".concat(size, " ").concat(size)
-    }, React.createElement(CircleBase, {
+    }, React__default.createElement(CircleBase, {
       cx: size / 2,
       cy: size / 2,
       r: radius
-    }), React.createElement(CircleValue, {
+    }), React__default.createElement(CircleValue, {
       cx: size / 2,
       cy: size / 2,
       r: radius,
@@ -12388,7 +12421,7 @@ var CircleGraph = function CircleGraph(_ref) {
         }),
         strokeWidth: BORDER_WIDTH
       }
-    })), React.createElement(Label, null, progressValue.interpolate(function (t) {
+    })), React__default.createElement(Label, null, progressValue.interpolate(function (t) {
       return label(Math.min(1, Math.max(0, t)));
     })));
   });
@@ -12520,25 +12553,25 @@ var ClickOutComponent = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
-      return Array.isArray(this.props.children) ? React.createElement(
+      return Array.isArray(this.props.children) ? React__default.createElement(
         'div',
         null,
         this.props.children
-      ) : React.Children.only(this.props.children);
+      ) : React__default.Children.only(this.props.children);
     }
   }]);
 
   return ClickOutComponent;
-}(React.Component);
+}(React__default.Component);
 
 var reactOnclickout = ClickOutComponent;
 
 var Ellipsis = function Ellipsis(props) {
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: 15,
     height: 4,
     viewBox: "0 0 15 4"
-  }, props), React.createElement("path", {
+  }, props), React__default.createElement("path", {
     d: "M7.5 3.213a1.42 1.42 0 0 1-.974-.37c-.278-.248-.418-.588-.418-1.021 0-.384.135-.71.404-.979S7.11.439 7.5.439s.722.135.997.404c.276.27.413.595.413.979 0 .439-.142.78-.427 1.025a1.465 1.465 0 0 1-.983.366zm-5.327 0c-.371 0-.694-.122-.97-.366C.928 2.603.791 2.26.791 1.822c0-.39.133-.718.398-.984.266-.266.594-.399.984-.399s.722.135.997.404c.275.27.413.595.413.979 0 .439-.142.78-.427 1.025a1.465 1.465 0 0 1-.983.366zm10.654 0c-.365 0-.688-.123-.97-.37-.28-.248-.421-.588-.421-1.021 0-.384.134-.71.403-.979.27-.269.598-.404.988-.404s.722.135.997.404c.276.27.413.595.413.979 0 .433-.14.773-.422 1.02a1.45 1.45 0 0 1-.988.371z",
     fill: "currentColor",
     fillRule: "evenodd"
@@ -12546,11 +12579,11 @@ var Ellipsis = function Ellipsis(props) {
 };
 
 var ArrowDown = function ArrowDown(props) {
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: 9,
     height: 5,
     viewBox: "0 0 9 5"
-  }, props), React.createElement("path", {
+  }, props), React__default.createElement("path", {
     d: "M0 0h8.36L4.18 4.18z",
     fill: "currentColor",
     fillRule: "evenodd"
@@ -12607,9 +12640,9 @@ function (_React$Component) {
 
       var opened = this.state.opened;
       var children = this.props.children;
-      return React.createElement(reactOnclickout, {
+      return React__default.createElement(reactOnclickout, {
         onClickOut: this.handleClose
-      }, React.createElement(Spring, {
+      }, React__default.createElement(Spring, {
         config: springs.smooth,
         to: {
           openProgress: Number(opened)
@@ -12617,28 +12650,28 @@ function (_React$Component) {
         native: true
       }, function (_ref2) {
         var openProgress = _ref2.openProgress;
-        return React.createElement(Main$5, {
+        return React__default.createElement(Main$5, {
           style: {
             zIndex: opened ? '2' : '1',
             boxShadow: openProgress.interpolate(function (t) {
               return "0 4px 4px rgba(0, 0, 0, ".concat(t * 0.03, ")");
             })
           }
-        }, React.createElement(BaseButton, {
+        }, React__default.createElement(BaseButton, {
           onClick: _this2.handleBaseButtonClick,
           opened: opened
-        }, React.createElement("span", null, React.createElement(Ellipsis, {
+        }, React__default.createElement("span", null, React__default.createElement(Ellipsis, {
           style: {
             color: opened ? theme.accent : theme.textSecondary
           }
-        })), React.createElement("span", null, React.createElement(extendedAnimated.div, {
+        })), React__default.createElement("span", null, React__default.createElement(extendedAnimated.div, {
           style: {
             color: theme.textTertiary,
             transform: openProgress.interpolate(function (t) {
               return "rotate(".concat(t * 180, "deg)");
             })
           }
-        }, React.createElement(ArrowDown, null)))), React.createElement(Popup, {
+        }, React__default.createElement(ArrowDown, null)))), React__default.createElement(Popup, {
           onClick: _this2.handleClose,
           style: {
             display: opened ? 'block' : 'none',
@@ -12653,7 +12686,7 @@ function (_React$Component) {
   }]);
 
   return ContextMenu;
-}(React.Component);
+}(React__default.Component);
 
 defineProperty(ContextMenu, "propTypes", {
   children: propTypes.node
@@ -13439,10 +13472,10 @@ function (_React$Component) {
           totalInSeconds = _getTime.totalInSeconds;
 
       if (end && totalInSeconds <= 0) {
-        return React.createElement(TimeOut, null, "Time out");
+        return React__default.createElement(TimeOut, null, "Time out");
       }
 
-      return React.createElement("span", null, days !== null && React.createElement(React.Fragment, null, React.createElement(Part, null, formatUnit(days), React.createElement(Unit, null, "D")), React.createElement(Separator, null)), hours !== null && React.createElement(Part, null, formatUnit(hours), React.createElement(Unit, null, "H")), hours !== null && minutes !== null && React.createElement(Separator, null, ":"), minutes !== null && React.createElement(Part, null, formatUnit(minutes), React.createElement(Unit, null, "M")), seconds !== null && React.createElement(React.Fragment, null, minutes !== null && React.createElement(Separator, null, ":"), React.createElement(PartSeconds, null, formatUnit(seconds), React.createElement(UnitSeconds, null, "S"))));
+      return React__default.createElement("span", null, days !== null && React__default.createElement(React__default.Fragment, null, React__default.createElement(Part, null, formatUnit(days), React__default.createElement(Unit, null, "D")), React__default.createElement(Separator, null)), hours !== null && React__default.createElement(Part, null, formatUnit(hours), React__default.createElement(Unit, null, "H")), hours !== null && minutes !== null && React__default.createElement(Separator, null, ":"), minutes !== null && React__default.createElement(Part, null, formatUnit(minutes), React__default.createElement(Unit, null, "M")), seconds !== null && React__default.createElement(React__default.Fragment, null, minutes !== null && React__default.createElement(Separator, null, ":"), React__default.createElement(PartSeconds, null, formatUnit(seconds), React__default.createElement(UnitSeconds, null, "S"))));
     });
 
     return _this;
@@ -13454,16 +13487,16 @@ function (_React$Component) {
       var _this$props2 = this.props,
           end = _this$props2.end,
           start = _this$props2.start;
-      return React.createElement(Main$6, {
+      return React__default.createElement(Main$6, {
         dateTime: formatHtmlDatetime(end || start)
-      }, React.createElement(IconWrapper, null, React.createElement(Time, null)), React.createElement(Redraw, {
+      }, React__default.createElement(IconWrapper, null, React__default.createElement(Time, null)), React__default.createElement(Redraw, {
         interval: FRAME_EVERY
       }, this.renderTime));
     }
   }]);
 
   return Timer;
-}(React.Component);
+}(React__default.Component);
 
 defineProperty(Timer, "propTypes", {
   start: propTypes.instanceOf(Date),
@@ -13528,7 +13561,7 @@ function (_React$Component) {
           end = _this$props.end,
           removeDaysAndHours = _this$props.removeDaysAndHours;
       var format = removeDaysAndHours ? 'ms' : 'dhms';
-      return React.createElement(Timer, {
+      return React__default.createElement(Timer, {
         end: end,
         format: format
       });
@@ -13536,7 +13569,7 @@ function (_React$Component) {
   }]);
 
   return Countdown;
-}(React.Component);
+}(React__default.Component);
 
 Countdown.propTypes = {
   end: propTypes.instanceOf(Date).isRequired,
@@ -13615,7 +13648,7 @@ function (_React$Component) {
           mainRef = _this$props.mainRef,
           active = _this$props.active;
       var displayFocus = this.state.displayFocus;
-      return React.createElement(StyledDropDownItem, {
+      return React__default.createElement(StyledDropDownItem, {
         ref: mainRef,
         className: className,
         active: active,
@@ -13630,7 +13663,7 @@ function (_React$Component) {
   }]);
 
   return DropDownItem;
-}(React.Component);
+}(React__default.Component);
 
 defineProperty(DropDownItem, "propTypes", {
   active: propTypes.bool,
@@ -13750,17 +13783,17 @@ function (_React$Component) {
           wide = _this$props.wide;
       var opened = this.state.opened;
       var activeItem = items[active] || items[0];
-      return React.createElement(reactOnclickout, {
+      return React__default.createElement(reactOnclickout, {
         onClickOut: this.handleClose
-      }, React.createElement(StyledDropDown, {
+      }, React__default.createElement(StyledDropDown, {
         wide: wide,
         opened: opened
-      }, React.createElement(DropDownActiveItem, {
+      }, React__default.createElement(DropDownActiveItem, {
         onActivate: this.handleToggle,
         mainRef: function mainRef(el) {
           return _this2.activeItemElt = el;
         }
-      }, activeItem), React.createElement(Transition, {
+      }, activeItem), React__default.createElement(Transition, {
         config: springs.swift,
         items: opened,
         from: {
@@ -13784,7 +13817,7 @@ function (_React$Component) {
           var scale = _ref4.scale,
               opacity = _ref4.opacity,
               enabled = _ref4.enabled;
-          return React.createElement(DropDownItems, {
+          return React__default.createElement(DropDownItems, {
             role: "listbox",
             style: {
               opacity: opacity,
@@ -13794,14 +13827,14 @@ function (_React$Component) {
               minWidth: wide ? '100%' : '0'
             }
           }, items.length ? items.map(function (item, i) {
-            return React.createElement(DropDownItem, {
+            return React__default.createElement(DropDownItem, {
               role: "option",
               key: i,
               index: i,
               active: i === active,
               onActivate: _this2.handleItemActivate
             }, item);
-          }) : NON_BREAKING_SPACE$1, React.createElement(BlockingLayer, {
+          }) : NON_BREAKING_SPACE$1, React__default.createElement(BlockingLayer, {
             style: {
               display: enabled.interpolate(function (t) {
                 return t === 1 ? 'none' : 'block';
@@ -13814,7 +13847,7 @@ function (_React$Component) {
   }]);
 
   return DropDown;
-}(React.Component);
+}(React__default.Component);
 
 defineProperty(DropDown, "propTypes", {
   items: propTypes.arrayOf(propTypes.node),
@@ -13830,6 +13863,33 @@ defineProperty(DropDown, "defaultProps", {
   onChange: function onChange() {}
 });
 
+function isEmpty(value) {
+  return value === undefined || value === null;
+} // Require a prop to not be empty
+
+
+function requireProp(props, propName, componentName) {
+  return isEmpty(props[propName]) ? new Error("The prop `".concat(propName, "` is required for `").concat(componentName, "`.")) : null;
+} // Accept any number in the 0 => 1 range
+
+
+function _0to1(props, propName, componentName) {
+  if (isEmpty(props[propName])) {
+    return null;
+  }
+
+  if (typeof props[propName] === 'number' && props[propName] >= 0 && props[propName] <= 1) {
+    return null;
+  }
+
+  return new Error("Invalid prop `".concat(propName, "` supplied to `").concat(componentName, "`. Please provide a number in the 0-1 range."));
+} // Required version
+
+
+_0to1.isRequired = function () {
+  return requireProp.apply(void 0, arguments) || _0to1.apply(void 0, arguments);
+};
+
 var ExtendedPropTypes = objectSpread({}, propTypes, {
   _component: propTypes.oneOfType([propTypes.func, propTypes.string, propTypes.shape({
     render: propTypes.func.isRequired
@@ -13840,7 +13900,8 @@ var ExtendedPropTypes = objectSpread({}, propTypes, {
     friction: propTypes.number,
     precision: propTypes.number
   }),
-  _null: propTypes.oneOf([null])
+  _null: propTypes.oneOf([null]),
+  _0to1: _0to1
 });
 
 /**
@@ -16016,7 +16077,7 @@ function (_React$Component) {
         warn('The “actionButton” prop is deprecated. Please use “action” to pass ' + 'a custom element instead.');
       }
 
-      if (prevProps.icon !== props.icon && props.icon && !React.isValidElement(props.icon)) {
+      if (prevProps.icon !== props.icon && props.icon && !React__default.isValidElement(props.icon)) {
         warn('Passing a component to the “icon” prop is deprecated. Please pass ' + 'an element instead (i.e. use icon={<Icon />} rather than ' + 'icon={Icon}).');
       } // Display a warning if `action` is used to override the button, while also
       // using one of the props that apply to the default button component.
@@ -16033,7 +16094,7 @@ function (_React$Component) {
     key: "iconElement",
     value: function iconElement() {
       var icon = this.props.icon;
-      return !icon || React.isValidElement(icon) ? icon : React.createElement(icon);
+      return !icon || React__default.isValidElement(icon) ? icon : React__default.createElement(icon);
     } // Render the action (usually a button)
 
   }, {
@@ -16057,7 +16118,7 @@ function (_React$Component) {
 
 
       var Button$$1 = actionButton || DefaultActionButton;
-      return React.createElement(Button$$1, {
+      return React__default.createElement(Button$$1, {
         disabled: actionDisabled,
         mode: "strong",
         onClick: onActivate,
@@ -16073,16 +16134,16 @@ function (_React$Component) {
           props = objectWithoutProperties(_this$props2, ["title", "text"]);
 
       var extraProps = omit(props, Object.keys(EmptyStateCard.propTypes));
-      return React.createElement(Main$7, extraProps, React.createElement("section", null, this.iconElement(), React.createElement(Heading, null, React.createElement(Text, {
+      return React__default.createElement(Main$7, extraProps, React__default.createElement("section", null, this.iconElement(), React__default.createElement(Heading, null, React__default.createElement(Text, {
         color: theme.accent,
         weight: "bold",
         size: "large"
-      }, title)), text && React.createElement(Text.Block, null, text), React.createElement(ActionWrapper, null, this.actionElement())));
+      }, title)), text && React__default.createElement(Text.Block, null, text), React__default.createElement(ActionWrapper, null, this.actionElement())));
     }
   }]);
 
   return EmptyStateCard;
-}(React.Component);
+}(React__default.Component);
 
 defineProperty(EmptyStateCard, "propTypes", {
   action: ExtendedPropTypes.element,
@@ -16136,7 +16197,7 @@ function (_React$Component) {
 
     _this = possibleConstructorReturn$1(this, (_getPrototypeOf2 = getPrototypeOf(EscapeOutside)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
-    defineProperty(assertThisInitialized(assertThisInitialized(_this)), "_element", React.createRef());
+    defineProperty(assertThisInitialized(assertThisInitialized(_this)), "_element", React__default.createRef());
 
     defineProperty(assertThisInitialized(assertThisInitialized(_this)), "_document", null);
 
@@ -16189,7 +16250,7 @@ function (_React$Component) {
           onEscapeOutside = _this$props.onEscapeOutside,
           rest = objectWithoutProperties(_this$props, ["children", "onEscapeOutside"]);
 
-      return React.createElement("div", _extends_1({}, rest, {
+      return React__default.createElement("div", _extends_1({}, rest, {
         ref: function ref(n) {
           return _this2._element = n;
         }
@@ -16198,7 +16259,7 @@ function (_React$Component) {
   }]);
 
   return EscapeOutside;
-}(React.Component);
+}(React__default.Component);
 
 defineProperty(EscapeOutside, "propTypes", {
   children: propTypes.node.isRequired,
@@ -16210,7 +16271,7 @@ defineProperty(EscapeOutside, "defaultProps", {
 });
 
 var ExternalLink = function ExternalLink(props) {
-  return React.createElement(SafeLink, _extends_1({
+  return React__default.createElement(SafeLink, _extends_1({
     target: "_blank"
   }, props));
 };
@@ -16233,14 +16294,14 @@ var Field = function Field(_ref) {
       label = _ref.label,
       props = objectWithoutProperties(_ref, ["children", "label"]);
 
-  var isRequired = React.Children.toArray(children).some(function (_ref2) {
+  var isRequired = React__default.Children.toArray(children).some(function (_ref2) {
     var props = _ref2.props;
     return props && props.required;
   });
-  return React.createElement(StyledField, props, React.createElement("label", null, React.createElement(StyledTextBlock, {
+  return React__default.createElement(StyledField, props, React__default.createElement("label", null, React__default.createElement(StyledTextBlock, {
     color: theme.textSecondary,
     smallcaps: true
-  }, label, isRequired && React.createElement(StyledAsterisk, {
+  }, label, isRequired && React__default.createElement(StyledAsterisk, {
     title: "Required"
   }, "*")), children));
 };
@@ -18822,7 +18883,7 @@ Popper.placements = placements;
 Popper.Defaults = Defaults;
 
 var RootPortal = function RootPortal(props) {
-  return React.createElement(Root, null, function (rootElement) {
+  return React__default.createElement(Root, null, function (rootElement) {
     if (!rootElement) {
       throw new Error('<RootPortal> needs to be nested in <Root.Provider>. Have you declared <Main>?');
     }
@@ -18855,9 +18916,9 @@ function (_React$Component) {
 
     _this = possibleConstructorReturn$1(this, (_getPrototypeOf2 = getPrototypeOf(PopoverBase)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
-    defineProperty(assertThisInitialized(assertThisInitialized(_this)), "_cardElement", React.createRef());
+    defineProperty(assertThisInitialized(assertThisInitialized(_this)), "_cardElement", React__default.createRef());
 
-    defineProperty(assertThisInitialized(assertThisInitialized(_this)), "_popperElement", React.createRef());
+    defineProperty(assertThisInitialized(assertThisInitialized(_this)), "_popperElement", React__default.createRef());
 
     defineProperty(assertThisInitialized(assertThisInitialized(_this)), "_document", null);
 
@@ -18995,12 +19056,12 @@ function (_React$Component) {
           transitionStyles = _this$props4.transitionStyles;
       var scale = transitionStyles.scale,
           opacity = transitionStyles.opacity;
-      return React.createElement(Main$8, {
+      return React__default.createElement(Main$8, {
         ref: this._popperElement,
         style: {
           zIndex: zIndex
         }
-      }, React.createElement(Card, {
+      }, React__default.createElement(Card, {
         tabIndex: "0",
         onBlur: this.handleBlur,
         ref: this._cardElement,
@@ -19015,7 +19076,7 @@ function (_React$Component) {
   }]);
 
   return PopoverBase;
-}(React.Component);
+}(React__default.Component);
 
 defineProperty(PopoverBase, "propTypes", {
   opener: propTypes.instanceOf(Element),
@@ -19047,7 +19108,7 @@ var Card = styled__default(extendedAnimated.div).withConfig({
 })(["background:", ";border:1px solid #e6e6e6;border-radius:3px;filter:drop-shadow(0 4px 4px rgba(0,0,0,0.06));&:focus{outline:0;}"], theme.contentBackground);
 
 var Popover = function Popover(props) {
-  return React.createElement(RootPortal, null, React.createElement(Transition, {
+  return React__default.createElement(RootPortal, null, React__default.createElement(Transition, {
     items: props.visible,
     config: springs.swift,
     from: {
@@ -19065,7 +19126,7 @@ var Popover = function Popover(props) {
     native: true
   }, function (visible) {
     return visible && function (transitionStyles) {
-      return React.createElement(PopoverBase, _extends_1({}, props, {
+      return React__default.createElement(PopoverBase, _extends_1({}, props, {
         transitionStyles: transitionStyles
       }));
     };
@@ -19126,36 +19187,36 @@ function (_React$PureComponent) {
           opener = _this$props2.opener,
           title = _this$props2.title,
           visible = _this$props2.visible;
-      return React.createElement(Popover, {
+      return React__default.createElement(Popover, {
         visible: visible,
         opener: opener,
         onClose: onClose
-      }, React.createElement(_StyledSection, null, React.createElement(_StyledButtonIcon$1, {
+      }, React__default.createElement(_StyledSection, null, React__default.createElement(_StyledButtonIcon$1, {
         label: "Close",
         onClick: onClose
-      }, React.createElement(Close, null)), React.createElement(_StyledHeader, null, React.createElement(_StyledH, {
+      }, React__default.createElement(Close, null)), React__default.createElement(_StyledHeader, null, React__default.createElement(_StyledH, {
         _$p_: font({
           size: 'large'
         }),
         _$p_2: theme.textSecondary
-      }, title), connectedAccount && React.createElement(_StyledBadgeIdentity, {
+      }, title), connectedAccount && React__default.createElement(_StyledBadgeIdentity, {
         title: "This is your Ethereum address",
         _$p_3: font({
           size: 'xxsmall'
         })
-      }, "You")), React.createElement(AddressField, {
+      }, "You")), React__default.createElement(AddressField, {
         address: address
-      }), React.createElement(_StyledP, {
+      }), React__default.createElement(_StyledP, {
         _$p_4: font({
           size: 'small'
         })
-      }, React.createElement(_StyledSafeLink, {
+      }, React__default.createElement(_StyledSafeLink, {
         href: blockExplorerUrl('address', address, {
           networkType: networkType
         }),
         target: "_blank",
         _$p_5: theme.accent
-      }, "See on Etherscan")), popoverAction && React.createElement(Button, {
+      }, "See on Etherscan")), popoverAction && React__default.createElement(Button, {
         mode: "outline",
         size: "small",
         onClick: this.handlePopoverActionClick
@@ -19164,7 +19225,7 @@ function (_React$PureComponent) {
   }]);
 
   return IdentityBadgePopover;
-}(React.PureComponent);
+}(React__default.PureComponent);
 
 defineProperty(IdentityBadgePopover, "propTypes", {
   address: propTypes.string,
@@ -19245,7 +19306,7 @@ function (_React$PureComponent) {
 
     _this = possibleConstructorReturn$1(this, (_getPrototypeOf2 = getPrototypeOf(IdentityBadge)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
-    defineProperty(assertThisInitialized(assertThisInitialized(_this)), "_element", React.createRef());
+    defineProperty(assertThisInitialized(assertThisInitialized(_this)), "_element", React__default.createRef());
 
     defineProperty(assertThisInitialized(assertThisInitialized(_this)), "state", {
       opened: false
@@ -19281,18 +19342,18 @@ function (_React$PureComponent) {
           shorten = _this$props.shorten;
       var address = isAddress(entity) ? entity : null;
       var label = customLabel || (address && shorten ? shortenAddress(address) : entity);
-      return React.createElement(React.Fragment, null, React.createElement(_StyledButtonBase$1, {
+      return React__default.createElement(React__default.Fragment, null, React__default.createElement(_StyledButtonBase$1, {
         ref: this._element,
         title: address,
         onClick: address && this.handleOpen,
         _$p_: theme.textPrimary
-      }, React.createElement(_StyledDiv$3, stylingProps(this), address && React.createElement(_StyledDiv2$3, null, React.createElement(EthIdenticon, {
+      }, React__default.createElement(_StyledDiv$3, stylingProps(this), address && React__default.createElement(_StyledDiv2$3, null, React__default.createElement(EthIdenticon, {
         scale: 1,
         address: address
-      })), React.createElement(_StyledText, {
+      })), React__default.createElement(_StyledText, {
         size: fontSize,
         monospace: Boolean(!customLabel && address)
-      }, label))), address && React.createElement(IdentityBadgePopover, {
+      }, label))), address && React__default.createElement(IdentityBadgePopover, {
         address: address,
         visible: opened,
         connectedAccount: connectedAccount,
@@ -19306,7 +19367,7 @@ function (_React$PureComponent) {
   }]);
 
   return IdentityBadge;
-}(React.PureComponent);
+}(React__default.PureComponent);
 
 defineProperty(IdentityBadge, "propTypes", {
   connectedAccount: propTypes.bool,
@@ -19354,7 +19415,7 @@ var Info$1 = function Info(_ref) {
       title = _ref.title,
       props = objectWithoutProperties(_ref, ["children", "title"]);
 
-  return React.createElement(Main$9, props, title && React.createElement(Title, null, title), children);
+  return React__default.createElement(Main$9, props, title && React__default.createElement(Title, null, title), children);
 };
 
 Info$1.propTypes = {
@@ -20252,23 +20313,23 @@ var onecolor = color_1
     .use(toAlpha);
 
 var Bylaw = function Bylaw(props) {
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: 17,
     height: 16,
     viewBox: "0 0 17 16"
-  }, props), React.createElement("g", {
+  }, props), React__default.createElement("g", {
     fill: "none",
     fillRule: "evenodd"
-  }, React.createElement("path", {
+  }, React__default.createElement("path", {
     d: "M-2-2h22v22H-2z"
-  }), React.createElement("g", {
+  }), React__default.createElement("g", {
     opacity: 0.8,
     stroke: "currentColor"
-  }, React.createElement("path", {
+  }, React__default.createElement("path", {
     d: "M9.036 1.143L1.578 4.357V5.43h14.916V4.357L9.036 1.143zm6.88 12.393H2.071c-.318 0-.577.242-.577.535v1.072h15V14.07c0-.293-.26-.535-.578-.535z",
     strokeLinecap: "round",
     strokeLinejoin: "round"
-  }), React.createElement("path", {
+  }), React__default.createElement("path", {
     d: "M3 5v8.034M6 5v8.275M9 5v8.034M12 5v8.275M15 5v8.275"
   }))));
 };
@@ -20295,14 +20356,14 @@ var IconInfo = function IconInfo(_ref) {
       props = objectWithoutProperties(_ref, ["children", "icon", "title"]);
 
   var titleElm = title;
-  var bodyElm = React.createElement(TitlelessBody, null, icon && React.createElement(Icon, null, icon), children);
+  var bodyElm = React__default.createElement(TitlelessBody, null, icon && React__default.createElement(Icon, null, icon), children);
 
   if (title) {
-    titleElm = React.createElement(Title$1, null, icon && React.createElement(Icon, null, icon), title);
+    titleElm = React__default.createElement(Title$1, null, icon && React__default.createElement(Icon, null, icon), title);
     bodyElm = children;
   }
 
-  return React.createElement(Info$1, _extends_1({
+  return React__default.createElement(Info$1, _extends_1({
     title: titleElm
   }, props), bodyElm);
 };
@@ -20314,17 +20375,17 @@ IconInfo.propTypes = {
 };
 
 var Action = function Action(props) {
-  return React.createElement(IconInfo, _extends_1({
-    icon: React.createElement(Attention, null)
+  return React__default.createElement(IconInfo, _extends_1({
+    icon: React__default.createElement(Attention, null)
   }, props));
 };
 
 var redColor = onecolor(theme.negative);
 
 var Alert = function Alert(props) {
-  return React.createElement(IconInfo, _extends_1({
+  return React__default.createElement(IconInfo, _extends_1({
     background: redColor.alpha(0.06).cssa(),
-    icon: React.createElement(Attention, {
+    icon: React__default.createElement(Attention, {
       bg: redColor.alpha(0.1).cssa(),
       color: redColor.css()
     })
@@ -20337,9 +20398,9 @@ var PermissionIconInfo = styled__default(IconInfo).withConfig({
 })(["", "{color:", ";}"], Icon, theme.infoPermissionsIcon);
 
 var Permissions$1 = function Permissions(props) {
-  return React.createElement(PermissionIconInfo, _extends_1({
+  return React__default.createElement(PermissionIconInfo, _extends_1({
     background: theme.infoPermissionsBackground,
-    icon: React.createElement(Bylaw, null)
+    icon: React__default.createElement(Bylaw, null)
   }, props));
 };
 
@@ -20429,7 +20490,7 @@ function (_React$Component) {
       var totalCount = this.getTotalCount();
       var labels = label && totalCount > 0 ? toConsumableArray(Array(totalCount).keys()).map(label) : null;
       var chartHeight = height - (labels ? LABELS_HEIGHT : 0);
-      return React.createElement("div", null, React.createElement(SvgWrapper, null, React.createElement(Spring, {
+      return React__default.createElement("div", null, React__default.createElement(SvgWrapper, null, React__default.createElement(Spring, {
         from: {
           progress: 0
         },
@@ -20441,9 +20502,9 @@ function (_React$Component) {
         reset: reset
       }, function (_ref) {
         var progress = _ref.progress;
-        return React.createElement("svg", {
+        return React__default.createElement("svg", {
           viewBox: "0 0 ".concat(width, " ").concat(height)
-        }, React.createElement("rect", {
+        }, React__default.createElement("rect", {
           width: width,
           height: chartHeight,
           rx: "3",
@@ -20451,16 +20512,16 @@ function (_React$Component) {
           fill: "#ffffff",
           strokeWidth: "1",
           stroke: borderColor
-        }), totalCount > 0 && React.createElement("path", {
+        }), totalCount > 0 && React__default.createElement("path", {
           d: "\n                    ".concat(toConsumableArray(new Array(totalCount - 1)).reduce(function (path, _, index) {
             return "".concat(path, " M ").concat(_this.getX(index), ",").concat(chartHeight, " l 0,-8");
           }, ''), "\n                  "),
           stroke: borderColor,
           strokeWidth: "1"
         }), lines.map(function (line, lineIndex) {
-          return React.createElement("g", {
+          return React__default.createElement("g", {
             key: "line-plot-".concat(line.id || lineIndex)
-          }, React.createElement("path", {
+          }, React__default.createElement("path", {
             d: "\n                            M\n                            ".concat(_this.getX(0), ",\n                            ").concat(_this.getY(line.values[0], progress, chartHeight), "\n\n                            ").concat(line.values.slice(1).map(function (val, index) {
               return "L\n                                   ".concat(_this.getX((index + 1) * progress), ",\n                                   ").concat(_this.getY(val, progress, chartHeight), "\n                                  ");
             }).join(''), "\n                          "),
@@ -20470,7 +20531,7 @@ function (_React$Component) {
             }),
             strokeWidth: "2"
           }), line.values.slice(1, -1).map(function (val, index) {
-            return React.createElement("circle", {
+            return React__default.createElement("circle", {
               key: index,
               cx: _this.getX(index + 1) * progress,
               cy: _this.getY(val, progress, chartHeight),
@@ -20482,17 +20543,17 @@ function (_React$Component) {
               strokeWidth: "1"
             });
           }));
-        }), React.createElement("line", {
+        }), React__default.createElement("line", {
           x1: _this.getX(valuesCount - 1) * progress,
           y1: "0",
           x2: _this.getX(valuesCount - 1) * progress,
           y2: chartHeight,
           stroke: "#DAEAEF",
           strokeWidth: "3"
-        }), labels && React.createElement("g", {
+        }), labels && React__default.createElement("g", {
           transform: "translate(0,".concat(chartHeight, ")")
         }, labels.map(function (label, index) {
-          return React.createElement(LabelText, {
+          return React__default.createElement(LabelText, {
             key: index,
             x: _this.getX(index),
             y: LABELS_HEIGHT / 2,
@@ -20505,7 +20566,7 @@ function (_React$Component) {
   }]);
 
   return LineChart;
-}(React.Component);
+}(React__default.Component);
 
 defineProperty(LineChart, "propTypes", {
   springConfig: ExtendedPropTypes._spring,
@@ -20562,11 +20623,11 @@ var Main$a = function Main(_ref) {
   var children = _ref.children,
       assetsUrl = _ref.assetsUrl,
       legacyFonts = _ref.legacyFonts;
-  return React.createElement(Root.Provider, null, React.createElement(Viewport.Provider, null, React.createElement(PublicUrl.Provider, {
+  return React__default.createElement(Root.Provider, null, React__default.createElement(Viewport.Provider, null, React__default.createElement(PublicUrl.Provider, {
     url: ensureTrailingSlash(assetsUrl)
-  }, React.createElement(BaseStyles$1, {
+  }, React__default.createElement(BaseStyles$1, {
     enableLegacyFonts: legacyFonts
-  }), React.createElement(ToastHub, null, children))));
+  }), React__default.createElement(ToastHubProvider, null, children))));
 };
 
 Main$a.propTypes = {
@@ -20591,8 +20652,8 @@ var Modal = function Modal(_ref) {
       visible = _ref.visible,
       width = _ref.width,
       overlayColor = _ref.overlayColor;
-  return React.createElement(RootPortal, null, React.createElement(Viewport, null, function (viewport) {
-    return React.createElement(Transition, {
+  return React__default.createElement(RootPortal, null, React__default.createElement(Viewport, null, function (viewport) {
+    return React__default.createElement(Transition, {
       native: true,
       items: visible,
       from: {
@@ -20614,19 +20675,19 @@ var Modal = function Modal(_ref) {
       function (_ref2) {
         var opacity = _ref2.opacity,
             scale = _ref2.scale;
-        return React.createElement(Overlay, {
+        return React__default.createElement(Overlay, {
           style: {
             opacity: opacity,
             background: overlayColor
           }
-        }, React.createElement(ContentWrapper, {
+        }, React__default.createElement(ContentWrapper, {
           style: {
             pointerEvents: visible ? 'auto' : 'none',
             transform: scale.interpolate(function (v) {
               return "scale3d(".concat(v, ", ").concat(v, ", 1)");
             })
           }
-        }, React.createElement(_StyledDiv$4, null, React.createElement(Content$2, {
+        }, React__default.createElement(_StyledDiv$4, null, React__default.createElement(Content$2, {
           role: "alertdialog",
           onEscapeOutside: onClose,
           style: {
@@ -20679,11 +20740,11 @@ var _StyledDiv$4 = styled__default("div").withConfig({
 })(["undefined"]);
 
 var LeftIcon = function LeftIcon() {
-  return React.createElement("svg", {
+  return React__default.createElement("svg", {
     width: "24",
     height: "19",
     viewBox: "0 0 24 19"
-  }, React.createElement("path", {
+  }, React__default.createElement("path", {
     d: "M21 10H4l6-6-6 6 6 6",
     stroke: "currentColor",
     strokeWidth: "1.5",
@@ -20733,7 +20794,7 @@ function (_React$Component) {
           index: index
         };
       }).slice(-1);
-      return React.createElement(Container$1, null, React.createElement(Transition, {
+      return React__default.createElement(Container$1, null, React__default.createElement(Transition, {
         items: displayedItems,
         keys: displayedItems.map( // Use a different key than 0 when there is only one item, so that
         // the “leave” transition of the first item can be executed when a
@@ -20758,7 +20819,7 @@ function (_React$Component) {
         native: true
       }, function (item) {
         return function (styles) {
-          return React.createElement(Item, _extends_1({
+          return React__default.createElement(Item, _extends_1({
             label: item.node,
             onBack: onBack,
             displayBack: item.index > 0,
@@ -20785,7 +20846,7 @@ function (_React$Component) {
   }]);
 
   return NavigationBar;
-}(React.Component);
+}(React__default.Component);
 
 defineProperty(NavigationBar, "propTypes", {
   onBack: propTypes.func,
@@ -20806,7 +20867,7 @@ var Item = function Item(_ref) {
       onBack = _ref.onBack,
       label = _ref.label,
       compact = _ref.compact;
-  return React.createElement(extendedAnimated.span, {
+  return React__default.createElement(extendedAnimated.span, {
     style: {
       display: 'flex',
       alignItems: 'center',
@@ -20815,10 +20876,10 @@ var Item = function Item(_ref) {
         return "translate(".concat(p * 20, "px, 0)");
       })
     }
-  }, React.createElement(Title$2, null, displayBack && React.createElement(BackButton, {
+  }, React__default.createElement(Title$2, null, displayBack && React__default.createElement(BackButton, {
     onClick: onBack,
     compact: compact
-  }, React.createElement(LeftIcon, null)), React.createElement(Label$1, null, label)));
+  }, React__default.createElement(LeftIcon, null)), React__default.createElement(Label$1, null, label)));
 };
 
 Item.propTypes = {
@@ -20855,10 +20916,10 @@ var DEFAULT_CAPTION = function DEFAULT_CAPTION(_ref) {
   var name = _ref.name,
       bullet = _ref.bullet,
       percentage = _ref.percentage;
-  return React.createElement(React.Fragment, null, React.createElement(DefaultItem, null, bullet, React.createElement(Text, {
+  return React__default.createElement(React__default.Fragment, null, React__default.createElement(DefaultItem, null, bullet, React__default.createElement(Text, {
     title: name,
     color: theme.textSecondary
-  }, name)), React.createElement(Percentage, null, percentage, "%"));
+  }, name)), React__default.createElement(Percentage, null, percentage, "%"));
 };
 /* eslint-enable react/prop-types */
 
@@ -20883,25 +20944,25 @@ var PartitionBar = function PartitionBar(_ref2) {
       color: colors$$1[index % colors$$1.length]
     };
   });
-  return React.createElement(React.Fragment, null, React.createElement(Bar, null, partitions.map(function (_ref4, index) {
+  return React__default.createElement(React__default.Fragment, null, React__default.createElement(Bar, null, partitions.map(function (_ref4, index) {
     var name = _ref4.name,
         percentage = _ref4.percentage,
         color = _ref4.color;
-    return React.createElement(Partition, {
+    return React__default.createElement(Partition, {
       key: index,
       title: "".concat(name, ": ").concat(percentage, "%"),
       value: percentage,
       color: color
     });
-  })), caption && React.createElement(Caption, null, partitions.map(function (_ref5, index) {
+  })), caption && React__default.createElement(Caption, null, partitions.map(function (_ref5, index) {
     var name = _ref5.name,
         percentage = _ref5.percentage,
         color = _ref5.color;
-    return React.createElement(CaptionItem, {
+    return React__default.createElement(CaptionItem, {
       key: name + index
     }, caption({
       name: name,
-      bullet: React.createElement(Bullet$1, {
+      bullet: React__default.createElement(Bullet$1, {
         color: color
       }),
       percentage: percentage,
@@ -20963,55 +21024,2051 @@ var Percentage = styled__default(Text).attrs({
   componentId: "sc-1udnzwm-6"
 })([""]);
 
-var ProgressBar = function ProgressBar(_ref) {
-  var color = _ref.color,
-      progress = _ref.progress;
-  return React.createElement(Spring, {
-    native: true,
-    config: springs.smooth,
-    from: {
-      progressValue: 0
-    },
-    to: {
-      progressValue: progress
-    }
-  }, function (_ref2) {
-    var progressValue = _ref2.progressValue;
-    return React.createElement(Main$b, null, React.createElement(Base, null, React.createElement(Progress, {
-      color: color,
-      style: {
-        transform: progressValue.interpolate(function (t) {
-          return "scaleX(".concat(t, ")");
-        })
-      }
-    })));
+function _defineProperties$1(target, props) {
+  for (var i = 0; i < props.length; i++) {
+    var descriptor = props[i];
+    descriptor.enumerable = descriptor.enumerable || false;
+    descriptor.configurable = true;
+    if ("value" in descriptor) descriptor.writable = true;
+    Object.defineProperty(target, descriptor.key, descriptor);
+  }
+}
+
+function _createClass$2(Constructor, protoProps, staticProps) {
+  if (protoProps) _defineProperties$1(Constructor.prototype, protoProps);
+  if (staticProps) _defineProperties$1(Constructor, staticProps);
+  return Constructor;
+}
+
+var bugfixes$1 = undefined;
+var applyAnimatedValues$1 = undefined;
+var colorNames$1 = [];
+var requestFrame$1 = function requestFrame(cb) {
+  return typeof window !== 'undefined' && window.requestAnimationFrame(cb);
+};
+var cancelFrame$1 = function cancelFrame(cb) {
+  return typeof window !== 'undefined' && window.cancelAnimationFrame(cb);
+};
+var interpolation$1 = undefined;
+var now$2 = function now() {
+  return Date.now();
+};
+var defaultElement$1 = undefined;
+var createAnimatedStyle$1 = undefined;
+var injectApplyAnimatedValues$1 = function injectApplyAnimatedValues(fn, transform) {
+  return applyAnimatedValues$1 = {
+    fn: fn,
+    transform: transform
+  };
+};
+var injectColorNames$1 = function injectColorNames(names) {
+  return colorNames$1 = names;
+};
+var injectBugfixes$1 = function injectBugfixes(fn) {
+  return bugfixes$1 = fn;
+};
+var injectInterpolation$1 = function injectInterpolation(cls) {
+  return interpolation$1 = cls;
+};
+var injectFrame$1 = function injectFrame(raf, caf) {
+  var _ref;
+
+  return _ref = [raf, caf], requestFrame$1 = _ref[0], cancelFrame$1 = _ref[1], _ref;
+};
+var injectNow$1 = function injectNow(nowFn) {
+  return now$2 = nowFn;
+};
+var injectDefaultElement$1 = function injectDefaultElement(el) {
+  return defaultElement$1 = el;
+};
+var injectCreateAnimatedStyle$1 = function injectCreateAnimatedStyle(factory) {
+  return createAnimatedStyle$1 = factory;
+};
+
+var Globals$1 = /*#__PURE__*/Object.freeze({
+  get bugfixes () { return bugfixes$1; },
+  get applyAnimatedValues () { return applyAnimatedValues$1; },
+  get colorNames () { return colorNames$1; },
+  get requestFrame () { return requestFrame$1; },
+  get cancelFrame () { return cancelFrame$1; },
+  get interpolation () { return interpolation$1; },
+  get now () { return now$2; },
+  get defaultElement () { return defaultElement$1; },
+  get createAnimatedStyle () { return createAnimatedStyle$1; },
+  injectApplyAnimatedValues: injectApplyAnimatedValues$1,
+  injectColorNames: injectColorNames$1,
+  injectBugfixes: injectBugfixes$1,
+  injectInterpolation: injectInterpolation$1,
+  injectFrame: injectFrame$1,
+  injectNow: injectNow$1,
+  injectDefaultElement: injectDefaultElement$1,
+  injectCreateAnimatedStyle: injectCreateAnimatedStyle$1
+});
+
+var Animated$1 =
+/*#__PURE__*/
+function () {
+  function Animated() {}
+
+  var _proto = Animated.prototype;
+
+  _proto.attach = function attach() {};
+
+  _proto.detach = function detach() {};
+
+  _proto.getValue = function getValue() {};
+
+  _proto.getAnimatedValue = function getAnimatedValue() {
+    return this.getValue();
+  };
+
+  _proto.addChild = function addChild(child) {};
+
+  _proto.removeChild = function removeChild(child) {};
+
+  _proto.getChildren = function getChildren() {
+    return [];
+  };
+
+  return Animated;
+}();
+
+var getValues$2 = function getValues(object) {
+  return Object.keys(object).map(function (k) {
+    return object[k];
   });
 };
 
-ProgressBar.defaultProps = {
-  progress: 0
+var AnimatedWithChildren$1 =
+/*#__PURE__*/
+function (_Animated) {
+  _inheritsLoose(AnimatedWithChildren, _Animated);
+
+  function AnimatedWithChildren() {
+    var _this;
+
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    _this = _Animated.call.apply(_Animated, [this].concat(args)) || this;
+    _this.children = [];
+
+    _this.getChildren = function () {
+      return _this.children;
+    };
+
+    _this.getPayload = function (index) {
+      if (index === void 0) {
+        index = undefined;
+      }
+
+      return index !== void 0 && _this.payload ? _this.payload[index] : _this.payload || _assertThisInitialized$1(_assertThisInitialized$1(_this));
+    };
+
+    return _this;
+  }
+
+  var _proto = AnimatedWithChildren.prototype;
+
+  _proto.addChild = function addChild(child) {
+    if (this.children.length === 0) this.attach();
+    this.children.push(child);
+  };
+
+  _proto.removeChild = function removeChild(child) {
+    var index = this.children.indexOf(child);
+    this.children.splice(index, 1);
+    if (this.children.length === 0) this.detach();
+  };
+
+  return AnimatedWithChildren;
+}(Animated$1);
+var AnimatedArrayWithChildren$1 =
+/*#__PURE__*/
+function (_AnimatedWithChildren) {
+  _inheritsLoose(AnimatedArrayWithChildren, _AnimatedWithChildren);
+
+  function AnimatedArrayWithChildren() {
+    var _this2;
+
+    for (var _len2 = arguments.length, args = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+      args[_key2] = arguments[_key2];
+    }
+
+    _this2 = _AnimatedWithChildren.call.apply(_AnimatedWithChildren, [this].concat(args)) || this;
+    _this2.payload = [];
+
+    _this2.getAnimatedValue = function () {
+      return _this2.getValue();
+    };
+
+    _this2.attach = function () {
+      return _this2.payload.forEach(function (p) {
+        return p instanceof Animated$1 && p.addChild(_assertThisInitialized$1(_assertThisInitialized$1(_this2)));
+      });
+    };
+
+    _this2.detach = function () {
+      return _this2.payload.forEach(function (p) {
+        return p instanceof Animated$1 && p.removeChild(_assertThisInitialized$1(_assertThisInitialized$1(_this2)));
+      });
+    };
+
+    return _this2;
+  }
+
+  return AnimatedArrayWithChildren;
+}(AnimatedWithChildren$1);
+var AnimatedObjectWithChildren$1 =
+/*#__PURE__*/
+function (_AnimatedWithChildren2) {
+  _inheritsLoose(AnimatedObjectWithChildren, _AnimatedWithChildren2);
+
+  function AnimatedObjectWithChildren() {
+    var _this3;
+
+    for (var _len3 = arguments.length, args = new Array(_len3), _key3 = 0; _key3 < _len3; _key3++) {
+      args[_key3] = arguments[_key3];
+    }
+
+    _this3 = _AnimatedWithChildren2.call.apply(_AnimatedWithChildren2, [this].concat(args)) || this;
+    _this3.payload = {};
+
+    _this3.getAnimatedValue = function () {
+      return _this3.getValue(true);
+    };
+
+    _this3.attach = function () {
+      return getValues$2(_this3.payload).forEach(function (s) {
+        return s instanceof Animated$1 && s.addChild(_assertThisInitialized$1(_assertThisInitialized$1(_this3)));
+      });
+    };
+
+    _this3.detach = function () {
+      return getValues$2(_this3.payload).forEach(function (s) {
+        return s instanceof Animated$1 && s.removeChild(_assertThisInitialized$1(_assertThisInitialized$1(_this3)));
+      });
+    };
+
+    return _this3;
+  }
+
+  var _proto2 = AnimatedObjectWithChildren.prototype;
+
+  _proto2.getValue = function getValue(animated) {
+    if (animated === void 0) {
+      animated = false;
+    }
+
+    var payload = {};
+
+    for (var key in this.payload) {
+      var value = this.payload[key];
+      if (animated && !(value instanceof Animated$1)) continue;
+      payload[key] = value instanceof Animated$1 ? value[animated ? 'getAnimatedValue' : 'getValue']() : value;
+    }
+
+    return payload;
+  };
+
+  return AnimatedObjectWithChildren;
+}(AnimatedWithChildren$1);
+
+var AnimatedStyle$1 =
+/*#__PURE__*/
+function (_AnimatedObjectWithCh) {
+  _inheritsLoose(AnimatedStyle, _AnimatedObjectWithCh);
+
+  function AnimatedStyle(style) {
+    var _this;
+
+    _this = _AnimatedObjectWithCh.call(this) || this;
+    style = style || {};
+    if (style.transform && !(style.transform instanceof Animated$1)) style = applyAnimatedValues$1.transform(style);
+    _this.payload = style;
+    return _this;
+  }
+
+  return AnimatedStyle;
+}(AnimatedObjectWithChildren$1);
+
+// http://www.w3.org/TR/css3-color/#svg-color
+var colors$2 = {
+  transparent: 0x00000000,
+  aliceblue: 0xf0f8ffff,
+  antiquewhite: 0xfaebd7ff,
+  aqua: 0x00ffffff,
+  aquamarine: 0x7fffd4ff,
+  azure: 0xf0ffffff,
+  beige: 0xf5f5dcff,
+  bisque: 0xffe4c4ff,
+  black: 0x000000ff,
+  blanchedalmond: 0xffebcdff,
+  blue: 0x0000ffff,
+  blueviolet: 0x8a2be2ff,
+  brown: 0xa52a2aff,
+  burlywood: 0xdeb887ff,
+  burntsienna: 0xea7e5dff,
+  cadetblue: 0x5f9ea0ff,
+  chartreuse: 0x7fff00ff,
+  chocolate: 0xd2691eff,
+  coral: 0xff7f50ff,
+  cornflowerblue: 0x6495edff,
+  cornsilk: 0xfff8dcff,
+  crimson: 0xdc143cff,
+  cyan: 0x00ffffff,
+  darkblue: 0x00008bff,
+  darkcyan: 0x008b8bff,
+  darkgoldenrod: 0xb8860bff,
+  darkgray: 0xa9a9a9ff,
+  darkgreen: 0x006400ff,
+  darkgrey: 0xa9a9a9ff,
+  darkkhaki: 0xbdb76bff,
+  darkmagenta: 0x8b008bff,
+  darkolivegreen: 0x556b2fff,
+  darkorange: 0xff8c00ff,
+  darkorchid: 0x9932ccff,
+  darkred: 0x8b0000ff,
+  darksalmon: 0xe9967aff,
+  darkseagreen: 0x8fbc8fff,
+  darkslateblue: 0x483d8bff,
+  darkslategray: 0x2f4f4fff,
+  darkslategrey: 0x2f4f4fff,
+  darkturquoise: 0x00ced1ff,
+  darkviolet: 0x9400d3ff,
+  deeppink: 0xff1493ff,
+  deepskyblue: 0x00bfffff,
+  dimgray: 0x696969ff,
+  dimgrey: 0x696969ff,
+  dodgerblue: 0x1e90ffff,
+  firebrick: 0xb22222ff,
+  floralwhite: 0xfffaf0ff,
+  forestgreen: 0x228b22ff,
+  fuchsia: 0xff00ffff,
+  gainsboro: 0xdcdcdcff,
+  ghostwhite: 0xf8f8ffff,
+  gold: 0xffd700ff,
+  goldenrod: 0xdaa520ff,
+  gray: 0x808080ff,
+  green: 0x008000ff,
+  greenyellow: 0xadff2fff,
+  grey: 0x808080ff,
+  honeydew: 0xf0fff0ff,
+  hotpink: 0xff69b4ff,
+  indianred: 0xcd5c5cff,
+  indigo: 0x4b0082ff,
+  ivory: 0xfffff0ff,
+  khaki: 0xf0e68cff,
+  lavender: 0xe6e6faff,
+  lavenderblush: 0xfff0f5ff,
+  lawngreen: 0x7cfc00ff,
+  lemonchiffon: 0xfffacdff,
+  lightblue: 0xadd8e6ff,
+  lightcoral: 0xf08080ff,
+  lightcyan: 0xe0ffffff,
+  lightgoldenrodyellow: 0xfafad2ff,
+  lightgray: 0xd3d3d3ff,
+  lightgreen: 0x90ee90ff,
+  lightgrey: 0xd3d3d3ff,
+  lightpink: 0xffb6c1ff,
+  lightsalmon: 0xffa07aff,
+  lightseagreen: 0x20b2aaff,
+  lightskyblue: 0x87cefaff,
+  lightslategray: 0x778899ff,
+  lightslategrey: 0x778899ff,
+  lightsteelblue: 0xb0c4deff,
+  lightyellow: 0xffffe0ff,
+  lime: 0x00ff00ff,
+  limegreen: 0x32cd32ff,
+  linen: 0xfaf0e6ff,
+  magenta: 0xff00ffff,
+  maroon: 0x800000ff,
+  mediumaquamarine: 0x66cdaaff,
+  mediumblue: 0x0000cdff,
+  mediumorchid: 0xba55d3ff,
+  mediumpurple: 0x9370dbff,
+  mediumseagreen: 0x3cb371ff,
+  mediumslateblue: 0x7b68eeff,
+  mediumspringgreen: 0x00fa9aff,
+  mediumturquoise: 0x48d1ccff,
+  mediumvioletred: 0xc71585ff,
+  midnightblue: 0x191970ff,
+  mintcream: 0xf5fffaff,
+  mistyrose: 0xffe4e1ff,
+  moccasin: 0xffe4b5ff,
+  navajowhite: 0xffdeadff,
+  navy: 0x000080ff,
+  oldlace: 0xfdf5e6ff,
+  olive: 0x808000ff,
+  olivedrab: 0x6b8e23ff,
+  orange: 0xffa500ff,
+  orangered: 0xff4500ff,
+  orchid: 0xda70d6ff,
+  palegoldenrod: 0xeee8aaff,
+  palegreen: 0x98fb98ff,
+  paleturquoise: 0xafeeeeff,
+  palevioletred: 0xdb7093ff,
+  papayawhip: 0xffefd5ff,
+  peachpuff: 0xffdab9ff,
+  peru: 0xcd853fff,
+  pink: 0xffc0cbff,
+  plum: 0xdda0ddff,
+  powderblue: 0xb0e0e6ff,
+  purple: 0x800080ff,
+  rebeccapurple: 0x663399ff,
+  red: 0xff0000ff,
+  rosybrown: 0xbc8f8fff,
+  royalblue: 0x4169e1ff,
+  saddlebrown: 0x8b4513ff,
+  salmon: 0xfa8072ff,
+  sandybrown: 0xf4a460ff,
+  seagreen: 0x2e8b57ff,
+  seashell: 0xfff5eeff,
+  sienna: 0xa0522dff,
+  silver: 0xc0c0c0ff,
+  skyblue: 0x87ceebff,
+  slateblue: 0x6a5acdff,
+  slategray: 0x708090ff,
+  slategrey: 0x708090ff,
+  snow: 0xfffafaff,
+  springgreen: 0x00ff7fff,
+  steelblue: 0x4682b4ff,
+  tan: 0xd2b48cff,
+  teal: 0x008080ff,
+  thistle: 0xd8bfd8ff,
+  tomato: 0xff6347ff,
+  turquoise: 0x40e0d0ff,
+  violet: 0xee82eeff,
+  wheat: 0xf5deb3ff,
+  white: 0xffffffff,
+  whitesmoke: 0xf5f5f5ff,
+  yellow: 0xffff00ff,
+  yellowgreen: 0x9acd32ff
 };
-ProgressBar.propTypes = {
-  color: propTypes.string,
-  progress: propTypes.number
+
+var Interpolation$1 =
+/*#__PURE__*/
+function () {
+  function Interpolation() {}
+
+  // Default config = config, args
+  // Short config   = range, output, extrapolate
+  Interpolation.create = function create(config, output, extra) {
+    if (typeof config === 'function') return config;else if (interpolation$1 && config.output && typeof config.output[0] === 'string') return interpolation$1(config);else if (Array.isArray(config)) return Interpolation.create({
+      range: config,
+      output: output,
+      extrapolate: extra || 'extend'
+    });
+    var outputRange = config.output;
+    var inputRange = config.range || [0, 1];
+
+    var easing = config.easing || function (t) {
+      return t;
+    };
+
+    var extrapolateLeft = 'extend';
+    var map = config.map;
+    if (config.extrapolateLeft !== undefined) extrapolateLeft = config.extrapolateLeft;else if (config.extrapolate !== undefined) extrapolateLeft = config.extrapolate;
+    var extrapolateRight = 'extend';
+    if (config.extrapolateRight !== undefined) extrapolateRight = config.extrapolateRight;else if (config.extrapolate !== undefined) extrapolateRight = config.extrapolate;
+    return function (input) {
+      var range = findRange$1(input, inputRange);
+      return interpolate$2(input, inputRange[range], inputRange[range + 1], outputRange[range], outputRange[range + 1], easing, extrapolateLeft, extrapolateRight, map);
+    };
+  };
+
+  return Interpolation;
+}();
+
+function interpolate$2(input, inputMin, inputMax, outputMin, outputMax, easing, extrapolateLeft, extrapolateRight, map) {
+  var result = map ? map(input) : input; // Extrapolate
+
+  if (result < inputMin) {
+    if (extrapolateLeft === 'identity') return result;else if (extrapolateLeft === 'clamp') result = inputMin;
+  }
+
+  if (result > inputMax) {
+    if (extrapolateRight === 'identity') return result;else if (extrapolateRight === 'clamp') result = inputMax;
+  }
+
+  if (outputMin === outputMax) return outputMin;
+  if (inputMin === inputMax) return input <= inputMin ? outputMin : outputMax; // Input Range
+
+  if (inputMin === -Infinity) result = -result;else if (inputMax === Infinity) result = result - inputMin;else result = (result - inputMin) / (inputMax - inputMin); // Easing
+
+  result = easing(result); // Output Range
+
+  if (outputMin === -Infinity) result = -result;else if (outputMax === Infinity) result = result + outputMin;else result = result * (outputMax - outputMin) + outputMin;
+  return result;
+}
+
+function findRange$1(input, inputRange) {
+  for (var i = 1; i < inputRange.length - 1; ++i) {
+    if (inputRange[i] >= input) break;
+  }
+
+  return i - 1;
+}
+
+// const INTEGER = '[-+]?\\d+';
+var NUMBER$1 = '[-+]?\\d*\\.?\\d+';
+var PERCENTAGE$1 = NUMBER$1 + '%';
+
+function call$1() {
+  return '\\(\\s*(' + Array.prototype.slice.call(arguments).join(')\\s*,\\s*(') + ')\\s*\\)';
+}
+
+var rgb$1 = new RegExp('rgb' + call$1(NUMBER$1, NUMBER$1, NUMBER$1));
+var rgba$1 = new RegExp('rgba' + call$1(NUMBER$1, NUMBER$1, NUMBER$1, NUMBER$1));
+var hsl$1 = new RegExp('hsl' + call$1(NUMBER$1, PERCENTAGE$1, PERCENTAGE$1));
+var hsla$1 = new RegExp('hsla' + call$1(NUMBER$1, PERCENTAGE$1, PERCENTAGE$1, NUMBER$1));
+var hex3$1 = /^#([0-9a-fA-F]{1})([0-9a-fA-F]{1})([0-9a-fA-F]{1})$/;
+var hex4$1 = /^#([0-9a-fA-F]{1})([0-9a-fA-F]{1})([0-9a-fA-F]{1})([0-9a-fA-F]{1})$/;
+var hex6$1 = /^#([0-9a-fA-F]{6})$/;
+var hex8$1 = /^#([0-9a-fA-F]{8})$/;
+
+/*
+https://github.com/react-community/normalize-css-color
+
+BSD 3-Clause License
+
+Copyright (c) 2016, React Community
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+
+* Redistributions of source code must retain the above copyright notice, this
+  list of conditions and the following disclaimer.
+
+* Redistributions in binary form must reproduce the above copyright notice,
+  this list of conditions and the following disclaimer in the documentation
+  and/or other materials provided with the distribution.
+
+* Neither the name of the copyright holder nor the names of its
+  contributors may be used to endorse or promote products derived from
+  this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+*/
+function normalizeColor$1(color) {
+  var match;
+
+  if (typeof color === 'number') {
+    return color >>> 0 === color && color >= 0 && color <= 0xffffffff ? color : null;
+  } // Ordered based on occurrences on Facebook codebase
+
+
+  if (match = hex6$1.exec(color)) return parseInt(match[1] + 'ff', 16) >>> 0;
+  if (colors$2.hasOwnProperty(color)) return colors$2[color];
+
+  if (match = rgb$1.exec(color)) {
+    return (parse255$1(match[1]) << 24 | // r
+    parse255$1(match[2]) << 16 | // g
+    parse255$1(match[3]) << 8 | // b
+    0x000000ff) >>> // a
+    0;
+  }
+
+  if (match = rgba$1.exec(color)) {
+    return (parse255$1(match[1]) << 24 | // r
+    parse255$1(match[2]) << 16 | // g
+    parse255$1(match[3]) << 8 | // b
+    parse1$1(match[4])) >>> // a
+    0;
+  }
+
+  if (match = hex3$1.exec(color)) {
+    return parseInt(match[1] + match[1] + // r
+    match[2] + match[2] + // g
+    match[3] + match[3] + // b
+    'ff', // a
+    16) >>> 0;
+  } // https://drafts.csswg.org/css-color-4/#hex-notation
+
+
+  if (match = hex8$1.exec(color)) return parseInt(match[1], 16) >>> 0;
+
+  if (match = hex4$1.exec(color)) {
+    return parseInt(match[1] + match[1] + // r
+    match[2] + match[2] + // g
+    match[3] + match[3] + // b
+    match[4] + match[4], // a
+    16) >>> 0;
+  }
+
+  if (match = hsl$1.exec(color)) {
+    return (hslToRgb$1(parse360$1(match[1]), // h
+    parsePercentage$1(match[2]), // s
+    parsePercentage$1(match[3]) // l
+    ) | 0x000000ff) >>> // a
+    0;
+  }
+
+  if (match = hsla$1.exec(color)) {
+    return (hslToRgb$1(parse360$1(match[1]), // h
+    parsePercentage$1(match[2]), // s
+    parsePercentage$1(match[3]) // l
+    ) | parse1$1(match[4])) >>> // a
+    0;
+  }
+
+  return null;
+}
+
+function hue2rgb$1(p, q, t) {
+  if (t < 0) t += 1;
+  if (t > 1) t -= 1;
+  if (t < 1 / 6) return p + (q - p) * 6 * t;
+  if (t < 1 / 2) return q;
+  if (t < 2 / 3) return p + (q - p) * (2 / 3 - t) * 6;
+  return p;
+}
+
+function hslToRgb$1(h, s, l) {
+  var q = l < 0.5 ? l * (1 + s) : l + s - l * s;
+  var p = 2 * l - q;
+  var r = hue2rgb$1(p, q, h + 1 / 3);
+  var g = hue2rgb$1(p, q, h);
+  var b = hue2rgb$1(p, q, h - 1 / 3);
+  return Math.round(r * 255) << 24 | Math.round(g * 255) << 16 | Math.round(b * 255) << 8;
+}
+
+function parse255$1(str) {
+  var int = parseInt(str, 10);
+  if (int < 0) return 0;
+  if (int > 255) return 255;
+  return int;
+}
+
+function parse360$1(str) {
+  var int = parseFloat(str);
+  return (int % 360 + 360) % 360 / 360;
+}
+
+function parse1$1(str) {
+  var num = parseFloat(str);
+  if (num < 0) return 0;
+  if (num > 1) return 255;
+  return Math.round(num * 255);
+}
+
+function parsePercentage$1(str) {
+  // parseFloat conveniently ignores the final %
+  var int = parseFloat(str);
+  if (int < 0) return 0;
+  if (int > 100) return 1;
+  return int / 100;
+}
+
+function colorToRgba$1(input) {
+  var int32Color = normalizeColor$1(input);
+  if (int32Color === null) return input;
+  int32Color = int32Color || 0;
+  var r = (int32Color & 0xff000000) >>> 24;
+  var g = (int32Color & 0x00ff0000) >>> 16;
+  var b = (int32Color & 0x0000ff00) >>> 8;
+  var a = (int32Color & 0x000000ff) / 255;
+  return "rgba(" + r + ", " + g + ", " + b + ", " + a + ")";
+} // Problem: https://github.com/animatedjs/animated/pull/102
+// Solution: https://stackoverflow.com/questions/638565/parsing-scientific-notation-sensibly/658662
+
+
+var stringShapeRegex$1 = /[+\-]?(?:0|[1-9]\d*)(?:\.\d*)?(?:[eE][+\-]?\d+)?/g; // Covers rgb, rgba, hsl, hsla
+// Taken from https://gist.github.com/olmokramer/82ccce673f86db7cda5e
+
+var colorRegex$1 = /(#(?:[0-9a-f]{2}){2,4}|(#[0-9a-f]{3})|(rgb|hsl)a?\((-?\d+%?[,\s]+){2,3}\s*[\d\.]+%?\))/gi; // Covers color names (transparent, blue, etc.)
+
+var colorNamesRegex$1 = new RegExp("(" + Object.keys(colors$2).join('|') + ")", 'g');
+/**
+ * Supports string shapes by extracting numbers so new values can be computed,
+ * and recombines those values into new strings of the same shape.  Supports
+ * things like:
+ *
+ *   rgba(123, 42, 99, 0.36)           // colors
+ *   -45deg                            // values with units
+ *   0 2px 2px 0px rgba(0, 0, 0, 0.12) // box shadows
+ */
+
+function createInterpolation$1(config) {
+  // Replace colors with rgba
+  var outputRange = config.output.map(function (rangeValue) {
+    return rangeValue.replace(colorRegex$1, colorToRgba$1);
+  }).map(function (rangeValue) {
+    return rangeValue.replace(colorNamesRegex$1, colorToRgba$1);
+  }); // ->
+  // [
+  //   [0, 50],
+  //   [100, 150],
+  //   [200, 250],
+  //   [0, 0.5],
+  // ]
+
+  var outputRanges = outputRange[0].match(stringShapeRegex$1).map(function () {
+    return [];
+  });
+  outputRange.forEach(function (value) {
+    value.match(stringShapeRegex$1).forEach(function (number, i) {
+      return outputRanges[i].push(+number);
+    });
+  });
+  var interpolations = outputRange[0].match(stringShapeRegex$1).map(function (value, i) {
+    return Interpolation$1.create(_extends({}, config, {
+      output: outputRanges[i]
+    }));
+  });
+  return function (input) {
+    var i = 0;
+    return outputRange[0] // 'rgba(0, 100, 200, 0)'
+    // ->
+    // 'rgba(${interpolations[0](input)}, ${interpolations[1](input)}, ...'
+    .replace(stringShapeRegex$1, function () {
+      return interpolations[i++](input);
+    }) // rgba requires that the r,g,b are integers.... so we want to round them, but we *dont* want to
+    // round the opacity (4th column).
+    .replace(/rgba\(([0-9\.-]+), ([0-9\.-]+), ([0-9\.-]+), ([0-9\.-]+)\)/gi, function (_, p1, p2, p3, p4) {
+      return "rgba(" + Math.round(p1) + ", " + Math.round(p2) + ", " + Math.round(p3) + ", " + p4 + ")";
+    });
+  };
+}
+
+var AnimatedInterpolation$1 =
+/*#__PURE__*/
+function (_AnimatedArrayWithChi) {
+  _inheritsLoose(AnimatedInterpolation, _AnimatedArrayWithChi);
+
+  function AnimatedInterpolation(parents, _config, _arg) {
+    var _this;
+
+    _this = _AnimatedArrayWithChi.call(this) || this;
+
+    _this.getValue = function () {
+      var _this2;
+
+      return (_this2 = _this).calc.apply(_this2, _this.payload.map(function (value) {
+        return value.getValue();
+      }));
+    };
+
+    _this.updateConfig = function (config, arg) {
+      return _this.calc = Interpolation$1.create(config, arg);
+    };
+
+    _this.interpolate = function (config, arg) {
+      return new AnimatedInterpolation(_assertThisInitialized$1(_assertThisInitialized$1(_this)), config, arg);
+    };
+
+    _this.payload = // AnimatedArrays should unfold, except AnimatedInterpolation which is taken as is
+    parents instanceof AnimatedArrayWithChildren$1 && !parents.updateConfig ? parents.payload : Array.isArray(parents) ? parents : [parents];
+    _this.calc = Interpolation$1.create(_config, _arg);
+    return _this;
+  }
+
+  return AnimatedInterpolation;
+}(AnimatedArrayWithChildren$1);
+var interpolate$1$1 = function interpolate(parents, config, arg) {
+  return parents && new AnimatedInterpolation$1(parents, config, arg);
 };
-var Main$b = styled__default.div.withConfig({
-  displayName: "ProgressBar__Main",
-  componentId: "sc-1gly9sn-0"
-})(["width:100%;align-items:center;"]);
-var Base = styled__default.div.withConfig({
-  displayName: "ProgressBar__Base",
-  componentId: "sc-1gly9sn-1"
-})(["width:100%;height:8px;background:#edf3f6;border-radius:2px;"]);
-var Progress = styled__default(extendedAnimated.div).withConfig({
-  displayName: "ProgressBar__Progress",
-  componentId: "sc-1gly9sn-2"
-})(["height:8px;background:", ";border-radius:2px;transform-origin:0 0;"], function (_ref3) {
-  var color = _ref3.color;
-  return color || theme.accent;
+
+/**
+ * Animated works by building a directed acyclic graph of dependencies
+ * transparently when you render your Animated components.
+ *
+ *               new Animated.Value(0)
+ *     .interpolate()        .interpolate()    new Animated.Value(1)
+ *         opacity               translateY      scale
+ *          style                         transform
+ *         View#234                         style
+ *                                         View#123
+ *
+ * A) Top Down phase
+ * When an Animated.Value is updated, we recursively go down through this
+ * graph in order to find leaf nodes: the views that we flag as needing
+ * an update.
+ *
+ * B) Bottom Up phase
+ * When a view is flagged as needing an update, we recursively go back up
+ * in order to build the new value that it needs. The reason why we need
+ * this two-phases process is to deal with composite props such as
+ * transform which can receive values from multiple parents.
+ */
+
+function findAnimatedStyles$1(node, styles) {
+  if (typeof node.update === 'function') styles.add(node);else node.getChildren().forEach(function (child) {
+    return findAnimatedStyles$1(child, styles);
+  });
+}
+/**
+ * Standard value for driving animations.  One `Animated.Value` can drive
+ * multiple properties in a synchronized fashion, but can only be driven by one
+ * mechanism at a time.  Using a new mechanism (e.g. starting a new animation,
+ * or calling `setValue`) will stop any previous ones.
+ */
+
+
+var AnimatedValue$1 =
+/*#__PURE__*/
+function (_AnimatedWithChildren) {
+  _inheritsLoose(AnimatedValue, _AnimatedWithChildren);
+
+  function AnimatedValue(_value) {
+    var _this;
+
+    _this = _AnimatedWithChildren.call(this) || this;
+
+    _this.setValue = function (value, flush) {
+      if (flush === void 0) {
+        flush = true;
+      }
+
+      _this.value = value;
+      if (flush) _this.flush();
+    };
+
+    _this.getValue = function () {
+      return _this.value;
+    };
+
+    _this.updateStyles = function () {
+      return findAnimatedStyles$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), _this.animatedStyles);
+    };
+
+    _this.updateValue = function (value) {
+      return _this.flush(_this.value = value);
+    };
+
+    _this.interpolate = function (config, arg) {
+      return new AnimatedInterpolation$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), config, arg);
+    };
+
+    _this.value = _value;
+    _this.animatedStyles = new Set();
+    _this.done = false;
+    _this.startPosition = _value;
+    _this.lastPosition = _value;
+    _this.lastVelocity = undefined;
+    _this.lastTime = undefined;
+    _this.controller = undefined;
+    return _this;
+  }
+
+  var _proto = AnimatedValue.prototype;
+
+  _proto.flush = function flush() {
+    if (this.animatedStyles.size === 0) this.updateStyles();
+    this.animatedStyles.forEach(function (animatedStyle) {
+      return animatedStyle.update();
+    });
+  };
+
+  _proto.prepare = function prepare(controller) {
+    // Values stay loyal to their original controller, this is also a way to
+    // detect trailing values originating from a foreign controller
+    if (this.controller === undefined) this.controller = controller;
+
+    if (this.controller === controller) {
+      this.startPosition = this.value;
+      this.lastPosition = this.value;
+      this.lastVelocity = controller.isActive ? this.lastVelocity : undefined;
+      this.lastTime = controller.isActive ? this.lastTime : undefined;
+      this.done = false;
+      this.animatedStyles.clear();
+    }
+  };
+
+  return AnimatedValue;
+}(AnimatedWithChildren$1);
+
+var AnimatedArray$1 =
+/*#__PURE__*/
+function (_AnimatedArrayWithChi) {
+  _inheritsLoose(AnimatedArray, _AnimatedArrayWithChi);
+
+  function AnimatedArray(array) {
+    var _this;
+
+    _this = _AnimatedArrayWithChi.call(this) || this;
+
+    _this.setValue = function (value, flush) {
+      if (flush === void 0) {
+        flush = true;
+      }
+
+      if (Array.isArray(value)) {
+        if (value.length === _this.payload.length) value.forEach(function (v, i) {
+          return _this.payload[i].setValue(v, flush);
+        });
+      } else _this.payload.forEach(function (v, i) {
+        return _this.payload[i].setValue(value, flush);
+      });
+    };
+
+    _this.getValue = function () {
+      return _this.payload.map(function (v) {
+        return v.getValue();
+      });
+    };
+
+    _this.interpolate = function (config, arg) {
+      return new AnimatedInterpolation$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), config, arg);
+    };
+
+    _this.payload = array.map(function (n) {
+      return new AnimatedValue$1(n);
+    });
+    return _this;
+  }
+
+  return AnimatedArray;
+}(AnimatedArrayWithChildren$1);
+
+function withDefault$1(value, defaultValue) {
+  return value === undefined || value === null ? defaultValue : value;
+}
+function toArray$1(a) {
+  return a !== void 0 ? Array.isArray(a) ? a : [a] : [];
+}
+function shallowEqual$1(a, b) {
+  if (typeof a !== typeof b) return false;
+  if (typeof a === 'string' || typeof a === 'number') return a === b;
+  var i;
+
+  for (i in a) {
+    if (!(i in b)) return false;
+  }
+
+  for (i in b) {
+    if (a[i] !== b[i]) return false;
+  }
+
+  return i === void 0 ? a === b : true;
+}
+function callProp$1(obj) {
+  for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+    args[_key - 1] = arguments[_key];
+  }
+
+  return typeof obj === 'function' ? obj.apply(void 0, args) : obj;
+}
+function getValues$1$1(object) {
+  return Object.keys(object).map(function (k) {
+    return object[k];
+  });
+}
+function getForwardProps$1(props) {
+  var to = props.to,
+      from = props.from,
+      config = props.config,
+      native = props.native,
+      onStart = props.onStart,
+      onRest = props.onRest,
+      onFrame = props.onFrame,
+      children = props.children,
+      reset = props.reset,
+      reverse = props.reverse,
+      force = props.force,
+      immediate = props.immediate,
+      impl = props.impl,
+      inject = props.inject,
+      delay = props.delay,
+      attach = props.attach,
+      destroyed = props.destroyed,
+      interpolateTo = props.interpolateTo,
+      autoStart = props.autoStart,
+      ref = props.ref,
+      forward = _objectWithoutPropertiesLoose$1(props, ["to", "from", "config", "native", "onStart", "onRest", "onFrame", "children", "reset", "reverse", "force", "immediate", "impl", "inject", "delay", "attach", "destroyed", "interpolateTo", "autoStart", "ref"]);
+
+  return forward;
+}
+function interpolateTo$1(props) {
+  var forward = getForwardProps$1(props);
+  var rest = Object.keys(props).reduce(function (a, k) {
+    var _extends2;
+
+    return forward[k] !== void 0 ? a : _extends({}, a, (_extends2 = {}, _extends2[k] = props[k], _extends2));
+  }, {});
+  return _extends({
+    to: forward
+  }, rest);
+}
+function convertToAnimatedValue$1(acc, _ref) {
+  var _extends3;
+
+  var name = _ref[0],
+      value = _ref[1];
+  return _extends({}, acc, (_extends3 = {}, _extends3[name] = new (Array.isArray(value) ? AnimatedArray$1 : AnimatedValue$1)(value), _extends3));
+}
+function convertValues$1(props) {
+  var from = props.from,
+      to = props.to,
+      native = props.native;
+  var allProps = Object.entries(_extends({}, from, to));
+  return native ? allProps.reduce(convertToAnimatedValue$1, {}) : _extends({}, from, to);
+}
+function handleRef$1(ref, forward) {
+  if (forward) {
+    // If it's a function, assume it's a ref callback
+    if (typeof forward === 'function') forward(ref);else if (typeof forward === 'object') {
+      // If it's an object and has a 'current' property, assume it's a ref object
+      forward.current = ref;
+    }
+  }
+
+  return ref;
+}
+
+var check$2 = function check(value) {
+  return value === 'auto';
+};
+
+var overwrite$1 = function overwrite(width, height) {
+  return function (acc, _ref) {
+    var _extends2;
+
+    var name = _ref[0],
+        value = _ref[1];
+    return _extends({}, acc, (_extends2 = {}, _extends2[name] = value === 'auto' ? ~name.indexOf('height') ? height : width : value, _extends2));
+  };
+};
+
+function fixAuto$1(props, callback) {
+  var from = props.from,
+      to = props.to,
+      children = props.children; // Dry-route props back if nothing's using 'auto' in there
+  // TODO: deal with "null"
+
+  if (!(getValues$1$1(to).some(check$2) || getValues$1$1(from).some(check$2))) return; // Fetch render v-dom
+
+  var element = children(convertValues$1(props)); // A spring can return undefined/null, check against that (#153)
+
+  if (!element) return; // Or it could be an array (#346) ...
+
+  if (Array.isArray(element)) element = {
+    type: 'div',
+    props: {
+      children: element
+    } // Extract styles
+
+  };
+  var elementStyles = element.props.style; // Return v.dom with injected ref
+
+  return React__default.createElement(element.type, _extends({
+    key: element.key ? element.key : undefined
+  }, element.props, {
+    style: _extends({}, elementStyles, {
+      position: 'absolute',
+      visibility: 'hidden'
+    }),
+    ref: function ref(_ref2) {
+      if (_ref2) {
+        // Once it's rendered out, fetch bounds (minus padding/margin/borders)
+        var node = ReactDOM.findDOMNode(_ref2);
+        var width, height;
+        var cs = getComputedStyle(node);
+
+        if (cs.boxSizing === 'border-box') {
+          width = node.offsetWidth;
+          height = node.offsetHeight;
+        } else {
+          var paddingX = parseFloat(cs.paddingLeft || 0) + parseFloat(cs.paddingRight || 0);
+          var paddingY = parseFloat(cs.paddingTop || 0) + parseFloat(cs.paddingBottom || 0);
+          var borderX = parseFloat(cs.borderLeftWidth || 0) + parseFloat(cs.borderRightWidth || 0);
+          var borderY = parseFloat(cs.borderTopWidth || 0) + parseFloat(cs.borderBottomWidth || 0);
+          width = node.offsetWidth - paddingX - borderX;
+          height = node.offsetHeight - paddingY - borderY;
+        }
+
+        var convert = overwrite$1(width, height);
+        callback(_extends({}, props, {
+          from: Object.entries(from).reduce(convert, from),
+          to: Object.entries(to).reduce(convert, to)
+        }));
+      }
+    }
+  }));
+}
+
+var isUnitlessNumber$1 = {
+  animationIterationCount: true,
+  borderImageOutset: true,
+  borderImageSlice: true,
+  borderImageWidth: true,
+  boxFlex: true,
+  boxFlexGroup: true,
+  boxOrdinalGroup: true,
+  columnCount: true,
+  columns: true,
+  flex: true,
+  flexGrow: true,
+  flexPositive: true,
+  flexShrink: true,
+  flexNegative: true,
+  flexOrder: true,
+  gridRow: true,
+  gridRowEnd: true,
+  gridRowSpan: true,
+  gridRowStart: true,
+  gridColumn: true,
+  gridColumnEnd: true,
+  gridColumnSpan: true,
+  gridColumnStart: true,
+  fontWeight: true,
+  lineClamp: true,
+  lineHeight: true,
+  opacity: true,
+  order: true,
+  orphans: true,
+  tabSize: true,
+  widows: true,
+  zIndex: true,
+  zoom: true,
+  // SVG-related properties
+  fillOpacity: true,
+  floodOpacity: true,
+  stopOpacity: true,
+  strokeDasharray: true,
+  strokeDashoffset: true,
+  strokeMiterlimit: true,
+  strokeOpacity: true,
+  strokeWidth: true
+};
+
+var prefixKey$1 = function prefixKey(prefix, key) {
+  return prefix + key.charAt(0).toUpperCase() + key.substring(1);
+};
+
+var prefixes$1 = ['Webkit', 'Ms', 'Moz', 'O'];
+isUnitlessNumber$1 = Object.keys(isUnitlessNumber$1).reduce(function (acc, prop) {
+  prefixes$1.forEach(function (prefix) {
+    return acc[prefixKey$1(prefix, prop)] = acc[prop];
+  });
+  return acc;
+}, isUnitlessNumber$1);
+
+function dangerousStyleValue$1(name, value, isCustomProperty) {
+  if (value == null || typeof value === 'boolean' || value === '') return '';
+  if (!isCustomProperty && typeof value === 'number' && value !== 0 && !(isUnitlessNumber$1.hasOwnProperty(name) && isUnitlessNumber$1[name])) return value + 'px'; // Presumes implicit 'px' suffix for unitless numbers
+
+  return ('' + value).trim();
+}
+
+var attributeCache$1 = {};
+injectCreateAnimatedStyle$1(function (style) {
+  return new AnimatedStyle$1(style);
+});
+injectDefaultElement$1('div');
+injectInterpolation$1(createInterpolation$1);
+injectColorNames$1(colors$2);
+injectBugfixes$1(fixAuto$1);
+injectApplyAnimatedValues$1(function (instance, props) {
+  if (instance.nodeType && instance.setAttribute !== undefined) {
+    var style = props.style,
+        children = props.children,
+        scrollTop = props.scrollTop,
+        scrollLeft = props.scrollLeft,
+        attributes = _objectWithoutPropertiesLoose$1(props, ["style", "children", "scrollTop", "scrollLeft"]);
+
+    if (scrollTop !== void 0) instance.scrollTop = scrollTop;
+    if (scrollLeft !== void 0) instance.scrollLeft = scrollLeft; // Set textContent, if children is an animatable value
+
+    if (children !== void 0) instance.textContent = children; // Set styles ...
+
+    for (var styleName in style) {
+      if (!style.hasOwnProperty(styleName)) continue;
+      var isCustomProperty = styleName.indexOf('--') === 0;
+      var styleValue = dangerousStyleValue$1(styleName, style[styleName], isCustomProperty);
+      if (styleName === 'float') styleName = 'cssFloat';
+      if (isCustomProperty) instance.style.setProperty(styleName, styleValue);else instance.style[styleName] = styleValue;
+    } // Set attributes ...
+
+
+    for (var name in attributes) {
+      // Attributes are written in dash case
+      var dashCase = attributeCache$1[name] || (attributeCache$1[name] = name.replace(/([A-Z])/g, function (n) {
+        return '-' + n.toLowerCase();
+      }));
+      if (typeof instance.getAttribute(dashCase) !== 'undefined') instance.setAttribute(dashCase, attributes[name]);
+    }
+  } else return false;
+}, function (style) {
+  return style;
 });
 
-var _React$createContext$3 = React.createContext({}),
+var AnimatedProps$1 =
+/*#__PURE__*/
+function (_AnimatedObjectWithCh) {
+  _inheritsLoose(AnimatedProps, _AnimatedObjectWithCh);
+
+  function AnimatedProps(props, callback) {
+    var _this;
+
+    _this = _AnimatedObjectWithCh.call(this) || this;
+    if (props.style) props = _extends({}, props, {
+      style: createAnimatedStyle$1(props.style)
+    });
+    _this.payload = props;
+    _this.update = callback;
+
+    _this.attach();
+
+    return _this;
+  }
+
+  return AnimatedProps;
+}(AnimatedObjectWithChildren$1);
+
+function createAnimatedComponent$1(Component) {
+  var AnimatedComponent =
+  /*#__PURE__*/
+  function (_React$Component) {
+    _inheritsLoose(AnimatedComponent, _React$Component);
+
+    function AnimatedComponent(props) {
+      var _this;
+
+      _this = _React$Component.call(this) || this;
+
+      _this.callback = function () {
+        if (_this.node) {
+          var didUpdate = applyAnimatedValues$1.fn(_this.node, _this.propsAnimated.getAnimatedValue(), _assertThisInitialized$1(_assertThisInitialized$1(_this)));
+          if (didUpdate === false) _this.forceUpdate();
+        }
+      };
+
+      _this.attachProps(props);
+
+      return _this;
+    }
+
+    var _proto = AnimatedComponent.prototype;
+
+    _proto.componentWillUnmount = function componentWillUnmount() {
+      this.propsAnimated && this.propsAnimated.detach();
+    };
+
+    _proto.setNativeProps = function setNativeProps(props) {
+      var didUpdate = applyAnimatedValues$1.fn(this.node, props, this);
+      if (didUpdate === false) this.forceUpdate();
+    } // The system is best designed when setNativeProps is implemented. It is
+    // able to avoid re-rendering and directly set the attributes that
+    // changed. However, setNativeProps can only be implemented on leaf
+    // native components. If you want to animate a composite component, you
+    // need to re-render it. In this case, we have a fallback that uses
+    // forceUpdate.
+    ;
+
+    _proto.attachProps = function attachProps(_ref) {
+      var forwardRef = _ref.forwardRef,
+          nextProps = _objectWithoutPropertiesLoose$1(_ref, ["forwardRef"]);
+
+      var oldPropsAnimated = this.propsAnimated;
+      this.propsAnimated = new AnimatedProps$1(nextProps, this.callback); // When you call detach, it removes the element from the parent list
+      // of children. If it goes to 0, then the parent also detaches itself
+      // and so on.
+      // An optimization is to attach the new elements and THEN detach the old
+      // ones instead of detaching and THEN attaching.
+      // This way the intermediate state isn't to go to 0 and trigger
+      // this expensive recursive detaching to then re-attach everything on
+      // the very next operation.
+
+      oldPropsAnimated && oldPropsAnimated.detach();
+    };
+
+    _proto.shouldComponentUpdate = function shouldComponentUpdate(props) {
+      var style = props.style,
+          nextProps = _objectWithoutPropertiesLoose$1(props, ["style"]);
+
+      var _this$props = this.props,
+          currentStyle = _this$props.style,
+          currentProps = _objectWithoutPropertiesLoose$1(_this$props, ["style"]);
+
+      if (!shallowEqual$1(currentProps, nextProps) || !shallowEqual$1(currentStyle, style)) {
+        this.attachProps(props);
+        return true;
+      }
+
+      return false;
+    };
+
+    _proto.render = function render() {
+      var _this2 = this;
+
+      var _this$propsAnimated$g = this.propsAnimated.getValue(),
+          scrollTop = _this$propsAnimated$g.scrollTop,
+          scrollLeft = _this$propsAnimated$g.scrollLeft,
+          animatedProps = _objectWithoutPropertiesLoose$1(_this$propsAnimated$g, ["scrollTop", "scrollLeft"]);
+
+      return React__default.createElement(Component, _extends({}, animatedProps, {
+        ref: function ref(node) {
+          return _this2.node = handleRef$1(node, _this2.props.forwardRef);
+        }
+      }));
+    };
+
+    return AnimatedComponent;
+  }(React__default.Component);
+
+  return React__default.forwardRef(function (props, ref) {
+    return React__default.createElement(AnimatedComponent, _extends({}, props, {
+      forwardRef: ref
+    }));
+  });
+}
+
+var active$1 = false;
+var controllers$1 = new Set();
+
+var frameLoop$1 = function frameLoop() {
+  var time = now$2();
+
+  for (var _iterator = controllers$1, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
+    var _ref;
+
+    if (_isArray) {
+      if (_i >= _iterator.length) break;
+      _ref = _iterator[_i++];
+    } else {
+      _i = _iterator.next();
+      if (_i.done) break;
+      _ref = _i.value;
+    }
+
+    var controller = _ref;
+    var isDone = true;
+    var noChange = true;
+
+    for (var configIdx = 0; configIdx < controller.configs.length; configIdx++) {
+      var config = controller.configs[configIdx];
+      var endOfAnimation = void 0,
+          lastTime = void 0;
+
+      for (var valIdx = 0; valIdx < config.animatedValues.length; valIdx++) {
+        var animation = config.animatedValues[valIdx]; // If an animation is done, skip, until all of them conclude
+
+        if (animation.done) continue;
+        var from = config.fromValues[valIdx];
+        var to = config.toValues[valIdx];
+        var position = animation.lastPosition;
+        var isAnimated = to instanceof Animated$1;
+
+        var _velocity = Array.isArray(config.initialVelocity) ? config.initialVelocity[valIdx] : config.initialVelocity;
+
+        if (isAnimated) to = to.getValue(); // Conclude animation if it's either immediate, or from-values match end-state
+
+        if (config.immediate || !isAnimated && !config.decay && from === to) {
+          animation.updateValue(to);
+          animation.done = true;
+          continue;
+        } // Doing delay here instead of setTimeout is one async worry less
+
+
+        if (config.delay && time - controller.startTime < config.delay) {
+          isDone = false;
+          continue;
+        } // Flag change
+
+
+        noChange = false; // Break animation when string values are involved
+
+        if (typeof from === 'string' || typeof to === 'string') {
+          animation.updateValue(to);
+          animation.done = true;
+          continue;
+        }
+
+        if (config.duration !== void 0) {
+          /** Duration easing */
+          position = from + config.easing((time - controller.startTime - config.delay) / config.duration) * (to - from);
+          endOfAnimation = time >= controller.startTime + config.delay + config.duration;
+        } else if (config.decay) {
+          /** Decay easing */
+          position = from + _velocity / (1 - 0.998) * (1 - Math.exp(-(1 - 0.998) * (time - controller.startTime)));
+          endOfAnimation = Math.abs(animation.lastPosition - position) < 0.1;
+          if (endOfAnimation) to = position;
+        } else {
+          /** Spring easing */
+          lastTime = animation.lastTime !== void 0 ? animation.lastTime : time;
+          _velocity = animation.lastVelocity !== void 0 ? animation.lastVelocity : config.initialVelocity; // If we lost a lot of frames just jump to the end.
+
+          if (time > lastTime + 64) lastTime = time; // http://gafferongames.com/game-physics/fix-your-timestep/
+
+          var numSteps = Math.floor(time - lastTime);
+
+          for (var i = 0; i < numSteps; ++i) {
+            var force = -config.tension * (position - to);
+            var damping = -config.friction * _velocity;
+            var acceleration = (force + damping) / config.mass;
+            _velocity = _velocity + acceleration * 1 / 1000;
+            position = position + _velocity * 1 / 1000;
+          } // Conditions for stopping the spring animation
+
+
+          var isOvershooting = config.clamp && config.tension !== 0 ? from < to ? position > to : position < to : false;
+          var isVelocity = Math.abs(_velocity) <= config.precision;
+          var isDisplacement = config.tension !== 0 ? Math.abs(to - position) <= config.precision : true;
+          endOfAnimation = isOvershooting || isVelocity && isDisplacement;
+          animation.lastVelocity = _velocity;
+          animation.lastTime = time;
+        } // Trails aren't done until their parents conclude
+
+
+        if (isAnimated && !config.toValues[valIdx].done) endOfAnimation = false;
+
+        if (endOfAnimation) {
+          // Ensure that we end up with a round value
+          if (animation.value !== to) position = to;
+          animation.done = true;
+        } else isDone = false;
+
+        animation.updateValue(position);
+        animation.lastPosition = position;
+      } // Keep track of updated values only when necessary
+
+
+      if (controller.props.onFrame || !controller.props.native) controller.animatedProps[config.name] = config.interpolation.getValue();
+    } // Update callbacks in the end of the frame
+
+
+    if (controller.props.onFrame || !controller.props.native) {
+      if (!controller.props.native && controller.onUpdate) controller.onUpdate();
+      if (controller.props.onFrame) controller.props.onFrame(controller.animatedProps);
+    } // Either call onEnd or next frame
+
+
+    if (isDone) {
+      controllers$1.delete(controller);
+      controller.debouncedOnEnd({
+        finished: true,
+        noChange: noChange
+      });
+    }
+  } // Loop over as long as there are controllers ...
+
+
+  if (controllers$1.size) requestFrame$1(frameLoop);else active$1 = false;
+};
+
+var addController$1 = function addController(controller) {
+  if (!controllers$1.has(controller)) {
+    controllers$1.add(controller);
+    if (!active$1) requestFrame$1(frameLoop$1);
+    active$1 = true;
+  }
+};
+
+var removeController$1 = function removeController(controller) {
+  if (controllers$1.has(controller)) {
+    controllers$1.delete(controller);
+  }
+};
+
+var Controller$1 =
+/*#__PURE__*/
+function () {
+  function Controller(props, config) {
+    var _this = this;
+
+    if (config === void 0) {
+      config = {
+        native: true,
+        interpolateTo: true,
+        autoStart: true
+      };
+    }
+
+    this.getValues = function () {
+      return _this.props.native ? _this.interpolations : _this.animatedProps;
+    };
+
+    this.dependents = new Set();
+    this.isActive = false;
+    this.hasChanged = false;
+    this.props = {};
+    this.merged = {};
+    this.animations = {};
+    this.interpolations = {};
+    this.animatedProps = {};
+    this.configs = [];
+    this.frame = undefined;
+    this.startTime = undefined;
+    this.lastTime = undefined;
+    this.update(_extends({}, props, config));
+  }
+
+  var _proto = Controller.prototype;
+
+  _proto.update = function update(props) {
+    var _this2 = this;
+
+    this.props = _extends({}, this.props, props);
+
+    var _ref = this.props.interpolateTo ? interpolateTo$1(this.props) : this.props,
+        _ref$from = _ref.from,
+        from = _ref$from === void 0 ? {} : _ref$from,
+        _ref$to = _ref.to,
+        to = _ref$to === void 0 ? {} : _ref$to,
+        _ref$config = _ref.config,
+        config = _ref$config === void 0 ? {} : _ref$config,
+        _ref$delay = _ref.delay,
+        delay = _ref$delay === void 0 ? 0 : _ref$delay,
+        reverse = _ref.reverse,
+        attach = _ref.attach,
+        reset = _ref.reset,
+        immediate = _ref.immediate,
+        autoStart = _ref.autoStart,
+        ref = _ref.ref; // Reverse values when requested
+
+
+    if (reverse) {
+      var _ref2 = [to, from];
+      from = _ref2[0];
+      to = _ref2[1];
+    }
+
+    this.hasChanged = false; // Attachment handling, trailed springs can "attach" themselves to a previous spring
+
+    var target = attach && attach(this); // Reset merged props when necessary
+
+    var extra = reset ? {} : this.merged; // This will collect all props that were ever set
+
+    this.merged = _extends({}, from, extra, to); // Reduces input { name: value } pairs into animated values
+
+    this.animations = Object.entries(this.merged).reduce(function (acc, _ref3, i) {
+      var name = _ref3[0],
+          value = _ref3[1];
+      // Issue cached entries, except on reset
+      var entry = !reset && acc[name] || {}; // Figure out what the value is supposed to be
+
+      var isNumber = typeof value === 'number';
+      var isString = typeof value === 'string' && !value.startsWith('#') && !/\d/.test(value) && !colorNames$1[value];
+      var isArray = !isNumber && !isString && Array.isArray(value);
+      var fromValue = from[name] !== undefined ? from[name] : value;
+      var toValue = isNumber || isArray ? value : isString ? value : 1;
+      var toConfig = callProp$1(config, name);
+      if (target) toValue = target.animations[name].parent; // Detect changes, animated values will be checked in the raf-loop
+
+      if (toConfig.decay !== void 0 || !shallowEqual$1(entry.changes, value)) {
+        var _extends2;
+
+        _this2.hasChanged = true;
+        var parent, interpolation$$1;
+        if (isNumber || isString) parent = interpolation$$1 = entry.parent || new AnimatedValue$1(fromValue);else if (isArray) parent = interpolation$$1 = entry.parent || new AnimatedArray$1(fromValue);else {
+          var prev = entry.interpolation && entry.interpolation.calc(entry.parent.value);
+
+          if (entry.parent) {
+            parent = entry.parent;
+            parent.setValue(0, false);
+          } else parent = new AnimatedValue$1(0);
+
+          var range = {
+            output: [prev !== void 0 ? prev : fromValue, value]
+          };
+
+          if (entry.interpolation) {
+            interpolation$$1 = entry.interpolation;
+            entry.interpolation.updateConfig(range);
+          } else interpolation$$1 = parent.interpolate(range);
+        } // Set immediate values
+
+        if (callProp$1(immediate, name)) parent.setValue(value, false); // Reset animated values
+
+        var animatedValues = toArray$1(parent.getPayload());
+        animatedValues.forEach(function (value) {
+          return value.prepare(_this2);
+        });
+        return _extends({}, acc, (_extends2 = {}, _extends2[name] = _extends({}, entry, {
+          name: name,
+          parent: parent,
+          interpolation: interpolation$$1,
+          animatedValues: animatedValues,
+          changes: value,
+          fromValues: toArray$1(parent.getValue()),
+          toValues: toArray$1(target ? toValue.getPayload() : toValue),
+          immediate: callProp$1(immediate, name),
+          delay: withDefault$1(toConfig.delay, delay || 0),
+          initialVelocity: withDefault$1(toConfig.velocity, 0),
+          clamp: withDefault$1(toConfig.clamp, false),
+          precision: withDefault$1(toConfig.precision, 0.01),
+          tension: withDefault$1(toConfig.tension, 170),
+          friction: withDefault$1(toConfig.friction, 26),
+          mass: withDefault$1(toConfig.mass, 1),
+          duration: toConfig.duration,
+          easing: withDefault$1(toConfig.easing, function (t) {
+            return t;
+          }),
+          decay: toConfig.decay
+        }), _extends2));
+      } else return acc;
+    }, this.animations);
+
+    if (this.hasChanged) {
+      this.configs = getValues$1$1(this.animations);
+      this.animatedProps = {};
+      this.interpolations = {};
+
+      for (var key in this.animations) {
+        this.interpolations[key] = this.animations[key].interpolation;
+        this.animatedProps[key] = this.animations[key].interpolation.getValue();
+      }
+    } // TODO: clean up ref in controller
+
+
+    for (var _len = arguments.length, start = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+      start[_key - 1] = arguments[_key];
+    }
+
+    if (!ref && (autoStart || start.length)) this.start.apply(this, start);
+    var onEnd = start[0],
+        onUpdate = start[1];
+    this.onEnd = typeof onEnd === 'function' && onEnd;
+    this.onUpdate = onUpdate;
+    return this.getValues();
+  };
+
+  _proto.start = function start(onEnd, onUpdate) {
+    var _this3 = this;
+
+    this.startTime = now$2();
+    if (this.isActive) this.stop();
+    this.isActive = true;
+    this.onEnd = typeof onEnd === 'function' && onEnd;
+    this.onUpdate = onUpdate;
+    if (this.props.onStart) this.props.onStart();
+    addController$1(this);
+    return new Promise(function (res) {
+      return _this3.resolve = res;
+    });
+  };
+
+  _proto.stop = function stop(finished) {
+    if (finished === void 0) {
+      finished = false;
+    }
+
+    // Reset collected changes since the animation has been stopped cold turkey
+    if (finished) getValues$1$1(this.animations).forEach(function (a) {
+      return a.changes = undefined;
+    });
+    this.debouncedOnEnd({
+      finished: finished
+    });
+  };
+
+  _proto.destroy = function destroy() {
+    removeController$1(this);
+    this.props = {};
+    this.merged = {};
+    this.animations = {};
+    this.interpolations = {};
+    this.animatedProps = {};
+    this.configs = [];
+  };
+
+  _proto.debouncedOnEnd = function debouncedOnEnd(result) {
+    removeController$1(this);
+    this.isActive = false;
+    var onEnd = this.onEnd;
+    this.onEnd = null;
+    if (onEnd) onEnd(result);
+    if (this.resolve) this.resolve();
+    this.resolve = null;
+  };
+
+  return Controller;
+}();
+
+var KeyframeController =
+/*#__PURE__*/
+function () {
+  function KeyframeController(_props) {
+    var _this = this;
+
+    this.frameId = 0;
+
+    this.next = function (props, localFrameId, last, index) {
+      if (last === void 0) {
+        last = true;
+      }
+
+      if (index === void 0) {
+        index = 0;
+      }
+
+      // this.last = last
+      // this.running = true
+      // config passed to props can overwrite global config passed in
+      // controller instantiation i.e. globalConfig
+      var config = props.config ? props.config : Array.isArray(_this.globalConfig) ? _this.globalConfig[index] : _this.globalConfig;
+      _this.onFrameRest = props.onRest;
+      return new Promise(function (resolve) {
+        // if ref is passed to internal controller, then it ignore onEnd call back
+        _this.instance.update(_extends({}, _this.globalProps, props, {
+          config: config
+        }), _this.onEnd(_this.onFrameRest, localFrameId, last, resolve)); // start needs to be called here if ref is present to activate the anim
+
+
+        if (_this.ref) {
+          _this.instance.start(_this.onEnd(_this.onFrameRest, localFrameId, last, resolve));
+        } // hacky solution to force the parent to be updated any time
+        // the child controller is reset
+
+
+        _this.instance.props.reset && _this.instance.props.native && _this.parentForceUpdate && requestFrame$1(_this.parentForceUpdate);
+      });
+    };
+
+    this.start = function (onEnd) {
+      _this.globalOnEnd = onEnd;
+
+      if (_this.currSlots) {
+        var _ret = function () {
+          var localFrameId = ++_this.frameId;
+
+          if (Array.isArray(_this.currSlots)) {
+            var q = Promise.resolve();
+
+            var _loop = function _loop(i) {
+              var index = i;
+              var slot = _this.currSlots[index];
+              var last = index === _this.currSlots.length - 1;
+              q = q.then(function () {
+                return localFrameId === _this.frameId && _this.next(slot, localFrameId, last, index);
+              });
+            };
+
+            for (var i = 0; i < _this.currSlots.length; i++) {
+              _loop(i);
+            }
+          } else if (typeof _this.currSlots === 'function') {
+            var index = 0;
+
+            _this.currSlots( // next
+            function (props, last) {
+              if (last === void 0) {
+                last = false;
+              }
+
+              return localFrameId === _this.frameId && _this.next(props, localFrameId, last, index++);
+            }, // cancel
+            function () {
+              return requestFrame$1(function () {
+                return _this.instance.isActive && _this.instance.stop(true);
+              });
+            });
+          } else _this.next(_this.currSlots, localFrameId);
+
+          _this.prevSlots = _this.currSlots;
+          return {
+            v: new Promise(function (resolve) {
+              return _this.keyFrameEndResolver = resolve;
+            })
+          };
+        }();
+
+        if (typeof _ret === "object") return _ret.v;
+      }
+    };
+
+    this.stop = function (finished) {
+      if (finished === void 0) {
+        finished = false;
+      }
+
+      ++_this.frameId;
+      if (_this.instance.isActive) _this.instance.stop(finished);
+    };
+
+    this.onEnd = function (onFrameRest, localFrameId, last, resolve) {
+      return function (args) {
+        if (localFrameId === _this.frameId) {
+          if (resolve) resolve();
+          if (onFrameRest) onFrameRest(_this.merged);
+          if (last && _this.globalOnEnd) _this.globalOnEnd(args);
+          if (last && _this.keyFrameEndResolver) _this.keyFrameEndResolver();
+
+          if (args.finished && last && _this.globalOnRest) {
+            _this.globalOnRest(_this.merged);
+          }
+        }
+      };
+    };
+
+    this.updateWithForceUpdate = function (forceUpdate) {
+      // needed to forceUpdate when the controller is reset
+      // for native controllers
+      _this.parentForceUpdate = forceUpdate;
+
+      for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+        args[_key - 1] = arguments[_key];
+      }
+
+      _this.update.apply(_this, args);
+    };
+
+    this.update = function (args) {
+      var isFnOrArray = typeof args === 'function' || Array.isArray(args);
+
+      if (isFnOrArray) {
+        _this.currSlots = args;
+        !_this.ref && _this.start();
+      } else {
+        var slots = args.slots,
+            rest = _objectWithoutPropertiesLoose$1(args, ["slots"]);
+
+        _this.currSlots = slots;
+        !_this.ref && _this.start.apply(_this, rest);
+      }
+    };
+
+    this.getValues = function () {
+      return _this.instance.getValues();
+    };
+
+    this.destroy = function () {
+      return _this.instance.destroy();
+    };
+
+    var _config = _props.config,
+        onRest = _props.onRest,
+        initialProps = _objectWithoutPropertiesLoose$1(_props, ["config", "onRest"]);
+
+    this.globalProps = function (_ref) {
+      var native = _ref.native,
+          onStart = _ref.onStart,
+          onFrame = _ref.onFrame,
+          children = _ref.children,
+          reset = _ref.reset,
+          delay = _ref.delay,
+          destroyed = _ref.destroyed;
+      return {
+        native: native,
+        onStart: onStart,
+        reset: reset,
+        onFrame: onFrame,
+        children: children,
+        delay: delay,
+        destroyed: destroyed
+      };
+    }(_props);
+
+    this.globalConfig = _props.config;
+    this.globalOnRest = _props.onRest;
+    this.ref = _props.ref;
+    this.prevSlots = {};
+    this.currSlots = null;
+    this.instance = new Controller$1(_extends({}, initialProps, {
+      native: true
+    }));
+  }
+
+  _createClass$2(KeyframeController, [{
+    key: "isActive",
+    get: function get() {
+      return this.instance.isActive;
+    }
+  }, {
+    key: "config",
+    set: function set(config) {
+      this.globalConfig = config;
+    }
+  }, {
+    key: "globals",
+    set: function set(props) {
+      this.globalProps = _extends({}, this.globalProps, props);
+    }
+  }, {
+    key: "merged",
+    get: function get() {
+      return this.instance.merged;
+    }
+  }, {
+    key: "props",
+    get: function get() {
+      return this.instance.props;
+    }
+  }]);
+
+  return KeyframeController;
+}();
+
+var useSpringImpl = function useSpringImpl(type) {
+  if (type === void 0) {
+    type = 'default';
+  }
+
+  return function (args) {
+    var _useState = React.useState(),
+        f = _useState[1];
+
+    var forceUpdate = function forceUpdate() {
+      return f(function (v) {
+        return !v;
+      });
+    }; // Extract animation props and hook-specific props, can be a function or an obj
+
+
+    var isFn = typeof args === 'function';
+
+    var _callProp = callProp$1(args),
+        onRest = _callProp.onRest,
+        onKeyframesHalt = _callProp.onKeyframesHalt,
+        props = _objectWithoutPropertiesLoose$1(_callProp, ["onRest", "onKeyframesHalt"]); // The controller maintains the animation values, starts and tops animations
+
+
+    var _useState2 = React.useState(function () {
+      return type === 'keyframe' ? new KeyframeController(props) : new Controller$1(props);
+    }),
+        ctrl = _useState2[0]; // Destroy controller on unmount
+
+
+    React.useEffect(function () {
+      return function () {
+        return ctrl.destroy();
+      };
+    }, []);
+
+    var onHalt = function onHalt(_ref) {
+      var finished = _ref.finished;
+      return finished && onRest && onRest(ctrl.merged);
+    }; // The hooks explcit API gets defined here ...
+
+
+    React.useImperativeHandle(props.ref, function () {
+      return {
+        start: function start() {
+          return ctrl.start(onHalt);
+        },
+
+        get isActive() {
+          return ctrl.isActive;
+        },
+
+        stop: function stop(finished) {
+          if (finished === void 0) {
+            finished = false;
+          }
+
+          if (ctrl.isActive) ctrl.stop(finished);
+        }
+      };
+    }); // Defines the hooks setter, which updates the controller
+
+    var updateCtrl = React.useCallback(function (updateProps) {
+      type === 'keyframe' ? ctrl.updateWithForceUpdate(forceUpdate, updateProps) : ctrl.update(updateProps);
+      if (!ctrl.props.ref) ctrl.start(onHalt);
+      if (ctrl.props.reset && type === 'default') requestFrame$1(forceUpdate);
+    }, [onRest, ctrl.props.ref]); // Update next frame is props aren't functional
+
+    React.useEffect(function () {
+      return void (!isFn && updateCtrl(props));
+    }); // Return animated props, or, anim-props + the update-setter above
+
+    var propValues = ctrl.getValues();
+    return isFn ? [propValues, updateCtrl, function (finished) {
+      if (finished === void 0) {
+        finished = false;
+      }
+
+      return ctrl.stop(finished);
+    }] : propValues;
+  };
+};
+var useSpring = useSpringImpl();
+
+var domElements$1 = ['a', 'abbr', 'address', 'area', 'article', 'aside', 'audio', 'b', 'base', 'bdi', 'bdo', 'big', 'blockquote', 'body', 'br', 'button', 'canvas', 'caption', 'cite', 'code', 'col', 'colgroup', 'data', 'datalist', 'dd', 'del', 'details', 'dfn', 'dialog', 'div', 'dl', 'dt', 'em', 'embed', 'fieldset', 'figcaption', 'figure', 'footer', 'form', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'head', 'header', 'hgroup', 'hr', 'html', 'i', 'iframe', 'img', 'input', 'ins', 'kbd', 'keygen', 'label', 'legend', 'li', 'link', 'main', 'map', 'mark', 'marquee', 'menu', 'menuitem', 'meta', 'meter', 'nav', 'noscript', 'object', 'ol', 'optgroup', 'option', 'output', 'p', 'param', 'picture', 'pre', 'progress', 'q', 'rp', 'rt', 'ruby', 's', 'samp', 'script', 'section', 'select', 'small', 'source', 'span', 'strong', 'style', 'sub', 'summary', 'sup', 'table', 'tbody', 'td', 'textarea', 'tfoot', 'th', 'thead', 'time', 'title', 'tr', 'track', 'u', 'ul', 'var', 'video', 'wbr', // SVG
+'circle', 'clipPath', 'defs', 'ellipse', 'foreignObject', 'g', 'image', 'line', 'linearGradient', 'mask', 'path', 'pattern', 'polygon', 'polyline', 'radialGradient', 'rect', 'stop', 'svg', 'text', 'tspan'];
+var extendedAnimated$1 = domElements$1.reduce(function (acc, element) {
+  acc[element] = createAnimatedComponent$1(element);
+  return acc;
+}, createAnimatedComponent$1);
+
+var RADIUS = 2;
+var BAR_HEIGHT$1 = 6;
+var INDETERMINATE_WIDTH = 1 / 4;
+var INDETERMINATE_DURATION = 1600;
+var indeterminateAnim = styled.keyframes(["0%{transform:translate3d(calc(-100% - 1px),0,0);}70%,100%{transform:translate3d(calc(", "% + 1px),0,0);}"], 100 / INDETERMINATE_WIDTH);
+var ProgressBar = React__default.memo(function (_ref) {
+  var animate = _ref.animate,
+      color = _ref.color,
+      progress = _ref.progress,
+      value = _ref.value;
+
+  // Support `progress` for a while but warn if being used.
+  if (value === -1 && typeof progress === 'number') {
+    value = progress;
+
+    if (!ProgressBar._warned) {
+      warn('The `progress` prop of ProgressBar is deprecated: please use `value` instead.');
+      ProgressBar._warned = true;
+    }
+  } // The indeterminate state can be triggered either by not setting the value
+  // (to mimic the <progress> element in HTML), or by setting the -1 value (for
+  // convenience in React).
+
+
+  var indeterminate = value === -1;
+  var transition = useSpring({
+    config: objectSpread({}, springs.smooth, {
+      precision: 0.001
+    }),
+    from: {
+      scale: 0,
+      x: 0
+    },
+    to: {
+      scale: value,
+      x: 0
+    },
+    immediate: !animate
+  });
+  return React__default.createElement(_StyledDiv$5, {
+    _$p_: theme.secondaryBackground
+  }, React__default.createElement(Bar$1, {
+    style: {
+      width: "".concat((indeterminate ? INDETERMINATE_WIDTH : 1) * 100, "%"),
+      background: color,
+      borderRadius: "".concat(indeterminate ? RADIUS : 0, "px"),
+      animationName: "".concat(indeterminate ? indeterminateAnim.name : 'none'),
+      transform: interpolate$1$1([transition.x, transition.scale], function (x, s) {
+        return "translate3d(".concat(x * 100, "%, 0, 0) scale3d(").concat(s, ", 1, 1)");
+      })
+    }
+  }));
+});
+var Bar$1 = styled__default(extendedAnimated$1.div).withConfig({
+  displayName: "ProgressBar__Bar",
+  componentId: "sc-1gly9sn-0"
+})(["width:100%;height:", "px;transform-origin:0 0;animation:", " ", "ms ease-in-out infinite;animation-name:none;"], BAR_HEIGHT$1, indeterminateAnim, INDETERMINATE_DURATION);
+ProgressBar.defaultProps = {
+  animate: true,
+  color: theme.accent,
+  value: -1
+};
+ProgressBar.propTypes = {
+  animate: ExtendedPropTypes.bool,
+  color: ExtendedPropTypes.string,
+  progress: ExtendedPropTypes._0to1,
+  value: ExtendedPropTypes.oneOfType([ExtendedPropTypes._0to1, ExtendedPropTypes.oneOf([-1])])
+};
+
+var _StyledDiv$5 = styled__default("div").withConfig({
+  displayName: "ProgressBar___StyledDiv",
+  componentId: "sc-1gly9sn-1"
+})(["width:100%;height:", "px;background:", ";border-radius:", "px;overflow:hidden;"], BAR_HEIGHT$1, function (p) {
+  return p._$p_;
+}, RADIUS);
+
+var _React$createContext$3 = React__default.createContext({}),
     Provider$3 = _React$createContext$3.Provider,
     Consumer$2 = _React$createContext$3.Consumer;
 
@@ -21121,7 +23178,7 @@ function (_React$PureComponent) {
           children = _this$props.children,
           selected = _this$props.selected;
       var focusableId = radios.has(selected) ? selected : toConsumableArray(radios)[0];
-      return React.createElement(Provider$3, {
+      return React__default.createElement(Provider$3, {
         value: {
           selected: selected,
           focusableId: focusableId,
@@ -21131,14 +23188,14 @@ function (_React$PureComponent) {
           selectPrev: this.selectPrev,
           selectNext: this.selectNext
         }
-      }, React.createElement("div", _extends_1({
+      }, React__default.createElement("div", _extends_1({
         role: "radiogroup"
       }, stylingProps(this)), children));
     }
   }]);
 
   return RadioGroup;
-}(React.PureComponent);
+}(React__default.PureComponent);
 
 defineProperty(RadioGroup, "propTypes", {
   children: propTypes.node,
@@ -21173,7 +23230,7 @@ function (_React$PureComponent) {
 
     _this = possibleConstructorReturn$1(this, (_getPrototypeOf2 = getPrototypeOf(RadioButton)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
-    defineProperty(assertThisInitialized(assertThisInitialized(_this)), "_element", React.createRef());
+    defineProperty(assertThisInitialized(assertThisInitialized(_this)), "_element", React__default.createRef());
 
     defineProperty(assertThisInitialized(assertThisInitialized(_this)), "handleKeyDown", function (event) {
       var _this$props = _this.props,
@@ -21245,7 +23302,7 @@ function (_React$PureComponent) {
           tabIndex = _this$props5.tabIndex,
           props = objectWithoutProperties(_this$props5, ["checked", "onChange", "id", "tabIndex"]);
 
-      return React.createElement(Checkbox, _extends_1({
+      return React__default.createElement(Checkbox, _extends_1({
         ref: this._element,
         variant: "radio",
         checked: checked,
@@ -21257,7 +23314,7 @@ function (_React$PureComponent) {
   }]);
 
   return RadioButton;
-}(React.PureComponent);
+}(React__default.PureComponent);
 
 defineProperty(RadioButton, "propTypes", {
   checked: propTypes.bool,
@@ -21296,7 +23353,7 @@ function (_React$PureComponent2) {
     key: "render",
     value: function render() {
       var props = this.props;
-      return React.createElement(Consumer$2, null, function (_ref) {
+      return React__default.createElement(Consumer$2, null, function (_ref) {
         var onChange = _ref.onChange,
             selected = _ref.selected,
             focusableId = _ref.focusableId,
@@ -21304,7 +23361,7 @@ function (_React$PureComponent2) {
             removeRadio = _ref.removeRadio,
             selectNext = _ref.selectNext,
             selectPrev = _ref.selectPrev;
-        return React.createElement(RadioButton, _extends_1({}, props, {
+        return React__default.createElement(RadioButton, _extends_1({}, props, {
           onChange: props.onChange || onChange,
           checked: props.checked || props.id === selected && selected !== null,
           tabIndex: props.tabIndex || (focusableId === undefined || props.id === focusableId ? '0' : '-1'),
@@ -21318,7 +23375,7 @@ function (_React$PureComponent2) {
   }]);
 
   return Radio;
-}(React.PureComponent);
+}(React__default.PureComponent);
 
 defineProperty(Radio, "propTypes", RadioButton.propTypes);
 
@@ -21331,9 +23388,9 @@ var RadioListItem = function RadioListItem(_ref) {
   var description = _ref.description,
       index = _ref.index,
       title = _ref.title;
-  return React.createElement(Label$2, null, React.createElement(RadioWrapper, {
+  return React__default.createElement(Label$2, null, React__default.createElement(RadioWrapper, {
     id: index
-  }), React.createElement(LabelBox, null, React.createElement(Title$3, null, title), React.createElement(Description, null, description)));
+  }), React__default.createElement(LabelBox, null, React__default.createElement(Title$3, null, title), React__default.createElement(Description, null, description)));
 };
 
 RadioListItem.propTypes = {
@@ -21385,16 +23442,16 @@ function (_React$Component) {
           onChange = _this$props.onChange,
           selected = _this$props.selected,
           title = _this$props.title;
-      return React.createElement("div", stylingProps(this), title && React.createElement(Title$4, null, React.createElement(Text, {
+      return React__default.createElement("div", stylingProps(this), title && React__default.createElement(Title$4, null, React__default.createElement(Text, {
         size: "large",
         weight: "bold"
-      }, title)), description && React.createElement(Description$1, null, description), React.createElement(StyledRadioGroup, {
+      }, title)), description && React__default.createElement(Description$1, null, description), React__default.createElement(StyledRadioGroup, {
         onChange: onChange,
         selected: selected
       }, items.map(function (_ref, i) {
         var description = _ref.description,
             title = _ref.title;
-        return React.createElement(RadioListItem, {
+        return React__default.createElement(RadioListItem, {
           key: i,
           description: description,
           index: i,
@@ -21405,7 +23462,7 @@ function (_React$Component) {
   }]);
 
   return RadioList;
-}(React.Component);
+}(React__default.Component);
 
 defineProperty(RadioList, "propTypes", {
   description: propTypes.node,
@@ -21487,15 +23544,15 @@ function (_React$PureComponent) {
           title = _this$props.title,
           opened = _this$props.opened,
           blocking = _this$props.blocking;
-      return React.createElement(Main$c, {
+      return React__default.createElement(Main$b, {
         opened: opened
-      }, React.createElement(Overlay$1, {
+      }, React__default.createElement(Overlay$1, {
         style: {
           opacity: progress,
           pointerEvents: opened ? 'auto' : 'none'
         },
         onClick: _this.handleClose
-      }), React.createElement(Panel, {
+      }), React__default.createElement(Panel, {
         style: {
           transform: progress.interpolate(function (v) {
             return "translate3d(calc(".concat(100 * (1 - v), "% + ").concat(36 * (1 - v), "px), 0, 0)");
@@ -21504,12 +23561,12 @@ function (_React$PureComponent) {
             return v > 0 ? 1 : 0;
           })
         }
-      }, React.createElement(PanelHeader, null, React.createElement("h1", null, React.createElement(Text, {
+      }, React__default.createElement(PanelHeader, null, React__default.createElement("h1", null, React__default.createElement(Text, {
         size: "xxlarge"
-      }, title)), !blocking && React.createElement(PanelCloseButton, {
+      }, title)), !blocking && React__default.createElement(PanelCloseButton, {
         type: "button",
         onClick: _this.handleClose
-      }, React.createElement(Close, null))), React.createElement(PanelScrollView, null, React.createElement(PanelContent, null, children))));
+      }, React__default.createElement(Close, null))), React__default.createElement(PanelScrollView, null, React__default.createElement(PanelContent, null, children))));
     });
 
     return _this;
@@ -21529,7 +23586,7 @@ function (_React$PureComponent) {
     key: "render",
     value: function render() {
       var opened = this.props.opened;
-      return React.createElement(Spring, {
+      return React__default.createElement(Spring, {
         config: springs.lazy,
         from: {
           progress: 0
@@ -21544,7 +23601,7 @@ function (_React$PureComponent) {
   }]);
 
   return SidePanel;
-}(React.PureComponent);
+}(React__default.PureComponent);
 
 SidePanel.propTypes = {
   children: propTypes.node,
@@ -21560,7 +23617,7 @@ SidePanel.defaultProps = {
   onClose: function onClose() {},
   onTransitionEnd: function onTransitionEnd() {}
 };
-var Main$c = styled__default.div.withConfig({
+var Main$b = styled__default.div.withConfig({
   displayName: "SidePanel__Main",
   componentId: "sc-1kjx6mk-0"
 })(["position:fixed;z-index:3;top:0;left:0;right:0;bottom:0;pointer-events:", ";"], function (_ref2) {
@@ -21608,13 +23665,13 @@ var SidePanelSplit = function SidePanelSplit(_ref) {
   var children = _ref.children,
       props = objectWithoutProperties(_ref, ["children"]);
 
-  return React.createElement(Main$d, props, React.createElement(Part$1, null, children[0]), React.createElement(Part$1, null, children[1]));
+  return React__default.createElement(Main$c, props, React__default.createElement(Part$1, null, children[0]), React__default.createElement(Part$1, null, children[1]));
 };
 
 SidePanelSplit.propTypes = {
   children: propTypes.node
 };
-var Main$d = styled__default.div.withConfig({
+var Main$c = styled__default.div.withConfig({
   displayName: "SidePanelSplit__Main",
   componentId: "d0csv3-0"
 })(["display:flex;width:calc(100% + ", "px);margin:0 -", "px;border:1px solid ", ";border-width:1px 0;"], SidePanel.HORIZONTAL_PADDING * 2, SidePanel.HORIZONTAL_PADDING, theme.contentBorder);
@@ -21623,12 +23680,12 @@ var Part$1 = styled__default.div.withConfig({
   componentId: "d0csv3-1"
 })(["width:50%;padding:20px ", "px;&:first-child{border-right:1px solid ", ";}"], SidePanel.HORIZONTAL_PADDING, theme.contentBorder);
 
-var BAR_HEIGHT$1 = 6;
+var BAR_HEIGHT$2 = 6;
 var HANDLE_SIZE = 24;
 var HANDLE_SHADOW_MARGIN = 15;
 var PADDING = 5;
 var MIN_WIDTH = HANDLE_SIZE * 10;
-var HEIGHT = Math.max(HANDLE_SIZE, BAR_HEIGHT$1) + PADDING * 2;
+var HEIGHT = Math.max(HANDLE_SIZE, BAR_HEIGHT$2) + PADDING * 2;
 
 var Slider =
 /*#__PURE__*/
@@ -21774,7 +23831,7 @@ function (_React$Component) {
 
       var pressed = this.state.pressed;
       var value = Math.max(0, Math.min(1, this.props.value));
-      return React.createElement(Spring, {
+      return React__default.createElement(Spring, {
         config: springs.swift,
         to: {
           pressProgress: Number(pressed),
@@ -21784,15 +23841,15 @@ function (_React$Component) {
       }, function (_ref) {
         var value = _ref.value,
             pressProgress = _ref.pressProgress;
-        return React.createElement(Main$e, null, React.createElement(Area, {
+        return React__default.createElement(Main$d, null, React__default.createElement(Area, {
           ref: _this2.handleRef,
           onMouseDown: _this2.dragStart,
           onTouchStart: _this2.dragStart
-        }, React.createElement(Bars, null, React.createElement(BaseBar, null), React.createElement(ActiveBar, {
+        }, React__default.createElement(Bars, null, React__default.createElement(BaseBar, null), React__default.createElement(ActiveBar, {
           style: _this2.getActiveBarStyles(value, pressProgress)
-        })), React.createElement(HandleClip, null, React.createElement(HandlePosition, {
+        })), React__default.createElement(HandleClip, null, React__default.createElement(HandlePosition, {
           style: _this2.getHandlePositionStyles(value, pressProgress)
-        }, React.createElement(Handle, {
+        }, React__default.createElement(Handle, {
           style: _this2.getHandleStyles(pressProgress)
         })))));
       });
@@ -21800,7 +23857,7 @@ function (_React$Component) {
   }]);
 
   return Slider;
-}(React.Component);
+}(React__default.Component);
 
 defineProperty(Slider, "propTypes", {
   value: propTypes.number,
@@ -21812,7 +23869,7 @@ defineProperty(Slider, "defaultProps", {
   onUpdate: function onUpdate() {}
 });
 
-var Main$e = styled__default.div.withConfig({
+var Main$d = styled__default.div.withConfig({
   displayName: "Slider__Main",
   componentId: "sc-94djfe-0"
 })(["min-width:", "px;padding:0 ", "px;", ";"], MIN_WIDTH, HANDLE_SIZE / 2 + PADDING, unselectable);
@@ -21823,16 +23880,16 @@ var Area = styled__default.div.withConfig({
 var Bars = styled__default(extendedAnimated.div).withConfig({
   displayName: "Slider__Bars",
   componentId: "sc-94djfe-2"
-})(["position:absolute;left:0;right:0;top:50%;transform:translateY(-50%);overflow:hidden;border-radius:2px;height:", "px;"], BAR_HEIGHT$1);
-var Bar$1 = styled__default(extendedAnimated.div).withConfig({
+})(["position:absolute;left:0;right:0;top:50%;transform:translateY(-50%);overflow:hidden;border-radius:2px;height:", "px;"], BAR_HEIGHT$2);
+var Bar$2 = styled__default(extendedAnimated.div).withConfig({
   displayName: "Slider__Bar",
   componentId: "sc-94djfe-3"
 })(["position:absolute;top:0;left:0;right:0;bottom:0;"]);
-var BaseBar = styled__default(Bar$1).withConfig({
+var BaseBar = styled__default(Bar$2).withConfig({
   displayName: "Slider__BaseBar",
   componentId: "sc-94djfe-4"
 })(["background:#edf3f6;"]);
-var ActiveBar = styled__default(Bar$1).withConfig({
+var ActiveBar = styled__default(Bar$2).withConfig({
   displayName: "Slider__ActiveBar",
   componentId: "sc-94djfe-5"
 })(["transform-origin:0 0;"]);
@@ -21871,7 +23928,7 @@ function (_React$Component) {
       displayFocusRing: false
     });
 
-    defineProperty(assertThisInitialized(assertThisInitialized(_this)), "_barRef", React.createRef());
+    defineProperty(assertThisInitialized(assertThisInitialized(_this)), "_barRef", React__default.createRef());
 
     defineProperty(assertThisInitialized(assertThisInitialized(_this)), "handleMouseDown", function () {
       _this.disableFocusRing();
@@ -21965,29 +24022,29 @@ function (_React$Component) {
       var _this$props = this.props,
           items = _this$props.items,
           selected = _this$props.selected;
-      return React.createElement(InAppBarContext.Consumer, null, function (inAppBar) {
-        return React.createElement("nav", {
+      return React__default.createElement(InAppBarContext.Consumer, null, function (inAppBar) {
+        return React__default.createElement("nav", {
           onMouseDown: _this2.handleMouseDown
-        }, React.createElement(Bar$2, {
+        }, React__default.createElement(Bar$3, {
           ref: _this2._barRef,
           border: !inAppBar
         }, items.map(function (item, i) {
-          return React.createElement(Tab, {
+          return React__default.createElement(Tab, {
             key: i,
             tabIndex: "0",
             selected: i === selected,
             focusRing: displayFocusRing,
             onMouseDown: _this2.handleTabMouseDown
-          }, React.createElement(Label$3, {
+          }, React__default.createElement(Label$3, {
             selected: i === selected
-          }, item), displayFocusRing && React.createElement(FocusRing$1, null));
+          }, item), displayFocusRing && React__default.createElement(FocusRing$1, null));
         })));
       });
     }
   }]);
 
   return TabBar;
-}(React.Component);
+}(React__default.Component);
 
 defineProperty(TabBar, "propTypes", {
   items: propTypes.arrayOf(propTypes.node).isRequired,
@@ -22001,7 +24058,7 @@ defineProperty(TabBar, "defaultProps", {
   onChange: noop
 });
 
-var Bar$2 = styled__default.ul.withConfig({
+var Bar$3 = styled__default.ul.withConfig({
   displayName: "TabBar__Bar",
   componentId: "sc-1rsszd9-0"
 })(["display:flex;border-bottom:", ";"], function (p) {
@@ -22038,7 +24095,7 @@ var Table = function Table(_ref) {
       children = _ref.children,
       props = objectWithoutProperties(_ref, ["header", "children"]);
 
-  return React.createElement(StyledTable, props, header && React.createElement("thead", null, header), React.createElement("tbody", null, children));
+  return React__default.createElement(StyledTable, props, header && React__default.createElement("thead", null, header), React__default.createElement("tbody", null, children));
 };
 
 Table.propTypes = {
@@ -22094,9 +24151,9 @@ var TableCell = function TableCell(_ref3) {
       align = _ref3.align,
       props = objectWithoutProperties(_ref3, ["children", "contentContainer", "align"]);
 
-  return React.createElement(StyledTableCell, _extends_1({
+  return React__default.createElement(StyledTableCell, _extends_1({
     align: align
-  }, props), React.createElement(Container, {
+  }, props), React__default.createElement(Container, {
     align: align
   }, children));
 };
@@ -22130,9 +24187,9 @@ var TableHeader = function TableHeader(_ref4) {
       align = _ref4.align,
       props = objectWithoutProperties(_ref4, ["title", "align"]);
 
-  return React.createElement(StyledTableHeader, _extends_1({
+  return React__default.createElement(StyledTableHeader, _extends_1({
     align: align
-  }, props), React.createElement(Text.Block, {
+  }, props), React__default.createElement(Text.Block, {
     color: theme.textSecondary,
     smallcaps: true
   }, title));
@@ -22196,17 +24253,17 @@ function (_React$PureComponent) {
       var fontSize = props.fontSize;
       var transaction = isTransaction(props.transaction) ? props.transaction : null;
       var mainProps = this.getMainProps(transaction);
-      return React.createElement(Main$f, _extends_1({
+      return React__default.createElement(Main$e, _extends_1({
         title: transaction,
         onClick: this.handleClick
-      }, mainProps), React.createElement(Label$4, {
+      }, mainProps), React__default.createElement(Label$4, {
         size: fontSize
       }, this.getLabel(transaction)));
     }
   }]);
 
   return TransactionBadge;
-}(React.PureComponent);
+}(React__default.PureComponent);
 
 defineProperty(TransactionBadge, "propTypes", {
   transaction: propTypes.string.isRequired,
@@ -22223,7 +24280,7 @@ defineProperty(TransactionBadge, "defaultProps", {
   networkType: 'main'
 });
 
-var Main$f = styled__default.div.withConfig({
+var Main$e = styled__default.div.withConfig({
   displayName: "TransactionBadge__Main",
   componentId: "sc-1ceh9ki-0"
 })(["overflow:hidden;display:inline-flex;align-items:center;border-radius:3px;cursor:default;text-decoration:none;background:#daeaef;"]);
@@ -22254,35 +24311,35 @@ function (_React$Component) {
           transactionHashUrl = _this$props.transactionHashUrl,
           onClose = _this$props.onClose,
           opener = _this$props.opener;
-      return React.createElement(Popover, {
+      return React__default.createElement(Popover, {
         visible: visible,
         opener: opener,
         onClose: onClose
-      }, React.createElement(CloseButton, {
+      }, React__default.createElement(CloseButton, {
         type: "button",
         onClick: onClose
-      }, React.createElement(Close, null)), React.createElement(Wrapper, null, React.createElement(Text, {
+      }, React__default.createElement(Close, null)), React__default.createElement(Wrapper, null, React__default.createElement(Text, {
         size: "large",
         weight: "bold"
-      }, "Pending transaction"), React.createElement(ContentWrapper$1, null, React.createElement(Text, {
+      }, "Pending transaction"), React__default.createElement(ContentWrapper$1, null, React__default.createElement(Text, {
         smallcaps: true,
         color: theme.textSecondary
-      }, "Estimated time:"), React.createElement(Countdown, {
+      }, "Estimated time:"), React__default.createElement(Countdown, {
         removeDaysAndHours: true,
         end: endTime
-      })), React.createElement(ProgressBar, {
+      })), React__default.createElement(ProgressBar, {
         color: theme.accent,
         progress: progress
-      }), React.createElement(FooterWrapper, {
+      }), React__default.createElement(FooterWrapper, {
         slow: slow
-      }, slow && React.createElement(SlowTransaction, null, React.createElement(Info$1.Alert, null, "Slow transaction. Retry with more gas")), React.createElement(Link, {
+      }, slow && React__default.createElement(SlowTransaction, null, React__default.createElement(Info$1.Alert, null, "Slow transaction. Retry with more gas")), React__default.createElement(Link, {
         href: transactionHashUrl
       }, "See on Etherscan"))));
     }
   }]);
 
   return TransactionProgress;
-}(React.Component);
+}(React__default.Component);
 
 defineProperty(TransactionProgress, "propTypes", {
   visible: propTypes.bool,
@@ -22385,7 +24442,7 @@ exports.RedrawFromDate = RedrawFromDate;
 exports.Root = Root;
 exports.Viewport = Viewport;
 exports.useViewport = useViewport;
-exports.ToastHub = ToastHub;
+exports.ToastHub = ToastHubProvider;
 exports.Toast = Toast;
 exports.AddressField = AddressField;
 exports.AppBar = AppBar;

@@ -1,6 +1,6 @@
 import ReactDOM from 'react-dom';
-import React from 'react';
-import styled, { css, createGlobalStyle } from 'styled-components';
+import React, { useState as useState$1, useImperativeHandle, useEffect, useCallback } from 'react';
+import styled, { css, createGlobalStyle, keyframes } from 'styled-components';
 
 function unwrapExports (x) {
 	return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, 'default') ? x.default : x;
@@ -6023,8 +6023,8 @@ var _React$createContext = React.createContext(''),
 
 var PublicUrlProvider =
 /*#__PURE__*/
-function (_React$Component) {
-  inherits$1(PublicUrlProvider, _React$Component);
+function (_React$PureComponent) {
+  inherits$1(PublicUrlProvider, _React$PureComponent);
 
   function PublicUrlProvider() {
     classCallCheck$1(this, PublicUrlProvider);
@@ -6045,7 +6045,7 @@ function (_React$Component) {
   }]);
 
   return PublicUrlProvider;
-}(React.Component); // HOC wrapper
+}(React.PureComponent); // HOC wrapper
 
 
 defineProperty(PublicUrlProvider, "propTypes", {
@@ -7861,6 +7861,20 @@ function _asyncToGenerator(fn) {
 
 var asyncToGenerator = _asyncToGenerator;
 
+function _inheritsLoose(subClass, superClass) {
+  subClass.prototype = Object.create(superClass.prototype);
+  subClass.prototype.constructor = subClass;
+  subClass.__proto__ = superClass;
+}
+
+function _assertThisInitialized$1(self) {
+  if (self === void 0) {
+    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+  }
+
+  return self;
+}
+
 function _extends() {
   _extends = Object.assign || function (target) {
     for (var i = 1; i < arguments.length; i++) {
@@ -7877,20 +7891,6 @@ function _extends() {
   };
 
   return _extends.apply(this, arguments);
-}
-
-function _inheritsLoose(subClass, superClass) {
-  subClass.prototype = Object.create(superClass.prototype);
-  subClass.prototype.constructor = subClass;
-  subClass.__proto__ = superClass;
-}
-
-function _assertThisInitialized$1(self) {
-  if (self === void 0) {
-    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-  }
-
-  return self;
 }
 
 function _objectWithoutPropertiesLoose$1(source, excluded) {
@@ -7922,6 +7922,7 @@ var now$1 = function now() {
   return Date.now();
 };
 var defaultElement = undefined;
+var createAnimatedStyle = undefined;
 var injectApplyAnimatedValues = function injectApplyAnimatedValues(fn, transform) {
   return applyAnimatedValues = {
     fn: fn,
@@ -7948,6 +7949,9 @@ var injectNow = function injectNow(nowFn) {
 var injectDefaultElement = function injectDefaultElement(el) {
   return defaultElement = el;
 };
+var injectCreateAnimatedStyle = function injectCreateAnimatedStyle(factory) {
+  return createAnimatedStyle = factory;
+};
 
 var Globals = /*#__PURE__*/Object.freeze({
   get bugfixes () { return bugfixes; },
@@ -7958,14 +7962,204 @@ var Globals = /*#__PURE__*/Object.freeze({
   get interpolation () { return interpolation; },
   get now () { return now$1; },
   get defaultElement () { return defaultElement; },
+  get createAnimatedStyle () { return createAnimatedStyle; },
   injectApplyAnimatedValues: injectApplyAnimatedValues,
   injectColorNames: injectColorNames,
   injectBugfixes: injectBugfixes,
   injectInterpolation: injectInterpolation,
   injectFrame: injectFrame,
   injectNow: injectNow,
-  injectDefaultElement: injectDefaultElement
+  injectDefaultElement: injectDefaultElement,
+  injectCreateAnimatedStyle: injectCreateAnimatedStyle
 });
+
+var Animated =
+/*#__PURE__*/
+function () {
+  function Animated() {}
+
+  var _proto = Animated.prototype;
+
+  _proto.attach = function attach() {};
+
+  _proto.detach = function detach() {};
+
+  _proto.getValue = function getValue() {};
+
+  _proto.getAnimatedValue = function getAnimatedValue() {
+    return this.getValue();
+  };
+
+  _proto.addChild = function addChild(child) {};
+
+  _proto.removeChild = function removeChild(child) {};
+
+  _proto.getChildren = function getChildren() {
+    return [];
+  };
+
+  return Animated;
+}();
+
+var getValues = function getValues(object) {
+  return Object.keys(object).map(function (k) {
+    return object[k];
+  });
+};
+
+var AnimatedWithChildren =
+/*#__PURE__*/
+function (_Animated) {
+  _inheritsLoose(AnimatedWithChildren, _Animated);
+
+  function AnimatedWithChildren() {
+    var _this;
+
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    _this = _Animated.call.apply(_Animated, [this].concat(args)) || this;
+    _this.children = [];
+
+    _this.getChildren = function () {
+      return _this.children;
+    };
+
+    _this.getPayload = function (index) {
+      if (index === void 0) {
+        index = undefined;
+      }
+
+      return index !== void 0 && _this.payload ? _this.payload[index] : _this.payload || _assertThisInitialized$1(_assertThisInitialized$1(_this));
+    };
+
+    return _this;
+  }
+
+  var _proto = AnimatedWithChildren.prototype;
+
+  _proto.addChild = function addChild(child) {
+    if (this.children.length === 0) this.attach();
+    this.children.push(child);
+  };
+
+  _proto.removeChild = function removeChild(child) {
+    var index = this.children.indexOf(child);
+    this.children.splice(index, 1);
+    if (this.children.length === 0) this.detach();
+  };
+
+  return AnimatedWithChildren;
+}(Animated);
+var AnimatedArrayWithChildren =
+/*#__PURE__*/
+function (_AnimatedWithChildren) {
+  _inheritsLoose(AnimatedArrayWithChildren, _AnimatedWithChildren);
+
+  function AnimatedArrayWithChildren() {
+    var _this2;
+
+    for (var _len2 = arguments.length, args = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+      args[_key2] = arguments[_key2];
+    }
+
+    _this2 = _AnimatedWithChildren.call.apply(_AnimatedWithChildren, [this].concat(args)) || this;
+    _this2.payload = [];
+
+    _this2.getAnimatedValue = function () {
+      return _this2.getValue();
+    };
+
+    _this2.attach = function () {
+      return _this2.payload.forEach(function (p) {
+        return p instanceof Animated && p.addChild(_assertThisInitialized$1(_assertThisInitialized$1(_this2)));
+      });
+    };
+
+    _this2.detach = function () {
+      return _this2.payload.forEach(function (p) {
+        return p instanceof Animated && p.removeChild(_assertThisInitialized$1(_assertThisInitialized$1(_this2)));
+      });
+    };
+
+    return _this2;
+  }
+
+  return AnimatedArrayWithChildren;
+}(AnimatedWithChildren);
+var AnimatedObjectWithChildren =
+/*#__PURE__*/
+function (_AnimatedWithChildren2) {
+  _inheritsLoose(AnimatedObjectWithChildren, _AnimatedWithChildren2);
+
+  function AnimatedObjectWithChildren() {
+    var _this3;
+
+    for (var _len3 = arguments.length, args = new Array(_len3), _key3 = 0; _key3 < _len3; _key3++) {
+      args[_key3] = arguments[_key3];
+    }
+
+    _this3 = _AnimatedWithChildren2.call.apply(_AnimatedWithChildren2, [this].concat(args)) || this;
+    _this3.payload = {};
+
+    _this3.getAnimatedValue = function () {
+      return _this3.getValue(true);
+    };
+
+    _this3.attach = function () {
+      return getValues(_this3.payload).forEach(function (s) {
+        return s instanceof Animated && s.addChild(_assertThisInitialized$1(_assertThisInitialized$1(_this3)));
+      });
+    };
+
+    _this3.detach = function () {
+      return getValues(_this3.payload).forEach(function (s) {
+        return s instanceof Animated && s.removeChild(_assertThisInitialized$1(_assertThisInitialized$1(_this3)));
+      });
+    };
+
+    return _this3;
+  }
+
+  var _proto2 = AnimatedObjectWithChildren.prototype;
+
+  _proto2.getValue = function getValue(animated) {
+    if (animated === void 0) {
+      animated = false;
+    }
+
+    var payload = {};
+
+    for (var key in this.payload) {
+      var value = this.payload[key];
+      if (animated && !(value instanceof Animated)) continue;
+      payload[key] = value instanceof Animated ? value[animated ? 'getAnimatedValue' : 'getValue']() : value;
+    }
+
+    return payload;
+  };
+
+  return AnimatedObjectWithChildren;
+}(AnimatedWithChildren);
+
+var AnimatedStyle =
+/*#__PURE__*/
+function (_AnimatedObjectWithCh) {
+  _inheritsLoose(AnimatedStyle, _AnimatedObjectWithCh);
+
+  function AnimatedStyle(style) {
+    var _this;
+
+    _this = _AnimatedObjectWithCh.call(this) || this;
+    style = style || {};
+    if (style.transform && !(style.transform instanceof Animated)) style = applyAnimatedValues.transform(style);
+    _this.payload = style;
+    return _this;
+  }
+
+  return AnimatedStyle;
+}(AnimatedObjectWithChildren);
 
 // http://www.w3.org/TR/css3-color/#svg-color
 var colors$1 = {
@@ -8126,10 +8320,13 @@ var Interpolation =
 function () {
   function Interpolation() {}
 
-  Interpolation.create = function create(config, arg) {
+  // Default config = config, args
+  // Short config   = range, output, extrapolate
+  Interpolation.create = function create(config, output, extra) {
     if (typeof config === 'function') return config;else if (interpolation && config.output && typeof config.output[0] === 'string') return interpolation(config);else if (Array.isArray(config)) return Interpolation.create({
       range: config,
-      output: arg
+      output: output,
+      extrapolate: extra || 'extend'
     });
     var outputRange = config.output;
     var inputRange = config.range || [0, 1];
@@ -8398,7 +8595,6 @@ function createInterpolation(config) {
       output: outputRanges[i]
     }));
   });
-  var shouldRound = /^rgb/.test(outputRange[0]);
   return function (input) {
     var i = 0;
     return outputRange[0] // 'rgba(0, 100, 200, 0)'
@@ -8413,185 +8609,6 @@ function createInterpolation(config) {
     });
   };
 }
-
-var Animated =
-/*#__PURE__*/
-function () {
-  function Animated() {}
-
-  var _proto = Animated.prototype;
-
-  _proto.attach = function attach() {};
-
-  _proto.detach = function detach() {};
-
-  _proto.getValue = function getValue() {};
-
-  _proto.getAnimatedValue = function getAnimatedValue() {
-    return this.getValue();
-  };
-
-  _proto.addChild = function addChild(child) {};
-
-  _proto.removeChild = function removeChild(child) {};
-
-  _proto.getChildren = function getChildren() {
-    return [];
-  };
-
-  return Animated;
-}();
-
-var getValues = function getValues(object) {
-  return Object.keys(object).map(function (k) {
-    return object[k];
-  });
-};
-
-var AnimatedWithChildren =
-/*#__PURE__*/
-function (_Animated) {
-  _inheritsLoose(AnimatedWithChildren, _Animated);
-
-  function AnimatedWithChildren() {
-    var _this;
-
-    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    _this = _Animated.call.apply(_Animated, [this].concat(args)) || this;
-    _this.children = [];
-
-    _this.getChildren = function () {
-      return _this.children;
-    };
-
-    _this.getPayload = function (index) {
-      if (index === void 0) {
-        index = undefined;
-      }
-
-      return index !== void 0 && _this.payload ? _this.payload[index] : _this.payload || _assertThisInitialized$1(_assertThisInitialized$1(_this));
-    };
-
-    return _this;
-  }
-
-  var _proto = AnimatedWithChildren.prototype;
-
-  _proto.addChild = function addChild(child) {
-    if (this.children.length === 0) this.attach();
-    this.children.push(child);
-  };
-
-  _proto.removeChild = function removeChild(child) {
-    var index = this.children.indexOf(child);
-
-    if (index === -1) {
-      if (process.env.NODEENV !== 'production') {
-        console.warn("Trying to remove a child that doesn't exist");
-      }
-
-      return;
-    }
-
-    this.children.splice(index, 1);
-    if (this.children.length === 0) this.detach();
-  };
-
-  return AnimatedWithChildren;
-}(Animated);
-var AnimatedArrayWithChildren =
-/*#__PURE__*/
-function (_AnimatedWithChildren) {
-  _inheritsLoose(AnimatedArrayWithChildren, _AnimatedWithChildren);
-
-  function AnimatedArrayWithChildren() {
-    var _this2;
-
-    for (var _len2 = arguments.length, args = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
-      args[_key2] = arguments[_key2];
-    }
-
-    _this2 = _AnimatedWithChildren.call.apply(_AnimatedWithChildren, [this].concat(args)) || this;
-    _this2.payload = [];
-
-    _this2.getAnimatedValue = function () {
-      return _this2.getValue();
-    };
-
-    _this2.attach = function () {
-      return _this2.payload.forEach(function (p) {
-        return p instanceof Animated && p.addChild(_assertThisInitialized$1(_assertThisInitialized$1(_this2)));
-      });
-    };
-
-    _this2.detach = function () {
-      return _this2.payload.forEach(function (p) {
-        return p instanceof Animated && p.removeChild(_assertThisInitialized$1(_assertThisInitialized$1(_this2)));
-      });
-    };
-
-    return _this2;
-  }
-
-  return AnimatedArrayWithChildren;
-}(AnimatedWithChildren);
-var AnimatedObjectWithChildren =
-/*#__PURE__*/
-function (_AnimatedWithChildren2) {
-  _inheritsLoose(AnimatedObjectWithChildren, _AnimatedWithChildren2);
-
-  function AnimatedObjectWithChildren() {
-    var _this3;
-
-    for (var _len3 = arguments.length, args = new Array(_len3), _key3 = 0; _key3 < _len3; _key3++) {
-      args[_key3] = arguments[_key3];
-    }
-
-    _this3 = _AnimatedWithChildren2.call.apply(_AnimatedWithChildren2, [this].concat(args)) || this;
-    _this3.payload = {};
-
-    _this3.getAnimatedValue = function () {
-      return _this3.getValue(true);
-    };
-
-    _this3.attach = function () {
-      return getValues(_this3.payload).forEach(function (s) {
-        return s instanceof Animated && s.addChild(_assertThisInitialized$1(_assertThisInitialized$1(_this3)));
-      });
-    };
-
-    _this3.detach = function () {
-      return getValues(_this3.payload).forEach(function (s) {
-        return s instanceof Animated && s.removeChild(_assertThisInitialized$1(_assertThisInitialized$1(_this3)));
-      });
-    };
-
-    return _this3;
-  }
-
-  var _proto2 = AnimatedObjectWithChildren.prototype;
-
-  _proto2.getValue = function getValue(animated) {
-    if (animated === void 0) {
-      animated = false;
-    }
-
-    var payload = {};
-
-    for (var key in this.payload) {
-      var value = this.payload[key];
-      if (animated && !(value instanceof Animated)) continue;
-      payload[key] = value instanceof Animated ? value[animated ? 'getAnimatedValue' : 'getValue']() : value;
-    }
-
-    return payload;
-  };
-
-  return AnimatedObjectWithChildren;
-}(AnimatedWithChildren);
 
 var AnimatedInterpolation =
 /*#__PURE__*/
@@ -8674,6 +8691,15 @@ function (_AnimatedWithChildren) {
 
     _this = _AnimatedWithChildren.call(this) || this;
 
+    _this.setValue = function (value, flush) {
+      if (flush === void 0) {
+        flush = true;
+      }
+
+      _this.value = value;
+      if (flush) _this.flush();
+    };
+
     _this.getValue = function () {
       return _this.value;
     };
@@ -8738,9 +8764,17 @@ function (_AnimatedArrayWithChi) {
 
     _this = _AnimatedArrayWithChi.call(this) || this;
 
-    _this.setValue = function (values) {
-      return values.length === _this.payload.length && values.forEach(function (v, i) {
-        return _this.payload[i].setValue(v);
+    _this.setValue = function (value, flush) {
+      if (flush === void 0) {
+        flush = true;
+      }
+
+      if (Array.isArray(value)) {
+        if (value.length === _this.payload.length) value.forEach(function (v, i) {
+          return _this.payload[i].setValue(v, flush);
+        });
+      } else _this.payload.forEach(function (v, i) {
+        return _this.payload[i].setValue(value, flush);
       });
     };
 
@@ -8754,7 +8788,7 @@ function (_AnimatedArrayWithChi) {
       return new AnimatedInterpolation(_assertThisInitialized$1(_assertThisInitialized$1(_this)), config, arg);
     };
 
-    _this.payload = array instanceof AnimatedArray ? array.payload : array.map(function (n) {
+    _this.payload = array.map(function (n) {
       return new AnimatedValue(n);
     });
     return _this;
@@ -8784,12 +8818,12 @@ function shallowEqual(a, b) {
 
   return i === void 0 ? a === b : true;
 }
-function callProp(obj, state) {
-  for (var _len = arguments.length, args = new Array(_len > 2 ? _len - 2 : 0), _key = 2; _key < _len; _key++) {
-    args[_key - 2] = arguments[_key];
+function callProp(obj) {
+  for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+    args[_key - 1] = arguments[_key];
   }
 
-  return typeof obj === 'function' ? obj.apply(void 0, [state].concat(args)) : obj;
+  return typeof obj === 'function' ? obj.apply(void 0, args) : obj;
 }
 function getValues$1(object) {
   return Object.keys(object).map(function (k) {
@@ -8814,10 +8848,10 @@ function getForwardProps(props) {
       delay = props.delay,
       attach = props.attach,
       destroyed = props.destroyed,
-      track = props.track,
       interpolateTo = props.interpolateTo,
       autoStart = props.autoStart,
-      forward = _objectWithoutPropertiesLoose$1(props, ["to", "from", "config", "native", "onStart", "onRest", "onFrame", "children", "reset", "reverse", "force", "immediate", "impl", "inject", "delay", "attach", "destroyed", "track", "interpolateTo", "autoStart"]);
+      ref = props.ref,
+      forward = _objectWithoutPropertiesLoose$1(props, ["to", "from", "config", "native", "onStart", "onRest", "onFrame", "children", "reset", "reverse", "force", "immediate", "impl", "inject", "delay", "attach", "destroyed", "interpolateTo", "autoStart", "ref"]);
 
   return forward;
 }
@@ -8849,8 +8883,10 @@ function convertValues(props) {
 function handleRef(ref, forward) {
   if (forward) {
     // If it's a function, assume it's a ref callback
-    if (typeof forward === 'function') forward(ref);else if (typeof forward === 'object') // If it's an object and has a 'current' property, assume it's a ref object
+    if (typeof forward === 'function') forward(ref);else if (typeof forward === 'object') {
+      // If it's an object and has a 'current' property, assume it's a ref object
       forward.current = ref;
+    }
   }
 
   return ref;
@@ -8880,7 +8916,15 @@ function fixAuto(props, callback) {
 
   var element = children(convertValues(props)); // A spring can return undefined/null, check against that (#153)
 
-  if (!element) return;
+  if (!element) return; // Or it could be an array (#346) ...
+
+  if (Array.isArray(element)) element = {
+    type: 'div',
+    props: {
+      children: element
+    } // Extract styles
+
+  };
   var elementStyles = element.props.style; // Return v.dom with injected ref
 
   return React.createElement(element.type, _extends({
@@ -8984,6 +9028,9 @@ function dangerousStyleValue(name, value, isCustomProperty) {
 }
 
 var attributeCache = {};
+injectCreateAnimatedStyle(function (style) {
+  return new AnimatedStyle(style);
+});
 injectDefaultElement('div');
 injectInterpolation(createInterpolation);
 injectColorNames(colors$1);
@@ -9022,59 +9069,162 @@ injectApplyAnimatedValues(function (instance, props) {
   return style;
 });
 
-var AnimatedStyle =
-/*#__PURE__*/
-function (_AnimatedObjectWithCh) {
-  _inheritsLoose(AnimatedStyle, _AnimatedObjectWithCh);
+var active = false;
+var controllers = new Set();
 
-  function AnimatedStyle(style) {
-    var _this;
+var frameLoop = function frameLoop() {
+  var time = now$1();
 
-    _this = _AnimatedObjectWithCh.call(this) || this;
-    style = style || {};
-    if (style.transform && !(style.transform instanceof Animated)) style = applyAnimatedValues.transform(style);
-    _this.payload = style;
-    return _this;
+  for (var _iterator = controllers, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
+    var _ref;
+
+    if (_isArray) {
+      if (_i >= _iterator.length) break;
+      _ref = _iterator[_i++];
+    } else {
+      _i = _iterator.next();
+      if (_i.done) break;
+      _ref = _i.value;
+    }
+
+    var controller = _ref;
+    var isDone = true;
+    var noChange = true;
+
+    for (var configIdx = 0; configIdx < controller.configs.length; configIdx++) {
+      var config = controller.configs[configIdx];
+      var endOfAnimation = void 0,
+          lastTime = void 0;
+
+      for (var valIdx = 0; valIdx < config.animatedValues.length; valIdx++) {
+        var animation = config.animatedValues[valIdx]; // If an animation is done, skip, until all of them conclude
+
+        if (animation.done) continue;
+        var from = config.fromValues[valIdx];
+        var to = config.toValues[valIdx];
+        var position = animation.lastPosition;
+        var isAnimated = to instanceof Animated;
+
+        var _velocity = Array.isArray(config.initialVelocity) ? config.initialVelocity[valIdx] : config.initialVelocity;
+
+        if (isAnimated) to = to.getValue(); // Conclude animation if it's either immediate, or from-values match end-state
+
+        if (config.immediate || !isAnimated && !config.decay && from === to) {
+          animation.updateValue(to);
+          animation.done = true;
+          continue;
+        } // Doing delay here instead of setTimeout is one async worry less
+
+
+        if (config.delay && time - controller.startTime < config.delay) {
+          isDone = false;
+          continue;
+        } // Flag change
+
+
+        noChange = false; // Break animation when string values are involved
+
+        if (typeof from === 'string' || typeof to === 'string') {
+          animation.updateValue(to);
+          animation.done = true;
+          continue;
+        }
+
+        if (config.duration !== void 0) {
+          /** Duration easing */
+          position = from + config.easing((time - controller.startTime - config.delay) / config.duration) * (to - from);
+          endOfAnimation = time >= controller.startTime + config.delay + config.duration;
+        } else if (config.decay) {
+          /** Decay easing */
+          position = from + _velocity / (1 - 0.998) * (1 - Math.exp(-(1 - 0.998) * (time - controller.startTime)));
+          endOfAnimation = Math.abs(animation.lastPosition - position) < 0.1;
+          if (endOfAnimation) to = position;
+        } else {
+          /** Spring easing */
+          lastTime = animation.lastTime !== void 0 ? animation.lastTime : time;
+          _velocity = animation.lastVelocity !== void 0 ? animation.lastVelocity : config.initialVelocity; // If we lost a lot of frames just jump to the end.
+
+          if (time > lastTime + 64) lastTime = time; // http://gafferongames.com/game-physics/fix-your-timestep/
+
+          var numSteps = Math.floor(time - lastTime);
+
+          for (var i = 0; i < numSteps; ++i) {
+            var force = -config.tension * (position - to);
+            var damping = -config.friction * _velocity;
+            var acceleration = (force + damping) / config.mass;
+            _velocity = _velocity + acceleration * 1 / 1000;
+            position = position + _velocity * 1 / 1000;
+          } // Conditions for stopping the spring animation
+
+
+          var isOvershooting = config.clamp && config.tension !== 0 ? from < to ? position > to : position < to : false;
+          var isVelocity = Math.abs(_velocity) <= config.precision;
+          var isDisplacement = config.tension !== 0 ? Math.abs(to - position) <= config.precision : true;
+          endOfAnimation = isOvershooting || isVelocity && isDisplacement;
+          animation.lastVelocity = _velocity;
+          animation.lastTime = time;
+        } // Trails aren't done until their parents conclude
+
+
+        if (isAnimated && !config.toValues[valIdx].done) endOfAnimation = false;
+
+        if (endOfAnimation) {
+          // Ensure that we end up with a round value
+          if (animation.value !== to) position = to;
+          animation.done = true;
+        } else isDone = false;
+
+        animation.updateValue(position);
+        animation.lastPosition = position;
+      } // Keep track of updated values only when necessary
+
+
+      if (controller.props.onFrame || !controller.props.native) controller.animatedProps[config.name] = config.interpolation.getValue();
+    } // Update callbacks in the end of the frame
+
+
+    if (controller.props.onFrame || !controller.props.native) {
+      if (!controller.props.native && controller.onUpdate) controller.onUpdate();
+      if (controller.props.onFrame) controller.props.onFrame(controller.animatedProps);
+    } // Either call onEnd or next frame
+
+
+    if (isDone) {
+      controllers.delete(controller);
+      controller.debouncedOnEnd({
+        finished: true,
+        noChange: noChange
+      });
+    }
+  } // Loop over as long as there are controllers ...
+
+
+  if (controllers.size) requestFrame(frameLoop);else active = false;
+};
+
+var addController = function addController(controller) {
+  if (!controllers.has(controller)) {
+    controllers.add(controller);
+    if (!active) requestFrame(frameLoop);
+    active = true;
   }
+};
 
-  return AnimatedStyle;
-}(AnimatedObjectWithChildren);
-
-var AnimatedProps =
-/*#__PURE__*/
-function (_AnimatedObjectWithCh) {
-  _inheritsLoose(AnimatedProps, _AnimatedObjectWithCh);
-
-  function AnimatedProps(props, callback) {
-    var _this;
-
-    _this = _AnimatedObjectWithCh.call(this) || this;
-    if (props.style) props = _extends({}, props, {
-      style: new AnimatedStyle(props.style)
-    });
-    _this.payload = props;
-    _this.update = callback;
-
-    _this.attach();
-
-    return _this;
+var removeController = function removeController(controller) {
+  if (controllers.has(controller)) {
+    controllers.delete(controller);
   }
-
-  return AnimatedProps;
-}(AnimatedObjectWithChildren);
-
-var now$1$1, isDone, noChange, configIdx, valIdx, config, animation, position, from, tracked, to, endOfAnimation, lastTime, velocity, numSteps, force, damping, acceleration, stepIdx, isOvershooting, isVelocity, isDisplacement;
+};
 
 var Controller =
 /*#__PURE__*/
 function () {
-  function Controller(props, _config) {
+  function Controller(props, config) {
     var _this = this;
 
-    if (_config === void 0) {
-      _config = {
+    if (config === void 0) {
+      config = {
         native: true,
-        track: true,
         interpolateTo: true,
         autoStart: true
       };
@@ -9082,93 +9232,6 @@ function () {
 
     this.getValues = function () {
       return _this.props.native ? _this.interpolations : _this.animatedProps;
-    };
-
-    this.raf = function () {
-      now$1$1 = now$1();
-      isDone = true;
-      noChange = true;
-
-      for (configIdx = 0; configIdx < _this.configs.length; configIdx++) {
-        config = _this.configs[configIdx]; // Doing delay here instead of setTimeout is one async worry less
-
-        if (config.delay && now$1$1 - _this.startTime < config.delay) {
-          isDone = false;
-          continue;
-        }
-
-        for (valIdx = 0; valIdx < config.animatedValues.length; valIdx++) {
-          animation = config.animatedValues[valIdx];
-          position = animation.lastPosition;
-          from = config.fromValues[valIdx];
-          tracked = config.parent.track && config.parent.track.getPayload(valIdx);
-          to = tracked ? tracked.getValue() : config.toValues[valIdx]; // If an animation is done, skip, until all of them conclude
-
-          if (animation.done) continue; // Break animation when animation is immediate or string values are involved
-
-          if (config.immediate || typeof from === 'string' || typeof to === 'string') {
-            animation.updateValue(to);
-            animation.done = true;
-            continue;
-          } else noChange = false;
-
-          if (config.duration) {
-            position = from + config.easing((now$1$1 - _this.startTime - config.delay) / config.duration) * (to - from);
-            endOfAnimation = now$1$1 >= _this.startTime + config.delay + config.duration;
-          } else {
-            lastTime = animation.lastTime !== void 0 ? animation.lastTime : now$1$1;
-            velocity = animation.lastVelocity !== void 0 ? animation.lastVelocity : config.initialVelocity; // If we lost a lot of frames just jump to the end.
-
-            if (now$1$1 > lastTime + 64) lastTime = now$1$1; // http://gafferongames.com/game-physics/fix-your-timestep/
-
-            numSteps = Math.floor(now$1$1 - lastTime);
-
-            for (stepIdx = 0; stepIdx < numSteps; ++stepIdx) {
-              force = -config.tension * (position - to);
-              damping = -config.friction * velocity;
-              acceleration = (force + damping) / config.mass;
-              velocity = velocity + acceleration * 1 / 1000;
-              position = position + velocity * 1 / 1000;
-            } // Conditions for stopping the spring animation
-
-
-            isOvershooting = config.clamp && config.tension !== 0 ? from < to ? position > to : position < to : false;
-            isVelocity = Math.abs(velocity) <= config.precision;
-            isDisplacement = config.tension !== 0 ? Math.abs(to - position) <= config.precision : true;
-            endOfAnimation = isOvershooting || isVelocity && isDisplacement;
-            animation.lastVelocity = velocity;
-            animation.lastTime = now$1$1;
-          } // Trails aren't done until their parents conclude
-
-
-          if (config.parent.track && !tracked.done) endOfAnimation = false;
-
-          if (endOfAnimation) {
-            // Ensure that we end up with a round value
-            if (animation.value !== to) position = to;
-            animation.done = true;
-          } else isDone = false;
-
-          animation.updateValue(position);
-          animation.lastPosition = position;
-        } // Keep track of updated values only when necessary
-
-
-        if (_this.props.onFrame || !_this.props.native) _this.animatedProps[config.name] = config.interpolation.getValue();
-      } // Update callbacks in the end of the frame
-
-
-      if (_this.props.onFrame || !_this.props.native) {
-        if (!_this.props.native && _this.onUpdate) _this.onUpdate();
-        if (_this.props.onFrame) _this.props.onFrame(_this.animatedProps);
-      } // Either call onEnd or next frame
-
-
-      if (isDone) return _this.debouncedOnEnd({
-        finished: true,
-        noChange: noChange
-      });
-      _this.frame = requestFrame(_this.raf);
     };
 
     this.dependents = new Set();
@@ -9183,27 +9246,8 @@ function () {
     this.frame = undefined;
     this.startTime = undefined;
     this.lastTime = undefined;
-    this.update(_extends({}, props, _config));
+    this.update(_extends({}, props, config));
   }
-  /**
-   * props: to: { ... }
-   *
-   *  { name: value }             pairs
-   *  { name: AnimatedValue() }   animated values
-   *  { name: [1,2,3] }           plain numeric arrays
-   *  { name: AnimatedArray() }   animated arrays
-   *
-   * Plain values can be:
-   *
-   *  123                         Numbers
-   *  "hello"                     Strings
-   *  "#3d4d5d" ...               Colors (rga, rgba, hex, plain names)
-   *  "something 12 something"    Interpolation patterns with numbers in them
-   *
-   * Additionally, springs are allowed to "attach" to another AnimationController, fetching the
-   * values from there, if present.
-   */
-
 
   var _proto = Controller.prototype;
 
@@ -9225,10 +9269,8 @@ function () {
         attach = _ref.attach,
         reset = _ref.reset,
         immediate = _ref.immediate,
-        native = _ref.native,
-        onFrame = _ref.onFrame,
-        track = _ref.track,
-        autoStart = _ref.autoStart; // Reverse values when requested
+        autoStart = _ref.autoStart,
+        ref = _ref.ref; // Reverse values when requested
 
 
     if (reverse) {
@@ -9249,117 +9291,66 @@ function () {
       var name = _ref3[0],
           value = _ref3[1];
       // Issue cached entries, except on reset
-      var entry = !reset && acc[name] || {}; // Attach allows a spring to fetch its values elsewhere
+      var entry = !reset && acc[name] || {}; // Figure out what the value is supposed to be
 
-      var _value = value,
-          _entry;
+      var isNumber = typeof value === 'number';
+      var isString = typeof value === 'string' && !value.startsWith('#') && !/\d/.test(value) && !colorNames[value];
+      var isArray = !isNumber && !isString && Array.isArray(value);
+      var fromValue = from[name] !== undefined ? from[name] : value;
+      var toValue = isNumber || isArray ? value : isString ? value : 1;
+      var toConfig = callProp(config, name);
+      if (target) toValue = target.animations[name].parent; // Detect changes, animated values will be checked in the raf-loop
 
-      if (target && target.animations[name]) {
-        _entry = target.animations[name];
-        value = _entry.parent;
-      } // Figure out what the value is supposed to be
-
-
-      var isArray, isString, isNumber, isInterpolation;
-      var isAnimated = value instanceof Animated;
-
-      if (!isAnimated) {
-        isArray = Array.isArray(value);
-        isNumber = typeof value === 'number';
-        isString = typeof value === 'string' && !value.startsWith('#') && !/\d/.test(value) && !colorNames[value];
-        isInterpolation = !isNumber && !isString && !isArray;
-      } // Carry actual values (including animated) in order to change detect
-
-
-      var changes = isAnimated ? value.getPayload() : value; // Detect changes, animated values will be checked in the raf-loop
-
-      if (isAnimated || !shallowEqual(entry.changes, changes)) {
+      if (toConfig.decay !== void 0 || !shallowEqual(entry.changes, value)) {
         var _extends2;
 
         _this2.hasChanged = true;
         var parent, interpolation$$1;
-
-        var _from = from[name] !== void 0 ? from[name] : value;
-
-        var _config2 = callProp(config, name);
-
-        if (isAnimated) {
-          // We end up here if the value we're shifting to is an animated value or array
-          parent = entry.parent || new value.constructor(value.getValue());
-          interpolation$$1 = entry.interpolation || parent; // In the next step we're going to check if that value is interpolated
-
-          if (_entry && _entry.interpolation.calc) {
-            var _config3 = {
-              output: [interpolation$$1.calc ? interpolation$$1.calc(parent.value) : _entry.interpolation.calc(0), _value]
-            };
-            if (interpolation$$1.calc) interpolation$$1.updateConfig(_config3);else interpolation$$1 = parent.interpolate(_config3);
-            parent.value = 0;
-          }
-        } else if (isNumber || isString) {
-          parent = interpolation$$1 = entry.parent || new AnimatedValue(_from);
-        } else if (isArray) {
-          parent = interpolation$$1 = entry.parent || new AnimatedArray(_from);
-        } else if (isInterpolation) {
-          // Deal with interpolations
-          var prev = entry.interpolation && entry.interpolation.calc(entry.parent.value); // Interpolations are not addaptive, start with 0
+        if (isNumber || isString) parent = interpolation$$1 = entry.parent || new AnimatedValue(fromValue);else if (isArray) parent = interpolation$$1 = entry.parent || new AnimatedArray(fromValue);else {
+          var prev = entry.interpolation && entry.interpolation.calc(entry.parent.value);
 
           if (entry.parent) {
             parent = entry.parent;
-            parent.value = 0;
-          } else parent = new AnimatedValue(0); // Map from-to on a scale between 0-1
-
+            parent.setValue(0, false);
+          } else parent = new AnimatedValue(0);
 
           var range = {
-            output: [prev !== void 0 ? prev : _from, value]
+            output: [prev !== void 0 ? prev : fromValue, value]
           };
 
           if (entry.interpolation) {
             interpolation$$1 = entry.interpolation;
             entry.interpolation.updateConfig(range);
-          } else interpolation$$1 = parent.interpolate(range); // And stop at 1
+          } else interpolation$$1 = parent.interpolate(range);
+        } // Set immediate values
 
-
-          value = 1;
-        }
-
-        parent.controller = _this2;
-        if (isAnimated && value.controller !== _this2) value.controller.dependents.add(_this2);
-        parent.track = isAnimated ? value : undefined; // Set immediate values
-
-        if (callProp(immediate, name)) parent.value = value; // Map output values to an array so reading out is easier later on
+        if (callProp(immediate, name)) parent.setValue(value, false); // Reset animated values
 
         var animatedValues = toArray(parent.getPayload());
-        var fromValues = toArray(parent.getValue());
-        var toValues = toArray(isAnimated ? value.getValue() : value); // Reset animated values
-
         animatedValues.forEach(function (value) {
           return value.prepare(_this2);
         });
         return _extends({}, acc, (_extends2 = {}, _extends2[name] = _extends({}, entry, {
           name: name,
           parent: parent,
-          // The animated object on which the update-cb is called
           interpolation: interpolation$$1,
-          // The parents interpolation, if any. If not it refers to the parent
           animatedValues: animatedValues,
-          // An array of all animated values taking part in this op
-          fromValues: fromValues,
-          // Raw/numerical start-state values
-          toValues: toValues,
-          // Raw/numerical/end-state values
-          changes: changes,
+          changes: value,
+          fromValues: toArray(parent.getValue()),
+          toValues: toArray(target ? toValue.getPayload() : toValue),
           immediate: callProp(immediate, name),
-          delay: withDefault(_config2.delay, delay || 0),
-          initialVelocity: withDefault(_config2.velocity, 0),
-          clamp: withDefault(_config2.clamp, false),
-          precision: withDefault(_config2.precision, 0.01),
-          tension: withDefault(_config2.tension, 170),
-          friction: withDefault(_config2.friction, 26),
-          mass: withDefault(_config2.mass, 1),
-          duration: withDefault(_config2.duration, 0),
-          easing: withDefault(_config2.easing, function (t) {
+          delay: withDefault(toConfig.delay, delay || 0),
+          initialVelocity: withDefault(toConfig.velocity, 0),
+          clamp: withDefault(toConfig.clamp, false),
+          precision: withDefault(toConfig.precision, 0.01),
+          tension: withDefault(toConfig.tension, 170),
+          friction: withDefault(toConfig.friction, 26),
+          mass: withDefault(toConfig.mass, 1),
+          duration: toConfig.duration,
+          easing: withDefault(toConfig.easing, function (t) {
             return t;
-          })
+          }),
+          decay: toConfig.decay
         }), _extends2));
       } else return acc;
     }, this.animations);
@@ -9373,43 +9364,34 @@ function () {
         this.interpolations[key] = this.animations[key].interpolation;
         this.animatedProps[key] = this.animations[key].interpolation.getValue();
       }
-    }
+    } // TODO: clean up ref in controller
+
 
     for (var _len = arguments.length, start = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
       start[_key - 1] = arguments[_key];
     }
 
-    if (autoStart || start.length) this.start.apply(this, start);
+    if (!ref && (autoStart || start.length)) this.start.apply(this, start);
+    var onEnd = start[0],
+        onUpdate = start[1];
+    this.onEnd = typeof onEnd === 'function' && onEnd;
+    this.onUpdate = onUpdate;
     return this.getValues();
   };
 
   _proto.start = function start(onEnd, onUpdate) {
+    var _this3 = this;
+
     this.startTime = now$1();
     if (this.isActive) this.stop();
     this.isActive = true;
     this.onEnd = typeof onEnd === 'function' && onEnd;
     this.onUpdate = onUpdate;
-    if (this.props.onStart) this.props.onStart(); // Start RAF loop
-
-    this.frame = requestFrame(this.raf); // Call dependent controllers
-
-    if (this.props.track) {
-      for (var _iterator = this.dependents, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
-        var _ref4;
-
-        if (_isArray) {
-          if (_i >= _iterator.length) break;
-          _ref4 = _iterator[_i++];
-        } else {
-          _i = _iterator.next();
-          if (_i.done) break;
-          _ref4 = _i.value;
-        }
-
-        var controller = _ref4;
-        controller.update(_extends({}, controller.props, controller.merged), true);
-      }
-    }
+    if (this.props.onStart) this.props.onStart();
+    addController(this);
+    return new Promise(function (res) {
+      return _this3.resolve = res;
+    });
   };
 
   _proto.stop = function stop(finished) {
@@ -9417,31 +9399,60 @@ function () {
       finished = false;
     }
 
-    config = undefined;
-    animation = undefined;
-    from = undefined;
-    tracked = undefined;
-    to = undefined; // Reset collected changes since the animation has been stopped cold turkey
-
+    // Reset collected changes since the animation has been stopped cold turkey
     if (finished) getValues$1(this.animations).forEach(function (a) {
       return a.changes = undefined;
     });
-    this.isActive = false;
-    cancelFrame(this.frame);
     this.debouncedOnEnd({
       finished: finished
     });
   };
 
+  _proto.destroy = function destroy() {
+    removeController(this);
+    this.props = {};
+    this.merged = {};
+    this.animations = {};
+    this.interpolations = {};
+    this.animatedProps = {};
+    this.configs = [];
+  };
+
   _proto.debouncedOnEnd = function debouncedOnEnd(result) {
+    removeController(this);
     this.isActive = false;
     var onEnd = this.onEnd;
     this.onEnd = null;
-    onEnd && onEnd(result);
+    if (onEnd) onEnd(result);
+    if (this.resolve) this.resolve();
+    this.resolve = null;
   };
 
   return Controller;
 }();
+
+var AnimatedProps =
+/*#__PURE__*/
+function (_AnimatedObjectWithCh) {
+  _inheritsLoose(AnimatedProps, _AnimatedObjectWithCh);
+
+  function AnimatedProps(props, callback) {
+    var _this;
+
+    _this = _AnimatedObjectWithCh.call(this) || this;
+    if (props.style) props = _extends({}, props, {
+      style: createAnimatedStyle(props.style)
+    });
+    _this.payload = props;
+    _this.update = callback;
+
+    _this.attach();
+
+    return _this;
+  }
+
+  return AnimatedProps;
+}(AnimatedObjectWithChildren);
 
 function createAnimatedComponent(Component) {
   var AnimatedComponent =
@@ -9475,13 +9486,13 @@ function createAnimatedComponent(Component) {
     _proto.setNativeProps = function setNativeProps(props) {
       var didUpdate = applyAnimatedValues.fn(this.node, props, this);
       if (didUpdate === false) this.forceUpdate();
-    }; // The system is best designed when setNativeProps is implemented. It is
+    } // The system is best designed when setNativeProps is implemented. It is
     // able to avoid re-rendering and directly set the attributes that
     // changed. However, setNativeProps can only be implemented on leaf
     // native components. If you want to animate a composite component, you
     // need to re-render it. In this case, we have a fallback that uses
     // forceUpdate.
-
+    ;
 
     _proto.attachProps = function attachProps(_ref) {
       var forwardRef = _ref.forwardRef,
@@ -9519,8 +9530,6 @@ function createAnimatedComponent(Component) {
     _proto.render = function render() {
       var _this2 = this;
 
-      var forwardRef = this.props.forwardRef;
-
       var _this$propsAnimated$g = this.propsAnimated.getValue(),
           scrollTop = _this$propsAnimated$g.scrollTop,
           scrollLeft = _this$propsAnimated$g.scrollLeft,
@@ -9543,7 +9552,7 @@ function createAnimatedComponent(Component) {
   });
 }
 
-var config$1 = {
+var config = {
   default: {
     tension: 170,
     friction: 26
@@ -9569,12 +9578,6 @@ var config$1 = {
     friction: 120
   }
 };
-
-var v = React.version.split('.');
-
-if (process.env.NODE_ENV !== 'production' && (v[0] < 16 || v[1] < 4)) {
-  console.warn('Please consider upgrading to react/react-dom 16.4.x or higher! Older React versions break getDerivedStateFromProps, see https://github.com/facebook/react/issues/12898');
-}
 
 var Spring =
 /*#__PURE__*/
@@ -9618,7 +9621,7 @@ function (_React$Component) {
     };
 
     _this.update = function () {
-      return _this.setState({
+      return _this.mounted && _this.setState({
         internal: true
       });
     };
@@ -9633,7 +9636,7 @@ function (_React$Component) {
         // Only call onRest if either we *were* mounted, or when there were changes
         if (_this.props.onRest && (wasMounted || !noChange)) _this.props.onRest(_this.controller.merged); // Restore end-state
 
-        if (_this.didInject) {
+        if (_this.mounted && _this.didInject) {
           _this.afterInject = convertValues(_this.props);
 
           _this.setState({
@@ -9685,10 +9688,7 @@ function (_React$Component) {
   _proto.render = function render() {
     var _this2 = this;
 
-    var _this$props = this.props,
-        native = _this$props.native,
-        onFrame = _this$props.onFrame,
-        children = _this$props.children;
+    var children = this.props.children;
     var propsChanged = this.state.propsChanged; // Inject phase -----------------------------------------------------------
     // Handle injected frames, for instance targets/web/fix-auto
     // An inject will return an intermediary React node which measures itself out
@@ -9733,7 +9733,7 @@ function (_React$Component) {
     var values = _extends({}, this.controller.getValues(), this.afterInject);
 
     if (this.finished) values = _extends({}, values, this.props.after);
-    return values && Object.keys(values).length ? children(values) : null;
+    return Object.keys(values).length ? children(values) : null;
   };
 
   _proto.componentDidUpdate = function componentDidUpdate() {
@@ -9751,7 +9751,7 @@ function (_React$Component) {
 Spring.defaultProps = {
   from: {},
   to: {},
-  config: config$1.default,
+  config: config.default,
   native: false,
   immediate: false,
   reset: false,
@@ -9855,7 +9855,6 @@ function (_React$PureComponent) {
     _this.guid = 0;
     _this.state = {
       props: {},
-      oldProps: {},
       resolve: function resolve() {
         return null;
       },
@@ -9877,7 +9876,6 @@ function (_React$PureComponent) {
         _this.mounted && _this.setState(function (state) {
           return {
             props: props,
-            oldProps: _extends({}, _this.state.props),
             resolve: resolve,
             last: last,
             index: index
@@ -9962,7 +9960,6 @@ function (_React$PureComponent) {
 
     var _this$state = this.state,
         props = _this$state.props,
-        oldProps = _this$state.oldProps,
         resolve = _this$state.resolve,
         last = _this$state.last,
         index = _this$state.index;
@@ -9972,19 +9969,19 @@ function (_React$PureComponent) {
         state = _this$props2.state,
         filter = _this$props2.filter,
         states = _this$props2.states,
-        config$$1 = _this$props2.config,
+        config = _this$props2.config,
         Component = _this$props2.primitive,
         _onRest = _this$props2.onRest,
         forwardRef = _this$props2.forwardRef,
         rest = _objectWithoutPropertiesLoose$1(_this$props2, ["state", "filter", "states", "config", "primitive", "onRest", "forwardRef"]); // Arrayed configs need an index to process
 
 
-    if (Array.isArray(config$$1)) config$$1 = config$$1[index];
+    if (Array.isArray(config)) config = config[index];
     return React.createElement(Component, _extends({
       ref: function ref(_ref) {
         return _this3.instance = handleRef(_ref, forwardRef);
       },
-      config: config$$1
+      config: config
     }, rest, props, {
       onRest: function onRest(args) {
         resolve(args);
@@ -10121,7 +10118,7 @@ function (_React$PureComponent) {
         _get$trail = _get.trail,
         trail = _get$trail === void 0 ? 0 : _get$trail,
         unique = _get.unique,
-        config$$1 = _get.config;
+        config = _get.config;
 
     var _get2 = get(prevProps),
         _keys = _get2.keys,
@@ -10129,7 +10126,7 @@ function (_React$PureComponent) {
 
     var current = _extends({}, state.current);
 
-    var deleted = state.deleted.concat(); // Compare next keys with current keys
+    var deleted = [].concat(state.deleted); // Compare next keys with current keys
 
     var currentKeys = Object.keys(current);
     var currentSet = new Set(currentKeys);
@@ -10162,7 +10159,7 @@ function (_React$PureComponent) {
         key: unique ? String(key) : guid++,
         item: item,
         trail: delay = delay + trail,
-        config: callProp(config$$1, item, state),
+        config: callProp(config, item, state),
         from: callProp(first ? initial !== void 0 ? initial || {} : from : from, item),
         to: callProp(enter, item)
       };
@@ -10178,7 +10175,7 @@ function (_React$PureComponent) {
         left: _keys[Math.max(0, keyIndex - 1)],
         right: _keys[Math.min(_keys.length, keyIndex + 1)],
         trail: delay = delay + trail,
-        config: callProp(config$$1, item, state),
+        config: callProp(config, item, state),
         to: callProp(leave, item)
       }));
       delete current[key];
@@ -10191,7 +10188,7 @@ function (_React$PureComponent) {
         item: item,
         state: state,
         trail: delay = delay + trail,
-        config: callProp(config$$1, item, state),
+        config: callProp(config, item, state),
         to: callProp(update, item)
       });
     }); // This tries to restore order for deleted items by finding their last known siblings
@@ -10223,7 +10220,7 @@ function (_React$PureComponent) {
       }); // And if nothing else helps, move it to the start ¯\_(ツ)_/¯
 
       pos = Math.max(0, pos);
-      out = out.slice(0, pos).concat([transition], out.slice(pos));
+      out = [].concat(out.slice(0, pos), [transition], out.slice(pos));
     });
     return {
       first: first && added.length === 0,
@@ -10250,7 +10247,7 @@ function (_React$PureComponent) {
         onRest = _this$props2.onRest,
         onStart = _this$props2.onStart,
         trail = _this$props2.trail,
-        config$$1 = _this$props2.config,
+        config = _this$props2.config,
         _children = _this$props2.children,
         unique = _this$props2.unique,
         reset = _this$props2.reset,
@@ -10265,7 +10262,7 @@ function (_React$PureComponent) {
           from = _ref4.from,
           to = _ref4.to,
           trail = _ref4.trail,
-          config$$1 = _ref4.config,
+          config = _ref4.config,
           destroyed = _ref4.destroyed;
       return React.createElement(Keyframes, _extends({
         reset: reset && state === 'enter',
@@ -10284,7 +10281,7 @@ function (_React$PureComponent) {
           return onFrame(item, state, values);
         },
         delay: trail,
-        config: config$$1
+        config: config
       }, extra, {
         from: from,
         children: function children(props) {
@@ -10368,23 +10365,23 @@ var _React$createContext$2 = React.createContext(function () {
     Provider$2 = _React$createContext$2.Provider,
     Toast = _React$createContext$2.Consumer;
 
-var ToastHub =
+var ToastHubProvider =
 /*#__PURE__*/
 function (_React$PureComponent) {
-  inherits$1(ToastHub, _React$PureComponent);
+  inherits$1(ToastHubProvider, _React$PureComponent);
 
-  function ToastHub() {
+  function ToastHubProvider() {
     var _getPrototypeOf2;
 
     var _this;
 
-    classCallCheck$1(this, ToastHub);
+    classCallCheck$1(this, ToastHubProvider);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    _this = possibleConstructorReturn$1(this, (_getPrototypeOf2 = getPrototypeOf(ToastHub)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this = possibleConstructorReturn$1(this, (_getPrototypeOf2 = getPrototypeOf(ToastHubProvider)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
     defineProperty(assertThisInitialized(assertThisInitialized(_this)), "state", {
       items: [],
@@ -10422,11 +10419,11 @@ function (_React$PureComponent) {
     });
 
     defineProperty(assertThisInitialized(assertThisInitialized(_this)), "config", function (item, state) {
-      var config = springs.lazy; // Return custom configs on leave (includes the life-line duration)
+      var config$$1 = springs.lazy; // Return custom configs on leave (includes the life-line duration)
 
       return state === 'leave' ? [{
         duration: _this.props.timeout
-      }, config, config] : config;
+      }, config$$1, config$$1] : config$$1;
     });
 
     defineProperty(assertThisInitialized(assertThisInitialized(_this)), "cancel", function (item) {
@@ -10506,7 +10503,7 @@ function (_React$PureComponent) {
     return _this;
   }
 
-  createClass(ToastHub, [{
+  createClass(ToastHubProvider, [{
     key: "render",
     value: function render() {
       var _this$props = this.props,
@@ -10517,70 +10514,105 @@ function (_React$PureComponent) {
       return React.createElement(React.Fragment, null, React.createElement(Provider$2, {
         value: this.add,
         children: children
-      }), React.createElement(Container, _extends_1({}, stylingProps(this), {
-        position: position,
-        top: top
-      }), React.createElement(Transition, {
-        native: true,
+      }), React.createElement(ToastList, _extends_1({
+        config: this.config,
         items: this.state.items,
-        keys: function keys(item) {
-          return item.key;
-        },
-        from: {
-          opacity: 0,
-          height: 0,
-          life: '100%',
-          transform: move(30)
-        },
-        enter: {
-          opacity: 1,
-          height: 'auto',
-          transform: move(0)
-        },
         leave: this.leave,
-        onRest: this.remove,
-        config: this.config
-      }, function (item) {
-        return function (_ref2) {
-          var life = _ref2.life,
-              props = objectWithoutProperties(_ref2, ["life"]);
-
-          return React.createElement(Message, {
-            style: props
-          }, React.createElement(Content, {
-            top: top
-          }, showIndicator && React.createElement(Life, {
-            top: top,
-            style: {
-              right: life
-            }
-          }), React.createElement(Text.Paragraph, null, item.msg)));
-        };
-      })));
+        position: position,
+        remove: this.remove,
+        showIndicator: showIndicator,
+        top: top
+      }, stylingProps(this))));
     }
   }]);
 
-  return ToastHub;
-}(React.PureComponent);
+  return ToastHubProvider;
+}(React.PureComponent); // ToastList is separated from ToastHubProvider so we can skip its rendering
 
-defineProperty(ToastHub, "propTypes", {
-  timeout: propTypes.number,
+
+defineProperty(ToastHubProvider, "propTypes", {
+  children: propTypes.node,
+  position: propTypes.PropTypes.oneOf(['left', 'center', 'right']),
   showIndicator: propTypes.bool,
   threshold: propTypes.number,
-  position: propTypes.PropTypes.oneOf(['left', 'center', 'right']),
-  top: propTypes.bool,
-  children: propTypes.node
+  timeout: propTypes.number,
+  top: propTypes.bool
 });
 
-defineProperty(ToastHub, "defaultProps", {
-  timeout: 4000,
+defineProperty(ToastHubProvider, "defaultProps", {
+  position: 'right',
   showIndicator: false,
   threshold: Infinity,
-  position: 'right',
+  timeout: 4000,
   top: false
 });
 
-var Container = styled('div').withConfig({
+var ToastList = React.memo(function (_ref2) {
+  var config$$1 = _ref2.config,
+      items = _ref2.items,
+      leave = _ref2.leave,
+      position = _ref2.position,
+      remove = _ref2.remove,
+      showIndicator = _ref2.showIndicator,
+      top = _ref2.top,
+      props = objectWithoutProperties(_ref2, ["config", "items", "leave", "position", "remove", "showIndicator", "top"]);
+
+  return React.createElement(Container, _extends_1({
+    position: position,
+    top: top
+  }, props), React.createElement(Transition, {
+    native: true,
+    items: items,
+    keys: function keys(item) {
+      return item.key;
+    },
+    from: {
+      opacity: 0,
+      height: 0,
+      life: '100%',
+      transform: move(30)
+    },
+    enter: {
+      opacity: 1,
+      height: 'auto',
+      transform: move(0)
+    },
+    leave: leave,
+    onRest: remove,
+    config: config$$1
+  }, function (item) {
+    return (
+      /* eslint-disable react/prop-types */
+      function (_ref3) {
+        var life = _ref3.life,
+            props = objectWithoutProperties(_ref3, ["life"]);
+
+        return React.createElement(Message, {
+          style: props
+        }, React.createElement(Content, {
+          top: top
+        }, showIndicator && React.createElement(Life, {
+          top: top,
+          style: {
+            right: life
+          }
+        }), React.createElement(Text.Paragraph, null, item.msg)));
+      }
+    );
+  }
+  /* eslint-enable react/prop-types */
+  ));
+});
+ToastList.propTypes = {
+  showIndicator: propTypes.bool,
+  position: propTypes.PropTypes.oneOf(['left', 'center', 'right']),
+  top: propTypes.bool,
+  config: propTypes.func,
+  items: propTypes.array,
+  leave: propTypes.func,
+  remove: propTypes.func
+};
+var Container = styled.div.withConfig({
   displayName: "ToastHub__Container",
   componentId: "sc-1y0i8xl-0"
 })(["position:fixed;z-index:1000;top:", ";bottom:", ";margin:0 auto;left:30px;right:30px;display:flex;flex-direction:", ";pointer-events:none;align-items:center;@media (min-width:700px){align-items:", ";}"], function (props) {
@@ -10605,7 +10637,7 @@ var Message = styled(extendedAnimated.div).withConfig({
   displayName: "ToastHub__Message",
   componentId: "sc-1y0i8xl-1"
 })(["box-sizing:border-box;position:relative;width:100%;@media (min-width:700px){width:42ch;}"]);
-var Content = styled('div').withConfig({
+var Content = styled.div.withConfig({
   displayName: "ToastHub__Content",
   componentId: "sc-1y0i8xl-2"
 })(["color:white;background:#445159;opacity:0.9;margin-top:", ";margin-bottom:", ";padding:12px 22px;font-size:1em;display:grid;grid-template-columns:1fr;grid-gap:10px;border-radius:3px;overflow:hidden;"], function (props) {
@@ -13823,6 +13855,33 @@ defineProperty(DropDown, "defaultProps", {
   onChange: function onChange() {}
 });
 
+function isEmpty(value) {
+  return value === undefined || value === null;
+} // Require a prop to not be empty
+
+
+function requireProp(props, propName, componentName) {
+  return isEmpty(props[propName]) ? new Error("The prop `".concat(propName, "` is required for `").concat(componentName, "`.")) : null;
+} // Accept any number in the 0 => 1 range
+
+
+function _0to1(props, propName, componentName) {
+  if (isEmpty(props[propName])) {
+    return null;
+  }
+
+  if (typeof props[propName] === 'number' && props[propName] >= 0 && props[propName] <= 1) {
+    return null;
+  }
+
+  return new Error("Invalid prop `".concat(propName, "` supplied to `").concat(componentName, "`. Please provide a number in the 0-1 range."));
+} // Required version
+
+
+_0to1.isRequired = function () {
+  return requireProp.apply(void 0, arguments) || _0to1.apply(void 0, arguments);
+};
+
 var ExtendedPropTypes = objectSpread({}, propTypes, {
   _component: propTypes.oneOfType([propTypes.func, propTypes.string, propTypes.shape({
     render: propTypes.func.isRequired
@@ -13833,7 +13892,8 @@ var ExtendedPropTypes = objectSpread({}, propTypes, {
     friction: propTypes.number,
     precision: propTypes.number
   }),
-  _null: propTypes.oneOf([null])
+  _null: propTypes.oneOf([null]),
+  _0to1: _0to1
 });
 
 /**
@@ -20559,7 +20619,7 @@ var Main$a = function Main(_ref) {
     url: ensureTrailingSlash(assetsUrl)
   }, React.createElement(BaseStyles$1, {
     enableLegacyFonts: legacyFonts
-  }), React.createElement(ToastHub, null, children))));
+  }), React.createElement(ToastHubProvider, null, children))));
 };
 
 Main$a.propTypes = {
@@ -20956,53 +21016,2049 @@ var Percentage = styled(Text).attrs({
   componentId: "sc-1udnzwm-6"
 })([""]);
 
-var ProgressBar = function ProgressBar(_ref) {
-  var color = _ref.color,
-      progress = _ref.progress;
-  return React.createElement(Spring, {
-    native: true,
-    config: springs.smooth,
-    from: {
-      progressValue: 0
-    },
-    to: {
-      progressValue: progress
-    }
-  }, function (_ref2) {
-    var progressValue = _ref2.progressValue;
-    return React.createElement(Main$b, null, React.createElement(Base, null, React.createElement(Progress, {
-      color: color,
-      style: {
-        transform: progressValue.interpolate(function (t) {
-          return "scaleX(".concat(t, ")");
-        })
-      }
-    })));
+function _defineProperties$1(target, props) {
+  for (var i = 0; i < props.length; i++) {
+    var descriptor = props[i];
+    descriptor.enumerable = descriptor.enumerable || false;
+    descriptor.configurable = true;
+    if ("value" in descriptor) descriptor.writable = true;
+    Object.defineProperty(target, descriptor.key, descriptor);
+  }
+}
+
+function _createClass$2(Constructor, protoProps, staticProps) {
+  if (protoProps) _defineProperties$1(Constructor.prototype, protoProps);
+  if (staticProps) _defineProperties$1(Constructor, staticProps);
+  return Constructor;
+}
+
+var bugfixes$1 = undefined;
+var applyAnimatedValues$1 = undefined;
+var colorNames$1 = [];
+var requestFrame$1 = function requestFrame(cb) {
+  return typeof window !== 'undefined' && window.requestAnimationFrame(cb);
+};
+var cancelFrame$1 = function cancelFrame(cb) {
+  return typeof window !== 'undefined' && window.cancelAnimationFrame(cb);
+};
+var interpolation$1 = undefined;
+var now$2 = function now() {
+  return Date.now();
+};
+var defaultElement$1 = undefined;
+var createAnimatedStyle$1 = undefined;
+var injectApplyAnimatedValues$1 = function injectApplyAnimatedValues(fn, transform) {
+  return applyAnimatedValues$1 = {
+    fn: fn,
+    transform: transform
+  };
+};
+var injectColorNames$1 = function injectColorNames(names) {
+  return colorNames$1 = names;
+};
+var injectBugfixes$1 = function injectBugfixes(fn) {
+  return bugfixes$1 = fn;
+};
+var injectInterpolation$1 = function injectInterpolation(cls) {
+  return interpolation$1 = cls;
+};
+var injectFrame$1 = function injectFrame(raf, caf) {
+  var _ref;
+
+  return _ref = [raf, caf], requestFrame$1 = _ref[0], cancelFrame$1 = _ref[1], _ref;
+};
+var injectNow$1 = function injectNow(nowFn) {
+  return now$2 = nowFn;
+};
+var injectDefaultElement$1 = function injectDefaultElement(el) {
+  return defaultElement$1 = el;
+};
+var injectCreateAnimatedStyle$1 = function injectCreateAnimatedStyle(factory) {
+  return createAnimatedStyle$1 = factory;
+};
+
+var Globals$1 = /*#__PURE__*/Object.freeze({
+  get bugfixes () { return bugfixes$1; },
+  get applyAnimatedValues () { return applyAnimatedValues$1; },
+  get colorNames () { return colorNames$1; },
+  get requestFrame () { return requestFrame$1; },
+  get cancelFrame () { return cancelFrame$1; },
+  get interpolation () { return interpolation$1; },
+  get now () { return now$2; },
+  get defaultElement () { return defaultElement$1; },
+  get createAnimatedStyle () { return createAnimatedStyle$1; },
+  injectApplyAnimatedValues: injectApplyAnimatedValues$1,
+  injectColorNames: injectColorNames$1,
+  injectBugfixes: injectBugfixes$1,
+  injectInterpolation: injectInterpolation$1,
+  injectFrame: injectFrame$1,
+  injectNow: injectNow$1,
+  injectDefaultElement: injectDefaultElement$1,
+  injectCreateAnimatedStyle: injectCreateAnimatedStyle$1
+});
+
+var Animated$1 =
+/*#__PURE__*/
+function () {
+  function Animated() {}
+
+  var _proto = Animated.prototype;
+
+  _proto.attach = function attach() {};
+
+  _proto.detach = function detach() {};
+
+  _proto.getValue = function getValue() {};
+
+  _proto.getAnimatedValue = function getAnimatedValue() {
+    return this.getValue();
+  };
+
+  _proto.addChild = function addChild(child) {};
+
+  _proto.removeChild = function removeChild(child) {};
+
+  _proto.getChildren = function getChildren() {
+    return [];
+  };
+
+  return Animated;
+}();
+
+var getValues$2 = function getValues(object) {
+  return Object.keys(object).map(function (k) {
+    return object[k];
   });
 };
 
+var AnimatedWithChildren$1 =
+/*#__PURE__*/
+function (_Animated) {
+  _inheritsLoose(AnimatedWithChildren, _Animated);
+
+  function AnimatedWithChildren() {
+    var _this;
+
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    _this = _Animated.call.apply(_Animated, [this].concat(args)) || this;
+    _this.children = [];
+
+    _this.getChildren = function () {
+      return _this.children;
+    };
+
+    _this.getPayload = function (index) {
+      if (index === void 0) {
+        index = undefined;
+      }
+
+      return index !== void 0 && _this.payload ? _this.payload[index] : _this.payload || _assertThisInitialized$1(_assertThisInitialized$1(_this));
+    };
+
+    return _this;
+  }
+
+  var _proto = AnimatedWithChildren.prototype;
+
+  _proto.addChild = function addChild(child) {
+    if (this.children.length === 0) this.attach();
+    this.children.push(child);
+  };
+
+  _proto.removeChild = function removeChild(child) {
+    var index = this.children.indexOf(child);
+    this.children.splice(index, 1);
+    if (this.children.length === 0) this.detach();
+  };
+
+  return AnimatedWithChildren;
+}(Animated$1);
+var AnimatedArrayWithChildren$1 =
+/*#__PURE__*/
+function (_AnimatedWithChildren) {
+  _inheritsLoose(AnimatedArrayWithChildren, _AnimatedWithChildren);
+
+  function AnimatedArrayWithChildren() {
+    var _this2;
+
+    for (var _len2 = arguments.length, args = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+      args[_key2] = arguments[_key2];
+    }
+
+    _this2 = _AnimatedWithChildren.call.apply(_AnimatedWithChildren, [this].concat(args)) || this;
+    _this2.payload = [];
+
+    _this2.getAnimatedValue = function () {
+      return _this2.getValue();
+    };
+
+    _this2.attach = function () {
+      return _this2.payload.forEach(function (p) {
+        return p instanceof Animated$1 && p.addChild(_assertThisInitialized$1(_assertThisInitialized$1(_this2)));
+      });
+    };
+
+    _this2.detach = function () {
+      return _this2.payload.forEach(function (p) {
+        return p instanceof Animated$1 && p.removeChild(_assertThisInitialized$1(_assertThisInitialized$1(_this2)));
+      });
+    };
+
+    return _this2;
+  }
+
+  return AnimatedArrayWithChildren;
+}(AnimatedWithChildren$1);
+var AnimatedObjectWithChildren$1 =
+/*#__PURE__*/
+function (_AnimatedWithChildren2) {
+  _inheritsLoose(AnimatedObjectWithChildren, _AnimatedWithChildren2);
+
+  function AnimatedObjectWithChildren() {
+    var _this3;
+
+    for (var _len3 = arguments.length, args = new Array(_len3), _key3 = 0; _key3 < _len3; _key3++) {
+      args[_key3] = arguments[_key3];
+    }
+
+    _this3 = _AnimatedWithChildren2.call.apply(_AnimatedWithChildren2, [this].concat(args)) || this;
+    _this3.payload = {};
+
+    _this3.getAnimatedValue = function () {
+      return _this3.getValue(true);
+    };
+
+    _this3.attach = function () {
+      return getValues$2(_this3.payload).forEach(function (s) {
+        return s instanceof Animated$1 && s.addChild(_assertThisInitialized$1(_assertThisInitialized$1(_this3)));
+      });
+    };
+
+    _this3.detach = function () {
+      return getValues$2(_this3.payload).forEach(function (s) {
+        return s instanceof Animated$1 && s.removeChild(_assertThisInitialized$1(_assertThisInitialized$1(_this3)));
+      });
+    };
+
+    return _this3;
+  }
+
+  var _proto2 = AnimatedObjectWithChildren.prototype;
+
+  _proto2.getValue = function getValue(animated) {
+    if (animated === void 0) {
+      animated = false;
+    }
+
+    var payload = {};
+
+    for (var key in this.payload) {
+      var value = this.payload[key];
+      if (animated && !(value instanceof Animated$1)) continue;
+      payload[key] = value instanceof Animated$1 ? value[animated ? 'getAnimatedValue' : 'getValue']() : value;
+    }
+
+    return payload;
+  };
+
+  return AnimatedObjectWithChildren;
+}(AnimatedWithChildren$1);
+
+var AnimatedStyle$1 =
+/*#__PURE__*/
+function (_AnimatedObjectWithCh) {
+  _inheritsLoose(AnimatedStyle, _AnimatedObjectWithCh);
+
+  function AnimatedStyle(style) {
+    var _this;
+
+    _this = _AnimatedObjectWithCh.call(this) || this;
+    style = style || {};
+    if (style.transform && !(style.transform instanceof Animated$1)) style = applyAnimatedValues$1.transform(style);
+    _this.payload = style;
+    return _this;
+  }
+
+  return AnimatedStyle;
+}(AnimatedObjectWithChildren$1);
+
+// http://www.w3.org/TR/css3-color/#svg-color
+var colors$2 = {
+  transparent: 0x00000000,
+  aliceblue: 0xf0f8ffff,
+  antiquewhite: 0xfaebd7ff,
+  aqua: 0x00ffffff,
+  aquamarine: 0x7fffd4ff,
+  azure: 0xf0ffffff,
+  beige: 0xf5f5dcff,
+  bisque: 0xffe4c4ff,
+  black: 0x000000ff,
+  blanchedalmond: 0xffebcdff,
+  blue: 0x0000ffff,
+  blueviolet: 0x8a2be2ff,
+  brown: 0xa52a2aff,
+  burlywood: 0xdeb887ff,
+  burntsienna: 0xea7e5dff,
+  cadetblue: 0x5f9ea0ff,
+  chartreuse: 0x7fff00ff,
+  chocolate: 0xd2691eff,
+  coral: 0xff7f50ff,
+  cornflowerblue: 0x6495edff,
+  cornsilk: 0xfff8dcff,
+  crimson: 0xdc143cff,
+  cyan: 0x00ffffff,
+  darkblue: 0x00008bff,
+  darkcyan: 0x008b8bff,
+  darkgoldenrod: 0xb8860bff,
+  darkgray: 0xa9a9a9ff,
+  darkgreen: 0x006400ff,
+  darkgrey: 0xa9a9a9ff,
+  darkkhaki: 0xbdb76bff,
+  darkmagenta: 0x8b008bff,
+  darkolivegreen: 0x556b2fff,
+  darkorange: 0xff8c00ff,
+  darkorchid: 0x9932ccff,
+  darkred: 0x8b0000ff,
+  darksalmon: 0xe9967aff,
+  darkseagreen: 0x8fbc8fff,
+  darkslateblue: 0x483d8bff,
+  darkslategray: 0x2f4f4fff,
+  darkslategrey: 0x2f4f4fff,
+  darkturquoise: 0x00ced1ff,
+  darkviolet: 0x9400d3ff,
+  deeppink: 0xff1493ff,
+  deepskyblue: 0x00bfffff,
+  dimgray: 0x696969ff,
+  dimgrey: 0x696969ff,
+  dodgerblue: 0x1e90ffff,
+  firebrick: 0xb22222ff,
+  floralwhite: 0xfffaf0ff,
+  forestgreen: 0x228b22ff,
+  fuchsia: 0xff00ffff,
+  gainsboro: 0xdcdcdcff,
+  ghostwhite: 0xf8f8ffff,
+  gold: 0xffd700ff,
+  goldenrod: 0xdaa520ff,
+  gray: 0x808080ff,
+  green: 0x008000ff,
+  greenyellow: 0xadff2fff,
+  grey: 0x808080ff,
+  honeydew: 0xf0fff0ff,
+  hotpink: 0xff69b4ff,
+  indianred: 0xcd5c5cff,
+  indigo: 0x4b0082ff,
+  ivory: 0xfffff0ff,
+  khaki: 0xf0e68cff,
+  lavender: 0xe6e6faff,
+  lavenderblush: 0xfff0f5ff,
+  lawngreen: 0x7cfc00ff,
+  lemonchiffon: 0xfffacdff,
+  lightblue: 0xadd8e6ff,
+  lightcoral: 0xf08080ff,
+  lightcyan: 0xe0ffffff,
+  lightgoldenrodyellow: 0xfafad2ff,
+  lightgray: 0xd3d3d3ff,
+  lightgreen: 0x90ee90ff,
+  lightgrey: 0xd3d3d3ff,
+  lightpink: 0xffb6c1ff,
+  lightsalmon: 0xffa07aff,
+  lightseagreen: 0x20b2aaff,
+  lightskyblue: 0x87cefaff,
+  lightslategray: 0x778899ff,
+  lightslategrey: 0x778899ff,
+  lightsteelblue: 0xb0c4deff,
+  lightyellow: 0xffffe0ff,
+  lime: 0x00ff00ff,
+  limegreen: 0x32cd32ff,
+  linen: 0xfaf0e6ff,
+  magenta: 0xff00ffff,
+  maroon: 0x800000ff,
+  mediumaquamarine: 0x66cdaaff,
+  mediumblue: 0x0000cdff,
+  mediumorchid: 0xba55d3ff,
+  mediumpurple: 0x9370dbff,
+  mediumseagreen: 0x3cb371ff,
+  mediumslateblue: 0x7b68eeff,
+  mediumspringgreen: 0x00fa9aff,
+  mediumturquoise: 0x48d1ccff,
+  mediumvioletred: 0xc71585ff,
+  midnightblue: 0x191970ff,
+  mintcream: 0xf5fffaff,
+  mistyrose: 0xffe4e1ff,
+  moccasin: 0xffe4b5ff,
+  navajowhite: 0xffdeadff,
+  navy: 0x000080ff,
+  oldlace: 0xfdf5e6ff,
+  olive: 0x808000ff,
+  olivedrab: 0x6b8e23ff,
+  orange: 0xffa500ff,
+  orangered: 0xff4500ff,
+  orchid: 0xda70d6ff,
+  palegoldenrod: 0xeee8aaff,
+  palegreen: 0x98fb98ff,
+  paleturquoise: 0xafeeeeff,
+  palevioletred: 0xdb7093ff,
+  papayawhip: 0xffefd5ff,
+  peachpuff: 0xffdab9ff,
+  peru: 0xcd853fff,
+  pink: 0xffc0cbff,
+  plum: 0xdda0ddff,
+  powderblue: 0xb0e0e6ff,
+  purple: 0x800080ff,
+  rebeccapurple: 0x663399ff,
+  red: 0xff0000ff,
+  rosybrown: 0xbc8f8fff,
+  royalblue: 0x4169e1ff,
+  saddlebrown: 0x8b4513ff,
+  salmon: 0xfa8072ff,
+  sandybrown: 0xf4a460ff,
+  seagreen: 0x2e8b57ff,
+  seashell: 0xfff5eeff,
+  sienna: 0xa0522dff,
+  silver: 0xc0c0c0ff,
+  skyblue: 0x87ceebff,
+  slateblue: 0x6a5acdff,
+  slategray: 0x708090ff,
+  slategrey: 0x708090ff,
+  snow: 0xfffafaff,
+  springgreen: 0x00ff7fff,
+  steelblue: 0x4682b4ff,
+  tan: 0xd2b48cff,
+  teal: 0x008080ff,
+  thistle: 0xd8bfd8ff,
+  tomato: 0xff6347ff,
+  turquoise: 0x40e0d0ff,
+  violet: 0xee82eeff,
+  wheat: 0xf5deb3ff,
+  white: 0xffffffff,
+  whitesmoke: 0xf5f5f5ff,
+  yellow: 0xffff00ff,
+  yellowgreen: 0x9acd32ff
+};
+
+var Interpolation$1 =
+/*#__PURE__*/
+function () {
+  function Interpolation() {}
+
+  // Default config = config, args
+  // Short config   = range, output, extrapolate
+  Interpolation.create = function create(config, output, extra) {
+    if (typeof config === 'function') return config;else if (interpolation$1 && config.output && typeof config.output[0] === 'string') return interpolation$1(config);else if (Array.isArray(config)) return Interpolation.create({
+      range: config,
+      output: output,
+      extrapolate: extra || 'extend'
+    });
+    var outputRange = config.output;
+    var inputRange = config.range || [0, 1];
+
+    var easing = config.easing || function (t) {
+      return t;
+    };
+
+    var extrapolateLeft = 'extend';
+    var map = config.map;
+    if (config.extrapolateLeft !== undefined) extrapolateLeft = config.extrapolateLeft;else if (config.extrapolate !== undefined) extrapolateLeft = config.extrapolate;
+    var extrapolateRight = 'extend';
+    if (config.extrapolateRight !== undefined) extrapolateRight = config.extrapolateRight;else if (config.extrapolate !== undefined) extrapolateRight = config.extrapolate;
+    return function (input) {
+      var range = findRange$1(input, inputRange);
+      return interpolate$2(input, inputRange[range], inputRange[range + 1], outputRange[range], outputRange[range + 1], easing, extrapolateLeft, extrapolateRight, map);
+    };
+  };
+
+  return Interpolation;
+}();
+
+function interpolate$2(input, inputMin, inputMax, outputMin, outputMax, easing, extrapolateLeft, extrapolateRight, map) {
+  var result = map ? map(input) : input; // Extrapolate
+
+  if (result < inputMin) {
+    if (extrapolateLeft === 'identity') return result;else if (extrapolateLeft === 'clamp') result = inputMin;
+  }
+
+  if (result > inputMax) {
+    if (extrapolateRight === 'identity') return result;else if (extrapolateRight === 'clamp') result = inputMax;
+  }
+
+  if (outputMin === outputMax) return outputMin;
+  if (inputMin === inputMax) return input <= inputMin ? outputMin : outputMax; // Input Range
+
+  if (inputMin === -Infinity) result = -result;else if (inputMax === Infinity) result = result - inputMin;else result = (result - inputMin) / (inputMax - inputMin); // Easing
+
+  result = easing(result); // Output Range
+
+  if (outputMin === -Infinity) result = -result;else if (outputMax === Infinity) result = result + outputMin;else result = result * (outputMax - outputMin) + outputMin;
+  return result;
+}
+
+function findRange$1(input, inputRange) {
+  for (var i = 1; i < inputRange.length - 1; ++i) {
+    if (inputRange[i] >= input) break;
+  }
+
+  return i - 1;
+}
+
+// const INTEGER = '[-+]?\\d+';
+var NUMBER$1 = '[-+]?\\d*\\.?\\d+';
+var PERCENTAGE$1 = NUMBER$1 + '%';
+
+function call$1() {
+  return '\\(\\s*(' + Array.prototype.slice.call(arguments).join(')\\s*,\\s*(') + ')\\s*\\)';
+}
+
+var rgb$1 = new RegExp('rgb' + call$1(NUMBER$1, NUMBER$1, NUMBER$1));
+var rgba$1 = new RegExp('rgba' + call$1(NUMBER$1, NUMBER$1, NUMBER$1, NUMBER$1));
+var hsl$1 = new RegExp('hsl' + call$1(NUMBER$1, PERCENTAGE$1, PERCENTAGE$1));
+var hsla$1 = new RegExp('hsla' + call$1(NUMBER$1, PERCENTAGE$1, PERCENTAGE$1, NUMBER$1));
+var hex3$1 = /^#([0-9a-fA-F]{1})([0-9a-fA-F]{1})([0-9a-fA-F]{1})$/;
+var hex4$1 = /^#([0-9a-fA-F]{1})([0-9a-fA-F]{1})([0-9a-fA-F]{1})([0-9a-fA-F]{1})$/;
+var hex6$1 = /^#([0-9a-fA-F]{6})$/;
+var hex8$1 = /^#([0-9a-fA-F]{8})$/;
+
+/*
+https://github.com/react-community/normalize-css-color
+
+BSD 3-Clause License
+
+Copyright (c) 2016, React Community
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+
+* Redistributions of source code must retain the above copyright notice, this
+  list of conditions and the following disclaimer.
+
+* Redistributions in binary form must reproduce the above copyright notice,
+  this list of conditions and the following disclaimer in the documentation
+  and/or other materials provided with the distribution.
+
+* Neither the name of the copyright holder nor the names of its
+  contributors may be used to endorse or promote products derived from
+  this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+*/
+function normalizeColor$1(color) {
+  var match;
+
+  if (typeof color === 'number') {
+    return color >>> 0 === color && color >= 0 && color <= 0xffffffff ? color : null;
+  } // Ordered based on occurrences on Facebook codebase
+
+
+  if (match = hex6$1.exec(color)) return parseInt(match[1] + 'ff', 16) >>> 0;
+  if (colors$2.hasOwnProperty(color)) return colors$2[color];
+
+  if (match = rgb$1.exec(color)) {
+    return (parse255$1(match[1]) << 24 | // r
+    parse255$1(match[2]) << 16 | // g
+    parse255$1(match[3]) << 8 | // b
+    0x000000ff) >>> // a
+    0;
+  }
+
+  if (match = rgba$1.exec(color)) {
+    return (parse255$1(match[1]) << 24 | // r
+    parse255$1(match[2]) << 16 | // g
+    parse255$1(match[3]) << 8 | // b
+    parse1$1(match[4])) >>> // a
+    0;
+  }
+
+  if (match = hex3$1.exec(color)) {
+    return parseInt(match[1] + match[1] + // r
+    match[2] + match[2] + // g
+    match[3] + match[3] + // b
+    'ff', // a
+    16) >>> 0;
+  } // https://drafts.csswg.org/css-color-4/#hex-notation
+
+
+  if (match = hex8$1.exec(color)) return parseInt(match[1], 16) >>> 0;
+
+  if (match = hex4$1.exec(color)) {
+    return parseInt(match[1] + match[1] + // r
+    match[2] + match[2] + // g
+    match[3] + match[3] + // b
+    match[4] + match[4], // a
+    16) >>> 0;
+  }
+
+  if (match = hsl$1.exec(color)) {
+    return (hslToRgb$1(parse360$1(match[1]), // h
+    parsePercentage$1(match[2]), // s
+    parsePercentage$1(match[3]) // l
+    ) | 0x000000ff) >>> // a
+    0;
+  }
+
+  if (match = hsla$1.exec(color)) {
+    return (hslToRgb$1(parse360$1(match[1]), // h
+    parsePercentage$1(match[2]), // s
+    parsePercentage$1(match[3]) // l
+    ) | parse1$1(match[4])) >>> // a
+    0;
+  }
+
+  return null;
+}
+
+function hue2rgb$1(p, q, t) {
+  if (t < 0) t += 1;
+  if (t > 1) t -= 1;
+  if (t < 1 / 6) return p + (q - p) * 6 * t;
+  if (t < 1 / 2) return q;
+  if (t < 2 / 3) return p + (q - p) * (2 / 3 - t) * 6;
+  return p;
+}
+
+function hslToRgb$1(h, s, l) {
+  var q = l < 0.5 ? l * (1 + s) : l + s - l * s;
+  var p = 2 * l - q;
+  var r = hue2rgb$1(p, q, h + 1 / 3);
+  var g = hue2rgb$1(p, q, h);
+  var b = hue2rgb$1(p, q, h - 1 / 3);
+  return Math.round(r * 255) << 24 | Math.round(g * 255) << 16 | Math.round(b * 255) << 8;
+}
+
+function parse255$1(str) {
+  var int = parseInt(str, 10);
+  if (int < 0) return 0;
+  if (int > 255) return 255;
+  return int;
+}
+
+function parse360$1(str) {
+  var int = parseFloat(str);
+  return (int % 360 + 360) % 360 / 360;
+}
+
+function parse1$1(str) {
+  var num = parseFloat(str);
+  if (num < 0) return 0;
+  if (num > 1) return 255;
+  return Math.round(num * 255);
+}
+
+function parsePercentage$1(str) {
+  // parseFloat conveniently ignores the final %
+  var int = parseFloat(str);
+  if (int < 0) return 0;
+  if (int > 100) return 1;
+  return int / 100;
+}
+
+function colorToRgba$1(input) {
+  var int32Color = normalizeColor$1(input);
+  if (int32Color === null) return input;
+  int32Color = int32Color || 0;
+  var r = (int32Color & 0xff000000) >>> 24;
+  var g = (int32Color & 0x00ff0000) >>> 16;
+  var b = (int32Color & 0x0000ff00) >>> 8;
+  var a = (int32Color & 0x000000ff) / 255;
+  return "rgba(" + r + ", " + g + ", " + b + ", " + a + ")";
+} // Problem: https://github.com/animatedjs/animated/pull/102
+// Solution: https://stackoverflow.com/questions/638565/parsing-scientific-notation-sensibly/658662
+
+
+var stringShapeRegex$1 = /[+\-]?(?:0|[1-9]\d*)(?:\.\d*)?(?:[eE][+\-]?\d+)?/g; // Covers rgb, rgba, hsl, hsla
+// Taken from https://gist.github.com/olmokramer/82ccce673f86db7cda5e
+
+var colorRegex$1 = /(#(?:[0-9a-f]{2}){2,4}|(#[0-9a-f]{3})|(rgb|hsl)a?\((-?\d+%?[,\s]+){2,3}\s*[\d\.]+%?\))/gi; // Covers color names (transparent, blue, etc.)
+
+var colorNamesRegex$1 = new RegExp("(" + Object.keys(colors$2).join('|') + ")", 'g');
+/**
+ * Supports string shapes by extracting numbers so new values can be computed,
+ * and recombines those values into new strings of the same shape.  Supports
+ * things like:
+ *
+ *   rgba(123, 42, 99, 0.36)           // colors
+ *   -45deg                            // values with units
+ *   0 2px 2px 0px rgba(0, 0, 0, 0.12) // box shadows
+ */
+
+function createInterpolation$1(config) {
+  // Replace colors with rgba
+  var outputRange = config.output.map(function (rangeValue) {
+    return rangeValue.replace(colorRegex$1, colorToRgba$1);
+  }).map(function (rangeValue) {
+    return rangeValue.replace(colorNamesRegex$1, colorToRgba$1);
+  }); // ->
+  // [
+  //   [0, 50],
+  //   [100, 150],
+  //   [200, 250],
+  //   [0, 0.5],
+  // ]
+
+  var outputRanges = outputRange[0].match(stringShapeRegex$1).map(function () {
+    return [];
+  });
+  outputRange.forEach(function (value) {
+    value.match(stringShapeRegex$1).forEach(function (number, i) {
+      return outputRanges[i].push(+number);
+    });
+  });
+  var interpolations = outputRange[0].match(stringShapeRegex$1).map(function (value, i) {
+    return Interpolation$1.create(_extends({}, config, {
+      output: outputRanges[i]
+    }));
+  });
+  return function (input) {
+    var i = 0;
+    return outputRange[0] // 'rgba(0, 100, 200, 0)'
+    // ->
+    // 'rgba(${interpolations[0](input)}, ${interpolations[1](input)}, ...'
+    .replace(stringShapeRegex$1, function () {
+      return interpolations[i++](input);
+    }) // rgba requires that the r,g,b are integers.... so we want to round them, but we *dont* want to
+    // round the opacity (4th column).
+    .replace(/rgba\(([0-9\.-]+), ([0-9\.-]+), ([0-9\.-]+), ([0-9\.-]+)\)/gi, function (_, p1, p2, p3, p4) {
+      return "rgba(" + Math.round(p1) + ", " + Math.round(p2) + ", " + Math.round(p3) + ", " + p4 + ")";
+    });
+  };
+}
+
+var AnimatedInterpolation$1 =
+/*#__PURE__*/
+function (_AnimatedArrayWithChi) {
+  _inheritsLoose(AnimatedInterpolation, _AnimatedArrayWithChi);
+
+  function AnimatedInterpolation(parents, _config, _arg) {
+    var _this;
+
+    _this = _AnimatedArrayWithChi.call(this) || this;
+
+    _this.getValue = function () {
+      var _this2;
+
+      return (_this2 = _this).calc.apply(_this2, _this.payload.map(function (value) {
+        return value.getValue();
+      }));
+    };
+
+    _this.updateConfig = function (config, arg) {
+      return _this.calc = Interpolation$1.create(config, arg);
+    };
+
+    _this.interpolate = function (config, arg) {
+      return new AnimatedInterpolation(_assertThisInitialized$1(_assertThisInitialized$1(_this)), config, arg);
+    };
+
+    _this.payload = // AnimatedArrays should unfold, except AnimatedInterpolation which is taken as is
+    parents instanceof AnimatedArrayWithChildren$1 && !parents.updateConfig ? parents.payload : Array.isArray(parents) ? parents : [parents];
+    _this.calc = Interpolation$1.create(_config, _arg);
+    return _this;
+  }
+
+  return AnimatedInterpolation;
+}(AnimatedArrayWithChildren$1);
+var interpolate$1$1 = function interpolate(parents, config, arg) {
+  return parents && new AnimatedInterpolation$1(parents, config, arg);
+};
+
+/**
+ * Animated works by building a directed acyclic graph of dependencies
+ * transparently when you render your Animated components.
+ *
+ *               new Animated.Value(0)
+ *     .interpolate()        .interpolate()    new Animated.Value(1)
+ *         opacity               translateY      scale
+ *          style                         transform
+ *         View#234                         style
+ *                                         View#123
+ *
+ * A) Top Down phase
+ * When an Animated.Value is updated, we recursively go down through this
+ * graph in order to find leaf nodes: the views that we flag as needing
+ * an update.
+ *
+ * B) Bottom Up phase
+ * When a view is flagged as needing an update, we recursively go back up
+ * in order to build the new value that it needs. The reason why we need
+ * this two-phases process is to deal with composite props such as
+ * transform which can receive values from multiple parents.
+ */
+
+function findAnimatedStyles$1(node, styles) {
+  if (typeof node.update === 'function') styles.add(node);else node.getChildren().forEach(function (child) {
+    return findAnimatedStyles$1(child, styles);
+  });
+}
+/**
+ * Standard value for driving animations.  One `Animated.Value` can drive
+ * multiple properties in a synchronized fashion, but can only be driven by one
+ * mechanism at a time.  Using a new mechanism (e.g. starting a new animation,
+ * or calling `setValue`) will stop any previous ones.
+ */
+
+
+var AnimatedValue$1 =
+/*#__PURE__*/
+function (_AnimatedWithChildren) {
+  _inheritsLoose(AnimatedValue, _AnimatedWithChildren);
+
+  function AnimatedValue(_value) {
+    var _this;
+
+    _this = _AnimatedWithChildren.call(this) || this;
+
+    _this.setValue = function (value, flush) {
+      if (flush === void 0) {
+        flush = true;
+      }
+
+      _this.value = value;
+      if (flush) _this.flush();
+    };
+
+    _this.getValue = function () {
+      return _this.value;
+    };
+
+    _this.updateStyles = function () {
+      return findAnimatedStyles$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), _this.animatedStyles);
+    };
+
+    _this.updateValue = function (value) {
+      return _this.flush(_this.value = value);
+    };
+
+    _this.interpolate = function (config, arg) {
+      return new AnimatedInterpolation$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), config, arg);
+    };
+
+    _this.value = _value;
+    _this.animatedStyles = new Set();
+    _this.done = false;
+    _this.startPosition = _value;
+    _this.lastPosition = _value;
+    _this.lastVelocity = undefined;
+    _this.lastTime = undefined;
+    _this.controller = undefined;
+    return _this;
+  }
+
+  var _proto = AnimatedValue.prototype;
+
+  _proto.flush = function flush() {
+    if (this.animatedStyles.size === 0) this.updateStyles();
+    this.animatedStyles.forEach(function (animatedStyle) {
+      return animatedStyle.update();
+    });
+  };
+
+  _proto.prepare = function prepare(controller) {
+    // Values stay loyal to their original controller, this is also a way to
+    // detect trailing values originating from a foreign controller
+    if (this.controller === undefined) this.controller = controller;
+
+    if (this.controller === controller) {
+      this.startPosition = this.value;
+      this.lastPosition = this.value;
+      this.lastVelocity = controller.isActive ? this.lastVelocity : undefined;
+      this.lastTime = controller.isActive ? this.lastTime : undefined;
+      this.done = false;
+      this.animatedStyles.clear();
+    }
+  };
+
+  return AnimatedValue;
+}(AnimatedWithChildren$1);
+
+var AnimatedArray$1 =
+/*#__PURE__*/
+function (_AnimatedArrayWithChi) {
+  _inheritsLoose(AnimatedArray, _AnimatedArrayWithChi);
+
+  function AnimatedArray(array) {
+    var _this;
+
+    _this = _AnimatedArrayWithChi.call(this) || this;
+
+    _this.setValue = function (value, flush) {
+      if (flush === void 0) {
+        flush = true;
+      }
+
+      if (Array.isArray(value)) {
+        if (value.length === _this.payload.length) value.forEach(function (v, i) {
+          return _this.payload[i].setValue(v, flush);
+        });
+      } else _this.payload.forEach(function (v, i) {
+        return _this.payload[i].setValue(value, flush);
+      });
+    };
+
+    _this.getValue = function () {
+      return _this.payload.map(function (v) {
+        return v.getValue();
+      });
+    };
+
+    _this.interpolate = function (config, arg) {
+      return new AnimatedInterpolation$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), config, arg);
+    };
+
+    _this.payload = array.map(function (n) {
+      return new AnimatedValue$1(n);
+    });
+    return _this;
+  }
+
+  return AnimatedArray;
+}(AnimatedArrayWithChildren$1);
+
+function withDefault$1(value, defaultValue) {
+  return value === undefined || value === null ? defaultValue : value;
+}
+function toArray$1(a) {
+  return a !== void 0 ? Array.isArray(a) ? a : [a] : [];
+}
+function shallowEqual$1(a, b) {
+  if (typeof a !== typeof b) return false;
+  if (typeof a === 'string' || typeof a === 'number') return a === b;
+  var i;
+
+  for (i in a) {
+    if (!(i in b)) return false;
+  }
+
+  for (i in b) {
+    if (a[i] !== b[i]) return false;
+  }
+
+  return i === void 0 ? a === b : true;
+}
+function callProp$1(obj) {
+  for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+    args[_key - 1] = arguments[_key];
+  }
+
+  return typeof obj === 'function' ? obj.apply(void 0, args) : obj;
+}
+function getValues$1$1(object) {
+  return Object.keys(object).map(function (k) {
+    return object[k];
+  });
+}
+function getForwardProps$1(props) {
+  var to = props.to,
+      from = props.from,
+      config = props.config,
+      native = props.native,
+      onStart = props.onStart,
+      onRest = props.onRest,
+      onFrame = props.onFrame,
+      children = props.children,
+      reset = props.reset,
+      reverse = props.reverse,
+      force = props.force,
+      immediate = props.immediate,
+      impl = props.impl,
+      inject = props.inject,
+      delay = props.delay,
+      attach = props.attach,
+      destroyed = props.destroyed,
+      interpolateTo = props.interpolateTo,
+      autoStart = props.autoStart,
+      ref = props.ref,
+      forward = _objectWithoutPropertiesLoose$1(props, ["to", "from", "config", "native", "onStart", "onRest", "onFrame", "children", "reset", "reverse", "force", "immediate", "impl", "inject", "delay", "attach", "destroyed", "interpolateTo", "autoStart", "ref"]);
+
+  return forward;
+}
+function interpolateTo$1(props) {
+  var forward = getForwardProps$1(props);
+  var rest = Object.keys(props).reduce(function (a, k) {
+    var _extends2;
+
+    return forward[k] !== void 0 ? a : _extends({}, a, (_extends2 = {}, _extends2[k] = props[k], _extends2));
+  }, {});
+  return _extends({
+    to: forward
+  }, rest);
+}
+function convertToAnimatedValue$1(acc, _ref) {
+  var _extends3;
+
+  var name = _ref[0],
+      value = _ref[1];
+  return _extends({}, acc, (_extends3 = {}, _extends3[name] = new (Array.isArray(value) ? AnimatedArray$1 : AnimatedValue$1)(value), _extends3));
+}
+function convertValues$1(props) {
+  var from = props.from,
+      to = props.to,
+      native = props.native;
+  var allProps = Object.entries(_extends({}, from, to));
+  return native ? allProps.reduce(convertToAnimatedValue$1, {}) : _extends({}, from, to);
+}
+function handleRef$1(ref, forward) {
+  if (forward) {
+    // If it's a function, assume it's a ref callback
+    if (typeof forward === 'function') forward(ref);else if (typeof forward === 'object') {
+      // If it's an object and has a 'current' property, assume it's a ref object
+      forward.current = ref;
+    }
+  }
+
+  return ref;
+}
+
+var check$2 = function check(value) {
+  return value === 'auto';
+};
+
+var overwrite$1 = function overwrite(width, height) {
+  return function (acc, _ref) {
+    var _extends2;
+
+    var name = _ref[0],
+        value = _ref[1];
+    return _extends({}, acc, (_extends2 = {}, _extends2[name] = value === 'auto' ? ~name.indexOf('height') ? height : width : value, _extends2));
+  };
+};
+
+function fixAuto$1(props, callback) {
+  var from = props.from,
+      to = props.to,
+      children = props.children; // Dry-route props back if nothing's using 'auto' in there
+  // TODO: deal with "null"
+
+  if (!(getValues$1$1(to).some(check$2) || getValues$1$1(from).some(check$2))) return; // Fetch render v-dom
+
+  var element = children(convertValues$1(props)); // A spring can return undefined/null, check against that (#153)
+
+  if (!element) return; // Or it could be an array (#346) ...
+
+  if (Array.isArray(element)) element = {
+    type: 'div',
+    props: {
+      children: element
+    } // Extract styles
+
+  };
+  var elementStyles = element.props.style; // Return v.dom with injected ref
+
+  return React.createElement(element.type, _extends({
+    key: element.key ? element.key : undefined
+  }, element.props, {
+    style: _extends({}, elementStyles, {
+      position: 'absolute',
+      visibility: 'hidden'
+    }),
+    ref: function ref(_ref2) {
+      if (_ref2) {
+        // Once it's rendered out, fetch bounds (minus padding/margin/borders)
+        var node = ReactDOM.findDOMNode(_ref2);
+        var width, height;
+        var cs = getComputedStyle(node);
+
+        if (cs.boxSizing === 'border-box') {
+          width = node.offsetWidth;
+          height = node.offsetHeight;
+        } else {
+          var paddingX = parseFloat(cs.paddingLeft || 0) + parseFloat(cs.paddingRight || 0);
+          var paddingY = parseFloat(cs.paddingTop || 0) + parseFloat(cs.paddingBottom || 0);
+          var borderX = parseFloat(cs.borderLeftWidth || 0) + parseFloat(cs.borderRightWidth || 0);
+          var borderY = parseFloat(cs.borderTopWidth || 0) + parseFloat(cs.borderBottomWidth || 0);
+          width = node.offsetWidth - paddingX - borderX;
+          height = node.offsetHeight - paddingY - borderY;
+        }
+
+        var convert = overwrite$1(width, height);
+        callback(_extends({}, props, {
+          from: Object.entries(from).reduce(convert, from),
+          to: Object.entries(to).reduce(convert, to)
+        }));
+      }
+    }
+  }));
+}
+
+var isUnitlessNumber$1 = {
+  animationIterationCount: true,
+  borderImageOutset: true,
+  borderImageSlice: true,
+  borderImageWidth: true,
+  boxFlex: true,
+  boxFlexGroup: true,
+  boxOrdinalGroup: true,
+  columnCount: true,
+  columns: true,
+  flex: true,
+  flexGrow: true,
+  flexPositive: true,
+  flexShrink: true,
+  flexNegative: true,
+  flexOrder: true,
+  gridRow: true,
+  gridRowEnd: true,
+  gridRowSpan: true,
+  gridRowStart: true,
+  gridColumn: true,
+  gridColumnEnd: true,
+  gridColumnSpan: true,
+  gridColumnStart: true,
+  fontWeight: true,
+  lineClamp: true,
+  lineHeight: true,
+  opacity: true,
+  order: true,
+  orphans: true,
+  tabSize: true,
+  widows: true,
+  zIndex: true,
+  zoom: true,
+  // SVG-related properties
+  fillOpacity: true,
+  floodOpacity: true,
+  stopOpacity: true,
+  strokeDasharray: true,
+  strokeDashoffset: true,
+  strokeMiterlimit: true,
+  strokeOpacity: true,
+  strokeWidth: true
+};
+
+var prefixKey$1 = function prefixKey(prefix, key) {
+  return prefix + key.charAt(0).toUpperCase() + key.substring(1);
+};
+
+var prefixes$1 = ['Webkit', 'Ms', 'Moz', 'O'];
+isUnitlessNumber$1 = Object.keys(isUnitlessNumber$1).reduce(function (acc, prop) {
+  prefixes$1.forEach(function (prefix) {
+    return acc[prefixKey$1(prefix, prop)] = acc[prop];
+  });
+  return acc;
+}, isUnitlessNumber$1);
+
+function dangerousStyleValue$1(name, value, isCustomProperty) {
+  if (value == null || typeof value === 'boolean' || value === '') return '';
+  if (!isCustomProperty && typeof value === 'number' && value !== 0 && !(isUnitlessNumber$1.hasOwnProperty(name) && isUnitlessNumber$1[name])) return value + 'px'; // Presumes implicit 'px' suffix for unitless numbers
+
+  return ('' + value).trim();
+}
+
+var attributeCache$1 = {};
+injectCreateAnimatedStyle$1(function (style) {
+  return new AnimatedStyle$1(style);
+});
+injectDefaultElement$1('div');
+injectInterpolation$1(createInterpolation$1);
+injectColorNames$1(colors$2);
+injectBugfixes$1(fixAuto$1);
+injectApplyAnimatedValues$1(function (instance, props) {
+  if (instance.nodeType && instance.setAttribute !== undefined) {
+    var style = props.style,
+        children = props.children,
+        scrollTop = props.scrollTop,
+        scrollLeft = props.scrollLeft,
+        attributes = _objectWithoutPropertiesLoose$1(props, ["style", "children", "scrollTop", "scrollLeft"]);
+
+    if (scrollTop !== void 0) instance.scrollTop = scrollTop;
+    if (scrollLeft !== void 0) instance.scrollLeft = scrollLeft; // Set textContent, if children is an animatable value
+
+    if (children !== void 0) instance.textContent = children; // Set styles ...
+
+    for (var styleName in style) {
+      if (!style.hasOwnProperty(styleName)) continue;
+      var isCustomProperty = styleName.indexOf('--') === 0;
+      var styleValue = dangerousStyleValue$1(styleName, style[styleName], isCustomProperty);
+      if (styleName === 'float') styleName = 'cssFloat';
+      if (isCustomProperty) instance.style.setProperty(styleName, styleValue);else instance.style[styleName] = styleValue;
+    } // Set attributes ...
+
+
+    for (var name in attributes) {
+      // Attributes are written in dash case
+      var dashCase = attributeCache$1[name] || (attributeCache$1[name] = name.replace(/([A-Z])/g, function (n) {
+        return '-' + n.toLowerCase();
+      }));
+      if (typeof instance.getAttribute(dashCase) !== 'undefined') instance.setAttribute(dashCase, attributes[name]);
+    }
+  } else return false;
+}, function (style) {
+  return style;
+});
+
+var AnimatedProps$1 =
+/*#__PURE__*/
+function (_AnimatedObjectWithCh) {
+  _inheritsLoose(AnimatedProps, _AnimatedObjectWithCh);
+
+  function AnimatedProps(props, callback) {
+    var _this;
+
+    _this = _AnimatedObjectWithCh.call(this) || this;
+    if (props.style) props = _extends({}, props, {
+      style: createAnimatedStyle$1(props.style)
+    });
+    _this.payload = props;
+    _this.update = callback;
+
+    _this.attach();
+
+    return _this;
+  }
+
+  return AnimatedProps;
+}(AnimatedObjectWithChildren$1);
+
+function createAnimatedComponent$1(Component) {
+  var AnimatedComponent =
+  /*#__PURE__*/
+  function (_React$Component) {
+    _inheritsLoose(AnimatedComponent, _React$Component);
+
+    function AnimatedComponent(props) {
+      var _this;
+
+      _this = _React$Component.call(this) || this;
+
+      _this.callback = function () {
+        if (_this.node) {
+          var didUpdate = applyAnimatedValues$1.fn(_this.node, _this.propsAnimated.getAnimatedValue(), _assertThisInitialized$1(_assertThisInitialized$1(_this)));
+          if (didUpdate === false) _this.forceUpdate();
+        }
+      };
+
+      _this.attachProps(props);
+
+      return _this;
+    }
+
+    var _proto = AnimatedComponent.prototype;
+
+    _proto.componentWillUnmount = function componentWillUnmount() {
+      this.propsAnimated && this.propsAnimated.detach();
+    };
+
+    _proto.setNativeProps = function setNativeProps(props) {
+      var didUpdate = applyAnimatedValues$1.fn(this.node, props, this);
+      if (didUpdate === false) this.forceUpdate();
+    } // The system is best designed when setNativeProps is implemented. It is
+    // able to avoid re-rendering and directly set the attributes that
+    // changed. However, setNativeProps can only be implemented on leaf
+    // native components. If you want to animate a composite component, you
+    // need to re-render it. In this case, we have a fallback that uses
+    // forceUpdate.
+    ;
+
+    _proto.attachProps = function attachProps(_ref) {
+      var forwardRef = _ref.forwardRef,
+          nextProps = _objectWithoutPropertiesLoose$1(_ref, ["forwardRef"]);
+
+      var oldPropsAnimated = this.propsAnimated;
+      this.propsAnimated = new AnimatedProps$1(nextProps, this.callback); // When you call detach, it removes the element from the parent list
+      // of children. If it goes to 0, then the parent also detaches itself
+      // and so on.
+      // An optimization is to attach the new elements and THEN detach the old
+      // ones instead of detaching and THEN attaching.
+      // This way the intermediate state isn't to go to 0 and trigger
+      // this expensive recursive detaching to then re-attach everything on
+      // the very next operation.
+
+      oldPropsAnimated && oldPropsAnimated.detach();
+    };
+
+    _proto.shouldComponentUpdate = function shouldComponentUpdate(props) {
+      var style = props.style,
+          nextProps = _objectWithoutPropertiesLoose$1(props, ["style"]);
+
+      var _this$props = this.props,
+          currentStyle = _this$props.style,
+          currentProps = _objectWithoutPropertiesLoose$1(_this$props, ["style"]);
+
+      if (!shallowEqual$1(currentProps, nextProps) || !shallowEqual$1(currentStyle, style)) {
+        this.attachProps(props);
+        return true;
+      }
+
+      return false;
+    };
+
+    _proto.render = function render() {
+      var _this2 = this;
+
+      var _this$propsAnimated$g = this.propsAnimated.getValue(),
+          scrollTop = _this$propsAnimated$g.scrollTop,
+          scrollLeft = _this$propsAnimated$g.scrollLeft,
+          animatedProps = _objectWithoutPropertiesLoose$1(_this$propsAnimated$g, ["scrollTop", "scrollLeft"]);
+
+      return React.createElement(Component, _extends({}, animatedProps, {
+        ref: function ref(node) {
+          return _this2.node = handleRef$1(node, _this2.props.forwardRef);
+        }
+      }));
+    };
+
+    return AnimatedComponent;
+  }(React.Component);
+
+  return React.forwardRef(function (props, ref) {
+    return React.createElement(AnimatedComponent, _extends({}, props, {
+      forwardRef: ref
+    }));
+  });
+}
+
+var active$1 = false;
+var controllers$1 = new Set();
+
+var frameLoop$1 = function frameLoop() {
+  var time = now$2();
+
+  for (var _iterator = controllers$1, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
+    var _ref;
+
+    if (_isArray) {
+      if (_i >= _iterator.length) break;
+      _ref = _iterator[_i++];
+    } else {
+      _i = _iterator.next();
+      if (_i.done) break;
+      _ref = _i.value;
+    }
+
+    var controller = _ref;
+    var isDone = true;
+    var noChange = true;
+
+    for (var configIdx = 0; configIdx < controller.configs.length; configIdx++) {
+      var config = controller.configs[configIdx];
+      var endOfAnimation = void 0,
+          lastTime = void 0;
+
+      for (var valIdx = 0; valIdx < config.animatedValues.length; valIdx++) {
+        var animation = config.animatedValues[valIdx]; // If an animation is done, skip, until all of them conclude
+
+        if (animation.done) continue;
+        var from = config.fromValues[valIdx];
+        var to = config.toValues[valIdx];
+        var position = animation.lastPosition;
+        var isAnimated = to instanceof Animated$1;
+
+        var _velocity = Array.isArray(config.initialVelocity) ? config.initialVelocity[valIdx] : config.initialVelocity;
+
+        if (isAnimated) to = to.getValue(); // Conclude animation if it's either immediate, or from-values match end-state
+
+        if (config.immediate || !isAnimated && !config.decay && from === to) {
+          animation.updateValue(to);
+          animation.done = true;
+          continue;
+        } // Doing delay here instead of setTimeout is one async worry less
+
+
+        if (config.delay && time - controller.startTime < config.delay) {
+          isDone = false;
+          continue;
+        } // Flag change
+
+
+        noChange = false; // Break animation when string values are involved
+
+        if (typeof from === 'string' || typeof to === 'string') {
+          animation.updateValue(to);
+          animation.done = true;
+          continue;
+        }
+
+        if (config.duration !== void 0) {
+          /** Duration easing */
+          position = from + config.easing((time - controller.startTime - config.delay) / config.duration) * (to - from);
+          endOfAnimation = time >= controller.startTime + config.delay + config.duration;
+        } else if (config.decay) {
+          /** Decay easing */
+          position = from + _velocity / (1 - 0.998) * (1 - Math.exp(-(1 - 0.998) * (time - controller.startTime)));
+          endOfAnimation = Math.abs(animation.lastPosition - position) < 0.1;
+          if (endOfAnimation) to = position;
+        } else {
+          /** Spring easing */
+          lastTime = animation.lastTime !== void 0 ? animation.lastTime : time;
+          _velocity = animation.lastVelocity !== void 0 ? animation.lastVelocity : config.initialVelocity; // If we lost a lot of frames just jump to the end.
+
+          if (time > lastTime + 64) lastTime = time; // http://gafferongames.com/game-physics/fix-your-timestep/
+
+          var numSteps = Math.floor(time - lastTime);
+
+          for (var i = 0; i < numSteps; ++i) {
+            var force = -config.tension * (position - to);
+            var damping = -config.friction * _velocity;
+            var acceleration = (force + damping) / config.mass;
+            _velocity = _velocity + acceleration * 1 / 1000;
+            position = position + _velocity * 1 / 1000;
+          } // Conditions for stopping the spring animation
+
+
+          var isOvershooting = config.clamp && config.tension !== 0 ? from < to ? position > to : position < to : false;
+          var isVelocity = Math.abs(_velocity) <= config.precision;
+          var isDisplacement = config.tension !== 0 ? Math.abs(to - position) <= config.precision : true;
+          endOfAnimation = isOvershooting || isVelocity && isDisplacement;
+          animation.lastVelocity = _velocity;
+          animation.lastTime = time;
+        } // Trails aren't done until their parents conclude
+
+
+        if (isAnimated && !config.toValues[valIdx].done) endOfAnimation = false;
+
+        if (endOfAnimation) {
+          // Ensure that we end up with a round value
+          if (animation.value !== to) position = to;
+          animation.done = true;
+        } else isDone = false;
+
+        animation.updateValue(position);
+        animation.lastPosition = position;
+      } // Keep track of updated values only when necessary
+
+
+      if (controller.props.onFrame || !controller.props.native) controller.animatedProps[config.name] = config.interpolation.getValue();
+    } // Update callbacks in the end of the frame
+
+
+    if (controller.props.onFrame || !controller.props.native) {
+      if (!controller.props.native && controller.onUpdate) controller.onUpdate();
+      if (controller.props.onFrame) controller.props.onFrame(controller.animatedProps);
+    } // Either call onEnd or next frame
+
+
+    if (isDone) {
+      controllers$1.delete(controller);
+      controller.debouncedOnEnd({
+        finished: true,
+        noChange: noChange
+      });
+    }
+  } // Loop over as long as there are controllers ...
+
+
+  if (controllers$1.size) requestFrame$1(frameLoop);else active$1 = false;
+};
+
+var addController$1 = function addController(controller) {
+  if (!controllers$1.has(controller)) {
+    controllers$1.add(controller);
+    if (!active$1) requestFrame$1(frameLoop$1);
+    active$1 = true;
+  }
+};
+
+var removeController$1 = function removeController(controller) {
+  if (controllers$1.has(controller)) {
+    controllers$1.delete(controller);
+  }
+};
+
+var Controller$1 =
+/*#__PURE__*/
+function () {
+  function Controller(props, config) {
+    var _this = this;
+
+    if (config === void 0) {
+      config = {
+        native: true,
+        interpolateTo: true,
+        autoStart: true
+      };
+    }
+
+    this.getValues = function () {
+      return _this.props.native ? _this.interpolations : _this.animatedProps;
+    };
+
+    this.dependents = new Set();
+    this.isActive = false;
+    this.hasChanged = false;
+    this.props = {};
+    this.merged = {};
+    this.animations = {};
+    this.interpolations = {};
+    this.animatedProps = {};
+    this.configs = [];
+    this.frame = undefined;
+    this.startTime = undefined;
+    this.lastTime = undefined;
+    this.update(_extends({}, props, config));
+  }
+
+  var _proto = Controller.prototype;
+
+  _proto.update = function update(props) {
+    var _this2 = this;
+
+    this.props = _extends({}, this.props, props);
+
+    var _ref = this.props.interpolateTo ? interpolateTo$1(this.props) : this.props,
+        _ref$from = _ref.from,
+        from = _ref$from === void 0 ? {} : _ref$from,
+        _ref$to = _ref.to,
+        to = _ref$to === void 0 ? {} : _ref$to,
+        _ref$config = _ref.config,
+        config = _ref$config === void 0 ? {} : _ref$config,
+        _ref$delay = _ref.delay,
+        delay = _ref$delay === void 0 ? 0 : _ref$delay,
+        reverse = _ref.reverse,
+        attach = _ref.attach,
+        reset = _ref.reset,
+        immediate = _ref.immediate,
+        autoStart = _ref.autoStart,
+        ref = _ref.ref; // Reverse values when requested
+
+
+    if (reverse) {
+      var _ref2 = [to, from];
+      from = _ref2[0];
+      to = _ref2[1];
+    }
+
+    this.hasChanged = false; // Attachment handling, trailed springs can "attach" themselves to a previous spring
+
+    var target = attach && attach(this); // Reset merged props when necessary
+
+    var extra = reset ? {} : this.merged; // This will collect all props that were ever set
+
+    this.merged = _extends({}, from, extra, to); // Reduces input { name: value } pairs into animated values
+
+    this.animations = Object.entries(this.merged).reduce(function (acc, _ref3, i) {
+      var name = _ref3[0],
+          value = _ref3[1];
+      // Issue cached entries, except on reset
+      var entry = !reset && acc[name] || {}; // Figure out what the value is supposed to be
+
+      var isNumber = typeof value === 'number';
+      var isString = typeof value === 'string' && !value.startsWith('#') && !/\d/.test(value) && !colorNames$1[value];
+      var isArray = !isNumber && !isString && Array.isArray(value);
+      var fromValue = from[name] !== undefined ? from[name] : value;
+      var toValue = isNumber || isArray ? value : isString ? value : 1;
+      var toConfig = callProp$1(config, name);
+      if (target) toValue = target.animations[name].parent; // Detect changes, animated values will be checked in the raf-loop
+
+      if (toConfig.decay !== void 0 || !shallowEqual$1(entry.changes, value)) {
+        var _extends2;
+
+        _this2.hasChanged = true;
+        var parent, interpolation$$1;
+        if (isNumber || isString) parent = interpolation$$1 = entry.parent || new AnimatedValue$1(fromValue);else if (isArray) parent = interpolation$$1 = entry.parent || new AnimatedArray$1(fromValue);else {
+          var prev = entry.interpolation && entry.interpolation.calc(entry.parent.value);
+
+          if (entry.parent) {
+            parent = entry.parent;
+            parent.setValue(0, false);
+          } else parent = new AnimatedValue$1(0);
+
+          var range = {
+            output: [prev !== void 0 ? prev : fromValue, value]
+          };
+
+          if (entry.interpolation) {
+            interpolation$$1 = entry.interpolation;
+            entry.interpolation.updateConfig(range);
+          } else interpolation$$1 = parent.interpolate(range);
+        } // Set immediate values
+
+        if (callProp$1(immediate, name)) parent.setValue(value, false); // Reset animated values
+
+        var animatedValues = toArray$1(parent.getPayload());
+        animatedValues.forEach(function (value) {
+          return value.prepare(_this2);
+        });
+        return _extends({}, acc, (_extends2 = {}, _extends2[name] = _extends({}, entry, {
+          name: name,
+          parent: parent,
+          interpolation: interpolation$$1,
+          animatedValues: animatedValues,
+          changes: value,
+          fromValues: toArray$1(parent.getValue()),
+          toValues: toArray$1(target ? toValue.getPayload() : toValue),
+          immediate: callProp$1(immediate, name),
+          delay: withDefault$1(toConfig.delay, delay || 0),
+          initialVelocity: withDefault$1(toConfig.velocity, 0),
+          clamp: withDefault$1(toConfig.clamp, false),
+          precision: withDefault$1(toConfig.precision, 0.01),
+          tension: withDefault$1(toConfig.tension, 170),
+          friction: withDefault$1(toConfig.friction, 26),
+          mass: withDefault$1(toConfig.mass, 1),
+          duration: toConfig.duration,
+          easing: withDefault$1(toConfig.easing, function (t) {
+            return t;
+          }),
+          decay: toConfig.decay
+        }), _extends2));
+      } else return acc;
+    }, this.animations);
+
+    if (this.hasChanged) {
+      this.configs = getValues$1$1(this.animations);
+      this.animatedProps = {};
+      this.interpolations = {};
+
+      for (var key in this.animations) {
+        this.interpolations[key] = this.animations[key].interpolation;
+        this.animatedProps[key] = this.animations[key].interpolation.getValue();
+      }
+    } // TODO: clean up ref in controller
+
+
+    for (var _len = arguments.length, start = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+      start[_key - 1] = arguments[_key];
+    }
+
+    if (!ref && (autoStart || start.length)) this.start.apply(this, start);
+    var onEnd = start[0],
+        onUpdate = start[1];
+    this.onEnd = typeof onEnd === 'function' && onEnd;
+    this.onUpdate = onUpdate;
+    return this.getValues();
+  };
+
+  _proto.start = function start(onEnd, onUpdate) {
+    var _this3 = this;
+
+    this.startTime = now$2();
+    if (this.isActive) this.stop();
+    this.isActive = true;
+    this.onEnd = typeof onEnd === 'function' && onEnd;
+    this.onUpdate = onUpdate;
+    if (this.props.onStart) this.props.onStart();
+    addController$1(this);
+    return new Promise(function (res) {
+      return _this3.resolve = res;
+    });
+  };
+
+  _proto.stop = function stop(finished) {
+    if (finished === void 0) {
+      finished = false;
+    }
+
+    // Reset collected changes since the animation has been stopped cold turkey
+    if (finished) getValues$1$1(this.animations).forEach(function (a) {
+      return a.changes = undefined;
+    });
+    this.debouncedOnEnd({
+      finished: finished
+    });
+  };
+
+  _proto.destroy = function destroy() {
+    removeController$1(this);
+    this.props = {};
+    this.merged = {};
+    this.animations = {};
+    this.interpolations = {};
+    this.animatedProps = {};
+    this.configs = [];
+  };
+
+  _proto.debouncedOnEnd = function debouncedOnEnd(result) {
+    removeController$1(this);
+    this.isActive = false;
+    var onEnd = this.onEnd;
+    this.onEnd = null;
+    if (onEnd) onEnd(result);
+    if (this.resolve) this.resolve();
+    this.resolve = null;
+  };
+
+  return Controller;
+}();
+
+var KeyframeController =
+/*#__PURE__*/
+function () {
+  function KeyframeController(_props) {
+    var _this = this;
+
+    this.frameId = 0;
+
+    this.next = function (props, localFrameId, last, index) {
+      if (last === void 0) {
+        last = true;
+      }
+
+      if (index === void 0) {
+        index = 0;
+      }
+
+      // this.last = last
+      // this.running = true
+      // config passed to props can overwrite global config passed in
+      // controller instantiation i.e. globalConfig
+      var config = props.config ? props.config : Array.isArray(_this.globalConfig) ? _this.globalConfig[index] : _this.globalConfig;
+      _this.onFrameRest = props.onRest;
+      return new Promise(function (resolve) {
+        // if ref is passed to internal controller, then it ignore onEnd call back
+        _this.instance.update(_extends({}, _this.globalProps, props, {
+          config: config
+        }), _this.onEnd(_this.onFrameRest, localFrameId, last, resolve)); // start needs to be called here if ref is present to activate the anim
+
+
+        if (_this.ref) {
+          _this.instance.start(_this.onEnd(_this.onFrameRest, localFrameId, last, resolve));
+        } // hacky solution to force the parent to be updated any time
+        // the child controller is reset
+
+
+        _this.instance.props.reset && _this.instance.props.native && _this.parentForceUpdate && requestFrame$1(_this.parentForceUpdate);
+      });
+    };
+
+    this.start = function (onEnd) {
+      _this.globalOnEnd = onEnd;
+
+      if (_this.currSlots) {
+        var _ret = function () {
+          var localFrameId = ++_this.frameId;
+
+          if (Array.isArray(_this.currSlots)) {
+            var q = Promise.resolve();
+
+            var _loop = function _loop(i) {
+              var index = i;
+              var slot = _this.currSlots[index];
+              var last = index === _this.currSlots.length - 1;
+              q = q.then(function () {
+                return localFrameId === _this.frameId && _this.next(slot, localFrameId, last, index);
+              });
+            };
+
+            for (var i = 0; i < _this.currSlots.length; i++) {
+              _loop(i);
+            }
+          } else if (typeof _this.currSlots === 'function') {
+            var index = 0;
+
+            _this.currSlots( // next
+            function (props, last) {
+              if (last === void 0) {
+                last = false;
+              }
+
+              return localFrameId === _this.frameId && _this.next(props, localFrameId, last, index++);
+            }, // cancel
+            function () {
+              return requestFrame$1(function () {
+                return _this.instance.isActive && _this.instance.stop(true);
+              });
+            });
+          } else _this.next(_this.currSlots, localFrameId);
+
+          _this.prevSlots = _this.currSlots;
+          return {
+            v: new Promise(function (resolve) {
+              return _this.keyFrameEndResolver = resolve;
+            })
+          };
+        }();
+
+        if (typeof _ret === "object") return _ret.v;
+      }
+    };
+
+    this.stop = function (finished) {
+      if (finished === void 0) {
+        finished = false;
+      }
+
+      ++_this.frameId;
+      if (_this.instance.isActive) _this.instance.stop(finished);
+    };
+
+    this.onEnd = function (onFrameRest, localFrameId, last, resolve) {
+      return function (args) {
+        if (localFrameId === _this.frameId) {
+          if (resolve) resolve();
+          if (onFrameRest) onFrameRest(_this.merged);
+          if (last && _this.globalOnEnd) _this.globalOnEnd(args);
+          if (last && _this.keyFrameEndResolver) _this.keyFrameEndResolver();
+
+          if (args.finished && last && _this.globalOnRest) {
+            _this.globalOnRest(_this.merged);
+          }
+        }
+      };
+    };
+
+    this.updateWithForceUpdate = function (forceUpdate) {
+      // needed to forceUpdate when the controller is reset
+      // for native controllers
+      _this.parentForceUpdate = forceUpdate;
+
+      for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+        args[_key - 1] = arguments[_key];
+      }
+
+      _this.update.apply(_this, args);
+    };
+
+    this.update = function (args) {
+      var isFnOrArray = typeof args === 'function' || Array.isArray(args);
+
+      if (isFnOrArray) {
+        _this.currSlots = args;
+        !_this.ref && _this.start();
+      } else {
+        var slots = args.slots,
+            rest = _objectWithoutPropertiesLoose$1(args, ["slots"]);
+
+        _this.currSlots = slots;
+        !_this.ref && _this.start.apply(_this, rest);
+      }
+    };
+
+    this.getValues = function () {
+      return _this.instance.getValues();
+    };
+
+    this.destroy = function () {
+      return _this.instance.destroy();
+    };
+
+    var _config = _props.config,
+        onRest = _props.onRest,
+        initialProps = _objectWithoutPropertiesLoose$1(_props, ["config", "onRest"]);
+
+    this.globalProps = function (_ref) {
+      var native = _ref.native,
+          onStart = _ref.onStart,
+          onFrame = _ref.onFrame,
+          children = _ref.children,
+          reset = _ref.reset,
+          delay = _ref.delay,
+          destroyed = _ref.destroyed;
+      return {
+        native: native,
+        onStart: onStart,
+        reset: reset,
+        onFrame: onFrame,
+        children: children,
+        delay: delay,
+        destroyed: destroyed
+      };
+    }(_props);
+
+    this.globalConfig = _props.config;
+    this.globalOnRest = _props.onRest;
+    this.ref = _props.ref;
+    this.prevSlots = {};
+    this.currSlots = null;
+    this.instance = new Controller$1(_extends({}, initialProps, {
+      native: true
+    }));
+  }
+
+  _createClass$2(KeyframeController, [{
+    key: "isActive",
+    get: function get() {
+      return this.instance.isActive;
+    }
+  }, {
+    key: "config",
+    set: function set(config) {
+      this.globalConfig = config;
+    }
+  }, {
+    key: "globals",
+    set: function set(props) {
+      this.globalProps = _extends({}, this.globalProps, props);
+    }
+  }, {
+    key: "merged",
+    get: function get() {
+      return this.instance.merged;
+    }
+  }, {
+    key: "props",
+    get: function get() {
+      return this.instance.props;
+    }
+  }]);
+
+  return KeyframeController;
+}();
+
+var useSpringImpl = function useSpringImpl(type) {
+  if (type === void 0) {
+    type = 'default';
+  }
+
+  return function (args) {
+    var _useState = useState$1(),
+        f = _useState[1];
+
+    var forceUpdate = function forceUpdate() {
+      return f(function (v) {
+        return !v;
+      });
+    }; // Extract animation props and hook-specific props, can be a function or an obj
+
+
+    var isFn = typeof args === 'function';
+
+    var _callProp = callProp$1(args),
+        onRest = _callProp.onRest,
+        onKeyframesHalt = _callProp.onKeyframesHalt,
+        props = _objectWithoutPropertiesLoose$1(_callProp, ["onRest", "onKeyframesHalt"]); // The controller maintains the animation values, starts and tops animations
+
+
+    var _useState2 = useState$1(function () {
+      return type === 'keyframe' ? new KeyframeController(props) : new Controller$1(props);
+    }),
+        ctrl = _useState2[0]; // Destroy controller on unmount
+
+
+    useEffect(function () {
+      return function () {
+        return ctrl.destroy();
+      };
+    }, []);
+
+    var onHalt = function onHalt(_ref) {
+      var finished = _ref.finished;
+      return finished && onRest && onRest(ctrl.merged);
+    }; // The hooks explcit API gets defined here ...
+
+
+    useImperativeHandle(props.ref, function () {
+      return {
+        start: function start() {
+          return ctrl.start(onHalt);
+        },
+
+        get isActive() {
+          return ctrl.isActive;
+        },
+
+        stop: function stop(finished) {
+          if (finished === void 0) {
+            finished = false;
+          }
+
+          if (ctrl.isActive) ctrl.stop(finished);
+        }
+      };
+    }); // Defines the hooks setter, which updates the controller
+
+    var updateCtrl = useCallback(function (updateProps) {
+      type === 'keyframe' ? ctrl.updateWithForceUpdate(forceUpdate, updateProps) : ctrl.update(updateProps);
+      if (!ctrl.props.ref) ctrl.start(onHalt);
+      if (ctrl.props.reset && type === 'default') requestFrame$1(forceUpdate);
+    }, [onRest, ctrl.props.ref]); // Update next frame is props aren't functional
+
+    useEffect(function () {
+      return void (!isFn && updateCtrl(props));
+    }); // Return animated props, or, anim-props + the update-setter above
+
+    var propValues = ctrl.getValues();
+    return isFn ? [propValues, updateCtrl, function (finished) {
+      if (finished === void 0) {
+        finished = false;
+      }
+
+      return ctrl.stop(finished);
+    }] : propValues;
+  };
+};
+var useSpring = useSpringImpl();
+
+var domElements$1 = ['a', 'abbr', 'address', 'area', 'article', 'aside', 'audio', 'b', 'base', 'bdi', 'bdo', 'big', 'blockquote', 'body', 'br', 'button', 'canvas', 'caption', 'cite', 'code', 'col', 'colgroup', 'data', 'datalist', 'dd', 'del', 'details', 'dfn', 'dialog', 'div', 'dl', 'dt', 'em', 'embed', 'fieldset', 'figcaption', 'figure', 'footer', 'form', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'head', 'header', 'hgroup', 'hr', 'html', 'i', 'iframe', 'img', 'input', 'ins', 'kbd', 'keygen', 'label', 'legend', 'li', 'link', 'main', 'map', 'mark', 'marquee', 'menu', 'menuitem', 'meta', 'meter', 'nav', 'noscript', 'object', 'ol', 'optgroup', 'option', 'output', 'p', 'param', 'picture', 'pre', 'progress', 'q', 'rp', 'rt', 'ruby', 's', 'samp', 'script', 'section', 'select', 'small', 'source', 'span', 'strong', 'style', 'sub', 'summary', 'sup', 'table', 'tbody', 'td', 'textarea', 'tfoot', 'th', 'thead', 'time', 'title', 'tr', 'track', 'u', 'ul', 'var', 'video', 'wbr', // SVG
+'circle', 'clipPath', 'defs', 'ellipse', 'foreignObject', 'g', 'image', 'line', 'linearGradient', 'mask', 'path', 'pattern', 'polygon', 'polyline', 'radialGradient', 'rect', 'stop', 'svg', 'text', 'tspan'];
+var extendedAnimated$1 = domElements$1.reduce(function (acc, element) {
+  acc[element] = createAnimatedComponent$1(element);
+  return acc;
+}, createAnimatedComponent$1);
+
+var RADIUS = 2;
+var BAR_HEIGHT$1 = 6;
+var INDETERMINATE_WIDTH = 1 / 4;
+var INDETERMINATE_DURATION = 1600;
+var indeterminateAnim = keyframes(["0%{transform:translate3d(calc(-100% - 1px),0,0);}70%,100%{transform:translate3d(calc(", "% + 1px),0,0);}"], 100 / INDETERMINATE_WIDTH);
+var ProgressBar = React.memo(function (_ref) {
+  var animate = _ref.animate,
+      color = _ref.color,
+      progress = _ref.progress,
+      value = _ref.value;
+
+  // Support `progress` for a while but warn if being used.
+  if (value === -1 && typeof progress === 'number') {
+    value = progress;
+
+    if (!ProgressBar._warned) {
+      warn('The `progress` prop of ProgressBar is deprecated: please use `value` instead.');
+      ProgressBar._warned = true;
+    }
+  } // The indeterminate state can be triggered either by not setting the value
+  // (to mimic the <progress> element in HTML), or by setting the -1 value (for
+  // convenience in React).
+
+
+  var indeterminate = value === -1;
+  var transition = useSpring({
+    config: objectSpread({}, springs.smooth, {
+      precision: 0.001
+    }),
+    from: {
+      scale: 0,
+      x: 0
+    },
+    to: {
+      scale: value,
+      x: 0
+    },
+    immediate: !animate
+  });
+  return React.createElement(_StyledDiv$5, {
+    _$p_: theme.secondaryBackground
+  }, React.createElement(Bar$1, {
+    style: {
+      width: "".concat((indeterminate ? INDETERMINATE_WIDTH : 1) * 100, "%"),
+      background: color,
+      borderRadius: "".concat(indeterminate ? RADIUS : 0, "px"),
+      animationName: "".concat(indeterminate ? indeterminateAnim.name : 'none'),
+      transform: interpolate$1$1([transition.x, transition.scale], function (x, s) {
+        return "translate3d(".concat(x * 100, "%, 0, 0) scale3d(").concat(s, ", 1, 1)");
+      })
+    }
+  }));
+});
+var Bar$1 = styled(extendedAnimated$1.div).withConfig({
+  displayName: "ProgressBar__Bar",
+  componentId: "sc-1gly9sn-0"
+})(["width:100%;height:", "px;transform-origin:0 0;animation:", " ", "ms ease-in-out infinite;animation-name:none;"], BAR_HEIGHT$1, indeterminateAnim, INDETERMINATE_DURATION);
 ProgressBar.defaultProps = {
-  progress: 0
+  animate: true,
+  color: theme.accent,
+  value: -1
 };
 ProgressBar.propTypes = {
-  color: propTypes.string,
-  progress: propTypes.number
+  animate: ExtendedPropTypes.bool,
+  color: ExtendedPropTypes.string,
+  progress: ExtendedPropTypes._0to1,
+  value: ExtendedPropTypes.oneOfType([ExtendedPropTypes._0to1, ExtendedPropTypes.oneOf([-1])])
 };
-var Main$b = styled.div.withConfig({
-  displayName: "ProgressBar__Main",
-  componentId: "sc-1gly9sn-0"
-})(["width:100%;align-items:center;"]);
-var Base = styled.div.withConfig({
-  displayName: "ProgressBar__Base",
+
+var _StyledDiv$5 = styled("div").withConfig({
+  displayName: "ProgressBar___StyledDiv",
   componentId: "sc-1gly9sn-1"
-})(["width:100%;height:8px;background:#edf3f6;border-radius:2px;"]);
-var Progress = styled(extendedAnimated.div).withConfig({
-  displayName: "ProgressBar__Progress",
-  componentId: "sc-1gly9sn-2"
-})(["height:8px;background:", ";border-radius:2px;transform-origin:0 0;"], function (_ref3) {
-  var color = _ref3.color;
-  return color || theme.accent;
-});
+})(["width:100%;height:", "px;background:", ";border-radius:", "px;overflow:hidden;"], BAR_HEIGHT$1, function (p) {
+  return p._$p_;
+}, RADIUS);
 
 var _React$createContext$3 = React.createContext({}),
     Provider$3 = _React$createContext$3.Provider,
@@ -21480,7 +23536,7 @@ function (_React$PureComponent) {
           title = _this$props.title,
           opened = _this$props.opened,
           blocking = _this$props.blocking;
-      return React.createElement(Main$c, {
+      return React.createElement(Main$b, {
         opened: opened
       }, React.createElement(Overlay$1, {
         style: {
@@ -21553,7 +23609,7 @@ SidePanel.defaultProps = {
   onClose: function onClose() {},
   onTransitionEnd: function onTransitionEnd() {}
 };
-var Main$c = styled.div.withConfig({
+var Main$b = styled.div.withConfig({
   displayName: "SidePanel__Main",
   componentId: "sc-1kjx6mk-0"
 })(["position:fixed;z-index:3;top:0;left:0;right:0;bottom:0;pointer-events:", ";"], function (_ref2) {
@@ -21601,13 +23657,13 @@ var SidePanelSplit = function SidePanelSplit(_ref) {
   var children = _ref.children,
       props = objectWithoutProperties(_ref, ["children"]);
 
-  return React.createElement(Main$d, props, React.createElement(Part$1, null, children[0]), React.createElement(Part$1, null, children[1]));
+  return React.createElement(Main$c, props, React.createElement(Part$1, null, children[0]), React.createElement(Part$1, null, children[1]));
 };
 
 SidePanelSplit.propTypes = {
   children: propTypes.node
 };
-var Main$d = styled.div.withConfig({
+var Main$c = styled.div.withConfig({
   displayName: "SidePanelSplit__Main",
   componentId: "d0csv3-0"
 })(["display:flex;width:calc(100% + ", "px);margin:0 -", "px;border:1px solid ", ";border-width:1px 0;"], SidePanel.HORIZONTAL_PADDING * 2, SidePanel.HORIZONTAL_PADDING, theme.contentBorder);
@@ -21616,12 +23672,12 @@ var Part$1 = styled.div.withConfig({
   componentId: "d0csv3-1"
 })(["width:50%;padding:20px ", "px;&:first-child{border-right:1px solid ", ";}"], SidePanel.HORIZONTAL_PADDING, theme.contentBorder);
 
-var BAR_HEIGHT$1 = 6;
+var BAR_HEIGHT$2 = 6;
 var HANDLE_SIZE = 24;
 var HANDLE_SHADOW_MARGIN = 15;
 var PADDING = 5;
 var MIN_WIDTH = HANDLE_SIZE * 10;
-var HEIGHT = Math.max(HANDLE_SIZE, BAR_HEIGHT$1) + PADDING * 2;
+var HEIGHT = Math.max(HANDLE_SIZE, BAR_HEIGHT$2) + PADDING * 2;
 
 var Slider =
 /*#__PURE__*/
@@ -21777,7 +23833,7 @@ function (_React$Component) {
       }, function (_ref) {
         var value = _ref.value,
             pressProgress = _ref.pressProgress;
-        return React.createElement(Main$e, null, React.createElement(Area, {
+        return React.createElement(Main$d, null, React.createElement(Area, {
           ref: _this2.handleRef,
           onMouseDown: _this2.dragStart,
           onTouchStart: _this2.dragStart
@@ -21805,7 +23861,7 @@ defineProperty(Slider, "defaultProps", {
   onUpdate: function onUpdate() {}
 });
 
-var Main$e = styled.div.withConfig({
+var Main$d = styled.div.withConfig({
   displayName: "Slider__Main",
   componentId: "sc-94djfe-0"
 })(["min-width:", "px;padding:0 ", "px;", ";"], MIN_WIDTH, HANDLE_SIZE / 2 + PADDING, unselectable);
@@ -21816,16 +23872,16 @@ var Area = styled.div.withConfig({
 var Bars = styled(extendedAnimated.div).withConfig({
   displayName: "Slider__Bars",
   componentId: "sc-94djfe-2"
-})(["position:absolute;left:0;right:0;top:50%;transform:translateY(-50%);overflow:hidden;border-radius:2px;height:", "px;"], BAR_HEIGHT$1);
-var Bar$1 = styled(extendedAnimated.div).withConfig({
+})(["position:absolute;left:0;right:0;top:50%;transform:translateY(-50%);overflow:hidden;border-radius:2px;height:", "px;"], BAR_HEIGHT$2);
+var Bar$2 = styled(extendedAnimated.div).withConfig({
   displayName: "Slider__Bar",
   componentId: "sc-94djfe-3"
 })(["position:absolute;top:0;left:0;right:0;bottom:0;"]);
-var BaseBar = styled(Bar$1).withConfig({
+var BaseBar = styled(Bar$2).withConfig({
   displayName: "Slider__BaseBar",
   componentId: "sc-94djfe-4"
 })(["background:#edf3f6;"]);
-var ActiveBar = styled(Bar$1).withConfig({
+var ActiveBar = styled(Bar$2).withConfig({
   displayName: "Slider__ActiveBar",
   componentId: "sc-94djfe-5"
 })(["transform-origin:0 0;"]);
@@ -21961,7 +24017,7 @@ function (_React$Component) {
       return React.createElement(InAppBarContext.Consumer, null, function (inAppBar) {
         return React.createElement("nav", {
           onMouseDown: _this2.handleMouseDown
-        }, React.createElement(Bar$2, {
+        }, React.createElement(Bar$3, {
           ref: _this2._barRef,
           border: !inAppBar
         }, items.map(function (item, i) {
@@ -21994,7 +24050,7 @@ defineProperty(TabBar, "defaultProps", {
   onChange: noop
 });
 
-var Bar$2 = styled.ul.withConfig({
+var Bar$3 = styled.ul.withConfig({
   displayName: "TabBar__Bar",
   componentId: "sc-1rsszd9-0"
 })(["display:flex;border-bottom:", ";"], function (p) {
@@ -22189,7 +24245,7 @@ function (_React$PureComponent) {
       var fontSize = props.fontSize;
       var transaction = isTransaction(props.transaction) ? props.transaction : null;
       var mainProps = this.getMainProps(transaction);
-      return React.createElement(Main$f, _extends_1({
+      return React.createElement(Main$e, _extends_1({
         title: transaction,
         onClick: this.handleClick
       }, mainProps), React.createElement(Label$4, {
@@ -22216,7 +24272,7 @@ defineProperty(TransactionBadge, "defaultProps", {
   networkType: 'main'
 });
 
-var Main$f = styled.div.withConfig({
+var Main$e = styled.div.withConfig({
   displayName: "TransactionBadge__Main",
   componentId: "sc-1ceh9ki-0"
 })(["overflow:hidden;display:inline-flex;align-items:center;border-radius:3px;cursor:default;text-decoration:none;background:#daeaef;"]);
@@ -22320,4 +24376,4 @@ var SlowTransaction = styled.div.withConfig({
   componentId: "vvbhu5-5"
 })(["margin-right:10px;"]);
 
-export { Add as IconAdd, Apps as IconApps, ArrowRight as IconArrowRight, Attention as IconAttention, Blank as IconBlank, Check as IconCheck, Close as IconClose, Copy as IconCopy, Cross as IconCross, Error$1 as IconError, Filter as IconFilter, Fundraising as IconFundraising, Groups as IconGroups, Home as IconHome, Identity as IconIdentity, Menu as IconMenu, Notifications as IconNotifications, Permissions as IconPermissions, Plus as IconPlus, Remove as IconRemove, Settings as IconSettings, Share as IconShare, Time as IconTime, Wallet as IconWallet, theme, themeDark, brand, colors, difference, formatHtmlDatetime, formatIntegerRange, unselectable, BREAKPOINTS, breakpoint, BreakPoint, font, grid, springs, spring, addressesEqual, shortenAddress, shortenTransaction, isAddress, isTransaction, blockExplorerUrl, forwardProps, stylingProps, devOnly, log, warn, noop, observe, PublicUrl, Redraw, RedrawFromDate, Root, Viewport, useViewport, ToastHub, Toast, AddressField, AppBar, AppView, AragonApp, Badge, BadgeNumber, BaseStyles$1 as BaseStyles, Button, ButtonBase$1 as ButtonBase, ButtonIcon, StyledCard as Card, Checkbox, CircleGraph, ContextMenu, ContextMenuItem, Countdown, DropDown, EmptyStateCard, EscapeOutside, EthIdenticon, ExternalLink, Field, FocusVisible, IdentityBadge, Info$1 as Info, LineChart, Main$a as Main, Modal, NavigationBar, PartitionBar, Popover, ProgressBar, Radio, Radio as RadioButton, RadioGroup, RadioList, RootPortal, SafeLink, SidePanel, SidePanelSeparator, SidePanelSplit, Slider, TabBar, Table, TableCell, TableHeader, StyledTableRow as TableRow, Text, WrapperTextInput as TextInput, Timer, TransactionBadge, TransactionProgress };
+export { Add as IconAdd, Apps as IconApps, ArrowRight as IconArrowRight, Attention as IconAttention, Blank as IconBlank, Check as IconCheck, Close as IconClose, Copy as IconCopy, Cross as IconCross, Error$1 as IconError, Filter as IconFilter, Fundraising as IconFundraising, Groups as IconGroups, Home as IconHome, Identity as IconIdentity, Menu as IconMenu, Notifications as IconNotifications, Permissions as IconPermissions, Plus as IconPlus, Remove as IconRemove, Settings as IconSettings, Share as IconShare, Time as IconTime, Wallet as IconWallet, theme, themeDark, brand, colors, difference, formatHtmlDatetime, formatIntegerRange, unselectable, BREAKPOINTS, breakpoint, BreakPoint, font, grid, springs, spring, addressesEqual, shortenAddress, shortenTransaction, isAddress, isTransaction, blockExplorerUrl, forwardProps, stylingProps, devOnly, log, warn, noop, observe, PublicUrl, Redraw, RedrawFromDate, Root, Viewport, useViewport, ToastHubProvider as ToastHub, Toast, AddressField, AppBar, AppView, AragonApp, Badge, BadgeNumber, BaseStyles$1 as BaseStyles, Button, ButtonBase$1 as ButtonBase, ButtonIcon, StyledCard as Card, Checkbox, CircleGraph, ContextMenu, ContextMenuItem, Countdown, DropDown, EmptyStateCard, EscapeOutside, EthIdenticon, ExternalLink, Field, FocusVisible, IdentityBadge, Info$1 as Info, LineChart, Main$a as Main, Modal, NavigationBar, PartitionBar, Popover, ProgressBar, Radio, Radio as RadioButton, RadioGroup, RadioList, RootPortal, SafeLink, SidePanel, SidePanelSeparator, SidePanelSplit, Slider, TabBar, Table, TableCell, TableHeader, StyledTableRow as TableRow, Text, WrapperTextInput as TextInput, Timer, TransactionBadge, TransactionProgress };
