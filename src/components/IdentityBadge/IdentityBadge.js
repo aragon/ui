@@ -81,14 +81,13 @@ class IdentityBadge extends React.PureComponent {
                 css={`
                   display: block;
                   margin-right: -3px;
-                  ${compact &&
-                    `height: 14px;
-                    width: 14px;
-                    overflow: hidden;
-                    border-radius: 2px;`};
                 `}
               >
-                <EthIdenticon scale={1} address={address} />
+                <EthIdenticon
+                  scale={compact ? 0.58 : 1}
+                  radius={compact ? 2 : 0}
+                  address={address}
+                />
               </div>
             )}
             <Text
