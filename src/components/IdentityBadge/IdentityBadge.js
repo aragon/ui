@@ -18,6 +18,7 @@ class IdentityBadge extends React.PureComponent {
     popoverTitle: PropTypes.node,
     popoverAction: PopoverActionType,
     shorten: PropTypes.bool,
+    compact: PropTypes.bool,
   }
   static defaultProps = {
     entity: '',
@@ -25,6 +26,7 @@ class IdentityBadge extends React.PureComponent {
     fontSize: 'normal',
     networkType: 'main',
     connectedAccount: false,
+    compact: false,
   }
   _element = React.createRef()
   state = { opened: false }
@@ -45,6 +47,7 @@ class IdentityBadge extends React.PureComponent {
       customLabel,
       networkType,
       shorten,
+      compact,
     } = this.props
     const address = isAddress(entity) ? entity : null
     const label =
@@ -67,7 +70,7 @@ class IdentityBadge extends React.PureComponent {
               overflow: hidden;
               display: flex;
               align-items: center;
-              background: #daeaef;
+              ${!compact && 'background: #daeaef'};
               border-radius: 3px;
               text-decoration: none;
             `}
@@ -78,6 +81,11 @@ class IdentityBadge extends React.PureComponent {
                 css={`
                   display: block;
                   margin-right: -3px;
+                  ${compact &&
+                    `height: 14px;
+                    width: 14px;
+                    overflow: hidden;
+                    border-radius: 2px;`};
                 `}
               >
                 <EthIdenticon scale={1} address={address} />
@@ -89,6 +97,7 @@ class IdentityBadge extends React.PureComponent {
                 white-space: nowrap;
                 text-overflow: ellipsis;
                 overflow: hidden;
+                ${compact && 'line-height: 1.13'};
               `}
               size={fontSize}
               monospace={Boolean(!customLabel && address)}
