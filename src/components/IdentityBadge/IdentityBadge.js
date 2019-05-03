@@ -63,6 +63,10 @@ class IdentityBadge extends React.PureComponent {
             display: inline-flex;
             overflow: hidden;
             color: ${theme.textPrimary};
+            height: 24px;
+            &:active {
+              ${compact && 'background: rgba(220, 234, 239, 0.3);'};
+            }
           `}
         >
           <div
@@ -70,8 +74,9 @@ class IdentityBadge extends React.PureComponent {
               overflow: hidden;
               display: flex;
               align-items: center;
-              ${!compact && 'background: #daeaef'};
-              border-radius: 3px;
+              ${compact
+                ? 'padding-left: 8px; border-radius: 2px;'
+                : 'background: #daeaef; border-radius: 3px;'};
               text-decoration: none;
             `}
             {...stylingProps(this)}
@@ -81,6 +86,7 @@ class IdentityBadge extends React.PureComponent {
                 css={`
                   display: block;
                   margin-right: -3px;
+                  ${compact && 'margin-top: -2px;'};
                 `}
               >
                 <EthIdenticon
@@ -96,7 +102,6 @@ class IdentityBadge extends React.PureComponent {
                 white-space: nowrap;
                 text-overflow: ellipsis;
                 overflow: hidden;
-                ${compact && 'line-height: 1.13'};
               `}
               size={fontSize}
               monospace={Boolean(!customLabel && address)}
