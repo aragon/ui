@@ -86,7 +86,7 @@ class IdentityBadge extends React.PureComponent {
                 css={`
                   display: block;
                   margin-right: -3px;
-                  ${compact && 'margin-top: -2px;'};
+                  ${compact && 'position: relative; top: -1px;'};
                 `}
               >
                 <EthIdenticon
