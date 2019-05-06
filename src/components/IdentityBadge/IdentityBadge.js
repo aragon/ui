@@ -18,6 +18,7 @@ class IdentityBadge extends React.PureComponent {
     popoverTitle: PropTypes.node,
     popoverAction: PopoverActionType,
     shorten: PropTypes.bool,
+    compact: PropTypes.bool,
   }
   static defaultProps = {
     entity: '',
@@ -25,6 +26,7 @@ class IdentityBadge extends React.PureComponent {
     fontSize: 'normal',
     networkType: 'main',
     connectedAccount: false,
+    compact: false,
   }
   _element = React.createRef()
   state = { opened: false }
@@ -45,6 +47,7 @@ class IdentityBadge extends React.PureComponent {
       customLabel,
       networkType,
       shorten,
+      compact,
     } = this.props
     const address = isAddress(entity) ? entity : null
     const label =
@@ -60,6 +63,10 @@ class IdentityBadge extends React.PureComponent {
             display: inline-flex;
             overflow: hidden;
             color: ${theme.textPrimary};
+            height: 24px;
+            &:active {
+              ${compact && 'background: rgba(220, 234, 239, 0.3);'};
+            }
           `}
         >
           <div
@@ -67,8 +74,9 @@ class IdentityBadge extends React.PureComponent {
               overflow: hidden;
               display: flex;
               align-items: center;
-              background: #daeaef;
-              border-radius: 3px;
+              ${compact
+                ? 'padding-left: 8px; border-radius: 2px;'
+                : 'background: #daeaef; border-radius: 3px;'};
               text-decoration: none;
             `}
             {...stylingProps(this)}
@@ -78,9 +86,14 @@ class IdentityBadge extends React.PureComponent {
                 css={`
                   display: block;
                   margin-right: -3px;
+                  ${compact && 'position: relative; top: -1px;'};
                 `}
               >
-                <EthIdenticon scale={1} address={address} />
+                <EthIdenticon
+                  scale={compact ? 0.58 : 1}
+                  radius={compact ? 2 : 0}
+                  address={address}
+                />
               </div>
             )}
             <Text
