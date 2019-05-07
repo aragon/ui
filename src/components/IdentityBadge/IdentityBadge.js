@@ -114,7 +114,7 @@ class IdentityBadge extends React.PureComponent {
             </Text>
           </div>
         </ButtonBase>
-        {address && (
+        {address && !badgeOnly && (
           <IdentityBadgePopover
             address={address}
             visible={opened}
