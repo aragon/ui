@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { blockExplorerUrl, font } from '../../utils'
 import { theme } from '../../theme'
 import { IconClose } from '../../icons'
+import { ImageExists } from '../../hooks'
 import SafeLink from '../Link/SafeLink'
 import Popover from '../Popover/Popover'
 import ButtonIcon from '../Button/ButtonIcon'
@@ -10,9 +11,9 @@ import AddressField from '../AddressField/AddressField'
 
 class TokenBadgePopover extends React.PureComponent {
   static propTypes = {
-    address: PropTypes.string,
-    name: PropTypes.string,
-    symbol: PropTypes.string,
+    address: PropTypes.string.isRequired,
+    iconUrl: PropTypes.string,
+    label: PropTypes.string.isRequired,
     visible: PropTypes.bool,
     opener: PropTypes.instanceOf(Element),
     onClose: PropTypes.func,
@@ -21,12 +22,12 @@ class TokenBadgePopover extends React.PureComponent {
   render() {
     const {
       address,
-      name,
-      symbol,
-      visible,
-      opener,
-      onClose,
+      iconUrl,
+      label,
       networkType,
+      onClose,
+      opener,
+      visible,
     } = this.props
     return (
       <Popover visible={visible} opener={opener} onClose={onClose}>
@@ -39,6 +40,7 @@ class TokenBadgePopover extends React.PureComponent {
           `}
         >
           <ButtonIcon
+            label="Close"
             onClick={onClose}
             css={`
               position: absolute;
@@ -50,22 +52,29 @@ class TokenBadgePopover extends React.PureComponent {
           >
             <IconClose />
           </ButtonIcon>
-          <header
+          <h1
             css={`
               display: flex;
               align-items: center;
               padding: 5px 0;
+              ${font({ size: 'large', weight: 'bold' })};
+              color: ${theme.textPrimary};
             `}
           >
-            <h1
-              css={`
-                ${font({ size: 'large', weight: 'bold' })};
-              `}
-            >
-              {`${name} (${symbol})`}
-            </h1>
-          </header>
-          <AddressField address={address} />
+            {label}
+          </h1>
+          {iconUrl ? (
+            <ImageExists src={iconUrl}>
+              {({ exists }) => (
+                <AddressField
+                  address={address}
+                  icon={exists ? <Icon src={iconUrl} /> : null}
+                />
+              )}
+            </ImageExists>
+          ) : (
+            <AddressField address={address} />
+          )}
           <p
             css={`
               padding: 10px 0 0;
@@ -88,5 +97,29 @@ class TokenBadgePopover extends React.PureComponent {
     )
   }
 }
+
+const Icon = ({ src }) => (
+  <div
+    css={`
+      flex-shrink: 0;
+      display: flex;
+      width: 40px;
+      height: 40px;
+      align-items: center;
+      justify-content: center;
+    `}
+  >
+    <div
+      css={`
+        width: 26px;
+        height: 26px;
+        background-size: contain;
+        background-position: 50% 50%;
+        background-repeat: no-repeat;
+        background-image: url(${src});
+      `}
+    />
+  </div>
+)
 
 export default TokenBadgePopover

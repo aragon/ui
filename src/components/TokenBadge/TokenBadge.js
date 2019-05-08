@@ -1,22 +1,23 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { isAddress } from '../../utils'
+import { stylingProps } from '../../utils/components'
+import { isAddress, tokenIconUrl } from '../../utils/web3'
 import { theme } from '../../theme'
+import { ImageExists } from '../../hooks'
 import ButtonBase from '../Button/ButtonBase'
 import TokenBadgePopover from './TokenBadgePopover'
 
 class TokenBadge extends React.PureComponent {
   static propTypes = {
-    entity: PropTypes.string,
-    networkType: PropTypes.string,
-    symbol: PropTypes.string,
+    address: PropTypes.string,
     name: PropTypes.string,
+    networkType: PropTypes.string,
+    symbol: PropTypes.string.isRequired,
   }
   static defaultProps = {
-    entity: '',
-    shorten: true,
-    fontSize: 'normal',
+    address: '',
+    name: '',
     networkType: 'main',
   }
   _element = React.createRef()
@@ -30,39 +31,76 @@ class TokenBadge extends React.PureComponent {
   }
   render() {
     const { opened } = this.state
-    const { entity, symbol, name, networkType } = this.props
-    const address = isAddress(entity) ? entity : null
+    const { address, symbol, name, networkType } = this.props
+
+    const isValidAddress = isAddress(address)
+
+    const iconUrl =
+      isValidAddress && networkType === 'main' ? tokenIconUrl(address) : null
+
+    const label = name && symbol ? `${name} (${symbol})` : symbol
 
     return (
       <React.Fragment>
         <ButtonBase
           ref={this._element}
-          title={address}
-          onClick={address && this.handleOpen}
+          title={`${label} − ${address || 'No address'}`}
+          onClick={isValidAddress ? this.handleOpen : null}
           css={`
             display: inline-flex;
+            overflow: hidden;
+            height: 24px;
             color: ${theme.textPrimary};
           `}
         >
-          <Main title={`${name} (${symbol})`}>
-            <Label>
-              <Icon src={`https://chasing-coins.com/coin/logo/${symbol}`} />
-              <NameWrapper>
-                <Name>{name}</Name>
-                {name !== symbol && <Symbol>({symbol})</Symbol>}
+          <div
+            css={`
+              overflow: hidden;
+              display: flex;
+              align-items: center;
+              background: #daeaef;
+              border-radius: 3px;
+              text-decoration: none;
+              font-size: 15px;
+              min-width: 0;
+              flex-shrink: 1;
+              padding: 0 8px;
+            `}
+            {...stylingProps(this)}
+          >
+            {iconUrl && (
+              <ImageExists src={iconUrl}>
+                {({ exists }) => exists && <Icon src={iconUrl} />}
+              </ImageExists>
+            )}
+            <div
+              css={`
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                overflow: hidden;
+              `}
+            >
+              <NameWrapper
+                css={`
+                  position: relative;
+                  top: 1px;
+                `}
+              >
+                {name && <Name>{name}</Name>}
+                <Symbol>{name ? `(${symbol})` : symbol}</Symbol>
               </NameWrapper>
-            </Label>
-          </Main>
+            </div>
+          </div>
         </ButtonBase>
         {address && (
           <TokenBadgePopover
             address={address}
-            name={name}
-            symbol={symbol}
-            visible={opened}
+            iconUrl={iconUrl}
+            label={label}
             networkType={networkType}
-            opener={this._element.current}
             onClose={this.handleClose}
+            opener={this._element.current}
+            visible={opened}
           />
         )}
       </React.Fragment>
@@ -70,28 +108,17 @@ class TokenBadge extends React.PureComponent {
   }
 }
 
-const Main = styled.div`
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  height: 24px;
-  background: #daeaef;
-  border-radius: 3px;
-  cursor: default;
-  padding: 0 8px;
-`
-
-const Label = styled.span`
-  display: flex;
-  align-items: center;
-  white-space: nowrap;
-  font-size: 15px;
-  min-width: 0;
-  flex-shrink: 1;
-`
-
-const Icon = styled.img.attrs({ alt: '', width: '16', height: '16' })`
-  margin-right: 10px;
+const Icon = styled.span`
+  flex-shrink: 0;
+  display: block;
+  width: 18px;
+  height: 18px;
+  margin-right: 4px;
+  margin-left: -4px;
+  background-size: contain;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-image: url(${p => p.src});
 `
 
 const NameWrapper = styled.span`
@@ -105,11 +132,11 @@ const Name = styled.span`
   overflow: hidden;
   text-overflow: ellipsis;
   min-width: 20%;
+  margin-right: 4px;
 `
 
 const Symbol = styled.span`
   flex-shrink: 0;
-  margin-left: 5px;
 `
 
 export default TokenBadge
