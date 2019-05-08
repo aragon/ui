@@ -61,13 +61,13 @@ class IdentityBadge extends React.PureComponent {
         <ButtonBase
           ref={this._element}
           title={address}
+          disabled={badgeOnly}
           onClick={address && !badgeOnly && this.handleOpen}
           css={`
             display: inline-flex;
             overflow: hidden;
             color: ${theme.textPrimary};
             height: 24px;
-            ${badgeOnly && 'cursor: text;'};
             &:active {
               ${compact && 'background: rgba(220, 234, 239, 0.3);'};
             }
