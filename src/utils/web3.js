@@ -129,3 +129,16 @@ export function blockExplorerUrl(
     return ''
   }
 }
+
+/**
+ * Get the address of a token icon
+ *
+ * @param {string} address The contract address of the token.
+ * @return {string} The generated URL, or an empty string if the parameters are invalid.
+ */
+export function tokenIconUrl(address = '') {
+  address = address.trim()
+  return address
+    ? `https://raw.githubusercontent.com/TrustWallet/tokens/master/tokens/${address}.png`
+    : ''
+}
