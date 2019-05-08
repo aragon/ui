@@ -28,6 +28,11 @@ class App extends React.Component {
           entity="0x7c708ac7db979fa06705f8880f29f82cfc406993"
           connectedAccount
         />
+        <IdentityBadge
+          entity="0x7c708ac7db979fa06705f8880f29f82cfc406993"
+          compact={true}
+          connectedAccount
+        />
       </div>
     )
   }
