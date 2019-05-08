@@ -36,6 +36,7 @@ class IdentityBadgePopover extends React.PureComponent {
       title,
       visible,
     } = this.props
+    const etherscanUrl = blockExplorerUrl('address', address, { networkType })
 
     return (
       <Popover visible={visible} opener={opener} onClose={onClose}>
@@ -96,15 +97,17 @@ class IdentityBadgePopover extends React.PureComponent {
               ${font({ size: 'small' })};
             `}
           >
-            <SafeLink
-              href={blockExplorerUrl('address', address, { networkType })}
-              target="_blank"
-              css={`
-                color: ${theme.accent};
-              `}
-            >
-              See on Etherscan
-            </SafeLink>
+            {etherscanUrl && (
+              <SafeLink
+                href={etherscanUrl}
+                target="_blank"
+                css={`
+                  color: ${theme.accent};
+                `}
+              >
+                See on Etherscan
+              </SafeLink>
+            )}
           </p>
           {popoverAction && (
             <Button
