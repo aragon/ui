@@ -122,4 +122,8 @@ const Icon = ({ src }) => (
   </div>
 )
 
+Icon.propTypes = {
+  src: PropTypes.string.isRequired,
+}
+
 export default TokenBadgePopover
