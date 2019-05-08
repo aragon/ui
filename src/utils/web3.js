@@ -8,6 +8,7 @@ const ETHERSCAN_NETWORK_TYPES = new Map([
   ['kovan', 'kovan.'],
   ['rinkeby', 'rinkeby.'],
   ['ropsten', 'ropsten.'],
+  ['goerli', 'goerli.'],
 ])
 const ETHERSCAN_TYPES = new Map([
   ['block', 'block'],
