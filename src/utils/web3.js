@@ -8,6 +8,7 @@ const ETHERSCAN_NETWORK_TYPES = new Map([
   ['kovan', 'kovan.'],
   ['rinkeby', 'rinkeby.'],
   ['ropsten', 'ropsten.'],
+  ['goerli', 'goerli.'],
 ])
 const ETHERSCAN_TYPES = new Map([
   ['block', 'block'],
@@ -18,6 +19,10 @@ const ETHERSCAN_TYPES = new Map([
 
 const BLOCK_EXPLORERS = {
   etherscan: ({ type, value, networkType }) => {
+    if (networkType === 'private') {
+      return ''
+    }
+
     if (!ETHERSCAN_NETWORK_TYPES.has(networkType)) {
       throw new Error('provider not supported.')
     }
@@ -106,7 +111,7 @@ export function isTransaction(transaction) {
  * @param {string} type The type of URL (block, transaction, address or token).
  * @param {string} value Identifier of the object, depending on the type (block number, transaction hash, …).
  * @param {object} options The optional parameters.
- * @param {string} options.networkType The Ethereum network type (main, kovan, rinkeby, or ropsten).
+ * @param {string} options.networkType The Ethereum network type (main, kovan, rinkeby, ropsten, goerli, or private).
  * @param {string} options.provider The explorer provider (e.g. etherscan).
  * @return {string} The generated URL, or an empty string if the parameters are invalid.
  */
