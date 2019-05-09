@@ -19,6 +19,7 @@ class IdentityBadge extends React.PureComponent {
     popoverAction: PopoverActionType,
     shorten: PropTypes.bool,
     compact: PropTypes.bool,
+    badgeOnly: PropTypes.bool,
   }
   static defaultProps = {
     entity: '',
@@ -27,6 +28,7 @@ class IdentityBadge extends React.PureComponent {
     networkType: 'main',
     connectedAccount: false,
     compact: false,
+    badgeOnly: false,
   }
   _element = React.createRef()
   state = { opened: false }
@@ -48,6 +50,7 @@ class IdentityBadge extends React.PureComponent {
       networkType,
       shorten,
       compact,
+      badgeOnly,
     } = this.props
     const address = isAddress(entity) ? entity : null
     const label =
@@ -58,7 +61,8 @@ class IdentityBadge extends React.PureComponent {
         <ButtonBase
           ref={this._element}
           title={address}
-          onClick={address && this.handleOpen}
+          disabled={badgeOnly}
+          onClick={address && !badgeOnly && this.handleOpen}
           css={`
             display: inline-flex;
             overflow: hidden;
@@ -110,7 +114,7 @@ class IdentityBadge extends React.PureComponent {
             </Text>
           </div>
         </ButtonBase>
-        {address && (
+        {address && !badgeOnly && (
           <IdentityBadgePopover
             address={address}
             visible={opened}
