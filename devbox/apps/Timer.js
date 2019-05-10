@@ -3,20 +3,37 @@ import styled from 'styled-components'
 import { Timer } from '@aragon/ui'
 
 const SECONDS = 1000
-const MINUTES = SECONDS * 60
-const HOURS = MINUTES * 60
-const DAYS = HOURS * 24
+const MINUTES = 60 * SECONDS
+const HOURS = 60 * MINUTES
+const DAYS = 24 * HOURS
 
 const now = Date.now()
-const OVER_A_YEAR_END = 398
+const OVER_A_YEAR_END = 398 * DAYS
 
 const timers = [
   { start: -40 * SECONDS },
   { start: -40 * SECONDS, showEmpty: true },
   { start: -4 * DAYS, end: 20 * DAYS },
   { end: 1 * DAYS },
-  ...['yMdhms', 'yMdhm', 'yMdh', 'yMd', 'yM','Mdhms', 'Mdhm','Mdh', 'Md', 'dhms', 'dhm', 'hms', 'hm', 'ms', 'm', 's'].map(format => ({
-    end: OVER_A_YEAR_END * DAYS - 55 * SECONDS,
+  ...[
+    'yMdhms',
+    'yMdhm',
+    'yMdh',
+    'yMd',
+    'yM',
+    'Mdhms',
+    'Mdhm',
+    'Mdh',
+    'Md',
+    'dhms',
+    'dhm',
+    'hms',
+    'hm',
+    'ms',
+    'm',
+    's',
+  ].map(format => ({
+    end: OVER_A_YEAR_END - 55 * SECONDS,
     format,
   })),
 ].map(timer => {
@@ -25,26 +42,23 @@ const timers = [
   return timer
 })
 
-class App extends React.Component {
-  render() {
-
-    return (
-      <Main>
-        <div>
-          {timers.map((props, i) => (
-            <div
-              key={i}
-              css={`
-                padding: 5px 0;
-              `}
-            >
-              <Timer {...props} />
-            </div>
-          ))}
-        </div>
-      </Main>
-    )
-  }
+function App() {
+  return (
+    <Main>
+      <div>
+        {timers.map((props, i) => (
+          <div
+            key={i}
+            css={`
+              padding: 5px 0;
+            `}
+          >
+            <Timer {...props} />
+          </div>
+        ))}
+      </div>
+    </Main>
+  )
 }
 
 const Main = styled.div`
