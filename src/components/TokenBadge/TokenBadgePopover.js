@@ -83,7 +83,7 @@ class TokenBadgePopover extends React.PureComponent {
             `}
           >
             <SafeLink
-              href={blockExplorerUrl('address', address, { networkType })}
+              href={blockExplorerUrl('token', address, { networkType })}
               target="_blank"
               css={`
                 color: ${theme.accent};
