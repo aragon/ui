@@ -1,5 +1,4 @@
 import React from 'react'
-import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import memoize from 'lodash-es/memoize'
 import { Redraw } from '../../providers/Redraw'
@@ -34,6 +33,15 @@ const formats = {
 const getFormat = memoize(format =>
   ['y', 'M', 'd', 'h', 'm', 's'].map(symbol => formats[format].includes(symbol))
 )
+
+const getUnits = (years, months, days, hours, minutes, seconds) => [
+  ['Y', years],
+  ['M', months],
+  ['D', days],
+  ['H', hours],
+  ['M', minutes],
+  ['S', seconds],
+]
 
 const getTime = (start, end, format, showEmpty) => {
   const [
@@ -93,7 +101,10 @@ const getTime = (start, end, format, showEmpty) => {
     seconds = null
   }
 
-  return { years, months, days, hours, minutes, seconds, totalInSeconds }
+  return {
+    units: getUnits(years, months, days, hours, minutes, seconds),
+    totalInSeconds,
+  }
 }
 
 class Timer extends React.Component {
@@ -112,130 +123,106 @@ class Timer extends React.Component {
   render() {
     const { end, start } = this.props
     return (
-      <Main dateTime={formatHtmlDatetime(end || start)}>
-        <IconWrapper>
+      <time
+        dateTime={formatHtmlDatetime(end || start)}
+        css={`
+          white-space: nowrap;
+          ${unselectable()};
+        `}
+      >
+        <span css="margin-right: 15px">
           <IconTime />
-        </IconWrapper>
+        </span>
         <Redraw interval={FRAME_EVERY}>{this.renderTime}</Redraw>
-      </Main>
+      </time>
     )
   }
 
   renderTime = () => {
     const { start, end, format, showEmpty } = this.props
 
-    const {
-      years,
-      months,
-      days,
-      hours,
-      minutes,
-      seconds,
-      totalInSeconds,
-    } = getTime(start, end, format, showEmpty)
+    const { totalInSeconds, units } = getTime(start, end, format, showEmpty)
 
     if (end && totalInSeconds <= 0) {
-      return <TimeOut>Time out</TimeOut>
+      return (
+        <span
+          css={`
+            font-weight: 600;
+            color: ${theme.textSecondary};
+          `}
+        >
+          Time out
+        </span>
+      )
     }
+
+    const lastUnitIndex = units.reduce(
+      (lastIndex, unit, index) => (unit[1] === null ? lastIndex : index),
+      0
+    )
 
     return (
       <span>
-        {years !== null && (
-          <React.Fragment>
-            <Part>
-              {formatUnit(years)}
-              <Unit>Y</Unit>
-            </Part>
-            <Separator />
-          </React.Fragment>
-        )}
-        {months !== null && (
-          <React.Fragment>
-            <Part>
-              {formatUnit(months)}
-              <Unit>M</Unit>
-            </Part>
-            <Separator />
-          </React.Fragment>
-        )}
-        {days !== null && (
-          <React.Fragment>
-            <Part>
-              {formatUnit(days)}
-              <Unit>D</Unit>
-            </Part>
-            <Separator />
-          </React.Fragment>
-        )}
-        {hours !== null && (
-          <Part>
-            {formatUnit(hours)}
-            <Unit>H</Unit>
-          </Part>
-        )}
-        {hours !== null && minutes !== null && <Separator>:</Separator>}
-        {minutes !== null && (
-          <Part>
-            {formatUnit(minutes)}
-            <Unit>M</Unit>
-          </Part>
-        )}
-        {seconds !== null && (
-          <React.Fragment>
-            {minutes !== null && <Separator>:</Separator>}
-            <PartSeconds>
-              {formatUnit(seconds)}
-              <UnitSeconds>S</UnitSeconds>
-            </PartSeconds>
-          </React.Fragment>
-        )}
+        {units.map((unit, index) => {
+          const isLast = index === lastUnitIndex
+          const isSeconds = index === units.length - 1
+
+          // Only time units (hours, minutes and seconds).
+          // Remember to update if ms gets added one day!
+          const isTimeUnit = index >= units.length - 3
+
+          if (unit[1] === null) {
+            return null
+          }
+
+          return (
+            <React.Fragment key={index}>
+              <span
+                css={`
+                  font-size: 15px;
+                  font-weight: 600;
+                  color: ${theme.textPrimary};
+
+                  ${isSeconds &&
+                    // Fix the width of the seconds unit so that
+                    // it doesn’t jump too much.
+                    `
+                      display: inline-flex;
+                      align-items: baseline;
+                      justify-content: space-between;
+                      min-width: 31px;
+                    `};
+                `}
+              >
+                {formatUnit(unit[1])}
+                <span
+                  css={`
+                    margin-left: 2px;
+                    font-size: 12px;
+                    color: ${theme.textSecondary};
+                  `}
+                >
+                  {unit[0]}
+                </span>
+              </span>
+              {!isLast && (
+                // Separator
+                <span
+                  css={`
+                    margin: 0 4px;
+                    color: ${theme.textTertiary};
+                    font-weight: 400;
+                  `}
+                >
+                  {isTimeUnit && ':'}
+                </span>
+              )}
+            </React.Fragment>
+          )
+        })}
       </span>
     )
   }
 }
-
-const Main = styled.time`
-  white-space: nowrap;
-  ${unselectable()};
-`
-
-const IconWrapper = styled.span`
-  margin-right: 15px;
-`
-
-const Part = styled.span`
-  font-size: 15px;
-  font-weight: 600;
-  color: ${theme.textPrimary};
-`
-
-const PartSeconds = styled(Part)`
-  display: inline-flex;
-  align-items: baseline;
-  justify-content: space-between;
-  min-width: 31px;
-`
-
-const Unit = styled.span`
-  margin-left: 2px;
-  font-size: 12px;
-  color: ${theme.textSecondary};
-`
-
-const UnitSeconds = styled(Unit)`
-  position: relative;
-  left: -3px;
-`
-
-const Separator = styled.span`
-  margin: 0 4px;
-  color: ${theme.textTertiary};
-  font-weight: 400;
-`
-
-const TimeOut = styled.span`
-  font-weight: 600;
-  color: ${theme.textSecondary};
-`
 
 export default Timer
