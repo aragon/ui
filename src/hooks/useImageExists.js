@@ -1,4 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
+import cachedMap from '../utils/cached-map'
+
+const srcCache = cachedMap()
 
 // Check if a remote image exists.
 export function useImageExists(src) {
@@ -8,24 +11,35 @@ export function useImageExists(src) {
   useEffect(() => {
     let image = new Image()
 
+    const init = () => {
+      setExists(false)
+      setLoading(true)
+
+      if (srcCache.get(src)) {
+        success()
+        return
+      }
+
+      // TODO: ensure only one image is loading at a time for a given src.
+      image.addEventListener('load', success)
+      image.src = src
+    }
+
+    const success = () => {
+      setLoading(false)
+      setExists(true)
+      srcCache.set(src, true)
+      done()
+    }
+
     const done = () => {
       if (image) {
-        image.removeEventListener('load', onLoad)
+        image.removeEventListener('load', success)
         image = null
       }
     }
 
-    const onLoad = () => {
-      setLoading(false)
-      setExists(true)
-      done()
-    }
-
-    setExists(false)
-    setLoading(true)
-
-    image.addEventListener('load', onLoad)
-    image.src = src
+    init()
 
     return () => {
       setLoading(false)
