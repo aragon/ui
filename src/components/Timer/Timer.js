@@ -8,7 +8,7 @@ import { difference, formatHtmlDatetime } from '../../utils/date'
 import { unselectable } from '../../utils/styles'
 import { theme } from '../../theme'
 
-const FRAME_EVERY = 1000 / 30 // 30 FPS is enough for a ticker
+const RENDER_EVERY = 1000
 
 const formatUnit = v => String(v).padStart(2, '0')
 
@@ -115,7 +115,7 @@ class Timer extends React.Component {
         <span css="margin-right: 15px">
           <IconTime />
         </span>
-        <Redraw interval={FRAME_EVERY}>{this.renderTime}</Redraw>
+        <Redraw interval={RENDER_EVERY}>{this.renderTime}</Redraw>
       </time>
     )
   }
