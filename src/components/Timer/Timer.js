@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import memoize from 'lodash-es/memoize'
+import { differenceInSeconds } from 'date-fns'
 import { Redraw } from '../../providers/Redraw'
 import IconTime from '../../icons/components/Time'
 import { difference, formatHtmlDatetime } from '../../utils/date'
@@ -34,14 +35,18 @@ const getFormat = memoize(format =>
   ['y', 'M', 'd', 'h', 'm', 's'].map(symbol => formats[format].includes(symbol))
 )
 
-const getUnits = (years, months, days, hours, minutes, seconds) => [
-  ['Y', years],
-  ['M', months],
-  ['D', days],
-  ['H', hours],
-  ['M', minutes],
-  ['S', seconds],
-]
+// Remove empty units on the left side
+function removeEmpty(units) {
+  // keep at least one unit even at 0
+  const lastZeroIndex = units.map(u => u[1]).lastIndexOf(0) + 1
+  for (let i = 0; i < units.length && i < lastZeroIndex; i++) {
+    if (units[i][1] !== 0 && units[i][1] !== null) {
+      return units
+    }
+    units[i][1] = null
+  }
+  return units
+}
 
 const getTime = (start, end, format, showEmpty) => {
   const [
@@ -52,57 +57,34 @@ const getTime = (start, end, format, showEmpty) => {
     showMinutes,
     showSeconds,
   ] = getFormat(format)
-  let {
-    years,
-    months,
-    days,
-    hours,
-    minutes,
-    seconds,
-    totalInSeconds,
-  } = difference(...(end ? [end, new Date()] : [new Date(), start]))
 
-  if (!showYears) {
-    months += years * 12
-    years = null
-  } else if (years === 0 && !showEmpty) {
-    years = null
-  }
+  const period = end ? [end, new Date()] : [new Date(), start]
 
-  if (!showMonths) {
-    days += months * 30
-    months = null
-  } else if (months === 0 && !showEmpty) {
-    months = null
-  }
+  const totalInSeconds = differenceInSeconds(...period)
 
-  if (!showDays) {
-    hours += days * 24
-    days = null
-  } else if (days === 0 && !showEmpty) {
-    days = null
-  }
+  const { years, months, days, hours, minutes, seconds } = difference(
+    ...period,
+    {
+      years: showYears,
+      months: showMonths,
+      days: showDays,
+      hours: showHours,
+      minutes: showMinutes,
+      seconds: showSeconds,
+    }
+  )
 
-  if (!showHours) {
-    minutes += hours * 60
-    hours = null
-  } else if (hours === 0 && days === null && !showEmpty) {
-    hours = null
-  }
-
-  if (!showMinutes) {
-    seconds += minutes * 60
-    minutes = null
-  } else if (minutes === 0 && hours === null && days === null && !showEmpty) {
-    minutes = null
-  }
-
-  if (!showSeconds) {
-    seconds = null
-  }
+  const units = [
+    ['Y', years],
+    ['M', months],
+    ['D', days],
+    ['H', hours],
+    ['M', minutes],
+    ['S', seconds],
+  ]
 
   return {
-    units: getUnits(years, months, days, hours, minutes, seconds),
+    units: showEmpty ? units : removeEmpty(units),
     totalInSeconds,
   }
 }
