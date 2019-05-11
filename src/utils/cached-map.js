@@ -7,7 +7,7 @@ function cachedMap({ expireAfter = A_DAY, size = 100 } = {}) {
   // using a loop because getValue() is async.
   function trim() {
     while (cache.size > size) {
-      cache.delete(a.keys().next().value)
+      cache.delete(cache.keys().next().value)
     }
   }
 
@@ -56,10 +56,11 @@ function cachedMap({ expireAfter = A_DAY, size = 100 } = {}) {
   }
 
   return {
-    get,
-    set,
     clear: () => cache.clear(),
     delete: key => cache.delete(key),
+    fetch,
+    get,
+    set,
   }
 }
 
