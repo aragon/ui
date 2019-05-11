@@ -12,6 +12,12 @@ export function useImageExists(src) {
     let image = new Image()
 
     const init = () => {
+      if (!src) {
+        setExists(false)
+        setLoading(false)
+        return
+      }
+
       setExists(false)
       setLoading(true)
 

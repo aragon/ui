@@ -68,11 +68,9 @@ class TokenBadge extends React.PureComponent {
             `}
             {...stylingProps(this)}
           >
-            {iconUrl && (
-              <ImageExists src={iconUrl}>
-                {({ exists }) => exists && <Icon src={iconUrl} />}
-              </ImageExists>
-            )}
+            <ImageExists src={iconUrl}>
+              {({ exists }) => exists && <Icon src={iconUrl} />}
+            </ImageExists>
             <div
               css={`
                 white-space: nowrap;
