@@ -96,9 +96,8 @@ class Timer extends React.Component {
     format: PropTypes.oneOf(Object.keys(formats)),
     showEmpty: PropTypes.bool,
   }
-
   static defaultProps = {
-    format: formats.dhms,
+    format: formats.yMdhms,
     showEmpty: false,
   }
 
