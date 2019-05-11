@@ -8,12 +8,12 @@ const HOURS = 60 * MINUTES
 const DAYS = 24 * HOURS
 
 const now = Date.now()
-const OVER_A_YEAR_END = 398 * DAYS
+const OVER_A_YEAR_END = 298 * DAYS - 55 * SECONDS
 
 const timers = [
   { start: -40 * SECONDS },
   { start: -40 * SECONDS, showEmpty: true },
-  { start: -4 * DAYS, end: 20 * DAYS },
+  { end: 20 * DAYS },
   { end: 1 * DAYS },
   ...[
     'yMdhms',
@@ -33,7 +33,7 @@ const timers = [
     'm',
     's',
   ].map(format => ({
-    end: OVER_A_YEAR_END - 55 * SECONDS,
+    end: OVER_A_YEAR_END,
     format,
   })),
 ].map(timer => {
@@ -53,7 +53,8 @@ function App() {
               padding: 5px 0;
             `}
           >
-            <Timer {...props} />
+            <Timer {...props} /> ({props.format || 'auto'}
+            {props.showEmpty ? ' + showEmpty' : ''})
           </div>
         ))}
       </div>
