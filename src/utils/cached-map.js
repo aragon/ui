@@ -20,23 +20,6 @@ function cachedMap({ expireAfter = A_DAY, size = 100 } = {}) {
     trim()
   }
 
-  // Return the value if the entry exists and is not expired, or fetch it using
-  // getValue() otherwise. Use forceUpdate to always call getValue().
-  async function fetch(key, getValue, forceUpdate) {
-    const now = new Date()
-
-    const cachedEntry = cache.get(key)
-
-    const update =
-      forceUpdate || !cachedEntry || now - cachedEntry.lastAccess > expireAfter
-
-    const value = update ? await getValue() : cachedEntry.value
-
-    update(key, value, now)
-
-    return value
-  }
-
   function get(key) {
     const now = new Date()
 
@@ -58,7 +41,6 @@ function cachedMap({ expireAfter = A_DAY, size = 100 } = {}) {
   return {
     clear: () => cache.clear(),
     delete: key => cache.delete(key),
-    fetch,
     get,
     set,
   }
