@@ -11,6 +11,8 @@ const now = Date.now()
 const OVER_A_YEAR_END = 398 * DAYS - 55 * SECONDS
 
 const timers = [
+  { end: 5 * SECONDS },
+  { start: 5 * SECONDS },
   { start: -40 * SECONDS },
   { start: -40 * SECONDS, showEmpty: true },
   { end: 20 * DAYS },
@@ -37,8 +39,8 @@ const timers = [
     format,
   })),
 ].map(timer => {
-  if (timer.start) timer.start = new Date(now + timer.start)
-  if (timer.end) timer.end = new Date(now + timer.end)
+  if (timer.start) timer.start = new Date(now + timer.start - 500)
+  if (timer.end) timer.end = new Date(now + timer.end + 500)
   return timer
 })
 
