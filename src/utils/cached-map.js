@@ -29,6 +29,12 @@ function cachedMap({ expireAfter = A_DAY, size = 100 } = {}) {
       return null
     }
 
+    // Expired: delete the entry
+    if (now - cachedEntry.lastAccess > expireAfter) {
+      cache.delete(key)
+      return null
+    }
+
     update(key, cachedEntry.value, now)
 
     return cachedEntry.value
