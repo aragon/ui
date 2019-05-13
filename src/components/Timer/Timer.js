@@ -35,9 +35,9 @@ const getFormat = memoize(format =>
   ['y', 'M', 'd', 'h', 'm', 's'].map(symbol => formats[format].includes(symbol))
 )
 
-// Remove empty units on the left side
-function removeEmpty(units) {
-  // keep at least one unit even at 0
+// Remove “0” units on the left side
+function removeLeftZeros(units) {
+  // keep at least one unit, even if its value is 0
   const lastZeroIndex = units.map(u => u[1]).lastIndexOf(0) + 1
   for (let i = 0; i < units.length && i < lastZeroIndex; i++) {
     if (units[i][1] !== 0 && units[i][1] !== null) {
@@ -84,7 +84,7 @@ const getTime = (start, end, format, showEmpty) => {
   ]
 
   return {
-    units: showEmpty ? units : removeEmpty(units),
+    units: showEmpty ? units : removeLeftZeros(units),
     totalInSeconds,
   }
 }
