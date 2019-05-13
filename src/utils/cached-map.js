@@ -3,10 +3,10 @@ const A_DAY = 1000 * 60 * 60 * 24
 function cachedMap({ expireAfter = A_DAY, size = 100 } = {}) {
   const cache = new Map()
 
-  // Delete the first (oldest) entry until we are back to `size`,
-  // using a loop because getValue() is async.
+  // Delete the first (oldest) entry if we are above `size`. `cache.size`
+  // should never be greater than `size + 1`, so no need for a loop here.
   function trim() {
-    while (cache.size > size) {
+    if (cache.size > size) {
       cache.delete(cache.keys().next().value)
     }
   }
