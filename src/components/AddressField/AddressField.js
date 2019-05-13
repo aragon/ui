@@ -13,6 +13,7 @@ class AddressFieldBase extends React.PureComponent {
   static propTypes = {
     address: PropTypes.string.isRequired,
     onCopy: PropTypes.func,
+    icon: PropTypes.node,
   }
   _input = React.createRef()
   _button = React.createRef()
@@ -39,7 +40,7 @@ class AddressFieldBase extends React.PureComponent {
     this._input.current.focus()
   }
   render() {
-    const { address } = this.props
+    const { address, icon } = this.props
     return (
       <div
         css={`
@@ -66,14 +67,16 @@ class AddressFieldBase extends React.PureComponent {
             border: 1px solid transparent;
           `}
         >
-          <EthIdenticon
-            address={address}
-            scale={2}
-            css={`
-              transform: scale(calc(38 / 48));
-              transform-origin: 0 0;
-            `}
-          />
+          {icon || (
+            <EthIdenticon
+              address={address}
+              scale={2}
+              css={`
+                transform: scale(calc(38 / 48));
+                transform-origin: 0 0;
+              `}
+            />
+          )}
         </div>
         <TextInput
           ref={this._input}
@@ -87,6 +90,7 @@ class AddressFieldBase extends React.PureComponent {
             border: 0;
             box-shadow: none;
             background: transparent;
+            padding-left: ${icon ? '8px' : 'inherit'};
             ${font({ monospace: true })};
             &:read-only {
               color: ${theme.textPrimary};
