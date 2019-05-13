@@ -8,7 +8,7 @@ const HOURS = 60 * MINUTES
 const DAYS = 24 * HOURS
 
 const now = Date.now()
-const OVER_A_YEAR_END = 298 * DAYS - 55 * SECONDS
+const OVER_A_YEAR_END = 398 * DAYS - 55 * SECONDS
 
 const timers = [
   { start: -40 * SECONDS },
