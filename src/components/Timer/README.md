@@ -45,10 +45,10 @@ The start of a timer, as a `Date` instance.
 
 ### `format`
 
-- Type `Enum: [ 'dhms', 'dhm', 'hms', 'hm', 'ms', 'm', 's' ]`
+- Type `Enum: [ 'yMdhms', 'yMdhm', 'yMdh','yMd', 'yM', 'Mdhms', 'Mdhm', 'Mdh', 'Md', 'dhms', 'dhm', 'hms', 'hm', 'ms', 'm', 's' ]`
 - Default: `'dhms'`
 
-Format output in days 'd', hours 'h', minutes 'm', seconds 's'
+Format output in years 'y', months 'M', days 'd', hours 'h', minutes 'm', seconds 's'
 
 ### `showEmpty`
 

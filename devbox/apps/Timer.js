@@ -3,46 +3,65 @@ import styled from 'styled-components'
 import { Timer } from '@aragon/ui'
 
 const SECONDS = 1000
-const MINUTES = SECONDS * 60
-const HOURS = MINUTES * 60
-const DAYS = HOURS * 24
+const MINUTES = 60 * SECONDS
+const HOURS = 60 * MINUTES
+const DAYS = 24 * HOURS
 
 const now = Date.now()
+const OVER_A_YEAR_END = 398 * DAYS - 55 * SECONDS
 
 const timers = [
+  { end: 5 * SECONDS },
+  { start: 5 * SECONDS },
   { start: -40 * SECONDS },
   { start: -40 * SECONDS, showEmpty: true },
-  { start: -4 * HOURS, end: 8 * HOURS },
+  { end: 20 * DAYS },
   { end: 1 * DAYS },
-  ...['dhms', 'dhm', 'hms', 'hm', 'ms', 'm', 's'].map(format => ({
-    end: 2 * DAYS - 55 * SECONDS,
+  ...[
+    'yMdhms',
+    'yMdhm',
+    'yMdh',
+    'yMd',
+    'yM',
+    'Mdhms',
+    'Mdhm',
+    'Mdh',
+    'Md',
+    'dhms',
+    'dhm',
+    'hms',
+    'hm',
+    'ms',
+    'm',
+    's',
+  ].map(format => ({
+    end: OVER_A_YEAR_END,
     format,
   })),
 ].map(timer => {
-  if (timer.start) timer.start = new Date(now + timer.start)
-  if (timer.end) timer.end = new Date(now + timer.end)
+  if (timer.start) timer.start = new Date(now + timer.start - 500)
+  if (timer.end) timer.end = new Date(now + timer.end + 500)
   return timer
 })
 
-class App extends React.Component {
-  render() {
-    return (
-      <Main>
-        <div>
-          {timers.map((props, i) => (
-            <div
-              key={i}
-              css={`
-                padding: 5px 0;
-              `}
-            >
-              <Timer {...props} />
-            </div>
-          ))}
-        </div>
-      </Main>
-    )
-  }
+function App() {
+  return (
+    <Main>
+      <div>
+        {timers.map((props, i) => (
+          <div
+            key={i}
+            css={`
+              padding: 5px 0;
+            `}
+          >
+            <Timer {...props} /> ({props.format || 'auto'}
+            {props.showEmpty ? ' + showEmpty' : ''})
+          </div>
+        ))}
+      </div>
+    </Main>
+  )
 }
 
 const Main = styled.div`

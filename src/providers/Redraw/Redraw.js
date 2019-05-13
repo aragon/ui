@@ -6,7 +6,7 @@ import getDisplayName from 'react-display-name'
 // For a discussion on pitfalls, see
 // https://gist.github.com/staltz/08bf613199092eeb41ac8137d51eb5e6
 
-class Redraw extends React.Component {
+class Redraw extends React.PureComponent {
   static propTypes = {
     interval: PropTypes.number,
     children: PropTypes.func.isRequired,
@@ -31,14 +31,18 @@ class Redraw extends React.Component {
     const { lastDraw } = this.state
     const now = Date.now()
     const delta = now - lastDraw
+
     if (lastDraw === -1 || delta > interval) {
-      this.setState({ lastDraw: now - (delta % interval) })
+      this.setState({
+        lastDraw: Math.round(now / interval) * interval,
+      })
     }
   }
   render() {
     return this.props.children()
   }
 }
+
 const hocWrap = (Component, interval) => {
   const HOC = props => (
     <Redraw interval={interval}>{() => <Component {...props} />}</Redraw>
