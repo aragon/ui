@@ -8,51 +8,54 @@ export function useImageExists(src) {
   const [exists, setExists] = useState(false)
   const [loading, setLoading] = useState(false)
 
-  useEffect(() => {
-    let image = new Image()
+  useEffect(
+    () => {
+      let image = new Image()
 
-    const init = () => {
-      if (!src) {
+      const init = () => {
+        if (!src) {
+          setExists(false)
+          setLoading(false)
+          return
+        }
+
         setExists(false)
+        setLoading(true)
+
+        if (srcCache.get(src)) {
+          success()
+          return
+        }
+
+        // TODO: ensure only one image is loading at a time for a given src.
+        image.addEventListener('load', success)
+        image.src = src
+      }
+
+      const success = () => {
         setLoading(false)
-        return
+        setExists(true)
+        srcCache.set(src, true)
+        done()
       }
 
-      setExists(false)
-      setLoading(true)
-
-      if (srcCache.get(src)) {
-        success()
-        return
+      const done = () => {
+        if (image) {
+          image.removeEventListener('load', success)
+          image = null
+        }
       }
 
-      // TODO: ensure only one image is loading at a time for a given src.
-      image.addEventListener('load', success)
-      image.src = src
-    }
+      init()
 
-    const success = () => {
-      setLoading(false)
-      setExists(true)
-      srcCache.set(src, true)
-      done()
-    }
-
-    const done = () => {
-      if (image) {
-        image.removeEventListener('load', success)
-        image = null
+      return () => {
+        setLoading(false)
+        setExists(false)
+        done()
       }
-    }
-
-    init()
-
-    return () => {
-      setLoading(false)
-      setExists(false)
-      done()
-    }
-  }, [src])
+    },
+    [src]
+  )
 
   return useMemo(() => ({ src, exists, loading }), [src, exists, loading])
 }
