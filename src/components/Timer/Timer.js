@@ -48,7 +48,7 @@ function removeLeftZeros(units) {
   return units
 }
 
-const getTime = (start, end, format, showEmpty) => {
+function getTime(start, end, format, showEmpty) {
   const [
     showYears,
     showMonths,
