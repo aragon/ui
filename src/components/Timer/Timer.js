@@ -124,7 +124,7 @@ class Timer extends React.Component {
 
     const { totalInSeconds, units } = getTime(start, end, format, showEmpty)
 
-    if (end && totalInSeconds <= 0) {
+    if (totalInSeconds < 0 || Object.is(totalInSeconds, -0)) {
       return (
         <span
           css={`
@@ -132,7 +132,7 @@ class Timer extends React.Component {
             color: ${theme.textSecondary};
           `}
         >
-          Time out
+          {end ? 'Time out' : '−'}
         </span>
       )
     }
