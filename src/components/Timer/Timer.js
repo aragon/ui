@@ -38,7 +38,7 @@ const getFormat = memoize(format =>
 // Remove “0” units on the left side
 function removeLeftZeros(units) {
   // keep at least one unit, even if its value is 0
-  const lastZeroIndex = units.map(u => u[1]).lastIndexOf(0) + 1
+  const lastZeroIndex = units.map(u => u[1]).lastIndexOf(0)
   for (let i = 0; i < units.length && i < lastZeroIndex; i++) {
     if (units[i][1] !== 0 && units[i][1] !== null) {
       return units
