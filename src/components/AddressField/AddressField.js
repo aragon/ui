@@ -90,7 +90,7 @@ class AddressFieldBase extends React.PureComponent {
             border: 0;
             box-shadow: none;
             background: transparent;
-            padding-left: ${icon ? '8px' : 'inherit'};
+            ${icon && 'padding-left: 8px'};
             ${font({ monospace: true })};
             &:read-only {
               color: ${theme.textPrimary};
