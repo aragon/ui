@@ -62,7 +62,7 @@ class IdentityBadge extends React.PureComponent {
           ref={this._element}
           title={address}
           disabled={badgeOnly}
-          onClick={address && !badgeOnly && this.handleOpen}
+          onClick={address && !badgeOnly ? this.handleOpen : undefined}
           css={`
             display: inline-flex;
             overflow: hidden;
