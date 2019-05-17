@@ -31,73 +31,59 @@ const formats = {
   s: 's',
 }
 
-const getFormat = memoize(format =>
-  ['y', 'M', 'd', 'h', 'm', 's'].map(symbol => formats[format].includes(symbol))
-)
-
-// Remove “0” units on the left side
-function removeLeftZeros(units) {
-  // keep at least one unit, even if its value is 0
-  const lastZeroIndex = units.map(u => u[1]).lastIndexOf(0)
-  for (let i = 0; i < units.length && i < lastZeroIndex; i++) {
-    if (units[i][1] !== 0 && units[i][1] !== null) {
-      return units
-    }
-    units[i][1] = null
-  }
-  return units
+const unitNames = {
+  y: 'years',
+  M: 'months',
+  d: 'days',
+  h: 'hours',
+  m: 'minutes',
+  s: 'seconds',
 }
 
-function getTime(start, end, format, showEmpty) {
-  const [
-    showYears,
-    showMonths,
-    showDays,
-    showHours,
-    showMinutes,
-    showSeconds,
-  ] = getFormat(format)
+const getFormat = memoize(format =>
+  ['y', 'M', 'd', 'h', 'm', 's'].reduce(
+    (units, symbol) =>
+      formats[format].includes(symbol) ? [...units, unitNames[symbol]] : units,
+    []
+  )
+)
 
-  const period = end ? [end, new Date()] : [new Date(), start]
+function getTime(start, end, format, showEmpty, maxUnits) {
+  const date1 = end || new Date()
+  const date2 = end ? new Date() : start
 
-  const totalInSeconds = differenceInSeconds(...period)
+  const totalInSeconds = differenceInSeconds(date1, date2)
 
   const { years, months, days, hours, minutes, seconds } = difference(
-    ...period,
-    {
-      years: showYears,
-      months: showMonths,
-      days: showDays,
-      hours: showHours,
-      minutes: showMinutes,
-      seconds: showSeconds,
-    }
+    date1,
+    date2,
+    { keepLeadingZeros: showEmpty, maxUnits, units: getFormat(format) }
   )
 
-  const units = [
-    ['Y', years],
-    ['M', months],
-    ['D', days],
-    ['H', hours],
-    ['M', minutes],
-    ['S', seconds],
-  ]
-
   return {
-    units: showEmpty ? units : removeLeftZeros(units),
+    units: [
+      ['Y', years],
+      ['M', months],
+      ['D', days],
+      ['H', hours],
+      ['M', minutes],
+      ['S', seconds],
+    ],
     totalInSeconds,
   }
 }
 
 class Timer extends React.Component {
   static propTypes = {
-    start: PropTypes.instanceOf(Date),
     end: PropTypes.instanceOf(Date),
     format: PropTypes.oneOf(Object.keys(formats)),
+    maxUnits: PropTypes.number,
     showEmpty: PropTypes.bool,
+    start: PropTypes.instanceOf(Date),
   }
   static defaultProps = {
     format: formats.yMdhms,
+    maxUnits: -1,
     showEmpty: false,
   }
 
@@ -120,9 +106,15 @@ class Timer extends React.Component {
   }
 
   renderTime = () => {
-    const { start, end, format, showEmpty } = this.props
+    const { start, end, format, showEmpty, maxUnits } = this.props
 
-    const { totalInSeconds, units } = getTime(start, end, format, showEmpty)
+    const { totalInSeconds, units } = getTime(
+      start,
+      end,
+      format,
+      showEmpty,
+      maxUnits
+    )
 
     if (totalInSeconds < 0 || Object.is(totalInSeconds, -0)) {
       return (

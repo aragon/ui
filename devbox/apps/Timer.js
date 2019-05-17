@@ -13,6 +13,7 @@ const OVER_A_YEAR_END = 398 * DAYS - 55 * SECONDS
 const timers = [
   { end: 5 * SECONDS },
   { start: 5 * SECONDS },
+  { end: 20 * DAYS, maxUnits: 3 },
   { start: -40 * SECONDS },
   { start: -40 * SECONDS, showEmpty: true },
   { end: 20 * DAYS },
@@ -47,16 +48,12 @@ const timers = [
 function App() {
   return (
     <Main>
-      <div>
+      <div css="padding: 20px">
         {timers.map((props, i) => (
-          <div
-            key={i}
-            css={`
-              padding: 5px 0;
-            `}
-          >
+          <div key={i} css="padding: 5px 0">
             <Timer {...props} /> ({props.format || 'auto'}
-            {props.showEmpty ? ' + showEmpty' : ''})
+            {props.showEmpty ? ' + showEmpty' : ''}
+            {props.maxUnits ? ' + maxUnits' : ''})
           </div>
         ))}
       </div>
