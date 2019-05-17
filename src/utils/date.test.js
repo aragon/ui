@@ -24,7 +24,7 @@ describe('difference()', () => {
     })
   })
 
-  test('should compare the same date', () => {
+  test('should behave as expected when compared with the same date', () => {
     expect(difference(NOW, NOW)).toEqual({
       years: null,
       months: null,
