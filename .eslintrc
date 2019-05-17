@@ -1,7 +1,8 @@
 {
   "env": {
     "browser": true,
-    "es6": true
+    "es6": true,
+    "jest/globals": true
   },
   "extends": [
     "plugin:import/recommended",
@@ -19,7 +20,7 @@
     },
     "sourceType": "module"
   },
-  "plugins": ["prettier", "react", "import", "promise"],
+  "plugins": ["prettier", "react", "import", "promise", "jest"],
   "rules": {
     "import/no-unresolved": [
       "error",
