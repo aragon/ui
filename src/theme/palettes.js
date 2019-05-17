@@ -1,4 +1,4 @@
-import aragon from './aragon.json'
+import aragon from './aragon'
 
 // These need to match the names in the Open Color palettes
 const THEME_NAME = 'Aragon UI'
