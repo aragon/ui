@@ -21,7 +21,7 @@
     "dev": "rollup -c -w",
     "flow": "flow",
     "icons:build": "svgr --no-semi --replace-attr-value '#8B9396=currentColor' --no-title -d src/icons/components src/icons/svg",
-    "jest": "jest ./src",
+    "jest": "jest",
     "lint": "eslint ./src",
     "lint:fix": "eslint --fix ./src",
     "optimize:svg": "find ./src -name *.svg -exec svgo --config '{ \"plugins\": [ { \"removeDesc\": {\"removeAny\": true} }, { \"removeTitle\": true }, { \"removeViewBox\": false } ] }' {} \\;",
@@ -108,6 +108,11 @@
     "src/*.js": [
       "eslint --fix",
       "git add"
+    ]
+  },
+  "jest": {
+    "roots": [
+      "<rootDir>"
     ]
   }
 }
