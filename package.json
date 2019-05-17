@@ -29,7 +29,7 @@
     "prepublishOnly": "git push && git push --tags",
     "start": "cd gallery && npm start",
     "test": "npm run lint && npm run jest",
-    "theme:build": "scripts/oco-json.js < src/theme/Aragon.oco > src/theme/aragon.json"
+    "theme:build": "scripts/oco-to-js.js < src/theme/Aragon.oco > src/theme/aragon.js"
   },
   "peerDependencies": {
     "react": "^16.3.1",
@@ -45,7 +45,6 @@
     "@babel/preset-react": "^7.0.0",
     "babel-eslint": "^10.0.1",
     "babel-jest": "^24.8.0",
-    "babel-plugin-inline-json-import": "^0.3.1",
     "babel-plugin-styled-components": "^1.10.0",
     "eslint": "^5.9.0",
     "eslint-config-prettier": "^3.3.0",
@@ -111,7 +110,7 @@
     ]
   },
   "jest": {
-    "roots": [
+    "modulePaths": [
       "<rootDir>"
     ]
   }
