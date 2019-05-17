@@ -24,6 +24,17 @@ describe('difference()', () => {
     })
   })
 
+  test('should compare the same date', () => {
+    expect(difference(NOW, NOW)).toEqual({
+      years: null,
+      months: null,
+      days: null,
+      hours: null,
+      minutes: null,
+      seconds: 0,
+    })
+  })
+
   test('should always be a positive', () => {
     expect(difference(NOW, subMinutes(NOW, 1))).toEqual({
       years: null,

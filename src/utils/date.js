@@ -36,10 +36,14 @@ export const difference = (date1, date2, options = {}) => {
 
   const start = date2 > date1 ? date1 : date2
 
+  const getRightMostUnitIndex = () =>
+    [...fnsByUnit].reverse().find(([unit]) => units.includes(unit))[0]
+
   return fnsByUnit.reduce(
     (result, [name, differenceInUnit, subUnit], index) => {
       result[name] = null
 
+      // fill the current unit, substract the difference from the remaining
       if (
         (maxUnits === -1 || result.remainingUnits > 0) &&
         units.includes(name)
@@ -62,6 +66,7 @@ export const difference = (date1, date2, options = {}) => {
         result.remainingUnits -= 1
       }
 
+      // last iteration
       if (index === fnsByUnit.length - 1) {
         delete result.remaining
         delete result.remainingUnits
@@ -69,7 +74,7 @@ export const difference = (date1, date2, options = {}) => {
 
         // include at least one 0
         if (Object.values(result).every(val => val === null)) {
-          result[fnsByUnit.find(([unit]) => units.includes(unit))[0]] = 0
+          result[getRightMostUnitIndex()] = 0
         }
       }
 
