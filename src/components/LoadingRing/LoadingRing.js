@@ -12,7 +12,7 @@ const spin = keyframes`
   }
 `
 
-function LoadingRing({ paused, ...props }) {
+const LoadingRing = React.memo(function LoadingRing({ paused, ...props }) {
   return (
     <span
       css={`
@@ -54,7 +54,7 @@ function LoadingRing({ paused, ...props }) {
       </span>
     </span>
   )
-}
+})
 
 LoadingRing.propTypes = {
   paused: PropTypes.bool,
