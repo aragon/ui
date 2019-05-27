@@ -1,18 +1,18 @@
-import {
-  format,
-  differenceInYears,
-  differenceInMonths,
-  differenceInDays,
-  differenceInHours,
-  differenceInMinutes,
-  differenceInSeconds,
-  subYears,
-  subMonths,
-  subDays,
-  subHours,
-  subMinutes,
-  subSeconds,
-} from 'date-fns'
+import dayjs from 'dayjs'
+
+const differenceInYears = (a, b) => dayjs(a).diff(b, 'year')
+const differenceInMonths = (a, b) => dayjs(a).diff(b, 'month')
+const differenceInDays = (a, b) => dayjs(a).diff(b, 'day')
+const differenceInHours = (a, b) => dayjs(a).diff(b, 'hour')
+const differenceInMinutes = (a, b) => dayjs(a).diff(b, 'minute')
+const differenceInSeconds = (a, b) => dayjs(a).diff(b, 'second')
+
+const subYears = (a, value) => dayjs(a).subtract(value, 'year')
+const subMonths = (a, value) => dayjs(a).subtract(value, 'month')
+const subDays = (a, value) => dayjs(a).subtract(value, 'day')
+const subHours = (a, value) => dayjs(a).subtract(value, 'hour')
+const subMinutes = (a, value) => dayjs(a).subtract(value, 'minute')
+const subSeconds = (a, value) => dayjs(a).subtract(value, 'second')
 
 const fnsByUnit = [
   ['years', differenceInYears, subYears],
@@ -43,7 +43,7 @@ export const difference = (date1, date2, options = {}) => {
     (result, [name, differenceInUnit, subUnit], index) => {
       result[name] = null
 
-      // fill the current unit, substract the difference from the remaining
+      // fill the current unit, subtract the difference from the remaining
       if (
         (maxUnits === -1 || result.remainingUnits > 0) &&
         units.includes(name)
@@ -88,5 +88,4 @@ export const difference = (date1, date2, options = {}) => {
   )
 }
 
-export const formatHtmlDatetime = date =>
-  format(date, "yyyy-MM-dd'T'HH:mm:ss.SSSxxx")
+export const formatHtmlDatetime = date => dayjs(date).toISOString()

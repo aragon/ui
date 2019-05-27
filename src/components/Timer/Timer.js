@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import memoize from 'lodash-es/memoize'
-import { differenceInSeconds } from 'date-fns'
+import dayjs from 'dayjs'
 import { Redraw } from '../../providers/Redraw'
 import IconTime from '../../icons/components/Time'
 import { difference, formatHtmlDatetime } from '../../utils/date'
@@ -52,7 +52,7 @@ function getTime(start, end, format, showEmpty, maxUnits) {
   const date1 = end || new Date()
   const date2 = end ? new Date() : start
 
-  const totalInSeconds = differenceInSeconds(date1, date2)
+  const totalInSeconds = dayjs(date1).diff(date2, 'seconds')
 
   const { years, months, days, hours, minutes, seconds } = difference(
     date1,

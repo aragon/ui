@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import getDisplayName from 'react-display-name'
-import { isEqual } from 'date-fns'
+import dayjs from 'dayjs'
 import { difference } from '../../utils/date'
 
 // Render prop component for re-rendering based on a given date. Automatically
@@ -41,7 +41,7 @@ class RedrawFromDate extends React.Component {
   componentWillReceiveProps({ fromDate }) {
     if (!fromDate && this.props.fromDate) {
       this.clearInterval()
-    } else if (!isEqual(fromDate, this.props.fromDate)) {
+    } else if (!dayjs(fromDate).isSame(this.props.fromDate)) {
       this.restartDrawInterval(getRedrawTime(this.props.fromDate))
     }
   }
