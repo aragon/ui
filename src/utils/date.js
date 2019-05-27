@@ -1,26 +1,12 @@
 import dayjs from 'dayjs'
 
-const differenceInYears = (a, b) => dayjs(a).diff(b, 'year')
-const differenceInMonths = (a, b) => dayjs(a).diff(b, 'month')
-const differenceInDays = (a, b) => dayjs(a).diff(b, 'day')
-const differenceInHours = (a, b) => dayjs(a).diff(b, 'hour')
-const differenceInMinutes = (a, b) => dayjs(a).diff(b, 'minute')
-const differenceInSeconds = (a, b) => dayjs(a).diff(b, 'second')
-
-const subYears = (a, value) => dayjs(a).subtract(value, 'year')
-const subMonths = (a, value) => dayjs(a).subtract(value, 'month')
-const subDays = (a, value) => dayjs(a).subtract(value, 'day')
-const subHours = (a, value) => dayjs(a).subtract(value, 'hour')
-const subMinutes = (a, value) => dayjs(a).subtract(value, 'minute')
-const subSeconds = (a, value) => dayjs(a).subtract(value, 'second')
-
 const fnsByUnit = [
-  ['years', differenceInYears, subYears],
-  ['months', differenceInMonths, subMonths],
-  ['days', differenceInDays, subDays],
-  ['hours', differenceInHours, subHours],
-  ['minutes', differenceInMinutes, subMinutes],
-  ['seconds', differenceInSeconds, subSeconds],
+  ['years', 'year'],
+  ['months', 'month'],
+  ['days', 'day'],
+  ['hours', 'hour'],
+  ['minutes', 'minute'],
+  ['seconds', 'second'],
 ]
 
 const DEFAULT_UNITS = ['years', 'months', 'days', 'hours', 'minutes', 'seconds']
@@ -40,7 +26,7 @@ export const difference = (date1, date2, options = {}) => {
     [...fnsByUnit].reverse().find(([unit]) => units.includes(unit))[0]
 
   return fnsByUnit.reduce(
-    (result, [name, differenceInUnit, subUnit], index) => {
+    (result, [name, unitName], index) => {
       result[name] = null
 
       // fill the current unit, subtract the difference from the remaining
@@ -48,8 +34,8 @@ export const difference = (date1, date2, options = {}) => {
         (maxUnits === -1 || result.remainingUnits > 0) &&
         units.includes(name)
       ) {
-        result[name] = differenceInUnit(result.remaining, start)
-        result.remaining = subUnit(result.remaining, result[name])
+        result[name] = result.remaining.diff(start, unitName)
+        result.remaining = result.remaining.subtract(result[name], unitName)
       }
 
       // remove leading zeros
@@ -81,7 +67,7 @@ export const difference = (date1, date2, options = {}) => {
       return result
     },
     {
-      remaining: start === date1 ? date2 : date1,
+      remaining: dayjs(start === date1 ? date2 : date1),
       remainingUnits: maxUnits,
       seenNonZero: false,
     }
