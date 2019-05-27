@@ -1,6 +1,6 @@
 import dayjs from 'dayjs'
 
-const fnsByUnit = [
+const UNITS = [
   ['years', 'year'],
   ['months', 'month'],
   ['days', 'day'],
@@ -23,9 +23,9 @@ export const difference = (date1, date2, options = {}) => {
   const start = date2 > date1 ? date1 : date2
 
   const getRightMostUnitIndex = () =>
-    [...fnsByUnit].reverse().find(([unit]) => units.includes(unit))[0]
+    [...UNITS].reverse().find(([unit]) => units.includes(unit))[0]
 
-  return fnsByUnit.reduce(
+  return UNITS.reduce(
     (result, [name, unitName], index) => {
       result[name] = null
 
@@ -53,7 +53,7 @@ export const difference = (date1, date2, options = {}) => {
       }
 
       // last iteration
-      if (index === fnsByUnit.length - 1) {
+      if (index === UNITS.length - 1) {
         delete result.remaining
         delete result.remainingUnits
         delete result.seenNonZero
