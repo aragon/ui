@@ -1,26 +1,12 @@
-import {
-  format,
-  differenceInYears,
-  differenceInMonths,
-  differenceInDays,
-  differenceInHours,
-  differenceInMinutes,
-  differenceInSeconds,
-  subYears,
-  subMonths,
-  subDays,
-  subHours,
-  subMinutes,
-  subSeconds,
-} from 'date-fns'
+import dayjs from 'dayjs'
 
-const fnsByUnit = [
-  ['years', differenceInYears, subYears],
-  ['months', differenceInMonths, subMonths],
-  ['days', differenceInDays, subDays],
-  ['hours', differenceInHours, subHours],
-  ['minutes', differenceInMinutes, subMinutes],
-  ['seconds', differenceInSeconds, subSeconds],
+const UNITS = [
+  ['years', 'year'],
+  ['months', 'month'],
+  ['days', 'day'],
+  ['hours', 'hour'],
+  ['minutes', 'minute'],
+  ['seconds', 'second'],
 ]
 
 const DEFAULT_UNITS = ['years', 'months', 'days', 'hours', 'minutes', 'seconds']
@@ -37,19 +23,19 @@ export const difference = (date1, date2, options = {}) => {
   const start = date2 > date1 ? date1 : date2
 
   const getRightMostUnitIndex = () =>
-    [...fnsByUnit].reverse().find(([unit]) => units.includes(unit))[0]
+    [...UNITS].reverse().find(([unit]) => units.includes(unit))[0]
 
-  return fnsByUnit.reduce(
-    (result, [name, differenceInUnit, subUnit], index) => {
+  return UNITS.reduce(
+    (result, [name, unitName], index) => {
       result[name] = null
 
-      // fill the current unit, substract the difference from the remaining
+      // fill the current unit, subtract the difference from the remaining
       if (
         (maxUnits === -1 || result.remainingUnits > 0) &&
         units.includes(name)
       ) {
-        result[name] = differenceInUnit(result.remaining, start)
-        result.remaining = subUnit(result.remaining, result[name])
+        result[name] = result.remaining.diff(start, unitName)
+        result.remaining = result.remaining.subtract(result[name], unitName)
       }
 
       // remove leading zeros
@@ -67,7 +53,7 @@ export const difference = (date1, date2, options = {}) => {
       }
 
       // last iteration
-      if (index === fnsByUnit.length - 1) {
+      if (index === UNITS.length - 1) {
         delete result.remaining
         delete result.remainingUnits
         delete result.seenNonZero
@@ -81,12 +67,11 @@ export const difference = (date1, date2, options = {}) => {
       return result
     },
     {
-      remaining: start === date1 ? date2 : date1,
+      remaining: dayjs(start === date1 ? date2 : date1),
       remainingUnits: maxUnits,
       seenNonZero: false,
     }
   )
 }
 
-export const formatHtmlDatetime = date =>
-  format(date, "yyyy-MM-dd'T'HH:mm:ss.SSSxxx")
+export const formatHtmlDatetime = date => dayjs(date).toISOString()

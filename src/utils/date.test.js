@@ -1,11 +1,21 @@
-import { addSeconds, addDays, subMinutes } from 'date-fns'
+import dayjs from 'dayjs'
 import { difference } from './date'
 
 const NOW = new Date()
 
+const add = (date, value, unit) =>
+  dayjs(date)
+    .add(value, unit)
+    .toDate()
+
+const sub = (date, value, unit) =>
+  dayjs(date)
+    .subtract(value, unit)
+    .toDate()
+
 describe('difference()', () => {
   test('should return the exact number of each unit', () => {
-    expect(difference(NOW, addDays(NOW, 1))).toEqual({
+    expect(difference(NOW, add(NOW, 1, 'day'))).toEqual({
       years: null,
       months: null,
       days: 1,
@@ -14,7 +24,7 @@ describe('difference()', () => {
       seconds: 0,
     })
 
-    expect(difference(NOW, addSeconds(NOW, 1))).toEqual({
+    expect(difference(NOW, add(NOW, 1, 'second'))).toEqual({
       years: null,
       months: null,
       days: null,
@@ -36,7 +46,7 @@ describe('difference()', () => {
   })
 
   test('should always be a positive', () => {
-    expect(difference(NOW, subMinutes(NOW, 1))).toEqual({
+    expect(difference(NOW, sub(NOW, 1, 'minute'))).toEqual({
       years: null,
       months: null,
       days: null,
@@ -48,7 +58,7 @@ describe('difference()', () => {
 
   test('should allow to disable some units', () => {
     expect(
-      difference(NOW, addDays(NOW, 1), {
+      difference(NOW, add(NOW, 1, 'day'), {
         units: ['days'],
       })
     ).toEqual({
@@ -63,7 +73,7 @@ describe('difference()', () => {
 
   test('should keep at least one unit even at zero', () => {
     expect(
-      difference(NOW, addDays(NOW, 1), {
+      difference(NOW, add(NOW, 1, 'day'), {
         units: ['years'],
       })
     ).toEqual({
@@ -78,7 +88,7 @@ describe('difference()', () => {
 
   test('should respect the keepLeadingZeros option', () => {
     expect(
-      difference(NOW, addDays(NOW, 1), {
+      difference(NOW, add(NOW, 1, 'day'), {
         keepLeadingZeros: true,
       })
     ).toEqual({
@@ -91,7 +101,7 @@ describe('difference()', () => {
     })
 
     expect(
-      difference(NOW, addDays(NOW, 1), {
+      difference(NOW, add(NOW, 1, 'day'), {
         keepLeadingZeros: true,
         units: ['seconds'],
       })
@@ -105,7 +115,7 @@ describe('difference()', () => {
     })
 
     expect(
-      difference(NOW, addDays(NOW, 1), {
+      difference(NOW, add(NOW, 1, 'day'), {
         keepLeadingZeros: true,
         units: ['minutes', 'seconds'],
       })
@@ -121,7 +131,7 @@ describe('difference()', () => {
 
   test('should respect the maxUnits option', () => {
     expect(
-      difference(NOW, addDays(NOW, 1), {
+      difference(NOW, add(NOW, 1, 'day'), {
         maxUnits: 1,
       })
     ).toEqual({
@@ -134,7 +144,7 @@ describe('difference()', () => {
     })
 
     expect(
-      difference(NOW, addDays(NOW, 1), {
+      difference(NOW, add(NOW, 1, 'day'), {
         maxUnits: 3,
       })
     ).toEqual({
@@ -149,7 +159,7 @@ describe('difference()', () => {
 
   test('should ignore the keepLeadingZeros option if maxUnits is set', () => {
     expect(
-      difference(NOW, addDays(NOW, 1), {
+      difference(NOW, add(NOW, 1, 'day'), {
         keepLeadingZeros: true,
         maxUnits: 3,
       })
