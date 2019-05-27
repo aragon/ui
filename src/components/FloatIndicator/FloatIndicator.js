@@ -27,9 +27,7 @@ const FloatIndicator = React.memo(({ children, visible }) => (
               width: 100%;
               display: flex;
               justify-content: center;
-              bottom: 0;
-              padding-bottom: 25px;
-              overflow: hidden;
+              bottom: 25px;
             `}
           >
             <Box
