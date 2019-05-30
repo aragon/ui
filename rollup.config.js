@@ -1,23 +1,37 @@
-import resolve from 'rollup-plugin-node-resolve'
-import commonjs from 'rollup-plugin-commonjs'
 import babel from 'rollup-plugin-babel'
-import url from 'rollup-plugin-url'
+import commonjs from 'rollup-plugin-commonjs'
 import filesize from 'rollup-plugin-filesize'
-import progress from 'rollup-plugin-progress'
 import pkg from './package.json'
+import progress from 'rollup-plugin-progress'
+import resolve from 'rollup-plugin-node-resolve'
+import sizes from 'rollup-plugin-sizes'
+import url from 'rollup-plugin-url'
+import visualizer from 'rollup-plugin-visualizer'
 
 const production = !process.env.ROLLUP_WATCH
 
 export default {
   input: 'src/index.js',
   output: [
-    { file: pkg.main, format: 'cjs' },
-    { file: pkg.module, format: 'es' },
+    {
+      file: pkg.module,
+      format: 'esm',
+      preserveModules: true,
+      sourcemap: true,
+    },
   ],
   external: ['react', 'react-dom', 'styled-components'],
+  treeshake: production,
   plugins: [
     progress(),
-    production && filesize(),
+    production &&
+      filesize({
+        showMinifiedSize: true,
+        showGzippedSize: true,
+        showBrotliSize: true,
+      }),
+    production && sizes(),
+    production && visualizer(),
     url({
       limit: 5 * 1024, // inline files smaller than 5k
       publicPath: '',
@@ -38,5 +52,4 @@ export default {
     resolve(),
     commonjs(),
   ],
-  sourcemap: true,
 }
