@@ -27,6 +27,7 @@ const Main = styled.section`
 
 const Title = styled.h1`
   display: flex;
+  align-items: center;
 `
 
 export default Info

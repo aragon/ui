@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { IconCopy } from '../../icons'
+import { IconCopy } from '../../icons/components'
 import TextInput from '../Input/TextInput'
 import ButtonIcon from '../Button/ButtonIcon'
 import EthIdenticon from '../EthIdenticon/EthIdenticon'

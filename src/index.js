@@ -1,6 +1,6 @@
 export * from './components'
 export * from './hooks'
-export * from './icons'
 export * from './providers'
+export * from './icons/components'
 export * from './theme'
 export * from './utils'
