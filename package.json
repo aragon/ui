@@ -78,7 +78,8 @@
     "rollup-plugin-sizes": "^0.5.1",
     "rollup-plugin-uglify": "^6.0.0",
     "rollup-plugin-url": "^2.0.1",
-    "rollup-plugin-visualizer": "^1.1.1"
+    "rollup-plugin-visualizer": "^1.1.1",
+    "svgo": "^1.2.2"
   },
   "dependencies": {
     "@babel/runtime": "^7.3.1",
