@@ -7,19 +7,32 @@ import { unselectable, font } from '../../utils/styles'
 
 class ButtonBase extends React.PureComponent {
   static propTypes = {
-    innerRef: PropTypes.any,
+    focusRingRadius: PropTypes.number,
+    focusRingSpacing: PropTypes.number,
     focusVisible: PropTypes.bool,
+    innerRef: PropTypes.any,
     showFocusRing: PropTypes.bool,
   }
   static defaultProps = {
+    focusRingRadius: 0,
+    focusRingSpacing: 0,
     showFocusRing: true,
   }
   render() {
-    const { focusVisible, showFocusRing, innerRef, ...props } = this.props
+    const {
+      focusVisible,
+      showFocusRing,
+      focusRingSpacing,
+      focusRingRadius,
+      innerRef,
+      ...props
+    } = this.props
     return (
       <Main
         ref={innerRef}
         focusRing={focusVisible && showFocusRing}
+        focusRingSpacing={focusRingSpacing}
+        focusRingRadius={focusRingRadius}
         {...props}
       />
     )
@@ -27,6 +40,7 @@ class ButtonBase extends React.PureComponent {
 }
 
 const Main = styled.button.attrs({ type: 'button' })`
+  position: relative;
   display: inline-block;
   padding: 0;
   white-space: nowrap;
@@ -36,7 +50,7 @@ const Main = styled.button.attrs({ type: 'button' })`
 
   background: none;
   border: 0;
-  border-radius: 3px;
+  border-radius: 4px;
   outline: 0;
 
   cursor: ${({ disabled }) => (disabled ? 'default' : 'pointer')};
@@ -45,8 +59,15 @@ const Main = styled.button.attrs({ type: 'button' })`
     border: 0;
   }
 
-  &:focus {
-    outline: ${p => (p.focusRing ? `2px solid ${theme.accent}` : '0')};
+  &:focus:after {
+    content: '';
+    position: absolute;
+    top: ${p => -p.focusRingSpacing}px;
+    left: ${p => -p.focusRingSpacing}px;
+    right: ${p => -p.focusRingSpacing}px;
+    bottom: ${p => -p.focusRingSpacing}px;
+    border-radius: ${p => p.focusRingRadius}px;
+    border: ${p => (p.focusRing ? `2px solid ${theme.accent}` : '0')};
   }
 `
 

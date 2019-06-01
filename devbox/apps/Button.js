@@ -1,9 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Button, Text, theme } from '@aragon/ui'
+import { IconAdd, Button, Text, theme } from '@aragon/ui'
 
 const MODES = ['normal', 'secondary', 'strong', 'outline', 'text']
-const SIZES = ['normal', 'small', 'mini']
+const SIZES = ['normal', 'small']
 const EMPHASES = ['none', 'positive', 'negative']
 const DISABLED = [false, true]
 
@@ -56,13 +56,16 @@ class App extends React.Component {
   renderSomeButtons() {
     return (
       <div style={{ padding: '100px 0' }}>
-        {['normal', 'strong', 'secondary'].map(mode => (
+        {['normal', 'strong'].map(mode => (
           <div className="row" key={mode}>
             {SIZES.map(size => (
               <span key={mode + size}>
-                <Button mode={mode} size={size}>
-                  {size}
-                </Button>
+                <Button
+                  mode={mode}
+                  size={size}
+                  icon={<IconAdd />}
+                  label={size}
+                />
               </span>
             ))}
           </div>
@@ -71,8 +74,8 @@ class App extends React.Component {
     )
   }
   render() {
-    // const buttons = this.renderSomeButtons()
-    const buttons = this.renderAllButtons()
+    const buttons = this.renderSomeButtons()
+    // const buttons = this.renderAllButtons()
     return (
       <Main>
         <Container>
