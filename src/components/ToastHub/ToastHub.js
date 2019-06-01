@@ -2,8 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { animated, Transition } from 'react-spring'
-import { springs } from '../../utils/styles/spring'
-import { stylingProps } from '../../utils'
+import { springs, stylingProps } from '../../utils'
 import Text from '../Text/Text'
 
 let id = 0

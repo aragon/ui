@@ -1,7 +1,7 @@
 export * from './breakpoint'
 export * from './font'
 export * from './grid'
-export * from './spring'
+export * from './springs'
 
 export const unselectable = () => `
   -webkit-touch-callout: none;
