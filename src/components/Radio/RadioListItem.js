@@ -1,9 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import color from 'onecolor'
 import Radio from '../Input/Radio'
 import Text from '../Text/Text'
+import color from '../../utils/color'
 import { theme, colors } from '../../theme'
 import { unselectable } from '../../utils/styles'
 
@@ -43,12 +43,10 @@ const LabelBox = styled.div`
   padding: 12px 12px;
   border: 1px ${contentBorder} solid;
   border-radius: 3px;
-  transition: border 200ms linear;
+  transition: border 100ms ease-in-out;
   cursor: pointer;
-
-  &:focus,
   &:hover {
-    border-color: ${labelBoxBorder.alpha(0.35).cssa()};
+    border-color: ${labelBoxBorder.alpha(0.35)};
   }
 `
 

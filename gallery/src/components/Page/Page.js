@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-import color from 'onecolor'
 import { theme } from '@aragon/ui'
+import color from 'ui-src/utils/color'
 import renderReadme from 'src/render-readme'
 import MarkdownContent from './MarkdownContent'
 import Frame from './Frame'
@@ -44,9 +44,7 @@ const StyledPage = styled.section`
     color: ${theme.negativeText};
     border-radius: 5px;
     padding: 5px 10px;
-    background: ${color(theme.negative)
-      .alpha(0.8)
-      .cssa()};
+    background: ${color(theme.negative).alpha(0.8)};
   }
 `
 

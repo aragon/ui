@@ -1,9 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import color from 'onecolor'
 import { IconAttention, IconBylaw } from '../../icons/components'
 import { theme } from '../../theme'
+import color from '../../utils/color'
 import { font } from '../../utils/styles'
 import Info from './Info'
 
@@ -60,9 +60,12 @@ const redColor = color(theme.negative)
 
 const Alert = props => (
   <IconInfo
-    background={redColor.alpha(0.06).cssa()}
+    background={redColor.alpha(0.06)}
     icon={
-      <IconAttention bg={redColor.alpha(0.1).cssa()} color={redColor.css()} />
+      <IconAttention
+        bg={redColor.alpha(0.1).toString()}
+        color={redColor.toString()}
+      />
     }
     {...props}
   />
