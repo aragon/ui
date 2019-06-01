@@ -1,10 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import styled, { css } from 'styled-components'
 import SafeLink from '../Link/SafeLink'
-import { font, unselectable, GU } from '../../utils/styles'
+import { GU } from '../../utils/styles'
 import { useTheme } from '../../theme/Theme'
-import { PublicUrl, styledUrl } from '../../providers/PublicUrl'
 import ButtonBase from './ButtonBase'
 
 function Button({ children, icon, label, mode, size }) {
