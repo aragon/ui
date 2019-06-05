@@ -5,6 +5,8 @@ import light from './theme-light'
 
 const DEFAULT_THEME = light
 
+const ThemeContext = React.createContext(convertThemeColors(DEFAULT_THEME))
+
 function convertThemeColors(theme) {
   return Object.entries(theme).reduce(
     (theme, [name, value]) => ({ ...theme, [name]: color(value) }),
@@ -12,7 +14,9 @@ function convertThemeColors(theme) {
   )
 }
 
-const ThemeContext = React.createContext(convertThemeColors(DEFAULT_THEME))
+function useTheme() {
+  return useContext(ThemeContext)
+}
 
 function Theme({ theme, children }) {
   const themeConverted = useMemo(() => convertThemeColors(theme), [theme])
@@ -26,10 +30,6 @@ function Theme({ theme, children }) {
 Theme.propTypes = {
   theme: PropTypes.object.isRequired,
   children: PropTypes.node,
-}
-
-function useTheme() {
-  return useContext(ThemeContext)
 }
 
 export { Theme, useTheme }
