@@ -3,7 +3,7 @@
 A new hook, `useTheme()`, should now be used to get the theme object. This
 change was necessary to allow swapping the theme on the fly.
 
-Importing the `colors` or the `theme` objects still works but is deprecated.
+Importing the `colors`, `theme`, `themeDark`, or `brand` objects still works but is deprecated.
 
 ## Button
 
