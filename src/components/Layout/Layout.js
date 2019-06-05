@@ -1,4 +1,5 @@
 import React, { useMemo } from 'react'
+import PropTypes from 'prop-types'
 import { GU } from '../../utils/styles'
 import { useViewport } from '../../providers/Viewport/Viewport'
 import { BREAKPOINTS } from '../../utils/styles/breakpoint'
@@ -46,13 +47,17 @@ function Layout({ children, parentWidth }) {
         css={`
           margin: 0 auto;
         `}
-        style={{ width: `${layoutWidth}px` }}
+        style={{ width: `${width}px` }}
       >
         {children}
-        <div>{layoutWidth}</div>
       </div>
     </div>
   )
+}
+
+Layout.propTypes = {
+  children: PropTypes.node,
+  parentWidth: PropTypes.number,
 }
 
 export { useLayout, Layout }
