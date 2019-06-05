@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { blockExplorerUrl, font } from '../../utils'
-import { theme } from '../../theme'
+import { theme } from '../../theme-legacy'
 import { IconClose } from '../../icons/components'
 import { ImageExists } from '../../hooks'
 import SafeLink from '../Link/SafeLink'

@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import Radio from '../Input/Radio'
 import Text from '../Text/Text'
 import color from '../../utils/color'
-import { theme, colors } from '../../theme'
+import { theme, colors } from '../../theme-legacy'
 import { unselectable } from '../../utils/styles'
 
 const { contentBorder } = theme

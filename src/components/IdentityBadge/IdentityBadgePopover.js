@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { blockExplorerUrl, noop, font } from '../../utils'
-import { theme } from '../../theme'
+import { theme } from '../../theme-legacy'
 import { IconClose } from '../../icons/components'
 import SafeLink from '../Link/SafeLink'
 import Popover from '../Popover/Popover'

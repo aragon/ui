@@ -5,7 +5,7 @@ import Popper from 'popper.js'
 import { Transition, animated } from 'react-spring'
 
 import RootPortal from '../RootPortal/RootPortal'
-import { theme } from '../../theme'
+import { theme } from '../../theme-legacy'
 import { noop } from '../../utils'
 import { springs } from '../../utils/styles'
 

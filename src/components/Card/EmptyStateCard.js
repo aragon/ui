@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from '../../proptypes'
 import styled from 'styled-components'
-import { theme } from '../../theme'
+import { theme } from '../../theme-legacy'
 import { noop, warn } from '../../utils'
 import Button from '../Button/Button'
 import Text from '../Text/Text'

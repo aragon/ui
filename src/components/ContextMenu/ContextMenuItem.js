@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { theme } from '../../theme'
+import { theme } from '../../theme-legacy'
 import { unselectable } from '../../utils/styles'
 
 const ContextMenuItem = styled.div`

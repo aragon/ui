@@ -6,7 +6,7 @@ import { Redraw } from '../../providers/Redraw'
 import { IconTime } from '../../icons/components'
 import { difference, formatHtmlDatetime } from '../../utils/date'
 import { unselectable } from '../../utils/styles'
-import { theme } from '../../theme'
+import { theme } from '../../theme-legacy'
 
 const RENDER_EVERY = 1000
 

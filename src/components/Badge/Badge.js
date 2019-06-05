@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
-import { colors } from '../../theme'
+import { colors } from '../../theme-legacy'
 import { font } from '../../utils/styles'
 
 const shapeStyles = shape => {

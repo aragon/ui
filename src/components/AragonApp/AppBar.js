@@ -4,7 +4,7 @@ import styled, { css } from 'styled-components'
 import { Transition, animated } from 'react-spring'
 import { PublicUrl } from '../../providers/PublicUrl'
 import { noop, springs, unselectable } from '../../utils'
-import { theme } from '../../theme'
+import { theme } from '../../theme-legacy'
 import Text from '../Text/Text'
 
 import chevronSvg from './assets/chevron.svg'

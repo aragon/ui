@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
-import { theme } from '../../theme'
+import { theme } from '../../theme-legacy'
 
 const Info = ({ children, title, ...props }) => (
   <Main {...props}>

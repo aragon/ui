@@ -5,7 +5,7 @@ import TextInput from '../Input/TextInput'
 import ButtonIcon from '../Button/ButtonIcon'
 import EthIdenticon from '../EthIdenticon/EthIdenticon'
 import { Toast } from '../ToastHub/ToastHub'
-import { theme } from '../../theme'
+import { theme } from '../../theme-legacy'
 import { noop, warn } from '../../utils'
 import { font } from '../../utils/styles/font'
 

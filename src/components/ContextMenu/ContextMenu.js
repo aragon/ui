@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { Spring, animated } from 'react-spring'
 import ClickOutHandler from 'react-onclickout'
-import { theme } from '../../theme'
+import { theme } from '../../theme-legacy'
 import { springs, unselectable } from '../../utils/styles'
 import { IconEllipsis, IconArrowDown } from '../../icons/components'
 

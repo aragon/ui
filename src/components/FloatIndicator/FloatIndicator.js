@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { Transition, animated } from 'react-spring'
 import RootPortal from '../RootPortal/RootPortal'
 import { springs } from '../../utils/styles'
-import { theme } from '../../theme'
+import { theme } from '../../theme-legacy'
 import { font } from '../../utils/styles/font'
 
 const FloatIndicator = React.memo(({ children, visible }) => (
