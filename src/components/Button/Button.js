@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import SafeLink from '../Link/SafeLink'
 import { GU } from '../../utils/styles'
-import { useTheme } from '../../theme/Theme'
+import { useTheme } from '../../theme'
 import ButtonBase from './ButtonBase'
 
 function Button({ children, icon, label, mode, size }) {
@@ -14,22 +14,23 @@ function Button({ children, icon, label, mode, size }) {
       css={`
         display: inline-flex;
         align-items: center;
+        justify-content: center;
         background: ${mode === 'strong'
-          ? `
-              linear-gradient(
+          ? `linear-gradient(
               130deg,
-              ${theme.accentGradientStart},
-              ${theme.accentGradientEnd}
+              ${theme.accentStart},
+              ${theme.accentEnd}
             )`
           : theme.surface};
-        color: ${mode === 'strong' ? theme.accentText : theme.surfaceText};
+        color: ${mode === 'strong'
+          ? theme.accentContent
+          : theme.surfaceContent};
         min-width: ${16 * GU}px;
         height: ${(size === 'small' ? 4 : 5) * GU}px;
         padding: 0 ${3 * GU}px;
         font-size: 16px;
         box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.25);
-        border: 0.5px solid
-          ${mode === 'normal' ? theme.surfaceBorder : 'transparent'};
+        border: 0.5px solid ${mode === 'normal' ? theme.border : 'transparent'};
         transition-property: transform, box-shadow;
         transition-duration: 50ms;
         transition-timing-function: ease-in-out;
@@ -71,13 +72,13 @@ Button.propTypes = {
   children: PropTypes.node,
   icon: PropTypes.node,
   label: PropTypes.string,
-  mode: PropTypes.oneOf(['normal', 'strong', 'secondary']),
-  size: PropTypes.oneOf(['normal', 'small']),
+  mode: PropTypes.oneOf(['normal', 'strong', 'text']),
+  size: PropTypes.oneOf(['large', 'normal', 'small']),
 }
 
 Button.defaultProps = {
   mode: 'normal',
-  size: 'big',
+  size: 'large',
 }
 
 Button.Anchor = React.forwardRef((props, ref) => (

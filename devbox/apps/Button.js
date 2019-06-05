@@ -55,18 +55,18 @@ class App extends React.Component {
   }
   renderSomeButtons() {
     return (
-      <div style={{ padding: '100px 0' }}>
-        {['normal', 'strong'].map(mode => (
-          <div className="row" key={mode}>
-            {SIZES.map(size => (
-              <span key={mode + size}>
+      <div style={{ padding: '40px 0' }}>
+        {SIZES.map(size => (
+          <div key={size} css="display: flex">
+            {['normal', 'strong'].map(mode => (
+              <div key={mode + size} css="margin: 0 20px 20px 0">
                 <Button
                   mode={mode}
                   size={size}
-                  icon={<IconAdd />}
+                  icon={null && <IconAdd />}
                   label={size}
                 />
-              </span>
+              </div>
             ))}
           </div>
         ))}
@@ -79,9 +79,11 @@ class App extends React.Component {
     return (
       <Main>
         <Container>
-          <h1>
-            <Text size="xxlarge">Button variations</Text>
-          </h1>
+          {null && (
+            <h1>
+              <Text size="xxlarge">Button variations</Text>
+            </h1>
+          )}
           {buttons}
         </Container>
       </Main>
