@@ -28,3 +28,9 @@ large: 1170 => 138 GU
 The ViewPort component should be used instead.
 
 ## GRID / grid() have been removed
+
+The Layout component should be used instead.
+
+## AragonApp has been removed
+
+The Main component should be used instead.

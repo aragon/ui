@@ -32,7 +32,6 @@ import PageRootPortal from './pages/PageRootPortal'
 
 // Containers
 import PageMain from './pages/PageMain'
-import PageAragonApp from './pages/PageAragonApp'
 import PageAppBar from './pages/PageAppBar'
 import PageNavigationBar from './pages/PageNavigationBar'
 import PageAppView from './pages/PageAppView'
@@ -91,7 +90,6 @@ export const PAGE_GROUPS = [
     name: 'Containers',
     pages: [
       [PageMain, 'Main'],
-      [PageAragonApp, 'AragonApp'],
       [PageAppBar, 'AppBar'],
       [PageNavigationBar, 'NavigationBar'],
       [PageAppView, 'AppView'],

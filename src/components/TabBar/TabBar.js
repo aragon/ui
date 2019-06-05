@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { theme } from '../../theme-legacy'
 import { font, unselectable, noop, warn } from '../../utils'
-import { InAppBarContext } from '../AragonApp/AppBar'
+import { InAppBarContext } from '../AppView/AppBar'
 
 class TabBar extends React.Component {
   static propTypes = {
