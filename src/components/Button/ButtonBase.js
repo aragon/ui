@@ -49,7 +49,7 @@ function ButtonBase({
           bottom: ${-focusRingSpacing}px;
           border-radius: ${focusRingRadius}px;
           border: ${focusVisible && showFocusRing
-            ? `2px solid ${theme.accent}`
+            ? `2px solid ${theme.focus}`
             : '0'};
         }
       `}

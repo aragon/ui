@@ -7,6 +7,11 @@ import ButtonBase from './ButtonBase'
 
 function Button({ children, icon, label, mode, size }) {
   const theme = useTheme()
+
+  // backward compatibility
+  if (mode === 'outline') mode = 'normal'
+  if (mode === 'secondary') mode = 'normal'
+
   return (
     <ButtonBase
       focusRingSpacing={0.5 * GU}
@@ -72,7 +77,16 @@ Button.propTypes = {
   children: PropTypes.node,
   icon: PropTypes.node,
   label: PropTypes.string,
-  mode: PropTypes.oneOf(['normal', 'strong', 'text']),
+
+  mode: PropTypes.oneOf([
+    'normal',
+    'strong',
+    'text',
+
+    // backward compatibility
+    'outline',
+    'secondary',
+  ]),
   size: PropTypes.oneOf(['large', 'normal', 'small']),
 }
 

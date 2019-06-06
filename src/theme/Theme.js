@@ -2,10 +2,21 @@ import React, { useContext, useMemo } from 'react'
 import PropTypes from 'prop-types'
 import color from '../utils/color'
 import light from './theme-light'
+import dark from './theme-dark'
 
-const DEFAULT_THEME = light
+const EMBEDDED_THEMES = { dark, light }
+const DEFAULT_THEME = 'light'
 
-const ThemeContext = React.createContext(convertThemeColors(DEFAULT_THEME))
+function getTheme(theme) {
+  if (typeof theme === 'string' && EMBEDDED_THEMES[theme]) {
+    return EMBEDDED_THEMES[theme]
+  }
+  return theme
+}
+
+const ThemeContext = React.createContext(
+  convertThemeColors(getTheme(DEFAULT_THEME))
+)
 
 function convertThemeColors(theme) {
   return Object.entries(theme).reduce(
@@ -19,7 +30,9 @@ function useTheme() {
 }
 
 function Theme({ theme, children }) {
-  const themeConverted = useMemo(() => convertThemeColors(theme), [theme])
+  const themeConverted = useMemo(() => convertThemeColors(getTheme(theme)), [
+    theme,
+  ])
   return (
     <ThemeContext.Provider value={themeConverted}>
       {children}
@@ -28,7 +41,7 @@ function Theme({ theme, children }) {
 }
 
 Theme.propTypes = {
-  theme: PropTypes.object.isRequired,
+  theme: PropTypes.oneOfType([PropTypes.object, PropTypes.string]).isRequired,
   children: PropTypes.node,
 }
 
