@@ -5,24 +5,23 @@ import { theme } from '../../theme'
 import AutoComplete from './AutoComplete'
 import { identity, noop } from '../../utils'
 
-function AutoCompleteSelected(
-  {
-    itemButtonStyles,
-    items,
-    onChange,
-    onSelect,
-    onSelectedClick = noop,
-    placeholder,
-    renderItem,
-    required,
-    renderSelected = identity,
-    selected,
-    selectedButtonStyles = '',
-    value,
-    wide,
-  },
-  ref
-) {
+function AutoCompleteSelected({
+  forwardedRef,
+  itemButtonStyles,
+  items,
+  onChange,
+  onSelect,
+  onSelectedClick = noop,
+  placeholder,
+  renderItem,
+  required,
+  renderSelected = identity,
+  selected,
+  selectedButtonStyles = '',
+  value,
+  wide,
+}) {
+  const ref = forwardedRef
   const selectedRef = useRef()
 
   const handleSelect = useCallback(
@@ -88,6 +87,7 @@ function AutoCompleteSelected(
 }
 
 AutoCompleteSelected.propTypes = {
+  forwardedRef: PropTypes.object,
   itemButtonStyles: PropTypes.string,
   items: PropTypes.array.isRequired,
   onChange: PropTypes.func.isRequired,
@@ -103,4 +103,8 @@ AutoCompleteSelected.propTypes = {
   wide: PropTypes.bool,
 }
 
-export default React.memo(React.forwardRef(AutoCompleteSelected))
+const AutoCompleteSelectedMemo = React.memo(AutoCompleteSelected)
+
+export default React.forwardRef((props, ref) => (
+  <AutoCompleteSelectedMemo {...props} forwardedRef={ref} />
+))
