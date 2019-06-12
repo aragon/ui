@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import SafeLink from '../Link/SafeLink'
-import { GU } from '../../utils/styles'
+import { GU, RADIUS } from '../../utils/styles'
 import { useTheme } from '../../theme'
 import ButtonBase from './ButtonBase'
 
@@ -15,7 +15,7 @@ function Button({ children, icon, label, mode, size }) {
   return (
     <ButtonBase
       focusRingSpacing={0.5 * GU}
-      focusRingRadius={4}
+      focusRingRadius={RADIUS}
       css={`
         display: inline-flex;
         align-items: center;
@@ -34,8 +34,9 @@ function Button({ children, icon, label, mode, size }) {
         height: ${(size === 'small' ? 4 : 5) * GU}px;
         padding: 0 ${3 * GU}px;
         font-size: 16px;
-        box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.25);
         border: 0.5px solid ${mode === 'normal' ? theme.border : 'transparent'};
+
+        box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.25);
         transition-property: transform, box-shadow;
         transition-duration: 50ms;
         transition-timing-function: ease-in-out;

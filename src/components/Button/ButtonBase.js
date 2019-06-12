@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import FocusVisible from '../FocusVisible/FocusVisible'
 import { useTheme } from '../../theme'
-import { unselectable, font } from '../../utils/styles'
+import { RADIUS, unselectable, font } from '../../utils/styles'
 
 function ButtonBase({
   focusVisible,
@@ -31,7 +31,7 @@ function ButtonBase({
 
         background: none;
         border: 0;
-        border-radius: 4px;
+        border-radius: ${RADIUS}px;
         outline: 0;
 
         cursor: ${disabled ? 'default' : 'pointer'};
