@@ -58,6 +58,8 @@ function Bar({ children, primary, secondary }) {
 
 Bar.propTypes = {
   children: PropTypes.node,
+  primary: PropTypes.node,
+  secondary: PropTypes.node,
 }
 
 export { Bar, useInsideBar }

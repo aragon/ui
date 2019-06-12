@@ -1,6 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import PropTypes from 'prop-types'
-import styled from 'styled-components'
 import { RADIUS, GU, font, unselectable, noop } from '../../utils'
 import { useTheme } from '../../theme'
 import { InAppBarContext } from '../AppView/AppBar'

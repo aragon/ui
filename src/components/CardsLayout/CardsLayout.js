@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
-import { GU, RADIUS } from '../../utils'
-import { useTheme } from '../../theme/Theme'
+import PropTypes from 'prop-types'
+import { GU } from '../../utils'
 import { useLayout } from '../Layout/Layout'
 
 const CardsLayoutContext = React.createContext(false)
@@ -22,7 +22,6 @@ function useCols() {
 }
 
 function CardsLayout({ children }) {
-  const theme = useTheme()
   const cols = useCols()
 
   return (
@@ -42,6 +41,10 @@ function CardsLayout({ children }) {
       </div>
     </CardsLayoutContext.Provider>
   )
+}
+
+CardsLayout.propTypes = {
+  children: PropTypes.node,
 }
 
 export { CardsLayout, useInsideCardsLayout }
