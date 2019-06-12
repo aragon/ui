@@ -1,17 +1,20 @@
 import { useRef, useState, useCallback, useEffect } from 'react'
 import { useOnBlur } from './'
 
+const KEYCODE_UP = 38
+const KEYCODE_DOWN = 40
+
 /* eslint-disable react-hooks/rules-of-hooks */
 export function useArrowKeysFocus(query, containerRef = useRef()) {
   /* eslint-enable react-hooks/rules-of-hooks */
-  const [index, setIndex] = useState(-1)
+  const [highlightedIndex, setHighlightedIndex] = useState(-1)
 
-  const reset = () => setIndex(-1)
+  const reset = () => setHighlightedIndex(-1)
   const cycleFocus = useCallback(
     (e, change) => {
       e.preventDefault()
       const elements = document.querySelectorAll(query)
-      let next = index + change
+      let next = highlightedIndex + change
       if (next > elements.length - 1) {
         next = 0
       }
@@ -21,16 +24,16 @@ export function useArrowKeysFocus(query, containerRef = useRef()) {
       if (!elements[next]) {
         next = -1
       }
-      setIndex(next)
+      setHighlightedIndex(next)
     },
-    [index, query]
+    [highlightedIndex, query]
   )
   const handleKeyDown = useCallback(
     e => {
       const { keyCode } = e
-      keyCode === 38
+      keyCode === KEYCODE_UP
         ? cycleFocus(e, -1)
-        : keyCode === 40
+        : keyCode === KEYCODE_DOWN
         ? cycleFocus(e, 1)
         : null
     },
@@ -39,15 +42,15 @@ export function useArrowKeysFocus(query, containerRef = useRef()) {
 
   const { handleBlur: handleContainerBlur } = useOnBlur(reset, containerRef)
   useEffect(() => {
-    if (index === -1) {
+    if (highlightedIndex === -1) {
       return
     }
     const elements = document.querySelectorAll(query)
-    if (!elements[index]) {
+    if (!elements[highlightedIndex]) {
       return
     }
-    elements[index].focus()
-  }, [index, query])
+    elements[highlightedIndex].focus()
+  }, [highlightedIndex, query])
   useEffect(() => {
     document.addEventListener('keydown', handleKeyDown)
     return () => document.removeEventListener('keydown', handleKeyDown)
