@@ -15,7 +15,10 @@ function getLayoutSize(parentWidth) {
   let index = SIZES.length
   while (index--) {
     if (parentWidth >= SIZES[index][1]) {
-      return SIZES[index] - (index === 0 ? 0 : MIN_MARGIN)
+      return [
+        SIZES[index][0],
+        SIZES[index][1] - (index === 0 ? 0 : MIN_MARGIN * 2),
+      ]
     }
   }
   return SIZES[0]
@@ -38,11 +41,7 @@ function Layout({ children, parentWidth }) {
   const { width } = useLayout(parentWidth)
 
   return (
-    <div
-      css={`
-        padding-top: ${2 * GU}px;
-      `}
-    >
+    <div css="min-height: 100vh">
       <div
         css={`
           margin: 0 auto;
