@@ -34,3 +34,10 @@ The Layout component should be used instead.
 ## AragonApp has been removed
 
 The Main component should be used instead.
+
+## AppView
+
+AppView is now a simpler component, setting the background and the layout (using the Layout component).
+
+The `title`, `padding`, `height`, `appBar`, and `tabs` props are now ignored.
+
