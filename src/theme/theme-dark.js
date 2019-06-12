@@ -16,6 +16,8 @@ export default {
   surfaceHighlight: colors.GreyBasicBackground,
   surfacePressed: colors.GreyBasicBackground,
 
+  surfaceInteractive: colors.White,
+
   success: colors.MintGreen,
   error: colors.Red,
   warning: colors.Orange,

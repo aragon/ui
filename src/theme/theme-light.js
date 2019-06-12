@@ -7,14 +7,17 @@ export default {
 
   background: colors.BlueBackground,
 
-  border: colors.GreyLight,
+  border: '#DFE3F8',
 
   surface: colors.White,
   surfaceContent: colors.GreyDark,
   surfaceContentSecondary: colors.GreyMedium,
+
   surfaceSelected: colors.GreyBasicBackground,
   surfaceHighlight: colors.GreyBasicBackground,
   surfacePressed: colors.GreyBasicBackground,
+
+  surfaceInteractive: colors.White,
 
   success: colors.MintGreen,
   error: colors.Red,
