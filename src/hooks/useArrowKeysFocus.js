@@ -31,11 +31,9 @@ export function useArrowKeysFocus(query, containerRef = useRef()) {
   const handleKeyDown = useCallback(
     e => {
       const { keyCode } = e
-      keyCode === KEYCODE_UP
-        ? cycleFocus(e, -1)
-        : keyCode === KEYCODE_DOWN
-        ? cycleFocus(e, 1)
-        : null
+      if (keyCode === KEYCODE_UP || keyCode === KEYCODE_DOWN) {
+        cycleFocus(e, keyCode === KEYCODE_UP ? -1 : 1)
+      }
     },
     [cycleFocus]
   )
