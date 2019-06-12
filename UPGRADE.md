@@ -41,3 +41,10 @@ AppView is now a simpler component, setting the background and the layout (using
 
 The `title`, `padding`, `height`, `appBar`, and `tabs` props are now ignored.
 
+## AppBar is deprecated
+
+A combination of AppHeader and Bar should be used instead.
+
+## TabBar
+
+Support for the `onSelect` prop has been removed. Please use `onChange` instead.
