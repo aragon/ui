@@ -1,150 +1,188 @@
-import React from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { theme } from '../../theme-legacy'
-import { font, unselectable, noop, warn } from '../../utils'
+import { RADIUS, GU, font, unselectable, noop } from '../../utils'
+import { useTheme } from '../../theme'
 import { InAppBarContext } from '../AppView/AppBar'
+import { useInsideBar } from '../Bar/Bar'
+import TabBarLegacy from './TabBarLegacy'
 
-class TabBar extends React.Component {
-  static propTypes = {
-    items: PropTypes.arrayOf(PropTypes.node).isRequired,
-    selected: PropTypes.number,
-    onSelect: PropTypes.func,
-    onChange: PropTypes.func,
-  }
-  static defaultProps = {
-    selected: 0,
-    onChange: noop,
-  }
+function TabBar({ items, selected, onChange }) {
+  const [displayFocusRing, setDisplayFocusRing] = useState(false)
+  const insideBar = useInsideBar()
+  const barRef = useRef(null)
+  const theme = useTheme()
 
-  state = {
-    displayFocusRing: false,
-  }
+  const selectElement = useCallback(
+    element => {
+      if (!element || !barRef.current) {
+        return
+      }
 
-  _barRef = React.createRef()
+      const index = [...barRef.current.childNodes].indexOf(element)
+      if (index > -1) {
+        onChange(index)
+      }
+    },
+    [onChange, barRef]
+  )
 
-  componentDidMount() {
-    document.addEventListener('keydown', this.handleKeydown)
-  }
-  componentWillUnmount() {
-    document.removeEventListener('keydown', this.handleKeydown)
-  }
+  const handleMouseDown = useCallback(() => {
+    setDisplayFocusRing(false)
+  }, [])
 
-  enableFocusRing() {
-    this.setState({ displayFocusRing: true })
-  }
-  disableFocusRing() {
-    this.setState({ displayFocusRing: false })
-  }
-  selectElement(element) {
-    const { onChange } = this.props
-    if (!element || !this._barRef.current) {
-      return
-    }
-    const index = [...this._barRef.current.childNodes].indexOf(element)
-    if (index === -1) {
-      return
-    }
+  const handleTabMouseDown = useCallback(
+    ({ currentTarget }) => {
+      // We would usually avoid using the DOM when possible, and prefer using a
+      // separate component (`Tab`) to keep the `index` in a prop, then pass it
+      // using an event prop. But since `selectElement()` is needed (so we can
+      // pass `document.activeElement` to it for the keyboard), and we have
+      // `e.currentTarget` in the event object, we might as well use it for the
+      // pointer device too.
+      selectElement(currentTarget)
+    },
+    [selectElement]
+  )
 
-    onChange(index)
-
-    // onSelect compatibility
-    if (this.props.onSelect) {
-      this.props.onSelect(index)
-
-      if (!TabBar._onSelectWarned) {
-        warn(
-          'TabBar: the `onSelect` prop has been renamed: please use `onChange` instead.'
-        )
-        TabBar._onSelectWarned = true
+  useEffect(() => {
+    const handleKeydown = ({ key }) => {
+      if (key === 'Enter') {
+        selectElement(document.activeElement)
+        setDisplayFocusRing(true)
+      }
+      if (key === 'Tab') {
+        setDisplayFocusRing(true)
       }
     }
-  }
-  handleMouseDown = () => {
-    this.disableFocusRing()
-  }
-  handleKeydown = ({ key }) => {
-    if (key === 'Enter') {
-      this.selectElement(document.activeElement)
-      this.enableFocusRing()
+    document.addEventListener('keydown', handleKeydown)
+    return () => {
+      document.removeEventListener('keydown', handleKeydown)
     }
-    if (key === 'Tab') {
-      this.enableFocusRing()
-    }
-  }
-  handleTabMouseDown = ({ currentTarget }) => {
-    // We would usually avoid using the DOM when possible, and prefer using a
-    // separate component (`Tab`) to keep the `index` in a prop, then pass it
-    // using an event prop. But since `this.selectElement()` is needed (so we
-    // can pass `document.activeElement` to it for the keyboard), and we have
-    // `e.currentTarget` in the event object, we might as well use it for the
-    // pointer device too.
-    this.selectElement(currentTarget)
-  }
-  render() {
-    const { displayFocusRing } = this.state
-    const { items, selected } = this.props
-    return (
-      <InAppBarContext.Consumer>
-        {inAppBar => (
-          <nav onMouseDown={this.handleMouseDown}>
-            <Bar ref={this._barRef} border={!inAppBar}>
-              {items.map((item, i) => (
-                <Tab
-                  key={i}
-                  tabIndex="0"
-                  selected={i === selected}
-                  focusRing={displayFocusRing}
-                  onMouseDown={this.handleTabMouseDown}
+  }, [selectElement])
+
+  return (
+    <nav onMouseDown={handleMouseDown}>
+      <ul
+        ref={barRef}
+        css={`
+          display: flex;
+          border-bottom: ${!insideBar ? `1px solid ${theme.border}` : '0'};
+          position: relative;
+          left: ${insideBar ? '-1px' : '0'};
+        `}
+      >
+        {items.map((item, i) => (
+          <li
+            key={i}
+            tabIndex="0"
+            onMouseDown={handleTabMouseDown}
+            css={`
+              position: relative;
+              list-style: none;
+              padding: ${insideBar ? '0' : '0 30px'};
+              ${font({
+                size: 'large',
+                weight: i === selected ? 'bold' : 'normal',
+              })};
+              ${unselectable()};
+              &:focus {
+                outline: 0;
+                .focus-ring {
+                  display: block;
+                }
+              }
+              cursor: pointer;
+            `}
+          >
+            <span
+              css={`
+                display: flex;
+                position: relative;
+                align-items: center;
+                height: ${insideBar ? `${8 * GU - 2}px` : 'auto'};
+                padding: 0 ${3 * GU}px;
+                color: ${i === selected
+                  ? theme.surfaceContent
+                  : theme.surfaceContentSecondary};
+              `}
+            >
+              {item}
+              {i === selected && (
+                <span
+                  css={`
+                    position: absolute;
+                    left: 0;
+                    right: 0;
+                    bottom: -1px;
+                    // RADIUS * 2 is used as the height to get
+                    // the full radius in the corner.
+                    height: ${RADIUS * 2}px;
+                    border-bottom-left-radius: ${i === 0 ? RADIUS : 0}px;
+                    overflow: hidden;
+                  `}
                 >
-                  <Label selected={i === selected}>{item}</Label>
-                  {displayFocusRing && <FocusRing />}
-                </Tab>
-              ))}
-            </Bar>
-          </nav>
-        )}
-      </InAppBarContext.Consumer>
-    )
-  }
+                  <span
+                    css={`
+                      position: absolute;
+                      left: 0;
+                      right: 0;
+                      bottom: 0;
+                      height: 2px;
+                      background: ${theme.selected};
+                    `}
+                  />
+                </span>
+              )}
+            </span>
+            {displayFocusRing && <FocusRing />}
+          </li>
+        ))}
+      </ul>
+    </nav>
+  )
 }
 
-const Bar = styled.ul`
-  display: flex;
-  border-bottom: ${p => (p.border ? `1px solid ${theme.contentBorder}` : '0')};
-`
+TabBar.propTypes = {
+  items: PropTypes.arrayOf(PropTypes.node).isRequired,
+  selected: PropTypes.number,
+  onChange: PropTypes.func,
+}
 
-const FocusRing = styled.span`
-  display: none;
-  position: absolute;
-  top: -5px;
-  left: -5px;
-  right: -5px;
-  bottom: -5px;
-  border: 2px solid ${theme.accent};
-  border-radius: 2px;
-`
+TabBar.defaultProps = {
+  selected: 0,
+  onChange: noop,
+}
 
-const Tab = styled.li`
-  position: relative;
-  list-style: none;
-  padding: 0 30px;
-  cursor: pointer;
-  ${p => font({ weight: p.selected ? 'bold' : 'normal' })};
-  ${unselectable()};
-  &:focus {
-    outline: 0;
-    ${FocusRing} {
-      display: block;
-    }
-  }
-`
+function FocusRing() {
+  const theme = useTheme()
+  return (
+    <span
+      className="focus-ring"
+      css={`
+        display: none;
+        position: absolute;
+        top: -5px;
+        left: -5px;
+        right: -5px;
+        bottom: -5px;
+        border: 2px solid ${theme.focus};
+        border-radius: ${RADIUS}px;
+      `}
+    />
+  )
+}
 
-const Label = styled.span`
-  display: flex;
-  margin-bottom: -1px;
-  padding: 5px 0 3px;
-  border-bottom: 4px solid ${p => (p.selected ? theme.accent : 'transparent')};
-`
-
-export default TabBar
+export default props => {
+  return (
+    <InAppBarContext.Consumer>
+      {inAppBar =>
+        inAppBar ? (
+          // Use a separate component for TabBar in AppBar, to prevent breaking anything.
+          <TabBarLegacy {...props} inAppBar />
+        ) : (
+          <TabBar {...props} />
+        )
+      }
+    </InAppBarContext.Consumer>
+  )
+}
