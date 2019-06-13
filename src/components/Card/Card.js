@@ -47,6 +47,7 @@ function Card({ children, width, height, onClick, ...props }) {
 
             ${interactive &&
               css`
+                border: 0;
                 box-shadow: 0px 1px 3px rgba(51, 77, 117, 0.15);
                 transition-property: transform, box-shadow;
                 transition-duration: 50ms;
@@ -54,7 +55,7 @@ function Card({ children, width, height, onClick, ...props }) {
 
                 &:active {
                   transform: translateY(1px);
-                  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.125);
+                  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.075);
                 }
 
                 &:focus {
@@ -90,10 +91,10 @@ function FocusRing() {
       css={`
         display: none;
         position: absolute;
-        top: -5px;
-        left: -5px;
-        right: -5px;
-        bottom: -5px;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
         border: 2px solid ${theme.focus};
         border-radius: ${RADIUS}px;
       `}
