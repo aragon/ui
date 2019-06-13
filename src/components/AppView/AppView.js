@@ -10,7 +10,6 @@ function AppView({ children, ...props }) {
   return (
     <div
       css={`
-        height: 100vh;
         background: ${theme.background};
       `}
       {...pick(props, ['style', 'className'])}
