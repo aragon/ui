@@ -1,8 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { GU } from '../../utils'
+import { useTheme } from '../../theme'
 
 function AppHeader({ heading, action }) {
+  const theme = useTheme()
   return (
     <div
       css={`
@@ -20,7 +22,14 @@ function AppHeader({ heading, action }) {
       >
         <div>
           {typeof heading === 'string' ? (
-            <h1 css="font-size: 26px">{heading}</h1>
+            <h1
+              css={`
+                font-size: 26px;
+                color: ${theme.content};
+              `}
+            >
+              {heading}
+            </h1>
           ) : (
             heading
           )}
