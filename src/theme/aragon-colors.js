@@ -1,11 +1,11 @@
 export default {
   // base
   White: '#FFFFFF',
-  BlueBackground: '#F9FAFC',
 
   // greyscale
-  GreyBasicBackground: '#DDE4E9',
+  GreyBasic: '#DDE4E9',
   GreyLight: '#C4CDD5',
+  Grey: '#C8D7EA',
   GreyMedium: '#637381',
   GreyDark: '#212B36',
 
@@ -19,6 +19,10 @@ export default {
   AragonTurquoiseDark: '#26B4AD',
 
   // secondary colors
+  ArcticBlueLight: '#F9FAFC',
+  ArcticBlue: '#F1F3F7',
+  ArcticBlueDark: '#ABBECF',
+
   Purple: '#7C80F2',
   PurpleLight: '#CCBDF4',
   PurpleDark: '#4D22DF',

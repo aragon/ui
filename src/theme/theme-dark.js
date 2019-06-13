@@ -1,22 +1,25 @@
 import colors from './aragon-colors'
 
 export default {
+  _name: 'dark',
+
+  accent: colors.AragonBlue,
   accentStart: colors.AragonBlue,
   accentEnd: colors.AragonTurquoise,
   accentContent: colors.White,
 
+  content: colors.White,
   background: '#28334C',
-
   border: '#28334C',
 
   surface: '#35425E',
-  surfaceContent: colors.GreyDark,
-  surfaceContentSecondary: colors.GreyMedium,
-  surfaceSelected: colors.GreyBasicBackground,
-  surfaceHighlight: colors.GreyBasicBackground,
-  surfacePressed: colors.GreyBasicBackground,
+  surfaceContent: colors.White,
+  surfaceContentSecondary: colors.ArcticBlueDark,
+  surfaceSelected: colors.GreyBasic,
+  surfaceHighlight: '#35425E',
+  surfacePressed: colors.GreyBasic,
 
-  surfaceInteractive: colors.White,
+  surfaceInteractive: '#405071',
 
   success: colors.MintGreen,
   error: colors.Red,
