@@ -5,9 +5,10 @@
   "license": "MIT",
   "scripts": {
     "update-apps-index": "node scripts/update-apps-index.js",
-    "prebuild": "copy-aragon-ui-assets dist && npm run update-apps-index",
-    "build": "npm run prebuild && webpack --mode production",
-    "build:dev": "npm run prebuild && webpack --mode development",
+    "prebuild": "npm run update-apps-index",
+    "postbuild": "copy-aragon-ui-assets dist",
+    "build": "npm run prebuild && webpack --mode production && npm run postbuild",
+    "build:dev": "npm run prebuild && webpack --mode development && npm run postbuild",
     "start": "npm run prebuild && webpack-dev-server --mode development --port 1234"
   },
   "dependencies": {
