@@ -6,16 +6,19 @@ import { Root } from '../../providers/Root'
 import { Viewport } from '../../providers/Viewport'
 import BaseStyles from '../BaseStyles/BaseStyles'
 import { ToastHub } from '../ToastHub/ToastHub'
+import { MainTheme } from '../../theme'
 
 const Main = ({ children, assetsUrl, legacyFonts }) => (
-  <Root.Provider>
-    <Viewport.Provider>
-      <PublicUrl.Provider url={ensureTrailingSlash(assetsUrl)}>
-        <BaseStyles enableLegacyFonts={legacyFonts} />
-        <ToastHub>{children}</ToastHub>
-      </PublicUrl.Provider>
-    </Viewport.Provider>
-  </Root.Provider>
+  <MainTheme>
+    <Root.Provider>
+      <Viewport.Provider>
+        <PublicUrl.Provider url={ensureTrailingSlash(assetsUrl)}>
+          <BaseStyles enableLegacyFonts={legacyFonts} />
+          <ToastHub>{children}</ToastHub>
+        </PublicUrl.Provider>
+      </Viewport.Provider>
+    </Root.Provider>
+  </MainTheme>
 )
 
 Main.propTypes = {
