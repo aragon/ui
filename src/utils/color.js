@@ -9,7 +9,7 @@ function rgbFromRgbInt(rgbInt) {
 }
 
 function normalizeHexColor(value) {
-  const matches = value.match(RGB_HEX_RE)
+  const matches = value ? value.match(RGB_HEX_RE) : null
 
   if (matches === null) {
     throw new Error(
