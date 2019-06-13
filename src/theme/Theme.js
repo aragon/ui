@@ -1,4 +1,4 @@
-import React, { useContext, useMemo } from 'react'
+import React, { useState, useContext, useMemo } from 'react'
 import PropTypes from 'prop-types'
 import color from '../utils/color'
 import light from './theme-light'
@@ -6,6 +6,7 @@ import dark from './theme-dark'
 
 const EMBEDDED_THEMES = { dark, light }
 const DEFAULT_THEME = 'light'
+const RESERVED_KEYS = ['_name']
 
 function getTheme(theme) {
   if (typeof theme === 'string' && EMBEDDED_THEMES[theme]) {
@@ -19,10 +20,16 @@ const ThemeContext = React.createContext(
 )
 
 function convertThemeColors(theme) {
-  return Object.entries(theme).reduce(
-    (theme, [name, value]) => ({ ...theme, [name]: color(value) }),
-    {}
-  )
+  return Object.entries(theme).reduce((theme, [name, value]) => {
+    const convertedValue = RESERVED_KEYS.includes(name)
+      ? value
+      : color(value || '#FF00FF')
+
+    return {
+      ...theme,
+      [name]: convertedValue,
+    }
+  }, {})
 }
 
 function useTheme() {
@@ -45,4 +52,40 @@ Theme.propTypes = {
   children: PropTypes.node,
 }
 
-export { Theme, useTheme }
+/*
+ * Starting from here, we define a hook and a MainTheme component that is
+ * meant to be used by the <Main /> component. This is not as generic as
+ * using <Theme />, but it brings the concept of being able to toggle between
+ * a light and a dark theme, even from a sub theme if needed.
+ */
+
+const MainThemeContext = React.createContext(
+  convertThemeColors(getTheme(DEFAULT_THEME))
+)
+
+function useDarkMode() {
+  const { theme, setTheme } = useContext(MainThemeContext)
+
+  const darkMode = useMemo(
+    () => ({
+      toggle: () => {
+        setTheme(name => (name === 'light' ? 'dark' : 'light'))
+      },
+      enabled: theme === 'dark',
+    }),
+    [theme, setTheme]
+  )
+
+  return darkMode
+}
+
+function MainTheme({ children }) {
+  const [theme, setTheme] = useState('light')
+  return (
+    <MainThemeContext.Provider value={{ theme, setTheme }}>
+      <Theme theme={theme}>{children}</Theme>
+    </MainThemeContext.Provider>
+  )
+}
+
+export { MainTheme, Theme, useDarkMode, useTheme }
