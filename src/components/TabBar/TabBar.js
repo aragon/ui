@@ -3,12 +3,12 @@ import PropTypes from 'prop-types'
 import { RADIUS, GU, font, unselectable, noop } from '../../utils'
 import { useTheme } from '../../theme'
 import { InAppBarContext } from '../AppView/AppBar'
-import { useInsideBar } from '../Bar/Bar'
+import { Bar, useInsideBar } from '../Bar/Bar'
 import TabBarLegacy from './TabBarLegacy'
 
 function TabBar({ items, selected, onChange }) {
   const [displayFocusRing, setDisplayFocusRing] = useState(false)
-  const insideBar = useInsideBar()
+  const { insideBar, insideBarPrimary, insideBarSecondary } = useInsideBar()
   const barRef = useRef(null)
   const theme = useTheme()
 
@@ -66,29 +66,34 @@ function TabBar({ items, selected, onChange }) {
         css={`
           display: flex;
           border-bottom: ${!insideBar ? `1px solid ${theme.border}` : '0'};
-          position: relative;
-          left: ${insideBar ? '-1px' : '0'};
+          margin-left: ${insideBarPrimary ? -Bar.PADDING - 1 : 0}px;
+          margin-right: ${insideBarSecondary ? -Bar.PADDING - 1 : 0}px;
         `}
       >
         {items.map((item, i) => (
           <li
             key={i}
             tabIndex="0"
+            role="button"
             onMouseDown={handleTabMouseDown}
             css={`
               position: relative;
               list-style: none;
               padding: ${insideBar ? '0' : '0 30px'};
+              transition: background 50ms ease-in-out;
               ${font({
                 size: 'large',
-                weight: i === selected ? 'bold' : 'normal',
+                weight: 'normal',
               })};
               ${unselectable()};
               &:focus {
                 outline: 0;
-                .focus-ring {
-                  display: block;
-                }
+              }
+              &:hover {
+                background: ${theme.surfaceHighlight};
+              }
+              &:focus .focus-ring {
+                display: block;
               }
               cursor: pointer;
             `}
@@ -100,40 +105,47 @@ function TabBar({ items, selected, onChange }) {
                 align-items: center;
                 height: ${insideBar ? `${8 * GU - 2}px` : 'auto'};
                 padding: 0 ${3 * GU}px;
+                white-space: nowrap;
                 color: ${i === selected
                   ? theme.surfaceContent
                   : theme.surfaceContentSecondary};
               `}
             >
               {item}
-              {i === selected && (
-                <span
-                  css={`
-                    position: absolute;
-                    left: 0;
-                    right: 0;
-                    bottom: -1px;
-                    // RADIUS * 2 is used as the height to get
-                    // the full radius in the corner.
-                    height: ${RADIUS * 2}px;
-                    border-bottom-left-radius: ${i === 0 ? RADIUS : 0}px;
-                    overflow: hidden;
-                  `}
-                >
-                  <span
-                    css={`
-                      position: absolute;
-                      left: 0;
-                      right: 0;
-                      bottom: 0;
-                      height: 2px;
-                      background: ${theme.selected};
-                    `}
-                  />
-                </span>
-              )}
+              <span
+                css={`
+                  position: absolute;
+                  left: 0;
+                  right: 0;
+                  bottom: 0;
+                  background: ${theme.selected};
+                  height: 2px;
+                  opacity: ${Number(i === selected)};
+                  transition-property: transform, opacity;
+                  transition-duration: 150ms;
+                  transition-timing-function: ease-in-out;
+                  transform: scale3d(1, ${i === selected ? 1 : 0}, 1);
+                  transform-origin: 0 100%;
+                `}
+              />
             </span>
-            {displayFocusRing && <FocusRing />}
+            {displayFocusRing && (
+              <span
+                css={`
+                  position: absolute;
+                  top: 0;
+                  left: ${insideBar && !insideBarSecondary && i === 0
+                    ? '1px'
+                    : '0'};
+                  right: ${insideBarSecondary && i === items.length - 1
+                    ? '1px'
+                    : '0'};
+                  bottom: 0;
+                `}
+              >
+                <FocusRing />
+              </span>
+            )}
           </li>
         ))}
       </ul>
@@ -160,10 +172,10 @@ function FocusRing() {
       css={`
         display: none;
         position: absolute;
-        top: -5px;
-        left: -5px;
-        right: -5px;
-        bottom: -5px;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
         border: 2px solid ${theme.focus};
         border-radius: ${RADIUS}px;
       `}
