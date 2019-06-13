@@ -70,7 +70,7 @@ ButtonBase.defaultProps = {
   showFocusRing: true,
 }
 
-export default React.forwardRef((props, ref) => (
+const ButtonBaseWithFocus = React.forwardRef((props, ref) => (
   <FocusVisible>
     {({ focusVisible, onFocus }) => (
       <ButtonBase
@@ -82,3 +82,6 @@ export default React.forwardRef((props, ref) => (
     )}
   </FocusVisible>
 ))
+
+export { ButtonBaseWithFocus as ButtonBase }
+export default ButtonBaseWithFocus
