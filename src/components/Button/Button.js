@@ -26,7 +26,7 @@ function Button({ children, icon, label, mode, size }) {
               ${theme.accentStart},
               ${theme.accentEnd}
             )`
-          : theme.surface};
+          : theme.surfaceInteractive};
         color: ${mode === 'strong'
           ? theme.accentContent
           : theme.surfaceContent};
