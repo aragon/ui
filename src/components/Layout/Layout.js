@@ -41,13 +41,8 @@ function Layout({ children, parentWidth }) {
   const { width } = useLayout(parentWidth)
 
   return (
-    <div css="min-height: 100vh">
-      <div
-        css={`
-          margin: 0 auto;
-        `}
-        style={{ width: `${width}px` }}
-      >
+    <div>
+      <div css="margin: 0 auto" style={{ width: `${width}px` }}>
         {children}
       </div>
     </div>
