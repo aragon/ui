@@ -1,5 +1,7 @@
 import React from 'react'
-import { useLayout, GU } from '@aragon/ui'
+import PropTypes from 'prop-types'
+import { GU } from '../../utils'
+import { useLayout } from '../Layout/Layout'
 
 function Split({ primary, secondary }) {
   const { name: layout } = useLayout()
@@ -31,6 +33,11 @@ function Split({ primary, secondary }) {
       </div>
     </div>
   )
+}
+
+Split.propTypes = {
+  primary: PropTypes.node,
+  secondary: PropTypes.node,
 }
 
 export { Split }

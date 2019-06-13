@@ -4,7 +4,6 @@ import { RADIUS, GU } from '../../utils'
 import { useTheme } from '../../theme'
 import { ButtonBase } from '../Button/ButtonBase'
 import { Bar, useInsideBar } from '../Bar/Bar'
-import icon from './icon.svg'
 
 function BackButton({ label }) {
   const theme = useTheme()

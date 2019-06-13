@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-
-import { useTheme, GU, RADIUS } from '@aragon/ui'
+import { GU, RADIUS } from '../../utils'
+import { useTheme } from '../../theme/Theme'
 
 function Box({ heading, children, padding, ...props }) {
   const theme = useTheme()
@@ -75,6 +75,10 @@ function HeaderContent({ heading }) {
       {heading}
     </h1>
   )
+}
+
+HeaderContent.propTypes = {
+  heading: PropTypes.node,
 }
 
 export { Box }

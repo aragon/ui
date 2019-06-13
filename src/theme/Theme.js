@@ -88,4 +88,8 @@ function MainTheme({ children }) {
   )
 }
 
+MainTheme.propTypes = {
+  children: PropTypes.node,
+}
+
 export { MainTheme, Theme, useDarkMode, useTheme }
