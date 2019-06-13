@@ -21,7 +21,7 @@ function useCols() {
   return 2
 }
 
-function CardsLayout({ children }) {
+function CardsLayout({ rowHeight, children }) {
   const cols = useCols()
 
   return (
@@ -33,7 +33,7 @@ function CardsLayout({ children }) {
           grid-auto-flow: row;
           align-items: start;
           grid-template-columns: repeat(${cols}, auto);
-          grid-auto-rows: ${21 * GU}px;
+          grid-auto-rows: ${rowHeight}px;
           padding-bottom: ${3 * GU}px;
         `}
       >
@@ -45,6 +45,11 @@ function CardsLayout({ children }) {
 
 CardsLayout.propTypes = {
   children: PropTypes.node,
+  rowHeight: PropTypes.number,
+}
+
+CardsLayout.defaultProps = {
+  rowHeight: 21 * GU,
 }
 
 export { CardsLayout, useInsideCardsLayout }
