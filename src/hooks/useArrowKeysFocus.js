@@ -1,32 +1,26 @@
-import { useRef, useState, useCallback, useEffect } from 'react'
-import { useOnBlur } from './'
+import { useState, useCallback, useEffect } from 'react'
 
 const KEYCODE_UP = 38
 const KEYCODE_DOWN = 40
 
 /* eslint-disable react-hooks/rules-of-hooks */
-export function useArrowKeysFocus(query, containerRef = useRef()) {
+export function useArrowKeysFocus(refs) {
   /* eslint-enable react-hooks/rules-of-hooks */
   const [highlightedIndex, setHighlightedIndex] = useState(-1)
 
-  const reset = () => setHighlightedIndex(-1)
   const cycleFocus = useCallback(
     (e, change) => {
       e.preventDefault()
-      const elements = document.querySelectorAll(query)
       let next = highlightedIndex + change
-      if (next > elements.length - 1) {
+      if (next > refs.length - 1) {
         next = 0
       }
       if (next < 0) {
-        next = elements.length - 1
-      }
-      if (!elements[next]) {
-        next = -1
+        next = refs.length - 1
       }
       setHighlightedIndex(next)
     },
-    [highlightedIndex, query]
+    [highlightedIndex, refs.length]
   )
   const handleKeyDown = useCallback(
     e => {
@@ -38,21 +32,22 @@ export function useArrowKeysFocus(query, containerRef = useRef()) {
     [cycleFocus]
   )
 
-  const { handleBlur: handleContainerBlur } = useOnBlur(reset, containerRef)
   useEffect(() => {
     if (highlightedIndex === -1) {
       return
     }
-    const elements = document.querySelectorAll(query)
-    if (!elements[highlightedIndex]) {
+    if (!refs[highlightedIndex]) {
       return
     }
-    elements[highlightedIndex].focus()
-  }, [highlightedIndex, query])
+    refs[highlightedIndex].focus()
+  }, [highlightedIndex, refs])
   useEffect(() => {
     document.addEventListener('keydown', handleKeyDown)
     return () => document.removeEventListener('keydown', handleKeyDown)
   }, [handleKeyDown])
 
-  return { containerRef, handleContainerBlur }
+  return {
+    highlightedIndex,
+    setHighlightedIndex: index => () => setHighlightedIndex(index),
+  }
 }
