@@ -1,4 +1,4 @@
-import React, { useState, useRef, useCallback } from 'react'
+import React, { useState, useRef, useCallback, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { Transition, animated } from 'react-spring'
@@ -28,6 +28,7 @@ function AutoComplete({
   const uniqueItems = new Set(items)
   const [opened, setOpened] = useState(true)
   const wrapRef = useRef()
+  const [refs] = useState([])
 
   const handleClose = useCallback(() => setOpened(false), [])
   const handleFocus = useCallback(() => setOpened(true), [])
@@ -43,9 +44,12 @@ function AutoComplete({
   ])
 
   const { handleBlur } = useOnBlur(handleClose, wrapRef)
-  const { containerRef, handleContainerBlur } = useArrowKeysFocus(
-    '.autocomplete-item'
-  )
+  const { highlightedIndex, setHighlightedIndex } = useArrowKeysFocus(refs)
+  const reset = setHighlightedIndex(-1)
+  const { ref: containerRef, handleBlur: handleResetBlur } = useOnBlur(reset)
+  useEffect(() => {
+    reset()
+  }, [opened, items, value])
   useClickOutside(handleClose, wrapRef)
 
   return (
@@ -91,18 +95,20 @@ function AutoComplete({
           (({ scale, opacity }) => (
             <Items
               ref={containerRef}
-              onBlur={handleContainerBlur}
+              onBlur={handleResetBlur}
               role="listbox"
               style={{
                 opacity,
                 transform: scale.interpolate(t => `scale3d(${t},${t},1)`),
               }}
             >
-              {Array.from(uniqueItems).map(item => (
+              {Array.from(uniqueItems).map((item, index) => (
                 <Item role="option" key={item.key || item}>
                   <ButtonBase
-                    className="autocomplete-item"
+                    ref={node => (refs[index] = node)}
                     onClick={handleSelect(item)}
+                    onFocus={setHighlightedIndex(index)}
+                    onMouseOver={setHighlightedIndex(index)}
                     css={`
                       text-align: left;
                       padding: 4px 8px;
@@ -111,12 +117,12 @@ function AutoComplete({
                       border-left: 3px solid transparent;
                       cursor: pointer;
 
-                      &:hover,
-                      &:focus {
-                        outline: 2px solid ${theme.accent};
-                        background: #f9fafc;
-                        border-left: 3px solid ${theme.accent};
-                      }
+                      ${index === highlightedIndex &&
+                        `
+                          outline: 2px solid ${theme.accent};
+                          background: #f9fafc;
+                          border-left: 3px solid ${theme.accent};
+                        `}
                       ${itemButtonStyles};
                     `}
                   >
