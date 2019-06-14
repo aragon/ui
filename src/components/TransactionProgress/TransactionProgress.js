@@ -9,7 +9,7 @@ import Countdown from '../Countdown/Countdown'
 import Info from '../Info'
 import ProgressBar from '../ProgressBar/ProgressBar'
 import Popover from '../Popover/Popover'
-import { IconClose } from '../../icons/components'
+import { IconClose } from '../../icons'
 
 class TransactionProgress extends React.Component {
   static propTypes = {

@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { IconAttention, IconBylaw } from '../../icons/components'
+import { IconAttention, IconBylaw } from '../../icons'
 import { theme } from '../../theme-legacy'
 import color from '../../utils/color'
 import { font } from '../../utils/styles'
