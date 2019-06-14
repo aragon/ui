@@ -5,7 +5,7 @@ import { GU, RADIUS } from '../../utils/styles'
 import { useTheme } from '../../theme'
 import ButtonBase from './ButtonBase'
 
-function Button({ children, icon, label, mode, size }) {
+function Button({ children, icon, label, mode, size, ...props }) {
   const theme = useTheme()
 
   // backward compatibility
@@ -46,6 +46,7 @@ function Button({ children, icon, label, mode, size }) {
           box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.125);
         }
       `}
+      {...props}
     >
       {children || (
         <React.Fragment>
