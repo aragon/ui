@@ -80,7 +80,13 @@ function Icons() {
                   font-size: 14px;
                 `}
               >
-                <span css="opacity: 0.3">Icon</span>
+                <span
+                  css={`
+                    color: ${theme.surfaceContentSecondary.alpha(0.5)};
+                  `}
+                >
+                  Icon
+                </span>
                 {name.replace(/^Icon/, '')}
               </div>
             </div>
