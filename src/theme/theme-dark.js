@@ -36,6 +36,7 @@ export default {
   link: colors.Blue,
   focus: colors.Blue,
   selected: colors.AragonBlue,
+  selectedContent: colors.White,
 
   green: colors.GrassGreen,
   yellow: colors.Yellow,
