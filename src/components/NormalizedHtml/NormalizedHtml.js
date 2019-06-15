@@ -2,16 +2,18 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { theme } from '../../theme'
+import { font } from '../../utils/styles'
 
-const HTMLWrapper = styled.div`
+export const TASK_LIST_CLASSNAME = 'task-list-item'
+
+const HtmlWrapper = styled.div`
   h1,
   h2,
   h3,
   h4,
   h5,
   h6 {
-    font-weight: 700;
-    line-height: 1.25;
+    ${font({ weight: 'normal' })}
     margin-bottom: 16px;
     margin-top: 24px;
   }
@@ -21,23 +23,23 @@ const HTMLWrapper = styled.div`
     border-bottom: 1px solid ${theme.contentBorder};
   }
   h1 {
-    font-size: 2em;
+    ${font({ size: 'great' })}
   }
   h2 {
-    font-size: 1.5em;
+    ${font({ size: 'xxlarge' })}
   }
   h3 {
-    font-size: 1.25em;
+    ${font({ size: 'xlarge' })}
   }
   h4 {
-    font-size: 1em;
+    ${font({ size: 'large' })}
   }
   h5 {
-    font-size: 0.875em;
+    ${font({ size: 'normal' })}
   }
   h6 {
     color: ${theme.textSecondary};
-    font-size: 0.87em;
+    ${font({ size: 'small' })}
   }
   p,
   blockquote,
@@ -103,7 +105,7 @@ const HTMLWrapper = styled.div`
   ul ul ol {
     list-style-type: lower-alpha;
   }
-  li.task-list-item {
+  li.${TASK_LIST_CLASSNAME} {
     list-style-type: none;
     position: relative;
     & > button:first-child {
@@ -122,7 +124,7 @@ class NormalizedHtml extends React.Component {
 
   render() {
     const { children } = this.props
-    return <HTMLWrapper>{children}</HTMLWrapper>
+    return <HtmlWrapper>{children}</HtmlWrapper>
   }
 }
 
