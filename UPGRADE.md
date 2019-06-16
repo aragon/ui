@@ -5,6 +5,13 @@ change was necessary to allow swapping the theme on the fly.
 
 Importing the `colors`, `theme`, `themeDark`, or `brand` objects still works but is deprecated.
 
+## AppView
+
+`AppView` is deprecated. The layout is now provided by `Main`, and `Header`
+should be used to provide the top bar of an app.
+
+To keep using the `AppView` component, set `layout={false}` on `Main`.
+
 ## Button
 
 The `secondary` mode doesn’t exist anymore. Setting it will display the button in normal mode (the default).
@@ -12,10 +19,6 @@ The `secondary` mode doesn’t exist anymore. Setting it will display the button
 ## Springs
 
 The `spring()` function has been removed. The `springs` object should be used instead.
-
-## Layout
-
-Apps should be wrapped in the new `Layout` component, that provides a simple centering / breakpoints mechanism.
 
 ## Viewport breakpoints
 

@@ -6,15 +6,16 @@ import { Root } from '../../providers/Root'
 import { Viewport } from '../../providers/Viewport'
 import BaseStyles from '../BaseStyles/BaseStyles'
 import { ToastHub } from '../ToastHub/ToastHub'
+import { Layout } from '../Layout/Layout'
 import { MainTheme } from '../../theme'
 
-const Main = ({ children, assetsUrl, legacyFonts }) => (
+const Main = ({ children, assetsUrl, layout }) => (
   <MainTheme>
     <Root.Provider>
       <Viewport.Provider>
         <PublicUrl.Provider url={ensureTrailingSlash(assetsUrl)}>
-          <BaseStyles enableLegacyFonts={legacyFonts} />
-          <ToastHub>{children}</ToastHub>
+          <BaseStyles />
+          <ToastHub>{layout ? <Layout>{children}</Layout> : children}</ToastHub>
         </PublicUrl.Provider>
       </Viewport.Provider>
     </Root.Provider>
@@ -22,13 +23,13 @@ const Main = ({ children, assetsUrl, legacyFonts }) => (
 )
 
 Main.propTypes = {
-  children: PropTypes.node,
-  legacyFonts: PropTypes.bool,
   assetsUrl: PropTypes.string,
+  children: PropTypes.node,
+  layout: PropTypes.bool,
 }
 Main.defaultProps = {
-  legacyFonts: false,
   assetsUrl: './aragon-ui/',
+  layout: true,
 }
 
 export default Main
