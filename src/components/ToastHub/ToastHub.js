@@ -81,19 +81,23 @@ class ToastHubProvider extends React.PureComponent {
   }
   render() {
     const { children, showIndicator, position, top } = this.props
+    const { items, leaving } = this.state
+    const showList = items.length > 0 || leaving.length > 0
     return (
       <React.Fragment>
-        <Provider value={this.add} children={children} />
-        <ToastList
-          config={this.config}
-          items={this.state.items}
-          leave={this.leave}
-          position={position}
-          remove={this.remove}
-          showIndicator={showIndicator}
-          top={top}
-          {...stylingProps(this)}
-        />
+        <Provider value={this.add}>{children}</Provider>
+        {showList && (
+          <ToastList
+            config={this.config}
+            items={this.state.items}
+            leave={this.leave}
+            position={position}
+            remove={this.remove}
+            showIndicator={showIndicator}
+            top={top}
+            {...stylingProps(this)}
+          />
+        )}
       </React.Fragment>
     )
   }
