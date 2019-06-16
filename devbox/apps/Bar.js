@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, AppView, AppHeader, Bar, TabBar } from '@aragon/ui'
+import { Button, AppView, Bar, TabBar } from '@aragon/ui'
 
 export default () => (
   <AppView>

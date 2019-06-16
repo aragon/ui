@@ -43,7 +43,7 @@ The `title`, `padding`, `height`, `appBar`, and `tabs` props are now ignored.
 
 ## AppBar is deprecated
 
-A combination of AppHeader and Bar should be used instead.
+A combination of Header and Bar should be used instead.
 
 ## TabBar
 

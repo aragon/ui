@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import {
-  AppHeader,
+  Header,
   AppView,
   Bar,
   Box,
@@ -13,12 +13,11 @@ import {
   Theme,
   useLayout,
 } from '@aragon/ui'
-
 import ToggleTheme from '../components/ToggleTheme'
 
 function Header1() {
   return (
-    <AppHeader
+    <Header
       heading="Voting"
       action={<Button mode="strong" label="New vote" />}
     />

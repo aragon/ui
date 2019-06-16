@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { GU } from '../../utils'
 import { useTheme } from '../../theme'
 
-function AppHeader({ heading, action }) {
+function Header({ heading, action }) {
   const theme = useTheme()
   return (
     <div
@@ -40,9 +40,9 @@ function AppHeader({ heading, action }) {
   )
 }
 
-AppHeader.propTypes = {
+Header.propTypes = {
   heading: PropTypes.node,
   action: PropTypes.node,
 }
 
-export default AppHeader
+export default Header
