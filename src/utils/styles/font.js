@@ -1,3 +1,5 @@
+import { MONOSPACE_FONT_FAMILY } from '../../components/BaseStyles/BaseStyles'
+
 const FONT_SIZES = {
   xxsmall: '11px',
   xsmall: '12px',
@@ -41,7 +43,7 @@ const smallcapsCss = smallcaps =>
 const monospaceCss = monospace =>
   monospace
     ? `
-      font-family: aragon-ui-monospace, monospace;
+      font-family: ${MONOSPACE_FONT_FAMILY}, monospace;
     `
     : ''
 
