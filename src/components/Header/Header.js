@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { GU } from '../../utils'
 import { useTheme } from '../../theme'
 
-function Header({ heading, action }) {
+function Header({ primary, secondary }) {
   const theme = useTheme()
   return (
     <div
@@ -21,28 +21,28 @@ function Header({ heading, action }) {
         `}
       >
         <div>
-          {typeof heading === 'string' ? (
+          {typeof primary === 'string' ? (
             <h1
               css={`
                 font-size: 26px;
                 color: ${theme.content};
               `}
             >
-              {heading}
+              {primary}
             </h1>
           ) : (
-            heading
+            primary
           )}
         </div>
-        <div>{action}</div>
+        <div>{secondary}</div>
       </div>
     </div>
   )
 }
 
 Header.propTypes = {
-  heading: PropTypes.node,
-  action: PropTypes.node,
+  primary: PropTypes.node,
+  secondary: PropTypes.node,
 }
 
 export default Header
