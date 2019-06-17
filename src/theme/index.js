@@ -1,2 +1,2 @@
-export * from './Theme'
-export * from './MainTheme'
+export { Theme, useTheme } from './Theme'
+export { MainTheme, useThemeMode } from './MainTheme'

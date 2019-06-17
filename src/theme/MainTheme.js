@@ -1,4 +1,6 @@
 import React, { useState, useContext, useMemo } from 'react'
+import PropTypes from 'prop-types'
+import { Theme } from './Theme'
 
 /*
  * MainTheme is meant to be used by the <Main /> component. It trades the
@@ -6,9 +8,7 @@ import React, { useState, useContext, useMemo } from 'react'
  * the mode of this main theme from anywhere, including from a sub (non main) theme.
  */
 
-const MainThemeContext = React.createContext(
-  convertThemeColors(getTheme(DEFAULT_THEME))
-)
+const MainThemeContext = React.createContext(null)
 
 function useThemeMode() {
   const { theme, setTheme } = useContext(MainThemeContext)
