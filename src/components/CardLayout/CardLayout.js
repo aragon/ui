@@ -3,11 +3,11 @@ import PropTypes from 'prop-types'
 import { GU } from '../../utils'
 import { useLayout } from '../Layout/Layout'
 
-const CardsLayoutContext = React.createContext(false)
+const CardLayoutContext = React.createContext(false)
 
-// Returns true if a component is declared inside of the CardsLayout tree
-function useInsideCardsLayout() {
-  return useContext(CardsLayoutContext)
+// Returns true if a component is declared inside of the CardLayout tree
+function useInsideCardLayout() {
+  return useContext(CardLayoutContext)
 }
 
 function useCols() {
@@ -21,11 +21,11 @@ function useCols() {
   return 2
 }
 
-function CardsLayout({ rowHeight, children }) {
+function CardLayout({ rowHeight, children }) {
   const cols = useCols()
 
   return (
-    <CardsLayoutContext.Provider value={true}>
+    <CardLayoutContext.Provider value={true}>
       <div
         css={`
           display: grid;
@@ -39,18 +39,18 @@ function CardsLayout({ rowHeight, children }) {
       >
         {children}
       </div>
-    </CardsLayoutContext.Provider>
+    </CardLayoutContext.Provider>
   )
 }
 
-CardsLayout.propTypes = {
+CardLayout.propTypes = {
   children: PropTypes.node,
   rowHeight: PropTypes.number,
 }
 
-CardsLayout.defaultProps = {
+CardLayout.defaultProps = {
   rowHeight: 21 * GU,
 }
 
-export { CardsLayout, useInsideCardsLayout }
-export default CardsLayout
+export { CardLayout, useInsideCardLayout }
+export default CardLayout
