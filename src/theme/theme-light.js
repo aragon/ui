@@ -16,7 +16,7 @@ export default {
   surfaceContent: colors.GreyDark,
   surfaceContentSecondary: colors.GreyMedium,
 
-  surfaceSelected: colors.GreyBasic,
+  surfaceSelected: colors.ArcticBlueLight,
   surfaceHighlight: colors.ArcticBlueLight,
   surfacePressed: colors.ArcticBlue,
 

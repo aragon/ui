@@ -15,9 +15,10 @@ export default {
   surface: '#35425E',
   surfaceContent: colors.White,
   surfaceContentSecondary: colors.ArcticBlueDark,
-  surfaceSelected: colors.GreyBasic,
-  surfaceHighlight: '#35425E',
-  surfacePressed: colors.GreyBasic,
+
+  surfaceSelected: '#405071',
+  surfaceHighlight: '#405071',
+  surfacePressed: '#456586',
 
   surfaceInteractive: '#405071',
 
