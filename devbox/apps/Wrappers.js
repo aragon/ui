@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
 import {
   Header,
-  AppView,
+  Layout,
   Bar,
   Box,
   Button,
   BackButton,
   Card,
-  CardsLayout,
+  CardLayout,
   Split,
   TabBar,
   Theme,
@@ -18,8 +18,8 @@ import ToggleTheme from '../components/ToggleTheme'
 function Header1() {
   return (
     <Header
-      heading="Voting"
-      action={<Button mode="strong" label="New vote" />}
+      primary="Voting"
+      secondary={<Button mode="strong" label="New vote" />}
     />
   )
 }
@@ -74,11 +74,11 @@ function Bar4() {
 function Cards1({ interactive }) {
   const cardProps = interactive ? { onClick: () => {} } : {}
   return (
-    <CardsLayout>
+    <CardLayout>
       {[...Array(10)].map((v, i) => (
         <Card key={i} {...cardProps} />
       ))}
-    </CardsLayout>
+    </CardLayout>
   )
 }
 
@@ -118,17 +118,15 @@ export default () => {
   const { name: layout } = useLayout()
   return (
     <ToggleTheme>
-      <AppView>
-        <Header1 />
-        <Bar2 />
-        <Cards2 />
-        <Bar1 />
-        <Cards1 />
-        <Bar3 />
-        <Split1 />
-        <Bar4 />
-        <Split1 />
-      </AppView>
+      <Header1 />
+      <Bar2 />
+      <Cards2 />
+      <Bar1 />
+      <Cards1 />
+      <Bar3 />
+      <Split1 />
+      <Bar4 />
+      <Split1 />
     </ToggleTheme>
   )
 }
