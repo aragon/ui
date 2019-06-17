@@ -13,7 +13,7 @@ import {
   Theme,
   useLayout,
 } from '@aragon/ui'
-import ToggleTheme from '../components/ToggleTheme'
+import { ToggleThemeButton } from '../components/toggle-theme'
 
 function Header1() {
   return (
@@ -117,7 +117,8 @@ export default () => {
   const item = useState()
   const { name: layout } = useLayout()
   return (
-    <ToggleTheme>
+    <>
+      <ToggleThemeButton />
       <Header1 />
       <Bar2 />
       <Cards2 />
@@ -127,6 +128,6 @@ export default () => {
       <Split1 />
       <Bar4 />
       <Split1 />
-    </ToggleTheme>
+    </>
   )
 }

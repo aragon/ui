@@ -1,7 +1,7 @@
 import React from 'react'
 import { AppView, GU, RADIUS, useTheme, useLayout } from '@aragon/ui'
 import * as icons from '../all-icons'
-import ToggleTheme from '../components/ToggleTheme'
+import { ToggleThemeButton } from '../components/toggle-theme'
 
 function useCols() {
   const { name } = useLayout()
@@ -14,7 +14,8 @@ function Icons() {
   const theme = useTheme()
   const cols = useCols()
   return (
-    <ToggleTheme>
+    <>
+      <ToggleThemeButton />
       <div
         css={`
           font-size: 26px;
@@ -93,7 +94,7 @@ function Icons() {
           ))}
         </div>
       </div>
-    </ToggleTheme>
+    </>
   )
 }
 
