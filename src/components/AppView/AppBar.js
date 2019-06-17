@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 import { Transition, animated } from 'react-spring'
+import { useTheme } from '../../theme'
 import { PublicUrl } from '../../providers/PublicUrl'
 import { noop, springs, unselectable } from '../../utils'
 import { theme } from '../../theme-legacy'
@@ -60,6 +61,7 @@ class AppBar extends React.Component {
       padding,
       tabs,
       title,
+      theme,
       ...props
     } = this.props
     return (
@@ -71,7 +73,7 @@ class AppBar extends React.Component {
             flex-direction: column;
             width: 100%;
             min-height: ${BAR_HEIGHT}px;
-            background: ${theme.contentBackground};
+            background: ${theme.surface};
             ${unselectable()};
 
             /* We are using an “inner border” to allow components like TabBar
@@ -83,7 +85,7 @@ class AppBar extends React.Component {
               left: 0;
               right: 0;
               bottom: 0;
-              border-bottom: 1px solid ${theme.contentBorder};
+              border-bottom: 1px solid ${theme.border};
             }
           `}
         >
@@ -174,4 +176,7 @@ const TabsWrapper = styled(animated.div)`
   z-index: 1;
 `
 
-export default AppBar
+export default function(props) {
+  const theme = useTheme()
+  return <AppBar {...props} theme={theme} />
+}
