@@ -40,9 +40,9 @@ The Main component should be used instead.
 
 ## AppView
 
-AppView is now a simpler component, setting the background and the layout (using the Layout component).
-
-The `title`, `padding`, `height`, `appBar`, and `tabs` props are now ignored.
+AppView is deprecated and should be removed. Nothing replaces it: the
+different layouts, provided by the Layout component, will be automatically
+provided by the Main component if AppView is not present.
 
 ## AppBar is deprecated
 

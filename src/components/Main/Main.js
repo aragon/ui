@@ -8,19 +8,38 @@ import BaseStyles from '../BaseStyles/BaseStyles'
 import { ToastHub } from '../ToastHub/ToastHub'
 import { Layout } from '../Layout/Layout'
 import { MainTheme } from '../../theme'
+import { initContainsComponent } from '../../utils/contains-component'
 
-const Main = ({ children, assetsUrl, layout }) => (
-  <MainTheme>
-    <Root.Provider>
-      <Viewport.Provider>
-        <PublicUrl.Provider url={ensureTrailingSlash(assetsUrl)}>
-          <BaseStyles />
-          <ToastHub>{layout ? <Layout>{children}</Layout> : children}</ToastHub>
-        </PublicUrl.Provider>
-      </Viewport.Provider>
-    </Root.Provider>
-  </MainTheme>
-)
+const [
+  ContainsAppViews,
+  useAppViewRegister,
+  useAppViewsCounter,
+] = initContainsComponent()
+
+const Main = ({ children, assetsUrl, layout }) => {
+  const [appViews, contextValue] = useAppViewsCounter()
+
+  if (layout === undefined) {
+    layout = appViews === 0
+  }
+
+  return (
+    <ContainsAppViews contextValue={contextValue}>
+      <MainTheme>
+        <Root.Provider>
+          <Viewport.Provider>
+            <PublicUrl.Provider url={ensureTrailingSlash(assetsUrl)}>
+              <BaseStyles />
+              <ToastHub>
+                {layout ? <Layout>{children}</Layout> : children}
+              </ToastHub>
+            </PublicUrl.Provider>
+          </Viewport.Provider>
+        </Root.Provider>
+      </MainTheme>
+    </ContainsAppViews>
+  )
+}
 
 Main.propTypes = {
   assetsUrl: PropTypes.string,
@@ -29,7 +48,7 @@ Main.propTypes = {
 }
 Main.defaultProps = {
   assetsUrl: './aragon-ui/',
-  layout: true,
 }
 
+export { useAppViewRegister }
 export default Main
