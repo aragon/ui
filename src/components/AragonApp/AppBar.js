@@ -22,7 +22,7 @@ class AppBar extends React.Component {
     onTitleClick: PropTypes.func,
     padding: PropTypes.number,
     tabs: PropTypes.element,
-    title: PropTypes.node,
+    title: PropTypes.string,
   }
   static defaultProps = {
     onTitleClick: noop,

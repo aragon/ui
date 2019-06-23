@@ -20,6 +20,7 @@ import PageSlider from './pages/PageSlider'
 import PageTabBar from './pages/PageTabBar'
 
 // Other components
+import PageAddressField from './pages/PageAddressField'
 import PageBadge from './pages/PageBadge'
 import PageCircleGraph from './pages/PageCircleGraph'
 import PageCountdown from './pages/PageCountdown'
@@ -104,6 +105,7 @@ export const PAGE_GROUPS = [
   {
     name: 'Components',
     pages: [
+      [PageAddressField, 'AddressField'],
       [PageBadge, 'Badge'],
       [PageCircleGraph, 'CircleGraph'],
       [PageCountdown, 'Countdown'],
