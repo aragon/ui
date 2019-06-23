@@ -25,6 +25,7 @@ import PageAddressField from './pages/PageAddressField'
 import PageBadge from './pages/PageBadge'
 import PageCircleGraph from './pages/PageCircleGraph'
 import PageCountdown from './pages/PageCountdown'
+import PageEthIdenticon from './pages/PageEthIdenticon'
 import PageInfo from './pages/PageInfo'
 import PageProgressBar from './pages/PageProgressBar'
 import PageTransactionProgress from './pages/PageTransactionProgress'
@@ -111,6 +112,7 @@ export const PAGE_GROUPS = [
       [PageBadgeNumber, 'BadgeNumber'],
       [PageCircleGraph, 'CircleGraph'],
       [PageCountdown, 'Countdown'],
+      [PageEthIdenticon, 'EthIdenticon'],
       [PageInfo, 'Info'],
       [PageModal, 'Modal'],
       [PageProgressBar, 'ProgressBar'],
