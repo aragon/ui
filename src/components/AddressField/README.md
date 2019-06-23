@@ -1,6 +1,6 @@
 # AddressField
 
-A field component to display ETH Adresses.
+A field component to display Ethereum Adresses.
 
 ## Usage
 
