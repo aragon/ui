@@ -10,6 +10,7 @@ import PageButton from './pages/PageButton'
 import PageDropDown from './pages/PageDropDown'
 import PageCheckBox from './pages/PageCheckBox'
 import PageContextMenu from './pages/PageContextMenu'
+import PageExternalLink from './pages/PageExternalLink'
 import PageRadio from './pages/PageRadio'
 import PageRadioGroup from './pages/PageRadioGroup'
 import PageRadioList from './pages/PageRadioList'
@@ -80,6 +81,7 @@ export const PAGE_GROUPS = [
       [PageDropDown, 'DropDown'],
       [PageContextMenu, 'ContextMenu'],
       [PageCheckBox, 'CheckBox'],
+      [PageExternalLink, 'ExternalLink'],
       [PageRadioGroup, 'RadioGroup'],
       [PageRadioList, 'RadioList'],
       [PageRadio, 'Radio'],
