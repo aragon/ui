@@ -26,7 +26,7 @@ Adress to display in the field.
 
 ### `icon`
 
-* Type: `node`
+* Type: `Node`
 
 Icon to display in the field. Can pass anything that can be rendered, such as num, string, DOM elements, an array of them, or fragments that contain them.
 
