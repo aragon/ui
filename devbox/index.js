@@ -26,7 +26,7 @@ class Index extends React.Component {
     const { appName } = this.state
     const CurrentApp = appName === 'Scratchpad' ? Scratchpad : APPS[appName]
     return CurrentApp ? (
-      <Main>
+      <Main layout={false}>
         <CurrentApp />
       </Main>
     ) : (

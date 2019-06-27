@@ -27,6 +27,7 @@ export default {
   warning: colors.Orange,
 
   help: colors.Purple,
+  helpContent: colors.White,
 
   tag: colors.PurpleLight,
   tagContent: colors.PurpleDark,
