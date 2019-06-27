@@ -5,7 +5,6 @@ import { Transition, animated } from 'react-spring'
 import { useTheme } from '../../theme'
 import { PublicUrl } from '../../providers/PublicUrl'
 import { noop, springs, unselectable } from '../../utils'
-import { theme } from '../../theme-legacy'
 import Text from '../Text/Text'
 
 import chevronSvg from './assets/chevron.svg'

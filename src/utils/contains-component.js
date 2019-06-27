@@ -4,11 +4,13 @@ function initContainsComponent() {
   const Context = React.createContext({})
 
   return [
+    /* eslint-disable react/prop-types */
     function Provider({ contextValue, children }) {
       return (
         <Context.Provider value={contextValue}>{children}</Context.Provider>
       )
     },
+    /* eslint-enable react/prop-types */
 
     function useRegisterComponent() {
       const { add, remove } = useContext(Context)

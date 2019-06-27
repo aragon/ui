@@ -1,8 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import styled from 'styled-components'
 import AppBar from './AppBar'
-import { stylingProps } from '../../utils'
 import { useAppViewRegister } from '../Main/Main'
 
 function AppView({ appBar, children, height, padding, tabs, title, ...props }) {
