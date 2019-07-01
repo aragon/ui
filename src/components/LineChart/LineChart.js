@@ -224,7 +224,7 @@ const SvgWrapper = styled.div`
 
 const LabelText = styled.text`
   alignment-baseline: middle;
-  font-size: 12px;
+  font-size: 8px;
   font-weight: 300;
   ${unselectable};
 `

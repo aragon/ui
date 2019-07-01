@@ -44,6 +44,7 @@ import PageAppView from './pages/PageAppView'
 import PageSidePanel from './pages/PageSidePanel'
 import PageCard from './pages/PageCard'
 import PageEmptyStateCard from './pages/PageEmptyStateCard'
+import PageLineChart from './pages/PageLineChart'
 import PageTable from './pages/PageTable'
 
 // Providers
@@ -118,11 +119,12 @@ export const PAGE_GROUPS = [
       [PageEthIdenticon, 'EthIdenticon'],
       [PageIdentityBadge, 'IdentityBadge'],
       [PageInfo, 'Info'],
+      [PageLineChart, 'LineChart'],
       [PageModal, 'Modal'],
-      [PageProgressBar, 'ProgressBar'],
-      [PageTransactionProgress, 'TransactionProgress'],
       [PagePopover, 'Popover'],
+      [PageProgressBar, 'ProgressBar'],
       [PageRootPortal, 'RootPortal'],
+      [PageTransactionProgress, 'TransactionProgress'],
     ],
   },
   {
