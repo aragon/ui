@@ -24,7 +24,7 @@ class Index extends React.Component {
   }
   render() {
     const { appName } = this.state
-    const CurrentApp = appName === 'Scratchpad' ? Scratchpad : APPS[appName]
+    const CurrentApp = APPS[appName]
     return CurrentApp ? (
       <Main>
         <CurrentApp />
@@ -41,6 +41,7 @@ class Index extends React.Component {
 
             {Object.keys(APPS)
               .sort()
+              .filter(appName => appName !== 'Scratchpad')
               .map(appName => (
                 <li key={appName}>
                   <a href={`#${appName}`}>{appName}</a>
