@@ -21,7 +21,7 @@ export default () => {
         padding-bottom: ${3 * GU}px;
       `}
     >
-      <Header start="Pagination" />
+      <Header primary="Pagination" />
 
       <PaginationDemo pages={10} initial={5} />
       <PaginationDemo pages={1} initial={0} />
