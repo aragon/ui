@@ -20,21 +20,25 @@ function Header({ primary, secondary, children }) {
           height: ${5 * GU}px;
         `}
       >
-        <div>
-          {typeof primary === 'string' ? (
-            <h1
-              css={`
-                font-size: 26px;
-                color: ${theme.content};
-              `}
-            >
-              {primary}
-            </h1>
-          ) : (
-            primary
-          )}
-        </div>
-        <div>{secondary}</div>
+        {children || (
+          <>
+            <div>
+              {typeof primary === 'string' ? (
+                <h1
+                  css={`
+                    font-size: 26px;
+                    color: ${theme.content};
+                  `}
+                >
+                  {primary}
+                </h1>
+              ) : (
+                primary
+              )}
+            </div>
+            <div>{secondary}</div>
+          </>
+        )}
       </div>
     </div>
   )
