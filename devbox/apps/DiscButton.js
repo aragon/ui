@@ -1,16 +1,9 @@
 import React from 'react'
 import { DiscButton } from '@aragon/ui'
+import { Center } from '../components/Center'
 
 export default () => (
-  <div
-    css={`
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      width: 100vw;
-    `}
-  >
+  <Center>
     <DiscButton description="Help">
       <span
         css={`
@@ -22,5 +15,5 @@ export default () => (
         ?
       </span>
     </DiscButton>
-  </div>
+  </Center>
 )
