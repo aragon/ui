@@ -8,9 +8,10 @@ export default {
   accentEnd: colors.AragonTurquoise,
   accentContent: colors.White,
 
-  content: colors.GreyDark,
-  background: colors.ArcticBlueLight,
   border: colors.GreyBasic,
+
+  background: colors.ArcticBlueLight,
+  content: colors.GreyDark,
 
   surface: colors.White,
   surfaceContent: colors.GreyDark,
