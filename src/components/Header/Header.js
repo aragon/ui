@@ -47,6 +47,7 @@ function Header({ primary, secondary, children }) {
 Header.propTypes = {
   primary: PropTypes.node,
   secondary: PropTypes.node,
+  children: PropTypes.node,
 }
 
 export default Header

@@ -1,8 +1,7 @@
-import React, { useMemo, useCallback } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
-import { GU, RADIUS } from '../../style'
+import { GU } from '../../style'
 import { noop } from '../../utils'
-import { useTheme } from '../../theme'
 import { PaginationItem } from './PaginationItem'
 import { PaginationSeparator } from './PaginationSeparator'
 

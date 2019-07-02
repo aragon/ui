@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import SafeLink from '../Link/SafeLink'
 import { GU, RADIUS } from '../../style'
 import { useTheme } from '../../theme'
-import ButtonBase from './ButtonBase'
+import { ButtonBase } from './ButtonBase'
 
 function Button({ children, icon, label, mode, size, ...props }) {
   const theme = useTheme()

@@ -62,13 +62,13 @@ function textStyle(name, includeLineHeight = true) {
     throw new Error('textStyle(): the text style doesn’t exist: ' + name)
   }
 
-  const style = { ...TEXT_STYLES.get(name) }
+  const style = { ...TEXT_STYLES[name] }
 
   if (!includeLineHeight) {
     delete style.lineHeight
   }
 
-  return styleToCss(style)
+  return textStyleToCss(style)
 }
 
 export { TEXT_STYLES, textStyle }

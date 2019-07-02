@@ -4,7 +4,7 @@ import { isAddress, shortenAddress, stylingProps } from '../../utils'
 import { theme } from '../../theme-legacy'
 import Text from '../Text/Text'
 import EthIdenticon from '../EthIdenticon/EthIdenticon'
-import ButtonBase from '../Button/ButtonBase'
+import { ButtonBase } from '../Button/ButtonBase'
 import IdentityBadgePopover from './IdentityBadgePopover'
 import PopoverActionType from './PopoverActionType'
 
