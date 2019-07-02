@@ -4,7 +4,7 @@ import ButtonBase from '../Button/ButtonBase'
 import { GU } from '../../utils'
 import { useTheme } from '../../theme'
 
-function DiscButton({ children, description, size }) {
+function DiscButton({ children, description, size, ...props }) {
   const theme = useTheme()
   return (
     <ButtonBase
@@ -28,6 +28,7 @@ function DiscButton({ children, description, size }) {
           box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.125);
         }
       `}
+      {...props}
     >
       {children}
     </ButtonBase>
@@ -44,4 +45,4 @@ DiscButton.defaultProps = {
   size: 5 * GU,
 }
 
-export default DiscButton
+export { DiscButton }
