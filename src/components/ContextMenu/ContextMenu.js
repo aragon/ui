@@ -4,7 +4,8 @@ import styled from 'styled-components'
 import { Spring, animated } from 'react-spring'
 import ClickOutHandler from 'react-onclickout'
 import { theme } from '../../theme-legacy'
-import { springs, unselectable } from '../../utils/styles'
+import { springs } from '../../style'
+import { unselectable } from '../../utils'
 import { IconEllipsis, IconArrowDown } from '../../icons/components'
 
 const BASE_WIDTH = 46

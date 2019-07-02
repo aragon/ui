@@ -3,9 +3,9 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { Transition, animated } from 'react-spring'
 import RootPortal from '../RootPortal/RootPortal'
-import { springs } from '../../utils/styles'
+import { springs } from '../../style'
+import { font } from '../../utils'
 import { theme } from '../../theme-legacy'
-import { font } from '../../utils/styles/font'
 
 const FloatIndicator = React.memo(({ children, visible }) => (
   <RootPortal>

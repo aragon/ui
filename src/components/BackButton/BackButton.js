@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { RADIUS, GU } from '../../utils'
+import { RADIUS, GU } from '../../style'
 import { useTheme } from '../../theme'
 import { ButtonBase } from '../Button/ButtonBase'
 import { Bar, useInsideBar } from '../Bar/Bar'

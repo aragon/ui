@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { GU, RADIUS } from '../../utils'
+import { GU, RADIUS } from '../../style'
 import { useTheme } from '../../theme/Theme'
 
 function Box({ heading, children, padding, ...props }) {

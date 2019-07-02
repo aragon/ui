@@ -5,7 +5,7 @@ import Radio from '../Input/Radio'
 import Text from '../Text/Text'
 import color from '../../utils/color'
 import { theme, colors } from '../../theme-legacy'
-import { unselectable } from '../../utils/styles'
+import { unselectable } from '../../utils'
 
 const { contentBorder } = theme
 const labelBoxBorder = color(colors.Sea['Light Sea'])

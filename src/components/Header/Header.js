@@ -1,9 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { GU } from '../../utils'
+import { GU } from '../../style'
 import { useTheme } from '../../theme'
 
-function Header({ primary, secondary }) {
+function Header({ primary, secondary, children }) {
   const theme = useTheme()
   return (
     <div

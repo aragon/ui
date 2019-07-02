@@ -1,4 +1,4 @@
-import { MONOSPACE_FONT_FAMILY } from '../../components/BaseStyles/BaseStyles'
+import { MONOSPACE_FONT_FAMILY } from '../components/BaseStyles/BaseStyles'
 
 const FONT_SIZES = {
   xxsmall: '11px',

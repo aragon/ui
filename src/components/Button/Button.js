@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import SafeLink from '../Link/SafeLink'
-import { GU, RADIUS } from '../../utils/styles'
+import { GU, RADIUS } from '../../style'
 import { useTheme } from '../../theme'
 import ButtonBase from './ButtonBase'
 

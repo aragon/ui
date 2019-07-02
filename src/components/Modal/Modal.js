@@ -5,7 +5,7 @@ import { Transition, animated } from 'react-spring'
 import { Viewport } from '../../providers/Viewport'
 import EscapeOutside from '../EscapeOutside/EscapeOutside'
 import RootPortal from '../RootPortal/RootPortal'
-import { springs } from '../../utils/styles'
+import { springs } from '../../style'
 import { noop } from '../../utils'
 
 const cssPx = value => (typeof value === 'number' ? value + 'px' : value)

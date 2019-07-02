@@ -1,8 +1,7 @@
 import React, { useMemo } from 'react'
 import PropTypes from 'prop-types'
-import { GU } from '../../utils/styles'
 import { useViewport } from '../../providers/Viewport/Viewport'
-import { BREAKPOINTS } from '../../utils/styles/breakpoint'
+import { BREAKPOINTS, GU } from '../../style'
 
 const SIZES = Object.entries(BREAKPOINTS)
   .filter(([name]) => name !== 'min')

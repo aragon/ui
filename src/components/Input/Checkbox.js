@@ -4,7 +4,8 @@ import styled from 'styled-components'
 import { Spring, animated } from 'react-spring'
 import { IconCheck } from '../../icons/components'
 import { theme } from '../../theme-legacy'
-import { springs, noop } from '../../utils'
+import { noop } from '../../utils'
+import { springs } from '../../style'
 import FocusVisible from '../FocusVisible/FocusVisible'
 
 class Checkbox extends React.PureComponent {

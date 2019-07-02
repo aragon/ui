@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { theme } from '../../theme-legacy'
-import { unselectable } from '../../utils/styles'
+import { unselectable } from '../../utils'
 
 const ContextMenuItem = styled.div`
   display: flex;

@@ -1,8 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { css } from 'styled-components'
-import { GU, RADIUS, unselectable } from '../../utils'
+import { GU, RADIUS } from '../../style'
 import { useTheme } from '../../theme'
+import { unselectable } from '../../utils'
 import { useInsideCardLayout } from '../CardLayout/CardLayout'
 import FocusVisible from '../FocusVisible/FocusVisible'
 

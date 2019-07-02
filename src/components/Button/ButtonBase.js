@@ -2,7 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import FocusVisible from '../FocusVisible/FocusVisible'
 import { useTheme } from '../../theme'
-import { RADIUS, unselectable, font } from '../../utils/styles'
+import { RADIUS } from '../../style'
+import { unselectable, font } from '../../utils'
 
 function ButtonBase({
   focusVisible,

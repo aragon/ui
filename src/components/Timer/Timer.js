@@ -5,7 +5,7 @@ import dayjs from 'dayjs'
 import { Redraw } from '../../providers/Redraw'
 import { IconTime } from '../../icons'
 import { difference, formatHtmlDatetime } from '../../utils/date'
-import { unselectable } from '../../utils/styles'
+import { unselectable } from '../../utils'
 import { theme } from '../../theme-legacy'
 
 const RENDER_EVERY = 1000

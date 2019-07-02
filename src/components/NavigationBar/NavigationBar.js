@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { Transition, animated } from 'react-spring'
-import { springs } from '../../utils'
+import { springs } from '../../style'
 import LeftIcon from './LeftIcon'
 
 class NavigationBar extends React.Component {

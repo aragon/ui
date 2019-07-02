@@ -1,4 +1,4 @@
-import { GU } from '../utils'
+import { GU } from '../style'
 
 const ICON_SIZES = new Map([
   ['medium', 3 * GU],

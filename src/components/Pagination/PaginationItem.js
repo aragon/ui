@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { css } from 'styled-components'
 import { useTheme } from '../../theme'
 import { ButtonBase } from '../Button/ButtonBase'
-import { GU, RADIUS } from '../../utils'
+import { GU, RADIUS } from '../../style'
 
 function PaginationItem({ selected, index, onChange }) {
   const theme = useTheme()

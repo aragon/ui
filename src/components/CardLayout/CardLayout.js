@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import PropTypes from 'prop-types'
-import { GU } from '../../utils'
+import { GU } from '../../style'
 import { useLayout } from '../Layout/Layout'
 
 const CardLayoutContext = React.createContext(false)

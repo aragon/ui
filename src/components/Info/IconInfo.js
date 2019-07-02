@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { IconAttention, IconBylaw } from '../../icons'
 import { theme } from '../../theme-legacy'
 import color from '../../utils/color'
-import { font } from '../../utils/styles'
+import { font } from '../../utils'
 import Info from './Info'
 
 const Icon = styled.span`

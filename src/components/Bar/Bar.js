@@ -1,6 +1,6 @@
 import React, { useContext, useMemo } from 'react'
 import PropTypes from 'prop-types'
-import { GU, RADIUS } from '../../utils'
+import { GU, RADIUS } from '../../style'
 import { useTheme } from '../../theme/Theme'
 
 const BAR_PADDING = 2 * GU

@@ -6,8 +6,8 @@ import { Transition, animated } from 'react-spring'
 
 import RootPortal from '../RootPortal/RootPortal'
 import { theme } from '../../theme-legacy'
+import { springs } from '../../style'
 import { noop } from '../../utils'
-import { springs } from '../../utils/styles'
 
 class PopoverBase extends React.Component {
   static propTypes = {
