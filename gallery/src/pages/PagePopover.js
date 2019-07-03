@@ -62,4 +62,12 @@ const Box = styled.div`
   height: 100px;
 `
 
+PagePopover.propTypes = {
+  title: PropTypes.string,
+}
+
+PagePopover.defaultProps = {
+  title: '',
+}
+
 export default PagePopover
