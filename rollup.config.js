@@ -4,6 +4,7 @@ import babel from 'rollup-plugin-babel'
 import url from 'rollup-plugin-url'
 import filesize from 'rollup-plugin-filesize'
 import progress from 'rollup-plugin-progress'
+import json from 'rollup-plugin-json'
 import pkg from './package.json'
 
 const production = !process.env.ROLLUP_WATCH
@@ -37,6 +38,7 @@ export default {
     }),
     resolve(),
     commonjs(),
+    json(),
   ],
   sourcemap: true,
 }
