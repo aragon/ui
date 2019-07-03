@@ -19,7 +19,7 @@ const HtmlWrapper = styled.div`
   }
   h1,
   h2 {
-    padding-bottom: 0.3em;
+    padding-bottom: 4px;
     border-bottom: 1px solid ${theme.contentBorder};
   }
   h1 {
@@ -45,13 +45,13 @@ const HtmlWrapper = styled.div`
   blockquote,
   table,
   pre {
-    margin: 1em 0;
+    margin: 16px 0;
     &:last-child {
       margin-bottom: 0;
     }
   }
   blockquote {
-    padding: 0 1em;
+    padding: 0 16px;
     border-left: 4px solid ${theme.textTertiary};
     color: ${theme.textTertiary};
   }
@@ -66,7 +66,7 @@ const HtmlWrapper = styled.div`
   p > code {
     background-color: rgba(27, 31, 35, 0.05);
     border-radius: 3px;
-    padding: 0.2em 0.4em;
+    padding: 3px 6px;
   }
   table {
     border-collapse: collapse;
@@ -80,7 +80,7 @@ const HtmlWrapper = styled.div`
   th,
   td {
     border: 1px solid ${theme.contentBorder};
-    padding: 0.5em 1em;
+    padding: 8px 16px;
   }
   img {
     max-width: 95%;
@@ -89,11 +89,11 @@ const HtmlWrapper = styled.div`
     background-color: ${theme.mainBackground};
     border-radius: 3px;
     overflow: auto;
-    padding: 1em;
+    padding: 16px;
   }
   ul,
   ol {
-    padding-left: 2em;
+    padding-left: 32px;
   }
   ol ol,
   ul ol {
