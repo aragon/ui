@@ -1,96 +1,91 @@
-import React from 'react'
+import React, { useState, useCallback } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { Spring, animated } from 'react-spring'
 import ClickOutHandler from 'react-onclickout'
 import { theme } from '../../theme-legacy'
-import { springs } from '../../style'
+import { useTheme } from '../../theme'
+import { springs, GU, RADIUS } from '../../style'
 import { unselectable } from '../../utils'
-import { IconEllipsis, IconArrowDown } from '../../icons/components'
+import { IconEllipsis, IconDown } from '../../icons/components'
+import { ButtonBase } from '../Button/ButtonBase'
 
 const BASE_WIDTH = 46
 const BASE_HEIGHT = 32
 
-class ContextMenu extends React.Component {
-  static propTypes = {
-    children: PropTypes.node,
-  }
-  state = {
-    opened: false,
-  }
-  handleClose = () => {
-    this.setState({ opened: false })
-  }
-  handleBaseButtonClick = () => {
-    this.setState(({ opened }) => ({ opened: !opened }))
-  }
-  render() {
-    const { opened } = this.state
-    const { children } = this.props
-    return (
-      <ClickOutHandler onClickOut={this.handleClose}>
-        <Spring
-          config={springs.smooth}
-          to={{ openProgress: Number(opened) }}
-          native
-        >
-          {({ openProgress }) => (
-            <Main
-              style={{
-                zIndex: opened ? '2' : '1',
-                boxShadow: openProgress.interpolate(
-                  t => `0 4px 4px rgba(0, 0, 0, ${t * 0.03})`
-                ),
-              }}
+function ContextMenu({ children }) {
+  const theme = useTheme()
+  const [opened, setOpened] = useState(false)
+
+  const handleClose = useCallback(() => {
+    setOpened(false)
+  }, [])
+
+  const handleBaseButtonClick = useCallback(() => {
+    setOpened(opened => !opened)
+  }, [])
+
+  return (
+    <ClickOutHandler onClickOut={handleClose}>
+      <Spring
+        config={springs.smooth}
+        to={{ openProgress: Number(opened) }}
+        native
+      >
+        {({ openProgress }) => (
+          <Main
+            style={{
+              zIndex: opened ? '2' : '1',
+              boxShadow: openProgress.interpolate(
+                t => `0 4px 4px rgba(0, 0, 0, ${t * 0.03})`
+              ),
+            }}
+          >
+            <Button
+              onClick={handleBaseButtonClick}
+              opened={opened}
+              focusRingRadius={RADIUS}
+              css={`
+                color: ${opened ? theme.accent : theme.surfaceContent};
+              `}
             >
-              <BaseButton onClick={this.handleBaseButtonClick} opened={opened}>
-                <IconEllipsis
-                  css={`
-                    position: relative;
-                    left: 4.5px;
-                    width: 22px;
-                  `}
-                  style={{
-                    color: opened ? theme.accent : theme.textSecondary,
-                  }}
-                />
-                <Arrow
-                  style={{
-                    transformOrigin: '10px 9.5px',
-                    transform: openProgress.interpolate(
-                      v => `rotate(${v * 180}deg)`
-                    ),
-                  }}
-                >
-                  <IconArrowDown />
-                </Arrow>
-              </BaseButton>
-              {opened && (
-                <Popup
-                  onClick={this.handleClose}
-                  style={{
-                    opacity: openProgress,
-                    boxShadow: openProgress.interpolate(
-                      t => `0 4px 4px rgba(0, 0, 0, ${t * 0.03})`
-                    ),
-                  }}
-                >
-                  {children}
-                </Popup>
-              )}
-            </Main>
-          )}
-        </Spring>
-      </ClickOutHandler>
-    )
-  }
+              <IconEllipsis css={``} />
+              <animated.div
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  transformOrigin: '50% 50%',
+                  transform: openProgress.interpolate(
+                    v => `rotate(${v * 180}deg)`
+                  ),
+                }}
+              >
+                <IconDown size="tiny" />
+              </animated.div>
+            </Button>
+            {opened && (
+              <Popup
+                onClick={handleClose}
+                style={{
+                  opacity: openProgress,
+                  boxShadow: openProgress.interpolate(
+                    t => `0 4px 4px rgba(0, 0, 0, ${t * 0.03})`
+                  ),
+                }}
+              >
+                {children}
+              </Popup>
+            )}
+          </Main>
+        )}
+      </Spring>
+    </ClickOutHandler>
+  )
 }
 
-const Arrow = styled(animated.div)`
-  margin-top: 10px;
-  transform-origin: 10px 9.5px;
-  color: ${theme.textTertiary};
-`
+ContextMenu.propTypes = {
+  children: PropTypes.node,
+}
 
 const Main = styled(animated.div)`
   position: relative;
@@ -98,7 +93,7 @@ const Main = styled(animated.div)`
   height: ${BASE_HEIGHT}px;
 `
 
-const BaseButton = styled.div`
+const Button = styled(ButtonBase)`
   position: relative;
   z-index: 2;
   display: flex;
@@ -108,26 +103,17 @@ const BaseButton = styled.div`
   height: ${BASE_HEIGHT}px;
   background: ${theme.contentBackground};
   border: 1px solid ${theme.contentBorder};
-  border-radius: ${({ opened }) => (opened ? '3px 3px 0 0' : '3px')};
+  border-radius: ${({ opened }) =>
+    opened ? `${RADIUS}px ${RADIUS}px 0 0` : `${RADIUS}px`};
   border-bottom-color: ${({ opened }) =>
     opened ? theme.contentBackground : theme.contentBorder};
-  cursor: pointer;
-  ${unselectable()};
   &:active {
     background: ${theme.contentBackgroundActive};
     border-bottom-color: ${({ opened }) =>
       opened ? theme.contentBackgroundActive : theme.contentBorder};
   }
-  &:before {
-    display: ${({ opened }) => (opened ? 'block' : 'none')};
-    content: '';
-    position: absolute;
-    bottom: -1px;
-    right: -1px;
-    width: 1px;
-    height: 2px;
-    background: ${theme.contentBorder};
-  }
+
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
 `
 
 const Popup = styled(animated.div)`
@@ -135,6 +121,7 @@ const Popup = styled(animated.div)`
   position: absolute;
   top: ${BASE_HEIGHT - 1}px;
   right: 0;
+  z-index: 3;
   padding: 10px 0;
   background: ${theme.contentBackground};
   border: 1px solid ${theme.contentBorder};
