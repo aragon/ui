@@ -34,6 +34,8 @@ import PageTransactionProgress from './pages/PageTransactionProgress'
 import PagePopover from './pages/PagePopover'
 import PageModal from './pages/PageModal'
 import PageRootPortal from './pages/PageRootPortal'
+import PageLineChart from './pages/PageLineChart'
+import PagePartitionBar from './pages/PagePartitionBar'
 
 // Containers
 import PageMain from './pages/PageMain'
@@ -44,7 +46,6 @@ import PageAppView from './pages/PageAppView'
 import PageSidePanel from './pages/PageSidePanel'
 import PageCard from './pages/PageCard'
 import PageEmptyStateCard from './pages/PageEmptyStateCard'
-import PageLineChart from './pages/PageLineChart'
 import PageTable from './pages/PageTable'
 
 // Providers
@@ -120,6 +121,7 @@ export const PAGE_GROUPS = [
       [PageIdentityBadge, 'IdentityBadge'],
       [PageInfo, 'Info'],
       [PageLineChart, 'LineChart'],
+      [PagePartitionBar, 'PartitionBar'],
       [PageModal, 'Modal'],
       [PagePopover, 'Popover'],
       [PageProgressBar, 'ProgressBar'],
