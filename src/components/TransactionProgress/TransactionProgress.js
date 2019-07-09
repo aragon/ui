@@ -52,7 +52,7 @@ class TransactionProgress extends React.Component {
             </Text>
             <Countdown removeDaysAndHours end={endTime} />
           </ContentWrapper>
-          <ProgressBar color={theme.accent} progress={progress} />
+          <ProgressBar color={theme.accent} value={progress} />
           <FooterWrapper slow={slow}>
             {slow && (
               <SlowTransaction>

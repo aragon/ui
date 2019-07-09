@@ -30,7 +30,7 @@ class PageTransactionProgress extends React.Component {
                       this.setState({
                         top: e.clientY + 'px',
                         left: e.clientX + 'px',
-                        hide: !hide,
+                        hide: false,
                       })
                     }
                   >
@@ -38,20 +38,17 @@ class PageTransactionProgress extends React.Component {
                   </Button>
                 </div>
                 <div>
-                  <div>
-                    {!hide && (
-                      <TransactionProgress
-                        transactionHashUrl="https://etherscan.io/tx/0x5c504ed432cb51138bcf09aa5e8a410dd4a1e204ef84bfed1be16dfba1b22060"
-                        progress={0.3}
-                        endTime={new Date(Date.now() + 100000)}
-                        handleClose={() => this.setState({ hide: true })}
-                        top={top}
-                        left={left}
-                        openerRef={this.openerRef}
-                        slow
-                      />
-                    )}
-                  </div>
+                  <TransactionProgress
+                    transactionHashUrl="https://etherscan.io/tx/0x5c504ed432cb51138bcf09aa5e8a410dd4a1e204ef84bfed1be16dfba1b22060"
+                    progress={0.3}
+                    visible={!hide}
+                    endTime={new Date(Date.now() + 100000)}
+                    handleClose={() => this.setState({ hide: true })}
+                    top={top}
+                    left={left}
+                    openerRef={this.openerRef}
+                    slow
+                  />
                 </div>
               </Wrapper>
             </Container>

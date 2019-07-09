@@ -1,6 +1,5 @@
 
 import React from 'react'
-import styled from 'styled-components'
 import { Viewport, Text } from '@aragon/ui'
 import Page from 'comps/Page/Page'
 import readme from 'ui-src/providers/Viewport/README.md'
