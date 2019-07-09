@@ -58,7 +58,7 @@ function textStyleToCss(textStyle) {
 }
 
 function textStyle(name, includeLineHeight = true) {
-  if (!TEXT_STYLES.has(name)) {
+  if (!TEXT_STYLES[name]) {
     throw new Error('textStyle(): the text style doesn’t exist: ' + name)
   }
 
