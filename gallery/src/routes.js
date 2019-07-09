@@ -54,6 +54,7 @@ import PageTable from './pages/PageTable'
 import PageRedraw from './pages/PageRedraw'
 import PageRedrawFromDate from './pages/PageRedrawFromDate'
 import PageObserve from './pages/PageObserve'
+import PageViewport from './pages/PageViewport'
 import PageToastHub from './pages/PageToastHub'
 
 const preparePage = ([comp, name, path = camelCaseToDashes(name)]) => ({
@@ -139,6 +140,7 @@ export const PAGE_GROUPS = [
       [PageRedraw, 'Redraw'],
       [PageRedrawFromDate, 'RedrawFromDate'],
       [PageObserve, 'Observe'],
+      [PageViewport, 'Viewport'],
       [PageToastHub, 'ToastHub'],
     ],
   },
