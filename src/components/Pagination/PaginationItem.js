@@ -5,7 +5,7 @@ import { useTheme } from '../../theme'
 import { ButtonBase } from '../Button/ButtonBase'
 import { GU, RADIUS } from '../../style'
 
-function PaginationItem({ selected, index, onChange }) {
+function PaginationItem({ touchMode, selected, index, onChange }) {
   const theme = useTheme()
 
   const handleClick = useCallback(() => {
@@ -19,8 +19,8 @@ function PaginationItem({ selected, index, onChange }) {
         focusRingRadius={RADIUS}
         disabled={selected}
         css={`
-          width: ${3 * GU}px;
-          height: ${3 * GU}px;
+          width: ${(touchMode ? 4 : 3) * GU}px;
+          height: ${(touchMode ? 4 : 3) * GU}px;
           color: ${theme.surfaceContent};
           border-radius: ${RADIUS}px;
           &:active {
@@ -53,6 +53,7 @@ PaginationItem.propTypes = {
   index: PropTypes.number.isRequired,
   onChange: PropTypes.func.isRequired,
   selected: PropTypes.bool.isRequired,
+  touchMode: PropTypes.bool.isRequired,
 }
 
 export { PaginationItem }

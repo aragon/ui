@@ -53,6 +53,8 @@ const Pagination = React.memo(function Pagination({
   pages,
   selected,
   onChange,
+  touchMode,
+  ...props
 }) {
   const items = paginationItems(pages, selected)
   return (
@@ -61,10 +63,12 @@ const Pagination = React.memo(function Pagination({
         display: flex;
         align-items: center;
         justify-content: center;
+        padding: ${2 * GU}px 0;
         & > div + div {
           margin-left: ${1 * GU}px;
         }
       `}
+      {...props}
     >
       {items.map((pageIndex, i) =>
         pageIndex === -1 ? (
@@ -75,6 +79,7 @@ const Pagination = React.memo(function Pagination({
             index={pageIndex}
             selected={selected === pageIndex}
             onChange={onChange}
+            touchMode={touchMode}
           />
         )
       )}
@@ -86,12 +91,14 @@ Pagination.propTypes = {
   onChange: PropTypes.func,
   pages: PropTypes.number,
   selected: PropTypes.number,
+  touchMode: PropTypes.bool,
 }
 
 Pagination.defaultProps = {
   onChange: noop,
   pages: 0,
   selected: 0,
+  touchMode: false,
 }
 
 export { Pagination }

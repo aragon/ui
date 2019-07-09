@@ -14,7 +14,7 @@ const PaginationSeparator = React.memo(function PaginationSeparator() {
     >
       <IconEllipsis
         css={`
-          color: ${theme.surfaceContentSecondary};
+          color: ${theme.surfaceContentSecondary.alpha(0.4)};
         `}
       />
     </div>
