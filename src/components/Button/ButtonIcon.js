@@ -32,4 +32,5 @@ ButtonIcon.propTypes = {
   children: PropTypes.node.isRequired,
 }
 
+export { ButtonIcon }
 export default ButtonIcon
