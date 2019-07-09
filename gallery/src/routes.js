@@ -37,6 +37,7 @@ import PageRootPortal from './pages/PageRootPortal'
 import PageLineChart from './pages/PageLineChart'
 import PagePartitionBar from './pages/PagePartitionBar'
 import PageTimer from './pages/PageTimer'
+import PageTransactionBadge from './pages/PageTransactionBadge'
 
 // Containers
 import PageMain from './pages/PageMain'
@@ -128,6 +129,7 @@ export const PAGE_GROUPS = [
       [PageProgressBar, 'ProgressBar'],
       [PageRootPortal, 'RootPortal'],
       [PageTimer, 'Timer'],
+      [PageTransactionBadge, 'TransactionBadge'],
       [PageTransactionProgress, 'TransactionProgress'],
     ],
   },

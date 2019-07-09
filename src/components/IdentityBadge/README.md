@@ -42,6 +42,15 @@ It is passed to the method isAddress from Web3.js
 
 * Type: `String`
 * Default: `normal`
+* Variations:  {
+  xxsmall: '11px',
+  xsmall: '12px',
+  small: '14px',
+  normal: '15px',
+  large: '16px',
+  xlarge: '20px',
+  xxlarge: '22px',
+  great: '37px',}
 
 Determines the fontSize of the label.
 

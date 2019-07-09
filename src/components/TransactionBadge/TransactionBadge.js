@@ -23,9 +23,10 @@ class TransactionBadge extends React.PureComponent {
     shorten: true,
     fontSize: 'normal',
     networkType: 'main',
+    background: '#daeaef',
   }
   getMainProps(transaction) {
-    const { networkType } = this.props
+    const { networkType, background } = this.props
     const baseProps = stylingProps(this)
     if (!transaction) {
       return baseProps
@@ -35,7 +36,11 @@ class TransactionBadge extends React.PureComponent {
       as: SafeLink,
       target: '_blank',
       href: blockExplorerUrl('transaction', transaction, { networkType }),
-      style: { ...baseProps.style, cursor: 'pointer' },
+      style: {
+        ...baseProps.style,
+        cursor: 'pointer',
+        backgroundColor: background,
+      },
     }
   }
   getLabel(transaction) {
@@ -67,7 +72,6 @@ const Main = styled.div`
   border-radius: 3px;
   cursor: default;
   text-decoration: none;
-  background: #daeaef;
 `
 
 const Label = styled(Text)`
