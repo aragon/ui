@@ -6,12 +6,12 @@ import { RADIUS } from '../../style'
 import { unselectable, font } from '../../utils'
 
 function ButtonBase({
-  focusVisible,
-  showFocusRing,
-  focusRingSpacing,
-  focusRingRadius,
-  innerRef,
   disabled,
+  focusRingRadius,
+  focusRingSpacing,
+  focusVisible,
+  innerRef,
+  showFocusRing,
   ...props
 }) {
   const theme = useTheme()
@@ -59,6 +59,7 @@ function ButtonBase({
 }
 
 ButtonBase.propTypes = {
+  disabled: PropTypes.bool,
   focusRingRadius: PropTypes.number,
   focusRingSpacing: PropTypes.number,
   focusVisible: PropTypes.bool,
@@ -66,6 +67,7 @@ ButtonBase.propTypes = {
   showFocusRing: PropTypes.bool,
 }
 ButtonBase.defaultProps = {
+  disabled: false,
   focusRingRadius: 0,
   focusRingSpacing: 0,
   showFocusRing: true,
