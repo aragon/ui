@@ -2,12 +2,17 @@ import React, { useEffect, useState } from 'react'
 import { Pagination, Header, Box, Layout, GU } from '../../'
 import { Center } from '../components/Center'
 
-function PaginationDemo({ initial = 0, pages }) {
+function PaginationDemo({ title, initial = 0, pages, ...props }) {
   const [selected, setSelected] = useState(initial)
 
   return (
-    <Box>
-      <Pagination pages={pages} selected={selected} onChange={setSelected} />
+    <Box heading={title}>
+      <Pagination
+        pages={pages}
+        selected={selected}
+        onChange={setSelected}
+        {...props}
+      />
     </Box>
   )
 }
@@ -23,13 +28,15 @@ export default () => {
     >
       <Header primary="Pagination" />
 
-      <PaginationDemo pages={10} initial={5} />
+      <PaginationDemo pages={10} initial={5} title="Normal" />
+      <PaginationDemo pages={10} initial={5} touchMode title="Touch mode" />
       <PaginationDemo pages={1} initial={0} />
       <PaginationDemo pages={2} initial={0} />
       <PaginationDemo pages={3} initial={0} />
       <PaginationDemo pages={4} initial={0} />
       <PaginationDemo pages={5} initial={0} />
       <PaginationDemo pages={6} initial={0} />
+      <PaginationDemo pages={7} initial={0} />
     </div>
   )
 }
