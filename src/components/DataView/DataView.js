@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { GU } from '../../style'
+import { noop } from '../../utils'
 import { useTheme } from '../../theme'
 import { Box } from '../../components/Box/Box'
 import { Pagination } from '../../components/Pagination/Pagination'
@@ -13,14 +14,14 @@ function prepareEntries(entries, from, to) {
     const entryIndex = from + index
 
     if (Array.isArray(entry)) {
-      return { values: entry, index }
+      return { values: entry, index: entryIndex }
     }
 
     if (entry && Array.isArray(entry.values)) {
-      return { ...entry, values: entry.values, index }
+      return { ...entry, values: entry.values, index: entryIndex }
     }
 
-    return { values: [], index }
+    return { values: [], index: entryIndex }
   })
 }
 
@@ -119,7 +120,6 @@ function DataView({
         <ListView
           entries={renderedEntries}
           fields={renderedFields}
-          hasAnyActions={hasAnyActions}
           hasAnyChild={hasAnyChild}
         />
       ) : (
@@ -156,8 +156,10 @@ DataView.propTypes = {
   entriesPerPage: PropTypes.number,
   fields: PropTypes.array,
   heading: PropTypes.node,
+  onPageChange: PropTypes.func,
   renderEntry: PropTypes.func.isRequired,
   renderEntryActions: PropTypes.func,
+  renderEntryChild: PropTypes.func,
   tableRowHeight: PropTypes.number,
 }
 
@@ -165,6 +167,7 @@ DataView.defaultProps = {
   currentPage: 0,
   entriesPerPage: 10,
   tableRowHeight: 8 * GU,
+  onPageChange: noop,
 }
 
 export { DataView }

@@ -1,10 +1,12 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useState } from 'react'
+import PropTypes from 'prop-types'
 import { Transition, animated } from 'react-spring'
 import { GU, springs, textStyle } from '../../style'
 import { useTheme } from '../../theme'
 import { ToggleButton } from './ToggleButton'
+import { OpenedSurfaceBorder } from './OpenedSurfaceBorder'
 
-function ListView({ hasAnyActions, hasAnyChild, fields, entries }) {
+function ListView({ hasAnyChild, fields, entries }) {
   const theme = useTheme()
 
   const [opened, setOpened] = useState(-1)
@@ -21,13 +23,14 @@ function ListView({ hasAnyActions, hasAnyChild, fields, entries }) {
             key={index}
             css={`
               position: relative;
-              padding: 0 ${3 * GU}px;
+              padding: 0;
+              padding-right: ${3 * GU}px;
+              padding-left: ${(hasAnyChild ? 6.5 : 3) * GU}px;
               border-bottom: ${Number(index !== entries.length - 1)}px solid
                 ${theme.border};
-              padding-left: ${6.5 * GU}px;
             `}
           >
-            {null && <OpenedSurfaceBorder opened={opened} />}
+            <OpenedSurfaceBorder opened={entry.index === opened} />
             {hasChildren && (
               <div
                 css={`
@@ -140,6 +143,12 @@ function ListView({ hasAnyActions, hasAnyChild, fields, entries }) {
       })}
     </React.Fragment>
   )
+}
+
+ListView.propTypes = {
+  entries: PropTypes.array.isRequired,
+  fields: PropTypes.array.isRequired,
+  hasAnyChild: PropTypes.bool.isRequired,
 }
 
 export { ListView }
