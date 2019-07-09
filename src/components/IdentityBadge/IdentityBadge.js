@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { isAddress, shortenAddress, stylingProps } from '../../utils'
 import { theme } from '../../theme-legacy'
+import { RADIUS } from '../../style'
 import Text from '../Text/Text'
 import EthIdenticon from '../EthIdenticon/EthIdenticon'
 import { ButtonBase } from '../Button/ButtonBase'
@@ -63,6 +64,7 @@ class IdentityBadge extends React.PureComponent {
           title={address}
           disabled={badgeOnly}
           onClick={address && !badgeOnly ? this.handleOpen : undefined}
+          focusRingRadius={RADIUS}
           css={`
             display: inline-flex;
             overflow: hidden;
