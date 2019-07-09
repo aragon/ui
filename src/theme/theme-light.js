@@ -14,9 +14,11 @@ export default {
   content: colors.GreyDark,
 
   surface: colors.White,
+  surfaceUnder: colors.ArcticBlue,
   surfaceContent: colors.GreyDark,
   surfaceContentSecondary: colors.GreyMedium,
 
+  surfaceOpened: colors.ArcticBlueDark,
   surfaceSelected: colors.ArcticBlueLight,
   surfaceHighlight: colors.ArcticBlueLight,
   surfacePressed: colors.ArcticBlue,
