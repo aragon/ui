@@ -1,6 +1,6 @@
 # Timer
 
-Displays a countdown or stopwatch
+Displays a countdown or stopwatch.
 
 ## Usage
 

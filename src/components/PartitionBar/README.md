@@ -5,7 +5,22 @@ A component to draw partition bars with labels.
 ## Usage
 
 ```jsx
-import { LineChart } from '@aragon/ui'
+import { PartitionBar } from '@aragon/ui'
+
+const data = [
+  {
+    name: 'Name AAA',
+    percentage: 30,
+  },
+  {
+    name: 'Name DDD',
+    percentage: 60,
+  },
+  {
+    name: 'Name OOO',
+    percentage: 10,
+  },
+]
 
 const App = () => <PartitionBar data={data} />
 ```
