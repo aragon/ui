@@ -41,7 +41,13 @@ function Layout({ children, parentWidth }) {
 
   return (
     <div>
-      <div css="margin: 0 auto" style={{ width: `${width}px` }}>
+      <div
+        css={`
+          margin: 0 auto;
+          padding-bottom: ${3 * GU}px;
+        `}
+        style={{ width: `${width}px` }}
+      >
         {children}
       </div>
     </div>
