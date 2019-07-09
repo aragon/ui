@@ -52,6 +52,7 @@ import PageTable from './pages/PageTable'
 
 // Providers
 import PageRedraw from './pages/PageRedraw'
+import PageRoot from './pages/PageRoot'
 import PageRedrawFromDate from './pages/PageRedrawFromDate'
 import PageObserve from './pages/PageObserve'
 import PageViewport from './pages/PageViewport'
@@ -138,6 +139,7 @@ export const PAGE_GROUPS = [
     name: 'Providers',
     pages: [
       [PageRedraw, 'Redraw'],
+      [PageRoot, 'Root'],
       [PageRedrawFromDate, 'RedrawFromDate'],
       [PageObserve, 'Observe'],
       [PageViewport, 'Viewport'],

@@ -1,21 +1,16 @@
 # Root
 
-The RootProvider component can be used to .
+The Root component can be used to re define the root of a component using Root.Provider.
 
 ## Usage
 
 ```jsx
 import { Root } from '@aragon/ui'
 
+  <Root.Provider>
+    <Children />
+  </Root.Provider>
 
 ```
 
-## Properties
-
-### `throttle`
-
-- Type: `Number`
-- Default value: `100`
-
-Change the throttle wait time.
 
