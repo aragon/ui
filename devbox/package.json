@@ -15,6 +15,7 @@
     "@aragon/ui": "file:..",
     "react": "^16.8.3",
     "react-dom": "^16.8.3",
+    "seedrandom": "^3.0.1",
     "styled-components": "^4.0.2"
   },
   "devDependencies": {
