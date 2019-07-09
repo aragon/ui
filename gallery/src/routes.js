@@ -49,6 +49,7 @@ import PageSidePanel from './pages/PageSidePanel'
 import PageCard from './pages/PageCard'
 import PageEmptyStateCard from './pages/PageEmptyStateCard'
 import PageTable from './pages/PageTable'
+import PageFocusVisible from './pages/PageFocusVisible'
 
 // Providers
 import PageRedraw from './pages/PageRedraw'
@@ -107,6 +108,7 @@ export const PAGE_GROUPS = [
       [PageAragonApp, 'AragonApp'],
       [PageCard, 'Card'],
       [PageEmptyStateCard, 'EmptyStateCard'],
+      [PageFocusVisible, 'FocusVisible'],
       [PageMain, 'Main'],
       [PageNavigationBar, 'NavigationBar'],
       [PageSidePanel, 'SidePanel'],
