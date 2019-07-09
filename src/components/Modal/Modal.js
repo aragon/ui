@@ -3,22 +3,14 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { Transition, animated } from 'react-spring'
 import { Viewport } from '../../providers/Viewport'
+import { noop } from '../../utils'
+import { springs, GU, RADIUS } from '../../style'
 import EscapeOutside from '../EscapeOutside/EscapeOutside'
 import RootPortal from '../RootPortal/RootPortal'
-import { springs } from '../../style'
-import { noop } from '../../utils'
 
 const cssPx = value => (typeof value === 'number' ? value + 'px' : value)
 
-const Modal = ({
-  children,
-  onClose,
-  padding,
-  radius,
-  visible,
-  width,
-  overlayColor,
-}) => (
+const Modal = ({ children, onClose, padding, visible, width }) => (
   <RootPortal>
     <Viewport>
       {viewport => (
@@ -34,14 +26,18 @@ const Modal = ({
             show &&
             /* eslint-disable react/prop-types */
             (({ opacity, scale }) => (
-              <Overlay style={{ opacity, background: overlayColor }}>
+              <Overlay style={{ opacity }}>
                 <ContentWrapper
                   style={{
                     pointerEvents: visible ? 'auto' : 'none',
                     transform: scale.interpolate(v => `scale3d(${v}, ${v}, 1)`),
                   }}
                 >
-                  <div css="padding: 24px 12px">
+                  <div
+                    css={`
+                      padding: ${3 * GU}px ${1.5 * GU}px;
+                    `}
+                  >
                     <Content
                       role="alertdialog"
                       onEscapeOutside={onClose}
@@ -54,7 +50,7 @@ const Modal = ({
                             ? padding(viewport)
                             : padding
                         ),
-                        borderRadius: `${radius}px`,
+                        borderRadius: `${RADIUS}px`,
                       }}
                     >
                       {children}
@@ -73,22 +69,18 @@ const Modal = ({
 
 Modal.defaultProps = {
   onClose: noop,
-  overlayColor: 'rgba(0, 0, 0, 0.5)',
-  padding: 24,
-  radius: 4,
+  padding: 3 * GU,
   width: viewport => Math.min(viewport.width - 48, 600),
 }
 
 Modal.propTypes = {
   children: PropTypes.node.isRequired,
   onClose: PropTypes.func,
-  overlayColor: PropTypes.string,
   padding: PropTypes.oneOfType([
     PropTypes.func,
     PropTypes.number,
     PropTypes.string,
   ]),
-  radius: PropTypes.number,
   visible: PropTypes.bool.isRequired,
   width: PropTypes.oneOfType([
     PropTypes.func,
@@ -112,7 +104,7 @@ const ContentWrapper = styled(animated.div)`
 
 const Content = styled(EscapeOutside)`
   overflow: hidden;
-  min-width: 288px; /* 320px - 2 * 16px */
+  min-width: ${360 - 4 * GU}px;
   background: #fff;
   box-shadow: 0 10px 28px rgba(0, 0, 0, 0.2);
 `
@@ -124,6 +116,7 @@ const Overlay = styled(animated.div)`
   left: 0;
   right: 0;
   bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
 `
 
 export default Modal

@@ -11,21 +11,19 @@ function App() {
         display: flex;
         align-items: center;
         justify-content: center;
-        height: 100vh;
+        height: 100%;
         padding: 20px;
       `}
     >
       <Button
-        mode="secondary"
         onClick={() => {
           setOpened(true)
         }}
       >
-        Open modal
+        Modal
       </Button>
       <Modal
         visible={opened}
-        padding={0}
         onClose={() => {
           setOpened(false)
         }}
@@ -51,20 +49,10 @@ function App() {
             `}
           >
             <span>Modal title </span>
-            <Button
-              mode="secondary"
-              size="mini"
-              onClick={() => setParagraphs(Math.max(1, paragraphs - 1))}
-            >
+            <button onClick={() => setParagraphs(Math.max(1, paragraphs - 1))}>
               -
-            </Button>
-            <Button
-              mode="secondary"
-              size="mini"
-              onClick={() => setParagraphs(paragraphs + 1)}
-            >
-              +
-            </Button>
+            </button>
+            <button onClick={() => setParagraphs(paragraphs + 1)}>+</button>
           </h1>
           {[...Array(paragraphs)].map((_, i) => (
             <p key={i}>
