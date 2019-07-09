@@ -11,6 +11,7 @@ function Button({ children, icon, label, mode, size, ...props }) {
   // backward compatibility
   if (mode === 'outline') mode = 'normal'
   if (mode === 'secondary') mode = 'normal'
+  if (size === 'mini') size = 'small'
 
   return (
     <ButtonBase
@@ -89,7 +90,14 @@ Button.propTypes = {
     'outline',
     'secondary',
   ]),
-  size: PropTypes.oneOf(['large', 'normal', 'small']),
+  size: PropTypes.oneOf([
+    'large',
+    'normal',
+    'small',
+
+    // backward compatibility
+    'mini',
+  ]),
 }
 
 Button.defaultProps = {
