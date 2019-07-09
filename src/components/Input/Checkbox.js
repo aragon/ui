@@ -154,4 +154,5 @@ const Bullet = styled.span`
   background: ${theme.accent};
 `
 
+export { Checkbox }
 export default Checkbox
