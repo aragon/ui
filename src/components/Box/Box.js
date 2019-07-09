@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import styled from 'styled-components'
 import { GU, RADIUS } from '../../style'
 import { useTheme } from '../../theme/Theme'
 
@@ -7,7 +8,8 @@ function Box({ heading, children, padding, ...props }) {
   const theme = useTheme()
 
   return (
-    <section
+    <div
+      as={heading ? 'section' : 'div'}
       css={`
         border-radius: ${RADIUS}px;
         border: 1px solid ${theme.border};
@@ -38,7 +40,7 @@ function Box({ heading, children, padding, ...props }) {
       >
         <div>{children}</div>
       </div>
-    </section>
+    </div>
   )
 }
 
