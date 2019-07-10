@@ -7,7 +7,7 @@ export const springs = {
   lazy: { mass: 1, tension: 120, friction: 20 },
 
   // Medium speed spring, can be used to move small objects.
-  smooth: { mass: 0.7, tension: 300, friction: 25 },
+  smooth: { mass: 0.8, tension: 300, friction: 28 },
 
   // Fast speed spring, for interactions that feel “almost instant”.
   swift: { mass: 0.5, tension: 800, friction: 30 },
