@@ -89,7 +89,7 @@ function DataView({
   const hasAnyActions = Boolean(renderEntryActions)
   const hasAnyChild = Boolean(renderEntryChild)
 
-  const pages = Math.floor(entries.length / entriesPerPage)
+  const pages = Math.ceil(entries.length / entriesPerPage)
 
   const displayFrom = entriesPerPage * currentPage
   const displayTo = displayFrom + entriesPerPage
