@@ -4,6 +4,7 @@ import PageColors from './pages/PageColors'
 import PageTheme from './pages/PageTheme'
 import PageText from './pages/PageText'
 import PageIcons from './pages/PageIcons'
+import PageBaseStyles from './pages/PageBaseStyles'
 
 // Controls
 import PageButton from './pages/PageButton'
@@ -58,6 +59,7 @@ import PageRedrawFromDate from './pages/PageRedrawFromDate'
 import PageObserve from './pages/PageObserve'
 import PageViewport from './pages/PageViewport'
 import PageToastHub from './pages/PageToastHub'
+import PagePublicUrl from './pages/PagePublicUrl'
 
 const preparePage = ([comp, name, path = camelCaseToDashes(name)]) => ({
   comp,
@@ -76,6 +78,7 @@ export const PAGE_GROUPS = [
   {
     name: 'Styles',
     pages: [
+      [PageBaseStyles, 'BaseStyles'],
       [PageColors, 'Colors'],
       [PageIcons, 'Icons'],
       [PageText, 'Text'],
@@ -141,6 +144,7 @@ export const PAGE_GROUPS = [
     name: 'Providers',
     pages: [
       [PageObserve, 'Observe'],
+      [PagePublicUrl, 'PublicUrl'],
       [PageRedraw, 'Redraw'],
       [PageRedrawFromDate, 'RedrawFromDate'],
       [PageRoot, 'Root'],
