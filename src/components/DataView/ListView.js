@@ -107,6 +107,7 @@ function ListView({ hasAnyChild, fields, entries }) {
             >
               {show =>
                 show &&
+                /* eslint-disable react/prop-types */
                 (({ totalHeight }) => (
                   <animated.div
                     css={`
@@ -136,6 +137,7 @@ function ListView({ hasAnyChild, fields, entries }) {
                     ))}
                   </animated.div>
                 ))
+              /* eslint-enable react/prop-types */
               }
             </Transition>
           </div>

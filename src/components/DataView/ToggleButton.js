@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React from 'react'
+import PropTypes from 'prop-types'
 import { ButtonIcon } from '../Button/ButtonIcon'
 import { IconDown, IconUp } from '../../icons'
 import { useTheme } from '../../theme'
@@ -40,6 +41,11 @@ function ToggleButton({ onClick, opened }) {
       </div>
     </ButtonIcon>
   )
+}
+
+ToggleButton.propTypes = {
+  onClick: PropTypes.func.isRequired,
+  opened: PropTypes.bool.isRequired,
 }
 
 export { ToggleButton }

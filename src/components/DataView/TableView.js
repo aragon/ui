@@ -1,21 +1,12 @@
 import React, { useCallback, useEffect, useState } from 'react'
+import PropTypes from 'prop-types'
 import { Transition, animated } from 'react-spring'
 import { GU, springs, textStyle } from '../../style'
 import { useTheme } from '../../theme'
-import { Checkbox } from '../Input/Checkbox'
 import { ToggleButton } from './ToggleButton'
 import { OpenedSurfaceBorder } from './OpenedSurfaceBorder'
 
-function TableView({
-  rowHeight,
-  hasAnyActions,
-  hasAnyChild,
-  actions,
-  fields,
-  entries,
-}) {
-  const theme = useTheme()
-
+function TableView({ rowHeight, hasAnyActions, hasAnyChild, fields, entries }) {
   const [opened, setOpened] = useState(-1)
   const toggleEntry = useCallback(index => {
     setOpened(opened => (opened === index ? -1 : index))
@@ -70,6 +61,16 @@ function TableView({
   )
 }
 
+TableView.propTypes = {
+  entries: PropTypes.array.isRequired,
+  fields: PropTypes.array.isRequired,
+  hasAnyActions: PropTypes.bool.isRequired,
+  hasAnyChild: PropTypes.bool.isRequired,
+  rowHeight: PropTypes.number.isRequired,
+}
+
+// Disable prop types check for internal components
+/* eslint-disable react/prop-types */
 function HeadRow({ fields, hasAnyActions, hasAnyChild }) {
   const theme = useTheme()
 
@@ -280,5 +281,6 @@ function ToggleCell({ index, opened, onToggle }) {
     </div>
   )
 }
+/* eslint-enable react/prop-types */
 
 export { TableView }

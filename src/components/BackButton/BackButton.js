@@ -66,5 +66,9 @@ function Arrow({ color, ...props }) {
   )
 }
 
+Arrow.propTypes = {
+  color: PropTypes.string.isRequired,
+}
+
 export { BackButton }
 export default BackButton
