@@ -159,7 +159,7 @@ const DEMOS = [
 ]
 
 function App() {
-  const [demo, setDemo] = useState(2)
+  const [demo, setDemo] = useState(0)
   const [page, setPage] = useState(0)
 
   const demoNames = DEMOS.map(({ demoName }) => demoName)
@@ -176,12 +176,7 @@ function App() {
       <Bar>
         <TabBar items={demoNames} selected={demo} onChange={setDemo} />
       </Bar>
-      <DataView
-        entriesPerPage={10}
-        currentPage={page}
-        onPageChange={setPage}
-        {...dataViewProps}
-      />
+      <DataView currentPage={page} onPageChange={setPage} {...dataViewProps} />
     </div>
   )
 }
