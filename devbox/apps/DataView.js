@@ -87,7 +87,7 @@ const DEMOS = [
       { label: 'Managed by', priority: 2 },
     ],
 
-    entryChildFieldIndex: 2,
+    alignChildOnField: 1,
 
     entries: seedShuffleArray(
       multiplyArray(
