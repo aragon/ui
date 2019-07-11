@@ -71,7 +71,8 @@ function renderEntries(
   })
 }
 
-function DataView({
+const DataView = React.memo(function DataView({
+  alignChildOnField,
   currentPage,
   entries,
   entriesPerPage,
@@ -124,6 +125,10 @@ function DataView({
         />
       ) : (
         <TableView
+          alignChildOnField={Math.min(
+            Math.max(-1, alignChildOnField),
+            fields.length - 1
+          )}
           entries={renderedEntries}
           fields={renderedFields}
           hasAnyActions={hasAnyActions}
@@ -148,9 +153,10 @@ function DataView({
       )}
     </Box>
   )
-}
+})
 
 DataView.propTypes = {
+  alignChildOnField: PropTypes.number,
   currentPage: PropTypes.number,
   entries: PropTypes.array.isRequired,
   entriesPerPage: PropTypes.number,
@@ -164,6 +170,7 @@ DataView.propTypes = {
 }
 
 DataView.defaultProps = {
+  alignChildOnField: -1,
   currentPage: 0,
   entriesPerPage: 10,
   tableRowHeight: 8 * GU,

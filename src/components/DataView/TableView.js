@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import PropTypes from 'prop-types'
 import { Transition, animated } from 'react-spring'
 import { GU, springs, textStyle } from '../../style'
@@ -6,74 +6,8 @@ import { useTheme } from '../../theme'
 import { ToggleButton } from './ToggleButton'
 import { OpenedSurfaceBorder } from './OpenedSurfaceBorder'
 
-function TableView({ rowHeight, hasAnyActions, hasAnyChild, fields, entries }) {
-  const [opened, setOpened] = useState(-1)
-  const toggleEntry = useCallback(index => {
-    setOpened(opened => (opened === index ? -1 : index))
-  }, [])
-
-  useEffect(() => {
-    setOpened(false)
-  }, [entries, fields])
-
-  return (
-    <table
-      css={`
-        width: 100%;
-        border-spacing: 0;
-        border-collapse: separate;
-      `}
-    >
-      <thead>
-        <HeadRow
-          fields={fields}
-          hasAnyActions={hasAnyActions}
-          hasAnyChild={hasAnyChild}
-        />
-      </thead>
-      <tbody>
-        {entries.map((entry, index) => {
-          const hasChildren = entry.children.length > 0
-          return (
-            <React.Fragment key={index}>
-              <EntryRow
-                entry={entry}
-                fields={fields}
-                hasAnyActions={hasAnyActions}
-                hasAnyChild={hasAnyChild}
-                hasChildren={hasChildren}
-                opened={entry.index === opened}
-                rowHeight={rowHeight}
-                toggleEntry={toggleEntry}
-              />
-              {hasChildren && (
-                <EntryChildren
-                  entry={entry}
-                  opened={entry.index === opened}
-                  rowHeight={rowHeight}
-                />
-              )}
-            </React.Fragment>
-          )
-        })}
-      </tbody>
-    </table>
-  )
-}
-
-TableView.propTypes = {
-  entries: PropTypes.array.isRequired,
-  fields: PropTypes.array.isRequired,
-  hasAnyActions: PropTypes.bool.isRequired,
-  hasAnyChild: PropTypes.bool.isRequired,
-  rowHeight: PropTypes.number.isRequired,
-}
-
-// Disable prop types check for internal components
-/* eslint-disable react/prop-types */
-function HeadRow({ fields, hasAnyActions, hasAnyChild }) {
-  const theme = useTheme()
-
+// Table head row
+function cellsFromFields(fields, { hasAnyChild, hasAnyActions }) {
   const cells = fields.map((field, index) => [
     field.label,
     field.align === 'end' ? 'right' : 'left',
@@ -90,6 +24,129 @@ function HeadRow({ fields, hasAnyActions, hasAnyChild }) {
     cells.push([null, 'left'])
   }
 
+  return cells
+}
+
+// Table content row
+function rowFromEntry(
+  entry,
+  { fields, hasAnyActions, hasAnyChild, opened, toggleChildContent }
+) {
+  const hasChildren = entry.children.length > 0
+
+  const cells = entry.values.map((content, index) => [
+    content,
+    fields[index].align,
+    false,
+  ])
+
+  if (hasAnyChild) {
+    cells.unshift([hasChildren && toggleChildContent, 'start', true])
+  }
+
+  if (hasAnyActions) {
+    if (cells[cells.length - 1]) {
+      cells[cells.length - 1][1] = 'start'
+    }
+    cells.push([entry.actions, 'end', true])
+  }
+
+  return {
+    cells,
+    entry,
+    hasChildren,
+    opened,
+  }
+}
+
+function TableView({
+  alignChildOnField,
+  rowHeight,
+  hasAnyActions,
+  hasAnyChild,
+  fields,
+  entries,
+}) {
+  const [opened, setOpened] = useState(-1)
+
+  const toggleEntry = useCallback(index => {
+    setOpened(opened => (opened === index ? -1 : index))
+  }, [])
+
+  const headCells = useMemo(
+    () => cellsFromFields(fields, { hasAnyChild, hasAnyActions }),
+    [fields, hasAnyChild, hasAnyActions]
+  )
+
+  useEffect(() => {
+    setOpened(false)
+  }, [entries, fields])
+
+  const entryRows = useMemo(
+    () =>
+      entries.map(entry => {
+        const rowOpened = opened === entry.index
+        return rowFromEntry(entry, {
+          fields,
+          hasAnyActions,
+          hasAnyChild,
+          opened: rowOpened,
+          toggleChildContent: (
+            <ToggleCell
+              index={entry.index}
+              opened={rowOpened}
+              onToggle={toggleEntry}
+            />
+          ),
+        })
+      }),
+    [opened, entries, hasAnyChild, hasAnyActions, toggleEntry]
+  )
+
+  return (
+    <table
+      css={`
+        width: 100%;
+        border-spacing: 0;
+        border-collapse: separate;
+      `}
+    >
+      <thead>
+        <HeadRow cells={headCells} />
+      </thead>
+      <tbody>
+        {entryRows.map(({ cells, entry, hasChildren, opened }, index) => (
+          <React.Fragment key={index}>
+            <EntryRow cells={cells} rowHeight={rowHeight} />
+            {hasChildren && (
+              <EntryChildren
+                alignChildonCell={alignChildOnField + 1}
+                cellsCount={cells.length}
+                entry={entry}
+                opened={opened}
+                rowHeight={rowHeight}
+              />
+            )}
+          </React.Fragment>
+        ))}
+      </tbody>
+    </table>
+  )
+}
+
+TableView.propTypes = {
+  alignChildOnField: PropTypes.number.isRequired,
+  entries: PropTypes.array.isRequired,
+  fields: PropTypes.array.isRequired,
+  hasAnyActions: PropTypes.bool.isRequired,
+  hasAnyChild: PropTypes.bool.isRequired,
+  rowHeight: PropTypes.number.isRequired,
+}
+
+// Disable prop types check for internal components
+/* eslint-disable react/prop-types */
+function HeadRow({ cells }) {
+  const theme = useTheme()
   return (
     <tr>
       {cells.map((cell, index) => (
@@ -112,45 +169,8 @@ function HeadRow({ fields, hasAnyActions, hasAnyChild }) {
   )
 }
 
-function EntryRow({
-  entry,
-  fields,
-  hasAnyActions,
-  hasAnyChild,
-  hasChildren,
-  opened,
-  rowHeight,
-  toggleEntry,
-}) {
+function EntryRow({ cells, rowHeight }) {
   const theme = useTheme()
-
-  const cells = entry.values.map((content, index) => [
-    content,
-    fields[index].align,
-    false,
-  ])
-
-  if (hasAnyChild) {
-    cells.unshift([
-      hasChildren && (
-        <ToggleCell
-          index={entry.index}
-          opened={opened}
-          onToggle={toggleEntry}
-        />
-      ),
-      'start',
-      true,
-    ])
-  }
-
-  if (hasAnyActions) {
-    if (cells[cells.length - 1]) {
-      cells[cells.length - 1][1] = 'start'
-    }
-    cells.push([entry.actions, 'end', true])
-  }
-
   return (
     <tr>
       {cells.map(([content, align, compact], index, cells) => {
@@ -185,7 +205,13 @@ function EntryRow({
   )
 }
 
-function EntryChildren({ opened, entry, rowHeight }) {
+function EntryChildren({
+  alignChildonCell,
+  cellsCount,
+  entry,
+  opened,
+  rowHeight,
+}) {
   const theme = useTheme()
   return (
     <Transition
@@ -209,29 +235,37 @@ function EntryChildren({ opened, entry, rowHeight }) {
               }
             `}
           >
-            <td colSpan="2">
-              <OpenedSurfaceBorder opened={opened} />
-              <animated.div
-                css={`
-                  overflow: hidden;
-                  will-change: height;
-                `}
-                style={{
-                  height: totalHeight.interpolate(v => `${v}px`),
-                }}
-              >
-                {entry.children.map((child, i) => (
-                  <div
-                    key={i}
-                    css={`
-                      height: ${rowHeight}px;
-                      border-top: 1px solid ${theme.border};
-                    `}
-                  />
-                ))}
-              </animated.div>
-            </td>
-            <td colSpan="3">
+            {alignChildonCell > 0 && (
+              <td colSpan={alignChildonCell}>
+                <OpenedSurfaceBorder opened={opened} />
+                <animated.div
+                  css={`
+                    overflow: hidden;
+                    will-change: height;
+                  `}
+                  style={{
+                    height: totalHeight.interpolate(v => `${v}px`),
+                  }}
+                >
+                  {entry.children.map((child, i) => (
+                    <div
+                      key={i}
+                      css={`
+                        height: ${rowHeight}px;
+                        border-top: 1px solid ${theme.border};
+                      `}
+                    />
+                  ))}
+                </animated.div>
+              </td>
+            )}
+            <td
+              colSpan={
+                alignChildonCell === -1
+                  ? cellsCount
+                  : cellsCount - alignChildonCell
+              }
+            >
               <animated.div
                 css={`
                   overflow: hidden;
@@ -248,6 +282,7 @@ function EntryChildren({ opened, entry, rowHeight }) {
                       display: flex;
                       align-items: center;
                       height: ${rowHeight}px;
+                      padding-left: ${alignChildonCell < 1 ? 3 * GU : 0}px;
                       padding-right: ${3 * GU}px;
                       border-top: 1px solid ${theme.border};
                     `}
