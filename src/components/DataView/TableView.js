@@ -18,9 +18,6 @@ function cellsFromFields(fields, { hasAnyChild, hasAnyActions }) {
   }
 
   if (hasAnyActions) {
-    if (cells[cells.length - 1]) {
-      cells[cells.length - 1][1] = 'left'
-    }
     cells.push([null, 'left'])
   }
 
@@ -45,9 +42,6 @@ function rowFromEntry(
   }
 
   if (hasAnyActions) {
-    if (cells[cells.length - 1]) {
-      cells[cells.length - 1][1] = 'start'
-    }
     cells.push([entry.actions, 'end', true])
   }
 
