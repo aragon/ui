@@ -27,9 +27,9 @@ export default {
 
   surfaceInteractive: colors.White,
 
-  infoContent: colors.InfoBlue,
-  infoSurface: colors.InfoBlueLight,
-  infoBorder: colors.InfoBlueDark,
+  info: colors.AragonBlue,
+  infoSurfaceContent: colors.AragonBlueDark,
+  infoSurface: colors.AragonBlueLight,
 
   success: colors.MintGreen,
   error: colors.Red,
