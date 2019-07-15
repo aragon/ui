@@ -18,6 +18,7 @@ export const InAppBarContext = React.createContext(false)
 class AppBar extends React.Component {
   static propTypes = {
     children: PropTypes.node,
+    theme: PropTypes.object,
     endContent: PropTypes.node,
     onTitleClick: PropTypes.func,
     padding: PropTypes.number,
