@@ -14,11 +14,13 @@ export default {
   content: colors.White,
 
   surface: '#35425E',
-  surfaceUnder: colors.ArcticBlue,
   surfaceContent: colors.White,
   surfaceContentSecondary: colors.ArcticBlueDark,
+  surfaceIcon: colors.ArcticBlueDark,
 
+  surfaceUnder: colors.ArcticBlue,
   surfaceOpened: colors.ArcticBlueDark,
+
   surfaceSelected: '#405071',
   surfaceHighlight: '#405071',
   surfacePressed: '#456586',
