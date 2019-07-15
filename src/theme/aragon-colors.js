@@ -47,10 +47,6 @@ export default {
   Brown: '#876559',
   BrownDark: '#564038',
 
-  InfoBlue: '#0893C0',
-  InfoBlueLight: '#F1FBFF',
-  InfoBlueDark: '#0AB0E5',
-
   // functionality colors
   MintGreenLight: '#87F1CB',
   MintGreen: '#2CC68F',
