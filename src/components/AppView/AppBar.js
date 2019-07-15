@@ -18,13 +18,12 @@ export const InAppBarContext = React.createContext(false)
 class AppBar extends React.Component {
   static propTypes = {
     children: PropTypes.node,
-    theme: PropTypes.object,
     endContent: PropTypes.node,
     onTitleClick: PropTypes.func,
     padding: PropTypes.number,
     tabs: PropTypes.element,
-    title: PropTypes.node,
     theme: PropTypes.object,
+    title: PropTypes.node,
   }
   static defaultProps = {
     onTitleClick: noop,
