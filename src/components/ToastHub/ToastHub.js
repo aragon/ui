@@ -1,20 +1,24 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { animated, Transition } from 'react-spring'
 import { stylingProps } from '../../utils'
-import { springs } from '../../style'
+import { springs, RADIUS } from '../../style'
 import Text from '../Text/Text'
 
 let id = 0
 
 const move = pixel => `translate3d(0,${pixel}px,0)`
 
-const { Provider, Consumer: Toast } = React.createContext(() => {
+const ToastContext = React.createContext(() => {
   throw new Error(
     "For Toast to work it needs to be part of a ToastHub's tree, which has to be declared at an upper level!"
   )
 })
+
+const useToast = () => useContext(ToastContext)
+
+const { Provider, Consumer: Toast } = ToastContext
 
 class ToastHubProvider extends React.PureComponent {
   static propTypes = {
@@ -200,7 +204,7 @@ const Content = styled.div`
   display: grid;
   grid-template-columns: 1fr;
   grid-gap: 10px;
-  border-radius: 3px;
+  border-radius: ${RADIUS}px;
   overflow: hidden;
 `
 
@@ -213,4 +217,4 @@ const Life = styled(animated.div)`
   height: 5px;
 `
 
-export { ToastHubProvider as ToastHub, Toast }
+export { ToastHubProvider as ToastHub, Toast, useToast }
