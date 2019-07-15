@@ -9,9 +9,9 @@ const Info = ({ children, title, ...props }) => {
 
   return (
     <Main
-      background={theme.infoSurface}
-      color={theme.infoContent}
-      accent={theme.infoBorder}
+      background={theme.infoSurface.alpha(0.08)}
+      color={theme.infoSurfaceContent}
+      accent={theme.info}
       {...props}
     >
       {title && <Title>{title}</Title>}
