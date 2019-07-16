@@ -261,7 +261,7 @@ const DEMOS = new Map([
 ])
 
 function App() {
-  const [demo, setDemo] = useState(4)
+  const [demo, setDemo] = useState(0)
   const [page, setPage] = useState(0)
 
   const demoNames = [...DEMOS.keys()]
