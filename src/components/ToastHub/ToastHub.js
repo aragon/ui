@@ -164,10 +164,9 @@ const Container = styled.div`
   top: ${props => (props.top ? `${3 * GU}px` : 'unset')};
   bottom: ${props => (props.top ? 'unset' : `${3 * GU}px`)};
   margin: 0 auto;
-  left: ${({ extraMargin }) =>
-    `calc(${3 * GU}px + ${extraMargin ? `${extraMargin}px` : '0px'})`};
-  right: ${({ extraMargin }) =>
-    `calc(${3 * GU}px + ${extraMargin ? `${extraMargin}px` : '0px'})`};
+  left: ${({ shift }) => `calc(${3 * GU}px + ${shift ? `${shift}px` : '0px'})`};
+  right: ${({ shift }) =>
+    `calc(${3 * GU}px + ${shift ? `${shift}px` : '0px'})`};
   display: flex;
   flex-direction: ${props => (props.top ? 'column-reverse' : 'column')};
   pointer-events: none;
