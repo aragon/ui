@@ -3,18 +3,22 @@ import PropTypes from 'prop-types'
 import { Transition, animated } from 'react-spring'
 import { GU, springs, textStyle } from '../../style'
 import { useTheme } from '../../theme'
+import { Checkbox } from '../Input/Checkbox'
 import { ToggleButton } from './ToggleButton'
 import { OpenedSurfaceBorder } from './OpenedSurfaceBorder'
 
 // Table head row
-function cellsFromFields(fields, { hasAnyChild, hasAnyActions }) {
+function cellsFromFields(
+  fields,
+  { hasAnyActions, hasAnyChild, selectContent, selectable }
+) {
   const cells = fields.map((field, index) => [
     field.label,
     field.align === 'end' ? 'right' : 'left',
   ])
 
-  if (hasAnyChild) {
-    cells.unshift([null, 'left'])
+  if (hasAnyChild || selectable) {
+    cells.unshift([selectable ? selectContent : null, 'left'])
   }
 
   if (hasAnyActions) {
@@ -27,7 +31,15 @@ function cellsFromFields(fields, { hasAnyChild, hasAnyActions }) {
 // Table content row
 function rowFromEntry(
   entry,
-  { fields, hasAnyActions, hasAnyChild, opened, toggleChildContent }
+  {
+    fields,
+    hasAnyActions,
+    hasAnyChild,
+    opened,
+    selectContent,
+    selectable,
+    toggleChildContent,
+  }
 ) {
   const hasChildren = entry.children.length > 0
 
@@ -37,10 +49,17 @@ function rowFromEntry(
     false,
   ])
 
+  // Toggle child
   if (hasAnyChild) {
     cells.unshift([hasChildren && toggleChildContent, 'start', true])
   }
 
+  // Checkbox
+  if (selectable && !hasAnyChild) {
+    cells.unshift([selectable && selectContent, 'start', true])
+  }
+
+  // Actions
   if (hasAnyActions) {
     cells.push([entry.actions, 'end', true])
   }
@@ -55,11 +74,17 @@ function rowFromEntry(
 
 function TableView({
   alignChildOnField,
-  rowHeight,
+  allSelected,
+  entries,
+  fields,
   hasAnyActions,
   hasAnyChild,
-  fields,
-  entries,
+  onSelect,
+  onSelectAll,
+  renderSelectionCount,
+  rowHeight,
+  selectable,
+  selectedCount,
 }) {
   const [opened, setOpened] = useState(-1)
 
@@ -68,7 +93,19 @@ function TableView({
   }, [])
 
   const headCells = useMemo(
-    () => cellsFromFields(fields, { hasAnyChild, hasAnyActions }),
+    () =>
+      cellsFromFields(fields, {
+        hasAnyActions,
+        hasAnyChild,
+        selectContent: (
+          <Checkbox
+            indeterminate={allSelected === 0}
+            checked={allSelected > -1}
+            onChange={onSelectAll}
+          />
+        ),
+        selectable,
+      }),
     [fields, hasAnyChild, hasAnyActions]
   )
 
@@ -85,13 +122,21 @@ function TableView({
           hasAnyActions,
           hasAnyChild,
           opened: rowOpened,
-          toggleChildContent: (
-            <ToggleCell
+          toggleChildContent: hasAnyChild ? (
+            <Toggle
               index={entry.index}
               opened={rowOpened}
               onToggle={toggleEntry}
             />
-          ),
+          ) : null,
+          selectable,
+          selectContent: selectable ? (
+            <Select
+              index={entry.index}
+              selected={entry.selected}
+              onSelect={onSelect}
+            />
+          ) : null,
         })
       }),
     [opened, entries, hasAnyChild, hasAnyActions, toggleEntry]
@@ -106,12 +151,20 @@ function TableView({
       `}
     >
       <thead>
-        <HeadRow cells={headCells} />
+        <HeadRow
+          cells={headCells}
+          selectedCount={selectedCount}
+          renderSelectionCount={renderSelectionCount}
+        />
       </thead>
       <tbody>
         {entryRows.map(({ cells, entry, hasChildren, opened }, index) => (
-          <React.Fragment key={index}>
-            <EntryRow cells={cells} rowHeight={rowHeight} />
+          <React.Fragment key={entry.index}>
+            <EntryRow
+              cells={cells}
+              rowHeight={rowHeight}
+              selected={entry.selected}
+            />
             {hasChildren && (
               <EntryChildren
                 alignChildonCell={alignChildOnField + 1}
@@ -130,43 +183,63 @@ function TableView({
 
 TableView.propTypes = {
   alignChildOnField: PropTypes.number.isRequired,
+  allSelected: PropTypes.oneOf([-1, 0, 1]).isRequired,
   entries: PropTypes.array.isRequired,
   fields: PropTypes.array.isRequired,
   hasAnyActions: PropTypes.bool.isRequired,
   hasAnyChild: PropTypes.bool.isRequired,
+  onSelect: PropTypes.func.isRequired,
+  onSelectAll: PropTypes.func.isRequired,
   rowHeight: PropTypes.number.isRequired,
+  selectable: PropTypes.bool.isRequired,
+  renderSelectionCount: PropTypes.func.isRequired,
 }
 
 // Disable prop types check for internal components
 /* eslint-disable react/prop-types */
-function HeadRow({ cells }) {
+function HeadRow({ cells, selectedCount, renderSelectionCount }) {
   const theme = useTheme()
   return (
     <tr>
-      {cells.map((cell, index) => (
-        <th
-          key={index}
-          css={`
-            height: ${4 * GU}px;
-            padding: 0;
-            padding-left: ${index === 0 ? 3 * GU : 0}px;
-            padding-right: ${index === cells.length - 1 ? 3 * GU : 0}px;
-            text-align: ${cell[1]};
-            ${textStyle('label2')};
-            color: ${theme.surfaceContentSecondary};
-          `}
-        >
-          {cell[0]}
-        </th>
-      ))}
+      {cells.map((cell, index) => {
+        const hidden = selectedCount > 0 && index > 1
+        const content =
+          selectedCount > 0 && index === 1
+            ? renderSelectionCount(selectedCount)
+            : cell[0]
+        return (
+          !hidden && (
+            <th
+              key={index}
+              css={`
+                height: ${4 * GU}px;
+                padding: 0;
+                padding-left: ${index === 0 ? 3 * GU : 0}px;
+                padding-right: ${index === cells.length - 1 ? 3 * GU : 0}px;
+                text-align: ${cell[1]};
+                ${textStyle('label2')};
+                color: ${theme.surfaceContentSecondary};
+              `}
+              colSpan={selectedCount > 0 && index === 1 ? cells.length - 1 : 1}
+            >
+              {content}
+            </th>
+          )
+        )
+      })}
     </tr>
   )
 }
 
-function EntryRow({ cells, rowHeight }) {
+function EntryRow({ cells, selected, rowHeight }) {
   const theme = useTheme()
   return (
-    <tr>
+    <tr
+      css={`
+        transition: background 150ms ease-in-out;
+        background: ${selected ? theme.surfaceSelected : 'none'};
+      `}
+    >
       {cells.map(([content, align, compact], index, cells) => {
         const first = index === 0
         const last = index === cells.length - 1
@@ -293,7 +366,18 @@ function EntryChildren({
   )
 }
 
-function ToggleCell({ index, opened, onToggle }) {
+function Select({ index, selected, onSelect }) {
+  const change = useCallback(
+    check => {
+      onSelect(index, check)
+    },
+    [index, onSelect]
+  )
+
+  return <Checkbox onChange={change} checked={selected} />
+}
+
+function Toggle({ index, opened, onToggle }) {
   const toggle = useCallback(() => {
     onToggle(index)
   }, [index, onToggle])

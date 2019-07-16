@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useCallback, useMemo, useState } from 'react'
 import PropTypes from 'prop-types'
 import { GU } from '../../style'
 import { noop } from '../../utils'
@@ -9,24 +9,25 @@ import { useLayout } from '../../components/Layout/Layout'
 import { TableView } from './TableView'
 import { ListView } from './ListView'
 
-function prepareEntries(entries, from, to) {
+function prepareEntries(entries, from, to, selectedIndexes) {
   return entries.slice(from, to).map((entry, index) => {
     const entryIndex = from + index
+    const selected = selectedIndexes.includes(entryIndex)
 
     if (Array.isArray(entry)) {
-      return { values: entry, index: entryIndex }
+      return { values: entry, index: entryIndex, selected }
     }
 
     if (entry && Array.isArray(entry.values)) {
-      return { ...entry, values: entry.values, index: entryIndex }
+      return { ...entry, values: entry.values, index: entryIndex, selected }
     }
 
-    return { values: [], index: entryIndex }
+    return { values: [], index: entryIndex, selected }
   })
 }
 
 function renderFields(fields) {
-  const renderedFields = fields.map((fieldFromProps, index, fields) => {
+  return fields.map((fieldFromProps, index, fields) => {
     // Convert non-object fields (e.g. a simple string) into objects
     const field =
       fieldFromProps && fieldFromProps.label
@@ -40,8 +41,6 @@ function renderFields(fields) {
 
     return field
   })
-
-  return renderedFields
 }
 
 function entryChildrenFromChild(child) {
@@ -56,14 +55,15 @@ function renderEntries(
   { fields, renderEntry, renderEntryActions, renderEntryChild }
 ) {
   return entries.map(entry => {
-    const { values, index, ...extraData } = entry
+    const { values, index, selected, ...extraData } = entry
 
-    let renderedValues = renderEntry(values, index, extraData)
+    let renderedValues = renderEntry(values, index, { ...extraData, selected })
 
     if (!Array.isArray(renderedValues)) {
       renderedValues = []
     }
 
+    // Create undefined cells too
     while (renderedValues.length < fields.length) {
       renderedValues.push(null)
     }
@@ -77,8 +77,58 @@ function renderEntries(
       children: entryChildrenFromChild(
         renderEntryChild ? renderEntryChild(values, index, extraData) : null
       ),
+      selected,
     }
   })
+}
+
+function useSelection(entries, onSelectEntries) {
+  const [selectedIndexes, setSelectedIndexes] = useState([])
+
+  const allSelected = useMemo(() => {
+    // none selected
+    if (selectedIndexes.length === 0) {
+      return -1
+    }
+    // all selected
+    if (selectedIndexes.length === entries.length) {
+      return 1
+    }
+    // some selected
+    return 0
+  }, [entries, selectedIndexes])
+
+  const toggleEntry = useCallback(entryIndex => {
+    setSelectedIndexes(selectedIndexes => {
+      const checked = selectedIndexes.includes(entryIndex)
+      if (!checked) {
+        return [...selectedIndexes, entryIndex]
+      }
+      return selectedIndexes.filter(index => index !== entryIndex)
+    })
+  }, [])
+
+  const selectAll = useCallback(() => {
+    setSelectedIndexes(
+      selectedIndexes.length === 0 ? entries.map((_, index) => index) : []
+    )
+  }, [entries, selectedIndexes])
+
+  useEffect(() => {
+    if (onSelectEntries) {
+      onSelectEntries(
+        entries.filter((entry, index) => selectedIndexes.includes(index)),
+        selectedIndexes
+      )
+    }
+  }, [onSelectEntries, selectedIndexes])
+
+  return {
+    allSelected,
+    selectAll,
+    toggleEntry,
+    selectedIndexes,
+  }
 }
 
 const DataView = React.memo(function DataView({
@@ -89,23 +139,42 @@ const DataView = React.memo(function DataView({
   fields,
   heading,
   onPageChange,
+  onSelectEntries,
   renderEntry,
   renderEntryActions,
   renderEntryChild,
+  renderSelectionCount,
   mode,
   tableRowHeight,
 }) {
+  if (renderEntryChild && onSelectEntries) {
+    throw new Error(
+      'A DataView cannot be made selectable if it has entry children. ' +
+        'Please use either renderEntryChild or onSelectEntries.'
+    )
+  }
+
   const theme = useTheme()
   const { name: layoutName } = useLayout()
+  const { allSelected, selectAll, toggleEntry, selectedIndexes } = useSelection(
+    entries,
+    onSelectEntries
+  )
 
   const hasAnyActions = Boolean(renderEntryActions)
   const hasAnyChild = Boolean(renderEntryChild)
+  const canSelect = Boolean(onSelectEntries)
 
   const pages = Math.ceil(entries.length / entriesPerPage)
 
   const displayFrom = entriesPerPage * currentPage
   const displayTo = displayFrom + entriesPerPage
-  const displayedEntries = prepareEntries(entries, displayFrom, displayTo)
+  const displayedEntries = prepareEntries(
+    entries,
+    displayFrom,
+    displayTo,
+    selectedIndexes
+  )
 
   const renderedFields = renderFields(fields)
   const renderedEntries = renderEntries(displayedEntries, {
@@ -121,23 +190,37 @@ const DataView = React.memo(function DataView({
   return (
     <Box padding={false}>
       {heading && (
-        <h1
+        <div
           css={`
-            font-size: 16px;
-            font-weight: 400;
-            margin-bottom: ${2 * GU}px;
+            padding: ${1.5 * GU}px ${3 * GU}px;
           `}
         >
-          {heading}
-        </h1>
+          {typeof heading === 'string' ? (
+            <h1
+              css={`
+                font-size: 16px;
+                font-weight: 400;
+                margin-bottom: ${2 * GU}px;
+              `}
+            >
+              {heading}
+            </h1>
+          ) : (
+            heading
+          )}
+        </div>
       )}
 
-      {layoutName === 'small' ? (
       {listMode ? (
         <ListView
+          allSelected={allSelected}
           entries={renderedEntries}
           fields={renderedFields}
           hasAnyChild={hasAnyChild}
+          onSelect={toggleEntry}
+          onSelectAll={selectAll}
+          selectable={canSelect}
+          selectedCount={selectedIndexes.length}
         />
       ) : (
         <TableView
@@ -149,7 +232,13 @@ const DataView = React.memo(function DataView({
           fields={renderedFields}
           hasAnyActions={hasAnyActions}
           hasAnyChild={hasAnyChild}
+          onSelect={toggleEntry}
+          onSelectAll={selectAll}
           rowHeight={tableRowHeight}
+          selectable={canSelect}
+          allSelected={allSelected}
+          selectedCount={selectedIndexes.length}
+          renderSelectionCount={renderSelectionCount}
         />
       )}
 
@@ -180,9 +269,11 @@ DataView.propTypes = {
   heading: PropTypes.node,
   mode: PropTypes.oneOf(['adaptive', 'table', 'list']),
   onPageChange: PropTypes.func,
+  onSelectEntries: PropTypes.func,
   renderEntry: PropTypes.func.isRequired,
   renderEntryActions: PropTypes.func,
   renderEntryChild: PropTypes.func,
+  renderSelectionCount: PropTypes.func,
   tableRowHeight: PropTypes.number,
 }
 
@@ -190,9 +281,10 @@ DataView.defaultProps = {
   alignChildOnField: -1,
   currentPage: 0,
   entriesPerPage: 10,
-  tableRowHeight: 8 * GU,
   mode: 'adaptive',
   onPageChange: noop,
+  renderSelectionCount: count => `${count} items selected`,
+  tableRowHeight: 8 * GU,
 }
 
 export { DataView }
