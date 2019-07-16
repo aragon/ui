@@ -27,10 +27,6 @@ export default {
 
   surfaceInteractive: colors.White,
 
-  info: colors.AragonBlue,
-  infoSurfaceContent: colors.AragonBlueDark,
-  infoSurface: colors.AragonBlueLight,
-
   success: colors.MintGreen,
   error: colors.Red,
   warning: colors.Orange,
