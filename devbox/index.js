@@ -35,13 +35,8 @@ class Index extends React.Component {
         <main>
           <h1>Devbox</h1>
           <ul>
-            <li>
-              <a href="#Scratchpad">Scratchpad</a>
-            </li>
-
             {Object.keys(APPS)
               .sort()
-              .filter(appName => appName !== 'Scratchpad')
               .map(appName => (
                 <li key={appName}>
                   <a href={`#${appName}`}>{appName}</a>
@@ -60,10 +55,10 @@ const STYLES = `
 }
 body {
   margin: 0;
-  --background: hsl(48, 94%, 98%);
+  --background: hsl(48, 92%, 93%);
   --text-color: #111;
+  --button: hsl(48, 92%, 96%);
   --button-text: #111;
-  --button: #FFF;
   --button-shadow: #111;
 }
 main {
@@ -80,10 +75,7 @@ h1 {
   text-transform: lowercase;
   font-weight: 300;
   font-size: 60px;
-  margin: -10px 0 100px;
-  padding: 100px 80px 40px;
-  border: 3px solid currentColor;
-  border-radius: 5px;
+  margin: 100px 0 80px;
 }
 ul {
   list-style: none;
@@ -91,7 +83,7 @@ ul {
   padding: 0;
   display: flex;
   flex-wrap: wrap;
-  max-width: 600px;
+  max-width: 800px;
   justify-content: center;
 }
 li a {
