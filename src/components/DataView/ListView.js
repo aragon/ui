@@ -181,6 +181,8 @@ ListView.propTypes = {
   selectable: PropTypes.bool.isRequired,
 }
 
+/* eslint-disable react/prop-types */
+
 function Select({ index, selected, onSelect }) {
   const change = useCallback(
     check => {
@@ -191,5 +193,7 @@ function Select({ index, selected, onSelect }) {
 
   return <Checkbox onChange={change} checked={selected} />
 }
+
+/* eslint-enable react/prop-types */
 
 export { ListView }

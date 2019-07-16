@@ -6,7 +6,7 @@ import { IconClose } from '../../icons'
 import { ImageExists } from '../../hooks'
 import SafeLink from '../Link/SafeLink'
 import Popover from '../Popover/Popover'
-import ButtonIcon from '../Button/ButtonIcon'
+import { ButtonIcon } from '../Button/ButtonIcon'
 import AddressField from '../AddressField/AddressField'
 
 class TokenBadgePopover extends React.PureComponent {

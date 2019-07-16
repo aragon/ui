@@ -1,8 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import styled from 'styled-components'
 import { Spring, animated } from 'react-spring'
-import { theme } from '../../theme-legacy'
 import { useTheme } from '../../theme'
 import { noop } from '../../utils'
 import { springs, RADIUS } from '../../style'
@@ -13,15 +11,16 @@ class Checkbox extends React.PureComponent {
     checked: PropTypes.bool,
     indeterminate: PropTypes.bool,
     onChange: PropTypes.func,
-    variant: PropTypes.oneOf(['checkbox', 'radio']),
     tabIndex: PropTypes.string,
+    theme: PropTypes.object,
+    variant: PropTypes.oneOf(['checkbox', 'radio']),
   }
   static defaultProps = {
     checked: false,
     indeterminate: false,
     onChange: noop,
-    variant: 'checkbox',
     tabIndex: '0',
+    variant: 'checkbox',
   }
   _element = React.createRef()
   getAriaChecked() {
@@ -144,6 +143,8 @@ class Checkbox extends React.PureComponent {
   }
 }
 
+/* eslint-disable react/prop-types */
+
 const Dash = ({ color }) => (
   /* Use SVG to have subpixels (strokeWidth="1.5") on Chrome */
   <svg width="14" height="14" viewBox="0 0 14 14">
@@ -185,6 +186,8 @@ const CheckBoxWithTheme = React.forwardRef((props, ref) => {
   const theme = useTheme()
   return <Checkbox theme={theme} ref={ref} {...props} />
 })
+
+/* eslint-enable react/prop-types */
 
 export { CheckBoxWithTheme as Checkbox }
 export default CheckBoxWithTheme

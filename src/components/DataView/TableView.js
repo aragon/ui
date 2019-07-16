@@ -190,13 +190,15 @@ TableView.propTypes = {
   hasAnyChild: PropTypes.bool.isRequired,
   onSelect: PropTypes.func.isRequired,
   onSelectAll: PropTypes.func.isRequired,
+  renderSelectionCount: PropTypes.func.isRequired,
   rowHeight: PropTypes.number.isRequired,
   selectable: PropTypes.bool.isRequired,
-  renderSelectionCount: PropTypes.func.isRequired,
+  selectedCount: PropTypes.number.isRequired,
 }
 
 // Disable prop types check for internal components
 /* eslint-disable react/prop-types */
+
 function HeadRow({ cells, selectedCount, renderSelectionCount }) {
   const theme = useTheme()
   return (
@@ -394,6 +396,7 @@ function Toggle({ index, opened, onToggle }) {
     </div>
   )
 }
+
 /* eslint-enable react/prop-types */
 
 export { TableView }
