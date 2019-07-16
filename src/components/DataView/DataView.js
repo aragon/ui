@@ -92,6 +92,7 @@ const DataView = React.memo(function DataView({
   renderEntry,
   renderEntryActions,
   renderEntryChild,
+  mode,
   tableRowHeight,
 }) {
   const theme = useTheme()
@@ -114,6 +115,9 @@ const DataView = React.memo(function DataView({
     renderEntryChild,
   })
 
+  const listMode =
+    mode === 'list' || (mode !== 'table' && layoutName === 'small')
+
   return (
     <Box padding={false}>
       {heading && (
@@ -129,6 +133,7 @@ const DataView = React.memo(function DataView({
       )}
 
       {layoutName === 'small' ? (
+      {listMode ? (
         <ListView
           entries={renderedEntries}
           fields={renderedFields}
@@ -173,6 +178,7 @@ DataView.propTypes = {
   entriesPerPage: PropTypes.number,
   fields: PropTypes.array,
   heading: PropTypes.node,
+  mode: PropTypes.oneOf(['adaptive', 'table', 'list']),
   onPageChange: PropTypes.func,
   renderEntry: PropTypes.func.isRequired,
   renderEntryActions: PropTypes.func,
@@ -185,6 +191,7 @@ DataView.defaultProps = {
   currentPage: 0,
   entriesPerPage: 10,
   tableRowHeight: 8 * GU,
+  mode: 'adaptive',
   onPageChange: noop,
 }
 
