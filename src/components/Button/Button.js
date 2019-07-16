@@ -35,9 +35,8 @@ function Button({ children, icon, label, mode, size, ...props }) {
         height: ${(size === 'small' ? 4 : 5) * GU}px;
         padding: 0 ${3 * GU}px;
         font-size: 16px;
-        border: 0.5px solid ${mode === 'normal' ? theme.border : 'transparent'};
-
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+        border: 1px solid ${mode === 'normal' ? theme.border : 'transparent'};
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
         transition-property: transform, box-shadow;
         transition-duration: 50ms;
         transition-timing-function: ease-in-out;
@@ -57,6 +56,7 @@ function Button({ children, icon, label, mode, size, ...props }) {
                 position: relative;
                 top: -1px;
                 display: flex;
+                color: ${theme.surfaceIcon};
               `}
             >
               {icon}
@@ -65,7 +65,7 @@ function Button({ children, icon, label, mode, size, ...props }) {
           {icon && label && (
             <span
               css={`
-                width: ${GU / 4}px;
+                width: ${1 * GU}px;
               `}
             />
           )}
