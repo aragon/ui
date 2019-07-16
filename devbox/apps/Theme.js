@@ -23,6 +23,8 @@ const groups = [
   ['Tag', 'tag'],
   ['Badge', 'badge'],
   ['Special', 'link'],
+  ['Controls', 'control'],
+  ['Accent', 'accent'],
   ['Colors', 'green'],
 ]
 
@@ -33,17 +35,17 @@ function ThemeList({ theme, ...props }) {
     <div
       css={`
         width: ${name === 'small' ? '100%' : '50%'};
-        padding-top: ${3 * GU}px;
+        padding: ${8 * GU}px 0;
       `}
       {...props}
     >
       <h1
         css={`
           font-size: 40px;
-          margin-bottom: ${2 * GU}px;
+          margin-bottom: ${4 * GU}px;
         `}
       >
-        Theme: {theme._name}
+        {theme._name[0].toUpperCase() + theme._name.slice(1)} theme
       </h1>
       {Object.entries(theme)
         .filter(([key]) => key !== '_name')
@@ -54,7 +56,8 @@ function ThemeList({ theme, ...props }) {
               {group && (
                 <h2
                   css={`
-                    line-height: 40px;
+                    margin-top: ${6 * GU}px;
+                    line-height: ${6 * GU}px;
                   `}
                 >
                   {group[0]}
@@ -75,8 +78,9 @@ function ThemeList({ theme, ...props }) {
               >
                 <div
                   css={`
-                    height: 100%;
+                    flex-shrink: 0;
                     width: ${6 * GU}px;
+                    height: 100%;
                     background: ${value};
                     border-right: 1px solid ${_theme.border};
                     margin-right: ${2 * GU}px;

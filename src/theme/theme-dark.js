@@ -57,6 +57,10 @@ export default {
   selected: colors.AragonBlue,
   selectedContent: colors.White,
 
+  control: '#F3F9FB',
+  controlBorder: '#DEEDF1',
+  controlBorderPressed: '#F3F9FB',
+
   accent: colors.AragonBlue,
   accentStart: colors.AragonBlue,
   accentEnd: colors.AragonTurquoise,
