@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { animated, Transition } from 'react-spring'
 import { stylingProps } from '../../utils'
-import { springs, GU, RADIUS } from '../../style'
+import { springs, textStyle, GU, RADIUS } from '../../style'
 import Text from '../Text/Text'
 
 let id = 0
@@ -195,12 +195,12 @@ const Message = styled(animated.div)`
 `
 
 const Content = styled.div`
+  ${textStyle('body3')}
   color: white;
   background: rgba(48, 64, 79, 0.8);
   margin-top: ${props => (props.top ? '0' : '10px')};
   margin-bottom: ${props => (props.top ? '10px' : '0')};
   padding: 15px 20px;
-  font-size: 14px;
   display: grid;
   grid-template-columns: 1fr;
   grid-gap: 10px;
