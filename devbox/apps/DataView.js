@@ -156,10 +156,26 @@ const DEMOS = [
       ))
     },
   },
+  {
+    demoName: 'Selection',
+
+    fields: ['Account', 'Amount'],
+    entries: [
+      [addr(), '-7.900,33 ANT'],
+      [addr(), '-8.760,90 ANT'],
+      [addr(), '+5.321 ANT'],
+      [addr(), '-328,65 ANT'],
+      [addr(), '+3.321 ANT'],
+      [addr(), '-328,65 ANT'],
+    ],
+    renderEntry([address, amount]) {
+      return [<IdentityBadge entity={address} />, <Amount>{amount}</Amount>]
+    },
+  },
 ]
 
 function App() {
-  const [demo, setDemo] = useState(0)
+  const [demo, setDemo] = useState(2)
   const [page, setPage] = useState(0)
 
   const demoNames = DEMOS.map(({ demoName }) => demoName)

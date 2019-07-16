@@ -9,6 +9,7 @@ const ContextMenuItem = styled(ButtonBase)`
   padding: 5px 20px;
   cursor: pointer;
   white-space: nowrap;
+  width: 100%;
   ${unselectable()};
   &:active {
     background: ${theme.contentBackgroundActive};

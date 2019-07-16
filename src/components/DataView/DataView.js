@@ -53,14 +53,24 @@ function entryChildrenFromChild(child) {
 
 function renderEntries(
   entries,
-  { renderEntry, renderEntryActions, renderEntryChild }
+  { fields, renderEntry, renderEntryActions, renderEntryChild }
 ) {
   return entries.map(entry => {
     const { values, index, ...extraData } = entry
 
+    let renderedValues = renderEntry(values, index, extraData)
+
+    if (!Array.isArray(renderedValues)) {
+      renderedValues = []
+    }
+
+    while (renderedValues.length < fields.length) {
+      renderedValues.push(null)
+    }
+
     return {
       index,
-      values: renderEntry(values, index, extraData),
+      values: renderedValues,
       actions: renderEntryActions
         ? renderEntryActions(values, index, extraData)
         : null,
@@ -98,6 +108,7 @@ const DataView = React.memo(function DataView({
 
   const renderedFields = renderFields(fields)
   const renderedEntries = renderEntries(displayedEntries, {
+    fields,
     renderEntry,
     renderEntryActions,
     renderEntryChild,

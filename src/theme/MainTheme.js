@@ -8,13 +8,16 @@ import { Theme } from './Theme'
  * the mode of this main theme from anywhere, including from a sub (non main) theme.
  */
 
-const MainThemeContext = React.createContext(null)
+const MainThemeContext = React.createContext({})
 
 function useThemeMode() {
   const { theme, setTheme } = useContext(MainThemeContext)
 
   const themeMode = useMemo(
     () => ({
+      set: name => {
+        setTheme(name)
+      },
       toggle: () => {
         setTheme(name => (name === 'light' ? 'dark' : 'light'))
       },
@@ -28,6 +31,7 @@ function useThemeMode() {
 
 function MainTheme({ children }) {
   const [theme, setTheme] = useState('light')
+
   return (
     <MainThemeContext.Provider value={{ theme, setTheme }}>
       <Theme theme={theme}>{children}</Theme>

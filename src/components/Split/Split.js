@@ -5,28 +5,22 @@ import { useLayout } from '../Layout/Layout'
 
 function Split({ primary, secondary }) {
   const { name: layout } = useLayout()
-  const small = layout === 'small'
+  const oneColumn = layout === 'small' || layout === 'medium'
   return (
     <div
       css={`
-        display: ${small ? 'block' : 'flex'};
+        display: ${oneColumn ? 'block' : 'flex'};
         padding-bottom: ${3 * GU}px;
       `}
     >
-      <div
-        css={`
-          flex-grow: 1;
-        `}
-      >
-        {primary}
-      </div>
+      <div css="flex-grow: 1">{primary}</div>
       <div
         css={`
           flex-shrink: 0;
           flex-grow: 0;
-          width: ${small ? '100%' : `${33 * GU}px`};
-          margin-left: ${small ? 0 : 2 * GU}px;
-          padding-top: ${small ? 2 * GU : 0}px;
+          width: ${oneColumn ? '100%' : `${33 * GU}px`};
+          margin-left: ${oneColumn ? 0 : 2 * GU}px;
+          padding-top: ${oneColumn ? 2 * GU : 0}px;
         `}
       >
         {secondary}
