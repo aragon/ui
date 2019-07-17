@@ -56,4 +56,4 @@ Support for the `onSelect` prop has been removed. Please use `onChange` instead.
 
 ## fonts() vs. textStyle()
 
-`fonts()` is now deprecated and `textStyle()` should be used instead.
+`fonts()` is now deprecated: `textStyle()` should be used instead.
