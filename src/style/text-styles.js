@@ -36,13 +36,13 @@ const TEXT_STYLES = {
   },
   label1: {
     size: 14,
-    weight: 800,
+    weight: 400,
     lineHeight: 1.5,
     transform: 'uppercase',
   },
   label2: {
     size: 12,
-    weight: 800,
+    weight: 400,
     lineHeight: 1.5,
     transform: 'uppercase',
   },
