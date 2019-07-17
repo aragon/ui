@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import {
-  Bar,
   Button,
   ContextMenu,
   ContextMenuItem,
@@ -27,17 +26,16 @@ const DEMOS = new Map([
         {...props}
         fields={['Account', 'Amount']}
         entries={[
-          [addr(), '-7.900,33 ANT'],
-          [addr(), '-8.760,90 ANT'],
-          [addr(), '+5.321 ANT'],
-          [addr(), '-328,65 ANT'],
-          [addr(), '+3.321 ANT'],
-          [addr(), '-328,65 ANT'],
+          { account: addr(), amount: '-7.900,33 ANT' },
+          { account: addr(), amount: '-8.760,90 ANT' },
+          { account: addr(), amount: '+5.321 ANT' },
+          { account: addr(), amount: '-328,65 ANT' },
+          { account: addr(), amount: '+3.321 ANT' },
+          { account: addr(), amount: '-328,65 ANT' },
         ]}
-        renderEntry={([address, amount]) => [
-          <IdentityBadge entity={address} />,
-          <Amount>{amount}</Amount>,
-        ]}
+        renderEntry={({ account, amount }) => {
+          return [<IdentityBadge entity={account} />, <Amount>{amount}</Amount>]
+        }}
       />
     ),
   ],
