@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { GU, RADIUS } from '../../style'
+import { GU, RADIUS, textStyle } from '../../style'
 import { useTheme } from '../../theme/Theme'
 import { useLayout } from '../Layout/Layout'
 
@@ -73,9 +73,8 @@ function HeaderContent({ heading }) {
     <h1
       css={`
         padding-left: ${2 * GU}px;
-        font-size: 12px;
-        text-transform: uppercase;
         color: ${theme.surfaceContentSecondary};
+        ${textStyle('label2')};
       `}
     >
       {heading}
