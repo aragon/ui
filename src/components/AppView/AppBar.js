@@ -77,7 +77,7 @@ class AppBar extends React.Component {
             background: ${theme.surface};
             ${unselectable()};
 
-            /* We are using an “inner border” to allow components like TabBar
+            /* We are using an “inner border” to allow components like Tabs
                to draw over the border while having overflow:hidden set. */
             padding-bottom: 1px;
             &:after {

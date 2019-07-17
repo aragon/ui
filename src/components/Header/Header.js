@@ -1,15 +1,21 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { GU } from '../../style'
+import { GU, textStyle } from '../../style'
 import { useTheme } from '../../theme'
+import { useLayout } from '../Layout/Layout'
 
 function Header({ primary, secondary, children }) {
   const theme = useTheme()
+  const { layoutName } = useLayout()
+  const fullWidth = layoutName === 'small'
+
   return (
     <div
       css={`
-        padding-top: ${3 * GU}px;
-        padding-bottom: ${3 * GU}px;
+        padding: ${fullWidth ? 0 : 3 * GU}px 0;
+        background: ${fullWidth ? theme.surface : 'none'};
+        margin-bottom: ${fullWidth ? 1.5 * GU : 0}px;
+        box-shadow: ${fullWidth ? '0px 2px 3px rgba(0, 0, 0, 0.05)' : 'none'};
       `}
     >
       <div
@@ -17,7 +23,8 @@ function Header({ primary, secondary, children }) {
           display: flex;
           align-items: center;
           justify-content: space-between;
-          height: ${5 * GU}px;
+          height: ${fullWidth ? 8 * GU : 5 * GU}px;
+          padding: 0 ${fullWidth && !children ? 3 * GU : 0}px;
         `}
       >
         {children || (
@@ -26,8 +33,8 @@ function Header({ primary, secondary, children }) {
               {typeof primary === 'string' ? (
                 <h1
                   css={`
-                    font-size: 26px;
                     color: ${theme.content};
+                    ${textStyle(fullWidth ? 'title3' : 'title2')};
                   `}
                 >
                   {primary}

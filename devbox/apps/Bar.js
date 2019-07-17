@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, AppView, Bar, TabBar } from '@aragon/ui'
+import { Button, AppView, Bar, Tabs } from '@aragon/ui'
 
 export default () => (
   <div
@@ -10,7 +10,7 @@ export default () => (
     `}
   >
     <Bar>
-      <TabBar items={['App permissions', 'System permissions']} />
+      <Tabs items={['App permissions', 'System permissions']} />
     </Bar>
   </div>
 )

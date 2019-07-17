@@ -1,4 +1,4 @@
-# TabBar
+# Tabs
 
 A simple tabs component.
 
@@ -6,12 +6,12 @@ A simple tabs component.
 
 ```jsx
 import { useState } from 'react'
-import { TabBar } from '@aragon/ui'
+import { Tabs } from '@aragon/ui'
 
 const App = () => {
   const [selected, setSelected] = useState(0)
   return (
-    <TabBar
+    <Tabs
       items={['Orange', 'Pear', 'Cherry']}
       selected={selected}
       onChange={setSelected}

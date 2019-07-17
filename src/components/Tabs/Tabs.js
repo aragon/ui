@@ -1,15 +1,16 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import PropTypes from 'prop-types'
-import { RADIUS, GU } from '../../style'
-import { font, unselectable, noop } from '../../utils'
+import { RADIUS, GU, textStyle } from '../../style'
+import { unselectable, noop } from '../../utils'
 import { useTheme } from '../../theme'
+import { useLayout } from '../Layout/Layout'
 import { InAppBarContext } from '../AppView/AppBar'
 import { Bar, useInsideBar } from '../Bar/Bar'
 import TabBarLegacy from './TabBarLegacy'
+import { TabsFullWidth } from './TabsFullWidth'
 
-function TabBar({ items, selected, onChange }) {
+function Tabs({ items, selected, onChange }) {
   const [displayFocusRing, setDisplayFocusRing] = useState(false)
-  const { insideBar, insideBarPrimary, insideBarSecondary } = useInsideBar()
   const barRef = useRef(null)
   const theme = useTheme()
 
@@ -66,9 +67,6 @@ function TabBar({ items, selected, onChange }) {
         ref={barRef}
         css={`
           display: flex;
-          border-bottom: ${!insideBar ? `1px solid ${theme.border}` : '0'};
-          margin-left: ${insideBarPrimary ? -Bar.PADDING - 1 : 0}px;
-          margin-right: ${insideBarSecondary ? -Bar.PADDING - 1 : 0}px;
         `}
       >
         {items.map((item, i) => (
@@ -80,12 +78,9 @@ function TabBar({ items, selected, onChange }) {
             css={`
               position: relative;
               list-style: none;
-              padding: ${insideBar ? '0' : '0 30px'};
+              padding: 0;
               transition: background 50ms ease-in-out;
-              ${font({
-                size: 'large',
-                weight: 'normal',
-              })};
+              ${textStyle('body2')};
               ${unselectable()};
               &:focus {
                 outline: 0;
@@ -104,7 +99,7 @@ function TabBar({ items, selected, onChange }) {
                 display: flex;
                 position: relative;
                 align-items: center;
-                height: ${insideBar ? `${8 * GU - 2}px` : 'auto'};
+                height: ${true ? `${8 * GU - 2}px` : 'auto'};
                 padding: 0 ${3 * GU}px;
                 white-space: nowrap;
                 color: ${i === selected
@@ -135,12 +130,8 @@ function TabBar({ items, selected, onChange }) {
                 css={`
                   position: absolute;
                   top: 0;
-                  left: ${insideBar && !insideBarSecondary && i === 0
-                    ? '1px'
-                    : '0'};
-                  right: ${insideBarSecondary && i === items.length - 1
-                    ? '1px'
-                    : '0'};
+                  left: 0;
+                  right: 0;
                   bottom: 0;
                 `}
               >
@@ -154,13 +145,13 @@ function TabBar({ items, selected, onChange }) {
   )
 }
 
-TabBar.propTypes = {
+Tabs.propTypes = {
   items: PropTypes.arrayOf(PropTypes.node).isRequired,
   selected: PropTypes.number,
   onChange: PropTypes.func,
 }
 
-TabBar.defaultProps = {
+Tabs.defaultProps = {
   selected: 0,
   onChange: noop,
 }
@@ -185,14 +176,23 @@ function FocusRing() {
 }
 
 export default props => {
+  const { layoutName } = useLayout()
   return (
     <InAppBarContext.Consumer>
       {inAppBar =>
         inAppBar ? (
-          // Use a separate component for TabBar in AppBar, to prevent breaking anything.
+          // Use a separate component for Tabs in AppBar, to prevent breaking anything.
           <TabBarLegacy {...props} inAppBar />
         ) : (
-          <TabBar {...props} />
+          <React.Fragment>
+            {layoutName === 'small' ? (
+              <TabsFullWidth {...props} />
+            ) : (
+              <Bar>
+                <Tabs {...props} />
+              </Bar>
+            )}
+          </React.Fragment>
         )
       }
     </InAppBarContext.Consumer>

@@ -17,7 +17,7 @@ export default {
 
   surfaceSelected: colors.ArcticBlueLight,
   surfaceHighlight: colors.ArcticBlueLight,
-  surfacePressed: colors.ArcticBlue,
+  surfacePressed: colors.ArcticBlueLight,
 
   surfaceInteractive: colors.White,
 

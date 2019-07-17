@@ -33,11 +33,12 @@ function useLayout(parentWidth) {
     [viewportWidth, parentWidth]
   )
 
-  return { name, width }
+  return { name, width, layoutName: name }
 }
 
 function Layout({ children, parentWidth }) {
-  const { width } = useLayout(parentWidth)
+  const { layoutName, width } = useLayout(parentWidth)
+  const cssWidth = layoutName === 'small' ? 'auto' : `${width}px`
 
   return (
     <div>
@@ -45,8 +46,8 @@ function Layout({ children, parentWidth }) {
         css={`
           margin: 0 auto;
           padding-bottom: ${3 * GU}px;
+          width: ${cssWidth};
         `}
-        style={{ width: `${width}px` }}
       >
         {children}
       </div>

@@ -2,16 +2,21 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { GU, RADIUS } from '../../style'
 import { useTheme } from '../../theme/Theme'
+import { useLayout } from '../Layout/Layout'
 
 function Box({ heading, children, padding, ...props }) {
   const theme = useTheme()
+  const { layoutName } = useLayout()
+  const fullWidth = layoutName === 'small'
 
   return (
     <div
       as={heading ? 'section' : 'div'}
       css={`
-        border-radius: ${RADIUS}px;
-        border: 1px solid ${theme.border};
+        border-radius: ${fullWidth ? 0 : RADIUS}px;
+        border-style: solid;
+        border-color: ${theme.border};
+        border-width: ${fullWidth ? '1px 0' : '1px'};
         background: ${theme.surface};
         color: ${theme.surfaceContent};
         & + & {

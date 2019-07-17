@@ -11,7 +11,7 @@ import {
   IdentityBadge,
   Layout,
   Main,
-  TabBar,
+  Tabs,
   useTheme,
 } from '@aragon/ui'
 import { createAddress } from '../create-address'
@@ -275,7 +275,7 @@ function App() {
     <div>
       <Header primary="DataView" />
       <Bar>
-        <TabBar items={demoNames} selected={demo} onChange={setDemo} />
+        <Tabs items={demoNames} selected={demo} onChange={setDemo} />
       </Bar>
       <DataViewDemo currentPage={page} onPageChange={setPage} />
     </div>

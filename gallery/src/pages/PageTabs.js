@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import { TabBar } from '@aragon/ui'
+import { Tabs } from '@aragon/ui'
 import Page from 'comps/Page/Page'
 import Container from 'comps/Page/DemoContainer'
-import readme from 'ui-src/components/TabBar/README.md'
+import readme from 'ui-src/components/Tabs/README.md'
 
 const ITEMS = ['Strawberry', 'Banana', 'Apple', 'Cherry']
 
-const PageTabBar = ({ title }) => {
+const PageTabs = ({ title }) => {
   const [selected, setSelected] = useState(0)
   return (
     <Page title={title} readme={readme}>
@@ -22,11 +22,11 @@ const PageTabBar = ({ title }) => {
             align-items: center;
           `}
         >
-          <TabBar items={ITEMS} selected={selected} onChange={setSelected} />
+          <Tabs items={ITEMS} selected={selected} onChange={setSelected} />
         </div>
       </Page.Demo>
     </Page>
   )
 }
 
-export default PageTabBar
+export default PageTabs

@@ -2,6 +2,7 @@ import React, { useContext, useMemo } from 'react'
 import PropTypes from 'prop-types'
 import { GU, RADIUS } from '../../style'
 import { useTheme } from '../../theme/Theme'
+import { useLayout } from '../Layout/Layout'
 
 const BAR_PADDING = 2 * GU
 
@@ -29,6 +30,9 @@ function useInsideBar() {
 
 function Bar({ children, primary, secondary }) {
   const theme = useTheme()
+  const { layoutName } = useLayout()
+
+  const fullScreen = layoutName === 'small'
 
   const content = children || (
     <div
@@ -75,9 +79,11 @@ function Bar({ children, primary, secondary }) {
       >
         <div
           css={`
-            border-radius: ${RADIUS}px;
+            border-radius: ${fullScreen ? 0 : RADIUS}px;
             background: ${theme.surface};
-            border: 1px solid ${theme.border};
+            border-style: solid;
+            border-color: ${theme.border};
+            border-width: ${fullScreen ? '1px 0' : '1px'};
             height: ${8 * GU}px;
             overflow: hidden;
           `}

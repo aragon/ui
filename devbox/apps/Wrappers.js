@@ -9,7 +9,7 @@ import {
   Card,
   CardLayout,
   Split,
-  TabBar,
+  Tabs,
   Theme,
   useLayout,
 } from '@aragon/ui'
@@ -27,13 +27,11 @@ function Header1() {
 function Bar1() {
   const [selected, setSelected] = useState(0)
   return (
-    <Bar>
-      <TabBar
-        selected={selected}
-        onChange={setSelected}
-        items={['App permissions', 'System permissions']}
-      />
-    </Bar>
+    <Tabs
+      selected={selected}
+      onChange={setSelected}
+      items={['App permissions', 'System permissions']}
+    />
   )
 }
 
@@ -47,28 +45,6 @@ function Bar2() {
 
 function Bar3() {
   return <Bar primary={<BackButton />} secondary={<Button label="Share" />} />
-}
-
-function Bar4() {
-  const [selected, setSelected] = useState(0)
-  return (
-    <Bar
-      primary={
-        <TabBar
-          selected={selected}
-          onChange={setSelected}
-          items={['App permissions', 'System permissions']}
-        />
-      }
-      secondary={
-        <TabBar
-          selected={selected}
-          onChange={setSelected}
-          items={['App permissions', 'System permissions']}
-        />
-      }
-    />
-  )
 }
 
 function Cards1({ interactive }) {
@@ -120,13 +96,12 @@ export default () => {
     <>
       <ToggleThemeButton />
       <Header1 />
-      <Bar2 />
-      <Cards2 />
       <Bar1 />
+      <Cards2 />
+      <Bar2 />
       <Cards1 />
       <Bar3 />
       <Split1 />
-      <Bar4 />
       <Split1 />
     </>
   )

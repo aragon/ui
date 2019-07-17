@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { TabBar } from '@aragon/ui'
+import { Tabs } from '@aragon/ui'
 
 const ITEMS = ['One', 'Two', 'Three', 'Four', 'Five']
 
@@ -11,7 +11,7 @@ class App extends React.Component {
         <Container>
           {ITEMS.map((item, i) => (
             <div style={{ marginBottom: '20px' }}>
-              <TabBarDemo items={ITEMS.slice(0, i + 1)} />
+              <TabsDemo items={ITEMS.slice(0, i + 1)} />
             </div>
           ))}
         </Container>
@@ -20,7 +20,7 @@ class App extends React.Component {
   }
 }
 
-class TabBarDemo extends React.Component {
+class TabsDemo extends React.Component {
   state = {
     index: 0,
   }
@@ -31,7 +31,7 @@ class TabBarDemo extends React.Component {
     const { index } = this.state
     const { items } = this.props
     return (
-      <TabBar onChange={this.handleSelect} selected={index} items={items} />
+      <Tabs onChange={this.handleSelect} selected={index} items={items} />
     )
   }
 }

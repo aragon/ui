@@ -10,19 +10,9 @@ function useInsideCardLayout() {
   return useContext(CardLayoutContext)
 }
 
-function useCols() {
-  const { name } = useLayout()
-  if (name === 'large') {
-    return 6
-  }
-  if (name === 'medium') {
-    return 4
-  }
-  return 2
-}
-
-function CardLayout({ rowHeight, children }) {
-  const cols = useCols()
+function CardLayout({ children, columnWidthMin, rowHeight, ...props }) {
+  const { layoutName, width } = useLayout()
+  const fullWidth = layoutName === 'small'
 
   return (
     <CardLayoutContext.Provider value={true}>
@@ -32,10 +22,15 @@ function CardLayout({ rowHeight, children }) {
           grid-gap: ${2 * GU}px;
           grid-auto-flow: row;
           align-items: start;
-          grid-template-columns: repeat(${cols}, auto);
+          grid-template-columns: repeat(
+            auto-fit,
+            minmax(${columnWidthMin}px, 1fr)
+          );
           grid-auto-rows: ${rowHeight}px;
-          padding-bottom: ${3 * GU}px;
+          padding: 0 ${fullWidth ? 2 * GU : 0}px ${2 * GU}px;
+          margin: 0 auto;
         `}
+        {...props}
       >
         {children}
       </div>
@@ -45,10 +40,12 @@ function CardLayout({ rowHeight, children }) {
 
 CardLayout.propTypes = {
   children: PropTypes.node,
+  columnWidthMin: PropTypes.number,
   rowHeight: PropTypes.number,
 }
 
 CardLayout.defaultProps = {
+  columnWidthMin: 21 * GU,
   rowHeight: 21 * GU,
 }
 
