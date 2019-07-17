@@ -43,7 +43,7 @@ function rowFromEntry(
 ) {
   const hasChildren = entry.children.length > 0
 
-  const cells = entry.values.map((content, index) => [
+  const cells = entry.entryNodes.map((content, index) => [
     content,
     fields[index].align,
     false,

@@ -83,7 +83,7 @@ function ListView({
               </div>
             )}
             <div>
-              {entry.values
+              {entry.entryNodes
                 .map((content, index) => [
                   // field content
                   content,
@@ -94,13 +94,13 @@ function ListView({
                 ])
                 // sort by priority
                 .sort((a, b) => b[2] - a[2])
-                .map(([content, label], index, values) => (
+                .map(([content, label], index, entryNodes) => (
                   <div
                     key={index}
                     css={`
                       display: flex;
                       flex-direction: column;
-                      padding-bottom: ${index === values.length - 1
+                      padding-bottom: ${index === entryNodes.length - 1
                         ? 2 * GU
                         : 0}px;
                     `}

@@ -13,16 +13,7 @@ function prepareEntries(entries, from, to, selectedIndexes) {
   return entries.slice(from, to).map((entry, index) => {
     const entryIndex = from + index
     const selected = selectedIndexes.includes(entryIndex)
-
-    if (Array.isArray(entry)) {
-      return { values: entry, index: entryIndex, selected }
-    }
-
-    if (entry && Array.isArray(entry.values)) {
-      return { ...entry, values: entry.values, index: entryIndex, selected }
-    }
-
-    return { values: [], index: entryIndex, selected }
+    return { value: entry || null, index: entryIndex, selected }
   })
 }
 
@@ -55,27 +46,27 @@ function renderEntries(
   { fields, renderEntry, renderEntryActions, renderEntryChild }
 ) {
   return entries.map(entry => {
-    const { values, index, selected, ...extraData } = entry
+    const { value, index, selected } = entry
 
-    let renderedValues = renderEntry(values, index, { ...extraData, selected })
+    let entryNodes = renderEntry(value, index, { selected })
 
-    if (!Array.isArray(renderedValues)) {
-      renderedValues = []
+    if (!Array.isArray(entryNodes)) {
+      entryNodes = []
     }
 
     // Create undefined cells too
-    while (renderedValues.length < fields.length) {
-      renderedValues.push(null)
+    while (entryNodes.length < fields.length) {
+      entryNodes.push(null)
     }
 
     return {
       index,
-      values: renderedValues,
+      entryNodes,
       actions: renderEntryActions
-        ? renderEntryActions(values, index, extraData)
+        ? renderEntryActions(value, index, { selected })
         : null,
       children: entryChildrenFromChild(
-        renderEntryChild ? renderEntryChild(values, index, extraData) : null
+        renderEntryChild ? renderEntryChild(value, index, { selected }) : null
       ),
       selected,
     }
