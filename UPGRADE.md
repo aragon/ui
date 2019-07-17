@@ -48,6 +48,12 @@ provided by the Main component if AppView is not present.
 
 A combination of Header and Bar should be used instead.
 
-## TabBar
+## Tabs (TabBar)
 
 Support for the `onSelect` prop has been removed. Please use `onChange` instead.
+
+`TabBar` has been renamed `Tabs`, but `TabBar` is still supported.
+
+## fonts() vs. textStyle()
+
+`fonts()` is now deprecated and `textStyle()` should be used instead.
