@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { Transition, animated } from 'react-spring'
 import { GU, springs, textStyle } from '../../style'
 import { useTheme } from '../../theme'
+import { useLayout } from '../Layout/Layout'
 import { Checkbox } from '../Input/Checkbox'
 import { ToggleButton } from './ToggleButton'
 import { OpenedSurfaceBorder } from './OpenedSurfaceBorder'
@@ -199,8 +200,14 @@ TableView.propTypes = {
 // Disable prop types check for internal components
 /* eslint-disable react/prop-types */
 
+function useSidePadding() {
+  const { layoutName } = useLayout()
+  return layoutName === 'small' ? 2 * GU : 3 * GU
+}
+
 function HeadRow({ cells, selectedCount, renderSelectionCount }) {
   const theme = useTheme()
+  const sidePadding = useSidePadding()
   return (
     <tr>
       {cells.map((cell, index) => {
@@ -216,8 +223,10 @@ function HeadRow({ cells, selectedCount, renderSelectionCount }) {
               css={`
                 height: ${4 * GU}px;
                 padding: 0;
-                padding-left: ${index === 0 ? 3 * GU : 0}px;
-                padding-right: ${index === cells.length - 1 ? 3 * GU : 0}px;
+                padding-left: ${index === 0 ? sidePadding : 0}px;
+                padding-right: ${index === cells.length - 1
+                  ? sidePadding
+                  : 0}px;
                 text-align: ${cell[1]};
                 ${textStyle('label2')};
                 color: ${theme.surfaceContentSecondary};
@@ -235,6 +244,7 @@ function HeadRow({ cells, selectedCount, renderSelectionCount }) {
 
 function EntryRow({ cells, selected, rowHeight }) {
   const theme = useTheme()
+  const sidePadding = useSidePadding()
   return (
     <tr
       css={`
@@ -254,8 +264,8 @@ function EntryRow({ cells, selected, rowHeight }) {
               height: ${rowHeight}px;
               padding-top: 0;
               padding-bottom: 0;
-              padding-left: ${first || compact ? 3 * GU : 0}px;
-              padding-right: ${last || compact ? 3 * GU : 0}px;
+              padding-left: ${first || compact ? sidePadding : 0}px;
+              padding-right: ${last || compact ? sidePadding : 0}px;
               border-top: 1px solid ${theme.border};
             `}
           >

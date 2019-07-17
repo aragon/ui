@@ -24,7 +24,7 @@ function Header({ primary, secondary, children }) {
           align-items: center;
           justify-content: space-between;
           height: ${fullWidth ? 8 * GU : 5 * GU}px;
-          padding: 0 ${fullWidth && !children ? 3 * GU : 0}px;
+          padding: 0 ${fullWidth && !children ? 2 * GU : 0}px;
         `}
       >
         {children || (
