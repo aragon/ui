@@ -6,7 +6,7 @@ const TEXT_STYLES = {
   },
   title2: {
     size: 26,
-    weight: 600,
+    weight: 400,
     lineHeight: 1.5,
   },
   title3: {
