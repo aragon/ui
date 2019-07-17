@@ -32,6 +32,14 @@ function TabsFullWidth({ items, selected, onChange }) {
     }
   }, [])
 
+  const change = useCallback(
+    index => {
+      onChange(index)
+      close()
+    },
+    [onChange]
+  )
+
   useEffect(() => {
     setOpened(false)
   }, [selectedItem])
@@ -126,7 +134,7 @@ function TabsFullWidth({ items, selected, onChange }) {
                   ),
                 }}
               >
-                <Menu items={items} onChange={onChange} />
+                <Menu items={items} onChange={change} />
               </animated.div>
             ))
           }
