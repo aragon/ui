@@ -47,6 +47,7 @@ function Layout({ children, parentWidth }) {
           margin: 0 auto;
           padding-bottom: ${3 * GU}px;
           width: ${cssWidth};
+          min-width: ${BREAKPOINTS.min}px;
         `}
       >
         {children}
