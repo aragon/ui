@@ -5,7 +5,7 @@ import { unselectable, noop } from '../../utils'
 import { useTheme } from '../../theme'
 import { useLayout } from '../Layout/Layout'
 import { InAppBarContext } from '../AppView/AppBar'
-import { Bar, useInsideBar } from '../Bar/Bar'
+import { Bar } from '../Bar/Bar'
 import TabBarLegacy from './TabBarLegacy'
 import { TabsFullWidth } from './TabsFullWidth'
 
@@ -99,7 +99,7 @@ function Tabs({ items, selected, onChange }) {
                 display: flex;
                 position: relative;
                 align-items: center;
-                height: ${true ? `${8 * GU - 2}px` : 'auto'};
+                height: ${8 * GU - 2}px;
                 padding: 0 ${3 * GU}px;
                 white-space: nowrap;
                 color: ${i === selected

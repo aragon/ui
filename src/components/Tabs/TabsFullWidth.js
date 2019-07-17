@@ -8,6 +8,9 @@ import { useKeyDown } from '../../hooks'
 
 const ESC_CODE = 27
 
+// TabsFullWidth is an internal component
+/* eslint-disable react/prop-types */
+
 function TabsFullWidth({ items, selected, onChange }) {
   const theme = useTheme()
   const [opened, setOpened] = useState(false)
@@ -134,7 +137,6 @@ function TabsFullWidth({ items, selected, onChange }) {
 }
 
 function Menu({ items, onChange }) {
-  const theme = useTheme()
   return (
     <div
       css={`

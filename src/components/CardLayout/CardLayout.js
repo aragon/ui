@@ -11,7 +11,7 @@ function useInsideCardLayout() {
 }
 
 function CardLayout({ children, columnWidthMin, rowHeight, ...props }) {
-  const { layoutName, width } = useLayout()
+  const { layoutName } = useLayout()
   const fullWidth = layoutName === 'small'
 
   return (
