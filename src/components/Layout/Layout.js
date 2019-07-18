@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import React, { useContext, useMemo } from 'react'
 import PropTypes from 'prop-types'
 import { useViewport } from '../../providers/Viewport/Viewport'
 import { BREAKPOINTS, GU } from '../../style'
@@ -23,36 +23,43 @@ function getLayoutSize(parentWidth) {
   return SIZES[0]
 }
 
+const LayoutContext = React.createContext({})
+
 function useLayout(parentWidth) {
+  const { layoutWidth, layoutName } = useContext(LayoutContext)
+  return {
+    layoutName,
+    layoutWidth,
+    name: layoutName,
+    width: layoutWidth,
+  }
+}
+
+function Layout({ children, parentWidth }) {
   const { width: viewportWidth } = useViewport()
 
   // If the parent width is not passed, use the viewport width.
-  const [name, width] = useMemo(
+  const [layoutName, layoutWidth] = useMemo(
     () =>
       getLayoutSize(parentWidth === undefined ? viewportWidth : parentWidth),
     [viewportWidth, parentWidth]
   )
 
-  return { name, width, layoutName: name }
-}
-
-function Layout({ children, parentWidth }) {
-  const { layoutName, width } = useLayout(parentWidth)
-  const cssWidth = layoutName === 'small' ? 'auto' : `${width}px`
-
   return (
-    <div>
-      <div
-        css={`
-          margin: 0 auto;
-          padding-bottom: ${3 * GU}px;
-          width: ${cssWidth};
-          min-width: ${BREAKPOINTS.min}px;
-        `}
-      >
-        {children}
+    <LayoutContext.Provider value={{ layoutWidth, layoutName }}>
+      <div>
+        <div
+          css={`
+            margin: 0 auto;
+            padding-bottom: ${3 * GU}px;
+            width: ${layoutName === 'small' ? 'auto' : `${layoutWidth}px`};
+            min-width: ${BREAKPOINTS.min}px;
+          `}
+        >
+          {children}
+        </div>
       </div>
-    </div>
+    </LayoutContext.Provider>
   )
 }
 
