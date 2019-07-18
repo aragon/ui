@@ -14,7 +14,7 @@ function Header({ primary, secondary, children }) {
       css={`
         padding: ${fullWidth ? 0 : 3 * GU}px 0;
         background: ${fullWidth ? theme.surface : 'none'};
-        margin-bottom: ${fullWidth ? 1.5 * GU : 0}px;
+        margin-bottom: ${fullWidth ? 2 * GU : 0}px;
         box-shadow: ${fullWidth ? '0px 2px 3px rgba(0, 0, 0, 0.05)' : 'none'};
       `}
     >
