@@ -272,9 +272,7 @@ function App() {
   return (
     <div>
       <Header primary="DataView" />
-      <Bar>
-        <Tabs items={demoNames} selected={demo} onChange={setDemo} />
-      </Bar>
+      <Tabs items={demoNames} selected={demo} onChange={setDemo} />
       <DataViewDemo currentPage={page} onPageChange={setPage} />
     </div>
   )
