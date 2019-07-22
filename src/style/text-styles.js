@@ -46,6 +46,12 @@ const TEXT_STYLES = {
     lineHeight: 1.5,
     transform: 'uppercase',
   },
+  label3: {
+    size: 10,
+    weight: 400,
+    lineHeight: 1.5,
+    transform: 'uppercase',
+  },
 }
 
 const STYLES_CSS = {
