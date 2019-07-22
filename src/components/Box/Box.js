@@ -13,6 +13,7 @@ function Box({ heading, children, padding, ...props }) {
     <div
       as={heading ? 'section' : 'div'}
       css={`
+        position: relative;
         border-radius: ${fullWidth ? 0 : RADIUS}px;
         border-style: solid;
         border-color: ${theme.border};

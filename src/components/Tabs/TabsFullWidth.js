@@ -53,6 +53,8 @@ function TabsFullWidth({ items, selected, onChange }) {
       ref={el}
       onBlur={blur}
       css={`
+        position: relative;
+        z-index: 1;
         padding-bottom: ${2 * GU}px;
       `}
     >

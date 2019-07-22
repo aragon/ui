@@ -63,12 +63,7 @@ function Tabs({ items, selected, onChange }) {
 
   return (
     <nav onMouseDown={handleMouseDown}>
-      <ul
-        ref={barRef}
-        css={`
-          display: flex;
-        `}
-      >
+      <ul ref={barRef} css="display: flex">
         {items.map((item, i) => (
           <li
             key={i}
