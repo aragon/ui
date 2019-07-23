@@ -1,59 +1,52 @@
-import React from 'react'
+import React, { useState, useCallback } from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { Button, Popover, Root } from '@aragon/ui'
 import Page from 'comps/Page/Page'
 import Container from 'comps/Page/DemoContainer'
 import readme from 'ui-src/components/Popover/README.md'
 
-class PagePopover extends React.Component {
-  state = {
-    hide: true,
-  }
-  render() {
-    const { title } = this.props
-    const { hide } = this.state
-    return (
-      <Page title={title} readme={readme}>
-        <Page.Demo>
-          <Root.Provider>
-            <Container>
-              <Wrapper>
-                <div
-                  ref={ref => {
-                    this.openerRef = ref
-                  }}
+function PagePopover({ title }) {
+  const [hide, setHide] = useState(false)
+  const [opener, setOpener] = useState(null)
+
+  const handleOpenerRef = useCallback(node => {
+    setOpener(node)
+  }, [])
+
+  return (
+    <Page title={title} readme={readme}>
+      <Page.Demo opaque>
+        <Root.Provider>
+          <Container>
+            <Wrapper>
+              <div>
+                <Button
+                  ref={handleOpenerRef}
+                  onClick={() => setHide(true)}
+                  mode="strong"
                 >
-                  <Button
-                    onClick={() => {
-                      this.setState({
-                        hide: !hide,
-                      })
-                    }}
-                  >
-                    Show component
-                  </Button>
-                </div>
+                  Show component
+                </Button>
+              </div>
+              <div>
                 <div>
-                  <div>
-                    {!hide && (
-                      <Popover
-                        placement="top-start"
-                        gutter="20px"
-                        openerRef={this.openerRef}
-                        handleClose={() => this.setState({ hide: true })}
-                      >
-                        <Box>Popover</Box>
-                      </Popover>
-                    )}
-                  </div>
+                  <Popover
+                    opener={opener}
+                    gutter="20px"
+                    visible={hide}
+                    onClose={() => setHide(false)}
+                  >
+                    <Box>Popover</Box>
+                  </Popover>
                 </div>
-              </Wrapper>
-            </Container>
-          </Root.Provider>
-        </Page.Demo>
-      </Page>
-    )
-  }
+              </div>
+            </Wrapper>
+          </Container>
+        </Root.Provider>
+      </Page.Demo>
+    </Page>
+  )
 }
 
 const Wrapper = styled.div`
@@ -68,8 +61,16 @@ const Box = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100px;
-  height: 100px;
+  width: 300px;
+  height: 200px;
 `
+
+PagePopover.propTypes = {
+  title: PropTypes.string,
+}
+
+PagePopover.defaultProps = {
+  title: '',
+}
 
 export default PagePopover
