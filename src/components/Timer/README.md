@@ -1,30 +1,23 @@
 # Timer
 
-Displays a countdown or stopwatch
+Displays a countdown or stopwatch.
 
 ## Usage
 
 ```jsx
 import { Timer } from '@aragon/ui'
 
-const DAY_IN_MS = 1000 * 60 * 60 * 24
-const endDate = new Date(Date.now() + 5 * DAY_IN_MS)
+const NOW = Date.now()
+const DAY = 1000 * 60 * 60 * 24
+
+const endDate = new Date(NOW + 5 * DAY)
+const startDate = new Date(NOW - 5 * DAY)
 
 const App = () => (
-  <Timer end={endDate} />
-)
-```
-
-or
-
-```jsx
-import { Timer } from '@aragon/ui'
-
-const DAY_IN_MS = 1000 * 60 * 60 * 24
-const startDate = new Date(Date.now() - 5 * DAY_IN_MS)
-
-const App = () => (
-  <Timer start={startDate} />
+  <div>
+    <Timer end={endDate} />
+    <Timer start={startDate} />
+  </div>
 )
 ```
 
