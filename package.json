@@ -30,8 +30,7 @@
     "prepare": "npm run build",
     "prepublishOnly": "git push && git push --tags",
     "start": "cd gallery && npm start",
-    "test": "npm run lint && npm run jest",
-    "theme:build": "scripts/oco-to-js.js < src/theme/Aragon.oco > src/theme/aragon.js"
+    "test": "npm run lint && npm run jest"
   },
   "peerDependencies": {
     "react": "^16.3.1",
@@ -67,8 +66,6 @@
     "jest": "^24.8.0",
     "lint-staged": "^8.1.0",
     "listr": "^0.14.3",
-    "opencolor": "^0.2.0",
-    "opencolor-converter": "git://github.com/opencolor-tools/opencolor-converter.git#v2.1.23",
     "prettier": "^1.17.1",
     "react-media": "^1.6.1",
     "rollup": "^1.12.3",
@@ -89,7 +86,7 @@
     "arg": "^2.0.0",
     "command-exists": "^1.2.6",
     "dayjs": "^1.8.14",
-    "lodash-es": "^4.17.11",
+    "lodash-es": "^4.17.15",
     "popper.js": "^1.14.4",
     "prop-types": "^15.6.0",
     "react-blockies": "^1.4.0",
