@@ -8,7 +8,8 @@
     "prebuild": "copy-aragon-ui-assets dist && npm run update-apps-index",
     "build": "npm run prebuild && webpack --mode production",
     "build:dev": "npm run prebuild && webpack --mode development",
-    "start": "npm run prebuild && webpack-dev-server --mode development --port 1234"
+    "start": "npm run prebuild && webpack-dev-server --mode development --port 1234",
+    "start:a11y-check": "npm run prebuild && webpack-dev-server --mode development --port 1234 --env.A11Y_CHECK=on"
   },
   "dependencies": {
     "@aragon/ui": "file:..",
@@ -25,6 +26,7 @@
     "babel-plugin-styled-components": "^1.9.2",
     "clean-webpack-plugin": "^1.0.0",
     "html-webpack-plugin": "^3.2.0",
+    "react-axe": "^3.1.0",
     "terser-webpack-plugin": "^1.1.0",
     "webpack": "^4.27.1",
     "webpack-bundle-analyzer": "^3.0.3",
