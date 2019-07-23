@@ -8,11 +8,8 @@ import Container from '../components/Page/DemoContainer'
 
 const PageIdentityBadge = ({ title }) => (
   <Page title={title} readme={readme}>
-    <Page.Demo>
-      <Container style={{flexDirection: 'column'}}>
-        <TextContainer>
-          <Text>Click badge to ptompt the popover</Text>
-        </TextContainer>
+    <Page.Demo opaque height={150}>
+      <Container centered>
         <BadgesRow>
           <div>
             <IdentityBadge
@@ -30,12 +27,6 @@ const PageIdentityBadge = ({ title }) => (
           <div>
             <IdentityBadge
               entity="0x2c9341a52cfa3f2c2554ca1803134137b9366b3c"
-              connectedAccount
-            />
-          </div>
-          <div>
-            <IdentityBadge
-              entity="0x7c708ac7db979fa06705f8880f29f82cfc406993"
               connectedAccount
             />
           </div>
@@ -63,6 +54,7 @@ const PageIdentityBadge = ({ title }) => (
 const BadgesRow = styled.div`
   display: flex;
   align-items: center;
+  height: calc(100vh - 40px);
   & > div {
     display: flex;
     align-items: center;

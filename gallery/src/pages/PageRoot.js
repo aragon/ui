@@ -36,7 +36,7 @@ class PageRoot extends React.Component {
                   })
                 }}
               >
-                Open Modal With Root.Provider
+                Open Modal in the local Root
               </Button>
               <Modal visible={openModalRoot} onClose={this.handleCloseRoot}>
                 <div
@@ -64,7 +64,7 @@ class PageRoot extends React.Component {
                 })
               }}
             >
-              Open Modal Without Root.Provider
+              Open Modal in the parent Root
             </Button>
             <Modal visible={openModal} onClose={this.handleClose}>
               <div

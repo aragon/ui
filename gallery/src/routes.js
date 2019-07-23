@@ -78,7 +78,6 @@ export const PAGE_GROUPS = [
   {
     name: 'Styles',
     pages: [
-      [PageBaseStyles, 'BaseStyles'],
       [PageColors, 'Colors'],
       [PageIcons, 'Icons'],
       [PageText, 'Text'],

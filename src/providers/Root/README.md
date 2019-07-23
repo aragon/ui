@@ -1,16 +1,20 @@
 # Root
 
-The Root component can be used to re define the root of a component using Root.Provider.
+`Root` can be used to re render a component at the top level in the DOM tree. `Root.Provider` can be used to redefined the root level.
 
 ## Usage
 
 ```jsx
 import { Root } from '@aragon/ui'
 
-  <Root.Provider>
-    <Children />
-  </Root.Provider>
-
+function App() {
+  return (
+    <div>
+      <p>Rendered in the current element</p>
+      <Root>
+        <p>Rendered at the root level of the DOM tree</p>
+      </Root>
+    </div>
+  )
+}
 ```
-
-

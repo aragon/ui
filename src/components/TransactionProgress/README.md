@@ -3,39 +3,26 @@
 ## Usage
 
 ```jsx
-import { RootProvider, Popover, TransactionProgress } from '@aragon/ui'
+function App() {
+  const [visible, setVisible] = useState(false)
+  const opener = useRef()
 
-class PageTransactionProgress extends React.Component {
-  state = {
-    showPopover: false,
-  }
-  _opener = React.createRef()
-  render() {
-    const { showPopover } = this.state
-
-    return (
-      <RootProvider>
-        <div>
-          <div ref={this._opener}>
-            <Button onClick={() => this.setState({ showPopover: true })}>
-              Transaction progress
-            </Button>
-          </div>
-            <TransactionProgress
-              transactionHashUrl="https://etherscan.io/tx/0x5c504ed432cb51138bcf09aa5e8a410dd4a1e204ef84bfed1be16dfba1b22060"
-              progress={0.3}
-              visible={!hide}
-              endTime={new Date(Date.now() + 100000)}
-              onClose={() => setState({ showPopover: false )}
-              top={'0px'}
-              left={'opx'}
-              opener={opener}
-              slow
-            />
-        </div>
-      </RootProvider>
-    )
-  }
+  return (
+    <div>
+      <div ref={opener}>
+        <Button onClick={() => setVisible(true)}>Check transaction</Button>
+      </div>
+      <TransactionProgress
+        transactionHashUrl="https://etherscan.io/tx/0x5c50…2060"
+        progress={0.3}
+        visible={visible}
+        endTime={new Date(Date.now() + 100000)}
+        onClose={() => setVisible(false)}
+        opener={opener}
+        slow
+      />
+    </div>
+  )
 }
 ```
 
@@ -64,7 +51,7 @@ Estimated end time of transaction.
 - Type: `Bool`
 - Default: `false`
 
-Set to true to display a warning to the user that a transaction is slow.
+Set to true to inform the user that a transaction is taking longer than expected.
 
 ### `handleClose`
 
