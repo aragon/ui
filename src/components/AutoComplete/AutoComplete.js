@@ -8,7 +8,7 @@ import { theme } from '../../theme-legacy'
 import { useClickOutside, useOnBlur, useArrowKeysFocus } from '../../hooks'
 import { ButtonBase } from '../Button/ButtonBase'
 import TextInput from '../Input/TextInput'
-import IconMagnifyingGlass from '../../icons/components/MagnifyingGlass'
+import { IconSearch } from '../../icons'
 
 const { accent, contentBackground, contentBorder, textPrimary } = theme
 
@@ -79,7 +79,7 @@ function AutoComplete({
           justify-content: center;
         `}
       >
-        <IconMagnifyingGlass css="color: #a8b3c8" />
+        <IconSearch css="color: #a8b3c8" />
       </div>
       <Transition
         config={springs.swift}
