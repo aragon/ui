@@ -27,7 +27,7 @@ function CardLayout({ children, columnWidthMin, rowHeight, ...props }) {
             minmax(${columnWidthMin}px, 1fr)
           );
           grid-auto-rows: ${rowHeight}px;
-          padding: 0 ${fullWidth ? 2 * GU : 0}px ${2 * GU}px;
+          padding: 0 ${fullWidth ? 2 * GU : 0}px ${3 * GU}px;
           margin: 0 auto;
         `}
         {...props}
