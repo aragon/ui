@@ -20,6 +20,7 @@ import PageSlider from './pages/PageSlider'
 import PageTabs from './pages/PageTabs'
 
 // Other components
+import PageAutoComplete from './pages/PageAutoComplete'
 import PageBadge from './pages/PageBadge'
 import PageCircleGraph from './pages/PageCircleGraph'
 import PageCountdown from './pages/PageCountdown'
@@ -102,6 +103,7 @@ export const PAGE_GROUPS = [
   {
     name: 'Components',
     pages: [
+      [PageAutoComplete, 'AutoComplete'],
       [PageBadge, 'Badge'],
       [PageCircleGraph, 'CircleGraph'],
       [PageCountdown, 'Countdown'],
