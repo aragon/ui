@@ -179,7 +179,7 @@ const DataView = React.memo(function DataView({
     mode === 'list' || (mode !== 'table' && layoutName === 'small')
 
   return (
-    <Box padding={false}>
+    <Box padding={false} css="overflow: hidden">
       {heading && (
         <div
           css={`
