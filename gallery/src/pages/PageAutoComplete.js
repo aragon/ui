@@ -1,7 +1,10 @@
 import React, { useState, useRef } from 'react'
 import Page from 'comps/Page/Page'
 import readme from 'ui-src/components/AutoComplete/README.md'
-import { AutoComplete, AutoCompleteSelected } from '@aragon/ui'
+import {
+  _AutoComplete as AutoComplete,
+  _AutoCompleteSelected as AutoCompleteSelected,
+} from '@aragon/ui'
 import Container from '../components/Page/DemoContainer'
 
 const items = [
