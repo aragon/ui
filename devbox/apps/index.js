@@ -5,6 +5,7 @@
 export { default as AddressField } from './AddressField'
 export { default as AppBarTabs } from './AppBarTabs'
 export { default as AppView } from './AppView'
+export { default as AutoComplete } from './AutoComplete'
 export { default as Button } from './Button'
 export { default as Checkbox } from './Checkbox'
 export { default as DropDown } from './DropDown'
