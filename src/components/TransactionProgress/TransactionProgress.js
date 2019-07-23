@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { theme } from '../../theme'
 import { noop } from '../../utils'
 import Text from '../Text/Text'
-import SafeLink from '../Link/SafeLink'
+import ExternalLink from '../Link/ExternalLink'
 import Countdown from '../Countdown/Countdown'
 import Info from '../Info'
 import ProgressBar from '../ProgressBar/ProgressBar'
@@ -52,7 +52,7 @@ class TransactionProgress extends React.Component {
             </Text>
             <Countdown removeDaysAndHours end={endTime} />
           </ContentWrapper>
-          <ProgressBar color={theme.accent} progress={progress} />
+          <ProgressBar color={theme.accent} value={progress} />
           <FooterWrapper slow={slow}>
             {slow && (
               <SlowTransaction>
@@ -98,7 +98,7 @@ const FooterWrapper = styled.div`
   padding-top: 1rem;
 `
 
-const Link = styled(SafeLink)`
+const Link = styled(ExternalLink)`
   color: #21aae7;
   text-decoration: none;
 `

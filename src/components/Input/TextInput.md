@@ -17,7 +17,7 @@ const App = () => (
 
 ### `adornment`
 
-- Type: `node`
+- Type: `Node`
 - Default: `null`
 
 Allows to add an icon or any other component inside of a `TextInput`.
