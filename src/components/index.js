@@ -3,9 +3,9 @@ export { default as AddressField } from './AddressField/AddressField'
 export { default as AppBar } from './AragonApp/AppBar'
 export { default as AppView } from './AragonApp/AppView'
 export { default as AragonApp } from './AragonApp/AragonApp'
-export { default as AutoComplete } from './AutoComplete/AutoComplete'
+export { default as _AutoComplete } from './AutoComplete/AutoComplete'
 export {
-  default as AutoCompleteSelected,
+  default as _AutoCompleteSelected,
 } from './AutoComplete/AutoCompleteSelected'
 export { default as Badge } from './Badge'
 export { default as BadgeNumber } from './BadgeNumber/BadgeNumber'
