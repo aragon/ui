@@ -20,6 +20,7 @@ import PageField from './pages/PageField'
 import PageSafeLink from './pages/PageSafeLink'
 import PageSlider from './pages/PageSlider'
 import PageTabBar from './pages/PageTabBar'
+import PageAutoComplete from './pages/PageAutoComplete'
 
 // Other components
 import PageBadgeNumber from './pages/PageBadgeNumber'
@@ -100,6 +101,7 @@ export const PAGE_GROUPS = [
       [PageSlider, 'Slider'],
       [PageTabBar, 'TabBar'],
       [PageTextInput, 'TextInput'],
+      [PageAutoComplete, 'AutoComplete'],
     ],
   },
   {

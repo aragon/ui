@@ -1,5 +1,4 @@
 import React from 'react'
-import styled from 'styled-components'
 import { Spring } from 'react-spring'
 import PropTypes from '../../proptypes'
 import { unselectable, springs } from '../../utils/styles'

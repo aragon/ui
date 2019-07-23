@@ -25,12 +25,6 @@ class FocusVisible extends React.PureComponent {
     focusVisible: false,
   }
   componentDidMount() {
-    const document = this._element.current.ownerDocument
-    document.addEventListener('mousedown', this.handlePointerEvent)
-    document.addEventListener('mouseup', this.handlePointerEvent)
-    document.addEventListener('touchstart', this.handlePointerEvent)
-    document.addEventListener('touchend', this.handlePointerEvent)
-
     // `document` was previously set as a state entry, which was having the
     // advantages of keeping track of it, and also triggering a rerender to
     // remove the injected span.
@@ -42,16 +36,20 @@ class FocusVisible extends React.PureComponent {
     // this._document is now set on the instance directly, and
     // this.forceUpdate() is used to trigger the second render needed to remove
     // the injected span.
-    this._document = document
+    this._document = this._element.current.ownerDocument
+    this._document.addEventListener('mousedown', this.handlePointerEvent)
+    this._document.addEventListener('mouseup', this.handlePointerEvent)
+    this._document.addEventListener('touchstart', this.handlePointerEvent)
+    this._document.addEventListener('touchend', this.handlePointerEvent)
     this.forceUpdate()
   }
   componentWillUnmount() {
-    const document = this._document
-    document.removeEventListener('mousedown', this.handlePointerEvent)
-    document.removeEventListener('mouseup', this.handlePointerEvent)
-    document.removeEventListener('touchstart', this.handlePointerEvent)
-    document.removeEventListener('touchend', this.handlePointerEvent)
-    this._document = null
+    if (this._document) {
+      this._document.removeEventListener('mousedown', this.handlePointerEvent)
+      this._document.removeEventListener('mouseup', this.handlePointerEvent)
+      this._document.removeEventListener('touchstart', this.handlePointerEvent)
+      this._document.removeEventListener('touchend', this.handlePointerEvent)
+    }
   }
   // It doesn’t seem to be specified, but pointer events happen before focus
   // events on modern browsers.
