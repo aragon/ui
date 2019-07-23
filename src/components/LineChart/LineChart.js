@@ -99,6 +99,7 @@ class LineChart extends React.Component {
       animDelay,
       color,
       labelColor,
+      ...props
     } = this.props
 
     const lines = this.getLines()
@@ -114,44 +115,55 @@ class LineChart extends React.Component {
 
     const chartHeight = height - (labels ? LABELS_HEIGHT : 0)
 
+    const rectangle = (
+      <rect
+        width={width}
+        height={chartHeight}
+        rx="3"
+        ry="3"
+        fill="#ffffff"
+        strokeWidth="1"
+        stroke={borderColor}
+      />
+    )
+
     return (
-      <div>
-        <SvgWrapper>
-          <Spring
-            from={{ progress: 0 }}
-            to={{ progress: 1 }}
-            config={springConfig}
-            delay={animDelay}
-            reset={reset}
+      <Spring
+        from={{ progress: 0 }}
+        to={{ progress: 1 }}
+        config={springConfig}
+        delay={animDelay}
+        reset={reset}
+      >
+        {({ progress }) => (
+          <svg
+            viewBox={`0 0 ${width} ${height}`}
+            width={width}
+            height={height}
+            css="display: block"
+            {...props}
           >
-            {({ progress }) => (
-              <svg viewBox={`0 0 ${width} ${height}`}>
-                <rect
-                  width={width}
-                  height={chartHeight}
-                  rx="3"
-                  ry="3"
-                  fill="#ffffff"
-                  strokeWidth="1"
-                  stroke={borderColor}
-                />
-                {totalCount > 0 && (
-                  <path
-                    d={`
+            <mask id="chart-mask">{rectangle}</mask>
+            {rectangle}
+
+            <g mask="url(#chart-mask)">
+              {totalCount > 0 && (
+                <path
+                  d={`
                     ${[...new Array(totalCount - 1)].reduce(
                       (path, _, index) =>
                         `${path} M ${this.getX(index)},${chartHeight} l 0,-8`,
                       ''
                     )}
                   `}
-                    stroke={borderColor}
-                    strokeWidth="1"
-                  />
-                )}
-                {lines.map((line, lineIndex) => (
-                  <g key={`line-plot-${line.id || lineIndex}`}>
-                    <path
-                      d={`
+                  stroke={borderColor}
+                  strokeWidth="1"
+                />
+              )}
+              {lines.map((line, lineIndex) => (
+                <g key={`line-plot-${line.id || lineIndex}`}>
+                  <path
+                    d={`
                             M
                             ${this.getX(0)},
                             ${this.getY(line.values[0], progress, chartHeight)}
@@ -167,66 +179,58 @@ class LineChart extends React.Component {
                               )
                               .join('')}
                           `}
-                      fill="transparent"
+                    fill="transparent"
+                    stroke={line.color || color(lineIndex, { lines })}
+                    strokeWidth="2"
+                  />
+                  {line.values.slice(1, -1).map((val, index) => (
+                    <circle
+                      key={index}
+                      cx={this.getX(index + 1) * progress}
+                      cy={this.getY(val, progress, chartHeight)}
+                      r={dotRadius}
+                      fill="white"
                       stroke={line.color || color(lineIndex, { lines })}
-                      strokeWidth="2"
+                      strokeWidth="1"
                     />
-                    {line.values.slice(1, -1).map((val, index) => (
-                      <circle
-                        key={index}
-                        cx={this.getX(index + 1) * progress}
-                        cy={this.getY(val, progress, chartHeight)}
-                        r={dotRadius}
-                        fill="white"
-                        stroke={line.color || color(lineIndex, { lines })}
-                        strokeWidth="1"
-                      />
-                    ))}
-                  </g>
+                  ))}
+                </g>
+              ))}
+              <line
+                x1={this.getX(valuesCount - 1) * progress}
+                y1="0"
+                x2={this.getX(valuesCount - 1) * progress}
+                y2={chartHeight}
+                stroke="#DAEAEF"
+                strokeWidth="3"
+              />
+            </g>
+            {labels && (
+              <g transform={`translate(0,${chartHeight})`}>
+                {labels.map((label, index) => (
+                  <text
+                    key={index}
+                    x={this.getX(index)}
+                    y={LABELS_HEIGHT / 2}
+                    textAnchor={this.getLabelPosition(index, labels.length)}
+                    fill={labelColor}
+                    css={`
+                      alignment-baseline: middle;
+                      font-size: 12px;
+                      font-weight: 300;
+                      ${unselectable};
+                    `}
+                  >
+                    {label}
+                  </text>
                 ))}
-                <line
-                  x1={this.getX(valuesCount - 1) * progress}
-                  y1="0"
-                  x2={this.getX(valuesCount - 1) * progress}
-                  y2={chartHeight}
-                  stroke="#DAEAEF"
-                  strokeWidth="3"
-                />
-                {labels && (
-                  <g transform={`translate(0,${chartHeight})`}>
-                    {labels.map((label, index) => (
-                      <LabelText
-                        key={index}
-                        x={this.getX(index)}
-                        y={LABELS_HEIGHT / 2}
-                        textAnchor={this.getLabelPosition(index, labels.length)}
-                        fill={labelColor}
-                      >
-                        {label}
-                      </LabelText>
-                    ))}
-                  </g>
-                )}
-              </svg>
+              </g>
             )}
-          </Spring>
-        </SvgWrapper>
-      </div>
+          </svg>
+        )}
+      </Spring>
     )
   }
 }
-
-const SvgWrapper = styled.div`
-  svg {
-    display: block;
-  }
-`
-
-const LabelText = styled.text`
-  alignment-baseline: middle;
-  font-size: 8px;
-  font-weight: 300;
-  ${unselectable};
-`
 
 export default LineChart
