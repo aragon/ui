@@ -16,12 +16,16 @@ function PagePopover({ title }) {
 
   return (
     <Page title={title} readme={readme}>
-      <Page.Demo>
+      <Page.Demo opaque>
         <Root.Provider>
           <Container>
             <Wrapper>
               <div>
-                <Button ref={handleOpenerRef} onClick={() => setHide(true)}>
+                <Button
+                  ref={handleOpenerRef}
+                  onClick={() => setHide(true)}
+                  mode="strong"
+                >
                   Show component
                 </Button>
               </div>
@@ -29,7 +33,6 @@ function PagePopover({ title }) {
                 <div>
                   <Popover
                     opener={opener}
-                    placement="top-start"
                     gutter="20px"
                     visible={hide}
                     onClose={() => setHide(false)}
@@ -58,8 +61,8 @@ const Box = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100px;
-  height: 100px;
+  width: 300px;
+  height: 200px;
 `
 
 PagePopover.propTypes = {

@@ -2,49 +2,31 @@
 
 ## Usage
 
-The Popover component makes use of React Context API to work. You only need one `RootProvider` component at the top level of your app.
-You can then use `Popover` component wherever you like.
+A simple Popover component with basic styles. It gets rendered at the root level so it can be declared wherever you like.
 
 ### Positioning relative to the "opener"
 
 ```jsx
-import { RootProvider, Popover, TransactionProgress } from '@aragon/ui'
+import { Popover } from '@aragon/ui'
 
-const Box = styled.div`
-  width: 200px;
-  height: 100px;
-  background-color: red;
-`
+function App() {
+  const [visible, setVisible] = useState(false)
+  const opener = React.createRef()
 
-class PageTransactionProgress extends React.Component {
-  state = {
-    showPopover: false,
-  }
-
-  _opener = React.createRef()
-
-  render() {
-    const { showPopover } = this.state
-
-    return (
-      <RootProvider>
-        <div>
-          <div ref={this._opener}>
-            <Button onClick={() => this.setState({ showPopover: true })}>
-              Show component
-            </Button>
-          </div>
-          <Popover
-            visible={showPopover}
-            opener={this._opener.current}
-            onClose={() => this.setState({ showPopover: false })}
-          >
-            Hello World
-          </Popover>
-        </div>
-      </RootProvider>
-    )
-  }
+  return (
+    <div>
+      <Button onClick={() => setVisible(true)} ref={opener}>
+        Show
+      </Button>
+      <Popover
+        visible={visible}
+        opener={opener.current}
+        onClose={() => setVisible(false)}
+      >
+        Popover
+      </Popover>
+    </div>
+  )
 }
 ```
 
