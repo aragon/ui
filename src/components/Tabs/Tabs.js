@@ -1,4 +1,10 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react'
+import React, {
+  useCallback,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from 'react'
 import PropTypes from 'prop-types'
 import { RADIUS, GU, textStyle } from '../../style'
 import { unselectable, noop } from '../../utils'
@@ -172,24 +178,20 @@ function FocusRing() {
 
 export default props => {
   const { layoutName } = useLayout()
+  const inAppBar = useContext(InAppBarContext)
+
+  // Use a separate component for Tabs in AppBar, to prevent breaking anything.
+  if (inAppBar) {
+    return <TabBarLegacy {...props} inAppBar />
+  }
+
+  if (layoutName === 'small') {
+    return <TabsFullWidth {...props} />
+  }
+
   return (
-    <InAppBarContext.Consumer>
-      {inAppBar =>
-        inAppBar ? (
-          // Use a separate component for Tabs in AppBar, to prevent breaking anything.
-          <TabBarLegacy {...props} inAppBar />
-        ) : (
-          <React.Fragment>
-            {layoutName === 'small' ? (
-              <TabsFullWidth {...props} />
-            ) : (
-              <Bar>
-                <Tabs {...props} />
-              </Bar>
-            )}
-          </React.Fragment>
-        )
-      }
-    </InAppBarContext.Consumer>
+    <Bar>
+      <Tabs {...props} />
+    </Bar>
   )
 }
