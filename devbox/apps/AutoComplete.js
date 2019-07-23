@@ -1,5 +1,8 @@
 import React, { useRef, useState } from 'react'
-import { AutoComplete, AutoCompleteSelected } from '@aragon/ui'
+import {
+  _AutoComplete as AutoComplete,
+  _AutoCompleteSelected as AutoCompleteSelected,
+} from '@aragon/ui'
 
 const items = [
   { name: 'Bruce Wayne', hint: 'I am Batman', key: 0, emoji: '🦇' },
