@@ -22,26 +22,6 @@ const MyComponent = () => {
 }
 ```
 
-### Render prop
-
-```jsx
-import { Viewport } from '@aragon/ui'
-
-const MyComponent = () => {
-  return (
-    <Viewport>
-      {({ within, below, above }) => (
-        <div>
-          {below('medium') && <div>small</div>}
-          {within('medium', 'large') && <div>medium</div>}
-          {above('large') && <div>large</div>}
-        </div>
-      )}
-    </Viewport>
-  )
-}
-```
-
 ## Properties
 
 ### `throttle`
@@ -66,8 +46,10 @@ The current width of the viewport.
 ##### Example:
 
 ```jsx
-const { width } = useViewport()
-return <MyComponent compact={width < 400} />
+function App() {
+  const { width } = useViewport()
+  return <MyComponent compact={width < 400} />
+}
 ```
 
 #### `height`
@@ -138,7 +120,11 @@ Available breakpoints: `"min"` (320), `"small"` (540), `"medium"` (768), `"large
 ```jsx
 const { breakpoint } = useViewport()
 return (
-  <div css={`min-width: ${breakpoint.min}`}>
+  <div
+    css={`
+      min-width: ${breakpoint.min};
+    `}
+  >
     <MyComponent compact={width < breakpoint.medium} />
   </div>
 )

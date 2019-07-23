@@ -4,6 +4,11 @@ import { Main } from '@aragon/ui'
 
 import * as APPS from './apps'
 
+if (process.env.A11Y_CHECK === 'on') {
+  const axe = require('react-axe')
+  axe(React, ReactDOM, 1000)
+}
+
 class Index extends React.Component {
   state = {
     appName: '',

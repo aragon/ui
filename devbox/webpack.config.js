@@ -3,8 +3,14 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
 const TerserPlugin = require('terser-webpack-plugin')
+const webpack = require('webpack')
 
-function base() {
+function base(env) {
+  const envKeys = {}
+  for (let key in env) {
+    envKeys[`process.env.${key}`] = JSON.stringify(env[key])
+  }
+
   return {
     entry: { app: './index.js' },
     output: {
@@ -24,6 +30,7 @@ function base() {
       ],
     },
     plugins: [
+      new webpack.DefinePlugin(envKeys),
       new HtmlWebpackPlugin({
         title: 'devbox',
         meta: {
@@ -35,8 +42,8 @@ function base() {
   }
 }
 
-function production() {
-  const config = base()
+function production(env) {
+  const config = base(env)
   return {
     ...config,
     mode: 'production',
@@ -58,8 +65,8 @@ function production() {
   }
 }
 
-function development() {
-  const config = base()
+function development(env) {
+  const config = base(env)
   return {
     ...config,
     mode: 'development',
@@ -85,8 +92,8 @@ function development() {
   }
 }
 
-function devserver() {
-  const config = development()
+function devserver(env) {
+  const config = development(env)
   return {
     ...config,
     devServer: {
@@ -97,11 +104,11 @@ function devserver() {
 
 module.exports = (env, argv) => {
   if (argv.mode === 'production') {
-    return production()
+    return production(env)
   }
   if (argv.mode === 'development') {
     return argv['$0'].endsWith('webpack-dev-server')
-      ? devserver()
-      : development()
+      ? devserver(env)
+      : development(env)
   }
 }
