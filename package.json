@@ -16,9 +16,9 @@
     "copy-aragon-ui-assets": "./bin/copy-aragon-ui-assets"
   },
   "scripts": {
-    "build": "rollup -c",
+    "build": "npm run icons:build && rollup -c",
+    "dev": "npm run icons:build && rollup -c -w",
     "deploy:site": "cd gallery && npm run build && echo 'ui.aragon.org' > dist/CNAME && cp public/favicon.svg dist && gh-pages -d dist",
-    "dev": "rollup -c -w",
     "devbox": "cd devbox && npm start",
     "flow": "flow",
     "icons:build": "node scripts/generate-icons",
