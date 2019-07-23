@@ -22,6 +22,7 @@
     "devbox": "cd devbox && npm start",
     "flow": "flow",
     "icons:build": "node scripts/generate-icons",
+    "icons:check": "$(git diff --no-ext-diff --quiet --exit-code ./src/icons) || echo '\nError: src/icons has been modified, please commit the changes.\n' && exit 1",
     "jest": "jest",
     "lint": "eslint ./src",
     "lint:fix": "eslint --fix ./src",
@@ -103,7 +104,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-push": "npm run lint",
+      "pre-push": "npm run lint && npm run icons:check",
       "pre-commit": "lint-staged"
     }
   },
