@@ -51,6 +51,7 @@ import PageCard from './pages/PageCard'
 import PageEmptyStateCard from './pages/PageEmptyStateCard'
 import PageTable from './pages/PageTable'
 import PageFocusVisible from './pages/PageFocusVisible'
+import PageDataView from './pages/PageDataView'
 
 // Providers
 import PageRedraw from './pages/PageRedraw'
@@ -115,6 +116,7 @@ export const PAGE_GROUPS = [
       [PageSidePanel, 'SidePanel'],
       [PageTable, 'Table'],
       [PageTabs, 'Tabs'],
+      [PageDataView, 'DataView'],
     ],
   },
   {
