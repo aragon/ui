@@ -155,4 +155,13 @@ function DropDown({ activeIndex, items, label, header, onChange, width }) {
   )
 }
 
+DropDown.propTypes = {
+  activeIndex: PropTypes.number.isRequired,
+  items: PropTypes.array.isRequired,
+  label: PropTypes.string.isRequired,
+  header: PropTypes.string,
+  onChange: PropTypes.func.isRequired,
+  width: PropTypes.string,
+}
+
 export default DropDown
