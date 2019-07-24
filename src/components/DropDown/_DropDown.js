@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { Button, ButtonBase, Popover } from '../'
 import { IconDown } from '../../icons'
@@ -6,7 +6,7 @@ import { GU, RADIUS, textStyle } from '../../style'
 import { useTheme } from '../../theme'
 import { unselectable } from '../../utils'
 
-function useDropDown({ activeIndex, onChange, label }) {
+function useDropDown({ items, activeIndex, onChange, label }) {
   const containerRef = useRef()
   const [selectedLabel, setSelectedLabel] = useState(label)
   const [opened, setOpened] = useState(false)
@@ -18,11 +18,17 @@ function useDropDown({ activeIndex, onChange, label }) {
     setTimeout(() => setOpened(false), 10)
   }
   const handleToggle = () => setOpened(!opened)
-  const handleChange = (item, index) => () => {
-    setSelectedLabel(item)
+  const handleChange = index => () => {
     onChange(index)
     handleClose()
   }
+
+  useEffect(() => {
+    if (activeIndex === -1 || !items[activeIndex]) {
+      return
+    }
+    setSelectedLabel(items[activeIndex])
+  }, [items, activeIndex])
 
   return {
     containerRef,
@@ -50,6 +56,8 @@ function DropDown({ activeIndex, items, label, header, onChange, width }) {
     opened,
     selectedLabel,
   } = useDropDown({
+    activeIndex,
+    items,
     label,
     onChange,
   })
@@ -116,12 +124,12 @@ function DropDown({ activeIndex, items, label, header, onChange, width }) {
             `}
           >
             {items.map((item, index) => {
-              const handleChangeWithItem = handleChange(item, index)
+              const handleChangeWithIndex = handleChange(index)
 
               return (
                 <li key={item}>
                   <ButtonBase
-                    onClick={handleChangeWithItem}
+                    onClick={handleChangeWithIndex}
                     css={`
                       width: 100%;
                       text-align: left;
