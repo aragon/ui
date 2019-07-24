@@ -73,6 +73,7 @@ function DropDown({ activeIndex, items, label, header, onChange, width }) {
           align-items: center;
           padding: 0 ${2 * GU}px;
           width: ${width};
+          min-width: unset;
           ${closedWithChanges ? `border: 1px solid ${accent}` : ''}
         `}
       >
@@ -101,7 +102,7 @@ function DropDown({ activeIndex, items, label, header, onChange, width }) {
       >
         <div
           css={`
-            width: ${width};
+            width: calc(${width} - 2px);
             color: ${surfaceContentSecondary};
           `}
         >
