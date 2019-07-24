@@ -20,7 +20,7 @@ const App = () => {
 }
 ```
 
-## Properties
+## Props
 
 ### `items` (required)
 

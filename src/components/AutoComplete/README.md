@@ -41,7 +41,7 @@ const FilterBasedOnWhatIsTyped = () => {
 }
 ```
 
-## Properties
+## Props
 
 ### `items`
 

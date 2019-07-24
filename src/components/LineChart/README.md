@@ -16,7 +16,7 @@ const App = () => <LineChart
                     />
 ```
 
-## Properties
+## Props
 
 ### `springConfig`
 

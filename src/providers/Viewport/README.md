@@ -22,7 +22,7 @@ const MyComponent = () => {
 }
 ```
 
-## Properties
+## Props
 
 ### `throttle`
 

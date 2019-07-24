@@ -22,7 +22,7 @@ const App = () => (
 )
 ```
 
-## Properties
+## Props
 
 ### `children`
 

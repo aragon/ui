@@ -36,7 +36,7 @@ class App extends Component {
 }
 ```
 
-## Properties
+## Props
 
 ### `className`
 

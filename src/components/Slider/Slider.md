@@ -24,7 +24,7 @@ class App extends Component {
 }
 ```
 
-## Properties
+## Props
 
 ### `value`
 

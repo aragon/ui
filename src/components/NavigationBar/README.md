@@ -47,7 +47,7 @@ const App = () => {
 }
 ```
 
-## Properties
+## Props
 
 ### `items`
 

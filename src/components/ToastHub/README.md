@@ -18,7 +18,7 @@ const App = () => (
 )
 ```
 
-## Properties
+## Props
 
 ### `timeout`
 

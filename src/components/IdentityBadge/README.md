@@ -18,7 +18,7 @@ function App() {
 }
 ```
 
-## Properties
+## Props
 
 ### `connectedAccount`
 
