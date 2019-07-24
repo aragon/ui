@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react'
 import PropTypes from 'prop-types'
-import { Button, ButtonBase, Box, Popover, TextInput } from '../'
+import { Button, ButtonBase, Popover } from '../'
 import { IconDown } from '../../icons'
 import { GU, RADIUS, textStyle } from '../../style'
 import { useTheme } from '../../theme'
