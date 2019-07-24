@@ -4,6 +4,7 @@ import { Button, ButtonBase, Popover } from '../'
 import { IconDown } from '../../icons'
 import { GU, RADIUS, textStyle } from '../../style'
 import { useTheme } from '../../theme'
+import { unselectable } from '../../utils'
 
 function useDropDown({ activeIndex, onChange, label }) {
   const containerRef = useRef()
@@ -101,6 +102,7 @@ function DropDown({ activeIndex, items, label, header, onChange, width }) {
               css={`
                 padding: ${1.5 * GU}px ${2 * GU}px ${1.25 * GU}px;
                 ${textStyle('label2')};
+                ${unselectable};
               `}
             >
               {header}
