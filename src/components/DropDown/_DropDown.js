@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useRef, useEffect, useCallback } from 'react'
 import PropTypes from 'prop-types'
 import { Button, ButtonBase, Popover } from '../'
 import { IconDown } from '../../icons'
@@ -6,29 +6,35 @@ import { GU, RADIUS, textStyle } from '../../style'
 import { useTheme } from '../../theme'
 import { unselectable } from '../../utils'
 
-function useDropDown({ items, activeIndex, onChange, label }) {
+function useDropDown({ items, selected, onChange, label }) {
   const containerRef = useRef()
   const [selectedLabel, setSelectedLabel] = useState(label)
   const [opened, setOpened] = useState(false)
-  const handleClose = () => {
+  const handleClose = useCallback(() => {
     // if the popover is opened and the user clicks on the button
     // this handler was being called before the click handler, so the
     // click handler was re-opening the popover, by having this on the
     // next tick things happen in order.
     setTimeout(() => setOpened(false), 10)
-  }
-  const handleToggle = () => setOpened(!opened)
-  const handleChange = index => () => {
-    onChange(index)
-    handleClose()
-  }
+  }, [setOpened])
+  const handleToggle = useCallback(() => setOpened(!opened), [
+    setOpened,
+    opened,
+  ])
+  const handleChange = useCallback(
+    index => () => {
+      onChange(index)
+      handleClose()
+    },
+    [onChange, handleClose]
+  )
 
   useEffect(() => {
-    if (activeIndex === -1 || !items[activeIndex]) {
+    if (selected === -1 || !items[selected]) {
       return
     }
-    setSelectedLabel(items[activeIndex])
-  }, [items, activeIndex])
+    setSelectedLabel(items[selected])
+  }, [items, selected])
 
   return {
     containerRef,
@@ -40,7 +46,13 @@ function useDropDown({ items, activeIndex, onChange, label }) {
   }
 }
 
-function DropDown({ activeIndex, items, label, header, onChange, width }) {
+function DropDown({ selected, items, label, header, onChange, width, active }) {
+  if (active !== null) {
+    console.warn(
+      'The “active” prop is deprecated. Please use “selected” to pass the selected index instead.'
+    )
+  }
+  const selectedIndex = active || selected
   const {
     accent,
     content,
@@ -56,12 +68,12 @@ function DropDown({ activeIndex, items, label, header, onChange, width }) {
     opened,
     selectedLabel,
   } = useDropDown({
-    activeIndex,
+    selectedIndex,
     items,
     label,
     onChange,
   })
-  const closedWithChanges = !opened && activeIndex !== -1
+  const closedWithChanges = !opened && selectedIndex !== -1
 
   return (
     <div ref={containerRef}>
@@ -106,7 +118,7 @@ function DropDown({ activeIndex, items, label, header, onChange, width }) {
             color: ${surfaceContentSecondary};
           `}
         >
-          {!!header && (
+          {header && (
             <div
               css={`
                 padding: ${1.5 * GU}px ${2 * GU}px ${1.25 * GU}px;
@@ -143,7 +155,7 @@ function DropDown({ activeIndex, items, label, header, onChange, width }) {
                         `border-top-left-radius: ${RADIUS}px;`}
                       ${index === items.length - 1 &&
                         `border-bottom-left-radius: ${RADIUS}px;`}
-                      ${activeIndex === index &&
+                      ${selectedIndex === index &&
                         `
                           border-left: 2px solid ${accent};
                           background: ${surfaceSelected};
@@ -167,11 +179,12 @@ function DropDown({ activeIndex, items, label, header, onChange, width }) {
 }
 
 DropDown.propTypes = {
-  activeIndex: PropTypes.number.isRequired,
+  active: PropTypes.number,
+  header: PropTypes.string,
   items: PropTypes.array.isRequired,
   label: PropTypes.string.isRequired,
-  header: PropTypes.string,
   onChange: PropTypes.func.isRequired,
+  selected: PropTypes.number.isRequired,
   width: PropTypes.string,
 }
 
