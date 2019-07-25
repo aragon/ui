@@ -4,7 +4,7 @@ import { Button, ButtonBase, Popover } from '../'
 import { IconDown } from '../../icons'
 import { GU, RADIUS, textStyle } from '../../style'
 import { useTheme } from '../../theme'
-import { unselectable } from '../../utils'
+import { warn, unselectable } from '../../utils'
 
 function useDropDown({ items, selected, onChange, label }) {
   const containerRef = useRef()
@@ -56,10 +56,11 @@ const DropDown = React.memo(function DropDown({
   selected,
   width,
 }) {
-  if (active !== undefined) {
-    console.warn(
+  if (active !== undefined && !DropDown._warned) {
+    warn(
       'The “active” prop is deprecated. Please use “selected” to pass the selected index instead.'
     )
+    DropDown._warned = true
   }
   const selectedIndex = active || selected
   const theme = useTheme()
