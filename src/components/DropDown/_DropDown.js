@@ -154,7 +154,7 @@ function DropDown({ selected, items, label, header, onChange, width, active }) {
 DropDown.propTypes = {
   active: PropTypes.number,
   header: PropTypes.node,
-  items: PropTypes.array.isRequired,
+  items: PropTypes.arrayOf(PropTypes.node).isRequired,
   label: PropTypes.string,
   onChange: PropTypes.func.isRequired,
   selected: PropTypes.number.isRequired,
