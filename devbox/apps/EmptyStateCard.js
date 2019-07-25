@@ -5,7 +5,15 @@ import { Button, EmptyStateCard, Text, theme, IconBlank } from '@aragon/ui'
 class App extends React.Component {
   render() {
     const text = 'You seem to not have any content on your wall.'
-    const icon = <IconBlank width={40} height={40} />
+    const icon = (
+      <IconBlank
+        css={`
+          margin: auto;
+          width: 100px;
+          height: auto;
+        `}
+      />
+    )
     const button = (
       <Button mode="secondary" style={{ width: '150px' }}>
         Custom button
@@ -15,24 +23,16 @@ class App extends React.Component {
       <Main>
         <Items>
           <Item>
-            <EmptyStateCard />
-          </Item>
-          <Item>
-            <EmptyStateCard text={text} icon={icon} action={button} />
-          </Item>
-          <Item>
             <EmptyStateCard
               text={text}
-              icon={() => icon}
-              actionText="Click me"
-              actionButton={Button}
+              icon={icon}
+              actionButton={true}
+              actionText="Text for button"
+              onClick={() => console.log('Click on button')}
             />
           </Item>
           <Item>
-            <EmptyStateCard icon={() => icon} actionText="Click me" />
-          </Item>
-          <Item>
-            <EmptyStateCard icon={() => icon} />
+            <EmptyStateCard text={text} icon={icon} />
           </Item>
         </Items>
       </Main>
