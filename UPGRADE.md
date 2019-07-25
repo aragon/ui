@@ -57,3 +57,8 @@ Support for the `onSelect` prop has been removed. Please use `onChange` instead.
 ## fonts() vs. textStyle()
 
 `fonts()` is now deprecated: `textStyle()` should be used instead.
+
+## Table
+
+If you were using the `Table` component, you might want to switch to
+`DataView`: it does what `Table` was doing and much more.
