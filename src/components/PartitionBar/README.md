@@ -29,46 +29,37 @@ const App = () => <PartitionBar data={data} />
 
 ### `data`
 
-* Type: `Array of Objects`
-* Subtypes: 
-####
-`name` / Type: `String` (Required) 
-####
-`percentage` / Type: `Number` (Required)
+- Type: `Array of Objects`
+- Subtypes:
+  - `name` / Type: `String` (Required)
+  - `percentage` / Type: `Number` (Required)
 
 The `data` attribute is an Array with two subtypes: `name` and `percentage`.
 
-
 ### `colors`
 
-* Type: `Array of Strings`
-* Default: [
-  '#000000',
-  '#57666F',
-  '#028CD1',
-  '#21AAE7',
-  '#39CAD0',
-  '#ADE9EC',
-  '#80AEDC',
-]
+- Type: `Array of Strings`
+- Default: `[ '#000000', '#57666F', '#028CD1', '#21AAE7', '#39CAD0', '#ADE9EC', '#80AEDC' ]`
 
 Defines the colors to be used by each item in data's Array.
 
-
 ### `caption`
 
-* Type: `Function`
-* Default: 
-``` jsx 
-({ name, bullet, percentage }) => (
-  <React.Fragment>
-    <DefaultItem>
-      {bullet}
-      <Text title={name} color={theme.textSecondary}>
-        {name}
-      </Text>
-    </DefaultItem>
-    <Percentage>{percentage}%</Percentage>
-  </React.Fragment>
-)
+- Type: `Function`
+- Default:
+
+```jsx
+function({ name, bullet, percentage }) {
+  return (
+    <React.Fragment>
+      <DefaultItem>
+        {bullet}
+        <Text title={name} color={theme.textSecondary}>
+          {name}
+        </Text>
+      </DefaultItem>
+      <Percentage>{percentage}%</Percentage>
+    </React.Fragment>
+  )
+}
 ```
