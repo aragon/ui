@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useCallback } from 'react'
+import React, { useState, useRef, useEffect, useCallback, useMemo } from 'react'
 import PropTypes from 'prop-types'
 import { Button, ButtonBase, Popover } from '../'
 import { IconDown } from '../../icons'
@@ -67,7 +67,16 @@ const DropDown = React.memo(function DropDown({
     DropDown._warned = true
   }
 
-  const selectedIndex = active !== undefined ? active : selected
+  const selectedIndex = useMemo(() => {
+    if (active !== undefined) {
+      return active
+    }
+    if (selected !== undefined) {
+      return selected
+    }
+    return -1
+  }, [active, selected])
+
   const theme = useTheme()
 
   const {
