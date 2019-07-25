@@ -165,13 +165,15 @@ const DropDown = React.memo(function DropDown({
 })
 
 DropDown.propTypes = {
-  active: PropTypes.number,
   header: PropTypes.node,
   items: PropTypes.arrayOf(PropTypes.node).isRequired,
   label: PropTypes.string,
   onChange: PropTypes.func.isRequired,
-  selected: PropTypes.number.isRequired,
+  selected: PropTypes.number,
   width: PropTypes.string,
+
+  // deprecated
+  active: PropTypes.number,
 }
 
 DropDown.defaultProps = {
