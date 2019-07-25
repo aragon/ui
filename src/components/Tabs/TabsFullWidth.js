@@ -82,6 +82,7 @@ function TabsFullWidth({ items, selected, onChange }) {
             border-style: solid;
             border-color: ${theme.border};
             border-width: 1px 0;
+            border-radius: 0;
             ${textStyle('body2')};
             &:active {
               background: ${theme.surfacePressed};
