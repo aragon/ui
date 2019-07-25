@@ -17,7 +17,7 @@ function prepareEntries(entries, from, to, selectedIndexes) {
   })
 }
 
-function renderFields(fields) {
+function prepareFields(fields) {
   return fields.map((fieldFromProps, index, fields) => {
     // Convert non-object fields (e.g. a simple string) into objects
     const field =
@@ -123,7 +123,6 @@ function useSelection(entries, onSelectEntries) {
 }
 
 const DataView = React.memo(function DataView({
-  alignChildOnField,
   page,
   currentPage,
   entries,
@@ -193,13 +192,15 @@ const DataView = React.memo(function DataView({
     selectedIndexes
   )
 
-  const renderedFields = renderFields(fields)
+  const preparedFields = prepareFields(fields)
   const renderedEntries = renderEntries(displayedEntries, {
     fields,
     renderEntry,
     renderEntryActions,
     renderEntryChild,
   })
+
+  const alignChildOnField = fields.findIndex(field => field.childStart)
 
   const listMode =
     mode === 'list' || (mode !== 'table' && layoutName === 'small')
@@ -232,7 +233,7 @@ const DataView = React.memo(function DataView({
         <ListView
           allSelected={allSelected}
           entries={renderedEntries}
-          fields={renderedFields}
+          fields={preparedFields}
           hasAnyChild={hasAnyChild}
           onSelect={toggleEntry}
           onSelectAll={selectAll}
@@ -246,7 +247,7 @@ const DataView = React.memo(function DataView({
             fields.length - 1
           )}
           entries={renderedEntries}
-          fields={renderedFields}
+          fields={preparedFields}
           hasAnyActions={hasAnyActions}
           hasAnyChild={hasAnyChild}
           onSelect={toggleEntry}
@@ -298,7 +299,6 @@ DataView.propTypes = {
 }
 
 DataView.defaultProps = {
-  alignChildOnField: -1,
   entriesPerPage: 10,
   mode: 'adaptive',
   onPageChange: noop,

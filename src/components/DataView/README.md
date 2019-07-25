@@ -45,6 +45,19 @@ An object form exist, allowing to set additional settings:
 />
 ```
 
+#### field.label
+
+The content displayed for the field.
+
+#### field.priority
+
+Set this to any number to set the field priority (list mode only).
+
+#### field.childStart
+
+Set this to `true` on the field you want the child content to be aligned (table
+mode only). See `renderEntryChild()` for more details.
+
 ### entries
 
 | Type    | Default value   |
@@ -271,14 +284,6 @@ Renders the child content of a given entry.
 It can return either an array, that will be displayed as individual rows, or a React node directly for a simple container. Return `null` if the entry doesn’t have any child content.
 
 The child content can also be aligned on a specific column in table mode, see `alignChildOnField`.
-
-### alignChildOnField
-
-| Type     | Default value |
-| -------- | ------------- |
-| `Number` | `0`           |
-
-Set this to the field index on which you want to align the child content. See `renderEntryChild()`.
 
 ### renderSelectionCount(count)
 
