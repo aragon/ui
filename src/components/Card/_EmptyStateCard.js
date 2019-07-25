@@ -6,10 +6,11 @@ import { GU, textStyle } from '../../style'
 import { useTheme } from '../../theme'
 
 const EmptyStateCard = React.memo(function EmptyStateCard({
-  icon,
-  text,
+  actionButton,
   actionText,
+  icon,
   onClick,
+  text,
 }) {
   const theme = useTheme()
 
@@ -32,18 +33,21 @@ const EmptyStateCard = React.memo(function EmptyStateCard({
       >
         {text}
       </span>
-      <Button onClick={onClick} wide mode="strong">
-        {actionText}
-      </Button>
+      {actionButton && (
+        <Button onClick={onClick} wide mode="strong">
+          {actionText}
+        </Button>
+      )}
     </Card>
   )
 })
 
 EmptyStateCard.propTypes = {
+  actionButton: PropTypes.bool,
   actionText: PropTypes.string,
-  icon: PropTypes.oneOfType([PropTypes.element, PropTypes._component]),
+  icon: PropTypes.node.isRequired,
   onClick: PropTypes.func.isRequired,
-  text: PropTypes.string,
+  text: PropTypes.node,
 }
 
 export default EmptyStateCard
