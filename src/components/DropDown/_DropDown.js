@@ -47,19 +47,13 @@ function useDropDown({ items, selected, onChange, label }) {
 }
 
 function DropDown({ selected, items, label, header, onChange, width, active }) {
-  if (active !== null) {
+  if (active !== undefined) {
     console.warn(
       'The “active” prop is deprecated. Please use “selected” to pass the selected index instead.'
     )
   }
   const selectedIndex = active || selected
-  const {
-    accent,
-    content,
-    surfaceContentSecondary,
-    surfacePressed,
-    surfaceSelected,
-  } = useTheme()
+  const theme = useTheme()
   const {
     containerRef,
     handleChange,
@@ -86,12 +80,12 @@ function DropDown({ selected, items, label, header, onChange, width, active }) {
           padding: 0 ${2 * GU}px;
           width: ${width};
           min-width: unset;
-          ${closedWithChanges ? `border: 1px solid ${accent}` : ''}
+          ${closedWithChanges ? `border: 1px solid ${theme.accent}` : ''}
         `}
       >
         <span
           css={`
-            color: ${content};
+            color: ${theme.content};
             ${textStyle('body2')};
           `}
         >
@@ -102,7 +96,7 @@ function DropDown({ selected, items, label, header, onChange, width, active }) {
           css={`
             transition: transform 0.3s;
             transform: rotate3d(0, 0, 1, ${opened ? 180 : 0}deg);
-            ${closedWithChanges ? `color: ${accent}` : ''}
+            ${closedWithChanges ? `color: ${theme.accent}` : ''}
           `}
         />
       </Button>
@@ -115,7 +109,7 @@ function DropDown({ selected, items, label, header, onChange, width, active }) {
         <div
           css={`
             width: calc(${width} - 2px);
-            color: ${surfaceContentSecondary};
+            color: ${theme.surfaceContentSecondary};
           `}
         >
           {header && (
@@ -148,7 +142,7 @@ function DropDown({ selected, items, label, header, onChange, width, active }) {
                       text-align: left;
                       padding: ${1.25 * GU}px ${2 * GU}px;
                       border-radius: 0;
-                      color: ${content};
+                      color: ${theme.content};
                       ${textStyle('body2')};
                       ${!header &&
                         index === 0 &&
@@ -157,12 +151,12 @@ function DropDown({ selected, items, label, header, onChange, width, active }) {
                         `border-bottom-left-radius: ${RADIUS}px;`}
                       ${selectedIndex === index &&
                         `
-                          border-left: 2px solid ${accent};
-                          background: ${surfaceSelected};
+                          border-left: 2px solid ${theme.accent};
+                          background: ${theme.surfaceSelected};
                         `}
 
                       &:active {
-                        background: ${surfacePressed};
+                        background: ${theme.surfacePressed};
                       }
                     `}
                   >
