@@ -57,13 +57,14 @@ function ListView({
                   width: ${6.5 * GU}px;
                 `}
               >
-                {selectable ? (
+                {selectable && (
                   <Select
                     index={entry.index}
                     selected={entry.selected}
                     onSelect={onSelect}
                   />
-                ) : (
+                )}
+                {!selectable && hasChildren && (
                   <ToggleButton
                     opened={entry.index === opened}
                     onClick={() => toggleEntry(entry.index)}
@@ -116,6 +117,7 @@ function ListView({
                     >
                       {label}
                     </div>
+
                     <div>{content}</div>
                   </div>
                 ))}
