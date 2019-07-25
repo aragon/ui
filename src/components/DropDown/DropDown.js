@@ -7,7 +7,7 @@ import { useTheme } from '../../theme'
 import { warn, unselectable } from '../../utils'
 
 function useDropDown({ items, selected, onChange, label }) {
-  const containerRef = useRef()
+  const buttonRef = useRef()
   const [selectedLabel, setSelectedLabel] = useState(label)
   const [opened, setOpened] = useState(false)
   const handleClose = useCallback(() => {
@@ -38,7 +38,7 @@ function useDropDown({ items, selected, onChange, label }) {
   }, [items, selected, setSelectedLabel])
 
   return {
-    containerRef,
+    buttonRef,
     handleChange,
     handleClose,
     handleToggle,
@@ -67,7 +67,7 @@ const DropDown = React.memo(function DropDown({
   const theme = useTheme()
 
   const {
-    containerRef,
+    buttonRef,
     handleChange,
     handleClose,
     handleToggle,
@@ -82,11 +82,12 @@ const DropDown = React.memo(function DropDown({
   const closedWithChanges = !opened && selectedIndex !== -1
 
   return (
-    <div ref={containerRef}>
+    <React.Fragment>
       <Button
+        ref={buttonRef}
         onClick={handleToggle}
         css={`
-          display: flex;
+          display: inline-flex;
           justify-content: space-between;
           align-items: center;
           padding: 0 ${2 * GU}px;
@@ -116,7 +117,7 @@ const DropDown = React.memo(function DropDown({
       <Popover
         visible={opened}
         onClose={handleClose}
-        opener={containerRef.current}
+        opener={buttonRef.current}
         placement="bottom-start"
       >
         <div
@@ -160,7 +161,7 @@ const DropDown = React.memo(function DropDown({
           </ul>
         </div>
       </Popover>
-    </div>
+    </React.Fragment>
   )
 })
 
@@ -203,6 +204,7 @@ const Item = React.memo(function Item({
           padding: ${1.25 * GU}px ${2 * GU}px;
           border-radius: 0;
           color: ${theme.content};
+
           ${textStyle('body2')};
           ${!header && index === 0 && `border-top-left-radius: ${RADIUS}px;`}
           ${index === length - 1 && `border-bottom-left-radius: ${RADIUS}px;`}
