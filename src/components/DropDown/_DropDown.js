@@ -25,8 +25,9 @@ function useDropDown({ items, selected, onChange, label }) {
     index => {
       onChange(index)
       handleClose()
+      setSelectedLabel(items[index])
     },
-    [onChange, handleClose]
+    [onChange, handleClose, items, setSelectedLabel]
   )
 
   useEffect(() => {
@@ -34,7 +35,7 @@ function useDropDown({ items, selected, onChange, label }) {
       return
     }
     setSelectedLabel(items[selected])
-  }, [items, selected])
+  }, [items, selected, setSelectedLabel])
 
   return {
     containerRef,
@@ -46,7 +47,15 @@ function useDropDown({ items, selected, onChange, label }) {
   }
 }
 
-function DropDown({ selected, items, label, header, onChange, width, active }) {
+const DropDown = React.memo(function DropDown({
+  active,
+  header,
+  items,
+  label,
+  onChange,
+  selected,
+  width,
+}) {
   if (active !== undefined) {
     console.warn(
       'The “active” prop is deprecated. Please use “selected” to pass the selected index instead.'
@@ -149,7 +158,7 @@ function DropDown({ selected, items, label, header, onChange, width, active }) {
       </Popover>
     </div>
   )
-}
+})
 
 DropDown.propTypes = {
   active: PropTypes.number,
@@ -165,7 +174,15 @@ DropDown.defaultProps = {
   label: 'Select an item',
 }
 
-function Item({ item, length, index, theme, onClick, header, selected }) {
+const Item = React.memo(function Item({
+  header,
+  index,
+  item,
+  length,
+  onClick,
+  selected,
+  theme,
+}) {
   const handleClick = useCallback(() => {
     onClick(index)
   }, [index, onClick])
@@ -198,7 +215,7 @@ function Item({ item, length, index, theme, onClick, header, selected }) {
       </ButtonBase>
     </li>
   )
-}
+})
 
 Item.propTypes = {
   header: PropTypes.node,
