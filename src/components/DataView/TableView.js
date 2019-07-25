@@ -168,7 +168,7 @@ function TableView({
             />
             {hasChildren && (
               <EntryChildren
-                alignChildonCell={alignChildOnField + 1}
+                alignChildOnCell={alignChildOnField + 1}
                 cellsCount={cells.length}
                 entry={entry}
                 opened={opened}
@@ -254,7 +254,6 @@ function EntryRow({ cells, selected, rowHeight }) {
     >
       {cells.map(([content, align, compact], index, cells) => {
         const first = index === 0
-        const last = index === cells.length - 1
         return (
           <td
             key={index}
@@ -285,7 +284,7 @@ function EntryRow({ cells, selected, rowHeight }) {
 }
 
 function EntryChildren({
-  alignChildonCell,
+  alignChildOnCell,
   cellsCount,
   entry,
   opened,
@@ -314,8 +313,8 @@ function EntryChildren({
               }
             `}
           >
-            {alignChildonCell > 0 && (
-              <td colSpan={alignChildonCell}>
+            {alignChildOnCell > 0 && (
+              <td colSpan={alignChildOnCell}>
                 <OpenedSurfaceBorder opened={opened} />
                 <animated.div
                   css={`
@@ -340,9 +339,9 @@ function EntryChildren({
             )}
             <td
               colSpan={
-                alignChildonCell === -1
+                alignChildOnCell === -1
                   ? cellsCount
-                  : cellsCount - alignChildonCell
+                  : cellsCount - alignChildOnCell
               }
             >
               <animated.div
@@ -361,7 +360,7 @@ function EntryChildren({
                       display: flex;
                       align-items: center;
                       height: ${rowHeight}px;
-                      padding-left: ${alignChildonCell < 1 ? 3 * GU : 0}px;
+                      padding-left: ${alignChildOnCell < 1 ? 3 * GU : 0}px;
                       padding-right: ${3 * GU}px;
                       border-top: 1px solid ${theme.border};
                     `}

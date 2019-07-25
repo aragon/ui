@@ -279,7 +279,6 @@ const DataView = React.memo(function DataView({
 })
 
 DataView.propTypes = {
-  alignChildOnField: PropTypes.number,
   page: PropTypes.number,
   entries: PropTypes.array.isRequired,
   entriesPerPage: PropTypes.number,
