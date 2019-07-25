@@ -265,7 +265,7 @@ function EntryRow({ cells, selected, rowHeight }) {
               padding-top: 0;
               padding-bottom: 0;
               padding-left: ${first || compact ? sidePadding : 0}px;
-              padding-right: ${last || compact ? sidePadding : 0}px;
+              padding-right: ${!first || compact ? sidePadding : 0}px;
               border-top: 1px solid ${theme.border};
             `}
           >
