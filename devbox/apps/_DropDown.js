@@ -18,7 +18,7 @@ class App extends React.Component {
             items={items}
             label="Which fruit?"
             header="Fruits"
-            activeIndex={active}
+            selected={active}
             onChange={this.handleChange}
             width="400px"
           />
