@@ -109,4 +109,5 @@ Button.Anchor = React.forwardRef((props, ref) => (
   <Button ref={ref} as={SafeLink} {...props} />
 ))
 
+export { Button }
 export default Button
