@@ -9,7 +9,6 @@ import { EmptyStateCard, IconHome } from '@aragon/ui'
 
 const App = () => (
   <EmptyStateCard
-    actionText="Create a new post!"
     text="You seem to not have any content on your wall."
     icon={() => <IconHome color="blue" />}
   />
@@ -17,21 +16,6 @@ const App = () => (
 ```
 
 ## Props
-
-### `title`
-
-- Type: `String`
-- Default: `"Nothing here."`
-
-Set a title for your EmptyStateCard.
-
-#### Example:
-
-```jsx
-const App = () => (
-  <EmptyStateCard title="Oops, no content here!" />
-)
-```
 
 ### `text`
 
@@ -61,25 +45,17 @@ const App = () => (
 )
 ```
 
-#### Example:
-
-```jsx
-const App = () => (
-  <EmptyStateCard actionButton={MyButton} />
-)
-```
-
-### `actionDisabled`
+### `actionButton`
 
 - Type: `Boolean`
 
-Disable the `actionButton`.
+When `true` a button is rendered.
 
 #### Example:
 
 ```jsx
 const App = () => (
-  <EmptyStateCard actionDsiabled />
+  <EmptyStateCard actionButton={true} />
 )
 ```
 
@@ -97,7 +73,7 @@ const App = () => (
 )
 ```
 
-### `onActivate`
+### `onClick`
 
 - Type: `Function`
 
@@ -107,22 +83,6 @@ This will be called when the EmptyStateCard's action button is clicked.
 
 ```jsx
 const App = () => (
-  <EmptyStateCard onActivate={() => {console.log('The action button was clicked!')}} />
-)
-```
-
-### `action`
-
-- Type: `Node`
-
-Use this prop to override the button used for the main action of
-EmptyStateCard. Setting this prop makes the value of `actionDisabled`,
-`actionText` or `onActivate` ignored.
-
-#### Example:
-
-```jsx
-const App = () => (
-  <EmptyStateCard action={<Button mode='secondary'>Click me</Button>} />
+  <EmptyStateCard onClick={() => {console.log('The action button was clicked!')}} />
 )
 ```
