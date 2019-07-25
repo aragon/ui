@@ -16,6 +16,10 @@ function useDropDown({ items, selected, onChange, label }) {
     // click handler was re-opening the popover, by having this on the
     // next tick things happen in order.
     setTimeout(() => setOpened(false), 10)
+
+    if (buttonRef.current) {
+      buttonRef.current.focus()
+    }
   }, [setOpened])
   const handleToggle = useCallback(() => setOpened(!opened), [
     setOpened,
