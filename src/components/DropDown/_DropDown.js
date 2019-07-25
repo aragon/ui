@@ -22,7 +22,7 @@ function useDropDown({ items, selected, onChange, label }) {
     opened,
   ])
   const handleChange = useCallback(
-    index => () => {
+    index => {
       onChange(index)
       handleClose()
     },
@@ -131,38 +131,17 @@ function DropDown({ selected, items, label, header, onChange, width, active }) {
             `}
           >
             {items.map((item, index) => {
-              const handleChangeWithIndex = handleChange(index)
-
               return (
-                <li key={item}>
-                  <ButtonBase
-                    onClick={handleChangeWithIndex}
-                    css={`
-                      width: 100%;
-                      text-align: left;
-                      padding: ${1.25 * GU}px ${2 * GU}px;
-                      border-radius: 0;
-                      color: ${theme.content};
-                      ${textStyle('body2')};
-                      ${!header &&
-                        index === 0 &&
-                        `border-top-left-radius: ${RADIUS}px;`}
-                      ${index === items.length - 1 &&
-                        `border-bottom-left-radius: ${RADIUS}px;`}
-                      ${selectedIndex === index &&
-                        `
-                          border-left: 2px solid ${theme.accent};
-                          background: ${theme.surfaceSelected};
-                        `}
-
-                      &:active {
-                        background: ${theme.surfacePressed};
-                      }
-                    `}
-                  >
-                    {item}
-                  </ButtonBase>
-                </li>
+                <Item
+                  key={index}
+                  index={index}
+                  onClick={handleChange}
+                  theme={theme}
+                  item={item}
+                  header={header}
+                  length={items.length}
+                  selected={selectedIndex}
+                />
               )
             })}
           </ul>
@@ -174,12 +153,61 @@ function DropDown({ selected, items, label, header, onChange, width, active }) {
 
 DropDown.propTypes = {
   active: PropTypes.number,
-  header: PropTypes.string,
+  header: PropTypes.node,
   items: PropTypes.array.isRequired,
-  label: PropTypes.string.isRequired,
+  label: PropTypes.string,
   onChange: PropTypes.func.isRequired,
   selected: PropTypes.number.isRequired,
   width: PropTypes.string,
+}
+
+DropDown.defaultProps = {
+  label: 'Select an item',
+}
+
+function Item({ item, length, index, theme, onClick, header, selected }) {
+  const handleClick = useCallback(() => {
+    onClick(index)
+  }, [index, onClick])
+
+  return (
+    <li>
+      <ButtonBase
+        onClick={handleClick}
+        css={`
+          width: 100%;
+          text-align: left;
+          padding: ${1.25 * GU}px ${2 * GU}px;
+          border-radius: 0;
+          color: ${theme.content};
+          ${textStyle('body2')};
+          ${!header && index === 0 && `border-top-left-radius: ${RADIUS}px;`}
+          ${index === length - 1 && `border-bottom-left-radius: ${RADIUS}px;`}
+          ${selected === index &&
+            `
+              border-left: 2px solid ${theme.accent};
+              background: ${theme.surfaceSelected};
+            `}
+
+          &:active {
+            background: ${theme.surfacePressed};
+          }
+        `}
+      >
+        {item}
+      </ButtonBase>
+    </li>
+  )
+}
+
+Item.propTypes = {
+  header: PropTypes.node,
+  index: PropTypes.number.isRequired,
+  item: PropTypes.node.isRequired,
+  length: PropTypes.number.isRequired,
+  onClick: PropTypes.func.isRequired,
+  selected: PropTypes.number.isRequired,
+  theme: PropTypes.object.isRequired,
 }
 
 export default DropDown
