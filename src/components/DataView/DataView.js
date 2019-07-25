@@ -124,6 +124,7 @@ function useSelection(entries, onSelectEntries) {
 
 const DataView = React.memo(function DataView({
   alignChildOnField,
+  page,
   currentPage,
   entries,
   entriesPerPage,
@@ -145,6 +146,31 @@ const DataView = React.memo(function DataView({
     )
   }
 
+  if (currentPage !== undefined) {
+    throw new Error('DataView: please use `page` instead of `currentPage`.')
+  }
+
+  // Only used if currentPage is not passed. The pagination supports both a
+  // managed and a controlled mode, to provide a better developer experience
+  // out of the box.
+  const [pageManaged, setPageManaged] = useState(0)
+
+  const handlePageChange = useCallback(
+    newPage => {
+      // Managed state
+      if (page === undefined) {
+        console.log('SET', newPage)
+        setPageManaged(newPage)
+      }
+
+      // Useful even to notify, even in managed mode
+      onPageChange(newPage)
+    },
+    [onPageChange, page]
+  )
+
+  const selectedPage = page === undefined ? pageManaged : page
+
   const theme = useTheme()
   const { name: layoutName } = useLayout()
   const { allSelected, selectAll, toggleEntry, selectedIndexes } = useSelection(
@@ -158,7 +184,7 @@ const DataView = React.memo(function DataView({
 
   const pages = Math.ceil(entries.length / entriesPerPage)
 
-  const displayFrom = entriesPerPage * currentPage
+  const displayFrom = entriesPerPage * selectedPage
   const displayTo = displayFrom + entriesPerPage
   const displayedEntries = prepareEntries(
     entries,
@@ -241,8 +267,8 @@ const DataView = React.memo(function DataView({
         >
           <Pagination
             pages={pages}
-            selected={currentPage}
-            onChange={onPageChange}
+            selected={selectedPage}
+            onChange={handlePageChange}
             touchMode={layoutName === 'small'}
           />
         </div>
@@ -253,7 +279,7 @@ const DataView = React.memo(function DataView({
 
 DataView.propTypes = {
   alignChildOnField: PropTypes.number,
-  currentPage: PropTypes.number,
+  page: PropTypes.number,
   entries: PropTypes.array.isRequired,
   entriesPerPage: PropTypes.number,
   fields: PropTypes.array,
@@ -266,11 +292,13 @@ DataView.propTypes = {
   renderEntryChild: PropTypes.func,
   renderSelectionCount: PropTypes.func,
   tableRowHeight: PropTypes.number,
+
+  // deprecated
+  currentPage: PropTypes.number,
 }
 
 DataView.defaultProps = {
   alignChildOnField: -1,
-  currentPage: 0,
   entriesPerPage: 10,
   mode: 'adaptive',
   onPageChange: noop,
