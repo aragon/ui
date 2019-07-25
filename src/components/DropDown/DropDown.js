@@ -62,8 +62,10 @@ const DropDown = React.memo(function DropDown({
     )
     DropDown._warned = true
   }
-  const selectedIndex = active || selected
+
+  const selectedIndex = active !== undefined ? active : selected
   const theme = useTheme()
+
   const {
     containerRef,
     handleChange,
