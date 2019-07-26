@@ -25,7 +25,9 @@ function Card({ children, width, height, onClick, ...props }) {
   const insideCardLayout = useInsideCardLayout()
   const interactive = Boolean(onClick)
 
-  const interactiveProps = interactive ? { role: 'button', tabIndex: '0' } : {}
+  const interactiveProps = interactive
+    ? { role: 'button', tabIndex: '0', onClick }
+    : {}
 
   return (
     <FocusVisible>
