@@ -1,6 +1,8 @@
 import React, { useState, useRef, useEffect, useCallback, useMemo } from 'react'
 import PropTypes from 'prop-types'
-import { Button, ButtonBase, Popover } from '../'
+import { Button } from '../Button/Button'
+import { ButtonBase } from '../Button/ButtonBase'
+import Popover from '../Popover/Popover'
 import { IconDown } from '../../icons'
 import { GU, RADIUS, textStyle } from '../../style'
 import { useTheme } from '../../theme'
@@ -87,7 +89,7 @@ const DropDown = React.memo(function DropDown({
     opened,
     selectedLabel,
   } = useDropDown({
-    selectedIndex,
+    selected,
     items,
     label,
     onChange,
