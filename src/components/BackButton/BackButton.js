@@ -5,7 +5,7 @@ import { useTheme } from '../../theme'
 import { ButtonBase } from '../Button/ButtonBase'
 import { Bar, useInsideBar } from '../Bar/Bar'
 
-function BackButton({ label }) {
+function BackButton({ label, ...props }) {
   const theme = useTheme()
   const { insideBarPrimary } = useInsideBar()
   return (
@@ -22,6 +22,7 @@ function BackButton({ label }) {
           background: ${theme.surfaceHighlight};
         }
       `}
+      {...props}
     >
       <span
         css={`
