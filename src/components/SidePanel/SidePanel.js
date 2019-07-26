@@ -29,7 +29,7 @@ class SidePanel extends React.PureComponent {
     this.props.onTransitionEnd(this.props.opened)
   }
   renderIn = ({ progress }) => {
-    const { children, title, opened, blocking } = this.props
+    const { children, render, title, opened, blocking } = this.props
 
     return (
       <Main opened={opened}>
@@ -60,7 +60,7 @@ class SidePanel extends React.PureComponent {
             )}
           </PanelHeader>
           <PanelScrollView>
-            <PanelContent>{children}</PanelContent>
+            <PanelContent>{render ? render(opened) : children}</PanelContent>
           </PanelScrollView>
         </Panel>
       </Main>
@@ -89,6 +89,7 @@ SidePanel.propTypes = {
   blocking: PropTypes.bool,
   onClose: PropTypes.func,
   onTransitionEnd: PropTypes.func,
+  render: PropTypes.func,
 }
 
 SidePanel.defaultProps = {
