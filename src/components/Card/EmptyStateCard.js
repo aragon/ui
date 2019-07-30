@@ -21,8 +21,9 @@ const EmptyStateCard = React.memo(function EmptyStateCard({
         css={`
           display: grid;
           grid-template-columns: 1fr;
-          grid-template-rows: auto 1fr auto;
-          padding: ${2.5 * GU}px ${2 * GU}px ${2 * GU}px;
+          grid-template-rows: ${20 * GU}px 1fr auto;
+          height: ${42 * GU}px;
+          padding: ${2 * GU}px;
           text-align: center;
         `}
       >
