@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Button } from '../Button/Button'
+import { IconBlank } from '../../icons'
 import { GU, textStyle } from '../../style'
 import { Inside, warnOnce } from '../../utils'
 import { useTheme } from '../../theme'
@@ -22,6 +23,19 @@ const EmptyStateCard = React.memo(function EmptyStateCard({
     if (illustration === undefined) {
       illustration = icon
     }
+  }
+
+  // To be replaced by a proper empty illustration
+  if (!illustration) {
+    illustration = (
+      <IconBlank
+        width={16 * GU}
+        height={16 * GU}
+        css={`
+          color: ${theme.surfaceIcon};
+        `}
+      />
+    )
   }
 
   return (
