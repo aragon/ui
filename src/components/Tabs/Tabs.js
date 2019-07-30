@@ -171,10 +171,12 @@ function FocusRing() {
 
 export default props => {
   const { layoutName } = useLayout()
-  const inAppBar = useInside('AppBar')
+
+  const insideBar = useInside('Bar')
+  const insideAppBar = useInside('AppBar')
 
   // Use a separate component for Tabs in AppBar, to prevent breaking anything.
-  if (inAppBar) {
+  if (insideAppBar) {
     return <TabBarLegacy {...props} inAppBar />
   }
 
@@ -182,8 +184,14 @@ export default props => {
     return <TabsFullWidth {...props} />
   }
 
+  if (insideBar) {
+    throw new Error(
+      'Tabs cannot be a child of Bar: please use the Tabs component directly.'
+    )
+  }
+
   return (
-    <Bar>
+    <Bar css="overflow: hidden">
       <Tabs {...props} />
     </Bar>
   )
