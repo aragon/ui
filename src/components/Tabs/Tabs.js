@@ -11,7 +11,7 @@ import { unselectable, noop } from '../../utils'
 import { useTheme } from '../../theme'
 import { useLayout } from '../Layout/Layout'
 import { InAppBarContext } from '../AppView/AppBar'
-import { Bar } from '../Bar/Bar'
+import { Bar, useInsideBar } from '../Bar/Bar'
 import TabBarLegacy from './TabBarLegacy'
 import { TabsFullWidth } from './TabsFullWidth'
 
@@ -179,6 +179,7 @@ function FocusRing() {
 export default props => {
   const { layoutName } = useLayout()
   const inAppBar = useContext(InAppBarContext)
+  const { insideBar } = useInsideBar()
 
   // Use a separate component for Tabs in AppBar, to prevent breaking anything.
   if (inAppBar) {
@@ -187,6 +188,12 @@ export default props => {
 
   if (layoutName === 'small') {
     return <TabsFullWidth {...props} />
+  }
+
+  if (insideBar) {
+    throw new Error(
+      'Tabs cannot be a child of Bar: please use the Tabs component directly.'
+    )
   }
 
   return (
