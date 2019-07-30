@@ -197,7 +197,7 @@ export default props => {
   }
 
   return (
-    <Bar>
+    <Bar css="overflow: hidden">
       <Tabs {...props} />
     </Bar>
   )
