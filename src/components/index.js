@@ -1,4 +1,4 @@
-export { Bar, useInsideBar } from './Bar/Bar'
+export { Bar } from './Bar/Bar'
 export { ButtonBase } from './Button/ButtonBase'
 export { DataView } from './DataView/DataView'
 export { DiscButton } from './DiscButton/DiscButton'

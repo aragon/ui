@@ -5,15 +5,13 @@ import { Transition, animated } from 'react-spring'
 import { useTheme } from '../../theme'
 import { PublicUrl } from '../../providers/PublicUrl'
 import { springs } from '../../style'
-import { noop, unselectable } from '../../utils'
+import { noop, unselectable, Inside } from '../../utils'
 import Text from '../Text/Text'
 
 import chevronSvg from './assets/chevron.svg'
 
 // The app bar height includes its border.
 const BAR_HEIGHT = 64
-
-export const InAppBarContext = React.createContext(false)
 
 class AppBar extends React.Component {
   static propTypes = {
@@ -30,9 +28,6 @@ class AppBar extends React.Component {
     padding: 30,
     title: '',
   }
-
-  // Let external components have the possibility to know they are in AppBar
-  static InAppBar = InAppBarContext.Consumer
 
   state = {
     tabsHeight: 0,
@@ -66,7 +61,7 @@ class AppBar extends React.Component {
       ...props
     } = this.props
     return (
-      <InAppBarContext.Provider value={true}>
+      <Inside name="AppBar">
         <div
           css={`
             overflow: hidden;
@@ -156,7 +151,7 @@ class AppBar extends React.Component {
             }
           </Transition>
         </div>
-      </InAppBarContext.Provider>
+      </Inside>
     )
   }
 }

@@ -1,10 +1,12 @@
 import React, { useState, useRef, useEffect, useCallback, useMemo } from 'react'
 import PropTypes from 'prop-types'
-import { Button, ButtonBase, Popover } from '../'
+import { Button } from '../Button/Button'
+import { ButtonBase } from '../Button/ButtonBase'
+import Popover from '../Popover/Popover'
 import { IconDown } from '../../icons'
 import { GU, RADIUS, textStyle } from '../../style'
 import { useTheme } from '../../theme'
-import { warn, unselectable } from '../../utils'
+import { warnOnce, unselectable } from '../../utils'
 
 function useDropDown({ items, selected, onChange, label }) {
   const buttonRef = useRef()
@@ -60,11 +62,11 @@ const DropDown = React.memo(function DropDown({
   selected,
   width,
 }) {
-  if (active !== undefined && !DropDown._warned) {
-    warn(
+  if (active !== undefined) {
+    warnOnce(
+      'DropDown:active',
       'The “active” prop is deprecated. Please use “selected” to pass the selected index instead.'
     )
-    DropDown._warned = true
   }
 
   const selectedIndex = useMemo(() => {
@@ -87,7 +89,7 @@ const DropDown = React.memo(function DropDown({
     opened,
     selectedLabel,
   } = useDropDown({
-    selectedIndex,
+    selected,
     items,
     label,
     onChange,
