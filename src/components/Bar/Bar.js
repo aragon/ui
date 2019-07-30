@@ -1,32 +1,11 @@
-import React, { useContext, useMemo } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import { GU, RADIUS } from '../../style'
+import { Inside } from '../../utils'
 import { useTheme } from '../../theme/Theme'
 import { useLayout } from '../Layout/Layout'
 
 const BAR_PADDING = 2 * GU
-
-const BarContext = React.createContext(false)
-const BarPrimaryContext = React.createContext(false)
-const BarSecondaryContext = React.createContext(false)
-
-// Returns true if a component is declared inside of the Bar tree
-function useInsideBar() {
-  const insideBar = useContext(BarContext)
-  const insideBarPrimary = useContext(BarPrimaryContext)
-  const insideBarSecondary = useContext(BarSecondaryContext)
-
-  const values = useMemo(
-    () => ({
-      insideBar,
-      insideBarPrimary,
-      insideBarSecondary,
-    }),
-    [insideBar, insideBarPrimary, insideBarSecondary]
-  )
-
-  return values
-}
 
 function Bar({ children, primary, secondary, ...props }) {
   const theme = useTheme()
@@ -51,9 +30,7 @@ function Bar({ children, primary, secondary, ...props }) {
           padding-left: ${BAR_PADDING}px;
         `}
       >
-        <BarPrimaryContext.Provider value={true}>
-          {primary}
-        </BarPrimaryContext.Provider>
+        <Inside name="Bar:primary">{primary}</Inside>
       </div>
       <div
         css={`
@@ -63,15 +40,13 @@ function Bar({ children, primary, secondary, ...props }) {
           padding-right: ${BAR_PADDING}px;
         `}
       >
-        <BarSecondaryContext.Provider value={true}>
-          {secondary}
-        </BarSecondaryContext.Provider>
+        <Inside name="Bar:secondary">{secondary}</Inside>
       </div>
     </div>
   )
 
   return (
-    <BarContext.Provider value={true}>
+    <Inside name="Bar">
       <div
         css={`
           border-radius: ${fullScreen ? 0 : RADIUS}px;
@@ -86,7 +61,7 @@ function Bar({ children, primary, secondary, ...props }) {
       >
         {content}
       </div>
-    </BarContext.Provider>
+    </Inside>
   )
 }
 
@@ -98,5 +73,5 @@ Bar.propTypes = {
 
 Bar.PADDING = BAR_PADDING
 
-export { Bar, useInsideBar }
+export { Bar }
 export default Bar
