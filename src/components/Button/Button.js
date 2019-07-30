@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import SafeLink from '../Link/SafeLink'
 import { GU, RADIUS } from '../../style'
 import { useTheme } from '../../theme'
+import { useInside } from '../../utils'
 import { ButtonBase } from './ButtonBase'
 
 function Button({
@@ -21,6 +22,14 @@ function Button({
   if (mode === 'outline') mode = 'normal'
   if (mode === 'secondary') mode = 'normal'
   if (size === 'mini') size = 'small'
+
+  const insideEmptyStateCard = useInside('EmptyStateCard')
+
+  // Always wide + strong when used as an empty state card action
+  if (insideEmptyStateCard) {
+    mode = 'strong'
+    wide = true
+  }
 
   return (
     <ButtonBase
