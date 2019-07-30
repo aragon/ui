@@ -2,13 +2,15 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { RADIUS, GU } from '../../style'
 import { useTheme } from '../../theme'
+import { useInside } from '../../utils'
+import { Bar } from '../Bar/Bar'
 import { ButtonBase } from '../Button/ButtonBase'
-import { Bar, useInsideBar } from '../Bar/Bar'
 import { IconArrowLeft } from '../../icons'
 
 function BackButton({ label, ...props }) {
   const theme = useTheme()
-  const { insideBarPrimary } = useInsideBar()
+  const insideBarPrimary = useInside('Bar:primary')
+
   return (
     <ButtonBase
       focusRingRadius={RADIUS}
