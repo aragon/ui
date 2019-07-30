@@ -28,7 +28,7 @@ function useInsideBar() {
   return values
 }
 
-function Bar({ children, primary, secondary }) {
+function Bar({ children, primary, secondary, ...props }) {
   const theme = useTheme()
   const { layoutName } = useLayout()
 
@@ -74,22 +74,17 @@ function Bar({ children, primary, secondary }) {
     <BarContext.Provider value={true}>
       <div
         css={`
-          padding-bottom: ${2 * GU}px;
+          border-radius: ${fullScreen ? 0 : RADIUS}px;
+          background: ${theme.surface};
+          border-style: solid;
+          border-color: ${theme.border};
+          border-width: ${fullScreen ? '1px 0' : '1px'};
+          height: ${8 * GU}px;
+          margin-bottom: ${2 * GU}px;
         `}
+        {...props}
       >
-        <div
-          css={`
-            border-radius: ${fullScreen ? 0 : RADIUS}px;
-            background: ${theme.surface};
-            border-style: solid;
-            border-color: ${theme.border};
-            border-width: ${fullScreen ? '1px 0' : '1px'};
-            height: ${8 * GU}px;
-            overflow: hidden;
-          `}
-        >
-          {content}
-        </div>
+        {content}
       </div>
     </BarContext.Provider>
   )
