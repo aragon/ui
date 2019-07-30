@@ -14,3 +14,12 @@ export const log = devOnly((...params) => {
 export const warn = devOnly((...params) => {
   console.warn(...params)
 })
+
+// Like warn(), but only once
+const Warned = new Map()
+export const warnOnce = devOnly((domain, ...params) => {
+  if (!Warned.get(domain)) {
+    console.warn(...params)
+    Warned.set(domain, true)
+  }
+})
