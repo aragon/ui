@@ -1,19 +1,28 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Button } from '../Button/Button'
-import Card from './Card'
 import { GU, textStyle } from '../../style'
-import { Inside } from '../../utils'
+import { Inside, warnOnce } from '../../utils'
 import { useTheme } from '../../theme'
+import Card from './Card'
 
 const EmptyStateCard = React.memo(function EmptyStateCard({
-  actionButton,
-  actionText,
+  action,
   icon,
-  onClick,
+  illustration,
   text,
 }) {
   const theme = useTheme()
+
+  if (icon !== undefined) {
+    warnOnce(
+      'EmptyStateCard:icon',
+      'EmptyStateCard: the `icon` prop is deprecated, please use `illustration` instead.'
+    )
+    if (illustration === undefined) {
+      illustration = icon
+    }
+  }
 
   return (
     <Inside name="EmptyStateCard">
@@ -27,31 +36,36 @@ const EmptyStateCard = React.memo(function EmptyStateCard({
           text-align: center;
         `}
       >
-        {icon}
-        <span
+        <div
           css={`
-            color: ${theme.content};
+            display: flex;
+            justify-content: center;
+            overflow: hidden;
+          `}
+        >
+          {illustration}
+        </div>
+        <div
+          css={`
+            color: ${theme.surfaceContent};
             ${textStyle('title4')};
           `}
         >
           {text}
-        </span>
-        {actionButton && (
-          <Button onClick={onClick} wide mode="strong">
-            {actionText}
-          </Button>
-        )}
+        </div>
+        <div>{action}</div>
       </Card>
     </Inside>
   )
 })
 
 EmptyStateCard.propTypes = {
-  actionButton: PropTypes.bool,
-  actionText: PropTypes.string,
-  icon: PropTypes.node.isRequired,
-  onClick: PropTypes.func.isRequired,
-  text: PropTypes.node,
+  action: PropTypes.node,
+  illustration: PropTypes.node,
+  text: PropTypes.node.isRequired,
+
+  // deprecated
+  icon: PropTypes.node,
 }
 
 export default EmptyStateCard
