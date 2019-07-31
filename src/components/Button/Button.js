@@ -1,11 +1,61 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import PropTypes from 'prop-types'
 import SafeLink from '../Link/SafeLink'
 import { GU, RADIUS } from '../../style'
 import { useTheme } from '../../theme'
 import { ButtonBase } from './ButtonBase'
 
-function Button({ children, icon, label, mode, size, innerRef, ...props }) {
+function buttonStyles(mode, theme) {
+  if (mode === 'strong') {
+    return {
+      background: `
+          linear-gradient(
+            130deg,
+            ${theme.accentStart},
+            ${theme.accentEnd}
+          )`,
+      color: theme.accentContent,
+      iconColor: theme.accentContent,
+      border: '0',
+    }
+  }
+
+  if (mode === 'positive') {
+    return {
+      background: theme.positive,
+      color: theme.positiveContent,
+      iconColor: theme.positiveContent,
+      border: '0',
+    }
+  }
+
+  if (mode === 'negative') {
+    return {
+      background: theme.negative,
+      color: theme.negativeContent,
+      iconColor: theme.negativeContent,
+      border: '0',
+    }
+  }
+
+  return {
+    background: theme.surfaceInteractive,
+    color: theme.surfaceContent,
+    border: `1px solid ${theme.border}`,
+    iconColor: theme.surfaceIcon,
+  }
+}
+
+function Button({
+  children,
+  icon,
+  iconOnly,
+  innerRef,
+  label,
+  mode,
+  size,
+  ...props
+}) {
   const theme = useTheme()
 
   // backward compatibility
@@ -13,35 +63,40 @@ function Button({ children, icon, label, mode, size, innerRef, ...props }) {
   if (mode === 'secondary') mode = 'normal'
   if (size === 'mini') size = 'small'
 
+  const { background, color, iconColor, border } = useMemo(
+    () => buttonStyles(mode, theme),
+    [mode, theme]
+  )
+
+  const height = `${(size === 'small' ? 4 : 5) * GU}px`
+  const width = iconOnly ? height : 'auto'
+  const minWidth = `${iconOnly ? 0 : 16 * GU}px`
+
+  if (iconOnly && !props.title) {
+    props.title = label
+  }
+
   return (
     <ButtonBase
       ref={innerRef}
-      focusRingSpacing={0.5 * GU}
+      focusRingSpacing={border === '0' ? 3 : 4}
       focusRingRadius={RADIUS}
       css={`
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        background: ${mode === 'strong'
-          ? `linear-gradient(
-              130deg,
-              ${theme.accentStart},
-              ${theme.accentEnd}
-            )`
-          : theme.surfaceInteractive};
-        color: ${mode === 'strong'
-          ? theme.accentContent
-          : theme.surfaceContent};
-        min-width: ${16 * GU}px;
-        height: ${(size === 'small' ? 4 : 5) * GU}px;
+        background: ${background};
+        color: ${color};
+        min-width: ${minWidth};
+        width: ${width};
+        height: ${height};
         padding: 0 ${3 * GU}px;
         font-size: 16px;
-        border: 1px solid ${mode === 'normal' ? theme.border : 'transparent'};
+        border: ${border};
         box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
         transition-property: transform, box-shadow;
         transition-duration: 50ms;
         transition-timing-function: ease-in-out;
-
         &:active {
           transform: translateY(1px);
           box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.125);
@@ -57,20 +112,20 @@ function Button({ children, icon, label, mode, size, innerRef, ...props }) {
                 position: relative;
                 top: -1px;
                 display: flex;
-                color: ${theme.surfaceIcon};
+                color: ${iconColor};
               `}
             >
               {icon}
             </span>
           )}
-          {icon && label && (
+          {icon && label && !iconOnly && (
             <span
               css={`
                 width: ${1 * GU}px;
               `}
             />
           )}
-          {label}
+          {!iconOnly && label}
         </React.Fragment>
       )}
     </ButtonBase>
@@ -80,16 +135,18 @@ function Button({ children, icon, label, mode, size, innerRef, ...props }) {
 Button.propTypes = {
   children: PropTypes.node,
   icon: PropTypes.node,
-  label: PropTypes.string,
-
+  iconOnly: PropTypes.bool,
+  label: PropTypes.string.isRequired,
   mode: PropTypes.oneOf([
     'normal',
     'strong',
-    'text',
+    'positive',
+    'negative',
 
     // backward compatibility
     'outline',
     'secondary',
+    'text',
   ]),
   size: PropTypes.oneOf([
     'large',
@@ -102,8 +159,9 @@ Button.propTypes = {
 }
 
 Button.defaultProps = {
+  iconOnly: false,
   mode: 'normal',
-  size: 'large',
+  size: 'normal',
 }
 
 const ButtonWithRef = React.forwardRef((props, ref) => (
