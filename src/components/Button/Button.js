@@ -3,9 +3,19 @@ import PropTypes from 'prop-types'
 import SafeLink from '../Link/SafeLink'
 import { GU, RADIUS } from '../../style'
 import { useTheme } from '../../theme'
+import { useInside } from '../../utils'
 import { ButtonBase } from './ButtonBase'
 
-function Button({ children, icon, label, mode, size, innerRef, ...props }) {
+function Button({
+  children,
+  icon,
+  innerRef,
+  label,
+  mode,
+  size,
+  wide,
+  ...props
+}) {
   const theme = useTheme()
 
   // backward compatibility
@@ -13,15 +23,24 @@ function Button({ children, icon, label, mode, size, innerRef, ...props }) {
   if (mode === 'secondary') mode = 'normal'
   if (size === 'mini') size = 'small'
 
+  const insideEmptyStateCard = useInside('EmptyStateCard')
+
+  // Always wide + strong when used as an empty state card action
+  if (insideEmptyStateCard) {
+    mode = 'strong'
+    wide = true
+  }
+
   return (
     <ButtonBase
       ref={innerRef}
       focusRingSpacing={0.5 * GU}
       focusRingRadius={RADIUS}
       css={`
-        display: inline-flex;
+        display: ${wide ? 'flex' : 'inline-flex'};
         align-items: center;
         justify-content: center;
+        width: ${wide ? '100%' : 'auto'};
         background: ${mode === 'strong'
           ? `linear-gradient(
               130deg,
@@ -36,6 +55,7 @@ function Button({ children, icon, label, mode, size, innerRef, ...props }) {
         height: ${(size === 'small' ? 4 : 5) * GU}px;
         padding: 0 ${3 * GU}px;
         font-size: 16px;
+        white-space: nowrap;
         border: 1px solid ${mode === 'normal' ? theme.border : 'transparent'};
         box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
         transition-property: transform, box-shadow;
@@ -81,6 +101,7 @@ Button.propTypes = {
   children: PropTypes.node,
   icon: PropTypes.node,
   label: PropTypes.string,
+  wide: PropTypes.bool,
 
   mode: PropTypes.oneOf([
     'normal',
@@ -104,6 +125,7 @@ Button.propTypes = {
 Button.defaultProps = {
   mode: 'normal',
   size: 'large',
+  wide: false,
 }
 
 const ButtonWithRef = React.forwardRef((props, ref) => (
