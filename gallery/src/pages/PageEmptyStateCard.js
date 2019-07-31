@@ -9,21 +9,22 @@ const PageEmptyStateCard = ({ title }) => (
   <Page title={title} readme={readme}>
     <Page.Demo>
       <Container>
-        <div>
-          <EmptyStateCard
-            actionText="Create a new post!"
-            text="You seem to not have any content on your wall."
-            icon={() => <IconHome color="blue" />}
-          />
-        </div>
-        <div>
-          <EmptyStateCard
-            actionDisabled
-            actionText="Create a new post!"
-            text="You seem to not have any content on your wall."
-            icon={() => <IconHome color="blue" />}
-          />
-        </div>
+        <EmptyStateCard
+          text="You seem to not have any content on your wall."
+          icon={
+            <IconHome
+              color="blue"
+              css={`
+                margin: auto;
+                width: 140px;
+                height: auto;
+              `}
+            />
+          }
+          actionButton={true}
+          actionText="Click me"
+          onClick={() => console.log('Button was clicked')}
+        />
       </Container>
     </Page.Demo>
   </Page>

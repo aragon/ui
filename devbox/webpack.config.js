@@ -27,6 +27,10 @@ function base(env) {
           exclude: /node_modules/,
           use: { loader: 'babel-loader' },
         },
+        {
+          test: /\.(png|svg|jpg)$/,
+          use: ['file-loader'],
+        },
       ],
     },
     plugins: [

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import SafeLink from '../Link/SafeLink'
 import { textStyle, GU, RADIUS } from '../../style'
 import { useTheme } from '../../theme'
-import { warn } from '../../utils'
+import { warn, useInside } from '../../utils'
 import { ButtonBase } from './ButtonBase'
 
 function buttonStyles(mode, theme) {
@@ -55,6 +55,7 @@ function Button({
   label,
   mode,
   size,
+  wide,
   ...props
 }) {
   // prop warnings
@@ -72,14 +73,21 @@ function Button({
 
   const theme = useTheme()
 
+  const insideEmptyStateCard = useInside('EmptyStateCard')
+
+  // Always wide + strong when used as an empty state card action
+  if (insideEmptyStateCard) {
+    mode = 'strong'
+    wide = true
+  }
+
   const { background, color, iconColor, border } = useMemo(
     () => buttonStyles(mode, theme),
     [mode, theme]
   )
 
   const height = `${(size === 'small' ? 4 : 5) * GU}px`
-  const width = iconOnly ? height : 'auto'
-  const minWidth = `${iconOnly ? 0 : 16 * GU}px`
+  const width = wide ? '100%' : 'auto'
 
   if (iconOnly) {
     props.title = label
@@ -91,14 +99,15 @@ function Button({
       focusRingSpacing={border === '0' ? 3 : 4}
       focusRingRadius={RADIUS}
       css={`
-        display: inline-flex;
+        display: ${wide ? 'flex' : 'inline-flex'};
         align-items: center;
         justify-content: center;
         background: ${background};
         color: ${color};
         ${textStyle('body2')};
-        min-width: ${minWidth};
-        width: ${width};
+        white-space: nowrap;
+        width: ${iconOnly ? height : width};
+        min-width: ${iconOnly ? 0 : 16 * GU}px;
         height: ${height};
         padding: 0 ${(size === 'small' ? 2 : 3) * GU}px;
         border: ${border};
@@ -166,12 +175,14 @@ Button.propTypes = {
     // backward compatibility
     'mini',
   ]),
+  wide: PropTypes.bool,
 }
 
 Button.defaultProps = {
   iconOnly: false,
   mode: 'normal',
   size: 'normal',
+  wide: false,
 }
 
 const ButtonWithRef = React.forwardRef((props, ref) => (
