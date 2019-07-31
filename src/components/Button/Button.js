@@ -1,14 +1,56 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import PropTypes from 'prop-types'
 import SafeLink from '../Link/SafeLink'
-import { GU, RADIUS } from '../../style'
+import { textStyle, GU, RADIUS } from '../../style'
 import { useTheme } from '../../theme'
-import { useInside } from '../../utils'
+import { warn, useInside } from '../../utils'
 import { ButtonBase } from './ButtonBase'
+
+function buttonStyles(mode, theme) {
+  if (mode === 'strong') {
+    return {
+      background: `
+          linear-gradient(
+            130deg,
+            ${theme.accentStart},
+            ${theme.accentEnd}
+          )`,
+      color: theme.accentContent,
+      iconColor: theme.accentContent,
+      border: '0',
+    }
+  }
+
+  if (mode === 'positive') {
+    return {
+      background: theme.positive,
+      color: theme.positiveContent,
+      iconColor: theme.positiveContent,
+      border: '0',
+    }
+  }
+
+  if (mode === 'negative') {
+    return {
+      background: theme.negative,
+      color: theme.negativeContent,
+      iconColor: theme.negativeContent,
+      border: '0',
+    }
+  }
+
+  return {
+    background: theme.surfaceInteractive,
+    color: theme.surfaceContent,
+    border: `1px solid ${theme.border}`,
+    iconColor: theme.surfaceIcon,
+  }
+}
 
 function Button({
   children,
   icon,
+  iconOnly,
   innerRef,
   label,
   mode,
@@ -16,12 +58,20 @@ function Button({
   wide,
   ...props
 }) {
-  const theme = useTheme()
+  // prop warnings
+  if (iconOnly && !icon) {
+    warn('Button: iconOnly was used without providing an icon.')
+  }
+  if (!children && !label) {
+    warn('Button: please provide a label.')
+  }
 
   // backward compatibility
   if (mode === 'outline') mode = 'normal'
   if (mode === 'secondary') mode = 'normal'
   if (size === 'mini') size = 'small'
+
+  const theme = useTheme()
 
   const insideEmptyStateCard = useInside('EmptyStateCard')
 
@@ -31,37 +81,41 @@ function Button({
     wide = true
   }
 
+  const { background, color, iconColor, border } = useMemo(
+    () => buttonStyles(mode, theme),
+    [mode, theme]
+  )
+
+  const width = wide ? '100%' : 'auto'
+  const height = size === 'small' ? `${4 * GU}px` : `${5 * GU}px`
+  const padding = size === 'small' ? `0 ${2 * GU}px` : `0 ${3 * GU}px`
+
+  if (iconOnly) {
+    props.title = label
+  }
+
   return (
     <ButtonBase
       ref={innerRef}
-      focusRingSpacing={0.5 * GU}
+      focusRingSpacing={border === '0' ? 3 : 4}
       focusRingRadius={RADIUS}
       css={`
         display: ${wide ? 'flex' : 'inline-flex'};
         align-items: center;
         justify-content: center;
-        width: ${wide ? '100%' : 'auto'};
-        background: ${mode === 'strong'
-          ? `linear-gradient(
-              130deg,
-              ${theme.accentStart},
-              ${theme.accentEnd}
-            )`
-          : theme.surfaceInteractive};
-        color: ${mode === 'strong'
-          ? theme.accentContent
-          : theme.surfaceContent};
-        min-width: ${16 * GU}px;
-        height: ${(size === 'small' ? 4 : 5) * GU}px;
-        padding: 0 ${3 * GU}px;
-        font-size: 16px;
+        background: ${background};
+        color: ${color};
+        ${textStyle('body2')};
         white-space: nowrap;
-        border: 1px solid ${mode === 'normal' ? theme.border : 'transparent'};
+        width: ${iconOnly ? height : width};
+        height: ${height};
+        padding: ${iconOnly ? 0 : padding};
+        min-width: ${iconOnly ? 0 : 16 * GU}px;
+        border: ${border};
         box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
         transition-property: transform, box-shadow;
         transition-duration: 50ms;
         transition-timing-function: ease-in-out;
-
         &:active {
           transform: translateY(1px);
           box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.125);
@@ -77,20 +131,20 @@ function Button({
                 position: relative;
                 top: -1px;
                 display: flex;
-                color: ${theme.surfaceIcon};
+                color: ${iconColor};
               `}
             >
               {icon}
             </span>
           )}
-          {icon && label && (
+          {icon && label && !iconOnly && (
             <span
               css={`
                 width: ${1 * GU}px;
               `}
             />
           )}
-          {label}
+          {!iconOnly && label}
         </React.Fragment>
       )}
     </ButtonBase>
@@ -100,17 +154,19 @@ function Button({
 Button.propTypes = {
   children: PropTypes.node,
   icon: PropTypes.node,
+  iconOnly: PropTypes.bool,
+  innerRef: PropTypes.any,
   label: PropTypes.string,
-  wide: PropTypes.bool,
-
   mode: PropTypes.oneOf([
     'normal',
     'strong',
-    'text',
+    'positive',
+    'negative',
 
     // backward compatibility
     'outline',
     'secondary',
+    'text',
   ]),
   size: PropTypes.oneOf([
     'large',
@@ -120,11 +176,13 @@ Button.propTypes = {
     // backward compatibility
     'mini',
   ]),
+  wide: PropTypes.bool,
 }
 
 Button.defaultProps = {
+  iconOnly: false,
   mode: 'normal',
-  size: 'large',
+  size: 'normal',
   wide: false,
 }
 

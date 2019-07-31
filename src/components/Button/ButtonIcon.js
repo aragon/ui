@@ -29,8 +29,8 @@ function ButtonIcon({ label, children, mode, ...props }) {
         display: inline-flex;
         justify-content: center;
         align-items: center;
-        width: 32px;
-        height: 32px;
+        width: ${4 * GU}px;
+        height: ${4 * GU}px;
         &:active {
           background: rgba(220, 234, 239, 0.3);
         }
