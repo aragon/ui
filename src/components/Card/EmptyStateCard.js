@@ -1,10 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { IconBlank } from '../../icons'
 import { GU, textStyle } from '../../style'
 import { Inside, warnOnce } from '../../utils'
+import { usePublicUrl } from '../../providers/PublicUrl'
 import { useTheme } from '../../theme'
 import Card from './Card'
+import illustrationDefault from './assets/empty-state-card-illustration-default.png'
 
 const EmptyStateCard = React.memo(function EmptyStateCard({
   action,
@@ -13,6 +14,7 @@ const EmptyStateCard = React.memo(function EmptyStateCard({
   text,
 }) {
   const theme = useTheme()
+  const publicUrl = usePublicUrl()
 
   if (icon !== undefined) {
     warnOnce(
@@ -24,16 +26,10 @@ const EmptyStateCard = React.memo(function EmptyStateCard({
     }
   }
 
-  // To be replaced by a proper empty illustration
+  // default illustration
   if (!illustration) {
     illustration = (
-      <IconBlank
-        width={16 * GU}
-        height={16 * GU}
-        css={`
-          color: ${theme.surfaceIcon};
-        `}
-      />
+      <img src={publicUrl + illustrationDefault} alt="" height={20 * GU} />
     )
   }
 
