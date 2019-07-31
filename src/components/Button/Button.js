@@ -72,7 +72,7 @@ function Button({
   const width = iconOnly ? height : 'auto'
   const minWidth = `${iconOnly ? 0 : 16 * GU}px`
 
-  if (iconOnly && !props.title) {
+  if (iconOnly) {
     props.title = label
   }
 
@@ -136,6 +136,7 @@ Button.propTypes = {
   children: PropTypes.node,
   icon: PropTypes.node,
   iconOnly: PropTypes.bool,
+  innerRef: PropTypes.any,
   label: PropTypes.string.isRequired,
   mode: PropTypes.oneOf([
     'normal',
