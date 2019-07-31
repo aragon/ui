@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Button } from '../Button/Button'
 import { IconBlank } from '../../icons'
 import { GU, textStyle } from '../../style'
 import { Inside, warnOnce } from '../../utils'
