@@ -2,7 +2,7 @@ import React from 'react'
 import Page from 'comps/Page/Page'
 
 import readme from 'ui-src/components/Card/EmptyStateCard.md'
-import { EmptyStateCard, IconHome } from '@aragon/ui'
+import { Button, EmptyStateCard, IconHome } from '@aragon/ui'
 import Container from '../components/Page/DemoContainer'
 
 const PageEmptyStateCard = ({ title }) => (
@@ -11,7 +11,7 @@ const PageEmptyStateCard = ({ title }) => (
       <Container>
         <EmptyStateCard
           text="You seem to not have any content on your wall."
-          icon={
+          illustration={
             <IconHome
               color="blue"
               css={`
@@ -21,9 +21,11 @@ const PageEmptyStateCard = ({ title }) => (
               `}
             />
           }
-          actionButton={true}
-          actionText="Click me"
-          onClick={() => console.log('Button was clicked')}
+          action={
+            <Button onClick={() => console.log('Button was clicked')}>
+              Click me
+            </Button>
+          }
         />
       </Container>
     </Page.Demo>
