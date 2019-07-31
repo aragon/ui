@@ -273,7 +273,7 @@ function App() {
     <div>
       <Header primary="DataView" />
       <Tabs items={demoNames} selected={demo} onChange={setDemo} />
-      <DataViewDemo currentPage={page} onPageChange={setPage} />
+      <DataViewDemo page={page} onPageChange={setPage} />
     </div>
   )
 }
