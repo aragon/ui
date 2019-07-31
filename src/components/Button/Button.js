@@ -86,8 +86,9 @@ function Button({
     [mode, theme]
   )
 
-  const height = `${(size === 'small' ? 4 : 5) * GU}px`
   const width = wide ? '100%' : 'auto'
+  const height = size === 'small' ? `${4 * GU}px` : `${5 * GU}px`
+  const padding = size === 'small' ? `0 ${2 * GU}px` : `0 ${3 * GU}px`
 
   if (iconOnly) {
     props.title = label
@@ -107,9 +108,9 @@ function Button({
         ${textStyle('body2')};
         white-space: nowrap;
         width: ${iconOnly ? height : width};
-        min-width: ${iconOnly ? 0 : 16 * GU}px;
         height: ${height};
-        padding: 0 ${(size === 'small' ? 2 : 3) * GU}px;
+        padding: ${iconOnly ? 0 : padding};
+        min-width: ${iconOnly ? 0 : 16 * GU}px;
         border: ${border};
         box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
         transition-property: transform, box-shadow;
