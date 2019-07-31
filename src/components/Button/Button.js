@@ -1,8 +1,9 @@
 import React, { useMemo } from 'react'
 import PropTypes from 'prop-types'
 import SafeLink from '../Link/SafeLink'
-import { GU, RADIUS } from '../../style'
+import { textStyle, GU, RADIUS } from '../../style'
 import { useTheme } from '../../theme'
+import { warn } from '../../utils'
 import { ButtonBase } from './ButtonBase'
 
 function buttonStyles(mode, theme) {
@@ -56,12 +57,20 @@ function Button({
   size,
   ...props
 }) {
-  const theme = useTheme()
+  // prop warnings
+  if (iconOnly && !icon) {
+    warn('Button: iconOnly was used without providing an icon.')
+  }
+  if (!children && !label) {
+    warn('Button: please provide a label.')
+  }
 
   // backward compatibility
   if (mode === 'outline') mode = 'normal'
   if (mode === 'secondary') mode = 'normal'
   if (size === 'mini') size = 'small'
+
+  const theme = useTheme()
 
   const { background, color, iconColor, border } = useMemo(
     () => buttonStyles(mode, theme),
@@ -87,11 +96,11 @@ function Button({
         justify-content: center;
         background: ${background};
         color: ${color};
+        ${textStyle('body2')};
         min-width: ${minWidth};
         width: ${width};
         height: ${height};
-        padding: 0 ${3 * GU}px;
-        font-size: 16px;
+        padding: 0 ${(size === 'small' ? 2 : 3) * GU}px;
         border: ${border};
         box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
         transition-property: transform, box-shadow;
@@ -137,7 +146,7 @@ Button.propTypes = {
   icon: PropTypes.node,
   iconOnly: PropTypes.bool,
   innerRef: PropTypes.any,
-  label: PropTypes.string.isRequired,
+  label: PropTypes.string,
   mode: PropTypes.oneOf([
     'normal',
     'strong',
