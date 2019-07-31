@@ -237,8 +237,8 @@ const DataView = React.memo(function DataView({
           hasAnyChild={hasAnyChild}
           onSelect={toggleEntry}
           onSelectAll={selectAll}
+          renderSelectionCount={renderSelectionCount}
           selectable={canSelect}
-          selectedCount={selectedIndexes.length}
         />
       ) : (
         <TableView
@@ -246,17 +246,17 @@ const DataView = React.memo(function DataView({
             Math.max(-1, alignChildOnField),
             fields.length - 1
           )}
+          allSelected={allSelected}
           entries={renderedEntries}
           fields={preparedFields}
           hasAnyActions={hasAnyActions}
           hasAnyChild={hasAnyChild}
           onSelect={toggleEntry}
           onSelectAll={selectAll}
+          renderSelectionCount={renderSelectionCount}
           rowHeight={tableRowHeight}
           selectable={canSelect}
-          allSelected={allSelected}
           selectedCount={selectedIndexes.length}
-          renderSelectionCount={renderSelectionCount}
         />
       )}
 
