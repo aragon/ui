@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import PropTypes from 'prop-types'
 import getDisplayName from 'react-display-name'
 import { prefixUrl } from '../../utils/url'
 
-const { Provider, Consumer } = React.createContext('')
+const PublicUrlContext = React.createContext('')
+const { Provider, Consumer } = PublicUrlContext
 
 class PublicUrlProvider extends React.PureComponent {
   static propTypes = {
@@ -33,5 +34,9 @@ PublicUrl.Provider = PublicUrlProvider
 PublicUrl.hocWrap = hocWrap
 PublicUrl.styledUrl = styledUrl
 
-export { PublicUrl, Provider, hocWrap, styledUrl }
+function usePublicUrl() {
+  return useContext(PublicUrlContext)
+}
+
+export { PublicUrl, Provider, hocWrap, styledUrl, usePublicUrl }
 export default PublicUrl

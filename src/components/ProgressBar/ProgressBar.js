@@ -3,7 +3,7 @@ import PropTypes from '../../proptypes'
 import styled, { keyframes } from 'styled-components'
 import { useSpring, animated, interpolate } from 'react-spring/hooks'
 import { springs } from '../../style'
-import { warn } from '../../utils/environment'
+import { warnOnce } from '../../utils/environment'
 import { theme } from '../../theme-legacy'
 
 const RADIUS = 2
@@ -26,12 +26,11 @@ const ProgressBar = React.memo(({ animate, color, progress, value }) => {
   // Support `progress` for a while but warn if being used.
   if (value === -1 && typeof progress === 'number') {
     value = progress
-    if (!ProgressBar._warned) {
-      warn(
-        'The `progress` prop of ProgressBar is deprecated: please use `value` instead.'
-      )
-      ProgressBar._warned = true
-    }
+
+    warnOnce(
+      'ProgressBar:progress',
+      'The `progress` prop of ProgressBar is deprecated: please use `value` instead.'
+    )
   }
 
   // The indeterminate state can be triggered either by not setting the value

@@ -1,16 +1,9 @@
-import React, {
-  useCallback,
-  useContext,
-  useEffect,
-  useRef,
-  useState,
-} from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import PropTypes from 'prop-types'
 import { RADIUS, GU, textStyle } from '../../style'
-import { unselectable, noop } from '../../utils'
+import { unselectable, noop, useInside } from '../../utils'
 import { useTheme } from '../../theme'
 import { useLayout } from '../Layout/Layout'
-import { InAppBarContext } from '../AppView/AppBar'
 import { Bar } from '../Bar/Bar'
 import TabBarLegacy from './TabBarLegacy'
 import { TabsFullWidth } from './TabsFullWidth'
@@ -178,10 +171,12 @@ function FocusRing() {
 
 export default props => {
   const { layoutName } = useLayout()
-  const inAppBar = useContext(InAppBarContext)
+
+  const insideBar = useInside('Bar')
+  const insideAppBar = useInside('AppBar')
 
   // Use a separate component for Tabs in AppBar, to prevent breaking anything.
-  if (inAppBar) {
+  if (insideAppBar) {
     return <TabBarLegacy {...props} inAppBar />
   }
 
@@ -189,8 +184,14 @@ export default props => {
     return <TabsFullWidth {...props} />
   }
 
+  if (insideBar) {
+    throw new Error(
+      'Tabs cannot be a child of Bar: please use the Tabs component directly.'
+    )
+  }
+
   return (
-    <Bar>
+    <Bar css="overflow: hidden">
       <Tabs {...props} />
     </Bar>
   )
