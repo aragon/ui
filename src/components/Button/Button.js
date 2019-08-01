@@ -3,18 +3,20 @@ import PropTypes from 'prop-types'
 import SafeLink from '../Link/SafeLink'
 import { textStyle, GU, RADIUS } from '../../style'
 import { useTheme } from '../../theme'
-import { warn, useInside } from '../../utils'
+import { warn, warnOnce, useInside } from '../../utils'
+import { useLayout } from '../Layout/Layout'
 import { ButtonBase } from './ButtonBase'
 
 function buttonStyles(mode, theme) {
   if (mode === 'strong') {
     return {
       background: `
-          linear-gradient(
-            130deg,
-            ${theme.accentStart},
-            ${theme.accentEnd}
-          )`,
+        linear-gradient(
+          130deg,
+          ${theme.accentStart},
+          ${theme.accentEnd}
+        )
+      `,
       color: theme.accentContent,
       iconColor: theme.accentContent,
       border: '0',
@@ -42,13 +44,14 @@ function buttonStyles(mode, theme) {
   return {
     background: theme.surfaceInteractive,
     color: theme.surfaceContent,
-    border: `1px solid ${theme.border}`,
     iconColor: theme.surfaceIcon,
+    border: `1px solid ${theme.border}`,
   }
 }
 
 function Button({
   children,
+  display,
   icon,
   iconOnly,
   innerRef,
@@ -58,22 +61,33 @@ function Button({
   wide,
   ...props
 }) {
+  // backward compatibility and deprecated props
+  if (iconOnly) {
+    warnOnce('Button: "iconOnly" is deprecated, please use "display".')
+    display = 'icon'
+  }
+  if (mode === 'outline' || mode === 'secondary') {
+    warnOnce(`Button: the mode "${mode}" is deprecated, please use "normal".`)
+    mode = 'normal'
+  }
+  if (size === 'mini') {
+    warnOnce(`Button: the size "mini" is deprecated, please use "small".`)
+    size = 'small'
+  }
+
   // prop warnings
-  if (iconOnly && !icon) {
-    warn('Button: iconOnly was used without providing an icon.')
+  if (display === 'icon' && !icon) {
+    warn('Button: the display "icon" was used without providing an icon.')
   }
   if (!children && !label) {
     warn('Button: please provide a label.')
   }
 
-  // backward compatibility
-  if (mode === 'outline') mode = 'normal'
-  if (mode === 'secondary') mode = 'normal'
-  if (size === 'mini') size = 'small'
-
   const theme = useTheme()
+  const { layoutName } = useLayout()
 
   const insideEmptyStateCard = useInside('EmptyStateCard')
+  const insideHeaderSecondary = useInside('Header:secondary')
 
   // Always wide + strong when used as an empty state card action
   if (insideEmptyStateCard) {
@@ -81,6 +95,21 @@ function Button({
     wide = true
   }
 
+  // Alternate between icon and label automatically when used in Header
+  if (insideHeaderSecondary && display === 'auto' && icon && label) {
+    display = layoutName === 'small' ? 'icon' : 'label'
+  }
+
+  // Otherwise, display both
+  if (display === 'auto') {
+    display = 'all'
+  }
+
+  const displayIcon = icon && (display === 'all' || display === 'icon')
+  const displayLabel = label && (display === 'all' || display === 'label')
+  const displayIconOnly = displayIcon && !displayLabel
+
+  // Styles
   const { background, color, iconColor, border } = useMemo(
     () => buttonStyles(mode, theme),
     [mode, theme]
@@ -90,8 +119,9 @@ function Button({
   const height = size === 'small' ? `${4 * GU}px` : `${5 * GU}px`
   const padding = size === 'small' ? `0 ${2 * GU}px` : `0 ${3 * GU}px`
 
-  if (iconOnly) {
-    props.title = label
+  // Use the label as a title when only the icon is displayed
+  if (displayIconOnly) {
+    props.title = label || ''
   }
 
   return (
@@ -107,10 +137,10 @@ function Button({
         color: ${color};
         ${textStyle('body2')};
         white-space: nowrap;
-        width: ${iconOnly ? height : width};
+        width: ${displayIconOnly ? height : width};
         height: ${height};
-        padding: ${iconOnly ? 0 : padding};
-        min-width: ${iconOnly ? 0 : 16 * GU}px;
+        padding: ${displayIconOnly ? 0 : padding};
+        min-width: ${displayIconOnly ? 0 : 16 * GU}px;
         border: ${border};
         box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
         transition-property: transform, box-shadow;
@@ -125,7 +155,7 @@ function Button({
     >
       {children || (
         <React.Fragment>
-          {icon && (
+          {displayIcon && (
             <span
               css={`
                 position: relative;
@@ -137,14 +167,14 @@ function Button({
               {icon}
             </span>
           )}
-          {icon && label && !iconOnly && (
+          {displayIcon && displayLabel && (
             <span
               css={`
                 width: ${1 * GU}px;
               `}
             />
           )}
-          {!iconOnly && label}
+          {displayLabel && label}
         </React.Fragment>
       )}
     </ButtonBase>
@@ -153,8 +183,8 @@ function Button({
 
 Button.propTypes = {
   children: PropTypes.node,
+  display: PropTypes.oneOf(['auto', 'all', 'icon', 'label']),
   icon: PropTypes.node,
-  iconOnly: PropTypes.bool,
   innerRef: PropTypes.any,
   label: PropTypes.string,
   mode: PropTypes.oneOf([
@@ -163,7 +193,7 @@ Button.propTypes = {
     'positive',
     'negative',
 
-    // backward compatibility
+    // deprecated
     'outline',
     'secondary',
     'text',
@@ -173,14 +203,17 @@ Button.propTypes = {
     'normal',
     'small',
 
-    // backward compatibility
+    // deprecated
     'mini',
   ]),
   wide: PropTypes.bool,
+
+  // deprecated
+  iconOnly: PropTypes.bool,
 }
 
 Button.defaultProps = {
-  iconOnly: false,
+  display: 'auto',
   mode: 'normal',
   size: 'normal',
   wide: false,
