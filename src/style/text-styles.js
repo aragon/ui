@@ -42,7 +42,7 @@ const TEXT_STYLES = {
   },
   label2: {
     size: 12,
-    weight: 400,
+    weight: 600,
     lineHeight: 1.5,
     transform: 'uppercase',
   },
