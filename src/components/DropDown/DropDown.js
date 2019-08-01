@@ -31,17 +31,19 @@ function useDropDown({ items, selected, onChange, label }) {
     index => {
       onChange(index)
       handleClose()
-      setSelectedLabel(items[index])
     },
-    [onChange, handleClose, items, setSelectedLabel]
+    [onChange, handleClose]
   )
 
   useEffect(() => {
     if (selected === -1 || !items[selected]) {
+      if (label) {
+        setSelectedLabel(label)
+      }
       return
     }
     setSelectedLabel(items[selected])
-  }, [items, selected, setSelectedLabel])
+  }, [items, selected, setSelectedLabel, label])
 
   return {
     buttonRef,
