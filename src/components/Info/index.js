@@ -1,8 +1,8 @@
-import Info from './Info'
-import { Action, Alert, Permissions } from './IconInfo'
+import { Info } from './Info'
 
-Info.Action = Action
-Info.Alert = Alert
-Info.Permissions = Permissions
+// Backward compatibility
+Info.Action = Info
+Info.Permissions = Info
+Info.Alert = props => <Info mode="warning" {...props} />
 
-export default Info
+export { Info }
