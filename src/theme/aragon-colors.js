@@ -12,6 +12,7 @@ export default {
   // primary colors
   AragonBlue: '#08BEE5',
   AragonBlueLight: '#95ECFF',
+  AragonBlueLighter: '#EBFAFD',
   AragonBlueDark: '#0792AF',
 
   AragonTurquoise: '#3FE8E0',
