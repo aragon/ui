@@ -49,8 +49,8 @@ export default {
   tag: colors.PurpleLight,
   tagContent: colors.PurpleDark,
 
-  indicator: '#EAFAFD',
-  indicatorContent: '#15A0BF',
+  indicator: colors.AragonBlueLighter,
+  indicatorContent: colors.AragonBlueDark,
   indicatorIcon: colors.AragonBlue,
 
   badge: colors.Blue,
