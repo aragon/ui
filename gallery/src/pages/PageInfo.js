@@ -19,48 +19,6 @@ const PageInfo = ({ title }) => (
           </div>
         </InfoRow>
       </Container>
-      <Container>
-        <InfoRow>
-          <div>
-            <Info.Action title="Action info">
-              Here is some info for an action
-            </Info.Action>
-          </div>
-          <div>
-            <Info.Action>
-              Here is some info for an action without a title
-            </Info.Action>
-          </div>
-        </InfoRow>
-      </Container>
-      <Container>
-        <InfoRow>
-          <div>
-            <Info.Alert title="Alert info">
-              Here is some info for a alert
-            </Info.Alert>
-          </div>
-          <div>
-            <Info.Alert>
-              Here is some info for a alert without a title
-            </Info.Alert>
-          </div>
-        </InfoRow>
-      </Container>
-      <Container>
-        <InfoRow>
-          <div>
-            <Info.Permissions title="Permission info">
-              Here is some info for a permission
-            </Info.Permissions>
-          </div>
-          <div>
-            <Info.Permissions>
-              Here is some info for a permission without a title
-            </Info.Permissions>
-          </div>
-        </InfoRow>
-      </Container>
     </Page.Demo>
   </Page>
 )

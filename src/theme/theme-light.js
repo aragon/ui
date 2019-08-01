@@ -40,8 +40,13 @@ export default {
 
   negative: colors.Red,
   negativeContent: colors.White,
+  negativeSurface: colors.RedLight,
+  negativeSurfaceContent: colors.RedDark,
+
   positive: colors.MintGreen,
   positiveContent: colors.White,
+  positiveSurface: colors.MintGreenLight,
+  positiveSurfaceContent: colors.MintGreenDark,
 
   error: colors.Red,
   success: colors.MintGreen,
