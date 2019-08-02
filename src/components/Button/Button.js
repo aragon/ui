@@ -7,7 +7,15 @@ import { warn, warnOnce, useInside } from '../../utils'
 import { useLayout } from '../Layout/Layout'
 import { ButtonBase } from './ButtonBase'
 
-function buttonStyles(mode, theme) {
+function buttonStyles(theme, { mode, disabled }) {
+  if (disabled) {
+    return {
+      background: theme.disabled,
+      color: theme.disabledContent,
+      iconColor: theme.disabledContent,
+      border: '0',
+    }
+  }
   if (mode === 'strong') {
     return {
       background: `
@@ -51,6 +59,7 @@ function buttonStyles(mode, theme) {
 
 function Button({
   children,
+  disabled,
   display,
   icon,
   iconOnly,
@@ -111,8 +120,8 @@ function Button({
 
   // Styles
   const { background, color, iconColor, border } = useMemo(
-    () => buttonStyles(mode, theme),
-    [mode, theme]
+    () => buttonStyles(theme, { mode, disabled }),
+    [mode, theme, disabled]
   )
 
   const width = wide ? '100%' : 'auto'
@@ -129,6 +138,7 @@ function Button({
       ref={innerRef}
       focusRingSpacing={border === '0' ? 3 : 4}
       focusRingRadius={RADIUS}
+      disabled={disabled}
       css={`
         display: ${wide ? 'flex' : 'inline-flex'};
         align-items: center;
@@ -142,13 +152,13 @@ function Button({
         padding: ${displayIconOnly ? 0 : padding};
         min-width: ${displayIconOnly ? 0 : 16 * GU}px;
         border: ${border};
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        box-shadow: ${disabled ? 'none' : '0 1px 3px rgba(0, 0, 0, 0.1)'};
         transition-property: transform, box-shadow;
         transition-duration: 50ms;
         transition-timing-function: ease-in-out;
         &:active {
-          transform: translateY(1px);
-          box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.125);
+          transform: ${disabled ? 'none' : 'translateY(1px)'};
+          box-shadow: ${disabled ? 'none' : '0px 1px 3px rgba(0, 0, 0, 0.125)'};
         }
       `}
       {...props}
@@ -183,6 +193,7 @@ function Button({
 
 Button.propTypes = {
   children: PropTypes.node,
+  disabled: PropTypes.bool,
   display: PropTypes.oneOf(['auto', 'all', 'icon', 'label']),
   icon: PropTypes.node,
   innerRef: PropTypes.any,
@@ -213,6 +224,7 @@ Button.propTypes = {
 }
 
 Button.defaultProps = {
+  disabled: false,
   display: 'auto',
   mode: 'normal',
   size: 'normal',
