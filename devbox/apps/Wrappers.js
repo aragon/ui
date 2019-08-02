@@ -12,6 +12,7 @@ import {
   Tabs,
   Theme,
   useLayout,
+  IconPlus,
 } from '@aragon/ui'
 import { ToggleThemeButton } from '../components/toggle-theme'
 
@@ -19,7 +20,7 @@ function Header1() {
   return (
     <Header
       primary="Voting"
-      secondary={<Button mode="strong" label="New vote" />}
+      secondary={<Button mode="strong" label="New vote" icon={<IconPlus />} />}
     />
   )
 }

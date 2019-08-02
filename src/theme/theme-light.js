@@ -65,6 +65,8 @@ export default {
   focus: colors.Blue,
   selected: colors.AragonBlue,
   selectedContent: colors.White,
+  disabled: colors.GreyLight,
+  disabledContent: colors.White,
 
   control: '#F3F9FB',
   controlBorder: '#DEEDF1',
