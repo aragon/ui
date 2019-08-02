@@ -35,6 +35,9 @@ function useMode(mode) {
     `
   }
 
+  if (mode === APP) {
+  }
+
   if (mode === IDENTITY) {
   }
 
