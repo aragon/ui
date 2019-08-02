@@ -1,14 +1,11 @@
 import React from 'react'
-import { theme } from '../../theme-legacy'
-import Badge from './Badge'
+import { Tag } from '../Tag/Tag'
+import { warnOnce } from '../../utils/environment'
 
-const Identity = props => (
-  <Badge
-    shape="compact"
-    background={theme.badgeIdentityBackground}
-    foreground={theme.badgeIdentityForeground}
-    {...props}
-  />
-)
+export default props => {
+  warnOnce(
+    '"Badge.Identity" has been deprecated. Please use "IdentityBadge" instead.'
+  )
 
-export default Identity
+  return <Tag {...props} />
+}

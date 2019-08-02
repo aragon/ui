@@ -1,29 +1,11 @@
-import PropTypes from 'prop-types'
 import React from 'react'
-import { theme } from '../../theme-legacy'
-import { formatIntegerRange } from '../../utils/format'
-import Badge from './Badge'
+import { Tag } from '../Tag/Tag'
+import { warnOnce } from '../../utils/environment'
 
-const Notification = ({ children, label, small, ...props }) => (
-  <Badge
-    shape={small ? 'smalldisc' : 'disc'}
-    background={theme.badgeNotificationBackground}
-    foreground={theme.badgeNotificationForeground}
-    {...props}
-  >
-    {children ||
-      (typeof label === 'number' ? formatIntegerRange(label) : label)}
-  </Badge>
-)
+export default props => {
+  warnOnce(
+    '"Badge.Notification" has been deprecated. Please use "Count" instead.'
+  )
 
-Notification.defaultProps = {
-  small: false,
+  return <Tag {...props} />
 }
-
-Notification.propTypes = {
-  children: PropTypes.node,
-  label: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  small: PropTypes.bool,
-}
-
-export default Notification
