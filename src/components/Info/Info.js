@@ -75,6 +75,7 @@ function Info({
             align-items: center;
             color: ${titleColor || modeStyles.titleColor};
             ${textStyle('label2')};
+            margin-bottom: ${1 * GU}px;
           `}
         >
           {title}
