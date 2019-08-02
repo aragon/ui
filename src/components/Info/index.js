@@ -1,9 +1,13 @@
 import React from 'react'
 import { Info } from './Info'
 
+function Warning(props) {
+  return <Info mode="warning" {...props} />
+}
+
 // Backward compatibility
 Info.Action = Info
-Info.Permissions = Info
-Info.Alert = props => <Info mode="warning" {...props} />
+Info.Permissions = Warning
+Info.Alert = Warning
 
 export { Info }
