@@ -126,7 +126,8 @@ function Button({
 
   const width = wide ? '100%' : 'auto'
   const height = size === 'small' ? `${4 * GU}px` : `${5 * GU}px`
-  const padding = size === 'small' ? `0 ${2 * GU}px` : `0 ${3 * GU}px`
+  const padding = size === 'small' ? `0 ${1.5 * GU}px` : `0 ${3 * GU}px`
+  const minWidth = size === 'small' ? `${14 * GU}px` : `${16 * GU}px`
 
   // Use the label as a title when only the icon is displayed
   if (displayIconOnly) {
@@ -136,7 +137,7 @@ function Button({
   return (
     <ButtonBase
       ref={innerRef}
-      focusRingSpacing={border === '0' ? 3 : 4}
+      focusRingSpacing={border === '0' ? 0 : 1}
       focusRingRadius={RADIUS}
       disabled={disabled}
       css={`
@@ -150,7 +151,7 @@ function Button({
         width: ${displayIconOnly ? height : width};
         height: ${height};
         padding: ${displayIconOnly ? 0 : padding};
-        min-width: ${displayIconOnly ? 0 : 16 * GU}px;
+        min-width: ${displayIconOnly ? 0 : minWidth}px;
         border: ${border};
         box-shadow: ${disabled ? 'none' : '0 1px 3px rgba(0, 0, 0, 0.1)'};
         transition-property: transform, box-shadow;
@@ -180,7 +181,7 @@ function Button({
           {displayIcon && displayLabel && (
             <span
               css={`
-                width: ${1 * GU}px;
+                width: ${0.5 * GU}px;
               `}
             />
           )}
