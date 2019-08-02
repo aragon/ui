@@ -51,7 +51,7 @@ function useMode(mode) {
   `
 }
 
-function Tag({ children, mode = 'info' }) {
+function Tag({ children, mode = 'info', ...props }) {
   const modeStyles = useMode(mode)
 
   return (
@@ -65,6 +65,7 @@ function Tag({ children, mode = 'info' }) {
         min-width: 22px;
         ${modeStyles};
       `}
+      {...props}
     >
       {children}
     </span>
