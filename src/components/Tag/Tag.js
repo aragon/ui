@@ -69,7 +69,16 @@ function Tag({ children, mode = 'info' }) {
 }
 
 Tag.propTypes = {
-  mode: PropTypes.oneOf([WARNING, HELP, TAG, APP, IDENTITY, NOTIFICATION]),
+  children: PropTypes.node,
+  mode: PropTypes.oneOf([
+    INFO,
+    WARNING,
+    HELP,
+    TAG,
+    APP,
+    IDENTITY,
+    NOTIFICATION,
+  ]),
 }
 
 export { Tag }
