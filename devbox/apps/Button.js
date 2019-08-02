@@ -53,9 +53,9 @@ function App() {
                   key={size + mode + i}
                   mode={mode}
                   size={size}
-                  label={mode}
+                  label={mode[0].toUpperCase() + mode.slice(1)}
                   icon={getIcon(mode)}
-                  display={i === 1 ? 'icon' : 'label'}
+                  display={i === 1 ? 'icon' : i === 0 ? 'all' : 'label'}
                   disabled={i === 3}
                 />
               ))
