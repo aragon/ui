@@ -8,6 +8,7 @@ import {
   Button,
   Text,
   theme,
+  GU,
 } from '@aragon/ui'
 
 const MODES = ['normal', 'strong', 'positive', 'negative']
@@ -38,12 +39,16 @@ function App() {
         bottom: 0;
       `}
     >
-      <Box css="padding: 24px">
+      <Box
+        css={`
+          padding: ${3 * GU}px;
+        `}
+      >
         <div
           css={`
             display: grid;
             grid-template-columns: repeat(4, auto);
-            grid-gap: 24px;
+            grid-gap: ${3 * GU}px;
           `}
         >
           {SIZES.map(size =>
