@@ -9,6 +9,7 @@ function getModeStyles(theme, mode) {
       background: theme.warningSurface.alpha(0.24),
       borderColor: theme.warning,
       color: theme.warningSurfaceContent,
+      titleColor: theme.warningSurfaceContent,
     }
   }
   if (mode === 'error') {
@@ -16,12 +17,22 @@ function getModeStyles(theme, mode) {
       background: theme.negativeSurface.alpha(0.24),
       borderColor: theme.negative,
       color: theme.negativeSurfaceContent,
+      titleColor: theme.negativeSurfaceContent,
+    }
+  }
+  if (mode === 'description') {
+    return {
+      background: theme.infoSurface.alpha(0.08),
+      borderColor: theme.info,
+      color: theme.surfaceContent,
+      titleColor: theme.surfaceContentSecondary,
     }
   }
   return {
     background: theme.infoSurface.alpha(0.08),
     borderColor: theme.info,
     color: theme.infoSurfaceContent,
+    titleColor: theme.infoSurfaceContent,
   }
 }
 
@@ -40,11 +51,6 @@ function Info({
   // Get styles from the current mode
   const modeStyles = useMemo(() => {
     const styles = getModeStyles(theme, mode)
-
-    // Use surfaceContent if a title is used
-    if (title) {
-      styles.color = theme.surfaceContent
-    }
 
     return styles
   }, [mode, theme, title])
@@ -67,7 +73,7 @@ function Info({
           css={`
             display: flex;
             align-items: center;
-            color: ${titleColor || theme.surfaceContentSecondary};
+            color: ${titleColor || modeStyles.titleColor};
             ${textStyle('label2')};
           `}
         >
@@ -82,7 +88,7 @@ function Info({
 Info.propTypes = {
   children: PropTypes.node,
   title: PropTypes.node,
-  mode: PropTypes.oneOf(['info', 'warning', 'error']),
+  mode: PropTypes.oneOf(['info', 'description', 'warning', 'error']),
   color: PropTypes.string,
   titleColor: PropTypes.string,
   background: PropTypes.string,
