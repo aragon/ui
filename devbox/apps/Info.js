@@ -1,38 +1,56 @@
 import React from 'react'
-import { Box, Info } from '@aragon/ui'
+import { Split, Box, Info } from '@aragon/ui'
 
-export default () => (
-  <div
-    css={`
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    `}
-  >
+const MODES = ['info', 'warning', 'error', 'description']
+
+function InfoDemo({ content, title = '' }) {
+  return (
     <Box
       css={`
         margin-top: 24px;
         flex-grow: 2;
       `}
     >
-      {[{}, { title: 'My title' }, { mode: 'warning' }, { mode: 'error' }].map(
-        (props, i) => (
-          <Info
-            key={i}
-            {...props}
-            css={`
-              & + & {
-                margin-top: 16px;
-              }
-            `}
-          >
-            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-            nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
-            erat, sed diam voluptua.
-          </Info>
-        )
-      )}
+      {MODES.map((mode, i) => (
+        <Info
+          key={i}
+          mode={mode}
+          title={title}
+          css={`
+            & + & {
+              margin-top: 16px;
+            }
+          `}
+        >
+          {content}
+        </Info>
+      ))}
     </Box>
-  </div>
+  )
+}
+
+export default () => (
+  <Split
+    primary={
+      <InfoDemo
+        content="
+          Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
+          nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
+          sed diam voluptua.
+          Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
+          nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
+          sed diam voluptua.
+        "
+      />
+    }
+    secondary={
+      <InfoDemo
+        title="Lorem ipsum dolor sit amet"
+        content="
+          Lorem ipsum dolor sit amet, consetetur sadipscing elitr, nonumy
+          eirmod tempor.
+        "
+      />
+    }
+  />
 )
