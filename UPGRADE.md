@@ -62,3 +62,14 @@ Support for the `onSelect` prop has been removed. Please use `onChange` instead.
 
 If you were using the `Table` component, you might want to switch to
 `DataView`: it does what `Table` was doing and much more.
+
+## Badge
+
+If you were using the `Badge` component and/or its variants (`Badge.Info`, `Badge.Identity`, `Badge.App`, `Badge.Notification`, `BadgeNumber`), you might want to switch as follows:
+
+- `Badge` => `Tag`.
+- `Badge.Info` => `Help`.
+- `Badge.Identity` => `IdentityBadge`.
+- `Badge.App` => `AppBadge`.
+- `Badge.Notification` => `Count`.
+- `BadgeNumber` => `Count`.
