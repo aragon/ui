@@ -181,7 +181,7 @@ function Button({
           {displayIcon && displayLabel && (
             <span
               css={`
-                width: ${0.5 * GU}px;
+                width: ${1 * GU}px;
               `}
             />
           )}
