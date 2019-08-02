@@ -1,5 +1,5 @@
 import React from 'react'
-import { AddressField, Badge } from '@aragon/ui'
+import { AddressField } from '@aragon/ui'
 
 import Page from 'comps/Page/Page'
 import readme from 'ui-src/components/DataView/README.md'

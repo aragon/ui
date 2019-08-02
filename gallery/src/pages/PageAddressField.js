@@ -1,5 +1,5 @@
 import React from 'react'
-import { AddressField, Badge } from '@aragon/ui'
+import { AddressField, Tag } from '@aragon/ui'
 
 import Page from 'comps/Page/Page'
 import Container from '../components/Page/DemoContainer'
@@ -15,7 +15,7 @@ const PageAddressField = ({ title }) => (
         <AddressField
           address="0xcafE1A77e84698c83CA8931F54A755176eF75f2C"
           icon={
-            <Badge.Identity
+            <Tag mode="identity"
               css={`
                 width: 39px;
                 height: 38px;
@@ -25,7 +25,7 @@ const PageAddressField = ({ title }) => (
               `}
             >
               Icon
-            </Badge.Identity>
+            </Tag>
           }
         />
       </Container>

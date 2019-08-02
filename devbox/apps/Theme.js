@@ -21,7 +21,6 @@ const groups = [
   ['Help', 'help'],
   ['Tones', 'negative'],
   ['Tag', 'tag'],
-  ['Badge', 'badge'],
   ['Special', 'link'],
   ['Controls', 'control'],
   ['Accent', 'accent'],
