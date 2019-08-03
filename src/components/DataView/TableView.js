@@ -254,6 +254,7 @@ function EntryRow({ cells, selected, rowHeight }) {
     >
       {cells.map(([content, align, compact], index, cells) => {
         const first = index === 0
+        const last = index === cells.length - 1
         return (
           <td
             key={index}
@@ -264,7 +265,9 @@ function EntryRow({ cells, selected, rowHeight }) {
               padding-top: 0;
               padding-bottom: 0;
               padding-left: ${first || compact ? sidePadding : 0}px;
-              padding-right: ${!first || compact ? sidePadding : 0}px;
+              padding-right: ${(!first && (align !== 'end' || last)) || compact
+                ? sidePadding
+                : 0}px;
               border-top: 1px solid ${theme.border};
             `}
           >
