@@ -26,12 +26,9 @@ function Distribution({
   }
 
   const total = values.reduce((total, { percentage }) => total + percentage, 0)
-
-  if (total !== 100) {
+  if (total > 100) {
     warn(
-      `Distribution: the total of percentages is ${
-        total > 100 ? 'greater' : 'less'
-      } than 100 (${total}).`
+      `Distribution: the total of percentages is greater than 100 (${total}).`
     )
   }
 
