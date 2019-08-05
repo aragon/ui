@@ -2,10 +2,11 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import styled, { css } from 'styled-components'
 import { Spring, animated } from 'react-spring'
-import { IconClose } from '../../icons'
-import Text from '../Text/Text'
 import { springs, breakpoint } from '../../style'
 import { unselectable } from '../../utils'
+import { IconClose } from '../../icons'
+import Text from '../Text/Text'
+import RootPortal from '../RootPortal/RootPortal'
 
 const CONTENT_PADDING = 30
 
@@ -70,15 +71,17 @@ class SidePanel extends React.PureComponent {
   render() {
     const { opened } = this.props
     return (
-      <Spring
-        config={springs.lazy}
-        from={{ progress: 0 }}
-        to={{ progress: !!opened }}
-        onRest={this.handleTransitionRest}
-        native
-      >
-        {this.renderIn}
-      </Spring>
+      <RootPortal>
+        <Spring
+          config={springs.lazy}
+          from={{ progress: 0 }}
+          to={{ progress: !!opened }}
+          onRest={this.handleTransitionRest}
+          native
+        >
+          {this.renderIn}
+        </Spring>
+      </RootPortal>
     )
   }
 }
