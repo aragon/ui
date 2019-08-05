@@ -34,14 +34,7 @@ function Header({ primary, secondary, children }) {
               <div>
                 <Inside name="Header:primary">
                   {typeof primary === 'string' ? (
-                    <h1
-                      css={`
-                        color: ${theme.content};
-                        ${textStyle(fullWidth ? 'title3' : 'title2')};
-                      `}
-                    >
-                      {primary}
-                    </h1>
+                    <Header.Title>{primary}</Header.Title>
                   ) : (
                     primary
                   )}
@@ -61,6 +54,29 @@ function Header({ primary, secondary, children }) {
 Header.propTypes = {
   primary: PropTypes.node,
   secondary: PropTypes.node,
+  children: PropTypes.node,
+}
+
+Header.Title = function HeaderTitle({ children, ...props }) {
+  const theme = useTheme()
+  const { layoutName } = useLayout()
+  const fullWidth = layoutName === 'small'
+  return (
+    <h1
+      css={`
+        display: inline-flex;
+        align-items: center;
+        color: ${theme.content};
+        ${textStyle(fullWidth ? 'title3' : 'title2')};
+      `}
+      {...props}
+    >
+      {children}
+    </h1>
+  )
+}
+
+Header.Title.propTypes = {
   children: PropTypes.node,
 }
 
