@@ -11,13 +11,13 @@ class App extends React.Component {
             <Distribution
               heading="Fruit shares"
               display="all"
-              values={[
-                { value: 'Bananas', percentage: 37 },
-                { value: 'Apples', percentage: 22 },
-                { value: 'Cherries', percentage: 15 },
-                { value: 'Oranges', percentage: 12 },
-                { value: 'Grapefruits', percentage: 12 },
-                { value: 'Rest', percentage: 2 },
+              items={[
+                { item: 'Bananas', percentage: 37 },
+                { item: 'Apples', percentage: 22 },
+                { item: 'Cherries', percentage: 15 },
+                { item: 'Oranges', percentage: 12 },
+                { item: 'Grapefruits', percentage: 12 },
+                { item: 'Rest', percentage: 2 },
               ]}
             />
           </Box>

@@ -9,13 +9,13 @@ This component can be used to visualize the distribution of a given value. It is
   <Distribution
     heading="Fruit shares"
     display="all"
-    values={[
-      { value: 'Bananas', percentage: 37 },
-      { value: 'Apples', percentage: 22 },
-      { value: 'Cherries', percentage: 15 },
-      { value: 'Oranges', percentage: 12 },
-      { value: 'Grapefruits', percentage: 12 },
-      { value: 'Rest', percentage: 2 },
+    items={[
+      { item: 'Bananas', percentage: 37 },
+      { item: 'Apples', percentage: 22 },
+      { item: 'Cherries', percentage: 15 },
+      { item: 'Oranges', percentage: 12 },
+      { item: 'Grapefruits', percentage: 12 },
+      { item: 'Rest', percentage: 2 },
     ]}
   />
 </Box>
@@ -29,8 +29,8 @@ This component can be used to visualize the distribution of a given value. It is
 | ------- | ---------------------------- |
 | `Array` | Set of colors from the theme |
 
-The different colors used to represent the values. If there are more values
-than colors, it will rotate.
+The different colors used to represent the items. If there are more items than
+colors, it will rotate.
 
 ### display
 
@@ -48,15 +48,15 @@ Set to `bar` to display the bar only.
 
 An optional heading.
 
-### itemTitle({ value, percentage, index })
+### itemTitle({ item, percentage, index })
 
 | Type       | Default value |
 | ---------- | ------------- |
 | `Function` | None          |
 
-This function gets called to generate the title attribute for each value.
+This function gets called to generate the title attribute for each item.
 
-### renderLegendItem({ value, percentage, index })
+### renderLegendItem({ item, percentage, index })
 
 | Type       | Default value |
 | ---------- | ------------- |
@@ -65,15 +65,15 @@ This function gets called to generate the title attribute for each value.
 This function gets called to render individual items in the legend. You can
 also pass a React component.
 
-### values
+### items
 
 | Type    | Default value   |
 | ------- | --------------- |
 | `Array` | None (required) |
 
-The actual values. The items in the array must be an object composed of two
-entries: `value`, which can be anything, and `percentage`, which has to be a
-`Number`.
+The items represented in the distribution. Every item in the array must be an
+object composed of two entries: `item`, which can be any type of value, and
+`percentage`, which has to be a `Number`.
 
-The total of the percentages for all the items should equal `100`. If not, the
-component will try to render and emit a warning.
+The total of the percentages for all the items should equal or be lower than
+`100`. If not, the component will try to render anyway and emit a warning.

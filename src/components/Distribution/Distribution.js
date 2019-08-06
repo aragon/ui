@@ -10,7 +10,7 @@ function Distribution({
   heading,
   itemTitle,
   renderLegendItem: LegendItem,
-  values,
+  items,
 }) {
   const theme = useTheme()
 
@@ -25,7 +25,7 @@ function Distribution({
     ]
   }
 
-  const total = values.reduce((total, { percentage }) => total + percentage, 0)
+  const total = items.reduce((total, { percentage }) => total + percentage, 0)
   if (total > 100) {
     warn(
       `Distribution: the total of percentages is greater than 100 (${total}).`
@@ -33,7 +33,7 @@ function Distribution({
   }
 
   // Sort by percentage
-  values = values.sort((a, b) => b.percentage - a.percentage)
+  items = items.sort((a, b) => b.percentage - a.percentage)
 
   return (
     <section>
@@ -62,10 +62,10 @@ function Distribution({
           }
         `}
       >
-        {values.map(({ value, percentage }, index) => (
+        {items.map(({ item, percentage }, index) => (
           <div
             key={index}
-            title={itemTitle({ value, percentage, index })}
+            title={itemTitle({ item, percentage, index })}
             style={{
               width: `${percentage}%`,
               background: colors[index % colors.length],
@@ -79,7 +79,7 @@ function Distribution({
             margin-top: ${3 * GU}px;
           `}
         >
-          {values.map(({ value, percentage }, index) => (
+          {items.map(({ item, percentage }, index) => (
             <li
               key={index}
               css={`
@@ -117,7 +117,7 @@ function Distribution({
                   `}
                 >
                   <LegendItem
-                    value={value}
+                    item={item}
                     percentage={percentage}
                     index={index}
                   />
@@ -140,10 +140,10 @@ Distribution.propTypes = {
   heading: PropTypes.node,
   itemTitle: PropTypes.func,
   renderLegendItem: PropTypes.func,
-  values: PropTypes.arrayOf(
+  items: PropTypes.arrayOf(
     PropTypes.shape({
-      value: PropTypes.any,
-      percentage: PropTypes.number,
+      item: PropTypes.any.isRequired,
+      percentage: PropTypes.number.isRequired,
     })
   ).isRequired,
 }
@@ -151,13 +151,13 @@ Distribution.propTypes = {
 Distribution.defaultProps = {
   display: 'all',
   heading: null,
-  itemTitle: ({ value, percentage, index }) => {
+  itemTitle: ({ item, percentage, index }) => {
     return `${
-      typeof value === 'string' ? value : `Item ${index + 1}`
+      typeof item === 'string' ? item : `Item ${index + 1}`
     }: ${percentage}%`
   },
-  renderLegendItem: ({ value, percentage, index }) => {
-    return typeof value === 'string' ? value : `Item ${index + 1}`
+  renderLegendItem: ({ item, percentage, index }) => {
+    return typeof item === 'string' ? item : `Item ${index + 1}`
   },
 }
 
