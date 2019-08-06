@@ -74,5 +74,6 @@ The items represented in the distribution. Every item in the array must be an
 object composed of two entries: `item`, which can be any type of value, and
 `percentage`, which has to be a `Number`.
 
-The total of the percentages for all the items should equal or be lower than
-`100`. If not, the component will try to render anyway and emit a warning.
+Note: the total of the percentages for all the items doesn’t have to be `100`.
+The bar will get displayed properly with any total, which can be useful in
+certain cases.

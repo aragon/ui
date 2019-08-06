@@ -2,7 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { useTheme } from '../../theme'
 import { GU, textStyle } from '../../style'
-import { warn } from '../../utils'
 
 function Distribution({
   colors,
@@ -26,11 +25,6 @@ function Distribution({
   }
 
   const total = items.reduce((total, { percentage }) => total + percentage, 0)
-  if (total > 100) {
-    warn(
-      `Distribution: the total of percentages is greater than 100 (${total}).`
-    )
-  }
 
   // Sort by percentage
   items = items.sort((a, b) => b.percentage - a.percentage)
@@ -67,7 +61,7 @@ function Distribution({
             key={index}
             title={itemTitle({ item, percentage, index })}
             style={{
-              width: `${percentage}%`,
+              width: `${(percentage / total) * 100}%`,
               background: colors[index % colors.length],
             }}
           />
