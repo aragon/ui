@@ -20,7 +20,7 @@ class App extends React.Component {
             header="Fruits"
             selected={active}
             onChange={this.handleChange}
-            width="400px"
+            wide
           />
         </Container>
       </Main>

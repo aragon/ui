@@ -8,10 +8,17 @@ import { GU, RADIUS, textStyle } from '../../style'
 import { useTheme } from '../../theme'
 import { warnOnce, unselectable } from '../../utils'
 
-function useDropDown({ items, selected, onChange, label, placeholder }) {
-  const buttonRef = useRef()
+function useDropDown({
+  buttonRef,
+  items,
+  label,
+  onChange,
+  placeholder,
+  selected,
+}) {
   const [selectedLabel, setSelectedLabel] = useState(placeholder || label)
   const [opened, setOpened] = useState(false)
+
   const handleClose = useCallback(() => {
     // if the popover is opened and the user clicks on the button
     // this handler was being called before the click handler, so the
@@ -23,10 +30,12 @@ function useDropDown({ items, selected, onChange, label, placeholder }) {
       buttonRef.current.focus()
     }
   }, [setOpened])
+
   const handleToggle = useCallback(() => setOpened(!opened), [
     setOpened,
     opened,
   ])
+
   const handleChange = useCallback(
     index => {
       onChange(index)
@@ -46,13 +55,38 @@ function useDropDown({ items, selected, onChange, label, placeholder }) {
   }, [items, selected, setSelectedLabel, label])
 
   return {
-    buttonRef,
     handleChange,
     handleClose,
     handleToggle,
     opened,
     selectedLabel,
   }
+}
+
+function useButtonRef(cb) {
+  const buttonRef = useRef(null)
+
+  const refCallback = useCallback(
+    el => {
+      if (el) {
+        cb(el)
+      }
+      buttonRef.current = el
+    },
+    [cb]
+  )
+
+  return {
+    buttonRef,
+    refCallback,
+  }
+}
+
+function useWindowResize(onResize) {
+  useEffect(() => {
+    window.addEventListener('resize', onResize)
+    return () => window.removeEventListener('resize', onResize)
+  }, [])
 }
 
 const DropDown = React.memo(function DropDown({
@@ -62,6 +96,7 @@ const DropDown = React.memo(function DropDown({
   renderLabel,
   onChange,
   selected,
+  wide,
   width,
 
   // deprecated
@@ -81,6 +116,8 @@ const DropDown = React.memo(function DropDown({
     )
   }
 
+  const theme = useTheme()
+
   const selectedIndex = useMemo(() => {
     if (active !== undefined) {
       return active
@@ -91,36 +128,49 @@ const DropDown = React.memo(function DropDown({
     return -1
   }, [active, selected])
 
-  const theme = useTheme()
+  const [buttonWidth, setButtonWidth] = useState(0)
+
+  const { refCallback, buttonRef } = useButtonRef(el => {
+    // Update the button width every time the reference updates
+    setButtonWidth(el.clientWidth)
+  })
+
+  // And every time the viewport resizes
+  useWindowResize(() => {
+    if (buttonRef.current) {
+      setButtonWidth(buttonRef.current.clientWidth)
+    }
+  })
 
   const {
-    buttonRef,
     handleChange,
     handleClose,
     handleToggle,
     opened,
     selectedLabel,
   } = useDropDown({
-    selected,
+    buttonRef,
     items,
     label,
-    placeholder,
     onChange,
+    placeholder,
+    selected,
   })
+
   const closedWithChanges = !opened && selectedIndex !== -1
   const Label = renderLabel
 
   return (
     <React.Fragment>
       <Button
-        ref={buttonRef}
+        ref={refCallback}
         onClick={handleToggle}
         css={`
-          display: inline-flex;
+          display: ${wide ? 'flex' : 'inline-flex'};
           justify-content: space-between;
           align-items: center;
           padding: 0 ${2 * GU}px;
-          width: ${width};
+          width: ${width || (wide ? '100%' : 'auto')};
           min-width: unset;
           ${closedWithChanges ? `border: 1px solid ${theme.accent}` : ''}
         `}
@@ -151,7 +201,7 @@ const DropDown = React.memo(function DropDown({
       >
         <div
           css={`
-            width: calc(${width} - 2px);
+            min-width: ${buttonWidth}px;
             color: ${theme.surfaceContentSecondary};
           `}
         >
@@ -201,6 +251,7 @@ DropDown.propTypes = {
   placeholder: PropTypes.node,
   renderLabel: PropTypes.func,
   selected: PropTypes.number,
+  wide: PropTypes.bool,
   width: PropTypes.string,
 
   // deprecated
@@ -211,6 +262,7 @@ DropDown.propTypes = {
 DropDown.defaultProps = {
   placeholder: 'Select an item',
   renderLabel: ({ selectedLabel }) => selectedLabel,
+  wide: false,
 }
 
 const Item = React.memo(function Item({
