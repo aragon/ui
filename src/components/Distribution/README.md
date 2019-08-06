@@ -8,7 +8,6 @@ This component can be used to visualize the distribution of a given value. It is
 <Box>
   <Distribution
     heading="Fruit shares"
-    display="all"
     items={[
       { item: 'Bananas', percentage: 37 },
       { item: 'Apples', percentage: 22 },
@@ -32,13 +31,13 @@ This component can be used to visualize the distribution of a given value. It is
 The different colors used to represent the items. If there are more items than
 colors, it will rotate.
 
-### display
+### showLegend
 
-| Type               | Default value |
-| ------------------ | ------------- |
-| `"all"` or `"bar"` | `"all"`       |
+| Type      | Default value |
+| --------- | ------------- |
+| `Boolean` | `true`        |
 
-Set to `bar` to display the bar only.
+Set to `false` to display the bar only.
 
 ### heading
 

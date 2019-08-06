@@ -6,7 +6,7 @@ import { warn } from '../../utils'
 
 function Distribution({
   colors,
-  display,
+  showLegend,
   heading,
   itemTitle,
   renderLegendItem: LegendItem,
@@ -73,7 +73,7 @@ function Distribution({
           />
         ))}
       </div>
-      {display === 'all' && (
+      {showLegend && (
         <ul
           css={`
             margin-top: ${3 * GU}px;
@@ -136,10 +136,10 @@ function Distribution({
 
 Distribution.propTypes = {
   colors: PropTypes.array,
-  display: PropTypes.oneOf(['all', 'bar']),
   heading: PropTypes.node,
   itemTitle: PropTypes.func,
   renderLegendItem: PropTypes.func,
+  showLegend: PropTypes.bool,
   items: PropTypes.arrayOf(
     PropTypes.shape({
       item: PropTypes.any.isRequired,
@@ -149,7 +149,6 @@ Distribution.propTypes = {
 }
 
 Distribution.defaultProps = {
-  display: 'all',
   heading: null,
   itemTitle: ({ item, percentage, index }) => {
     return `${
@@ -159,6 +158,7 @@ Distribution.defaultProps = {
   renderLegendItem: ({ item, percentage, index }) => {
     return typeof item === 'string' ? item : `Item ${index + 1}`
   },
+  showLegend: true,
 }
 
 export default Distribution

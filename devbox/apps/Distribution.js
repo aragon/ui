@@ -10,7 +10,6 @@ class App extends React.Component {
           <Box>
             <Distribution
               heading="Fruit shares"
-              display="all"
               items={[
                 { item: 'Bananas', percentage: 37 },
                 { item: 'Apples', percentage: 22 },
