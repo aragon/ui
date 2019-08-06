@@ -23,7 +23,7 @@ function Inside({ name, children }) {
 
 Inside.propTypes = {
   name: PropTypes.string.isRequired,
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
 }
 
 // Use this hook to know if a given component is somewhere
