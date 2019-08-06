@@ -56,15 +56,17 @@ function useDropDown({ items, selected, onChange, label, placeholder }) {
 }
 
 const DropDown = React.memo(function DropDown({
-  active,
   header,
   items,
-  label,
   placeholder,
   renderLabel,
   onChange,
   selected,
   width,
+
+  // deprecated
+  active,
+  label,
 }) {
   if (active !== undefined) {
     warnOnce(
@@ -195,9 +197,9 @@ const DropDown = React.memo(function DropDown({
 DropDown.propTypes = {
   header: PropTypes.node,
   items: PropTypes.arrayOf(PropTypes.node).isRequired,
+  onChange: PropTypes.func.isRequired,
   placeholder: PropTypes.node,
   renderLabel: PropTypes.func,
-  onChange: PropTypes.func.isRequired,
   selected: PropTypes.number,
   width: PropTypes.string,
 
