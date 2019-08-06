@@ -8,9 +8,9 @@ import { GU, RADIUS, textStyle } from '../../style'
 import { useTheme } from '../../theme'
 import { warnOnce, unselectable } from '../../utils'
 
-function useDropDown({ items, selected, onChange, label }) {
+function useDropDown({ items, selected, onChange, label, placeholder }) {
   const buttonRef = useRef()
-  const [selectedLabel, setSelectedLabel] = useState(label)
+  const [selectedLabel, setSelectedLabel] = useState(placeholder || label)
   const [opened, setOpened] = useState(false)
   const handleClose = useCallback(() => {
     // if the popover is opened and the user clicks on the button
@@ -60,6 +60,8 @@ const DropDown = React.memo(function DropDown({
   header,
   items,
   label,
+  placeholder,
+  renderLabel,
   onChange,
   selected,
   width,
@@ -94,6 +96,7 @@ const DropDown = React.memo(function DropDown({
     selected,
     items,
     label,
+    placeholder,
     onChange,
   })
   const closedWithChanges = !opened && selectedIndex !== -1
@@ -119,7 +122,7 @@ const DropDown = React.memo(function DropDown({
             ${textStyle('body2')};
           `}
         >
-          {selectedLabel}
+          {renderLabel || selectedLabel}
         </span>
         <IconDown
           size="tiny"
@@ -185,17 +188,19 @@ const DropDown = React.memo(function DropDown({
 DropDown.propTypes = {
   header: PropTypes.node,
   items: PropTypes.arrayOf(PropTypes.node).isRequired,
-  label: PropTypes.string,
+  placeholder: PropTypes.string,
+  renderLabel: PropTypes.string,
   onChange: PropTypes.func.isRequired,
   selected: PropTypes.number,
   width: PropTypes.string,
 
   // deprecated
   active: PropTypes.number,
+  label: PropTypes.string,
 }
 
 DropDown.defaultProps = {
-  label: 'Select an item',
+  placeholder: 'Select an item',
 }
 
 const Item = React.memo(function Item({
