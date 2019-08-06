@@ -129,7 +129,7 @@ const DropDown = React.memo(function DropDown({
             ${textStyle('body2')};
           `}
         >
-          {Label ? <Label selectedIndex={selectedIndex} /> : selectedLabel}
+          <Label selectedIndex={selectedIndex} selectedLabel={selectedLabel} />
         </span>
         <IconDown
           size="tiny"
@@ -208,6 +208,7 @@ DropDown.propTypes = {
 
 DropDown.defaultProps = {
   placeholder: 'Select an item',
+  renderLabel: ({ selectedLabel }) => selectedLabel,
 }
 
 const Item = React.memo(function Item({
