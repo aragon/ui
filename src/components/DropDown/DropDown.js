@@ -72,6 +72,12 @@ const DropDown = React.memo(function DropDown({
       'The “active” prop is deprecated. Please use “selected” to pass the selected index instead.'
     )
   }
+  if (label !== undefined) {
+    warnOnce(
+      'DropDown:label',
+      'DropDown: the “label” prop is deprecated, please use “placeholder” instead.'
+    )
+  }
 
   const selectedIndex = useMemo(() => {
     if (active !== undefined) {
@@ -100,6 +106,7 @@ const DropDown = React.memo(function DropDown({
     onChange,
   })
   const closedWithChanges = !opened && selectedIndex !== -1
+  const Label = renderLabel
 
   return (
     <React.Fragment>
@@ -122,7 +129,7 @@ const DropDown = React.memo(function DropDown({
             ${textStyle('body2')};
           `}
         >
-          {renderLabel || selectedLabel}
+          {Label ? <Label selectedIndex={selectedIndex} /> : selectedLabel}
         </span>
         <IconDown
           size="tiny"
@@ -188,8 +195,8 @@ const DropDown = React.memo(function DropDown({
 DropDown.propTypes = {
   header: PropTypes.node,
   items: PropTypes.arrayOf(PropTypes.node).isRequired,
-  placeholder: PropTypes.string,
-  renderLabel: PropTypes.string,
+  placeholder: PropTypes.node,
+  renderLabel: PropTypes.func,
   onChange: PropTypes.func.isRequired,
   selected: PropTypes.number,
   width: PropTypes.string,
