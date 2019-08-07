@@ -1,8 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { useTheme } from '../../theme'
-import { GU } from '../../style'
+import { GU, textStyle } from '../../style'
 
+const NORMAL = 'normal'
+const COMPACT = 'compact'
 const INFO = 'info'
 const WARNING = 'warning'
 const HELP = 'help'
@@ -51,8 +53,26 @@ function useMode(mode) {
   `
 }
 
-function Tag({ children, mode = 'info', ...props }) {
+function useSize(size) {
+  if (size === COMPACT) {
+    return `
+      ${textStyle('label3')};
+      padding: 0 ${0.5 * GU}px;
+      min-width: 14px;
+    `
+  }
+
+  // normal
+  return `
+    ${textStyle('label2')};
+    padding: 0 ${1.5 * GU}px;
+    min-width: 22px;
+  `
+}
+
+function Tag({ children, mode, size, uppercase, color, background, ...props }) {
   const modeStyles = useMode(mode)
+  const sizeStyles = useSize(size)
 
   return (
     <span
@@ -61,9 +81,12 @@ function Tag({ children, mode = 'info', ...props }) {
         align-items: center;
         justify-content: center;
         border-radius: 100px;
-        padding: 0 ${0.5 * GU}px;
-        min-width: 22px;
+        white-space: nowrap;
         ${modeStyles};
+        ${sizeStyles};
+        ${!uppercase ? 'text-transform: unset' : ''};
+        ${color ? `color: ${color}` : ''};
+        ${background ? `background: ${background}` : ''};
       `}
       {...props}
     >
@@ -83,6 +106,13 @@ Tag.propTypes = {
     IDENTITY,
     NOTIFICATION,
   ]),
+  color: PropTypes.string,
+  background: PropTypes.string,
+}
+
+Tag.defaultProps = {
+  size: NORMAL,
+  mode: INFO,
 }
 
 export { Tag }
