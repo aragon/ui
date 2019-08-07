@@ -108,6 +108,7 @@ Tag.propTypes = {
   ]),
   color: PropTypes.string,
   background: PropTypes.string,
+  size: PropTypes.oneOf([NORMAL, COMPACT]),
 }
 
 Tag.defaultProps = {
