@@ -43,12 +43,18 @@ class App extends React.Component {
         {Array.from(ITEMS.keys()).map(key => (
           <div key={key} css="text-align: center;">
             <div>{key}</div>
-            <div>
+            <div
+              css={`
+                display: grid;
+                grid-template-columns: auto;
+                grid-gap: 5px;
+              `}
+            >
               {ITEMS.get(key).map((item, i) => (
                 <div key={i} css="text-align: center;">
                   <Tag
-                    size={i < 4 ? 'compact' : 'normal'}
-                    uppercase={i % 2 === 1 || i > 3}
+                    size={i < 4 ? 'small' : 'normal'}
+                    uppercase={i % 2 === 0}
                     mode={key}
                   >
                     {item}
@@ -60,18 +66,26 @@ class App extends React.Component {
         ))}
         <div key="custom" css="text-align: center;">
           <div>Custom</div>
-          {CUSTOM_ITEMS.map(([background, color], i) => (
-            <div key={`custom-${i}`} css="text-align: center;">
-              <Tag
-                background={background}
-                color={color}
-                size={i < 4 ? 'compact' : 'normal'}
-                uppercase={i % 2 === 1 || i > 3}
-              >
-                {'custom'.substr(0, i + 1)}
-              </Tag>
-            </div>
-          ))}
+          <div
+            css={`
+              display: grid;
+              grid-template-columns: auto;
+              grid-gap: 5px;
+            `}
+          >
+            {CUSTOM_ITEMS.map(([background, color], i) => (
+              <div key={`custom-${i}`} css="text-align: center;">
+                <Tag
+                  background={background}
+                  color={color}
+                  size={i < 4 ? 'small' : 'normal'}
+                  uppercase={i % 2 === 1 || i > 3}
+                >
+                  {'custom'.substr(0, i + 1)}
+                </Tag>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     )
