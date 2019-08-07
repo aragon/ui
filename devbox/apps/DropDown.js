@@ -16,11 +16,11 @@ class App extends React.Component {
         <Container>
           <DropDown
             items={items}
-            label="Which fruit?"
+            placeholder="Which fruit?"
             header="Fruits"
             selected={active}
             onChange={this.handleChange}
-            width="400px"
+            wide
           />
         </Container>
       </Main>
