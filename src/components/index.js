@@ -1,5 +1,6 @@
 export { Bar } from './Bar/Bar'
 export { ButtonBase } from './Button/ButtonBase'
+export { Count } from './Count/Count'
 export { DataView } from './DataView/DataView'
 export { DiscButton } from './DiscButton/DiscButton'
 export { Layout, useLayout } from './Layout/Layout'
