@@ -45,5 +45,6 @@ Optional. The background color.
 ### `uppercase`
 
 - Type: `Boolean`
+- Default value: `true`
 
-Optional. Use in case it is needed to `unset` the predefined text styles that uppercase the contents.
+Defines the text style uppercase transformation for the contents.
