@@ -7,11 +7,19 @@ import { IconDown } from '../../icons'
 import { GU, RADIUS, textStyle } from '../../style'
 import { useTheme } from '../../theme'
 import { warnOnce, unselectable } from '../../utils'
+import { useViewport } from '../../providers/Viewport/Viewport'
 
-function useDropDown({ items, selected, onChange, label }) {
-  const buttonRef = useRef()
-  const [selectedLabel, setSelectedLabel] = useState(label)
+function useDropDown({
+  buttonRef,
+  items,
+  label,
+  onChange,
+  placeholder,
+  selected,
+}) {
+  const [selectedLabel, setSelectedLabel] = useState(placeholder || label)
   const [opened, setOpened] = useState(false)
+
   const handleClose = useCallback(() => {
     // if the popover is opened and the user clicks on the button
     // this handler was being called before the click handler, so the
@@ -23,10 +31,12 @@ function useDropDown({ items, selected, onChange, label }) {
       buttonRef.current.focus()
     }
   }, [setOpened])
+
   const handleToggle = useCallback(() => setOpened(!opened), [
     setOpened,
     opened,
   ])
+
   const handleChange = useCallback(
     index => {
       onChange(index)
@@ -46,7 +56,6 @@ function useDropDown({ items, selected, onChange, label }) {
   }, [items, selected, setSelectedLabel, label])
 
   return {
-    buttonRef,
     handleChange,
     handleClose,
     handleToggle,
@@ -55,14 +64,38 @@ function useDropDown({ items, selected, onChange, label }) {
   }
 }
 
+function useButtonRef(cb) {
+  const buttonRef = useRef(null)
+
+  const refCallback = useCallback(
+    el => {
+      if (el) {
+        cb(el)
+      }
+      buttonRef.current = el
+    },
+    [cb]
+  )
+
+  return {
+    buttonRef,
+    refCallback,
+  }
+}
+
 const DropDown = React.memo(function DropDown({
-  active,
   header,
   items,
-  label,
+  placeholder,
+  renderLabel,
   onChange,
   selected,
+  wide,
   width,
+
+  // deprecated
+  active,
+  label,
 }) {
   if (active !== undefined) {
     warnOnce(
@@ -70,6 +103,14 @@ const DropDown = React.memo(function DropDown({
       'The “active” prop is deprecated. Please use “selected” to pass the selected index instead.'
     )
   }
+  if (label !== undefined) {
+    warnOnce(
+      'DropDown:label',
+      'DropDown: the “label” prop is deprecated, please use “placeholder” instead.'
+    )
+  }
+
+  const theme = useTheme()
 
   const selectedIndex = useMemo(() => {
     if (active !== undefined) {
@@ -81,34 +122,50 @@ const DropDown = React.memo(function DropDown({
     return -1
   }, [active, selected])
 
-  const theme = useTheme()
+  const [buttonWidth, setButtonWidth] = useState(0)
+
+  const { refCallback, buttonRef } = useButtonRef(el => {
+    // Update the button width every time the reference updates
+    setButtonWidth(el.clientWidth)
+  })
+
+  // And every time the viewport resizes
+  const { width: vw } = useViewport()
+  useEffect(() => {
+    if (buttonRef.current) {
+      setButtonWidth(buttonRef.current.clientWidth)
+    }
+  }, [vw, buttonRef])
 
   const {
-    buttonRef,
     handleChange,
     handleClose,
     handleToggle,
     opened,
     selectedLabel,
   } = useDropDown({
-    selected,
+    buttonRef,
     items,
     label,
     onChange,
+    placeholder,
+    selected,
   })
+
   const closedWithChanges = !opened && selectedIndex !== -1
+  const Label = renderLabel
 
   return (
     <React.Fragment>
       <Button
-        ref={buttonRef}
+        ref={refCallback}
         onClick={handleToggle}
         css={`
-          display: inline-flex;
+          display: ${wide ? 'flex' : 'inline-flex'};
           justify-content: space-between;
           align-items: center;
           padding: 0 ${2 * GU}px;
-          width: ${width};
+          width: ${width || (wide ? '100%' : 'auto')};
           min-width: unset;
           ${closedWithChanges ? `border: 1px solid ${theme.accent}` : ''}
         `}
@@ -119,7 +176,7 @@ const DropDown = React.memo(function DropDown({
             ${textStyle('body2')};
           `}
         >
-          {selectedLabel}
+          <Label selectedIndex={selectedIndex} selectedLabel={selectedLabel} />
         </span>
         <IconDown
           size="tiny"
@@ -139,7 +196,7 @@ const DropDown = React.memo(function DropDown({
       >
         <div
           css={`
-            width: calc(${width} - 2px);
+            min-width: ${buttonWidth}px;
             color: ${theme.surfaceContentSecondary};
           `}
         >
@@ -185,17 +242,22 @@ const DropDown = React.memo(function DropDown({
 DropDown.propTypes = {
   header: PropTypes.node,
   items: PropTypes.arrayOf(PropTypes.node).isRequired,
-  label: PropTypes.string,
   onChange: PropTypes.func.isRequired,
+  placeholder: PropTypes.node,
+  renderLabel: PropTypes.func,
   selected: PropTypes.number,
+  wide: PropTypes.bool,
   width: PropTypes.string,
 
   // deprecated
   active: PropTypes.number,
+  label: PropTypes.string,
 }
 
 DropDown.defaultProps = {
-  label: 'Select an item',
+  placeholder: 'Select an item',
+  renderLabel: ({ selectedLabel }) => selectedLabel,
+  wide: false,
 }
 
 const Item = React.memo(function Item({
