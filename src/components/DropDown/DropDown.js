@@ -7,6 +7,7 @@ import { IconDown } from '../../icons'
 import { GU, RADIUS, textStyle } from '../../style'
 import { useTheme } from '../../theme'
 import { warnOnce, unselectable } from '../../utils'
+import { useViewport } from '../../providers/Viewport/Viewport'
 
 function useDropDown({
   buttonRef,
@@ -82,13 +83,6 @@ function useButtonRef(cb) {
   }
 }
 
-function useWindowResize(onResize) {
-  useEffect(() => {
-    window.addEventListener('resize', onResize)
-    return () => window.removeEventListener('resize', onResize)
-  }, [])
-}
-
 const DropDown = React.memo(function DropDown({
   header,
   items,
@@ -136,11 +130,12 @@ const DropDown = React.memo(function DropDown({
   })
 
   // And every time the viewport resizes
-  useWindowResize(() => {
+  const { width: vw } = useViewport()
+  useEffect(() => {
     if (buttonRef.current) {
       setButtonWidth(buttonRef.current.clientWidth)
     }
-  })
+  }, [vw, buttonRef])
 
   const {
     handleChange,
