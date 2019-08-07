@@ -4,7 +4,7 @@ import { useTheme } from '../../theme'
 import { GU, textStyle } from '../../style'
 
 const NORMAL = 'normal'
-const COMPACT = 'compact'
+const SMALL = 'small'
 const INFO = 'info'
 const WARNING = 'warning'
 const HELP = 'help'
@@ -44,6 +44,10 @@ function useMode(mode) {
   }
 
   if (mode === NOTIFICATION) {
+    return `
+      background: ${theme.accent};
+      color: ${theme.accentContent},
+    `
   }
 
   // info
@@ -53,26 +57,28 @@ function useMode(mode) {
   `
 }
 
-function useSize(size) {
-  if (size === COMPACT) {
+function useSize(size, uppercase) {
+  if (size === SMALL) {
     return `
       ${textStyle('label3')};
       padding: 0 ${0.5 * GU}px;
-      min-width: 14px;
+      min-width: ${2 * GU}px;
+      height: ${2 * GU}px;
     `
   }
 
   // normal
   return `
     ${textStyle('label2')};
-    padding: 0 ${1.5 * GU}px;
+    padding: ${uppercase ? '1.5px' : 0} ${1.5 * GU}px 0;
     min-width: 22px;
+    height: ${3 * GU}px;
   `
 }
 
 function Tag({ children, mode, size, uppercase, color, background, ...props }) {
   const modeStyles = useMode(mode)
-  const sizeStyles = useSize(size)
+  const sizeStyles = useSize(size, uppercase)
 
   return (
     <span
@@ -84,7 +90,7 @@ function Tag({ children, mode, size, uppercase, color, background, ...props }) {
         white-space: nowrap;
         ${modeStyles};
         ${sizeStyles};
-        ${!uppercase ? 'text-transform: unset' : ''};
+        ${uppercase ? 'text-transform: unset' : ''};
         ${color ? `color: ${color}` : ''};
         ${background ? `background: ${background}` : ''};
       `}
@@ -108,12 +114,13 @@ Tag.propTypes = {
   ]),
   color: PropTypes.string,
   background: PropTypes.string,
-  size: PropTypes.oneOf([NORMAL, COMPACT]),
+  size: PropTypes.oneOf([NORMAL, SMALL]),
 }
 
 Tag.defaultProps = {
   size: NORMAL,
   mode: INFO,
+  uppercase: true,
 }
 
 export { Tag }
