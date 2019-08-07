@@ -1,9 +1,9 @@
 import React from 'react'
-import { Tag } from '../Tag/Tag'
+import { Count } from '../Count/Count'
 import { warnOnce } from '../../utils/environment'
 
 export default props => {
   warnOnce('"BadgeNumber" has been deprecated. Please use "Count" instead.')
 
-  return <Tag {...props} />
+  return <Count {...props} />
 }
