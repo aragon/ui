@@ -32,7 +32,7 @@ class App extends React.Component {
         {Array.from(ITEMS.keys()).map(key =>
           ITEMS.get(key).map((item, i) => (
             <div key={i} css="text-align: center;">
-              <Count mode={key} digits={i + 1} value={item} size="compact" />
+              <Count mode={key} digits={i + 1} value={item} size="small" />
             </div>
           ))
         )}
