@@ -37,7 +37,7 @@ const Modal = ({ children, onClose, padding, visible, width }) => {
                     left: 0;
                     right: 0;
                     bottom: 0;
-                    background: rgba(0, 0, 0, 0.5);
+                    background: ${theme.overlay.alpha(0.8)};
                   `}
                   style={{ opacity }}
                 >
@@ -63,7 +63,7 @@ const Modal = ({ children, onClose, padding, visible, width }) => {
                   >
                     <div
                       css={`
-                        padding: ${3 * GU}px ${1.5 * GU}px;
+                        padding: ${2 * GU}px ${2 * GU}px;
                       `}
                     >
                       <EscapeOutside
