@@ -37,9 +37,9 @@ const ITEMS_DESCRIPTION = [
     proportion: '1,242.25 USD',
   },
   {
-    name: 'MANA',
+    name: 'ZRX',
     percentage: 6,
-    tokenAmount: '4.22 MANA',
+    tokenAmount: '4.22 ZRX',
     proportion: '22.5 USD',
   },
 ]
@@ -64,10 +64,16 @@ class App extends React.Component {
             <h2>Custom caption and colors</h2>
             <PartitionBar
               data={ITEMS_DESCRIPTION}
-              caption={({ index, bullet, color }) => (
+              caption={({ index, name, bullet, percentage, color }) => (
                 <React.Fragment>
                   {bullet}
-                  <Description {...ITEMS_DESCRIPTION[index]} color={color} />
+                  <Description
+                    name={name}
+                    tokenAmount={ITEMS_DESCRIPTION[index].tokenAmount}
+                    proportion={ITEMS_DESCRIPTION[index].proportion}
+                    percentage={percentage}
+                    color={color}
+                  />
                 </React.Fragment>
               )}
               colors={CUSTOM_COLORS}
