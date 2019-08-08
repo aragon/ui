@@ -37,7 +37,7 @@ const Modal = ({ children, onClose, padding, visible, width }) => {
                     left: 0;
                     right: 0;
                     bottom: 0;
-                    background: ${theme.surface.alhpa(0.8)};
+                    background: ${theme.surface.alpha(0.8)};
                   `}
                   style={{ opacity }}
                 >
