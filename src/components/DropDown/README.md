@@ -5,65 +5,93 @@ A DropDown component.
 ## Usage
 
 ```jsx
-import { Component } from 'react'
 import { DropDown } from '@aragon/ui'
 
-const items = [
-  'Wandering Thunder',
-  'Black Wildflower',
-  'Ancient Paper',
-]
-
-class App extends Component {
-  state = {
-    activeItem: 0,
-  }
-  handleChange(index) {
-    this.setState({ activeItem: index })
-  }
-  render() {
-    return (
-      <DropDown
-        items={items}
-        active={this.state.activeItem}
-        onChange={this.handleChange}
-      />
-    )
-  }
+function App() {
+  const [selected, setSelected] = useState(0)
+  return (
+    <DropDown
+      items={['Wandering Thunder', 'Black Wildflower', 'Ancient Paper']}
+      selected={selected}
+      onChange={setSelected}
+    />
+  )
 }
 ```
 
 ## Props
 
+### `header`
+
+| Type         | Default value |
+| ------------ | ------------- |
+| `React node` | None          |
+
+A header that will appear at the beginning of the items menu.
+
 ### `items`
 
-- Type: `Array`
-- Default: `[]`
+| Type    | Default value   |
+| ------- | --------------- |
+| `Array` | None (required) |
 
 Use this property to define the items of the DropDown menu.
 
-### `active`
+### placeholder
 
-- Type: `Number`
-- Default: `0`
+| Type         | Default value      |
+| ------------ | ------------------ |
+| `React node` | `"Select an item"` |
 
-Set this property to the index of the active item.
+The node displayed in the button when there is no selection.
 
-### `onChange`
+### renderLabel
 
-- Type: `Function`: `(index: Number, items: Array) -> *`
-- Default: `undefined`
+| Type              | Default value                          |
+| ----------------- | -------------------------------------- |
+| `React component` | `({ selectedLabel }) => selectedLabel` |
+
+A function (or React component), used to display the button label.
+
+#### Props
+
+- `selectedLabel` (`String`): label of the selected item.
+- `selectedIndex` (`Number`): index of the selected item.
+
+### onChange(index, items)
+
+| Type       | Default value   |
+| ---------- | --------------- |
+| `Function` | None (required) |
 
 This callback is called whenever the user selects a new item.
 
-#### Arguments:
+#### Arguments
 
-- `index`: Index in `props.items` of the newly selected item
-- `items`: `props.items`
+- `index` (`Number`): Index of the newly selected item in `props.items`.
+- `items` (`Array`): the items passed in `props.items`.
 
-### `wide`
+### selected
 
-- Type: `Boolean`
-- Default: `false`
+| Type     | Default value |
+| -------- | ------------- |
+| `Number` | `-1`          |
+
+Set this prop to the index of the active item. Set to `-1` to unselect and
+display the placeholder.
+
+### wide
+
+| Type      | Default value |
+| --------- | ------------- |
+| `Boolean` | `false`       |
 
 Takes the full width if set to `true`.
+
+### width
+
+| Type     | Default value |
+| -------- | ------------- |
+| `String` | None          |
+
+Use this prop to set the CSS width of the button.
