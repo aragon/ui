@@ -6,6 +6,7 @@ export default {
   background: colors.ArcticBlueLight,
   content: colors.GreyDark,
   border: colors.GreyBasic,
+  overlay: colors.White,
 
   surface: colors.White,
   surfaceContent: colors.GreyDark,
