@@ -6,6 +6,7 @@ export default {
   background: '#28334C',
   content: colors.White,
   border: '#28334C',
+  overlay: '#35425E',
 
   surface: '#35425E',
   surfaceContent: colors.White,
