@@ -115,7 +115,7 @@ Tag.propTypes = {
     NOTIFICATION,
   ]),
   size: PropTypes.oneOf([NORMAL, SMALL]),
-  uppercase: PropTypes.boolean,
+  uppercase: PropTypes.bool,
 }
 
 Tag.defaultProps = {
