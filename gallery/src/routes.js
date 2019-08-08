@@ -36,7 +36,6 @@ import PagePopover from './pages/PagePopover'
 import PageModal from './pages/PageModal'
 import PageRootPortal from './pages/PageRootPortal'
 import PageLineChart from './pages/PageLineChart'
-import PagePartitionBar from './pages/PagePartitionBar'
 import PageTimer from './pages/PageTimer'
 import PageTransactionBadge from './pages/PageTransactionBadge'
 import PageTransactionProgress from './pages/PageTransactionProgress'
@@ -133,7 +132,6 @@ export const PAGE_GROUPS = [
       [PageInfo, 'Info'],
       [PageLineChart, 'LineChart'],
       [PageModal, 'Modal'],
-      [PagePartitionBar, 'PartitionBar'],
       [PagePopover, 'Popover'],
       [PageProgressBar, 'ProgressBar'],
       [PageRootPortal, 'RootPortal'],
