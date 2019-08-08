@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Tag } from '@aragon/ui'
+import { Badge, Tag } from '@aragon/ui'
 
 const ITEMS = new Map([
   ['info', ['i', '?', 'You', 'You', 'Info', 'Here']],
@@ -21,8 +21,37 @@ const CUSTOM_ITEMS = [
   ['black', 'white'],
 ]
 
+function DeprecatedBadges() {
+  return (
+    <div
+      css={`
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+        background: white;
+        padding: 200px 0;
+      `}
+    >
+      <Badge>Test</Badge>
+      <Badge shape="disc">Test</Badge>
+      <Badge shape="smalldisc">Test</Badge>
+      <Badge background="tomato" foreground="orange">
+        Test
+      </Badge>
+      <Badge.Notification>Notification</Badge.Notification>
+      <Badge.Notification label={99999} />
+      <Badge.Notification label={99999} small />
+      <Badge.Identity>0x9898793287197398173298321798</Badge.Identity>
+      <Badge.App>App</Badge.App>
+      <Badge.Info label="?" />
+      <Badge.Info label={999999} />
+    </div>
+  )
+}
+
 class App extends React.Component {
   render() {
+    // return <DeprecatedBadges />
     return (
       <div
         css={`
