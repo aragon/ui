@@ -102,7 +102,9 @@ function Tag({ children, mode, size, uppercase, color, background, ...props }) {
 }
 
 Tag.propTypes = {
+  background: PropTypes.string,
   children: PropTypes.node,
+  color: PropTypes.string,
   mode: PropTypes.oneOf([
     INFO,
     WARNING,
@@ -112,14 +114,13 @@ Tag.propTypes = {
     IDENTITY,
     NOTIFICATION,
   ]),
-  color: PropTypes.string,
-  background: PropTypes.string,
   size: PropTypes.oneOf([NORMAL, SMALL]),
+  uppercase: PropTypes.boolean,
 }
 
 Tag.defaultProps = {
-  size: NORMAL,
   mode: INFO,
+  size: NORMAL,
   uppercase: true,
 }
 
