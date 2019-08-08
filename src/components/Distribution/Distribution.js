@@ -9,6 +9,7 @@ function Distribution({
   heading,
   itemTitle,
   renderLegendItem: LegendItem,
+  renderFullLegendItem: FullLegendItem,
   items,
 }) {
   const theme = useTheme()
@@ -73,55 +74,69 @@ function Distribution({
             margin-top: ${3 * GU}px;
           `}
         >
-          {items.map(({ item, percentage }, index) => (
-            <li
-              key={index}
-              css={`
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                margin-top: 10px;
-                list-style: none;
-              `}
-            >
-              <div
+          {items.map(({ item, percentage }, index) => {
+            const color = colors[index % colors.length]
+            return (
+              <li
+                key={index}
                 css={`
                   display: flex;
                   align-items: center;
-                  max-width: 80%;
-                  flex-shrink: 1;
+                  justify-content: space-between;
+                  margin-top: 10px;
+                  list-style: none;
                 `}
               >
-                <div
-                  css={`
-                    width: ${1 * GU}px;
-                    height: ${1 * GU}px;
-                    margin-right: ${1 * GU}px;
-                    border-radius: 50%;
-                    flex-shrink: 0;
-                  `}
-                  style={{ background: colors[index % colors.length] }}
-                />
-                <div
-                  css={`
-                    flex-shrink: 1;
-                    text-overflow: ellipsis;
-                    overflow: hidden;
-                    white-space: nowrap;
-                  `}
-                >
-                  <LegendItem
+                {FullLegendItem ? (
+                  <FullLegendItem
+                    bullet={<Bullet color={color} />}
+                    color={color}
+                    index={index}
                     item={item}
                     percentage={percentage}
-                    index={index}
                   />
-                </div>
-              </div>
-              <div css="flex-shrink: 0">
-                <strong>{percentage}%</strong>
-              </div>
-            </li>
-          ))}
+                ) : (
+                  <React.Fragment>
+                    <div
+                      css={`
+                        display: flex;
+                        align-items: center;
+                        flex-shrink: 1;
+                        flex-grow: 1;
+                      `}
+                    >
+                      <Bullet color={color} />
+                      <div
+                        css={`
+                          width: 0;
+                          flex-shrink: 1;
+                          flex-grow: 1;
+                          text-overflow: ellipsis;
+                          overflow: hidden;
+                          white-space: nowrap;
+                        `}
+                      >
+                        <LegendItem
+                          color={color}
+                          index={index}
+                          item={item}
+                          percentage={percentage}
+                        />
+                      </div>
+                    </div>
+                    <div
+                      css={`
+                        padding-left: ${1 * GU}px;
+                        flex-shrink: 0;
+                      `}
+                    >
+                      <strong>{percentage}%</strong>
+                    </div>
+                  </React.Fragment>
+                )}
+              </li>
+            )
+          })}
         </ul>
       )}
     </section>
@@ -133,6 +148,7 @@ Distribution.propTypes = {
   heading: PropTypes.node,
   itemTitle: PropTypes.func,
   renderLegendItem: PropTypes.func,
+  renderFullLegendItem: PropTypes.func,
   showLegend: PropTypes.bool,
   items: PropTypes.arrayOf(
     PropTypes.shape({
@@ -153,6 +169,21 @@ Distribution.defaultProps = {
     return typeof item === 'string' ? item : `Item ${index + 1}`
   },
   showLegend: true,
+}
+
+function Bullet({ color }) {
+  return (
+    <div
+      css={`
+        width: ${1 * GU}px;
+        height: ${1 * GU}px;
+        margin-right: ${1 * GU}px;
+        border-radius: 50%;
+        flex-shrink: 0;
+      `}
+      style={{ background: color }}
+    />
+  )
 }
 
 export default Distribution
