@@ -21,12 +21,12 @@ function CardLayout({ children, columnWidthMin, rowHeight, ...props }) {
           display: grid;
           grid-gap: ${2 * GU}px;
           grid-auto-flow: row;
-          align-items: start;
           grid-template-columns: repeat(
-            auto-fit,
+            ${fullWidth ? 'auto-fit' : 'auto-fill'},
             minmax(${columnWidthMin}px, 1fr)
           );
           grid-auto-rows: ${rowHeight}px;
+          align-items: start;
           padding: 0 ${fullWidth ? 2 * GU : 0}px ${3 * GU}px;
           margin: 0 auto;
         `}
