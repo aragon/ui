@@ -46,7 +46,7 @@ function useMode(mode) {
   if (mode === NOTIFICATION) {
     return `
       background: ${theme.accent};
-      color: ${theme.accentContent},
+      color: ${theme.accentContent};
     `
   }
 
