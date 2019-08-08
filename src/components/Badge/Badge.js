@@ -11,6 +11,7 @@ function deprecationWarning() {
   )
 }
 
+/* eslint-disable react/prop-types */
 function Badge({ background, foreground, shape, children, ...props }) {
   deprecationWarning()
   return (
@@ -75,6 +76,7 @@ function BadgeNotification(props) {
     />
   )
 }
+/* eslint-enable react/prop-types */
 
 Badge.Info = BadgeInfo
 Badge.Notification = BadgeNotification
