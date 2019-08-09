@@ -47,8 +47,8 @@ function useDropDown({
 
   useEffect(() => {
     if (selected === -1 || !items[selected]) {
-      if (label) {
-        setSelectedLabel(label)
+      if (placeholder || label) {
+        setSelectedLabel(placeholder || label)
       }
       return
     }
