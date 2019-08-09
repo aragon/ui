@@ -55,7 +55,7 @@ An optional heading.
 
 This function gets called to generate the title attribute for each item.
 
-### renderLegendItem({ item, percentage, index })
+### renderLegendItem({ color, index, item, percentage })
 
 | Type       | Default value |
 | ---------- | ------------- |
@@ -63,6 +63,15 @@ This function gets called to generate the title attribute for each item.
 
 This function gets called to render individual items in the legend. You can
 also pass a React component.
+
+### renderFullLegendItem({ bullet, color, index, item, percentage })
+
+| Type       | Default value |
+| ---------- | ------------- |
+| `Function` | None          |
+
+This function gets called to render the full line of individual items in the
+legend. You can also pass a React component.
 
 ### items
 
