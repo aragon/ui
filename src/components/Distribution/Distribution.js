@@ -171,6 +171,7 @@ Distribution.defaultProps = {
   showLegend: true,
 }
 
+/* eslint-disable react/prop-types */
 function Bullet({ color }) {
   return (
     <div
@@ -185,5 +186,6 @@ function Bullet({ color }) {
     />
   )
 }
+/* eslint-enable react/prop-types */
 
 export default Distribution
