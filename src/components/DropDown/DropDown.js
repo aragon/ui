@@ -53,7 +53,7 @@ function useDropDown({
       return
     }
     setSelectedLabel(items[selected])
-  }, [items, selected, setSelectedLabel, label])
+  }, [items, selected, setSelectedLabel, label, placeholder])
 
   return {
     handleChange,
