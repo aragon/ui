@@ -90,7 +90,7 @@ function Tag({ children, mode, size, uppercase, color, background, ...props }) {
         white-space: nowrap;
         ${modeStyles};
         ${sizeStyles};
-        ${uppercase ? 'text-transform: unset' : ''};
+        ${!uppercase && 'text-transform: unset'};
         ${color ? `color: ${color}` : ''};
         ${background ? `background: ${background}` : ''};
       `}
