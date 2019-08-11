@@ -142,7 +142,7 @@ export function blockExplorerUrl(
  * @return {string} The generated URL, or an empty string if the parameters are invalid.
  */
 export function tokenIconUrl(address = '') {
-  address = address.trim()
+  address = address.trim().toLowerCase()
   return address
     ? `https://raw.githubusercontent.com/TrustWallet/tokens/master/tokens/${address}.png`
     : ''
