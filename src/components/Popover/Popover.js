@@ -140,7 +140,7 @@ class PopoverBase extends React.Component {
   }
 
   render() {
-    const { zIndex, children, transitionStyles, theme } = this.props
+    const { zIndex, children, transitionStyles, theme, ...props } = this.props
     const { scale, opacity } = transitionStyles
     return (
       <animated.div
@@ -171,6 +171,7 @@ class PopoverBase extends React.Component {
               outline: 0;
             }
           `}
+          {...props}
         >
           {children}
         </animated.div>
@@ -179,36 +180,43 @@ class PopoverBase extends React.Component {
   }
 }
 
-const Popover = props => (
-  <RootPortal>
-    <Transition
-      items={props.visible}
-      config={springs.swift}
-      from={{ scale: 0.9, opacity: 0 }}
-      enter={{ scale: 1, opacity: 1 }}
-      leave={{ scale: 0.9, opacity: 0 }}
-      native
-    >
-      {visible =>
-        visible &&
-        (transitionStyles => (
-          <PopoverBase {...props} transitionStyles={transitionStyles} />
-        ))
-      }
-    </Transition>
-  </RootPortal>
-)
+function Popover({ scaleEffect, visible, ...props }) {
+  const theme = useTheme()
+  return (
+    <RootPortal>
+      <Transition
+        items={visible}
+        config={springs.swift}
+        from={{ scale: scaleEffect ? 0.9 : 1, opacity: 0 }}
+        enter={{ scale: 1, opacity: 1 }}
+        leave={{ scale: scaleEffect ? 0.9 : 1, opacity: 0 }}
+        native
+      >
+        {visible =>
+          visible &&
+          (transitionStyles => (
+            <PopoverBase
+              {...props}
+              theme={theme}
+              transitionStyles={transitionStyles}
+            />
+          ))
+        }
+      </Transition>
+    </RootPortal>
+  )
+}
 
 Popover.propTypes = {
   ...PopoverBase.propTypes,
+  scaleEffect: PropTypes.bool,
   visible: PropTypes.bool,
 }
+
 Popover.defaultProps = {
   ...PopoverBase.defaultProps,
+  scaleEffect: true,
   visible: true,
 }
 
-export default props => {
-  const theme = useTheme()
-  return <Popover theme={theme} {...props} />
-}
+export default Popover
