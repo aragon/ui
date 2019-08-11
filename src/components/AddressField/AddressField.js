@@ -15,7 +15,6 @@ class AddressFieldBase extends React.PureComponent {
     icon: PropTypes.node,
   }
   _input = React.createRef()
-  _button = React.createRef()
   componentDidMount() {
     setTimeout(() => {
       this._input.current.focus()
@@ -98,7 +97,6 @@ class AddressFieldBase extends React.PureComponent {
           `}
         />
         <ButtonIcon
-          ref={this._button}
           onClick={this.handleCopy}
           label="Copy"
           css={`
