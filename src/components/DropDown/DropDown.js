@@ -46,13 +46,13 @@ function useDropDown({
 
   useEffect(() => {
     if (selected === -1 || !items[selected]) {
-      if (label) {
-        setSelectedLabel(label)
+      if (placeholder || label) {
+        setSelectedLabel(placeholder || label)
       }
       return
     }
     setSelectedLabel(items[selected])
-  }, [items, selected, setSelectedLabel, label])
+  }, [items, selected, setSelectedLabel, label, placeholder])
 
   return {
     handleChange,
