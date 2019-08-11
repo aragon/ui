@@ -27,7 +27,8 @@ function prepareFields(fields) {
 
     // Auto align the last column to the end (right)
     if (!field.align) {
-      field.align = index === fields.length - 1 ? 'end' : 'start'
+      field.align =
+        index === fields.length - 1 && fields.length > 1 ? 'end' : 'start'
     }
 
     return field
