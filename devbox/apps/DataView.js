@@ -20,6 +20,27 @@ const addr = createAddress()
 
 const DEMOS = new Map([
   [
+    'One column',
+    props => (
+      <DataView
+        {...props}
+        fields={['Account']}
+        entries={[
+          { account: addr() },
+          { account: addr() },
+          { account: addr() },
+          { account: addr() },
+          { account: addr() },
+          { account: addr() },
+        ]}
+        renderEntry={({ account, amount }) => {
+          return [<IdentityBadge entity={account} />]
+        }}
+      />
+    ),
+  ],
+
+  [
     'Simple',
     props => (
       <DataView
