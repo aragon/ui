@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect, useCallback, useMemo } from 'react'
 import PropTypes from 'prop-types'
-import { Button } from '../Button/Button'
 import { ButtonBase } from '../Button/ButtonBase'
 import Popover from '../Popover/Popover'
 import { IconDown } from '../../icons'
@@ -157,17 +156,22 @@ const DropDown = React.memo(function DropDown({
 
   return (
     <React.Fragment>
-      <Button
+      <ButtonBase
         ref={refCallback}
         onClick={handleToggle}
+        focusRingRadius={RADIUS}
         css={`
           display: ${wide ? 'flex' : 'inline-flex'};
           justify-content: space-between;
           align-items: center;
+          height: ${6 * GU}px;
           padding: 0 ${2 * GU}px;
           width: ${width || (wide ? '100%' : 'auto')};
-          min-width: unset;
-          ${closedWithChanges ? `border: 1px solid ${theme.accent}` : ''}
+          background: ${theme.surface};
+          border: 1px solid ${closedWithChanges ? theme.selected : theme.border};
+          &:active {
+            background: ${theme.surfacePressed};
+          }
         `}
       >
         <span
@@ -187,12 +191,13 @@ const DropDown = React.memo(function DropDown({
             ${closedWithChanges ? `color: ${theme.accent}` : ''}
           `}
         />
-      </Button>
+      </ButtonBase>
       <Popover
         visible={opened}
         onClose={handleClose}
         opener={buttonRef.current}
         placement="bottom-start"
+        scaleEffect={false}
       >
         <div
           css={`
