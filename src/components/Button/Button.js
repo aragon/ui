@@ -1,9 +1,9 @@
 import React, { useMemo } from 'react'
 import PropTypes from 'prop-types'
-import SafeLink from '../Link/SafeLink'
 import { textStyle, GU, RADIUS } from '../../style'
 import { useTheme } from '../../theme'
 import { warn, warnOnce, useInside } from '../../utils'
+import { Link } from '../Link'
 import { useLayout } from '../Layout/Layout'
 import { ButtonBase } from './ButtonBase'
 
@@ -237,7 +237,7 @@ const ButtonWithRef = React.forwardRef((props, ref) => (
 ))
 
 ButtonWithRef.Anchor = React.forwardRef((props, ref) => (
-  <ButtonWithRef ref={ref} as={SafeLink} {...props} />
+  <ButtonWithRef ref={ref} as={Link} {...props} />
 ))
 
 export { ButtonWithRef as Button }

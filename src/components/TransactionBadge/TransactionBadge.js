@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import Text from '../Text/Text'
-import SafeLink from '../Link/SafeLink'
+import { Link } from '../Link'
 import {
   isTransaction,
   shortenTransaction,
@@ -33,7 +33,7 @@ class TransactionBadge extends React.PureComponent {
     }
     return {
       ...baseProps,
-      as: SafeLink,
+      as: Link,
       target: '_blank',
       href: blockExplorerUrl('transaction', transaction, { networkType }),
       style: {
