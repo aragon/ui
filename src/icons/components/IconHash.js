@@ -1,8 +1,8 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import iconSize from '../icon-size'
+import IconPropTypes from '../IconPropTypes'
 
-const IconHash = ({ size, ...props }) => {
+function IconHash({ size, ...props }) {
   const sizeValue = iconSize(size)
   return (
     <svg
@@ -24,7 +24,5 @@ const IconHash = ({ size, ...props }) => {
   )
 }
 
-IconHash.propTypes = {
-  size: PropTypes.oneOf(['medium', 'small', 'tiny']),
-}
+IconHash.propTypes = IconPropTypes
 export default IconHash

@@ -86,6 +86,7 @@ export {
   IconSquareMinus,
   IconSquarePlus,
   IconSquare,
+  IconStarFilled,
   IconStar,
   IconTarget,
   IconToken,

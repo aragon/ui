@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { blockExplorerUrl, noop, font } from '../../utils'
 import { theme } from '../../theme-legacy'
 import { IconClose } from '../../icons'
-import SafeLink from '../Link/SafeLink'
+import { Link } from '../Link'
 import Popover from '../Popover/Popover'
 import { Button } from '../Button/Button'
 import { ButtonIcon } from '../Button/ButtonIcon'
@@ -99,15 +99,15 @@ class IdentityBadgePopover extends React.PureComponent {
             `}
           >
             {etherscanUrl && (
-              <SafeLink
+              <Link
+                external
                 href={etherscanUrl}
-                target="_blank"
                 css={`
                   color: ${theme.accent};
                 `}
               >
                 See on Etherscan
-              </SafeLink>
+              </Link>
             )}
           </p>
           {popoverAction && (
