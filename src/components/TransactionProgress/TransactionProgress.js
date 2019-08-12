@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { theme } from '../../theme-legacy'
 import { noop } from '../../utils'
 import Text from '../Text/Text'
-import ExternalLink from '../Link/ExternalLink'
+import { Link } from '../Link'
 import Countdown from '../Countdown/Countdown'
 import { Info } from '../Info'
 import ProgressBar from '../ProgressBar/ProgressBar'
@@ -59,7 +59,16 @@ class TransactionProgress extends React.Component {
                 <Info.Alert>Slow transaction. Retry with more gas</Info.Alert>
               </SlowTransaction>
             )}
-            <Link href={transactionHashUrl}>See on Etherscan</Link>
+            <Link
+              external
+              href={transactionHashUrl}
+              css={`
+                color: #21aae7;
+                text-decoration: none;
+              `}
+            >
+              See on Etherscan
+            </Link>
           </FooterWrapper>
         </Wrapper>
       </Popover>
@@ -96,11 +105,6 @@ const FooterWrapper = styled.div`
   justify-content: ${({ slow }) => (slow ? 'space-between' : 'end')};
   align-items: center;
   padding-top: 1rem;
-`
-
-const Link = styled(ExternalLink)`
-  color: #21aae7;
-  text-decoration: none;
 `
 
 const SlowTransaction = styled.div`
