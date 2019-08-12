@@ -16,14 +16,6 @@ const App = () => (
 
 ## Props
 
-### unsafe
-
-| Type      | Default value |
-| --------- | ------------- |
-| `Boolean` | `false`       |
-
-Set to `true` to remove `"noopener noreferrer"` from the `rel` attribute.
-
 ### external
 
 | Type      | Default value |
