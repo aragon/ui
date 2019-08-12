@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { GU, RADIUS } from '../../style'
-import { Inside } from '../../utils'
+import { Inside, useInside } from '../../utils'
 import { useTheme } from '../../theme/Theme'
 import { useLayout } from '../Layout/Layout'
 
@@ -10,6 +10,8 @@ const BAR_PADDING = 2 * GU
 function Bar({ children, primary, secondary, ...props }) {
   const theme = useTheme()
   const { layoutName } = useLayout()
+  const [insideBox, boxData] = useInside('Box', true)
+  const boxPadding = insideBox && boxData ? boxData.padding : -1
 
   const fullScreen = layoutName === 'small'
 
@@ -56,6 +58,18 @@ function Bar({ children, primary, secondary, ...props }) {
           border-width: ${fullScreen ? '1px 0' : '1px'};
           height: ${8 * GU}px;
           margin-bottom: ${2 * GU}px;
+          ${insideBox
+            ? `
+                border-top: 0;
+                border-left: 0;
+                border-right: 0;
+                border-bottom-left-radius: 0;
+                border-bottom-right-radius: 0;
+                margin-top: -${boxPadding}px;
+                margin-left: -${boxPadding}px;
+                margin-right: -${boxPadding}px;
+              `
+            : ''};
         `}
         {...props}
       >

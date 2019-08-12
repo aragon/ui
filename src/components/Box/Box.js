@@ -1,58 +1,73 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { GU, RADIUS, textStyle } from '../../style'
+import { Inside } from '../../utils'
 import { useTheme } from '../../theme/Theme'
 import { useLayout } from '../Layout/Layout'
+
+function getPaddingValue(padding) {
+  if (typeof padding === 'boolean') {
+    return padding ? 2 * GU : 0
+  }
+  return padding
+}
 
 function Box({ heading, children, padding, ...props }) {
   const theme = useTheme()
   const { layoutName } = useLayout()
   const fullWidth = layoutName === 'small'
 
+  const paddingValue = getPaddingValue(padding)
+
   return (
-    <div
-      as={heading ? 'section' : 'div'}
-      css={`
-        position: relative;
-        border-radius: ${fullWidth ? 0 : RADIUS}px;
-        border-style: solid;
-        border-color: ${theme.border};
-        border-width: ${fullWidth ? '1px 0' : '1px'};
-        background: ${theme.surface};
-        color: ${theme.surfaceContent};
-        & + & {
-          margin-top: ${2 * GU}px;
-        }
-      `}
-      {...props}
+    <Inside
+      name="Box"
+      data={{ padding: typeof paddingValue === 'number' ? paddingValue : 0 }}
     >
-      {heading && (
+      <div
+        as={heading ? 'section' : 'div'}
+        css={`
+          position: relative;
+          border-radius: ${fullWidth ? 0 : RADIUS}px;
+          border-style: solid;
+          border-color: ${theme.border};
+          border-width: ${fullWidth ? '1px 0' : '1px'};
+          background: ${theme.surface};
+          color: ${theme.surfaceContent};
+          & + & {
+            margin-top: ${2 * GU}px;
+          }
+        `}
+        {...props}
+      >
+        {heading && (
+          <div
+            css={`
+              display: flex;
+              align-items: center;
+              height: ${4 * GU}px;
+              border-bottom: 1px solid ${theme.border};
+            `}
+          >
+            <HeaderContent heading={heading} />
+          </div>
+        )}
         <div
           css={`
-            display: flex;
-            align-items: center;
-            height: ${4 * GU}px;
-            border-bottom: 1px solid ${theme.border};
+            padding: ${paddingValue}px;
           `}
         >
-          <HeaderContent heading={heading} />
+          <div>{children}</div>
         </div>
-      )}
-      <div
-        css={`
-          padding: ${padding ? 2 * GU : 0}px;
-        `}
-      >
-        <div>{children}</div>
       </div>
-    </div>
+    </Inside>
   )
 }
 
 Box.propTypes = {
   heading: PropTypes.node,
   children: PropTypes.node,
-  padding: PropTypes.bool,
+  padding: PropTypes.oneOfType([PropTypes.bool, PropTypes.number]),
 }
 
 Box.defaultProps = {
