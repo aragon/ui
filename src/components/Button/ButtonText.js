@@ -11,7 +11,7 @@ function ButtonText({ horizontalPadding, ...props }) {
     Number(horizontalPadding === 'left' || horizontalPadding === 'both') * GU
 
   const rightPadding =
-    Number(horizontalPadding === 'right' || horizontalPadding === 'normal') * GU
+    Number(horizontalPadding === 'right' || horizontalPadding === 'both') * GU
 
   return (
     <ButtonBase
