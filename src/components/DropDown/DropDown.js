@@ -186,8 +186,6 @@ const DropDown = React.memo(function DropDown({
           size="tiny"
           css={`
             margin-left: ${1 * GU}px;
-            transition: transform 0.3s;
-            transform: rotate3d(0, 0, 1, ${opened ? 180 : 0}deg);
             ${closedWithChanges ? `color: ${theme.accent}` : ''}
           `}
         />
@@ -196,8 +194,6 @@ const DropDown = React.memo(function DropDown({
         visible={opened}
         onClose={handleClose}
         opener={buttonRef.current}
-        placement="bottom-start"
-        scaleEffect={false}
       >
         <div
           css={`
