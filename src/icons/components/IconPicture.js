@@ -1,8 +1,8 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import iconSize from '../icon-size'
+import IconPropTypes from '../IconPropTypes'
 
-const IconPicture = ({ size, ...props }) => {
+function IconPicture({ size, ...props }) {
   const sizeValue = iconSize(size)
   return (
     <svg
@@ -24,7 +24,5 @@ const IconPicture = ({ size, ...props }) => {
   )
 }
 
-IconPicture.propTypes = {
-  size: PropTypes.oneOf(['medium', 'small', 'tiny']),
-}
+IconPicture.propTypes = IconPropTypes
 export default IconPicture

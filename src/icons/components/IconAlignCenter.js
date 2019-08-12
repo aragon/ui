@@ -1,8 +1,8 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import iconSize from '../icon-size'
+import IconPropTypes from '../IconPropTypes'
 
-const IconAlignCenter = ({ size, ...props }) => {
+function IconAlignCenter({ size, ...props }) {
   const sizeValue = iconSize(size)
   return (
     <svg
@@ -20,7 +20,5 @@ const IconAlignCenter = ({ size, ...props }) => {
   )
 }
 
-IconAlignCenter.propTypes = {
-  size: PropTypes.oneOf(['medium', 'small', 'tiny']),
-}
+IconAlignCenter.propTypes = IconPropTypes
 export default IconAlignCenter

@@ -1,8 +1,8 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import iconSize from '../icon-size'
+import IconPropTypes from '../IconPropTypes'
 
-const IconZoomOut = ({ size, ...props }) => {
+function IconZoomOut({ size, ...props }) {
   const sizeValue = iconSize(size)
   return (
     <svg
@@ -25,7 +25,5 @@ const IconZoomOut = ({ size, ...props }) => {
   )
 }
 
-IconZoomOut.propTypes = {
-  size: PropTypes.oneOf(['medium', 'small', 'tiny']),
-}
+IconZoomOut.propTypes = IconPropTypes
 export default IconZoomOut
