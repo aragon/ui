@@ -8,10 +8,10 @@ function ButtonText({ horizontalPadding, ...props }) {
   const theme = useTheme()
 
   const leftPadding =
-    Number(horizontalPadding === 'left' || horizontalPadding === 'normal') * GU
+    Number(horizontalPadding === 'left' || horizontalPadding === 'both') * GU
 
   const rightPadding =
-    Number(horizontalPadding === 'right' || horizontalPadding === 'normal') * GU
+    Number(horizontalPadding === 'right' || horizontalPadding === 'both') * GU
 
   return (
     <ButtonBase
