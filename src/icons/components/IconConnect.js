@@ -1,8 +1,8 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import iconSize from '../icon-size'
+import IconPropTypes from '../IconPropTypes'
 
-const IconConnect = ({ size, ...props }) => {
+function IconConnect({ size, ...props }) {
   const sizeValue = iconSize(size)
   return (
     <svg
@@ -20,7 +20,5 @@ const IconConnect = ({ size, ...props }) => {
   )
 }
 
-IconConnect.propTypes = {
-  size: PropTypes.oneOf(['medium', 'small', 'tiny']),
-}
+IconConnect.propTypes = IconPropTypes
 export default IconConnect

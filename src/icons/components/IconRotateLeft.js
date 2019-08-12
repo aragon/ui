@@ -1,8 +1,8 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import iconSize from '../icon-size'
+import IconPropTypes from '../IconPropTypes'
 
-const IconRotateLeft = ({ size, ...props }) => {
+function IconRotateLeft({ size, ...props }) {
   const sizeValue = iconSize(size)
   return (
     <svg
@@ -24,7 +24,5 @@ const IconRotateLeft = ({ size, ...props }) => {
   )
 }
 
-IconRotateLeft.propTypes = {
-  size: PropTypes.oneOf(['medium', 'small', 'tiny']),
-}
+IconRotateLeft.propTypes = IconPropTypes
 export default IconRotateLeft

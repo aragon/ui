@@ -1,8 +1,8 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import iconSize from '../icon-size'
+import IconPropTypes from '../IconPropTypes'
 
-const IconLabel = ({ size, ...props }) => {
+function IconLabel({ size, ...props }) {
   const sizeValue = iconSize(size)
   return (
     <svg
@@ -22,7 +22,5 @@ const IconLabel = ({ size, ...props }) => {
   )
 }
 
-IconLabel.propTypes = {
-  size: PropTypes.oneOf(['medium', 'small', 'tiny']),
-}
+IconLabel.propTypes = IconPropTypes
 export default IconLabel
