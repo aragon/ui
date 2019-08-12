@@ -50,3 +50,29 @@ A function to generate the label displayed on the graph.
 ```jsx
 <CircleGraph label={value => Math.round(value)} />
 ```
+
+### `color`
+
+* Type: `String`
+* Default: `#21c1e7`
+
+The border color of the circle.
+
+#### Example:
+
+```jsx
+<CircleGraph color="#FF6969" />
+```
+
+### `width`
+
+* Type: `Number`
+* Default: `4`
+
+Width of the circle.
+
+#### Example:
+
+```jsx
+<CircleGraph width={8} />
+```
