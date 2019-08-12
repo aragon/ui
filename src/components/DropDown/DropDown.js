@@ -164,7 +164,7 @@ const DropDown = React.memo(function DropDown({
           display: ${wide ? 'flex' : 'inline-flex'};
           justify-content: space-between;
           align-items: center;
-          height: ${6 * GU}px;
+          height: ${5 * GU}px;
           padding: 0 ${2 * GU}px;
           width: ${width || (wide ? '100%' : 'auto')};
           background: ${theme.surface};
