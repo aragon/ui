@@ -23,17 +23,14 @@ const SVGR_OPTIONS = {
     opts,
     { imports, componentName, props, jsx, exports }
   ) => template.ast`${imports}
-import PropTypes from 'prop-types'
 import iconSize from '../icon-size'
+import IconPropTypes from '../IconPropTypes'
 
-const ${componentName} = ({ size, ...${props} }) => {
+function ${componentName}({ size, ...${props} }) {
   const sizeValue = iconSize(size)
   return ${jsx}
 }
-
-${componentName}.propTypes = {
-  size: PropTypes.oneOf(['medium', 'small', 'tiny']),
-}
+${componentName}.propTypes = IconPropTypes
 
 ${exports}
 `,
