@@ -1,8 +1,8 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import iconSize from '../icon-size'
+import IconPropTypes from '../IconPropTypes'
 
-const IconCloudUpload = ({ size, ...props }) => {
+function IconCloudUpload({ size, ...props }) {
   const sizeValue = iconSize(size)
   return (
     <svg
@@ -28,7 +28,5 @@ const IconCloudUpload = ({ size, ...props }) => {
   )
 }
 
-IconCloudUpload.propTypes = {
-  size: PropTypes.oneOf(['medium', 'small', 'tiny']),
-}
+IconCloudUpload.propTypes = IconPropTypes
 export default IconCloudUpload

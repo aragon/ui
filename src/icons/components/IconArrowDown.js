@@ -1,8 +1,8 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import iconSize from '../icon-size'
+import IconPropTypes from '../IconPropTypes'
 
-const IconArrowDown = ({ size, ...props }) => {
+function IconArrowDown({ size, ...props }) {
   const sizeValue = iconSize(size)
   return (
     <svg
@@ -24,7 +24,5 @@ const IconArrowDown = ({ size, ...props }) => {
   )
 }
 
-IconArrowDown.propTypes = {
-  size: PropTypes.oneOf(['medium', 'small', 'tiny']),
-}
+IconArrowDown.propTypes = IconPropTypes
 export default IconArrowDown
