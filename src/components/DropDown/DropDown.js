@@ -80,11 +80,12 @@ function useButtonRef(cb) {
 }
 
 const DropDown = React.memo(function DropDown({
+  disabled,
   header,
   items,
+  onChange,
   placeholder,
   renderLabel,
-  onChange,
   selected,
   wide,
   width,
@@ -154,6 +155,7 @@ const DropDown = React.memo(function DropDown({
     <React.Fragment>
       <ButtonBase
         ref={refCallback}
+        disabled={disabled}
         onClick={toggle}
         focusRingRadius={RADIUS}
         css={`
@@ -163,26 +165,26 @@ const DropDown = React.memo(function DropDown({
           height: ${5 * GU}px;
           padding: 0 ${2 * GU}px;
           width: ${width || (wide ? '100%' : 'auto')};
-          background: ${theme.surface};
-          border: 1px solid ${closedWithChanges ? theme.selected : theme.border};
-          &:active {
-            background: ${theme.surfacePressed};
-          }
+          background: ${disabled ? theme.disabled : theme.surface};
+          color: ${disabled ? theme.disabledContent : theme.surfaceContent};
+          border: ${disabled ? 0 : 1}px solid
+            ${closedWithChanges ? theme.selected : theme.border};
+          ${textStyle('body2')};
+          ${disabled && 'font-weight: 600;'}
+          ${!disabled &&
+            `
+              &:active {
+                background: ${theme.surfacePressed};
+              }
+          `}
         `}
       >
-        <span
-          css={`
-            color: ${theme.content};
-            ${textStyle('body2')};
-          `}
-        >
-          <Label selectedIndex={selectedIndex} selectedLabel={selectedLabel} />
-        </span>
+        <Label selectedIndex={selectedIndex} selectedLabel={selectedLabel} />
         <IconDown
           size="tiny"
           css={`
             margin-left: ${1 * GU}px;
-            ${closedWithChanges ? `color: ${theme.accent}` : ''}
+            color: ${closedWithChanges && !disabled ? theme.accent : 'inherit'};
           `}
         />
       </ButtonBase>
@@ -233,6 +235,7 @@ const DropDown = React.memo(function DropDown({
 })
 
 DropDown.propTypes = {
+  disabled: PropTypes.bool,
   header: PropTypes.node,
   items: PropTypes.arrayOf(PropTypes.node).isRequired,
   onChange: PropTypes.func.isRequired,
