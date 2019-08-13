@@ -47,11 +47,13 @@ function TextInput({ multiline, type, ...props }) {
 TextInput.propTypes = {
   required: PropTypes.bool,
   type: PropTypes.string,
+  multiline: PropTypes.bool,
 }
 
 TextInput.defaultProps = {
   required: false,
   type: 'text',
+  multiline: false,
 }
 
 // Text input wrapped to allow adornments
