@@ -68,7 +68,7 @@ Box.defaultProps = {
   padding: true,
 }
 
-function HeaderContent({ heading, padding }) {
+function HeaderContent({ heading, paddingValue }) {
   const theme = useTheme()
 
   if (!heading) {
@@ -82,7 +82,7 @@ function HeaderContent({ heading, padding }) {
   return (
     <h1
       css={`
-        padding-left: ${padding}px;
+        padding-left: ${paddingValue}px;
         color: ${theme.surfaceContentSecondary};
         ${textStyle('label2')};
       `}
@@ -94,6 +94,7 @@ function HeaderContent({ heading, padding }) {
 
 HeaderContent.propTypes = {
   heading: PropTypes.node,
+  paddingValue: PropTypes.number,
 }
 
 export { Box }
