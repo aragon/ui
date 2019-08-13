@@ -11,12 +11,12 @@ import { useViewport } from '../../providers/Viewport/Viewport'
 function useDropDown({
   buttonRef,
   items,
-  label,
+  displayedLabel,
   onChange,
   placeholder,
   selected,
 }) {
-  const [selectedLabel, setSelectedLabel] = useState(placeholder || label)
+  const [selectedLabel, setSelectedLabel] = useState(displayedLabel)
   const [opened, setOpened] = useState(false)
 
   const close = useCallback(() => {
@@ -43,13 +43,13 @@ function useDropDown({
 
   useEffect(() => {
     if (selected === -1 || !items[selected]) {
-      if (placeholder || label) {
-        setSelectedLabel(placeholder || label)
+      if (displayedLabel) {
+        setSelectedLabel(displayedLabel)
       }
       return
     }
     setSelectedLabel(items[selected])
-  }, [items, selected, label, placeholder])
+  }, [items, selected, displayedLabel])
 
   return {
     handleItemSelect,
@@ -141,10 +141,9 @@ const DropDown = React.memo(function DropDown({
     selectedLabel,
   } = useDropDown({
     buttonRef,
+    displayedLabel: placeholder || label,
     items,
-    label,
     onChange,
-    placeholder,
     selected,
   })
 
