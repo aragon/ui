@@ -44,12 +44,12 @@ function entryChildrenFromChild(child) {
 
 function renderEntries(
   entries,
-  { fields, renderEntry, renderEntryActions, renderEntryChild }
+  { fields, renderEntry, renderEntryActions, renderEntryChild, mode }
 ) {
   return entries.map(entry => {
     const { value, index, selected } = entry
 
-    let entryNodes = renderEntry(value, index, { selected })
+    let entryNodes = renderEntry(value, index, { selected, mode })
 
     if (!Array.isArray(entryNodes)) {
       entryNodes = []
@@ -64,10 +64,12 @@ function renderEntries(
       index,
       entryNodes,
       actions: renderEntryActions
-        ? renderEntryActions(value, index, { selected })
+        ? renderEntryActions(value, index, { selected, mode })
         : null,
       children: entryChildrenFromChild(
-        renderEntryChild ? renderEntryChild(value, index, { selected }) : null
+        renderEntryChild
+          ? renderEntryChild(value, index, { selected, mode })
+          : null
       ),
       selected,
     }
@@ -172,7 +174,11 @@ const DataView = React.memo(function DataView({
   const selectedPage = page === undefined ? pageManaged : page
 
   const theme = useTheme()
-  const { name: layoutName } = useLayout()
+  const { layoutName } = useLayout()
+
+  const listMode =
+    mode === 'list' || (mode !== 'table' && layoutName === 'small')
+
   const { allSelected, selectAll, toggleEntry, selectedIndexes } = useSelection(
     entries,
     onSelectEntries
@@ -199,12 +205,10 @@ const DataView = React.memo(function DataView({
     renderEntry,
     renderEntryActions,
     renderEntryChild,
+    mode: listMode ? 'list' : 'table',
   })
 
   const alignChildOnField = fields.findIndex(field => field.childStart)
-
-  const listMode =
-    mode === 'list' || (mode !== 'table' && layoutName === 'small')
 
   return (
     <Box padding={false}>
