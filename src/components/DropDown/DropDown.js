@@ -93,6 +93,9 @@ const DropDown = React.memo(function DropDown({
   // deprecated
   active,
   label,
+
+  // rest
+  ...props
 }) {
   if (active !== undefined) {
     warnOnce(
@@ -178,6 +181,7 @@ const DropDown = React.memo(function DropDown({
               }
           `}
         `}
+        {...props}
       >
         <Label selectedIndex={selectedIndex} selectedLabel={selectedLabel} />
         <IconDown
