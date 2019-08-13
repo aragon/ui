@@ -5,11 +5,12 @@ import { warnOnce } from '../../utils'
 import { textStyle, GU, RADIUS } from '../../style'
 
 // Simple text input
-function TextInput({ multiline, ...props }) {
+function TextInput({ multiline, type, ...props }) {
   const theme = useTheme()
   return (
     <input
       as={multiline ? 'textarea' : 'input'}
+      type={multiline ? undefined : type}
       {...props}
       css={`
         width: ${({ wide }) => (wide ? '100%' : 'auto')};
