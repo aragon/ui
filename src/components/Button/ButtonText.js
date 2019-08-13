@@ -17,7 +17,7 @@ function ButtonText({ horizontalPadding, ...props }) {
     <ButtonBase
       {...props}
       css={`
-        padding: ${1 * GU}px ${leftPadding}px ${1 * GU}px ${rightPadding}px;
+        padding: ${1 * GU}px ${rightPadding}px ${1 * GU}px ${leftPadding}px;
         color: ${theme.link};
         text-decoration: none;
         font-size: inherit;
