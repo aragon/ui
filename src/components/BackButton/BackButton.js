@@ -9,7 +9,7 @@ import { IconArrowLeft } from '../../icons'
 
 function BackButton({ label, ...props }) {
   const theme = useTheme()
-  const insideBarPrimary = useInside('Bar:primary')
+  const [insideBarPrimary] = useInside('Bar:primary')
 
   return (
     <ButtonBase

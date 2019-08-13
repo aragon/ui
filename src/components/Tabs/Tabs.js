@@ -172,8 +172,8 @@ function FocusRing() {
 export default props => {
   const { layoutName } = useLayout()
 
-  const insideBar = useInside('Bar')
-  const insideAppBar = useInside('AppBar')
+  const [insideBar] = useInside('Bar')
+  const [insideAppBar] = useInside('AppBar')
 
   // Use a separate component for Tabs in AppBar, to prevent breaking anything.
   if (insideAppBar) {
