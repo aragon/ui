@@ -46,15 +46,7 @@ function TextInput({ multiline, type, ...props }) {
 
 TextInput.propTypes = {
   required: PropTypes.bool,
-  type: PropTypes.oneOf([
-    'email',
-    'number',
-    'password',
-    'search',
-    'tel',
-    'text',
-    'url',
-  ]),
+  type: PropTypes.string,
 }
 
 TextInput.defaultProps = {
