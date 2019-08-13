@@ -4,10 +4,19 @@ import { GU, RADIUS, textStyle } from '../../style'
 import { useTheme } from '../../theme/Theme'
 import { useLayout } from '../Layout/Layout'
 
+function getPaddingValue(padding) {
+  if (typeof padding === 'boolean') {
+    return padding ? 2 * GU : 0
+  }
+  return padding
+}
+
 function Box({ heading, children, padding, ...props }) {
   const theme = useTheme()
   const { layoutName } = useLayout()
   const fullWidth = layoutName === 'small'
+
+  const paddingValue = getPaddingValue(padding)
 
   return (
     <div
@@ -35,12 +44,12 @@ function Box({ heading, children, padding, ...props }) {
             border-bottom: 1px solid ${theme.border};
           `}
         >
-          <HeaderContent heading={heading} />
+          <HeaderContent heading={heading} padding={paddingValue} />
         </div>
       )}
       <div
         css={`
-          padding: ${padding ? 2 * GU : 0}px;
+          padding: ${paddingValue}px;
         `}
       >
         <div>{children}</div>
@@ -52,14 +61,14 @@ function Box({ heading, children, padding, ...props }) {
 Box.propTypes = {
   heading: PropTypes.node,
   children: PropTypes.node,
-  padding: PropTypes.bool,
+  padding: PropTypes.oneOfType([PropTypes.bool, PropTypes.number]),
 }
 
 Box.defaultProps = {
   padding: true,
 }
 
-function HeaderContent({ heading }) {
+function HeaderContent({ heading, padding }) {
   const theme = useTheme()
 
   if (!heading) {
@@ -73,7 +82,7 @@ function HeaderContent({ heading }) {
   return (
     <h1
       css={`
-        padding-left: ${2 * GU}px;
+        padding-left: ${padding}px;
         color: ${theme.surfaceContentSecondary};
         ${textStyle('label2')};
       `}
