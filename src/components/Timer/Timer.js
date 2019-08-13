@@ -4,9 +4,10 @@ import memoize from 'lodash-es/memoize'
 import dayjs from 'dayjs'
 import { Redraw } from '../../providers/Redraw'
 import { IconTime } from '../../icons'
+import { GU, textStyle } from '../../style'
 import { difference, formatHtmlDatetime } from '../../utils/date'
 import { unselectable } from '../../utils'
-import { theme } from '../../theme-legacy'
+import { useTheme } from '../../theme'
 
 const RENDER_EVERY = 1000
 
@@ -80,6 +81,7 @@ class Timer extends React.Component {
     maxUnits: PropTypes.number,
     showEmpty: PropTypes.bool,
     start: PropTypes.instanceOf(Date),
+    theme: PropTypes.object,
   }
   static defaultProps = {
     format: formats.yMdhms,
@@ -88,7 +90,7 @@ class Timer extends React.Component {
   }
 
   render() {
-    const { end, start } = this.props
+    const { end, start, theme } = this.props
     return (
       <time
         dateTime={formatHtmlDatetime(end || start)}
@@ -97,18 +99,22 @@ class Timer extends React.Component {
           align-items: center;
           white-space: nowrap;
           ${unselectable()};
+          ${textStyle('body2')};
         `}
       >
         <span
           css={`
             display: flex;
             align-items: center;
-            margin-right: 15px;
+            margin-right: ${0.5 * GU}px;
             margin-top: -3px;
-            color: ${theme.textSecondary};
           `}
         >
-          <IconTime />
+          <IconTime
+            css={`
+              color: ${theme.surfaceIcon};
+            `}
+          />
         </span>
         <Redraw interval={RENDER_EVERY}>{this.renderTime}</Redraw>
       </time>
@@ -116,7 +122,7 @@ class Timer extends React.Component {
   }
 
   renderTime = () => {
-    const { start, end, format, showEmpty, maxUnits } = this.props
+    const { start, end, theme, format, showEmpty, maxUnits } = this.props
 
     const { totalInSeconds, units } = getTime(
       start,
@@ -130,8 +136,8 @@ class Timer extends React.Component {
       return (
         <span
           css={`
-            font-weight: 600;
-            color: ${theme.textSecondary};
+            ${textStyle('body2')};
+            color: ${theme.surfaceContentSecondary};
           `}
         >
           {end ? 'Time out' : '−'}
@@ -162,9 +168,7 @@ class Timer extends React.Component {
             <React.Fragment key={index}>
               <span
                 css={`
-                  font-size: 15px;
-                  font-weight: 600;
-                  color: ${theme.textPrimary};
+                  color: ${theme.surfaceContent};
 
                   ${isSeconds &&
                     // Fix the width of the seconds unit so that
@@ -181,8 +185,7 @@ class Timer extends React.Component {
                 <span
                   css={`
                     margin-left: 2px;
-                    font-size: 12px;
-                    color: ${theme.textSecondary};
+                    color: ${theme.surfaceContentSecondary};
                   `}
                 >
                   {unit[0]}
@@ -193,7 +196,7 @@ class Timer extends React.Component {
                 <span
                   css={`
                     margin: 0 4px;
-                    color: ${theme.textTertiary};
+                    color: ${theme.surfaceContentSecondary};
                     font-weight: 400;
                   `}
                 >
@@ -208,4 +211,7 @@ class Timer extends React.Component {
   }
 }
 
-export default Timer
+export default props => {
+  const theme = useTheme()
+  return <Timer {...props} theme={theme} />
+}
