@@ -33,9 +33,9 @@ Inside.propTypes = {
 
 // Use this hook to know if a given component is somewhere
 // in the tree of an <Inside> declared with the same name.
-function useInside(name, withData) {
+function useInside(name) {
   const { inside, data } = useContext(getContext(name))
-  return withData ? [inside, data] : inside
+  return [inside, data]
 }
 
 export { Inside, useInside }

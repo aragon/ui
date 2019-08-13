@@ -1,21 +1,15 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import { GU } from '../../style'
 import { useLayout } from '../Layout/Layout'
-
-const CardLayoutContext = React.createContext(false)
-
-// Returns true if a component is declared inside of the CardLayout tree
-function useInsideCardLayout() {
-  return useContext(CardLayoutContext)
-}
+import { Inside } from '../../utils/inside'
 
 function CardLayout({ children, columnWidthMin, rowHeight, ...props }) {
   const { layoutName } = useLayout()
   const fullWidth = layoutName === 'small'
 
   return (
-    <CardLayoutContext.Provider value={true}>
+    <Inside name="CardLayout">
       <div
         css={`
           display: grid;
@@ -34,7 +28,7 @@ function CardLayout({ children, columnWidthMin, rowHeight, ...props }) {
       >
         {children}
       </div>
-    </CardLayoutContext.Provider>
+    </Inside>
   )
 }
 
@@ -49,5 +43,5 @@ CardLayout.defaultProps = {
   rowHeight: 21 * GU,
 }
 
-export { CardLayout, useInsideCardLayout }
+export { CardLayout }
 export default CardLayout
