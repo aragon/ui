@@ -6,6 +6,7 @@ import {
   IconCross,
   IconAdd,
   Button,
+  ButtonText,
   Text,
   theme,
   GU,
@@ -28,7 +29,7 @@ function App() {
   return (
     <div
       css={`
-        display: flex;
+        display: grid;
         flex-direction: column;
         align-items: center;
         justify-content: center;
@@ -37,6 +38,7 @@ function App() {
         left: 0;
         right: 0;
         bottom: 0;
+        padding: ${3 * GU}px;
       `}
     >
       <Box
@@ -67,6 +69,38 @@ function App() {
             )
           )}
         </div>
+      </Box>
+      <Box
+        css={`
+          padding: ${3 * GU}px;
+        `}
+      >
+        {[...Array(2)].map((_, i) => (
+          <div
+            key={i}
+            css={`
+              display: flex;
+              justify-content: space-between;
+              width: 100%;
+            `}
+          >
+            <ButtonText
+              horizontalPadding="right"
+              href={i === 1 ? 'http://example.com' : undefined}
+            >
+              No left padding
+            </ButtonText>
+            <ButtonText href={i === 1 ? 'http://example.com' : undefined}>
+              {i === 1 ? 'Text button (link)' : 'Text button'}
+            </ButtonText>
+            <ButtonText
+              horizontalPadding="left"
+              href={i === 1 ? 'http://example.com' : undefined}
+            >
+              No right padding
+            </ButtonText>
+          </div>
+        ))}
       </Box>
     </div>
   )
