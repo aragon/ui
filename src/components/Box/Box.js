@@ -4,10 +4,19 @@ import { GU, RADIUS, textStyle } from '../../style'
 import { useTheme } from '../../theme/Theme'
 import { useLayout } from '../Layout/Layout'
 
+function getPaddingValue(padding) {
+  if (typeof padding === 'boolean') {
+    return padding ? 2 * GU : 0
+  }
+  return padding
+}
+
 function Box({ heading, children, padding, ...props }) {
   const theme = useTheme()
   const { layoutName } = useLayout()
   const fullWidth = layoutName === 'small'
+
+  const paddingValue = getPaddingValue(padding)
 
   return (
     <div
@@ -40,7 +49,7 @@ function Box({ heading, children, padding, ...props }) {
       )}
       <div
         css={`
-          padding: ${padding ? 2 * GU : 0}px;
+          padding: ${paddingValue}px;
         `}
       >
         <div>{children}</div>
@@ -52,7 +61,7 @@ function Box({ heading, children, padding, ...props }) {
 Box.propTypes = {
   heading: PropTypes.node,
   children: PropTypes.node,
-  padding: PropTypes.bool,
+  padding: PropTypes.oneOfType([PropTypes.bool, PropTypes.number]),
 }
 
 Box.defaultProps = {

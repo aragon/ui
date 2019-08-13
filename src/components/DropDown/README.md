@@ -95,3 +95,11 @@ Takes the full width if set to `true`.
 | `String` | None          |
 
 Use this prop to set the CSS width of the button.
+
+### disabled
+
+| Type      | Default value |
+| --------- | ------------- |
+| `Boolean` | `false`       |
+
+Disable the DropDown.

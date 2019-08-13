@@ -2,6 +2,7 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import styled, { css } from 'styled-components'
 import { Spring, animated } from 'react-spring'
+import { useTheme } from '../../theme'
 import { springs, breakpoint } from '../../style'
 import { unselectable } from '../../utils'
 import { IconClose } from '../../icons'
@@ -31,7 +32,7 @@ class SidePanel extends React.PureComponent {
     this.props.onTransitionEnd(this.props.opened)
   }
   renderIn = ({ progress }) => {
-    const { children, title, opened, blocking } = this.props
+    const { children, title, opened, blocking, theme } = this.props
 
     return (
       <Main opened={opened}>
@@ -57,7 +58,7 @@ class SidePanel extends React.PureComponent {
             </h1>
             {!blocking && (
               <PanelCloseButton type="button" onClick={this.handleClose}>
-                <IconClose />
+                <IconClose color={theme.surfaceIcon} />
               </PanelCloseButton>
             )}
           </PanelHeader>
@@ -93,6 +94,7 @@ SidePanel.propTypes = {
   blocking: PropTypes.bool,
   onClose: PropTypes.func,
   onTransitionEnd: PropTypes.func,
+  theme: PropTypes.object,
 }
 
 SidePanel.defaultProps = {
@@ -187,4 +189,7 @@ const PanelCloseButton = styled.button`
 // Used for spacing in SidePanelSplit and SidePanelSeparator
 SidePanel.HORIZONTAL_PADDING = CONTENT_PADDING
 
-export default SidePanel
+export default props => {
+  const theme = useTheme()
+  return <SidePanel {...props} theme={theme} />
+}

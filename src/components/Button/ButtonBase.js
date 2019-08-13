@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import FocusVisible from '../FocusVisible/FocusVisible'
+import { Link } from '../Link'
 import { useTheme } from '../../theme'
 import { RADIUS } from '../../style'
 import { unselectable, font } from '../../utils'
@@ -10,16 +11,21 @@ function ButtonBase({
   focusRingRadius,
   focusRingSpacing,
   focusVisible,
+  href,
   innerRef,
   showFocusRing,
   ...props
 }) {
   const theme = useTheme()
+
+  const asProps = href
+    ? { as: Link, href }
+    : { as: 'button', disabled, type: 'button' }
+
   return (
     <button
-      type="button"
       ref={innerRef}
-      disabled={disabled}
+      {...asProps}
       {...props}
       css={`
         position: relative;
@@ -63,6 +69,7 @@ ButtonBase.propTypes = {
   focusRingRadius: PropTypes.number,
   focusRingSpacing: PropTypes.number,
   focusVisible: PropTypes.bool,
+  href: PropTypes.string,
   innerRef: PropTypes.any,
   showFocusRing: PropTypes.bool,
 }

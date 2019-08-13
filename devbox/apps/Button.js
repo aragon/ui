@@ -6,6 +6,7 @@ import {
   IconCross,
   IconAdd,
   Button,
+  ButtonText,
   Text,
   theme,
   GU,
@@ -28,7 +29,7 @@ function App() {
   return (
     <div
       css={`
-        display: flex;
+        display: grid;
         flex-direction: column;
         align-items: center;
         justify-content: center;
@@ -37,13 +38,10 @@ function App() {
         left: 0;
         right: 0;
         bottom: 0;
+        padding: ${3 * GU}px;
       `}
     >
-      <Box
-        css={`
-          padding: ${3 * GU}px;
-        `}
-      >
+      <Box heading="Button">
         <div
           css={`
             display: grid;
@@ -54,19 +52,49 @@ function App() {
           {SIZES.map(size =>
             MODES.map(mode =>
               [...Array(4)].map((_, i) => (
-                <Button
-                  key={size + mode + i}
-                  mode={mode}
-                  size={size}
-                  label={mode[0].toUpperCase() + mode.slice(1)}
-                  icon={getIcon(mode)}
-                  display={i === 1 ? 'icon' : i === 0 ? 'all' : 'label'}
-                  disabled={i === 3}
-                />
+                <div>
+                  <Button
+                    key={size + mode + i}
+                    mode={mode}
+                    size={size}
+                    label={mode[0].toUpperCase() + mode.slice(1)}
+                    icon={getIcon(mode)}
+                    display={i === 1 ? 'icon' : i === 0 ? 'all' : 'label'}
+                    disabled={i === 3}
+                  />
+                </div>
               ))
             )
           )}
         </div>
+      </Box>
+      <Box heading="ButtonText">
+        {[...Array(2)].map((_, i) => (
+          <div
+            key={i}
+            css={`
+              display: flex;
+              justify-content: space-between;
+              width: 100%;
+            `}
+          >
+            <ButtonText
+              horizontalPadding="right"
+              href={i === 1 ? 'http://example.com' : undefined}
+            >
+              No left padding
+            </ButtonText>
+            <ButtonText href={i === 1 ? 'http://example.com' : undefined}>
+              {i === 1 ? 'Text button (link)' : 'Text button'}
+            </ButtonText>
+            <ButtonText
+              horizontalPadding="left"
+              href={i === 1 ? 'http://example.com' : undefined}
+            >
+              No right padding
+            </ButtonText>
+          </div>
+        ))}
       </Box>
     </div>
   )
