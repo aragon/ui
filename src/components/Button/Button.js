@@ -95,8 +95,8 @@ function Button({
   const theme = useTheme()
   const { layoutName } = useLayout()
 
-  const insideEmptyStateCard = useInside('EmptyStateCard')
-  const insideHeaderSecondary = useInside('Header:secondary')
+  const [insideEmptyStateCard] = useInside('EmptyStateCard')
+  const [insideHeaderSecondary] = useInside('Header:secondary')
 
   // Always wide + strong when used as an empty state card action
   if (insideEmptyStateCard) {

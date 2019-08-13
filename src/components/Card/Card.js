@@ -3,8 +3,7 @@ import PropTypes from 'prop-types'
 import { css } from 'styled-components'
 import { GU, RADIUS } from '../../style'
 import { useTheme } from '../../theme'
-import { unselectable } from '../../utils'
-import { useInsideCardLayout } from '../CardLayout/CardLayout'
+import { unselectable, useInside } from '../../utils'
 import FocusVisible from '../FocusVisible/FocusVisible'
 
 const DEFAULT_WIDTH = 35 * GU
@@ -22,7 +21,7 @@ function dimension(insideCardLayout, value, defaultValue) {
 
 function Card({ children, width, height, onClick, ...props }) {
   const theme = useTheme()
-  const insideCardLayout = useInsideCardLayout()
+  const [insideCardLayout] = useInside('CardLayout')
   const interactive = Boolean(onClick)
 
   const interactiveProps = interactive
