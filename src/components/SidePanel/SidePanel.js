@@ -94,6 +94,7 @@ SidePanel.propTypes = {
   blocking: PropTypes.bool,
   onClose: PropTypes.func,
   onTransitionEnd: PropTypes.func,
+  theme: PropTypes.object,
 }
 
 SidePanel.defaultProps = {
