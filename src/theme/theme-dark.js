@@ -4,9 +4,10 @@ export default {
   _name: 'dark',
 
   background: '#28334C',
-  content: colors.White,
   border: '#28334C',
   overlay: '#35425E',
+  content: colors.White,
+  contentSecondary: colors.ArcticBlueDark,
 
   surface: '#35425E',
   surfaceContent: colors.White,

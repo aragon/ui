@@ -1,8 +1,8 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import iconSize from '../icon-size'
+import IconPropTypes from '../IconPropTypes'
 
-const IconCalendar = ({ size, ...props }) => {
+function IconCalendar({ size, ...props }) {
   const sizeValue = iconSize(size)
   return (
     <svg
@@ -34,7 +34,5 @@ const IconCalendar = ({ size, ...props }) => {
   )
 }
 
-IconCalendar.propTypes = {
-  size: PropTypes.oneOf(['medium', 'small', 'tiny']),
-}
+IconCalendar.propTypes = IconPropTypes
 export default IconCalendar

@@ -1,8 +1,8 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import iconSize from '../icon-size'
+import IconPropTypes from '../IconPropTypes'
 
-const IconMaximize = ({ size, ...props }) => {
+function IconMaximize({ size, ...props }) {
   const sizeValue = iconSize(size)
   return (
     <svg
@@ -24,7 +24,5 @@ const IconMaximize = ({ size, ...props }) => {
   )
 }
 
-IconMaximize.propTypes = {
-  size: PropTypes.oneOf(['medium', 'small', 'tiny']),
-}
+IconMaximize.propTypes = IconPropTypes
 export default IconMaximize

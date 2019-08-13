@@ -34,31 +34,31 @@ function fontFaceDeclarations({ fontFamily, publicUrl }) {
     return ''
   }
   return `
-      @font-face {
-        font-family: ${DEFAULT_FONT_FAMILY};
-        src: ${fontSrc(publicUrl, DEFAULT_FONTS['400'])};
-        font-weight: 400;
-        font-style: normal;
-      }
-      @font-face {
-        font-family: ${DEFAULT_FONT_FAMILY};
-        src: ${fontSrc(publicUrl, DEFAULT_FONTS['600'])};
-        font-weight: 600;
-        font-style: normal;
-      }
-      @font-face {
-        font-family: ${DEFAULT_FONT_FAMILY};
-        src: ${fontSrc(publicUrl, DEFAULT_FONTS['800'])};
-        font-weight: 800;
-        font-style: normal;
-      }
-      @font-face {
-        font-family: ${MONOSPACE_FONT_FAMILY};
-        src: ${fontSrc(publicUrl, MONOSPACE_FONTS['400'])};
-        font-weight: 400;
-        font-style: normal;
-      }
-    `
+    @font-face {
+      font-family: ${DEFAULT_FONT_FAMILY};
+      src: ${fontSrc(publicUrl, DEFAULT_FONTS['400'])};
+      font-weight: 400;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: ${DEFAULT_FONT_FAMILY};
+      src: ${fontSrc(publicUrl, DEFAULT_FONTS['600'])};
+      font-weight: 600;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: ${DEFAULT_FONT_FAMILY};
+      src: ${fontSrc(publicUrl, DEFAULT_FONTS['800'])};
+      font-weight: 800;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: ${MONOSPACE_FONT_FAMILY};
+      src: ${fontSrc(publicUrl, MONOSPACE_FONTS['400'])};
+      font-weight: 400;
+      font-style: normal;
+    }
+  `
 }
 
 const BaseStyles = React.memo(function BaseStyles(props) {

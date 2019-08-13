@@ -1,8 +1,8 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import iconSize from '../icon-size'
+import IconPropTypes from '../IconPropTypes'
 
-const IconAragon = ({ size, ...props }) => {
+function IconAragon({ size, ...props }) {
   const sizeValue = iconSize(size)
   return (
     <svg
@@ -22,7 +22,5 @@ const IconAragon = ({ size, ...props }) => {
   )
 }
 
-IconAragon.propTypes = {
-  size: PropTypes.oneOf(['medium', 'small', 'tiny']),
-}
+IconAragon.propTypes = IconPropTypes
 export default IconAragon
