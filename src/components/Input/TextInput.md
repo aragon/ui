@@ -40,7 +40,7 @@ Set this to change the position of the adornment. `'start'` is displayed on the 
 
 | Type     | Default value |
 | -------- | ------------- |
-| `Number` | `34`          |
+| `Number` | `36`          |
 
 The total width of the adornment.
 
