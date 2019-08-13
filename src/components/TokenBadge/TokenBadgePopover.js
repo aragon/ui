@@ -4,7 +4,7 @@ import { blockExplorerUrl, font } from '../../utils'
 import { theme } from '../../theme-legacy'
 import { IconClose } from '../../icons'
 import { ImageExists } from '../../hooks'
-import SafeLink from '../Link/SafeLink'
+import { Link } from '../Link'
 import Popover from '../Popover/Popover'
 import { ButtonIcon } from '../Button/ButtonIcon'
 import AddressField from '../AddressField/AddressField'
@@ -82,15 +82,15 @@ class TokenBadgePopover extends React.PureComponent {
               ${font({ size: 'small' })};
             `}
           >
-            <SafeLink
+            <Link
+              external
               href={blockExplorerUrl('token', address, { networkType })}
-              target="_blank"
               css={`
                 color: ${theme.accent};
               `}
             >
               See on Etherscan
-            </SafeLink>
+            </Link>
           </p>
         </section>
       </Popover>

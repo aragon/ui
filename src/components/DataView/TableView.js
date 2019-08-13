@@ -274,10 +274,11 @@ function EntryRow({ cells, selected, rowHeight }) {
             <div
               css={`
                 display: flex;
+                width: 100%;
                 justify-content: ${`flex-${align}`};
               `}
             >
-              <div css="display: flex">{content}</div>
+              {content}
             </div>
           </td>
         )

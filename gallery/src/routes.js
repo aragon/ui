@@ -11,13 +11,12 @@ import PageButton from './pages/PageButton'
 import PageDropDown from './pages/PageDropDown'
 import PageCheckBox from './pages/PageCheckBox'
 import PageContextMenu from './pages/PageContextMenu'
-import PageExternalLink from './pages/PageExternalLink'
+import PageLink from './pages/PageLink'
 import PageRadio from './pages/PageRadio'
 import PageRadioGroup from './pages/PageRadioGroup'
 import PageRadioList from './pages/PageRadioList'
 import PageTextInput from './pages/PageTextInput'
 import PageField from './pages/PageField'
-import PageSafeLink from './pages/PageSafeLink'
 import PageSlider from './pages/PageSlider'
 import PageTabs from './pages/PageTabs'
 import PageAutoComplete from './pages/PageAutoComplete'
@@ -88,16 +87,15 @@ export const PAGE_GROUPS = [
   {
     name: 'Controls',
     pages: [
+      [PageLink, 'Link'],
       [PageButton, 'Button'],
       [PageCheckBox, 'CheckBox'],
       [PageContextMenu, 'ContextMenu'],
       [PageDropDown, 'DropDown'],
-      [PageExternalLink, 'ExternalLink'],
       [PageField, 'Field'],
       [PageRadio, 'Radio'],
       [PageRadioGroup, 'RadioGroup'],
       [PageRadioList, 'RadioList'],
-      [PageSafeLink, 'SafeLink'],
       [PageSlider, 'Slider'],
       [PageTextInput, 'TextInput'],
       [PageAutoComplete, 'AutoComplete'],

@@ -86,8 +86,8 @@ function Card({ children, width, height, onClick, ...props }) {
 
 Card.propTypes = {
   children: PropTypes.node,
-  height: PropTypes.oneOf([PropTypes.string, PropTypes.number]),
-  width: PropTypes.oneOf([PropTypes.string, PropTypes.number]),
+  height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   onClick: PropTypes.func,
 }
 
