@@ -24,8 +24,9 @@ function Field({ children, label, ...props }) {
             display: flex;
             margin-bottom: ${0.5 * GU}px;
             color: ${theme.surfaceContentSecondary};
-            ${textStyle('label2')};
             ${unselectable()};
+            ${textStyle('label2')};
+            line-height: ${2 * GU}px;
           `}
         >
           {label}
