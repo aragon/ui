@@ -112,11 +112,11 @@ const DropDown = React.memo(function DropDown({
   const theme = useTheme()
 
   const selectedIndex = useMemo(() => {
-    if (active !== undefined) {
-      return active
-    }
     if (selected !== undefined) {
       return selected
+    }
+    if (active !== undefined) {
+      return active
     }
     return -1
   }, [active, selected])
