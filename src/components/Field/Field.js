@@ -1,40 +1,49 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import styled from 'styled-components'
-import Text from '../Text/Text'
-import { theme } from '../../theme-legacy'
+import { useTheme } from '../../theme'
+import { textStyle, GU } from '../../style'
 import { unselectable } from '../../utils'
 
-const StyledField = styled.div`
-  margin-bottom: 20px;
-`
+function Field({ children, label, ...props }) {
+  const theme = useTheme()
 
-const StyledAsterisk = styled.span`
-  color: ${theme.accent};
-  margin-left: auto;
-  padding-top: 3px;
-  font-size: 12px;
-`
-
-const StyledTextBlock = styled(Text.Block)`
-  ${unselectable()};
-  display: flex;
-`
-
-const Field = ({ children, label, ...props }) => {
   const isRequired = React.Children.toArray(children).some(
     ({ props }) => props && props.required
   )
+
   return (
-    <StyledField {...props}>
+    <div
+      css={`
+        margin-bottom: ${3 * GU}px;
+      `}
+      {...props}
+    >
       <label>
-        <StyledTextBlock color={theme.textSecondary} smallcaps>
+        <div
+          css={`
+            display: flex;
+            margin-bottom: ${0.5 * GU}px;
+            color: ${theme.surfaceContentSecondary};
+            ${unselectable()};
+            ${textStyle('label2')};
+            line-height: ${2 * GU}px;
+          `}
+        >
           {label}
-          {isRequired && <StyledAsterisk title="Required">*</StyledAsterisk>}
-        </StyledTextBlock>
+          {isRequired && (
+            <span
+              css={`
+                color: ${theme.accent};
+              `}
+              title="Required"
+            >
+              {'\u00a0*'}
+            </span>
+          )}
+        </div>
         {children}
       </label>
-    </StyledField>
+    </div>
   )
 }
 
