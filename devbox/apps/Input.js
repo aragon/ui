@@ -33,12 +33,13 @@ class App extends React.Component {
             padding: 8,
           }}
         />
+        <TextInput />
         <TextInput adornment={<IconBlank />} adornmentPosition="start" />
         <TextInput adornment={<IconBlank />} adornmentPosition="end" />
+        <TextInput.Multiline />
       </div>
     )
   }
 }
 
 export default App
-
