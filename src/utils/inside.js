@@ -10,26 +10,32 @@ const insideContexts = new Map()
 // Creates the required context if it doesn’t exist.
 function getContext(name) {
   if (!insideContexts.has(name)) {
-    insideContexts.set(name, React.createContext(false))
+    insideContexts.set(name, React.createContext({ inside: false, data: null }))
   }
   return insideContexts.get(name)
 }
 
 // Use this component to declare a new “inside context”, by name.
-function Inside({ name, children }) {
+function Inside({ children, data, name }) {
   const Context = getContext(name)
-  return <Context.Provider value={true}>{children}</Context.Provider>
+  return (
+    <Context.Provider value={{ inside: true, data }}>
+      {children}
+    </Context.Provider>
+  )
 }
 
 Inside.propTypes = {
-  name: PropTypes.string.isRequired,
   children: PropTypes.node,
+  data: PropTypes.any,
+  name: PropTypes.string.isRequired,
 }
 
 // Use this hook to know if a given component is somewhere
 // in the tree of an <Inside> declared with the same name.
 function useInside(name) {
-  return useContext(getContext(name))
+  const { inside, data } = useContext(getContext(name))
+  return [inside, data]
 }
 
 export { Inside, useInside }
