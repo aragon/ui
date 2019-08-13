@@ -19,7 +19,7 @@ function useDropDown({
   const [selectedLabel, setSelectedLabel] = useState(placeholder || label)
   const [opened, setOpened] = useState(false)
 
-  const handleClose = useCallback(() => {
+  const close = useCallback(() => {
     // if the popover is opened and the user clicks on the button
     // this handler was being called before the click handler, so the
     // click handler was re-opening the popover, by having this on the
@@ -29,19 +29,16 @@ function useDropDown({
     if (buttonRef.current) {
       buttonRef.current.focus()
     }
-  }, [setOpened])
+  }, [])
 
-  const handleToggle = useCallback(() => setOpened(!opened), [
-    setOpened,
-    opened,
-  ])
+  const toggle = useCallback(() => setOpened(opened => !opened), [])
 
-  const handleChange = useCallback(
+  const handleItemSelect = useCallback(
     index => {
       onChange(index)
-      handleClose()
+      close()
     },
-    [onChange, handleClose]
+    [onChange, close]
   )
 
   useEffect(() => {
@@ -52,12 +49,12 @@ function useDropDown({
       return
     }
     setSelectedLabel(items[selected])
-  }, [items, selected, setSelectedLabel, label, placeholder])
+  }, [items, selected, label, placeholder])
 
   return {
-    handleChange,
-    handleClose,
-    handleToggle,
+    handleItemSelect,
+    close,
+    toggle,
     opened,
     selectedLabel,
   }
@@ -137,9 +134,9 @@ const DropDown = React.memo(function DropDown({
   }, [vw, buttonRef])
 
   const {
-    handleChange,
-    handleClose,
-    handleToggle,
+    handleItemSelect,
+    close,
+    toggle,
     opened,
     selectedLabel,
   } = useDropDown({
@@ -158,7 +155,7 @@ const DropDown = React.memo(function DropDown({
     <React.Fragment>
       <ButtonBase
         ref={refCallback}
-        onClick={handleToggle}
+        onClick={toggle}
         focusRingRadius={RADIUS}
         css={`
           display: ${wide ? 'flex' : 'inline-flex'};
@@ -190,11 +187,7 @@ const DropDown = React.memo(function DropDown({
           `}
         />
       </ButtonBase>
-      <Popover
-        visible={opened}
-        onClose={handleClose}
-        opener={buttonRef.current}
-      >
+      <Popover visible={opened} onClose={close} opener={buttonRef.current}>
         <div
           css={`
             min-width: ${buttonWidth}px;
@@ -224,7 +217,7 @@ const DropDown = React.memo(function DropDown({
                 <Item
                   key={index}
                   index={index}
-                  onClick={handleChange}
+                  onSelect={handleItemSelect}
                   theme={theme}
                   item={item}
                   header={header}
@@ -266,13 +259,13 @@ const Item = React.memo(function Item({
   index,
   item,
   length,
-  onClick,
+  onSelect,
   selected,
   theme,
 }) {
   const handleClick = useCallback(() => {
-    onClick(index)
-  }, [index, onClick])
+    onSelect(index)
+  }, [index, onSelect])
 
   return (
     <li>
@@ -310,7 +303,7 @@ Item.propTypes = {
   index: PropTypes.number.isRequired,
   item: PropTypes.node.isRequired,
   length: PropTypes.number.isRequired,
-  onClick: PropTypes.func.isRequired,
+  onSelect: PropTypes.func.isRequired,
   selected: PropTypes.number.isRequired,
   theme: PropTypes.object.isRequired,
 }
