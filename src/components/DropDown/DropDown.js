@@ -131,7 +131,7 @@ const DropDown = React.memo(function DropDown({
     if (buttonRef.current) {
       setButtonWidth(buttonRef.current.clientWidth)
     }
-  }, [vw, buttonRef])
+  }, [vw])
 
   const {
     handleItemSelect,
