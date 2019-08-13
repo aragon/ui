@@ -193,7 +193,7 @@ won’t be displayed.
 Note: only one of `onSelectEntries` and `renderEntryChild` can be set at a
 time.
 
-### renderEntry(entry, index, { selected })
+### renderEntry(entry, index, { selected, mode })
 
 | Type       | Default value   |
 | ---------- | --------------- |
@@ -265,7 +265,7 @@ function App() {
 }
 ```
 
-### renderEntryActions(entry, index, { selected })
+### renderEntryActions(entry, index, { selected, mode })
 
 | Type       | Default value |
 | ---------- | ------------- |
@@ -273,7 +273,7 @@ function App() {
 
 Renders the actions of an entry, usually as a `ContextMenu`.
 
-### renderEntryChild(entry, index, { selected })
+### renderEntryChild(entry, index, { selected, mode })
 
 | Type       | Default value |
 | ---------- | ------------- |
