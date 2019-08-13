@@ -33,12 +33,10 @@ function Field({ children, label, ...props }) {
             <span
               css={`
                 color: ${theme.accent};
-                margin-left: auto;
-                padding-top: 3px;
               `}
               title="Required"
             >
-              *
+              {'\u00a0*'}
             </span>
           )}
         </div>
