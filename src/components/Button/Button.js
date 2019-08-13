@@ -236,9 +236,13 @@ const ButtonWithRef = React.forwardRef((props, ref) => (
   <Button innerRef={ref} {...props} />
 ))
 
-ButtonWithRef.Anchor = React.forwardRef((props, ref) => (
-  <ButtonWithRef ref={ref} as={Link} {...props} />
-))
+ButtonWithRef.Anchor = React.forwardRef((props, ref) => {
+  warnOnce(
+    'Button.Anchor',
+    'Button.Anchor is deprecated: please use Button with a href prop instead.'
+  )
+  return <ButtonWithRef ref={ref} as={Link} {...props} />
+})
 
 export { ButtonWithRef as Button }
 export default ButtonWithRef
