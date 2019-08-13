@@ -1,51 +1,59 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import styled, { css } from 'styled-components'
-import { theme } from '../../theme-legacy'
-import { font } from '../../utils'
-
-const baseStyles = css`
-  ${font({ size: 'small', weight: 'normal' })};
-  width: ${({ wide }) => (wide ? '100%' : 'auto')};
-  height: 40px;
-  padding: 0 10px;
-  background: ${theme.contentBackground};
-  border: 1px solid ${theme.contentBorder};
-  border-radius: 3px;
-  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.06);
-  color: ${theme.textPrimary};
-  appearance: none;
-  &:focus {
-    outline: none;
-    border-color: ${theme.contentBorderActive};
-  }
-  &:read-only {
-    color: transparent;
-    text-shadow: 0 0 0 ${theme.textSecondary};
-  }
-`
+import { useTheme } from '../../theme'
+import { warnOnce } from '../../utils'
+import { textStyle, GU, RADIUS } from '../../style'
 
 // Simple text input
-const TextInput = styled.input`
-  ${baseStyles};
-`
+function TextInput({ multiline, type, ...props }) {
+  const theme = useTheme()
+  return (
+    <input
+      as={multiline ? 'textarea' : 'input'}
+      type={multiline ? undefined : type}
+      {...props}
+      css={`
+        width: ${({ wide }) => (wide ? '100%' : 'auto')};
+        height: ${5 * GU}px;
+        padding: 0 ${1.5 * GU}px;
+        background: ${theme.surface};
+        border: 1px solid ${theme.border};
+        color: ${theme.surfaceContent};
+        border-radius: ${RADIUS}px;
+        appearance: none;
+        ${textStyle('body3')};
+
+        ${multiline
+          ? `
+            height: auto;
+            padding: ${1 * GU}px ${1.5 * GU}px;
+            resize: vertical;
+          `
+          : ''}
+
+        &:focus {
+          outline: none;
+          border-color: ${theme.selected};
+        }
+        &:read-only {
+          color: transparent;
+          text-shadow: 0 0 0 ${theme.surfaceContentSecondary};
+        }
+      `}
+    />
+  )
+}
 
 TextInput.propTypes = {
   required: PropTypes.bool,
-  type: PropTypes.oneOf([
-    'email',
-    'number',
-    'password',
-    'search',
-    'tel',
-    'text',
-    'url',
-  ]),
+  type: PropTypes.string,
+  multiline: PropTypes.bool,
 }
 
 TextInput.defaultProps = {
   required: false,
   type: 'text',
+  multiline: false,
 }
 
 // Text input wrapped to allow adornments
@@ -55,13 +63,14 @@ const WrapperTextInput = React.forwardRef(
       adornment,
       adornmentPosition,
       adornmentSettings: {
-        width: adornmentWidth = 34,
+        width: adornmentWidth = 36,
         padding: adornmentPadding = 4,
       },
       ...props
     },
     ref
   ) => {
+    const theme = useTheme()
     if (!adornment) {
       return <TextInput ref={ref} {...props} />
     }
@@ -70,7 +79,7 @@ const WrapperTextInput = React.forwardRef(
         css={`
           display: inline-flex;
           position: relative;
-          width: max-content;
+          width: ${props.wide ? '100%' : 'max-content'};
         `}
       >
         <TextInput
@@ -94,7 +103,7 @@ const WrapperTextInput = React.forwardRef(
             display: flex;
             align-items: center;
             justify-content: center;
-            color: ${theme.textSecondary};
+            color: ${theme.surfaceContentSecondary};
           `}
         >
           {adornment}
@@ -122,15 +131,19 @@ WrapperTextInput.defaultProps = {
 }
 
 // <input type=number> (only for compat)
-const TextInputNumber = styled.input.attrs({ type: 'number' })`
-  ${baseStyles};
-`
+function TextInputNumber(props) {
+  warnOnce(
+    'TextInputNumber',
+    'TextInputNumber is deprecated. Please use TextInput instead.'
+  )
+  return <TextInput type="number" {...props} />
+}
 
 // Multiline input (textarea element)
-const TextInputMultiline = styled.textarea`
-  ${baseStyles};
-  resize: vertical;
-`
+function TextInputMultiline(props) {
+  return <TextInput multiline {...props} />
+}
+
 TextInputMultiline.propTypes = {
   required: PropTypes.bool,
 }
