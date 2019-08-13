@@ -1,6 +1,6 @@
 # TextInput
 
-A basic text input component that can use a single or multiple lines.
+A basic text input component that can be used in single or multi-line modes.
 
 ## Usage
 
