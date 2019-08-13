@@ -44,7 +44,7 @@ function Box({ heading, children, padding, ...props }) {
             border-bottom: 1px solid ${theme.border};
           `}
         >
-          <HeaderContent heading={heading} padding={paddingValue} />
+          <HeaderContent heading={heading} />
         </div>
       )}
       <div
@@ -68,7 +68,7 @@ Box.defaultProps = {
   padding: true,
 }
 
-function HeaderContent({ heading, paddingValue }) {
+function HeaderContent({ heading }) {
   const theme = useTheme()
 
   if (!heading) {
@@ -82,7 +82,7 @@ function HeaderContent({ heading, paddingValue }) {
   return (
     <h1
       css={`
-        padding-left: ${paddingValue}px;
+        padding-left: ${2 * GU}px;
         color: ${theme.surfaceContentSecondary};
         ${textStyle('label2')};
       `}
@@ -94,7 +94,6 @@ function HeaderContent({ heading, paddingValue }) {
 
 HeaderContent.propTypes = {
   heading: PropTypes.node,
-  paddingValue: PropTypes.number,
 }
 
 export { Box }
