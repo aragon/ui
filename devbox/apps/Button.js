@@ -41,11 +41,7 @@ function App() {
         padding: ${3 * GU}px;
       `}
     >
-      <Box
-        css={`
-          padding: ${3 * GU}px;
-        `}
-      >
+      <Box heading="Button">
         <div
           css={`
             display: grid;
@@ -56,25 +52,23 @@ function App() {
           {SIZES.map(size =>
             MODES.map(mode =>
               [...Array(4)].map((_, i) => (
-                <Button
-                  key={size + mode + i}
-                  mode={mode}
-                  size={size}
-                  label={mode[0].toUpperCase() + mode.slice(1)}
-                  icon={getIcon(mode)}
-                  display={i === 1 ? 'icon' : i === 0 ? 'all' : 'label'}
-                  disabled={i === 3}
-                />
+                <div>
+                  <Button
+                    key={size + mode + i}
+                    mode={mode}
+                    size={size}
+                    label={mode[0].toUpperCase() + mode.slice(1)}
+                    icon={getIcon(mode)}
+                    display={i === 1 ? 'icon' : i === 0 ? 'all' : 'label'}
+                    disabled={i === 3}
+                  />
+                </div>
               ))
             )
           )}
         </div>
       </Box>
-      <Box
-        css={`
-          padding: ${3 * GU}px;
-        `}
-      >
+      <Box heading="ButtonText">
         {[...Array(2)].map((_, i) => (
           <div
             key={i}
