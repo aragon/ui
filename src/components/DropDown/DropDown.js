@@ -11,15 +11,15 @@ import { useViewport } from '../../providers/Viewport/Viewport'
 function useDropDown({
   buttonRef,
   items,
-  label,
+  displayedLabel,
   onChange,
   placeholder,
   selected,
 }) {
-  const [selectedLabel, setSelectedLabel] = useState(placeholder || label)
+  const [selectedLabel, setSelectedLabel] = useState(displayedLabel)
   const [opened, setOpened] = useState(false)
 
-  const handleClose = useCallback(() => {
+  const close = useCallback(() => {
     // if the popover is opened and the user clicks on the button
     // this handler was being called before the click handler, so the
     // click handler was re-opening the popover, by having this on the
@@ -29,35 +29,32 @@ function useDropDown({
     if (buttonRef.current) {
       buttonRef.current.focus()
     }
-  }, [setOpened])
+  }, [])
 
-  const handleToggle = useCallback(() => setOpened(!opened), [
-    setOpened,
-    opened,
-  ])
+  const toggle = useCallback(() => setOpened(opened => !opened), [])
 
-  const handleChange = useCallback(
+  const handleItemSelect = useCallback(
     index => {
       onChange(index)
-      handleClose()
+      close()
     },
-    [onChange, handleClose]
+    [onChange, close]
   )
 
   useEffect(() => {
     if (selected === -1 || !items[selected]) {
-      if (placeholder || label) {
-        setSelectedLabel(placeholder || label)
+      if (displayedLabel) {
+        setSelectedLabel(displayedLabel)
       }
       return
     }
     setSelectedLabel(items[selected])
-  }, [items, selected, setSelectedLabel, label, placeholder])
+  }, [items, selected, displayedLabel])
 
   return {
-    handleChange,
-    handleClose,
-    handleToggle,
+    handleItemSelect,
+    close,
+    toggle,
     opened,
     selectedLabel,
   }
@@ -113,11 +110,11 @@ const DropDown = React.memo(function DropDown({
   const theme = useTheme()
 
   const selectedIndex = useMemo(() => {
-    if (active !== undefined) {
-      return active
-    }
     if (selected !== undefined) {
       return selected
+    }
+    if (active !== undefined) {
+      return active
     }
     return -1
   }, [active, selected])
@@ -135,20 +132,19 @@ const DropDown = React.memo(function DropDown({
     if (buttonRef.current) {
       setButtonWidth(buttonRef.current.clientWidth)
     }
-  }, [vw, buttonRef])
+  }, [vw])
 
   const {
-    handleChange,
-    handleClose,
-    handleToggle,
+    handleItemSelect,
+    close,
+    toggle,
     opened,
     selectedLabel,
   } = useDropDown({
     buttonRef,
+    displayedLabel: placeholder || label,
     items,
-    label,
     onChange,
-    placeholder,
     selected,
   })
 
@@ -160,8 +156,8 @@ const DropDown = React.memo(function DropDown({
       <ButtonBase
         ref={refCallback}
         disabled={disabled}
+        onClick={toggle}
         focusRingRadius={RADIUS}
-        onClick={handleToggle}
         css={`
           display: ${wide ? 'flex' : 'inline-flex'};
           justify-content: space-between;
@@ -192,11 +188,7 @@ const DropDown = React.memo(function DropDown({
           `}
         />
       </ButtonBase>
-      <Popover
-        visible={opened}
-        onClose={handleClose}
-        opener={buttonRef.current}
-      >
+      <Popover visible={opened} onClose={close} opener={buttonRef.current}>
         <div
           css={`
             min-width: ${buttonWidth}px;
@@ -226,7 +218,7 @@ const DropDown = React.memo(function DropDown({
                 <Item
                   key={index}
                   index={index}
-                  onClick={handleChange}
+                  onSelect={handleItemSelect}
                   theme={theme}
                   item={item}
                   header={header}
@@ -269,13 +261,13 @@ const Item = React.memo(function Item({
   index,
   item,
   length,
-  onClick,
+  onSelect,
   selected,
   theme,
 }) {
   const handleClick = useCallback(() => {
-    onClick(index)
-  }, [index, onClick])
+    onSelect(index)
+  }, [index, onSelect])
 
   return (
     <li>
@@ -313,7 +305,7 @@ Item.propTypes = {
   index: PropTypes.number.isRequired,
   item: PropTypes.node.isRequired,
   length: PropTypes.number.isRequired,
-  onClick: PropTypes.func.isRequired,
+  onSelect: PropTypes.func.isRequired,
   selected: PropTypes.number.isRequired,
   theme: PropTypes.object.isRequired,
 }
