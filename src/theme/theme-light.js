@@ -50,18 +50,20 @@ export default {
   positiveSurface: colors.MintGreenLight,
   positiveSurfaceContent: colors.MintGreenDark,
 
-  error: colors.Red,
-  success: colors.MintGreen,
-
-  tag: colors.PurpleLight,
-  tagContent: colors.PurpleDark,
-
-  indicator: colors.AragonBlueLighter,
-  indicatorContent: colors.AragonBlueDark,
-  indicatorIcon: colors.AragonBlue,
-
   badge: colors.Blue,
   badgeContent: colors.Blue,
+
+  tagIdentifier: colors.PurpleLight,
+  tagIdentifierContent: colors.PurpleDark,
+
+  tagNew: colors.MintGreenLight,
+  tagNewContent: colors.MintGreen,
+
+  tagIndicator: colors.AragonBlueLighter,
+  tagIndicatorContent: colors.AragonBlueDark,
+
+  tagActivity: colors.AragonBlue,
+  tagActivityContent: colors.White,
 
   link: colors.Blue,
   focus: colors.Blue,
@@ -85,4 +87,8 @@ export default {
   blue: colors.Blue,
   brown: colors.Brown,
   purple: colors.Purple,
+
+  // Deprecated
+  error: colors.Red,
+  success: colors.MintGreen,
 }

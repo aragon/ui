@@ -3,9 +3,9 @@ import styled from 'styled-components'
 import {
   AppBar,
   AppView,
-  Badge,
   Button,
   NavigationBar,
+  Tag,
   unselectable,
 } from '@aragon/ui'
 import Page from 'comps/Page/Page'
@@ -23,7 +23,7 @@ class PageAppBar extends React.Component {
       items.length === 1 ? (
         <span style={{ display: 'flex', alignItems: 'center' }}>
           <span style={{ marginRight: '20px' }}>{label}</span>
-          <Badge.App>ANT</Badge.App>
+          <Tag mode="app">ANT</Tag>
         </span>
       ) : (
         label

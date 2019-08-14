@@ -22,9 +22,7 @@ import PageTabs from './pages/PageTabs'
 import PageAutoComplete from './pages/PageAutoComplete'
 
 // Other components
-import PageBadgeNumber from './pages/PageBadgeNumber'
 import PageAddressField from './pages/PageAddressField'
-import PageBadge from './pages/PageBadge'
 import PageCircleGraph from './pages/PageCircleGraph'
 import PageCountdown from './pages/PageCountdown'
 import PageEthIdenticon from './pages/PageEthIdenticon'
@@ -121,8 +119,6 @@ export const PAGE_GROUPS = [
     name: 'Components',
     pages: [
       [PageAddressField, 'AddressField'],
-      [PageBadge, 'Badge'],
-      [PageBadgeNumber, 'BadgeNumber'],
       [PageCircleGraph, 'CircleGraph'],
       [PageCountdown, 'Countdown'],
       [PageEthIdenticon, 'EthIdenticon'],

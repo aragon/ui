@@ -3,13 +3,13 @@ import styled from 'styled-components'
 import {
   AppBar,
   AppView,
-  Badge,
-  NavigationBar,
+  ButtonIcon,
+  Checkbox,
   Field,
   IconMenu,
-  ButtonIcon,
+  NavigationBar,
   SidePanel,
-  Checkbox,
+  Tag,
   unselectable,
 } from '@aragon/ui'
 
@@ -49,7 +49,7 @@ const MenuButton = () => (
 
 const DemoBadge = () => (
   <span css="margin-left: 20px">
-    <Badge.App>ANT</Badge.App>
+    <Tag mode="app">ANT</Tag>
   </span>
 )
 
