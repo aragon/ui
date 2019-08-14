@@ -52,9 +52,8 @@ function App() {
           {SIZES.map(size =>
             MODES.map(mode =>
               [...Array(4)].map((_, i) => (
-                <div>
+                <div key={size + mode + i}>
                   <Button
-                    key={size + mode + i}
                     mode={mode}
                     size={size}
                     label={mode[0].toUpperCase() + mode.slice(1)}

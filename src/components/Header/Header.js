@@ -5,7 +5,7 @@ import { useTheme } from '../../theme'
 import { useLayout } from '../Layout/Layout'
 import { Inside } from '../../utils'
 
-function Header({ primary, secondary, children }) {
+function Header({ primary, secondary, children, ...props }) {
   const theme = useTheme()
   const { layoutName } = useLayout()
   const fullWidth = layoutName === 'small'
@@ -19,6 +19,7 @@ function Header({ primary, secondary, children }) {
           margin-bottom: ${fullWidth ? 2 * GU : 0}px;
           box-shadow: ${fullWidth ? '0px 2px 3px rgba(0, 0, 0, 0.05)' : 'none'};
         `}
+        {...props}
       >
         <div
           css={`

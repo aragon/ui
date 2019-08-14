@@ -1,7 +1,7 @@
 import React, { useEffect, useCallback, useMemo, useState } from 'react'
 import PropTypes from 'prop-types'
-import { GU } from '../../style'
 import { noop } from '../../utils'
+import { textStyle, GU } from '../../style'
 import { useTheme } from '../../theme'
 import { Box } from '../../components/Box/Box'
 import { Pagination } from '../../components/Pagination/Pagination'
@@ -111,11 +111,11 @@ function useSelection(entries, onSelectEntries) {
   useEffect(() => {
     if (onSelectEntries) {
       onSelectEntries(
-        entries.filter((entry, index) => selectedIndexes.includes(index)),
+        selectedIndexes.sort().map(index => entries[index]),
         selectedIndexes
       )
     }
-  }, [onSelectEntries, selectedIndexes])
+  }, [onSelectEntries, selectedIndexes, entries])
 
   return {
     allSelected,
@@ -127,7 +127,6 @@ function useSelection(entries, onSelectEntries) {
 
 const DataView = React.memo(function DataView({
   page,
-  currentPage,
   entries,
   entriesPerPage,
   fields,
@@ -148,11 +147,7 @@ const DataView = React.memo(function DataView({
     )
   }
 
-  if (currentPage !== undefined) {
-    throw new Error('DataView: please use `page` instead of `currentPage`.')
-  }
-
-  // Only used if currentPage is not passed. The pagination supports both a
+  // Only used if page is not passed. The pagination supports both a
   // managed and a controlled mode, to provide a better developer experience
   // out of the box.
   const [pageManaged, setPageManaged] = useState(0)
@@ -161,7 +156,6 @@ const DataView = React.memo(function DataView({
     newPage => {
       // Managed state
       if (page === undefined) {
-        console.log('SET', newPage)
         setPageManaged(newPage)
       }
 
@@ -221,9 +215,8 @@ const DataView = React.memo(function DataView({
           {typeof heading === 'string' ? (
             <h1
               css={`
-                font-size: 16px;
-                font-weight: 400;
                 margin-bottom: ${2 * GU}px;
+                ${textStyle('body2')};
               `}
             >
               {heading}
@@ -297,9 +290,6 @@ DataView.propTypes = {
   renderEntryChild: PropTypes.func,
   renderSelectionCount: PropTypes.func,
   tableRowHeight: PropTypes.number,
-
-  // deprecated
-  currentPage: PropTypes.number,
 }
 
 DataView.defaultProps = {

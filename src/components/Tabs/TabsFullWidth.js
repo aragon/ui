@@ -1,10 +1,10 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { Transition, animated } from 'react-spring'
 import { GU, textStyle, springs } from '../../style'
+import { useOnBlur, useKeyDown } from '../../hooks'
 import { useTheme } from '../../theme'
-import { ButtonBase } from '../Button/ButtonBase'
 import { IconDown } from '../../icons'
-import { useKeyDown } from '../../hooks'
+import { ButtonBase } from '../Button/ButtonBase'
 
 const ESC_CODE = 27
 
@@ -14,7 +14,6 @@ const ESC_CODE = 27
 function TabsFullWidth({ items, selected, onChange }) {
   const theme = useTheme()
   const [opened, setOpened] = useState(false)
-  const el = useRef(null)
 
   const selectedItem = items[selected]
 
@@ -26,11 +25,7 @@ function TabsFullWidth({ items, selected, onChange }) {
     setOpened(opened => !opened)
   }, [])
 
-  const blur = useCallback(event => {
-    if (!el.current.contains(event.relatedTarget)) {
-      close()
-    }
-  }, [])
+  const { handleBlur, ref } = useOnBlur(close)
 
   const change = useCallback(
     index => {
@@ -50,18 +45,15 @@ function TabsFullWidth({ items, selected, onChange }) {
 
   return (
     <div
-      ref={el}
-      onBlur={blur}
+      ref={ref}
+      onBlur={handleBlur}
       css={`
-        position: relative;
-        z-index: 1;
         padding-bottom: ${2 * GU}px;
       `}
     >
       <div
         css={`
           position: relative;
-          z-index: 1;
           display: flex;
           align-items: center;
           justify-content: space-between;
@@ -71,8 +63,6 @@ function TabsFullWidth({ items, selected, onChange }) {
       >
         <ButtonBase
           css={`
-            position: relative;
-            z-index: 2;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -103,6 +93,8 @@ function TabsFullWidth({ items, selected, onChange }) {
               align-items: center;
               padding: 0 ${2 * GU}px;
               color: ${theme.surfaceIcon};
+              transition: transform 150ms ease-in-out;
+              transform: rotate3d(0, 0, 1, ${opened ? 180 : 0}deg);
             `}
           >
             <IconDown />
@@ -122,7 +114,7 @@ function TabsFullWidth({ items, selected, onChange }) {
               <animated.div
                 css={`
                   position: absolute;
-                  z-index: 1;
+                  z-index: 9; // TODO: use <Root>
                   top: ${8 * GU}px;
                   left: 0;
                   right: 0;
