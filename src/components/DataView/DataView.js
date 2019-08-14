@@ -280,7 +280,7 @@ DataView.propTypes = {
   page: PropTypes.number,
   entries: PropTypes.array.isRequired,
   entriesPerPage: PropTypes.number,
-  fields: PropTypes.array,
+  fields: PropTypes.array.isRequired,
   heading: PropTypes.node,
   mode: PropTypes.oneOf(['adaptive', 'table', 'list']),
   onPageChange: PropTypes.func,
