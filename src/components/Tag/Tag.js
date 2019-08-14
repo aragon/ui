@@ -11,6 +11,8 @@ const MODE_ACTIVITY = 'activity'
 const SIZE_NORMAL = 'normal'
 const SIZE_SMALL = 'small'
 
+const COUNT_DEFAULT = 2
+
 function useMode(mode) {
   const theme = useTheme()
 
@@ -73,23 +75,24 @@ function useSize(size, { uppercase, discMode, iconAndLabel }) {
   `
 }
 
-function getLabel({ label, count, countDigits }) {
+function getLabel({ label, count }) {
   return useMemo(() => {
-    if (!count) {
+    if (count === false) {
       return label || ''
     }
 
+    const digits = typeof count === 'number' ? count : COUNT_DEFAULT
     const parsed = parseInt(label, 10)
 
     if (isNaN(parsed)) {
       return label || ''
     }
 
-    const max = Math.pow(10, countDigits) - 1
+    const max = Math.pow(10, digits) - 1
     const formatedValue = parsed >= max ? `${max}+` : parsed
 
     return formatedValue
-  }, [label, count, countDigits])
+  }, [label, count])
 }
 
 function Tag({
@@ -97,7 +100,6 @@ function Tag({
   children,
   color,
   count,
-  countDigits,
   icon,
   label,
   mode,
@@ -111,7 +113,6 @@ function Tag({
   const finalLabel = getLabel({
     label: label || (!icon && children),
     count,
-    countDigits,
   })
 
   const childrenOrLabel = children || finalLabel
@@ -168,8 +169,7 @@ Tag.propTypes = {
   background: PropTypes.string,
   children: PropTypes.node,
   color: PropTypes.string,
-  count: PropTypes.bool,
-  countDigits: PropTypes.number,
+  count: PropTypes.oneOfType([PropTypes.bool, PropTypes.number]),
   icon: PropTypes.node,
   label: PropTypes.oneOfType([PropTypes.node, PropTypes.number]),
   mode: PropTypes.oneOf([
@@ -184,7 +184,7 @@ Tag.propTypes = {
 
 Tag.defaultProps = {
   uppercase: true,
-  countDigits: 2,
+  count: false,
 }
 
 export { Tag }

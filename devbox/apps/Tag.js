@@ -10,7 +10,7 @@ const ITEMS = new Map([
       { icon: <IconCheck size="tiny" />, label: 'Voted' },
       { label: 'Voted' },
       { label: 'You', size: 'small' },
-      { label: 893278, size: 'small', count: true, countDigits: 4 },
+      { label: 893278, size: 'small', count: 4 },
     ],
   ],
   ['identifier', ['!', 'w', 'woa!', 'Custom label']],
@@ -20,7 +20,7 @@ const ITEMS = new Map([
     [
       { count: true, label: 1 },
       { count: true, label: 9879 },
-      { count: true, label: 9877987, countDigits: 4 },
+      { count: 4, label: 9877987 },
       { count: true, label: 9879, size: 'normal' },
       { label: 4237 },
       { label: 4237, size: 'normal' },
