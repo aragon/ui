@@ -136,7 +136,16 @@ function TableView({
           ) : null,
         })
       }),
-    [opened, entries, hasAnyChild, hasAnyActions, toggleEntry]
+    [
+      entries,
+      fields,
+      hasAnyActions,
+      hasAnyChild,
+      onSelect,
+      opened,
+      selectable,
+      toggleEntry,
+    ]
   )
 
   useEffect(() => {
