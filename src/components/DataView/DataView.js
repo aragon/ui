@@ -156,7 +156,6 @@ const DataView = React.memo(function DataView({
     newPage => {
       // Managed state
       if (page === undefined) {
-        console.log('SET', newPage)
         setPageManaged(newPage)
       }
 
