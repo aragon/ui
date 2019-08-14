@@ -144,7 +144,7 @@ const DataView = React.memo(function DataView({
   if (renderEntryChild && onSelectEntries) {
     throw new Error(
       'A DataView cannot be made selectable if its entries have children. ' +
-        'Please use either renderEntryChild or onSelectEntries.'
+        'Please use only one of renderEntryChild or onSelectEntries at a time.'
     )
   }
 
