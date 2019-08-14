@@ -35,6 +35,8 @@ function useLayout() {
   return {
     layoutName,
     layoutWidth,
+
+    // deprecated
     name: layoutName,
     width: layoutWidth,
   }
