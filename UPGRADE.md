@@ -67,9 +67,9 @@ If you were using the `Table` component, you might want to switch to
 
 If you were using the `Badge` component and/or its variants (`Badge.Info`, `Badge.Identity`, `Badge.App`, `Badge.Notification`, `BadgeNumber`), you might want to switch as follows:
 
-- `Badge` => `Tag`.
-- `Badge.Info` => `Tag`.
-- `Badge.Identity` => `IdentityBadge`.
-- `Badge.App` => `Tag`.
-- `Badge.Notification` => `Count`.
-- `BadgeNumber` => `Count`.
+- `Badge` => `<Tag />`.
+- `Badge.Info` => `<Tag />`.
+- `Badge.Identity` => `<IdentityBadge />`.
+- `Badge.App` => `<Tag />`.
+- `Badge.Notification` => `<Tag count />`.
+- `BadgeNumber` => `<Tag count />`.

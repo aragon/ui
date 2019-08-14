@@ -1,24 +1,40 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Badge, Tag } from '@aragon/ui'
+import { Box, IconCheck, Badge, Tag, GU } from '@aragon/ui'
 
 const ITEMS = new Map([
-  ['info', ['i', '?', 'You', 'You', 'Info', 'Here']],
-  ['warning', ['!', 'w', 'woa!', 'woa!', 'warning', 'Watch out!']],
-  ['help', ['i', '?', 'help', 'help', '999+', 'Learn more']],
-  ['tag', ['a', 'b', 'tag', 'tag', 'wanted', 'first issue']],
-  ['app', ['c', 'd', 'app', 'app', 'App Tag', 'Other app tag']],
-  ['identity', ['e', 'f', 'id', 'id', 'Identity tag', 'It is me!']],
-  ['notification', ['1', '2', 'here!', 'here!', 'Notifications', 'Hello?']],
+  [
+    'indicator',
+    [
+      { icon: <IconCheck size="tiny" /> },
+      { icon: <IconCheck size="tiny" />, label: 'Voted' },
+      { label: 'Voted' },
+      { label: 'You', size: 'small' },
+      { label: 893278, size: 'small', count: true, countDigits: 4 },
+    ],
+  ],
+  ['identifier', ['!', 'w', 'woa!', 'Custom label']],
+  ['new', ['!', 'w', 'New version']],
+  [
+    'activity',
+    [
+      { count: true, label: 1 },
+      { count: true, label: 9879 },
+      { count: true, label: 9877987, countDigits: 4 },
+      { count: true, label: 9879, size: 'normal' },
+      { label: 4237 },
+      { label: 4237, size: 'normal' },
+    ],
+  ],
 ])
 
 const CUSTOM_ITEMS = [
-  ['#0f0', '#f00'],
-  ['#00f', '#fff'],
-  ['#f00', 'darkred'],
-  ['orange', 'green'],
-  ['cyan', 'darkblue'],
-  ['black', 'white'],
+  ['#8bc', '#fff'],
+  ['#987', '#fff'],
+  ['#4ad', '#fff'],
+  ['#daf', '#a00'],
+  ['#7b7', '#fff'],
+  ['#449', '#fff'],
 ]
 
 function DeprecatedBadges() {
@@ -32,11 +48,11 @@ function DeprecatedBadges() {
         padding: 200px 0;
       `}
     >
-      <Badge>Test</Badge>
-      <Badge shape="disc">Test</Badge>
-      <Badge shape="smalldisc">Test</Badge>
-      <Badge background="tomato" foreground="orange">
-        Test
+      <Badge>default</Badge>
+      <Badge shape="disc">disc</Badge>
+      <Badge shape="smalldisc">smalldisc</Badge>
+      <Badge background="tomato" foreground="ivory">
+        custom
       </Badge>
       <Badge.Notification>Notification</Badge.Notification>
       <Badge.Notification label={99999} />
@@ -56,65 +72,77 @@ class App extends React.Component {
       <div
         css={`
           display: grid;
-          grid-template-columns: auto auto auto auto auto auto auto auto;
-          grid-gap: 10px;
-          align-items: center;
+          grid-template-columns: repeat(4, 200px);
+          grid-template-rows: min-content;
+          grid-gap: ${3 * GU}px;
+          align-items: start;
           justify-content: center;
-          position: absolute;
-          top: 30vh;
-          left: 10vw;
-          right: 10vw;
-          bottom: 30vh;
-          overflow-y: scroll;
-          overflow-x: hidden;
+          height: calc(100vh - ${3 * GU}px);
+          padding-top: ${6 * GU}px;
         `}
       >
         {Array.from(ITEMS.keys()).map(key => (
-          <div key={key} css="text-align: center;">
-            <div>{key}</div>
+          <div
+            key={key}
+            css={`
+              display: grid;
+              grid-template-columns: auto;
+              grid-gap: ${1 * GU}px;
+              height: 100%;
+            `}
+          >
+            <Box heading={key}>
+              {ITEMS.get(key).map((item, i) => (
+                <div
+                  key={i}
+                  css={`
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    height: 100%;
+                    & + & {
+                      margin-top: ${1 * GU}px;
+                    }
+                  `}
+                >
+                  <Tag
+                    mode={key}
+                    {...(typeof item === 'string' ? { children: item } : item)}
+                  />
+                </div>
+              ))}
+            </Box>
+          </div>
+        ))}
+        <div key="custom" css="text-align: center">
+          <Box heading="Custom">
             <div
               css={`
                 display: grid;
-                grid-template-columns: auto;
-                grid-gap: 5px;
+                grid-gap: ${1 * GU}px;
               `}
             >
-              {ITEMS.get(key).map((item, i) => (
-                <div key={i} css="text-align: center;">
+              {CUSTOM_ITEMS.map(([background, color], i) => (
+                <div
+                  key={`custom-${i}`}
+                  css={`
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                  `}
+                >
                   <Tag
+                    background={background}
+                    color={color}
                     size={i < 4 ? 'small' : 'normal'}
-                    uppercase={i % 2 === 0}
-                    mode={key}
+                    uppercase={i % 2 === 1 || i > 3}
                   >
-                    {item}
+                    {'custom'.substr(0, i + 1)}
                   </Tag>
                 </div>
               ))}
             </div>
-          </div>
-        ))}
-        <div key="custom" css="text-align: center;">
-          <div>Custom</div>
-          <div
-            css={`
-              display: grid;
-              grid-template-columns: auto;
-              grid-gap: 5px;
-            `}
-          >
-            {CUSTOM_ITEMS.map(([background, color], i) => (
-              <div key={`custom-${i}`} css="text-align: center;">
-                <Tag
-                  background={background}
-                  color={color}
-                  size={i < 4 ? 'small' : 'normal'}
-                  uppercase={i % 2 === 1 || i > 3}
-                >
-                  {'custom'.substr(0, i + 1)}
-                </Tag>
-              </div>
-            ))}
-          </div>
+          </Box>
         </div>
       </div>
     )

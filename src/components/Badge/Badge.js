@@ -1,6 +1,5 @@
 import React from 'react'
 import { Tag } from '../Tag/Tag'
-import { Count } from '../Count/Count'
 import { warnOnce } from '../../utils/environment'
 import { useTheme } from '../../theme'
 
@@ -38,17 +37,18 @@ function BadgeNumber({
   deprecationWarning()
   if (!children && typeof label === 'number') {
     return (
-      <Count
+      <Badge
         background={background}
         color={foreground}
-        value={label}
+        count={true}
+        label={label}
         size={small ? 'small' : 'normal'}
         {...props}
       />
     )
   }
   return (
-    <Tag background={background} color={foreground} {...props}>
+    <Tag count={true} background={background} color={foreground} {...props}>
       {children || label}
     </Tag>
   )
@@ -59,11 +59,11 @@ function BadgeInfo(props) {
 }
 
 function BadgeIdentity(props) {
-  return <Badge {...props} />
+  return <Badge {...props} uppercase={false} />
 }
 
 function BadgeApp(props) {
-  return <Badge {...props} mode="tag" />
+  return <Badge {...props} mode="identifier" />
 }
 
 function BadgeNotification(props) {

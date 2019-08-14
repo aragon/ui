@@ -1,84 +1,129 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import PropTypes from 'prop-types'
 import { useTheme } from '../../theme'
 import { GU, textStyle } from '../../style'
 
-const NORMAL = 'normal'
-const SMALL = 'small'
-const INFO = 'info'
-const WARNING = 'warning'
-const HELP = 'help'
-const TAG = 'tag'
-const APP = 'app'
-const IDENTITY = 'identity'
-const NOTIFICATION = 'notification'
+const MODE_INDICATOR = 'indicator'
+const MODE_IDENTIFIER = 'identifier'
+const MODE_NEW = 'new'
+const MODE_ACTIVITY = 'activity'
+
+const SIZE_NORMAL = 'normal'
+const SIZE_SMALL = 'small'
 
 function useMode(mode) {
   const theme = useTheme()
 
-  if (mode === WARNING) {
-    return `
-      background: ${theme.warningSurface};
-      color: ${theme.warningSurfaceContent};
-    `
+  if (mode === MODE_IDENTIFIER) {
+    return {
+      background: theme.tagIdentifier.alpha(0.16),
+      color: theme.tagIdentifierContent,
+      size: SIZE_NORMAL,
+    }
   }
 
-  if (mode === HELP) {
-    return `
-      background: ${theme.helpSurface};
-      color: ${theme.helpSurfaceContent};
-    `
+  if (mode === MODE_NEW) {
+    return {
+      background: theme.tagNew.alpha(0.16),
+      color: theme.tagNewContent,
+      size: SIZE_NORMAL,
+    }
   }
 
-  if (mode === TAG) {
-    return `
-      background: ${theme.tag};
-      color: ${theme.tagContent};
-    `
+  if (mode === MODE_ACTIVITY) {
+    return {
+      background: theme.tagActivity,
+      color: theme.tagActivityContent,
+      size: SIZE_SMALL,
+    }
   }
 
-  if (mode === APP) {
+  // mode === MODE_INDICATOR (default)
+  return {
+    background: theme.tagIndicator,
+    color: theme.tagIndicatorContent,
+    size: SIZE_NORMAL,
   }
-
-  if (mode === IDENTITY) {
-  }
-
-  if (mode === NOTIFICATION) {
-    return `
-      background: ${theme.accent};
-      color: ${theme.accentContent};
-    `
-  }
-
-  // info
-  return `
-    background: ${theme.infoSurface.alpha(0.08)};
-    color: ${theme.infoSurfaceContent};
-  `
 }
 
-function useSize(size, uppercase) {
-  if (size === SMALL) {
+function useSize(size, { uppercase, discMode, iconAndLabel }) {
+  if (size === SIZE_SMALL) {
     return `
-      ${textStyle('label3')};
-      padding: 0 ${0.5 * GU}px;
       min-width: ${2 * GU}px;
+      width: ${discMode ? `${2 * GU}px` : 'auto'};
       height: ${2 * GU}px;
+      padding: ${discMode ? '0' : `0 ${0.5 * GU}px`};
+      border-radius: ${2 * GU}px;
+      ${textStyle('label3')};
+      font-weight: 600;
     `
   }
 
   // normal
   return `
-    ${textStyle('label2')};
-    padding: ${uppercase ? '1.5px' : 0} ${1.5 * GU}px 0;
-    min-width: 22px;
+    min-width: ${3 * GU}px;
+    width: ${discMode ? `${3 * GU}px` : 'auto'};
     height: ${3 * GU}px;
+    padding: ${discMode ? '0' : `0 ${1.5 * GU}px`} ;
+    padding-top: ${uppercase ? '1.5px' : 0};
+    ${iconAndLabel ? `padding-left: ${1.25 * GU}px` : ''};
+    border-radius: ${3 * GU}px;
+    ${textStyle('label2')};
+    font-weight: 600;
   `
 }
 
-function Tag({ children, mode, size, uppercase, color, background, ...props }) {
-  const modeStyles = useMode(mode)
-  const sizeStyles = useSize(size, uppercase)
+function getLabel({ label, count, countDigits }) {
+  return useMemo(() => {
+    if (!count) {
+      return label || ''
+    }
+
+    const parsed = parseInt(label, 10)
+
+    if (isNaN(parsed)) {
+      return label || ''
+    }
+
+    const max = Math.pow(10, countDigits) - 1
+    const formatedValue = parsed >= max ? `${max}+` : parsed
+
+    return formatedValue
+  }, [label, count, countDigits])
+}
+
+function Tag({
+  background,
+  children,
+  color,
+  count,
+  countDigits,
+  icon,
+  label,
+  mode,
+  size,
+  uppercase,
+  ...props
+}) {
+  const modeProps = useMode(mode)
+
+  const finalSize = size || modeProps.size
+  const finalLabel = getLabel({
+    label: label || (!icon && children),
+    count,
+    countDigits,
+  })
+
+  const childrenOrLabel = children || finalLabel
+  const singleChar =
+    !icon && typeof childrenOrLabel === 'string' && childrenOrLabel.length < 2
+  const iconOnly = icon && !finalLabel
+
+  const sizeStyles = useSize(finalSize, {
+    uppercase,
+    discMode: iconOnly || singleChar,
+    iconAndLabel: icon && finalLabel,
+  })
 
   return (
     <span
@@ -86,17 +131,35 @@ function Tag({ children, mode, size, uppercase, color, background, ...props }) {
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        border-radius: 100px;
         white-space: nowrap;
-        ${modeStyles};
         ${sizeStyles};
         ${!uppercase && 'text-transform: unset'};
-        ${color ? `color: ${color}` : ''};
-        ${background ? `background: ${background}` : ''};
+        color: ${color || modeProps.color};
+        background: ${background || modeProps.background};
       `}
       {...props}
     >
-      {children}
+      {children || (
+        <React.Fragment>
+          <span
+            css={`
+              display: flex;
+              align-items: center;
+              margin-top: ${finalSize === SIZE_NORMAL ? '-3px' : '0'};
+            `}
+          >
+            {icon}
+          </span>
+          {icon && finalLabel && (
+            <span
+              css={`
+                width: ${0.25 * GU}px;
+              `}
+            />
+          )}
+          {finalLabel}
+        </React.Fragment>
+      )}
     </span>
   )
 }
@@ -105,23 +168,23 @@ Tag.propTypes = {
   background: PropTypes.string,
   children: PropTypes.node,
   color: PropTypes.string,
+  count: PropTypes.bool,
+  countDigits: PropTypes.number,
+  icon: PropTypes.node,
+  label: PropTypes.oneOfType([PropTypes.node, PropTypes.number]),
   mode: PropTypes.oneOf([
-    INFO,
-    WARNING,
-    HELP,
-    TAG,
-    APP,
-    IDENTITY,
-    NOTIFICATION,
+    MODE_IDENTIFIER,
+    MODE_NEW,
+    MODE_INDICATOR,
+    MODE_ACTIVITY,
   ]),
-  size: PropTypes.oneOf([NORMAL, SMALL]),
+  size: PropTypes.oneOf([SIZE_NORMAL, SIZE_SMALL]),
   uppercase: PropTypes.bool,
 }
 
 Tag.defaultProps = {
-  mode: INFO,
-  size: NORMAL,
   uppercase: true,
+  countDigits: 2,
 }
 
 export { Tag }
