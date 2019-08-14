@@ -49,12 +49,12 @@ The background color.
 
 Defines the text style uppercase transformation for the contents.
 
-### `count`
+### `limitDigits`
 
 - Type: `Boolean` or `Number`
 - Default value: `false`
 
-Use this to pass a count number as the `label` prop of the Tag, which will limit it to a certain number of digits. For example, `250` will be displayed as “99+” if the number of digits is `2`.
+Use this to pass a number as the `label` prop of the Tag, and limit it to a certain number of digits. For example, `250` will be displayed as “99+” if the number of digits is `2`.
 
 Set to `true` for the default number of digits (`2`), or set to the desired number.
 

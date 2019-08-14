@@ -11,7 +11,7 @@ const ITEMS = new Map([
       { label: 'Voted' },
       { label: '2' },
       { label: 'You', size: 'small' },
-      { label: 893278, size: 'small', count: 4 },
+      { label: 893278, size: 'small', limitDigits: 4 },
     ],
   ],
   ['identifier', ['!', 'w', 'woa!', 'Custom label']],
@@ -19,10 +19,10 @@ const ITEMS = new Map([
   [
     'activity',
     [
-      { count: true, label: 1 },
-      { count: true, label: 9879 },
-      { count: 4, label: 9877987 },
-      { count: true, label: 9879, size: 'normal' },
+      { limitDigits: true, label: 1 },
+      { limitDigits: true, label: 9879 },
+      { limitDigits: 4, label: 9877987 },
+      { limitDigits: true, label: 9879, size: 'normal' },
       { label: 4237 },
       { label: 4237, size: 'normal' },
     ],

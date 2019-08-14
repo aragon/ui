@@ -77,13 +77,13 @@ function useSize(size, { uppercase, discMode, iconAndLabel }) {
   `
 }
 
-function getLabel({ label, count }) {
+function getLabel({ label, limitDigits }) {
   return useMemo(() => {
-    if (count === false) {
+    if (limitDigits === false) {
       return label || ''
     }
 
-    const digits = typeof count === 'number' ? count : COUNT_DEFAULT
+    const digits = typeof limitDigits === 'number' ? limitDigits : COUNT_DEFAULT
     const parsed = parseInt(label, 10)
 
     if (isNaN(parsed)) {
@@ -94,14 +94,14 @@ function getLabel({ label, count }) {
     const formatedValue = parsed >= max ? `${max}+` : parsed
 
     return formatedValue
-  }, [label, count])
+  }, [label, limitDigits])
 }
 
 function Tag({
   background,
   children,
   color,
-  count,
+  limitDigits,
   icon,
   label,
   mode,
@@ -116,7 +116,7 @@ function Tag({
   const modeProps = useMode(mode)
 
   const finalSize = size || modeProps.size
-  const finalLabel = getLabel({ label: label || children, count })
+  const finalLabel = getLabel({ label: label || children, limitDigits })
 
   const sizeStyles = useSize(finalSize, {
     uppercase,
@@ -164,7 +164,7 @@ Tag.propTypes = {
   background: PropTypes.string,
   children: PropTypes.node,
   color: PropTypes.string,
-  count: PropTypes.oneOfType([PropTypes.bool, PropTypes.number]),
+  limitDigits: PropTypes.oneOfType([PropTypes.bool, PropTypes.number]),
   icon: PropTypes.node,
   label: PropTypes.oneOfType([PropTypes.node, PropTypes.number]),
   mode: PropTypes.oneOf([
@@ -179,7 +179,7 @@ Tag.propTypes = {
 
 Tag.defaultProps = {
   uppercase: true,
-  count: false,
+  limitDigits: false,
 }
 
 export { Tag }
