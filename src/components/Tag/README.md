@@ -1,6 +1,6 @@
 # Tag
 
-A component that can be used to represent different types of tags: general indicators, app / account identifiers, updates, or activity counters.
+A non-interactive component that can be used to display a small piece of information: general indicators, app / account identifiers, updates, or activity counters.
 
 ## Usage
 
