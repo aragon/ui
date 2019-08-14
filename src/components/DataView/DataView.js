@@ -165,7 +165,7 @@ const DataView = React.memo(function DataView({
         setPageManaged(newPage)
       }
 
-      // Useful even to notify, even in managed mode
+      // Useful to notify, even in managed mode
       onPageChange(newPage)
     },
     [onPageChange, page]
