@@ -9,6 +9,7 @@ import RootPortal from '../RootPortal/RootPortal'
 
 class PopoverBase extends React.Component {
   static propTypes = {
+    closeOnOpenerFocus: PropTypes.bool,
     opener: PropTypes.instanceOf(Element),
     placement: PropTypes.oneOf(
       // "center" is a value that doesn’t exist in Popper, but we are using it
@@ -29,6 +30,7 @@ class PopoverBase extends React.Component {
   }
 
   static defaultProps = {
+    closeOnOpenerFocus: false,
     opener: null,
     placement: 'center',
     onClose: noop,
@@ -125,12 +127,16 @@ class PopoverBase extends React.Component {
   }
 
   handleBlur = event => {
-    const { opener, onClose } = this.props
+    const { closeOnOpenerFocus, opener, onClose } = this.props
     const focusedElement = event.relatedTarget
+
+    // Do not close if:
+    // - The blur event is emitted from an element inside of the popover.
+    // - The focused target is the opener and closeOnOpenerFocus is true.
     if (
       (this._cardElement.current &&
         this._cardElement.current.contains(focusedElement)) ||
-      (opener && opener.contains(focusedElement))
+      (closeOnOpenerFocus && opener && opener.contains(focusedElement))
     ) {
       return
     }
