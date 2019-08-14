@@ -111,11 +111,11 @@ function useSelection(entries, onSelectEntries) {
   useEffect(() => {
     if (onSelectEntries) {
       onSelectEntries(
-        entries.filter((entry, index) => selectedIndexes.includes(index)),
+        selectedIndexes.sort().map(index => entries[index]),
         selectedIndexes
       )
     }
-  }, [onSelectEntries, selectedIndexes])
+  }, [onSelectEntries, selectedIndexes, entries])
 
   return {
     allSelected,
