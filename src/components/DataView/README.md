@@ -32,7 +32,7 @@ The different fields of data, displayed in the column headers in table mode.
 <DataView fields={['Account', 'Amount']} />
 ```
 
-An object form exist, allowing to set additional settings:
+An object form exists, allowing to set additional settings:
 
 ```jsx
 <DataView
@@ -283,7 +283,7 @@ Renders the child content of a given entry.
 
 It can return either an array, that will be displayed as individual rows, or a React node directly for a simple container. Return `null` if the entry doesn’t have any child content.
 
-The child content can also be aligned on a specific column in table mode, see `alignChildOnField`.
+The child content can also be aligned on a specific column in table mode, see `field.childStart`.
 
 ### renderSelectionCount(count)
 
