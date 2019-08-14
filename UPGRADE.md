@@ -71,5 +71,5 @@ If you were using the `Badge` component and/or its variants (`Badge.Info`, `Badg
 - `Badge.Info` => `<Tag />`.
 - `Badge.Identity` => `<IdentityBadge />`.
 - `Badge.App` => `<Tag />`.
-- `Badge.Notification` => `<Tag count />`.
-- `BadgeNumber` => `<Tag count />`.
+- `Badge.Notification` => `<Tag limitDigits />`.
+- `BadgeNumber` => `<Tag limitDigits />`.
