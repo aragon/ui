@@ -1,25 +1,20 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { warnOnce } from '../../utils'
 import { GU } from '../../style'
 import { Button } from './Button'
 import { ButtonBase } from './ButtonBase'
 
 function ButtonIcon({ label, children, mode, ...props }) {
-  if (mode === 'button') {
-    return (
-      <Button
-        title={label}
-        css={`
-          width: ${5 * GU}px;
-          height: ${5 * GU}px;
-          min-width: 0;
-          padding: 0;
-        `}
-        {...props}
-      >
-        {children}
-      </Button>
+  if (mode !== undefined) {
+    warnOnce(
+      'ButtonIcon:mode',
+      'ButtonIcon: the mode prop is deprecated. Please use Button with the icon prop instead.'
     )
+  }
+
+  if (mode === 'button') {
+    return <Button label={label} icon={children} display="icon" {...props} />
   }
 
   return (
@@ -43,13 +38,11 @@ function ButtonIcon({ label, children, mode, ...props }) {
 }
 
 ButtonIcon.propTypes = {
-  mode: PropTypes.oneOf(['flat', 'button']),
   label: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
-}
 
-ButtonIcon.defaultProps = {
-  mode: 'flat',
+  // deprecated
+  mode: PropTypes.oneOf(['button']),
 }
 
 export { ButtonIcon }

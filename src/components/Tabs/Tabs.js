@@ -175,6 +175,12 @@ export default props => {
   const [insideBar] = useInside('Bar')
   const [insideAppBar] = useInside('AppBar')
 
+  if (insideBar) {
+    throw new Error(
+      'Tabs cannot be a child of Bar: please use the Tabs component directly.'
+    )
+  }
+
   // Use a separate component for Tabs in AppBar, to prevent breaking anything.
   if (insideAppBar) {
     return <TabBarLegacy {...props} inAppBar />
@@ -182,12 +188,6 @@ export default props => {
 
   if (layoutName === 'small') {
     return <TabsFullWidth {...props} />
-  }
-
-  if (insideBar) {
-    throw new Error(
-      'Tabs cannot be a child of Bar: please use the Tabs component directly.'
-    )
   }
 
   return (

@@ -62,10 +62,9 @@ const STYLES_CSS = {
 }
 
 function textStyleToCss(textStyle) {
-  return Object.entries(textStyle).reduce(
-    (cssBlock, [name, value]) => cssBlock + STYLES_CSS[name](value),
-    ''
-  )
+  return Object.entries(textStyle)
+    .map(([name, value]) => STYLES_CSS[name](value))
+    .join('')
 }
 
 function textStyle(name, includeLineHeight = true) {

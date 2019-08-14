@@ -3,8 +3,8 @@ import PropTypes from 'prop-types'
 import FocusVisible from '../FocusVisible/FocusVisible'
 import { Link } from '../Link'
 import { useTheme } from '../../theme'
-import { RADIUS } from '../../style'
-import { unselectable, font } from '../../utils'
+import { RADIUS, textStyle } from '../../style'
+import { unselectable } from '../../utils'
 
 function ButtonBase({
   disabled,
@@ -32,9 +32,8 @@ function ButtonBase({
         display: inline-block;
         padding: 0;
         white-space: nowrap;
-        ${font({ size: 'small', weight: 'normal' })};
+        ${textStyle('body3')};
         ${unselectable};
-        color: ${theme.textSecondary};
 
         background: none;
         border: 0;

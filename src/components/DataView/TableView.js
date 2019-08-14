@@ -50,14 +50,14 @@ function rowFromEntry(
     false,
   ])
 
-  // Toggle child
-  if (hasAnyChild) {
-    cells.unshift([hasChildren && toggleChildContent, 'start', true])
+  // Checkbox
+  if (selectable) {
+    cells.unshift([selectContent, 'start', true])
   }
 
-  // Checkbox
-  if (selectable && !hasAnyChild) {
-    cells.unshift([selectable && selectContent, 'start', true])
+  // Toggle child
+  if (!selectable && hasAnyChild) {
+    cells.unshift([hasChildren && toggleChildContent, 'start', true])
   }
 
   // Actions
@@ -110,10 +110,6 @@ function TableView({
     [fields, hasAnyChild, hasAnyActions]
   )
 
-  useEffect(() => {
-    setOpened(false)
-  }, [entries, fields])
-
   const entryRows = useMemo(
     () =>
       entries.map(entry => {
@@ -140,8 +136,21 @@ function TableView({
           ) : null,
         })
       }),
-    [opened, entries, hasAnyChild, hasAnyActions, toggleEntry]
+    [
+      entries,
+      fields,
+      hasAnyActions,
+      hasAnyChild,
+      onSelect,
+      opened,
+      selectable,
+      toggleEntry,
+    ]
   )
+
+  useEffect(() => {
+    setOpened(false)
+  }, [entries, fields])
 
   return (
     <table
