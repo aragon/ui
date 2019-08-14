@@ -23,7 +23,7 @@ Set of predefined color, background and size combinations (which can be overridd
 
 ### `size`
 
-- Type: `"normal"` or `"compact"`
+- Type: `"normal"` or `"small"`
 - Default: Depending on the current mode.
 
 Defines size and padding for the rendered component.
