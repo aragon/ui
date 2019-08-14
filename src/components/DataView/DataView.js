@@ -1,7 +1,7 @@
 import React, { useEffect, useCallback, useMemo, useState } from 'react'
 import PropTypes from 'prop-types'
-import { GU } from '../../style'
 import { noop } from '../../utils'
+import { textStyle, GU } from '../../style'
 import { useTheme } from '../../theme'
 import { Box } from '../../components/Box/Box'
 import { Pagination } from '../../components/Pagination/Pagination'
@@ -221,9 +221,8 @@ const DataView = React.memo(function DataView({
           {typeof heading === 'string' ? (
             <h1
               css={`
-                font-size: 16px;
-                font-weight: 400;
                 margin-bottom: ${2 * GU}px;
+                ${textStyle('body2')};
               `}
             >
               {heading}
