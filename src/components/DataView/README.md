@@ -32,7 +32,7 @@ The different fields of data, displayed in the column headers in table mode.
 <DataView fields={['Account', 'Amount']} />
 ```
 
-An object form exist, allowing to set additional settings:
+An object form exists, allowing to set additional settings:
 
 ```jsx
 <DataView
