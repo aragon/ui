@@ -143,8 +143,8 @@ const DataView = React.memo(function DataView({
 }) {
   if (renderEntryChild && onSelectEntries) {
     throw new Error(
-      'A DataView cannot be made selectable if it has entry children. ' +
-        'Please use either renderEntryChild or onSelectEntries.'
+      'A DataView cannot be made selectable if its entries have children. ' +
+        'Please use only one of renderEntryChild or onSelectEntries at a time.'
     )
   }
 
@@ -165,7 +165,7 @@ const DataView = React.memo(function DataView({
         setPageManaged(newPage)
       }
 
-      // Useful even to notify, even in managed mode
+      // Useful to notify, even in managed mode
       onPageChange(newPage)
     },
     [onPageChange, page]
@@ -287,7 +287,7 @@ DataView.propTypes = {
   page: PropTypes.number,
   entries: PropTypes.array.isRequired,
   entriesPerPage: PropTypes.number,
-  fields: PropTypes.array,
+  fields: PropTypes.array.isRequired,
   heading: PropTypes.node,
   mode: PropTypes.oneOf(['adaptive', 'table', 'list']),
   onPageChange: PropTypes.func,

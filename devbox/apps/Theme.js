@@ -20,20 +20,21 @@ const groups = [
   ['Info', 'info'],
   ['Help', 'help'],
   ['Tones', 'negative'],
-  ['Tag', 'tag'],
+  ['Tag', 'tagIdentifier'],
   ['Special', 'link'],
   ['Controls', 'control'],
   ['Accent', 'accent'],
   ['Colors', 'green'],
+  ['Deprecated', 'error'],
 ]
 
-function ThemeList({ theme, ...props }) {
+function ThemeList({ colorCodes, name, theme, ...props }) {
   const _theme = useTheme()
-  const { name } = useLayout()
+  const { layoutName } = useLayout()
   return (
     <div
       css={`
-        width: ${name === 'small' ? '100%' : '50%'};
+        width: ${layoutName === 'small' ? '100%' : '50%'};
         padding: ${8 * GU}px 0;
       `}
       {...props}
@@ -44,7 +45,7 @@ function ThemeList({ theme, ...props }) {
           margin-bottom: ${4 * GU}px;
         `}
       >
-        {theme._name[0].toUpperCase() + theme._name.slice(1)} theme
+        {name}
       </h1>
       {Object.entries(theme)
         .filter(([key]) => key !== '_name')
@@ -99,7 +100,11 @@ function ThemeList({ theme, ...props }) {
                       margin-right: ${3 * GU}px;
                     `}
                   >
-                    {colorsByValue[value] ? colorsByValue[value] : '−'}
+                    {colorCodes
+                      ? value
+                      : colorsByValue[value]
+                      ? colorsByValue[value]
+                      : '−'}
                   </div>
                 </div>
               </div>
@@ -111,21 +116,25 @@ function ThemeList({ theme, ...props }) {
 }
 
 export default function() {
-  const { name } = useLayout()
+  const { layoutName } = useLayout()
   return (
-    <div
-      css={`
-        display: ${name === 'small' ? 'block' : 'flex'};
-        justify-content: space-between;
-      `}
-    >
-      <ThemeList
-        theme={themeLight}
+    <>
+      <div
         css={`
-          margin-right: ${3 * GU}px;
+          display: ${layoutName === 'small' ? 'block' : 'flex'};
+          justify-content: space-between;
         `}
-      />
-      <ThemeList theme={themeDark} />
-    </div>
+      >
+        <ThemeList
+          name="Light theme"
+          theme={themeLight}
+          css={`
+            margin-right: ${3 * GU}px;
+          `}
+        />
+        <ThemeList name="Dark theme" theme={themeDark} />
+      </div>
+      <ThemeList name="Base colors" theme={colors} colorCodes />
+    </>
   )
 }

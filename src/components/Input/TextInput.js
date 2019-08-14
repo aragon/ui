@@ -5,13 +5,14 @@ import { warnOnce } from '../../utils'
 import { textStyle, GU, RADIUS } from '../../style'
 
 // Simple text input
-function TextInput({ multiline, type, ...props }) {
+const TextInput = React.forwardRef(({ multiline, type, ...props }, ref) => {
   const theme = useTheme()
   return (
     <input
       as={multiline ? 'textarea' : 'input'}
       type={multiline ? undefined : type}
       {...props}
+      ref={ref}
       css={`
         width: ${({ wide }) => (wide ? '100%' : 'auto')};
         height: ${5 * GU}px;
@@ -42,7 +43,7 @@ function TextInput({ multiline, type, ...props }) {
       `}
     />
   )
-}
+})
 
 TextInput.propTypes = {
   required: PropTypes.bool,
