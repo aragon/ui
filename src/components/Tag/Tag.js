@@ -2,6 +2,7 @@ import React, { useMemo } from 'react'
 import PropTypes from 'prop-types'
 import { useTheme } from '../../theme'
 import { GU, textStyle } from '../../style'
+import { unselectable } from '../../utils'
 
 const MODE_INDICATOR = 'indicator'
 const MODE_IDENTIFIER = 'identifier'
@@ -55,6 +56,7 @@ function useSize(size, { uppercase, discMode, iconAndLabel }) {
       width: ${discMode ? `${2 * GU}px` : 'auto'};
       height: ${2 * GU}px;
       padding: ${discMode ? '0' : `0 ${0.5 * GU}px`};
+      padding-top: ${uppercase ? '0.5px' : 0};
       border-radius: ${2 * GU}px;
       ${textStyle('label3')};
       font-weight: 600;
@@ -141,6 +143,7 @@ function Tag({
         ${!uppercase && 'text-transform: unset'};
         color: ${color || modeProps.color};
         background: ${background || modeProps.background};
+        ${unselectable};
       `}
       {...props}
     >
