@@ -127,7 +127,6 @@ function useSelection(entries, onSelectEntries) {
 
 const DataView = React.memo(function DataView({
   page,
-  currentPage,
   entries,
   entriesPerPage,
   fields,
@@ -148,11 +147,7 @@ const DataView = React.memo(function DataView({
     )
   }
 
-  if (currentPage !== undefined) {
-    throw new Error('DataView: please use `page` instead of `currentPage`.')
-  }
-
-  // Only used if currentPage is not passed. The pagination supports both a
+  // Only used if page is not passed. The pagination supports both a
   // managed and a controlled mode, to provide a better developer experience
   // out of the box.
   const [pageManaged, setPageManaged] = useState(0)
@@ -296,9 +291,6 @@ DataView.propTypes = {
   renderEntryChild: PropTypes.func,
   renderSelectionCount: PropTypes.func,
   tableRowHeight: PropTypes.number,
-
-  // deprecated
-  currentPage: PropTypes.number,
 }
 
 DataView.defaultProps = {
