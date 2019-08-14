@@ -112,8 +112,6 @@ const Main = styled(animated.div)`
 `
 
 const Button = styled(ButtonBase)`
-  position: relative;
-  z-index: 2;
   display: flex;
   justify-content: center;
   align-items: center;

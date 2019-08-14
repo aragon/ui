@@ -53,15 +53,12 @@ function TabsFullWidth({ items, selected, onChange }) {
       ref={el}
       onBlur={blur}
       css={`
-        position: relative;
-        z-index: 1;
         padding-bottom: ${2 * GU}px;
       `}
     >
       <div
         css={`
           position: relative;
-          z-index: 1;
           display: flex;
           align-items: center;
           justify-content: space-between;
@@ -71,8 +68,6 @@ function TabsFullWidth({ items, selected, onChange }) {
       >
         <ButtonBase
           css={`
-            position: relative;
-            z-index: 2;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -122,7 +117,7 @@ function TabsFullWidth({ items, selected, onChange }) {
               <animated.div
                 css={`
                   position: absolute;
-                  z-index: 1;
+                  z-index: 9; // TODO: use <Root>
                   top: ${8 * GU}px;
                   left: 0;
                   right: 0;
