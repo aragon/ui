@@ -61,7 +61,7 @@ Use this to pass a number as the `label` prop of the Tag, and limit it to a cert
 - Type: `Number`
 - Default value: `2`
 
-When `count` is `true`, set the maximum number of digits you want. For example, `250` will be displayed “99+” if the number of digits is `2`.
+When `count` is `true`, set the maximum number of digits you want. For example, `250` will be displayed as “99+” if the number of digits is `2`.
 
 ### `label`
 
