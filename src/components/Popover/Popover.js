@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Popper from 'popper.js'
 import { Transition, animated } from 'react-spring'
-import { noop } from '../../utils'
+import { noop, stylingProps } from '../../utils'
 import { useTheme } from '../../theme'
 import { springs, RADIUS } from '../../style'
 import RootPortal from '../RootPortal/RootPortal'
@@ -150,7 +150,7 @@ class PopoverBase extends React.Component {
   }
 
   render() {
-    const { zIndex, children, transitionStyles, theme, ...props } = this.props
+    const { children, theme, transitionStyles, zIndex } = this.props
     const { scale, opacity } = transitionStyles
     return (
       <animated.div
@@ -181,7 +181,7 @@ class PopoverBase extends React.Component {
               outline: 0;
             }
           `}
-          {...props}
+          {...stylingProps(this)}
         >
           {children}
         </animated.div>
