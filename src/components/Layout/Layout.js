@@ -3,24 +3,29 @@ import PropTypes from 'prop-types'
 import { useViewport } from '../../providers/Viewport/Viewport'
 import { BREAKPOINTS, GU } from '../../style'
 
-const SIZES = Object.entries(BREAKPOINTS)
-  .filter(([name]) => name !== 'min')
-  .sort((a, b) => a[1] - b[1])
+function getSizes(breakpoints) {
+  return Object.entries(breakpoints)
+    .filter(([name]) => name !== 'min')
+    .sort((a, b) => a[1] - b[1])
+}
 
 // Minimum margin around a layouts
 const MIN_MARGIN = 3 * GU
 
-function getLayoutSize(parentWidth) {
-  let index = SIZES.length
+function getLayoutSize(parentWidth, breakpoints) {
+  const sizes = getSizes(breakpoints)
+
+  let index = sizes.length
   while (index--) {
-    if (parentWidth >= SIZES[index][1]) {
+    if (parentWidth >= sizes[index][1]) {
       return [
-        SIZES[index][0],
-        SIZES[index][1] - (index === 0 ? 0 : MIN_MARGIN * 2),
+        sizes[index][0],
+        sizes[index][1] - (index === 0 ? 0 : MIN_MARGIN * 2),
       ]
     }
   }
-  return SIZES[0]
+
+  return sizes[0]
 }
 
 const LayoutContext = React.createContext({})
@@ -35,29 +40,36 @@ function useLayout(parentWidth) {
   }
 }
 
-function Layout({ children, parentWidth }) {
+function Layout({ children, parentWidth, breakpoints, ...props }) {
   const { width: viewportWidth } = useViewport()
+
+  const mergedBreakpoints = useMemo(
+    () => ({ ...BREAKPOINTS, ...breakpoints }),
+    [breakpoints]
+  )
 
   // If the parent width is not passed, use the viewport width.
   const [layoutName, layoutWidth] = useMemo(
     () =>
-      getLayoutSize(parentWidth === undefined ? viewportWidth : parentWidth),
-    [viewportWidth, parentWidth]
+      getLayoutSize(
+        parentWidth === undefined ? viewportWidth : parentWidth,
+        mergedBreakpoints
+      ),
+    [viewportWidth, parentWidth, mergedBreakpoints]
   )
 
   return (
     <LayoutContext.Provider value={{ layoutWidth, layoutName }}>
-      <div>
-        <div
-          css={`
-            margin: 0 auto;
-            padding-bottom: ${3 * GU}px;
-            width: ${layoutName === 'small' ? 'auto' : `${layoutWidth}px`};
-            min-width: ${BREAKPOINTS.min}px;
-          `}
-        >
-          {children}
-        </div>
+      <div
+        {...props}
+        css={`
+          margin: 0 auto;
+          padding-bottom: ${3 * GU}px;
+          width: ${layoutName === 'small' ? 'auto' : `${layoutWidth}px`};
+          min-width: ${mergedBreakpoints.min}px;
+        `}
+      >
+        {children}
       </div>
     </LayoutContext.Provider>
   )
@@ -66,6 +78,16 @@ function Layout({ children, parentWidth }) {
 Layout.propTypes = {
   children: PropTypes.node,
   parentWidth: PropTypes.number,
+  breakpoints: PropTypes.shape({
+    min: PropTypes.number,
+    small: PropTypes.number,
+    medium: PropTypes.number,
+    large: PropTypes.number,
+  }),
+}
+
+Layout.defaultProps = {
+  breakpoints: {},
 }
 
 export { useLayout, Layout }
