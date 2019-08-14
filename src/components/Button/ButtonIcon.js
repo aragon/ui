@@ -42,7 +42,7 @@ ButtonIcon.propTypes = {
   children: PropTypes.node.isRequired,
 
   // deprecated
-  mode: PropTypes.oneOf(['flat', 'button']),
+  mode: PropTypes.oneOf(['button']),
 }
 
 export { ButtonIcon }
