@@ -20,11 +20,7 @@ function useDropDown({
   const [opened, setOpened] = useState(false)
 
   const close = useCallback(() => {
-    // if the popover is opened and the user clicks on the button
-    // this handler was being called before the click handler, so the
-    // click handler was re-opening the popover, by having this on the
-    // next tick things happen in order.
-    setTimeout(() => setOpened(false), 10)
+    setOpened(false)
 
     if (buttonRef.current) {
       buttonRef.current.focus()

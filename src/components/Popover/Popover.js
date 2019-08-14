@@ -127,7 +127,11 @@ class PopoverBase extends React.Component {
   handleBlur = event => {
     const { opener, onClose } = this.props
     const focusedElement = event.relatedTarget
-    if (this._cardElement.current.contains(focusedElement)) {
+    if (
+      (this._cardElement.current &&
+        this._cardElement.current.contains(focusedElement)) ||
+      (opener && opener.contains(focusedElement))
+    ) {
       return
     }
 
