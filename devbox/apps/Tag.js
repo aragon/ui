@@ -9,6 +9,7 @@ const ITEMS = new Map([
       { icon: <IconCheck size="tiny" /> },
       { icon: <IconCheck size="tiny" />, label: 'Voted' },
       { label: 'Voted' },
+      { label: '2' },
       { label: 'You', size: 'small' },
       { label: 893278, size: 'small', count: 4 },
     ],
