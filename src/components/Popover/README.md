@@ -40,6 +40,14 @@ function App() {
 
 Reference to the "opener"which is what the Popover is positioning relative to.
 
+### `closeOnOpenerFocus`
+
+| Type      | Default value |
+| --------- | ------------- |
+| `Boolean` | `false`       |
+
+While the Popover is opened, do not immediately close the Popover when the opener gets focused. This makes it possible to toggle its visibility from the opener, if its placement allows it.
+
 ### `placement`
 
 - Type: `String`
