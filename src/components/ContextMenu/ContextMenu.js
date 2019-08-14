@@ -112,8 +112,6 @@ const Main = styled(animated.div)`
 `
 
 const Button = styled(ButtonBase)`
-  position: relative;
-  z-index: 2;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -125,7 +123,7 @@ const Button = styled(ButtonBase)`
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
 `
 
-ContextMenu.BASE_WIDTH = 46
-ContextMenu.BASE_HEIGHT = 32
+ContextMenu.BASE_WIDTH = BASE_WIDTH
+ContextMenu.BASE_HEIGHT = BASE_WIDTH
 
 export default ContextMenu

@@ -51,12 +51,15 @@ The content displayed for the field.
 
 #### field.priority
 
-Set this to any number to set the field priority (list mode only).
+List mode only. Set this to any number to set the field priority.
+
+#### field.align
+
+Table mode only. Forces the table header to be aligned on a specific side: `end` or `start`.
 
 #### field.childStart
 
-Set this to `true` on the field you want the child content to be aligned (table
-mode only). See `renderEntryChild()` for more details.
+Table mode only. Set this to `true` on the field you want the child content to be aligned. See `renderEntryChild()` for more details.
 
 ### entries
 
@@ -119,7 +122,7 @@ Or anything else, like a string:
 
 | Type         | Default value |
 | ------------ | ------------- |
-| `React node` | `10`          |
+| `React node` | None          |
 
 Set this to add a header inside the `DataView` surface.
 
@@ -131,47 +134,21 @@ Set this to add a header inside the `DataView` surface.
 
 Set this to force the display mode of DataView.
 
-### currentPage
+### page
 
-| Type     | Default value   |
-| -------- | --------------- |
-| `Number` | None (required) |
+| Type     | Default value |
+| -------- | ------------- |
+| `Number` | None          |
 
-Index of the current page.
+Index of the current page. When not provided, `DataView` will manage the pagination itself.
 
 ### onPageChange
 
-| Type       | Default value   |
-| ---------- | --------------- |
-| `Function` | None (required) |
+| Type       | Default value |
+| ---------- | ------------- |
+| `Function` | None          |
 
-Gets called when a page change is requested.
-
-In `DataView`, the pagination is [controlled](https://reactjs.org/docs/forms.html#controlled-components) from the outside. It requires both `currentPage` and `onPageChange` to be set in order to work.
-
-The simplest way to handle it is to use `useState(0)`:
-
-```jsx
-function App() {
-  const [page, setPage] = useState(0)
-  return (
-    <DataView
-      fields={
-        [
-          /* … */
-        ]
-      }
-      entries={
-        [
-          /* … */
-        ]
-      }
-      currentPage={page}
-      onPageChange={setPage}
-    />
-  )
-}
-```
+Gets called when a page change is requested. Use with `page` to manage the pagination in a [controlled](https://reactjs.org/docs/forms.html#controlled-components) way.
 
 ### entriesPerPage
 
