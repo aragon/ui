@@ -98,6 +98,8 @@ function TabsFullWidth({ items, selected, onChange }) {
               align-items: center;
               padding: 0 ${2 * GU}px;
               color: ${theme.surfaceIcon};
+              transition: transform 150ms ease-in-out;
+              transform: rotate3d(0, 0, 1, ${opened ? 180 : 0}deg);
             `}
           >
             <IconDown />
