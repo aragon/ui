@@ -107,6 +107,10 @@ function Tag({
   uppercase,
   ...props
 }) {
+  if ((icon || label) && children) {
+    throw new Error('Tag: you cannot use icon or label with children.')
+  }
+
   const modeProps = useMode(mode)
 
   const finalSize = size || modeProps.size
