@@ -142,15 +142,17 @@ function Tag({
     >
       {children || (
         <React.Fragment>
-          <span
-            css={`
-              display: flex;
-              align-items: center;
-              margin-top: ${finalSize === SIZE_NORMAL ? '-3px' : '0'};
-            `}
-          >
-            {icon}
-          </span>
+          {icon && (
+            <span
+              css={`
+                display: flex;
+                align-items: center;
+                margin-top: ${finalSize === SIZE_NORMAL ? '-3px' : '0'};
+              `}
+            >
+              {icon}
+            </span>
+          )}
           {icon && finalLabel && (
             <span
               css={`
