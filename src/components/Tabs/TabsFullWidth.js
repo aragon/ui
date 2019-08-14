@@ -1,10 +1,10 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { Transition, animated } from 'react-spring'
 import { GU, textStyle, springs } from '../../style'
+import { useOnBlur, useKeyDown } from '../../hooks'
 import { useTheme } from '../../theme'
-import { ButtonBase } from '../Button/ButtonBase'
 import { IconDown } from '../../icons'
-import { useKeyDown } from '../../hooks'
+import { ButtonBase } from '../Button/ButtonBase'
 
 const ESC_CODE = 27
 
@@ -14,7 +14,6 @@ const ESC_CODE = 27
 function TabsFullWidth({ items, selected, onChange }) {
   const theme = useTheme()
   const [opened, setOpened] = useState(false)
-  const el = useRef(null)
 
   const selectedItem = items[selected]
 
@@ -26,11 +25,7 @@ function TabsFullWidth({ items, selected, onChange }) {
     setOpened(opened => !opened)
   }, [])
 
-  const blur = useCallback(event => {
-    if (!el.current.contains(event.relatedTarget)) {
-      close()
-    }
-  }, [])
+  const { handleBlur, ref } = useOnBlur(close)
 
   const change = useCallback(
     index => {
@@ -50,8 +45,8 @@ function TabsFullWidth({ items, selected, onChange }) {
 
   return (
     <div
-      ref={el}
-      onBlur={blur}
+      ref={ref}
+      onBlur={handleBlur}
       css={`
         padding-bottom: ${2 * GU}px;
       `}

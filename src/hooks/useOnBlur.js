@@ -4,9 +4,9 @@ import { useCallback, useRef } from 'react'
 export function useOnBlur(cb, ref = useRef()) {
   /* eslint-enable react-hooks/rules-of-hooks */
   const handleBlur = useCallback(
-    e => {
-      if (!ref.current.contains(e.relatedTarget)) {
-        cb()
+    event => {
+      if (!ref.current.contains(event.relatedTarget)) {
+        cb(event)
       }
     },
     [cb, ref]
