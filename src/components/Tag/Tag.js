@@ -116,19 +116,15 @@ function Tag({
   const modeProps = useMode(mode)
 
   const finalSize = size || modeProps.size
-  const finalLabel = getLabel({
-    label: label || (!icon && children),
-    count,
-  })
-
-  const childrenOrLabel = children || finalLabel
-  const singleChar =
-    !icon && typeof childrenOrLabel === 'string' && childrenOrLabel.length < 2
-  const iconOnly = icon && !finalLabel
+  const finalLabel = getLabel({ label: label || children, count })
 
   const sizeStyles = useSize(finalSize, {
     uppercase,
-    discMode: iconOnly || singleChar,
+    discMode:
+      // icon only
+      (icon && !finalLabel) ||
+      // label only, using 1 or 0 chars
+      (!icon && typeof finalLabel === 'string' && finalLabel.length < 2),
     iconAndLabel: icon && finalLabel,
   })
 
@@ -147,29 +143,19 @@ function Tag({
       `}
       {...props}
     >
-      {children || (
-        <React.Fragment>
-          {icon && (
-            <span
-              css={`
-                display: flex;
-                align-items: center;
-                margin-top: ${finalSize === SIZE_NORMAL ? '-3px' : '0'};
-              `}
-            >
-              {icon}
-            </span>
-          )}
-          {icon && finalLabel && (
-            <span
-              css={`
-                width: ${0.25 * GU}px;
-              `}
-            />
-          )}
-          {finalLabel}
-        </React.Fragment>
+      {icon && (
+        <span
+          css={`
+            display: flex;
+            align-items: center;
+            margin-top: ${finalSize === SIZE_NORMAL ? '-3px' : '0'};
+            margin-right: ${finalLabel ? 0.25 * GU : 0}px;
+          `}
+        >
+          {icon}
+        </span>
       )}
+      {finalLabel}
     </span>
   )
 }
