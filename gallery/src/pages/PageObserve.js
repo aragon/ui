@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Subject } from 'rxjs'
-import { observe, Badge, Button } from '@aragon/ui'
+import { observe, Tag, Button } from '@aragon/ui'
 
 import Page from 'comps/Page/Page'
 import readme from 'ui-src/providers/observe/README.md'
@@ -47,10 +47,10 @@ class PageObserve extends React.Component {
 const Receiver = ({ propValue, value }) => (
   <div>
     <p>
-      Current observed value: <Badge>{value}</Badge>
+      Current observed value: <Tag>{value}</Tag>
     </p>
     <p>
-      Current passed prop value: <Badge>{propValue}</Badge>
+      Current passed prop value: <Tag>{propValue}</Tag>
     </p>
   </div>
 )
