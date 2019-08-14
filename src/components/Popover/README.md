@@ -46,7 +46,7 @@ Reference to the "opener"which is what the Popover is positioning relative to.
 | --------- | ------------- |
 | `Boolean` | `false`       |
 
-Do not immediatly reopen the Popover when the opener gets focused while being opened, making it possible to toggle its visibility from the opener, if its placement allows it.
+While the Popover is opened, do not immediately close the Popover when the opener gets focused. This makes it possible to toggle its visibility from the opener, if its placement allows it.
 
 ### `placement`
 
