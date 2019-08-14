@@ -6,7 +6,7 @@ import { useLayout } from '../Layout/Layout'
 
 function getPaddingValue(padding) {
   if (typeof padding === 'boolean') {
-    return padding ? 2 * GU : 0
+    return padding ? 5 * GU : 0
   }
   return padding
 }
