@@ -1,16 +1,19 @@
-import React, { useEffect, useState } from 'react'
+import React, { useMemo, useCallback, useEffect, useState } from 'react'
 import {
+  Bar,
   Button,
+  ButtonBase,
   ContextMenu,
   ContextMenuItem,
   DataView,
+  DropDown,
+  GU,
   Header,
-  IconTrash,
+  IconDown,
   IconDownload,
+  IconTrash,
+  IconUp,
   IdentityBadge,
-  Layout,
-  Main,
-  Tabs,
   useTheme,
 } from '@aragon/ui'
 import { createAddress } from '../create-address'
@@ -18,7 +21,99 @@ import { seedShuffleArray, multiplyArray } from '../utils'
 
 const addr = createAddress()
 
+const SORTING_ENTRIES = [
+  { name: 'Strawberry', account: addr() },
+  { name: 'Banana', account: addr() },
+  { name: 'Apple', account: addr() },
+  { name: 'Cherry', account: addr() },
+  { name: 'Strawberry', account: addr() },
+  { name: 'Banana', account: addr() },
+  { name: 'Apple', account: addr() },
+  { name: 'Cherry', account: addr() },
+]
+
+function SortHeader({ onClick, label, sortBy = 0, rightAligned = false }) {
+  return (
+    <ButtonBase
+      onClick={onClick}
+      css={`
+        display: inline-flex;
+        align-items: center;
+        flex-direction: ${rightAligned ? 'row-reverse' : 'row'};
+      `}
+    >
+      <span css="margin-top: 2px">{label}</span>
+
+      <span css="width: 5px" />
+
+      {sortBy === 1 && <IconDown size="tiny" />}
+      {sortBy === -1 && <IconUp size="tiny" />}
+    </ButtonBase>
+  )
+}
+
+function SortingDemo(props) {
+  const [sortBy, setSortBy] = useState(['name', 0])
+
+  const rotateSortBy = useCallback(name => {
+    setSortBy(sortBy => [
+      name,
+      sortBy[0] === name ? ((sortBy[1] + 2) % 3) - 1 : 1,
+    ])
+  }, [])
+
+  const rotateSortByName = useCallback(() => {
+    rotateSortBy('name')
+  }, [rotateSortBy])
+
+  const rotateSortByAccount = useCallback(() => {
+    rotateSortBy('account')
+  }, [rotateSortBy])
+
+  const sortedEntries = useMemo(
+    () =>
+      [...SORTING_ENTRIES].sort((a, b) => {
+        if (sortBy[1] === 0) {
+          return 0
+        }
+        if (sortBy[0] === 'name' && a.name !== b.name) {
+          return a.name < b.name ? sortBy[1] * -1 : sortBy[1]
+        }
+        if (sortBy[0] === 'account' && a.account !== b.account) {
+          return a.account < b.account ? sortBy[1] * -1 : sortBy[1]
+        }
+        return 0
+      }),
+    [sortBy]
+  )
+
+  return (
+    <DataView
+      {...props}
+      fields={[
+        <SortHeader
+          label="Name"
+          onClick={rotateSortByName}
+          sortBy={sortBy[0] === 'name' ? sortBy[1] : 'none'}
+        />,
+        <SortHeader
+          label="Account"
+          onClick={rotateSortByAccount}
+          sortBy={sortBy[0] === 'account' ? sortBy[1] : 'none'}
+          rightAligned={true}
+        />,
+      ]}
+      entries={sortedEntries}
+      renderEntry={({ name, account }) => [
+        name,
+        <IdentityBadge entity={account} />,
+      ]}
+    />
+  )
+}
+
 const DEMOS = new Map([
+  ['Sorting', SortingDemo],
   [
     'One column',
     props => (
@@ -293,7 +388,20 @@ function App() {
   return (
     <div>
       <Header primary="DataView" />
-      <Tabs items={demoNames} selected={demo} onChange={setDemo} />
+      <Bar
+        primary={
+          <label>
+            <span
+              css={`
+                margin-right: ${1 * GU}px;
+              `}
+            >
+              Current demo:
+            </span>
+            <DropDown items={demoNames} selected={demo} onChange={setDemo} />
+          </label>
+        }
+      />
       <DataViewDemo page={page} onPageChange={setPage} />
     </div>
   )
