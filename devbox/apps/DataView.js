@@ -1,21 +1,20 @@
 import React, { useMemo, useCallback, useEffect, useState } from 'react'
 import {
+  Bar,
   Button,
   ButtonBase,
-  IconUp,
-  IconDown,
   ContextMenu,
   ContextMenuItem,
   DataView,
+  DropDown,
+  GU,
   Header,
-  IconTrash,
+  IconDown,
   IconDownload,
+  IconTrash,
+  IconUp,
   IdentityBadge,
-  Layout,
-  Main,
-  Tabs,
   useTheme,
-  unselectable,
 } from '@aragon/ui'
 import { createAddress } from '../create-address'
 import { seedShuffleArray, multiplyArray } from '../utils'
@@ -41,8 +40,6 @@ function SortHeader({ onClick, label, sortBy = 0, rightAligned = false }) {
         display: inline-flex;
         align-items: center;
         flex-direction: ${rightAligned ? 'row-reverse' : 'row'};
-        cursor: pointer;
-        ${unselectable};
       `}
     >
       <span css="margin-top: 2px">{label}</span>
@@ -117,26 +114,26 @@ function SortingDemo(props) {
 
 const DEMOS = new Map([
   ['Sorting', SortingDemo],
-  // [
-  //   'One column',
-  //   props => (
-  //     <DataView
-  //       {...props}
-  //       fields={['Account']}
-  //       entries={[
-  //         { account: addr() },
-  //         { account: addr() },
-  //         { account: addr() },
-  //         { account: addr() },
-  //         { account: addr() },
-  //         { account: addr() },
-  //       ]}
-  //       renderEntry={({ account, amount }) => {
-  //         return [<IdentityBadge entity={account} />]
-  //       }}
-  //     />
-  //   ),
-  // ],
+  [
+    'One column',
+    props => (
+      <DataView
+        {...props}
+        fields={['Account']}
+        entries={[
+          { account: addr() },
+          { account: addr() },
+          { account: addr() },
+          { account: addr() },
+          { account: addr() },
+          { account: addr() },
+        ]}
+        renderEntry={({ account, amount }) => {
+          return [<IdentityBadge entity={account} />]
+        }}
+      />
+    ),
+  ],
 
   [
     'Simple',
@@ -391,7 +388,20 @@ function App() {
   return (
     <div>
       <Header primary="DataView" />
-      <Tabs items={demoNames} selected={demo} onChange={setDemo} />
+      <Bar
+        primary={
+          <label>
+            <span
+              css={`
+                margin-right: ${1 * GU}px;
+              `}
+            >
+              Current demo:
+            </span>
+            <DropDown items={demoNames} selected={demo} onChange={setDemo} />
+          </label>
+        }
+      />
       <DataViewDemo page={page} onPageChange={setPage} />
     </div>
   )
