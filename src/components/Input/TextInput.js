@@ -39,6 +39,7 @@ const TextInput = React.forwardRef(({ multiline, type, ...props }, ref) => {
         &:read-only {
           color: transparent;
           text-shadow: 0 0 0 ${theme.surfaceContentSecondary};
+          border-color: ${theme.border};
         }
       `}
     />
