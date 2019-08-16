@@ -139,7 +139,7 @@ function Tag({
         justify-content: center;
         white-space: nowrap;
         ${sizeStyles};
-        ${!uppercase && 'text-transform: unset'};
+        ${!uppercase ? 'text-transform: unset' : ''};
         color: ${color || modeProps.color};
         background: ${background || modeProps.background};
         ${unselectable};
