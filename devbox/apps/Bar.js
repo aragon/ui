@@ -1,16 +1,21 @@
 import React from 'react'
-import { Button, AppView, Bar, Tabs } from '@aragon/ui'
+import { Bar, BackButton, Button } from '@aragon/ui'
 
 export default () => (
   <div
     css={`
       display: flex;
       align-items: center;
+      justify-content: center;
       height: 100vh;
     `}
   >
-    <Bar>
-      <Tabs items={['App permissions', 'System permissions']} />
-    </Bar>
+    <Bar
+      primary={<BackButton />}
+      secondary={<Button label="Share" />}
+      css={`
+        width: 500px;
+      `}
+    />
   </div>
 )
