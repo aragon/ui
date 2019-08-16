@@ -49,7 +49,7 @@ function useMode(mode) {
   }
 }
 
-function useSize(size, { uppercase, discMode, iconAndLabel }) {
+function getSize(size, { uppercase, discMode, iconAndLabel }) {
   if (size === SIZE_SMALL) {
     return `
       min-width: ${2 * GU}px;
@@ -77,8 +77,8 @@ function useSize(size, { uppercase, discMode, iconAndLabel }) {
   `
 }
 
-function getLabel({ label, limitDigits }) {
-  return useMemo(() => {
+function useLabel({ label, limitDigits }) {
+  const finalLabel = useMemo(() => {
     if (limitDigits === false) {
       return label || ''
     }
@@ -95,6 +95,9 @@ function getLabel({ label, limitDigits }) {
 
     return formatedValue
   }, [label, limitDigits])
+
+  // Always convert to a string so we can check the length
+  return String(finalLabel)
 }
 
 function Tag({
@@ -116,9 +119,9 @@ function Tag({
   const modeProps = useMode(mode)
 
   const finalSize = size || modeProps.size
-  const finalLabel = getLabel({ label: label || children, limitDigits })
+  const finalLabel = useLabel({ label: label || children, limitDigits })
 
-  const sizeStyles = useSize(finalSize, {
+  const sizeStyles = getSize(finalSize, {
     uppercase,
     discMode:
       // icon only
