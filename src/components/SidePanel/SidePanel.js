@@ -21,6 +21,8 @@ function SidePanel({
   title,
 }) {
   const theme = useTheme()
+  const { below } = useViewport()
+  const compact = below('medium')
 
   const handleClose = useCallback(() => {
     if (!blocking) {
@@ -68,6 +70,7 @@ function SidePanel({
               }}
             />
             <Panel
+              compact={compact}
               style={{
                 transform: progress.interpolate(
                   v =>
@@ -103,8 +106,17 @@ function SidePanel({
                     onClick={handleClose}
                     css={`
                       position: absolute;
-                      top: ${2 * GU}px;
-                      right: ${2 * GU}px;
+                      ${!compact
+                        ? `
+                        top: ${2 * GU}px;
+                        right: ${2 * GU}px;
+                      `
+                        : `
+                        height: 64px;
+                        width: 64px;
+                        top: 0;
+                        right: 0;
+                      `}
                     `}
                   >
                     <IconClose color={theme.surfaceIcon} />
@@ -164,9 +176,8 @@ const Overlay = styled(animated.div)`
   background: ${({ theme }) => theme.overlay.alpha(0.8)};
 `
 
-const Panel = React.memo(function Panel(props) {
+const Panel = React.memo(function Panel({ compact, ...props }) {
   const theme = useTheme()
-  const { above } = useViewport()
   return (
     <animated.aside
       css={`
@@ -180,7 +191,7 @@ const Panel = React.memo(function Panel(props) {
         background: ${theme.surface};
         box-shadow: -2px 0px 4px rgba(118, 137, 173, 0.2);
 
-        ${above('medium') ? 'max-width: 450px;' : ''}
+        ${!compact ? 'max-width: 450px;' : ''}
       `}
       {...props}
     />
