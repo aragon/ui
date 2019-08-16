@@ -2,6 +2,7 @@ import React, { useCallback, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { Spring, animated } from 'react-spring'
+import { ButtonIcon } from '../Button/ButtonIcon'
 import { IconClose } from '../../icons'
 import { useViewport } from '../../providers/Viewport/Viewport'
 import { GU, springs, textStyle } from '../../style'
@@ -97,9 +98,19 @@ function SidePanel({
                   {title}
                 </h1>
                 {!blocking && (
-                  <PanelCloseButton onClick={handleClose}>
+                  <ButtonIcon
+                    onClick={handleClose}
+                    css={`
+                      position: absolute;
+                      top: ${2 * GU}px;
+                      right: ${2 * GU}px;
+                      &:active {
+                        background: none;
+                      }
+                    `}
+                  >
                     <IconClose color={theme.surfaceIcon} />
-                  </PanelCloseButton>
+                  </ButtonIcon>
                 )}
               </header>
               <div
@@ -188,23 +199,6 @@ const PanelContent = styled.div`
   padding-right: ${CONTENT_PADDING}px;
   padding-left: ${CONTENT_PADDING}px;
   padding-bottom: ${CONTENT_PADDING}px;
-`
-
-const PanelCloseButton = styled.button.attrs({
-  type: 'button',
-})`
-  position: absolute;
-  top: 0;
-  right: 0;
-  padding: 20px;
-  line-height: 1;
-  cursor: pointer;
-  background: none;
-  border: 0;
-  outline: 0;
-  &::-moz-focus-inner {
-    border: 0;
-  }
 `
 
 // Used for spacing in SidePanelSplit and SidePanelSeparator
