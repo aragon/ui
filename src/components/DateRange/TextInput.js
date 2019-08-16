@@ -1,7 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
-import { theme, font } from '@aragon/ui'
+import { theme } from '../../theme-legacy'
+import { font } from '../../utils'
 
 const baseStyles = css`
   ${font({ size: 'small', weight: 'normal' })};
