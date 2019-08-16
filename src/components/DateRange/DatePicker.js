@@ -1,7 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
-import { Button, Text, theme } from '@aragon/ui'
+import { Button } from '../Button/Button'
+import Text from '../Text/Text'
+import { theme } from '../../theme-legacy'
 import {
   addMonths,
   addYears,
