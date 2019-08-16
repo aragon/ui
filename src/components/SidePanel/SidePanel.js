@@ -1,100 +1,132 @@
+import React, { useCallback, useEffect } from 'react'
 import PropTypes from 'prop-types'
-import React from 'react'
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 import { Spring, animated } from 'react-spring'
-import { useTheme } from '../../theme'
-import { springs, breakpoint } from '../../style'
-import { unselectable } from '../../utils'
 import { IconClose } from '../../icons'
-import Text from '../Text/Text'
+import { useViewport } from '../../providers/Viewport/Viewport'
+import { GU, springs, textStyle } from '../../style'
+import { useTheme } from '../../theme'
+import { unselectable } from '../../utils'
 import RootPortal from '../RootPortal/RootPortal'
 
-const CONTENT_PADDING = 30
+const CONTENT_PADDING = 3 * GU
 
-class SidePanel extends React.PureComponent {
-  componentDidMount() {
-    document.addEventListener('keydown', this.handleEscape, false)
-  }
-  componentWillUnmount() {
-    document.removeEventListener('keydown', this.handleEscape, false)
-  }
-  handleClose = () => {
-    if (!this.props.blocking) {
-      this.props.onClose()
-    }
-  }
-  handleEscape = event => {
-    if (event.keyCode === 27 && this.props.opened) {
-      this.handleClose()
-    }
-  }
-  handleTransitionRest = () => {
-    this.props.onTransitionEnd(this.props.opened)
-  }
-  renderIn = ({ progress }) => {
-    const { children, title, opened, blocking, theme } = this.props
+function SidePanel({
+  blocking,
+  children,
+  opened,
+  onClose,
+  onTransitionEnd,
+  title,
+}) {
+  const theme = useTheme()
 
-    return (
-      <Main opened={opened}>
-        <Overlay
-          style={{
-            opacity: progress,
-            pointerEvents: opened ? 'auto' : 'none',
-          }}
-          onClick={this.handleClose}
-        />
-        <Panel
-          style={{
-            transform: progress.interpolate(
-              v =>
-                `translate3d(calc(${100 * (1 - v)}% + ${36 * (1 - v)}px), 0, 0)`
-            ),
-            opacity: progress.interpolate(v => (v > 0 ? 1 : 0)),
-          }}
-        >
-          <PanelHeader>
-            <h1>
-              <Text size="xxlarge">{title}</Text>
-            </h1>
-            {!blocking && (
-              <PanelCloseButton type="button" onClick={this.handleClose}>
-                <IconClose color={theme.surfaceIcon} />
-              </PanelCloseButton>
-            )}
-          </PanelHeader>
-          <PanelScrollView>
-            <PanelContent>{children}</PanelContent>
-          </PanelScrollView>
-        </Panel>
-      </Main>
-    )
-  }
-  render() {
-    const { opened } = this.props
-    return (
-      <RootPortal>
-        <Spring
-          config={springs.lazy}
-          from={{ progress: 0 }}
-          to={{ progress: !!opened }}
-          onRest={this.handleTransitionRest}
-          native
-        >
-          {this.renderIn}
-        </Spring>
-      </RootPortal>
-    )
-  }
+  const handleClose = useCallback(() => {
+    if (!blocking) {
+      onClose()
+    }
+  }, [blocking, onClose])
+
+  const handleEscape = useCallback(
+    event => {
+      if (event.keyCode === 27 && opened) {
+        handleClose()
+      }
+    },
+    [opened, handleClose]
+  )
+
+  const handleTransitionRest = useCallback(() => {
+    onTransitionEnd(opened)
+  }, [opened, onTransitionEnd])
+
+  useEffect(() => {
+    document.addEventListener('keydown', handleEscape, false)
+    return () => {
+      document.removeEventListener('keydown', handleEscape, false)
+    }
+  }, [handleEscape])
+
+  return (
+    <RootPortal>
+      <Spring
+        config={springs.lazy}
+        from={{ progress: 0 }}
+        to={{ progress: !!opened }}
+        onRest={handleTransitionRest}
+        native
+      >
+        {({ progress }) => (
+          <Main opened={opened}>
+            <Overlay
+              onClick={handleClose}
+              theme={theme}
+              style={{
+                opacity: progress,
+                pointerEvents: opened ? 'auto' : 'none',
+              }}
+            />
+            <Panel
+              style={{
+                transform: progress.interpolate(
+                  v =>
+                    `translate3d(calc(${100 * (1 - v)}% + ${36 *
+                      (1 - v)}px), 0, 0)`
+                ),
+                opacity: progress.interpolate(v => (v > 0 ? 1 : 0)),
+              }}
+            >
+              <header
+                css={`
+                  display: flex;
+                  flex-direction: column;
+                  justify-content: center;
+                  flex-shrink: 0;
+                  position: relative;
+                  height: ${8 * GU}px;
+                  padding-left: ${CONTENT_PADDING}px;
+                  border-bottom: 1px solid ${theme.border};
+                  ${unselectable()};
+                `}
+              >
+                <h1
+                  css={`
+                    ${textStyle('body1')}
+                  `}
+                >
+                  {title}
+                </h1>
+                {!blocking && (
+                  <PanelCloseButton onClick={handleClose}>
+                    <IconClose color={theme.surfaceIcon} />
+                  </PanelCloseButton>
+                )}
+              </header>
+              <div
+                css={`
+                  overflow-y: auto;
+                  height: 100%;
+                  display: flex;
+                  flex-direction: column;
+                `}
+              >
+                <PanelContent>{children}</PanelContent>
+              </div>
+            </Panel>
+          </Main>
+        )}
+      </Spring>
+    </RootPortal>
+  )
 }
 
 SidePanel.propTypes = {
-  children: PropTypes.node,
-  title: PropTypes.string.isRequired,
-  opened: PropTypes.bool,
   blocking: PropTypes.bool,
+  children: PropTypes.node,
+  opened: PropTypes.bool,
   onClose: PropTypes.func,
   onTransitionEnd: PropTypes.func,
-  theme: PropTypes.object,
+  title: PropTypes.string.isRequired,
 }
 
 SidePanel.defaultProps = {
@@ -120,43 +152,31 @@ const Overlay = styled(animated.div)`
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(68, 81, 89, 0.65);
+  background: ${({ theme }) => theme.overlay.alpha(0.8)};
 `
 
-const maxWidth = css`
-  max-width: ${({ maxwidth = 450 }) => maxwidth}px;
-`
+const Panel = React.memo(function Panel(props) {
+  const theme = useTheme()
+  const { above } = useViewport()
+  return (
+    <animated.aside
+      css={`
+        position: absolute;
+        top: 0;
+        right: 0;
+        display: flex;
+        flex-direction: column;
+        width: 100vw;
+        height: 100vh;
+        background: ${theme.surface};
+        box-shadow: -2px 0px 4px rgba(118, 137, 173, 0.2);
 
-const Panel = styled(animated.aside)`
-  position: absolute;
-  top: 0;
-  right: 0;
-  display: flex;
-  flex-direction: column;
-  width: 100vw;
-  height: 100vh;
-  background: white;
-  box-shadow: -2px 0 36px rgba(0, 0, 0, 0.2);
-
-  ${breakpoint('medium', maxWidth)}
-`
-
-const PanelHeader = styled.header`
-  position: relative;
-  padding-top: 15px;
-  padding-left: ${CONTENT_PADDING}px;
-  padding-right: 20px;
-  padding-bottom: 15px;
-  ${unselectable()};
-  flex-shrink: 0;
-`
-
-const PanelScrollView = styled.div`
-  overflow-y: auto;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-`
+        ${above('medium') ? 'max-width: 450px;' : ''}
+      `}
+      {...props}
+    />
+  )
+})
 
 const PanelContent = styled.div`
   min-height: 0;
@@ -170,26 +190,24 @@ const PanelContent = styled.div`
   padding-bottom: ${CONTENT_PADDING}px;
 `
 
-const PanelCloseButton = styled.button`
-  ${PanelHeader} & {
-    position: absolute;
-    padding: 20px;
-    top: 0;
-    right: 0;
-    cursor: pointer;
-    background: none;
+const PanelCloseButton = styled.button.attrs({
+  type: 'button',
+})`
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 20px;
+  line-height: 1;
+  cursor: pointer;
+  background: none;
+  border: 0;
+  outline: 0;
+  &::-moz-focus-inner {
     border: 0;
-    outline: 0;
-    &::-moz-focus-inner {
-      border: 0;
-    }
   }
 `
 
 // Used for spacing in SidePanelSplit and SidePanelSeparator
 SidePanel.HORIZONTAL_PADDING = CONTENT_PADDING
 
-export default props => {
-  const theme = useTheme()
-  return <SidePanel {...props} theme={theme} />
-}
+export default SidePanel
