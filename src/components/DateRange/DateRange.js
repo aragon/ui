@@ -49,6 +49,10 @@ const Labels = ({ text }) => {
   )
 }
 
+Labels.propTypes = {
+  text: PropTypes.string.isRequired,
+}
+
 class DateRangeInput extends React.PureComponent {
   state = {
     showPicker: false,
@@ -81,12 +85,14 @@ class DateRangeInput extends React.PureComponent {
     if (this.state.showPicker !== prevState.showPicker) {
       const { startDate, endDate, compactMode } = this.props
       // unsetting selection for compact because it shows one calendar at a time
+      /* eslint-disable */
       this.setState({
         startDateSelected: !compactMode && !!startDate,
         endDateSelected: !compactMode && !!endDate,
         startDate: !compactMode ? startDate : null,
         endDate: !compactMode ? endDate : null,
       })
+      /* eslint-enable */
       if (this.state.showPicker) {
         document.addEventListener('mousedown', this.handleClickOutside)
       } else {
@@ -298,6 +304,8 @@ DateRangeInput.propTypes = {
   format: PropTypes.string,
   onChange: PropTypes.func,
   startDate: PropTypes.instanceOf(Date),
+  compactMode: PropTypes.bool,
+  theme: PropTypes.object.isRequired,
 }
 
 DateRangeInput.defaultProps = {
