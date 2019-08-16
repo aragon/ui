@@ -49,7 +49,7 @@ function useMode(mode) {
   }
 }
 
-function useSize(size, { uppercase, discMode, iconAndLabel }) {
+function getSize(size, { uppercase, discMode, iconAndLabel }) {
   if (size === SIZE_SMALL) {
     return `
       min-width: ${2 * GU}px;
@@ -121,7 +121,7 @@ function Tag({
   const finalSize = size || modeProps.size
   const finalLabel = useLabel({ label: label || children, limitDigits })
 
-  const sizeStyles = useSize(finalSize, {
+  const sizeStyles = getSize(finalSize, {
     uppercase,
     discMode:
       // icon only
