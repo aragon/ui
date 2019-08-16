@@ -78,15 +78,13 @@ class IdentityBadgePopover extends React.PureComponent {
             </h1>
             {connectedAccount && (
               <Tag
-                mode="identity"
                 css={`
                   margin: -1px 0 0 5px;
-                  text-transform: uppercase;
-                  ${font({ size: 'xxsmall' })};
                 `}
+                size="small"
                 title="This is your Ethereum address"
               >
-                You
+                you
               </Tag>
             )}
           </header>

@@ -74,6 +74,5 @@ export {
 // Deprecated / to be deprecated components
 export { default as AppBar } from './AppView/AppBar'
 export { default as AppView } from './AppView/AppView'
-export { default as Badge } from './Badge'
-export { default as BadgeNumber } from './BadgeNumber/BadgeNumber'
+export { default as Badge, BadgeNumber } from './Badge/Badge'
 export { default as Text } from './Text/Text'
