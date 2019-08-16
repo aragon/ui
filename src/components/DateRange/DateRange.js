@@ -10,7 +10,10 @@ import {
   startOfDay,
   endOfDay,
 } from 'date-fns'
-import { Button, RADIUS, breakpoint, useTheme, useViewport } from '@aragon/ui'
+import { Button } from '../Button/Button'
+import { RADIUS, breakpoint } from '../../style'
+import { useViewport } from '../../providers/Viewport/Viewport'
+import { useTheme } from '../../theme'
 import IconCalendar from './Calendar'
 import TextInput from './TextInput'
 import DatePicker from './DatePicker'
@@ -342,4 +345,4 @@ const DateRange = props => {
   )
 }
 
-export default { DateRange }
+export { DateRange }
