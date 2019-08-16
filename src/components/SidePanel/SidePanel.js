@@ -99,6 +99,7 @@ function SidePanel({
                 </h1>
                 {!blocking && (
                   <ButtonIcon
+                    label="Close"
                     onClick={handleClose}
                     css={`
                       position: absolute;
