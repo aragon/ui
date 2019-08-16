@@ -63,7 +63,7 @@ function BadgeIdentity(props) {
 }
 
 function BadgeApp(props) {
-  return <Badge {...props} />
+  return <Badge {...props} mode="identifier" />
 }
 
 function BadgeNotification(props) {
