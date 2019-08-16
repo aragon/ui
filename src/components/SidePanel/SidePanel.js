@@ -104,9 +104,6 @@ function SidePanel({
                       position: absolute;
                       top: ${2 * GU}px;
                       right: ${2 * GU}px;
-                      &:active {
-                        background: none;
-                      }
                     `}
                   >
                     <IconClose color={theme.surfaceIcon} />
