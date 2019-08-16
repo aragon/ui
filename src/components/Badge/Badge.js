@@ -38,9 +38,9 @@ function BadgeNumber({
   if (!children && typeof label === 'number') {
     return (
       <Badge
+        limitDigits
         background={background}
         color={foreground}
-        count={true}
         label={label}
         size={small ? 'small' : 'normal'}
         {...props}
@@ -83,4 +83,5 @@ Badge.Notification = BadgeNotification
 Badge.Identity = BadgeIdentity
 Badge.App = BadgeApp
 
+export { BadgeNumber }
 export default Badge
