@@ -1,15 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import {
-  isAfter,
-  isBefore,
-  isEqual,
-  isDate,
-  format as formatDate,
-  startOfDay,
-  endOfDay,
-} from 'date-fns'
+import dayjs from 'dayjs'
 import { Button } from '../Button/Button'
 import TextInput from '../Input/TextInput'
 import { IconCalendar } from '../../icons/components'
@@ -22,7 +14,9 @@ const START_DATE = 'Start date'
 const END_DATE = 'End date'
 
 const Labels = ({ text }) => {
-  const color = text.indexOf(START_DATE) > -1 ? '#8FA4B5' : 'inherit'
+  const theme = useTheme()
+  const color =
+    text.indexOf(START_DATE) > -1 ? theme.surfaceContentSecondary : 'inherit'
   const [start, end] = text.split('|')
   return (
     <div
@@ -36,7 +30,7 @@ const Labels = ({ text }) => {
         left: 1px;
         z-index: 2;
         width: calc(100% - 28px);
-        background: #fff;
+        background: ${theme.surface};
         border-radius: ${RADIUS}px;
         overflow: hidden;
         color: ${color};
@@ -65,16 +59,19 @@ class DateRangeInput extends React.PureComponent {
   }
 
   get formattedStartDate() {
+    const { format } = this.props
     const { startDate } = this.state
+    const isDate = startDate instanceof Date
 
-    return isDate(startDate) ? formatDate(startDate, this.props.format) : ''
+    return isDate ? dayjs(startDate).format(format) : ''
   }
 
   get formattedEndDate() {
-    const { endDate } = this.state
     const { format } = this.props
+    const { endDate } = this.state
+    const isDate = endDate instanceof Date
 
-    return isDate(endDate) ? formatDate(endDate, format) : ''
+    return isDate ? dayjs(endDate).format(format) : ''
   }
 
   componentWillUnmount() {
@@ -114,19 +111,27 @@ class DateRangeInput extends React.PureComponent {
 
   handleSelectStartDate = date => {
     const { endDate } = this.state
-    const isValidDate =
-      !endDate || isBefore(date, endDate) || isEqual(date, endDate)
+    const isValidDate = !endDate || !dayjs(date).isAfter(endDate)
     if (isValidDate) {
-      this.setState({ startDateSelected: true, startDate: startOfDay(date) })
+      this.setState({
+        startDateSelected: true,
+        startDate: dayjs(date)
+          .startOf('day')
+          .toDate(),
+      })
     }
   }
 
   handleSelectEndDate = date => {
     const { startDate } = this.state
-    const isValidDate =
-      !startDate || isAfter(date, startDate) || isEqual(date, startDate)
+    const isValidDate = !startDate || !dayjs(date).isBefore(startDate)
     if (isValidDate) {
-      this.setState({ endDateSelected: true, endDate: endOfDay(date) })
+      this.setState({
+        endDateSelected: true,
+        endDate: dayjs(date)
+          .endOf('day')
+          .toDate(),
+      })
     }
   }
 
@@ -134,11 +139,16 @@ class DateRangeInput extends React.PureComponent {
     e.preventDefault()
     e.stopPropagation()
     this.setState({ showPicker: false })
+
     const { startDate, endDate } = this.state
     if (startDate && endDate) {
       this.props.onChange({
-        start: startOfDay(startDate),
-        end: endOfDay(endDate),
+        start: dayjs(startDate)
+          .startOf('day')
+          .toDate(),
+        end: dayjs(endDate)
+          .endOf('day')
+          .toDate(),
       })
     }
   }
@@ -166,15 +176,14 @@ class DateRangeInput extends React.PureComponent {
     // shows props, if props null then placeholder
     if (!showPicker) {
       return startDateProps && endDateProps
-        ? `${formatDate(startDateProps, format)} | ${formatDate(
-            endDateProps,
-            format
-          )}`
+        ? `${dayjs(startDateProps).format(format)} | ${dayjs(
+            endDateProps
+          ).format(format)}`
         : `${START_DATE} | ${END_DATE}`
     }
 
     // opened
-    //  shows constants, till dates selected
+    // shows constants, till dates selected
     if (compactMode) {
       return `${startDateSelected ? this.formattedStartDate : START_DATE} | ${
         endDateSelected ? this.formattedEndDate : END_DATE
@@ -240,15 +249,14 @@ class DateRangeInput extends React.PureComponent {
               position: absolute;
               z-index: 10;
               border: 1px solid ${theme.border};
-              border-radius: 3px;
+              border-radius: ${RADIUS}px;
               box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
-              background: #fff;
+              background: ${theme.surface};
             `}
           >
             <Wrap>
               {(!compactMode || !startDateSelected) && (
                 <DatePicker
-                  key={`start-picker-${startDate}`}
                   name="Start date"
                   currentDate={startDate}
                   onSelect={this.handleSelectStartDate}
@@ -257,7 +265,6 @@ class DateRangeInput extends React.PureComponent {
               )}
               {(!compactMode || startDateSelected) && (
                 <DatePicker
-                  key={`end-picker-${endDate}`}
                   name="End date"
                   currentDate={endDate}
                   onSelect={this.handleSelectEndDate}
@@ -267,17 +274,9 @@ class DateRangeInput extends React.PureComponent {
             </Wrap>
 
             <Controls>
-              <Button
-                css="width: 124px"
-                mode="outline"
-                onClick={this.handleClear}
-              >
-                Clear
-              </Button>
+              <Button onClick={this.handleClear}>Clear</Button>
               <Button
                 css={`
-                  width: 124px;
-
                   ${breakpoint(
                     'medium',
                     `
@@ -309,7 +308,7 @@ DateRangeInput.propTypes = {
 }
 
 DateRangeInput.defaultProps = {
-  format: 'LL/dd/yyyy',
+  format: 'MM/DD/YYYY',
   onChange: () => {},
 }
 
@@ -349,7 +348,7 @@ const DateRange = props => {
   const { below } = useViewport()
   const theme = useTheme()
   return (
-    <DateRangeInput {...props} compactMode={below('medium')} theme={theme} />
+    <DateRangeInput compactMode={below('medium')} theme={theme} {...props} />
   )
 }
 
