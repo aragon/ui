@@ -3,17 +3,19 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import dayjs from 'dayjs'
 import { Button } from '../Button/Button'
-import TextInput from '../Input/TextInput'
 import { IconCalendar } from '../../icons/components'
 import { useViewport } from '../../providers/Viewport/Viewport'
-import { RADIUS, breakpoint } from '../../style'
+import { GU, RADIUS, breakpoint, textStyle } from '../../style'
 import { useTheme } from '../../theme'
+import { unselectable } from '../../utils'
 import DatePicker from './DatePicker'
 
+const INPUT_HEIGHT = 5 * GU
+const INPUT_HEIGHT_WITHOUT_BORDER = INPUT_HEIGHT - 2
 const START_DATE = 'Start date'
 const END_DATE = 'End date'
 
-const Labels = ({ text }) => {
+const Labels = ({ enabled, text }) => {
   const theme = useTheme()
   const color =
     text.indexOf(START_DATE) > -1 ? theme.surfaceContentSecondary : 'inherit'
@@ -21,29 +23,49 @@ const Labels = ({ text }) => {
   return (
     <div
       css={`
-        display: grid;
-        grid-template-columns: 50% 2px 50%;
-        align-items: center;
-        height: 38px;
-        position: absolute;
-        top: 1px;
-        left: 1px;
         z-index: 2;
-        width: calc(100% - 28px);
         background: ${theme.surface};
-        border-radius: ${RADIUS}px;
-        overflow: hidden;
-        color: ${color};
+        ${unselectable}
       `}
     >
-      <div css="text-align: center;">{start}</div>
-      <div>|</div>
-      <div css="text-align: center;">{end}</div>
+      <div
+        css={`
+          position: absolute;
+          width: calc(100% - 28px);
+          display: grid;
+          grid-template-columns: 50% 2px 50%;
+          align-items: center;
+          height: ${INPUT_HEIGHT_WITHOUT_BORDER}px;
+          overflow: hidden;
+          color: ${color};
+          ${textStyle('body3')}
+        `}
+      >
+        <div css="text-align: center;">{start}</div>
+        <div>|</div>
+        <div css="text-align: center;">{end}</div>
+      </div>
+      <div
+        css={`
+          position: absolute;
+          right: 4px;
+          display: flex;
+          align-items: center;
+          height: ${INPUT_HEIGHT_WITHOUT_BORDER}px;
+        `}
+      >
+        <IconCalendar
+          css={`
+            color: ${enabled ? theme.accent : theme.surfaceIcon};
+          `}
+        />
+      </div>
     </div>
   )
 }
 
 Labels.propTypes = {
+  enabled: PropTypes.bool,
   text: PropTypes.string.isRequired,
 }
 
@@ -214,6 +236,7 @@ class DateRangeInput extends React.PureComponent {
     return (
       <div
         css={`
+          height: ${INPUT_HEIGHT}px;
           width: 250px;
           position: relative;
           border: ${startDateProps && endDateProps
@@ -224,29 +247,12 @@ class DateRangeInput extends React.PureComponent {
         ref={el => (this.rootRef = el)}
         onClick={this.handleClick}
       >
-        <Labels text={this.getValueText()} />
-        <TextInput
-          css={`
-            width: 28ch;
-            opacity: 0;
-          `}
-          value={this.getValueText()}
-          readOnly
-          adornment={
-            <IconCalendar
-              css={`
-                color: ${showPicker ? theme.accent : theme.surfaceIcon};
-              `}
-            />
-          }
-          adornmentPosition="end"
-          height={39}
-          placeholder={`${START_DATE} | ${END_DATE}`}
-        />
+        <Labels enabled={showPicker} text={this.getValueText()} />
         {this.state.showPicker && (
           <div
             css={`
               position: absolute;
+              top: ${INPUT_HEIGHT_WITHOUT_BORDER}px;
               z-index: 10;
               border: 1px solid ${theme.border};
               border-radius: ${RADIUS}px;
