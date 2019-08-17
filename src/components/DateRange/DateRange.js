@@ -11,11 +11,11 @@ import {
   endOfDay,
 } from 'date-fns'
 import { Button } from '../Button/Button'
-import { RADIUS, breakpoint } from '../../style'
+import TextInput from '../Input/TextInput'
+import { IconCalendar } from '../../icons/components'
 import { useViewport } from '../../providers/Viewport/Viewport'
+import { RADIUS, breakpoint } from '../../style'
 import { useTheme } from '../../theme'
-import IconCalendar from './Calendar'
-import TextInput from './TextInput'
 import DatePicker from './DatePicker'
 
 const START_DATE = 'Start date'
