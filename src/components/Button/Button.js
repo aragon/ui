@@ -151,7 +151,7 @@ function Button({
         width: ${displayIconOnly ? height : width};
         height: ${height};
         padding: ${displayIconOnly ? 0 : padding};
-        min-width: ${displayIconOnly ? 0 : minWidth}px;
+        min-width: ${displayIconOnly ? 0 : minWidth};
         border: ${border};
         box-shadow: ${disabled ? 'none' : '0 1px 3px rgba(0, 0, 0, 0.1)'};
         transition-property: transform, box-shadow;
