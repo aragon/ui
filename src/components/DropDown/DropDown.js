@@ -170,13 +170,14 @@ const DropDown = React.memo(function DropDown({
           border: ${disabled ? 0 : 1}px solid
             ${closedWithChanges ? theme.selected : theme.border};
           ${textStyle('body2')};
-          ${disabled && 'font-weight: 600;'}
-          ${!disabled &&
-            `
+          ${disabled ? 'font-weight: 600;' : ''}
+          ${!disabled
+            ? `
               &:active {
                 background: ${theme.surfacePressed};
               }
-          `}
+          `
+            : ''}
         `}
         {...props}
       >
@@ -287,13 +288,22 @@ const Item = React.memo(function Item({
           color: ${theme.content};
 
           ${textStyle('body2')};
-          ${!header && index === 0 && `border-top-left-radius: ${RADIUS}px;`}
-          ${index === length - 1 && `border-bottom-left-radius: ${RADIUS}px;`}
-          ${selected === index &&
-            `
+          ${
+            !header && index === 0 ? `border-top-left-radius: ${RADIUS}px;` : ''
+          }
+          ${
+            index === length - 1
+              ? `border-bottom-left-radius: ${RADIUS}px;`
+              : ''
+          }
+          ${
+            selected === index
+              ? `
               border-left: 2px solid ${theme.accent};
               background: ${theme.surfaceSelected};
-            `}
+            `
+              : ''
+          }
 
           &:active {
             background: ${theme.surfacePressed};
