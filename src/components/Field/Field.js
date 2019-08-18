@@ -4,12 +4,14 @@ import { useTheme } from '../../theme'
 import { textStyle, GU } from '../../style'
 import { unselectable } from '../../utils'
 
-function Field({ children, label, ...props }) {
+function Field({ children, label, required, ...props }) {
   const theme = useTheme()
 
-  const isRequired = React.Children.toArray(children).some(
-    ({ props }) => props && props.required
-  )
+  const isRequired =
+    required ||
+    React.Children.toArray(children).some(
+      ({ props }) => props && props.required
+    )
 
   return (
     <div
