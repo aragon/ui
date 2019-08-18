@@ -72,7 +72,7 @@ function TabsFullWidth({ items, selected, onChange }) {
             height: 100%;
             background: ${theme.surface};
             border-style: solid;
-            border-color: ${theme.border};
+            border-color: ${theme.border.alpha(0.5)};
             border-top-width: ${insideSidePanel ? '0' : '1px'};
             border-bottom-width: 1px;
             border-radius: 0;
