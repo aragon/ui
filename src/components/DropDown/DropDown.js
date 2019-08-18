@@ -157,6 +157,7 @@ const DropDown = React.memo(function DropDown({
         disabled={disabled}
         onClick={toggle}
         focusRingRadius={RADIUS}
+        focusRingSpacing={1}
         css={`
           display: ${wide ? 'flex' : 'inline-flex'};
           justify-content: space-between;
