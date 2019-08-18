@@ -23,6 +23,7 @@ export default {
   ArcticBlueLight: '#F9FAFC',
   ArcticBlue: '#F1F3F7',
   ArcticBlueDark: '#ABBECF',
+  ArcticBlueDarker: '8FA4B5',
 
   Purple: '#7C80F2',
   PurpleLight: '#CCBDF4',
