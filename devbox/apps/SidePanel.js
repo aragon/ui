@@ -1,6 +1,13 @@
 import React from 'react'
 import styled from 'styled-components'
-import { AppView, SidePanel, Button, unselectable } from '@aragon/ui'
+import {
+  Button,
+  SidePanel,
+  SidePanelSeparator,
+  SidePanelSplit,
+  GU,
+  unselectable,
+} from '@aragon/ui'
 
 class App extends React.Component {
   state = {
@@ -27,7 +34,33 @@ class App extends React.Component {
           opened={this.state.opened}
           onClose={this.close}
         >
-          panel
+          <div
+            css={`
+              margin-top: ${3 * GU}px;
+            `}
+          >
+            <p
+              css={`
+                margin-bottom: ${3 * GU}px;
+              `}
+            >
+              Panel content
+            </p>
+            <SidePanelSeparator />
+            <p
+              css={`
+                margin: ${2 * GU}px 0;
+              `}
+            >
+              Some more panel content
+            </p>
+            <SidePanelSeparator />
+            <SidePanelSplit>
+              <p>Left split</p>
+              <p>Right split</p>
+            </SidePanelSplit>
+            <SidePanelSeparator />
+          </div>
         </SidePanel>
       </React.Fragment>
     )

@@ -2,8 +2,9 @@ import React, { useCallback, useEffect, useState } from 'react'
 import { Transition, animated } from 'react-spring'
 import { GU, textStyle, springs } from '../../style'
 import { useOnBlur, useKeyDown } from '../../hooks'
-import { useTheme } from '../../theme'
 import { IconDown } from '../../icons'
+import { useTheme } from '../../theme'
+import { useInside } from '../../utils'
 import { ButtonBase } from '../Button/ButtonBase'
 
 const ESC_CODE = 27
@@ -13,6 +14,7 @@ const ESC_CODE = 27
 
 function TabsFullWidth({ items, selected, onChange }) {
   const theme = useTheme()
+  const [insideSidePanel] = useInside('SidePanel')
   const [opened, setOpened] = useState(false)
 
   const selectedItem = items[selected]
@@ -71,7 +73,8 @@ function TabsFullWidth({ items, selected, onChange }) {
             background: ${theme.surface};
             border-style: solid;
             border-color: ${theme.border};
-            border-width: 1px 0;
+            border-top-width: ${insideSidePanel ? '0' : '1px'};
+            border-bottom-width: 1px;
             border-radius: 0;
             ${textStyle('body2')};
             &:active {
