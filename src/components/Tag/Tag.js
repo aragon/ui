@@ -157,14 +157,19 @@ function Tag({
           css={`
             display: flex;
             align-items: center;
-            margin-top: ${alignmentCorrection ? '-2px' : '0'};
             margin-right: ${finalLabel ? 0.25 * GU : 0}px;
           `}
         >
           {icon}
         </span>
       )}
-      {finalLabel}
+      <span
+        css={`
+          margin-top: ${alignmentCorrection ? '1px' : '0'};
+        `}
+      >
+        {finalLabel}
+      </span>
     </span>
   )
 }
