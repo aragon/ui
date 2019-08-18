@@ -5,29 +5,21 @@ The `Modal` component is used to render a structured container for modal windows
 ## Usage
 
 ```jsx
-import { Main, Modal, Button } from '@aragon/ui'
+import { Modal, Button } from '@aragon/ui'
 
 const App = () => {
   const [opened, setOpened] = useState(false)
+
+  const open = () => setOpened(true)
+  const close = () => setOpened(false)
+
   return (
-    <Main>
-      <Button onClick={() => setOpened(true)}>
-        Open modal
-      </Button>
-
-      <Modal
-        visible={opened}
-        onClose={() => setOpened(false)}
-      >
-
-        {/* content goes here */}
-        <Button onClick={() => setOpened(false)}>
-          Close modal
-        </Button>
-
+    <>
+      <Button onClick={open}>Open modal</Button>
+      <Modal visible={opened} onClose={close}>
+        {/* modal content */}
       </Modal>
-
-    </Main>
+    </>
   )
 }
 ```
@@ -36,15 +28,17 @@ const App = () => {
 
 ### `visible`
 
-- Type: `Boolean`
-- Required
+| Type      | Default value |
+| --------- | ------------- |
+| `Boolean` | Required      |
 
 Use this property to show/hide the Modal.
 
 ### `width`
 
-- Type: `Function`, `Number` or `String`
-- Default: `viewport => Math.min(viewport.width - 48, 600)`
+| Type                             | Default value                                    |
+| -------------------------------- | ------------------------------------------------ |
+| `Function`, `Number` or `String` | `viewport => Math.min(viewport.width - 48, 600)` |
 
 Use this property to assign a dynamic width to the modal.
 
@@ -54,8 +48,9 @@ If a number is set or returned from the function, `px` will automatically be add
 
 ### `padding`
 
-- Type: `Function`, `Number` or `String`
-- Default: `24`
+| Type                             | Default value |
+| -------------------------------- | ------------- |
+| `Function`, `Number` or `String` | `24`          |
 
 The inner padding of the modal.
 
@@ -65,21 +60,16 @@ If a number is set or returned from the function, `px` will automatically be add
 
 ### `onClose`
 
-- Type: `function`
-- Default: `noop`
+| Type       | Default value |
+| ---------- | ------------- |
+| `Function` | None          |
 
 The callback that is called when the `ESC` i pressed or the user clicks outside of the modal container.
 
-### `overlayColor`
+### `closeButton`
 
-- Type: `String`
-- Default: `rgba(0, 0, 0, 0.5)`
+| Type      | Default value |
+| --------- | ------------- |
+| `Boolean` | `true`        |
 
-The color of the overlay.
-
-### `radius`
-
-- Type: `Number`
-- Default: `4`
-
-The radius used by the modal corners (in CSS px).
+Whether or not to display a close button.
