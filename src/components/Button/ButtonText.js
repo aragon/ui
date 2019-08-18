@@ -31,4 +31,8 @@ ButtonText.propTypes = {
   horizontalPadding: PropTypes.oneOf(['both', 'left', 'right', 'none']),
 }
 
+ButtonText.defaultProps = {
+  horizontalPadding: 'both',
+}
+
 export default ButtonText
