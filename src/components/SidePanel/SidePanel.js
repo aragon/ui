@@ -1,6 +1,5 @@
 import React, { useCallback, useEffect } from 'react'
 import PropTypes from 'prop-types'
-import styled from 'styled-components'
 import { Spring, animated } from 'react-spring'
 import { ButtonIcon } from '../Button/ButtonIcon'
 import { IconClose } from '../../icons'
