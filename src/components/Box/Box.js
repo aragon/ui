@@ -3,20 +3,22 @@ import PropTypes from 'prop-types'
 import { GU, RADIUS, textStyle } from '../../style'
 import { useTheme } from '../../theme/Theme'
 import { useLayout } from '../Layout/Layout'
+import { useInside } from '../../utils'
 
-function getPaddingValue(padding) {
+function getPaddingValue(padding, insideSplitPrimary) {
   if (typeof padding === 'boolean') {
-    return padding ? 5 * GU : 0
+    return padding ? (insideSplitPrimary ? 5 : 2) * GU : 0
   }
   return padding
 }
 
 function Box({ heading, children, padding, ...props }) {
   const theme = useTheme()
+  const [insideSplitPrimary] = useInside('Split:primary')
   const { layoutName } = useLayout()
   const fullWidth = layoutName === 'small'
 
-  const paddingValue = getPaddingValue(padding)
+  const paddingValue = getPaddingValue(padding, insideSplitPrimary)
 
   return (
     <div
