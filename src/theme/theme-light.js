@@ -7,7 +7,7 @@ export default {
   border: colors.GreyBasic,
   overlay: colors.White,
   content: colors.GreyDark,
-  contentSecondary: colors.GreyDark,
+  contentSecondary: colors.GreyMedium,
 
   surface: colors.White,
   surfaceContent: colors.GreyDark,
