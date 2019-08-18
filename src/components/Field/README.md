@@ -18,7 +18,9 @@ const App = () => (
 
 ### `label`
 
-- Type: `String`
+| Type     | Default value |
+| ---------| ------------- |
+| `String` | None          |
 
 Set a label for your Field.
 
@@ -31,3 +33,13 @@ const App = () => (
   </Field>
 )
 ```
+
+### `required`
+
+| Type      | Default value |
+| ----------| ------------- |
+| `Boolean` | None          |
+
+Marks the field as a required field. If not provided, `Field` will attempt to
+detect if the field is required by checking if any of its children contain a
+truthy `required` prop.
