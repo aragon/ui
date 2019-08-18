@@ -1,6 +1,7 @@
 import { GU } from '../style'
 
 const ICON_SIZES = new Map([
+  ['large', 6 * GU],
   ['medium', 3 * GU],
   ['small', 2 * GU],
   ['tiny', 1.75 * GU],
