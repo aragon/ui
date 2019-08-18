@@ -208,7 +208,7 @@ const Panel = React.memo(function Panel({ compact, ...props }) {
         width: 100vw;
         height: 100vh;
         background: ${theme.surface};
-        box-shadow: -2px 0px 4px rgba(118, 137, 173, 0.2);
+        box-shadow: -2px 0px 4px rgba(0, 0, 0, 0.1);
 
         ${!compact ? 'max-width: 450px;' : ''}
       `}
