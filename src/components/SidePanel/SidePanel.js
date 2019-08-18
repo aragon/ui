@@ -86,7 +86,7 @@ function SidePanel({
                   left: 0;
                   right: 0;
                   bottom: 0;
-                  background: ${theme.overlay.alpha(0.8)};
+                  background: ${theme.overlay.alpha(0.9)};
                 `}
               />
               <Panel
