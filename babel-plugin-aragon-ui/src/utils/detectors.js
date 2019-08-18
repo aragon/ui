@@ -1,3 +1,6 @@
+// Copied from
+// https://github.com/styled-components/babel-plugin-styled-components/blob/master/src/utils/detectors.js
+
 const VALID_TOP_LEVEL_IMPORT_PATHS = [
   'styled-components',
   'styled-components/no-tags',
