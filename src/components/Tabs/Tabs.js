@@ -12,6 +12,7 @@ function TabBar({ items, selected, onChange }) {
   const [displayFocusRing, setDisplayFocusRing] = useState(false)
   const barRef = useRef(null)
   const theme = useTheme()
+  const [insideSidePanel] = useInside('SidePanel')
 
   const selectElement = useCallback(
     element => {
@@ -93,7 +94,7 @@ function TabBar({ items, selected, onChange }) {
                 display: flex;
                 position: relative;
                 align-items: center;
-                height: ${8 * GU - 2}px;
+                height: ${8 * GU - (insideSidePanel ? 1 : 2)}px;
                 padding: 0 ${3 * GU}px;
                 white-space: nowrap;
                 color: ${i === selected
@@ -172,6 +173,7 @@ function FocusRing() {
 function Tabs(props) {
   const { layoutName } = useLayout()
   const [insideBar] = useInside('Bar')
+  const [insideSidePanel] = useInside('SidePanel')
 
   if (insideBar) {
     throw new Error(
@@ -184,7 +186,17 @@ function Tabs(props) {
   }
 
   return (
-    <Bar css="overflow: hidden">
+    <Bar
+      css={`
+        overflow: hidden;
+        ${insideSidePanel
+          ? `
+            border-width: 0 0 1px 0;
+            border-radius: 0;
+          `
+          : ''}
+      `}
+    >
       <TabBar {...props} />
     </Bar>
   )
