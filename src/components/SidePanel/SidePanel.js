@@ -7,7 +7,7 @@ import { IconClose } from '../../icons'
 import { useViewport } from '../../providers/Viewport/Viewport'
 import { GU, springs, textStyle } from '../../style'
 import { useTheme } from '../../theme'
-import { unselectable } from '../../utils'
+import { Inside, unselectable } from '../../utils'
 import RootPortal from '../RootPortal/RootPortal'
 
 const CONTENT_PADDING = 3 * GU
@@ -52,91 +52,93 @@ function SidePanel({
 
   return (
     <RootPortal>
-      <Spring
-        config={springs.lazy}
-        from={{ progress: 0 }}
-        to={{ progress: !!opened }}
-        onRest={handleTransitionRest}
-        native
-      >
-        {({ progress }) => (
-          <Main opened={opened}>
-            <Overlay
-              onClick={handleClose}
-              theme={theme}
-              style={{
-                opacity: progress,
-                pointerEvents: opened ? 'auto' : 'none',
-              }}
-            />
-            <Panel
-              compact={compact}
-              style={{
-                transform: progress.interpolate(
-                  v =>
-                    `translate3d(calc(${100 * (1 - v)}% + ${36 *
-                      (1 - v)}px), 0, 0)`
-                ),
-                opacity: progress.interpolate(v => (v > 0 ? 1 : 0)),
-              }}
-            >
-              <header
-                css={`
-                  display: flex;
-                  flex-direction: column;
-                  justify-content: center;
-                  flex-shrink: 0;
-                  position: relative;
-                  height: ${8 * GU}px;
-                  padding-left: ${CONTENT_PADDING}px;
-                  border-bottom: 1px solid ${theme.border};
-                  ${unselectable()};
-                `}
+      <Inside name="SidePanel">
+        <Spring
+          config={springs.lazy}
+          from={{ progress: 0 }}
+          to={{ progress: !!opened }}
+          onRest={handleTransitionRest}
+          native
+        >
+          {({ progress }) => (
+            <Main opened={opened}>
+              <Overlay
+                onClick={handleClose}
+                theme={theme}
+                style={{
+                  opacity: progress,
+                  pointerEvents: opened ? 'auto' : 'none',
+                }}
+              />
+              <Panel
+                compact={compact}
+                style={{
+                  transform: progress.interpolate(
+                    v =>
+                      `translate3d(calc(${100 * (1 - v)}% + ${36 *
+                        (1 - v)}px), 0, 0)`
+                  ),
+                  opacity: progress.interpolate(v => (v > 0 ? 1 : 0)),
+                }}
               >
-                <h1
+                <header
                   css={`
-                    ${textStyle('body1')}
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    flex-shrink: 0;
+                    position: relative;
+                    height: ${8 * GU}px;
+                    padding-left: ${CONTENT_PADDING}px;
+                    border-bottom: 1px solid ${theme.border};
+                    ${unselectable()};
                   `}
                 >
-                  {title}
-                </h1>
-                {!blocking && (
-                  <ButtonIcon
-                    label="Close"
-                    onClick={handleClose}
+                  <h1
                     css={`
-                      position: absolute;
-                      ${!compact
-                        ? `
-                        top: ${2 * GU}px;
-                        right: ${2 * GU}px;
-                      `
-                        : `
-                        height: 64px;
-                        width: 64px;
-                        top: 0;
-                        right: 0;
-                      `}
+                      ${textStyle('body1')}
                     `}
                   >
-                    <IconClose color={theme.surfaceIcon} />
-                  </ButtonIcon>
-                )}
-              </header>
-              <div
-                css={`
-                  overflow-y: auto;
-                  height: 100%;
-                  display: flex;
-                  flex-direction: column;
-                `}
-              >
-                <PanelContent>{children}</PanelContent>
-              </div>
-            </Panel>
-          </Main>
-        )}
-      </Spring>
+                    {title}
+                  </h1>
+                  {!blocking && (
+                    <ButtonIcon
+                      label="Close"
+                      onClick={handleClose}
+                      css={`
+                        position: absolute;
+                        ${!compact
+                          ? `
+                          top: ${2 * GU}px;
+                          right: ${2 * GU}px;
+                        `
+                          : `
+                          height: 64px;
+                          width: 64px;
+                          top: 0;
+                          right: 0;
+                        `}
+                      `}
+                    >
+                      <IconClose color={theme.surfaceIcon} />
+                    </ButtonIcon>
+                  )}
+                </header>
+                <div
+                  css={`
+                    overflow-y: auto;
+                    height: 100%;
+                    display: flex;
+                    flex-direction: column;
+                  `}
+                >
+                  <PanelContent>{children}</PanelContent>
+                </div>
+              </Panel>
+            </Main>
+          )}
+        </Spring>
+      </Inside>
     </RootPortal>
   )
 }
