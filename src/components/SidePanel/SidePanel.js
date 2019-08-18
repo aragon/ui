@@ -61,7 +61,6 @@ function SidePanel({
         >
           {({ progress }) => (
             <div
-              opened={opened}
               css={`
                 position: fixed;
                 z-index: 3;
@@ -69,12 +68,11 @@ function SidePanel({
                 left: 0;
                 right: 0;
                 bottom: 0;
-                pointer-events: ${({ opened }) => (opened ? 'auto' : 'none')};
+                pointer-events: ${opened ? 'auto' : 'none'};
               `}
             >
               <animated.div
                 onClick={handleClose}
-                theme={theme}
                 style={{
                   opacity: progress,
                   pointerEvents: opened ? 'auto' : 'none',
@@ -208,7 +206,6 @@ const Panel = React.memo(function Panel({ compact, ...props }) {
         height: 100vh;
         background: ${theme.surface};
         box-shadow: -2px 0px 4px rgba(0, 0, 0, 0.1);
-
         ${!compact ? 'max-width: 450px;' : ''}
       `}
       {...props}
