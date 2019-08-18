@@ -1,17 +1,18 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import PropTypes from 'prop-types'
 import { RADIUS, GU, textStyle } from '../../style'
-import { unselectable, noop, useInside } from '../../utils'
+import { noop, unselectable, useInside, warnOnce } from '../../utils'
 import { useTheme } from '../../theme'
 import { useLayout } from '../Layout/Layout'
 import { Bar } from '../Bar/Bar'
 import TabBarLegacy from './TabBarLegacy'
 import { TabsFullWidth } from './TabsFullWidth'
 
-function Tabs({ items, selected, onChange }) {
+function TabBar({ items, selected, onChange }) {
   const [displayFocusRing, setDisplayFocusRing] = useState(false)
   const barRef = useRef(null)
   const theme = useTheme()
+  const [insideSidePanel] = useInside('SidePanel')
 
   const selectElement = useCallback(
     element => {
@@ -93,7 +94,7 @@ function Tabs({ items, selected, onChange }) {
                 display: flex;
                 position: relative;
                 align-items: center;
-                height: ${8 * GU - 2}px;
+                height: ${8 * GU - (insideSidePanel ? 1 : 2)}px;
                 padding: 0 ${3 * GU}px;
                 white-space: nowrap;
                 color: ${i === selected
@@ -139,13 +140,13 @@ function Tabs({ items, selected, onChange }) {
   )
 }
 
-Tabs.propTypes = {
+TabBar.propTypes = {
   items: PropTypes.arrayOf(PropTypes.node).isRequired,
   selected: PropTypes.number,
   onChange: PropTypes.func,
 }
 
-Tabs.defaultProps = {
+TabBar.defaultProps = {
   selected: 0,
   onChange: noop,
 }
@@ -169,11 +170,10 @@ function FocusRing() {
   )
 }
 
-export default props => {
+function Tabs(props) {
   const { layoutName } = useLayout()
-
   const [insideBar] = useInside('Bar')
-  const [insideAppBar] = useInside('AppBar')
+  const [insideSidePanel] = useInside('SidePanel')
 
   if (insideBar) {
     throw new Error(
@@ -181,18 +181,42 @@ export default props => {
     )
   }
 
-  // Use a separate component for Tabs in AppBar, to prevent breaking anything.
-  if (insideAppBar) {
-    return <TabBarLegacy {...props} inAppBar />
-  }
-
   if (layoutName === 'small') {
     return <TabsFullWidth {...props} />
   }
 
   return (
-    <Bar css="overflow: hidden">
-      <Tabs {...props} />
+    <Bar
+      css={`
+        overflow: hidden;
+        ${insideSidePanel
+          ? `
+            border-width: 0 0 1px 0;
+            border-radius: 0;
+          `
+          : ''}
+      `}
+    >
+      <TabBar {...props} />
     </Bar>
   )
 }
+
+// TabBar legacy compatibility
+function TabBarLegacyCompatibility(props) {
+  const [insideAppBar] = useInside('AppBar')
+
+  // Use a separate component for Tabs in AppBar, to prevent breaking anything.
+  if (insideAppBar) {
+    return <TabBarLegacy {...props} inAppBar />
+  }
+
+  warnOnce(
+    'TabBarLegacyCompatibility',
+    'TabBar is deprecated and was used outside of an AppBar. Please use the Tabs component instead.'
+  )
+  return <Tabs {...props} />
+}
+
+export { TabBarLegacyCompatibility }
+export default Tabs
