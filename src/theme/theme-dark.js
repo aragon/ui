@@ -65,6 +65,7 @@ export default {
   tagActivity: colors.AragonBlue,
   tagActivityContent: colors.White,
 
+  hint: colors.ArcticBlueDarker,
   link: colors.Blue,
   focus: colors.Blue,
   selected: colors.AragonBlue,
