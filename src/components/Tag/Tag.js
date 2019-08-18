@@ -131,6 +131,12 @@ function Tag({
     iconAndLabel: icon && finalLabel,
   })
 
+  // Slightly tweak the alignment when there are no descenders,
+  // to make the characters look more aligned.
+  const alignmentCorrection =
+    finalSize === SIZE_NORMAL &&
+    (uppercase || typeof label === 'number' || limitDigits !== false)
+
   return (
     <span
       css={`
@@ -151,7 +157,7 @@ function Tag({
           css={`
             display: flex;
             align-items: center;
-            margin-top: ${finalSize === SIZE_NORMAL ? '-3px' : '0'};
+            margin-top: ${alignmentCorrection ? '-2px' : '0'};
             margin-right: ${finalLabel ? 0.25 * GU : 0}px;
           `}
         >
