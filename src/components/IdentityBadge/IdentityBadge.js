@@ -71,7 +71,7 @@ class IdentityBadge extends React.PureComponent {
             color: ${theme.textPrimary};
             height: 24px;
             &:active {
-              ${compact && 'background: rgba(220, 234, 239, 0.3);'};
+              ${compact ? 'background: rgba(220, 234, 239, 0.3);' : ''};
             }
           `}
         >
@@ -92,7 +92,7 @@ class IdentityBadge extends React.PureComponent {
                 css={`
                   display: block;
                   margin-right: -3px;
-                  ${compact && 'position: relative; top: -1px;'};
+                  ${compact ? 'position: relative; top: -1px;' : ''};
                 `}
               >
                 <EthIdenticon
