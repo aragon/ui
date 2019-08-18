@@ -1,14 +1,14 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import PropTypes from 'prop-types'
 import { RADIUS, GU, textStyle } from '../../style'
-import { unselectable, noop, useInside } from '../../utils'
+import { noop, unselectable, useInside, warnOnce } from '../../utils'
 import { useTheme } from '../../theme'
 import { useLayout } from '../Layout/Layout'
 import { Bar } from '../Bar/Bar'
 import TabBarLegacy from './TabBarLegacy'
 import { TabsFullWidth } from './TabsFullWidth'
 
-function Tabs({ items, selected, onChange }) {
+function TabBar({ items, selected, onChange }) {
   const [displayFocusRing, setDisplayFocusRing] = useState(false)
   const barRef = useRef(null)
   const theme = useTheme()
@@ -139,13 +139,13 @@ function Tabs({ items, selected, onChange }) {
   )
 }
 
-Tabs.propTypes = {
+TabBar.propTypes = {
   items: PropTypes.arrayOf(PropTypes.node).isRequired,
   selected: PropTypes.number,
   onChange: PropTypes.func,
 }
 
-Tabs.defaultProps = {
+TabBar.defaultProps = {
   selected: 0,
   onChange: noop,
 }
@@ -169,21 +169,14 @@ function FocusRing() {
   )
 }
 
-export default props => {
+function Tabs(props) {
   const { layoutName } = useLayout()
-
   const [insideBar] = useInside('Bar')
-  const [insideAppBar] = useInside('AppBar')
 
   if (insideBar) {
     throw new Error(
       'Tabs cannot be a child of Bar: please use the Tabs component directly.'
     )
-  }
-
-  // Use a separate component for Tabs in AppBar, to prevent breaking anything.
-  if (insideAppBar) {
-    return <TabBarLegacy {...props} inAppBar />
   }
 
   if (layoutName === 'small') {
@@ -192,7 +185,26 @@ export default props => {
 
   return (
     <Bar css="overflow: hidden">
-      <Tabs {...props} />
+      <TabBar {...props} />
     </Bar>
   )
 }
+
+// TabBar legacy compatibility
+function TabBarLegacyCompatibility(props) {
+  const [insideAppBar] = useInside('AppBar')
+
+  // Use a separate component for Tabs in AppBar, to prevent breaking anything.
+  if (insideAppBar) {
+    return <TabBarLegacy {...props} inAppBar />
+  }
+
+  warnOnce(
+    'TabBarLegacyCompatibility',
+    'TabBar is deprecated and was used outside of an AppBar. Please use the Tabs component instead.'
+  )
+  return <Tabs {...props} />
+}
+
+export { TabBarLegacyCompatibility }
+export default Tabs
