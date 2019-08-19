@@ -17,8 +17,7 @@ const END_DATE = 'End date'
 
 const Labels = ({ enabled, text }) => {
   const theme = useTheme()
-  const color =
-    text.indexOf(START_DATE) > -1 ? theme.surfaceContentSecondary : 'inherit'
+  const color = text.indexOf(START_DATE) > -1 ? theme.hint : 'inherit'
   const [start, end] = text.split('|')
   return (
     <div
@@ -38,7 +37,7 @@ const Labels = ({ enabled, text }) => {
           height: ${INPUT_HEIGHT_WITHOUT_BORDER}px;
           overflow: hidden;
           color: ${color};
-          ${textStyle('body3')}
+          ${textStyle('body2')}
         `}
       >
         <div css="text-align: center;">{start}</div>
