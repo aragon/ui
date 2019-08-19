@@ -1,19 +1,29 @@
-import styled from 'styled-components'
-import { theme } from '../../theme-legacy'
+import React from 'react'
+import { textStyle } from '../../style'
+import { useTheme } from '../../theme'
 import { unselectable } from '../../utils'
 import { ButtonBase } from '../Button/ButtonBase'
 
-const ContextMenuItem = styled(ButtonBase)`
-  display: flex;
-  align-items: center;
-  padding: 5px 20px;
-  cursor: pointer;
-  white-space: nowrap;
-  width: 100%;
-  ${unselectable()};
-  &:active {
-    background: ${theme.contentBackgroundActive};
-  }
-`
+const ContextMenuItem = React.memo(function ContextMenuItem(props) {
+  const theme = useTheme()
+  return (
+    <ButtonBase
+      css={`
+        display: flex;
+        align-items: center;
+        padding: 5px 16px 5px 10px;
+        cursor: pointer;
+        white-space: nowrap;
+        width: 100%;
+        ${textStyle('body2')}
+        ${unselectable()};
+        &:active {
+          background: ${theme.surfacePressed};
+        }
+      `}
+      {...props}
+    />
+  )
+})
 
 export default ContextMenuItem

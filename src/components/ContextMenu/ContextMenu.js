@@ -11,7 +11,7 @@ import { ButtonBase } from '../Button/ButtonBase'
 const BASE_WIDTH = 46
 const BASE_HEIGHT = 32
 
-function ContextMenu({ children }) {
+function ContextMenu({ children, zIndex }) {
   const theme = useTheme()
   const [opened, setOpened] = useState(false)
 
@@ -33,7 +33,7 @@ function ContextMenu({ children }) {
         {({ openProgress }) => (
           <Main
             style={{
-              zIndex: opened ? '2' : '1',
+              zIndex,
               boxShadow: openProgress.interpolate(
                 t => `0 4px 4px rgba(0, 0, 0, ${t * 0.03})`
               ),
@@ -71,28 +71,40 @@ function ContextMenu({ children }) {
               </animated.div>
             </Button>
             {opened && (
-              <animated.div
-                onClick={handleClose}
-                style={{
-                  opacity: openProgress,
-                  boxShadow: openProgress.interpolate(
-                    t => `0 4px 4px rgba(0, 0, 0, ${t * 0.03})`
-                  ),
-                }}
-                css={`
-                  overflow: hidden;
-                  position: absolute;
-                  top: ${BASE_HEIGHT - 1}px;
-                  right: 0;
-                  z-index: 3;
-                  padding: 10px 0;
-                  background: ${theme.surface};
-                  border: 1px solid ${theme.border};
-                  border-radius: 3px 0 3px 3px;
-                `}
-              >
-                {children}
-              </animated.div>
+              <React.Fragment>
+                <animated.div
+                  onClick={handleClose}
+                  style={{
+                    opacity: openProgress,
+                    boxShadow: openProgress.interpolate(
+                      t => `0 4px 4px rgba(0, 0, 0, ${t * 0.03})`
+                    ),
+                  }}
+                  css={`
+                    z-index: ${zIndex + 1};
+                    overflow: hidden;
+                    position: absolute;
+                    top: ${BASE_HEIGHT - 1}px;
+                    right: 0;
+                    background: ${theme.surface};
+                    border: 1px solid ${theme.border};
+                    border-radius: 3px 0 3px 3px;
+                  `}
+                >
+                  {children}
+                </animated.div>
+                <div
+                  css={`
+                    z-index: ${zIndex + 1};
+                    position: absolute;
+                    bottom: 0;
+                    right: 1px;
+                    height: 1px;
+                    width: ${BASE_WIDTH - 2}px;
+                    background: ${theme.surface};
+                  `}
+                />
+              </React.Fragment>
             )}
           </Main>
         )}
@@ -103,6 +115,10 @@ function ContextMenu({ children }) {
 
 ContextMenu.propTypes = {
   children: PropTypes.node,
+  zIndex: PropTypes.number,
+}
+ContextMenu.defaultProps = {
+  zIndex: 0,
 }
 
 const Main = styled(animated.div)`
@@ -122,8 +138,5 @@ const Button = styled(ButtonBase)`
 
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
 `
-
-ContextMenu.BASE_WIDTH = BASE_WIDTH
-ContextMenu.BASE_HEIGHT = BASE_WIDTH
 
 export default ContextMenu
