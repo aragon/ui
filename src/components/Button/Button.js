@@ -84,6 +84,10 @@ function Button({
     warnOnce(`Button: the size "mini" is deprecated, please use "small".`)
     size = 'small'
   }
+  if (size === 'normal') {
+    warnOnce(`Button: the size "normal" is deprecated, please use "medium".`)
+    size = 'medium'
+  }
 
   // prop warnings
   if (display === 'icon' && !icon) {
@@ -209,10 +213,11 @@ Button.propTypes = {
   ]),
   size: PropTypes.oneOf([
     'large',
-    'normal',
+    'medium',
     'small',
 
     // deprecated
+    'normal',
     'mini',
   ]),
   wide: PropTypes.bool,
@@ -225,7 +230,7 @@ Button.defaultProps = {
   disabled: false,
   display: 'auto',
   mode: 'normal',
-  size: 'normal',
+  size: 'medium',
   wide: false,
 }
 
