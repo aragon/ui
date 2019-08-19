@@ -23,7 +23,7 @@ function useIconSize(size) {
   const sizeName =
     !size && insideButtonIcon ? BUTTON_ICON_SIZES.get(buttonData.size) : size
 
-  return ICON_SIZES.get(sizeName) || ICON_SIZES.get('medium')
+  return ICON_SIZES.get(sizeName || 'medium')
 }
 
 export default useIconSize
