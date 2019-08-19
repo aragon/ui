@@ -1,31 +1,38 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { GU } from '../../style'
 import { useLayout } from '../Layout/Layout'
+import { GU } from '../../style'
+import { Inside } from '../../utils'
 
 function Split({ primary, secondary }) {
   const { name: layout } = useLayout()
   const oneColumn = layout === 'small' || layout === 'medium'
   return (
-    <div
-      css={`
-        display: ${oneColumn ? 'block' : 'flex'};
-        padding-bottom: ${3 * GU}px;
-      `}
-    >
-      <div css="flex-grow: 1">{primary}</div>
+    <Inside name="Split">
       <div
         css={`
-          flex-shrink: 0;
-          flex-grow: 0;
-          width: ${oneColumn ? '100%' : `${33 * GU}px`};
-          margin-left: ${oneColumn ? 0 : 2 * GU}px;
-          padding-top: ${oneColumn ? 2 * GU : 0}px;
+          display: ${oneColumn ? 'block' : 'flex'};
+          padding-bottom: ${3 * GU}px;
         `}
       >
-        {secondary}
+        <Inside name="Split:primary">
+          <div css="flex-grow: 1">{primary}</div>
+        </Inside>
+        <Inside name="Split:secondary">
+          <div
+            css={`
+              flex-shrink: 0;
+              flex-grow: 0;
+              width: ${oneColumn ? '100%' : `${33 * GU}px`};
+              margin-left: ${oneColumn ? 0 : 2 * GU}px;
+              padding-top: ${oneColumn ? 2 * GU : 0}px;
+            `}
+          >
+            {secondary}
+          </div>
+        </Inside>
       </div>
-    </div>
+    </Inside>
   )
 }
 
