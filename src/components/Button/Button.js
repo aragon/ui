@@ -6,6 +6,7 @@ import { warn, warnOnce, useInside } from '../../utils'
 import { Link } from '../Link'
 import { useLayout } from '../Layout/Layout'
 import { ButtonBase } from './ButtonBase'
+import { Inside } from '../../utils/inside'
 
 function buttonStyles(theme, { mode, disabled }) {
   if (disabled) {
@@ -164,30 +165,26 @@ function Button({
       `}
       {...props}
     >
-      {children || (
-        <React.Fragment>
-          {displayIcon && (
-            <span
-              css={`
-                position: relative;
-                top: -1px;
-                display: flex;
-                color: ${iconColor};
-              `}
-            >
-              {icon}
-            </span>
-          )}
-          {displayIcon && displayLabel && (
-            <span
-              css={`
-                width: ${1 * GU}px;
-              `}
-            />
-          )}
-          {displayLabel && label}
-        </React.Fragment>
-      )}
+      <Inside name="Button">
+        {children || (
+          <React.Fragment>
+            {displayIcon && (
+              <span
+                css={`
+                  position: relative;
+                  top: -1px;
+                  display: flex;
+                  color: ${iconColor};
+                  margin-right: ${displayLabel ? 1 * GU : 0}px;
+                `}
+              >
+                <Inside name="Button:icon">{icon}</Inside>
+              </span>
+            )}
+            <Inside name="Button:label">{displayLabel && label}</Inside>
+          </React.Fragment>
+        )}
+      </Inside>
     </ButtonBase>
   )
 }
