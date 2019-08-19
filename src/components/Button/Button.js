@@ -8,7 +8,80 @@ import { useLayout } from '../Layout/Layout'
 import { ButtonBase } from './ButtonBase'
 import { Inside } from '../../utils/inside'
 
-function buttonStyles(theme, { mode, disabled }) {
+// Base styles related to every size.
+// See src/icons/icon-size.js for the corresponding icon sizes.
+const SIZE_STYLES = {
+  medium: {
+    textStyleName: 'body2',
+    height: 5 * GU,
+    padding: 3 * GU,
+    iconPadding: 2 * GU,
+    minWidth: 14.5 * GU,
+  },
+  small: {
+    textStyleName: 'body2',
+    height: 4 * GU,
+    padding: 2 * GU,
+    iconPadding: 1.5 * GU,
+    minWidth: 13 * GU,
+  },
+  mini: {
+    textStyleName: 'body4',
+    height: 3 * GU,
+    padding: 1.5 * GU,
+    iconPadding: 1 * GU,
+    minWidth: 9.25 * GU,
+  },
+}
+
+function getPadding(size, displayIcon, displayLabel) {
+  const { padding, iconPadding } = SIZE_STYLES[size]
+
+  if (displayIcon && !displayLabel) {
+    return '0'
+  }
+
+  if (displayIcon && displayLabel) {
+    return `0 ${padding}px 0 ${iconPadding}px`
+  }
+
+  return `0 ${padding}px`
+}
+
+function getWidth(size, displayIconOnly, wide) {
+  const { height } = SIZE_STYLES[size]
+
+  if (wide) {
+    return '100%'
+  }
+
+  if (displayIconOnly) {
+    return `${height}px`
+  }
+
+  return 'auto'
+}
+
+function getMinWidth(size, displayIconOnly) {
+  const { minWidth } = SIZE_STYLES[size]
+  return displayIconOnly ? '0' : `${minWidth}px`
+}
+
+// CSS styles related to the current size
+function sizeStyles(size, wide, displayIcon, displayLabel) {
+  const { height, textStyleName } = SIZE_STYLES[size]
+
+  return {
+    height: `${height}px`,
+    minWidth: getMinWidth(size, displayIcon && !displayLabel),
+    padding: getPadding(size, displayIcon, displayLabel),
+    textStyleCss: textStyle(textStyleName),
+    width: getWidth(size, displayIcon && !displayLabel, wide),
+  }
+}
+
+// CSS styles related to the current mode
+function modeStyles(theme, mode, disabled) {
   if (disabled) {
     return {
       background: theme.disabled,
@@ -80,12 +153,12 @@ function Button({
     warnOnce(`Button: the mode "${mode}" is deprecated, please use "normal".`)
     mode = 'normal'
   }
-  if (size === 'mini') {
-    warnOnce(`Button: the size "mini" is deprecated, please use "small".`)
-    size = 'small'
-  }
   if (size === 'normal') {
     warnOnce(`Button: the size "normal" is deprecated, please use "medium".`)
+    size = 'medium'
+  }
+  if (size === 'large') {
+    warnOnce(`Button: the size "large" is deprecated, please use "medium".`)
     size = 'medium'
   }
 
@@ -121,27 +194,25 @@ function Button({
 
   const displayIcon = icon && (display === 'all' || display === 'icon')
   const displayLabel = label && (display === 'all' || display === 'label')
-  const displayIconOnly = displayIcon && !displayLabel
-  const displayAll = displayIcon && displayLabel
 
-  // Styles
+  // Mode styles
   const { background, color, iconColor, border } = useMemo(
-    () => buttonStyles(theme, { mode, disabled }),
+    () => modeStyles(theme, mode, disabled),
     [mode, theme, disabled]
   )
 
-  const width = wide ? '100%' : 'auto'
-  const height = size === 'small' ? `${4 * GU}px` : `${5 * GU}px`
-  const padding =
-    size === 'small'
-      ? `0 ${1.5 * GU}px 0 ${displayAll ? 1 * GU : 1.5 * GU}px`
-      : `0 ${3 * GU}px 0 ${displayAll ? 2 * GU : 3 * GU}px`
-  const minWidth = size === 'small' ? `${14 * GU}px` : `${16 * GU}px`
+  // Size styles
+  const { height, minWidth, padding, textStyleCss, width } = useMemo(
+    () => sizeStyles(size, wide, displayIcon, displayLabel),
+    [size, wide, displayIcon, displayLabel]
+  )
 
   // Use the label as a title when only the icon is displayed
-  if (displayIconOnly) {
+  if (displayIcon && !displayLabel) {
     props.title = label || ''
   }
+
+  const insideData = { buttonSize: size }
 
   return (
     <ButtonBase
@@ -153,14 +224,14 @@ function Button({
         display: ${wide ? 'flex' : 'inline-flex'};
         align-items: center;
         justify-content: center;
+        width: ${width};
+        height: ${height};
+        min-width: ${minWidth};
+        padding: ${padding};
+        ${textStyleCss};
         background: ${background};
         color: ${color};
-        ${textStyle('body2')};
         white-space: nowrap;
-        width: ${displayIconOnly ? height : width};
-        height: ${height};
-        padding: ${displayIconOnly ? 0 : padding};
-        min-width: ${displayIconOnly ? 0 : minWidth};
         border: ${border};
         box-shadow: ${disabled ? 'none' : '0 1px 3px rgba(0, 0, 0, 0.1)'};
         transition-property: transform, box-shadow;
@@ -220,13 +291,13 @@ Button.propTypes = {
     'text',
   ]),
   size: PropTypes.oneOf([
-    'large',
     'medium',
     'small',
+    'mini',
 
     // deprecated
+    'large',
     'normal',
-    'mini',
   ]),
   wide: PropTypes.bool,
 
