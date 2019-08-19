@@ -173,7 +173,7 @@ function Button({
       `}
       {...props}
     >
-      <Inside name="Button">
+      <Inside name="Button" data={insideData}>
         {children || (
           <React.Fragment>
             {displayIcon && (
@@ -186,10 +186,14 @@ function Button({
                   margin-right: ${displayLabel ? 1 * GU : 0}px;
                 `}
               >
-                <Inside name="Button:icon">{icon}</Inside>
+                <Inside name="Button:icon" data={insideData}>
+                  {icon}
+                </Inside>
               </span>
             )}
-            <Inside name="Button:label">{displayLabel && label}</Inside>
+            <Inside name="Button:label" data={insideData}>
+              {displayLabel && label}
+            </Inside>
           </React.Fragment>
         )}
       </Inside>
