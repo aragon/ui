@@ -212,7 +212,7 @@ function Button({
     props.title = label || ''
   }
 
-  const insideData = { buttonSize: size }
+  const insideData = { size }
 
   return (
     <ButtonBase

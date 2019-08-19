@@ -16,12 +16,12 @@ const BUTTON_ICON_SIZES = new Map([
 ])
 
 function useIconSize(size) {
-  const [insideButtonIcon, { buttonSize }] = useInside('Button:icon')
+  const [insideButtonIcon, buttonData] = useInside('Button:icon')
 
   // If no size is set on the icon, and it is inside
   // a Button icon slot, adapt it to the size of the button.
   const sizeName =
-    !size && insideButtonIcon ? BUTTON_ICON_SIZES.get(buttonSize) : size
+    !size && insideButtonIcon ? BUTTON_ICON_SIZES.get(buttonData.size) : size
 
   return ICON_SIZES.get(sizeName) || ICON_SIZES.get('medium')
 }
