@@ -23,6 +23,10 @@ function ContextMenu({ children, zIndex }) {
     setOpened(opened => !opened)
   }, [])
 
+  // Increase the z-index on an opened menu, to make sure it's above any other
+  // context menus below it using the same z-index (e.g. when used in a list)
+  const appliedZIndex = opened ? zIndex + 1 : zIndex
+
   return (
     <ClickOutHandler onClickOut={handleClose}>
       <Spring
@@ -32,8 +36,10 @@ function ContextMenu({ children, zIndex }) {
       >
         {({ openProgress }) => (
           <Main
+            css={`
+              z-index: ${appliedZIndex};
+            `}
             style={{
-              zIndex,
               boxShadow: openProgress.interpolate(
                 t => `0 4px 4px rgba(0, 0, 0, ${t * 0.03})`
               ),
@@ -81,7 +87,7 @@ function ContextMenu({ children, zIndex }) {
                     ),
                   }}
                   css={`
-                    z-index: ${zIndex + 1};
+                    z-index: ${appliedZIndex + 1};
                     overflow: hidden;
                     position: absolute;
                     top: ${BASE_HEIGHT - 1}px;
@@ -95,7 +101,7 @@ function ContextMenu({ children, zIndex }) {
                 </animated.div>
                 <div
                   css={`
-                    z-index: ${zIndex + 1};
+                    z-index: ${appliedZIndex + 1};
                     position: absolute;
                     bottom: 0;
                     right: 1px;
