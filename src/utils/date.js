@@ -74,4 +74,31 @@ export const difference = (date1, date2, options = {}) => {
   )
 }
 
+export const eachDayOfInterval = ({ start, end } = {}) => {
+  let startDate = dayjs(start)
+  let endDate = dayjs(end)
+
+  if (!startDate.isValid()) {
+    throw new Error('Start date of interval is invalid')
+  }
+  if (!endDate.isValid()) {
+    throw new Error('End date of interval is invalid')
+  }
+
+  startDate = startDate.startOf('day')
+  endDate = endDate.startOf('day')
+
+  if (startDate.isAfter(endDate)) {
+    throw new Error('Start date of interval is after end date')
+  }
+
+  const interval = []
+  while (!startDate.isAfter(endDate)) {
+    interval.push(startDate.toDate())
+    startDate = startDate.add(1, 'day')
+  }
+
+  return interval
+}
+
 export const formatHtmlDatetime = date => dayjs(date).toISOString()
