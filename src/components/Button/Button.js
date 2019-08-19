@@ -122,6 +122,7 @@ function Button({
   const displayIcon = icon && (display === 'all' || display === 'icon')
   const displayLabel = label && (display === 'all' || display === 'label')
   const displayIconOnly = displayIcon && !displayLabel
+  const displayAll = displayIcon && displayLabel
 
   // Styles
   const { background, color, iconColor, border } = useMemo(
@@ -131,7 +132,10 @@ function Button({
 
   const width = wide ? '100%' : 'auto'
   const height = size === 'small' ? `${4 * GU}px` : `${5 * GU}px`
-  const padding = size === 'small' ? `0 ${1.5 * GU}px` : `0 ${3 * GU}px`
+  const padding =
+    size === 'small'
+      ? `0 ${1.5 * GU}px 0 ${displayAll ? 1 * GU : 1.5 * GU}px`
+      : `0 ${3 * GU}px 0 ${displayAll ? 2 * GU : 3 * GU}px`
   const minWidth = size === 'small' ? `${14 * GU}px` : `${16 * GU}px`
 
   // Use the label as a title when only the icon is displayed
