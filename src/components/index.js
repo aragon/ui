@@ -69,6 +69,7 @@ export { default as _AutoComplete } from './AutoComplete/AutoComplete'
 export {
   default as _AutoCompleteSelected,
 } from './AutoComplete/AutoCompleteSelected'
+export { DateRange as _DateRange } from './DateRange/DateRange'
 
 // Deprecated / to be deprecated components
 export { default as AppBar } from './AppView/AppBar'
