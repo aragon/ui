@@ -1,6 +1,5 @@
 import React, { useCallback, useEffect } from 'react'
 import PropTypes from 'prop-types'
-import styled from 'styled-components'
 import { Spring, animated } from 'react-spring'
 import { ButtonIcon } from '../Button/ButtonIcon'
 import { IconClose } from '../../icons'
@@ -61,24 +60,44 @@ function SidePanel({
           native
         >
           {({ progress }) => (
-            <Main opened={opened}>
-              <Overlay
+            <div
+              css={`
+                position: fixed;
+                z-index: 3;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                pointer-events: ${opened ? 'auto' : 'none'};
+              `}
+            >
+              <animated.div
                 onClick={handleClose}
-                theme={theme}
                 style={{
                   opacity: progress,
                   pointerEvents: opened ? 'auto' : 'none',
                 }}
+                css={`
+                  position: absolute;
+                  top: 0;
+                  left: 0;
+                  right: 0;
+                  bottom: 0;
+                  background: ${theme.overlay.alpha(0.9)};
+                `}
               />
               <Panel
                 compact={compact}
                 style={{
                   transform: progress.interpolate(
                     v =>
-                      `translate3d(calc(${100 * (1 - v)}% + ${36 *
-                        (1 - v)}px), 0, 0)`
+                      `
+                        translate3d(
+                          calc(${100 * (1 - v)}% + ${36 * (1 - v)}px), 0, 0
+                        )
+                      `
                   ),
-                  opacity: progress.interpolate(v => (v > 0 ? 1 : 0)),
+                  opacity: progress.interpolate(v => Number(v > 0)),
                 }}
               >
                 <header
@@ -109,15 +128,15 @@ function SidePanel({
                         position: absolute;
                         ${!compact
                           ? `
-                          top: ${2 * GU}px;
-                          right: ${2 * GU}px;
-                        `
+                              top: ${2 * GU}px;
+                              right: ${2 * GU}px;
+                            `
                           : `
-                          height: 64px;
-                          width: 64px;
-                          top: 0;
-                          right: 0;
-                        `}
+                              top: 0;
+                              right: 0;
+                              height: ${8 * GU}px;
+                              width: ${8 * GU}px;
+                            `}
                       `}
                     >
                       <IconClose color={theme.surfaceIcon} />
@@ -132,10 +151,24 @@ function SidePanel({
                     flex-direction: column;
                   `}
                 >
-                  <PanelContent>{children}</PanelContent>
+                  <div
+                    css={`
+                      min-height: 0;
+                      flex-grow: 1;
+                      flex-shrink: 0;
+                      display: flex;
+                      flex-direction: column;
+                      width: 100%;
+                      padding-right: ${CONTENT_PADDING}px;
+                      padding-left: ${CONTENT_PADDING}px;
+                      padding-bottom: ${CONTENT_PADDING}px;
+                    `}
+                  >
+                    {children}
+                  </div>
                 </div>
               </Panel>
-            </Main>
+            </div>
           )}
         </Spring>
       </Inside>
@@ -159,25 +192,6 @@ SidePanel.defaultProps = {
   onTransitionEnd: () => {},
 }
 
-const Main = styled.div`
-  position: fixed;
-  z-index: 3;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  pointer-events: ${({ opened }) => (opened ? 'auto' : 'none')};
-`
-
-const Overlay = styled(animated.div)`
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: ${({ theme }) => theme.overlay.alpha(0.8)};
-`
-
 const Panel = React.memo(function Panel({ compact, ...props }) {
   const theme = useTheme()
   return (
@@ -191,26 +205,13 @@ const Panel = React.memo(function Panel({ compact, ...props }) {
         width: 100vw;
         height: 100vh;
         background: ${theme.surface};
-        box-shadow: -2px 0px 4px rgba(118, 137, 173, 0.2);
-
+        box-shadow: -2px 0px 4px rgba(0, 0, 0, 0.1);
         ${!compact ? 'max-width: 450px;' : ''}
       `}
       {...props}
     />
   )
 })
-
-const PanelContent = styled.div`
-  min-height: 0;
-  flex-grow: 1;
-  flex-shrink: 0;
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  padding-right: ${CONTENT_PADDING}px;
-  padding-left: ${CONTENT_PADDING}px;
-  padding-bottom: ${CONTENT_PADDING}px;
-`
 
 // Used for spacing in SidePanelSplit and SidePanelSeparator
 SidePanel.HORIZONTAL_PADDING = CONTENT_PADDING
