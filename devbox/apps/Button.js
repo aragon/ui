@@ -13,7 +13,7 @@ import {
 } from '@aragon/ui'
 
 const MODES = ['normal', 'strong', 'positive', 'negative']
-const SIZES = ['normal', 'small', 'mini']
+const SIZES = ['medium', 'small', 'mini']
 
 function getIcon(mode) {
   if (mode === 'negative') {
