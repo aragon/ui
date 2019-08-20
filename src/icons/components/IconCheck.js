@@ -1,9 +1,9 @@
 import React from 'react'
-import iconSize from '../icon-size'
+import useIconSize from '../icon-size'
 import IconPropTypes from '../IconPropTypes'
 
 function IconCheck({ size, ...props }) {
-  const sizeValue = iconSize(size)
+  const sizeValue = useIconSize(size)
   return (
     <svg
       width={sizeValue}
@@ -14,7 +14,9 @@ function IconCheck({ size, ...props }) {
     >
       <path
         fill="currentColor"
-        d="M19.81 6.2a.624.624 0 0 0-.913 0L9.242 16.357l-4.139-4.355a.624.624 0 0 0-.914 0 .705.705 0 0 0 0 .961L8.785 17.8a.623.623 0 0 0 .914-.001L19.811 7.162a.705.705 0 0 0 0-.962z"
+        stroke="currentColor"
+        strokeWidth={0.5}
+        d="M18.834 7.166a.565.565 0 0 0-.8 0l-8.447 8.466-3.622-3.63a.565.565 0 0 0-.8 0 .568.568 0 0 0 0 .802l4.022 4.03a.563.563 0 0 0 .8 0l8.847-8.866a.568.568 0 0 0 0-.802z"
       />
     </svg>
   )

@@ -34,6 +34,11 @@ const TEXT_STYLES = {
     weight: 400,
     lineHeight: 1.5,
   },
+  body4: {
+    size: 12,
+    weight: 400,
+    lineHeight: 1.5,
+  },
   label1: {
     size: 14,
     weight: 400,

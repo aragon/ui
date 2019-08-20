@@ -1,9 +1,9 @@
 import React from 'react'
-import iconSize from '../icon-size'
+import useIconSize from '../icon-size'
 import IconPropTypes from '../IconPropTypes'
 
 function IconPlus({ size, ...props }) {
-  const sizeValue = iconSize(size)
+  const sizeValue = useIconSize(size)
   return (
     <svg
       width={sizeValue}
@@ -14,11 +14,15 @@ function IconPlus({ size, ...props }) {
     >
       <path
         fill="currentColor"
-        d="M12 4a.646.646 0 0 0-.646.646v14.708a.646.646 0 1 0 1.292 0V4.646A.646.646 0 0 0 12 4z"
+        stroke="currentColor"
+        strokeWidth={0.3}
+        d="M12 5a.566.566 0 0 0-.566.566v12.869a.566.566 0 0 0 1.132 0V5.565A.566.566 0 0 0 12 5z"
       />
       <path
         fill="currentColor"
-        d="M19.354 11.354H4.646a.646.646 0 0 0 0 1.292h14.708a.646.646 0 1 0 0-1.292z"
+        stroke="currentColor"
+        strokeWidth={0.3}
+        d="M18.434 11.434H5.566a.566.566 0 0 0 0 1.132h12.869a.565.565 0 1 0 0-1.132z"
       />
     </svg>
   )
