@@ -12,7 +12,15 @@ import RootPortal from '../RootPortal/RootPortal'
 
 const cssPx = value => (typeof value === 'number' ? value + 'px' : value)
 
-function Modal({ children, onClose, padding, visible, width, closeButton }) {
+function Modal({
+  children,
+  onClose,
+  padding,
+  visible,
+  width,
+  closeButton,
+  ...props
+}) {
   const theme = useTheme()
   const viewport = useViewport()
 
@@ -33,7 +41,6 @@ function Modal({ children, onClose, padding, visible, width, closeButton }) {
             <animated.div
               css={`
                 position: absolute;
-                z-index: 1;
                 top: 0;
                 left: 0;
                 right: 0;
@@ -41,6 +48,7 @@ function Modal({ children, onClose, padding, visible, width, closeButton }) {
                 background: ${theme.overlay.alpha(0.9)};
               `}
               style={{ opacity }}
+              {...props}
             >
               <animated.div
                 css={`
