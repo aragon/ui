@@ -13,7 +13,7 @@ import {
 } from '@aragon/ui'
 
 const MODES = ['normal', 'strong', 'positive', 'negative']
-const SIZES = ['normal', 'small']
+const SIZES = ['medium', 'small', 'mini']
 
 function getIcon(mode) {
   if (mode === 'negative') {
@@ -33,24 +33,19 @@ function App() {
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        padding: ${3 * GU}px;
+        padding: ${3 * GU}px 0 0;
       `}
     >
-      <Box heading="Button">
-        <div
-          css={`
-            display: grid;
-            grid-template-columns: repeat(4, auto);
-            grid-gap: ${3 * GU}px;
-          `}
-        >
-          {SIZES.map(size =>
-            MODES.map(mode =>
+      {SIZES.map(size => (
+        <Box heading={`Button (${size})`} key={size}>
+          <div
+            css={`
+              display: grid;
+              grid-template-columns: repeat(4, auto);
+              grid-gap: ${3 * GU}px;
+            `}
+          >
+            {MODES.map(mode =>
               [...Array(4)].map((_, i) => (
                 <div key={size + mode + i}>
                   <Button
@@ -63,10 +58,10 @@ function App() {
                   />
                 </div>
               ))
-            )
-          )}
-        </div>
-      </Box>
+            )}
+          </div>
+        </Box>
+      ))}
       <Box heading="ButtonText">
         {[...Array(2)].map((_, i) => (
           <div
