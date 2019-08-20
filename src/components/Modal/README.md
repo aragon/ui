@@ -73,11 +73,3 @@ The callback that is called when the `ESC` i pressed or the user clicks outside 
 | `Boolean` | `true`        |
 
 Whether or not to display a close button.
-
-### `zIndex`
-
-| Type      | Default value |
-| --------- | ------------- |
-| `Number`  | `1`        |
-
-Value given to the `css` prop for the Modal container.
