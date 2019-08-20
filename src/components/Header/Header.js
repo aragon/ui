@@ -32,18 +32,32 @@ function Header({ primary, secondary, children, ...props }) {
         >
           {children || (
             <>
-              <div>
-                <Inside name="Header:primary">
-                  {typeof primary === 'string' ? (
+              <Inside name="Header:primary">
+                <div
+                  css={`
+                    display: flex;
+                    min-width: 0;
+                    flex-shrink: 1;
+                    flex-grow: 1;
+                    margin-right: ${secondary ? 2 * GU : 0}px;
+                  `}
+                >
+                  {typeof primary === 'string' && primary ? (
                     <Header.Title>{primary}</Header.Title>
                   ) : (
                     primary
                   )}
-                </Inside>
-              </div>
-              <div>
-                <Inside name="Header:secondary">{secondary}</Inside>
-              </div>
+                </div>
+              </Inside>
+              <Inside name="Header:secondary">
+                <div
+                  css={`
+                    flex-shrink: 0;
+                  `}
+                >
+                  {secondary}
+                </div>
+              </Inside>
             </>
           )}
         </div>
@@ -65,9 +79,10 @@ Header.Title = function HeaderTitle({ children, ...props }) {
   return (
     <h1
       css={`
-        display: inline-flex;
-        align-items: center;
         color: ${theme.content};
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
         ${textStyle(fullWidth ? 'title3' : 'title2')};
       `}
       {...props}
