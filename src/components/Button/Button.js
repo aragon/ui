@@ -17,6 +17,7 @@ const SIZE_STYLES = {
     padding: 3 * GU,
     iconPadding: 2 * GU,
     minWidth: 14.5 * GU,
+    middleSpace: 1 * GU,
   },
   small: {
     textStyleName: 'body2',
@@ -24,6 +25,7 @@ const SIZE_STYLES = {
     padding: 2 * GU,
     iconPadding: 1.5 * GU,
     minWidth: 13 * GU,
+    middleSpace: 1 * GU,
   },
   mini: {
     textStyleName: 'body4',
@@ -31,6 +33,7 @@ const SIZE_STYLES = {
     padding: 1.5 * GU,
     iconPadding: 1 * GU,
     minWidth: 9.25 * GU,
+    middleSpace: 0.5 * GU,
   },
 }
 
@@ -69,10 +72,11 @@ function getMinWidth(size, displayIconOnly) {
 
 // CSS styles related to the current size
 function sizeStyles(size, wide, displayIcon, displayLabel) {
-  const { height, textStyleName } = SIZE_STYLES[size]
+  const { height, textStyleName, middleSpace } = SIZE_STYLES[size]
 
   return {
     height: `${height}px`,
+    middleSpace: displayIcon && displayLabel ? `${middleSpace}px` : '0',
     minWidth: getMinWidth(size, displayIcon && !displayLabel),
     padding: getPadding(size, displayIcon, displayLabel),
     textStyleCss: textStyle(textStyleName),
@@ -202,10 +206,19 @@ function Button({
   )
 
   // Size styles
-  const { height, minWidth, padding, textStyleCss, width } = useMemo(
-    () => sizeStyles(size, wide, displayIcon, displayLabel),
-    [size, wide, displayIcon, displayLabel]
-  )
+  const {
+    height,
+    middleSpace,
+    minWidth,
+    padding,
+    textStyleCss,
+    width,
+  } = useMemo(() => sizeStyles(size, wide, displayIcon, displayLabel), [
+    size,
+    wide,
+    displayIcon,
+    displayLabel,
+  ])
 
   // Use the label as a title when only the icon is displayed
   if (displayIcon && !displayLabel) {
@@ -248,23 +261,25 @@ function Button({
         {children || (
           <React.Fragment>
             {displayIcon && (
-              <span
-                css={`
-                  position: relative;
-                  top: -1px;
-                  display: flex;
-                  color: ${iconColor};
-                  margin-right: ${displayLabel ? 1 * GU : 0}px;
-                `}
-              >
-                <Inside name="Button:icon" data={insideData}>
+              <Inside name="Button:icon" data={insideData}>
+                <span
+                  css={`
+                    position: relative;
+                    top: -1px;
+                    display: flex;
+                    color: ${iconColor};
+                    margin-right: ${middleSpace};
+                  `}
+                >
                   {icon}
-                </Inside>
-              </span>
+                </span>
+              </Inside>
             )}
-            <Inside name="Button:label" data={insideData}>
-              {displayLabel && label}
-            </Inside>
+            {displayLabel && (
+              <Inside name="Button:label" data={insideData}>
+                {label}
+              </Inside>
+            )}
           </React.Fragment>
         )}
       </Inside>
