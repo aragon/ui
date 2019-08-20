@@ -75,6 +75,7 @@ export {
   IconPower,
   IconPrint,
   IconProhibited,
+  IconQuestion,
   IconRefresh,
   IconRemoveUser,
   IconRight,
