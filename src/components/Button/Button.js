@@ -221,8 +221,8 @@ function Button({
   ])
 
   // Use the label as a title when only the icon is displayed
-  if (displayIcon && !displayLabel) {
-    props.title = label || ''
+  if (displayIcon && !displayLabel && label && typeof label === 'string') {
+    props.title = label
   }
 
   const insideData = { size }
