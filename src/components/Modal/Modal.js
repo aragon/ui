@@ -19,7 +19,7 @@ function Modal({
   visible,
   width,
   closeButton,
-  zIndex,
+  ...props
 }) {
   const theme = useTheme()
   const viewport = useViewport()
@@ -41,7 +41,6 @@ function Modal({
             <animated.div
               css={`
                 position: absolute;
-                z-index: ${zIndex};
                 top: 0;
                 left: 0;
                 right: 0;
@@ -49,6 +48,7 @@ function Modal({
                 background: ${theme.overlay.alpha(0.9)};
               `}
               style={{ opacity }}
+              {...props}
             >
               <animated.div
                 css={`
@@ -137,7 +137,6 @@ Modal.propTypes = {
     PropTypes.number,
     PropTypes.string,
   ]),
-  zIndex: PropTypes.number,
 }
 
 Modal.defaultProps = {
@@ -145,7 +144,6 @@ Modal.defaultProps = {
   onClose: noop,
   padding: 3 * GU,
   width: viewport => Math.min(viewport.width - 6 * GU, 600),
-  zIndex: 1,
 }
 
 export default Modal
