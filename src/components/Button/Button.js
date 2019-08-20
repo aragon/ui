@@ -65,9 +65,9 @@ function getWidth(size, displayIconOnly, wide) {
   return 'auto'
 }
 
-function getMinWidth(size, displayIconOnly) {
+function getMinWidth(size, displayLabelOnly) {
   const { minWidth } = SIZE_STYLES[size]
-  return displayIconOnly ? '0' : `${minWidth}px`
+  return displayLabelOnly ? `${minWidth}px` : '0'
 }
 
 // CSS styles related to the current size
@@ -77,7 +77,7 @@ function sizeStyles(size, wide, displayIcon, displayLabel) {
   return {
     height: `${height}px`,
     middleSpace: displayIcon && displayLabel ? `${middleSpace}px` : '0',
-    minWidth: getMinWidth(size, displayIcon && !displayLabel),
+    minWidth: getMinWidth(size, !displayIcon && displayLabel),
     padding: getPadding(size, displayIcon, displayLabel),
     textStyleCss: textStyle(textStyleName),
     width: getWidth(size, displayIcon && !displayLabel, wide),
