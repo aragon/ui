@@ -84,7 +84,7 @@ function HeaderContent({ heading, padding }) {
   return (
     <h1
       css={`
-        padding-left: ${padding}px;
+        padding: 0 ${padding}px;
         color: ${theme.surfaceContentSecondary};
         ${textStyle('label2')};
       `}
