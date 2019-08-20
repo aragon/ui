@@ -165,6 +165,8 @@ function Tag({
       )}
       <span
         css={`
+          overflow: hidden;
+          text-overflow: ellipsis;
           margin-top: ${alignmentCorrection ? '1px' : '0'};
         `}
       >
