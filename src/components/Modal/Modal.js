@@ -12,7 +12,15 @@ import RootPortal from '../RootPortal/RootPortal'
 
 const cssPx = value => (typeof value === 'number' ? value + 'px' : value)
 
-function Modal({ children, onClose, padding, visible, width, closeButton }) {
+function Modal({
+  children,
+  onClose,
+  padding,
+  visible,
+  width,
+  closeButton,
+  zIndex,
+}) {
   const theme = useTheme()
   const viewport = useViewport()
 
@@ -33,7 +41,7 @@ function Modal({ children, onClose, padding, visible, width, closeButton }) {
             <animated.div
               css={`
                 position: absolute;
-                z-index: 1;
+                z-index: ${zIndex};
                 top: 0;
                 left: 0;
                 right: 0;
@@ -129,6 +137,7 @@ Modal.propTypes = {
     PropTypes.number,
     PropTypes.string,
   ]),
+  zIndex: PropTypes.number,
 }
 
 Modal.defaultProps = {
@@ -136,6 +145,7 @@ Modal.defaultProps = {
   onClose: noop,
   padding: 3 * GU,
   width: viewport => Math.min(viewport.width - 6 * GU, 600),
+  zIndex: 1,
 }
 
 export default Modal
