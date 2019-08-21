@@ -332,45 +332,50 @@ const DEMOS = new Map([
 
   [
     'Select',
-    props => (
-      <DataView
-        {...props}
-        fields={['Account', 'Amount']}
-        entries={multiplyArray(
-          [
-            [addr(), '-7.900,33 ANT'],
-            [addr(), '-8.760,90 ANT'],
-            [addr(), '+5.321 ANT'],
-            [addr(), '-328,65 ANT'],
-            [addr(), '+3.321 ANT'],
-            [addr(), '-328,65 ANT'],
-          ],
-          10
-        )}
-        renderEntry={([address, amount]) => [
-          <IdentityBadge entity={address} />,
-          <Amount>{amount}</Amount>,
-        ]}
-        renderSelectionCount={count =>
-          `${count} account${count !== 1 ? 's' : ''} selected`
-        }
-        onSelectEntries={(entries, indexes) => {
-          console.log('Selected entries', entries, indexes)
-        }}
-        heading={
-          null && (
-            <div
-              css={`
-                display: flex;
-                justify-content: flex-end;
-              `}
-            >
-              <Button label="Import" icon={<IconDownload />} />
-            </div>
-          )
-        }
-      />
-    ),
+    props => {
+      const [selection, setSelection] = useState([])
+      return (
+        <DataView
+          {...props}
+          fields={['Account', 'Amount']}
+          entries={multiplyArray(
+            [
+              [addr(), '-7.900,33 ANT'],
+              [addr(), '-8.760,90 ANT'],
+              [addr(), '+5.321 ANT'],
+              [addr(), '-328,65 ANT'],
+              [addr(), '+3.321 ANT'],
+              [addr(), '-328,65 ANT'],
+            ],
+            10
+          )}
+          renderEntry={([address, amount]) => [
+            <IdentityBadge entity={address} />,
+            <Amount>{amount}</Amount>,
+          ]}
+          renderSelectionCount={count =>
+            `${count} account${count !== 1 ? 's' : ''} selected`
+          }
+          onSelectEntries={(entries, indexes) => {
+            console.log('Selected entries', entries, indexes)
+            setSelection(indexes)
+          }}
+          selection={selection}
+          heading={
+            null && (
+              <div
+                css={`
+                  display: flex;
+                  justify-content: flex-end;
+                `}
+              >
+                <Button label="Import" icon={<IconDownload />} />
+              </div>
+            )
+          }
+        />
+      )
+    },
   ],
 ])
 

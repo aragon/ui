@@ -158,6 +158,15 @@ Gets called when a page change is requested. Use with `page` to manage the pagin
 
 Number of items per page.
 
+### selection
+
+| Type    | Default value |
+| ------- | ------------- |
+| `Array` | None          |
+
+A list of selected items, using their indexes. When not provided, `DataView`
+will manage the selection itself. See also `onSelectEntries()`.
+
 ### onSelectEntries(entries, indexes)
 
 | Type       | Default value |
@@ -165,7 +174,8 @@ Number of items per page.
 | `Function` | None          |
 
 Gets called when the entries selection changes. If not set, the checkboxes
-won’t be displayed.
+won’t be displayed. Use with `selection` to manage the selection in a
+[controlled](https://reactjs.org/docs/forms.html#controlled-components) way.
 
 Note: only one of `onSelectEntries` and `renderEntryChild` can be set at a
 time.
