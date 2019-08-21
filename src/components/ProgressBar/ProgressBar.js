@@ -3,8 +3,8 @@ import PropTypes from '../../proptypes'
 import styled, { keyframes } from 'styled-components'
 import { useSpring, animated, interpolate } from 'react-spring/hooks'
 import { springs } from '../../style'
+import { useTheme } from '../../theme'
 import { warnOnce } from '../../utils/environment'
-import { theme } from '../../theme-legacy'
 
 const RADIUS = 2
 const BAR_HEIGHT = 6
@@ -38,6 +38,9 @@ const ProgressBar = React.memo(({ animate, color, progress, value }) => {
   // convenience in React).
   const indeterminate = value === -1
 
+  const theme = useTheme()
+  const currentColor = color === undefined ? theme.accent : color
+
   const transition = useSpring({
     config: { ...springs.smooth, precision: 0.001 },
     from: { scale: 0, x: 0 },
@@ -50,7 +53,7 @@ const ProgressBar = React.memo(({ animate, color, progress, value }) => {
       css={`
         width: 100%;
         height: ${BAR_HEIGHT}px;
-        background: ${theme.secondaryBackground};
+        background: ${theme.surfaceUnder};
         border-radius: ${RADIUS}px;
         overflow: hidden;
       `}
@@ -58,7 +61,7 @@ const ProgressBar = React.memo(({ animate, color, progress, value }) => {
       <Bar
         style={{
           width: `${(indeterminate ? INDETERMINATE_WIDTH : 1) * 100}%`,
-          background: color,
+          background: currentColor,
           borderRadius: `${indeterminate ? RADIUS : 0}px`,
           animationName: `${indeterminate ? indeterminateAnim.name : 'none'}`,
           transform: interpolate(
@@ -85,7 +88,6 @@ const Bar = styled(animated.div)`
 
 ProgressBar.defaultProps = {
   animate: true,
-  color: theme.accent,
   value: -1,
 }
 
