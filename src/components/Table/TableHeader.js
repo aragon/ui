@@ -1,26 +1,28 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import styled from 'styled-components'
-import { theme } from '../../theme-legacy'
-import Text from '../Text/Text'
+import { GU, textStyle } from '../../style'
+import { useTheme } from '../../theme'
 
-const StyledTableHeader = styled.th`
-  padding: 0;
-  padding-left: ${({ align }) => (align === 'left' ? '21px' : '0')};
-  padding-right: ${({ align }) => (align === 'right' ? '21px' : '0')};
-  line-height: 30px;
-  font-weight: normal;
-  text-align: ${({ align }) => align};
-  white-space: nowrap;
-`
-
-const TableHeader = ({ title, align, ...props }) => (
-  <StyledTableHeader align={align} {...props}>
-    <Text.Block color={theme.textSecondary} smallcaps>
+function TableHeader({ title, align, ...props }) {
+  const theme = useTheme()
+  return (
+    <th
+      css={`
+        padding: 0;
+        padding-left: ${align === 'left' ? 2.5 * GU + 1 : 0}px;
+        padding-right: ${align === 'right' ? 2.5 * GU + 1 : 0}px;
+        text-align: ${align};
+        white-space: nowrap;
+        color: ${theme.contentSecondary};
+        ${textStyle('label2')};
+        line-height: ${4 * GU}px;
+      `}
+      {...props}
+    >
       {title}
-    </Text.Block>
-  </StyledTableHeader>
-)
+    </th>
+  )
+}
 
 TableHeader.propTypes = {
   title: PropTypes.string,
