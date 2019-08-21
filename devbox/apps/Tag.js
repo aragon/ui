@@ -15,7 +15,7 @@ const ITEMS = new Map([
     ],
   ],
   ['identifier', ['!', 'w', 'woa!', 'Custom label']],
-  ['new', ['!', 'w', 'New version']],
+  ['new', ['!', 'w', 'New version', 'New new new new new new new new']],
   [
     'activity',
     [
@@ -74,46 +74,43 @@ class App extends React.Component {
         css={`
           display: grid;
           grid-template-columns: repeat(4, 200px);
-          grid-template-rows: min-content;
           grid-gap: ${3 * GU}px;
           align-items: start;
           justify-content: center;
-          height: calc(100vh - ${3 * GU}px);
           padding-top: ${6 * GU}px;
         `}
       >
-        {Array.from(ITEMS.keys()).map(key => (
-          <div
+        {[...ITEMS.keys()].map(key => (
+          <Box
             key={key}
+            heading={key}
             css={`
-              display: grid;
-              grid-template-columns: auto;
-              grid-gap: ${1 * GU}px;
               height: 100%;
+              & + & {
+                margin-top: 0;
+              }
             `}
           >
-            <Box heading={key}>
-              {ITEMS.get(key).map((item, i) => (
-                <div
-                  key={i}
-                  css={`
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    height: 100%;
-                    & + & {
-                      margin-top: ${1 * GU}px;
-                    }
-                  `}
-                >
-                  <Tag
-                    mode={key}
-                    {...(typeof item === 'string' ? { children: item } : item)}
-                  />
-                </div>
-              ))}
-            </Box>
-          </div>
+            {ITEMS.get(key).map((item, i) => (
+              <div
+                key={i}
+                css={`
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  height: 100%;
+                  & + & {
+                    margin-top: ${1 * GU}px;
+                  }
+                `}
+              >
+                <Tag
+                  mode={key}
+                  {...(typeof item === 'string' ? { children: item } : item)}
+                />
+              </div>
+            ))}
+          </Box>
         ))}
         <div key="custom" css="text-align: center">
           <Box heading="Custom">

@@ -69,7 +69,7 @@ function getSize(size, { uppercase, discMode, iconAndLabel }) {
     width: ${discMode ? `${3 * GU}px` : 'auto'};
     height: ${3 * GU}px;
     padding: ${discMode ? '0' : `0 ${1.5 * GU}px`} ;
-    padding-top: ${uppercase ? '1.5px' : 0};
+    padding-top: ${uppercase ? '1px' : 0};
     ${iconAndLabel ? `padding-left: ${1.25 * GU}px` : ''};
     border-radius: ${3 * GU}px;
     ${textStyle('label2')};
@@ -165,6 +165,8 @@ function Tag({
       )}
       <span
         css={`
+          overflow: hidden;
+          text-overflow: ellipsis;
           margin-top: ${alignmentCorrection ? '1px' : '0'};
         `}
       >
