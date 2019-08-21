@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback, useMemo, useState } from 'react'
+import React, { useCallback, useMemo, useState } from 'react'
 import PropTypes from 'prop-types'
 import { noop } from '../../utils'
 import { textStyle, GU } from '../../style'
@@ -76,52 +76,66 @@ function renderEntries(
   })
 }
 
-function useSelection(entries, onSelectEntries) {
-  const [selectedIndexes, setSelectedIndexes] = useState([])
+function useSelection(entries, selection, onSelectEntries) {
+  // Only used if `selection` is not passed via props. The selection supports
+  // both a managed and a controlled mode, to provide a better developer
+  // experience out of the box.
+  const [selectionManaged, setSelectionManaged] = useState([])
+
+  const currentSelection =
+    selection === undefined ? selectionManaged : selection
+
+  const updateSelection = useCallback(
+    newSelection => {
+      // Managed state
+      if (selection === undefined) {
+        setSelectionManaged(newSelection)
+      }
+
+      // Useful to notify, even in managed mode
+      onSelectEntries(
+        [...newSelection].sort().map(index => entries[index]),
+        newSelection
+      )
+    },
+    [selection, onSelectEntries]
+  )
 
   const allSelected = useMemo(() => {
     // none selected
-    if (selectedIndexes.length === 0) {
+    if (currentSelection.length === 0) {
       return -1
     }
     // all selected
-    if (selectedIndexes.length === entries.length) {
+    if (currentSelection.length === entries.length) {
       return 1
     }
     // some selected
     return 0
-  }, [entries, selectedIndexes])
+  }, [entries, currentSelection])
 
-  const toggleEntry = useCallback(entryIndex => {
-    setSelectedIndexes(selectedIndexes => {
-      const checked = selectedIndexes.includes(entryIndex)
-      if (!checked) {
-        return [...selectedIndexes, entryIndex]
-      }
-      return selectedIndexes.filter(index => index !== entryIndex)
-    })
-  }, [])
+  const toggleEntry = useCallback(
+    entryIndex => {
+      updateSelection(
+        currentSelection.includes(entryIndex)
+          ? currentSelection.filter(index => index !== entryIndex)
+          : [...currentSelection, entryIndex]
+      )
+    },
+    [updateSelection, currentSelection]
+  )
 
   const selectAll = useCallback(() => {
-    setSelectedIndexes(
-      selectedIndexes.length === 0 ? entries.map((_, index) => index) : []
+    updateSelection(
+      currentSelection.length === 0 ? entries.map((_, index) => index) : []
     )
-  }, [entries, selectedIndexes])
-
-  useEffect(() => {
-    if (onSelectEntries) {
-      onSelectEntries(
-        selectedIndexes.sort().map(index => entries[index]),
-        selectedIndexes
-      )
-    }
-  }, [onSelectEntries, selectedIndexes, entries])
+  }, [entries, currentSelection, updateSelection])
 
   return {
     allSelected,
     selectAll,
     toggleEntry,
-    selectedIndexes,
+    selectedIndexes: currentSelection,
   }
 }
 
@@ -138,6 +152,7 @@ const DataView = React.memo(function DataView({
   renderEntryChild,
   renderSelectionCount,
   mode,
+  selection,
   tableRowHeight,
 }) {
   if (renderEntryChild && onSelectEntries) {
@@ -147,7 +162,7 @@ const DataView = React.memo(function DataView({
     )
   }
 
-  // Only used if page is not passed. The pagination supports both a
+  // Only used if `page` is not passed. The pagination supports both a
   // managed and a controlled mode, to provide a better developer experience
   // out of the box.
   const [pageManaged, setPageManaged] = useState(0)
@@ -175,6 +190,7 @@ const DataView = React.memo(function DataView({
 
   const { allSelected, selectAll, toggleEntry, selectedIndexes } = useSelection(
     entries,
+    selection,
     onSelectEntries
   )
 
@@ -289,6 +305,7 @@ DataView.propTypes = {
   renderEntryActions: PropTypes.func,
   renderEntryChild: PropTypes.func,
   renderSelectionCount: PropTypes.func,
+  selection: PropTypes.array,
   tableRowHeight: PropTypes.number,
 }
 
