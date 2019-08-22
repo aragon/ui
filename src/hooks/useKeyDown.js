@@ -1,7 +1,7 @@
-import { useCallback, useEffect } from 'react'
+import { useCallback, useEffect, useMemo } from 'react'
 
 export function useKeyDown(key, callback) {
-  const keys = Array.isArray(key) ? key : [key]
+  const keys = useMemo(() => (Array.isArray(key) ? key : [key]), [key])
 
   const handlekeyDown = useCallback(
     event => {
