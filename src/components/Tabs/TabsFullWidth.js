@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { Transition, animated } from 'react-spring'
 import { GU, textStyle, springs } from '../../style'
 import { useOnBlur } from '../../hooks'
@@ -14,20 +14,23 @@ const KEY_ESC = 27
 
 function TabsFullWidth({ items, selected, onChange }) {
   const theme = useTheme()
+  const buttonRef = useRef(null)
   const [insideSidePanel] = useInside('SidePanel')
   const [opened, setOpened] = useState(false)
 
   const selectedItem = items[selected]
 
-  const close = useCallback(() => {
-    setOpened(false)
+  const close = useCallback(() => setOpened(false), [])
+
+  const focusButton = useCallback(() => {
+    if (buttonRef.current) {
+      buttonRef.current.focus()
+    }
   }, [])
 
   const toggle = useCallback(() => {
     setOpened(opened => !opened)
   }, [])
-
-  const { handleBlur, ref } = useOnBlur(close)
 
   const change = useCallback(
     index => {
@@ -37,27 +40,24 @@ function TabsFullWidth({ items, selected, onChange }) {
     [onChange]
   )
 
-  useEffect(() => {
-    setOpened(false)
-  }, [selectedItem])
+  const { handleBlur, ref } = useOnBlur(close)
 
-  useEffect(() => {
-    // only react to the escape key when the menu is opened
-    if (!opened) {
-      return
-    }
-
-    const onKeyDown = event => {
+  // close on escape
+  const handleMenuKeyDown = useCallback(
+    event => {
       if (event.keyCode === KEY_ESC) {
         close()
+        focusButton()
       }
-    }
-    window.addEventListener('keydown', onKeyDown)
+    },
+    [close]
+  )
 
-    return () => {
-      window.removeEventListener('keydown', onKeyDown)
-    }
-  }, [opened, close])
+  // close when the selected item changes
+  useEffect(() => {
+    close()
+    focusButton()
+  }, [selectedItem])
 
   return (
     <div
@@ -78,6 +78,7 @@ function TabsFullWidth({ items, selected, onChange }) {
         `}
       >
         <ButtonBase
+          ref={buttonRef}
           css={`
             display: flex;
             align-items: center;
@@ -146,7 +147,11 @@ function TabsFullWidth({ items, selected, onChange }) {
                   ),
                 }}
               >
-                <Menu items={items} onChange={change} />
+                <Menu
+                  items={items}
+                  onChange={change}
+                  onKeyDown={handleMenuKeyDown}
+                />
               </animated.div>
             ))
           }
@@ -156,12 +161,22 @@ function TabsFullWidth({ items, selected, onChange }) {
   )
 }
 
-function Menu({ items, onChange }) {
+function Menu({ items, onChange, ...props }) {
+  const handleRef = useCallback(element => {
+    if (element) {
+      element.focus()
+    }
+  }, [])
+
   return (
     <div
+      ref={handleRef}
+      tabIndex="0"
+      {...props}
       css={`
         display: flex;
         flex-direction: column;
+        outline: 0;
       `}
     >
       {items.map((item, index) => (
@@ -180,7 +195,6 @@ function MenuItem({ item, index, onChange }) {
 
   return (
     <ButtonBase
-      key={index}
       onClick={change}
       css={`
         height: ${8 * GU}px;
