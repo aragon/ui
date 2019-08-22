@@ -5,3472 +5,10 @@ Object.defineProperty(exports, '__esModule', { value: true });
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
 var ReactDOM = _interopDefault(require('react-dom'));
-var React = require('react');
-var React__default = _interopDefault(React);
 var styled = require('styled-components');
 var styled__default = _interopDefault(styled);
-
-function unwrapExports (x) {
-	return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, 'default') ? x.default : x;
-}
-
-function createCommonjsModule(fn, module) {
-	return module = { exports: {} }, fn(module, module.exports), module.exports;
-}
-
-var _extends_1 = createCommonjsModule(function (module) {
-function _extends() {
-  module.exports = _extends = Object.assign || function (target) {
-    for (var i = 1; i < arguments.length; i++) {
-      var source = arguments[i];
-
-      for (var key in source) {
-        if (Object.prototype.hasOwnProperty.call(source, key)) {
-          target[key] = source[key];
-        }
-      }
-    }
-
-    return target;
-  };
-
-  return _extends.apply(this, arguments);
-}
-
-module.exports = _extends;
-});
-
-var Add = function Add(props) {
-  return React__default.createElement("svg", _extends_1({
-    width: 22,
-    height: 22,
-    viewBox: "0 0 22 22"
-  }, props), React__default.createElement("g", {
-    fill: "none",
-    fillRule: "evenodd"
-  }, React__default.createElement("path", {
-    d: "M0 0h22v22H0z"
-  }), React__default.createElement("path", {
-    d: "M11 4.744c1.216 0 2.341.304 3.376.912a6.308 6.308 0 0 1 2.368 2.368 6.546 6.546 0 0 1 .912 3.376 6.546 6.546 0 0 1-.912 3.376 6.308 6.308 0 0 1-2.368 2.368 6.546 6.546 0 0 1-3.376.912 6.546 6.546 0 0 1-3.376-.912 6.428 6.428 0 0 1-2.368-2.384 6.517 6.517 0 0 1-.912-3.36c0-1.205.304-2.325.912-3.36A6.55 6.55 0 0 1 7.64 5.656 6.517 6.517 0 0 1 11 4.744z",
-    stroke: "currentColor"
-  }), React__default.createElement("path", {
-    fill: "currentColor",
-    d: "M11.656 8.056v2.688h2.688v1.312h-2.688v2.688h-1.312v-2.688H7.656v-1.312h2.688V8.056z"
-  })));
-};
-
-var Apps = function Apps(props) {
-  return React__default.createElement("svg", _extends_1({
-    width: 22,
-    height: 22,
-    viewBox: "0 0 22 22"
-  }, props), React__default.createElement("g", {
-    fill: "none",
-    fillRule: "evenodd"
-  }, React__default.createElement("path", {
-    d: "M0 0h22v22H0z"
-  }), React__default.createElement("path", {
-    d: "M4.157 3.07C3.523 3.07 3 3.592 3 4.226v5.012c0 .635.523 1.157 1.157 1.157h5.012c.634 0 1.156-.522 1.156-1.157V4.226c0-.634-.522-1.156-1.156-1.156H4.157zm8.482 0c-.635 0-1.157.522-1.157 1.156v5.012c0 .635.522 1.157 1.157 1.157h5.012c.634 0 1.156-.522 1.156-1.157V4.226c0-.634-.522-1.156-1.156-1.156h-5.012zm-8.482.77h5.012c.22 0 .385.166.385.386v5.012c0 .22-.165.386-.385.386H4.157a.377.377 0 0 1-.386-.386V4.226c0-.22.165-.385.386-.385zm8.482 0h5.012c.22 0 .385.166.385.386v5.012c0 .22-.165.386-.385.386h-5.012a.377.377 0 0 1-.386-.386V4.226c0-.22.165-.385.386-.385zm2.463 7.706a.386.386 0 0 0-.343.391v2.892h-2.892a.386.386 0 1 0 0 .77h2.892v2.893a.386.386 0 1 0 .771 0V15.6h2.892a.386.386 0 1 0 0-.771H15.53v-2.892a.386.386 0 0 0-.428-.391zm-10.945.006c-.634 0-1.157.522-1.157 1.156v5.012c0 .635.523 1.157 1.157 1.157h5.012c.634 0 1.156-.522 1.156-1.157v-5.012c0-.634-.522-1.156-1.156-1.156H4.157zm0 .77h5.012c.22 0 .385.166.385.386v5.012c0 .22-.165.386-.385.386H4.157a.377.377 0 0 1-.386-.386v-5.012c0-.22.165-.385.386-.385z",
-    fill: "currentColor",
-    fillRule: "nonzero"
-  })));
-};
-
-var ArrowRight = function ArrowRight(props) {
-  return React__default.createElement("svg", _extends_1({
-    width: 12,
-    height: 19,
-    viewBox: "0 0 12 19",
-    fill: "none"
-  }, props), React__default.createElement("path", {
-    d: "M1.613 1L10.5 8.988m-9.049 8.779l9-8.795",
-    stroke: "currentColor"
-  }));
-};
-
-var Attention = function Attention(props) {
-  return React__default.createElement("svg", _extends_1({
-    width: 22,
-    height: 22,
-    viewBox: "0 0 22 22"
-  }, props), React__default.createElement("g", {
-    transform: "translate(4 4)",
-    fill: "none",
-    fillRule: "evenodd"
-  }, React__default.createElement("rect", {
-    fill: "#DAEAEF",
-    width: 14,
-    height: 14,
-    rx: 7
-  }), React__default.createElement("path", {
-    d: "M6.155 8.547h1.298V3.3H6.155v5.247zM6.045 11h1.529V9.537H6.045V11z",
-    fill: "#6D777B"
-  })));
-};
-
-var Blank = function Blank(props) {
-  return React__default.createElement("svg", _extends_1({
-    width: 22,
-    height: 22,
-    viewBox: "0 0 22 22"
-  }, props), React__default.createElement("path", {
-    d: "M17.155 2.375H4.845a.357.357 0 0 0-.345.345v16.559c0 .181.163.345.345.345h9.768c.09 0 .2-.037.254-.11l2.542-2.85a.345.345 0 0 0 .091-.236V2.72a.357.357 0 0 0-.345-.345zm-11.965.69h11.62v12.637h-2.25a.69.69 0 0 0-.69.69v2.542H5.19V3.064v.001zm9.369 15.742v-2.433h2.16l-2.16 2.433z",
-    fill: "currentColor"
-  }));
-};
-
-var Check = function Check(props) {
-  return React__default.createElement("svg", _extends_1({
-    width: 14,
-    height: 10,
-    viewBox: "0 0 14 10"
-  }, props), React__default.createElement("path", {
-    d: "M4.176 7.956L12.114 0l1.062 1.062-9 9L0 5.886l1.044-1.062z",
-    fill: "#21D48E",
-    fillRule: "evenodd"
-  }));
-};
-
-var Close = function Close(props) {
-  return React__default.createElement("svg", _extends_1({
-    width: 10,
-    height: 10
-  }, props), React__default.createElement("path", {
-    d: "M10 1.014L6.014 5 10 8.986 8.986 10 5 6.014 1.014 10 0 8.986 3.986 5 0 1.014 1.014 0 5 3.986 8.986 0z",
-    fill: "#6D777B",
-    fillRule: "evenodd",
-    opacity: 0.7
-  }));
-};
-
-var Copy = function Copy(props) {
-  return React__default.createElement("svg", _extends_1({
-    width: 22,
-    height: 22,
-    viewBox: "0 0 22 22"
-  }, props), React__default.createElement("path", {
-    d: "M12.263 5.806H6.651A1.66 1.66 0 0 0 5 7.457v9.892A1.66 1.66 0 0 0 6.651 19h5.612a1.66 1.66 0 0 0 1.652-1.651V7.457c0-.923-.746-1.651-1.652-1.651zm.994 11.525c0 .55-.443.994-.994.994H6.651a.993.993 0 0 1-.994-.994V7.457c0-.55.444-.994.994-.994h5.612c.55 0 .994.444.994.994v9.874zM16.72 4.65v9.892a1.66 1.66 0 0 1-1.651 1.651.337.337 0 0 1-.338-.337c0-.196.142-.338.338-.338.55 0 .994-.444.994-.994V4.651a.993.993 0 0 0-.994-.994H9.457a.993.993 0 0 0-.994.994.337.337 0 0 1-.338.338.327.327 0 0 1-.337-.338A1.688 1.688 0 0 1 9.458 3h5.61a1.66 1.66 0 0 1 1.652 1.651z",
-    fill: "currentColor"
-  }));
-};
-
-var Cross = function Cross(props) {
-  return React__default.createElement("svg", _extends_1({
-    width: 11,
-    height: 11,
-    viewBox: "0 0 11 11"
-  }, props), React__default.createElement("path", {
-    d: "M10.476 1.524L6.3 5.7l4.176 4.176-1.062 1.062-4.176-4.176-4.176 4.176L0 9.876 4.176 5.7 0 1.524 1.062.462l4.176 4.176L9.414.462z",
-    fill: "#FB7777",
-    fillRule: "evenodd"
-  }));
-};
-
-var Error$1 = function Error(props) {
-  return React__default.createElement("svg", _extends_1({
-    width: 22,
-    height: 22,
-    viewBox: "0 0 22 22"
-  }, props), React__default.createElement("g", {
-    transform: "translate(4 4)",
-    fill: "none",
-    fillRule: "evenodd"
-  }, React__default.createElement("rect", {
-    fill: "#FF445D",
-    width: 14,
-    height: 14,
-    rx: 7
-  }), React__default.createElement("path", {
-    d: "M6.155 8.547h1.298V3.3H6.155v5.247zM6.045 11h1.529V9.537H6.045V11z",
-    fill: "#FFF"
-  })));
-};
-
-var Filter = function Filter(props) {
-  return React__default.createElement("svg", _extends_1({
-    width: 22,
-    height: 22,
-    viewBox: "0 0 22 22",
-    fill: "none"
-  }, props), React__default.createElement("path", {
-    d: "M13.421 6.667h-9.79C3.275 6.667 3 6.377 3 6c0-.378.274-.667.632-.667h9.79C13.694 4.556 14.388 4 15.21 4c.822 0 1.537.556 1.79 1.333h1.368c.358 0 .632.29.632.667 0 .378-.274.667-.632.667H17C16.726 7.444 16.032 8 15.21 8c-.82 0-1.536-.556-1.789-1.333zM19 11c0 .378-.274.667-.632.667h-9.79C8.327 12.444 7.612 13 6.79 13c-.82 0-1.516-.556-1.79-1.333H3.632c-.358 0-.632-.29-.632-.667 0-.378.274-.667.632-.667H5C5.253 9.556 5.968 9 6.79 9c.82 0 1.515.556 1.789 1.333h9.79c.357 0 .631.29.631.667zm-.632 4.333H12.79C12.537 14.556 11.821 14 11 14c-.821 0-1.516.556-1.79 1.333H3.633c-.358 0-.632.29-.632.667 0 .378.274.667.632.667H9.21C9.463 17.444 10.179 18 11 18c.821 0 1.516-.556 1.79-1.333h5.578c.358 0 .632-.29.632-.667 0-.378-.274-.667-.632-.667z",
-    fill: "currentColor"
-  }));
-};
-
-var Fundraising = function Fundraising(props) {
-  return React__default.createElement("svg", _extends_1({
-    width: 22,
-    height: 22,
-    viewBox: "0 0 22 22"
-  }, props), React__default.createElement("g", {
-    fill: "none",
-    fillRule: "evenodd"
-  }, React__default.createElement("path", {
-    d: "M0 0h22v22H0z"
-  }), React__default.createElement("g", {
-    stroke: "currentColor"
-  }, React__default.createElement("path", {
-    d: "M6 12.26C6.402 13.75 9.137 15 12.475 15 16.089 15 19 13.534 19 11.875c0-.886-1.07-1.903-2.967-2.357",
-    strokeLinecap: "round",
-    strokeLinejoin: "round"
-  }), React__default.createElement("path", {
-    d: "M16 6.88C16 8.536 13.1 10 9.5 10S3 8.536 3 6.88C3 5.224 5.9 4 9.5 4S16 5.224 16 6.88"
-  }), React__default.createElement("path", {
-    d: "M6 12v2c0 1.667 2.9 3 6.5 3s6.5-1.333 6.5-3v-2c0 1.643-2.9 3.095-6.5 3.095S6 13.643 6 12z",
-    strokeLinecap: "round",
-    strokeLinejoin: "round"
-  }), React__default.createElement("path", {
-    d: "M9.5 10.095C5.9 10.095 3 8.643 3 7v2c0 1.667 2.9 3 6.5 3S16 10.667 16 9V7c0 1.643-2.9 3.095-6.5 3.095"
-  }))));
-};
-
-var Groups = function Groups(props) {
-  return React__default.createElement("svg", _extends_1({
-    width: 22,
-    height: 22,
-    viewBox: "0 0 22 22"
-  }, props), React__default.createElement("g", {
-    fill: "none",
-    fillRule: "evenodd"
-  }, React__default.createElement("path", {
-    d: "M0 0h22v22H0z"
-  }), React__default.createElement("path", {
-    d: "M14.928 16.169l.395.22c.264.146.396.337.396.571v1.186a.753.753 0 0 1-.235.564.773.773 0 0 1-.556.227H4.79a.773.773 0 0 1-.557-.227.753.753 0 0 1-.234-.564V16.96c0-.215.132-.4.396-.557l.395-.234 3.032-1.64c-.556-.44-.942-1.026-1.157-1.758-.215-.733-.322-1.314-.322-1.744V9.05c0-.332.102-.662.307-.989.205-.327.474-.623.806-.886.332-.264.71-.479 1.135-.645a3.497 3.497 0 0 1 1.282-.249c.44 0 .87.083 1.29.25.419.165.793.38 1.12.644.327.263.59.559.79.886.2.327.301.657.301.989v1.977c0 .479-.095 1.075-.286 1.787-.19.713-.559 1.29-1.106 1.729l2.945 1.626zM14.78 18v-.835a.391.391 0 0 0-.102-.073l-.117-.059a.071.071 0 0 1-.037-.014.479.479 0 0 0-.051-.03l-2.945-1.626a.99.99 0 0 1-.337-.315.863.863 0 0 1-.146-.432.856.856 0 0 1 .066-.454.913.913 0 0 1 .285-.366c.4-.313.674-.76.82-1.34.147-.581.22-1.058.22-1.429V9.05c0-.342-.256-.733-.769-1.172a2.672 2.672 0 0 0-1.794-.66c-.664 0-1.262.22-1.794.66-.533.44-.799.83-.799 1.172v1.977c0 .371.088.848.264 1.429.176.58.464 1.027.864 1.34.117.098.208.22.271.366a.856.856 0 0 1 .066.454.863.863 0 0 1-.146.432.865.865 0 0 1-.337.3L5.23 17.005a.06.06 0 0 0-.029.007.115.115 0 0 0-.03.022.432.432 0 0 0-.124.059l-.11.073V18h9.844zm3.428-4.16l.395.22c.264.146.396.336.396.57v1.173a.753.753 0 0 1-.234.564.773.773 0 0 1-.557.227h-1.553a5.372 5.372 0 0 0-.183-.542.952.952 0 0 0-.3-.396h1.89v-.835a4.202 4.202 0 0 0-.103-.066.408.408 0 0 0-.117-.05.092.092 0 0 0-.037-.023.402.402 0 0 1-.051-.022l-2.988-1.626a.99.99 0 0 1-.337-.315.863.863 0 0 1-.147-.432.856.856 0 0 1 .066-.454.913.913 0 0 1 .286-.366c.4-.322.68-.774.842-1.355.161-.581.242-1.052.242-1.414V6.721c0-.352-.264-.747-.791-1.187a2.756 2.756 0 0 0-1.817-.659 2.981 2.981 0 0 0-1.787.6 2.301 2.301 0 0 0-.586-.102l-.6-.03c.341-.4.78-.737 1.318-1.01a3.608 3.608 0 0 1 1.655-.41c.44 0 .872.085 1.297.256a4.52 4.52 0 0 1 1.135.652c.332.264.6.562.806.894.205.332.307.664.307.996v1.977c0 .469-.102 1.062-.307 1.78-.205.718-.581 1.292-1.128 1.721l2.988 1.64z",
-    fill: "currentColor"
-  })));
-};
-
-var Home = function Home(props) {
-  return React__default.createElement("svg", _extends_1({
-    width: 22,
-    height: 22,
-    viewBox: "0 0 22 22"
-  }, props), React__default.createElement("path", {
-    d: "M17.884 9.993c.08.085.121.198.115.314a.484.484 0 0 1-.129.312.667.667 0 0 1-.143.09.375.375 0 0 1-.157.033c-.06 0-.12-.01-.176-.033a.338.338 0 0 1-.137-.103l-.586-.614v6.53a.419.419 0 0 1-.13.307.419.419 0 0 1-.307.13h-3.052a.419.419 0 0 1-.307-.13.419.419 0 0 1-.13-.307V12.16H9.268l-.014 4.362a.419.419 0 0 1-.13.307.419.419 0 0 1-.307.13H5.78a.43.43 0 0 1-.437-.437V9.993l-.586.613a.484.484 0 0 1-.314.13.428.428 0 0 1-.312-.117.484.484 0 0 1-.13-.312.428.428 0 0 1 .116-.314L10.7 3.135a.463.463 0 0 1 .15-.102.456.456 0 0 1 .34 0 .339.339 0 0 1 .137.102l6.557 6.858zM15.8 9.147c0-.019.003-.036.013-.054l-4.799-5.016-4.81 5.016a.26.26 0 0 0 .005.054.223.223 0 0 1 .007.055v6.885h2.168l.014-4.363a.419.419 0 0 1 .129-.307.419.419 0 0 1 .307-.13h4.348a.419.419 0 0 1 .307.13c.083.08.13.191.13.307v4.363h2.18v-6.94z",
-    fill: "currentColor"
-  }));
-};
-
-var Identity = function Identity(props) {
-  return React__default.createElement("svg", _extends_1({
-    width: 22,
-    height: 22,
-    viewBox: "0 0 22 22"
-  }, props), React__default.createElement("g", {
-    fill: "none",
-    fillRule: "evenodd"
-  }, React__default.createElement("path", {
-    d: "M0 0h22v22H0z"
-  }), React__default.createElement("path", {
-    d: "M4.04 16.984V18h11.44v1H4.04a1.02 1.02 0 0 1-.731-.297A.943.943 0 0 1 3 18v-1.5c0-.281.173-.518.52-.71l.52-.29 4.566-2.078a3.891 3.891 0 0 1-.926-1.008 6.536 6.536 0 0 1-.61-1.21 6.431 6.431 0 0 1-.333-1.212A6.209 6.209 0 0 1 6.64 9V6.5c0-.417.135-.833.406-1.25a4.43 4.43 0 0 1 1.073-1.125 5.961 5.961 0 0 1 1.503-.813A4.82 4.82 0 0 1 11.32 3c.574 0 1.14.104 1.698.313a5.819 5.819 0 0 1 1.495.812c.439.333.796.708 1.073 1.125.276.417.414.833.414 1.25V9c0 .302-.032.651-.098 1.047a6.59 6.59 0 0 1-.324 1.21 5.86 5.86 0 0 1-.602 1.188 4.13 4.13 0 0 1-.91.992l1.381.61-.26 1-1.56-.703a1.045 1.045 0 0 1-.406-.32.958.958 0 0 1-.195-.477c-.01-.177.016-.344.082-.5a1.03 1.03 0 0 1 .308-.406c.564-.417.962-1.008 1.195-1.774.233-.765.349-1.388.349-1.867V6.5c0-.27-.108-.552-.325-.844a3.757 3.757 0 0 0-.837-.804 4.941 4.941 0 0 0-1.162-.61A3.744 3.744 0 0 0 11.32 4c-.444 0-.883.08-1.316.242a4.932 4.932 0 0 0-1.17.617 3.65 3.65 0 0 0-.837.813c-.211.292-.317.568-.317.828V9c0 .49.127 1.115.382 1.875.254.76.653 1.349 1.194 1.766a.969.969 0 0 1 .195 1.367c-.108.14-.243.247-.406.32l-4.566 2.078a1.041 1.041 0 0 0-.268.157c-.114.083-.171.223-.171.421zM18.5 16a.48.48 0 0 1 .352.148.48.48 0 0 1 .148.352.48.48 0 0 1-.148.352.48.48 0 0 1-.352.148H17v1.5a.48.48 0 0 1-.148.352.48.48 0 0 1-.352.148.48.48 0 0 1-.352-.148A.48.48 0 0 1 16 18.5V17h-1.5a.48.48 0 0 1-.352-.148A.48.48 0 0 1 14 16.5a.48.48 0 0 1 .148-.352A.48.48 0 0 1 14.5 16H16v-1.5a.48.48 0 0 1 .148-.352A.48.48 0 0 1 16.5 14a.48.48 0 0 1 .352.148.48.48 0 0 1 .148.352V16h1.5z",
-    fill: "currentColor"
-  })));
-};
-
-var Menu = function Menu(props) {
-  return React__default.createElement("svg", _extends_1({
-    width: 18,
-    height: 14,
-    viewBox: "0 0 18 14"
-  }, props), React__default.createElement("path", {
-    d: "M1 1h16M1 7h16M1 13h16",
-    stroke: "currentColor"
-  }));
-};
-
-var Notifications = function Notifications(props) {
-  return React__default.createElement("svg", _extends_1({
-    width: 22,
-    height: 22,
-    viewBox: "0 0 22 22"
-  }, props), React__default.createElement("g", {
-    fill: "none",
-    fillRule: "evenodd"
-  }, React__default.createElement("path", {
-    d: "M0 0h22v22H0z"
-  }), React__default.createElement("path", {
-    d: "M17.271 13.367c.254.313.455.591.601.835a.731.731 0 0 1 .044.733.718.718 0 0 1-.571.424c-.264.04-.469.059-.616.059H13.99c0 .693-.244 1.284-.732 1.772a2.414 2.414 0 0 1-1.773.733 2.414 2.414 0 0 1-1.772-.733 2.414 2.414 0 0 1-.733-1.772H6.3c-.225 0-.457-.027-.696-.08a.732.732 0 0 1-.52-.403c-.117-.245-.107-.496.03-.755a6.56 6.56 0 0 1 .556-.857c.264-.342.552-.73.864-1.164.313-.435.469-.887.469-1.355V7.742c0-.664.115-1.286.344-1.867.23-.582.545-1.09.945-1.524.4-.434.874-.776 1.42-1.025a4.191 4.191 0 0 1 1.759-.374c.634 0 1.225.125 1.772.374a4.46 4.46 0 0 1 1.428 1.025c.406.435.723.942.953 1.524a5.04 5.04 0 0 1 .344 1.867v3.062c0 .478.149.942.447 1.391.297.45.583.84.856 1.172zm-5.786 3.574c.42 0 .78-.149 1.077-.446.298-.298.447-.657.447-1.077H9.962c0 .42.149.779.447 1.077.298.297.656.446 1.076.446zm5.347-2.52a8.139 8.139 0 0 0-.337-.425c-.322-.39-.657-.856-1.003-1.398a3.262 3.262 0 0 1-.52-1.794V7.742c0-.527-.09-1.02-.271-1.48a3.85 3.85 0 0 0-.74-1.2 3.511 3.511 0 0 0-1.106-.813c-.425-.2-.886-.3-1.384-.3-.489 0-.945.1-1.37.3-.425.2-.793.47-1.106.813a3.744 3.744 0 0 0-.732 1.2 4.102 4.102 0 0 0-.264 1.48v3.062c0 .634-.183 1.218-.55 1.75a46.606 46.606 0 0 1-1.157 1.619c-.063.088-.12.17-.168.249h10.708z",
-    fill: "currentColor"
-  })));
-};
-
-var Permissions = function Permissions(props) {
-  return React__default.createElement("svg", _extends_1({
-    width: 22,
-    height: 22,
-    viewBox: "0 0 22 22"
-  }, props), React__default.createElement("g", {
-    fill: "none",
-    fillRule: "evenodd"
-  }, React__default.createElement("path", {
-    d: "M0 0h22v22H0z"
-  }), React__default.createElement("g", {
-    stroke: "currentColor"
-  }, React__default.createElement("path", {
-    d: "M11.036 3.143L3.578 6.357V7.43h14.916V6.357l-7.458-3.214zm6.88 12.393H4.071c-.318 0-.577.242-.577.535v1.072h15V16.07c0-.293-.26-.535-.578-.535z",
-    strokeLinecap: "round",
-    strokeLinejoin: "round"
-  }), React__default.createElement("path", {
-    d: "M5 7v8.034M8 7v8.275M11 7v8.034M14 7v8.275M17 7v8.275"
-  }))));
-};
-
-var Plus = function Plus(props) {
-  return React__default.createElement("svg", _extends_1({
-    width: 24,
-    height: 24,
-    viewBox: "0 0 24 24"
-  }, props), React__default.createElement("path", {
-    d: "M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z",
-    fill: "currentColor"
-  }));
-};
-
-var Remove = function Remove(props) {
-  return React__default.createElement("svg", _extends_1({
-    width: 22,
-    height: 22,
-    viewBox: "0 0 22 22"
-  }, props), React__default.createElement("g", {
-    fill: "none",
-    fillRule: "evenodd"
-  }, React__default.createElement("path", {
-    d: "M0 0h22v22H0z"
-  }), React__default.createElement("path", {
-    d: "M11 4.744c1.216 0 2.341.304 3.376.912a6.308 6.308 0 0 1 2.368 2.368 6.546 6.546 0 0 1 .912 3.376 6.546 6.546 0 0 1-.912 3.376 6.308 6.308 0 0 1-2.368 2.368 6.546 6.546 0 0 1-3.376.912 6.546 6.546 0 0 1-3.376-.912 6.428 6.428 0 0 1-2.368-2.384 6.517 6.517 0 0 1-.912-3.36c0-1.205.304-2.325.912-3.36A6.55 6.55 0 0 1 7.64 5.656 6.517 6.517 0 0 1 11 4.744z",
-    stroke: "currentColor"
-  }), React__default.createElement("path", {
-    fill: "currentColor",
-    d: "M14.344 10.744v1.312H7.656v-1.312z"
-  })));
-};
-
-var Settings = function Settings(props) {
-  return React__default.createElement("svg", _extends_1({
-    width: 22,
-    height: 22,
-    viewBox: "0 0 22 22"
-  }, props), React__default.createElement("g", {
-    fill: "none",
-    fillRule: "evenodd"
-  }, React__default.createElement("path", {
-    d: "M0 0h22v22H0z"
-  }), React__default.createElement("path", {
-    d: "M18.063 9.08c.224.038.437.148.637.329.2.18.3.403.3.666v.938c0 .254-.1.459-.3.615-.2.156-.413.264-.637.322l-1.216.293a6.84 6.84 0 0 1-.154.418 4.008 4.008 0 0 1-.183.388l.644 1.084c.127.195.205.42.235.674a.766.766 0 0 1-.235.659l-.659.659a.847.847 0 0 1-.674.256 1.38 1.38 0 0 1-.688-.212l-1.055-.674a7.697 7.697 0 0 1-.41.19 4.595 4.595 0 0 1-.44.162l-.263 1.216a1.29 1.29 0 0 1-.33.637c-.18.2-.403.3-.666.3h-.938a.743.743 0 0 1-.615-.3 1.749 1.749 0 0 1-.322-.637L9.8 15.86a6.001 6.001 0 0 1-.469-.168 4.816 4.816 0 0 1-.454-.213l-1.084.689a1.308 1.308 0 0 1-.681.212.813.813 0 0 1-.667-.256l-.674-.66a.785.785 0 0 1-.22-.658c.03-.254.103-.479.22-.674l.689-1.143a8.068 8.068 0 0 1-.169-.359 3.029 3.029 0 0 1-.139-.388l-1.215-.293a1.749 1.749 0 0 1-.638-.322.743.743 0 0 1-.3-.615v-.938c0-.263.1-.486.3-.666.2-.181.413-.29.638-.33l1.2-.264a3.44 3.44 0 0 1 .147-.41c.059-.136.117-.268.176-.395l-.689-1.143a1.664 1.664 0 0 1-.22-.674.785.785 0 0 1 .22-.659l.674-.659a.813.813 0 0 1 .667-.256c.268.014.495.085.68.212l1.085.689a5.325 5.325 0 0 1 .908-.381l.308-1.202a1.58 1.58 0 0 1 .307-.637.76.76 0 0 1 .63-.3h.938c.263 0 .483.1.659.3.176.2.288.408.337.623l.264 1.23a6.533 6.533 0 0 1 .85.352l1.054-.674a1.38 1.38 0 0 1 .688-.212.847.847 0 0 1 .674.256l.66.66a.766.766 0 0 1 .234.658 1.55 1.55 0 0 1-.235.674l-.644 1.084c.068.137.134.276.198.418.063.141.114.29.153.446l1.201.264zm0 1.86l.014-.836a.515.515 0 0 0-.205-.102l-1.743-.396-.161-.512a2.474 2.474 0 0 0-.117-.352 4.109 4.109 0 0 0-.176-.366l-.235-.469.923-1.538a.474.474 0 0 0 .066-.117.28.28 0 0 0 .022-.088l-.615-.6a.348.348 0 0 0-.19.058l-1.51.967-.483-.25a11.505 11.505 0 0 0-.351-.168 1.904 1.904 0 0 0-.366-.124l-.513-.176-.381-1.772a.431.431 0 0 0-.044-.11l-.03-.051h-.864a.34.34 0 0 0-.058.087.52.52 0 0 0-.044.147l-.425 1.7-.498.16a4.51 4.51 0 0 0-.762.322l-.483.25-1.567-.997-.074-.036a.671.671 0 0 0-.088-.037l-.615.615c0 .03.008.064.022.103a.898.898 0 0 0 .066.132l.952 1.582-.234.454a8.76 8.76 0 0 0-.154.351 2.79 2.79 0 0 0-.11.323l-.16.512-1.773.396a.537.537 0 0 0-.096.044.199.199 0 0 1-.066.03v.863c.02.02.05.037.088.052a.81.81 0 0 0 .147.036l1.714.44.16.498a3.144 3.144 0 0 0 .265.615l.22.454-.953 1.597a.474.474 0 0 0-.066.117.298.298 0 0 0-.022.103l.615.6c.03 0 .062-.007.096-.022a.59.59 0 0 0 .095-.051l1.538-.982.483.25a4.51 4.51 0 0 0 .762.322l.498.16.44 1.73c.01.048.022.09.036.124a.254.254 0 0 0 .051.08h.85a.515.515 0 0 0 .103-.19l.38-1.743.513-.176a5.14 5.14 0 0 0 .703-.293l.484-.249 1.538.982.073.036a.72.72 0 0 0 .088.037l.615-.615a.298.298 0 0 0-.022-.103.826.826 0 0 0-.066-.132l-.923-1.523.235-.469c.058-.107.11-.217.154-.33.044-.112.085-.227.124-.344l.161-.483 1.743-.44a.635.635 0 0 0 .125-.036.254.254 0 0 0 .08-.052zM11.5 7.687c.781 0 1.448.273 2 .82a2.7 2.7 0 0 1 .827 1.992 2.7 2.7 0 0 1-.827 1.992 2.737 2.737 0 0 1-2 .82 2.72 2.72 0 0 1-1.985-.82 2.7 2.7 0 0 1-.828-1.992 2.7 2.7 0 0 1 .828-1.992 2.72 2.72 0 0 1 1.985-.82zm0 4.687c.518 0 .96-.183 1.326-.55.366-.366.549-.807.549-1.325 0-.518-.183-.96-.55-1.326a1.806 1.806 0 0 0-1.325-.549c-.518 0-.96.183-1.326.55a1.804 1.804 0 0 0-.549 1.325c0 .518.183.96.55 1.326.366.366.807.549 1.325.549z",
-    fill: "currentColor"
-  })));
-};
-
-var Share = function Share(props) {
-  return React__default.createElement("svg", _extends_1({
-    width: 16,
-    height: 14,
-    viewBox: "0 0 16 14"
-  }, props), React__default.createElement("g", {
-    fill: "none",
-    fillRule: "evenodd"
-  }, React__default.createElement("path", {
-    d: "M-3-4h22v22H-3z"
-  }), React__default.createElement("path", {
-    d: "M.531 13.719a.44.44 0 0 1-.312-.117.522.522 0 0 1-.157-.305c0-.042-.018-.3-.054-.774-.037-.474-.013-1.054.07-1.742.083-.687.258-1.43.524-2.226A6.74 6.74 0 0 1 1.89 6.313 6.89 6.89 0 0 1 3.125 5.18a7.514 7.514 0 0 1 1.523-.836 9.899 9.899 0 0 1 1.797-.54c.64-.13 1.326-.205 2.055-.226L8.516.781a.48.48 0 0 1 .078-.273.52.52 0 0 1 .203-.18.537.537 0 0 1 .281-.047c.094.01.177.047.25.11l6.485 5.312a.513.513 0 0 1 .187.39.498.498 0 0 1-.188.391L9.329 11.86a.453.453 0 0 1-.25.11.537.537 0 0 1-.281-.047.501.501 0 0 1-.203-.188.493.493 0 0 1-.078-.265L8.5 8.594c-1.75 0-3.125.234-4.125.703s-1.75.99-2.25 1.562c-.5.573-.815 1.107-.945 1.602-.13.495-.196.763-.196.805a.538.538 0 0 1-.132.32.387.387 0 0 1-.305.133H.53zm8.485-6.125c.062 0 .125.013.187.039a.72.72 0 0 1 .172.101.777.777 0 0 1 .102.164.473.473 0 0 1 .039.196v2.312l5.203-4.312-5.203-4.266v2.25a.48.48 0 0 1-.149.352.48.48 0 0 1-.351.148c-.709 0-1.375.05-2 .149a8.793 8.793 0 0 0-1.743.453 7.012 7.012 0 0 0-1.46.75 5.65 5.65 0 0 0-1.157 1.039 6.162 6.162 0 0 0-1.148 1.89 8.291 8.291 0 0 0-.492 1.922c.27-.375.604-.752 1-1.133.395-.38.903-.72 1.523-1.023.62-.302 1.375-.55 2.266-.742.89-.193 1.96-.29 3.21-.29z",
-    fill: "currentColor"
-  })));
-};
-
-var Time = function Time(props) {
-  return React__default.createElement("svg", _extends_1({
-    width: 13,
-    height: 13,
-    viewBox: "0 0 13 13"
-  }, props), React__default.createElement("path", {
-    d: "M6.5 11.76c.8 0 1.535-.2 2.205-.6.66-.39 1.185-.92 1.575-1.59.39-.67.585-1.405.585-2.205S10.67 5.83 10.28 5.16a4.403 4.403 0 0 0-1.575-1.575A4.305 4.305 0 0 0 6.5 3c-.8 0-1.535.195-2.205.585-.66.39-1.185.915-1.575 1.575a4.305 4.305 0 0 0-.585 2.205c0 .8.195 1.535.585 2.205.39.67.915 1.2 1.575 1.59.67.4 1.405.6 2.205.6zm0-10.02c1.03 0 1.98.255 2.85.765.85.49 1.52 1.16 2.01 2.01.51.87.765 1.82.765 2.85s-.255 1.98-.765 2.85c-.49.85-1.16 1.52-2.01 2.01-.87.51-1.82.765-2.85.765s-1.98-.255-2.85-.765a5.386 5.386 0 0 1-2.01-2.01 5.535 5.535 0 0 1-.765-2.85c0-1.03.255-1.98.765-2.85.49-.85 1.16-1.52 2.01-2.01.87-.51 1.82-.765 2.85-.765zm.33 2.52v3.315L9.32 9.06l-.51.765L5.885 8.01V4.26h.945zM3.95 1.395l-2.895 2.37L.26 2.82 3.125.45l.825.945zm8.79 1.425l-.795.945-2.895-2.46.825-.945 2.865 2.46z",
-    fill: "#6D777B",
-    fillRule: "evenodd",
-    opacity: 0.75
-  }));
-};
-
-var Wallet = function Wallet(props) {
-  return React__default.createElement("svg", _extends_1({
-    width: 22,
-    height: 22,
-    viewBox: "0 0 22 22"
-  }, props), React__default.createElement("g", {
-    fill: "none",
-    fillRule: "evenodd"
-  }, React__default.createElement("path", {
-    d: "M0 0h22v22H0z"
-  }), React__default.createElement("path", {
-    d: "M19 7.186v8.642c0 .39-.137.723-.41.996-.274.274-.606.41-.996.41H5.406c-.39 0-.722-.136-.996-.41a1.356 1.356 0 0 1-.41-.996v-7.5c0-.38.137-.708.41-.981.274-.274.6-.415.982-.425h.468V5.047c0-.39.14-.723.418-.996a1.36 1.36 0 0 1 .989-.41l10.59 2.109c.528.146.85.38.967.703.117.322.176.567.176.733zM6.798 5.046v1.876h10.327c.186.01.308-.03.366-.117l.088-.132L7.237 4.578a.467.467 0 0 0-.44.469zm11.264 10.782V7.391c0 .156-.1.273-.3.351-.2.078-.412.117-.637.117H5.406a.45.45 0 0 0-.33.14.45.45 0 0 0-.138.33v7.5a.45.45 0 0 0 .139.329.45.45 0 0 0 .33.139h12.187a.45.45 0 0 0 .33-.14.45.45 0 0 0 .139-.329zm-11.25-4.687c.254 0 .474.092.66.278a.901.901 0 0 1 .278.66.894.894 0 0 1-.278.666.913.913 0 0 1-.66.27.906.906 0 0 1-.666-.27.906.906 0 0 1-.271-.667c0-.254.09-.474.271-.66a.894.894 0 0 1 .667-.277z",
-    fill: "currentColor"
-  })));
-};
-
-/* eslint-disable prettier/prettier */
-
-function _arrayWithHoles(arr) {
-  if (Array.isArray(arr)) return arr;
-}
-
-var arrayWithHoles = _arrayWithHoles;
-
-function _iterableToArrayLimit(arr, i) {
-  var _arr = [];
-  var _n = true;
-  var _d = false;
-  var _e = undefined;
-
-  try {
-    for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {
-      _arr.push(_s.value);
-
-      if (i && _arr.length === i) break;
-    }
-  } catch (err) {
-    _d = true;
-    _e = err;
-  } finally {
-    try {
-      if (!_n && _i["return"] != null) _i["return"]();
-    } finally {
-      if (_d) throw _e;
-    }
-  }
-
-  return _arr;
-}
-
-var iterableToArrayLimit = _iterableToArrayLimit;
-
-function _nonIterableRest() {
-  throw new TypeError("Invalid attempt to destructure non-iterable instance");
-}
-
-var nonIterableRest = _nonIterableRest;
-
-function _slicedToArray(arr, i) {
-  return arrayWithHoles(arr) || iterableToArrayLimit(arr, i) || nonIterableRest();
-}
-
-var slicedToArray = _slicedToArray;
-
-var aragon = {
-  Grey: {
-    "Black Ash": "#3B3B3B",
-    "Dim Grey": "#707070",
-    "Dust Grey": "#969696",
-    "Light Grey": "#B3B3B3",
-    Gainsboro: "#E6E6E6",
-    Alabaster: "#F2F2F2"
-  },
-  Rain: {
-    Shark: "#1F2323",
-    Atomic: "#455559",
-    Slate: "#6D8088",
-    "Aqua Island": "#9ECDDB",
-    "Rain Sky": "#DCEAEF",
-    "Aqua Blue": "#F7FBFD"
-  },
-  Blue: {
-    Lochmara: "#028BCF",
-    Danube: "#7FADDC",
-    Spindle: "#B3CFEA",
-    Solitude: "#ECF8FE"
-  },
-  Sea: {
-    "Light Sea": "#21B7C4",
-    Turquoise: "#50E2C3",
-    "Blizzard Blue": "#ACECE7"
-  },
-  Purple: {
-    Indigo: "#4A2DBE",
-    Portage: "#A684F5",
-    Lavender: "#EDE5FF"
-  },
-  Eagle: {
-    "Dark Cerulean": "#00A4D1",
-    Cerulean: "#00B4E6",
-    "Dark Turquoise": "#00CBE6",
-    "Dark Opal": "#00DBCD",
-    Opal: "#00F0E0"
-  },
-  Gold: {
-    Brandy: "#DAC08B",
-    Beige: "#FFF9EB"
-  },
-  Red: {
-    "Salmon Red": "#FB7979"
-  },
-  Green: {
-    "Spring Green": "#21D48F"
-  },
-  Black: {
-    Black: "#000000"
-  },
-  White: {
-    White: "#FFFFFF"
-  },
-  "Aragon Brand": {
-    Primary: "=Purple.Indigo",
-    Secondary: "=Sea.Turquoise",
-    "Black Ash": "=Grey.Black Ash",
-    "Gradient Start": "=Eagle.Cerulean",
-    "Gradient End": "=Eagle.Opal"
-  },
-  "Aragon UI": {
-    gradientStart: "=Eagle.Cerulean",
-    gradientEnd: "=Eagle.Opal",
-    gradientStartActive: "=Eagle.Dark Cerulean",
-    gradientEndActive: "=Eagle.Dark Opal",
-    gradientText: "=White.White",
-    mainBackground: "=Rain.Aqua Blue",
-    mainBgGradientStart: "=Rain.Rain Sky",
-    mainBgGradientEnd: "=Rain.Aqua Blue",
-    secondaryBackground: "=Rain.Rain Sky",
-    contentBackground: "=White.White",
-    contentBackgroundActive: "=Grey.Alabaster",
-    contentBorder: "=Grey.Gainsboro",
-    contentBorderActive: "=Grey.Light Grey",
-    disabled: "=Grey.Gainsboro",
-    disabledText: "=White.White",
-    infoBackground: "=Blue.Solitude",
-    infoPermissionsBackground: "=Gold.Beige",
-    infoPermissionsIcon: "=Gold.Brandy",
-    shadow: "=Grey.Alabaster",
-    text: "=Black.Black",
-    textPrimary: "=Aragon UI.text",
-    textDimmed: "=Grey.Black Ash",
-    textSecondary: "=Grey.Dim Grey",
-    textTertiary: "=Grey.Light Grey",
-    accent: "=Eagle.Dark Turquoise",
-    positive: "=Green.Spring Green",
-    positiveText: "=White.White",
-    negative: "=Red.Salmon Red",
-    negativeText: "=White.White",
-    badgeAppBackground: "=Purple.Lavender",
-    badgeAppForeground: "=Purple.Portage",
-    badgeIdentityBackground: "=Rain.Rain Sky",
-    badgeIdentityForeground: "=Rain.Slate",
-    badgeNotificationBackground: "=Aragon UI.positive",
-    badgeNotificationForeground: "=Aragon UI.positiveText",
-    badgeInfoBackground: "=Rain.Rain Sky",
-    badgeInfoForeground: "=Rain.Slate",
-    selectionBackground: "#B2D7FF",
-    selectionForeground: "=Aragon UI.textPrimary"
-  },
-  "Aragon UI Dark": {
-    gradientStart: "=Eagle.Cerulean",
-    gradientEnd: "=Eagle.Opal",
-    gradientStartActive: "=Eagle.Dark Cerulean",
-    gradientEndActive: "=Eagle.Dark Opal",
-    gradientText: "=White.White",
-    mainBackground: "=Rain.Aqua Blue",
-    mainBgGradientStart: "=Rain.Rain Sky",
-    mainBgGradientEnd: "=Rain.Aqua Blue",
-    secondaryBackground: "=Rain.Rain Sky",
-    contentBackground: "=Rain.Shark",
-    contentBackgroundActive: "=Grey.Alabaster",
-    contentBorder: "=Grey.Gainsboro",
-    contentBorderActive: "=Grey.Light Grey",
-    disabled: "=Grey.Light Grey",
-    disabledText: "=Grey.Dim Grey",
-    infoBackground: "=Blue.Solitude",
-    infoPermissionsBackground: "=Gold.Beige",
-    infoPermissionsIcon: "=Gold.Brandy",
-    shadow: "=Grey.Alabaster",
-    text: "=White.White",
-    textPrimary: "=Aragon UI Dark.text",
-    textDimmed: "=Grey.Alabaster",
-    textSecondary: "=Grey.Dust Grey",
-    textTertiary: "=Grey.Dim Grey",
-    accent: "=Eagle.Dark Turquoise",
-    positive: "=Green.Spring Green",
-    positiveText: "=White.White",
-    negative: "=Red.Salmon Red",
-    negativeText: "=White.White",
-    badgeAppBackground: "=Purple.Lavender",
-    badgeAppForeground: "=Purple.Portage",
-    badgeIdentityBackground: "=Rain.Rain Sky",
-    badgeIdentityForeground: "=Rain.Slate",
-    badgeNotificationBackground: "=Aragon UI Dark.positive",
-    badgeNotificationForeground: "=Aragon UI Dark.positiveText",
-    badgeInfoBackground: "=Rain.Rain Sky",
-    badgeInfoForeground: "=Rain.Slate",
-    selectionBackground: "#B2D7FF",
-    selectionForeground: "=Aragon UI.textPrimary"
-  }
-}; // These need to match the names in the Open Color palettes
-
-var THEME_NAME = 'Aragon UI';
-var THEME_DARK_NAME = 'Aragon UI Dark';
-var BRAND_NAME = 'Aragon Brand'; // Name of the group a given palette belong to
-
-var getGroupName = function getGroupName(name) {
-  if (name === THEME_NAME) return 'theme';
-  if (name === THEME_DARK_NAME) return 'themeDark';
-  if (name === BRAND_NAME) return 'brand';
-  return 'colors';
-}; // Resolve a single color
-
-
-var resolveColor = function resolveColor(value, palettes) {
-  // already resolved color
-  if (!value.startsWith('=')) {
-    return value;
-  }
-
-  var _value$slice$split = value.slice(1).split('.'),
-      _value$slice$split2 = slicedToArray(_value$slice$split, 2),
-      paletteName = _value$slice$split2[0],
-      key = _value$slice$split2[1];
-
-  var color = palettes[paletteName] && palettes[paletteName][key];
-
-  if (!color) {
-    throw new Error("resolveColor: ".concat(value, " doesn\u2019t seem to exist"));
-  } // follow the references until we find one
-
-
-  if (color.startsWith('=')) {
-    return resolveColor(color, palettes);
-  }
-
-  return color;
-}; // Resolve all the colors in a palette
-
-
-var resolveColors = function resolveColors(palette, palettes) {
-  return Object.entries(palette).reduce(function (pal, _ref) {
-    var _ref2 = slicedToArray(_ref, 2),
-        name = _ref2[0],
-        value = _ref2[1];
-
-    if (typeof value === 'string') {
-      pal[name] = resolveColor(value, palettes);
-    }
-
-    return pal;
-  }, {});
-}; // Prepare groups from the palettes: theme, themeDark, brand and colors.
-
-
-var groups = function groups(palettes) {
-  return Object.entries(palettes).reduce(function (groups, _ref3) {
-    var _ref4 = slicedToArray(_ref3, 2),
-        paletteName = _ref4[0],
-        palette = _ref4[1];
-
-    var groupName = getGroupName(paletteName);
-
-    if (groupName === 'colors') {
-      groups.colors[paletteName] = resolveColors(palette, palettes);
-    } else {
-      groups[groupName] = resolveColors(palette, palettes);
-    }
-
-    return groups;
-  }, {
-    colors: {}
-  });
-};
-
-var _groups = groups(aragon),
-    themeDark = _groups.themeDark,
-    theme = _groups.theme,
-    brand = _groups.brand,
-    colors = _groups.colors;
-
-function toInteger (dirtyNumber) {
-  if (dirtyNumber === null || dirtyNumber === true || dirtyNumber === false) {
-    return NaN
-  }
-
-  var number = Number(dirtyNumber);
-
-  if (isNaN(number)) {
-    return number
-  }
-
-  return number < 0 ? Math.ceil(number) : Math.floor(number)
-}
-
-var MILLISECONDS_IN_MINUTE = 60000;
-
-/**
- * Google Chrome as of 67.0.3396.87 introduced timezones with offset that includes seconds.
- * They usually appear for dates that denote time before the timezones were introduced
- * (e.g. for 'Europe/Prague' timezone the offset is GMT+00:57:44 before 1 October 1891
- * and GMT+01:00:00 after that date)
- *
- * Date#getTimezoneOffset returns the offset in minutes and would return 57 for the example above,
- * which would lead to incorrect calculations.
- *
- * This function returns the timezone offset in milliseconds that takes seconds in account.
- */
-function getTimezoneOffsetInMilliseconds (dirtyDate) {
-  var date = new Date(dirtyDate.getTime());
-  var baseTimezoneOffset = date.getTimezoneOffset();
-  date.setSeconds(0, 0);
-  var millisecondsPartOfTimezoneOffset = date.getTime() % MILLISECONDS_IN_MINUTE;
-
-  return baseTimezoneOffset * MILLISECONDS_IN_MINUTE + millisecondsPartOfTimezoneOffset
-}
-
-var MILLISECONDS_IN_HOUR = 3600000;
-var MILLISECONDS_IN_MINUTE$1 = 60000;
-var DEFAULT_ADDITIONAL_DIGITS = 2;
-
-var patterns = {
-  dateTimeDelimeter: /[T ]/,
-  plainTime: /:/,
-  timeZoneDelimeter: /[Z ]/i,
-
-  // year tokens
-  YY: /^(\d{2})$/,
-  YYY: [
-    /^([+-]\d{2})$/, // 0 additional digits
-    /^([+-]\d{3})$/, // 1 additional digit
-    /^([+-]\d{4})$/ // 2 additional digits
-  ],
-  YYYY: /^(\d{4})/,
-  YYYYY: [
-    /^([+-]\d{4})/, // 0 additional digits
-    /^([+-]\d{5})/, // 1 additional digit
-    /^([+-]\d{6})/ // 2 additional digits
-  ],
-
-  // date tokens
-  MM: /^-(\d{2})$/,
-  DDD: /^-?(\d{3})$/,
-  MMDD: /^-?(\d{2})-?(\d{2})$/,
-  Www: /^-?W(\d{2})$/,
-  WwwD: /^-?W(\d{2})-?(\d{1})$/,
-
-  HH: /^(\d{2}([.,]\d*)?)$/,
-  HHMM: /^(\d{2}):?(\d{2}([.,]\d*)?)$/,
-  HHMMSS: /^(\d{2}):?(\d{2}):?(\d{2}([.,]\d*)?)$/,
-
-  // timezone tokens
-  timezone: /([Z+-].*)$/,
-  timezoneZ: /^(Z)$/,
-  timezoneHH: /^([+-])(\d{2})$/,
-  timezoneHHMM: /^([+-])(\d{2}):?(\d{2})$/
-};
-
-/**
- * @name toDate
- * @category Common Helpers
- * @summary Convert the given argument to an instance of Date.
- *
- * @description
- * Convert the given argument to an instance of Date.
- *
- * If the argument is an instance of Date, the function returns its clone.
- *
- * If the argument is a number, it is treated as a timestamp.
- *
- * If an argument is a string, the function tries to parse it.
- * Function accepts complete ISO 8601 formats as well as partial implementations.
- * ISO 8601: http://en.wikipedia.org/wiki/ISO_8601
- * If the function cannot parse the string or the values are invalid, it returns Invalid Date.
- *
- * If the argument is none of the above, the function returns Invalid Date.
- *
- * **Note**: *all* Date arguments passed to any *date-fns* function is processed by `toDate`.
- * All *date-fns* functions will throw `RangeError` if `options.additionalDigits` is not 0, 1, 2 or undefined.
- *
- * @param {Date|String|Number} argument - the value to convert
- * @param {Options} [options] - the object with options. See [Options]{@link https://date-fns.org/docs/Options}
- * @param {0|1|2} [options.additionalDigits=2] - the additional number of digits in the extended year format
- * @returns {Date} the parsed date in the local time zone
- * @throws {TypeError} 1 argument required
- * @throws {RangeError} `options.additionalDigits` must be 0, 1 or 2
- *
- * @example
- * // Convert string '2014-02-11T11:30:30' to date:
- * var result = toDate('2014-02-11T11:30:30')
- * //=> Tue Feb 11 2014 11:30:30
- *
- * @example
- * // Convert string '+02014101' to date,
- * // if the additional number of digits in the extended year format is 1:
- * var result = toDate('+02014101', {additionalDigits: 1})
- * //=> Fri Apr 11 2014 00:00:00
- */
-function toDate (argument, dirtyOptions) {
-  if (arguments.length < 1) {
-    throw new TypeError('1 argument required, but only ' + arguments.length + ' present')
-  }
-
-  if (argument === null) {
-    return new Date(NaN)
-  }
-
-  var options = dirtyOptions || {};
-
-  var additionalDigits = options.additionalDigits == null ? DEFAULT_ADDITIONAL_DIGITS : toInteger(options.additionalDigits);
-  if (additionalDigits !== 2 && additionalDigits !== 1 && additionalDigits !== 0) {
-    throw new RangeError('additionalDigits must be 0, 1 or 2')
-  }
-
-  // Clone the date
-  if (argument instanceof Date ||
-    (typeof argument === 'object' && Object.prototype.toString.call(argument) === '[object Date]')
-  ) {
-    // Prevent the date to lose the milliseconds when passed to new Date() in IE10
-    return new Date(argument.getTime())
-  } else if (typeof argument === 'number' || Object.prototype.toString.call(argument) === '[object Number]') {
-    return new Date(argument)
-  } else if (!(typeof argument === 'string' || Object.prototype.toString.call(argument) === '[object String]')) {
-    return new Date(NaN)
-  }
-
-  var dateStrings = splitDateString(argument);
-
-  var parseYearResult = parseYear(dateStrings.date, additionalDigits);
-  var year = parseYearResult.year;
-  var restDateString = parseYearResult.restDateString;
-
-  var date = parseDate(restDateString, year);
-
-  if (isNaN(date)) {
-    return new Date(NaN)
-  }
-
-  if (date) {
-    var timestamp = date.getTime();
-    var time = 0;
-    var offset;
-
-    if (dateStrings.time) {
-      time = parseTime(dateStrings.time);
-
-      if (isNaN(time)) {
-        return new Date(NaN)
-      }
-    }
-
-    if (dateStrings.timezone) {
-      offset = parseTimezone(dateStrings.timezone);
-      if (isNaN(offset)) {
-        return new Date(NaN)
-      }
-    } else {
-      // get offset accurate to hour in timezones that change offset
-      offset = getTimezoneOffsetInMilliseconds(new Date(timestamp + time));
-      offset = getTimezoneOffsetInMilliseconds(new Date(timestamp + time + offset));
-    }
-
-    return new Date(timestamp + time + offset)
-  } else {
-    return new Date(NaN)
-  }
-}
-
-function splitDateString (dateString) {
-  var dateStrings = {};
-  var array = dateString.split(patterns.dateTimeDelimeter);
-  var timeString;
-
-  if (patterns.plainTime.test(array[0])) {
-    dateStrings.date = null;
-    timeString = array[0];
-  } else {
-    dateStrings.date = array[0];
-    timeString = array[1];
-    if (patterns.timeZoneDelimeter.test(dateStrings.date)) {
-      dateStrings.date = dateString.split(patterns.timeZoneDelimeter)[0];
-      timeString = dateString.substr(dateStrings.date.length, dateString.length);
-    }
-  }
-
-  if (timeString) {
-    var token = patterns.timezone.exec(timeString);
-    if (token) {
-      dateStrings.time = timeString.replace(token[1], '');
-      dateStrings.timezone = token[1];
-    } else {
-      dateStrings.time = timeString;
-    }
-  }
-
-  return dateStrings
-}
-
-function parseYear (dateString, additionalDigits) {
-  var patternYYY = patterns.YYY[additionalDigits];
-  var patternYYYYY = patterns.YYYYY[additionalDigits];
-
-  var token;
-
-  // YYYY or ±YYYYY
-  token = patterns.YYYY.exec(dateString) || patternYYYYY.exec(dateString);
-  if (token) {
-    var yearString = token[1];
-    return {
-      year: parseInt(yearString, 10),
-      restDateString: dateString.slice(yearString.length)
-    }
-  }
-
-  // YY or ±YYY
-  token = patterns.YY.exec(dateString) || patternYYY.exec(dateString);
-  if (token) {
-    var centuryString = token[1];
-    return {
-      year: parseInt(centuryString, 10) * 100,
-      restDateString: dateString.slice(centuryString.length)
-    }
-  }
-
-  // Invalid ISO-formatted year
-  return {
-    year: null
-  }
-}
-
-function parseDate (dateString, year) {
-  // Invalid ISO-formatted year
-  if (year === null) {
-    return null
-  }
-
-  var token;
-  var date;
-  var month;
-  var week;
-
-  // YYYY
-  if (dateString.length === 0) {
-    date = new Date(0);
-    date.setUTCFullYear(year);
-    return date
-  }
-
-  // YYYY-MM
-  token = patterns.MM.exec(dateString);
-  if (token) {
-    date = new Date(0);
-    month = parseInt(token[1], 10) - 1;
-
-    if (!validateDate(year, month)) {
-      return new Date(NaN)
-    }
-
-    date.setUTCFullYear(year, month);
-    return date
-  }
-
-  // YYYY-DDD or YYYYDDD
-  token = patterns.DDD.exec(dateString);
-  if (token) {
-    date = new Date(0);
-    var dayOfYear = parseInt(token[1], 10);
-
-    if (!validateDayOfYearDate(year, dayOfYear)) {
-      return new Date(NaN)
-    }
-
-    date.setUTCFullYear(year, 0, dayOfYear);
-    return date
-  }
-
-  // YYYY-MM-DD or YYYYMMDD
-  token = patterns.MMDD.exec(dateString);
-  if (token) {
-    date = new Date(0);
-    month = parseInt(token[1], 10) - 1;
-    var day = parseInt(token[2], 10);
-
-    if (!validateDate(year, month, day)) {
-      return new Date(NaN)
-    }
-
-    date.setUTCFullYear(year, month, day);
-    return date
-  }
-
-  // YYYY-Www or YYYYWww
-  token = patterns.Www.exec(dateString);
-  if (token) {
-    week = parseInt(token[1], 10) - 1;
-
-    if (!validateWeekDate(year, week)) {
-      return new Date(NaN)
-    }
-
-    return dayOfISOWeekYear(year, week)
-  }
-
-  // YYYY-Www-D or YYYYWwwD
-  token = patterns.WwwD.exec(dateString);
-  if (token) {
-    week = parseInt(token[1], 10) - 1;
-    var dayOfWeek = parseInt(token[2], 10) - 1;
-
-    if (!validateWeekDate(year, week, dayOfWeek)) {
-      return new Date(NaN)
-    }
-
-    return dayOfISOWeekYear(year, week, dayOfWeek)
-  }
-
-  // Invalid ISO-formatted date
-  return null
-}
-
-function parseTime (timeString) {
-  var token;
-  var hours;
-  var minutes;
-
-  // hh
-  token = patterns.HH.exec(timeString);
-  if (token) {
-    hours = parseFloat(token[1].replace(',', '.'));
-
-    if (!validateTime(hours)) {
-      return NaN
-    }
-
-    return (hours % 24) * MILLISECONDS_IN_HOUR
-  }
-
-  // hh:mm or hhmm
-  token = patterns.HHMM.exec(timeString);
-  if (token) {
-    hours = parseInt(token[1], 10);
-    minutes = parseFloat(token[2].replace(',', '.'));
-
-    if (!validateTime(hours, minutes)) {
-      return NaN
-    }
-
-    return (hours % 24) * MILLISECONDS_IN_HOUR +
-      minutes * MILLISECONDS_IN_MINUTE$1
-  }
-
-  // hh:mm:ss or hhmmss
-  token = patterns.HHMMSS.exec(timeString);
-  if (token) {
-    hours = parseInt(token[1], 10);
-    minutes = parseInt(token[2], 10);
-    var seconds = parseFloat(token[3].replace(',', '.'));
-
-    if (!validateTime(hours, minutes, seconds)) {
-      return NaN
-    }
-
-    return (hours % 24) * MILLISECONDS_IN_HOUR +
-      minutes * MILLISECONDS_IN_MINUTE$1 +
-      seconds * 1000
-  }
-
-  // Invalid ISO-formatted time
-  return null
-}
-
-function parseTimezone (timezoneString) {
-  var token;
-  var absoluteOffset;
-
-  // Z
-  token = patterns.timezoneZ.exec(timezoneString);
-  if (token) {
-    return 0
-  }
-
-  var hours;
-
-  // ±hh
-  token = patterns.timezoneHH.exec(timezoneString);
-  if (token) {
-    hours = parseInt(token[2], 10);
-
-    if (!validateTimezone(hours)) {
-      return NaN
-    }
-
-    absoluteOffset = hours * MILLISECONDS_IN_HOUR;
-    return (token[1] === '+') ? -absoluteOffset : absoluteOffset
-  }
-
-  // ±hh:mm or ±hhmm
-  token = patterns.timezoneHHMM.exec(timezoneString);
-  if (token) {
-    hours = parseInt(token[2], 10);
-    var minutes = parseInt(token[3], 10);
-
-    if (!validateTimezone(hours, minutes)) {
-      return NaN
-    }
-
-    absoluteOffset = hours * MILLISECONDS_IN_HOUR + minutes * MILLISECONDS_IN_MINUTE$1;
-    return (token[1] === '+') ? -absoluteOffset : absoluteOffset
-  }
-
-  return 0
-}
-
-function dayOfISOWeekYear (isoWeekYear, week, day) {
-  week = week || 0;
-  day = day || 0;
-  var date = new Date(0);
-  date.setUTCFullYear(isoWeekYear, 0, 4);
-  var fourthOfJanuaryDay = date.getUTCDay() || 7;
-  var diff = week * 7 + day + 1 - fourthOfJanuaryDay;
-  date.setUTCDate(date.getUTCDate() + diff);
-  return date
-}
-
-// Validation functions
-
-var DAYS_IN_MONTH = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-var DAYS_IN_MONTH_LEAP_YEAR = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-
-function isLeapYearIndex (year) {
-  return year % 400 === 0 || (year % 4 === 0 && year % 100 !== 0)
-}
-
-function validateDate (year, month, date) {
-  if (month < 0 || month > 11) {
-    return false
-  }
-
-  if (date != null) {
-    if (date < 1) {
-      return false
-    }
-
-    var isLeapYear = isLeapYearIndex(year);
-    if (isLeapYear && date > DAYS_IN_MONTH_LEAP_YEAR[month]) {
-      return false
-    }
-    if (!isLeapYear && date > DAYS_IN_MONTH[month]) {
-      return false
-    }
-  }
-
-  return true
-}
-
-function validateDayOfYearDate (year, dayOfYear) {
-  if (dayOfYear < 1) {
-    return false
-  }
-
-  var isLeapYear = isLeapYearIndex(year);
-  if (isLeapYear && dayOfYear > 366) {
-    return false
-  }
-  if (!isLeapYear && dayOfYear > 365) {
-    return false
-  }
-
-  return true
-}
-
-function validateWeekDate (year, week, day) {
-  if (week < 0 || week > 52) {
-    return false
-  }
-
-  if (day != null && (day < 0 || day > 6)) {
-    return false
-  }
-
-  return true
-}
-
-function validateTime (hours, minutes, seconds) {
-  if (hours != null && (hours < 0 || hours >= 25)) {
-    return false
-  }
-
-  if (minutes != null && (minutes < 0 || minutes >= 60)) {
-    return false
-  }
-
-  if (seconds != null && (seconds < 0 || seconds >= 60)) {
-    return false
-  }
-
-  return true
-}
-
-function validateTimezone (hours, minutes) {
-  if (minutes != null && (minutes < 0 || minutes > 59)) {
-    return false
-  }
-
-  return true
-}
-
-/**
- * @name addMilliseconds
- * @category Millisecond Helpers
- * @summary Add the specified number of milliseconds to the given date.
- *
- * @description
- * Add the specified number of milliseconds to the given date.
- *
- * @param {Date|String|Number} date - the date to be changed
- * @param {Number} amount - the amount of milliseconds to be added
- * @param {Options} [options] - the object with options. See [Options]{@link https://date-fns.org/docs/Options}
- * @param {0|1|2} [options.additionalDigits=2] - passed to `toDate`. See [toDate]{@link https://date-fns.org/docs/toDate}
- * @returns {Date} the new date with the milliseconds added
- * @throws {TypeError} 2 arguments required
- * @throws {RangeError} `options.additionalDigits` must be 0, 1 or 2
- *
- * @example
- * // Add 750 milliseconds to 10 July 2014 12:45:30.000:
- * var result = addMilliseconds(new Date(2014, 6, 10, 12, 45, 30, 0), 750)
- * //=> Thu Jul 10 2014 12:45:30.750
- */
-function addMilliseconds (dirtyDate, dirtyAmount, dirtyOptions) {
-  if (arguments.length < 2) {
-    throw new TypeError('2 arguments required, but only ' + arguments.length + ' present')
-  }
-
-  var timestamp = toDate(dirtyDate, dirtyOptions).getTime();
-  var amount = toInteger(dirtyAmount);
-  return new Date(timestamp + amount)
-}
-
-/**
- * @name differenceInMilliseconds
- * @category Millisecond Helpers
- * @summary Get the number of milliseconds between the given dates.
- *
- * @description
- * Get the number of milliseconds between the given dates.
- *
- * @param {Date|String|Number} dateLeft - the later date
- * @param {Date|String|Number} dateRight - the earlier date
- * @param {Options} [options] - the object with options. See [Options]{@link https://date-fns.org/docs/Options}
- * @param {0|1|2} [options.additionalDigits=2] - passed to `toDate`. See [toDate]{@link https://date-fns.org/docs/toDate}
- * @returns {Number} the number of milliseconds
- * @throws {TypeError} 2 arguments required
- * @throws {RangeError} `options.additionalDigits` must be 0, 1 or 2
- *
- * @example
- * // How many milliseconds are between
- * // 2 July 2014 12:30:20.600 and 2 July 2014 12:30:21.700?
- * var result = differenceInMilliseconds(
- *   new Date(2014, 6, 2, 12, 30, 21, 700),
- *   new Date(2014, 6, 2, 12, 30, 20, 600)
- * )
- * //=> 1100
- */
-function differenceInMilliseconds (dirtyDateLeft, dirtyDateRight, dirtyOptions) {
-  if (arguments.length < 2) {
-    throw new TypeError('2 arguments required, but only ' + arguments.length + ' present')
-  }
-
-  var dateLeft = toDate(dirtyDateLeft, dirtyOptions);
-  var dateRight = toDate(dirtyDateRight, dirtyOptions);
-  return dateLeft.getTime() - dateRight.getTime()
-}
-
-/**
- * @name differenceInSeconds
- * @category Second Helpers
- * @summary Get the number of seconds between the given dates.
- *
- * @description
- * Get the number of seconds between the given dates.
- *
- * @param {Date|String|Number} dateLeft - the later date
- * @param {Date|String|Number} dateRight - the earlier date
- * @param {Options} [options] - the object with options. See [Options]{@link https://date-fns.org/docs/Options}
- * @param {0|1|2} [options.additionalDigits=2] - passed to `toDate`. See [toDate]{@link https://date-fns.org/docs/toDate}
- * @returns {Number} the number of seconds
- * @throws {TypeError} 2 arguments required
- * @throws {RangeError} `options.additionalDigits` must be 0, 1 or 2
- *
- * @example
- * // How many seconds are between
- * // 2 July 2014 12:30:07.999 and 2 July 2014 12:30:20.000?
- * var result = differenceInSeconds(
- *   new Date(2014, 6, 2, 12, 30, 20, 0),
- *   new Date(2014, 6, 2, 12, 30, 7, 999)
- * )
- * //=> 12
- */
-function differenceInSeconds (dirtyDateLeft, dirtyDateRight, dirtyOptions) {
-  if (arguments.length < 2) {
-    throw new TypeError('2 arguments required, but only ' + arguments.length + ' present')
-  }
-
-  var diff = differenceInMilliseconds(dirtyDateLeft, dirtyDateRight, dirtyOptions) / 1000;
-  return diff > 0 ? Math.floor(diff) : Math.ceil(diff)
-}
-
-/**
- * @name isValid
- * @category Common Helpers
- * @summary Is the given date valid?
- *
- * @description
- * Returns false if argument is Invalid Date and true otherwise.
- * Argument is converted to Date using `toDate`. See [toDate]{@link https://date-fns.org/docs/toDate}
- * Invalid Date is a Date, whose time value is NaN.
- *
- * Time value of Date: http://es5.github.io/#x15.9.1.1
- *
- * @param {*} date - the date to check
- * @param {Options} [options] - the object with options. See [Options]{@link https://date-fns.org/docs/Options}
- * @param {0|1|2} [options.additionalDigits=2] - passed to `toDate`. See [toDate]{@link https://date-fns.org/docs/toDate}
- * @returns {Boolean} the date is valid
- * @throws {TypeError} 1 argument required
- * @throws {RangeError} `options.additionalDigits` must be 0, 1 or 2
- *
- * @example
- * // For the valid date:
- * var result = isValid(new Date(2014, 1, 31))
- * //=> true
- *
- * @example
- * // For the value, convertable into a date:
- * var result = isValid('2014-02-31')
- * //=> true
- *
- * @example
- * // For the invalid date:
- * var result = isValid(new Date(''))
- * //=> false
- */
-function isValid (dirtyDate, dirtyOptions) {
-  if (arguments.length < 1) {
-    throw new TypeError('1 argument required, but only ' + arguments.length + ' present')
-  }
-
-  var date = toDate(dirtyDate, dirtyOptions);
-  return !isNaN(date)
-}
-
-var formatDistanceLocale = {
-  lessThanXSeconds: {
-    one: 'less than a second',
-    other: 'less than {{count}} seconds'
-  },
-
-  xSeconds: {
-    one: '1 second',
-    other: '{{count}} seconds'
-  },
-
-  halfAMinute: 'half a minute',
-
-  lessThanXMinutes: {
-    one: 'less than a minute',
-    other: 'less than {{count}} minutes'
-  },
-
-  xMinutes: {
-    one: '1 minute',
-    other: '{{count}} minutes'
-  },
-
-  aboutXHours: {
-    one: 'about 1 hour',
-    other: 'about {{count}} hours'
-  },
-
-  xHours: {
-    one: '1 hour',
-    other: '{{count}} hours'
-  },
-
-  xDays: {
-    one: '1 day',
-    other: '{{count}} days'
-  },
-
-  aboutXMonths: {
-    one: 'about 1 month',
-    other: 'about {{count}} months'
-  },
-
-  xMonths: {
-    one: '1 month',
-    other: '{{count}} months'
-  },
-
-  aboutXYears: {
-    one: 'about 1 year',
-    other: 'about {{count}} years'
-  },
-
-  xYears: {
-    one: '1 year',
-    other: '{{count}} years'
-  },
-
-  overXYears: {
-    one: 'over 1 year',
-    other: 'over {{count}} years'
-  },
-
-  almostXYears: {
-    one: 'almost 1 year',
-    other: 'almost {{count}} years'
-  }
-};
-
-function formatDistance (token, count, options) {
-  options = options || {};
-
-  var result;
-  if (typeof formatDistanceLocale[token] === 'string') {
-    result = formatDistanceLocale[token];
-  } else if (count === 1) {
-    result = formatDistanceLocale[token].one;
-  } else {
-    result = formatDistanceLocale[token].other.replace('{{count}}', count);
-  }
-
-  if (options.addSuffix) {
-    if (options.comparison > 0) {
-      return 'in ' + result
-    } else {
-      return result + ' ago'
-    }
-  }
-
-  return result
-}
-
-function buildFormatLongFn (args) {
-  return function (dirtyOptions) {
-    var options = dirtyOptions || {};
-    var width = options.width ? String(options.width) : args.defaultWidth;
-    var format = args.formats[width] || args.formats[args.defaultWidth];
-    return format
-  }
-}
-
-var dateFormats = {
-  full: 'EEEE, MMMM do, y',
-  long: 'MMMM do, y',
-  medium: 'MMM d, y',
-  short: 'MM/dd/yyyy'
-};
-
-var timeFormats = {
-  full: 'h:mm:ss a zzzz',
-  long: 'h:mm:ss a z',
-  medium: 'h:mm:ss a',
-  short: 'h:mm a'
-};
-
-var dateTimeFormats = {
-  full: "{{date}} 'at' {{time}}",
-  long: "{{date}} 'at' {{time}}",
-  medium: '{{date}}, {{time}}',
-  short: '{{date}}, {{time}}'
-};
-
-var formatLong = {
-  date: buildFormatLongFn({
-    formats: dateFormats,
-    defaultWidth: 'full'
-  }),
-
-  time: buildFormatLongFn({
-    formats: timeFormats,
-    defaultWidth: 'full'
-  }),
-
-  dateTime: buildFormatLongFn({
-    formats: dateTimeFormats,
-    defaultWidth: 'full'
-  })
-};
-
-var formatRelativeLocale = {
-  lastWeek: "'last' eeee 'at' p",
-  yesterday: "'yesterday at' p",
-  today: "'today at' p",
-  tomorrow: "'tomorrow at' p",
-  nextWeek: "eeee 'at' p",
-  other: 'P'
-};
-
-function formatRelative (token, date, baseDate, options) {
-  return formatRelativeLocale[token]
-}
-
-function buildLocalizeFn (args) {
-  return function (dirtyIndex, dirtyOptions) {
-    var options = dirtyOptions || {};
-    var width = options.width ? String(options.width) : args.defaultWidth;
-    var context = options.context ? String(options.context) : 'standalone';
-
-    var valuesArray;
-    if (context === 'formatting' && args.formattingValues) {
-      valuesArray = args.formattingValues[width] || args.formattingValues[args.defaultFormattingWidth];
-    } else {
-      valuesArray = args.values[width] || args.values[args.defaultWidth];
-    }
-    var index = args.argumentCallback ? args.argumentCallback(dirtyIndex) : dirtyIndex;
-    return valuesArray[index]
-  }
-}
-
-var eraValues = {
-  narrow: ['B', 'A'],
-  abbreviated: ['BC', 'AD'],
-  wide: ['Before Christ', 'Anno Domini']
-};
-
-var quarterValues = {
-  narrow: ['1', '2', '3', '4'],
-  abbreviated: ['Q1', 'Q2', 'Q3', 'Q4'],
-  wide: ['1st quarter', '2nd quarter', '3rd quarter', '4th quarter']
-};
-
-// Note: in English, the names of days of the week and months are capitalized.
-// If you are making a new locale based on this one, check if the same is true for the language you're working on.
-// Generally, formatted dates should look like they are in the middle of a sentence,
-// e.g. in Spanish language the weekdays and months should be in the lowercase.
-var monthValues = {
-  narrow: ['J', 'F', 'M', 'A', 'M', 'J', 'J', 'A', 'S', 'O', 'N', 'D'],
-  abbreviated: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-  wide: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
-};
-
-var dayValues = {
-  narrow: ['S', 'M', 'T', 'W', 'T', 'F', 'S'],
-  short: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
-  abbreviated: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
-  wide: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
-};
-
-var dayPeriodValues = {
-  narrow: {
-    am: 'a',
-    pm: 'p',
-    midnight: 'mi',
-    noon: 'n',
-    morning: 'morning',
-    afternoon: 'afternoon',
-    evening: 'evening',
-    night: 'night'
-  },
-  abbreviated: {
-    am: 'AM',
-    pm: 'PM',
-    midnight: 'midnight',
-    noon: 'noon',
-    morning: 'morning',
-    afternoon: 'afternoon',
-    evening: 'evening',
-    night: 'night'
-  },
-  wide: {
-    am: 'a.m.',
-    pm: 'p.m.',
-    midnight: 'midnight',
-    noon: 'noon',
-    morning: 'morning',
-    afternoon: 'afternoon',
-    evening: 'evening',
-    night: 'night'
-  }
-};
-var formattingDayPeriodValues = {
-  narrow: {
-    am: 'a',
-    pm: 'p',
-    midnight: 'mi',
-    noon: 'n',
-    morning: 'in the morning',
-    afternoon: 'in the afternoon',
-    evening: 'in the evening',
-    night: 'at night'
-  },
-  abbreviated: {
-    am: 'AM',
-    pm: 'PM',
-    midnight: 'midnight',
-    noon: 'noon',
-    morning: 'in the morning',
-    afternoon: 'in the afternoon',
-    evening: 'in the evening',
-    night: 'at night'
-  },
-  wide: {
-    am: 'a.m.',
-    pm: 'p.m.',
-    midnight: 'midnight',
-    noon: 'noon',
-    morning: 'in the morning',
-    afternoon: 'in the afternoon',
-    evening: 'in the evening',
-    night: 'at night'
-  }
-};
-
-function ordinalNumber (dirtyNumber, dirtyOptions) {
-  var number = Number(dirtyNumber);
-
-  // If ordinal numbers depend on context, for example,
-  // if they are different for different grammatical genders,
-  // use `options.unit`:
-  //
-  //   var options = dirtyOptions || {}
-  //   var unit = String(options.unit)
-  //
-  // where `unit` can be 'year', 'quarter', 'month', 'week', 'date', 'dayOfYear',
-  // 'day', 'hour', 'minute', 'second'
-
-  var rem100 = number % 100;
-  if (rem100 > 20 || rem100 < 10) {
-    switch (rem100 % 10) {
-      case 1:
-        return number + 'st'
-      case 2:
-        return number + 'nd'
-      case 3:
-        return number + 'rd'
-    }
-  }
-  return number + 'th'
-}
-
-var localize = {
-  ordinalNumber: ordinalNumber,
-
-  era: buildLocalizeFn({
-    values: eraValues,
-    defaultWidth: 'wide'
-  }),
-
-  quarter: buildLocalizeFn({
-    values: quarterValues,
-    defaultWidth: 'wide',
-    argumentCallback: function (quarter) {
-      return Number(quarter) - 1
-    }
-  }),
-
-  month: buildLocalizeFn({
-    values: monthValues,
-    defaultWidth: 'wide'
-  }),
-
-  day: buildLocalizeFn({
-    values: dayValues,
-    defaultWidth: 'wide'
-  }),
-
-  dayPeriod: buildLocalizeFn({
-    values: dayPeriodValues,
-    defaultWidth: 'wide',
-    formattingValues: formattingDayPeriodValues,
-    defaulFormattingWidth: 'wide'
-  })
-};
-
-function buildMatchPatternFn (args) {
-  return function (dirtyString, dirtyOptions) {
-    var string = String(dirtyString);
-    var options = dirtyOptions || {};
-
-    var matchResult = string.match(args.matchPattern);
-    if (!matchResult) {
-      return null
-    }
-    var matchedString = matchResult[0];
-
-    var parseResult = string.match(args.parsePattern);
-    if (!parseResult) {
-      return null
-    }
-    var value = args.valueCallback ? args.valueCallback(parseResult[0]) : parseResult[0];
-    value = options.valueCallback ? options.valueCallback(value) : value;
-
-    return {
-      value: value,
-      rest: string.slice(matchedString.length)
-    }
-  }
-}
-
-function buildMatchFn (args) {
-  return function (dirtyString, dirtyOptions) {
-    var string = String(dirtyString);
-    var options = dirtyOptions || {};
-    var width = options.width;
-
-    var matchPattern = (width && args.matchPatterns[width]) || args.matchPatterns[args.defaultMatchWidth];
-    var matchResult = string.match(matchPattern);
-
-    if (!matchResult) {
-      return null
-    }
-    var matchedString = matchResult[0];
-
-    var parsePatterns = (width && args.parsePatterns[width]) || args.parsePatterns[args.defaultParseWidth];
-
-    var value;
-    if (Object.prototype.toString.call(parsePatterns) === '[object Array]') {
-      value = parsePatterns.findIndex(function (pattern) {
-        return pattern.test(string)
-      });
-    } else {
-      value = findKey(parsePatterns, function (pattern) {
-        return pattern.test(string)
-      });
-    }
-
-    value = args.valueCallback ? args.valueCallback(value) : value;
-    value = options.valueCallback ? options.valueCallback(value) : value;
-
-    return {
-      value: value,
-      rest: string.slice(matchedString.length)
-    }
-  }
-}
-
-function findKey (object, predicate) {
-  for (var key in object) {
-    if (object.hasOwnProperty(key) && predicate(object[key])) {
-      return key
-    }
-  }
-}
-
-var matchOrdinalNumberPattern = /^(\d+)(th|st|nd|rd)?/i;
-var parseOrdinalNumberPattern = /\d+/i;
-
-var matchEraPatterns = {
-  narrow: /^(b|a)/i,
-  abbreviated: /^(b\.?\s?c\.?|b\.?\s?c\.?\s?e\.?|a\.?\s?d\.?|c\.?\s?e\.?)/i,
-  wide: /^(before christ|before common era|anno domini|common era)/i
-};
-var parseEraPatterns = {
-  any: [/^b/i, /^(a|c)/i]
-};
-
-var matchQuarterPatterns = {
-  narrow: /^[1234]/i,
-  abbreviated: /^q[1234]/i,
-  wide: /^[1234](th|st|nd|rd)? quarter/i
-};
-var parseQuarterPatterns = {
-  any: [/1/i, /2/i, /3/i, /4/i]
-};
-
-var matchMonthPatterns = {
-  narrow: /^[jfmasond]/i,
-  abbreviated: /^(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)/i,
-  wide: /^(january|february|march|april|may|june|july|august|september|october|november|december)/i
-};
-var parseMonthPatterns = {
-  narrow: [/^j/i, /^f/i, /^m/i, /^a/i, /^m/i, /^j/i, /^j/i, /^a/i, /^s/i, /^o/i, /^n/i, /^d/i],
-  any: [/^ja/i, /^f/i, /^mar/i, /^ap/i, /^may/i, /^jun/i, /^jul/i, /^au/i, /^s/i, /^o/i, /^n/i, /^d/i]
-};
-
-var matchDayPatterns = {
-  narrow: /^[smtwf]/i,
-  short: /^(su|mo|tu|we|th|fr|sa)/i,
-  abbreviated: /^(sun|mon|tue|wed|thu|fri|sat)/i,
-  wide: /^(sunday|monday|tuesday|wednesday|thursday|friday|saturday)/i
-};
-var parseDayPatterns = {
-  narrow: [/^s/i, /^m/i, /^t/i, /^w/i, /^t/i, /^f/i, /^s/i],
-  any: [/^su/i, /^m/i, /^tu/i, /^w/i, /^th/i, /^f/i, /^sa/i]
-};
-
-var matchDayPeriodPatterns = {
-  narrow: /^(a|p|mi|n|(in the|at) (morning|afternoon|evening|night))/i,
-  any: /^([ap]\.?\s?m\.?|midnight|noon|(in the|at) (morning|afternoon|evening|night))/i
-};
-var parseDayPeriodPatterns = {
-  any: {
-    am: /^a/i,
-    pm: /^p/i,
-    midnight: /^mi/i,
-    noon: /^no/i,
-    morning: /morning/i,
-    afternoon: /afternoon/i,
-    evening: /evening/i,
-    night: /night/i
-  }
-};
-
-var match = {
-  ordinalNumber: buildMatchPatternFn({
-    matchPattern: matchOrdinalNumberPattern,
-    parsePattern: parseOrdinalNumberPattern,
-    valueCallback: function (value) {
-      return parseInt(value, 10)
-    }
-  }),
-
-  era: buildMatchFn({
-    matchPatterns: matchEraPatterns,
-    defaultMatchWidth: 'wide',
-    parsePatterns: parseEraPatterns,
-    defaultParseWidth: 'any'
-  }),
-
-  quarter: buildMatchFn({
-    matchPatterns: matchQuarterPatterns,
-    defaultMatchWidth: 'wide',
-    parsePatterns: parseQuarterPatterns,
-    defaultParseWidth: 'any',
-    valueCallback: function (index) {
-      return index + 1
-    }
-  }),
-
-  month: buildMatchFn({
-    matchPatterns: matchMonthPatterns,
-    defaultMatchWidth: 'wide',
-    parsePatterns: parseMonthPatterns,
-    defaultParseWidth: 'any'
-  }),
-
-  day: buildMatchFn({
-    matchPatterns: matchDayPatterns,
-    defaultMatchWidth: 'wide',
-    parsePatterns: parseDayPatterns,
-    defaultParseWidth: 'any'
-  }),
-
-  dayPeriod: buildMatchFn({
-    matchPatterns: matchDayPeriodPatterns,
-    defaultMatchWidth: 'any',
-    parsePatterns: parseDayPeriodPatterns,
-    defaultParseWidth: 'any'
-  })
-};
-
-/**
- * @type {Locale}
- * @category Locales
- * @summary English locale (United States).
- * @language English
- * @iso-639-2 eng
- * @author Sasha Koss [@kossnocorp]{@link https://github.com/kossnocorp}
- * @author Lesha Koss [@leshakoss]{@link https://github.com/leshakoss}
- */
-var locale = {
-  formatDistance: formatDistance,
-  formatLong: formatLong,
-  formatRelative: formatRelative,
-  localize: localize,
-  match: match,
-  options: {
-    weekStartsOn: 0 /* Sunday */,
-    firstWeekContainsDate: 1
-  }
-};
-
-var MILLISECONDS_IN_DAY$1 = 86400000;
-
-// This function will be a part of public API when UTC function will be implemented.
-// See issue: https://github.com/date-fns/date-fns/issues/376
-function getUTCDayOfYear (dirtyDate, dirtyOptions) {
-  if (arguments.length < 1) {
-    throw new TypeError('1 argument required, but only ' + arguments.length + ' present')
-  }
-
-  var date = toDate(dirtyDate, dirtyOptions);
-  var timestamp = date.getTime();
-  date.setUTCMonth(0, 1);
-  date.setUTCHours(0, 0, 0, 0);
-  var startOfYearTimestamp = date.getTime();
-  var difference = timestamp - startOfYearTimestamp;
-  return Math.floor(difference / MILLISECONDS_IN_DAY$1) + 1
-}
-
-// This function will be a part of public API when UTC function will be implemented.
-// See issue: https://github.com/date-fns/date-fns/issues/376
-function startOfUTCISOWeek (dirtyDate, dirtyOptions) {
-  if (arguments.length < 1) {
-    throw new TypeError('1 argument required, but only ' + arguments.length + ' present')
-  }
-
-  var weekStartsOn = 1;
-
-  var date = toDate(dirtyDate, dirtyOptions);
-  var day = date.getUTCDay();
-  var diff = (day < weekStartsOn ? 7 : 0) + day - weekStartsOn;
-
-  date.setUTCDate(date.getUTCDate() - diff);
-  date.setUTCHours(0, 0, 0, 0);
-  return date
-}
-
-// This function will be a part of public API when UTC function will be implemented.
-// See issue: https://github.com/date-fns/date-fns/issues/376
-function getUTCISOWeekYear (dirtyDate, dirtyOptions) {
-  if (arguments.length < 1) {
-    throw new TypeError('1 argument required, but only ' + arguments.length + ' present')
-  }
-
-  var date = toDate(dirtyDate, dirtyOptions);
-  var year = date.getUTCFullYear();
-
-  var fourthOfJanuaryOfNextYear = new Date(0);
-  fourthOfJanuaryOfNextYear.setUTCFullYear(year + 1, 0, 4);
-  fourthOfJanuaryOfNextYear.setUTCHours(0, 0, 0, 0);
-  var startOfNextYear = startOfUTCISOWeek(fourthOfJanuaryOfNextYear, dirtyOptions);
-
-  var fourthOfJanuaryOfThisYear = new Date(0);
-  fourthOfJanuaryOfThisYear.setUTCFullYear(year, 0, 4);
-  fourthOfJanuaryOfThisYear.setUTCHours(0, 0, 0, 0);
-  var startOfThisYear = startOfUTCISOWeek(fourthOfJanuaryOfThisYear, dirtyOptions);
-
-  if (date.getTime() >= startOfNextYear.getTime()) {
-    return year + 1
-  } else if (date.getTime() >= startOfThisYear.getTime()) {
-    return year
-  } else {
-    return year - 1
-  }
-}
-
-// This function will be a part of public API when UTC function will be implemented.
-// See issue: https://github.com/date-fns/date-fns/issues/376
-function startOfUTCISOWeekYear (dirtyDate, dirtyOptions) {
-  if (arguments.length < 1) {
-    throw new TypeError('1 argument required, but only ' + arguments.length + ' present')
-  }
-
-  var year = getUTCISOWeekYear(dirtyDate, dirtyOptions);
-  var fourthOfJanuary = new Date(0);
-  fourthOfJanuary.setUTCFullYear(year, 0, 4);
-  fourthOfJanuary.setUTCHours(0, 0, 0, 0);
-  var date = startOfUTCISOWeek(fourthOfJanuary, dirtyOptions);
-  return date
-}
-
-var MILLISECONDS_IN_WEEK$2 = 604800000;
-
-// This function will be a part of public API when UTC function will be implemented.
-// See issue: https://github.com/date-fns/date-fns/issues/376
-function getUTCISOWeek (dirtyDate, dirtyOptions) {
-  if (arguments.length < 1) {
-    throw new TypeError('1 argument required, but only ' + arguments.length + ' present')
-  }
-
-  var date = toDate(dirtyDate, dirtyOptions);
-  var diff = startOfUTCISOWeek(date, dirtyOptions).getTime() - startOfUTCISOWeekYear(date, dirtyOptions).getTime();
-
-  // Round the number of days to the nearest integer
-  // because the number of milliseconds in a week is not constant
-  // (e.g. it's different in the week of the daylight saving time clock shift)
-  return Math.round(diff / MILLISECONDS_IN_WEEK$2) + 1
-}
-
-// This function will be a part of public API when UTC function will be implemented.
-// See issue: https://github.com/date-fns/date-fns/issues/376
-function startOfUTCWeek (dirtyDate, dirtyOptions) {
-  if (arguments.length < 1) {
-    throw new TypeError('1 argument required, but only ' + arguments.length + ' present')
-  }
-
-  var options = dirtyOptions || {};
-  var locale = options.locale;
-  var localeWeekStartsOn = locale && locale.options && locale.options.weekStartsOn;
-  var defaultWeekStartsOn = localeWeekStartsOn == null ? 0 : toInteger(localeWeekStartsOn);
-  var weekStartsOn = options.weekStartsOn == null ? defaultWeekStartsOn : toInteger(options.weekStartsOn);
-
-  // Test if weekStartsOn is between 0 and 6 _and_ is not NaN
-  if (!(weekStartsOn >= 0 && weekStartsOn <= 6)) {
-    throw new RangeError('weekStartsOn must be between 0 and 6 inclusively')
-  }
-
-  var date = toDate(dirtyDate, options);
-  var day = date.getUTCDay();
-  var diff = (day < weekStartsOn ? 7 : 0) + day - weekStartsOn;
-
-  date.setUTCDate(date.getUTCDate() - diff);
-  date.setUTCHours(0, 0, 0, 0);
-  return date
-}
-
-// This function will be a part of public API when UTC function will be implemented.
-// See issue: https://github.com/date-fns/date-fns/issues/376
-function getUTCWeekYear (dirtyDate, dirtyOptions) {
-  if (arguments.length < 1) {
-    throw new TypeError('1 argument required, but only ' + arguments.length + ' present')
-  }
-
-  var date = toDate(dirtyDate, dirtyOptions);
-  var year = date.getUTCFullYear();
-
-  var options = dirtyOptions || {};
-  var locale = options.locale;
-  var localeFirstWeekContainsDate = locale &&
-    locale.options &&
-    locale.options.firstWeekContainsDate;
-  var defaultFirstWeekContainsDate =
-    localeFirstWeekContainsDate == null
-      ? 1
-      : toInteger(localeFirstWeekContainsDate);
-  var firstWeekContainsDate =
-    options.firstWeekContainsDate == null
-      ? defaultFirstWeekContainsDate
-      : toInteger(options.firstWeekContainsDate);
-
-  // Test if weekStartsOn is between 1 and 7 _and_ is not NaN
-  if (!(firstWeekContainsDate >= 1 && firstWeekContainsDate <= 7)) {
-    throw new RangeError('firstWeekContainsDate must be between 1 and 7 inclusively')
-  }
-
-  var firstWeekOfNextYear = new Date(0);
-  firstWeekOfNextYear.setUTCFullYear(year + 1, 0, firstWeekContainsDate);
-  firstWeekOfNextYear.setUTCHours(0, 0, 0, 0);
-  var startOfNextYear = startOfUTCWeek(firstWeekOfNextYear, dirtyOptions);
-
-  var firstWeekOfThisYear = new Date(0);
-  firstWeekOfThisYear.setUTCFullYear(year, 0, firstWeekContainsDate);
-  firstWeekOfThisYear.setUTCHours(0, 0, 0, 0);
-  var startOfThisYear = startOfUTCWeek(firstWeekOfThisYear, dirtyOptions);
-
-  if (date.getTime() >= startOfNextYear.getTime()) {
-    return year + 1
-  } else if (date.getTime() >= startOfThisYear.getTime()) {
-    return year
-  } else {
-    return year - 1
-  }
-}
-
-// This function will be a part of public API when UTC function will be implemented.
-// See issue: https://github.com/date-fns/date-fns/issues/376
-function startOfUTCWeekYear (dirtyDate, dirtyOptions) {
-  if (arguments.length < 1) {
-    throw new TypeError('1 argument required, but only ' + arguments.length + ' present')
-  }
-
-  var options = dirtyOptions || {};
-  var locale = options.locale;
-  var localeFirstWeekContainsDate = locale &&
-    locale.options &&
-    locale.options.firstWeekContainsDate;
-  var defaultFirstWeekContainsDate =
-    localeFirstWeekContainsDate == null
-      ? 1
-      : toInteger(localeFirstWeekContainsDate);
-  var firstWeekContainsDate =
-    options.firstWeekContainsDate == null
-      ? defaultFirstWeekContainsDate
-      : toInteger(options.firstWeekContainsDate);
-
-  var year = getUTCWeekYear(dirtyDate, dirtyOptions);
-  var firstWeek = new Date(0);
-  firstWeek.setUTCFullYear(year, 0, firstWeekContainsDate);
-  firstWeek.setUTCHours(0, 0, 0, 0);
-  var date = startOfUTCWeek(firstWeek, dirtyOptions);
-  return date
-}
-
-var MILLISECONDS_IN_WEEK$3 = 604800000;
-
-// This function will be a part of public API when UTC function will be implemented.
-// See issue: https://github.com/date-fns/date-fns/issues/376
-function getUTCWeek (dirtyDate, dirtyOptions) {
-  if (arguments.length < 1) {
-    throw new TypeError('1 argument required, but only ' + arguments.length + ' present')
-  }
-
-  var date = toDate(dirtyDate, dirtyOptions);
-  var diff = startOfUTCWeek(date, dirtyOptions).getTime() - startOfUTCWeekYear(date, dirtyOptions).getTime();
-
-  // Round the number of days to the nearest integer
-  // because the number of milliseconds in a week is not constant
-  // (e.g. it's different in the week of the daylight saving time clock shift)
-  return Math.round(diff / MILLISECONDS_IN_WEEK$3) + 1
-}
-
-var dayPeriodEnum = {
-  am: 'am',
-  pm: 'pm',
-  midnight: 'midnight',
-  noon: 'noon',
-  morning: 'morning',
-  afternoon: 'afternoon',
-  evening: 'evening',
-  night: 'night'
-};
-
-/*
- * |     | Unit                           |     | Unit                           |
- * |-----|--------------------------------|-----|--------------------------------|
- * |  a  | AM, PM                         |  A* | Milliseconds in day            |
- * |  b  | AM, PM, noon, midnight         |  B  | Flexible day period            |
- * |  c  | Stand-alone local day of week  |  C* | Localized hour w/ day period   |
- * |  d  | Day of month                   |  D  | Day of year                    |
- * |  e  | Local day of week              |  E  | Day of week                    |
- * |  f  |                                |  F* | Day of week in month           |
- * |  g* | Modified Julian day            |  G  | Era                            |
- * |  h  | Hour [1-12]                    |  H  | Hour [0-23]                    |
- * |  i! | ISO day of week                |  I! | ISO week of year               |
- * |  j* | Localized hour w/ day period   |  J* | Localized hour w/o day period  |
- * |  k  | Hour [1-24]                    |  K  | Hour [0-11]                    |
- * |  l* | (deprecated)                   |  L  | Stand-alone month              |
- * |  m  | Minute                         |  M  | Month                          |
- * |  n  |                                |  N  |                                |
- * |  o! | Ordinal number modifier        |  O  | Timezone (GMT)                 |
- * |  p! | Long localized time            |  P! | Long localized date            |
- * |  q  | Stand-alone quarter            |  Q  | Quarter                        |
- * |  r* | Related Gregorian year         |  R! | ISO week-numbering year        |
- * |  s  | Second                         |  S  | Fraction of second             |
- * |  t! | Seconds timestamp              |  T! | Milliseconds timestamp         |
- * |  u  | Extended year                  |  U* | Cyclic year                    |
- * |  v* | Timezone (generic non-locat.)  |  V* | Timezone (location)            |
- * |  w  | Local week of year             |  W* | Week of month                  |
- * |  x  | Timezone (ISO-8601 w/o Z)      |  X  | Timezone (ISO-8601)            |
- * |  y  | Year (abs)                     |  Y  | Local week-numbering year      |
- * |  z  | Timezone (specific non-locat.) |  Z* | Timezone (aliases)             |
- *
- * Letters marked by * are not implemented but reserved by Unicode standard.
- *
- * Letters marked by ! are non-standard, but implemented by date-fns:
- * - `o` modifies the previous token to turn it into an ordinal (see `format` docs)
- * - `i` is ISO day of week. For `i` and `ii` is returns numeric ISO week days,
- *   i.e. 7 for Sunday, 1 for Monday, etc.
- * - `I` is ISO week of year, as opposed to `w` which is local week of year.
- * - `R` is ISO week-numbering year, as opposed to `Y` which is local week-numbering year.
- *   `R` is supposed to be used in conjunction with `I` and `i`
- *   for universal ISO week-numbering date, whereas
- *   `Y` is supposed to be used in conjunction with `w` and `e`
- *   for week-numbering date specific to the locale.
- * - `P` is long localized date format
- * - `p` is long localized time format
- */
-
-var formatters = {
-  // Era
-  G: function (date, token, localize) {
-    var era = date.getUTCFullYear() > 0 ? 1 : 0;
-    switch (token) {
-      // AD, BC
-      case 'G':
-      case 'GG':
-      case 'GGG':
-        return localize.era(era, {width: 'abbreviated'})
-      // A, B
-      case 'GGGGG':
-        return localize.era(era, {width: 'narrow'})
-      // Anno Domini, Before Christ
-      case 'GGGG':
-      default:
-        return localize.era(era, {width: 'wide'})
-    }
-  },
-
-  // Year
-  y: function (date, token, localize, options) {
-    // From http://www.unicode.org/reports/tr35/tr35-31/tr35-dates.html#Date_Format_tokens
-    // | Year     |     y | yy |   yyy |  yyyy | yyyyy |
-    // |----------|-------|----|-------|-------|-------|
-    // | AD 1     |     1 | 01 |   001 |  0001 | 00001 |
-    // | AD 12    |    12 | 12 |   012 |  0012 | 00012 |
-    // | AD 123   |   123 | 23 |   123 |  0123 | 00123 |
-    // | AD 1234  |  1234 | 34 |  1234 |  1234 | 01234 |
-    // | AD 12345 | 12345 | 45 | 12345 | 12345 | 12345 |
-
-    var signedYear = date.getUTCFullYear();
-
-    // Returns 1 for 1 BC (which is year 0 in JavaScript)
-    var year = signedYear > 0 ? signedYear : 1 - signedYear;
-
-    // Two digit year
-    if (token === 'yy') {
-      var twoDigitYear = year % 100;
-      return addLeadingZeros(twoDigitYear, 2)
-    }
-
-    // Ordinal number
-    if (token === 'yo') {
-      return localize.ordinalNumber(year, {unit: 'year'})
-    }
-
-    // Padding
-    return addLeadingZeros(year, token.length)
-  },
-
-  // Local week-numbering year
-  Y: function (date, token, localize, options) {
-    var signedWeekYear = getUTCWeekYear(date, options);
-    var weekYear = signedWeekYear > 0 ? signedWeekYear : 1 - signedWeekYear;
-
-    // Two digit year
-    if (token === 'YY') {
-      var twoDigitYear = weekYear % 100;
-      return addLeadingZeros(twoDigitYear, 2)
-    }
-
-    // Ordinal number
-    if (token === 'Yo') {
-      return localize.ordinalNumber(weekYear, {unit: 'year'})
-    }
-
-    // Padding
-    return addLeadingZeros(weekYear, token.length)
-  },
-
-  // ISO week-numbering year
-  R: function (date, token, localize, options) {
-    var isoWeekYear = getUTCISOWeekYear(date, options);
-
-    // Padding
-    return addLeadingZeros(isoWeekYear, token.length)
-  },
-
-  // Extended year. This is a single number designating the year of this calendar system.
-  // The main difference between `y` and `u` localizers are B.C. years:
-  // | Year | `y` | `u` |
-  // |------|-----|-----|
-  // | AC 1 |   1 |   1 |
-  // | BC 1 |   1 |   0 |
-  // | BC 2 |   2 |  -1 |
-  // Also `yy` always returns the last two digits of a year,
-  // while `uu` pads single digit years to 2 characters and returns other years unchanged.
-  u: function (date, token, localize, options) {
-    var year = date.getUTCFullYear();
-    return addLeadingZeros(year, token.length)
-  },
-
-  // Quarter
-  Q: function (date, token, localize, options) {
-    var quarter = Math.ceil((date.getUTCMonth() + 1) / 3);
-    switch (token) {
-      // 1, 2, 3, 4
-      case 'Q':
-        return String(quarter)
-      // 01, 02, 03, 04
-      case 'QQ':
-        return addLeadingZeros(quarter, 2)
-      // 1st, 2nd, 3rd, 4th
-      case 'Qo':
-        return localize.ordinalNumber(quarter, {unit: 'quarter'})
-      // Q1, Q2, Q3, Q4
-      case 'QQQ':
-        return localize.quarter(quarter, {width: 'abbreviated', context: 'formatting'})
-      // 1, 2, 3, 4 (narrow quarter; could be not numerical)
-      case 'QQQQQ':
-        return localize.quarter(quarter, {width: 'narrow', context: 'formatting'})
-      // 1st quarter, 2nd quarter, ...
-      case 'QQQQ':
-      default:
-        return localize.quarter(quarter, {width: 'wide', context: 'formatting'})
-    }
-  },
-
-  // Stand-alone quarter
-  q: function (date, token, localize, options) {
-    var quarter = Math.ceil((date.getUTCMonth() + 1) / 3);
-    switch (token) {
-      // 1, 2, 3, 4
-      case 'q':
-        return String(quarter)
-      // 01, 02, 03, 04
-      case 'qq':
-        return addLeadingZeros(quarter, 2)
-      // 1st, 2nd, 3rd, 4th
-      case 'qo':
-        return localize.ordinalNumber(quarter, {unit: 'quarter'})
-      // Q1, Q2, Q3, Q4
-      case 'qqq':
-        return localize.quarter(quarter, {width: 'abbreviated', context: 'standalone'})
-      // 1, 2, 3, 4 (narrow quarter; could be not numerical)
-      case 'qqqqq':
-        return localize.quarter(quarter, {width: 'narrow', context: 'standalone'})
-      // 1st quarter, 2nd quarter, ...
-      case 'qqqq':
-      default:
-        return localize.quarter(quarter, {width: 'wide', context: 'standalone'})
-    }
-  },
-
-  // Month
-  M: function (date, token, localize, options) {
-    var month = date.getUTCMonth();
-    switch (token) {
-      // 1, 2, ..., 12
-      case 'M':
-        return String(month + 1)
-      // 01, 02, ..., 12
-      case 'MM':
-        return addLeadingZeros(month + 1, 2)
-      // 1st, 2nd, ..., 12th
-      case 'Mo':
-        return localize.ordinalNumber(month + 1, {unit: 'month'})
-      // Jan, Feb, ..., Dec
-      case 'MMM':
-        return localize.month(month, {width: 'abbreviated', context: 'formatting'})
-      // J, F, ..., D
-      case 'MMMMM':
-        return localize.month(month, {width: 'narrow', context: 'formatting'})
-      // January, February, ..., December
-      case 'MMMM':
-      default:
-        return localize.month(month, {width: 'wide', context: 'formatting'})
-    }
-  },
-
-  // Stand-alone month
-  L: function (date, token, localize, options) {
-    var month = date.getUTCMonth();
-    switch (token) {
-      // 1, 2, ..., 12
-      case 'L':
-        return String(month + 1)
-      // 01, 02, ..., 12
-      case 'LL':
-        return addLeadingZeros(month + 1, 2)
-      // 1st, 2nd, ..., 12th
-      case 'Lo':
-        return localize.ordinalNumber(month + 1, {unit: 'month'})
-      // Jan, Feb, ..., Dec
-      case 'LLL':
-        return localize.month(month, {width: 'abbreviated', context: 'standalone'})
-      // J, F, ..., D
-      case 'LLLLL':
-        return localize.month(month, {width: 'narrow', context: 'standalone'})
-      // January, February, ..., December
-      case 'LLLL':
-      default:
-        return localize.month(month, {width: 'wide', context: 'standalone'})
-    }
-  },
-
-  // Local week of year
-  w: function (date, token, localize, options) {
-    var week = getUTCWeek(date, options);
-
-    if (token === 'wo') {
-      return localize.ordinalNumber(week, {unit: 'week'})
-    }
-
-    return addLeadingZeros(week, token.length)
-  },
-
-  // ISO week of year
-  I: function (date, token, localize, options) {
-    var isoWeek = getUTCISOWeek(date, options);
-
-    if (token === 'Io') {
-      return localize.ordinalNumber(isoWeek, {unit: 'week'})
-    }
-
-    return addLeadingZeros(isoWeek, token.length)
-  },
-
-  // Day of the month
-  d: function (date, token, localize, options) {
-    var dayOfMonth = date.getUTCDate();
-
-    if (token === 'do') {
-      return localize.ordinalNumber(dayOfMonth, {unit: 'date'})
-    }
-
-    return addLeadingZeros(dayOfMonth, token.length)
-  },
-
-  // Day of year
-  D: function (date, token, localize, options) {
-    var dayOfYear = getUTCDayOfYear(date, options);
-
-    if (token === 'Do') {
-      return localize.ordinalNumber(dayOfYear, {unit: 'dayOfYear'})
-    }
-
-    return addLeadingZeros(dayOfYear, token.length)
-  },
-
-  // Day of week
-  E: function (date, token, localize, options) {
-    var dayOfWeek = date.getUTCDay();
-    switch (token) {
-      // Tue
-      case 'E':
-      case 'EE':
-      case 'EEE':
-        return localize.day(dayOfWeek, {width: 'abbreviated', context: 'formatting'})
-      // T
-      case 'EEEEE':
-        return localize.day(dayOfWeek, {width: 'narrow', context: 'formatting'})
-      // Tu
-      case 'EEEEEE':
-        return localize.day(dayOfWeek, {width: 'short', context: 'formatting'})
-      // Tuesday
-      case 'EEEE':
-      default:
-        return localize.day(dayOfWeek, {width: 'wide', context: 'formatting'})
-    }
-  },
-
-  // Local day of week
-  e: function (date, token, localize, options) {
-    var dayOfWeek = date.getUTCDay();
-    var localDayOfWeek = ((dayOfWeek - options.weekStartsOn + 8) % 7) || 7;
-    switch (token) {
-      // Numerical value (Nth day of week with current locale or weekStartsOn)
-      case 'e':
-        return String(localDayOfWeek)
-      // Padded numerical value
-      case 'ee':
-        return addLeadingZeros(localDayOfWeek, 2)
-      // 1st, 2nd, ..., 7th
-      case 'eo':
-        return localize.ordinalNumber(localDayOfWeek, {unit: 'day'})
-      case 'eee':
-        return localize.day(dayOfWeek, {width: 'abbreviated', context: 'formatting'})
-      // T
-      case 'eeeee':
-        return localize.day(dayOfWeek, {width: 'narrow', context: 'formatting'})
-      // Tu
-      case 'eeeeee':
-        return localize.day(dayOfWeek, {width: 'short', context: 'formatting'})
-      // Tuesday
-      case 'eeee':
-      default:
-        return localize.day(dayOfWeek, {width: 'wide', context: 'formatting'})
-    }
-  },
-
-  // Stand-alone local day of week
-  c: function (date, token, localize, options) {
-    var dayOfWeek = date.getUTCDay();
-    var localDayOfWeek = ((dayOfWeek - options.weekStartsOn + 8) % 7) || 7;
-    switch (token) {
-      // Numerical value (same as in `e`)
-      case 'c':
-        return String(localDayOfWeek)
-      // Padded numberical value
-      case 'cc':
-        return addLeadingZeros(localDayOfWeek, token.length)
-      // 1st, 2nd, ..., 7th
-      case 'co':
-        return localize.ordinalNumber(localDayOfWeek, {unit: 'day'})
-      case 'ccc':
-        return localize.day(dayOfWeek, {width: 'abbreviated', context: 'standalone'})
-      // T
-      case 'ccccc':
-        return localize.day(dayOfWeek, {width: 'narrow', context: 'standalone'})
-      // Tu
-      case 'cccccc':
-        return localize.day(dayOfWeek, {width: 'short', context: 'standalone'})
-      // Tuesday
-      case 'cccc':
-      default:
-        return localize.day(dayOfWeek, {width: 'wide', context: 'standalone'})
-    }
-  },
-
-  // ISO day of week
-  i: function (date, token, localize, options) {
-    var dayOfWeek = date.getUTCDay();
-    var isoDayOfWeek = dayOfWeek === 0 ? 7 : dayOfWeek;
-    switch (token) {
-      // 2
-      case 'i':
-        return String(isoDayOfWeek)
-      // 02
-      case 'ii':
-        return addLeadingZeros(isoDayOfWeek, token.length)
-      // 2nd
-      case 'io':
-        return localize.ordinalNumber(isoDayOfWeek, {unit: 'day'})
-      // Tue
-      case 'iii':
-        return localize.day(dayOfWeek, {width: 'abbreviated', context: 'formatting'})
-      // T
-      case 'iiiii':
-        return localize.day(dayOfWeek, {width: 'narrow', context: 'formatting'})
-      // Tu
-      case 'iiiiii':
-        return localize.day(dayOfWeek, {width: 'short', context: 'formatting'})
-      // Tuesday
-      case 'iiii':
-      default:
-        return localize.day(dayOfWeek, {width: 'wide', context: 'formatting'})
-    }
-  },
-
-  // AM or PM
-  a: function (date, token, localize) {
-    var hours = date.getUTCHours();
-    var dayPeriodEnumValue = (hours / 12) >= 1 ? 'pm' : 'am';
-
-    switch (token) {
-      case 'a':
-      case 'aa':
-      case 'aaa':
-        return localize.dayPeriod(dayPeriodEnumValue, {width: 'abbreviated', context: 'formatting'})
-      case 'aaaaa':
-        return localize.dayPeriod(dayPeriodEnumValue, {width: 'narrow', context: 'formatting'})
-      case 'aaaa':
-      default:
-        return localize.dayPeriod(dayPeriodEnumValue, {width: 'wide', context: 'formatting'})
-    }
-  },
-
-  // AM, PM, midnight, noon
-  b: function (date, token, localize) {
-    var hours = date.getUTCHours();
-    var dayPeriodEnumValue;
-    if (hours === 12) {
-      dayPeriodEnumValue = dayPeriodEnum.noon;
-    } else if (hours === 0) {
-      dayPeriodEnumValue = dayPeriodEnum.midnight;
-    } else {
-      dayPeriodEnumValue = (hours / 12) >= 1 ? 'pm' : 'am';
-    }
-
-    switch (token) {
-      case 'b':
-      case 'bb':
-      case 'bbb':
-        return localize.dayPeriod(dayPeriodEnumValue, {width: 'abbreviated', context: 'formatting'})
-      case 'bbbbb':
-        return localize.dayPeriod(dayPeriodEnumValue, {width: 'narrow', context: 'formatting'})
-      case 'bbbb':
-      default:
-        return localize.dayPeriod(dayPeriodEnumValue, {width: 'wide', context: 'formatting'})
-    }
-  },
-
-  // in the morning, in the afternoon, in the evening, at night
-  B: function (date, token, localize) {
-    var hours = date.getUTCHours();
-    var dayPeriodEnumValue;
-    if (hours >= 17) {
-      dayPeriodEnumValue = dayPeriodEnum.evening;
-    } else if (hours >= 12) {
-      dayPeriodEnumValue = dayPeriodEnum.afternoon;
-    } else if (hours >= 4) {
-      dayPeriodEnumValue = dayPeriodEnum.morning;
-    } else {
-      dayPeriodEnumValue = dayPeriodEnum.night;
-    }
-
-    switch (token) {
-      case 'B':
-      case 'BB':
-      case 'BBB':
-        return localize.dayPeriod(dayPeriodEnumValue, {width: 'abbreviated', context: 'formatting'})
-      case 'BBBBB':
-        return localize.dayPeriod(dayPeriodEnumValue, {width: 'narrow', context: 'formatting'})
-      case 'BBBB':
-      default:
-        return localize.dayPeriod(dayPeriodEnumValue, {width: 'wide', context: 'formatting'})
-    }
-  },
-
-  // Hour [1-12]
-  h: function (date, token, localize, options) {
-    var hours = date.getUTCHours() % 12;
-
-    if (hours === 0) {
-      hours = 12;
-    }
-
-    if (token === 'ho') {
-      return localize.ordinalNumber(hours, {unit: 'hour'})
-    }
-
-    return addLeadingZeros(hours, token.length)
-  },
-
-  // Hour [0-23]
-  H: function (date, token, localize, options) {
-    var hours = date.getUTCHours();
-
-    if (token === 'Ho') {
-      return localize.ordinalNumber(hours, {unit: 'hour'})
-    }
-
-    return addLeadingZeros(hours, token.length)
-  },
-
-  // Hour [0-11]
-  K: function (date, token, localize, options) {
-    var hours = date.getUTCHours() % 12;
-
-    if (token === 'Ko') {
-      return localize.ordinalNumber(hours, {unit: 'hour'})
-    }
-
-    return addLeadingZeros(hours, token.length)
-  },
-
-  // Hour [1-24]
-  k: function (date, token, localize, options) {
-    var hours = date.getUTCHours();
-
-    if (hours === 0) {
-      hours = 24;
-    }
-
-    if (token === 'ko') {
-      return localize.ordinalNumber(hours, {unit: 'hour'})
-    }
-
-    return addLeadingZeros(hours, token.length)
-  },
-
-  // Minute
-  m: function (date, token, localize, options) {
-    var minutes = date.getUTCMinutes();
-
-    if (token === 'mo') {
-      return localize.ordinalNumber(minutes, {unit: 'minute'})
-    }
-
-    return addLeadingZeros(minutes, token.length)
-  },
-
-  // Second
-  s: function (date, token, localize, options) {
-    var seconds = date.getUTCSeconds();
-
-    if (token === 'so') {
-      return localize.ordinalNumber(seconds, {unit: 'second'})
-    }
-
-    return addLeadingZeros(seconds, token.length)
-  },
-
-  // Fraction of second
-  S: function (date, token, localize, options) {
-    var numberOfDigits = token.length;
-    var milliseconds = date.getUTCMilliseconds();
-    var fractionalSeconds = Math.floor(milliseconds * Math.pow(10, numberOfDigits - 3));
-    return addLeadingZeros(fractionalSeconds, numberOfDigits)
-  },
-
-  // Timezone (ISO-8601. If offset is 0, output is always `'Z'`)
-  X: function (date, token, localize, options) {
-    var originalDate = options._originalDate || date;
-    var timezoneOffset = originalDate.getTimezoneOffset();
-
-    if (timezoneOffset === 0) {
-      return 'Z'
-    }
-
-    switch (token) {
-      // Hours and optional minutes
-      case 'X':
-        return formatTimezoneWithOptionalMinutes(timezoneOffset)
-
-      // Hours, minutes and optional seconds without `:` delimeter
-      // Note: neither ISO-8601 nor JavaScript supports seconds in timezone offsets
-      // so this token always has the same output as `XX`
-      case 'XXXX':
-      case 'XX': // Hours and minutes without `:` delimeter
-        return formatTimezone(timezoneOffset)
-
-      // Hours, minutes and optional seconds with `:` delimeter
-      // Note: neither ISO-8601 nor JavaScript supports seconds in timezone offsets
-      // so this token always has the same output as `XXX`
-      case 'XXXXX':
-      case 'XXX': // Hours and minutes with `:` delimeter
-      default:
-        return formatTimezone(timezoneOffset, ':')
-    }
-  },
-
-  // Timezone (ISO-8601. If offset is 0, output is `'+00:00'` or equivalent)
-  x: function (date, token, localize, options) {
-    var originalDate = options._originalDate || date;
-    var timezoneOffset = originalDate.getTimezoneOffset();
-
-    switch (token) {
-      // Hours and optional minutes
-      case 'x':
-        return formatTimezoneWithOptionalMinutes(timezoneOffset)
-
-      // Hours, minutes and optional seconds without `:` delimeter
-      // Note: neither ISO-8601 nor JavaScript supports seconds in timezone offsets
-      // so this token always has the same output as `xx`
-      case 'xxxx':
-      case 'xx': // Hours and minutes without `:` delimeter
-        return formatTimezone(timezoneOffset)
-
-      // Hours, minutes and optional seconds with `:` delimeter
-      // Note: neither ISO-8601 nor JavaScript supports seconds in timezone offsets
-      // so this token always has the same output as `xxx`
-      case 'xxxxx':
-      case 'xxx': // Hours and minutes with `:` delimeter
-      default:
-        return formatTimezone(timezoneOffset, ':')
-    }
-  },
-
-  // Timezone (GMT)
-  O: function (date, token, localize, options) {
-    var originalDate = options._originalDate || date;
-    var timezoneOffset = originalDate.getTimezoneOffset();
-
-    switch (token) {
-      // Short
-      case 'O':
-      case 'OO':
-      case 'OOO':
-        return 'GMT' + formatTimezoneShort(timezoneOffset, ':')
-      // Long
-      case 'OOOO':
-      default:
-        return 'GMT' + formatTimezone(timezoneOffset, ':')
-    }
-  },
-
-  // Timezone (specific non-location)
-  z: function (date, token, localize, options) {
-    var originalDate = options._originalDate || date;
-    var timezoneOffset = originalDate.getTimezoneOffset();
-
-    switch (token) {
-      // Short
-      case 'z':
-      case 'zz':
-      case 'zzz':
-        return 'GMT' + formatTimezoneShort(timezoneOffset, ':')
-      // Long
-      case 'zzzz':
-      default:
-        return 'GMT' + formatTimezone(timezoneOffset, ':')
-    }
-  },
-
-  // Seconds timestamp
-  t: function (date, token, localize, options) {
-    var originalDate = options._originalDate || date;
-    var timestamp = Math.floor(originalDate.getTime() / 1000);
-    return addLeadingZeros(timestamp, token.length)
-  },
-
-  // Milliseconds timestamp
-  T: function (date, token, localize, options) {
-    var originalDate = options._originalDate || date;
-    var timestamp = originalDate.getTime();
-    return addLeadingZeros(timestamp, token.length)
-  }
-};
-
-function addLeadingZeros (number, targetLength) {
-  var sign = number < 0 ? '-' : '';
-  var output = Math.abs(number).toString();
-  while (output.length < targetLength) {
-    output = '0' + output;
-  }
-  return sign + output
-}
-
-function formatTimezone (offset, dirtyDelimeter) {
-  var delimeter = dirtyDelimeter || '';
-  var sign = offset > 0 ? '-' : '+';
-  var absOffset = Math.abs(offset);
-  var hours = addLeadingZeros(Math.floor(absOffset / 60), 2);
-  var minutes = addLeadingZeros(absOffset % 60, 2);
-  return sign + hours + delimeter + minutes
-}
-
-function formatTimezoneWithOptionalMinutes (offset, dirtyDelimeter) {
-  if (offset % 60 === 0) {
-    var sign = offset > 0 ? '-' : '+';
-    return sign + addLeadingZeros(Math.abs(offset) / 60, 2)
-  }
-  return formatTimezone(offset, dirtyDelimeter)
-}
-
-function formatTimezoneShort (offset, dirtyDelimeter) {
-  var sign = offset > 0 ? '-' : '+';
-  var absOffset = Math.abs(offset);
-  var hours = Math.floor(absOffset / 60);
-  var minutes = absOffset % 60;
-  if (minutes === 0) {
-    return sign + String(hours)
-  }
-  var delimeter = dirtyDelimeter || '';
-  return sign + String(hours) + delimeter + addLeadingZeros(minutes, 2)
-}
-
-function dateLongFormatter (pattern, formatLong, options) {
-  switch (pattern) {
-    case 'P':
-      return formatLong.date({width: 'short'})
-    case 'PP':
-      return formatLong.date({width: 'medium'})
-    case 'PPP':
-      return formatLong.date({width: 'long'})
-    case 'PPPP':
-    default:
-      return formatLong.date({width: 'full'})
-  }
-}
-
-function timeLongFormatter (pattern, formatLong, options) {
-  switch (pattern) {
-    case 'p':
-      return formatLong.time({width: 'short'})
-    case 'pp':
-      return formatLong.time({width: 'medium'})
-    case 'ppp':
-      return formatLong.time({width: 'long'})
-    case 'pppp':
-    default:
-      return formatLong.time({width: 'full'})
-  }
-}
-
-function dateTimeLongFormatter (pattern, formatLong, options) {
-  var matchResult = pattern.match(/(P+)(p+)?/);
-  var datePattern = matchResult[1];
-  var timePattern = matchResult[2];
-
-  if (!timePattern) {
-    return dateLongFormatter(pattern, formatLong, options)
-  }
-
-  var dateTimeFormat;
-
-  switch (datePattern) {
-    case 'P':
-      dateTimeFormat = formatLong.dateTime({width: 'short'});
-      break
-    case 'PP':
-      dateTimeFormat = formatLong.dateTime({width: 'medium'});
-      break
-    case 'PPP':
-      dateTimeFormat = formatLong.dateTime({width: 'long'});
-      break
-    case 'PPPP':
-    default:
-      dateTimeFormat = formatLong.dateTime({width: 'full'});
-      break
-  }
-
-  return dateTimeFormat
-    .replace('{{date}}', dateLongFormatter(datePattern, formatLong, options))
-    .replace('{{time}}', timeLongFormatter(timePattern, formatLong, options))
-}
-
-var longFormatters = {
-  p: timeLongFormatter,
-  P: dateTimeLongFormatter
-};
-
-/**
- * @name subMilliseconds
- * @category Millisecond Helpers
- * @summary Subtract the specified number of milliseconds from the given date.
- *
- * @description
- * Subtract the specified number of milliseconds from the given date.
- *
- * @param {Date|String|Number} date - the date to be changed
- * @param {Number} amount - the amount of milliseconds to be subtracted
- * @param {Options} [options] - the object with options. See [Options]{@link https://date-fns.org/docs/Options}
- * @param {0|1|2} [options.additionalDigits=2] - passed to `toDate`. See [toDate]{@link https://date-fns.org/docs/toDate}
- * @returns {Date} the new date with the milliseconds subtracted
- * @throws {TypeError} 2 arguments required
- * @throws {RangeError} `options.additionalDigits` must be 0, 1 or 2
- *
- * @example
- * // Subtract 750 milliseconds from 10 July 2014 12:45:30.000:
- * var result = subMilliseconds(new Date(2014, 6, 10, 12, 45, 30, 0), 750)
- * //=> Thu Jul 10 2014 12:45:29.250
- */
-function subMilliseconds (dirtyDate, dirtyAmount, dirtyOptions) {
-  if (arguments.length < 2) {
-    throw new TypeError('2 arguments required, but only ' + arguments.length + ' present')
-  }
-
-  var amount = toInteger(dirtyAmount);
-  return addMilliseconds(dirtyDate, -amount, dirtyOptions)
-}
-
-const protectedTokens = ['D', 'DD', 'YY', 'YYYY'];
-
-function isProtectedToken(token) {
-  return protectedTokens.indexOf(token) !== -1
-}
-
-function throwProtectedError(token) {
-  throw new RangeError(
-    '`options.awareOfUnicodeTokens` must be set to `true` to use `' +
-      token +
-      '` token; see: https://git.io/fxCyr'
-  )
-}
-
-// This RegExp consists of three parts separated by `|`:
-// - [yYQqMLwIdDecihHKkms]o matches any available ordinal number token
-//   (one of the certain letters followed by `o`)
-// - (\w)\1* matches any sequences of the same letter
-// - '' matches two quote characters in a row
-// - '(''|[^'])+('|$) matches anything surrounded by two quote characters ('),
-//   except a single quote symbol, which ends the sequence.
-//   Two quote characters do not end the sequence.
-//   If there is no matching single quote
-//   then the sequence will continue until the end of the string.
-// - . matches any single character unmatched by previous parts of the RegExps
-var formattingTokensRegExp = /[yYQqMLwIdDecihHKkms]o|(\w)\1*|''|'(''|[^'])+('|$)|./g;
-
-// This RegExp catches symbols escaped by quotes, and also
-// sequences of symbols P, p, and the combinations like `PPPPPPPppppp`
-var longFormattingTokensRegExp = /P+p+|P+|p+|''|'(''|[^'])+('|$)|./g;
-
-var escapedStringRegExp = /^'(.*?)'?$/;
-var doubleQuoteRegExp = /''/g;
-
-/**
- * @name format
- * @category Common Helpers
- * @summary Format the date.
- *
- * @description
- * Return the formatted date string in the given format. The result may vary by locale.
- *
- * > ⚠️ Please note that the `format` tokens differ from Moment.js and other libraries.
- * > See: https://git.io/fxCyr
- *
- * The characters wrapped between two single quotes characters (') are escaped.
- * Two single quotes in a row, whether inside or outside a quoted sequence, represent a 'real' single quote.
- * (see the last example)
- *
- * Format of the string is based on Unicode Technical Standard #35:
- * https://www.unicode.org/reports/tr35/tr35-dates.html#Date_Field_Symbol_Table
- * with a few additions (see note 7 below the table).
- *
- * Accepted patterns:
- * | Unit                            | Pattern | Result examples                   | Notes |
- * |---------------------------------|---------|-----------------------------------|-------|
- * | Era                             | G..GGG  | AD, BC                            |       |
- * |                                 | GGGG    | Anno Domini, Before Christ        | 2     |
- * |                                 | GGGGG   | A, B                              |       |
- * | Calendar year                   | y       | 44, 1, 1900, 2017                 | 5     |
- * |                                 | yo      | 44th, 1st, 0th, 17th              | 5,7   |
- * |                                 | yy      | 44, 01, 00, 17                    | 5     |
- * |                                 | yyy     | 044, 001, 1900, 2017              | 5     |
- * |                                 | yyyy    | 0044, 0001, 1900, 2017            | 5     |
- * |                                 | yyyyy   | ...                               | 3,5   |
- * | Local week-numbering year       | Y       | 44, 1, 1900, 2017                 | 5     |
- * |                                 | Yo      | 44th, 1st, 1900th, 2017th         | 5,7   |
- * |                                 | YY      | 44, 01, 00, 17                    | 5,8   |
- * |                                 | YYY     | 044, 001, 1900, 2017              | 5     |
- * |                                 | YYYY    | 0044, 0001, 1900, 2017            | 5,8   |
- * |                                 | YYYYY   | ...                               | 3,5   |
- * | ISO week-numbering year         | R       | -43, 0, 1, 1900, 2017             | 5,7   |
- * |                                 | RR      | -43, 00, 01, 1900, 2017           | 5,7   |
- * |                                 | RRR     | -043, 000, 001, 1900, 2017        | 5,7   |
- * |                                 | RRRR    | -0043, 0000, 0001, 1900, 2017     | 5,7   |
- * |                                 | RRRRR   | ...                               | 3,5,7 |
- * | Extended year                   | u       | -43, 0, 1, 1900, 2017             | 5     |
- * |                                 | uu      | -43, 01, 1900, 2017               | 5     |
- * |                                 | uuu     | -043, 001, 1900, 2017             | 5     |
- * |                                 | uuuu    | -0043, 0001, 1900, 2017           | 5     |
- * |                                 | uuuuu   | ...                               | 3,5   |
- * | Quarter (formatting)            | Q       | 1, 2, 3, 4                        |       |
- * |                                 | Qo      | 1st, 2nd, 3rd, 4th                | 7     |
- * |                                 | QQ      | 01, 02, 03, 04                    |       |
- * |                                 | QQQ     | Q1, Q2, Q3, Q4                    |       |
- * |                                 | QQQQ    | 1st quarter, 2nd quarter, ...     | 2     |
- * |                                 | QQQQQ   | 1, 2, 3, 4                        | 4     |
- * | Quarter (stand-alone)           | q       | 1, 2, 3, 4                        |       |
- * |                                 | qo      | 1st, 2nd, 3rd, 4th                | 7     |
- * |                                 | qq      | 01, 02, 03, 04                    |       |
- * |                                 | qqq     | Q1, Q2, Q3, Q4                    |       |
- * |                                 | qqqq    | 1st quarter, 2nd quarter, ...     | 2     |
- * |                                 | qqqqq   | 1, 2, 3, 4                        | 4     |
- * | Month (formatting)              | M       | 1, 2, ..., 12                     |       |
- * |                                 | Mo      | 1st, 2nd, ..., 12th               | 7     |
- * |                                 | MM      | 01, 02, ..., 12                   |       |
- * |                                 | MMM     | Jan, Feb, ..., Dec                |       |
- * |                                 | MMMM    | January, February, ..., December  | 2     |
- * |                                 | MMMMM   | J, F, ..., D                      |       |
- * | Month (stand-alone)             | L       | 1, 2, ..., 12                     |       |
- * |                                 | Lo      | 1st, 2nd, ..., 12th               | 7     |
- * |                                 | LL      | 01, 02, ..., 12                   |       |
- * |                                 | LLL     | Jan, Feb, ..., Dec                |       |
- * |                                 | LLLL    | January, February, ..., December  | 2     |
- * |                                 | LLLLL   | J, F, ..., D                      |       |
- * | Local week of year              | w       | 1, 2, ..., 53                     |       |
- * |                                 | wo      | 1st, 2nd, ..., 53th               | 7     |
- * |                                 | ww      | 01, 02, ..., 53                   |       |
- * | ISO week of year                | I       | 1, 2, ..., 53                     | 7     |
- * |                                 | Io      | 1st, 2nd, ..., 53th               | 7     |
- * |                                 | II      | 01, 02, ..., 53                   | 7     |
- * | Day of month                    | d       | 1, 2, ..., 31                     |       |
- * |                                 | do      | 1st, 2nd, ..., 31st               | 7     |
- * |                                 | dd      | 01, 02, ..., 31                   |       |
- * | Day of year                     | D       | 1, 2, ..., 365, 366               | 8     |
- * |                                 | Do      | 1st, 2nd, ..., 365th, 366th       | 7     |
- * |                                 | DD      | 01, 02, ..., 365, 366             | 8     |
- * |                                 | DDD     | 001, 002, ..., 365, 366           |       |
- * |                                 | DDDD    | ...                               | 3     |
- * | Day of week (formatting)        | E..EEE  | Mon, Tue, Wed, ..., Su            |       |
- * |                                 | EEEE    | Monday, Tuesday, ..., Sunday      | 2     |
- * |                                 | EEEEE   | M, T, W, T, F, S, S               |       |
- * |                                 | EEEEEE  | Mo, Tu, We, Th, Fr, Su, Sa        |       |
- * | ISO day of week (formatting)    | i       | 1, 2, 3, ..., 7                   | 7     |
- * |                                 | io      | 1st, 2nd, ..., 7th                | 7     |
- * |                                 | ii      | 01, 02, ..., 07                   | 7     |
- * |                                 | iii     | Mon, Tue, Wed, ..., Su            | 7     |
- * |                                 | iiii    | Monday, Tuesday, ..., Sunday      | 2,7   |
- * |                                 | iiiii   | M, T, W, T, F, S, S               | 7     |
- * |                                 | iiiiii  | Mo, Tu, We, Th, Fr, Su, Sa        | 7     |
- * | Local day of week (formatting)  | e       | 2, 3, 4, ..., 1                   |       |
- * |                                 | eo      | 2nd, 3rd, ..., 1st                | 7     |
- * |                                 | ee      | 02, 03, ..., 01                   |       |
- * |                                 | eee     | Mon, Tue, Wed, ..., Su            |       |
- * |                                 | eeee    | Monday, Tuesday, ..., Sunday      | 2     |
- * |                                 | eeeee   | M, T, W, T, F, S, S               |       |
- * |                                 | eeeeee  | Mo, Tu, We, Th, Fr, Su, Sa        |       |
- * | Local day of week (stand-alone) | c       | 2, 3, 4, ..., 1                   |       |
- * |                                 | co      | 2nd, 3rd, ..., 1st                | 7     |
- * |                                 | cc      | 02, 03, ..., 01                   |       |
- * |                                 | ccc     | Mon, Tue, Wed, ..., Su            |       |
- * |                                 | cccc    | Monday, Tuesday, ..., Sunday      | 2     |
- * |                                 | ccccc   | M, T, W, T, F, S, S               |       |
- * |                                 | cccccc  | Mo, Tu, We, Th, Fr, Su, Sa        |       |
- * | AM, PM                          | a..aaa  | AM, PM                            |       |
- * |                                 | aaaa    | a.m., p.m.                        | 2     |
- * |                                 | aaaaa   | a, p                              |       |
- * | AM, PM, noon, midnight          | b..bbb  | AM, PM, noon, midnight            |       |
- * |                                 | bbbb    | a.m., p.m., noon, midnight        | 2     |
- * |                                 | bbbbb   | a, p, n, mi                       |       |
- * | Flexible day period             | B..BBB  | at night, in the morning, ...     |       |
- * |                                 | BBBB    | at night, in the morning, ...     | 2     |
- * |                                 | BBBBB   | at night, in the morning, ...     |       |
- * | Hour [1-12]                     | h       | 1, 2, ..., 11, 12                 |       |
- * |                                 | ho      | 1st, 2nd, ..., 11th, 12th         | 7     |
- * |                                 | hh      | 01, 02, ..., 11, 12               |       |
- * | Hour [0-23]                     | H       | 0, 1, 2, ..., 23                  |       |
- * |                                 | Ho      | 0th, 1st, 2nd, ..., 23rd          | 7     |
- * |                                 | HH      | 00, 01, 02, ..., 23               |       |
- * | Hour [0-11]                     | K       | 1, 2, ..., 11, 0                  |       |
- * |                                 | Ko      | 1st, 2nd, ..., 11th, 0th          | 7     |
- * |                                 | KK      | 1, 2, ..., 11, 0                  |       |
- * | Hour [1-24]                     | k       | 24, 1, 2, ..., 23                 |       |
- * |                                 | ko      | 24th, 1st, 2nd, ..., 23rd         | 7     |
- * |                                 | kk      | 24, 01, 02, ..., 23               |       |
- * | Minute                          | m       | 0, 1, ..., 59                     |       |
- * |                                 | mo      | 0th, 1st, ..., 59th               | 7     |
- * |                                 | mm      | 00, 01, ..., 59                   |       |
- * | Second                          | s       | 0, 1, ..., 59                     |       |
- * |                                 | so      | 0th, 1st, ..., 59th               | 7     |
- * |                                 | ss      | 00, 01, ..., 59                   |       |
- * | Fraction of second              | S       | 0, 1, ..., 9                      |       |
- * |                                 | SS      | 00, 01, ..., 99                   |       |
- * |                                 | SSS     | 000, 0001, ..., 999               |       |
- * |                                 | SSSS    | ...                               | 3     |
- * | Timezone (ISO-8601 w/ Z)        | X       | -08, +0530, Z                     |       |
- * |                                 | XX      | -0800, +0530, Z                   |       |
- * |                                 | XXX     | -08:00, +05:30, Z                 |       |
- * |                                 | XXXX    | -0800, +0530, Z, +123456          | 2     |
- * |                                 | XXXXX   | -08:00, +05:30, Z, +12:34:56      |       |
- * | Timezone (ISO-8601 w/o Z)       | x       | -08, +0530, +00                   |       |
- * |                                 | xx      | -0800, +0530, +0000               |       |
- * |                                 | xxx     | -08:00, +05:30, +00:00            | 2     |
- * |                                 | xxxx    | -0800, +0530, +0000, +123456      |       |
- * |                                 | xxxxx   | -08:00, +05:30, +00:00, +12:34:56 |       |
- * | Timezone (GMT)                  | O...OOO | GMT-8, GMT+5:30, GMT+0            |       |
- * |                                 | OOOO    | GMT-08:00, GMT+05:30, GMT+00:00   | 2     |
- * | Timezone (specific non-locat.)  | z...zzz | GMT-8, GMT+5:30, GMT+0            | 6     |
- * |                                 | zzzz    | GMT-08:00, GMT+05:30, GMT+00:00   | 2,6   |
- * | Seconds timestamp               | t       | 512969520                         | 7     |
- * |                                 | tt      | ...                               | 3,7   |
- * | Milliseconds timestamp          | T       | 512969520900                      | 7     |
- * |                                 | TT      | ...                               | 3,7   |
- * | Long localized date             | P       | 05/29/1453                        | 7     |
- * |                                 | PP      | May 29, 1453                      | 7     |
- * |                                 | PPP     | May 29th, 1453                    | 7     |
- * |                                 | PPPP    | Sunday, May 29th, 1453            | 2,7   |
- * | Long localized time             | p       | 12:00 AM                          | 7     |
- * |                                 | pp      | 12:00:00 AM                       | 7     |
- * |                                 | ppp     | 12:00:00 AM GMT+2                 | 7     |
- * |                                 | pppp    | 12:00:00 AM GMT+02:00             | 2,7   |
- * | Combination of date and time    | Pp      | 05/29/1453, 12:00 AM              | 7     |
- * |                                 | PPpp    | May 29, 1453, 12:00:00 AM         | 7     |
- * |                                 | PPPppp  | May 29th, 1453 at ...             | 7     |
- * |                                 | PPPPpppp| Sunday, May 29th, 1453 at ...     | 2,7   |
- * Notes:
- * 1. "Formatting" units (e.g. formatting quarter) in the default en-US locale
- *    are the same as "stand-alone" units, but are different in some languages.
- *    "Formatting" units are declined according to the rules of the language
- *    in the context of a date. "Stand-alone" units are always nominative singular:
- *
- *    `format(new Date(2017, 10, 6), 'do LLLL', {locale: cs}) //=> '6. listopad'`
- *
- *    `format(new Date(2017, 10, 6), 'do MMMM', {locale: cs}) //=> '6. listopadu'`
- *
- * 2. Any sequence of the identical letters is a pattern, unless it is escaped by
- *    the single quote characters (see below).
- *    If the sequence is longer than listed in table (e.g. `EEEEEEEEEEE`)
- *    the output will be the same as default pattern for this unit, usually
- *    the longest one (in case of ISO weekdays, `EEEE`). Default patterns for units
- *    are marked with "2" in the last column of the table.
- *
- *    `format(new Date(2017, 10, 6), 'MMM') //=> 'Nov'`
- *
- *    `format(new Date(2017, 10, 6), 'MMMM') //=> 'November'`
- *
- *    `format(new Date(2017, 10, 6), 'MMMMM') //=> 'N'`
- *
- *    `format(new Date(2017, 10, 6), 'MMMMMM') //=> 'November'`
- *
- *    `format(new Date(2017, 10, 6), 'MMMMMMM') //=> 'November'`
- *
- * 3. Some patterns could be unlimited length (such as `yyyyyyyy`).
- *    The output will be padded with zeros to match the length of the pattern.
- *
- *    `format(new Date(2017, 10, 6), 'yyyyyyyy') //=> '00002017'`
- *
- * 4. `QQQQQ` and `qqqqq` could be not strictly numerical in some locales.
- *    These tokens represent the shortest form of the quarter.
- *
- * 5. The main difference between `y` and `u` patterns are B.C. years:
- *
- *    | Year | `y` | `u` |
- *    |------|-----|-----|
- *    | AC 1 |   1 |   1 |
- *    | BC 1 |   1 |   0 |
- *    | BC 2 |   2 |  -1 |
- *
- *    Also `yy` always returns the last two digits of a year,
- *    while `uu` pads single digit years to 2 characters and returns other years unchanged:
- *
- *    | Year | `yy` | `uu` |
- *    |------|------|------|
- *    | 1    |   01 |   01 |
- *    | 14   |   14 |   14 |
- *    | 376  |   76 |  376 |
- *    | 1453 |   53 | 1453 |
- *
- *    The same difference is true for local and ISO week-numbering years (`Y` and `R`),
- *    except local week-numbering years are dependent on `options.weekStartsOn`
- *    and `options.firstWeekContainsDate` (compare [getISOWeekYear]{@link https://date-fns.org/docs/getISOWeekYear}
- *    and [getWeekYear]{@link https://date-fns.org/docs/getWeekYear}).
- *
- * 6. Specific non-location timezones are currently unavailable in `date-fns`,
- *    so right now these tokens fall back to GMT timezones.
- *
- * 7. These patterns are not in the Unicode Technical Standard #35:
- *    - `i`: ISO day of week
- *    - `I`: ISO week of year
- *    - `R`: ISO week-numbering year
- *    - `t`: seconds timestamp
- *    - `T`: milliseconds timestamp
- *    - `o`: ordinal number modifier
- *    - `P`: long localized date
- *    - `p`: long localized time
- *
- * 8. These tokens are often confused with others. See: https://git.io/fxCyr
- *
- * @param {Date|String|Number} date - the original date
- * @param {String} format - the string of tokens
- * @param {Options} [options] - the object with options. See [Options]{@link https://date-fns.org/docs/Options}
- * @param {0|1|2} [options.additionalDigits=2] - passed to `toDate`. See [toDate]{@link https://date-fns.org/docs/toDate}
- * @param {0|1|2|3|4|5|6} [options.weekStartsOn=0] - the index of the first day of the week (0 - Sunday)
- * @param {Number} [options.firstWeekContainsDate=1] - the day of January, which is
- * @param {Locale} [options.locale=defaultLocale] - the locale object. See [Locale]{@link https://date-fns.org/docs/Locale}
- * @param {Boolean} [options.awareOfUnicodeTokens=false] - if true, allows usage of Unicode tokens causes confusion:
- *   - Some of the day of year tokens (`D`, `DD`) that are confused with the day of month tokens (`d`, `dd`).
- *   - Some of the local week-numbering year tokens (`YY`, `YYYY`) that are confused with the calendar year tokens (`yy`, `yyyy`).
- *   See: https://git.io/fxCyr
- * @returns {String} the formatted date string
- * @throws {TypeError} 2 arguments required
- * @throws {RangeError} `options.additionalDigits` must be 0, 1 or 2
- * @throws {RangeError} `options.locale` must contain `localize` property
- * @throws {RangeError} `options.locale` must contain `formatLong` property
- * @throws {RangeError} `options.weekStartsOn` must be between 0 and 6
- * @throws {RangeError} `options.firstWeekContainsDate` must be between 1 and 7
- * @throws {RangeError} `options.awareOfUnicodeTokens` must be set to `true` to use `XX` token; see: https://git.io/fxCyr
- *
- * @example
- * // Represent 11 February 2014 in middle-endian format:
- * var result = format(
- *   new Date(2014, 1, 11),
- *   'MM/dd/yyyy'
- * )
- * //=> '02/11/2014'
- *
- * @example
- * // Represent 2 July 2014 in Esperanto:
- * import { eoLocale } from 'date-fns/locale/eo'
- * var result = format(
- *   new Date(2014, 6, 2),
- *   "do 'de' MMMM yyyy",
- *   {locale: eoLocale}
- * )
- * //=> '2-a de julio 2014'
- *
- * @example
- * // Escape string by single quote characters:
- * var result = format(
- *   new Date(2014, 6, 2, 15),
- *   "h 'o''clock'"
- * )
- * //=> "3 o'clock"
- */
-function format(dirtyDate, dirtyFormatStr, dirtyOptions) {
-  if (arguments.length < 2) {
-    throw new TypeError(
-      '2 arguments required, but only ' + arguments.length + ' present'
-    )
-  }
-
-  var formatStr = String(dirtyFormatStr);
-  var options = dirtyOptions || {};
-
-  var locale$$1 = options.locale || locale;
-
-  var localeFirstWeekContainsDate =
-    locale$$1.options && locale$$1.options.firstWeekContainsDate;
-  var defaultFirstWeekContainsDate =
-    localeFirstWeekContainsDate == null
-      ? 1
-      : toInteger(localeFirstWeekContainsDate);
-  var firstWeekContainsDate =
-    options.firstWeekContainsDate == null
-      ? defaultFirstWeekContainsDate
-      : toInteger(options.firstWeekContainsDate);
-
-  // Test if weekStartsOn is between 1 and 7 _and_ is not NaN
-  if (!(firstWeekContainsDate >= 1 && firstWeekContainsDate <= 7)) {
-    throw new RangeError(
-      'firstWeekContainsDate must be between 1 and 7 inclusively'
-    )
-  }
-
-  var localeWeekStartsOn = locale$$1.options && locale$$1.options.weekStartsOn;
-  var defaultWeekStartsOn =
-    localeWeekStartsOn == null ? 0 : toInteger(localeWeekStartsOn);
-  var weekStartsOn =
-    options.weekStartsOn == null
-      ? defaultWeekStartsOn
-      : toInteger(options.weekStartsOn);
-
-  // Test if weekStartsOn is between 0 and 6 _and_ is not NaN
-  if (!(weekStartsOn >= 0 && weekStartsOn <= 6)) {
-    throw new RangeError('weekStartsOn must be between 0 and 6 inclusively')
-  }
-
-  if (!locale$$1.localize) {
-    throw new RangeError('locale must contain localize property')
-  }
-
-  if (!locale$$1.formatLong) {
-    throw new RangeError('locale must contain formatLong property')
-  }
-
-  var originalDate = toDate(dirtyDate, options);
-
-  if (!isValid(originalDate, options)) {
-    return 'Invalid Date'
-  }
-
-  // Convert the date in system timezone to the same date in UTC+00:00 timezone.
-  // This ensures that when UTC functions will be implemented, locales will be compatible with them.
-  // See an issue about UTC functions: https://github.com/date-fns/date-fns/issues/376
-  var timezoneOffset = getTimezoneOffsetInMilliseconds(originalDate);
-  var utcDate = subMilliseconds(originalDate, timezoneOffset, options);
-
-  var formatterOptions = {
-    firstWeekContainsDate: firstWeekContainsDate,
-    weekStartsOn: weekStartsOn,
-    locale: locale$$1,
-    _originalDate: originalDate
-  };
-
-  var result = formatStr
-    .match(longFormattingTokensRegExp)
-    .map(function(substring) {
-      var firstCharacter = substring[0];
-      if (firstCharacter === 'p' || firstCharacter === 'P') {
-        var longFormatter = longFormatters[firstCharacter];
-        return longFormatter(substring, locale$$1.formatLong, formatterOptions)
-      }
-      return substring
-    })
-    .join('')
-    .match(formattingTokensRegExp)
-    .map(function(substring) {
-      // Replace two single quote characters with one single quote character
-      if (substring === "''") {
-        return "'"
-      }
-
-      var firstCharacter = substring[0];
-      if (firstCharacter === "'") {
-        return cleanEscapedString(substring)
-      }
-
-      var formatter = formatters[firstCharacter];
-      if (formatter) {
-        if (!options.awareOfUnicodeTokens && isProtectedToken(substring)) {
-          throwProtectedError(substring);
-        }
-        return formatter(utcDate, substring, locale$$1.localize, formatterOptions)
-      }
-
-      return substring
-    })
-    .join('');
-
-  return result
-}
-
-function cleanEscapedString(input) {
-  return input.match(escapedStringRegExp)[1].replace(doubleQuoteRegExp, "'")
-}
-
-/**
- * @name isDate
- * @category Common Helpers
- * @summary Is the given value a date?
- *
- * @description
- * Returns true if the given value is an instance of Date. The function works for dates transferred across iframes.
- *
- * @param {*} value - the value to check
- * @param {Options} [options] - the object with options. Unused; present for FP submodule compatibility sake. See [Options]{@link https://date-fns.org/docs/Options}
- * @returns {boolean} true if the given value is a date
- * @throws {TypeError} 1 arguments required
- *
- * @example
- * // For a valid date:
- * var result = isDate(new Date())
- * //=> true
- *
- * @example
- * // For an invalid date:
- * var result = isDate(new Date(NaN))
- * //=> true
- *
- * @example
- * // For some value:
- * var result = isDate('2014-02-31')
- * //=> false
- *
- * @example
- * // For an object:
- * var result = isDate({})
- * //=> false
- */
-
-/**
- * @name isEqual
- * @category Common Helpers
- * @summary Are the given dates equal?
- *
- * @description
- * Are the given dates equal?
- *
- * @param {Date|String|Number} dateLeft - the first date to compare
- * @param {Date|String|Number} dateRight - the second date to compare
- * @param {Options} [options] - the object with options. See [Options]{@link https://date-fns.org/docs/Options}
- * @param {0|1|2} [options.additionalDigits=2] - passed to `toDate`. See [toDate]{@link https://date-fns.org/docs/toDate}
- * @returns {Boolean} the dates are equal
- * @throws {TypeError} 2 arguments required
- * @throws {RangeError} `options.additionalDigits` must be 0, 1 or 2
- *
- * @example
- * // Are 2 July 2014 06:30:45.000 and 2 July 2014 06:30:45.500 equal?
- * var result = isEqual(
- *   new Date(2014, 6, 2, 6, 30, 45, 0)
- *   new Date(2014, 6, 2, 6, 30, 45, 500)
- * )
- * //=> false
- */
-function isEqual (dirtyLeftDate, dirtyRightDate, dirtyOptions) {
-  if (arguments.length < 2) {
-    throw new TypeError('2 arguments required, but only ' + arguments.length + ' present')
-  }
-
-  var dateLeft = toDate(dirtyLeftDate, dirtyOptions);
-  var dateRight = toDate(dirtyRightDate, dirtyOptions);
-  return dateLeft.getTime() === dateRight.getTime()
-}
-
-// This file is generated automatically by `scripts/build/indices.js`. Please, don't change it.
-
-var MINUTE_IN_SECONDS = 60;
-var HOUR_IN_SECONDS = MINUTE_IN_SECONDS * 60;
-var DAY_IN_SECONDS = HOUR_IN_SECONDS * 24;
-var difference = function difference(date1, date2) {
-  var totalInSeconds = differenceInSeconds(date1, date2);
-  var seconds = totalInSeconds;
-  var days = Math.floor(seconds / DAY_IN_SECONDS);
-  seconds = seconds % DAY_IN_SECONDS;
-  var hours = Math.floor(seconds / HOUR_IN_SECONDS);
-  seconds = seconds % HOUR_IN_SECONDS;
-  var minutes = Math.floor(seconds / MINUTE_IN_SECONDS);
-  seconds = seconds % MINUTE_IN_SECONDS;
-  return {
-    days: days,
-    hours: hours,
-    minutes: minutes,
-    seconds: seconds,
-    totalInSeconds: totalInSeconds
-  };
-};
-var formatHtmlDatetime = function formatHtmlDatetime(date) {
-  return format(date, "yyyy-MM-dd'T'HH:mm:ss.SSSxxx");
-};
-
-var formatIntegerRange = function formatIntegerRange() {
-  var count = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : -1;
-  var min = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
-  var max = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 99;
-  var maxSuffix = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : '';
-  count = parseInt(count, 10);
-
-  if (count <= min) {
-    return "".concat(parseInt(min, 10));
-  }
-
-  if (count > max) {
-    return "".concat(parseInt(max, 10)).concat(maxSuffix);
-  }
-
-  return count.toString();
-};
-
-function _arrayWithoutHoles(arr) {
-  if (Array.isArray(arr)) {
-    for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) {
-      arr2[i] = arr[i];
-    }
-
-    return arr2;
-  }
-}
-
-var arrayWithoutHoles = _arrayWithoutHoles;
-
-function _iterableToArray(iter) {
-  if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter);
-}
-
-var iterableToArray = _iterableToArray;
-
-function _nonIterableSpread() {
-  throw new TypeError("Invalid attempt to spread non-iterable instance");
-}
-
-var nonIterableSpread = _nonIterableSpread;
-
-function _toConsumableArray(arr) {
-  return arrayWithoutHoles(arr) || iterableToArray(arr) || nonIterableSpread();
-}
-
-var toConsumableArray = _toConsumableArray;
+var React = require('react');
+var React__default = _interopDefault(React);
 
 function _objectWithoutPropertiesLoose(source, excluded) {
   if (source == null) return {};
@@ -3509,6 +47,991 @@ function _objectWithoutProperties(source, excluded) {
 }
 
 var objectWithoutProperties = _objectWithoutProperties;
+
+var commonjsGlobal = typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
+
+function unwrapExports (x) {
+	return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, 'default') ? x.default : x;
+}
+
+function createCommonjsModule(fn, module) {
+	return module = { exports: {} }, fn(module, module.exports), module.exports;
+}
+
+var _extends_1 = createCommonjsModule(function (module) {
+function _extends() {
+  module.exports = _extends = Object.assign || function (target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i];
+
+      for (var key in source) {
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+          target[key] = source[key];
+        }
+      }
+    }
+
+    return target;
+  };
+
+  return _extends.apply(this, arguments);
+}
+
+module.exports = _extends;
+});
+
+var runtime = createCommonjsModule(function (module) {
+/**
+ * Copyright (c) 2014-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+!(function(global) {
+
+  var Op = Object.prototype;
+  var hasOwn = Op.hasOwnProperty;
+  var undefined; // More compressible than void 0.
+  var $Symbol = typeof Symbol === "function" ? Symbol : {};
+  var iteratorSymbol = $Symbol.iterator || "@@iterator";
+  var asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator";
+  var toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag";
+  var runtime = global.regeneratorRuntime;
+  if (runtime) {
+    {
+      // If regeneratorRuntime is defined globally and we're in a module,
+      // make the exports object identical to regeneratorRuntime.
+      module.exports = runtime;
+    }
+    // Don't bother evaluating the rest of this file if the runtime was
+    // already defined globally.
+    return;
+  }
+
+  // Define the runtime globally (as expected by generated code) as either
+  // module.exports (if we're in a module) or a new, empty object.
+  runtime = global.regeneratorRuntime = module.exports;
+
+  function wrap(innerFn, outerFn, self, tryLocsList) {
+    // If outerFn provided and outerFn.prototype is a Generator, then outerFn.prototype instanceof Generator.
+    var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator;
+    var generator = Object.create(protoGenerator.prototype);
+    var context = new Context(tryLocsList || []);
+
+    // The ._invoke method unifies the implementations of the .next,
+    // .throw, and .return methods.
+    generator._invoke = makeInvokeMethod(innerFn, self, context);
+
+    return generator;
+  }
+  runtime.wrap = wrap;
+
+  // Try/catch helper to minimize deoptimizations. Returns a completion
+  // record like context.tryEntries[i].completion. This interface could
+  // have been (and was previously) designed to take a closure to be
+  // invoked without arguments, but in all the cases we care about we
+  // already have an existing method we want to call, so there's no need
+  // to create a new function object. We can even get away with assuming
+  // the method takes exactly one argument, since that happens to be true
+  // in every case, so we don't have to touch the arguments object. The
+  // only additional allocation required is the completion record, which
+  // has a stable shape and so hopefully should be cheap to allocate.
+  function tryCatch(fn, obj, arg) {
+    try {
+      return { type: "normal", arg: fn.call(obj, arg) };
+    } catch (err) {
+      return { type: "throw", arg: err };
+    }
+  }
+
+  var GenStateSuspendedStart = "suspendedStart";
+  var GenStateSuspendedYield = "suspendedYield";
+  var GenStateExecuting = "executing";
+  var GenStateCompleted = "completed";
+
+  // Returning this object from the innerFn has the same effect as
+  // breaking out of the dispatch switch statement.
+  var ContinueSentinel = {};
+
+  // Dummy constructor functions that we use as the .constructor and
+  // .constructor.prototype properties for functions that return Generator
+  // objects. For full spec compliance, you may wish to configure your
+  // minifier not to mangle the names of these two functions.
+  function Generator() {}
+  function GeneratorFunction() {}
+  function GeneratorFunctionPrototype() {}
+
+  // This is a polyfill for %IteratorPrototype% for environments that
+  // don't natively support it.
+  var IteratorPrototype = {};
+  IteratorPrototype[iteratorSymbol] = function () {
+    return this;
+  };
+
+  var getProto = Object.getPrototypeOf;
+  var NativeIteratorPrototype = getProto && getProto(getProto(values([])));
+  if (NativeIteratorPrototype &&
+      NativeIteratorPrototype !== Op &&
+      hasOwn.call(NativeIteratorPrototype, iteratorSymbol)) {
+    // This environment has a native %IteratorPrototype%; use it instead
+    // of the polyfill.
+    IteratorPrototype = NativeIteratorPrototype;
+  }
+
+  var Gp = GeneratorFunctionPrototype.prototype =
+    Generator.prototype = Object.create(IteratorPrototype);
+  GeneratorFunction.prototype = Gp.constructor = GeneratorFunctionPrototype;
+  GeneratorFunctionPrototype.constructor = GeneratorFunction;
+  GeneratorFunctionPrototype[toStringTagSymbol] =
+    GeneratorFunction.displayName = "GeneratorFunction";
+
+  // Helper for defining the .next, .throw, and .return methods of the
+  // Iterator interface in terms of a single ._invoke method.
+  function defineIteratorMethods(prototype) {
+    ["next", "throw", "return"].forEach(function(method) {
+      prototype[method] = function(arg) {
+        return this._invoke(method, arg);
+      };
+    });
+  }
+
+  runtime.isGeneratorFunction = function(genFun) {
+    var ctor = typeof genFun === "function" && genFun.constructor;
+    return ctor
+      ? ctor === GeneratorFunction ||
+        // For the native GeneratorFunction constructor, the best we can
+        // do is to check its .name property.
+        (ctor.displayName || ctor.name) === "GeneratorFunction"
+      : false;
+  };
+
+  runtime.mark = function(genFun) {
+    if (Object.setPrototypeOf) {
+      Object.setPrototypeOf(genFun, GeneratorFunctionPrototype);
+    } else {
+      genFun.__proto__ = GeneratorFunctionPrototype;
+      if (!(toStringTagSymbol in genFun)) {
+        genFun[toStringTagSymbol] = "GeneratorFunction";
+      }
+    }
+    genFun.prototype = Object.create(Gp);
+    return genFun;
+  };
+
+  // Within the body of any async function, `await x` is transformed to
+  // `yield regeneratorRuntime.awrap(x)`, so that the runtime can test
+  // `hasOwn.call(value, "__await")` to determine if the yielded value is
+  // meant to be awaited.
+  runtime.awrap = function(arg) {
+    return { __await: arg };
+  };
+
+  function AsyncIterator(generator) {
+    function invoke(method, arg, resolve, reject) {
+      var record = tryCatch(generator[method], generator, arg);
+      if (record.type === "throw") {
+        reject(record.arg);
+      } else {
+        var result = record.arg;
+        var value = result.value;
+        if (value &&
+            typeof value === "object" &&
+            hasOwn.call(value, "__await")) {
+          return Promise.resolve(value.__await).then(function(value) {
+            invoke("next", value, resolve, reject);
+          }, function(err) {
+            invoke("throw", err, resolve, reject);
+          });
+        }
+
+        return Promise.resolve(value).then(function(unwrapped) {
+          // When a yielded Promise is resolved, its final value becomes
+          // the .value of the Promise<{value,done}> result for the
+          // current iteration.
+          result.value = unwrapped;
+          resolve(result);
+        }, function(error) {
+          // If a rejected Promise was yielded, throw the rejection back
+          // into the async generator function so it can be handled there.
+          return invoke("throw", error, resolve, reject);
+        });
+      }
+    }
+
+    var previousPromise;
+
+    function enqueue(method, arg) {
+      function callInvokeWithMethodAndArg() {
+        return new Promise(function(resolve, reject) {
+          invoke(method, arg, resolve, reject);
+        });
+      }
+
+      return previousPromise =
+        // If enqueue has been called before, then we want to wait until
+        // all previous Promises have been resolved before calling invoke,
+        // so that results are always delivered in the correct order. If
+        // enqueue has not been called before, then it is important to
+        // call invoke immediately, without waiting on a callback to fire,
+        // so that the async generator function has the opportunity to do
+        // any necessary setup in a predictable way. This predictability
+        // is why the Promise constructor synchronously invokes its
+        // executor callback, and why async functions synchronously
+        // execute code before the first await. Since we implement simple
+        // async functions in terms of async generators, it is especially
+        // important to get this right, even though it requires care.
+        previousPromise ? previousPromise.then(
+          callInvokeWithMethodAndArg,
+          // Avoid propagating failures to Promises returned by later
+          // invocations of the iterator.
+          callInvokeWithMethodAndArg
+        ) : callInvokeWithMethodAndArg();
+    }
+
+    // Define the unified helper method that is used to implement .next,
+    // .throw, and .return (see defineIteratorMethods).
+    this._invoke = enqueue;
+  }
+
+  defineIteratorMethods(AsyncIterator.prototype);
+  AsyncIterator.prototype[asyncIteratorSymbol] = function () {
+    return this;
+  };
+  runtime.AsyncIterator = AsyncIterator;
+
+  // Note that simple async functions are implemented on top of
+  // AsyncIterator objects; they just return a Promise for the value of
+  // the final result produced by the iterator.
+  runtime.async = function(innerFn, outerFn, self, tryLocsList) {
+    var iter = new AsyncIterator(
+      wrap(innerFn, outerFn, self, tryLocsList)
+    );
+
+    return runtime.isGeneratorFunction(outerFn)
+      ? iter // If outerFn is a generator, return the full iterator.
+      : iter.next().then(function(result) {
+          return result.done ? result.value : iter.next();
+        });
+  };
+
+  function makeInvokeMethod(innerFn, self, context) {
+    var state = GenStateSuspendedStart;
+
+    return function invoke(method, arg) {
+      if (state === GenStateExecuting) {
+        throw new Error("Generator is already running");
+      }
+
+      if (state === GenStateCompleted) {
+        if (method === "throw") {
+          throw arg;
+        }
+
+        // Be forgiving, per 25.3.3.3.3 of the spec:
+        // https://people.mozilla.org/~jorendorff/es6-draft.html#sec-generatorresume
+        return doneResult();
+      }
+
+      context.method = method;
+      context.arg = arg;
+
+      while (true) {
+        var delegate = context.delegate;
+        if (delegate) {
+          var delegateResult = maybeInvokeDelegate(delegate, context);
+          if (delegateResult) {
+            if (delegateResult === ContinueSentinel) continue;
+            return delegateResult;
+          }
+        }
+
+        if (context.method === "next") {
+          // Setting context._sent for legacy support of Babel's
+          // function.sent implementation.
+          context.sent = context._sent = context.arg;
+
+        } else if (context.method === "throw") {
+          if (state === GenStateSuspendedStart) {
+            state = GenStateCompleted;
+            throw context.arg;
+          }
+
+          context.dispatchException(context.arg);
+
+        } else if (context.method === "return") {
+          context.abrupt("return", context.arg);
+        }
+
+        state = GenStateExecuting;
+
+        var record = tryCatch(innerFn, self, context);
+        if (record.type === "normal") {
+          // If an exception is thrown from innerFn, we leave state ===
+          // GenStateExecuting and loop back for another invocation.
+          state = context.done
+            ? GenStateCompleted
+            : GenStateSuspendedYield;
+
+          if (record.arg === ContinueSentinel) {
+            continue;
+          }
+
+          return {
+            value: record.arg,
+            done: context.done
+          };
+
+        } else if (record.type === "throw") {
+          state = GenStateCompleted;
+          // Dispatch the exception by looping back around to the
+          // context.dispatchException(context.arg) call above.
+          context.method = "throw";
+          context.arg = record.arg;
+        }
+      }
+    };
+  }
+
+  // Call delegate.iterator[context.method](context.arg) and handle the
+  // result, either by returning a { value, done } result from the
+  // delegate iterator, or by modifying context.method and context.arg,
+  // setting context.delegate to null, and returning the ContinueSentinel.
+  function maybeInvokeDelegate(delegate, context) {
+    var method = delegate.iterator[context.method];
+    if (method === undefined) {
+      // A .throw or .return when the delegate iterator has no .throw
+      // method always terminates the yield* loop.
+      context.delegate = null;
+
+      if (context.method === "throw") {
+        if (delegate.iterator.return) {
+          // If the delegate iterator has a return method, give it a
+          // chance to clean up.
+          context.method = "return";
+          context.arg = undefined;
+          maybeInvokeDelegate(delegate, context);
+
+          if (context.method === "throw") {
+            // If maybeInvokeDelegate(context) changed context.method from
+            // "return" to "throw", let that override the TypeError below.
+            return ContinueSentinel;
+          }
+        }
+
+        context.method = "throw";
+        context.arg = new TypeError(
+          "The iterator does not provide a 'throw' method");
+      }
+
+      return ContinueSentinel;
+    }
+
+    var record = tryCatch(method, delegate.iterator, context.arg);
+
+    if (record.type === "throw") {
+      context.method = "throw";
+      context.arg = record.arg;
+      context.delegate = null;
+      return ContinueSentinel;
+    }
+
+    var info = record.arg;
+
+    if (! info) {
+      context.method = "throw";
+      context.arg = new TypeError("iterator result is not an object");
+      context.delegate = null;
+      return ContinueSentinel;
+    }
+
+    if (info.done) {
+      // Assign the result of the finished delegate to the temporary
+      // variable specified by delegate.resultName (see delegateYield).
+      context[delegate.resultName] = info.value;
+
+      // Resume execution at the desired location (see delegateYield).
+      context.next = delegate.nextLoc;
+
+      // If context.method was "throw" but the delegate handled the
+      // exception, let the outer generator proceed normally. If
+      // context.method was "next", forget context.arg since it has been
+      // "consumed" by the delegate iterator. If context.method was
+      // "return", allow the original .return call to continue in the
+      // outer generator.
+      if (context.method !== "return") {
+        context.method = "next";
+        context.arg = undefined;
+      }
+
+    } else {
+      // Re-yield the result returned by the delegate method.
+      return info;
+    }
+
+    // The delegate iterator is finished, so forget it and continue with
+    // the outer generator.
+    context.delegate = null;
+    return ContinueSentinel;
+  }
+
+  // Define Generator.prototype.{next,throw,return} in terms of the
+  // unified ._invoke helper method.
+  defineIteratorMethods(Gp);
+
+  Gp[toStringTagSymbol] = "Generator";
+
+  // A Generator should always return itself as the iterator object when the
+  // @@iterator function is called on it. Some browsers' implementations of the
+  // iterator prototype chain incorrectly implement this, causing the Generator
+  // object to not be returned from this call. This ensures that doesn't happen.
+  // See https://github.com/facebook/regenerator/issues/274 for more details.
+  Gp[iteratorSymbol] = function() {
+    return this;
+  };
+
+  Gp.toString = function() {
+    return "[object Generator]";
+  };
+
+  function pushTryEntry(locs) {
+    var entry = { tryLoc: locs[0] };
+
+    if (1 in locs) {
+      entry.catchLoc = locs[1];
+    }
+
+    if (2 in locs) {
+      entry.finallyLoc = locs[2];
+      entry.afterLoc = locs[3];
+    }
+
+    this.tryEntries.push(entry);
+  }
+
+  function resetTryEntry(entry) {
+    var record = entry.completion || {};
+    record.type = "normal";
+    delete record.arg;
+    entry.completion = record;
+  }
+
+  function Context(tryLocsList) {
+    // The root entry object (effectively a try statement without a catch
+    // or a finally block) gives us a place to store values thrown from
+    // locations where there is no enclosing try statement.
+    this.tryEntries = [{ tryLoc: "root" }];
+    tryLocsList.forEach(pushTryEntry, this);
+    this.reset(true);
+  }
+
+  runtime.keys = function(object) {
+    var keys = [];
+    for (var key in object) {
+      keys.push(key);
+    }
+    keys.reverse();
+
+    // Rather than returning an object with a next method, we keep
+    // things simple and return the next function itself.
+    return function next() {
+      while (keys.length) {
+        var key = keys.pop();
+        if (key in object) {
+          next.value = key;
+          next.done = false;
+          return next;
+        }
+      }
+
+      // To avoid creating an additional object, we just hang the .value
+      // and .done properties off the next function object itself. This
+      // also ensures that the minifier will not anonymize the function.
+      next.done = true;
+      return next;
+    };
+  };
+
+  function values(iterable) {
+    if (iterable) {
+      var iteratorMethod = iterable[iteratorSymbol];
+      if (iteratorMethod) {
+        return iteratorMethod.call(iterable);
+      }
+
+      if (typeof iterable.next === "function") {
+        return iterable;
+      }
+
+      if (!isNaN(iterable.length)) {
+        var i = -1, next = function next() {
+          while (++i < iterable.length) {
+            if (hasOwn.call(iterable, i)) {
+              next.value = iterable[i];
+              next.done = false;
+              return next;
+            }
+          }
+
+          next.value = undefined;
+          next.done = true;
+
+          return next;
+        };
+
+        return next.next = next;
+      }
+    }
+
+    // Return an iterator with no values.
+    return { next: doneResult };
+  }
+  runtime.values = values;
+
+  function doneResult() {
+    return { value: undefined, done: true };
+  }
+
+  Context.prototype = {
+    constructor: Context,
+
+    reset: function(skipTempReset) {
+      this.prev = 0;
+      this.next = 0;
+      // Resetting context._sent for legacy support of Babel's
+      // function.sent implementation.
+      this.sent = this._sent = undefined;
+      this.done = false;
+      this.delegate = null;
+
+      this.method = "next";
+      this.arg = undefined;
+
+      this.tryEntries.forEach(resetTryEntry);
+
+      if (!skipTempReset) {
+        for (var name in this) {
+          // Not sure about the optimal order of these conditions:
+          if (name.charAt(0) === "t" &&
+              hasOwn.call(this, name) &&
+              !isNaN(+name.slice(1))) {
+            this[name] = undefined;
+          }
+        }
+      }
+    },
+
+    stop: function() {
+      this.done = true;
+
+      var rootEntry = this.tryEntries[0];
+      var rootRecord = rootEntry.completion;
+      if (rootRecord.type === "throw") {
+        throw rootRecord.arg;
+      }
+
+      return this.rval;
+    },
+
+    dispatchException: function(exception) {
+      if (this.done) {
+        throw exception;
+      }
+
+      var context = this;
+      function handle(loc, caught) {
+        record.type = "throw";
+        record.arg = exception;
+        context.next = loc;
+
+        if (caught) {
+          // If the dispatched exception was caught by a catch block,
+          // then let that catch block handle the exception normally.
+          context.method = "next";
+          context.arg = undefined;
+        }
+
+        return !! caught;
+      }
+
+      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+        var entry = this.tryEntries[i];
+        var record = entry.completion;
+
+        if (entry.tryLoc === "root") {
+          // Exception thrown outside of any try block that could handle
+          // it, so set the completion value of the entire function to
+          // throw the exception.
+          return handle("end");
+        }
+
+        if (entry.tryLoc <= this.prev) {
+          var hasCatch = hasOwn.call(entry, "catchLoc");
+          var hasFinally = hasOwn.call(entry, "finallyLoc");
+
+          if (hasCatch && hasFinally) {
+            if (this.prev < entry.catchLoc) {
+              return handle(entry.catchLoc, true);
+            } else if (this.prev < entry.finallyLoc) {
+              return handle(entry.finallyLoc);
+            }
+
+          } else if (hasCatch) {
+            if (this.prev < entry.catchLoc) {
+              return handle(entry.catchLoc, true);
+            }
+
+          } else if (hasFinally) {
+            if (this.prev < entry.finallyLoc) {
+              return handle(entry.finallyLoc);
+            }
+
+          } else {
+            throw new Error("try statement without catch or finally");
+          }
+        }
+      }
+    },
+
+    abrupt: function(type, arg) {
+      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+        var entry = this.tryEntries[i];
+        if (entry.tryLoc <= this.prev &&
+            hasOwn.call(entry, "finallyLoc") &&
+            this.prev < entry.finallyLoc) {
+          var finallyEntry = entry;
+          break;
+        }
+      }
+
+      if (finallyEntry &&
+          (type === "break" ||
+           type === "continue") &&
+          finallyEntry.tryLoc <= arg &&
+          arg <= finallyEntry.finallyLoc) {
+        // Ignore the finally entry if control is not jumping to a
+        // location outside the try/catch block.
+        finallyEntry = null;
+      }
+
+      var record = finallyEntry ? finallyEntry.completion : {};
+      record.type = type;
+      record.arg = arg;
+
+      if (finallyEntry) {
+        this.method = "next";
+        this.next = finallyEntry.finallyLoc;
+        return ContinueSentinel;
+      }
+
+      return this.complete(record);
+    },
+
+    complete: function(record, afterLoc) {
+      if (record.type === "throw") {
+        throw record.arg;
+      }
+
+      if (record.type === "break" ||
+          record.type === "continue") {
+        this.next = record.arg;
+      } else if (record.type === "return") {
+        this.rval = this.arg = record.arg;
+        this.method = "return";
+        this.next = "end";
+      } else if (record.type === "normal" && afterLoc) {
+        this.next = afterLoc;
+      }
+
+      return ContinueSentinel;
+    },
+
+    finish: function(finallyLoc) {
+      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+        var entry = this.tryEntries[i];
+        if (entry.finallyLoc === finallyLoc) {
+          this.complete(entry.completion, entry.afterLoc);
+          resetTryEntry(entry);
+          return ContinueSentinel;
+        }
+      }
+    },
+
+    "catch": function(tryLoc) {
+      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+        var entry = this.tryEntries[i];
+        if (entry.tryLoc === tryLoc) {
+          var record = entry.completion;
+          if (record.type === "throw") {
+            var thrown = record.arg;
+            resetTryEntry(entry);
+          }
+          return thrown;
+        }
+      }
+
+      // The context.catch method must only be called with a location
+      // argument that corresponds to a known catch block.
+      throw new Error("illegal catch attempt");
+    },
+
+    delegateYield: function(iterable, resultName, nextLoc) {
+      this.delegate = {
+        iterator: values(iterable),
+        resultName: resultName,
+        nextLoc: nextLoc
+      };
+
+      if (this.method === "next") {
+        // Deliberately forget the last sent value so that we don't
+        // accidentally pass it on to the delegate.
+        this.arg = undefined;
+      }
+
+      return ContinueSentinel;
+    }
+  };
+})(
+  // In sloppy mode, unbound `this` refers to the global object, fallback to
+  // Function constructor if we're in global strict mode. That is sadly a form
+  // of indirect eval which violates Content Security Policy.
+  (function() {
+    return this || (typeof self === "object" && self);
+  })() || Function("return this")()
+);
+});
+
+/**
+ * Copyright (c) 2014-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+// This method of obtaining a reference to the global object needs to be
+// kept identical to the way it is obtained in runtime.js
+var g = (function() {
+  return this || (typeof self === "object" && self);
+})() || Function("return this")();
+
+// Use `getOwnPropertyNames` because not all browsers support calling
+// `hasOwnProperty` on the global `self` object in a worker. See #183.
+var hadRuntime = g.regeneratorRuntime &&
+  Object.getOwnPropertyNames(g).indexOf("regeneratorRuntime") >= 0;
+
+// Save the old regeneratorRuntime in case it needs to be restored later.
+var oldRuntime = hadRuntime && g.regeneratorRuntime;
+
+// Force reevalutation of runtime.js.
+g.regeneratorRuntime = undefined;
+
+var runtimeModule = runtime;
+
+if (hadRuntime) {
+  // Restore the original runtime.
+  g.regeneratorRuntime = oldRuntime;
+} else {
+  // Remove the global property added by runtime.js.
+  try {
+    delete g.regeneratorRuntime;
+  } catch(e) {
+    g.regeneratorRuntime = undefined;
+  }
+}
+
+var regenerator = runtimeModule;
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
+  try {
+    var info = gen[key](arg);
+    var value = info.value;
+  } catch (error) {
+    reject(error);
+    return;
+  }
+
+  if (info.done) {
+    resolve(value);
+  } else {
+    Promise.resolve(value).then(_next, _throw);
+  }
+}
+
+function _asyncToGenerator(fn) {
+  return function () {
+    var self = this,
+        args = arguments;
+    return new Promise(function (resolve, reject) {
+      var gen = fn.apply(self, args);
+
+      function _next(value) {
+        asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);
+      }
+
+      function _throw(err) {
+        asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);
+      }
+
+      _next(undefined);
+    });
+  };
+}
+
+var asyncToGenerator = _asyncToGenerator;
+
+function _arrayWithoutHoles(arr) {
+  if (Array.isArray(arr)) {
+    for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) {
+      arr2[i] = arr[i];
+    }
+
+    return arr2;
+  }
+}
+
+var arrayWithoutHoles = _arrayWithoutHoles;
+
+function _iterableToArray(iter) {
+  if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter);
+}
+
+var iterableToArray = _iterableToArray;
+
+function _nonIterableSpread() {
+  throw new TypeError("Invalid attempt to spread non-iterable instance");
+}
+
+var nonIterableSpread = _nonIterableSpread;
+
+function _toConsumableArray(arr) {
+  return arrayWithoutHoles(arr) || iterableToArray(arr) || nonIterableSpread();
+}
+
+var toConsumableArray = _toConsumableArray;
+
+function _classCallCheck(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+}
+
+var classCallCheck = _classCallCheck;
+
+function _defineProperties(target, props) {
+  for (var i = 0; i < props.length; i++) {
+    var descriptor = props[i];
+    descriptor.enumerable = descriptor.enumerable || false;
+    descriptor.configurable = true;
+    if ("value" in descriptor) descriptor.writable = true;
+    Object.defineProperty(target, descriptor.key, descriptor);
+  }
+}
+
+function _createClass(Constructor, protoProps, staticProps) {
+  if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+  if (staticProps) _defineProperties(Constructor, staticProps);
+  return Constructor;
+}
+
+var createClass = _createClass;
+
+var _typeof_1 = createCommonjsModule(function (module) {
+function _typeof2(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof2 = function _typeof2(obj) { return typeof obj; }; } else { _typeof2 = function _typeof2(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof2(obj); }
+
+function _typeof(obj) {
+  if (typeof Symbol === "function" && _typeof2(Symbol.iterator) === "symbol") {
+    module.exports = _typeof = function _typeof(obj) {
+      return _typeof2(obj);
+    };
+  } else {
+    module.exports = _typeof = function _typeof(obj) {
+      return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : _typeof2(obj);
+    };
+  }
+
+  return _typeof(obj);
+}
+
+module.exports = _typeof;
+});
+
+function _assertThisInitialized(self) {
+  if (self === void 0) {
+    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+  }
+
+  return self;
+}
+
+var assertThisInitialized = _assertThisInitialized;
+
+function _possibleConstructorReturn(self, call) {
+  if (call && (_typeof_1(call) === "object" || typeof call === "function")) {
+    return call;
+  }
+
+  return assertThisInitialized(self);
+}
+
+var possibleConstructorReturn = _possibleConstructorReturn;
+
+var getPrototypeOf = createCommonjsModule(function (module) {
+function _getPrototypeOf(o) {
+  module.exports = _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) {
+    return o.__proto__ || Object.getPrototypeOf(o);
+  };
+  return _getPrototypeOf(o);
+}
+
+module.exports = _getPrototypeOf;
+});
+
+var setPrototypeOf = createCommonjsModule(function (module) {
+function _setPrototypeOf(o, p) {
+  module.exports = _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
+    o.__proto__ = p;
+    return o;
+  };
+
+  return _setPrototypeOf(o, p);
+}
+
+module.exports = _setPrototypeOf;
+});
+
+function _inherits(subClass, superClass) {
+  if (typeof superClass !== "function" && superClass !== null) {
+    throw new TypeError("Super expression must either be null or a function");
+  }
+
+  subClass.prototype = Object.create(superClass && superClass.prototype, {
+    constructor: {
+      value: subClass,
+      writable: true,
+      configurable: true
+    }
+  });
+  if (superClass) setPrototypeOf(subClass, superClass);
+}
+
+var inherits = _inherits;
+
+function _defineProperty(obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
+}
+
+var defineProperty = _defineProperty;
 
 /*
 object-assign
@@ -4312,6 +1835,2655 @@ if (process.env.NODE_ENV !== 'production') {
   module.exports = factoryWithThrowingShims();
 }
 });
+
+function _inheritsLoose(subClass, superClass) {
+  subClass.prototype = Object.create(superClass.prototype);
+  subClass.prototype.constructor = subClass;
+  subClass.__proto__ = superClass;
+}
+
+function _assertThisInitialized$1(self) {
+  if (self === void 0) {
+    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+  }
+
+  return self;
+}
+
+function _extends() {
+  _extends = Object.assign || function (target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i];
+
+      for (var key in source) {
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+          target[key] = source[key];
+        }
+      }
+    }
+
+    return target;
+  };
+
+  return _extends.apply(this, arguments);
+}
+
+function _objectWithoutPropertiesLoose$1(source, excluded) {
+  if (source == null) return {};
+  var target = {};
+  var sourceKeys = Object.keys(source);
+  var key, i;
+
+  for (i = 0; i < sourceKeys.length; i++) {
+    key = sourceKeys[i];
+    if (excluded.indexOf(key) >= 0) continue;
+    target[key] = source[key];
+  }
+
+  return target;
+}
+
+var bugfixes = undefined;
+var applyAnimatedValues = undefined;
+var colorNames = [];
+var requestFrame = function requestFrame(cb) {
+  return typeof window !== 'undefined' && window.requestAnimationFrame(cb);
+};
+var cancelFrame = function cancelFrame(cb) {
+  return typeof window !== 'undefined' && window.cancelAnimationFrame(cb);
+};
+var interpolation = undefined;
+var now = function now() {
+  return Date.now();
+};
+var defaultElement = undefined;
+var createAnimatedStyle = undefined;
+var injectApplyAnimatedValues = function injectApplyAnimatedValues(fn, transform) {
+  return applyAnimatedValues = {
+    fn: fn,
+    transform: transform
+  };
+};
+var injectColorNames = function injectColorNames(names) {
+  return colorNames = names;
+};
+var injectBugfixes = function injectBugfixes(fn) {
+  return bugfixes = fn;
+};
+var injectInterpolation = function injectInterpolation(cls) {
+  return interpolation = cls;
+};
+var injectFrame = function injectFrame(raf, caf) {
+  var _ref;
+
+  return _ref = [raf, caf], requestFrame = _ref[0], cancelFrame = _ref[1], _ref;
+};
+var injectNow = function injectNow(nowFn) {
+  return now = nowFn;
+};
+var injectDefaultElement = function injectDefaultElement(el) {
+  return defaultElement = el;
+};
+var injectCreateAnimatedStyle = function injectCreateAnimatedStyle(factory) {
+  return createAnimatedStyle = factory;
+};
+
+var Globals = /*#__PURE__*/Object.freeze({
+  get bugfixes () { return bugfixes; },
+  get applyAnimatedValues () { return applyAnimatedValues; },
+  get colorNames () { return colorNames; },
+  get requestFrame () { return requestFrame; },
+  get cancelFrame () { return cancelFrame; },
+  get interpolation () { return interpolation; },
+  get now () { return now; },
+  get defaultElement () { return defaultElement; },
+  get createAnimatedStyle () { return createAnimatedStyle; },
+  injectApplyAnimatedValues: injectApplyAnimatedValues,
+  injectColorNames: injectColorNames,
+  injectBugfixes: injectBugfixes,
+  injectInterpolation: injectInterpolation,
+  injectFrame: injectFrame,
+  injectNow: injectNow,
+  injectDefaultElement: injectDefaultElement,
+  injectCreateAnimatedStyle: injectCreateAnimatedStyle
+});
+
+var Animated =
+/*#__PURE__*/
+function () {
+  function Animated() {}
+
+  var _proto = Animated.prototype;
+
+  _proto.attach = function attach() {};
+
+  _proto.detach = function detach() {};
+
+  _proto.getValue = function getValue() {};
+
+  _proto.getAnimatedValue = function getAnimatedValue() {
+    return this.getValue();
+  };
+
+  _proto.addChild = function addChild(child) {};
+
+  _proto.removeChild = function removeChild(child) {};
+
+  _proto.getChildren = function getChildren() {
+    return [];
+  };
+
+  return Animated;
+}();
+
+var getValues = function getValues(object) {
+  return Object.keys(object).map(function (k) {
+    return object[k];
+  });
+};
+
+var AnimatedWithChildren =
+/*#__PURE__*/
+function (_Animated) {
+  _inheritsLoose(AnimatedWithChildren, _Animated);
+
+  function AnimatedWithChildren() {
+    var _this;
+
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    _this = _Animated.call.apply(_Animated, [this].concat(args)) || this;
+    _this.children = [];
+
+    _this.getChildren = function () {
+      return _this.children;
+    };
+
+    _this.getPayload = function (index) {
+      if (index === void 0) {
+        index = undefined;
+      }
+
+      return index !== void 0 && _this.payload ? _this.payload[index] : _this.payload || _assertThisInitialized$1(_assertThisInitialized$1(_this));
+    };
+
+    return _this;
+  }
+
+  var _proto = AnimatedWithChildren.prototype;
+
+  _proto.addChild = function addChild(child) {
+    if (this.children.length === 0) this.attach();
+    this.children.push(child);
+  };
+
+  _proto.removeChild = function removeChild(child) {
+    var index = this.children.indexOf(child);
+    this.children.splice(index, 1);
+    if (this.children.length === 0) this.detach();
+  };
+
+  return AnimatedWithChildren;
+}(Animated);
+var AnimatedArrayWithChildren =
+/*#__PURE__*/
+function (_AnimatedWithChildren) {
+  _inheritsLoose(AnimatedArrayWithChildren, _AnimatedWithChildren);
+
+  function AnimatedArrayWithChildren() {
+    var _this2;
+
+    for (var _len2 = arguments.length, args = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+      args[_key2] = arguments[_key2];
+    }
+
+    _this2 = _AnimatedWithChildren.call.apply(_AnimatedWithChildren, [this].concat(args)) || this;
+    _this2.payload = [];
+
+    _this2.getAnimatedValue = function () {
+      return _this2.getValue();
+    };
+
+    _this2.attach = function () {
+      return _this2.payload.forEach(function (p) {
+        return p instanceof Animated && p.addChild(_assertThisInitialized$1(_assertThisInitialized$1(_this2)));
+      });
+    };
+
+    _this2.detach = function () {
+      return _this2.payload.forEach(function (p) {
+        return p instanceof Animated && p.removeChild(_assertThisInitialized$1(_assertThisInitialized$1(_this2)));
+      });
+    };
+
+    return _this2;
+  }
+
+  return AnimatedArrayWithChildren;
+}(AnimatedWithChildren);
+var AnimatedObjectWithChildren =
+/*#__PURE__*/
+function (_AnimatedWithChildren2) {
+  _inheritsLoose(AnimatedObjectWithChildren, _AnimatedWithChildren2);
+
+  function AnimatedObjectWithChildren() {
+    var _this3;
+
+    for (var _len3 = arguments.length, args = new Array(_len3), _key3 = 0; _key3 < _len3; _key3++) {
+      args[_key3] = arguments[_key3];
+    }
+
+    _this3 = _AnimatedWithChildren2.call.apply(_AnimatedWithChildren2, [this].concat(args)) || this;
+    _this3.payload = {};
+
+    _this3.getAnimatedValue = function () {
+      return _this3.getValue(true);
+    };
+
+    _this3.attach = function () {
+      return getValues(_this3.payload).forEach(function (s) {
+        return s instanceof Animated && s.addChild(_assertThisInitialized$1(_assertThisInitialized$1(_this3)));
+      });
+    };
+
+    _this3.detach = function () {
+      return getValues(_this3.payload).forEach(function (s) {
+        return s instanceof Animated && s.removeChild(_assertThisInitialized$1(_assertThisInitialized$1(_this3)));
+      });
+    };
+
+    return _this3;
+  }
+
+  var _proto2 = AnimatedObjectWithChildren.prototype;
+
+  _proto2.getValue = function getValue(animated) {
+    if (animated === void 0) {
+      animated = false;
+    }
+
+    var payload = {};
+
+    for (var key in this.payload) {
+      var value = this.payload[key];
+      if (animated && !(value instanceof Animated)) continue;
+      payload[key] = value instanceof Animated ? value[animated ? 'getAnimatedValue' : 'getValue']() : value;
+    }
+
+    return payload;
+  };
+
+  return AnimatedObjectWithChildren;
+}(AnimatedWithChildren);
+
+var AnimatedStyle =
+/*#__PURE__*/
+function (_AnimatedObjectWithCh) {
+  _inheritsLoose(AnimatedStyle, _AnimatedObjectWithCh);
+
+  function AnimatedStyle(style) {
+    var _this;
+
+    _this = _AnimatedObjectWithCh.call(this) || this;
+    style = style || {};
+    if (style.transform && !(style.transform instanceof Animated)) style = applyAnimatedValues.transform(style);
+    _this.payload = style;
+    return _this;
+  }
+
+  return AnimatedStyle;
+}(AnimatedObjectWithChildren);
+
+// http://www.w3.org/TR/css3-color/#svg-color
+var colors = {
+  transparent: 0x00000000,
+  aliceblue: 0xf0f8ffff,
+  antiquewhite: 0xfaebd7ff,
+  aqua: 0x00ffffff,
+  aquamarine: 0x7fffd4ff,
+  azure: 0xf0ffffff,
+  beige: 0xf5f5dcff,
+  bisque: 0xffe4c4ff,
+  black: 0x000000ff,
+  blanchedalmond: 0xffebcdff,
+  blue: 0x0000ffff,
+  blueviolet: 0x8a2be2ff,
+  brown: 0xa52a2aff,
+  burlywood: 0xdeb887ff,
+  burntsienna: 0xea7e5dff,
+  cadetblue: 0x5f9ea0ff,
+  chartreuse: 0x7fff00ff,
+  chocolate: 0xd2691eff,
+  coral: 0xff7f50ff,
+  cornflowerblue: 0x6495edff,
+  cornsilk: 0xfff8dcff,
+  crimson: 0xdc143cff,
+  cyan: 0x00ffffff,
+  darkblue: 0x00008bff,
+  darkcyan: 0x008b8bff,
+  darkgoldenrod: 0xb8860bff,
+  darkgray: 0xa9a9a9ff,
+  darkgreen: 0x006400ff,
+  darkgrey: 0xa9a9a9ff,
+  darkkhaki: 0xbdb76bff,
+  darkmagenta: 0x8b008bff,
+  darkolivegreen: 0x556b2fff,
+  darkorange: 0xff8c00ff,
+  darkorchid: 0x9932ccff,
+  darkred: 0x8b0000ff,
+  darksalmon: 0xe9967aff,
+  darkseagreen: 0x8fbc8fff,
+  darkslateblue: 0x483d8bff,
+  darkslategray: 0x2f4f4fff,
+  darkslategrey: 0x2f4f4fff,
+  darkturquoise: 0x00ced1ff,
+  darkviolet: 0x9400d3ff,
+  deeppink: 0xff1493ff,
+  deepskyblue: 0x00bfffff,
+  dimgray: 0x696969ff,
+  dimgrey: 0x696969ff,
+  dodgerblue: 0x1e90ffff,
+  firebrick: 0xb22222ff,
+  floralwhite: 0xfffaf0ff,
+  forestgreen: 0x228b22ff,
+  fuchsia: 0xff00ffff,
+  gainsboro: 0xdcdcdcff,
+  ghostwhite: 0xf8f8ffff,
+  gold: 0xffd700ff,
+  goldenrod: 0xdaa520ff,
+  gray: 0x808080ff,
+  green: 0x008000ff,
+  greenyellow: 0xadff2fff,
+  grey: 0x808080ff,
+  honeydew: 0xf0fff0ff,
+  hotpink: 0xff69b4ff,
+  indianred: 0xcd5c5cff,
+  indigo: 0x4b0082ff,
+  ivory: 0xfffff0ff,
+  khaki: 0xf0e68cff,
+  lavender: 0xe6e6faff,
+  lavenderblush: 0xfff0f5ff,
+  lawngreen: 0x7cfc00ff,
+  lemonchiffon: 0xfffacdff,
+  lightblue: 0xadd8e6ff,
+  lightcoral: 0xf08080ff,
+  lightcyan: 0xe0ffffff,
+  lightgoldenrodyellow: 0xfafad2ff,
+  lightgray: 0xd3d3d3ff,
+  lightgreen: 0x90ee90ff,
+  lightgrey: 0xd3d3d3ff,
+  lightpink: 0xffb6c1ff,
+  lightsalmon: 0xffa07aff,
+  lightseagreen: 0x20b2aaff,
+  lightskyblue: 0x87cefaff,
+  lightslategray: 0x778899ff,
+  lightslategrey: 0x778899ff,
+  lightsteelblue: 0xb0c4deff,
+  lightyellow: 0xffffe0ff,
+  lime: 0x00ff00ff,
+  limegreen: 0x32cd32ff,
+  linen: 0xfaf0e6ff,
+  magenta: 0xff00ffff,
+  maroon: 0x800000ff,
+  mediumaquamarine: 0x66cdaaff,
+  mediumblue: 0x0000cdff,
+  mediumorchid: 0xba55d3ff,
+  mediumpurple: 0x9370dbff,
+  mediumseagreen: 0x3cb371ff,
+  mediumslateblue: 0x7b68eeff,
+  mediumspringgreen: 0x00fa9aff,
+  mediumturquoise: 0x48d1ccff,
+  mediumvioletred: 0xc71585ff,
+  midnightblue: 0x191970ff,
+  mintcream: 0xf5fffaff,
+  mistyrose: 0xffe4e1ff,
+  moccasin: 0xffe4b5ff,
+  navajowhite: 0xffdeadff,
+  navy: 0x000080ff,
+  oldlace: 0xfdf5e6ff,
+  olive: 0x808000ff,
+  olivedrab: 0x6b8e23ff,
+  orange: 0xffa500ff,
+  orangered: 0xff4500ff,
+  orchid: 0xda70d6ff,
+  palegoldenrod: 0xeee8aaff,
+  palegreen: 0x98fb98ff,
+  paleturquoise: 0xafeeeeff,
+  palevioletred: 0xdb7093ff,
+  papayawhip: 0xffefd5ff,
+  peachpuff: 0xffdab9ff,
+  peru: 0xcd853fff,
+  pink: 0xffc0cbff,
+  plum: 0xdda0ddff,
+  powderblue: 0xb0e0e6ff,
+  purple: 0x800080ff,
+  rebeccapurple: 0x663399ff,
+  red: 0xff0000ff,
+  rosybrown: 0xbc8f8fff,
+  royalblue: 0x4169e1ff,
+  saddlebrown: 0x8b4513ff,
+  salmon: 0xfa8072ff,
+  sandybrown: 0xf4a460ff,
+  seagreen: 0x2e8b57ff,
+  seashell: 0xfff5eeff,
+  sienna: 0xa0522dff,
+  silver: 0xc0c0c0ff,
+  skyblue: 0x87ceebff,
+  slateblue: 0x6a5acdff,
+  slategray: 0x708090ff,
+  slategrey: 0x708090ff,
+  snow: 0xfffafaff,
+  springgreen: 0x00ff7fff,
+  steelblue: 0x4682b4ff,
+  tan: 0xd2b48cff,
+  teal: 0x008080ff,
+  thistle: 0xd8bfd8ff,
+  tomato: 0xff6347ff,
+  turquoise: 0x40e0d0ff,
+  violet: 0xee82eeff,
+  wheat: 0xf5deb3ff,
+  white: 0xffffffff,
+  whitesmoke: 0xf5f5f5ff,
+  yellow: 0xffff00ff,
+  yellowgreen: 0x9acd32ff
+};
+
+var Interpolation =
+/*#__PURE__*/
+function () {
+  function Interpolation() {}
+
+  // Default config = config, args
+  // Short config   = range, output, extrapolate
+  Interpolation.create = function create(config, output, extra) {
+    if (typeof config === 'function') return config;else if (interpolation && config.output && typeof config.output[0] === 'string') return interpolation(config);else if (Array.isArray(config)) return Interpolation.create({
+      range: config,
+      output: output,
+      extrapolate: extra || 'extend'
+    });
+    var outputRange = config.output;
+    var inputRange = config.range || [0, 1];
+
+    var easing = config.easing || function (t) {
+      return t;
+    };
+
+    var extrapolateLeft = 'extend';
+    var map = config.map;
+    if (config.extrapolateLeft !== undefined) extrapolateLeft = config.extrapolateLeft;else if (config.extrapolate !== undefined) extrapolateLeft = config.extrapolate;
+    var extrapolateRight = 'extend';
+    if (config.extrapolateRight !== undefined) extrapolateRight = config.extrapolateRight;else if (config.extrapolate !== undefined) extrapolateRight = config.extrapolate;
+    return function (input) {
+      var range = findRange(input, inputRange);
+      return interpolate(input, inputRange[range], inputRange[range + 1], outputRange[range], outputRange[range + 1], easing, extrapolateLeft, extrapolateRight, map);
+    };
+  };
+
+  return Interpolation;
+}();
+
+function interpolate(input, inputMin, inputMax, outputMin, outputMax, easing, extrapolateLeft, extrapolateRight, map) {
+  var result = map ? map(input) : input; // Extrapolate
+
+  if (result < inputMin) {
+    if (extrapolateLeft === 'identity') return result;else if (extrapolateLeft === 'clamp') result = inputMin;
+  }
+
+  if (result > inputMax) {
+    if (extrapolateRight === 'identity') return result;else if (extrapolateRight === 'clamp') result = inputMax;
+  }
+
+  if (outputMin === outputMax) return outputMin;
+  if (inputMin === inputMax) return input <= inputMin ? outputMin : outputMax; // Input Range
+
+  if (inputMin === -Infinity) result = -result;else if (inputMax === Infinity) result = result - inputMin;else result = (result - inputMin) / (inputMax - inputMin); // Easing
+
+  result = easing(result); // Output Range
+
+  if (outputMin === -Infinity) result = -result;else if (outputMax === Infinity) result = result + outputMin;else result = result * (outputMax - outputMin) + outputMin;
+  return result;
+}
+
+function findRange(input, inputRange) {
+  for (var i = 1; i < inputRange.length - 1; ++i) {
+    if (inputRange[i] >= input) break;
+  }
+
+  return i - 1;
+}
+
+// const INTEGER = '[-+]?\\d+';
+var NUMBER = '[-+]?\\d*\\.?\\d+';
+var PERCENTAGE = NUMBER + '%';
+
+function call() {
+  return '\\(\\s*(' + Array.prototype.slice.call(arguments).join(')\\s*,\\s*(') + ')\\s*\\)';
+}
+
+var rgb = new RegExp('rgb' + call(NUMBER, NUMBER, NUMBER));
+var rgba = new RegExp('rgba' + call(NUMBER, NUMBER, NUMBER, NUMBER));
+var hsl = new RegExp('hsl' + call(NUMBER, PERCENTAGE, PERCENTAGE));
+var hsla = new RegExp('hsla' + call(NUMBER, PERCENTAGE, PERCENTAGE, NUMBER));
+var hex3 = /^#([0-9a-fA-F]{1})([0-9a-fA-F]{1})([0-9a-fA-F]{1})$/;
+var hex4 = /^#([0-9a-fA-F]{1})([0-9a-fA-F]{1})([0-9a-fA-F]{1})([0-9a-fA-F]{1})$/;
+var hex6 = /^#([0-9a-fA-F]{6})$/;
+var hex8 = /^#([0-9a-fA-F]{8})$/;
+
+/*
+https://github.com/react-community/normalize-css-color
+
+BSD 3-Clause License
+
+Copyright (c) 2016, React Community
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+
+* Redistributions of source code must retain the above copyright notice, this
+  list of conditions and the following disclaimer.
+
+* Redistributions in binary form must reproduce the above copyright notice,
+  this list of conditions and the following disclaimer in the documentation
+  and/or other materials provided with the distribution.
+
+* Neither the name of the copyright holder nor the names of its
+  contributors may be used to endorse or promote products derived from
+  this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+*/
+function normalizeColor(color) {
+  var match;
+
+  if (typeof color === 'number') {
+    return color >>> 0 === color && color >= 0 && color <= 0xffffffff ? color : null;
+  } // Ordered based on occurrences on Facebook codebase
+
+
+  if (match = hex6.exec(color)) return parseInt(match[1] + 'ff', 16) >>> 0;
+  if (colors.hasOwnProperty(color)) return colors[color];
+
+  if (match = rgb.exec(color)) {
+    return (parse255(match[1]) << 24 | // r
+    parse255(match[2]) << 16 | // g
+    parse255(match[3]) << 8 | // b
+    0x000000ff) >>> // a
+    0;
+  }
+
+  if (match = rgba.exec(color)) {
+    return (parse255(match[1]) << 24 | // r
+    parse255(match[2]) << 16 | // g
+    parse255(match[3]) << 8 | // b
+    parse1(match[4])) >>> // a
+    0;
+  }
+
+  if (match = hex3.exec(color)) {
+    return parseInt(match[1] + match[1] + // r
+    match[2] + match[2] + // g
+    match[3] + match[3] + // b
+    'ff', // a
+    16) >>> 0;
+  } // https://drafts.csswg.org/css-color-4/#hex-notation
+
+
+  if (match = hex8.exec(color)) return parseInt(match[1], 16) >>> 0;
+
+  if (match = hex4.exec(color)) {
+    return parseInt(match[1] + match[1] + // r
+    match[2] + match[2] + // g
+    match[3] + match[3] + // b
+    match[4] + match[4], // a
+    16) >>> 0;
+  }
+
+  if (match = hsl.exec(color)) {
+    return (hslToRgb(parse360(match[1]), // h
+    parsePercentage(match[2]), // s
+    parsePercentage(match[3]) // l
+    ) | 0x000000ff) >>> // a
+    0;
+  }
+
+  if (match = hsla.exec(color)) {
+    return (hslToRgb(parse360(match[1]), // h
+    parsePercentage(match[2]), // s
+    parsePercentage(match[3]) // l
+    ) | parse1(match[4])) >>> // a
+    0;
+  }
+
+  return null;
+}
+
+function hue2rgb(p, q, t) {
+  if (t < 0) t += 1;
+  if (t > 1) t -= 1;
+  if (t < 1 / 6) return p + (q - p) * 6 * t;
+  if (t < 1 / 2) return q;
+  if (t < 2 / 3) return p + (q - p) * (2 / 3 - t) * 6;
+  return p;
+}
+
+function hslToRgb(h, s, l) {
+  var q = l < 0.5 ? l * (1 + s) : l + s - l * s;
+  var p = 2 * l - q;
+  var r = hue2rgb(p, q, h + 1 / 3);
+  var g = hue2rgb(p, q, h);
+  var b = hue2rgb(p, q, h - 1 / 3);
+  return Math.round(r * 255) << 24 | Math.round(g * 255) << 16 | Math.round(b * 255) << 8;
+}
+
+function parse255(str) {
+  var int = parseInt(str, 10);
+  if (int < 0) return 0;
+  if (int > 255) return 255;
+  return int;
+}
+
+function parse360(str) {
+  var int = parseFloat(str);
+  return (int % 360 + 360) % 360 / 360;
+}
+
+function parse1(str) {
+  var num = parseFloat(str);
+  if (num < 0) return 0;
+  if (num > 1) return 255;
+  return Math.round(num * 255);
+}
+
+function parsePercentage(str) {
+  // parseFloat conveniently ignores the final %
+  var int = parseFloat(str);
+  if (int < 0) return 0;
+  if (int > 100) return 1;
+  return int / 100;
+}
+
+function colorToRgba(input) {
+  var int32Color = normalizeColor(input);
+  if (int32Color === null) return input;
+  int32Color = int32Color || 0;
+  var r = (int32Color & 0xff000000) >>> 24;
+  var g = (int32Color & 0x00ff0000) >>> 16;
+  var b = (int32Color & 0x0000ff00) >>> 8;
+  var a = (int32Color & 0x000000ff) / 255;
+  return "rgba(" + r + ", " + g + ", " + b + ", " + a + ")";
+} // Problem: https://github.com/animatedjs/animated/pull/102
+// Solution: https://stackoverflow.com/questions/638565/parsing-scientific-notation-sensibly/658662
+
+
+var stringShapeRegex = /[+\-]?(?:0|[1-9]\d*)(?:\.\d*)?(?:[eE][+\-]?\d+)?/g; // Covers rgb, rgba, hsl, hsla
+// Taken from https://gist.github.com/olmokramer/82ccce673f86db7cda5e
+
+var colorRegex = /(#(?:[0-9a-f]{2}){2,4}|(#[0-9a-f]{3})|(rgb|hsl)a?\((-?\d+%?[,\s]+){2,3}\s*[\d\.]+%?\))/gi; // Covers color names (transparent, blue, etc.)
+
+var colorNamesRegex = new RegExp("(" + Object.keys(colors).join('|') + ")", 'g');
+/**
+ * Supports string shapes by extracting numbers so new values can be computed,
+ * and recombines those values into new strings of the same shape.  Supports
+ * things like:
+ *
+ *   rgba(123, 42, 99, 0.36)           // colors
+ *   -45deg                            // values with units
+ *   0 2px 2px 0px rgba(0, 0, 0, 0.12) // box shadows
+ */
+
+function createInterpolation(config) {
+  // Replace colors with rgba
+  var outputRange = config.output.map(function (rangeValue) {
+    return rangeValue.replace(colorRegex, colorToRgba);
+  }).map(function (rangeValue) {
+    return rangeValue.replace(colorNamesRegex, colorToRgba);
+  }); // ->
+  // [
+  //   [0, 50],
+  //   [100, 150],
+  //   [200, 250],
+  //   [0, 0.5],
+  // ]
+
+  var outputRanges = outputRange[0].match(stringShapeRegex).map(function () {
+    return [];
+  });
+  outputRange.forEach(function (value) {
+    value.match(stringShapeRegex).forEach(function (number, i) {
+      return outputRanges[i].push(+number);
+    });
+  });
+  var interpolations = outputRange[0].match(stringShapeRegex).map(function (value, i) {
+    return Interpolation.create(_extends({}, config, {
+      output: outputRanges[i]
+    }));
+  });
+  return function (input) {
+    var i = 0;
+    return outputRange[0] // 'rgba(0, 100, 200, 0)'
+    // ->
+    // 'rgba(${interpolations[0](input)}, ${interpolations[1](input)}, ...'
+    .replace(stringShapeRegex, function () {
+      return interpolations[i++](input);
+    }) // rgba requires that the r,g,b are integers.... so we want to round them, but we *dont* want to
+    // round the opacity (4th column).
+    .replace(/rgba\(([0-9\.-]+), ([0-9\.-]+), ([0-9\.-]+), ([0-9\.-]+)\)/gi, function (_, p1, p2, p3, p4) {
+      return "rgba(" + Math.round(p1) + ", " + Math.round(p2) + ", " + Math.round(p3) + ", " + p4 + ")";
+    });
+  };
+}
+
+var AnimatedInterpolation =
+/*#__PURE__*/
+function (_AnimatedArrayWithChi) {
+  _inheritsLoose(AnimatedInterpolation, _AnimatedArrayWithChi);
+
+  function AnimatedInterpolation(parents, _config, _arg) {
+    var _this;
+
+    _this = _AnimatedArrayWithChi.call(this) || this;
+
+    _this.getValue = function () {
+      var _this2;
+
+      return (_this2 = _this).calc.apply(_this2, _this.payload.map(function (value) {
+        return value.getValue();
+      }));
+    };
+
+    _this.updateConfig = function (config, arg) {
+      return _this.calc = Interpolation.create(config, arg);
+    };
+
+    _this.interpolate = function (config, arg) {
+      return new AnimatedInterpolation(_assertThisInitialized$1(_assertThisInitialized$1(_this)), config, arg);
+    };
+
+    _this.payload = // AnimatedArrays should unfold, except AnimatedInterpolation which is taken as is
+    parents instanceof AnimatedArrayWithChildren && !parents.updateConfig ? parents.payload : Array.isArray(parents) ? parents : [parents];
+    _this.calc = Interpolation.create(_config, _arg);
+    return _this;
+  }
+
+  return AnimatedInterpolation;
+}(AnimatedArrayWithChildren);
+
+/**
+ * Animated works by building a directed acyclic graph of dependencies
+ * transparently when you render your Animated components.
+ *
+ *               new Animated.Value(0)
+ *     .interpolate()        .interpolate()    new Animated.Value(1)
+ *         opacity               translateY      scale
+ *          style                         transform
+ *         View#234                         style
+ *                                         View#123
+ *
+ * A) Top Down phase
+ * When an Animated.Value is updated, we recursively go down through this
+ * graph in order to find leaf nodes: the views that we flag as needing
+ * an update.
+ *
+ * B) Bottom Up phase
+ * When a view is flagged as needing an update, we recursively go back up
+ * in order to build the new value that it needs. The reason why we need
+ * this two-phases process is to deal with composite props such as
+ * transform which can receive values from multiple parents.
+ */
+
+function findAnimatedStyles(node, styles) {
+  if (typeof node.update === 'function') styles.add(node);else node.getChildren().forEach(function (child) {
+    return findAnimatedStyles(child, styles);
+  });
+}
+/**
+ * Standard value for driving animations.  One `Animated.Value` can drive
+ * multiple properties in a synchronized fashion, but can only be driven by one
+ * mechanism at a time.  Using a new mechanism (e.g. starting a new animation,
+ * or calling `setValue`) will stop any previous ones.
+ */
+
+
+var AnimatedValue =
+/*#__PURE__*/
+function (_AnimatedWithChildren) {
+  _inheritsLoose(AnimatedValue, _AnimatedWithChildren);
+
+  function AnimatedValue(_value) {
+    var _this;
+
+    _this = _AnimatedWithChildren.call(this) || this;
+
+    _this.setValue = function (value, flush) {
+      if (flush === void 0) {
+        flush = true;
+      }
+
+      _this.value = value;
+      if (flush) _this.flush();
+    };
+
+    _this.getValue = function () {
+      return _this.value;
+    };
+
+    _this.updateStyles = function () {
+      return findAnimatedStyles(_assertThisInitialized$1(_assertThisInitialized$1(_this)), _this.animatedStyles);
+    };
+
+    _this.updateValue = function (value) {
+      return _this.flush(_this.value = value);
+    };
+
+    _this.interpolate = function (config, arg) {
+      return new AnimatedInterpolation(_assertThisInitialized$1(_assertThisInitialized$1(_this)), config, arg);
+    };
+
+    _this.value = _value;
+    _this.animatedStyles = new Set();
+    _this.done = false;
+    _this.startPosition = _value;
+    _this.lastPosition = _value;
+    _this.lastVelocity = undefined;
+    _this.lastTime = undefined;
+    _this.controller = undefined;
+    return _this;
+  }
+
+  var _proto = AnimatedValue.prototype;
+
+  _proto.flush = function flush() {
+    if (this.animatedStyles.size === 0) this.updateStyles();
+    this.animatedStyles.forEach(function (animatedStyle) {
+      return animatedStyle.update();
+    });
+  };
+
+  _proto.prepare = function prepare(controller) {
+    // Values stay loyal to their original controller, this is also a way to
+    // detect trailing values originating from a foreign controller
+    if (this.controller === undefined) this.controller = controller;
+
+    if (this.controller === controller) {
+      this.startPosition = this.value;
+      this.lastPosition = this.value;
+      this.lastVelocity = controller.isActive ? this.lastVelocity : undefined;
+      this.lastTime = controller.isActive ? this.lastTime : undefined;
+      this.done = false;
+      this.animatedStyles.clear();
+    }
+  };
+
+  return AnimatedValue;
+}(AnimatedWithChildren);
+
+var AnimatedArray =
+/*#__PURE__*/
+function (_AnimatedArrayWithChi) {
+  _inheritsLoose(AnimatedArray, _AnimatedArrayWithChi);
+
+  function AnimatedArray(array) {
+    var _this;
+
+    _this = _AnimatedArrayWithChi.call(this) || this;
+
+    _this.setValue = function (value, flush) {
+      if (flush === void 0) {
+        flush = true;
+      }
+
+      if (Array.isArray(value)) {
+        if (value.length === _this.payload.length) value.forEach(function (v, i) {
+          return _this.payload[i].setValue(v, flush);
+        });
+      } else _this.payload.forEach(function (v, i) {
+        return _this.payload[i].setValue(value, flush);
+      });
+    };
+
+    _this.getValue = function () {
+      return _this.payload.map(function (v) {
+        return v.getValue();
+      });
+    };
+
+    _this.interpolate = function (config, arg) {
+      return new AnimatedInterpolation(_assertThisInitialized$1(_assertThisInitialized$1(_this)), config, arg);
+    };
+
+    _this.payload = array.map(function (n) {
+      return new AnimatedValue(n);
+    });
+    return _this;
+  }
+
+  return AnimatedArray;
+}(AnimatedArrayWithChildren);
+
+function withDefault(value, defaultValue) {
+  return value === undefined || value === null ? defaultValue : value;
+}
+function toArray(a) {
+  return a !== void 0 ? Array.isArray(a) ? a : [a] : [];
+}
+function shallowEqual(a, b) {
+  if (typeof a !== typeof b) return false;
+  if (typeof a === 'string' || typeof a === 'number') return a === b;
+  var i;
+
+  for (i in a) {
+    if (!(i in b)) return false;
+  }
+
+  for (i in b) {
+    if (a[i] !== b[i]) return false;
+  }
+
+  return i === void 0 ? a === b : true;
+}
+function callProp(obj) {
+  for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+    args[_key - 1] = arguments[_key];
+  }
+
+  return typeof obj === 'function' ? obj.apply(void 0, args) : obj;
+}
+function getValues$1(object) {
+  return Object.keys(object).map(function (k) {
+    return object[k];
+  });
+}
+function getForwardProps(props) {
+  var to = props.to,
+      from = props.from,
+      config = props.config,
+      native = props.native,
+      onStart = props.onStart,
+      onRest = props.onRest,
+      onFrame = props.onFrame,
+      children = props.children,
+      reset = props.reset,
+      reverse = props.reverse,
+      force = props.force,
+      immediate = props.immediate,
+      impl = props.impl,
+      inject = props.inject,
+      delay = props.delay,
+      attach = props.attach,
+      destroyed = props.destroyed,
+      interpolateTo = props.interpolateTo,
+      autoStart = props.autoStart,
+      ref = props.ref,
+      forward = _objectWithoutPropertiesLoose$1(props, ["to", "from", "config", "native", "onStart", "onRest", "onFrame", "children", "reset", "reverse", "force", "immediate", "impl", "inject", "delay", "attach", "destroyed", "interpolateTo", "autoStart", "ref"]);
+
+  return forward;
+}
+function interpolateTo(props) {
+  var forward = getForwardProps(props);
+  var rest = Object.keys(props).reduce(function (a, k) {
+    var _extends2;
+
+    return forward[k] !== void 0 ? a : _extends({}, a, (_extends2 = {}, _extends2[k] = props[k], _extends2));
+  }, {});
+  return _extends({
+    to: forward
+  }, rest);
+}
+function convertToAnimatedValue(acc, _ref) {
+  var _extends3;
+
+  var name = _ref[0],
+      value = _ref[1];
+  return _extends({}, acc, (_extends3 = {}, _extends3[name] = new (Array.isArray(value) ? AnimatedArray : AnimatedValue)(value), _extends3));
+}
+function convertValues(props) {
+  var from = props.from,
+      to = props.to,
+      native = props.native;
+  var allProps = Object.entries(_extends({}, from, to));
+  return native ? allProps.reduce(convertToAnimatedValue, {}) : _extends({}, from, to);
+}
+function handleRef(ref, forward) {
+  if (forward) {
+    // If it's a function, assume it's a ref callback
+    if (typeof forward === 'function') forward(ref);else if (typeof forward === 'object') {
+      // If it's an object and has a 'current' property, assume it's a ref object
+      forward.current = ref;
+    }
+  }
+
+  return ref;
+}
+
+var check = function check(value) {
+  return value === 'auto';
+};
+
+var overwrite = function overwrite(width, height) {
+  return function (acc, _ref) {
+    var _extends2;
+
+    var name = _ref[0],
+        value = _ref[1];
+    return _extends({}, acc, (_extends2 = {}, _extends2[name] = value === 'auto' ? ~name.indexOf('height') ? height : width : value, _extends2));
+  };
+};
+
+function fixAuto(props, callback) {
+  var from = props.from,
+      to = props.to,
+      children = props.children; // Dry-route props back if nothing's using 'auto' in there
+  // TODO: deal with "null"
+
+  if (!(getValues$1(to).some(check) || getValues$1(from).some(check))) return; // Fetch render v-dom
+
+  var element = children(convertValues(props)); // A spring can return undefined/null, check against that (#153)
+
+  if (!element) return; // Or it could be an array (#346) ...
+
+  if (Array.isArray(element)) element = {
+    type: 'div',
+    props: {
+      children: element
+    } // Extract styles
+
+  };
+  var elementStyles = element.props.style; // Return v.dom with injected ref
+
+  return React__default.createElement(element.type, _extends({
+    key: element.key ? element.key : undefined
+  }, element.props, {
+    style: _extends({}, elementStyles, {
+      position: 'absolute',
+      visibility: 'hidden'
+    }),
+    ref: function ref(_ref2) {
+      if (_ref2) {
+        // Once it's rendered out, fetch bounds (minus padding/margin/borders)
+        var node = ReactDOM.findDOMNode(_ref2);
+        var width, height;
+        var cs = getComputedStyle(node);
+
+        if (cs.boxSizing === 'border-box') {
+          width = node.offsetWidth;
+          height = node.offsetHeight;
+        } else {
+          var paddingX = parseFloat(cs.paddingLeft || 0) + parseFloat(cs.paddingRight || 0);
+          var paddingY = parseFloat(cs.paddingTop || 0) + parseFloat(cs.paddingBottom || 0);
+          var borderX = parseFloat(cs.borderLeftWidth || 0) + parseFloat(cs.borderRightWidth || 0);
+          var borderY = parseFloat(cs.borderTopWidth || 0) + parseFloat(cs.borderBottomWidth || 0);
+          width = node.offsetWidth - paddingX - borderX;
+          height = node.offsetHeight - paddingY - borderY;
+        }
+
+        var convert = overwrite(width, height);
+        callback(_extends({}, props, {
+          from: Object.entries(from).reduce(convert, from),
+          to: Object.entries(to).reduce(convert, to)
+        }));
+      }
+    }
+  }));
+}
+
+var isUnitlessNumber = {
+  animationIterationCount: true,
+  borderImageOutset: true,
+  borderImageSlice: true,
+  borderImageWidth: true,
+  boxFlex: true,
+  boxFlexGroup: true,
+  boxOrdinalGroup: true,
+  columnCount: true,
+  columns: true,
+  flex: true,
+  flexGrow: true,
+  flexPositive: true,
+  flexShrink: true,
+  flexNegative: true,
+  flexOrder: true,
+  gridRow: true,
+  gridRowEnd: true,
+  gridRowSpan: true,
+  gridRowStart: true,
+  gridColumn: true,
+  gridColumnEnd: true,
+  gridColumnSpan: true,
+  gridColumnStart: true,
+  fontWeight: true,
+  lineClamp: true,
+  lineHeight: true,
+  opacity: true,
+  order: true,
+  orphans: true,
+  tabSize: true,
+  widows: true,
+  zIndex: true,
+  zoom: true,
+  // SVG-related properties
+  fillOpacity: true,
+  floodOpacity: true,
+  stopOpacity: true,
+  strokeDasharray: true,
+  strokeDashoffset: true,
+  strokeMiterlimit: true,
+  strokeOpacity: true,
+  strokeWidth: true
+};
+
+var prefixKey = function prefixKey(prefix, key) {
+  return prefix + key.charAt(0).toUpperCase() + key.substring(1);
+};
+
+var prefixes = ['Webkit', 'Ms', 'Moz', 'O'];
+isUnitlessNumber = Object.keys(isUnitlessNumber).reduce(function (acc, prop) {
+  prefixes.forEach(function (prefix) {
+    return acc[prefixKey(prefix, prop)] = acc[prop];
+  });
+  return acc;
+}, isUnitlessNumber);
+
+function dangerousStyleValue(name, value, isCustomProperty) {
+  if (value == null || typeof value === 'boolean' || value === '') return '';
+  if (!isCustomProperty && typeof value === 'number' && value !== 0 && !(isUnitlessNumber.hasOwnProperty(name) && isUnitlessNumber[name])) return value + 'px'; // Presumes implicit 'px' suffix for unitless numbers
+
+  return ('' + value).trim();
+}
+
+var attributeCache = {};
+injectCreateAnimatedStyle(function (style) {
+  return new AnimatedStyle(style);
+});
+injectDefaultElement('div');
+injectInterpolation(createInterpolation);
+injectColorNames(colors);
+injectBugfixes(fixAuto);
+injectApplyAnimatedValues(function (instance, props) {
+  if (instance.nodeType && instance.setAttribute !== undefined) {
+    var style = props.style,
+        children = props.children,
+        scrollTop = props.scrollTop,
+        scrollLeft = props.scrollLeft,
+        attributes = _objectWithoutPropertiesLoose$1(props, ["style", "children", "scrollTop", "scrollLeft"]);
+
+    if (scrollTop !== void 0) instance.scrollTop = scrollTop;
+    if (scrollLeft !== void 0) instance.scrollLeft = scrollLeft; // Set textContent, if children is an animatable value
+
+    if (children !== void 0) instance.textContent = children; // Set styles ...
+
+    for (var styleName in style) {
+      if (!style.hasOwnProperty(styleName)) continue;
+      var isCustomProperty = styleName.indexOf('--') === 0;
+      var styleValue = dangerousStyleValue(styleName, style[styleName], isCustomProperty);
+      if (styleName === 'float') styleName = 'cssFloat';
+      if (isCustomProperty) instance.style.setProperty(styleName, styleValue);else instance.style[styleName] = styleValue;
+    } // Set attributes ...
+
+
+    for (var name in attributes) {
+      // Attributes are written in dash case
+      var dashCase = attributeCache[name] || (attributeCache[name] = name.replace(/([A-Z])/g, function (n) {
+        return '-' + n.toLowerCase();
+      }));
+      if (typeof instance.getAttribute(dashCase) !== 'undefined') instance.setAttribute(dashCase, attributes[name]);
+    }
+  } else return false;
+}, function (style) {
+  return style;
+});
+
+var active = false;
+var controllers = new Set();
+
+var frameLoop = function frameLoop() {
+  var time = now();
+
+  for (var _iterator = controllers, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
+    var _ref;
+
+    if (_isArray) {
+      if (_i >= _iterator.length) break;
+      _ref = _iterator[_i++];
+    } else {
+      _i = _iterator.next();
+      if (_i.done) break;
+      _ref = _i.value;
+    }
+
+    var controller = _ref;
+    var isDone = true;
+    var noChange = true;
+
+    for (var configIdx = 0; configIdx < controller.configs.length; configIdx++) {
+      var config = controller.configs[configIdx];
+      var endOfAnimation = void 0,
+          lastTime = void 0;
+
+      for (var valIdx = 0; valIdx < config.animatedValues.length; valIdx++) {
+        var animation = config.animatedValues[valIdx]; // If an animation is done, skip, until all of them conclude
+
+        if (animation.done) continue;
+        var from = config.fromValues[valIdx];
+        var to = config.toValues[valIdx];
+        var position = animation.lastPosition;
+        var isAnimated = to instanceof Animated;
+
+        var _velocity = Array.isArray(config.initialVelocity) ? config.initialVelocity[valIdx] : config.initialVelocity;
+
+        if (isAnimated) to = to.getValue(); // Conclude animation if it's either immediate, or from-values match end-state
+
+        if (config.immediate || !isAnimated && !config.decay && from === to) {
+          animation.updateValue(to);
+          animation.done = true;
+          continue;
+        } // Doing delay here instead of setTimeout is one async worry less
+
+
+        if (config.delay && time - controller.startTime < config.delay) {
+          isDone = false;
+          continue;
+        } // Flag change
+
+
+        noChange = false; // Break animation when string values are involved
+
+        if (typeof from === 'string' || typeof to === 'string') {
+          animation.updateValue(to);
+          animation.done = true;
+          continue;
+        }
+
+        if (config.duration !== void 0) {
+          /** Duration easing */
+          position = from + config.easing((time - controller.startTime - config.delay) / config.duration) * (to - from);
+          endOfAnimation = time >= controller.startTime + config.delay + config.duration;
+        } else if (config.decay) {
+          /** Decay easing */
+          position = from + _velocity / (1 - 0.998) * (1 - Math.exp(-(1 - 0.998) * (time - controller.startTime)));
+          endOfAnimation = Math.abs(animation.lastPosition - position) < 0.1;
+          if (endOfAnimation) to = position;
+        } else {
+          /** Spring easing */
+          lastTime = animation.lastTime !== void 0 ? animation.lastTime : time;
+          _velocity = animation.lastVelocity !== void 0 ? animation.lastVelocity : config.initialVelocity; // If we lost a lot of frames just jump to the end.
+
+          if (time > lastTime + 64) lastTime = time; // http://gafferongames.com/game-physics/fix-your-timestep/
+
+          var numSteps = Math.floor(time - lastTime);
+
+          for (var i = 0; i < numSteps; ++i) {
+            var force = -config.tension * (position - to);
+            var damping = -config.friction * _velocity;
+            var acceleration = (force + damping) / config.mass;
+            _velocity = _velocity + acceleration * 1 / 1000;
+            position = position + _velocity * 1 / 1000;
+          } // Conditions for stopping the spring animation
+
+
+          var isOvershooting = config.clamp && config.tension !== 0 ? from < to ? position > to : position < to : false;
+          var isVelocity = Math.abs(_velocity) <= config.precision;
+          var isDisplacement = config.tension !== 0 ? Math.abs(to - position) <= config.precision : true;
+          endOfAnimation = isOvershooting || isVelocity && isDisplacement;
+          animation.lastVelocity = _velocity;
+          animation.lastTime = time;
+        } // Trails aren't done until their parents conclude
+
+
+        if (isAnimated && !config.toValues[valIdx].done) endOfAnimation = false;
+
+        if (endOfAnimation) {
+          // Ensure that we end up with a round value
+          if (animation.value !== to) position = to;
+          animation.done = true;
+        } else isDone = false;
+
+        animation.updateValue(position);
+        animation.lastPosition = position;
+      } // Keep track of updated values only when necessary
+
+
+      if (controller.props.onFrame || !controller.props.native) controller.animatedProps[config.name] = config.interpolation.getValue();
+    } // Update callbacks in the end of the frame
+
+
+    if (controller.props.onFrame || !controller.props.native) {
+      if (!controller.props.native && controller.onUpdate) controller.onUpdate();
+      if (controller.props.onFrame) controller.props.onFrame(controller.animatedProps);
+    } // Either call onEnd or next frame
+
+
+    if (isDone) {
+      controllers.delete(controller);
+      controller.debouncedOnEnd({
+        finished: true,
+        noChange: noChange
+      });
+    }
+  } // Loop over as long as there are controllers ...
+
+
+  if (controllers.size) requestFrame(frameLoop);else active = false;
+};
+
+var addController = function addController(controller) {
+  if (!controllers.has(controller)) {
+    controllers.add(controller);
+    if (!active) requestFrame(frameLoop);
+    active = true;
+  }
+};
+
+var removeController = function removeController(controller) {
+  if (controllers.has(controller)) {
+    controllers.delete(controller);
+  }
+};
+
+var Controller =
+/*#__PURE__*/
+function () {
+  function Controller(props, config) {
+    var _this = this;
+
+    if (config === void 0) {
+      config = {
+        native: true,
+        interpolateTo: true,
+        autoStart: true
+      };
+    }
+
+    this.getValues = function () {
+      return _this.props.native ? _this.interpolations : _this.animatedProps;
+    };
+
+    this.dependents = new Set();
+    this.isActive = false;
+    this.hasChanged = false;
+    this.props = {};
+    this.merged = {};
+    this.animations = {};
+    this.interpolations = {};
+    this.animatedProps = {};
+    this.configs = [];
+    this.frame = undefined;
+    this.startTime = undefined;
+    this.lastTime = undefined;
+    this.update(_extends({}, props, config));
+  }
+
+  var _proto = Controller.prototype;
+
+  _proto.update = function update(props) {
+    var _this2 = this;
+
+    this.props = _extends({}, this.props, props);
+
+    var _ref = this.props.interpolateTo ? interpolateTo(this.props) : this.props,
+        _ref$from = _ref.from,
+        from = _ref$from === void 0 ? {} : _ref$from,
+        _ref$to = _ref.to,
+        to = _ref$to === void 0 ? {} : _ref$to,
+        _ref$config = _ref.config,
+        config = _ref$config === void 0 ? {} : _ref$config,
+        _ref$delay = _ref.delay,
+        delay = _ref$delay === void 0 ? 0 : _ref$delay,
+        reverse = _ref.reverse,
+        attach = _ref.attach,
+        reset = _ref.reset,
+        immediate = _ref.immediate,
+        autoStart = _ref.autoStart,
+        ref = _ref.ref; // Reverse values when requested
+
+
+    if (reverse) {
+      var _ref2 = [to, from];
+      from = _ref2[0];
+      to = _ref2[1];
+    }
+
+    this.hasChanged = false; // Attachment handling, trailed springs can "attach" themselves to a previous spring
+
+    var target = attach && attach(this); // Reset merged props when necessary
+
+    var extra = reset ? {} : this.merged; // This will collect all props that were ever set
+
+    this.merged = _extends({}, from, extra, to); // Reduces input { name: value } pairs into animated values
+
+    this.animations = Object.entries(this.merged).reduce(function (acc, _ref3, i) {
+      var name = _ref3[0],
+          value = _ref3[1];
+      // Issue cached entries, except on reset
+      var entry = !reset && acc[name] || {}; // Figure out what the value is supposed to be
+
+      var isNumber = typeof value === 'number';
+      var isString = typeof value === 'string' && !value.startsWith('#') && !/\d/.test(value) && !colorNames[value];
+      var isArray = !isNumber && !isString && Array.isArray(value);
+      var fromValue = from[name] !== undefined ? from[name] : value;
+      var toValue = isNumber || isArray ? value : isString ? value : 1;
+      var toConfig = callProp(config, name);
+      if (target) toValue = target.animations[name].parent; // Detect changes, animated values will be checked in the raf-loop
+
+      if (toConfig.decay !== void 0 || !shallowEqual(entry.changes, value)) {
+        var _extends2;
+
+        _this2.hasChanged = true;
+        var parent, interpolation$$1;
+        if (isNumber || isString) parent = interpolation$$1 = entry.parent || new AnimatedValue(fromValue);else if (isArray) parent = interpolation$$1 = entry.parent || new AnimatedArray(fromValue);else {
+          var prev = entry.interpolation && entry.interpolation.calc(entry.parent.value);
+
+          if (entry.parent) {
+            parent = entry.parent;
+            parent.setValue(0, false);
+          } else parent = new AnimatedValue(0);
+
+          var range = {
+            output: [prev !== void 0 ? prev : fromValue, value]
+          };
+
+          if (entry.interpolation) {
+            interpolation$$1 = entry.interpolation;
+            entry.interpolation.updateConfig(range);
+          } else interpolation$$1 = parent.interpolate(range);
+        } // Set immediate values
+
+        if (callProp(immediate, name)) parent.setValue(value, false); // Reset animated values
+
+        var animatedValues = toArray(parent.getPayload());
+        animatedValues.forEach(function (value) {
+          return value.prepare(_this2);
+        });
+        return _extends({}, acc, (_extends2 = {}, _extends2[name] = _extends({}, entry, {
+          name: name,
+          parent: parent,
+          interpolation: interpolation$$1,
+          animatedValues: animatedValues,
+          changes: value,
+          fromValues: toArray(parent.getValue()),
+          toValues: toArray(target ? toValue.getPayload() : toValue),
+          immediate: callProp(immediate, name),
+          delay: withDefault(toConfig.delay, delay || 0),
+          initialVelocity: withDefault(toConfig.velocity, 0),
+          clamp: withDefault(toConfig.clamp, false),
+          precision: withDefault(toConfig.precision, 0.01),
+          tension: withDefault(toConfig.tension, 170),
+          friction: withDefault(toConfig.friction, 26),
+          mass: withDefault(toConfig.mass, 1),
+          duration: toConfig.duration,
+          easing: withDefault(toConfig.easing, function (t) {
+            return t;
+          }),
+          decay: toConfig.decay
+        }), _extends2));
+      } else return acc;
+    }, this.animations);
+
+    if (this.hasChanged) {
+      this.configs = getValues$1(this.animations);
+      this.animatedProps = {};
+      this.interpolations = {};
+
+      for (var key in this.animations) {
+        this.interpolations[key] = this.animations[key].interpolation;
+        this.animatedProps[key] = this.animations[key].interpolation.getValue();
+      }
+    } // TODO: clean up ref in controller
+
+
+    for (var _len = arguments.length, start = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+      start[_key - 1] = arguments[_key];
+    }
+
+    if (!ref && (autoStart || start.length)) this.start.apply(this, start);
+    var onEnd = start[0],
+        onUpdate = start[1];
+    this.onEnd = typeof onEnd === 'function' && onEnd;
+    this.onUpdate = onUpdate;
+    return this.getValues();
+  };
+
+  _proto.start = function start(onEnd, onUpdate) {
+    var _this3 = this;
+
+    this.startTime = now();
+    if (this.isActive) this.stop();
+    this.isActive = true;
+    this.onEnd = typeof onEnd === 'function' && onEnd;
+    this.onUpdate = onUpdate;
+    if (this.props.onStart) this.props.onStart();
+    addController(this);
+    return new Promise(function (res) {
+      return _this3.resolve = res;
+    });
+  };
+
+  _proto.stop = function stop(finished) {
+    if (finished === void 0) {
+      finished = false;
+    }
+
+    // Reset collected changes since the animation has been stopped cold turkey
+    if (finished) getValues$1(this.animations).forEach(function (a) {
+      return a.changes = undefined;
+    });
+    this.debouncedOnEnd({
+      finished: finished
+    });
+  };
+
+  _proto.destroy = function destroy() {
+    removeController(this);
+    this.props = {};
+    this.merged = {};
+    this.animations = {};
+    this.interpolations = {};
+    this.animatedProps = {};
+    this.configs = [];
+  };
+
+  _proto.debouncedOnEnd = function debouncedOnEnd(result) {
+    removeController(this);
+    this.isActive = false;
+    var onEnd = this.onEnd;
+    this.onEnd = null;
+    if (onEnd) onEnd(result);
+    if (this.resolve) this.resolve();
+    this.resolve = null;
+  };
+
+  return Controller;
+}();
+
+var AnimatedProps =
+/*#__PURE__*/
+function (_AnimatedObjectWithCh) {
+  _inheritsLoose(AnimatedProps, _AnimatedObjectWithCh);
+
+  function AnimatedProps(props, callback) {
+    var _this;
+
+    _this = _AnimatedObjectWithCh.call(this) || this;
+    if (props.style) props = _extends({}, props, {
+      style: createAnimatedStyle(props.style)
+    });
+    _this.payload = props;
+    _this.update = callback;
+
+    _this.attach();
+
+    return _this;
+  }
+
+  return AnimatedProps;
+}(AnimatedObjectWithChildren);
+
+function createAnimatedComponent(Component) {
+  var AnimatedComponent =
+  /*#__PURE__*/
+  function (_React$Component) {
+    _inheritsLoose(AnimatedComponent, _React$Component);
+
+    function AnimatedComponent(props) {
+      var _this;
+
+      _this = _React$Component.call(this) || this;
+
+      _this.callback = function () {
+        if (_this.node) {
+          var didUpdate = applyAnimatedValues.fn(_this.node, _this.propsAnimated.getAnimatedValue(), _assertThisInitialized$1(_assertThisInitialized$1(_this)));
+          if (didUpdate === false) _this.forceUpdate();
+        }
+      };
+
+      _this.attachProps(props);
+
+      return _this;
+    }
+
+    var _proto = AnimatedComponent.prototype;
+
+    _proto.componentWillUnmount = function componentWillUnmount() {
+      this.propsAnimated && this.propsAnimated.detach();
+    };
+
+    _proto.setNativeProps = function setNativeProps(props) {
+      var didUpdate = applyAnimatedValues.fn(this.node, props, this);
+      if (didUpdate === false) this.forceUpdate();
+    } // The system is best designed when setNativeProps is implemented. It is
+    // able to avoid re-rendering and directly set the attributes that
+    // changed. However, setNativeProps can only be implemented on leaf
+    // native components. If you want to animate a composite component, you
+    // need to re-render it. In this case, we have a fallback that uses
+    // forceUpdate.
+    ;
+
+    _proto.attachProps = function attachProps(_ref) {
+      var forwardRef = _ref.forwardRef,
+          nextProps = _objectWithoutPropertiesLoose$1(_ref, ["forwardRef"]);
+
+      var oldPropsAnimated = this.propsAnimated;
+      this.propsAnimated = new AnimatedProps(nextProps, this.callback); // When you call detach, it removes the element from the parent list
+      // of children. If it goes to 0, then the parent also detaches itself
+      // and so on.
+      // An optimization is to attach the new elements and THEN detach the old
+      // ones instead of detaching and THEN attaching.
+      // This way the intermediate state isn't to go to 0 and trigger
+      // this expensive recursive detaching to then re-attach everything on
+      // the very next operation.
+
+      oldPropsAnimated && oldPropsAnimated.detach();
+    };
+
+    _proto.shouldComponentUpdate = function shouldComponentUpdate(props) {
+      var style = props.style,
+          nextProps = _objectWithoutPropertiesLoose$1(props, ["style"]);
+
+      var _this$props = this.props,
+          currentStyle = _this$props.style,
+          currentProps = _objectWithoutPropertiesLoose$1(_this$props, ["style"]);
+
+      if (!shallowEqual(currentProps, nextProps) || !shallowEqual(currentStyle, style)) {
+        this.attachProps(props);
+        return true;
+      }
+
+      return false;
+    };
+
+    _proto.render = function render() {
+      var _this2 = this;
+
+      var _this$propsAnimated$g = this.propsAnimated.getValue(),
+          scrollTop = _this$propsAnimated$g.scrollTop,
+          scrollLeft = _this$propsAnimated$g.scrollLeft,
+          animatedProps = _objectWithoutPropertiesLoose$1(_this$propsAnimated$g, ["scrollTop", "scrollLeft"]);
+
+      return React__default.createElement(Component, _extends({}, animatedProps, {
+        ref: function ref(node) {
+          return _this2.node = handleRef(node, _this2.props.forwardRef);
+        }
+      }));
+    };
+
+    return AnimatedComponent;
+  }(React__default.Component);
+
+  return React__default.forwardRef(function (props, ref) {
+    return React__default.createElement(AnimatedComponent, _extends({}, props, {
+      forwardRef: ref
+    }));
+  });
+}
+
+var config = {
+  default: {
+    tension: 170,
+    friction: 26
+  },
+  gentle: {
+    tension: 120,
+    friction: 14
+  },
+  wobbly: {
+    tension: 180,
+    friction: 12
+  },
+  stiff: {
+    tension: 210,
+    friction: 20
+  },
+  slow: {
+    tension: 280,
+    friction: 60
+  },
+  molasses: {
+    tension: 280,
+    friction: 120
+  }
+};
+
+var Spring =
+/*#__PURE__*/
+function (_React$Component) {
+  _inheritsLoose(Spring, _React$Component);
+
+  function Spring() {
+    var _this;
+
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    _this = _React$Component.call.apply(_React$Component, [this].concat(args)) || this;
+    _this.state = {
+      lastProps: {
+        from: {},
+        to: {}
+      },
+      propsChanged: false,
+      internal: false
+    };
+    _this.controller = new Controller(null, null);
+    _this.didUpdate = false;
+    _this.didInject = false;
+    _this.finished = true;
+
+    _this.start = function () {
+      _this.finished = false;
+      var wasMounted = _this.mounted;
+
+      _this.controller.start(function (props) {
+        return _this.finish(_extends({}, props, {
+          wasMounted: wasMounted
+        }));
+      }, _this.update);
+    };
+
+    _this.stop = function () {
+      return _this.controller.stop(true);
+    };
+
+    _this.update = function () {
+      return _this.mounted && _this.setState({
+        internal: true
+      });
+    };
+
+    _this.finish = function (_ref) {
+      var finished = _ref.finished,
+          noChange = _ref.noChange,
+          wasMounted = _ref.wasMounted;
+      _this.finished = true;
+
+      if (_this.mounted && finished) {
+        // Only call onRest if either we *were* mounted, or when there were changes
+        if (_this.props.onRest && (wasMounted || !noChange)) _this.props.onRest(_this.controller.merged); // Restore end-state
+
+        if (_this.mounted && _this.didInject) {
+          _this.afterInject = convertValues(_this.props);
+
+          _this.setState({
+            internal: true
+          });
+        } // If we have an inject or values to apply after the animation we ping here
+
+
+        if (_this.mounted && (_this.didInject || _this.props.after)) _this.setState({
+          internal: true
+        });
+        _this.didInject = false;
+      }
+    };
+
+    return _this;
+  }
+
+  var _proto = Spring.prototype;
+
+  _proto.componentDidMount = function componentDidMount() {
+    // componentDidUpdate isn't called on mount, we call it here to start animating
+    this.componentDidUpdate();
+    this.mounted = true;
+  };
+
+  _proto.componentWillUnmount = function componentWillUnmount() {
+    // Stop all ongoing animtions
+    this.mounted = false;
+    this.stop();
+  };
+
+  Spring.getDerivedStateFromProps = function getDerivedStateFromProps(props, _ref2) {
+    var internal = _ref2.internal,
+        lastProps = _ref2.lastProps;
+    // The following is a test against props that could alter the animation
+    var from = props.from,
+        to = props.to,
+        reset = props.reset,
+        force = props.force;
+    var propsChanged = !shallowEqual(to, lastProps.to) || !shallowEqual(from, lastProps.from) || reset && !internal || force && !internal;
+    return {
+      propsChanged: propsChanged,
+      lastProps: props,
+      internal: false
+    };
+  };
+
+  _proto.render = function render() {
+    var _this2 = this;
+
+    var children = this.props.children;
+    var propsChanged = this.state.propsChanged; // Inject phase -----------------------------------------------------------
+    // Handle injected frames, for instance targets/web/fix-auto
+    // An inject will return an intermediary React node which measures itself out
+    // .. and returns a callback when the values sought after are ready, usually "auto".
+
+    if (this.props.inject && propsChanged && !this.injectProps) {
+      var frame = this.props.inject(this.props, function (injectProps) {
+        // The inject frame has rendered, now let's update animations...
+        _this2.injectProps = injectProps;
+
+        _this2.setState({
+          internal: true
+        });
+      }); // Render out injected frame
+
+      if (frame) return frame;
+    } // Update phase -----------------------------------------------------------
+
+
+    if (this.injectProps || propsChanged) {
+      // We can potentially cause setState, but we're inside render, the flag prevents that
+      this.didInject = false; // Update animations, this turns from/to props into AnimatedValues
+      // An update can occur on injected props, or when own-props have changed.
+
+      if (this.injectProps) {
+        this.controller.update(this.injectProps); // didInject is needed, because there will be a 3rd stage, where the original values
+        // .. will be restored after the animation is finished. When someone animates towards
+        // .. "auto", the end-result should be "auto", not "1999px", which would block nested
+        // .. height/width changes.
+
+        this.didInject = true;
+      } else if (propsChanged) this.controller.update(this.props); // Flag an update that occured, componentDidUpdate will start the animation later on
+
+
+      this.didUpdate = true;
+      this.afterInject = undefined;
+      this.injectProps = undefined;
+    } // Render phase -----------------------------------------------------------
+    // Render out raw values or AnimatedValues depending on "native"
+
+
+    var values = _extends({}, this.controller.getValues(), this.afterInject);
+
+    if (this.finished) values = _extends({}, values, this.props.after);
+    return Object.keys(values).length ? children(values) : null;
+  };
+
+  _proto.componentDidUpdate = function componentDidUpdate() {
+    // The animation has to start *after* render, since at that point the scene
+    // .. graph should be established, so we do it here. Unfortunatelly, non-native
+    // .. animations as well as "auto"-injects call forceUpdate, so it's causing a loop.
+    // .. didUpdate prevents that as it gets set only on prop changes.
+    if (this.didUpdate) this.start();
+    this.didUpdate = false;
+  };
+
+  return Spring;
+}(React__default.Component);
+
+Spring.defaultProps = {
+  from: {},
+  to: {},
+  config: config.default,
+  native: false,
+  immediate: false,
+  reset: false,
+  force: false,
+  inject: bugfixes
+};
+
+var Trail =
+/*#__PURE__*/
+function (_React$PureComponent) {
+  _inheritsLoose(Trail, _React$PureComponent);
+
+  function Trail() {
+    var _this;
+
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    _this = _React$PureComponent.call.apply(_React$PureComponent, [this].concat(args)) || this;
+    _this.first = true;
+    _this.instances = new Set();
+
+    _this.hook = function (instance, index, length, reverse) {
+      // Add instance to set
+      _this.instances.add(instance); // Return undefined on the first index and from then on the previous instance
+
+
+      if (reverse ? index === length - 1 : index === 0) return undefined;else return Array.from(_this.instances)[reverse ? index + 1 : index - 1];
+    };
+
+    return _this;
+  }
+
+  var _proto = Trail.prototype;
+
+  _proto.render = function render() {
+    var _this2 = this;
+
+    var _this$props = this.props,
+        items = _this$props.items,
+        _children = _this$props.children,
+        _this$props$from = _this$props.from,
+        from = _this$props$from === void 0 ? {} : _this$props$from,
+        initial = _this$props.initial,
+        reverse = _this$props.reverse,
+        keys = _this$props.keys,
+        delay = _this$props.delay,
+        onRest = _this$props.onRest,
+        props = _objectWithoutPropertiesLoose$1(_this$props, ["items", "children", "from", "initial", "reverse", "keys", "delay", "onRest"]);
+
+    var array = toArray(items);
+    return toArray(array).map(function (item, i) {
+      return React__default.createElement(Spring, _extends({
+        onRest: i === 0 ? onRest : null,
+        key: typeof keys === 'function' ? keys(item) : toArray(keys)[i],
+        from: _this2.first && initial !== void 0 ? initial || {} : from
+      }, props, {
+        delay: i === 0 && delay || undefined,
+        attach: function attach(instance) {
+          return _this2.hook(instance, i, array.length, reverse);
+        },
+        children: function children(props) {
+          var child = _children(item, i);
+
+          return child ? child(props) : null;
+        }
+      }));
+    });
+  };
+
+  _proto.componentDidUpdate = function componentDidUpdate(prevProps) {
+    this.first = false;
+    if (prevProps.items !== this.props.items) this.instances.clear();
+  };
+
+  return Trail;
+}(React__default.PureComponent);
+
+Trail.defaultProps = {
+  keys: function keys(item) {
+    return item;
+  }
+};
+
+var DEFAULT = '__default';
+
+var KeyframesImpl =
+/*#__PURE__*/
+function (_React$PureComponent) {
+  _inheritsLoose(KeyframesImpl, _React$PureComponent);
+
+  function KeyframesImpl() {
+    var _this;
+
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    _this = _React$PureComponent.call.apply(_React$PureComponent, [this].concat(args)) || this;
+    _this.guid = 0;
+    _this.state = {
+      props: {},
+      resolve: function resolve() {
+        return null;
+      },
+      last: true,
+      index: 0
+    };
+
+    _this.next = function (props, last, index) {
+      if (last === void 0) {
+        last = true;
+      }
+
+      if (index === void 0) {
+        index = 0;
+      }
+
+      _this.running = true;
+      return new Promise(function (resolve) {
+        _this.mounted && _this.setState(function (state) {
+          return {
+            props: props,
+            resolve: resolve,
+            last: last,
+            index: index
+          };
+        }, function () {
+          return _this.running = false;
+        });
+      });
+    };
+
+    return _this;
+  }
+
+  var _proto = KeyframesImpl.prototype;
+
+  _proto.componentDidMount = function componentDidMount() {
+    this.mounted = true;
+    this.componentDidUpdate({});
+  };
+
+  _proto.componentWillUnmount = function componentWillUnmount() {
+    this.mounted = false;
+  };
+
+  _proto.componentDidUpdate = function componentDidUpdate(previous) {
+    var _this2 = this;
+
+    var _this$props = this.props,
+        states = _this$props.states,
+        f = _this$props.filter,
+        state = _this$props.state;
+
+    if (previous.state !== this.props.state || this.props.reset && !this.running || !shallowEqual(states[state], previous.states[previous.state])) {
+      if (states && state && states[state]) {
+        (function () {
+          var localId = ++_this2.guid;
+          var slots = states[state];
+
+          if (slots) {
+            if (Array.isArray(slots)) {
+              var q = Promise.resolve();
+
+              var _loop = function _loop(i) {
+                var index = i;
+                var slot = slots[index];
+                var last = index === slots.length - 1;
+                q = q.then(function () {
+                  return localId === _this2.guid && _this2.next(f(slot), last, index);
+                });
+              };
+
+              for (var i = 0; i < slots.length; i++) {
+                _loop(i);
+              }
+            } else if (typeof slots === 'function') {
+              var index = 0;
+              slots( // next
+              function (props, last) {
+                if (last === void 0) {
+                  last = false;
+                }
+
+                return localId === _this2.guid && _this2.next(f(props), last, index++);
+              }, // cancel
+              function () {
+                return requestFrame(function () {
+                  return _this2.instance && _this2.instance.stop();
+                });
+              }, // ownprops
+              _this2.props);
+            } else {
+              _this2.next(f(states[state]));
+            }
+          }
+        })();
+      }
+    }
+  };
+
+  _proto.render = function render() {
+    var _this3 = this;
+
+    var _this$state = this.state,
+        props = _this$state.props,
+        resolve = _this$state.resolve,
+        last = _this$state.last,
+        index = _this$state.index;
+    if (!props || Object.keys(props).length === 0) return null;
+
+    var _this$props2 = this.props,
+        state = _this$props2.state,
+        filter = _this$props2.filter,
+        states = _this$props2.states,
+        config = _this$props2.config,
+        Component = _this$props2.primitive,
+        _onRest = _this$props2.onRest,
+        forwardRef = _this$props2.forwardRef,
+        rest = _objectWithoutPropertiesLoose$1(_this$props2, ["state", "filter", "states", "config", "primitive", "onRest", "forwardRef"]); // Arrayed configs need an index to process
+
+
+    if (Array.isArray(config)) config = config[index];
+    return React__default.createElement(Component, _extends({
+      ref: function ref(_ref) {
+        return _this3.instance = handleRef(_ref, forwardRef);
+      },
+      config: config
+    }, rest, props, {
+      onRest: function onRest(args) {
+        resolve(args);
+        if (_onRest && last) _onRest(args);
+      }
+    }));
+  };
+
+  return KeyframesImpl;
+}(React__default.PureComponent);
+
+KeyframesImpl.defaultProps = {
+  state: DEFAULT
+};
+var Keyframes = React__default.forwardRef(function (props, ref) {
+  return React__default.createElement(KeyframesImpl, _extends({}, props, {
+    forwardRef: ref
+  }));
+});
+
+Keyframes.create = function (primitive) {
+  return function (states, filter) {
+    var _states;
+
+    if (filter === void 0) {
+      filter = function filter(states) {
+        return states;
+      };
+    }
+
+    if (typeof states === 'function' || Array.isArray(states)) states = (_states = {}, _states[DEFAULT] = states, _states);
+    return function (props) {
+      return React__default.createElement(KeyframesImpl, _extends({
+        primitive: primitive,
+        states: states,
+        filter: filter
+      }, props));
+    };
+  };
+};
+
+Keyframes.Spring = function (states) {
+  return Keyframes.create(Spring)(states, interpolateTo);
+};
+
+Keyframes.Trail = function (states) {
+  return Keyframes.create(Trail)(states, interpolateTo);
+};
+
+var guid = 0;
+
+var get = function get(props) {
+  var items = props.items,
+      keys = props.keys,
+      rest = _objectWithoutPropertiesLoose$1(props, ["items", "keys"]);
+
+  items = toArray(items !== void 0 ? items : null);
+  keys = typeof keys === 'function' ? items.map(keys) : toArray(keys); // Make sure numeric keys are interpreted as Strings (5 !== "5")
+
+  return _extends({
+    items: items,
+    keys: keys.map(function (key) {
+      return String(key);
+    })
+  }, rest);
+};
+
+var Transition =
+/*#__PURE__*/
+function (_React$PureComponent) {
+  _inheritsLoose(Transition, _React$PureComponent);
+
+  var _proto = Transition.prototype;
+
+  _proto.componentDidMount = function componentDidMount() {
+    this.mounted = true;
+  };
+
+  _proto.componentWillUnmount = function componentWillUnmount() {
+    this.mounted = false;
+  };
+
+  function Transition(prevProps) {
+    var _this;
+
+    _this = _React$PureComponent.call(this, prevProps) || this;
+
+    _this.destroyItem = function (item, key, state) {
+      return function (values) {
+        var _this$props = _this.props,
+            onRest = _this$props.onRest,
+            onDestroyed = _this$props.onDestroyed;
+
+        if (_this.mounted) {
+          onDestroyed && onDestroyed(item);
+
+          _this.setState(function (_ref) {
+            var deleted = _ref.deleted;
+            return {
+              deleted: deleted.filter(function (t) {
+                return t.key !== key;
+              })
+            };
+          });
+
+          onRest && onRest(item, state, values);
+        }
+      };
+    };
+
+    _this.state = {
+      first: true,
+      transitions: [],
+      current: {},
+      deleted: [],
+      prevProps: prevProps
+    };
+    return _this;
+  }
+
+  Transition.getDerivedStateFromProps = function getDerivedStateFromProps(props, _ref2) {
+    var first = _ref2.first,
+        prevProps = _ref2.prevProps,
+        state = _objectWithoutPropertiesLoose$1(_ref2, ["first", "prevProps"]);
+
+    var _get = get(props),
+        items = _get.items,
+        keys = _get.keys,
+        initial = _get.initial,
+        from = _get.from,
+        enter = _get.enter,
+        leave = _get.leave,
+        update = _get.update,
+        _get$trail = _get.trail,
+        trail = _get$trail === void 0 ? 0 : _get$trail,
+        unique = _get.unique,
+        config = _get.config;
+
+    var _get2 = get(prevProps),
+        _keys = _get2.keys,
+        _items = _get2.items;
+
+    var current = _extends({}, state.current);
+
+    var deleted = [].concat(state.deleted); // Compare next keys with current keys
+
+    var currentKeys = Object.keys(current);
+    var currentSet = new Set(currentKeys);
+    var nextSet = new Set(keys);
+    var added = keys.filter(function (item) {
+      return !currentSet.has(item);
+    });
+    var removed = state.transitions.filter(function (item) {
+      return !item.destroyed && !nextSet.has(item.originalKey);
+    }).map(function (i) {
+      return i.originalKey;
+    });
+    var updated = keys.filter(function (item) {
+      return currentSet.has(item);
+    });
+    var delay = 0;
+    added.forEach(function (key) {
+      // In unique mode, remove fading out transitions if their key comes in again
+      if (unique && deleted.find(function (d) {
+        return d.originalKey === key;
+      })) deleted = deleted.filter(function (t) {
+        return t.originalKey !== key;
+      });
+      var keyIndex = keys.indexOf(key);
+      var item = items[keyIndex];
+      var state = 'enter';
+      current[key] = {
+        state: state,
+        originalKey: key,
+        key: unique ? String(key) : guid++,
+        item: item,
+        trail: delay = delay + trail,
+        config: callProp(config, item, state),
+        from: callProp(first ? initial !== void 0 ? initial || {} : from : from, item),
+        to: callProp(enter, item)
+      };
+    });
+    removed.forEach(function (key) {
+      var keyIndex = _keys.indexOf(key);
+
+      var item = _items[keyIndex];
+      var state = 'leave';
+      deleted.push(_extends({}, current[key], {
+        state: state,
+        destroyed: true,
+        left: _keys[Math.max(0, keyIndex - 1)],
+        right: _keys[Math.min(_keys.length, keyIndex + 1)],
+        trail: delay = delay + trail,
+        config: callProp(config, item, state),
+        to: callProp(leave, item)
+      }));
+      delete current[key];
+    });
+    updated.forEach(function (key) {
+      var keyIndex = keys.indexOf(key);
+      var item = items[keyIndex];
+      var state = 'update';
+      current[key] = _extends({}, current[key], {
+        item: item,
+        state: state,
+        trail: delay = delay + trail,
+        config: callProp(config, item, state),
+        to: callProp(update, item)
+      });
+    }); // This tries to restore order for deleted items by finding their last known siblings
+
+    var out = keys.map(function (key) {
+      return current[key];
+    });
+    deleted.forEach(function (_ref3) {
+      var left = _ref3.left,
+          right = _ref3.right,
+          transition = _objectWithoutPropertiesLoose$1(_ref3, ["left", "right"]);
+
+      var pos; // Was it the element on the left, if yes, move there ...
+
+      if ((pos = out.findIndex(function (t) {
+        return t.originalKey === left;
+      })) !== -1) pos += 1; // Or how about the element on the right ...
+
+      if (pos === -1) pos = out.findIndex(function (t) {
+        return t.originalKey === right;
+      }); // Maybe we'll find it in the list of deleted items
+
+      if (pos === -1) pos = deleted.findIndex(function (t) {
+        return t.originalKey === left;
+      }); // Checking right side as well
+
+      if (pos === -1) pos = deleted.findIndex(function (t) {
+        return t.originalKey === right;
+      }); // And if nothing else helps, move it to the start ¯\_(ツ)_/¯
+
+      pos = Math.max(0, pos);
+      out = [].concat(out.slice(0, pos), [transition], out.slice(pos));
+    });
+    return {
+      first: first && added.length === 0,
+      transitions: out,
+      current: current,
+      deleted: deleted,
+      prevProps: props
+    };
+  };
+
+  _proto.render = function render() {
+    var _this2 = this;
+
+    var _this$props2 = this.props,
+        initial = _this$props2.initial,
+        _this$props2$from = _this$props2.from,
+        _this$props2$enter = _this$props2.enter,
+        _this$props2$leave = _this$props2.leave,
+        _this$props2$update = _this$props2.update,
+        onDestroyed = _this$props2.onDestroyed,
+        keys = _this$props2.keys,
+        items = _this$props2.items,
+        onFrame = _this$props2.onFrame,
+        onRest = _this$props2.onRest,
+        onStart = _this$props2.onStart,
+        trail = _this$props2.trail,
+        config = _this$props2.config,
+        _children = _this$props2.children,
+        unique = _this$props2.unique,
+        reset = _this$props2.reset,
+        extra = _objectWithoutPropertiesLoose$1(_this$props2, ["initial", "from", "enter", "leave", "update", "onDestroyed", "keys", "items", "onFrame", "onRest", "onStart", "trail", "config", "children", "unique", "reset"]);
+
+    return this.state.transitions.map(function (_ref4, i) {
+      var _ref5;
+
+      var state = _ref4.state,
+          key = _ref4.key,
+          item = _ref4.item,
+          from = _ref4.from,
+          to = _ref4.to,
+          trail = _ref4.trail,
+          config = _ref4.config,
+          destroyed = _ref4.destroyed;
+      return React__default.createElement(Keyframes, _extends({
+        reset: reset && state === 'enter',
+        primitive: Spring,
+        state: state,
+        filter: interpolateTo,
+        states: (_ref5 = {}, _ref5[state] = to, _ref5),
+        key: key,
+        onRest: destroyed ? _this2.destroyItem(item, key, state) : onRest && function (values) {
+          return onRest(item, state, values);
+        },
+        onStart: onStart && function () {
+          return onStart(item, state);
+        },
+        onFrame: onFrame && function (values) {
+          return onFrame(item, state, values);
+        },
+        delay: trail,
+        config: config
+      }, extra, {
+        from: from,
+        children: function children(props) {
+          var child = _children(item, state, i);
+
+          return child ? child(props) : null;
+        }
+      }));
+    });
+  };
+
+  return Transition;
+}(React__default.PureComponent);
+
+Transition.defaultProps = {
+  keys: function keys(item) {
+    return item;
+  },
+  unique: false,
+  reset: false
+};
+
+var domElements = ['a', 'abbr', 'address', 'area', 'article', 'aside', 'audio', 'b', 'base', 'bdi', 'bdo', 'big', 'blockquote', 'body', 'br', 'button', 'canvas', 'caption', 'cite', 'code', 'col', 'colgroup', 'data', 'datalist', 'dd', 'del', 'details', 'dfn', 'dialog', 'div', 'dl', 'dt', 'em', 'embed', 'fieldset', 'figcaption', 'figure', 'footer', 'form', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'head', 'header', 'hgroup', 'hr', 'html', 'i', 'iframe', 'img', 'input', 'ins', 'kbd', 'keygen', 'label', 'legend', 'li', 'link', 'main', 'map', 'mark', 'marquee', 'menu', 'menuitem', 'meta', 'meter', 'nav', 'noscript', 'object', 'ol', 'optgroup', 'option', 'output', 'p', 'param', 'picture', 'pre', 'progress', 'q', 'rp', 'rt', 'ruby', 's', 'samp', 'script', 'section', 'select', 'small', 'source', 'span', 'strong', 'style', 'sub', 'summary', 'sup', 'table', 'tbody', 'td', 'textarea', 'tfoot', 'th', 'thead', 'time', 'title', 'tr', 'track', 'u', 'ul', 'var', 'video', 'wbr', // SVG
+'circle', 'clipPath', 'defs', 'ellipse', 'foreignObject', 'g', 'image', 'line', 'linearGradient', 'mask', 'path', 'pattern', 'polygon', 'polyline', 'radialGradient', 'rect', 'stop', 'svg', 'text', 'tspan'];
+var extendedAnimated = domElements.reduce(function (acc, element) {
+  acc[element] = createAnimatedComponent(element);
+  return acc;
+}, createAnimatedComponent);
+
+// This module exports a `springs` object and a `spring()` function:
+//
+//   - `spring()` is deprecated and will be removed in the future (react-motion).
+//   - `springs` should be used from now on (react-spring).
+var springs = {
+  // Super slow spring, for debugging purposes
+  debug: {
+    mass: 1,
+    tension: 10,
+    friction: 40
+  },
+  // Slow spring, can be used to move large things (e.g. a side panel).
+  lazy: {
+    mass: 1,
+    tension: 120,
+    friction: 20
+  },
+  // Medium speed spring, can be used to move small objects.
+  smooth: {
+    mass: 0.7,
+    tension: 300,
+    friction: 25
+  },
+  // Fast speed spring, for interactions that feel “almost instant”.
+  swift: {
+    mass: 0.5,
+    tension: 800,
+    friction: 30
+  },
+  // Super fast speed spring, for interactions that feel instant (e.g. a
+  // checkbox tick).
+  instant: {
+    mass: 0.3,
+    tension: 1000,
+    friction: 30
+  } // Deprecated react-motion springs (see above)
+
+};
+var reactMotionSprings = {
+  slow: {
+    stiffness: 150,
+    friction: 18
+  },
+  normal: {
+    stiffness: 190,
+    friction: 22
+  },
+  fast: {
+    stiffness: 220,
+    friction: 24
+  }
+};
+var spring = function spring(name) {
+  if (process.env.NODE_ENV === 'development') {
+    console.warn('Using spring(name) with react-motion is deprecated. ' + 'Please use springs[name] with react-spring instead.');
+  }
+
+  return reactMotionSprings[name] || reactMotionSprings.normal;
+};
+
+function _arrayWithHoles(arr) {
+  if (Array.isArray(arr)) return arr;
+}
+
+var arrayWithHoles = _arrayWithHoles;
+
+function _iterableToArrayLimit(arr, i) {
+  var _arr = [];
+  var _n = true;
+  var _d = false;
+  var _e = undefined;
+
+  try {
+    for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {
+      _arr.push(_s.value);
+
+      if (i && _arr.length === i) break;
+    }
+  } catch (err) {
+    _d = true;
+    _e = err;
+  } finally {
+    try {
+      if (!_n && _i["return"] != null) _i["return"]();
+    } finally {
+      if (_d) throw _e;
+    }
+  }
+
+  return _arr;
+}
+
+var iterableToArrayLimit = _iterableToArrayLimit;
+
+function _nonIterableRest() {
+  throw new TypeError("Invalid attempt to destructure non-iterable instance");
+}
+
+var nonIterableRest = _nonIterableRest;
+
+function _slicedToArray(arr, i) {
+  return arrayWithHoles(arr) || iterableToArrayLimit(arr, i) || nonIterableRest();
+}
+
+var slicedToArray = _slicedToArray;
+
+var dayjs_min = createCommonjsModule(function (module, exports) {
+!function(t,n){module.exports=n();}(commonjsGlobal,function(){var t="millisecond",n="second",e="minute",r="hour",i="day",s="week",u="month",o="quarter",a="year",h=/^(\d{4})-?(\d{1,2})-?(\d{0,2})[^0-9]*(\d{1,2})?:?(\d{1,2})?:?(\d{1,2})?.?(\d{1,3})?$/,f=/\[([^\]]+)]|Y{2,4}|M{1,4}|D{1,2}|d{1,4}|H{1,2}|h{1,2}|a|A|m{1,2}|s{1,2}|Z{1,2}|SSS/g,c=function(t,n,e){var r=String(t);return !r||r.length>=n?t:""+Array(n+1-r.length).join(e)+t},d={s:c,z:function(t){var n=-t.utcOffset(),e=Math.abs(n),r=Math.floor(e/60),i=e%60;return (n<=0?"+":"-")+c(r,2,"0")+":"+c(i,2,"0")},m:function(t,n){var e=12*(n.year()-t.year())+(n.month()-t.month()),r=t.clone().add(e,u),i=n-r<0,s=t.clone().add(e+(i?-1:1),u);return Number(-(e+(n-r)/(i?r-s:s-r))||0)},a:function(t){return t<0?Math.ceil(t)||0:Math.floor(t)},p:function(h){return {M:u,y:a,w:s,d:i,h:r,m:e,s:n,ms:t,Q:o}[h]||String(h||"").toLowerCase().replace(/s$/,"")},u:function(t){return void 0===t}},$={name:"en",weekdays:"Sunday_Monday_Tuesday_Wednesday_Thursday_Friday_Saturday".split("_"),months:"January_February_March_April_May_June_July_August_September_October_November_December".split("_")},l="en",m={};m[l]=$;var y=function(t){return t instanceof v},M=function(t,n,e){var r;if(!t)return null;if("string"==typeof t)m[t]&&(r=t),n&&(m[t]=n,r=t);else{var i=t.name;m[i]=t,r=i;}return e||(l=r),r},g=function(t,n,e){if(y(t))return t.clone();var r=n?"string"==typeof n?{format:n,pl:e}:n:{};return r.date=t,new v(r)},D=d;D.l=M,D.i=y,D.w=function(t,n){return g(t,{locale:n.$L,utc:n.$u})};var v=function(){function c(t){this.$L=this.$L||M(t.locale,null,!0)||l,this.parse(t);}var d=c.prototype;return d.parse=function(t){this.$d=function(t){var n=t.date,e=t.utc;if(null===n)return new Date(NaN);if(D.u(n))return new Date;if(n instanceof Date)return new Date(n);if("string"==typeof n&&!/Z$/i.test(n)){var r=n.match(h);if(r)return e?new Date(Date.UTC(r[1],r[2]-1,r[3]||1,r[4]||0,r[5]||0,r[6]||0,r[7]||0)):new Date(r[1],r[2]-1,r[3]||1,r[4]||0,r[5]||0,r[6]||0,r[7]||0)}return new Date(n)}(t),this.init();},d.init=function(){var t=this.$d;this.$y=t.getFullYear(),this.$M=t.getMonth(),this.$D=t.getDate(),this.$W=t.getDay(),this.$H=t.getHours(),this.$m=t.getMinutes(),this.$s=t.getSeconds(),this.$ms=t.getMilliseconds();},d.$utils=function(){return D},d.isValid=function(){return !("Invalid Date"===this.$d.toString())},d.isSame=function(t,n){var e=g(t);return this.startOf(n)<=e&&e<=this.endOf(n)},d.isAfter=function(t,n){return g(t)<this.startOf(n)},d.isBefore=function(t,n){return this.endOf(n)<g(t)},d.$g=function(t,n,e){return D.u(t)?this[n]:this.set(e,t)},d.year=function(t){return this.$g(t,"$y",a)},d.month=function(t){return this.$g(t,"$M",u)},d.day=function(t){return this.$g(t,"$W",i)},d.date=function(t){return this.$g(t,"$D","date")},d.hour=function(t){return this.$g(t,"$H",r)},d.minute=function(t){return this.$g(t,"$m",e)},d.second=function(t){return this.$g(t,"$s",n)},d.millisecond=function(n){return this.$g(n,"$ms",t)},d.unix=function(){return Math.floor(this.valueOf()/1e3)},d.valueOf=function(){return this.$d.getTime()},d.startOf=function(t,o){var h=this,f=!!D.u(o)||o,c=D.p(t),d=function(t,n){var e=D.w(h.$u?Date.UTC(h.$y,n,t):new Date(h.$y,n,t),h);return f?e:e.endOf(i)},$=function(t,n){return D.w(h.toDate()[t].apply(h.toDate(),(f?[0,0,0,0]:[23,59,59,999]).slice(n)),h)},l=this.$W,m=this.$M,y=this.$D,M="set"+(this.$u?"UTC":"");switch(c){case a:return f?d(1,0):d(31,11);case u:return f?d(1,m):d(0,m+1);case s:var g=this.$locale().weekStart||0,v=(l<g?l+7:l)-g;return d(f?y-v:y+(6-v),m);case i:case"date":return $(M+"Hours",0);case r:return $(M+"Minutes",1);case e:return $(M+"Seconds",2);case n:return $(M+"Milliseconds",3);default:return this.clone()}},d.endOf=function(t){return this.startOf(t,!1)},d.$set=function(s,o){var h,f=D.p(s),c="set"+(this.$u?"UTC":""),d=(h={},h[i]=c+"Date",h.date=c+"Date",h[u]=c+"Month",h[a]=c+"FullYear",h[r]=c+"Hours",h[e]=c+"Minutes",h[n]=c+"Seconds",h[t]=c+"Milliseconds",h)[f],$=f===i?this.$D+(o-this.$W):o;if(f===u||f===a){var l=this.clone().set("date",1);l.$d[d]($),l.init(),this.$d=l.set("date",Math.min(this.$D,l.daysInMonth())).toDate();}else d&&this.$d[d]($);return this.init(),this},d.set=function(t,n){return this.clone().$set(t,n)},d.get=function(t){return this[D.p(t)]()},d.add=function(t,o){var h,f=this;t=Number(t);var c=D.p(o),d=function(n){var e=g(f);return D.w(e.date(e.date()+Math.round(n*t)),f)};if(c===u)return this.set(u,this.$M+t);if(c===a)return this.set(a,this.$y+t);if(c===i)return d(1);if(c===s)return d(7);var $=(h={},h[e]=6e4,h[r]=36e5,h[n]=1e3,h)[c]||1,l=this.valueOf()+t*$;return D.w(l,this)},d.subtract=function(t,n){return this.add(-1*t,n)},d.format=function(t){var n=this;if(!this.isValid())return "Invalid Date";var e=t||"YYYY-MM-DDTHH:mm:ssZ",r=D.z(this),i=this.$locale(),s=this.$H,u=this.$m,o=this.$M,a=i.weekdays,h=i.months,c=function(t,r,i,s){return t&&(t[r]||t(n,e))||i[r].substr(0,s)},d=function(t){return D.s(s%12||12,t,"0")},$=i.meridiem||function(t,n,e){var r=t<12?"AM":"PM";return e?r.toLowerCase():r},l={YY:String(this.$y).slice(-2),YYYY:this.$y,M:o+1,MM:D.s(o+1,2,"0"),MMM:c(i.monthsShort,o,h,3),MMMM:h[o]||h(this,e),D:this.$D,DD:D.s(this.$D,2,"0"),d:String(this.$W),dd:c(i.weekdaysMin,this.$W,a,2),ddd:c(i.weekdaysShort,this.$W,a,3),dddd:a[this.$W],H:String(s),HH:D.s(s,2,"0"),h:d(1),hh:d(2),a:$(s,u,!0),A:$(s,u,!1),m:String(u),mm:D.s(u,2,"0"),s:String(this.$s),ss:D.s(this.$s,2,"0"),SSS:D.s(this.$ms,3,"0"),Z:r};return e.replace(f,function(t,n){return n||l[t]||r.replace(":","")})},d.utcOffset=function(){return 15*-Math.round(this.$d.getTimezoneOffset()/15)},d.diff=function(t,h,f){var c,d=D.p(h),$=g(t),l=6e4*($.utcOffset()-this.utcOffset()),m=this-$,y=D.m(this,$);return y=(c={},c[a]=y/12,c[u]=y,c[o]=y/3,c[s]=(m-l)/6048e5,c[i]=(m-l)/864e5,c[r]=m/36e5,c[e]=m/6e4,c[n]=m/1e3,c)[d]||m,f?y:D.a(y)},d.daysInMonth=function(){return this.endOf(u).$D},d.$locale=function(){return m[this.$L]},d.locale=function(t,n){if(!t)return this.$L;var e=this.clone();return e.$L=M(t,n,!0),e},d.clone=function(){return D.w(this.toDate(),this)},d.toDate=function(){return new Date(this.$d)},d.toJSON=function(){return this.toISOString()},d.toISOString=function(){return this.$d.toISOString()},d.toString=function(){return this.$d.toUTCString()},c}();return g.prototype=v.prototype,g.extend=function(t,n){return t(n,v,g),g},g.locale=M,g.isDayjs=y,g.unix=function(t){return g(1e3*t)},g.en=m[l],g.Ls=m,g});
+});
+
+var UNITS = [['years', 'year'], ['months', 'month'], ['days', 'day'], ['hours', 'hour'], ['minutes', 'minute'], ['seconds', 'second']];
+var DEFAULT_UNITS = ['years', 'months', 'days', 'hours', 'minutes', 'seconds']; // Return the difference between two dates, per unit.
+// Set `units` to get specific units only, e.g. ['minutes', 'seconds']
+// If `units` is not set, all the units are enabled.
+
+var difference = function difference(date1, date2) {
+  var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+  var units = options.units || DEFAULT_UNITS;
+  var maxUnits = options.maxUnits || -1;
+  var keepLeadingZeros = maxUnits === -1 && options.keepLeadingZeros || false;
+  var start = date2 > date1 ? date1 : date2;
+
+  var getRightMostUnitIndex = function getRightMostUnitIndex() {
+    return UNITS.concat().reverse().find(function (_ref) {
+      var _ref2 = slicedToArray(_ref, 1),
+          unit = _ref2[0];
+
+      return units.includes(unit);
+    })[0];
+  };
+
+  return UNITS.reduce(function (result, _ref3, index) {
+    var _ref4 = slicedToArray(_ref3, 2),
+        name = _ref4[0],
+        unitName = _ref4[1];
+
+    result[name] = null; // fill the current unit, subtract the difference from the remaining
+
+    if ((maxUnits === -1 || result.remainingUnits > 0) && units.includes(name)) {
+      result[name] = result.remaining.diff(start, unitName);
+      result.remaining = result.remaining.subtract(result[name], unitName);
+    } // remove leading zeros
+
+
+    if (!keepLeadingZeros && !result.seenNonZero) {
+      if (result[name] === 0) {
+        result[name] = null;
+      } else {
+        result.seenNonZero = true;
+      }
+    } // enforce the maxUnits option
+
+
+    if (result.remainingUnits > 0 && result.seenNonZero) {
+      result.remainingUnits -= 1;
+    } // last iteration
+
+
+    if (index === UNITS.length - 1) {
+      delete result.remaining;
+      delete result.remainingUnits;
+      delete result.seenNonZero; // include at least one 0
+
+      if (Object.values(result).every(function (val) {
+        return val === null;
+      })) {
+        result[getRightMostUnitIndex()] = 0;
+      }
+    }
+
+    return result;
+  }, {
+    remaining: dayjs_min(start === date1 ? date2 : date1),
+    remainingUnits: maxUnits,
+    seenNonZero: false
+  });
+};
+var formatHtmlDatetime = function formatHtmlDatetime(date) {
+  return dayjs_min(date).toISOString();
+};
+
+var formatIntegerRange = function formatIntegerRange() {
+  var count = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : -1;
+  var min = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+  var max = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 99;
+  var maxSuffix = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : '';
+  count = parseInt(count, 10);
+
+  if (count <= min) {
+    return "".concat(parseInt(min, 10));
+  }
+
+  if (count > max) {
+    return "".concat(parseInt(max, 10)).concat(maxSuffix);
+  }
+
+  return count.toString();
+};
 
 function createCommonjsModule$1(fn, module) {
 	return module = { exports: {} }, fn(module, module.exports), module.exports;
@@ -5338,7 +5510,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 
 
-var classCallCheck = function (instance, Constructor) {
+var classCallCheck$1 = function (instance, Constructor) {
   if (!(instance instanceof Constructor)) {
     throw new TypeError("Cannot call a class as a function");
   }
@@ -5354,7 +5526,7 @@ var classCallCheck = function (instance, Constructor) {
 
 
 
-var inherits = function (subClass, superClass) {
+var inherits$1 = function (subClass, superClass) {
   if (typeof superClass !== "function" && superClass !== null) {
     throw new TypeError("Super expression must either be null or a function, not " + typeof superClass);
   }
@@ -5380,7 +5552,7 @@ var inherits = function (subClass, superClass) {
 
 
 
-var possibleConstructorReturn = function (self, call) {
+var possibleConstructorReturn$1 = function (self, call) {
   if (!self) {
     throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
   }
@@ -5393,22 +5565,22 @@ var possibleConstructorReturn = function (self, call) {
  */
 
 var Media = function (_React$Component) {
-  inherits(Media, _React$Component);
+  inherits$1(Media, _React$Component);
 
   function Media() {
     var _temp, _this, _ret;
 
-    classCallCheck(this, Media);
+    classCallCheck$1(this, Media);
 
     for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = possibleConstructorReturn(this, _React$Component.call.apply(_React$Component, [this].concat(args))), _this), _this.state = {
+    return _ret = (_temp = (_this = possibleConstructorReturn$1(this, _React$Component.call.apply(_React$Component, [this].concat(args))), _this), _this.state = {
       matches: _this.props.defaultMatches
     }, _this.updateMatches = function () {
       return _this.setState({ matches: _this.mediaQueryList.matches });
-    }, _temp), possibleConstructorReturn(_this, _ret);
+    }, _temp), possibleConstructorReturn$1(_this, _ret);
   }
 
   Media.prototype.componentWillMount = function componentWillMount() {
@@ -5556,71 +5728,14 @@ var grid = function grid(cols) {
   return GRID.columnWidth * cols + GRID.gutterWidth * gutters;
 };
 
-// This module exports a `springs` object and a `spring()` function:
-//
-//   - `spring()` is deprecated and will be removed in the future (react-motion).
-//   - `springs` should be used from now on (react-spring).
-var springs = {
-  // Super slow spring, for debugging purposes
-  debug: {
-    mass: 1,
-    tension: 10,
-    friction: 40
-  },
-  // Slow spring, can be used to move large things (e.g. a side panel).
-  lazy: {
-    mass: 1,
-    tension: 120,
-    friction: 20
-  },
-  // Medium speed spring, can be used to move small objects.
-  smooth: {
-    mass: 0.7,
-    tension: 300,
-    friction: 25
-  },
-  // Fast speed spring, for interactions that feel “almost instant”.
-  swift: {
-    mass: 0.5,
-    tension: 800,
-    friction: 30
-  },
-  // Super fast speed spring, for interactions that feel instant (e.g. a
-  // checkbox tick).
-  instant: {
-    mass: 0.3,
-    tension: 1000,
-    friction: 30
-  } // Deprecated react-motion springs (see above)
-
-};
-var reactMotionSprings = {
-  slow: {
-    stiffness: 150,
-    friction: 18
-  },
-  normal: {
-    stiffness: 190,
-    friction: 22
-  },
-  fast: {
-    stiffness: 220,
-    friction: 24
-  }
-};
-var spring = function spring(name) {
-  if (process.env.NODE_ENV === 'development') {
-    console.warn('Using spring(name) with react-motion is deprecated. ' + 'Please use springs[name] with react-spring instead.');
-  }
-
-  return reactMotionSprings[name] || reactMotionSprings.normal;
-};
-
 var unselectable = function unselectable() {
   return "\n  -webkit-touch-callout: none;\n  -webkit-user-select: none;\n  -moz-user-select: none;\n  -ms-user-select: none;\n  user-select: none;\n";
 };
 
 function noop() {}
+function identity(x) {
+  return x;
+}
 
 function devOnly(cb) {
   return process.env.NODE_ENV === 'development' ? cb : noop;
@@ -5640,13 +5755,17 @@ var warn = devOnly(function () {
 
 var TRANSACTION_REGEX = /^0x[A-Fa-f0-9]{64}$/;
 var ADDRESS_REGEX = /^0x[0-9a-fA-F]{40}$/;
-var ETHERSCAN_NETWORK_TYPES = new Map([['main', ''], ['kovan', 'kovan.'], ['rinkeby', 'rinkeby.'], ['ropsten', 'ropsten.']]);
+var ETHERSCAN_NETWORK_TYPES = new Map([['main', ''], ['kovan', 'kovan.'], ['rinkeby', 'rinkeby.'], ['ropsten', 'ropsten.'], ['goerli', 'goerli.']]);
 var ETHERSCAN_TYPES = new Map([['block', 'block'], ['transaction', 'tx'], ['address', 'address'], ['token', 'token']]);
 var BLOCK_EXPLORERS = {
   etherscan: function etherscan(_ref) {
     var type = _ref.type,
         value = _ref.value,
         networkType = _ref.networkType;
+
+    if (networkType === 'private') {
+      return '';
+    }
 
     if (!ETHERSCAN_NETWORK_TYPES.has(networkType)) {
       throw new Error('provider not supported.');
@@ -5736,7 +5855,7 @@ function isTransaction(transaction) {
  * @param {string} type The type of URL (block, transaction, address or token).
  * @param {string} value Identifier of the object, depending on the type (block number, transaction hash, …).
  * @param {object} options The optional parameters.
- * @param {string} options.networkType The Ethereum network type (main, kovan, rinkeby, or ropsten).
+ * @param {string} options.networkType The Ethereum network type (main, kovan, rinkeby, ropsten, goerli, or private).
  * @param {string} options.provider The explorer provider (e.g. etherscan).
  * @return {string} The generated URL, or an empty string if the parameters are invalid.
  */
@@ -5766,6 +5885,18 @@ function blockExplorerUrl(type, value) {
     return '';
   }
 }
+/**
+ * Get the address of a token icon
+ *
+ * @param {string} address The contract address of the token.
+ * @return {string} The generated URL, or an empty string if the parameters are invalid.
+ */
+
+function tokenIconUrl() {
+  var address = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+  address = address.trim();
+  return address ? "https://raw.githubusercontent.com/TrustWallet/tokens/master/tokens/".concat(address, ".png") : '';
+}
 
 // Forward some props of an instance to a child element.
 //
@@ -5791,4533 +5922,6 @@ function stylingProps(instance) {
 }
 
 /* eslint-disable prettier/prettier */
-
-function _classCallCheck(instance, Constructor) {
-  if (!(instance instanceof Constructor)) {
-    throw new TypeError("Cannot call a class as a function");
-  }
-}
-
-var classCallCheck$1 = _classCallCheck;
-
-function _defineProperties(target, props) {
-  for (var i = 0; i < props.length; i++) {
-    var descriptor = props[i];
-    descriptor.enumerable = descriptor.enumerable || false;
-    descriptor.configurable = true;
-    if ("value" in descriptor) descriptor.writable = true;
-    Object.defineProperty(target, descriptor.key, descriptor);
-  }
-}
-
-function _createClass(Constructor, protoProps, staticProps) {
-  if (protoProps) _defineProperties(Constructor.prototype, protoProps);
-  if (staticProps) _defineProperties(Constructor, staticProps);
-  return Constructor;
-}
-
-var createClass = _createClass;
-
-var _typeof_1 = createCommonjsModule(function (module) {
-function _typeof2(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof2 = function _typeof2(obj) { return typeof obj; }; } else { _typeof2 = function _typeof2(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof2(obj); }
-
-function _typeof(obj) {
-  if (typeof Symbol === "function" && _typeof2(Symbol.iterator) === "symbol") {
-    module.exports = _typeof = function _typeof(obj) {
-      return _typeof2(obj);
-    };
-  } else {
-    module.exports = _typeof = function _typeof(obj) {
-      return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : _typeof2(obj);
-    };
-  }
-
-  return _typeof(obj);
-}
-
-module.exports = _typeof;
-});
-
-function _assertThisInitialized(self) {
-  if (self === void 0) {
-    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-  }
-
-  return self;
-}
-
-var assertThisInitialized = _assertThisInitialized;
-
-function _possibleConstructorReturn(self, call) {
-  if (call && (_typeof_1(call) === "object" || typeof call === "function")) {
-    return call;
-  }
-
-  return assertThisInitialized(self);
-}
-
-var possibleConstructorReturn$1 = _possibleConstructorReturn;
-
-var getPrototypeOf = createCommonjsModule(function (module) {
-function _getPrototypeOf(o) {
-  module.exports = _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) {
-    return o.__proto__ || Object.getPrototypeOf(o);
-  };
-  return _getPrototypeOf(o);
-}
-
-module.exports = _getPrototypeOf;
-});
-
-var setPrototypeOf = createCommonjsModule(function (module) {
-function _setPrototypeOf(o, p) {
-  module.exports = _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
-    o.__proto__ = p;
-    return o;
-  };
-
-  return _setPrototypeOf(o, p);
-}
-
-module.exports = _setPrototypeOf;
-});
-
-function _inherits(subClass, superClass) {
-  if (typeof superClass !== "function" && superClass !== null) {
-    throw new TypeError("Super expression must either be null or a function");
-  }
-
-  subClass.prototype = Object.create(superClass && superClass.prototype, {
-    constructor: {
-      value: subClass,
-      writable: true,
-      configurable: true
-    }
-  });
-  if (superClass) setPrototypeOf(subClass, superClass);
-}
-
-var inherits$1 = _inherits;
-
-function _defineProperty(obj, key, value) {
-  if (key in obj) {
-    Object.defineProperty(obj, key, {
-      value: value,
-      enumerable: true,
-      configurable: true,
-      writable: true
-    });
-  } else {
-    obj[key] = value;
-  }
-
-  return obj;
-}
-
-var defineProperty = _defineProperty;
-
-var getDisplayName_1 = createCommonjsModule(function (module, exports) {
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = getDisplayName;
-function getDisplayName(Component) {
-  return Component.displayName || Component.name || (typeof Component === 'string' && Component.length > 0 ? Component : 'Unknown');
-}
-});
-
-var getDisplayName = unwrapExports(getDisplayName_1);
-
-var observe = function observe(_observe) {
-  var initialState = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-  return function (Component) {
-    var _class, _temp;
-
-    return _temp = _class =
-    /*#__PURE__*/
-    function (_React$Component) {
-      inherits$1(_class, _React$Component);
-
-      function _class() {
-        var _getPrototypeOf2;
-
-        var _this;
-
-        classCallCheck$1(this, _class);
-
-        for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-          args[_key] = arguments[_key];
-        }
-
-        _this = possibleConstructorReturn$1(this, (_getPrototypeOf2 = getPrototypeOf(_class)).call.apply(_getPrototypeOf2, [this].concat(args)));
-
-        defineProperty(assertThisInitialized(assertThisInitialized(_this)), "state", initialState);
-
-        defineProperty(assertThisInitialized(assertThisInitialized(_this)), "subscribe", function (observable) {
-          if (observable) {
-            _this.setState({
-              subscription: _observe(observable).subscribe(function (state) {
-                _this.setState(state);
-              })
-            });
-          }
-        });
-
-        defineProperty(assertThisInitialized(assertThisInitialized(_this)), "unsubscribe", function () {
-          _this.state.subscription && _this.state.subscription.unsubscribe();
-        });
-
-        return _this;
-      }
-
-      createClass(_class, [{
-        key: "componentDidMount",
-        value: function componentDidMount() {
-          this.subscribe(this.props.observable);
-        }
-      }, {
-        key: "componentWillReceiveProps",
-        value: function componentWillReceiveProps(_ref) {
-          var nextObservable = _ref.observable;
-          var observable = this.props.observable; // If a new observable gets passed in, unsubscribe from the old and subscribe to the new
-
-          if (nextObservable !== observable) {
-            this.unsubscribe();
-            this.subscribe(nextObservable);
-          }
-        }
-      }, {
-        key: "componentWillUnmount",
-        value: function componentWillUnmount() {
-          this.unsubscribe();
-        }
-      }, {
-        key: "render",
-        value: function render() {
-          var props = _extends_1({}, this.props); // Don't pass down the given observable
-
-
-          delete props.observable;
-          return React__default.createElement(Component, _extends_1({}, this.state, props));
-        }
-      }]);
-
-      return _class;
-    }(React__default.Component), defineProperty(_class, "displayName", "Observe(".concat(getDisplayName(Component), ")")), defineProperty(_class, "propTypes", {
-      observable: function observable(_ref2, _, componentName) {
-        var _observable = _ref2.observable;
-
-        if (_observable && typeof _observable.subscribe !== 'function') {
-          throw new Error("Invalid prop `observable` supplied to `".concat(componentName, "` ") + '(wrapped by `observe()`). ' + '`observable` must be an RxJS Observable-like object. ' + "Given ".concat(_observable, " instead."));
-        }
-      }
-    }), _temp;
-  };
-};
-
-// prefix helper
-var prefixUrl = function prefixUrl(url, publicUrl) {
-  return url.startsWith('data:') ? url : publicUrl + url;
-}; // trailing slash helper
-
-var ensureTrailingSlash = function ensureTrailingSlash(path) {
-  return path.endsWith('/') ? path : "".concat(path, "/");
-};
-
-var _React$createContext = React__default.createContext(''),
-    Provider = _React$createContext.Provider,
-    Consumer = _React$createContext.Consumer;
-
-var PublicUrlProvider =
-/*#__PURE__*/
-function (_React$PureComponent) {
-  inherits$1(PublicUrlProvider, _React$PureComponent);
-
-  function PublicUrlProvider() {
-    classCallCheck$1(this, PublicUrlProvider);
-
-    return possibleConstructorReturn$1(this, getPrototypeOf(PublicUrlProvider).apply(this, arguments));
-  }
-
-  createClass(PublicUrlProvider, [{
-    key: "render",
-    value: function render() {
-      var _this$props = this.props,
-          url = _this$props.url,
-          children = _this$props.children;
-      return React__default.createElement(Provider, {
-        value: url
-      }, children);
-    }
-  }]);
-
-  return PublicUrlProvider;
-}(React__default.PureComponent); // HOC wrapper
-
-
-defineProperty(PublicUrlProvider, "propTypes", {
-  url: propTypes.string.isRequired,
-  children: propTypes.node
-});
-
-var hocWrap = function hocWrap(Component) {
-  var HOC = function HOC(props) {
-    return React__default.createElement(Consumer, null, function (url) {
-      return React__default.createElement(Component, _extends_1({}, props, {
-        publicUrl: url
-      }));
-    });
-  };
-
-  HOC.displayName = "PublicUrlProvider(".concat(getDisplayName(Component), ")");
-  return HOC;
-}; // styled-components utility for URLs
-
-
-var styledUrl = function styledUrl(url) {
-  return function (_ref) {
-    var publicUrl = _ref.publicUrl;
-    return prefixUrl(url, publicUrl);
-  };
-};
-
-var PublicUrl = function PublicUrl(props) {
-  return React__default.createElement(Consumer, props);
-};
-
-PublicUrl.Provider = PublicUrlProvider;
-PublicUrl.hocWrap = hocWrap;
-PublicUrl.styledUrl = styledUrl;
-
-// For a discussion on pitfalls, see
-// https://gist.github.com/staltz/08bf613199092eeb41ac8137d51eb5e6
-
-var Redraw =
-/*#__PURE__*/
-function (_React$Component) {
-  inherits$1(Redraw, _React$Component);
-
-  function Redraw() {
-    var _getPrototypeOf2;
-
-    var _this;
-
-    classCallCheck$1(this, Redraw);
-
-    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    _this = possibleConstructorReturn$1(this, (_getPrototypeOf2 = getPrototypeOf(Redraw)).call.apply(_getPrototypeOf2, [this].concat(args)));
-
-    defineProperty(assertThisInitialized(assertThisInitialized(_this)), "state", {
-      lastDraw: -1
-    });
-
-    defineProperty(assertThisInitialized(assertThisInitialized(_this)), "draw", function () {
-      _this.raf = requestAnimationFrame(_this.draw);
-      var interval = _this.props.interval;
-      var lastDraw = _this.state.lastDraw;
-      var now = Date.now();
-      var delta = now - lastDraw;
-
-      if (lastDraw === -1 || delta > interval) {
-        _this.setState({
-          lastDraw: now - delta % interval
-        });
-      }
-    });
-
-    return _this;
-  }
-
-  createClass(Redraw, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      this.raf = null;
-      this.draw();
-    }
-  }, {
-    key: "componentWillUnmount",
-    value: function componentWillUnmount() {
-      this.raf && cancelAnimationFrame(this.raf);
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      return this.props.children();
-    }
-  }]);
-
-  return Redraw;
-}(React__default.Component);
-
-defineProperty(Redraw, "propTypes", {
-  interval: propTypes.number,
-  children: propTypes.func.isRequired
-});
-
-defineProperty(Redraw, "defaultProps", {
-  interval: 1000
-});
-
-var hocWrap$1 = function hocWrap(Component, interval) {
-  var HOC = function HOC(props) {
-    return React__default.createElement(Redraw, {
-      interval: interval
-    }, function () {
-      return React__default.createElement(Component, props);
-    });
-  };
-
-  HOC.displayName = "Redraw(".concat(getDisplayName(Component), ")");
-  return HOC;
-};
-
-Redraw.hocWrap = hocWrap$1;
-
-// adjusts the re-render timer to be one second, minute, or hour based on the
-// fromDate prop.
-// For a discussion on pitfalls, see
-// https://gist.github.com/staltz/08bf613199092eeb41ac8137d51eb5e6
-
-var EVERY_SECOND = 1000;
-var EVERY_MINUTE = EVERY_SECOND * 60;
-var EVERY_HOUR = EVERY_MINUTE * 60;
-
-var getRedrawTime = function getRedrawTime(fromDate) {
-  var _difference = difference(new Date(), fromDate),
-      days = _difference.days,
-      hours = _difference.hours,
-      minutes = _difference.minutes;
-
-  return hours || days ? EVERY_HOUR : minutes > 1 ? EVERY_MINUTE : EVERY_SECOND;
-};
-
-var RedrawFromDate =
-/*#__PURE__*/
-function (_React$Component) {
-  inherits$1(RedrawFromDate, _React$Component);
-
-  function RedrawFromDate() {
-    var _getPrototypeOf2;
-
-    var _this;
-
-    classCallCheck$1(this, RedrawFromDate);
-
-    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    _this = possibleConstructorReturn$1(this, (_getPrototypeOf2 = getPrototypeOf(RedrawFromDate)).call.apply(_getPrototypeOf2, [this].concat(args)));
-
-    defineProperty(assertThisInitialized(assertThisInitialized(_this)), "state", {
-      redrawTime: EVERY_HOUR,
-      lastDraw: -1
-    });
-
-    defineProperty(assertThisInitialized(assertThisInitialized(_this)), "clearInterval", function () {
-      _this.interval && clearInterval(_this.interval);
-    });
-
-    defineProperty(assertThisInitialized(assertThisInitialized(_this)), "restartDrawInterval", function (redrawTime) {
-      _this.clearInterval();
-
-      _this.interval = setInterval(function () {
-        _this.setState({
-          lastDraw: Date.now()
-        });
-
-        var newRedrawTime = getRedrawTime(_this.props.fromDate);
-
-        if (newRedrawTime !== redrawTime) {
-          _this.restartDrawInterval(newRedrawTime);
-        }
-      }, redrawTime);
-    });
-
-    return _this;
-  }
-
-  createClass(RedrawFromDate, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      var fromDate = this.props.fromDate;
-
-      if (fromDate) {
-        this.restartDrawInterval(getRedrawTime(fromDate));
-      }
-    }
-  }, {
-    key: "componentWillReceiveProps",
-    value: function componentWillReceiveProps(_ref) {
-      var fromDate = _ref.fromDate;
-
-      if (!fromDate && this.props.fromDate) {
-        this.clearInterval();
-      } else if (!isEqual(fromDate, this.props.fromDate)) {
-        this.restartDrawInterval(getRedrawTime(this.props.fromDate));
-      }
-    }
-  }, {
-    key: "componentWillUnmount",
-    value: function componentWillUnmount() {
-      this.clearInterval();
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      return this.props.children();
-    }
-  }]);
-
-  return RedrawFromDate;
-}(React__default.Component);
-
-defineProperty(RedrawFromDate, "propTypes", {
-  children: propTypes.func.isRequired,
-  fromDate: propTypes.oneOfType([propTypes.string, propTypes.number, propTypes.instanceOf(Date)]).isRequired
-});
-
-var hocWrap$2 = function hocWrap(Component) {
-  var HOC = function HOC(props) {
-    return React__default.createElement(RedrawFromDate, {
-      fromDate: props.fromDate
-    }, function () {
-      return React__default.createElement(Component, props);
-    });
-  };
-
-  HOC.propTypes = {
-    fromDate: RedrawFromDate.propTypes.fromDate
-  };
-  HOC.displayName = "RedrawFromDate(".concat(getDisplayName(Component), ")");
-  return HOC;
-};
-
-RedrawFromDate.hocWrap = hocWrap$2;
-
-var _React$createContext$1 = React__default.createContext(null),
-    Provider$1 = _React$createContext$1.Provider,
-    Consumer$1 = _React$createContext$1.Consumer;
-
-var RootProvider =
-/*#__PURE__*/
-function (_React$Component) {
-  inherits$1(RootProvider, _React$Component);
-
-  function RootProvider() {
-    var _getPrototypeOf2;
-
-    var _this;
-
-    classCallCheck$1(this, RootProvider);
-
-    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    _this = possibleConstructorReturn$1(this, (_getPrototypeOf2 = getPrototypeOf(RootProvider)).call.apply(_getPrototypeOf2, [this].concat(args)));
-
-    defineProperty(assertThisInitialized(assertThisInitialized(_this)), "_element", React__default.createRef());
-
-    defineProperty(assertThisInitialized(assertThisInitialized(_this)), "state", {
-      element: null
-    });
-
-    return _this;
-  }
-
-  createClass(RootProvider, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      this.setState({
-        element: this._element.current
-      });
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      var element = this.state.element;
-      var children = this.props.children;
-      return React__default.createElement(Provider$1, {
-        value: element
-      }, React__default.createElement("div", {
-        ref: this._element
-      },
-      /*
-       We don’t render the children tree until the element is present, at
-       the second rendering.
-        The reason why it is needed is because element references are
-       assigned after the first rendering, and we don’t want to let
-       `<Root />` consumers having to deal with the reference being `null`
-       at the first rendering.
-        This way, we can guarantee that if a consumer gets `null` rather
-       than the element, it’s because <Root.Provider /> has to be defined
-       at an upper level.
-      */
-      element ? children : null));
-    }
-  }]);
-
-  return RootProvider;
-}(React__default.Component);
-
-defineProperty(RootProvider, "propTypes", {
-  children: propTypes.node
-});
-
-var Root = function Root(props) {
-  return React__default.createElement(Consumer$1, props);
-};
-
-Root.Provider = RootProvider;
-
-function _objectSpread(target) {
-  for (var i = 1; i < arguments.length; i++) {
-    var source = arguments[i] != null ? arguments[i] : {};
-    var ownKeys = Object.keys(source);
-
-    if (typeof Object.getOwnPropertySymbols === 'function') {
-      ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) {
-        return Object.getOwnPropertyDescriptor(source, sym).enumerable;
-      }));
-    }
-
-    ownKeys.forEach(function (key) {
-      defineProperty(target, key, source[key]);
-    });
-  }
-
-  return target;
-}
-
-var objectSpread = _objectSpread;
-
-/**
- * Checks if `value` is the
- * [language type](http://www.ecma-international.org/ecma-262/7.0/#sec-ecmascript-language-types)
- * of `Object`. (e.g. arrays, functions, objects, regexes, `new Number(0)`, and `new String('')`)
- *
- * @static
- * @memberOf _
- * @since 0.1.0
- * @category Lang
- * @param {*} value The value to check.
- * @returns {boolean} Returns `true` if `value` is an object, else `false`.
- * @example
- *
- * _.isObject({});
- * // => true
- *
- * _.isObject([1, 2, 3]);
- * // => true
- *
- * _.isObject(_.noop);
- * // => true
- *
- * _.isObject(null);
- * // => false
- */
-function isObject(value) {
-  var type = typeof value;
-  return value != null && (type == 'object' || type == 'function');
-}
-
-/** Detect free variable `global` from Node.js. */
-var freeGlobal = typeof global == 'object' && global && global.Object === Object && global;
-
-/** Detect free variable `self`. */
-var freeSelf = typeof self == 'object' && self && self.Object === Object && self;
-
-/** Used as a reference to the global object. */
-var root = freeGlobal || freeSelf || Function('return this')();
-
-/**
- * Gets the timestamp of the number of milliseconds that have elapsed since
- * the Unix epoch (1 January 1970 00:00:00 UTC).
- *
- * @static
- * @memberOf _
- * @since 2.4.0
- * @category Date
- * @returns {number} Returns the timestamp.
- * @example
- *
- * _.defer(function(stamp) {
- *   console.log(_.now() - stamp);
- * }, _.now());
- * // => Logs the number of milliseconds it took for the deferred invocation.
- */
-var now = function() {
-  return root.Date.now();
-};
-
-/** Built-in value references. */
-var Symbol$1 = root.Symbol;
-
-/** Used for built-in method references. */
-var objectProto = Object.prototype;
-
-/** Used to check objects for own properties. */
-var hasOwnProperty$2 = objectProto.hasOwnProperty;
-
-/**
- * Used to resolve the
- * [`toStringTag`](http://ecma-international.org/ecma-262/7.0/#sec-object.prototype.tostring)
- * of values.
- */
-var nativeObjectToString = objectProto.toString;
-
-/** Built-in value references. */
-var symToStringTag = Symbol$1 ? Symbol$1.toStringTag : undefined;
-
-/**
- * A specialized version of `baseGetTag` which ignores `Symbol.toStringTag` values.
- *
- * @private
- * @param {*} value The value to query.
- * @returns {string} Returns the raw `toStringTag`.
- */
-function getRawTag(value) {
-  var isOwn = hasOwnProperty$2.call(value, symToStringTag),
-      tag = value[symToStringTag];
-
-  try {
-    value[symToStringTag] = undefined;
-  } catch (e) {}
-
-  var result = nativeObjectToString.call(value);
-  {
-    if (isOwn) {
-      value[symToStringTag] = tag;
-    } else {
-      delete value[symToStringTag];
-    }
-  }
-  return result;
-}
-
-/** Used for built-in method references. */
-var objectProto$1 = Object.prototype;
-
-/**
- * Used to resolve the
- * [`toStringTag`](http://ecma-international.org/ecma-262/7.0/#sec-object.prototype.tostring)
- * of values.
- */
-var nativeObjectToString$1 = objectProto$1.toString;
-
-/**
- * Converts `value` to a string using `Object.prototype.toString`.
- *
- * @private
- * @param {*} value The value to convert.
- * @returns {string} Returns the converted string.
- */
-function objectToString(value) {
-  return nativeObjectToString$1.call(value);
-}
-
-/** `Object#toString` result references. */
-var nullTag = '[object Null]',
-    undefinedTag = '[object Undefined]';
-
-/** Built-in value references. */
-var symToStringTag$1 = Symbol$1 ? Symbol$1.toStringTag : undefined;
-
-/**
- * The base implementation of `getTag` without fallbacks for buggy environments.
- *
- * @private
- * @param {*} value The value to query.
- * @returns {string} Returns the `toStringTag`.
- */
-function baseGetTag(value) {
-  if (value == null) {
-    return value === undefined ? undefinedTag : nullTag;
-  }
-  return (symToStringTag$1 && symToStringTag$1 in Object(value))
-    ? getRawTag(value)
-    : objectToString(value);
-}
-
-/**
- * Checks if `value` is object-like. A value is object-like if it's not `null`
- * and has a `typeof` result of "object".
- *
- * @static
- * @memberOf _
- * @since 4.0.0
- * @category Lang
- * @param {*} value The value to check.
- * @returns {boolean} Returns `true` if `value` is object-like, else `false`.
- * @example
- *
- * _.isObjectLike({});
- * // => true
- *
- * _.isObjectLike([1, 2, 3]);
- * // => true
- *
- * _.isObjectLike(_.noop);
- * // => false
- *
- * _.isObjectLike(null);
- * // => false
- */
-function isObjectLike(value) {
-  return value != null && typeof value == 'object';
-}
-
-/** `Object#toString` result references. */
-var symbolTag = '[object Symbol]';
-
-/**
- * Checks if `value` is classified as a `Symbol` primitive or object.
- *
- * @static
- * @memberOf _
- * @since 4.0.0
- * @category Lang
- * @param {*} value The value to check.
- * @returns {boolean} Returns `true` if `value` is a symbol, else `false`.
- * @example
- *
- * _.isSymbol(Symbol.iterator);
- * // => true
- *
- * _.isSymbol('abc');
- * // => false
- */
-function isSymbol(value) {
-  return typeof value == 'symbol' ||
-    (isObjectLike(value) && baseGetTag(value) == symbolTag);
-}
-
-/** Used as references for various `Number` constants. */
-var NAN = 0 / 0;
-
-/** Used to match leading and trailing whitespace. */
-var reTrim = /^\s+|\s+$/g;
-
-/** Used to detect bad signed hexadecimal string values. */
-var reIsBadHex = /^[-+]0x[0-9a-f]+$/i;
-
-/** Used to detect binary string values. */
-var reIsBinary = /^0b[01]+$/i;
-
-/** Used to detect octal string values. */
-var reIsOctal = /^0o[0-7]+$/i;
-
-/** Built-in method references without a dependency on `root`. */
-var freeParseInt = parseInt;
-
-/**
- * Converts `value` to a number.
- *
- * @static
- * @memberOf _
- * @since 4.0.0
- * @category Lang
- * @param {*} value The value to process.
- * @returns {number} Returns the number.
- * @example
- *
- * _.toNumber(3.2);
- * // => 3.2
- *
- * _.toNumber(Number.MIN_VALUE);
- * // => 5e-324
- *
- * _.toNumber(Infinity);
- * // => Infinity
- *
- * _.toNumber('3.2');
- * // => 3.2
- */
-function toNumber(value) {
-  if (typeof value == 'number') {
-    return value;
-  }
-  if (isSymbol(value)) {
-    return NAN;
-  }
-  if (isObject(value)) {
-    var other = typeof value.valueOf == 'function' ? value.valueOf() : value;
-    value = isObject(other) ? (other + '') : other;
-  }
-  if (typeof value != 'string') {
-    return value === 0 ? value : +value;
-  }
-  value = value.replace(reTrim, '');
-  var isBinary = reIsBinary.test(value);
-  return (isBinary || reIsOctal.test(value))
-    ? freeParseInt(value.slice(2), isBinary ? 2 : 8)
-    : (reIsBadHex.test(value) ? NAN : +value);
-}
-
-/** Error message constants. */
-var FUNC_ERROR_TEXT = 'Expected a function';
-
-/* Built-in method references for those with the same name as other `lodash` methods. */
-var nativeMax = Math.max,
-    nativeMin = Math.min;
-
-/**
- * Creates a debounced function that delays invoking `func` until after `wait`
- * milliseconds have elapsed since the last time the debounced function was
- * invoked. The debounced function comes with a `cancel` method to cancel
- * delayed `func` invocations and a `flush` method to immediately invoke them.
- * Provide `options` to indicate whether `func` should be invoked on the
- * leading and/or trailing edge of the `wait` timeout. The `func` is invoked
- * with the last arguments provided to the debounced function. Subsequent
- * calls to the debounced function return the result of the last `func`
- * invocation.
- *
- * **Note:** If `leading` and `trailing` options are `true`, `func` is
- * invoked on the trailing edge of the timeout only if the debounced function
- * is invoked more than once during the `wait` timeout.
- *
- * If `wait` is `0` and `leading` is `false`, `func` invocation is deferred
- * until to the next tick, similar to `setTimeout` with a timeout of `0`.
- *
- * See [David Corbacho's article](https://css-tricks.com/debouncing-throttling-explained-examples/)
- * for details over the differences between `_.debounce` and `_.throttle`.
- *
- * @static
- * @memberOf _
- * @since 0.1.0
- * @category Function
- * @param {Function} func The function to debounce.
- * @param {number} [wait=0] The number of milliseconds to delay.
- * @param {Object} [options={}] The options object.
- * @param {boolean} [options.leading=false]
- *  Specify invoking on the leading edge of the timeout.
- * @param {number} [options.maxWait]
- *  The maximum time `func` is allowed to be delayed before it's invoked.
- * @param {boolean} [options.trailing=true]
- *  Specify invoking on the trailing edge of the timeout.
- * @returns {Function} Returns the new debounced function.
- * @example
- *
- * // Avoid costly calculations while the window size is in flux.
- * jQuery(window).on('resize', _.debounce(calculateLayout, 150));
- *
- * // Invoke `sendMail` when clicked, debouncing subsequent calls.
- * jQuery(element).on('click', _.debounce(sendMail, 300, {
- *   'leading': true,
- *   'trailing': false
- * }));
- *
- * // Ensure `batchLog` is invoked once after 1 second of debounced calls.
- * var debounced = _.debounce(batchLog, 250, { 'maxWait': 1000 });
- * var source = new EventSource('/stream');
- * jQuery(source).on('message', debounced);
- *
- * // Cancel the trailing debounced invocation.
- * jQuery(window).on('popstate', debounced.cancel);
- */
-function debounce(func, wait, options) {
-  var lastArgs,
-      lastThis,
-      maxWait,
-      result,
-      timerId,
-      lastCallTime,
-      lastInvokeTime = 0,
-      leading = false,
-      maxing = false,
-      trailing = true;
-
-  if (typeof func != 'function') {
-    throw new TypeError(FUNC_ERROR_TEXT);
-  }
-  wait = toNumber(wait) || 0;
-  if (isObject(options)) {
-    leading = !!options.leading;
-    maxing = 'maxWait' in options;
-    maxWait = maxing ? nativeMax(toNumber(options.maxWait) || 0, wait) : maxWait;
-    trailing = 'trailing' in options ? !!options.trailing : trailing;
-  }
-
-  function invokeFunc(time) {
-    var args = lastArgs,
-        thisArg = lastThis;
-
-    lastArgs = lastThis = undefined;
-    lastInvokeTime = time;
-    result = func.apply(thisArg, args);
-    return result;
-  }
-
-  function leadingEdge(time) {
-    // Reset any `maxWait` timer.
-    lastInvokeTime = time;
-    // Start the timer for the trailing edge.
-    timerId = setTimeout(timerExpired, wait);
-    // Invoke the leading edge.
-    return leading ? invokeFunc(time) : result;
-  }
-
-  function remainingWait(time) {
-    var timeSinceLastCall = time - lastCallTime,
-        timeSinceLastInvoke = time - lastInvokeTime,
-        timeWaiting = wait - timeSinceLastCall;
-
-    return maxing
-      ? nativeMin(timeWaiting, maxWait - timeSinceLastInvoke)
-      : timeWaiting;
-  }
-
-  function shouldInvoke(time) {
-    var timeSinceLastCall = time - lastCallTime,
-        timeSinceLastInvoke = time - lastInvokeTime;
-
-    // Either this is the first call, activity has stopped and we're at the
-    // trailing edge, the system time has gone backwards and we're treating
-    // it as the trailing edge, or we've hit the `maxWait` limit.
-    return (lastCallTime === undefined || (timeSinceLastCall >= wait) ||
-      (timeSinceLastCall < 0) || (maxing && timeSinceLastInvoke >= maxWait));
-  }
-
-  function timerExpired() {
-    var time = now();
-    if (shouldInvoke(time)) {
-      return trailingEdge(time);
-    }
-    // Restart the timer.
-    timerId = setTimeout(timerExpired, remainingWait(time));
-  }
-
-  function trailingEdge(time) {
-    timerId = undefined;
-
-    // Only invoke if we have `lastArgs` which means `func` has been
-    // debounced at least once.
-    if (trailing && lastArgs) {
-      return invokeFunc(time);
-    }
-    lastArgs = lastThis = undefined;
-    return result;
-  }
-
-  function cancel() {
-    if (timerId !== undefined) {
-      clearTimeout(timerId);
-    }
-    lastInvokeTime = 0;
-    lastArgs = lastCallTime = lastThis = timerId = undefined;
-  }
-
-  function flush() {
-    return timerId === undefined ? result : trailingEdge(now());
-  }
-
-  function debounced() {
-    var time = now(),
-        isInvoking = shouldInvoke(time);
-
-    lastArgs = arguments;
-    lastThis = this;
-    lastCallTime = time;
-
-    if (isInvoking) {
-      if (timerId === undefined) {
-        return leadingEdge(lastCallTime);
-      }
-      if (maxing) {
-        // Handle invocations in a tight loop.
-        timerId = setTimeout(timerExpired, wait);
-        return invokeFunc(lastCallTime);
-      }
-    }
-    if (timerId === undefined) {
-      timerId = setTimeout(timerExpired, wait);
-    }
-    return result;
-  }
-  debounced.cancel = cancel;
-  debounced.flush = flush;
-  return debounced;
-}
-
-/** Error message constants. */
-var FUNC_ERROR_TEXT$1 = 'Expected a function';
-
-/**
- * Creates a throttled function that only invokes `func` at most once per
- * every `wait` milliseconds. The throttled function comes with a `cancel`
- * method to cancel delayed `func` invocations and a `flush` method to
- * immediately invoke them. Provide `options` to indicate whether `func`
- * should be invoked on the leading and/or trailing edge of the `wait`
- * timeout. The `func` is invoked with the last arguments provided to the
- * throttled function. Subsequent calls to the throttled function return the
- * result of the last `func` invocation.
- *
- * **Note:** If `leading` and `trailing` options are `true`, `func` is
- * invoked on the trailing edge of the timeout only if the throttled function
- * is invoked more than once during the `wait` timeout.
- *
- * If `wait` is `0` and `leading` is `false`, `func` invocation is deferred
- * until to the next tick, similar to `setTimeout` with a timeout of `0`.
- *
- * See [David Corbacho's article](https://css-tricks.com/debouncing-throttling-explained-examples/)
- * for details over the differences between `_.throttle` and `_.debounce`.
- *
- * @static
- * @memberOf _
- * @since 0.1.0
- * @category Function
- * @param {Function} func The function to throttle.
- * @param {number} [wait=0] The number of milliseconds to throttle invocations to.
- * @param {Object} [options={}] The options object.
- * @param {boolean} [options.leading=true]
- *  Specify invoking on the leading edge of the timeout.
- * @param {boolean} [options.trailing=true]
- *  Specify invoking on the trailing edge of the timeout.
- * @returns {Function} Returns the new throttled function.
- * @example
- *
- * // Avoid excessively updating the position while scrolling.
- * jQuery(window).on('scroll', _.throttle(updatePosition, 100));
- *
- * // Invoke `renewToken` when the click event is fired, but not more than once every 5 minutes.
- * var throttled = _.throttle(renewToken, 300000, { 'trailing': false });
- * jQuery(element).on('click', throttled);
- *
- * // Cancel the trailing throttled invocation.
- * jQuery(window).on('popstate', throttled.cancel);
- */
-function throttle(func, wait, options) {
-  var leading = true,
-      trailing = true;
-
-  if (typeof func != 'function') {
-    throw new TypeError(FUNC_ERROR_TEXT$1);
-  }
-  if (isObject(options)) {
-    leading = 'leading' in options ? !!options.leading : leading;
-    trailing = 'trailing' in options ? !!options.trailing : trailing;
-  }
-  return debounce(func, wait, {
-    'leading': leading,
-    'maxWait': wait,
-    'trailing': trailing
-  });
-}
-
-var getCurrentWindowSize = function getCurrentWindowSize() {
-  return {
-    width: window.innerWidth,
-    height: window.innerHeight
-  };
-};
-
-var WINDOW_SIZE_BASE = objectSpread({
-  breakpoints: BREAKPOINTS
-}, getCurrentWindowSize());
-
-var ViewportContext = React__default.createContext(WINDOW_SIZE_BASE);
-
-var ViewportProvider =
-/*#__PURE__*/
-function (_React$Component) {
-  inherits$1(ViewportProvider, _React$Component);
-
-  function ViewportProvider() {
-    var _getPrototypeOf2;
-
-    var _this;
-
-    classCallCheck$1(this, ViewportProvider);
-
-    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    _this = possibleConstructorReturn$1(this, (_getPrototypeOf2 = getPrototypeOf(ViewportProvider)).call.apply(_getPrototypeOf2, [this].concat(args)));
-
-    defineProperty(assertThisInitialized(assertThisInitialized(_this)), "state", {
-      windowSize: _this.getWindowSize()
-    });
-
-    defineProperty(assertThisInitialized(assertThisInitialized(_this)), "updateWindowSize", function () {
-      _this.setState({
-        windowSize: _this.getWindowSize()
-      });
-    });
-
-    defineProperty(assertThisInitialized(assertThisInitialized(_this)), "within", function (min, max) {
-      var width = _this.state.windowSize.width; // Accept "" or -1 indifferently
-
-      if (min === '') min = -1;
-      if (max === '') max = -1; // Convert breakpoints into numbers
-
-      if (typeof min === 'string') min = BREAKPOINTS[min];
-      if (typeof max === 'string') max = BREAKPOINTS[max];
-
-      if (typeof min !== 'number') {
-        throw new Error("Viewport: invalid minimum value (".concat(min, ")."));
-      }
-
-      if (typeof max !== 'number') {
-        throw new Error("Viewport: invalid maximum value (".concat(max, ")."));
-      }
-
-      return (min === -1 || width >= min) && (max === -1 || width < max);
-    });
-
-    defineProperty(assertThisInitialized(assertThisInitialized(_this)), "above", function (value) {
-      return _this.within(value, -1);
-    });
-
-    defineProperty(assertThisInitialized(assertThisInitialized(_this)), "below", function (value) {
-      return _this.within(-1, value);
-    });
-
-    return _this;
-  }
-
-  createClass(ViewportProvider, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      this.resizeStart();
-    }
-  }, {
-    key: "componentWillUnmount",
-    value: function componentWillUnmount() {
-      this.resizeStop();
-    }
-  }, {
-    key: "componentDidUpdate",
-    value: function componentDidUpdate(prevProps) {
-      var throttle$$1 = this.props.throttle;
-
-      if (prevProps.throttle !== throttle$$1) {
-        this.resizeStop();
-        this.resizeStart();
-      }
-    }
-  }, {
-    key: "resizeStart",
-    value: function resizeStart() {
-      this._handleResize = throttle(this.updateWindowSize, this.props.throttle);
-      this.updateWindowSize();
-      window.addEventListener('resize', this._handleResize);
-    }
-  }, {
-    key: "resizeStop",
-    value: function resizeStop() {
-      if (!this._handleResize) {
-        return;
-      }
-
-      window.removeEventListener('resize', this._handleResize);
-
-      this._handleResize.cancel();
-
-      delete this._handleResize;
-    }
-  }, {
-    key: "getWindowSize",
-    value: function getWindowSize() {
-      return objectSpread({}, WINDOW_SIZE_BASE, getCurrentWindowSize());
-    } // Check if the current width is between two points.
-    // Accepts a breakpoint string ('small', 'large') or numbers (width in pixels).
-    // `min` is inclusive and `max` is exclusive.
-
-  }, {
-    key: "render",
-    value: function render() {
-      var windowSize = this.state.windowSize;
-      var children = this.props.children;
-      var within = this.within,
-          above = this.above,
-          below = this.below;
-      return React__default.createElement(ViewportContext.Provider, {
-        value: objectSpread({}, windowSize, {
-          within: within,
-          above: above,
-          below: below
-        })
-      }, children);
-    }
-  }]);
-
-  return ViewportProvider;
-}(React__default.Component); // React emits a warning message if `Provider` is attached to `Consumer`, this
-// is only to prevent it.
-
-
-defineProperty(ViewportProvider, "propTypes", {
-  children: propTypes.node,
-  throttle: propTypes.number
-});
-
-defineProperty(ViewportProvider, "defaultProps", {
-  throttle: 100
-});
-
-var Viewport = function Viewport(props) {
-  return React__default.createElement(ViewportContext.Consumer, props);
-};
-
-Viewport.Provider = ViewportProvider;
-var useViewport = function useViewport() {
-  return React__default.useContext(ViewportContext);
-};
-
-var runtime = createCommonjsModule(function (module) {
-/**
- * Copyright (c) 2014-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
-!(function(global) {
-
-  var Op = Object.prototype;
-  var hasOwn = Op.hasOwnProperty;
-  var undefined; // More compressible than void 0.
-  var $Symbol = typeof Symbol === "function" ? Symbol : {};
-  var iteratorSymbol = $Symbol.iterator || "@@iterator";
-  var asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator";
-  var toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag";
-  var runtime = global.regeneratorRuntime;
-  if (runtime) {
-    {
-      // If regeneratorRuntime is defined globally and we're in a module,
-      // make the exports object identical to regeneratorRuntime.
-      module.exports = runtime;
-    }
-    // Don't bother evaluating the rest of this file if the runtime was
-    // already defined globally.
-    return;
-  }
-
-  // Define the runtime globally (as expected by generated code) as either
-  // module.exports (if we're in a module) or a new, empty object.
-  runtime = global.regeneratorRuntime = module.exports;
-
-  function wrap(innerFn, outerFn, self, tryLocsList) {
-    // If outerFn provided and outerFn.prototype is a Generator, then outerFn.prototype instanceof Generator.
-    var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator;
-    var generator = Object.create(protoGenerator.prototype);
-    var context = new Context(tryLocsList || []);
-
-    // The ._invoke method unifies the implementations of the .next,
-    // .throw, and .return methods.
-    generator._invoke = makeInvokeMethod(innerFn, self, context);
-
-    return generator;
-  }
-  runtime.wrap = wrap;
-
-  // Try/catch helper to minimize deoptimizations. Returns a completion
-  // record like context.tryEntries[i].completion. This interface could
-  // have been (and was previously) designed to take a closure to be
-  // invoked without arguments, but in all the cases we care about we
-  // already have an existing method we want to call, so there's no need
-  // to create a new function object. We can even get away with assuming
-  // the method takes exactly one argument, since that happens to be true
-  // in every case, so we don't have to touch the arguments object. The
-  // only additional allocation required is the completion record, which
-  // has a stable shape and so hopefully should be cheap to allocate.
-  function tryCatch(fn, obj, arg) {
-    try {
-      return { type: "normal", arg: fn.call(obj, arg) };
-    } catch (err) {
-      return { type: "throw", arg: err };
-    }
-  }
-
-  var GenStateSuspendedStart = "suspendedStart";
-  var GenStateSuspendedYield = "suspendedYield";
-  var GenStateExecuting = "executing";
-  var GenStateCompleted = "completed";
-
-  // Returning this object from the innerFn has the same effect as
-  // breaking out of the dispatch switch statement.
-  var ContinueSentinel = {};
-
-  // Dummy constructor functions that we use as the .constructor and
-  // .constructor.prototype properties for functions that return Generator
-  // objects. For full spec compliance, you may wish to configure your
-  // minifier not to mangle the names of these two functions.
-  function Generator() {}
-  function GeneratorFunction() {}
-  function GeneratorFunctionPrototype() {}
-
-  // This is a polyfill for %IteratorPrototype% for environments that
-  // don't natively support it.
-  var IteratorPrototype = {};
-  IteratorPrototype[iteratorSymbol] = function () {
-    return this;
-  };
-
-  var getProto = Object.getPrototypeOf;
-  var NativeIteratorPrototype = getProto && getProto(getProto(values([])));
-  if (NativeIteratorPrototype &&
-      NativeIteratorPrototype !== Op &&
-      hasOwn.call(NativeIteratorPrototype, iteratorSymbol)) {
-    // This environment has a native %IteratorPrototype%; use it instead
-    // of the polyfill.
-    IteratorPrototype = NativeIteratorPrototype;
-  }
-
-  var Gp = GeneratorFunctionPrototype.prototype =
-    Generator.prototype = Object.create(IteratorPrototype);
-  GeneratorFunction.prototype = Gp.constructor = GeneratorFunctionPrototype;
-  GeneratorFunctionPrototype.constructor = GeneratorFunction;
-  GeneratorFunctionPrototype[toStringTagSymbol] =
-    GeneratorFunction.displayName = "GeneratorFunction";
-
-  // Helper for defining the .next, .throw, and .return methods of the
-  // Iterator interface in terms of a single ._invoke method.
-  function defineIteratorMethods(prototype) {
-    ["next", "throw", "return"].forEach(function(method) {
-      prototype[method] = function(arg) {
-        return this._invoke(method, arg);
-      };
-    });
-  }
-
-  runtime.isGeneratorFunction = function(genFun) {
-    var ctor = typeof genFun === "function" && genFun.constructor;
-    return ctor
-      ? ctor === GeneratorFunction ||
-        // For the native GeneratorFunction constructor, the best we can
-        // do is to check its .name property.
-        (ctor.displayName || ctor.name) === "GeneratorFunction"
-      : false;
-  };
-
-  runtime.mark = function(genFun) {
-    if (Object.setPrototypeOf) {
-      Object.setPrototypeOf(genFun, GeneratorFunctionPrototype);
-    } else {
-      genFun.__proto__ = GeneratorFunctionPrototype;
-      if (!(toStringTagSymbol in genFun)) {
-        genFun[toStringTagSymbol] = "GeneratorFunction";
-      }
-    }
-    genFun.prototype = Object.create(Gp);
-    return genFun;
-  };
-
-  // Within the body of any async function, `await x` is transformed to
-  // `yield regeneratorRuntime.awrap(x)`, so that the runtime can test
-  // `hasOwn.call(value, "__await")` to determine if the yielded value is
-  // meant to be awaited.
-  runtime.awrap = function(arg) {
-    return { __await: arg };
-  };
-
-  function AsyncIterator(generator) {
-    function invoke(method, arg, resolve, reject) {
-      var record = tryCatch(generator[method], generator, arg);
-      if (record.type === "throw") {
-        reject(record.arg);
-      } else {
-        var result = record.arg;
-        var value = result.value;
-        if (value &&
-            typeof value === "object" &&
-            hasOwn.call(value, "__await")) {
-          return Promise.resolve(value.__await).then(function(value) {
-            invoke("next", value, resolve, reject);
-          }, function(err) {
-            invoke("throw", err, resolve, reject);
-          });
-        }
-
-        return Promise.resolve(value).then(function(unwrapped) {
-          // When a yielded Promise is resolved, its final value becomes
-          // the .value of the Promise<{value,done}> result for the
-          // current iteration.
-          result.value = unwrapped;
-          resolve(result);
-        }, function(error) {
-          // If a rejected Promise was yielded, throw the rejection back
-          // into the async generator function so it can be handled there.
-          return invoke("throw", error, resolve, reject);
-        });
-      }
-    }
-
-    var previousPromise;
-
-    function enqueue(method, arg) {
-      function callInvokeWithMethodAndArg() {
-        return new Promise(function(resolve, reject) {
-          invoke(method, arg, resolve, reject);
-        });
-      }
-
-      return previousPromise =
-        // If enqueue has been called before, then we want to wait until
-        // all previous Promises have been resolved before calling invoke,
-        // so that results are always delivered in the correct order. If
-        // enqueue has not been called before, then it is important to
-        // call invoke immediately, without waiting on a callback to fire,
-        // so that the async generator function has the opportunity to do
-        // any necessary setup in a predictable way. This predictability
-        // is why the Promise constructor synchronously invokes its
-        // executor callback, and why async functions synchronously
-        // execute code before the first await. Since we implement simple
-        // async functions in terms of async generators, it is especially
-        // important to get this right, even though it requires care.
-        previousPromise ? previousPromise.then(
-          callInvokeWithMethodAndArg,
-          // Avoid propagating failures to Promises returned by later
-          // invocations of the iterator.
-          callInvokeWithMethodAndArg
-        ) : callInvokeWithMethodAndArg();
-    }
-
-    // Define the unified helper method that is used to implement .next,
-    // .throw, and .return (see defineIteratorMethods).
-    this._invoke = enqueue;
-  }
-
-  defineIteratorMethods(AsyncIterator.prototype);
-  AsyncIterator.prototype[asyncIteratorSymbol] = function () {
-    return this;
-  };
-  runtime.AsyncIterator = AsyncIterator;
-
-  // Note that simple async functions are implemented on top of
-  // AsyncIterator objects; they just return a Promise for the value of
-  // the final result produced by the iterator.
-  runtime.async = function(innerFn, outerFn, self, tryLocsList) {
-    var iter = new AsyncIterator(
-      wrap(innerFn, outerFn, self, tryLocsList)
-    );
-
-    return runtime.isGeneratorFunction(outerFn)
-      ? iter // If outerFn is a generator, return the full iterator.
-      : iter.next().then(function(result) {
-          return result.done ? result.value : iter.next();
-        });
-  };
-
-  function makeInvokeMethod(innerFn, self, context) {
-    var state = GenStateSuspendedStart;
-
-    return function invoke(method, arg) {
-      if (state === GenStateExecuting) {
-        throw new Error("Generator is already running");
-      }
-
-      if (state === GenStateCompleted) {
-        if (method === "throw") {
-          throw arg;
-        }
-
-        // Be forgiving, per 25.3.3.3.3 of the spec:
-        // https://people.mozilla.org/~jorendorff/es6-draft.html#sec-generatorresume
-        return doneResult();
-      }
-
-      context.method = method;
-      context.arg = arg;
-
-      while (true) {
-        var delegate = context.delegate;
-        if (delegate) {
-          var delegateResult = maybeInvokeDelegate(delegate, context);
-          if (delegateResult) {
-            if (delegateResult === ContinueSentinel) continue;
-            return delegateResult;
-          }
-        }
-
-        if (context.method === "next") {
-          // Setting context._sent for legacy support of Babel's
-          // function.sent implementation.
-          context.sent = context._sent = context.arg;
-
-        } else if (context.method === "throw") {
-          if (state === GenStateSuspendedStart) {
-            state = GenStateCompleted;
-            throw context.arg;
-          }
-
-          context.dispatchException(context.arg);
-
-        } else if (context.method === "return") {
-          context.abrupt("return", context.arg);
-        }
-
-        state = GenStateExecuting;
-
-        var record = tryCatch(innerFn, self, context);
-        if (record.type === "normal") {
-          // If an exception is thrown from innerFn, we leave state ===
-          // GenStateExecuting and loop back for another invocation.
-          state = context.done
-            ? GenStateCompleted
-            : GenStateSuspendedYield;
-
-          if (record.arg === ContinueSentinel) {
-            continue;
-          }
-
-          return {
-            value: record.arg,
-            done: context.done
-          };
-
-        } else if (record.type === "throw") {
-          state = GenStateCompleted;
-          // Dispatch the exception by looping back around to the
-          // context.dispatchException(context.arg) call above.
-          context.method = "throw";
-          context.arg = record.arg;
-        }
-      }
-    };
-  }
-
-  // Call delegate.iterator[context.method](context.arg) and handle the
-  // result, either by returning a { value, done } result from the
-  // delegate iterator, or by modifying context.method and context.arg,
-  // setting context.delegate to null, and returning the ContinueSentinel.
-  function maybeInvokeDelegate(delegate, context) {
-    var method = delegate.iterator[context.method];
-    if (method === undefined) {
-      // A .throw or .return when the delegate iterator has no .throw
-      // method always terminates the yield* loop.
-      context.delegate = null;
-
-      if (context.method === "throw") {
-        if (delegate.iterator.return) {
-          // If the delegate iterator has a return method, give it a
-          // chance to clean up.
-          context.method = "return";
-          context.arg = undefined;
-          maybeInvokeDelegate(delegate, context);
-
-          if (context.method === "throw") {
-            // If maybeInvokeDelegate(context) changed context.method from
-            // "return" to "throw", let that override the TypeError below.
-            return ContinueSentinel;
-          }
-        }
-
-        context.method = "throw";
-        context.arg = new TypeError(
-          "The iterator does not provide a 'throw' method");
-      }
-
-      return ContinueSentinel;
-    }
-
-    var record = tryCatch(method, delegate.iterator, context.arg);
-
-    if (record.type === "throw") {
-      context.method = "throw";
-      context.arg = record.arg;
-      context.delegate = null;
-      return ContinueSentinel;
-    }
-
-    var info = record.arg;
-
-    if (! info) {
-      context.method = "throw";
-      context.arg = new TypeError("iterator result is not an object");
-      context.delegate = null;
-      return ContinueSentinel;
-    }
-
-    if (info.done) {
-      // Assign the result of the finished delegate to the temporary
-      // variable specified by delegate.resultName (see delegateYield).
-      context[delegate.resultName] = info.value;
-
-      // Resume execution at the desired location (see delegateYield).
-      context.next = delegate.nextLoc;
-
-      // If context.method was "throw" but the delegate handled the
-      // exception, let the outer generator proceed normally. If
-      // context.method was "next", forget context.arg since it has been
-      // "consumed" by the delegate iterator. If context.method was
-      // "return", allow the original .return call to continue in the
-      // outer generator.
-      if (context.method !== "return") {
-        context.method = "next";
-        context.arg = undefined;
-      }
-
-    } else {
-      // Re-yield the result returned by the delegate method.
-      return info;
-    }
-
-    // The delegate iterator is finished, so forget it and continue with
-    // the outer generator.
-    context.delegate = null;
-    return ContinueSentinel;
-  }
-
-  // Define Generator.prototype.{next,throw,return} in terms of the
-  // unified ._invoke helper method.
-  defineIteratorMethods(Gp);
-
-  Gp[toStringTagSymbol] = "Generator";
-
-  // A Generator should always return itself as the iterator object when the
-  // @@iterator function is called on it. Some browsers' implementations of the
-  // iterator prototype chain incorrectly implement this, causing the Generator
-  // object to not be returned from this call. This ensures that doesn't happen.
-  // See https://github.com/facebook/regenerator/issues/274 for more details.
-  Gp[iteratorSymbol] = function() {
-    return this;
-  };
-
-  Gp.toString = function() {
-    return "[object Generator]";
-  };
-
-  function pushTryEntry(locs) {
-    var entry = { tryLoc: locs[0] };
-
-    if (1 in locs) {
-      entry.catchLoc = locs[1];
-    }
-
-    if (2 in locs) {
-      entry.finallyLoc = locs[2];
-      entry.afterLoc = locs[3];
-    }
-
-    this.tryEntries.push(entry);
-  }
-
-  function resetTryEntry(entry) {
-    var record = entry.completion || {};
-    record.type = "normal";
-    delete record.arg;
-    entry.completion = record;
-  }
-
-  function Context(tryLocsList) {
-    // The root entry object (effectively a try statement without a catch
-    // or a finally block) gives us a place to store values thrown from
-    // locations where there is no enclosing try statement.
-    this.tryEntries = [{ tryLoc: "root" }];
-    tryLocsList.forEach(pushTryEntry, this);
-    this.reset(true);
-  }
-
-  runtime.keys = function(object) {
-    var keys = [];
-    for (var key in object) {
-      keys.push(key);
-    }
-    keys.reverse();
-
-    // Rather than returning an object with a next method, we keep
-    // things simple and return the next function itself.
-    return function next() {
-      while (keys.length) {
-        var key = keys.pop();
-        if (key in object) {
-          next.value = key;
-          next.done = false;
-          return next;
-        }
-      }
-
-      // To avoid creating an additional object, we just hang the .value
-      // and .done properties off the next function object itself. This
-      // also ensures that the minifier will not anonymize the function.
-      next.done = true;
-      return next;
-    };
-  };
-
-  function values(iterable) {
-    if (iterable) {
-      var iteratorMethod = iterable[iteratorSymbol];
-      if (iteratorMethod) {
-        return iteratorMethod.call(iterable);
-      }
-
-      if (typeof iterable.next === "function") {
-        return iterable;
-      }
-
-      if (!isNaN(iterable.length)) {
-        var i = -1, next = function next() {
-          while (++i < iterable.length) {
-            if (hasOwn.call(iterable, i)) {
-              next.value = iterable[i];
-              next.done = false;
-              return next;
-            }
-          }
-
-          next.value = undefined;
-          next.done = true;
-
-          return next;
-        };
-
-        return next.next = next;
-      }
-    }
-
-    // Return an iterator with no values.
-    return { next: doneResult };
-  }
-  runtime.values = values;
-
-  function doneResult() {
-    return { value: undefined, done: true };
-  }
-
-  Context.prototype = {
-    constructor: Context,
-
-    reset: function(skipTempReset) {
-      this.prev = 0;
-      this.next = 0;
-      // Resetting context._sent for legacy support of Babel's
-      // function.sent implementation.
-      this.sent = this._sent = undefined;
-      this.done = false;
-      this.delegate = null;
-
-      this.method = "next";
-      this.arg = undefined;
-
-      this.tryEntries.forEach(resetTryEntry);
-
-      if (!skipTempReset) {
-        for (var name in this) {
-          // Not sure about the optimal order of these conditions:
-          if (name.charAt(0) === "t" &&
-              hasOwn.call(this, name) &&
-              !isNaN(+name.slice(1))) {
-            this[name] = undefined;
-          }
-        }
-      }
-    },
-
-    stop: function() {
-      this.done = true;
-
-      var rootEntry = this.tryEntries[0];
-      var rootRecord = rootEntry.completion;
-      if (rootRecord.type === "throw") {
-        throw rootRecord.arg;
-      }
-
-      return this.rval;
-    },
-
-    dispatchException: function(exception) {
-      if (this.done) {
-        throw exception;
-      }
-
-      var context = this;
-      function handle(loc, caught) {
-        record.type = "throw";
-        record.arg = exception;
-        context.next = loc;
-
-        if (caught) {
-          // If the dispatched exception was caught by a catch block,
-          // then let that catch block handle the exception normally.
-          context.method = "next";
-          context.arg = undefined;
-        }
-
-        return !! caught;
-      }
-
-      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
-        var entry = this.tryEntries[i];
-        var record = entry.completion;
-
-        if (entry.tryLoc === "root") {
-          // Exception thrown outside of any try block that could handle
-          // it, so set the completion value of the entire function to
-          // throw the exception.
-          return handle("end");
-        }
-
-        if (entry.tryLoc <= this.prev) {
-          var hasCatch = hasOwn.call(entry, "catchLoc");
-          var hasFinally = hasOwn.call(entry, "finallyLoc");
-
-          if (hasCatch && hasFinally) {
-            if (this.prev < entry.catchLoc) {
-              return handle(entry.catchLoc, true);
-            } else if (this.prev < entry.finallyLoc) {
-              return handle(entry.finallyLoc);
-            }
-
-          } else if (hasCatch) {
-            if (this.prev < entry.catchLoc) {
-              return handle(entry.catchLoc, true);
-            }
-
-          } else if (hasFinally) {
-            if (this.prev < entry.finallyLoc) {
-              return handle(entry.finallyLoc);
-            }
-
-          } else {
-            throw new Error("try statement without catch or finally");
-          }
-        }
-      }
-    },
-
-    abrupt: function(type, arg) {
-      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
-        var entry = this.tryEntries[i];
-        if (entry.tryLoc <= this.prev &&
-            hasOwn.call(entry, "finallyLoc") &&
-            this.prev < entry.finallyLoc) {
-          var finallyEntry = entry;
-          break;
-        }
-      }
-
-      if (finallyEntry &&
-          (type === "break" ||
-           type === "continue") &&
-          finallyEntry.tryLoc <= arg &&
-          arg <= finallyEntry.finallyLoc) {
-        // Ignore the finally entry if control is not jumping to a
-        // location outside the try/catch block.
-        finallyEntry = null;
-      }
-
-      var record = finallyEntry ? finallyEntry.completion : {};
-      record.type = type;
-      record.arg = arg;
-
-      if (finallyEntry) {
-        this.method = "next";
-        this.next = finallyEntry.finallyLoc;
-        return ContinueSentinel;
-      }
-
-      return this.complete(record);
-    },
-
-    complete: function(record, afterLoc) {
-      if (record.type === "throw") {
-        throw record.arg;
-      }
-
-      if (record.type === "break" ||
-          record.type === "continue") {
-        this.next = record.arg;
-      } else if (record.type === "return") {
-        this.rval = this.arg = record.arg;
-        this.method = "return";
-        this.next = "end";
-      } else if (record.type === "normal" && afterLoc) {
-        this.next = afterLoc;
-      }
-
-      return ContinueSentinel;
-    },
-
-    finish: function(finallyLoc) {
-      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
-        var entry = this.tryEntries[i];
-        if (entry.finallyLoc === finallyLoc) {
-          this.complete(entry.completion, entry.afterLoc);
-          resetTryEntry(entry);
-          return ContinueSentinel;
-        }
-      }
-    },
-
-    "catch": function(tryLoc) {
-      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
-        var entry = this.tryEntries[i];
-        if (entry.tryLoc === tryLoc) {
-          var record = entry.completion;
-          if (record.type === "throw") {
-            var thrown = record.arg;
-            resetTryEntry(entry);
-          }
-          return thrown;
-        }
-      }
-
-      // The context.catch method must only be called with a location
-      // argument that corresponds to a known catch block.
-      throw new Error("illegal catch attempt");
-    },
-
-    delegateYield: function(iterable, resultName, nextLoc) {
-      this.delegate = {
-        iterator: values(iterable),
-        resultName: resultName,
-        nextLoc: nextLoc
-      };
-
-      if (this.method === "next") {
-        // Deliberately forget the last sent value so that we don't
-        // accidentally pass it on to the delegate.
-        this.arg = undefined;
-      }
-
-      return ContinueSentinel;
-    }
-  };
-})(
-  // In sloppy mode, unbound `this` refers to the global object, fallback to
-  // Function constructor if we're in global strict mode. That is sadly a form
-  // of indirect eval which violates Content Security Policy.
-  (function() {
-    return this || (typeof self === "object" && self);
-  })() || Function("return this")()
-);
-});
-
-/**
- * Copyright (c) 2014-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
-// This method of obtaining a reference to the global object needs to be
-// kept identical to the way it is obtained in runtime.js
-var g = (function() {
-  return this || (typeof self === "object" && self);
-})() || Function("return this")();
-
-// Use `getOwnPropertyNames` because not all browsers support calling
-// `hasOwnProperty` on the global `self` object in a worker. See #183.
-var hadRuntime = g.regeneratorRuntime &&
-  Object.getOwnPropertyNames(g).indexOf("regeneratorRuntime") >= 0;
-
-// Save the old regeneratorRuntime in case it needs to be restored later.
-var oldRuntime = hadRuntime && g.regeneratorRuntime;
-
-// Force reevalutation of runtime.js.
-g.regeneratorRuntime = undefined;
-
-var runtimeModule = runtime;
-
-if (hadRuntime) {
-  // Restore the original runtime.
-  g.regeneratorRuntime = oldRuntime;
-} else {
-  // Remove the global property added by runtime.js.
-  try {
-    delete g.regeneratorRuntime;
-  } catch(e) {
-    g.regeneratorRuntime = undefined;
-  }
-}
-
-var regenerator = runtimeModule;
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
-  try {
-    var info = gen[key](arg);
-    var value = info.value;
-  } catch (error) {
-    reject(error);
-    return;
-  }
-
-  if (info.done) {
-    resolve(value);
-  } else {
-    Promise.resolve(value).then(_next, _throw);
-  }
-}
-
-function _asyncToGenerator(fn) {
-  return function () {
-    var self = this,
-        args = arguments;
-    return new Promise(function (resolve, reject) {
-      var gen = fn.apply(self, args);
-
-      function _next(value) {
-        asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);
-      }
-
-      function _throw(err) {
-        asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);
-      }
-
-      _next(undefined);
-    });
-  };
-}
-
-var asyncToGenerator = _asyncToGenerator;
-
-function _inheritsLoose(subClass, superClass) {
-  subClass.prototype = Object.create(superClass.prototype);
-  subClass.prototype.constructor = subClass;
-  subClass.__proto__ = superClass;
-}
-
-function _assertThisInitialized$1(self) {
-  if (self === void 0) {
-    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-  }
-
-  return self;
-}
-
-function _extends() {
-  _extends = Object.assign || function (target) {
-    for (var i = 1; i < arguments.length; i++) {
-      var source = arguments[i];
-
-      for (var key in source) {
-        if (Object.prototype.hasOwnProperty.call(source, key)) {
-          target[key] = source[key];
-        }
-      }
-    }
-
-    return target;
-  };
-
-  return _extends.apply(this, arguments);
-}
-
-function _objectWithoutPropertiesLoose$1(source, excluded) {
-  if (source == null) return {};
-  var target = {};
-  var sourceKeys = Object.keys(source);
-  var key, i;
-
-  for (i = 0; i < sourceKeys.length; i++) {
-    key = sourceKeys[i];
-    if (excluded.indexOf(key) >= 0) continue;
-    target[key] = source[key];
-  }
-
-  return target;
-}
-
-var bugfixes = undefined;
-var applyAnimatedValues = undefined;
-var colorNames = [];
-var requestFrame = function requestFrame(cb) {
-  return typeof window !== 'undefined' && window.requestAnimationFrame(cb);
-};
-var cancelFrame = function cancelFrame(cb) {
-  return typeof window !== 'undefined' && window.cancelAnimationFrame(cb);
-};
-var interpolation = undefined;
-var now$1 = function now() {
-  return Date.now();
-};
-var defaultElement = undefined;
-var createAnimatedStyle = undefined;
-var injectApplyAnimatedValues = function injectApplyAnimatedValues(fn, transform) {
-  return applyAnimatedValues = {
-    fn: fn,
-    transform: transform
-  };
-};
-var injectColorNames = function injectColorNames(names) {
-  return colorNames = names;
-};
-var injectBugfixes = function injectBugfixes(fn) {
-  return bugfixes = fn;
-};
-var injectInterpolation = function injectInterpolation(cls) {
-  return interpolation = cls;
-};
-var injectFrame = function injectFrame(raf, caf) {
-  var _ref;
-
-  return _ref = [raf, caf], requestFrame = _ref[0], cancelFrame = _ref[1], _ref;
-};
-var injectNow = function injectNow(nowFn) {
-  return now$1 = nowFn;
-};
-var injectDefaultElement = function injectDefaultElement(el) {
-  return defaultElement = el;
-};
-var injectCreateAnimatedStyle = function injectCreateAnimatedStyle(factory) {
-  return createAnimatedStyle = factory;
-};
-
-var Globals = /*#__PURE__*/Object.freeze({
-  get bugfixes () { return bugfixes; },
-  get applyAnimatedValues () { return applyAnimatedValues; },
-  get colorNames () { return colorNames; },
-  get requestFrame () { return requestFrame; },
-  get cancelFrame () { return cancelFrame; },
-  get interpolation () { return interpolation; },
-  get now () { return now$1; },
-  get defaultElement () { return defaultElement; },
-  get createAnimatedStyle () { return createAnimatedStyle; },
-  injectApplyAnimatedValues: injectApplyAnimatedValues,
-  injectColorNames: injectColorNames,
-  injectBugfixes: injectBugfixes,
-  injectInterpolation: injectInterpolation,
-  injectFrame: injectFrame,
-  injectNow: injectNow,
-  injectDefaultElement: injectDefaultElement,
-  injectCreateAnimatedStyle: injectCreateAnimatedStyle
-});
-
-var Animated =
-/*#__PURE__*/
-function () {
-  function Animated() {}
-
-  var _proto = Animated.prototype;
-
-  _proto.attach = function attach() {};
-
-  _proto.detach = function detach() {};
-
-  _proto.getValue = function getValue() {};
-
-  _proto.getAnimatedValue = function getAnimatedValue() {
-    return this.getValue();
-  };
-
-  _proto.addChild = function addChild(child) {};
-
-  _proto.removeChild = function removeChild(child) {};
-
-  _proto.getChildren = function getChildren() {
-    return [];
-  };
-
-  return Animated;
-}();
-
-var getValues = function getValues(object) {
-  return Object.keys(object).map(function (k) {
-    return object[k];
-  });
-};
-
-var AnimatedWithChildren =
-/*#__PURE__*/
-function (_Animated) {
-  _inheritsLoose(AnimatedWithChildren, _Animated);
-
-  function AnimatedWithChildren() {
-    var _this;
-
-    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    _this = _Animated.call.apply(_Animated, [this].concat(args)) || this;
-    _this.children = [];
-
-    _this.getChildren = function () {
-      return _this.children;
-    };
-
-    _this.getPayload = function (index) {
-      if (index === void 0) {
-        index = undefined;
-      }
-
-      return index !== void 0 && _this.payload ? _this.payload[index] : _this.payload || _assertThisInitialized$1(_assertThisInitialized$1(_this));
-    };
-
-    return _this;
-  }
-
-  var _proto = AnimatedWithChildren.prototype;
-
-  _proto.addChild = function addChild(child) {
-    if (this.children.length === 0) this.attach();
-    this.children.push(child);
-  };
-
-  _proto.removeChild = function removeChild(child) {
-    var index = this.children.indexOf(child);
-    this.children.splice(index, 1);
-    if (this.children.length === 0) this.detach();
-  };
-
-  return AnimatedWithChildren;
-}(Animated);
-var AnimatedArrayWithChildren =
-/*#__PURE__*/
-function (_AnimatedWithChildren) {
-  _inheritsLoose(AnimatedArrayWithChildren, _AnimatedWithChildren);
-
-  function AnimatedArrayWithChildren() {
-    var _this2;
-
-    for (var _len2 = arguments.length, args = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
-      args[_key2] = arguments[_key2];
-    }
-
-    _this2 = _AnimatedWithChildren.call.apply(_AnimatedWithChildren, [this].concat(args)) || this;
-    _this2.payload = [];
-
-    _this2.getAnimatedValue = function () {
-      return _this2.getValue();
-    };
-
-    _this2.attach = function () {
-      return _this2.payload.forEach(function (p) {
-        return p instanceof Animated && p.addChild(_assertThisInitialized$1(_assertThisInitialized$1(_this2)));
-      });
-    };
-
-    _this2.detach = function () {
-      return _this2.payload.forEach(function (p) {
-        return p instanceof Animated && p.removeChild(_assertThisInitialized$1(_assertThisInitialized$1(_this2)));
-      });
-    };
-
-    return _this2;
-  }
-
-  return AnimatedArrayWithChildren;
-}(AnimatedWithChildren);
-var AnimatedObjectWithChildren =
-/*#__PURE__*/
-function (_AnimatedWithChildren2) {
-  _inheritsLoose(AnimatedObjectWithChildren, _AnimatedWithChildren2);
-
-  function AnimatedObjectWithChildren() {
-    var _this3;
-
-    for (var _len3 = arguments.length, args = new Array(_len3), _key3 = 0; _key3 < _len3; _key3++) {
-      args[_key3] = arguments[_key3];
-    }
-
-    _this3 = _AnimatedWithChildren2.call.apply(_AnimatedWithChildren2, [this].concat(args)) || this;
-    _this3.payload = {};
-
-    _this3.getAnimatedValue = function () {
-      return _this3.getValue(true);
-    };
-
-    _this3.attach = function () {
-      return getValues(_this3.payload).forEach(function (s) {
-        return s instanceof Animated && s.addChild(_assertThisInitialized$1(_assertThisInitialized$1(_this3)));
-      });
-    };
-
-    _this3.detach = function () {
-      return getValues(_this3.payload).forEach(function (s) {
-        return s instanceof Animated && s.removeChild(_assertThisInitialized$1(_assertThisInitialized$1(_this3)));
-      });
-    };
-
-    return _this3;
-  }
-
-  var _proto2 = AnimatedObjectWithChildren.prototype;
-
-  _proto2.getValue = function getValue(animated) {
-    if (animated === void 0) {
-      animated = false;
-    }
-
-    var payload = {};
-
-    for (var key in this.payload) {
-      var value = this.payload[key];
-      if (animated && !(value instanceof Animated)) continue;
-      payload[key] = value instanceof Animated ? value[animated ? 'getAnimatedValue' : 'getValue']() : value;
-    }
-
-    return payload;
-  };
-
-  return AnimatedObjectWithChildren;
-}(AnimatedWithChildren);
-
-var AnimatedStyle =
-/*#__PURE__*/
-function (_AnimatedObjectWithCh) {
-  _inheritsLoose(AnimatedStyle, _AnimatedObjectWithCh);
-
-  function AnimatedStyle(style) {
-    var _this;
-
-    _this = _AnimatedObjectWithCh.call(this) || this;
-    style = style || {};
-    if (style.transform && !(style.transform instanceof Animated)) style = applyAnimatedValues.transform(style);
-    _this.payload = style;
-    return _this;
-  }
-
-  return AnimatedStyle;
-}(AnimatedObjectWithChildren);
-
-// http://www.w3.org/TR/css3-color/#svg-color
-var colors$1 = {
-  transparent: 0x00000000,
-  aliceblue: 0xf0f8ffff,
-  antiquewhite: 0xfaebd7ff,
-  aqua: 0x00ffffff,
-  aquamarine: 0x7fffd4ff,
-  azure: 0xf0ffffff,
-  beige: 0xf5f5dcff,
-  bisque: 0xffe4c4ff,
-  black: 0x000000ff,
-  blanchedalmond: 0xffebcdff,
-  blue: 0x0000ffff,
-  blueviolet: 0x8a2be2ff,
-  brown: 0xa52a2aff,
-  burlywood: 0xdeb887ff,
-  burntsienna: 0xea7e5dff,
-  cadetblue: 0x5f9ea0ff,
-  chartreuse: 0x7fff00ff,
-  chocolate: 0xd2691eff,
-  coral: 0xff7f50ff,
-  cornflowerblue: 0x6495edff,
-  cornsilk: 0xfff8dcff,
-  crimson: 0xdc143cff,
-  cyan: 0x00ffffff,
-  darkblue: 0x00008bff,
-  darkcyan: 0x008b8bff,
-  darkgoldenrod: 0xb8860bff,
-  darkgray: 0xa9a9a9ff,
-  darkgreen: 0x006400ff,
-  darkgrey: 0xa9a9a9ff,
-  darkkhaki: 0xbdb76bff,
-  darkmagenta: 0x8b008bff,
-  darkolivegreen: 0x556b2fff,
-  darkorange: 0xff8c00ff,
-  darkorchid: 0x9932ccff,
-  darkred: 0x8b0000ff,
-  darksalmon: 0xe9967aff,
-  darkseagreen: 0x8fbc8fff,
-  darkslateblue: 0x483d8bff,
-  darkslategray: 0x2f4f4fff,
-  darkslategrey: 0x2f4f4fff,
-  darkturquoise: 0x00ced1ff,
-  darkviolet: 0x9400d3ff,
-  deeppink: 0xff1493ff,
-  deepskyblue: 0x00bfffff,
-  dimgray: 0x696969ff,
-  dimgrey: 0x696969ff,
-  dodgerblue: 0x1e90ffff,
-  firebrick: 0xb22222ff,
-  floralwhite: 0xfffaf0ff,
-  forestgreen: 0x228b22ff,
-  fuchsia: 0xff00ffff,
-  gainsboro: 0xdcdcdcff,
-  ghostwhite: 0xf8f8ffff,
-  gold: 0xffd700ff,
-  goldenrod: 0xdaa520ff,
-  gray: 0x808080ff,
-  green: 0x008000ff,
-  greenyellow: 0xadff2fff,
-  grey: 0x808080ff,
-  honeydew: 0xf0fff0ff,
-  hotpink: 0xff69b4ff,
-  indianred: 0xcd5c5cff,
-  indigo: 0x4b0082ff,
-  ivory: 0xfffff0ff,
-  khaki: 0xf0e68cff,
-  lavender: 0xe6e6faff,
-  lavenderblush: 0xfff0f5ff,
-  lawngreen: 0x7cfc00ff,
-  lemonchiffon: 0xfffacdff,
-  lightblue: 0xadd8e6ff,
-  lightcoral: 0xf08080ff,
-  lightcyan: 0xe0ffffff,
-  lightgoldenrodyellow: 0xfafad2ff,
-  lightgray: 0xd3d3d3ff,
-  lightgreen: 0x90ee90ff,
-  lightgrey: 0xd3d3d3ff,
-  lightpink: 0xffb6c1ff,
-  lightsalmon: 0xffa07aff,
-  lightseagreen: 0x20b2aaff,
-  lightskyblue: 0x87cefaff,
-  lightslategray: 0x778899ff,
-  lightslategrey: 0x778899ff,
-  lightsteelblue: 0xb0c4deff,
-  lightyellow: 0xffffe0ff,
-  lime: 0x00ff00ff,
-  limegreen: 0x32cd32ff,
-  linen: 0xfaf0e6ff,
-  magenta: 0xff00ffff,
-  maroon: 0x800000ff,
-  mediumaquamarine: 0x66cdaaff,
-  mediumblue: 0x0000cdff,
-  mediumorchid: 0xba55d3ff,
-  mediumpurple: 0x9370dbff,
-  mediumseagreen: 0x3cb371ff,
-  mediumslateblue: 0x7b68eeff,
-  mediumspringgreen: 0x00fa9aff,
-  mediumturquoise: 0x48d1ccff,
-  mediumvioletred: 0xc71585ff,
-  midnightblue: 0x191970ff,
-  mintcream: 0xf5fffaff,
-  mistyrose: 0xffe4e1ff,
-  moccasin: 0xffe4b5ff,
-  navajowhite: 0xffdeadff,
-  navy: 0x000080ff,
-  oldlace: 0xfdf5e6ff,
-  olive: 0x808000ff,
-  olivedrab: 0x6b8e23ff,
-  orange: 0xffa500ff,
-  orangered: 0xff4500ff,
-  orchid: 0xda70d6ff,
-  palegoldenrod: 0xeee8aaff,
-  palegreen: 0x98fb98ff,
-  paleturquoise: 0xafeeeeff,
-  palevioletred: 0xdb7093ff,
-  papayawhip: 0xffefd5ff,
-  peachpuff: 0xffdab9ff,
-  peru: 0xcd853fff,
-  pink: 0xffc0cbff,
-  plum: 0xdda0ddff,
-  powderblue: 0xb0e0e6ff,
-  purple: 0x800080ff,
-  rebeccapurple: 0x663399ff,
-  red: 0xff0000ff,
-  rosybrown: 0xbc8f8fff,
-  royalblue: 0x4169e1ff,
-  saddlebrown: 0x8b4513ff,
-  salmon: 0xfa8072ff,
-  sandybrown: 0xf4a460ff,
-  seagreen: 0x2e8b57ff,
-  seashell: 0xfff5eeff,
-  sienna: 0xa0522dff,
-  silver: 0xc0c0c0ff,
-  skyblue: 0x87ceebff,
-  slateblue: 0x6a5acdff,
-  slategray: 0x708090ff,
-  slategrey: 0x708090ff,
-  snow: 0xfffafaff,
-  springgreen: 0x00ff7fff,
-  steelblue: 0x4682b4ff,
-  tan: 0xd2b48cff,
-  teal: 0x008080ff,
-  thistle: 0xd8bfd8ff,
-  tomato: 0xff6347ff,
-  turquoise: 0x40e0d0ff,
-  violet: 0xee82eeff,
-  wheat: 0xf5deb3ff,
-  white: 0xffffffff,
-  whitesmoke: 0xf5f5f5ff,
-  yellow: 0xffff00ff,
-  yellowgreen: 0x9acd32ff
-};
-
-var Interpolation =
-/*#__PURE__*/
-function () {
-  function Interpolation() {}
-
-  // Default config = config, args
-  // Short config   = range, output, extrapolate
-  Interpolation.create = function create(config, output, extra) {
-    if (typeof config === 'function') return config;else if (interpolation && config.output && typeof config.output[0] === 'string') return interpolation(config);else if (Array.isArray(config)) return Interpolation.create({
-      range: config,
-      output: output,
-      extrapolate: extra || 'extend'
-    });
-    var outputRange = config.output;
-    var inputRange = config.range || [0, 1];
-
-    var easing = config.easing || function (t) {
-      return t;
-    };
-
-    var extrapolateLeft = 'extend';
-    var map = config.map;
-    if (config.extrapolateLeft !== undefined) extrapolateLeft = config.extrapolateLeft;else if (config.extrapolate !== undefined) extrapolateLeft = config.extrapolate;
-    var extrapolateRight = 'extend';
-    if (config.extrapolateRight !== undefined) extrapolateRight = config.extrapolateRight;else if (config.extrapolate !== undefined) extrapolateRight = config.extrapolate;
-    return function (input) {
-      var range = findRange(input, inputRange);
-      return interpolate(input, inputRange[range], inputRange[range + 1], outputRange[range], outputRange[range + 1], easing, extrapolateLeft, extrapolateRight, map);
-    };
-  };
-
-  return Interpolation;
-}();
-
-function interpolate(input, inputMin, inputMax, outputMin, outputMax, easing, extrapolateLeft, extrapolateRight, map) {
-  var result = map ? map(input) : input; // Extrapolate
-
-  if (result < inputMin) {
-    if (extrapolateLeft === 'identity') return result;else if (extrapolateLeft === 'clamp') result = inputMin;
-  }
-
-  if (result > inputMax) {
-    if (extrapolateRight === 'identity') return result;else if (extrapolateRight === 'clamp') result = inputMax;
-  }
-
-  if (outputMin === outputMax) return outputMin;
-  if (inputMin === inputMax) return input <= inputMin ? outputMin : outputMax; // Input Range
-
-  if (inputMin === -Infinity) result = -result;else if (inputMax === Infinity) result = result - inputMin;else result = (result - inputMin) / (inputMax - inputMin); // Easing
-
-  result = easing(result); // Output Range
-
-  if (outputMin === -Infinity) result = -result;else if (outputMax === Infinity) result = result + outputMin;else result = result * (outputMax - outputMin) + outputMin;
-  return result;
-}
-
-function findRange(input, inputRange) {
-  for (var i = 1; i < inputRange.length - 1; ++i) {
-    if (inputRange[i] >= input) break;
-  }
-
-  return i - 1;
-}
-
-// const INTEGER = '[-+]?\\d+';
-var NUMBER = '[-+]?\\d*\\.?\\d+';
-var PERCENTAGE = NUMBER + '%';
-
-function call() {
-  return '\\(\\s*(' + Array.prototype.slice.call(arguments).join(')\\s*,\\s*(') + ')\\s*\\)';
-}
-
-var rgb = new RegExp('rgb' + call(NUMBER, NUMBER, NUMBER));
-var rgba = new RegExp('rgba' + call(NUMBER, NUMBER, NUMBER, NUMBER));
-var hsl = new RegExp('hsl' + call(NUMBER, PERCENTAGE, PERCENTAGE));
-var hsla = new RegExp('hsla' + call(NUMBER, PERCENTAGE, PERCENTAGE, NUMBER));
-var hex3 = /^#([0-9a-fA-F]{1})([0-9a-fA-F]{1})([0-9a-fA-F]{1})$/;
-var hex4 = /^#([0-9a-fA-F]{1})([0-9a-fA-F]{1})([0-9a-fA-F]{1})([0-9a-fA-F]{1})$/;
-var hex6 = /^#([0-9a-fA-F]{6})$/;
-var hex8 = /^#([0-9a-fA-F]{8})$/;
-
-/*
-https://github.com/react-community/normalize-css-color
-
-BSD 3-Clause License
-
-Copyright (c) 2016, React Community
-All rights reserved.
-
-Redistribution and use in source and binary forms, with or without
-modification, are permitted provided that the following conditions are met:
-
-* Redistributions of source code must retain the above copyright notice, this
-  list of conditions and the following disclaimer.
-
-* Redistributions in binary form must reproduce the above copyright notice,
-  this list of conditions and the following disclaimer in the documentation
-  and/or other materials provided with the distribution.
-
-* Neither the name of the copyright holder nor the names of its
-  contributors may be used to endorse or promote products derived from
-  this software without specific prior written permission.
-
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
-FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
-DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
-CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
-OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-*/
-function normalizeColor(color) {
-  var match;
-
-  if (typeof color === 'number') {
-    return color >>> 0 === color && color >= 0 && color <= 0xffffffff ? color : null;
-  } // Ordered based on occurrences on Facebook codebase
-
-
-  if (match = hex6.exec(color)) return parseInt(match[1] + 'ff', 16) >>> 0;
-  if (colors$1.hasOwnProperty(color)) return colors$1[color];
-
-  if (match = rgb.exec(color)) {
-    return (parse255(match[1]) << 24 | // r
-    parse255(match[2]) << 16 | // g
-    parse255(match[3]) << 8 | // b
-    0x000000ff) >>> // a
-    0;
-  }
-
-  if (match = rgba.exec(color)) {
-    return (parse255(match[1]) << 24 | // r
-    parse255(match[2]) << 16 | // g
-    parse255(match[3]) << 8 | // b
-    parse1(match[4])) >>> // a
-    0;
-  }
-
-  if (match = hex3.exec(color)) {
-    return parseInt(match[1] + match[1] + // r
-    match[2] + match[2] + // g
-    match[3] + match[3] + // b
-    'ff', // a
-    16) >>> 0;
-  } // https://drafts.csswg.org/css-color-4/#hex-notation
-
-
-  if (match = hex8.exec(color)) return parseInt(match[1], 16) >>> 0;
-
-  if (match = hex4.exec(color)) {
-    return parseInt(match[1] + match[1] + // r
-    match[2] + match[2] + // g
-    match[3] + match[3] + // b
-    match[4] + match[4], // a
-    16) >>> 0;
-  }
-
-  if (match = hsl.exec(color)) {
-    return (hslToRgb(parse360(match[1]), // h
-    parsePercentage(match[2]), // s
-    parsePercentage(match[3]) // l
-    ) | 0x000000ff) >>> // a
-    0;
-  }
-
-  if (match = hsla.exec(color)) {
-    return (hslToRgb(parse360(match[1]), // h
-    parsePercentage(match[2]), // s
-    parsePercentage(match[3]) // l
-    ) | parse1(match[4])) >>> // a
-    0;
-  }
-
-  return null;
-}
-
-function hue2rgb(p, q, t) {
-  if (t < 0) t += 1;
-  if (t > 1) t -= 1;
-  if (t < 1 / 6) return p + (q - p) * 6 * t;
-  if (t < 1 / 2) return q;
-  if (t < 2 / 3) return p + (q - p) * (2 / 3 - t) * 6;
-  return p;
-}
-
-function hslToRgb(h, s, l) {
-  var q = l < 0.5 ? l * (1 + s) : l + s - l * s;
-  var p = 2 * l - q;
-  var r = hue2rgb(p, q, h + 1 / 3);
-  var g = hue2rgb(p, q, h);
-  var b = hue2rgb(p, q, h - 1 / 3);
-  return Math.round(r * 255) << 24 | Math.round(g * 255) << 16 | Math.round(b * 255) << 8;
-}
-
-function parse255(str) {
-  var int = parseInt(str, 10);
-  if (int < 0) return 0;
-  if (int > 255) return 255;
-  return int;
-}
-
-function parse360(str) {
-  var int = parseFloat(str);
-  return (int % 360 + 360) % 360 / 360;
-}
-
-function parse1(str) {
-  var num = parseFloat(str);
-  if (num < 0) return 0;
-  if (num > 1) return 255;
-  return Math.round(num * 255);
-}
-
-function parsePercentage(str) {
-  // parseFloat conveniently ignores the final %
-  var int = parseFloat(str);
-  if (int < 0) return 0;
-  if (int > 100) return 1;
-  return int / 100;
-}
-
-function colorToRgba(input) {
-  var int32Color = normalizeColor(input);
-  if (int32Color === null) return input;
-  int32Color = int32Color || 0;
-  var r = (int32Color & 0xff000000) >>> 24;
-  var g = (int32Color & 0x00ff0000) >>> 16;
-  var b = (int32Color & 0x0000ff00) >>> 8;
-  var a = (int32Color & 0x000000ff) / 255;
-  return "rgba(" + r + ", " + g + ", " + b + ", " + a + ")";
-} // Problem: https://github.com/animatedjs/animated/pull/102
-// Solution: https://stackoverflow.com/questions/638565/parsing-scientific-notation-sensibly/658662
-
-
-var stringShapeRegex = /[+\-]?(?:0|[1-9]\d*)(?:\.\d*)?(?:[eE][+\-]?\d+)?/g; // Covers rgb, rgba, hsl, hsla
-// Taken from https://gist.github.com/olmokramer/82ccce673f86db7cda5e
-
-var colorRegex = /(#(?:[0-9a-f]{2}){2,4}|(#[0-9a-f]{3})|(rgb|hsl)a?\((-?\d+%?[,\s]+){2,3}\s*[\d\.]+%?\))/gi; // Covers color names (transparent, blue, etc.)
-
-var colorNamesRegex = new RegExp("(" + Object.keys(colors$1).join('|') + ")", 'g');
-/**
- * Supports string shapes by extracting numbers so new values can be computed,
- * and recombines those values into new strings of the same shape.  Supports
- * things like:
- *
- *   rgba(123, 42, 99, 0.36)           // colors
- *   -45deg                            // values with units
- *   0 2px 2px 0px rgba(0, 0, 0, 0.12) // box shadows
- */
-
-function createInterpolation(config) {
-  // Replace colors with rgba
-  var outputRange = config.output.map(function (rangeValue) {
-    return rangeValue.replace(colorRegex, colorToRgba);
-  }).map(function (rangeValue) {
-    return rangeValue.replace(colorNamesRegex, colorToRgba);
-  }); // ->
-  // [
-  //   [0, 50],
-  //   [100, 150],
-  //   [200, 250],
-  //   [0, 0.5],
-  // ]
-
-  var outputRanges = outputRange[0].match(stringShapeRegex).map(function () {
-    return [];
-  });
-  outputRange.forEach(function (value) {
-    value.match(stringShapeRegex).forEach(function (number, i) {
-      return outputRanges[i].push(+number);
-    });
-  });
-  var interpolations = outputRange[0].match(stringShapeRegex).map(function (value, i) {
-    return Interpolation.create(_extends({}, config, {
-      output: outputRanges[i]
-    }));
-  });
-  return function (input) {
-    var i = 0;
-    return outputRange[0] // 'rgba(0, 100, 200, 0)'
-    // ->
-    // 'rgba(${interpolations[0](input)}, ${interpolations[1](input)}, ...'
-    .replace(stringShapeRegex, function () {
-      return interpolations[i++](input);
-    }) // rgba requires that the r,g,b are integers.... so we want to round them, but we *dont* want to
-    // round the opacity (4th column).
-    .replace(/rgba\(([0-9\.-]+), ([0-9\.-]+), ([0-9\.-]+), ([0-9\.-]+)\)/gi, function (_, p1, p2, p3, p4) {
-      return "rgba(" + Math.round(p1) + ", " + Math.round(p2) + ", " + Math.round(p3) + ", " + p4 + ")";
-    });
-  };
-}
-
-var AnimatedInterpolation =
-/*#__PURE__*/
-function (_AnimatedArrayWithChi) {
-  _inheritsLoose(AnimatedInterpolation, _AnimatedArrayWithChi);
-
-  function AnimatedInterpolation(parents, _config, _arg) {
-    var _this;
-
-    _this = _AnimatedArrayWithChi.call(this) || this;
-
-    _this.getValue = function () {
-      var _this2;
-
-      return (_this2 = _this).calc.apply(_this2, _this.payload.map(function (value) {
-        return value.getValue();
-      }));
-    };
-
-    _this.updateConfig = function (config, arg) {
-      return _this.calc = Interpolation.create(config, arg);
-    };
-
-    _this.interpolate = function (config, arg) {
-      return new AnimatedInterpolation(_assertThisInitialized$1(_assertThisInitialized$1(_this)), config, arg);
-    };
-
-    _this.payload = // AnimatedArrays should unfold, except AnimatedInterpolation which is taken as is
-    parents instanceof AnimatedArrayWithChildren && !parents.updateConfig ? parents.payload : Array.isArray(parents) ? parents : [parents];
-    _this.calc = Interpolation.create(_config, _arg);
-    return _this;
-  }
-
-  return AnimatedInterpolation;
-}(AnimatedArrayWithChildren);
-
-/**
- * Animated works by building a directed acyclic graph of dependencies
- * transparently when you render your Animated components.
- *
- *               new Animated.Value(0)
- *     .interpolate()        .interpolate()    new Animated.Value(1)
- *         opacity               translateY      scale
- *          style                         transform
- *         View#234                         style
- *                                         View#123
- *
- * A) Top Down phase
- * When an Animated.Value is updated, we recursively go down through this
- * graph in order to find leaf nodes: the views that we flag as needing
- * an update.
- *
- * B) Bottom Up phase
- * When a view is flagged as needing an update, we recursively go back up
- * in order to build the new value that it needs. The reason why we need
- * this two-phases process is to deal with composite props such as
- * transform which can receive values from multiple parents.
- */
-
-function findAnimatedStyles(node, styles) {
-  if (typeof node.update === 'function') styles.add(node);else node.getChildren().forEach(function (child) {
-    return findAnimatedStyles(child, styles);
-  });
-}
-/**
- * Standard value for driving animations.  One `Animated.Value` can drive
- * multiple properties in a synchronized fashion, but can only be driven by one
- * mechanism at a time.  Using a new mechanism (e.g. starting a new animation,
- * or calling `setValue`) will stop any previous ones.
- */
-
-
-var AnimatedValue =
-/*#__PURE__*/
-function (_AnimatedWithChildren) {
-  _inheritsLoose(AnimatedValue, _AnimatedWithChildren);
-
-  function AnimatedValue(_value) {
-    var _this;
-
-    _this = _AnimatedWithChildren.call(this) || this;
-
-    _this.setValue = function (value, flush) {
-      if (flush === void 0) {
-        flush = true;
-      }
-
-      _this.value = value;
-      if (flush) _this.flush();
-    };
-
-    _this.getValue = function () {
-      return _this.value;
-    };
-
-    _this.updateStyles = function () {
-      return findAnimatedStyles(_assertThisInitialized$1(_assertThisInitialized$1(_this)), _this.animatedStyles);
-    };
-
-    _this.updateValue = function (value) {
-      return _this.flush(_this.value = value);
-    };
-
-    _this.interpolate = function (config, arg) {
-      return new AnimatedInterpolation(_assertThisInitialized$1(_assertThisInitialized$1(_this)), config, arg);
-    };
-
-    _this.value = _value;
-    _this.animatedStyles = new Set();
-    _this.done = false;
-    _this.startPosition = _value;
-    _this.lastPosition = _value;
-    _this.lastVelocity = undefined;
-    _this.lastTime = undefined;
-    _this.controller = undefined;
-    return _this;
-  }
-
-  var _proto = AnimatedValue.prototype;
-
-  _proto.flush = function flush() {
-    if (this.animatedStyles.size === 0) this.updateStyles();
-    this.animatedStyles.forEach(function (animatedStyle) {
-      return animatedStyle.update();
-    });
-  };
-
-  _proto.prepare = function prepare(controller) {
-    // Values stay loyal to their original controller, this is also a way to
-    // detect trailing values originating from a foreign controller
-    if (this.controller === undefined) this.controller = controller;
-
-    if (this.controller === controller) {
-      this.startPosition = this.value;
-      this.lastPosition = this.value;
-      this.lastVelocity = controller.isActive ? this.lastVelocity : undefined;
-      this.lastTime = controller.isActive ? this.lastTime : undefined;
-      this.done = false;
-      this.animatedStyles.clear();
-    }
-  };
-
-  return AnimatedValue;
-}(AnimatedWithChildren);
-
-var AnimatedArray =
-/*#__PURE__*/
-function (_AnimatedArrayWithChi) {
-  _inheritsLoose(AnimatedArray, _AnimatedArrayWithChi);
-
-  function AnimatedArray(array) {
-    var _this;
-
-    _this = _AnimatedArrayWithChi.call(this) || this;
-
-    _this.setValue = function (value, flush) {
-      if (flush === void 0) {
-        flush = true;
-      }
-
-      if (Array.isArray(value)) {
-        if (value.length === _this.payload.length) value.forEach(function (v, i) {
-          return _this.payload[i].setValue(v, flush);
-        });
-      } else _this.payload.forEach(function (v, i) {
-        return _this.payload[i].setValue(value, flush);
-      });
-    };
-
-    _this.getValue = function () {
-      return _this.payload.map(function (v) {
-        return v.getValue();
-      });
-    };
-
-    _this.interpolate = function (config, arg) {
-      return new AnimatedInterpolation(_assertThisInitialized$1(_assertThisInitialized$1(_this)), config, arg);
-    };
-
-    _this.payload = array.map(function (n) {
-      return new AnimatedValue(n);
-    });
-    return _this;
-  }
-
-  return AnimatedArray;
-}(AnimatedArrayWithChildren);
-
-function withDefault(value, defaultValue) {
-  return value === undefined || value === null ? defaultValue : value;
-}
-function toArray(a) {
-  return a !== void 0 ? Array.isArray(a) ? a : [a] : [];
-}
-function shallowEqual(a, b) {
-  if (typeof a !== typeof b) return false;
-  if (typeof a === 'string' || typeof a === 'number') return a === b;
-  var i;
-
-  for (i in a) {
-    if (!(i in b)) return false;
-  }
-
-  for (i in b) {
-    if (a[i] !== b[i]) return false;
-  }
-
-  return i === void 0 ? a === b : true;
-}
-function callProp(obj) {
-  for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-    args[_key - 1] = arguments[_key];
-  }
-
-  return typeof obj === 'function' ? obj.apply(void 0, args) : obj;
-}
-function getValues$1(object) {
-  return Object.keys(object).map(function (k) {
-    return object[k];
-  });
-}
-function getForwardProps(props) {
-  var to = props.to,
-      from = props.from,
-      config = props.config,
-      native = props.native,
-      onStart = props.onStart,
-      onRest = props.onRest,
-      onFrame = props.onFrame,
-      children = props.children,
-      reset = props.reset,
-      reverse = props.reverse,
-      force = props.force,
-      immediate = props.immediate,
-      impl = props.impl,
-      inject = props.inject,
-      delay = props.delay,
-      attach = props.attach,
-      destroyed = props.destroyed,
-      interpolateTo = props.interpolateTo,
-      autoStart = props.autoStart,
-      ref = props.ref,
-      forward = _objectWithoutPropertiesLoose$1(props, ["to", "from", "config", "native", "onStart", "onRest", "onFrame", "children", "reset", "reverse", "force", "immediate", "impl", "inject", "delay", "attach", "destroyed", "interpolateTo", "autoStart", "ref"]);
-
-  return forward;
-}
-function interpolateTo(props) {
-  var forward = getForwardProps(props);
-  var rest = Object.keys(props).reduce(function (a, k) {
-    var _extends2;
-
-    return forward[k] !== void 0 ? a : _extends({}, a, (_extends2 = {}, _extends2[k] = props[k], _extends2));
-  }, {});
-  return _extends({
-    to: forward
-  }, rest);
-}
-function convertToAnimatedValue(acc, _ref) {
-  var _extends3;
-
-  var name = _ref[0],
-      value = _ref[1];
-  return _extends({}, acc, (_extends3 = {}, _extends3[name] = new (Array.isArray(value) ? AnimatedArray : AnimatedValue)(value), _extends3));
-}
-function convertValues(props) {
-  var from = props.from,
-      to = props.to,
-      native = props.native;
-  var allProps = Object.entries(_extends({}, from, to));
-  return native ? allProps.reduce(convertToAnimatedValue, {}) : _extends({}, from, to);
-}
-function handleRef(ref, forward) {
-  if (forward) {
-    // If it's a function, assume it's a ref callback
-    if (typeof forward === 'function') forward(ref);else if (typeof forward === 'object') {
-      // If it's an object and has a 'current' property, assume it's a ref object
-      forward.current = ref;
-    }
-  }
-
-  return ref;
-}
-
-var check = function check(value) {
-  return value === 'auto';
-};
-
-var overwrite = function overwrite(width, height) {
-  return function (acc, _ref) {
-    var _extends2;
-
-    var name = _ref[0],
-        value = _ref[1];
-    return _extends({}, acc, (_extends2 = {}, _extends2[name] = value === 'auto' ? ~name.indexOf('height') ? height : width : value, _extends2));
-  };
-};
-
-function fixAuto(props, callback) {
-  var from = props.from,
-      to = props.to,
-      children = props.children; // Dry-route props back if nothing's using 'auto' in there
-  // TODO: deal with "null"
-
-  if (!(getValues$1(to).some(check) || getValues$1(from).some(check))) return; // Fetch render v-dom
-
-  var element = children(convertValues(props)); // A spring can return undefined/null, check against that (#153)
-
-  if (!element) return; // Or it could be an array (#346) ...
-
-  if (Array.isArray(element)) element = {
-    type: 'div',
-    props: {
-      children: element
-    } // Extract styles
-
-  };
-  var elementStyles = element.props.style; // Return v.dom with injected ref
-
-  return React__default.createElement(element.type, _extends({
-    key: element.key ? element.key : undefined
-  }, element.props, {
-    style: _extends({}, elementStyles, {
-      position: 'absolute',
-      visibility: 'hidden'
-    }),
-    ref: function ref(_ref2) {
-      if (_ref2) {
-        // Once it's rendered out, fetch bounds (minus padding/margin/borders)
-        var node = ReactDOM.findDOMNode(_ref2);
-        var width, height;
-        var cs = getComputedStyle(node);
-
-        if (cs.boxSizing === 'border-box') {
-          width = node.offsetWidth;
-          height = node.offsetHeight;
-        } else {
-          var paddingX = parseFloat(cs.paddingLeft || 0) + parseFloat(cs.paddingRight || 0);
-          var paddingY = parseFloat(cs.paddingTop || 0) + parseFloat(cs.paddingBottom || 0);
-          var borderX = parseFloat(cs.borderLeftWidth || 0) + parseFloat(cs.borderRightWidth || 0);
-          var borderY = parseFloat(cs.borderTopWidth || 0) + parseFloat(cs.borderBottomWidth || 0);
-          width = node.offsetWidth - paddingX - borderX;
-          height = node.offsetHeight - paddingY - borderY;
-        }
-
-        var convert = overwrite(width, height);
-        callback(_extends({}, props, {
-          from: Object.entries(from).reduce(convert, from),
-          to: Object.entries(to).reduce(convert, to)
-        }));
-      }
-    }
-  }));
-}
-
-var isUnitlessNumber = {
-  animationIterationCount: true,
-  borderImageOutset: true,
-  borderImageSlice: true,
-  borderImageWidth: true,
-  boxFlex: true,
-  boxFlexGroup: true,
-  boxOrdinalGroup: true,
-  columnCount: true,
-  columns: true,
-  flex: true,
-  flexGrow: true,
-  flexPositive: true,
-  flexShrink: true,
-  flexNegative: true,
-  flexOrder: true,
-  gridRow: true,
-  gridRowEnd: true,
-  gridRowSpan: true,
-  gridRowStart: true,
-  gridColumn: true,
-  gridColumnEnd: true,
-  gridColumnSpan: true,
-  gridColumnStart: true,
-  fontWeight: true,
-  lineClamp: true,
-  lineHeight: true,
-  opacity: true,
-  order: true,
-  orphans: true,
-  tabSize: true,
-  widows: true,
-  zIndex: true,
-  zoom: true,
-  // SVG-related properties
-  fillOpacity: true,
-  floodOpacity: true,
-  stopOpacity: true,
-  strokeDasharray: true,
-  strokeDashoffset: true,
-  strokeMiterlimit: true,
-  strokeOpacity: true,
-  strokeWidth: true
-};
-
-var prefixKey = function prefixKey(prefix, key) {
-  return prefix + key.charAt(0).toUpperCase() + key.substring(1);
-};
-
-var prefixes = ['Webkit', 'Ms', 'Moz', 'O'];
-isUnitlessNumber = Object.keys(isUnitlessNumber).reduce(function (acc, prop) {
-  prefixes.forEach(function (prefix) {
-    return acc[prefixKey(prefix, prop)] = acc[prop];
-  });
-  return acc;
-}, isUnitlessNumber);
-
-function dangerousStyleValue(name, value, isCustomProperty) {
-  if (value == null || typeof value === 'boolean' || value === '') return '';
-  if (!isCustomProperty && typeof value === 'number' && value !== 0 && !(isUnitlessNumber.hasOwnProperty(name) && isUnitlessNumber[name])) return value + 'px'; // Presumes implicit 'px' suffix for unitless numbers
-
-  return ('' + value).trim();
-}
-
-var attributeCache = {};
-injectCreateAnimatedStyle(function (style) {
-  return new AnimatedStyle(style);
-});
-injectDefaultElement('div');
-injectInterpolation(createInterpolation);
-injectColorNames(colors$1);
-injectBugfixes(fixAuto);
-injectApplyAnimatedValues(function (instance, props) {
-  if (instance.nodeType && instance.setAttribute !== undefined) {
-    var style = props.style,
-        children = props.children,
-        scrollTop = props.scrollTop,
-        scrollLeft = props.scrollLeft,
-        attributes = _objectWithoutPropertiesLoose$1(props, ["style", "children", "scrollTop", "scrollLeft"]);
-
-    if (scrollTop !== void 0) instance.scrollTop = scrollTop;
-    if (scrollLeft !== void 0) instance.scrollLeft = scrollLeft; // Set textContent, if children is an animatable value
-
-    if (children !== void 0) instance.textContent = children; // Set styles ...
-
-    for (var styleName in style) {
-      if (!style.hasOwnProperty(styleName)) continue;
-      var isCustomProperty = styleName.indexOf('--') === 0;
-      var styleValue = dangerousStyleValue(styleName, style[styleName], isCustomProperty);
-      if (styleName === 'float') styleName = 'cssFloat';
-      if (isCustomProperty) instance.style.setProperty(styleName, styleValue);else instance.style[styleName] = styleValue;
-    } // Set attributes ...
-
-
-    for (var name in attributes) {
-      // Attributes are written in dash case
-      var dashCase = attributeCache[name] || (attributeCache[name] = name.replace(/([A-Z])/g, function (n) {
-        return '-' + n.toLowerCase();
-      }));
-      if (typeof instance.getAttribute(dashCase) !== 'undefined') instance.setAttribute(dashCase, attributes[name]);
-    }
-  } else return false;
-}, function (style) {
-  return style;
-});
-
-var active = false;
-var controllers = new Set();
-
-var frameLoop = function frameLoop() {
-  var time = now$1();
-
-  for (var _iterator = controllers, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
-    var _ref;
-
-    if (_isArray) {
-      if (_i >= _iterator.length) break;
-      _ref = _iterator[_i++];
-    } else {
-      _i = _iterator.next();
-      if (_i.done) break;
-      _ref = _i.value;
-    }
-
-    var controller = _ref;
-    var isDone = true;
-    var noChange = true;
-
-    for (var configIdx = 0; configIdx < controller.configs.length; configIdx++) {
-      var config = controller.configs[configIdx];
-      var endOfAnimation = void 0,
-          lastTime = void 0;
-
-      for (var valIdx = 0; valIdx < config.animatedValues.length; valIdx++) {
-        var animation = config.animatedValues[valIdx]; // If an animation is done, skip, until all of them conclude
-
-        if (animation.done) continue;
-        var from = config.fromValues[valIdx];
-        var to = config.toValues[valIdx];
-        var position = animation.lastPosition;
-        var isAnimated = to instanceof Animated;
-
-        var _velocity = Array.isArray(config.initialVelocity) ? config.initialVelocity[valIdx] : config.initialVelocity;
-
-        if (isAnimated) to = to.getValue(); // Conclude animation if it's either immediate, or from-values match end-state
-
-        if (config.immediate || !isAnimated && !config.decay && from === to) {
-          animation.updateValue(to);
-          animation.done = true;
-          continue;
-        } // Doing delay here instead of setTimeout is one async worry less
-
-
-        if (config.delay && time - controller.startTime < config.delay) {
-          isDone = false;
-          continue;
-        } // Flag change
-
-
-        noChange = false; // Break animation when string values are involved
-
-        if (typeof from === 'string' || typeof to === 'string') {
-          animation.updateValue(to);
-          animation.done = true;
-          continue;
-        }
-
-        if (config.duration !== void 0) {
-          /** Duration easing */
-          position = from + config.easing((time - controller.startTime - config.delay) / config.duration) * (to - from);
-          endOfAnimation = time >= controller.startTime + config.delay + config.duration;
-        } else if (config.decay) {
-          /** Decay easing */
-          position = from + _velocity / (1 - 0.998) * (1 - Math.exp(-(1 - 0.998) * (time - controller.startTime)));
-          endOfAnimation = Math.abs(animation.lastPosition - position) < 0.1;
-          if (endOfAnimation) to = position;
-        } else {
-          /** Spring easing */
-          lastTime = animation.lastTime !== void 0 ? animation.lastTime : time;
-          _velocity = animation.lastVelocity !== void 0 ? animation.lastVelocity : config.initialVelocity; // If we lost a lot of frames just jump to the end.
-
-          if (time > lastTime + 64) lastTime = time; // http://gafferongames.com/game-physics/fix-your-timestep/
-
-          var numSteps = Math.floor(time - lastTime);
-
-          for (var i = 0; i < numSteps; ++i) {
-            var force = -config.tension * (position - to);
-            var damping = -config.friction * _velocity;
-            var acceleration = (force + damping) / config.mass;
-            _velocity = _velocity + acceleration * 1 / 1000;
-            position = position + _velocity * 1 / 1000;
-          } // Conditions for stopping the spring animation
-
-
-          var isOvershooting = config.clamp && config.tension !== 0 ? from < to ? position > to : position < to : false;
-          var isVelocity = Math.abs(_velocity) <= config.precision;
-          var isDisplacement = config.tension !== 0 ? Math.abs(to - position) <= config.precision : true;
-          endOfAnimation = isOvershooting || isVelocity && isDisplacement;
-          animation.lastVelocity = _velocity;
-          animation.lastTime = time;
-        } // Trails aren't done until their parents conclude
-
-
-        if (isAnimated && !config.toValues[valIdx].done) endOfAnimation = false;
-
-        if (endOfAnimation) {
-          // Ensure that we end up with a round value
-          if (animation.value !== to) position = to;
-          animation.done = true;
-        } else isDone = false;
-
-        animation.updateValue(position);
-        animation.lastPosition = position;
-      } // Keep track of updated values only when necessary
-
-
-      if (controller.props.onFrame || !controller.props.native) controller.animatedProps[config.name] = config.interpolation.getValue();
-    } // Update callbacks in the end of the frame
-
-
-    if (controller.props.onFrame || !controller.props.native) {
-      if (!controller.props.native && controller.onUpdate) controller.onUpdate();
-      if (controller.props.onFrame) controller.props.onFrame(controller.animatedProps);
-    } // Either call onEnd or next frame
-
-
-    if (isDone) {
-      controllers.delete(controller);
-      controller.debouncedOnEnd({
-        finished: true,
-        noChange: noChange
-      });
-    }
-  } // Loop over as long as there are controllers ...
-
-
-  if (controllers.size) requestFrame(frameLoop);else active = false;
-};
-
-var addController = function addController(controller) {
-  if (!controllers.has(controller)) {
-    controllers.add(controller);
-    if (!active) requestFrame(frameLoop);
-    active = true;
-  }
-};
-
-var removeController = function removeController(controller) {
-  if (controllers.has(controller)) {
-    controllers.delete(controller);
-  }
-};
-
-var Controller =
-/*#__PURE__*/
-function () {
-  function Controller(props, config) {
-    var _this = this;
-
-    if (config === void 0) {
-      config = {
-        native: true,
-        interpolateTo: true,
-        autoStart: true
-      };
-    }
-
-    this.getValues = function () {
-      return _this.props.native ? _this.interpolations : _this.animatedProps;
-    };
-
-    this.dependents = new Set();
-    this.isActive = false;
-    this.hasChanged = false;
-    this.props = {};
-    this.merged = {};
-    this.animations = {};
-    this.interpolations = {};
-    this.animatedProps = {};
-    this.configs = [];
-    this.frame = undefined;
-    this.startTime = undefined;
-    this.lastTime = undefined;
-    this.update(_extends({}, props, config));
-  }
-
-  var _proto = Controller.prototype;
-
-  _proto.update = function update(props) {
-    var _this2 = this;
-
-    this.props = _extends({}, this.props, props);
-
-    var _ref = this.props.interpolateTo ? interpolateTo(this.props) : this.props,
-        _ref$from = _ref.from,
-        from = _ref$from === void 0 ? {} : _ref$from,
-        _ref$to = _ref.to,
-        to = _ref$to === void 0 ? {} : _ref$to,
-        _ref$config = _ref.config,
-        config = _ref$config === void 0 ? {} : _ref$config,
-        _ref$delay = _ref.delay,
-        delay = _ref$delay === void 0 ? 0 : _ref$delay,
-        reverse = _ref.reverse,
-        attach = _ref.attach,
-        reset = _ref.reset,
-        immediate = _ref.immediate,
-        autoStart = _ref.autoStart,
-        ref = _ref.ref; // Reverse values when requested
-
-
-    if (reverse) {
-      var _ref2 = [to, from];
-      from = _ref2[0];
-      to = _ref2[1];
-    }
-
-    this.hasChanged = false; // Attachment handling, trailed springs can "attach" themselves to a previous spring
-
-    var target = attach && attach(this); // Reset merged props when necessary
-
-    var extra = reset ? {} : this.merged; // This will collect all props that were ever set
-
-    this.merged = _extends({}, from, extra, to); // Reduces input { name: value } pairs into animated values
-
-    this.animations = Object.entries(this.merged).reduce(function (acc, _ref3, i) {
-      var name = _ref3[0],
-          value = _ref3[1];
-      // Issue cached entries, except on reset
-      var entry = !reset && acc[name] || {}; // Figure out what the value is supposed to be
-
-      var isNumber = typeof value === 'number';
-      var isString = typeof value === 'string' && !value.startsWith('#') && !/\d/.test(value) && !colorNames[value];
-      var isArray = !isNumber && !isString && Array.isArray(value);
-      var fromValue = from[name] !== undefined ? from[name] : value;
-      var toValue = isNumber || isArray ? value : isString ? value : 1;
-      var toConfig = callProp(config, name);
-      if (target) toValue = target.animations[name].parent; // Detect changes, animated values will be checked in the raf-loop
-
-      if (toConfig.decay !== void 0 || !shallowEqual(entry.changes, value)) {
-        var _extends2;
-
-        _this2.hasChanged = true;
-        var parent, interpolation$$1;
-        if (isNumber || isString) parent = interpolation$$1 = entry.parent || new AnimatedValue(fromValue);else if (isArray) parent = interpolation$$1 = entry.parent || new AnimatedArray(fromValue);else {
-          var prev = entry.interpolation && entry.interpolation.calc(entry.parent.value);
-
-          if (entry.parent) {
-            parent = entry.parent;
-            parent.setValue(0, false);
-          } else parent = new AnimatedValue(0);
-
-          var range = {
-            output: [prev !== void 0 ? prev : fromValue, value]
-          };
-
-          if (entry.interpolation) {
-            interpolation$$1 = entry.interpolation;
-            entry.interpolation.updateConfig(range);
-          } else interpolation$$1 = parent.interpolate(range);
-        } // Set immediate values
-
-        if (callProp(immediate, name)) parent.setValue(value, false); // Reset animated values
-
-        var animatedValues = toArray(parent.getPayload());
-        animatedValues.forEach(function (value) {
-          return value.prepare(_this2);
-        });
-        return _extends({}, acc, (_extends2 = {}, _extends2[name] = _extends({}, entry, {
-          name: name,
-          parent: parent,
-          interpolation: interpolation$$1,
-          animatedValues: animatedValues,
-          changes: value,
-          fromValues: toArray(parent.getValue()),
-          toValues: toArray(target ? toValue.getPayload() : toValue),
-          immediate: callProp(immediate, name),
-          delay: withDefault(toConfig.delay, delay || 0),
-          initialVelocity: withDefault(toConfig.velocity, 0),
-          clamp: withDefault(toConfig.clamp, false),
-          precision: withDefault(toConfig.precision, 0.01),
-          tension: withDefault(toConfig.tension, 170),
-          friction: withDefault(toConfig.friction, 26),
-          mass: withDefault(toConfig.mass, 1),
-          duration: toConfig.duration,
-          easing: withDefault(toConfig.easing, function (t) {
-            return t;
-          }),
-          decay: toConfig.decay
-        }), _extends2));
-      } else return acc;
-    }, this.animations);
-
-    if (this.hasChanged) {
-      this.configs = getValues$1(this.animations);
-      this.animatedProps = {};
-      this.interpolations = {};
-
-      for (var key in this.animations) {
-        this.interpolations[key] = this.animations[key].interpolation;
-        this.animatedProps[key] = this.animations[key].interpolation.getValue();
-      }
-    } // TODO: clean up ref in controller
-
-
-    for (var _len = arguments.length, start = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-      start[_key - 1] = arguments[_key];
-    }
-
-    if (!ref && (autoStart || start.length)) this.start.apply(this, start);
-    var onEnd = start[0],
-        onUpdate = start[1];
-    this.onEnd = typeof onEnd === 'function' && onEnd;
-    this.onUpdate = onUpdate;
-    return this.getValues();
-  };
-
-  _proto.start = function start(onEnd, onUpdate) {
-    var _this3 = this;
-
-    this.startTime = now$1();
-    if (this.isActive) this.stop();
-    this.isActive = true;
-    this.onEnd = typeof onEnd === 'function' && onEnd;
-    this.onUpdate = onUpdate;
-    if (this.props.onStart) this.props.onStart();
-    addController(this);
-    return new Promise(function (res) {
-      return _this3.resolve = res;
-    });
-  };
-
-  _proto.stop = function stop(finished) {
-    if (finished === void 0) {
-      finished = false;
-    }
-
-    // Reset collected changes since the animation has been stopped cold turkey
-    if (finished) getValues$1(this.animations).forEach(function (a) {
-      return a.changes = undefined;
-    });
-    this.debouncedOnEnd({
-      finished: finished
-    });
-  };
-
-  _proto.destroy = function destroy() {
-    removeController(this);
-    this.props = {};
-    this.merged = {};
-    this.animations = {};
-    this.interpolations = {};
-    this.animatedProps = {};
-    this.configs = [];
-  };
-
-  _proto.debouncedOnEnd = function debouncedOnEnd(result) {
-    removeController(this);
-    this.isActive = false;
-    var onEnd = this.onEnd;
-    this.onEnd = null;
-    if (onEnd) onEnd(result);
-    if (this.resolve) this.resolve();
-    this.resolve = null;
-  };
-
-  return Controller;
-}();
-
-var AnimatedProps =
-/*#__PURE__*/
-function (_AnimatedObjectWithCh) {
-  _inheritsLoose(AnimatedProps, _AnimatedObjectWithCh);
-
-  function AnimatedProps(props, callback) {
-    var _this;
-
-    _this = _AnimatedObjectWithCh.call(this) || this;
-    if (props.style) props = _extends({}, props, {
-      style: createAnimatedStyle(props.style)
-    });
-    _this.payload = props;
-    _this.update = callback;
-
-    _this.attach();
-
-    return _this;
-  }
-
-  return AnimatedProps;
-}(AnimatedObjectWithChildren);
-
-function createAnimatedComponent(Component) {
-  var AnimatedComponent =
-  /*#__PURE__*/
-  function (_React$Component) {
-    _inheritsLoose(AnimatedComponent, _React$Component);
-
-    function AnimatedComponent(props) {
-      var _this;
-
-      _this = _React$Component.call(this) || this;
-
-      _this.callback = function () {
-        if (_this.node) {
-          var didUpdate = applyAnimatedValues.fn(_this.node, _this.propsAnimated.getAnimatedValue(), _assertThisInitialized$1(_assertThisInitialized$1(_this)));
-          if (didUpdate === false) _this.forceUpdate();
-        }
-      };
-
-      _this.attachProps(props);
-
-      return _this;
-    }
-
-    var _proto = AnimatedComponent.prototype;
-
-    _proto.componentWillUnmount = function componentWillUnmount() {
-      this.propsAnimated && this.propsAnimated.detach();
-    };
-
-    _proto.setNativeProps = function setNativeProps(props) {
-      var didUpdate = applyAnimatedValues.fn(this.node, props, this);
-      if (didUpdate === false) this.forceUpdate();
-    } // The system is best designed when setNativeProps is implemented. It is
-    // able to avoid re-rendering and directly set the attributes that
-    // changed. However, setNativeProps can only be implemented on leaf
-    // native components. If you want to animate a composite component, you
-    // need to re-render it. In this case, we have a fallback that uses
-    // forceUpdate.
-    ;
-
-    _proto.attachProps = function attachProps(_ref) {
-      var forwardRef = _ref.forwardRef,
-          nextProps = _objectWithoutPropertiesLoose$1(_ref, ["forwardRef"]);
-
-      var oldPropsAnimated = this.propsAnimated;
-      this.propsAnimated = new AnimatedProps(nextProps, this.callback); // When you call detach, it removes the element from the parent list
-      // of children. If it goes to 0, then the parent also detaches itself
-      // and so on.
-      // An optimization is to attach the new elements and THEN detach the old
-      // ones instead of detaching and THEN attaching.
-      // This way the intermediate state isn't to go to 0 and trigger
-      // this expensive recursive detaching to then re-attach everything on
-      // the very next operation.
-
-      oldPropsAnimated && oldPropsAnimated.detach();
-    };
-
-    _proto.shouldComponentUpdate = function shouldComponentUpdate(props) {
-      var style = props.style,
-          nextProps = _objectWithoutPropertiesLoose$1(props, ["style"]);
-
-      var _this$props = this.props,
-          currentStyle = _this$props.style,
-          currentProps = _objectWithoutPropertiesLoose$1(_this$props, ["style"]);
-
-      if (!shallowEqual(currentProps, nextProps) || !shallowEqual(currentStyle, style)) {
-        this.attachProps(props);
-        return true;
-      }
-
-      return false;
-    };
-
-    _proto.render = function render() {
-      var _this2 = this;
-
-      var _this$propsAnimated$g = this.propsAnimated.getValue(),
-          scrollTop = _this$propsAnimated$g.scrollTop,
-          scrollLeft = _this$propsAnimated$g.scrollLeft,
-          animatedProps = _objectWithoutPropertiesLoose$1(_this$propsAnimated$g, ["scrollTop", "scrollLeft"]);
-
-      return React__default.createElement(Component, _extends({}, animatedProps, {
-        ref: function ref(node) {
-          return _this2.node = handleRef(node, _this2.props.forwardRef);
-        }
-      }));
-    };
-
-    return AnimatedComponent;
-  }(React__default.Component);
-
-  return React__default.forwardRef(function (props, ref) {
-    return React__default.createElement(AnimatedComponent, _extends({}, props, {
-      forwardRef: ref
-    }));
-  });
-}
-
-var config = {
-  default: {
-    tension: 170,
-    friction: 26
-  },
-  gentle: {
-    tension: 120,
-    friction: 14
-  },
-  wobbly: {
-    tension: 180,
-    friction: 12
-  },
-  stiff: {
-    tension: 210,
-    friction: 20
-  },
-  slow: {
-    tension: 280,
-    friction: 60
-  },
-  molasses: {
-    tension: 280,
-    friction: 120
-  }
-};
-
-var Spring =
-/*#__PURE__*/
-function (_React$Component) {
-  _inheritsLoose(Spring, _React$Component);
-
-  function Spring() {
-    var _this;
-
-    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    _this = _React$Component.call.apply(_React$Component, [this].concat(args)) || this;
-    _this.state = {
-      lastProps: {
-        from: {},
-        to: {}
-      },
-      propsChanged: false,
-      internal: false
-    };
-    _this.controller = new Controller(null, null);
-    _this.didUpdate = false;
-    _this.didInject = false;
-    _this.finished = true;
-
-    _this.start = function () {
-      _this.finished = false;
-      var wasMounted = _this.mounted;
-
-      _this.controller.start(function (props) {
-        return _this.finish(_extends({}, props, {
-          wasMounted: wasMounted
-        }));
-      }, _this.update);
-    };
-
-    _this.stop = function () {
-      return _this.controller.stop(true);
-    };
-
-    _this.update = function () {
-      return _this.mounted && _this.setState({
-        internal: true
-      });
-    };
-
-    _this.finish = function (_ref) {
-      var finished = _ref.finished,
-          noChange = _ref.noChange,
-          wasMounted = _ref.wasMounted;
-      _this.finished = true;
-
-      if (_this.mounted && finished) {
-        // Only call onRest if either we *were* mounted, or when there were changes
-        if (_this.props.onRest && (wasMounted || !noChange)) _this.props.onRest(_this.controller.merged); // Restore end-state
-
-        if (_this.mounted && _this.didInject) {
-          _this.afterInject = convertValues(_this.props);
-
-          _this.setState({
-            internal: true
-          });
-        } // If we have an inject or values to apply after the animation we ping here
-
-
-        if (_this.mounted && (_this.didInject || _this.props.after)) _this.setState({
-          internal: true
-        });
-        _this.didInject = false;
-      }
-    };
-
-    return _this;
-  }
-
-  var _proto = Spring.prototype;
-
-  _proto.componentDidMount = function componentDidMount() {
-    // componentDidUpdate isn't called on mount, we call it here to start animating
-    this.componentDidUpdate();
-    this.mounted = true;
-  };
-
-  _proto.componentWillUnmount = function componentWillUnmount() {
-    // Stop all ongoing animtions
-    this.mounted = false;
-    this.stop();
-  };
-
-  Spring.getDerivedStateFromProps = function getDerivedStateFromProps(props, _ref2) {
-    var internal = _ref2.internal,
-        lastProps = _ref2.lastProps;
-    // The following is a test against props that could alter the animation
-    var from = props.from,
-        to = props.to,
-        reset = props.reset,
-        force = props.force;
-    var propsChanged = !shallowEqual(to, lastProps.to) || !shallowEqual(from, lastProps.from) || reset && !internal || force && !internal;
-    return {
-      propsChanged: propsChanged,
-      lastProps: props,
-      internal: false
-    };
-  };
-
-  _proto.render = function render() {
-    var _this2 = this;
-
-    var children = this.props.children;
-    var propsChanged = this.state.propsChanged; // Inject phase -----------------------------------------------------------
-    // Handle injected frames, for instance targets/web/fix-auto
-    // An inject will return an intermediary React node which measures itself out
-    // .. and returns a callback when the values sought after are ready, usually "auto".
-
-    if (this.props.inject && propsChanged && !this.injectProps) {
-      var frame = this.props.inject(this.props, function (injectProps) {
-        // The inject frame has rendered, now let's update animations...
-        _this2.injectProps = injectProps;
-
-        _this2.setState({
-          internal: true
-        });
-      }); // Render out injected frame
-
-      if (frame) return frame;
-    } // Update phase -----------------------------------------------------------
-
-
-    if (this.injectProps || propsChanged) {
-      // We can potentially cause setState, but we're inside render, the flag prevents that
-      this.didInject = false; // Update animations, this turns from/to props into AnimatedValues
-      // An update can occur on injected props, or when own-props have changed.
-
-      if (this.injectProps) {
-        this.controller.update(this.injectProps); // didInject is needed, because there will be a 3rd stage, where the original values
-        // .. will be restored after the animation is finished. When someone animates towards
-        // .. "auto", the end-result should be "auto", not "1999px", which would block nested
-        // .. height/width changes.
-
-        this.didInject = true;
-      } else if (propsChanged) this.controller.update(this.props); // Flag an update that occured, componentDidUpdate will start the animation later on
-
-
-      this.didUpdate = true;
-      this.afterInject = undefined;
-      this.injectProps = undefined;
-    } // Render phase -----------------------------------------------------------
-    // Render out raw values or AnimatedValues depending on "native"
-
-
-    var values = _extends({}, this.controller.getValues(), this.afterInject);
-
-    if (this.finished) values = _extends({}, values, this.props.after);
-    return Object.keys(values).length ? children(values) : null;
-  };
-
-  _proto.componentDidUpdate = function componentDidUpdate() {
-    // The animation has to start *after* render, since at that point the scene
-    // .. graph should be established, so we do it here. Unfortunatelly, non-native
-    // .. animations as well as "auto"-injects call forceUpdate, so it's causing a loop.
-    // .. didUpdate prevents that as it gets set only on prop changes.
-    if (this.didUpdate) this.start();
-    this.didUpdate = false;
-  };
-
-  return Spring;
-}(React__default.Component);
-
-Spring.defaultProps = {
-  from: {},
-  to: {},
-  config: config.default,
-  native: false,
-  immediate: false,
-  reset: false,
-  force: false,
-  inject: bugfixes
-};
-
-var Trail =
-/*#__PURE__*/
-function (_React$PureComponent) {
-  _inheritsLoose(Trail, _React$PureComponent);
-
-  function Trail() {
-    var _this;
-
-    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    _this = _React$PureComponent.call.apply(_React$PureComponent, [this].concat(args)) || this;
-    _this.first = true;
-    _this.instances = new Set();
-
-    _this.hook = function (instance, index, length, reverse) {
-      // Add instance to set
-      _this.instances.add(instance); // Return undefined on the first index and from then on the previous instance
-
-
-      if (reverse ? index === length - 1 : index === 0) return undefined;else return Array.from(_this.instances)[reverse ? index + 1 : index - 1];
-    };
-
-    return _this;
-  }
-
-  var _proto = Trail.prototype;
-
-  _proto.render = function render() {
-    var _this2 = this;
-
-    var _this$props = this.props,
-        items = _this$props.items,
-        _children = _this$props.children,
-        _this$props$from = _this$props.from,
-        from = _this$props$from === void 0 ? {} : _this$props$from,
-        initial = _this$props.initial,
-        reverse = _this$props.reverse,
-        keys = _this$props.keys,
-        delay = _this$props.delay,
-        onRest = _this$props.onRest,
-        props = _objectWithoutPropertiesLoose$1(_this$props, ["items", "children", "from", "initial", "reverse", "keys", "delay", "onRest"]);
-
-    var array = toArray(items);
-    return toArray(array).map(function (item, i) {
-      return React__default.createElement(Spring, _extends({
-        onRest: i === 0 ? onRest : null,
-        key: typeof keys === 'function' ? keys(item) : toArray(keys)[i],
-        from: _this2.first && initial !== void 0 ? initial || {} : from
-      }, props, {
-        delay: i === 0 && delay || undefined,
-        attach: function attach(instance) {
-          return _this2.hook(instance, i, array.length, reverse);
-        },
-        children: function children(props) {
-          var child = _children(item, i);
-
-          return child ? child(props) : null;
-        }
-      }));
-    });
-  };
-
-  _proto.componentDidUpdate = function componentDidUpdate(prevProps) {
-    this.first = false;
-    if (prevProps.items !== this.props.items) this.instances.clear();
-  };
-
-  return Trail;
-}(React__default.PureComponent);
-
-Trail.defaultProps = {
-  keys: function keys(item) {
-    return item;
-  }
-};
-
-var DEFAULT = '__default';
-
-var KeyframesImpl =
-/*#__PURE__*/
-function (_React$PureComponent) {
-  _inheritsLoose(KeyframesImpl, _React$PureComponent);
-
-  function KeyframesImpl() {
-    var _this;
-
-    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    _this = _React$PureComponent.call.apply(_React$PureComponent, [this].concat(args)) || this;
-    _this.guid = 0;
-    _this.state = {
-      props: {},
-      resolve: function resolve() {
-        return null;
-      },
-      last: true,
-      index: 0
-    };
-
-    _this.next = function (props, last, index) {
-      if (last === void 0) {
-        last = true;
-      }
-
-      if (index === void 0) {
-        index = 0;
-      }
-
-      _this.running = true;
-      return new Promise(function (resolve) {
-        _this.mounted && _this.setState(function (state) {
-          return {
-            props: props,
-            resolve: resolve,
-            last: last,
-            index: index
-          };
-        }, function () {
-          return _this.running = false;
-        });
-      });
-    };
-
-    return _this;
-  }
-
-  var _proto = KeyframesImpl.prototype;
-
-  _proto.componentDidMount = function componentDidMount() {
-    this.mounted = true;
-    this.componentDidUpdate({});
-  };
-
-  _proto.componentWillUnmount = function componentWillUnmount() {
-    this.mounted = false;
-  };
-
-  _proto.componentDidUpdate = function componentDidUpdate(previous) {
-    var _this2 = this;
-
-    var _this$props = this.props,
-        states = _this$props.states,
-        f = _this$props.filter,
-        state = _this$props.state;
-
-    if (previous.state !== this.props.state || this.props.reset && !this.running || !shallowEqual(states[state], previous.states[previous.state])) {
-      if (states && state && states[state]) {
-        (function () {
-          var localId = ++_this2.guid;
-          var slots = states[state];
-
-          if (slots) {
-            if (Array.isArray(slots)) {
-              var q = Promise.resolve();
-
-              var _loop = function _loop(i) {
-                var index = i;
-                var slot = slots[index];
-                var last = index === slots.length - 1;
-                q = q.then(function () {
-                  return localId === _this2.guid && _this2.next(f(slot), last, index);
-                });
-              };
-
-              for (var i = 0; i < slots.length; i++) {
-                _loop(i);
-              }
-            } else if (typeof slots === 'function') {
-              var index = 0;
-              slots( // next
-              function (props, last) {
-                if (last === void 0) {
-                  last = false;
-                }
-
-                return localId === _this2.guid && _this2.next(f(props), last, index++);
-              }, // cancel
-              function () {
-                return requestFrame(function () {
-                  return _this2.instance && _this2.instance.stop();
-                });
-              }, // ownprops
-              _this2.props);
-            } else {
-              _this2.next(f(states[state]));
-            }
-          }
-        })();
-      }
-    }
-  };
-
-  _proto.render = function render() {
-    var _this3 = this;
-
-    var _this$state = this.state,
-        props = _this$state.props,
-        resolve = _this$state.resolve,
-        last = _this$state.last,
-        index = _this$state.index;
-    if (!props || Object.keys(props).length === 0) return null;
-
-    var _this$props2 = this.props,
-        state = _this$props2.state,
-        filter = _this$props2.filter,
-        states = _this$props2.states,
-        config = _this$props2.config,
-        Component = _this$props2.primitive,
-        _onRest = _this$props2.onRest,
-        forwardRef = _this$props2.forwardRef,
-        rest = _objectWithoutPropertiesLoose$1(_this$props2, ["state", "filter", "states", "config", "primitive", "onRest", "forwardRef"]); // Arrayed configs need an index to process
-
-
-    if (Array.isArray(config)) config = config[index];
-    return React__default.createElement(Component, _extends({
-      ref: function ref(_ref) {
-        return _this3.instance = handleRef(_ref, forwardRef);
-      },
-      config: config
-    }, rest, props, {
-      onRest: function onRest(args) {
-        resolve(args);
-        if (_onRest && last) _onRest(args);
-      }
-    }));
-  };
-
-  return KeyframesImpl;
-}(React__default.PureComponent);
-
-KeyframesImpl.defaultProps = {
-  state: DEFAULT
-};
-var Keyframes = React__default.forwardRef(function (props, ref) {
-  return React__default.createElement(KeyframesImpl, _extends({}, props, {
-    forwardRef: ref
-  }));
-});
-
-Keyframes.create = function (primitive) {
-  return function (states, filter) {
-    var _states;
-
-    if (filter === void 0) {
-      filter = function filter(states) {
-        return states;
-      };
-    }
-
-    if (typeof states === 'function' || Array.isArray(states)) states = (_states = {}, _states[DEFAULT] = states, _states);
-    return function (props) {
-      return React__default.createElement(KeyframesImpl, _extends({
-        primitive: primitive,
-        states: states,
-        filter: filter
-      }, props));
-    };
-  };
-};
-
-Keyframes.Spring = function (states) {
-  return Keyframes.create(Spring)(states, interpolateTo);
-};
-
-Keyframes.Trail = function (states) {
-  return Keyframes.create(Trail)(states, interpolateTo);
-};
-
-var guid = 0;
-
-var get = function get(props) {
-  var items = props.items,
-      keys = props.keys,
-      rest = _objectWithoutPropertiesLoose$1(props, ["items", "keys"]);
-
-  items = toArray(items !== void 0 ? items : null);
-  keys = typeof keys === 'function' ? items.map(keys) : toArray(keys); // Make sure numeric keys are interpreted as Strings (5 !== "5")
-
-  return _extends({
-    items: items,
-    keys: keys.map(function (key) {
-      return String(key);
-    })
-  }, rest);
-};
-
-var Transition =
-/*#__PURE__*/
-function (_React$PureComponent) {
-  _inheritsLoose(Transition, _React$PureComponent);
-
-  var _proto = Transition.prototype;
-
-  _proto.componentDidMount = function componentDidMount() {
-    this.mounted = true;
-  };
-
-  _proto.componentWillUnmount = function componentWillUnmount() {
-    this.mounted = false;
-  };
-
-  function Transition(prevProps) {
-    var _this;
-
-    _this = _React$PureComponent.call(this, prevProps) || this;
-
-    _this.destroyItem = function (item, key, state) {
-      return function (values) {
-        var _this$props = _this.props,
-            onRest = _this$props.onRest,
-            onDestroyed = _this$props.onDestroyed;
-
-        if (_this.mounted) {
-          onDestroyed && onDestroyed(item);
-
-          _this.setState(function (_ref) {
-            var deleted = _ref.deleted;
-            return {
-              deleted: deleted.filter(function (t) {
-                return t.key !== key;
-              })
-            };
-          });
-
-          onRest && onRest(item, state, values);
-        }
-      };
-    };
-
-    _this.state = {
-      first: true,
-      transitions: [],
-      current: {},
-      deleted: [],
-      prevProps: prevProps
-    };
-    return _this;
-  }
-
-  Transition.getDerivedStateFromProps = function getDerivedStateFromProps(props, _ref2) {
-    var first = _ref2.first,
-        prevProps = _ref2.prevProps,
-        state = _objectWithoutPropertiesLoose$1(_ref2, ["first", "prevProps"]);
-
-    var _get = get(props),
-        items = _get.items,
-        keys = _get.keys,
-        initial = _get.initial,
-        from = _get.from,
-        enter = _get.enter,
-        leave = _get.leave,
-        update = _get.update,
-        _get$trail = _get.trail,
-        trail = _get$trail === void 0 ? 0 : _get$trail,
-        unique = _get.unique,
-        config = _get.config;
-
-    var _get2 = get(prevProps),
-        _keys = _get2.keys,
-        _items = _get2.items;
-
-    var current = _extends({}, state.current);
-
-    var deleted = [].concat(state.deleted); // Compare next keys with current keys
-
-    var currentKeys = Object.keys(current);
-    var currentSet = new Set(currentKeys);
-    var nextSet = new Set(keys);
-    var added = keys.filter(function (item) {
-      return !currentSet.has(item);
-    });
-    var removed = state.transitions.filter(function (item) {
-      return !item.destroyed && !nextSet.has(item.originalKey);
-    }).map(function (i) {
-      return i.originalKey;
-    });
-    var updated = keys.filter(function (item) {
-      return currentSet.has(item);
-    });
-    var delay = 0;
-    added.forEach(function (key) {
-      // In unique mode, remove fading out transitions if their key comes in again
-      if (unique && deleted.find(function (d) {
-        return d.originalKey === key;
-      })) deleted = deleted.filter(function (t) {
-        return t.originalKey !== key;
-      });
-      var keyIndex = keys.indexOf(key);
-      var item = items[keyIndex];
-      var state = 'enter';
-      current[key] = {
-        state: state,
-        originalKey: key,
-        key: unique ? String(key) : guid++,
-        item: item,
-        trail: delay = delay + trail,
-        config: callProp(config, item, state),
-        from: callProp(first ? initial !== void 0 ? initial || {} : from : from, item),
-        to: callProp(enter, item)
-      };
-    });
-    removed.forEach(function (key) {
-      var keyIndex = _keys.indexOf(key);
-
-      var item = _items[keyIndex];
-      var state = 'leave';
-      deleted.push(_extends({}, current[key], {
-        state: state,
-        destroyed: true,
-        left: _keys[Math.max(0, keyIndex - 1)],
-        right: _keys[Math.min(_keys.length, keyIndex + 1)],
-        trail: delay = delay + trail,
-        config: callProp(config, item, state),
-        to: callProp(leave, item)
-      }));
-      delete current[key];
-    });
-    updated.forEach(function (key) {
-      var keyIndex = keys.indexOf(key);
-      var item = items[keyIndex];
-      var state = 'update';
-      current[key] = _extends({}, current[key], {
-        item: item,
-        state: state,
-        trail: delay = delay + trail,
-        config: callProp(config, item, state),
-        to: callProp(update, item)
-      });
-    }); // This tries to restore order for deleted items by finding their last known siblings
-
-    var out = keys.map(function (key) {
-      return current[key];
-    });
-    deleted.forEach(function (_ref3) {
-      var left = _ref3.left,
-          right = _ref3.right,
-          transition = _objectWithoutPropertiesLoose$1(_ref3, ["left", "right"]);
-
-      var pos; // Was it the element on the left, if yes, move there ...
-
-      if ((pos = out.findIndex(function (t) {
-        return t.originalKey === left;
-      })) !== -1) pos += 1; // Or how about the element on the right ...
-
-      if (pos === -1) pos = out.findIndex(function (t) {
-        return t.originalKey === right;
-      }); // Maybe we'll find it in the list of deleted items
-
-      if (pos === -1) pos = deleted.findIndex(function (t) {
-        return t.originalKey === left;
-      }); // Checking right side as well
-
-      if (pos === -1) pos = deleted.findIndex(function (t) {
-        return t.originalKey === right;
-      }); // And if nothing else helps, move it to the start ¯\_(ツ)_/¯
-
-      pos = Math.max(0, pos);
-      out = [].concat(out.slice(0, pos), [transition], out.slice(pos));
-    });
-    return {
-      first: first && added.length === 0,
-      transitions: out,
-      current: current,
-      deleted: deleted,
-      prevProps: props
-    };
-  };
-
-  _proto.render = function render() {
-    var _this2 = this;
-
-    var _this$props2 = this.props,
-        initial = _this$props2.initial,
-        _this$props2$from = _this$props2.from,
-        _this$props2$enter = _this$props2.enter,
-        _this$props2$leave = _this$props2.leave,
-        _this$props2$update = _this$props2.update,
-        onDestroyed = _this$props2.onDestroyed,
-        keys = _this$props2.keys,
-        items = _this$props2.items,
-        onFrame = _this$props2.onFrame,
-        onRest = _this$props2.onRest,
-        onStart = _this$props2.onStart,
-        trail = _this$props2.trail,
-        config = _this$props2.config,
-        _children = _this$props2.children,
-        unique = _this$props2.unique,
-        reset = _this$props2.reset,
-        extra = _objectWithoutPropertiesLoose$1(_this$props2, ["initial", "from", "enter", "leave", "update", "onDestroyed", "keys", "items", "onFrame", "onRest", "onStart", "trail", "config", "children", "unique", "reset"]);
-
-    return this.state.transitions.map(function (_ref4, i) {
-      var _ref5;
-
-      var state = _ref4.state,
-          key = _ref4.key,
-          item = _ref4.item,
-          from = _ref4.from,
-          to = _ref4.to,
-          trail = _ref4.trail,
-          config = _ref4.config,
-          destroyed = _ref4.destroyed;
-      return React__default.createElement(Keyframes, _extends({
-        reset: reset && state === 'enter',
-        primitive: Spring,
-        state: state,
-        filter: interpolateTo,
-        states: (_ref5 = {}, _ref5[state] = to, _ref5),
-        key: key,
-        onRest: destroyed ? _this2.destroyItem(item, key, state) : onRest && function (values) {
-          return onRest(item, state, values);
-        },
-        onStart: onStart && function () {
-          return onStart(item, state);
-        },
-        onFrame: onFrame && function (values) {
-          return onFrame(item, state, values);
-        },
-        delay: trail,
-        config: config
-      }, extra, {
-        from: from,
-        children: function children(props) {
-          var child = _children(item, state, i);
-
-          return child ? child(props) : null;
-        }
-      }));
-    });
-  };
-
-  return Transition;
-}(React__default.PureComponent);
-
-Transition.defaultProps = {
-  keys: function keys(item) {
-    return item;
-  },
-  unique: false,
-  reset: false
-};
-
-var domElements = ['a', 'abbr', 'address', 'area', 'article', 'aside', 'audio', 'b', 'base', 'bdi', 'bdo', 'big', 'blockquote', 'body', 'br', 'button', 'canvas', 'caption', 'cite', 'code', 'col', 'colgroup', 'data', 'datalist', 'dd', 'del', 'details', 'dfn', 'dialog', 'div', 'dl', 'dt', 'em', 'embed', 'fieldset', 'figcaption', 'figure', 'footer', 'form', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'head', 'header', 'hgroup', 'hr', 'html', 'i', 'iframe', 'img', 'input', 'ins', 'kbd', 'keygen', 'label', 'legend', 'li', 'link', 'main', 'map', 'mark', 'marquee', 'menu', 'menuitem', 'meta', 'meter', 'nav', 'noscript', 'object', 'ol', 'optgroup', 'option', 'output', 'p', 'param', 'picture', 'pre', 'progress', 'q', 'rp', 'rt', 'ruby', 's', 'samp', 'script', 'section', 'select', 'small', 'source', 'span', 'strong', 'style', 'sub', 'summary', 'sup', 'table', 'tbody', 'td', 'textarea', 'tfoot', 'th', 'thead', 'time', 'title', 'tr', 'track', 'u', 'ul', 'var', 'video', 'wbr', // SVG
-'circle', 'clipPath', 'defs', 'ellipse', 'foreignObject', 'g', 'image', 'line', 'linearGradient', 'mask', 'path', 'pattern', 'polygon', 'polyline', 'radialGradient', 'rect', 'stop', 'svg', 'text', 'tspan'];
-var extendedAnimated = domElements.reduce(function (acc, element) {
-  acc[element] = createAnimatedComponent(element);
-  return acc;
-}, createAnimatedComponent);
 
 var Text = styled__default.span.withConfig({
   displayName: "Text",
@@ -10367,29 +5971,29 @@ var move = function move(pixel) {
   return "translate3d(0,".concat(pixel, "px,0)");
 };
 
-var _React$createContext$2 = React__default.createContext(function () {
+var _React$createContext = React__default.createContext(function () {
   throw new Error("For Toast to work it needs to be part of a ToastHub's tree, which has to be declared at an upper level!");
 }),
-    Provider$2 = _React$createContext$2.Provider,
-    Toast = _React$createContext$2.Consumer;
+    Provider = _React$createContext.Provider,
+    Toast = _React$createContext.Consumer;
 
 var ToastHubProvider =
 /*#__PURE__*/
 function (_React$PureComponent) {
-  inherits$1(ToastHubProvider, _React$PureComponent);
+  inherits(ToastHubProvider, _React$PureComponent);
 
   function ToastHubProvider() {
     var _getPrototypeOf2;
 
     var _this;
 
-    classCallCheck$1(this, ToastHubProvider);
+    classCallCheck(this, ToastHubProvider);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    _this = possibleConstructorReturn$1(this, (_getPrototypeOf2 = getPrototypeOf(ToastHubProvider)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this = possibleConstructorReturn(this, (_getPrototypeOf2 = getPrototypeOf(ToastHubProvider)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
     defineProperty(assertThisInitialized(assertThisInitialized(_this)), "state", {
       items: [],
@@ -10519,7 +6123,7 @@ function (_React$PureComponent) {
           showIndicator = _this$props.showIndicator,
           position = _this$props.position,
           top = _this$props.top;
-      return React__default.createElement(React__default.Fragment, null, React__default.createElement(Provider$2, {
+      return React__default.createElement(React__default.Fragment, null, React__default.createElement(Provider, {
         value: this.add,
         children: children
       }), React__default.createElement(ToastList, _extends_1({
@@ -10660,6 +6264,712 @@ var Life = styled__default(extendedAnimated.div).withConfig({
   return props.top ? '10px' : '0';
 });
 
+function _taggedTemplateLiteral(strings, raw) {
+  if (!raw) {
+    raw = strings.slice(0);
+  }
+
+  return Object.freeze(Object.defineProperties(strings, {
+    raw: {
+      value: Object.freeze(raw)
+    }
+  }));
+}
+
+var taggedTemplateLiteral = _taggedTemplateLiteral;
+
+var Add = function Add(props) {
+  return React__default.createElement("svg", _extends_1({
+    width: 22,
+    height: 22,
+    viewBox: "0 0 22 22"
+  }, props), React__default.createElement("g", {
+    fill: "none",
+    fillRule: "evenodd"
+  }, React__default.createElement("path", {
+    d: "M0 0h22v22H0z"
+  }), React__default.createElement("path", {
+    d: "M11 4.744c1.216 0 2.341.304 3.376.912a6.308 6.308 0 0 1 2.368 2.368 6.546 6.546 0 0 1 .912 3.376 6.546 6.546 0 0 1-.912 3.376 6.308 6.308 0 0 1-2.368 2.368 6.546 6.546 0 0 1-3.376.912 6.546 6.546 0 0 1-3.376-.912 6.428 6.428 0 0 1-2.368-2.384 6.517 6.517 0 0 1-.912-3.36c0-1.205.304-2.325.912-3.36A6.55 6.55 0 0 1 7.64 5.656 6.517 6.517 0 0 1 11 4.744z",
+    stroke: "currentColor"
+  }), React__default.createElement("path", {
+    fill: "currentColor",
+    d: "M11.656 8.056v2.688h2.688v1.312h-2.688v2.688h-1.312v-2.688H7.656v-1.312h2.688V8.056z"
+  })));
+};
+
+var Apps = function Apps(props) {
+  return React__default.createElement("svg", _extends_1({
+    width: 22,
+    height: 22,
+    viewBox: "0 0 22 22"
+  }, props), React__default.createElement("g", {
+    fill: "none",
+    fillRule: "evenodd"
+  }, React__default.createElement("path", {
+    d: "M0 0h22v22H0z"
+  }), React__default.createElement("path", {
+    d: "M4.157 3.07C3.523 3.07 3 3.592 3 4.226v5.012c0 .635.523 1.157 1.157 1.157h5.012c.634 0 1.156-.522 1.156-1.157V4.226c0-.634-.522-1.156-1.156-1.156H4.157zm8.482 0c-.635 0-1.157.522-1.157 1.156v5.012c0 .635.522 1.157 1.157 1.157h5.012c.634 0 1.156-.522 1.156-1.157V4.226c0-.634-.522-1.156-1.156-1.156h-5.012zm-8.482.77h5.012c.22 0 .385.166.385.386v5.012c0 .22-.165.386-.385.386H4.157a.377.377 0 0 1-.386-.386V4.226c0-.22.165-.385.386-.385zm8.482 0h5.012c.22 0 .385.166.385.386v5.012c0 .22-.165.386-.385.386h-5.012a.377.377 0 0 1-.386-.386V4.226c0-.22.165-.385.386-.385zm2.463 7.706a.386.386 0 0 0-.343.391v2.892h-2.892a.386.386 0 1 0 0 .77h2.892v2.893a.386.386 0 1 0 .771 0V15.6h2.892a.386.386 0 1 0 0-.771H15.53v-2.892a.386.386 0 0 0-.428-.391zm-10.945.006c-.634 0-1.157.522-1.157 1.156v5.012c0 .635.523 1.157 1.157 1.157h5.012c.634 0 1.156-.522 1.156-1.157v-5.012c0-.634-.522-1.156-1.156-1.156H4.157zm0 .77h5.012c.22 0 .385.166.385.386v5.012c0 .22-.165.386-.385.386H4.157a.377.377 0 0 1-.386-.386v-5.012c0-.22.165-.385.386-.385z",
+    fill: "currentColor",
+    fillRule: "nonzero"
+  })));
+};
+
+var ArrowDown = function ArrowDown(props) {
+  return React__default.createElement("svg", _extends_1({
+    width: 9,
+    height: 5,
+    viewBox: "0 0 9 5"
+  }, props), React__default.createElement("path", {
+    d: "M0 0h8.36L4.18 4.18z",
+    fill: "currentColor",
+    fillRule: "evenodd"
+  }));
+};
+
+var ArrowRight = function ArrowRight(props) {
+  return React__default.createElement("svg", _extends_1({
+    width: 12,
+    height: 19,
+    viewBox: "0 0 12 19",
+    fill: "none"
+  }, props), React__default.createElement("path", {
+    d: "M1.613 1L10.5 8.988m-9.049 8.779l9-8.795",
+    stroke: "currentColor"
+  }));
+};
+
+var Attention = function Attention(props) {
+  return React__default.createElement("svg", _extends_1({
+    width: 22,
+    height: 22,
+    viewBox: "0 0 22 22"
+  }, props), React__default.createElement("g", {
+    transform: "translate(4 4)",
+    fill: "none",
+    fillRule: "evenodd"
+  }, React__default.createElement("rect", {
+    fill: "#DAEAEF",
+    width: 14,
+    height: 14,
+    rx: 7
+  }), React__default.createElement("path", {
+    d: "M6.155 8.547h1.298V3.3H6.155v5.247zM6.045 11h1.529V9.537H6.045V11z",
+    fill: "#6D777B"
+  })));
+};
+
+var Blank = function Blank(props) {
+  return React__default.createElement("svg", _extends_1({
+    width: 22,
+    height: 22,
+    viewBox: "0 0 22 22"
+  }, props), React__default.createElement("path", {
+    d: "M17.155 2.375H4.845a.357.357 0 0 0-.345.345v16.559c0 .181.163.345.345.345h9.768c.09 0 .2-.037.254-.11l2.542-2.85a.345.345 0 0 0 .091-.236V2.72a.357.357 0 0 0-.345-.345zm-11.965.69h11.62v12.637h-2.25a.69.69 0 0 0-.69.69v2.542H5.19V3.064v.001zm9.369 15.742v-2.433h2.16l-2.16 2.433z",
+    fill: "currentColor"
+  }));
+};
+
+var Bylaw = function Bylaw(props) {
+  return React__default.createElement("svg", _extends_1({
+    width: 17,
+    height: 16,
+    viewBox: "0 0 17 16"
+  }, props), React__default.createElement("g", {
+    fill: "none",
+    fillRule: "evenodd"
+  }, React__default.createElement("path", {
+    d: "M-2-2h22v22H-2z"
+  }), React__default.createElement("g", {
+    opacity: 0.8,
+    stroke: "currentColor"
+  }, React__default.createElement("path", {
+    d: "M9.036 1.143L1.578 4.357V5.43h14.916V4.357L9.036 1.143zm6.88 12.393H2.071c-.318 0-.577.242-.577.535v1.072h15V14.07c0-.293-.26-.535-.578-.535z",
+    strokeLinecap: "round",
+    strokeLinejoin: "round"
+  }), React__default.createElement("path", {
+    d: "M3 5v8.034M6 5v8.275M9 5v8.034M12 5v8.275M15 5v8.275"
+  }))));
+};
+
+var Check = function Check(props) {
+  return React__default.createElement("svg", _extends_1({
+    width: 14,
+    height: 10,
+    viewBox: "0 0 14 10"
+  }, props), React__default.createElement("path", {
+    d: "M4.176 7.956L12.114 0l1.062 1.062-9 9L0 5.886l1.044-1.062z",
+    fill: "#21D48E",
+    fillRule: "evenodd"
+  }));
+};
+
+var Close = function Close(props) {
+  return React__default.createElement("svg", _extends_1({
+    width: 10,
+    height: 10
+  }, props), React__default.createElement("path", {
+    d: "M10 1.014L6.014 5 10 8.986 8.986 10 5 6.014 1.014 10 0 8.986 3.986 5 0 1.014 1.014 0 5 3.986 8.986 0z",
+    fill: "#6D777B",
+    fillRule: "evenodd",
+    opacity: 0.7
+  }));
+};
+
+var Copy = function Copy(props) {
+  return React__default.createElement("svg", _extends_1({
+    width: 22,
+    height: 22,
+    viewBox: "0 0 22 22"
+  }, props), React__default.createElement("path", {
+    d: "M12.263 5.806H6.651A1.66 1.66 0 0 0 5 7.457v9.892A1.66 1.66 0 0 0 6.651 19h5.612a1.66 1.66 0 0 0 1.652-1.651V7.457c0-.923-.746-1.651-1.652-1.651zm.994 11.525c0 .55-.443.994-.994.994H6.651a.993.993 0 0 1-.994-.994V7.457c0-.55.444-.994.994-.994h5.612c.55 0 .994.444.994.994v9.874zM16.72 4.65v9.892a1.66 1.66 0 0 1-1.651 1.651.337.337 0 0 1-.338-.337c0-.196.142-.338.338-.338.55 0 .994-.444.994-.994V4.651a.993.993 0 0 0-.994-.994H9.457a.993.993 0 0 0-.994.994.337.337 0 0 1-.338.338.327.327 0 0 1-.337-.338A1.688 1.688 0 0 1 9.458 3h5.61a1.66 1.66 0 0 1 1.652 1.651z",
+    fill: "currentColor"
+  }));
+};
+
+var Cross = function Cross(props) {
+  return React__default.createElement("svg", _extends_1({
+    width: 11,
+    height: 11,
+    viewBox: "0 0 11 11"
+  }, props), React__default.createElement("path", {
+    d: "M10.476 1.524L6.3 5.7l4.176 4.176-1.062 1.062-4.176-4.176-4.176 4.176L0 9.876 4.176 5.7 0 1.524 1.062.462l4.176 4.176L9.414.462z",
+    fill: "#FB7777",
+    fillRule: "evenodd"
+  }));
+};
+
+var Ellipsis = function Ellipsis(props) {
+  return React__default.createElement("svg", _extends_1({
+    width: 15,
+    height: 4,
+    viewBox: "0 0 15 4"
+  }, props), React__default.createElement("path", {
+    d: "M7.5 3.213a1.42 1.42 0 0 1-.974-.37c-.278-.248-.418-.588-.418-1.021 0-.384.135-.71.404-.979S7.11.439 7.5.439s.722.135.997.404c.276.27.413.595.413.979 0 .439-.142.78-.427 1.025a1.465 1.465 0 0 1-.983.366zm-5.327 0c-.371 0-.694-.122-.97-.366C.928 2.603.791 2.26.791 1.822c0-.39.133-.718.398-.984.266-.266.594-.399.984-.399s.722.135.997.404c.275.27.413.595.413.979 0 .439-.142.78-.427 1.025a1.465 1.465 0 0 1-.983.366zm10.654 0c-.365 0-.688-.123-.97-.37-.28-.248-.421-.588-.421-1.021 0-.384.134-.71.403-.979.27-.269.598-.404.988-.404s.722.135.997.404c.276.27.413.595.413.979 0 .433-.14.773-.422 1.02a1.45 1.45 0 0 1-.988.371z",
+    fill: "currentColor",
+    fillRule: "evenodd"
+  }));
+};
+
+var Error$1 = function Error(props) {
+  return React__default.createElement("svg", _extends_1({
+    width: 22,
+    height: 22,
+    viewBox: "0 0 22 22"
+  }, props), React__default.createElement("g", {
+    transform: "translate(4 4)",
+    fill: "none",
+    fillRule: "evenodd"
+  }, React__default.createElement("rect", {
+    fill: "#FF445D",
+    width: 14,
+    height: 14,
+    rx: 7
+  }), React__default.createElement("path", {
+    d: "M6.155 8.547h1.298V3.3H6.155v5.247zM6.045 11h1.529V9.537H6.045V11z",
+    fill: "#FFF"
+  })));
+};
+
+var Filter = function Filter(props) {
+  return React__default.createElement("svg", _extends_1({
+    width: 22,
+    height: 22,
+    viewBox: "0 0 22 22",
+    fill: "none"
+  }, props), React__default.createElement("path", {
+    d: "M13.421 6.667h-9.79C3.275 6.667 3 6.377 3 6c0-.378.274-.667.632-.667h9.79C13.694 4.556 14.388 4 15.21 4c.822 0 1.537.556 1.79 1.333h1.368c.358 0 .632.29.632.667 0 .378-.274.667-.632.667H17C16.726 7.444 16.032 8 15.21 8c-.82 0-1.536-.556-1.789-1.333zM19 11c0 .378-.274.667-.632.667h-9.79C8.327 12.444 7.612 13 6.79 13c-.82 0-1.516-.556-1.79-1.333H3.632c-.358 0-.632-.29-.632-.667 0-.378.274-.667.632-.667H5C5.253 9.556 5.968 9 6.79 9c.82 0 1.515.556 1.789 1.333h9.79c.357 0 .631.29.631.667zm-.632 4.333H12.79C12.537 14.556 11.821 14 11 14c-.821 0-1.516.556-1.79 1.333H3.633c-.358 0-.632.29-.632.667 0 .378.274.667.632.667H9.21C9.463 17.444 10.179 18 11 18c.821 0 1.516-.556 1.79-1.333h5.578c.358 0 .632-.29.632-.667 0-.378-.274-.667-.632-.667z",
+    fill: "currentColor"
+  }));
+};
+
+var Fundraising = function Fundraising(props) {
+  return React__default.createElement("svg", _extends_1({
+    width: 22,
+    height: 22,
+    viewBox: "0 0 22 22"
+  }, props), React__default.createElement("g", {
+    fill: "none",
+    fillRule: "evenodd"
+  }, React__default.createElement("path", {
+    d: "M0 0h22v22H0z"
+  }), React__default.createElement("g", {
+    stroke: "currentColor"
+  }, React__default.createElement("path", {
+    d: "M6 12.26C6.402 13.75 9.137 15 12.475 15 16.089 15 19 13.534 19 11.875c0-.886-1.07-1.903-2.967-2.357",
+    strokeLinecap: "round",
+    strokeLinejoin: "round"
+  }), React__default.createElement("path", {
+    d: "M16 6.88C16 8.536 13.1 10 9.5 10S3 8.536 3 6.88C3 5.224 5.9 4 9.5 4S16 5.224 16 6.88"
+  }), React__default.createElement("path", {
+    d: "M6 12v2c0 1.667 2.9 3 6.5 3s6.5-1.333 6.5-3v-2c0 1.643-2.9 3.095-6.5 3.095S6 13.643 6 12z",
+    strokeLinecap: "round",
+    strokeLinejoin: "round"
+  }), React__default.createElement("path", {
+    d: "M9.5 10.095C5.9 10.095 3 8.643 3 7v2c0 1.667 2.9 3 6.5 3S16 10.667 16 9V7c0 1.643-2.9 3.095-6.5 3.095"
+  }))));
+};
+
+var Groups = function Groups(props) {
+  return React__default.createElement("svg", _extends_1({
+    width: 22,
+    height: 22,
+    viewBox: "0 0 22 22"
+  }, props), React__default.createElement("g", {
+    fill: "none",
+    fillRule: "evenodd"
+  }, React__default.createElement("path", {
+    d: "M0 0h22v22H0z"
+  }), React__default.createElement("path", {
+    d: "M14.928 16.169l.395.22c.264.146.396.337.396.571v1.186a.753.753 0 0 1-.235.564.773.773 0 0 1-.556.227H4.79a.773.773 0 0 1-.557-.227.753.753 0 0 1-.234-.564V16.96c0-.215.132-.4.396-.557l.395-.234 3.032-1.64c-.556-.44-.942-1.026-1.157-1.758-.215-.733-.322-1.314-.322-1.744V9.05c0-.332.102-.662.307-.989.205-.327.474-.623.806-.886.332-.264.71-.479 1.135-.645a3.497 3.497 0 0 1 1.282-.249c.44 0 .87.083 1.29.25.419.165.793.38 1.12.644.327.263.59.559.79.886.2.327.301.657.301.989v1.977c0 .479-.095 1.075-.286 1.787-.19.713-.559 1.29-1.106 1.729l2.945 1.626zM14.78 18v-.835a.391.391 0 0 0-.102-.073l-.117-.059a.071.071 0 0 1-.037-.014.479.479 0 0 0-.051-.03l-2.945-1.626a.99.99 0 0 1-.337-.315.863.863 0 0 1-.146-.432.856.856 0 0 1 .066-.454.913.913 0 0 1 .285-.366c.4-.313.674-.76.82-1.34.147-.581.22-1.058.22-1.429V9.05c0-.342-.256-.733-.769-1.172a2.672 2.672 0 0 0-1.794-.66c-.664 0-1.262.22-1.794.66-.533.44-.799.83-.799 1.172v1.977c0 .371.088.848.264 1.429.176.58.464 1.027.864 1.34.117.098.208.22.271.366a.856.856 0 0 1 .066.454.863.863 0 0 1-.146.432.865.865 0 0 1-.337.3L5.23 17.005a.06.06 0 0 0-.029.007.115.115 0 0 0-.03.022.432.432 0 0 0-.124.059l-.11.073V18h9.844zm3.428-4.16l.395.22c.264.146.396.336.396.57v1.173a.753.753 0 0 1-.234.564.773.773 0 0 1-.557.227h-1.553a5.372 5.372 0 0 0-.183-.542.952.952 0 0 0-.3-.396h1.89v-.835a4.202 4.202 0 0 0-.103-.066.408.408 0 0 0-.117-.05.092.092 0 0 0-.037-.023.402.402 0 0 1-.051-.022l-2.988-1.626a.99.99 0 0 1-.337-.315.863.863 0 0 1-.147-.432.856.856 0 0 1 .066-.454.913.913 0 0 1 .286-.366c.4-.322.68-.774.842-1.355.161-.581.242-1.052.242-1.414V6.721c0-.352-.264-.747-.791-1.187a2.756 2.756 0 0 0-1.817-.659 2.981 2.981 0 0 0-1.787.6 2.301 2.301 0 0 0-.586-.102l-.6-.03c.341-.4.78-.737 1.318-1.01a3.608 3.608 0 0 1 1.655-.41c.44 0 .872.085 1.297.256a4.52 4.52 0 0 1 1.135.652c.332.264.6.562.806.894.205.332.307.664.307.996v1.977c0 .469-.102 1.062-.307 1.78-.205.718-.581 1.292-1.128 1.721l2.988 1.64z",
+    fill: "currentColor"
+  })));
+};
+
+var Home = function Home(props) {
+  return React__default.createElement("svg", _extends_1({
+    width: 22,
+    height: 22,
+    viewBox: "0 0 22 22"
+  }, props), React__default.createElement("path", {
+    d: "M17.884 9.993c.08.085.121.198.115.314a.484.484 0 0 1-.129.312.667.667 0 0 1-.143.09.375.375 0 0 1-.157.033c-.06 0-.12-.01-.176-.033a.338.338 0 0 1-.137-.103l-.586-.614v6.53a.419.419 0 0 1-.13.307.419.419 0 0 1-.307.13h-3.052a.419.419 0 0 1-.307-.13.419.419 0 0 1-.13-.307V12.16H9.268l-.014 4.362a.419.419 0 0 1-.13.307.419.419 0 0 1-.307.13H5.78a.43.43 0 0 1-.437-.437V9.993l-.586.613a.484.484 0 0 1-.314.13.428.428 0 0 1-.312-.117.484.484 0 0 1-.13-.312.428.428 0 0 1 .116-.314L10.7 3.135a.463.463 0 0 1 .15-.102.456.456 0 0 1 .34 0 .339.339 0 0 1 .137.102l6.557 6.858zM15.8 9.147c0-.019.003-.036.013-.054l-4.799-5.016-4.81 5.016a.26.26 0 0 0 .005.054.223.223 0 0 1 .007.055v6.885h2.168l.014-4.363a.419.419 0 0 1 .129-.307.419.419 0 0 1 .307-.13h4.348a.419.419 0 0 1 .307.13c.083.08.13.191.13.307v4.363h2.18v-6.94z",
+    fill: "currentColor"
+  }));
+};
+
+var Identity = function Identity(props) {
+  return React__default.createElement("svg", _extends_1({
+    width: 22,
+    height: 22,
+    viewBox: "0 0 22 22"
+  }, props), React__default.createElement("g", {
+    fill: "none",
+    fillRule: "evenodd"
+  }, React__default.createElement("path", {
+    d: "M0 0h22v22H0z"
+  }), React__default.createElement("path", {
+    d: "M4.04 16.984V18h11.44v1H4.04a1.02 1.02 0 0 1-.731-.297A.943.943 0 0 1 3 18v-1.5c0-.281.173-.518.52-.71l.52-.29 4.566-2.078a3.891 3.891 0 0 1-.926-1.008 6.536 6.536 0 0 1-.61-1.21 6.431 6.431 0 0 1-.333-1.212A6.209 6.209 0 0 1 6.64 9V6.5c0-.417.135-.833.406-1.25a4.43 4.43 0 0 1 1.073-1.125 5.961 5.961 0 0 1 1.503-.813A4.82 4.82 0 0 1 11.32 3c.574 0 1.14.104 1.698.313a5.819 5.819 0 0 1 1.495.812c.439.333.796.708 1.073 1.125.276.417.414.833.414 1.25V9c0 .302-.032.651-.098 1.047a6.59 6.59 0 0 1-.324 1.21 5.86 5.86 0 0 1-.602 1.188 4.13 4.13 0 0 1-.91.992l1.381.61-.26 1-1.56-.703a1.045 1.045 0 0 1-.406-.32.958.958 0 0 1-.195-.477c-.01-.177.016-.344.082-.5a1.03 1.03 0 0 1 .308-.406c.564-.417.962-1.008 1.195-1.774.233-.765.349-1.388.349-1.867V6.5c0-.27-.108-.552-.325-.844a3.757 3.757 0 0 0-.837-.804 4.941 4.941 0 0 0-1.162-.61A3.744 3.744 0 0 0 11.32 4c-.444 0-.883.08-1.316.242a4.932 4.932 0 0 0-1.17.617 3.65 3.65 0 0 0-.837.813c-.211.292-.317.568-.317.828V9c0 .49.127 1.115.382 1.875.254.76.653 1.349 1.194 1.766a.969.969 0 0 1 .195 1.367c-.108.14-.243.247-.406.32l-4.566 2.078a1.041 1.041 0 0 0-.268.157c-.114.083-.171.223-.171.421zM18.5 16a.48.48 0 0 1 .352.148.48.48 0 0 1 .148.352.48.48 0 0 1-.148.352.48.48 0 0 1-.352.148H17v1.5a.48.48 0 0 1-.148.352.48.48 0 0 1-.352.148.48.48 0 0 1-.352-.148A.48.48 0 0 1 16 18.5V17h-1.5a.48.48 0 0 1-.352-.148A.48.48 0 0 1 14 16.5a.48.48 0 0 1 .148-.352A.48.48 0 0 1 14.5 16H16v-1.5a.48.48 0 0 1 .148-.352A.48.48 0 0 1 16.5 14a.48.48 0 0 1 .352.148.48.48 0 0 1 .148.352V16h1.5z",
+    fill: "currentColor"
+  })));
+};
+
+var Menu = function Menu(props) {
+  return React__default.createElement("svg", _extends_1({
+    width: 18,
+    height: 14,
+    viewBox: "0 0 18 14"
+  }, props), React__default.createElement("path", {
+    d: "M1 1h16M1 7h16M1 13h16",
+    stroke: "currentColor"
+  }));
+};
+
+var Notifications = function Notifications(props) {
+  return React__default.createElement("svg", _extends_1({
+    width: 22,
+    height: 22,
+    viewBox: "0 0 22 22"
+  }, props), React__default.createElement("g", {
+    fill: "none",
+    fillRule: "evenodd"
+  }, React__default.createElement("path", {
+    d: "M0 0h22v22H0z"
+  }), React__default.createElement("path", {
+    d: "M17.271 13.367c.254.313.455.591.601.835a.731.731 0 0 1 .044.733.718.718 0 0 1-.571.424c-.264.04-.469.059-.616.059H13.99c0 .693-.244 1.284-.732 1.772a2.414 2.414 0 0 1-1.773.733 2.414 2.414 0 0 1-1.772-.733 2.414 2.414 0 0 1-.733-1.772H6.3c-.225 0-.457-.027-.696-.08a.732.732 0 0 1-.52-.403c-.117-.245-.107-.496.03-.755a6.56 6.56 0 0 1 .556-.857c.264-.342.552-.73.864-1.164.313-.435.469-.887.469-1.355V7.742c0-.664.115-1.286.344-1.867.23-.582.545-1.09.945-1.524.4-.434.874-.776 1.42-1.025a4.191 4.191 0 0 1 1.759-.374c.634 0 1.225.125 1.772.374a4.46 4.46 0 0 1 1.428 1.025c.406.435.723.942.953 1.524a5.04 5.04 0 0 1 .344 1.867v3.062c0 .478.149.942.447 1.391.297.45.583.84.856 1.172zm-5.786 3.574c.42 0 .78-.149 1.077-.446.298-.298.447-.657.447-1.077H9.962c0 .42.149.779.447 1.077.298.297.656.446 1.076.446zm5.347-2.52a8.139 8.139 0 0 0-.337-.425c-.322-.39-.657-.856-1.003-1.398a3.262 3.262 0 0 1-.52-1.794V7.742c0-.527-.09-1.02-.271-1.48a3.85 3.85 0 0 0-.74-1.2 3.511 3.511 0 0 0-1.106-.813c-.425-.2-.886-.3-1.384-.3-.489 0-.945.1-1.37.3-.425.2-.793.47-1.106.813a3.744 3.744 0 0 0-.732 1.2 4.102 4.102 0 0 0-.264 1.48v3.062c0 .634-.183 1.218-.55 1.75a46.606 46.606 0 0 1-1.157 1.619c-.063.088-.12.17-.168.249h10.708z",
+    fill: "currentColor"
+  })));
+};
+
+var Permissions = function Permissions(props) {
+  return React__default.createElement("svg", _extends_1({
+    width: 22,
+    height: 22,
+    viewBox: "0 0 22 22"
+  }, props), React__default.createElement("g", {
+    fill: "none",
+    fillRule: "evenodd"
+  }, React__default.createElement("path", {
+    d: "M0 0h22v22H0z"
+  }), React__default.createElement("g", {
+    stroke: "currentColor"
+  }, React__default.createElement("path", {
+    d: "M11.036 3.143L3.578 6.357V7.43h14.916V6.357l-7.458-3.214zm6.88 12.393H4.071c-.318 0-.577.242-.577.535v1.072h15V16.07c0-.293-.26-.535-.578-.535z",
+    strokeLinecap: "round",
+    strokeLinejoin: "round"
+  }), React__default.createElement("path", {
+    d: "M5 7v8.034M8 7v8.275M11 7v8.034M14 7v8.275M17 7v8.275"
+  }))));
+};
+
+var Plus = function Plus(props) {
+  return React__default.createElement("svg", _extends_1({
+    width: 24,
+    height: 24,
+    viewBox: "0 0 24 24"
+  }, props), React__default.createElement("path", {
+    d: "M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z",
+    fill: "currentColor"
+  }));
+};
+
+var Remove = function Remove(props) {
+  return React__default.createElement("svg", _extends_1({
+    width: 22,
+    height: 22,
+    viewBox: "0 0 22 22"
+  }, props), React__default.createElement("g", {
+    fill: "none",
+    fillRule: "evenodd"
+  }, React__default.createElement("path", {
+    d: "M0 0h22v22H0z"
+  }), React__default.createElement("path", {
+    d: "M11 4.744c1.216 0 2.341.304 3.376.912a6.308 6.308 0 0 1 2.368 2.368 6.546 6.546 0 0 1 .912 3.376 6.546 6.546 0 0 1-.912 3.376 6.308 6.308 0 0 1-2.368 2.368 6.546 6.546 0 0 1-3.376.912 6.546 6.546 0 0 1-3.376-.912 6.428 6.428 0 0 1-2.368-2.384 6.517 6.517 0 0 1-.912-3.36c0-1.205.304-2.325.912-3.36A6.55 6.55 0 0 1 7.64 5.656 6.517 6.517 0 0 1 11 4.744z",
+    stroke: "currentColor"
+  }), React__default.createElement("path", {
+    fill: "currentColor",
+    d: "M14.344 10.744v1.312H7.656v-1.312z"
+  })));
+};
+
+var Settings = function Settings(props) {
+  return React__default.createElement("svg", _extends_1({
+    width: 22,
+    height: 22,
+    viewBox: "0 0 22 22"
+  }, props), React__default.createElement("g", {
+    fill: "none",
+    fillRule: "evenodd"
+  }, React__default.createElement("path", {
+    d: "M0 0h22v22H0z"
+  }), React__default.createElement("path", {
+    d: "M18.063 9.08c.224.038.437.148.637.329.2.18.3.403.3.666v.938c0 .254-.1.459-.3.615-.2.156-.413.264-.637.322l-1.216.293a6.84 6.84 0 0 1-.154.418 4.008 4.008 0 0 1-.183.388l.644 1.084c.127.195.205.42.235.674a.766.766 0 0 1-.235.659l-.659.659a.847.847 0 0 1-.674.256 1.38 1.38 0 0 1-.688-.212l-1.055-.674a7.697 7.697 0 0 1-.41.19 4.595 4.595 0 0 1-.44.162l-.263 1.216a1.29 1.29 0 0 1-.33.637c-.18.2-.403.3-.666.3h-.938a.743.743 0 0 1-.615-.3 1.749 1.749 0 0 1-.322-.637L9.8 15.86a6.001 6.001 0 0 1-.469-.168 4.816 4.816 0 0 1-.454-.213l-1.084.689a1.308 1.308 0 0 1-.681.212.813.813 0 0 1-.667-.256l-.674-.66a.785.785 0 0 1-.22-.658c.03-.254.103-.479.22-.674l.689-1.143a8.068 8.068 0 0 1-.169-.359 3.029 3.029 0 0 1-.139-.388l-1.215-.293a1.749 1.749 0 0 1-.638-.322.743.743 0 0 1-.3-.615v-.938c0-.263.1-.486.3-.666.2-.181.413-.29.638-.33l1.2-.264a3.44 3.44 0 0 1 .147-.41c.059-.136.117-.268.176-.395l-.689-1.143a1.664 1.664 0 0 1-.22-.674.785.785 0 0 1 .22-.659l.674-.659a.813.813 0 0 1 .667-.256c.268.014.495.085.68.212l1.085.689a5.325 5.325 0 0 1 .908-.381l.308-1.202a1.58 1.58 0 0 1 .307-.637.76.76 0 0 1 .63-.3h.938c.263 0 .483.1.659.3.176.2.288.408.337.623l.264 1.23a6.533 6.533 0 0 1 .85.352l1.054-.674a1.38 1.38 0 0 1 .688-.212.847.847 0 0 1 .674.256l.66.66a.766.766 0 0 1 .234.658 1.55 1.55 0 0 1-.235.674l-.644 1.084c.068.137.134.276.198.418.063.141.114.29.153.446l1.201.264zm0 1.86l.014-.836a.515.515 0 0 0-.205-.102l-1.743-.396-.161-.512a2.474 2.474 0 0 0-.117-.352 4.109 4.109 0 0 0-.176-.366l-.235-.469.923-1.538a.474.474 0 0 0 .066-.117.28.28 0 0 0 .022-.088l-.615-.6a.348.348 0 0 0-.19.058l-1.51.967-.483-.25a11.505 11.505 0 0 0-.351-.168 1.904 1.904 0 0 0-.366-.124l-.513-.176-.381-1.772a.431.431 0 0 0-.044-.11l-.03-.051h-.864a.34.34 0 0 0-.058.087.52.52 0 0 0-.044.147l-.425 1.7-.498.16a4.51 4.51 0 0 0-.762.322l-.483.25-1.567-.997-.074-.036a.671.671 0 0 0-.088-.037l-.615.615c0 .03.008.064.022.103a.898.898 0 0 0 .066.132l.952 1.582-.234.454a8.76 8.76 0 0 0-.154.351 2.79 2.79 0 0 0-.11.323l-.16.512-1.773.396a.537.537 0 0 0-.096.044.199.199 0 0 1-.066.03v.863c.02.02.05.037.088.052a.81.81 0 0 0 .147.036l1.714.44.16.498a3.144 3.144 0 0 0 .265.615l.22.454-.953 1.597a.474.474 0 0 0-.066.117.298.298 0 0 0-.022.103l.615.6c.03 0 .062-.007.096-.022a.59.59 0 0 0 .095-.051l1.538-.982.483.25a4.51 4.51 0 0 0 .762.322l.498.16.44 1.73c.01.048.022.09.036.124a.254.254 0 0 0 .051.08h.85a.515.515 0 0 0 .103-.19l.38-1.743.513-.176a5.14 5.14 0 0 0 .703-.293l.484-.249 1.538.982.073.036a.72.72 0 0 0 .088.037l.615-.615a.298.298 0 0 0-.022-.103.826.826 0 0 0-.066-.132l-.923-1.523.235-.469c.058-.107.11-.217.154-.33.044-.112.085-.227.124-.344l.161-.483 1.743-.44a.635.635 0 0 0 .125-.036.254.254 0 0 0 .08-.052zM11.5 7.687c.781 0 1.448.273 2 .82a2.7 2.7 0 0 1 .827 1.992 2.7 2.7 0 0 1-.827 1.992 2.737 2.737 0 0 1-2 .82 2.72 2.72 0 0 1-1.985-.82 2.7 2.7 0 0 1-.828-1.992 2.7 2.7 0 0 1 .828-1.992 2.72 2.72 0 0 1 1.985-.82zm0 4.687c.518 0 .96-.183 1.326-.55.366-.366.549-.807.549-1.325 0-.518-.183-.96-.55-1.326a1.806 1.806 0 0 0-1.325-.549c-.518 0-.96.183-1.326.55a1.804 1.804 0 0 0-.549 1.325c0 .518.183.96.55 1.326.366.366.807.549 1.325.549z",
+    fill: "currentColor"
+  })));
+};
+
+var Share = function Share(props) {
+  return React__default.createElement("svg", _extends_1({
+    width: 16,
+    height: 14,
+    viewBox: "0 0 16 14"
+  }, props), React__default.createElement("g", {
+    fill: "none",
+    fillRule: "evenodd"
+  }, React__default.createElement("path", {
+    d: "M-3-4h22v22H-3z"
+  }), React__default.createElement("path", {
+    d: "M.531 13.719a.44.44 0 0 1-.312-.117.522.522 0 0 1-.157-.305c0-.042-.018-.3-.054-.774-.037-.474-.013-1.054.07-1.742.083-.687.258-1.43.524-2.226A6.74 6.74 0 0 1 1.89 6.313 6.89 6.89 0 0 1 3.125 5.18a7.514 7.514 0 0 1 1.523-.836 9.899 9.899 0 0 1 1.797-.54c.64-.13 1.326-.205 2.055-.226L8.516.781a.48.48 0 0 1 .078-.273.52.52 0 0 1 .203-.18.537.537 0 0 1 .281-.047c.094.01.177.047.25.11l6.485 5.312a.513.513 0 0 1 .187.39.498.498 0 0 1-.188.391L9.329 11.86a.453.453 0 0 1-.25.11.537.537 0 0 1-.281-.047.501.501 0 0 1-.203-.188.493.493 0 0 1-.078-.265L8.5 8.594c-1.75 0-3.125.234-4.125.703s-1.75.99-2.25 1.562c-.5.573-.815 1.107-.945 1.602-.13.495-.196.763-.196.805a.538.538 0 0 1-.132.32.387.387 0 0 1-.305.133H.53zm8.485-6.125c.062 0 .125.013.187.039a.72.72 0 0 1 .172.101.777.777 0 0 1 .102.164.473.473 0 0 1 .039.196v2.312l5.203-4.312-5.203-4.266v2.25a.48.48 0 0 1-.149.352.48.48 0 0 1-.351.148c-.709 0-1.375.05-2 .149a8.793 8.793 0 0 0-1.743.453 7.012 7.012 0 0 0-1.46.75 5.65 5.65 0 0 0-1.157 1.039 6.162 6.162 0 0 0-1.148 1.89 8.291 8.291 0 0 0-.492 1.922c.27-.375.604-.752 1-1.133.395-.38.903-.72 1.523-1.023.62-.302 1.375-.55 2.266-.742.89-.193 1.96-.29 3.21-.29z",
+    fill: "currentColor"
+  })));
+};
+
+var Time = function Time(props) {
+  return React__default.createElement("svg", _extends_1({
+    width: 13,
+    height: 13,
+    viewBox: "0 0 13 13"
+  }, props), React__default.createElement("path", {
+    d: "M6.5 11.76c.8 0 1.535-.2 2.205-.6.66-.39 1.185-.92 1.575-1.59.39-.67.585-1.405.585-2.205S10.67 5.83 10.28 5.16a4.403 4.403 0 0 0-1.575-1.575A4.305 4.305 0 0 0 6.5 3c-.8 0-1.535.195-2.205.585-.66.39-1.185.915-1.575 1.575a4.305 4.305 0 0 0-.585 2.205c0 .8.195 1.535.585 2.205.39.67.915 1.2 1.575 1.59.67.4 1.405.6 2.205.6zm0-10.02c1.03 0 1.98.255 2.85.765.85.49 1.52 1.16 2.01 2.01.51.87.765 1.82.765 2.85s-.255 1.98-.765 2.85c-.49.85-1.16 1.52-2.01 2.01-.87.51-1.82.765-2.85.765s-1.98-.255-2.85-.765a5.386 5.386 0 0 1-2.01-2.01 5.535 5.535 0 0 1-.765-2.85c0-1.03.255-1.98.765-2.85.49-.85 1.16-1.52 2.01-2.01.87-.51 1.82-.765 2.85-.765zm.33 2.52v3.315L9.32 9.06l-.51.765L5.885 8.01V4.26h.945zM3.95 1.395l-2.895 2.37L.26 2.82 3.125.45l.825.945zm8.79 1.425l-.795.945-2.895-2.46.825-.945 2.865 2.46z",
+    fill: "#6D777B",
+    fillRule: "evenodd",
+    opacity: 0.75
+  }));
+};
+
+var Wallet = function Wallet(props) {
+  return React__default.createElement("svg", _extends_1({
+    width: 22,
+    height: 22,
+    viewBox: "0 0 22 22"
+  }, props), React__default.createElement("g", {
+    fill: "none",
+    fillRule: "evenodd"
+  }, React__default.createElement("path", {
+    d: "M0 0h22v22H0z"
+  }), React__default.createElement("path", {
+    d: "M19 7.186v8.642c0 .39-.137.723-.41.996-.274.274-.606.41-.996.41H5.406c-.39 0-.722-.136-.996-.41a1.356 1.356 0 0 1-.41-.996v-7.5c0-.38.137-.708.41-.981.274-.274.6-.415.982-.425h.468V5.047c0-.39.14-.723.418-.996a1.36 1.36 0 0 1 .989-.41l10.59 2.109c.528.146.85.38.967.703.117.322.176.567.176.733zM6.798 5.046v1.876h10.327c.186.01.308-.03.366-.117l.088-.132L7.237 4.578a.467.467 0 0 0-.44.469zm11.264 10.782V7.391c0 .156-.1.273-.3.351-.2.078-.412.117-.637.117H5.406a.45.45 0 0 0-.33.14.45.45 0 0 0-.138.33v7.5a.45.45 0 0 0 .139.329.45.45 0 0 0 .33.139h12.187a.45.45 0 0 0 .33-.14.45.45 0 0 0 .139-.329zm-11.25-4.687c.254 0 .474.092.66.278a.901.901 0 0 1 .278.66.894.894 0 0 1-.278.666.913.913 0 0 1-.66.27.906.906 0 0 1-.666-.27.906.906 0 0 1-.271-.667c0-.254.09-.474.271-.66a.894.894 0 0 1 .667-.277z",
+    fill: "currentColor"
+  })));
+};
+
+/* eslint-disable prettier/prettier */
+
+function _objectSpread(target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i] != null ? arguments[i] : {};
+    var ownKeys = Object.keys(source);
+
+    if (typeof Object.getOwnPropertySymbols === 'function') {
+      ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) {
+        return Object.getOwnPropertyDescriptor(source, sym).enumerable;
+      }));
+    }
+
+    ownKeys.forEach(function (key) {
+      defineProperty(target, key, source[key]);
+    });
+  }
+
+  return target;
+}
+
+var objectSpread = _objectSpread;
+
+// File generated by the oco-to-js.js script: do not edit manually.
+var aragon = {
+  "Grey": {
+    "Black Ash": "#3B3B3B",
+    "Dim Grey": "#707070",
+    "Dust Grey": "#969696",
+    "Light Grey": "#B3B3B3",
+    "Gainsboro": "#E6E6E6",
+    "Alabaster": "#F2F2F2"
+  },
+  "Rain": {
+    "Shark": "#1F2323",
+    "Atomic": "#455559",
+    "Slate": "#6D8088",
+    "Aqua Island": "#9ECDDB",
+    "Rain Sky": "#DCEAEF",
+    "Aqua Blue": "#F7FBFD"
+  },
+  "Blue": {
+    "Lochmara": "#028BCF",
+    "Danube": "#7FADDC",
+    "Spindle": "#B3CFEA",
+    "Solitude": "#ECF8FE"
+  },
+  "Sea": {
+    "Light Sea": "#21B7C4",
+    "Turquoise": "#50E2C3",
+    "Blizzard Blue": "#ACECE7"
+  },
+  "Purple": {
+    "Indigo": "#4A2DBE",
+    "Portage": "#A684F5",
+    "Lavender": "#EDE5FF"
+  },
+  "Eagle": {
+    "Dark Cerulean": "#00A4D1",
+    "Cerulean": "#00B4E6",
+    "Dark Turquoise": "#00CBE6",
+    "Dark Opal": "#00DBCD",
+    "Opal": "#00F0E0"
+  },
+  "Gold": {
+    "Brandy": "#DAC08B",
+    "Beige": "#FFF9EB"
+  },
+  "Red": {
+    "Salmon Red": "#FB7979"
+  },
+  "Green": {
+    "Spring Green": "#21D48F"
+  },
+  "Black": {
+    "Black": "#000000"
+  },
+  "White": {
+    "White": "#FFFFFF"
+  },
+  "Aragon Brand": {
+    "Primary": "=Purple.Indigo",
+    "Secondary": "=Sea.Turquoise",
+    "Black Ash": "=Grey.Black Ash",
+    "Gradient Start": "=Eagle.Cerulean",
+    "Gradient End": "=Eagle.Opal"
+  },
+  "Aragon UI": {
+    "gradientStart": "=Eagle.Cerulean",
+    "gradientEnd": "=Eagle.Opal",
+    "gradientStartActive": "=Eagle.Dark Cerulean",
+    "gradientEndActive": "=Eagle.Dark Opal",
+    "gradientText": "=White.White",
+    "mainBackground": "=Rain.Aqua Blue",
+    "mainBgGradientStart": "=Rain.Rain Sky",
+    "mainBgGradientEnd": "=Rain.Aqua Blue",
+    "secondaryBackground": "=Rain.Rain Sky",
+    "contentBackground": "=White.White",
+    "contentBackgroundActive": "=Grey.Alabaster",
+    "contentBorder": "=Grey.Gainsboro",
+    "contentBorderActive": "=Grey.Light Grey",
+    "disabled": "=Grey.Gainsboro",
+    "disabledText": "=White.White",
+    "infoBackground": "=Blue.Solitude",
+    "infoPermissionsBackground": "=Gold.Beige",
+    "infoPermissionsIcon": "=Gold.Brandy",
+    "shadow": "=Grey.Alabaster",
+    "text": "=Black.Black",
+    "textPrimary": "=Aragon UI.text",
+    "textDimmed": "=Grey.Black Ash",
+    "textSecondary": "=Grey.Dim Grey",
+    "textTertiary": "=Grey.Light Grey",
+    "accent": "=Eagle.Dark Turquoise",
+    "positive": "=Green.Spring Green",
+    "positiveText": "=White.White",
+    "negative": "=Red.Salmon Red",
+    "negativeText": "=White.White",
+    "badgeAppBackground": "=Purple.Lavender",
+    "badgeAppForeground": "=Purple.Portage",
+    "badgeIdentityBackground": "=Rain.Rain Sky",
+    "badgeIdentityForeground": "=Rain.Slate",
+    "badgeNotificationBackground": "=Aragon UI.positive",
+    "badgeNotificationForeground": "=Aragon UI.positiveText",
+    "badgeInfoBackground": "=Rain.Rain Sky",
+    "badgeInfoForeground": "=Rain.Slate",
+    "selectionBackground": "#B2D7FF",
+    "selectionForeground": "=Aragon UI.textPrimary"
+  },
+  "Aragon UI Dark": {
+    "gradientStart": "=Eagle.Cerulean",
+    "gradientEnd": "=Eagle.Opal",
+    "gradientStartActive": "=Eagle.Dark Cerulean",
+    "gradientEndActive": "=Eagle.Dark Opal",
+    "gradientText": "=White.White",
+    "mainBackground": "=Rain.Aqua Blue",
+    "mainBgGradientStart": "=Rain.Rain Sky",
+    "mainBgGradientEnd": "=Rain.Aqua Blue",
+    "secondaryBackground": "=Rain.Rain Sky",
+    "contentBackground": "=Rain.Shark",
+    "contentBackgroundActive": "=Grey.Alabaster",
+    "contentBorder": "=Grey.Gainsboro",
+    "contentBorderActive": "=Grey.Light Grey",
+    "disabled": "=Grey.Light Grey",
+    "disabledText": "=Grey.Dim Grey",
+    "infoBackground": "=Blue.Solitude",
+    "infoPermissionsBackground": "=Gold.Beige",
+    "infoPermissionsIcon": "=Gold.Brandy",
+    "shadow": "=Grey.Alabaster",
+    "text": "=White.White",
+    "textPrimary": "=Aragon UI Dark.text",
+    "textDimmed": "=Grey.Alabaster",
+    "textSecondary": "=Grey.Dust Grey",
+    "textTertiary": "=Grey.Dim Grey",
+    "accent": "=Eagle.Dark Turquoise",
+    "positive": "=Green.Spring Green",
+    "positiveText": "=White.White",
+    "negative": "=Red.Salmon Red",
+    "negativeText": "=White.White",
+    "badgeAppBackground": "=Purple.Lavender",
+    "badgeAppForeground": "=Purple.Portage",
+    "badgeIdentityBackground": "=Rain.Rain Sky",
+    "badgeIdentityForeground": "=Rain.Slate",
+    "badgeNotificationBackground": "=Aragon UI Dark.positive",
+    "badgeNotificationForeground": "=Aragon UI Dark.positiveText",
+    "badgeInfoBackground": "=Rain.Rain Sky",
+    "badgeInfoForeground": "=Rain.Slate",
+    "selectionBackground": "#B2D7FF",
+    "selectionForeground": "=Aragon UI.textPrimary"
+  }
+};
+
+var THEME_NAME = 'Aragon UI';
+var THEME_DARK_NAME = 'Aragon UI Dark';
+var BRAND_NAME = 'Aragon Brand'; // Name of the group a given palette belong to
+
+var getGroupName = function getGroupName(name) {
+  if (name === THEME_NAME) return 'theme';
+  if (name === THEME_DARK_NAME) return 'themeDark';
+  if (name === BRAND_NAME) return 'brand';
+  return 'colors';
+}; // Resolve a single color
+
+
+var resolveColor = function resolveColor(value, palettes) {
+  // already resolved color
+  if (!value.startsWith('=')) {
+    return value;
+  }
+
+  var _value$slice$split = value.slice(1).split('.'),
+      _value$slice$split2 = slicedToArray(_value$slice$split, 2),
+      paletteName = _value$slice$split2[0],
+      key = _value$slice$split2[1];
+
+  var color = palettes[paletteName] && palettes[paletteName][key];
+
+  if (!color) {
+    throw new Error("resolveColor: ".concat(value, " doesn\u2019t seem to exist"));
+  } // follow the references until we find one
+
+
+  if (color.startsWith('=')) {
+    return resolveColor(color, palettes);
+  }
+
+  return color;
+}; // Resolve all the colors in a palette
+
+
+var resolveColors = function resolveColors(palette, palettes) {
+  return Object.entries(palette).reduce(function (pal, _ref) {
+    var _ref2 = slicedToArray(_ref, 2),
+        name = _ref2[0],
+        value = _ref2[1];
+
+    if (typeof value === 'string') {
+      pal[name] = resolveColor(value, palettes);
+    }
+
+    return pal;
+  }, {});
+}; // Prepare groups from the palettes: theme, themeDark, brand and colors.
+
+
+var groups = function groups(palettes) {
+  return Object.entries(palettes).reduce(function (groups, _ref3) {
+    var _ref4 = slicedToArray(_ref3, 2),
+        paletteName = _ref4[0],
+        palette = _ref4[1];
+
+    var groupName = getGroupName(paletteName);
+
+    if (groupName === 'colors') {
+      groups.colors[paletteName] = resolveColors(palette, palettes);
+    } else {
+      groups[groupName] = resolveColors(palette, palettes);
+    }
+
+    return groups;
+  }, {
+    colors: {}
+  });
+};
+
+var _groups = groups(aragon),
+    themeDark = _groups.themeDark,
+    theme = _groups.theme,
+    brand = _groups.brand,
+    colors$1 = _groups.colors;
+
+function _templateObject3() {
+  var data = taggedTemplateLiteral(["\n            position: absolute;\n            top: 0;\n            bottom: 0;\n            height: 100%;\n            ", ": ", "px;\n            display: flex;\n            align-items: center;\n            justify-content: center;\n            color: ", ";\n          "]);
+
+  _templateObject3 = function _templateObject3() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject2() {
+  var data = taggedTemplateLiteral(["\n            ", ": ", "px;\n          "]);
+
+  _templateObject2 = function _templateObject2() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject() {
+  var data = taggedTemplateLiteral(["\n          display: inline-flex;\n          position: relative;\n          width: max-content;\n        "]);
+
+  _templateObject = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
 var baseStyles = styled.css(["", ";width:", ";height:40px;padding:0 10px;background:", ";border:1px solid ", ";border-radius:3px;box-shadow:inset 0 1px 2px rgba(0,0,0,0.06);color:", ";appearance:none;&:focus{outline:none;border-color:", ";}&:read-only{color:transparent;text-shadow:0 0 0 ", ";}"], font({
   size: 'small',
   weight: 'normal'
@@ -10700,12 +7010,12 @@ var WrapperTextInput = React__default.forwardRef(function (_ref2, ref) {
   return React__default.createElement(_StyledDiv, null, React__default.createElement(_StyledTextInput, _extends_1({
     ref: ref
   }, props, {
-    _$p_: adornmentPosition === 'end' ? 'padding-right' : 'padding-left',
-    _$p_2: adornmentWidth - adornmentPadding * 2
+    _css: adornmentPosition === 'end' ? 'padding-right' : 'padding-left',
+    _css2: adornmentWidth - adornmentPadding * 2
   })), React__default.createElement(_StyledDiv2, {
-    _$p_3: adornmentPosition === 'end' ? 'right' : 'left',
-    _$p_4: adornmentPadding,
-    _$p_5: theme.textSecondary
+    _css3: adornmentPosition === 'end' ? 'right' : 'left',
+    _css4: adornmentPadding,
+    _css5: theme.textSecondary
   }, adornment));
 });
 WrapperTextInput.propTypes = objectSpread({}, TextInput.propTypes, {
@@ -10742,29 +7052,20 @@ TextInputMultiline.defaultProps = {
 WrapperTextInput.Number = TextInputNumber;
 WrapperTextInput.Multiline = TextInputMultiline;
 
-var _StyledDiv = styled__default("div").withConfig({
-  displayName: "TextInput___StyledDiv",
-  componentId: "gngg3n-3"
-})(["display:inline-flex;position:relative;width:max-content;"]);
+var _StyledDiv = styled__default("div")(_templateObject());
 
-var _StyledTextInput = styled__default(TextInput).withConfig({
-  displayName: "TextInput___StyledTextInput",
-  componentId: "gngg3n-4"
-})(["", ":", "px;"], function (p) {
-  return p._$p_;
+var _StyledTextInput = styled__default(TextInput)(_templateObject2(), function (p) {
+  return p._css;
 }, function (p) {
-  return p._$p_2;
+  return p._css2;
 });
 
-var _StyledDiv2 = styled__default("div").withConfig({
-  displayName: "TextInput___StyledDiv2",
-  componentId: "gngg3n-5"
-})(["position:absolute;top:0;bottom:0;height:100%;", ":", "px;display:flex;align-items:center;justify-content:center;color:", ";"], function (p) {
-  return p._$p_3;
+var _StyledDiv2 = styled__default("div")(_templateObject3(), function (p) {
+  return p._css3;
 }, function (p) {
-  return p._$p_4;
+  return p._css4;
 }, function (p) {
-  return p._$p_5;
+  return p._css5;
 });
 
 // supporting it yet.
@@ -10781,20 +7082,20 @@ var _StyledDiv2 = styled__default("div").withConfig({
 var FocusVisible =
 /*#__PURE__*/
 function (_React$PureComponent) {
-  inherits$1(FocusVisible, _React$PureComponent);
+  inherits(FocusVisible, _React$PureComponent);
 
   function FocusVisible() {
     var _getPrototypeOf2;
 
     var _this;
 
-    classCallCheck$1(this, FocusVisible);
+    classCallCheck(this, FocusVisible);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    _this = possibleConstructorReturn$1(this, (_getPrototypeOf2 = getPrototypeOf(FocusVisible)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this = possibleConstructorReturn(this, (_getPrototypeOf2 = getPrototypeOf(FocusVisible)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
     defineProperty(assertThisInitialized(assertThisInitialized(_this)), "_element", React__default.createRef());
 
@@ -10827,11 +7128,7 @@ function (_React$PureComponent) {
   createClass(FocusVisible, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      var document = this._element.current.ownerDocument;
-      document.addEventListener('mousedown', this.handlePointerEvent);
-      document.addEventListener('mouseup', this.handlePointerEvent);
-      document.addEventListener('touchstart', this.handlePointerEvent);
-      document.addEventListener('touchend', this.handlePointerEvent); // `document` was previously set as a state entry, which was having the
+      // `document` was previously set as a state entry, which was having the
       // advantages of keeping track of it, and also triggering a rerender to
       // remove the injected span.
       //
@@ -10842,19 +7139,30 @@ function (_React$PureComponent) {
       // this._document is now set on the instance directly, and
       // this.forceUpdate() is used to trigger the second render needed to remove
       // the injected span.
+      this._document = this._element.current.ownerDocument;
 
-      this._document = document;
+      this._document.addEventListener('mousedown', this.handlePointerEvent);
+
+      this._document.addEventListener('mouseup', this.handlePointerEvent);
+
+      this._document.addEventListener('touchstart', this.handlePointerEvent);
+
+      this._document.addEventListener('touchend', this.handlePointerEvent);
+
       this.forceUpdate();
     }
   }, {
     key: "componentWillUnmount",
     value: function componentWillUnmount() {
-      var document = this._document;
-      document.removeEventListener('mousedown', this.handlePointerEvent);
-      document.removeEventListener('mouseup', this.handlePointerEvent);
-      document.removeEventListener('touchstart', this.handlePointerEvent);
-      document.removeEventListener('touchend', this.handlePointerEvent);
-      this._document = null;
+      if (this._document) {
+        this._document.removeEventListener('mousedown', this.handlePointerEvent);
+
+        this._document.removeEventListener('mouseup', this.handlePointerEvent);
+
+        this._document.removeEventListener('touchstart', this.handlePointerEvent);
+
+        this._document.removeEventListener('touchend', this.handlePointerEvent);
+      }
     } // It doesn’t seem to be specified, but pointer events happen before focus
     // events on modern browsers.
 
@@ -10884,12 +7192,12 @@ defineProperty(FocusVisible, "propTypes", {
 var ButtonBase =
 /*#__PURE__*/
 function (_React$PureComponent) {
-  inherits$1(ButtonBase, _React$PureComponent);
+  inherits(ButtonBase, _React$PureComponent);
 
   function ButtonBase() {
-    classCallCheck$1(this, ButtonBase);
+    classCallCheck(this, ButtonBase);
 
-    return possibleConstructorReturn$1(this, getPrototypeOf(ButtonBase).apply(this, arguments));
+    return possibleConstructorReturn(this, getPrototypeOf(ButtonBase).apply(this, arguments));
   }
 
   createClass(ButtonBase, [{
@@ -10947,15 +7255,25 @@ var ButtonBase$1 = React__default.forwardRef(function (props, ref) {
   });
 });
 
+function _templateObject$1() {
+  var data = taggedTemplateLiteral(["\n          display: inline-flex;\n          justify-content: center;\n          align-items: center;\n          width: 32px;\n          height: 32px;\n          &:active {\n            background: rgba(220, 234, 239, 0.3);\n          }\n        "]);
+
+  _templateObject$1 = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+
 var ButtonIcon =
 /*#__PURE__*/
 function (_React$PureComponent) {
-  inherits$1(ButtonIcon, _React$PureComponent);
+  inherits(ButtonIcon, _React$PureComponent);
 
   function ButtonIcon() {
-    classCallCheck$1(this, ButtonIcon);
+    classCallCheck(this, ButtonIcon);
 
-    return possibleConstructorReturn$1(this, getPrototypeOf(ButtonIcon).apply(this, arguments));
+    return possibleConstructorReturn(this, getPrototypeOf(ButtonIcon).apply(this, arguments));
   }
 
   createClass(ButtonIcon, [{
@@ -10980,10 +7298,7 @@ ButtonIcon.propTypes = {
   children: propTypes.node.isRequired
 };
 
-var _StyledButtonBase = styled__default(ButtonBase$1).withConfig({
-  displayName: "ButtonIcon___StyledButtonBase",
-  componentId: "sc-1e3i514-0"
-})(["display:inline-flex;justify-content:center;align-items:center;width:32px;height:32px;&:active{background:rgba(220,234,239,0.3);}"]);
+var _StyledButtonBase = styled__default(ButtonBase$1)(_templateObject$1());
 
 var main = createCommonjsModule(function (module, exports) {
 
@@ -11210,12 +7525,12 @@ var BASE_SCALE = 3;
 var EthIdenticon =
 /*#__PURE__*/
 function (_React$Component) {
-  inherits$1(EthIdenticon, _React$Component);
+  inherits(EthIdenticon, _React$Component);
 
   function EthIdenticon() {
-    classCallCheck$1(this, EthIdenticon);
+    classCallCheck(this, EthIdenticon);
 
-    return possibleConstructorReturn$1(this, getPrototypeOf(EthIdenticon).apply(this, arguments));
+    return possibleConstructorReturn(this, getPrototypeOf(EthIdenticon).apply(this, arguments));
   }
 
   createClass(EthIdenticon, [{
@@ -11291,23 +7606,73 @@ var BlockiesScaling = styled__default.div.withConfig({
   return p.size;
 }, 1 / PX_RATIO, 1 / PX_RATIO);
 
+function _templateObject5() {
+  var data = taggedTemplateLiteral(["\n            position: absolute;\n            top: 0;\n            right: 0;\n            width: 39px;\n            height: 38px;\n            display: flex;\n            align-items: center;\n            justify-content: center;\n            border-radius: 0 3px 3px 0;\n            &:active {\n              background: rgba(220, 234, 239, 0.3);\n            }\n          "]);
+
+  _templateObject5 = function _templateObject5() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject4() {
+  var data = taggedTemplateLiteral(["\n            text-overflow: ellipsis;\n            width: 390px;\n            max-width: 100%;\n            border: 0;\n            box-shadow: none;\n            background: transparent;\n            ", ";\n            ", ";\n            &:read-only {\n              color: ", ";\n              text-shadow: none;\n            }\n          "]);
+
+  _templateObject4 = function _templateObject4() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject3$1() {
+  var data = taggedTemplateLiteral(["\n                transform: scale(calc(38 / 48));\n                transform-origin: 0 0;\n              "]);
+
+  _templateObject3$1 = function _templateObject3() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject2$1() {
+  var data = taggedTemplateLiteral(["\n            position: absolute;\n            top: -1px;\n            left: -1px;\n            height: 40px;\n            overflow: hidden;\n            border-radius: 3px 0 0 3px;\n            border: 1px solid transparent;\n          "]);
+
+  _templateObject2$1 = function _templateObject2() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject$2() {
+  var data = taggedTemplateLiteral(["\n          display: inline-flex;\n          max-width: 100%;\n          height: 40px;\n          position: relative;\n          background: ", ";\n          border: 1px solid ", ";\n          border-radius: 3px;\n          box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.06);\n          padding-left: 40px;\n          padding-right: 30px;\n        "]);
+
+  _templateObject$2 = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+
 var AddressFieldBase =
 /*#__PURE__*/
 function (_React$PureComponent) {
-  inherits$1(AddressFieldBase, _React$PureComponent);
+  inherits(AddressFieldBase, _React$PureComponent);
 
   function AddressFieldBase() {
     var _getPrototypeOf2;
 
     var _this;
 
-    classCallCheck$1(this, AddressFieldBase);
+    classCallCheck(this, AddressFieldBase);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    _this = possibleConstructorReturn$1(this, (_getPrototypeOf2 = getPrototypeOf(AddressFieldBase)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this = possibleConstructorReturn(this, (_getPrototypeOf2 = getPrototypeOf(AddressFieldBase)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
     defineProperty(assertThisInitialized(assertThisInitialized(_this)), "_input", React__default.createRef());
 
@@ -11349,11 +7714,13 @@ function (_React$PureComponent) {
   }, {
     key: "render",
     value: function render() {
-      var address = this.props.address;
+      var _this$props = this.props,
+          address = _this$props.address,
+          icon = _this$props.icon;
       return React__default.createElement(_StyledDiv$1, {
-        _$p_: theme.contentBackground,
-        _$p_2: theme.contentBorder
-      }, React__default.createElement(_StyledDiv2$1, null, React__default.createElement(_StyledEthIdenticon, {
+        _css: theme.contentBackground,
+        _css2: theme.contentBorder
+      }, React__default.createElement(_StyledDiv2$1, null, icon || React__default.createElement(_StyledEthIdenticon, {
         address: address,
         scale: 2
       })), React__default.createElement(_StyledTextInput$1, {
@@ -11361,10 +7728,11 @@ function (_React$PureComponent) {
         value: address,
         onFocus: this.handleFocus,
         readOnly: true,
-        _$p_3: font({
+        _css3: icon && 'padding-left: 8px',
+        _css4: font({
           monospace: true
         }),
-        _$p_4: theme.textPrimary
+        _css5: theme.textPrimary
       }), React__default.createElement(_StyledButtonIcon, {
         ref: this._button,
         onClick: this.handleCopy,
@@ -11378,7 +7746,8 @@ function (_React$PureComponent) {
 
 defineProperty(AddressFieldBase, "propTypes", {
   address: propTypes.string.isRequired,
-  onCopy: propTypes.func
+  onCopy: propTypes.func,
+  icon: propTypes.node
 });
 
 var AddressField = function AddressField(props) {
@@ -11395,40 +7764,154 @@ var AddressField = function AddressField(props) {
 
 AddressField.propTypes = AddressFieldBase.propTypes;
 
-var _StyledDiv$1 = styled__default("div").withConfig({
-  displayName: "AddressField___StyledDiv",
-  componentId: "m75adw-0"
-})(["display:inline-flex;max-width:100%;height:40px;position:relative;background:", ";border:1px solid ", ";border-radius:3px;box-shadow:inset 0 1px 2px rgba(0,0,0,0.06);padding-left:40px;padding-right:30px;"], function (p) {
-  return p._$p_;
+var _StyledDiv$1 = styled__default("div")(_templateObject$2(), function (p) {
+  return p._css;
 }, function (p) {
-  return p._$p_2;
+  return p._css2;
 });
 
-var _StyledDiv2$1 = styled__default("div").withConfig({
-  displayName: "AddressField___StyledDiv2",
-  componentId: "m75adw-1"
-})(["position:absolute;top:-1px;left:-1px;height:40px;overflow:hidden;border-radius:3px 0 0 3px;border:1px solid transparent;"]);
+var _StyledDiv2$1 = styled__default("div")(_templateObject2$1());
 
-var _StyledEthIdenticon = styled__default(EthIdenticon).withConfig({
-  displayName: "AddressField___StyledEthIdenticon",
-  componentId: "m75adw-2"
-})(["transform:scale(calc(38 / 48));transform-origin:0 0;"]);
+var _StyledEthIdenticon = styled__default(EthIdenticon)(_templateObject3$1());
 
-var _StyledTextInput$1 = styled__default(WrapperTextInput).withConfig({
-  displayName: "AddressField___StyledTextInput",
-  componentId: "m75adw-3"
-})(["text-overflow:ellipsis;width:390px;max-width:100%;border:0;box-shadow:none;background:transparent;", ";&:read-only{color:", ";text-shadow:none;}"], function (p) {
-  return p._$p_3;
+var _StyledTextInput$1 = styled__default(WrapperTextInput)(_templateObject4(), function (p) {
+  return p._css3;
 }, function (p) {
-  return p._$p_4;
+  return p._css4;
+}, function (p) {
+  return p._css5;
 });
 
-var _StyledButtonIcon = styled__default(ButtonIcon).withConfig({
-  displayName: "AddressField___StyledButtonIcon",
-  componentId: "m75adw-4"
-})(["position:absolute;top:0;right:0;width:39px;height:38px;display:flex;align-items:center;justify-content:center;border-radius:0 3px 3px 0;&:active{background:rgba(220,234,239,0.3);}"]);
+var _StyledButtonIcon = styled__default(ButtonIcon)(_templateObject5());
+
+var getDisplayName_1 = createCommonjsModule(function (module, exports) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = getDisplayName;
+function getDisplayName(Component) {
+  return Component.displayName || Component.name || (typeof Component === 'string' && Component.length > 0 ? Component : 'Unknown');
+}
+});
+
+var getDisplayName = unwrapExports(getDisplayName_1);
+
+// prefix helper
+var prefixUrl = function prefixUrl(url, publicUrl) {
+  return url.startsWith('data:') ? url : publicUrl + url;
+}; // trailing slash helper
+
+var ensureTrailingSlash = function ensureTrailingSlash(path) {
+  return path.endsWith('/') ? path : "".concat(path, "/");
+};
+
+var _React$createContext$1 = React__default.createContext(''),
+    Provider$1 = _React$createContext$1.Provider,
+    Consumer = _React$createContext$1.Consumer;
+
+var PublicUrlProvider =
+/*#__PURE__*/
+function (_React$PureComponent) {
+  inherits(PublicUrlProvider, _React$PureComponent);
+
+  function PublicUrlProvider() {
+    classCallCheck(this, PublicUrlProvider);
+
+    return possibleConstructorReturn(this, getPrototypeOf(PublicUrlProvider).apply(this, arguments));
+  }
+
+  createClass(PublicUrlProvider, [{
+    key: "render",
+    value: function render() {
+      var _this$props = this.props,
+          url = _this$props.url,
+          children = _this$props.children;
+      return React__default.createElement(Provider$1, {
+        value: url
+      }, children);
+    }
+  }]);
+
+  return PublicUrlProvider;
+}(React__default.PureComponent); // HOC wrapper
+
+
+defineProperty(PublicUrlProvider, "propTypes", {
+  url: propTypes.string.isRequired,
+  children: propTypes.node
+});
+
+var hocWrap = function hocWrap(Component) {
+  var HOC = function HOC(props) {
+    return React__default.createElement(Consumer, null, function (url) {
+      return React__default.createElement(Component, _extends_1({}, props, {
+        publicUrl: url
+      }));
+    });
+  };
+
+  HOC.displayName = "PublicUrlProvider(".concat(getDisplayName(Component), ")");
+  return HOC;
+}; // styled-components utility for URLs
+
+
+var styledUrl = function styledUrl(url) {
+  return function (_ref) {
+    var publicUrl = _ref.publicUrl;
+    return prefixUrl(url, publicUrl);
+  };
+};
+
+var PublicUrl = function PublicUrl(props) {
+  return React__default.createElement(Consumer, props);
+};
+
+PublicUrl.Provider = PublicUrlProvider;
+PublicUrl.hocWrap = hocWrap;
+PublicUrl.styledUrl = styledUrl;
 
 var chevronSvg = "data:image/svg+xml,%3Csvg%20width%3D%227%22%20height%3D%2212%22%20viewBox%3D%220%200%207%2012%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M.446%2012a.512.512%200%200%201-.172-.03.422.422%200%200%201-.146-.087A.37.37%200%200%201%200%2011.6a.37.37%200%200%201%20.128-.281l5.826-5.361L.217.692A.376.376%200%200%201%20.089.405.378.378%200%200%201%20.217.117.444.444%200%200%201%20.529%200c.123%200%20.228.04.313.117l6.03%205.56A.37.37%200%200%201%207%205.96a.37.37%200%200%201-.128.281l-6.12%205.643A.477.477%200%200%201%20.446%2012z%22%20fill%3D%22%2300CBE6%22%20fill-rule%3D%22evenodd%22%2F%3E%3C%2Fsvg%3E";
+
+function _templateObject4$1() {
+  var data = taggedTemplateLiteral(["\n                  display: flex;\n                  align-items: center;\n                  height: 100%;\n                  margin-left: auto;\n                  padding-right: ", "px;\n                "]);
+
+  _templateObject4$1 = function _templateObject4() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject3$2() {
+  var data = taggedTemplateLiteral(["\n                  display: flex;\n                  align-items: center;\n                  height: 100%;\n                  padding-left: ", "px;\n                "]);
+
+  _templateObject3$2 = function _templateObject3() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject2$2() {
+  var data = taggedTemplateLiteral(["\n              display: flex;\n              align-items: center;\n              justify-content: flex-start;\n              width: 100%;\n              height: ", "px;\n            "]);
+
+  _templateObject2$2 = function _templateObject2() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject$3() {
+  var data = taggedTemplateLiteral(["\n            overflow: hidden;\n            display: flex;\n            flex-direction: column;\n            width: 100%;\n            min-height: ", "px;\n            background: ", ";\n            ", ";\n\n            /* We are using an \u201Cinner border\u201D to allow components like TabBar\n               to draw over the border while having overflow:hidden set. */\n            padding-bottom: 1px;\n            &:after {\n              content: '';\n              position: absolute;\n              left: 0;\n              right: 0;\n              bottom: 0;\n              border-bottom: 1px solid ", ";\n            }\n          "]);
+
+  _templateObject$3 = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
 
 var BAR_HEIGHT = 64;
 var InAppBarContext = React__default.createContext(false);
@@ -11436,20 +7919,20 @@ var InAppBarContext = React__default.createContext(false);
 var AppBar =
 /*#__PURE__*/
 function (_React$Component) {
-  inherits$1(AppBar, _React$Component);
+  inherits(AppBar, _React$Component);
 
   function AppBar() {
     var _getPrototypeOf2;
 
     var _this;
 
-    classCallCheck$1(this, AppBar);
+    classCallCheck(this, AppBar);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    _this = possibleConstructorReturn$1(this, (_getPrototypeOf2 = getPrototypeOf(AppBar)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this = possibleConstructorReturn(this, (_getPrototypeOf2 = getPrototypeOf(AppBar)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
     defineProperty(assertThisInitialized(assertThisInitialized(_this)), "state", {
       tabsHeight: 0
@@ -11502,13 +7985,13 @@ function (_React$Component) {
       return React__default.createElement(InAppBarContext.Provider, {
         value: true
       }, React__default.createElement(_StyledDiv$2, {
-        _$p_: theme.contentBackground,
-        _$p_2: unselectable(),
-        _$p_3: theme.contentBorder
+        _css: theme.contentBackground,
+        _css2: unselectable(),
+        _css3: theme.contentBorder
       }, React__default.createElement(_StyledDiv2$2, _extends_1({}, props, {
-        _$p_4: BAR_HEIGHT - 1
+        _css4: BAR_HEIGHT - 1
       }), title && React__default.createElement(_StyledDiv3, {
-        _$p_5: padding
+        _css5: padding
       }, React__default.createElement(AppBarTitle, {
         chevron: Boolean(children),
         clickable: Boolean(onTitleClick),
@@ -11516,7 +7999,7 @@ function (_React$Component) {
       }, typeof title === 'string' ? React__default.createElement(Text, {
         size: "xxlarge"
       }, title) : title)), children, endContent && React__default.createElement(_StyledDiv4, {
-        _$p_6: padding
+        _css6: padding
       }, endContent)), React__default.createElement(Transition, {
         items: tabs,
         from: {
@@ -11555,7 +8038,7 @@ defineProperty(AppBar, "propTypes", {
   onTitleClick: propTypes.func,
   padding: propTypes.number,
   tabs: propTypes.element,
-  title: propTypes.node
+  title: propTypes.string
 });
 
 defineProperty(AppBar, "defaultProps", {
@@ -11582,47 +8065,35 @@ var TabsWrapper = styled__default(extendedAnimated.div).withConfig({
   componentId: "sc-1861a4z-1"
 })(["position:relative;z-index:1;"]);
 
-var _StyledDiv$2 = styled__default("div").withConfig({
-  displayName: "AppBar___StyledDiv",
-  componentId: "sc-1861a4z-2"
-})(["overflow:hidden;display:flex;flex-direction:column;width:100%;min-height:", "px;background:", ";", ";padding-bottom:1px;&:after{content:'';position:absolute;left:0;right:0;bottom:0;border-bottom:1px solid ", ";}"], BAR_HEIGHT, function (p) {
-  return p._$p_;
+var _StyledDiv$2 = styled__default("div")(_templateObject$3(), BAR_HEIGHT, function (p) {
+  return p._css;
 }, function (p) {
-  return p._$p_2;
+  return p._css2;
 }, function (p) {
-  return p._$p_3;
+  return p._css3;
 });
 
-var _StyledDiv2$2 = styled__default("div").withConfig({
-  displayName: "AppBar___StyledDiv2",
-  componentId: "sc-1861a4z-3"
-})(["display:flex;align-items:center;justify-content:flex-start;width:100%;height:", "px;"], function (p) {
-  return p._$p_4;
+var _StyledDiv2$2 = styled__default("div")(_templateObject2$2(), function (p) {
+  return p._css4;
 });
 
-var _StyledDiv3 = styled__default("div").withConfig({
-  displayName: "AppBar___StyledDiv3",
-  componentId: "sc-1861a4z-4"
-})(["display:flex;align-items:center;height:100%;padding-left:", "px;"], function (p) {
-  return p._$p_5;
+var _StyledDiv3 = styled__default("div")(_templateObject3$2(), function (p) {
+  return p._css5;
 });
 
-var _StyledDiv4 = styled__default("div").withConfig({
-  displayName: "AppBar___StyledDiv4",
-  componentId: "sc-1861a4z-5"
-})(["display:flex;align-items:center;height:100%;margin-left:auto;padding-right:", "px;"], function (p) {
-  return p._$p_6;
+var _StyledDiv4 = styled__default("div")(_templateObject4$1(), function (p) {
+  return p._css6;
 });
 
 var AppView =
 /*#__PURE__*/
 function (_React$Component) {
-  inherits$1(AppView, _React$Component);
+  inherits(AppView, _React$Component);
 
   function AppView() {
-    classCallCheck$1(this, AppView);
+    classCallCheck(this, AppView);
 
-    return possibleConstructorReturn$1(this, getPrototypeOf(AppView).apply(this, arguments));
+    return possibleConstructorReturn(this, getPrototypeOf(AppView).apply(this, arguments));
   }
 
   createClass(AppView, [{
@@ -11686,20 +8157,6 @@ var Content$1 = styled__default.div.withConfig({
   return "".concat(padding, "px");
 });
 
-function _taggedTemplateLiteral(strings, raw) {
-  if (!raw) {
-    raw = strings.slice(0);
-  }
-
-  return Object.freeze(Object.defineProperties(strings, {
-    raw: {
-      value: Object.freeze(raw)
-    }
-  }));
-}
-
-var taggedTemplateLiteral = _taggedTemplateLiteral;
-
 var overpassLightWoff = "fd48a701d84ebf69.woff";
 
 var overpassLightWoff2 = "cf790334a5a6d45c.woff2";
@@ -11716,10 +8173,10 @@ var overpassMonoLightWoff = "e6cc295577142efd.woff";
 
 var overpassMonoLightWoff2 = "3dd21d4f0d28fecb.woff2";
 
-function _templateObject() {
+function _templateObject$4() {
   var data = taggedTemplateLiteral(["\n  ", "\n  *,\n  *:before,\n  *:after {\n    box-sizing: border-box;\n  }\n  html {\n    -webkit-overflow-scrolling: touch;\n  }\n  body {\n    height: 0;\n    min-height: 100vh;\n    font-family: ", ";\n    font-size: 15px;\n    font-weight: 400;\n    line-height: 1.5;\n    color: ", ";\n    background: ", ";\n  }\n  body,\n  ul,\n  p,\n  h1,\n  h2,\n  h3,\n  h4,\n  h5,\n  h6 {\n    margin: 0;\n    padding: 0;\n  }\n  button,\n  select,\n  input,\n  textarea,\n  h1,\n  h2,\n  h3,\n  h4,\n  h5,\n  h6 {\n    font-size: inherit;\n    font-family: inherit;\n    font-weight: inherit;\n    line-height: inherit;\n  }\n  a,\n  button,\n  select,\n  input,\n  textarea {\n    color: inherit;\n  }\n  strong,\n  b {\n    font-weight: 600;\n  }\n  ::selection {\n    color: ", ";\n    background: ", ";\n  }\n"]);
 
-  _templateObject = function _templateObject() {
+  _templateObject$4 = function _templateObject() {
     return data;
   };
 
@@ -11769,12 +8226,12 @@ var MONOSPACE_FONTS = {
 var BaseStyles =
 /*#__PURE__*/
 function (_React$PureComponent) {
-  inherits$1(BaseStyles, _React$PureComponent);
+  inherits(BaseStyles, _React$PureComponent);
 
   function BaseStyles() {
-    classCallCheck$1(this, BaseStyles);
+    classCallCheck(this, BaseStyles);
 
-    return possibleConstructorReturn$1(this, getPrototypeOf(BaseStyles).apply(this, arguments));
+    return possibleConstructorReturn(this, getPrototypeOf(BaseStyles).apply(this, arguments));
   }
 
   createClass(BaseStyles, [{
@@ -11826,7 +8283,7 @@ defineProperty(BaseStyles, "defaultProps", {
   fontFamily: "".concat(DEFAULT_FONT_FAMILY, ", sans-serif")
 });
 
-var GlobalStyle = styled.createGlobalStyle(_templateObject(), function (props) {
+var GlobalStyle = styled.createGlobalStyle(_templateObject$4(), function (props) {
   return props.fontFaces ? props.fontFaces : '';
 }, function (props) {
   return props.fontFamily;
@@ -11846,12 +8303,12 @@ var StyledAragonApp = styled__default.main.withConfig({
 var AragonApp =
 /*#__PURE__*/
 function (_React$Component) {
-  inherits$1(AragonApp, _React$Component);
+  inherits(AragonApp, _React$Component);
 
   function AragonApp() {
-    classCallCheck$1(this, AragonApp);
+    classCallCheck(this, AragonApp);
 
-    return possibleConstructorReturn$1(this, getPrototypeOf(AragonApp).apply(this, arguments));
+    return possibleConstructorReturn(this, getPrototypeOf(AragonApp).apply(this, arguments));
   }
 
   createClass(AragonApp, [{
@@ -11909,6 +8366,569 @@ defineProperty(AragonApp, "childContextTypes", {
 
 defineProperty(AragonApp, "Styled", StyledAragonApp);
 
+var A_DAY = 1000 * 60 * 60 * 24;
+
+function cachedMap() {
+  var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+      _ref$expireAfter = _ref.expireAfter,
+      expireAfter = _ref$expireAfter === void 0 ? A_DAY : _ref$expireAfter,
+      _ref$size = _ref.size,
+      size = _ref$size === void 0 ? 100 : _ref$size;
+
+  var cache = new Map(); // Delete the first (oldest) entry if we are above `size`. `cache.size`
+  // should never be greater than `size + 1`, so no need for a loop here.
+
+  function trim() {
+    if (cache.size > size) {
+      cache.delete(cache.keys().next().value);
+    }
+  } // We are using delete() then set() to reset the position everytime the
+  // access is refreshed. That way, the oldest entry is always at the first
+  // position and we don’t need to iterate over the entire cache to find it.
+
+
+  function update(key, value, lastAccess) {
+    cache.delete(key);
+    cache.set(key, {
+      value: value,
+      lastAccess: lastAccess
+    });
+    trim();
+  }
+
+  function get(key) {
+    var now = new Date();
+    var cachedEntry = cache.get(key);
+
+    if (!cachedEntry) {
+      return null;
+    } // Expired: delete the entry
+
+
+    if (now - cachedEntry.lastAccess > expireAfter) {
+      cache.delete(key);
+      return null;
+    }
+
+    update(key, cachedEntry.value, now);
+    return cachedEntry.value;
+  }
+
+  function set(key, value) {
+    update(key, value, new Date());
+  }
+
+  return {
+    clear: function clear() {
+      return cache.clear();
+    },
+    delete: function _delete(key) {
+      return cache.delete(key);
+    },
+    get: get,
+    set: set
+  };
+}
+
+var srcCache = cachedMap(); // Check if a remote image exists.
+
+function useImageExists(src) {
+  var _useState = React.useState(false),
+      _useState2 = slicedToArray(_useState, 2),
+      exists = _useState2[0],
+      setExists = _useState2[1];
+
+  var _useState3 = React.useState(true),
+      _useState4 = slicedToArray(_useState3, 2),
+      loading = _useState4[0],
+      setLoading = _useState4[1];
+
+  React.useEffect(function () {
+    var image = new Image();
+
+    var init = function init() {
+      if (!src) {
+        setExists(false);
+        setLoading(false);
+        return;
+      }
+
+      if (srcCache.get(src)) {
+        success();
+        return;
+      }
+
+      setExists(false);
+      setLoading(true); // TODO: ensure only one image is loading at a time for a given src.
+
+      image.addEventListener('load', success);
+      image.src = src;
+    };
+
+    var success = function success() {
+      setLoading(false);
+      setExists(true);
+      srcCache.set(src, true);
+      done();
+    };
+
+    var done = function done() {
+      if (image) {
+        image.removeEventListener('load', success);
+        image = null;
+      }
+    };
+
+    init();
+    return done;
+  }, [src]);
+  return React.useMemo(function () {
+    return {
+      src: src,
+      exists: exists,
+      loading: loading
+    };
+  }, [src, exists, loading]);
+} // render prop
+
+var ImageExists = function ImageExists(_ref) {
+  var src = _ref.src,
+      children = _ref.children;
+  return children(useImageExists(src));
+};
+
+/* eslint-disable react-hooks/rules-of-hooks */
+
+function useClickOutside(cb) {
+  var ref = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : React.useRef();
+
+  /* eslint-enable react-hooks/rules-of-hooks */
+  var handleClick = React.useCallback(function (e) {
+    if (!ref.current.contains(e.target)) {
+      cb();
+    }
+  }, [cb, ref]);
+  React.useEffect(function () {
+    document.addEventListener('click', handleClick, true);
+    return function () {
+      document.removeEventListener('click', handleClick, true);
+    };
+  }, [handleClick]);
+  return {
+    ref: ref
+  };
+}
+
+/* eslint-disable react-hooks/rules-of-hooks */
+
+function useOnBlur(cb) {
+  var ref = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : React.useRef();
+
+  /* eslint-enable react-hooks/rules-of-hooks */
+  var handleBlur = React.useCallback(function (e) {
+    if (!ref.current.contains(e.relatedTarget)) {
+      cb();
+    }
+  }, [cb, ref]);
+  return {
+    ref: ref,
+    handleBlur: handleBlur
+  };
+}
+
+var KEYCODE_UP = 38;
+var KEYCODE_DOWN = 40;
+/* eslint-disable react-hooks/rules-of-hooks */
+
+function useArrowKeysFocus(refs) {
+  /* eslint-enable react-hooks/rules-of-hooks */
+  var _useState = React.useState(-1),
+      _useState2 = slicedToArray(_useState, 2),
+      highlightedIndex = _useState2[0],
+      _setHighlightedIndex = _useState2[1];
+
+  var cycleFocus = React.useCallback(function (e, change) {
+    e.preventDefault();
+    var next = highlightedIndex + change;
+
+    if (next > refs.length - 1) {
+      next = 0;
+    }
+
+    if (next < 0) {
+      next = refs.length - 1;
+    }
+
+    _setHighlightedIndex(next);
+  }, [highlightedIndex, refs.length]);
+  var handleKeyDown = React.useCallback(function (e) {
+    var keyCode = e.keyCode;
+
+    if (keyCode === KEYCODE_UP || keyCode === KEYCODE_DOWN) {
+      cycleFocus(e, keyCode === KEYCODE_UP ? -1 : 1);
+    }
+  }, [cycleFocus]);
+  React.useEffect(function () {
+    if (highlightedIndex === -1) {
+      return;
+    }
+
+    if (!refs[highlightedIndex]) {
+      return;
+    }
+
+    refs[highlightedIndex].focus();
+  }, [highlightedIndex, refs]);
+  React.useEffect(function () {
+    document.addEventListener('keydown', handleKeyDown);
+    return function () {
+      return document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [handleKeyDown]);
+  return {
+    highlightedIndex: highlightedIndex,
+    setHighlightedIndex: function setHighlightedIndex(index) {
+      return function () {
+        return _setHighlightedIndex(index);
+      };
+    }
+  };
+}
+
+var MagnifyingGlass = function MagnifyingGlass(props) {
+  return React__default.createElement("svg", _extends_1({
+    width: 16,
+    height: 16,
+    fill: "none"
+  }, props), React__default.createElement("path", {
+    d: "M15.757 14.573l-3.944-3.96a6.307 6.307 0 0 0 1.57-4.153C13.382 2.898 10.38 0 6.69 0 3.001 0 0 2.898 0 6.46s3.002 6.46 6.691 6.46a6.784 6.784 0 0 0 3.834-1.169l3.974 3.99a.88.88 0 0 0 .629.259.885.885 0 0 0 .605-.235.823.823 0 0 0 .024-1.192zM6.69 1.685c2.727 0 4.946 2.142 4.946 4.775 0 2.633-2.219 4.775-4.946 4.775S1.746 9.093 1.746 6.46c0-2.633 2.218-4.775 4.945-4.775z",
+    fill: "currentColor"
+  }));
+};
+
+function _templateObject5$1() {
+  var data = taggedTemplateLiteral(["\n                      text-align: left;\n                      padding: 4px 8px;\n                      width: 100%;\n                      border-radius: 0;\n                      border-left: 3px solid transparent;\n                      cursor: pointer;\n\n                      ", "\n                      ", ";\n                    "]);
+
+  _templateObject5$1 = function _templateObject5() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject4$2() {
+  var data = taggedTemplateLiteral(["color: #a8b3c8"]);
+
+  _templateObject4$2 = function _templateObject4() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject3$3() {
+  var data = taggedTemplateLiteral(["\n          position: absolute;\n          top: 0;\n          right: 0;\n          height: 40px;\n          width: 35px;\n          display: flex;\n          align-items: center;\n          justify-content: center;\n        "]);
+
+  _templateObject3$3 = function _templateObject3() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject2$3() {
+  var data = taggedTemplateLiteral(["\n          caret-color: ", ";\n          padding-right: 35px;\n        "]);
+
+  _templateObject2$3 = function _templateObject2() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject$5() {
+  var data = taggedTemplateLiteral(["position: relative"]);
+
+  _templateObject$5 = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+var accent = theme.accent,
+    contentBackground = theme.contentBackground,
+    contentBorder = theme.contentBorder,
+    textPrimary = theme.textPrimary;
+
+function AutoComplete(_ref) {
+  var forwardedRef = _ref.forwardedRef,
+      _ref$itemButtonStyles = _ref.itemButtonStyles,
+      itemButtonStyles = _ref$itemButtonStyles === void 0 ? '' : _ref$itemButtonStyles,
+      _ref$items = _ref.items,
+      items = _ref$items === void 0 ? [] : _ref$items,
+      _ref$onSelect = _ref.onSelect,
+      onSelect = _ref$onSelect === void 0 ? noop : _ref$onSelect,
+      _ref$onChange = _ref.onChange,
+      onChange = _ref$onChange === void 0 ? noop : _ref$onChange,
+      placeholder = _ref.placeholder,
+      _ref$renderItem = _ref.renderItem,
+      renderItem = _ref$renderItem === void 0 ? identity : _ref$renderItem,
+      required = _ref.required,
+      value = _ref.value,
+      wide = _ref.wide;
+  var ref = forwardedRef;
+  var uniqueItems = new Set(items);
+
+  var _useState = React.useState(true),
+      _useState2 = slicedToArray(_useState, 2),
+      opened = _useState2[0],
+      setOpened = _useState2[1];
+
+  var wrapRef = React.useRef();
+
+  var _useState3 = React.useState([]),
+      _useState4 = slicedToArray(_useState3, 1),
+      refs = _useState4[0];
+
+  var handleClose = React.useCallback(function () {
+    return setOpened(false);
+  }, []);
+  var handleFocus = React.useCallback(function () {
+    return setOpened(true);
+  }, []);
+  var handleSelect = React.useCallback(function (item) {
+    return function (e) {
+      e.preventDefault();
+      onSelect(item);
+    };
+  }, [onSelect]);
+  var handleChange = React.useCallback(function (_ref2) {
+    var value = _ref2.target.value;
+    return onChange(value);
+  }, [onChange]);
+
+  var _useOnBlur = useOnBlur(handleClose, wrapRef),
+      handleBlur = _useOnBlur.handleBlur;
+
+  var _useArrowKeysFocus = useArrowKeysFocus(refs),
+      highlightedIndex = _useArrowKeysFocus.highlightedIndex,
+      setHighlightedIndex = _useArrowKeysFocus.setHighlightedIndex;
+
+  var reset = setHighlightedIndex(-1);
+
+  var _useOnBlur2 = useOnBlur(reset),
+      containerRef = _useOnBlur2.ref,
+      handleResetBlur = _useOnBlur2.handleBlur;
+
+  React.useEffect(function () {
+    reset();
+  }, [opened, items, value]);
+  useClickOutside(handleClose, wrapRef);
+  return React__default.createElement(_StyledDiv$3, {
+    ref: wrapRef,
+    onBlur: handleBlur
+  }, React__default.createElement(_StyledTextInput$2, {
+    ref: ref,
+    wide: wide,
+    placeholder: placeholder,
+    required: required,
+    onChange: handleChange,
+    onFocus: handleFocus,
+    value: value
+  }), React__default.createElement(_StyledDiv2$3, null, React__default.createElement(_StyledIconMagnifyingGlass, null)), React__default.createElement(Transition, {
+    config: springs.swift,
+    items: opened && !!items.length,
+    from: {
+      scale: 0.98,
+      opacity: 0
+    },
+    enter: {
+      scale: 1,
+      opacity: 1
+    },
+    leave: {
+      scale: 1,
+      opacity: 0
+    },
+    native: true
+  }, function (show) {
+    return show &&
+    /* eslint-disable react/prop-types */
+    function (_ref3) {
+      var scale = _ref3.scale,
+          opacity = _ref3.opacity;
+      return React__default.createElement(Items, {
+        ref: containerRef,
+        onBlur: handleResetBlur,
+        role: "listbox",
+        style: {
+          opacity: opacity,
+          transform: scale.interpolate(function (t) {
+            return "scale3d(".concat(t, ",").concat(t, ",1)");
+          })
+        }
+      }, Array.from(uniqueItems).map(function (item, index) {
+        return React__default.createElement(Item, {
+          role: "option",
+          key: item.key || item
+        }, React__default.createElement(_StyledButtonBase$1, {
+          ref: function ref(node) {
+            return refs[index] = node;
+          },
+          onClick: handleSelect(item),
+          onFocus: setHighlightedIndex(index),
+          onMouseOver: setHighlightedIndex(index),
+          _css: index === highlightedIndex && "\n                          outline: 2px solid ".concat(theme.accent, ";\n                          background: #f9fafc;\n                          border-left: 3px solid ").concat(theme.accent, ";\n                        "),
+          _css2: itemButtonStyles
+        }, renderItem(item, value)));
+      }));
+    };
+  }
+  /* eslint-enable react/prop-types */
+  ));
+}
+
+AutoComplete.propTypes = {
+  forwardedRef: propTypes.object,
+  itemButtonStyles: propTypes.string,
+  items: propTypes.array.isRequired,
+  onSelect: propTypes.func.isRequired,
+  onChange: propTypes.func.isRequired,
+  placeholder: propTypes.string,
+  renderItem: propTypes.func,
+  required: propTypes.bool,
+  value: propTypes.string,
+  wide: propTypes.bool
+};
+var Item = styled__default.li.withConfig({
+  displayName: "AutoComplete__Item",
+  componentId: "bpnxyo-0"
+})(["", ";overflow:hidden;cursor:pointer;"], unselectable());
+var Items = styled__default(extendedAnimated.ul).withConfig({
+  displayName: "AutoComplete__Items",
+  componentId: "bpnxyo-1"
+})(["position:absolute;z-index:2;top:100%;width:100%;padding:8px 0;color:", ";background:", ";border:1px solid ", ";box-shadow:0 4px 4px 0 rgba(0,0,0,0.06);border-radius:3px;padding:0;margin:0;list-style:none;& ", ":first-child{border-top-left-radius:3px;border-top-right-radius:3px;}& ", ":last-child{border-bottom-left-radius:3px;border-bottom-right-radius:3px;}"], textPrimary, contentBackground, contentBorder, Item, Item);
+var AutoCompleteMemo = React__default.memo(AutoComplete);
+var AutoComplete$1 = React__default.forwardRef(function (props, ref) {
+  return React__default.createElement(AutoCompleteMemo, _extends_1({}, props, {
+    forwardedRef: ref
+  }));
+});
+
+var _StyledDiv$3 = styled__default("div")(_templateObject$5());
+
+var _StyledTextInput$2 = styled__default(WrapperTextInput)(_templateObject2$3(), accent);
+
+var _StyledDiv2$3 = styled__default("div")(_templateObject3$3());
+
+var _StyledIconMagnifyingGlass = styled__default(MagnifyingGlass)(_templateObject4$2());
+
+var _StyledButtonBase$1 = styled__default(ButtonBase$1)(_templateObject5$1(), function (p) {
+  return p._css;
+}, function (p) {
+  return p._css2;
+});
+
+function _templateObject$6() {
+  var data = taggedTemplateLiteral(["\n          height: 40px;\n          width: 100%;\n          text-align: left;\n          background: #fff;\n          cursor: pointer;\n          border: 1px solid ", ";\n          border-radius: 3px;\n          padding: 4px 8px;\n          &:hover,\n          &:focus {\n            outline: none;\n            border: 1px solid ", ";\n            border-radius: 3px;\n          }\n          ", ";\n        "]);
+
+  _templateObject$6 = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+
+function AutoCompleteSelected(_ref) {
+  var forwardedRef = _ref.forwardedRef,
+      itemButtonStyles = _ref.itemButtonStyles,
+      items = _ref.items,
+      onChange = _ref.onChange,
+      onSelect = _ref.onSelect,
+      _ref$onSelectedClick = _ref.onSelectedClick,
+      onSelectedClick = _ref$onSelectedClick === void 0 ? noop : _ref$onSelectedClick,
+      placeholder = _ref.placeholder,
+      renderItem = _ref.renderItem,
+      required = _ref.required,
+      _ref$renderSelected = _ref.renderSelected,
+      renderSelected = _ref$renderSelected === void 0 ? identity : _ref$renderSelected,
+      selected = _ref.selected,
+      _ref$selectedButtonSt = _ref.selectedButtonStyles,
+      selectedButtonStyles = _ref$selectedButtonSt === void 0 ? '' : _ref$selectedButtonSt,
+      value = _ref.value,
+      wide = _ref.wide;
+  var ref = forwardedRef;
+  var selectedRef = React.useRef();
+  var handleSelect = React.useCallback(function (selected) {
+    onSelect(selected);
+    setTimeout(function () {
+      selectedRef.current.focus();
+    }, 0);
+  }, [onSelect]);
+  var handleSelectedClick = React.useCallback(function () {
+    onSelectedClick();
+    setTimeout(function () {
+      if (ref && ref.current) {
+        ref.current.select();
+        ref.current.focus();
+      }
+    }, 0);
+  }, [ref, onSelectedClick]);
+
+  if (selected) {
+    return React__default.createElement(_StyledButtonBase$2, {
+      onClick: handleSelectedClick,
+      ref: selectedRef,
+      _css: theme.contentBorder,
+      _css2: theme.accent,
+      _css3: selectedButtonStyles
+    }, renderSelected(selected));
+  }
+
+  return React__default.createElement(AutoComplete$1, {
+    items: items,
+    onChange: onChange,
+    onSelect: handleSelect,
+    placeholder: placeholder,
+    ref: ref,
+    renderItem: renderItem,
+    required: required,
+    value: value,
+    wide: wide
+  });
+}
+
+AutoCompleteSelected.propTypes = {
+  forwardedRef: propTypes.object,
+  itemButtonStyles: propTypes.string,
+  items: propTypes.array.isRequired,
+  onChange: propTypes.func.isRequired,
+  onSelect: propTypes.func.isRequired,
+  onSelectedClick: propTypes.func,
+  placeholder: propTypes.string,
+  renderItem: propTypes.func,
+  renderSelected: propTypes.func,
+  required: propTypes.bool,
+  selected: propTypes.object,
+  selectedButtonStyles: propTypes.string,
+  value: propTypes.string,
+  wide: propTypes.bool
+};
+var AutoCompleteSelectedMemo = React__default.memo(AutoCompleteSelected);
+var AutoCompleteSelected$1 = React__default.forwardRef(function (props, ref) {
+  return React__default.createElement(AutoCompleteSelectedMemo, _extends_1({}, props, {
+    forwardedRef: ref
+  }));
+});
+
+var _StyledButtonBase$2 = styled__default(ButtonBase$1)(_templateObject$6(), function (p) {
+  return p._css;
+}, function (p) {
+  return p._css2;
+}, function (p) {
+  return p._css3;
+});
+
 var shapeStyles = function shapeStyles(shape) {
   if (shape === 'disc') {
     return styled.css(["overflow:hidden;padding-top:2px;letter-spacing:-0.5px;justify-content:center;align-items:center;width:18px;height:18px;border-radius:9px;", ";line-height:20px;"], font({
@@ -11951,8 +8971,8 @@ var Badge = styled__default.span.withConfig({
 });
 Badge.defaultProps = {
   shape: 'round',
-  foreground: colors.Purple.Portage,
-  background: colors.Purple.Lavender
+  foreground: colors$1.Purple.Portage,
+  background: colors$1.Purple.Lavender
 };
 Badge.propTypes = {
   shape: propTypes.oneOf(['disc', 'smalldisc', 'compact', 'round']),
@@ -12073,11 +9093,11 @@ var gradientStart = theme.gradientStart,
     gradientStartActive = theme.gradientStartActive,
     gradientEndActive = theme.gradientEndActive,
     gradientText = theme.gradientText,
-    contentBackground = theme.contentBackground,
-    contentBorder = theme.contentBorder,
+    contentBackground$1 = theme.contentBackground,
+    contentBorder$1 = theme.contentBorder,
     contentBorderActive = theme.contentBorderActive,
     secondaryBackground = theme.secondaryBackground,
-    textPrimary = theme.textPrimary,
+    textPrimary$1 = theme.textPrimary,
     textSecondary = theme.textSecondary,
     disabledColor = theme.disabled,
     disabledText = theme.disabledText; // Plain button = normal or strong
@@ -12089,7 +9109,7 @@ var plainButtonStyles = styled.css(["position:relative;overflow:hidden;box-shado
     return disabled ? 'none' : '0 1px 1px rgba(0, 0, 0, 0.2)';
   });
 });
-var modeNormal = styled.css(["", ";&:active{color:", ";}"], plainButtonStyles, textPrimary);
+var modeNormal = styled.css(["", ";&:active{color:", ";}"], plainButtonStyles, textPrimary$1);
 var modeSecondary = styled.css(["", ";background:", ";&:hover,&:focus{box-shadow:none;}"], plainButtonStyles, secondaryBackground);
 var modeStrong = styled.css(["", ";", ";", ";"], plainButtonStyles, font({
   size: 'small',
@@ -12098,8 +9118,8 @@ var modeStrong = styled.css(["", ";", ";", ";"], plainButtonStyles, font({
   var disabled = _ref3.disabled;
   return disabled ? styled.css(["color:", ";background-color:", ";background-image:none;"], disabledText, disabledColor) : styled.css(["color:", ";background-color:transparent;background-image:linear-gradient( 130deg,", ",", " )};&:after{background-image:linear-gradient( 130deg,", ",", " );}"], gradientText, gradientStart, gradientEnd, gradientStartActive, gradientEndActive);
 });
-var modeOutline = styled.css(["background:transparent;padding-top:9px;padding-bottom:9px;border:1px solid ", ";&:hover,&:focus{border-color:", ";}&:active{color:", ";border-color:", ";}"], contentBorder, contentBorderActive, textPrimary, textPrimary);
-var modeText = styled.css(["padding:10px;background:transparent;&:active,&:focus{color:", ";}"], textPrimary);
+var modeOutline = styled.css(["background:transparent;padding-top:9px;padding-bottom:9px;border:1px solid ", ";&:hover,&:focus{border-color:", ";}&:active{color:", ";border-color:", ";}"], contentBorder$1, contentBorderActive, textPrimary$1, textPrimary$1);
+var modeText = styled.css(["padding:10px;background:transparent;&:active,&:focus{color:", ";}"], textPrimary$1);
 var smallStyle = styled.css(["padding:", ";"], function (_ref4) {
   var mode = _ref4.mode;
   return mode === 'outline' ? '4px 14px' : '5px 15px';
@@ -12159,7 +9179,7 @@ var StyledButton = styled__default.button.attrs({
 }, font({
   size: 'small',
   weight: 'normal'
-}), unselectable, textSecondary, contentBackground, function (_ref9) {
+}), unselectable, textSecondary, contentBackground$1, function (_ref9) {
   var disabled = _ref9.disabled;
   return disabled ? 'default' : 'pointer';
 }, function (_ref10) {
@@ -12210,20 +9230,20 @@ var StyledCard = styled__default.div.withConfig({
 var Checkbox =
 /*#__PURE__*/
 function (_React$PureComponent) {
-  inherits$1(Checkbox, _React$PureComponent);
+  inherits(Checkbox, _React$PureComponent);
 
   function Checkbox() {
     var _getPrototypeOf2;
 
     var _this;
 
-    classCallCheck$1(this, Checkbox);
+    classCallCheck(this, Checkbox);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    _this = possibleConstructorReturn$1(this, (_getPrototypeOf2 = getPrototypeOf(Checkbox)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this = possibleConstructorReturn(this, (_getPrototypeOf2 = getPrototypeOf(Checkbox)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
     defineProperty(assertThisInitialized(assertThisInitialized(_this)), "_element", React__default.createRef());
 
@@ -12566,50 +9586,26 @@ var ClickOutComponent = function (_React$Component) {
 
 var reactOnclickout = ClickOutComponent;
 
-var Ellipsis = function Ellipsis(props) {
-  return React__default.createElement("svg", _extends_1({
-    width: 15,
-    height: 4,
-    viewBox: "0 0 15 4"
-  }, props), React__default.createElement("path", {
-    d: "M7.5 3.213a1.42 1.42 0 0 1-.974-.37c-.278-.248-.418-.588-.418-1.021 0-.384.135-.71.404-.979S7.11.439 7.5.439s.722.135.997.404c.276.27.413.595.413.979 0 .439-.142.78-.427 1.025a1.465 1.465 0 0 1-.983.366zm-5.327 0c-.371 0-.694-.122-.97-.366C.928 2.603.791 2.26.791 1.822c0-.39.133-.718.398-.984.266-.266.594-.399.984-.399s.722.135.997.404c.275.27.413.595.413.979 0 .439-.142.78-.427 1.025a1.465 1.465 0 0 1-.983.366zm10.654 0c-.365 0-.688-.123-.97-.37-.28-.248-.421-.588-.421-1.021 0-.384.134-.71.403-.979.27-.269.598-.404.988-.404s.722.135.997.404c.276.27.413.595.413.979 0 .433-.14.773-.422 1.02a1.45 1.45 0 0 1-.988.371z",
-    fill: "currentColor",
-    fillRule: "evenodd"
-  }));
-};
-
-var ArrowDown = function ArrowDown(props) {
-  return React__default.createElement("svg", _extends_1({
-    width: 9,
-    height: 5,
-    viewBox: "0 0 9 5"
-  }, props), React__default.createElement("path", {
-    d: "M0 0h8.36L4.18 4.18z",
-    fill: "currentColor",
-    fillRule: "evenodd"
-  }));
-};
-
 var BASE_WIDTH = 46;
 var BASE_HEIGHT = 32;
 
 var ContextMenu =
 /*#__PURE__*/
 function (_React$Component) {
-  inherits$1(ContextMenu, _React$Component);
+  inherits(ContextMenu, _React$Component);
 
   function ContextMenu() {
     var _getPrototypeOf2;
 
     var _this;
 
-    classCallCheck$1(this, ContextMenu);
+    classCallCheck(this, ContextMenu);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    _this = possibleConstructorReturn$1(this, (_getPrototypeOf2 = getPrototypeOf(ContextMenu)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this = possibleConstructorReturn(this, (_getPrototypeOf2 = getPrototypeOf(ContextMenu)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
     defineProperty(assertThisInitialized(assertThisInitialized(_this)), "state", {
       opened: false
@@ -12723,6 +9719,134 @@ var ContextMenuItem = styled__default.div.withConfig({
   displayName: "ContextMenuItem",
   componentId: "sc-6mg7lj-0"
 })(["display:flex;align-items:center;padding:5px 20px;cursor:pointer;white-space:nowrap;", ";&:active{background:", ";}"], unselectable(), theme.contentBackgroundActive);
+
+/** Detect free variable `global` from Node.js. */
+var freeGlobal = typeof global == 'object' && global && global.Object === Object && global;
+
+/** Detect free variable `self`. */
+var freeSelf = typeof self == 'object' && self && self.Object === Object && self;
+
+/** Used as a reference to the global object. */
+var root = freeGlobal || freeSelf || Function('return this')();
+
+/** Built-in value references. */
+var Symbol$1 = root.Symbol;
+
+/** Used for built-in method references. */
+var objectProto = Object.prototype;
+
+/** Used to check objects for own properties. */
+var hasOwnProperty$2 = objectProto.hasOwnProperty;
+
+/**
+ * Used to resolve the
+ * [`toStringTag`](http://ecma-international.org/ecma-262/7.0/#sec-object.prototype.tostring)
+ * of values.
+ */
+var nativeObjectToString = objectProto.toString;
+
+/** Built-in value references. */
+var symToStringTag = Symbol$1 ? Symbol$1.toStringTag : undefined;
+
+/**
+ * A specialized version of `baseGetTag` which ignores `Symbol.toStringTag` values.
+ *
+ * @private
+ * @param {*} value The value to query.
+ * @returns {string} Returns the raw `toStringTag`.
+ */
+function getRawTag(value) {
+  var isOwn = hasOwnProperty$2.call(value, symToStringTag),
+      tag = value[symToStringTag];
+
+  try {
+    value[symToStringTag] = undefined;
+  } catch (e) {}
+
+  var result = nativeObjectToString.call(value);
+  {
+    if (isOwn) {
+      value[symToStringTag] = tag;
+    } else {
+      delete value[symToStringTag];
+    }
+  }
+  return result;
+}
+
+/** Used for built-in method references. */
+var objectProto$1 = Object.prototype;
+
+/**
+ * Used to resolve the
+ * [`toStringTag`](http://ecma-international.org/ecma-262/7.0/#sec-object.prototype.tostring)
+ * of values.
+ */
+var nativeObjectToString$1 = objectProto$1.toString;
+
+/**
+ * Converts `value` to a string using `Object.prototype.toString`.
+ *
+ * @private
+ * @param {*} value The value to convert.
+ * @returns {string} Returns the converted string.
+ */
+function objectToString(value) {
+  return nativeObjectToString$1.call(value);
+}
+
+/** `Object#toString` result references. */
+var nullTag = '[object Null]',
+    undefinedTag = '[object Undefined]';
+
+/** Built-in value references. */
+var symToStringTag$1 = Symbol$1 ? Symbol$1.toStringTag : undefined;
+
+/**
+ * The base implementation of `getTag` without fallbacks for buggy environments.
+ *
+ * @private
+ * @param {*} value The value to query.
+ * @returns {string} Returns the `toStringTag`.
+ */
+function baseGetTag(value) {
+  if (value == null) {
+    return value === undefined ? undefinedTag : nullTag;
+  }
+  return (symToStringTag$1 && symToStringTag$1 in Object(value))
+    ? getRawTag(value)
+    : objectToString(value);
+}
+
+/**
+ * Checks if `value` is the
+ * [language type](http://www.ecma-international.org/ecma-262/7.0/#sec-ecmascript-language-types)
+ * of `Object`. (e.g. arrays, functions, objects, regexes, `new Number(0)`, and `new String('')`)
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is an object, else `false`.
+ * @example
+ *
+ * _.isObject({});
+ * // => true
+ *
+ * _.isObject([1, 2, 3]);
+ * // => true
+ *
+ * _.isObject(_.noop);
+ * // => true
+ *
+ * _.isObject(null);
+ * // => false
+ */
+function isObject(value) {
+  var type = typeof value;
+  return value != null && (type == 'object' || type == 'function');
+}
 
 /** `Object#toString` result references. */
 var asyncTag = '[object AsyncFunction]',
@@ -13300,7 +10424,7 @@ MapCache.prototype.has = mapCacheHas;
 MapCache.prototype.set = mapCacheSet;
 
 /** Error message constants. */
-var FUNC_ERROR_TEXT$2 = 'Expected a function';
+var FUNC_ERROR_TEXT = 'Expected a function';
 
 /**
  * Creates a function that memoizes the result of `func`. If `resolver` is
@@ -13348,7 +10472,7 @@ var FUNC_ERROR_TEXT$2 = 'Expected a function';
  */
 function memoize(func, resolver) {
   if (typeof func != 'function' || (resolver != null && typeof resolver != 'function')) {
-    throw new TypeError(FUNC_ERROR_TEXT$2);
+    throw new TypeError(FUNC_ERROR_TEXT);
   }
   var memoized = function() {
     var args = arguments,
@@ -13369,13 +10493,168 @@ function memoize(func, resolver) {
 // Expose `MapCache`.
 memoize.Cache = MapCache;
 
-var FRAME_EVERY = 1000 / 30; // 30 FPS is enough for a ticker
+// For a discussion on pitfalls, see
+// https://gist.github.com/staltz/08bf613199092eeb41ac8137d51eb5e6
+
+var Redraw =
+/*#__PURE__*/
+function (_React$PureComponent) {
+  inherits(Redraw, _React$PureComponent);
+
+  function Redraw() {
+    var _getPrototypeOf2;
+
+    var _this;
+
+    classCallCheck(this, Redraw);
+
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    _this = possibleConstructorReturn(this, (_getPrototypeOf2 = getPrototypeOf(Redraw)).call.apply(_getPrototypeOf2, [this].concat(args)));
+
+    defineProperty(assertThisInitialized(assertThisInitialized(_this)), "state", {
+      lastDraw: -1
+    });
+
+    defineProperty(assertThisInitialized(assertThisInitialized(_this)), "draw", function () {
+      _this.raf = requestAnimationFrame(_this.draw);
+      var interval = _this.props.interval;
+      var lastDraw = _this.state.lastDraw;
+      var now = Date.now();
+      var delta = now - lastDraw;
+
+      if (lastDraw === -1 || delta > interval) {
+        _this.setState({
+          lastDraw: Math.round(now / interval) * interval
+        });
+      }
+    });
+
+    return _this;
+  }
+
+  createClass(Redraw, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.raf = null;
+      this.draw();
+    }
+  }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      this.raf && cancelAnimationFrame(this.raf);
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      return this.props.children();
+    }
+  }]);
+
+  return Redraw;
+}(React__default.PureComponent);
+
+defineProperty(Redraw, "propTypes", {
+  interval: propTypes.number,
+  children: propTypes.func.isRequired
+});
+
+defineProperty(Redraw, "defaultProps", {
+  interval: 1000
+});
+
+var hocWrap$1 = function hocWrap(Component, interval) {
+  var HOC = function HOC(props) {
+    return React__default.createElement(Redraw, {
+      interval: interval
+    }, function () {
+      return React__default.createElement(Component, props);
+    });
+  };
+
+  HOC.displayName = "Redraw(".concat(getDisplayName(Component), ")");
+  return HOC;
+};
+
+Redraw.hocWrap = hocWrap$1;
+
+function _templateObject6() {
+  var data = taggedTemplateLiteral(["margin-right: 15px"]);
+
+  _templateObject6 = function _templateObject6() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject5$2() {
+  var data = taggedTemplateLiteral(["\n          white-space: nowrap;\n          ", ";\n        "]);
+
+  _templateObject5$2 = function _templateObject5() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject4$3() {
+  var data = taggedTemplateLiteral(["\n                    margin: 0 4px;\n                    color: ", ";\n                    font-weight: 400;\n                  "]);
+
+  _templateObject4$3 = function _templateObject4() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject3$4() {
+  var data = taggedTemplateLiteral(["\n                    margin-left: 2px;\n                    font-size: 12px;\n                    color: ", ";\n                  "]);
+
+  _templateObject3$4 = function _templateObject3() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject2$4() {
+  var data = taggedTemplateLiteral(["\n                  font-size: 15px;\n                  font-weight: 600;\n                  color: ", ";\n\n                  ", ";\n                "]);
+
+  _templateObject2$4 = function _templateObject2() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject$7() {
+  var data = taggedTemplateLiteral(["\n            font-weight: 600;\n            color: ", ";\n          "]);
+
+  _templateObject$7 = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+var RENDER_EVERY = 1000;
 
 var formatUnit = function formatUnit(v) {
   return String(v).padStart(2, '0');
 };
 
 var formats = {
+  yMdhms: 'yMdhms',
+  yMdhm: 'yMdhm',
+  yMdh: 'yMdh',
+  yMd: 'yMd',
+  yM: 'yM',
+  Mdhms: 'Mdhms',
+  Mdhm: 'Mdhm',
+  Mdh: 'Mdh',
+  Md: 'Md',
   dhms: 'dhms',
   dhm: 'dhm',
   hms: 'hms',
@@ -13384,98 +10663,107 @@ var formats = {
   m: 'm',
   s: 's'
 };
+var unitNames = {
+  y: 'years',
+  M: 'months',
+  d: 'days',
+  h: 'hours',
+  m: 'minutes',
+  s: 'seconds'
+};
 var getFormat = memoize(function (format) {
-  return ['d', 'h', 'm', 's'].map(function (symbol) {
-    return formats[format].includes(symbol);
-  });
+  return ['y', 'M', 'd', 'h', 'm', 's'].reduce(function (units, symbol) {
+    return formats[format].includes(symbol) ? toConsumableArray(units).concat([unitNames[symbol]]) : units;
+  }, []);
 });
 
-var getTime$1 = function getTime(start, end, format, showEmpty) {
-  var _getFormat = getFormat(format),
-      _getFormat2 = slicedToArray(_getFormat, 4),
-      showDays = _getFormat2[0],
-      showHours = _getFormat2[1],
-      showMinutes = _getFormat2[2],
-      showSeconds = _getFormat2[3];
+function getTime(start, end, format, showEmpty, maxUnits) {
+  var date1 = end || new Date();
+  var date2 = end ? new Date() : start;
+  var totalInSeconds = dayjs_min(date1).diff(date2, 'seconds');
 
-  var _difference = difference.apply(void 0, toConsumableArray(end ? [end, new Date()] : [new Date(), start])),
+  var _difference = difference(date1, date2, {
+    keepLeadingZeros: showEmpty,
+    maxUnits: maxUnits,
+    units: getFormat(format)
+  }),
+      years = _difference.years,
+      months = _difference.months,
       days = _difference.days,
       hours = _difference.hours,
       minutes = _difference.minutes,
-      seconds = _difference.seconds,
-      totalInSeconds = _difference.totalInSeconds;
-
-  if (!showDays) {
-    hours += days * 24;
-    days = null;
-  } else if (days === 0 && !showEmpty) {
-    days = null;
-  }
-
-  if (!showHours) {
-    minutes += hours * 60;
-    hours = null;
-  } else if (hours === 0 && days === null && !showEmpty) {
-    hours = null;
-  }
-
-  if (!showMinutes) {
-    seconds += minutes * 60;
-    minutes = null;
-  } else if (minutes === 0 && hours === null && days === null && !showEmpty) {
-    minutes = null;
-  }
-
-  if (!showSeconds) {
-    seconds = null;
-  }
+      seconds = _difference.seconds;
 
   return {
-    days: days,
-    hours: hours,
-    minutes: minutes,
-    seconds: seconds,
+    units: [['Y', years], ['M', months], ['D', days], ['H', hours], ['M', minutes], ['S', seconds]],
     totalInSeconds: totalInSeconds
   };
-};
+}
 
 var Timer =
 /*#__PURE__*/
 function (_React$Component) {
-  inherits$1(Timer, _React$Component);
+  inherits(Timer, _React$Component);
 
   function Timer() {
     var _getPrototypeOf2;
 
     var _this;
 
-    classCallCheck$1(this, Timer);
+    classCallCheck(this, Timer);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    _this = possibleConstructorReturn$1(this, (_getPrototypeOf2 = getPrototypeOf(Timer)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this = possibleConstructorReturn(this, (_getPrototypeOf2 = getPrototypeOf(Timer)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
     defineProperty(assertThisInitialized(assertThisInitialized(_this)), "renderTime", function () {
       var _this$props = _this.props,
           start = _this$props.start,
           end = _this$props.end,
           format = _this$props.format,
-          showEmpty = _this$props.showEmpty;
+          showEmpty = _this$props.showEmpty,
+          maxUnits = _this$props.maxUnits;
 
-      var _getTime = getTime$1(start, end, format, showEmpty),
-          days = _getTime.days,
-          hours = _getTime.hours,
-          minutes = _getTime.minutes,
-          seconds = _getTime.seconds,
-          totalInSeconds = _getTime.totalInSeconds;
+      var _getTime = getTime(start, end, format, showEmpty, maxUnits),
+          totalInSeconds = _getTime.totalInSeconds,
+          units = _getTime.units;
 
-      if (end && totalInSeconds <= 0) {
-        return React__default.createElement(TimeOut, null, "Time out");
+      if (totalInSeconds < 0 || Object.is(totalInSeconds, -0)) {
+        return React__default.createElement(_StyledSpan, {
+          _css: theme.textSecondary
+        }, end ? 'Time out' : '−');
       }
 
-      return React__default.createElement("span", null, days !== null && React__default.createElement(React__default.Fragment, null, React__default.createElement(Part, null, formatUnit(days), React__default.createElement(Unit, null, "D")), React__default.createElement(Separator, null)), hours !== null && React__default.createElement(Part, null, formatUnit(hours), React__default.createElement(Unit, null, "H")), hours !== null && minutes !== null && React__default.createElement(Separator, null, ":"), minutes !== null && React__default.createElement(Part, null, formatUnit(minutes), React__default.createElement(Unit, null, "M")), seconds !== null && React__default.createElement(React__default.Fragment, null, minutes !== null && React__default.createElement(Separator, null, ":"), React__default.createElement(PartSeconds, null, formatUnit(seconds), React__default.createElement(UnitSeconds, null, "S"))));
+      var lastUnitIndex = units.reduce(function (lastIndex, unit, index) {
+        return unit[1] === null ? lastIndex : index;
+      }, 0);
+      return React__default.createElement("span", null, units.map(function (unit, index) {
+        var isLast = index === lastUnitIndex;
+        var isSeconds = index === units.length - 1; // Only time units (hours, minutes and seconds).
+        // Remember to update if ms gets added one day!
+
+        var isTimeUnit = index >= units.length - 3;
+
+        if (unit[1] === null) {
+          return null;
+        }
+
+        return React__default.createElement(React__default.Fragment, {
+          key: index
+        }, React__default.createElement(_StyledSpan2, {
+          _css2: theme.textPrimary,
+          _css3: isSeconds && // Fix the width of the seconds unit so that
+          // it doesn’t jump too much.
+          "\n                      display: inline-flex;\n                      align-items: baseline;\n                      justify-content: space-between;\n                      min-width: 31px;\n                    "
+        }, formatUnit(unit[1]), React__default.createElement(_StyledSpan3, {
+          _css4: theme.textSecondary
+        }, unit[0])), !isLast && // Separator
+        React__default.createElement(_StyledSpan4, {
+          _css5: theme.textTertiary
+        }, isTimeUnit && ':'));
+      }));
     });
 
     return _this;
@@ -13487,10 +10775,11 @@ function (_React$Component) {
       var _this$props2 = this.props,
           end = _this$props2.end,
           start = _this$props2.start;
-      return React__default.createElement(Main$6, {
-        dateTime: formatHtmlDatetime(end || start)
-      }, React__default.createElement(IconWrapper, null, React__default.createElement(Time, null)), React__default.createElement(Redraw, {
-        interval: FRAME_EVERY
+      return React__default.createElement(_StyledTime, {
+        dateTime: formatHtmlDatetime(end || start),
+        _css6: unselectable()
+      }, React__default.createElement(_StyledSpan5, null, React__default.createElement(Time, null)), React__default.createElement(Redraw, {
+        interval: RENDER_EVERY
       }, this.renderTime));
     }
   }]);
@@ -13499,59 +10788,52 @@ function (_React$Component) {
 }(React__default.Component);
 
 defineProperty(Timer, "propTypes", {
-  start: propTypes.instanceOf(Date),
   end: propTypes.instanceOf(Date),
   format: propTypes.oneOf(Object.keys(formats)),
-  showEmpty: propTypes.bool
+  maxUnits: propTypes.number,
+  showEmpty: propTypes.bool,
+  start: propTypes.instanceOf(Date)
 });
 
 defineProperty(Timer, "defaultProps", {
-  format: formats.dhms,
+  format: formats.yMdhms,
+  maxUnits: -1,
   showEmpty: false
 });
 
-var Main$6 = styled__default.time.withConfig({
-  displayName: "Timer__Main",
-  componentId: "sc-58hkwl-0"
-})(["white-space:nowrap;", ";"], unselectable());
-var IconWrapper = styled__default.span.withConfig({
-  displayName: "Timer__IconWrapper",
-  componentId: "sc-58hkwl-1"
-})(["margin-right:15px;"]);
-var Part = styled__default.span.withConfig({
-  displayName: "Timer__Part",
-  componentId: "sc-58hkwl-2"
-})(["font-size:15px;font-weight:600;color:", ";"], theme.textPrimary);
-var PartSeconds = styled__default(Part).withConfig({
-  displayName: "Timer__PartSeconds",
-  componentId: "sc-58hkwl-3"
-})(["display:inline-flex;align-items:baseline;justify-content:space-between;min-width:31px;"]);
-var Unit = styled__default.span.withConfig({
-  displayName: "Timer__Unit",
-  componentId: "sc-58hkwl-4"
-})(["margin-left:2px;font-size:12px;color:", ";"], theme.textSecondary);
-var UnitSeconds = styled__default(Unit).withConfig({
-  displayName: "Timer__UnitSeconds",
-  componentId: "sc-58hkwl-5"
-})(["position:relative;left:-3px;"]);
-var Separator = styled__default.span.withConfig({
-  displayName: "Timer__Separator",
-  componentId: "sc-58hkwl-6"
-})(["margin:0 4px;color:", ";font-weight:400;"], theme.textTertiary);
-var TimeOut = styled__default.span.withConfig({
-  displayName: "Timer__TimeOut",
-  componentId: "sc-58hkwl-7"
-})(["font-weight:600;color:", ";"], theme.textSecondary);
+var _StyledSpan = styled__default("span")(_templateObject$7(), function (p) {
+  return p._css;
+});
+
+var _StyledSpan2 = styled__default("span")(_templateObject2$4(), function (p) {
+  return p._css2;
+}, function (p) {
+  return p._css3;
+});
+
+var _StyledSpan3 = styled__default("span")(_templateObject3$4(), function (p) {
+  return p._css4;
+});
+
+var _StyledSpan4 = styled__default("span")(_templateObject4$3(), function (p) {
+  return p._css5;
+});
+
+var _StyledTime = styled__default("time")(_templateObject5$2(), function (p) {
+  return p._css6;
+});
+
+var _StyledSpan5 = styled__default("span")(_templateObject6());
 
 var Countdown =
 /*#__PURE__*/
 function (_React$Component) {
-  inherits$1(Countdown, _React$Component);
+  inherits(Countdown, _React$Component);
 
   function Countdown() {
-    classCallCheck$1(this, Countdown);
+    classCallCheck(this, Countdown);
 
-    return possibleConstructorReturn$1(this, getPrototypeOf(Countdown).apply(this, arguments));
+    return possibleConstructorReturn(this, getPrototypeOf(Countdown).apply(this, arguments));
   }
 
   createClass(Countdown, [{
@@ -13580,26 +10862,26 @@ Countdown.defaultProps = {
 };
 
 var NON_BREAKING_SPACE = '\xa0';
-var accent = theme.accent,
+var accent$1 = theme.accent,
     contentBackgroundActive = theme.contentBackgroundActive;
 
 var DropDownItem =
 /*#__PURE__*/
 function (_React$Component) {
-  inherits$1(DropDownItem, _React$Component);
+  inherits(DropDownItem, _React$Component);
 
   function DropDownItem() {
     var _getPrototypeOf2;
 
     var _this;
 
-    classCallCheck$1(this, DropDownItem);
+    classCallCheck(this, DropDownItem);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    _this = possibleConstructorReturn$1(this, (_getPrototypeOf2 = getPrototypeOf(DropDownItem)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this = possibleConstructorReturn(this, (_getPrototypeOf2 = getPrototypeOf(DropDownItem)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
     defineProperty(assertThisInitialized(assertThisInitialized(_this)), "state", {
       pressed: false,
@@ -13685,7 +10967,7 @@ var StyledDropDownItem = styled__default.div.attrs({
 }).withConfig({
   displayName: "DropDownItem__StyledDropDownItem",
   componentId: "sc-192d7e-0"
-})(["position:relative;padding:8px 15px;cursor:pointer;outline:0;&:after{content:'';opacity:0;position:absolute;z-index:2;top:0;left:0;right:0;bottom:0;margin:-1px -2px;border:2px solid ", ";transition:all 100ms ease-in-out;}&:active{background-color:", ";}&:hover,&:focus{color:", ";}&:focus:after{opacity:", ";}"], accent, contentBackgroundActive, accent, function (_ref) {
+})(["position:relative;padding:8px 15px;cursor:pointer;outline:0;&:after{content:'';opacity:0;position:absolute;z-index:2;top:0;left:0;right:0;bottom:0;margin:-1px -2px;border:2px solid ", ";transition:all 100ms ease-in-out;}&:active{background-color:", ";}&:hover,&:focus{color:", ";}&:focus:after{opacity:", ";}"], accent$1, contentBackgroundActive, accent$1, function (_ref) {
   var displayFocus = _ref.displayFocus;
   return displayFocus ? 1 : 0;
 });
@@ -13693,9 +10975,9 @@ var StyledDropDownItem = styled__default.div.attrs({
 var arrow = "data:image/svg+xml,%3Csvg%20width%3D%229%22%20height%3D%225%22%20viewBox%3D%220%200%209%205%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M0%200h8.36L4.18%204.18z%22%20fill%3D%22%23B3B3B3%22%20fill-rule%3D%22evenodd%22%2F%3E%3C%2Fsvg%3E";
 
 var NON_BREAKING_SPACE$1 = '\xa0';
-var contentBackground$1 = theme.contentBackground,
-    contentBorder$1 = theme.contentBorder,
-    textPrimary$1 = theme.textPrimary;
+var contentBackground$2 = theme.contentBackground,
+    contentBorder$2 = theme.contentBorder,
+    textPrimary$2 = theme.textPrimary;
 var StyledDropDown = styled__default.div.withConfig({
   displayName: "DropDown__StyledDropDown",
   componentId: "sc-17zpefi-0"
@@ -13705,11 +10987,11 @@ var StyledDropDown = styled__default.div.withConfig({
 }, function (_ref2) {
   var wide = _ref2.wide;
   return wide ? 'flex' : 'inline-flex';
-}, textPrimary$1, unselectable());
+}, textPrimary$2, unselectable());
 var DropDownItems = styled__default(extendedAnimated.div).withConfig({
   displayName: "DropDown__DropDownItems",
   componentId: "sc-17zpefi-1"
-})(["position:absolute;z-index:2;top:calc(100% - 1px);padding:8px 0;color:", ";background:", ";border:1px solid ", ";box-shadow:0 4px 4px 0 rgba(0,0,0,0.06);border-radius:3px;list-style:none;"], textPrimary$1, contentBackground$1, contentBorder$1);
+})(["position:absolute;z-index:2;top:calc(100% - 1px);padding:8px 0;color:", ";background:", ";border:1px solid ", ";box-shadow:0 4px 4px 0 rgba(0,0,0,0.06);border-radius:3px;list-style:none;"], textPrimary$2, contentBackground$2, contentBorder$2);
 var BlockingLayer = styled__default(extendedAnimated.div).withConfig({
   displayName: "DropDown__BlockingLayer",
   componentId: "sc-17zpefi-2"
@@ -13717,25 +10999,25 @@ var BlockingLayer = styled__default(extendedAnimated.div).withConfig({
 var DropDownActiveItem = styled__default(PublicUrl.hocWrap(DropDownItem)).withConfig({
   displayName: "DropDown__DropDownActiveItem",
   componentId: "sc-17zpefi-3"
-})(["padding-right:40px;background:", ";background-image:url(", ");background-repeat:no-repeat;background-position:calc(100% - 15px) 50%;border:1px solid ", ";border-radius:3px;&:hover,&:focus{color:inherit;}&:active{color:", ";}"], contentBackground$1, PublicUrl.styledUrl(arrow), contentBorder$1, textPrimary$1);
+})(["padding-right:40px;background:", ";background-image:url(", ");background-repeat:no-repeat;background-position:calc(100% - 15px) 50%;border:1px solid ", ";border-radius:3px;&:hover,&:focus{color:inherit;}&:active{color:", ";}"], contentBackground$2, PublicUrl.styledUrl(arrow), contentBorder$2, textPrimary$2);
 
 var DropDown =
 /*#__PURE__*/
 function (_React$Component) {
-  inherits$1(DropDown, _React$Component);
+  inherits(DropDown, _React$Component);
 
   function DropDown() {
     var _getPrototypeOf2;
 
     var _this;
 
-    classCallCheck$1(this, DropDown);
+    classCallCheck(this, DropDown);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    _this = possibleConstructorReturn$1(this, (_getPrototypeOf2 = getPrototypeOf(DropDown)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this = possibleConstructorReturn(this, (_getPrototypeOf2 = getPrototypeOf(DropDown)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
     defineProperty(assertThisInitialized(assertThisInitialized(_this)), "state", {
       opened: false
@@ -14155,6 +11437,34 @@ function baseTimes(n, iteratee) {
     result[index] = iteratee(index);
   }
   return result;
+}
+
+/**
+ * Checks if `value` is object-like. A value is object-like if it's not `null`
+ * and has a `typeof` result of "object".
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is object-like, else `false`.
+ * @example
+ *
+ * _.isObjectLike({});
+ * // => true
+ *
+ * _.isObjectLike([1, 2, 3]);
+ * // => true
+ *
+ * _.isObjectLike(_.noop);
+ * // => false
+ *
+ * _.isObjectLike(null);
+ * // => false
+ */
+function isObjectLike(value) {
+  return value != null && typeof value == 'object';
 }
 
 /** `Object#toString` result references. */
@@ -15112,7 +12422,7 @@ var boolTag$1 = '[object Boolean]',
     regexpTag$1 = '[object RegExp]',
     setTag$2 = '[object Set]',
     stringTag$1 = '[object String]',
-    symbolTag$1 = '[object Symbol]';
+    symbolTag = '[object Symbol]';
 
 var arrayBufferTag$1 = '[object ArrayBuffer]',
     dataViewTag$2 = '[object DataView]',
@@ -15169,7 +12479,7 @@ function initCloneByTag(object, tag, isDeep) {
     case setTag$2:
       return new Ctor;
 
-    case symbolTag$1:
+    case symbolTag:
       return cloneSymbol(object);
   }
 }
@@ -15305,7 +12615,7 @@ var argsTag$2 = '[object Arguments]',
     regexpTag$2 = '[object RegExp]',
     setTag$4 = '[object Set]',
     stringTag$2 = '[object String]',
-    symbolTag$2 = '[object Symbol]',
+    symbolTag$1 = '[object Symbol]',
     weakMapTag$2 = '[object WeakMap]';
 
 var arrayBufferTag$2 = '[object ArrayBuffer]',
@@ -15330,7 +12640,7 @@ cloneableTags[int8Tag$2] = cloneableTags[int16Tag$2] =
 cloneableTags[int32Tag$2] = cloneableTags[mapTag$4] =
 cloneableTags[numberTag$2] = cloneableTags[objectTag$2] =
 cloneableTags[regexpTag$2] = cloneableTags[setTag$4] =
-cloneableTags[stringTag$2] = cloneableTags[symbolTag$2] =
+cloneableTags[stringTag$2] = cloneableTags[symbolTag$1] =
 cloneableTags[uint8Tag$2] = cloneableTags[uint8ClampedTag$2] =
 cloneableTags[uint16Tag$2] = cloneableTags[uint32Tag$2] = true;
 cloneableTags[errorTag$1] = cloneableTags[funcTag$2] =
@@ -15432,6 +12742,31 @@ function baseClone(value, bitmask, customizer, key, object, stack) {
     assignValue(result, key, baseClone(subValue, bitmask, customizer, key, value, stack));
   });
   return result;
+}
+
+/** `Object#toString` result references. */
+var symbolTag$2 = '[object Symbol]';
+
+/**
+ * Checks if `value` is classified as a `Symbol` primitive or object.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a symbol, else `false`.
+ * @example
+ *
+ * _.isSymbol(Symbol.iterator);
+ * // => true
+ *
+ * _.isSymbol('abc');
+ * // => false
+ */
+function isSymbol(value) {
+  return typeof value == 'symbol' ||
+    (isObjectLike(value) && baseGetTag(value) == symbolTag$2);
 }
 
 /** Used to match property names within property paths. */
@@ -15849,7 +13184,7 @@ function apply(func, thisArg, args) {
 }
 
 /* Built-in method references for those with the same name as other `lodash` methods. */
-var nativeMax$1 = Math.max;
+var nativeMax = Math.max;
 
 /**
  * A specialized version of `baseRest` which transforms the rest array.
@@ -15861,11 +13196,11 @@ var nativeMax$1 = Math.max;
  * @returns {Function} Returns the new function.
  */
 function overRest(func, start, transform) {
-  start = nativeMax$1(start === undefined ? (func.length - 1) : start, 0);
+  start = nativeMax(start === undefined ? (func.length - 1) : start, 0);
   return function() {
     var args = arguments,
         index = -1,
-        length = nativeMax$1(args.length - start, 0),
+        length = nativeMax(args.length - start, 0),
         array = Array(length);
 
     while (++index < length) {
@@ -15922,7 +13257,7 @@ function constant(value) {
  * console.log(_.identity(object) === object);
  * // => true
  */
-function identity(value) {
+function identity$1(value) {
   return value;
 }
 
@@ -15934,7 +13269,7 @@ function identity(value) {
  * @param {Function} string The `toString` result.
  * @returns {Function} Returns `func`.
  */
-var baseSetToString = !defineProperty$1 ? identity : function(func, string) {
+var baseSetToString = !defineProperty$1 ? identity$1 : function(func, string) {
   return defineProperty$1(func, 'toString', {
     'configurable': true,
     'enumerable': false,
@@ -16050,14 +13385,14 @@ var omit = flatRest(function(object, paths) {
 var EmptyStateCard =
 /*#__PURE__*/
 function (_React$Component) {
-  inherits$1(EmptyStateCard, _React$Component);
+  inherits(EmptyStateCard, _React$Component);
 
   function EmptyStateCard(props) {
     var _this;
 
-    classCallCheck$1(this, EmptyStateCard);
+    classCallCheck(this, EmptyStateCard);
 
-    _this = possibleConstructorReturn$1(this, getPrototypeOf(EmptyStateCard).call(this, props));
+    _this = possibleConstructorReturn(this, getPrototypeOf(EmptyStateCard).call(this, props));
 
     _this.displayWarnings({}, props);
 
@@ -16134,7 +13469,7 @@ function (_React$Component) {
           props = objectWithoutProperties(_this$props2, ["title", "text"]);
 
       var extraProps = omit(props, Object.keys(EmptyStateCard.propTypes));
-      return React__default.createElement(Main$7, extraProps, React__default.createElement("section", null, this.iconElement(), React__default.createElement(Heading, null, React__default.createElement(Text, {
+      return React__default.createElement(Main$6, extraProps, React__default.createElement("section", null, this.iconElement(), React__default.createElement(Heading, null, React__default.createElement(Text, {
         color: theme.accent,
         weight: "bold",
         size: "large"
@@ -16162,7 +13497,7 @@ defineProperty(EmptyStateCard, "defaultProps", {
   onActivate: noop
 });
 
-var Main$7 = styled__default(StyledCard).withConfig({
+var Main$6 = styled__default(StyledCard).withConfig({
   displayName: "EmptyStateCard__Main",
   componentId: "ov2yly-0"
 })(["display:flex;padding:40px 60px;align-items:center;justify-content:center;text-align:center;section{padding-top:20px;}"]);
@@ -16182,20 +13517,20 @@ var ActionWrapper = styled__default.div.withConfig({
 var EscapeOutside =
 /*#__PURE__*/
 function (_React$Component) {
-  inherits$1(EscapeOutside, _React$Component);
+  inherits(EscapeOutside, _React$Component);
 
   function EscapeOutside() {
     var _getPrototypeOf2;
 
     var _this;
 
-    classCallCheck$1(this, EscapeOutside);
+    classCallCheck(this, EscapeOutside);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    _this = possibleConstructorReturn$1(this, (_getPrototypeOf2 = getPrototypeOf(EscapeOutside)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this = possibleConstructorReturn(this, (_getPrototypeOf2 = getPrototypeOf(EscapeOutside)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
     defineProperty(assertThisInitialized(assertThisInitialized(_this)), "_element", React__default.createRef());
 
@@ -16312,6 +13647,156 @@ Field.propTypes = {
   required: propTypes.bool
 };
 
+var _React$createContext$2 = React__default.createContext(null),
+    Provider$2 = _React$createContext$2.Provider,
+    Consumer$1 = _React$createContext$2.Consumer;
+
+var RootProvider =
+/*#__PURE__*/
+function (_React$Component) {
+  inherits(RootProvider, _React$Component);
+
+  function RootProvider() {
+    var _getPrototypeOf2;
+
+    var _this;
+
+    classCallCheck(this, RootProvider);
+
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    _this = possibleConstructorReturn(this, (_getPrototypeOf2 = getPrototypeOf(RootProvider)).call.apply(_getPrototypeOf2, [this].concat(args)));
+
+    defineProperty(assertThisInitialized(assertThisInitialized(_this)), "_element", React__default.createRef());
+
+    defineProperty(assertThisInitialized(assertThisInitialized(_this)), "state", {
+      element: null
+    });
+
+    return _this;
+  }
+
+  createClass(RootProvider, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.setState({
+        element: this._element.current
+      });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var element = this.state.element;
+      var children = this.props.children;
+      return React__default.createElement(Provider$2, {
+        value: element
+      }, React__default.createElement("div", {
+        ref: this._element
+      },
+      /*
+       We don’t render the children tree until the element is present, at
+       the second rendering.
+        The reason why it is needed is because element references are
+       assigned after the first rendering, and we don’t want to let
+       `<Root />` consumers having to deal with the reference being `null`
+       at the first rendering.
+        This way, we can guarantee that if a consumer gets `null` rather
+       than the element, it’s because <Root.Provider /> has to be defined
+       at an upper level.
+      */
+      element ? children : null));
+    }
+  }]);
+
+  return RootProvider;
+}(React__default.Component);
+
+defineProperty(RootProvider, "propTypes", {
+  children: propTypes.node
+});
+
+var Root = function Root(props) {
+  return React__default.createElement(Consumer$1, props);
+};
+
+Root.Provider = RootProvider;
+
+var RootPortal = function RootPortal(props) {
+  return React__default.createElement(Root, null, function (rootElement) {
+    if (!rootElement) {
+      throw new Error('<RootPortal> needs to be nested in <Root.Provider>. Have you declared <Main>?');
+    }
+
+    return ReactDOM.createPortal(props.children, rootElement);
+  });
+};
+
+RootPortal.propTypes = {
+  children: propTypes.node.isRequired
+};
+
+function _templateObject$8() {
+  var data = taggedTemplateLiteral(["\n              position: absolute;\n              z-index: 1;\n              width: 100%;\n              display: flex;\n              justify-content: center;\n              bottom: 25px;\n            "]);
+
+  _templateObject$8 = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+var FloatIndicator = React__default.memo(function (_ref) {
+  var children = _ref.children,
+      visible = _ref.visible;
+  return React__default.createElement(RootPortal, null, React__default.createElement(Transition, {
+    native: true,
+    items: visible,
+    from: {
+      progress: 0
+    },
+    enter: {
+      progress: 1
+    },
+    leave: {
+      progress: 0
+    },
+    config: springs.smooth
+  }, function (show) {
+    return show &&
+    /* eslint-disable react/prop-types */
+    function (_ref2) {
+      var progress = _ref2.progress;
+      return React__default.createElement(_StyledDiv$4, null, React__default.createElement(Box, {
+        style: {
+          pointerEvents: visible ? 'auto' : 'none',
+          opacity: progress,
+          transform: progress.interpolate(function (v) {
+            return "translate3d(0, calc(10px * ".concat(1 - v, "), 0)");
+          })
+        }
+      }, children));
+    };
+  }
+  /* eslint-enable react/prop-types */
+  ));
+});
+FloatIndicator.propTypes = {
+  visible: propTypes.bool,
+  children: propTypes.node.isRequired
+};
+FloatIndicator.defaultProps = {
+  visible: true
+};
+var Box = styled__default(extendedAnimated.div).withConfig({
+  displayName: "FloatIndicator__Box",
+  componentId: "sc-1mhu8xn-0"
+})(["display:flex;padding:8px 20px;background:", ";color:", ";border:1px solid ", ";border-radius:3px;", ";cursor:default;"], theme.contentBackground, theme.textSecondary, theme.contentBorder, font({
+  size: 'small'
+}));
+
+var _StyledDiv$4 = styled__default("div")(_templateObject$8());
+
 /**!
  * @fileOverview Kickass library to create and place poppers near their reference elements.
  * @version 1.14.6
@@ -16385,7 +13870,7 @@ var supportsMicroTasks = isBrowser && window.Promise;
 * @argument {Function} fn
 * @returns {Function}
 */
-var debounce$1 = supportsMicroTasks ? microtaskDebounce : taskDebounce;
+var debounce = supportsMicroTasks ? microtaskDebounce : taskDebounce;
 
 /**
  * Check if the given variable is a function
@@ -18749,7 +16234,7 @@ var Popper = function () {
     };
 
     // make update() debounced, so that it only runs at most once-per-tick
-    this.update = debounce$1(this.update.bind(this));
+    this.update = debounce(this.update.bind(this));
 
     // with {} we create a new object with the options inside it
     this.options = _extends$1({}, Popper.Defaults, options);
@@ -18882,39 +16367,25 @@ Popper.Utils = (typeof window !== 'undefined' ? window : global).PopperUtils;
 Popper.placements = placements;
 Popper.Defaults = Defaults;
 
-var RootPortal = function RootPortal(props) {
-  return React__default.createElement(Root, null, function (rootElement) {
-    if (!rootElement) {
-      throw new Error('<RootPortal> needs to be nested in <Root.Provider>. Have you declared <Main>?');
-    }
-
-    return ReactDOM.createPortal(props.children, rootElement);
-  });
-};
-
-RootPortal.propTypes = {
-  children: propTypes.node.isRequired
-};
-
 var _ref2;
 
 var PopoverBase =
 /*#__PURE__*/
 function (_React$Component) {
-  inherits$1(PopoverBase, _React$Component);
+  inherits(PopoverBase, _React$Component);
 
   function PopoverBase() {
     var _getPrototypeOf2;
 
     var _this;
 
-    classCallCheck$1(this, PopoverBase);
+    classCallCheck(this, PopoverBase);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    _this = possibleConstructorReturn$1(this, (_getPrototypeOf2 = getPrototypeOf(PopoverBase)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this = possibleConstructorReturn(this, (_getPrototypeOf2 = getPrototypeOf(PopoverBase)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
     defineProperty(assertThisInitialized(assertThisInitialized(_this)), "_cardElement", React__default.createRef());
 
@@ -19056,7 +16527,7 @@ function (_React$Component) {
           transitionStyles = _this$props4.transitionStyles;
       var scale = transitionStyles.scale,
           opacity = transitionStyles.opacity;
-      return React__default.createElement(Main$8, {
+      return React__default.createElement(Main$7, {
         ref: this._popperElement,
         style: {
           zIndex: zIndex
@@ -19098,7 +16569,7 @@ defineProperty(PopoverBase, "defaultProps", {
   zIndex: 999
 });
 
-var Main$8 = styled__default(extendedAnimated.div).withConfig({
+var Main$7 = styled__default(extendedAnimated.div).withConfig({
   displayName: "Popover__Main",
   componentId: "sc-1hohxqp-0"
 })(["position:absolute;top:0;left:0;"]);
@@ -19145,23 +16616,93 @@ var PopoverActionType = propTypes.shape({
   onClick: propTypes.func.isRequired
 });
 
+function _templateObject7() {
+  var data = taggedTemplateLiteral(["\n                  color: ", ";\n                "]);
+
+  _templateObject7 = function _templateObject7() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject6$1() {
+  var data = taggedTemplateLiteral(["\n              padding: 10px 0 0;\n              text-align: right;\n              ", ";\n            "]);
+
+  _templateObject6$1 = function _templateObject6() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject5$3() {
+  var data = taggedTemplateLiteral(["\n                  margin: -1px 0 0 5px;\n                  text-transform: uppercase;\n                  ", ";\n                "]);
+
+  _templateObject5$3 = function _templateObject5() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject4$4() {
+  var data = taggedTemplateLiteral(["\n                ", ";\n                color: ", ";\n              "]);
+
+  _templateObject4$4 = function _templateObject4() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject3$5() {
+  var data = taggedTemplateLiteral(["\n              display: flex;\n              align-items: center;\n              padding: 5px 0;\n            "]);
+
+  _templateObject3$5 = function _templateObject3() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject2$5() {
+  var data = taggedTemplateLiteral(["\n              position: absolute;\n              top: 0;\n              right: 0;\n              width: 46px;\n              height: 40px;\n            "]);
+
+  _templateObject2$5 = function _templateObject2() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject$9() {
+  var data = taggedTemplateLiteral(["\n            position: relative;\n            padding: 10px 18px 20px;\n            max-width: calc(100vw - 20px);\n            min-width: 300px;\n          "]);
+
+  _templateObject$9 = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+
 var IdentityBadgePopover =
 /*#__PURE__*/
 function (_React$PureComponent) {
-  inherits$1(IdentityBadgePopover, _React$PureComponent);
+  inherits(IdentityBadgePopover, _React$PureComponent);
 
   function IdentityBadgePopover() {
     var _getPrototypeOf2;
 
     var _this;
 
-    classCallCheck$1(this, IdentityBadgePopover);
+    classCallCheck(this, IdentityBadgePopover);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    _this = possibleConstructorReturn$1(this, (_getPrototypeOf2 = getPrototypeOf(IdentityBadgePopover)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this = possibleConstructorReturn(this, (_getPrototypeOf2 = getPrototypeOf(IdentityBadgePopover)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
     defineProperty(assertThisInitialized(assertThisInitialized(_this)), "handlePopoverActionClick", function () {
       var _this$props = _this.props,
@@ -19187,6 +16728,9 @@ function (_React$PureComponent) {
           opener = _this$props2.opener,
           title = _this$props2.title,
           visible = _this$props2.visible;
+      var etherscanUrl = blockExplorerUrl('address', address, {
+        networkType: networkType
+      });
       return React__default.createElement(Popover, {
         visible: visible,
         opener: opener,
@@ -19195,27 +16739,25 @@ function (_React$PureComponent) {
         label: "Close",
         onClick: onClose
       }, React__default.createElement(Close, null)), React__default.createElement(_StyledHeader, null, React__default.createElement(_StyledH, {
-        _$p_: font({
+        _css: font({
           size: 'large'
         }),
-        _$p_2: theme.textSecondary
+        _css2: theme.textSecondary
       }, title), connectedAccount && React__default.createElement(_StyledBadgeIdentity, {
         title: "This is your Ethereum address",
-        _$p_3: font({
+        _css3: font({
           size: 'xxsmall'
         })
       }, "You")), React__default.createElement(AddressField, {
         address: address
       }), React__default.createElement(_StyledP, {
-        _$p_4: font({
+        _css4: font({
           size: 'small'
         })
-      }, React__default.createElement(_StyledSafeLink, {
-        href: blockExplorerUrl('address', address, {
-          networkType: networkType
-        }),
+      }, etherscanUrl && React__default.createElement(_StyledSafeLink, {
+        href: etherscanUrl,
         target: "_blank",
-        _$p_5: theme.accent
+        _css5: theme.accent
       }, "See on Etherscan")), popoverAction && React__default.createElement(Button, {
         mode: "outline",
         size: "small",
@@ -19243,68 +16785,87 @@ defineProperty(IdentityBadgePopover, "defaultProps", {
   onClose: noop
 });
 
-var _StyledSection = styled__default("section").withConfig({
-  displayName: "IdentityBadgePopover___StyledSection",
-  componentId: "sc-1yeyfty-0"
-})(["position:relative;padding:10px 18px 20px;max-width:calc(100vw - 20px);min-width:300px;"]);
+var _StyledSection = styled__default("section")(_templateObject$9());
 
-var _StyledButtonIcon$1 = styled__default(ButtonIcon).withConfig({
-  displayName: "IdentityBadgePopover___StyledButtonIcon",
-  componentId: "sc-1yeyfty-1"
-})(["position:absolute;top:0;right:0;width:46px;height:40px;"]);
+var _StyledButtonIcon$1 = styled__default(ButtonIcon)(_templateObject2$5());
 
-var _StyledHeader = styled__default("header").withConfig({
-  displayName: "IdentityBadgePopover___StyledHeader",
-  componentId: "sc-1yeyfty-2"
-})(["display:flex;align-items:center;padding:5px 0;"]);
+var _StyledHeader = styled__default("header")(_templateObject3$5());
 
-var _StyledH = styled__default("h1").withConfig({
-  displayName: "IdentityBadgePopover___StyledH",
-  componentId: "sc-1yeyfty-3"
-})(["", ";color:", ";"], function (p) {
-  return p._$p_;
+var _StyledH = styled__default("h1")(_templateObject4$4(), function (p) {
+  return p._css;
 }, function (p) {
-  return p._$p_2;
+  return p._css2;
 });
 
-var _StyledBadgeIdentity = styled__default(Badge.Identity).withConfig({
-  displayName: "IdentityBadgePopover___StyledBadgeIdentity",
-  componentId: "sc-1yeyfty-4"
-})(["margin:-1px 0 0 5px;text-transform:uppercase;", ";"], function (p) {
-  return p._$p_3;
+var _StyledBadgeIdentity = styled__default(Badge.Identity)(_templateObject5$3(), function (p) {
+  return p._css3;
 });
 
-var _StyledP = styled__default("p").withConfig({
-  displayName: "IdentityBadgePopover___StyledP",
-  componentId: "sc-1yeyfty-5"
-})(["padding:10px 0 0;text-align:right;", ";"], function (p) {
-  return p._$p_4;
+var _StyledP = styled__default("p")(_templateObject6$1(), function (p) {
+  return p._css4;
 });
 
-var _StyledSafeLink = styled__default(SafeLink).withConfig({
-  displayName: "IdentityBadgePopover___StyledSafeLink",
-  componentId: "sc-1yeyfty-6"
-})(["color:", ";"], function (p) {
-  return p._$p_5;
+var _StyledSafeLink = styled__default(SafeLink)(_templateObject7(), function (p) {
+  return p._css5;
 });
+
+function _templateObject4$5() {
+  var data = taggedTemplateLiteral(["\n                padding: 0 8px;\n                white-space: nowrap;\n                text-overflow: ellipsis;\n                overflow: hidden;\n              "]);
+
+  _templateObject4$5 = function _templateObject4() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject3$6() {
+  var data = taggedTemplateLiteral(["\n                  display: block;\n                  margin-right: -3px;\n                  ", ";\n                "]);
+
+  _templateObject3$6 = function _templateObject3() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject2$6() {
+  var data = taggedTemplateLiteral(["\n              overflow: hidden;\n              display: flex;\n              align-items: center;\n              ", ";\n              text-decoration: none;\n            "]);
+
+  _templateObject2$6 = function _templateObject2() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject$a() {
+  var data = taggedTemplateLiteral(["\n            display: inline-flex;\n            overflow: hidden;\n            color: ", ";\n            height: 24px;\n            &:active {\n              ", ";\n            }\n          "]);
+
+  _templateObject$a = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
 
 var IdentityBadge =
 /*#__PURE__*/
 function (_React$PureComponent) {
-  inherits$1(IdentityBadge, _React$PureComponent);
+  inherits(IdentityBadge, _React$PureComponent);
 
   function IdentityBadge() {
     var _getPrototypeOf2;
 
     var _this;
 
-    classCallCheck$1(this, IdentityBadge);
+    classCallCheck(this, IdentityBadge);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    _this = possibleConstructorReturn$1(this, (_getPrototypeOf2 = getPrototypeOf(IdentityBadge)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this = possibleConstructorReturn(this, (_getPrototypeOf2 = getPrototypeOf(IdentityBadge)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
     defineProperty(assertThisInitialized(assertThisInitialized(_this)), "_element", React__default.createRef());
 
@@ -19339,21 +16900,30 @@ function (_React$PureComponent) {
           fontSize = _this$props.fontSize,
           customLabel = _this$props.customLabel,
           networkType = _this$props.networkType,
-          shorten = _this$props.shorten;
+          shorten = _this$props.shorten,
+          compact = _this$props.compact,
+          badgeOnly = _this$props.badgeOnly;
       var address = isAddress(entity) ? entity : null;
       var label = customLabel || (address && shorten ? shortenAddress(address) : entity);
-      return React__default.createElement(React__default.Fragment, null, React__default.createElement(_StyledButtonBase$1, {
+      return React__default.createElement(React__default.Fragment, null, React__default.createElement(_StyledButtonBase$3, {
         ref: this._element,
         title: address,
-        onClick: address && this.handleOpen,
-        _$p_: theme.textPrimary
-      }, React__default.createElement(_StyledDiv$3, stylingProps(this), address && React__default.createElement(_StyledDiv2$3, null, React__default.createElement(EthIdenticon, {
-        scale: 1,
+        disabled: badgeOnly,
+        onClick: address && !badgeOnly ? this.handleOpen : undefined,
+        _css: theme.textPrimary,
+        _css2: compact && 'background: rgba(220, 234, 239, 0.3);'
+      }, React__default.createElement(_StyledDiv$5, _extends_1({}, stylingProps(this), {
+        _css3: compact ? 'padding-left: 8px; border-radius: 2px;' : 'background: #daeaef; border-radius: 3px;'
+      }), address && React__default.createElement(_StyledDiv2$4, {
+        _css4: compact && 'position: relative; top: -1px;'
+      }, React__default.createElement(EthIdenticon, {
+        scale: compact ? 0.58 : 1,
+        radius: compact ? 2 : 0,
         address: address
       })), React__default.createElement(_StyledText, {
         size: fontSize,
         monospace: Boolean(!customLabel && address)
-      }, label))), address && React__default.createElement(IdentityBadgePopover, {
+      }, label))), address && !badgeOnly && React__default.createElement(IdentityBadgePopover, {
         address: address,
         visible: opened,
         connectedAccount: connectedAccount,
@@ -19377,7 +16947,9 @@ defineProperty(IdentityBadge, "propTypes", {
   networkType: propTypes.string,
   popoverTitle: propTypes.node,
   popoverAction: PopoverActionType,
-  shorten: propTypes.bool
+  shorten: propTypes.bool,
+  compact: propTypes.bool,
+  badgeOnly: propTypes.bool
 });
 
 defineProperty(IdentityBadge, "defaultProps", {
@@ -19385,37 +16957,33 @@ defineProperty(IdentityBadge, "defaultProps", {
   shorten: true,
   fontSize: 'normal',
   networkType: 'main',
-  connectedAccount: false
+  connectedAccount: false,
+  compact: false,
+  badgeOnly: false
 });
 
-var _StyledButtonBase$1 = styled__default(ButtonBase$1).withConfig({
-  displayName: "IdentityBadge___StyledButtonBase",
-  componentId: "q71pax-0"
-})(["display:inline-flex;overflow:hidden;color:", ";"], function (p) {
-  return p._$p_;
+var _StyledButtonBase$3 = styled__default(ButtonBase$1)(_templateObject$a(), function (p) {
+  return p._css;
+}, function (p) {
+  return p._css2;
 });
 
-var _StyledDiv$3 = styled__default("div").withConfig({
-  displayName: "IdentityBadge___StyledDiv",
-  componentId: "q71pax-1"
-})(["overflow:hidden;display:flex;align-items:center;background:#daeaef;border-radius:3px;text-decoration:none;"]);
+var _StyledDiv$5 = styled__default("div")(_templateObject2$6(), function (p) {
+  return p._css3;
+});
 
-var _StyledDiv2$3 = styled__default("div").withConfig({
-  displayName: "IdentityBadge___StyledDiv2",
-  componentId: "q71pax-2"
-})(["display:block;margin-right:-3px;"]);
+var _StyledDiv2$4 = styled__default("div")(_templateObject3$6(), function (p) {
+  return p._css4;
+});
 
-var _StyledText = styled__default(Text).withConfig({
-  displayName: "IdentityBadge___StyledText",
-  componentId: "q71pax-3"
-})(["padding:0 8px;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;"]);
+var _StyledText = styled__default(Text)(_templateObject4$5());
 
 var Info$1 = function Info(_ref) {
   var children = _ref.children,
       title = _ref.title,
       props = objectWithoutProperties(_ref, ["children", "title"]);
 
-  return React__default.createElement(Main$9, props, title && React__default.createElement(Title, null, title), children);
+  return React__default.createElement(Main$8, props, title && React__default.createElement(Title, null, title), children);
 };
 
 Info$1.propTypes = {
@@ -19426,7 +16994,7 @@ Info$1.propTypes = {
 Info$1.defaultProps = {
   background: theme.infoBackground
 };
-var Main$9 = styled__default.section.withConfig({
+var Main$8 = styled__default.section.withConfig({
   displayName: "Info__Main",
   componentId: "sc-1kgnlbm-0"
 })(["background:", ";padding:15px;border-radius:3px;word-wrap:break-word;"], function (_ref2) {
@@ -20312,28 +17880,6 @@ var onecolor = color_1
     .use(saturate)
     .use(toAlpha);
 
-var Bylaw = function Bylaw(props) {
-  return React__default.createElement("svg", _extends_1({
-    width: 17,
-    height: 16,
-    viewBox: "0 0 17 16"
-  }, props), React__default.createElement("g", {
-    fill: "none",
-    fillRule: "evenodd"
-  }, React__default.createElement("path", {
-    d: "M-2-2h22v22H-2z"
-  }), React__default.createElement("g", {
-    opacity: 0.8,
-    stroke: "currentColor"
-  }, React__default.createElement("path", {
-    d: "M9.036 1.143L1.578 4.357V5.43h14.916V4.357L9.036 1.143zm6.88 12.393H2.071c-.318 0-.577.242-.577.535v1.072h15V14.07c0-.293-.26-.535-.578-.535z",
-    strokeLinecap: "round",
-    strokeLinejoin: "round"
-  }), React__default.createElement("path", {
-    d: "M3 5v8.034M6 5v8.275M9 5v8.034M12 5v8.275M15 5v8.275"
-  }))));
-};
-
 var Icon = styled__default.span.withConfig({
   displayName: "IconInfo__Icon",
   componentId: "sc-1g1veyi-0"
@@ -20408,17 +17954,36 @@ Info$1.Action = Action;
 Info$1.Alert = Alert;
 Info$1.Permissions = Permissions$1;
 
+function _templateObject2$7() {
+  var data = taggedTemplateLiteral(["\n                      alignment-baseline: middle;\n                      font-size: 12px;\n                      font-weight: 300;\n                      ", ";\n                    "]);
+
+  _templateObject2$7 = function _templateObject2() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject$b() {
+  var data = taggedTemplateLiteral(["display: block"]);
+
+  _templateObject$b = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
 var LABELS_HEIGHT = 30;
 
 var LineChart =
 /*#__PURE__*/
 function (_React$Component) {
-  inherits$1(LineChart, _React$Component);
+  inherits(LineChart, _React$Component);
 
   function LineChart() {
-    classCallCheck$1(this, LineChart);
+    classCallCheck(this, LineChart);
 
-    return possibleConstructorReturn$1(this, getPrototypeOf(LineChart).apply(this, arguments));
+    return possibleConstructorReturn(this, getPrototypeOf(LineChart).apply(this, arguments));
   }
 
   createClass(LineChart, [{
@@ -20482,7 +18047,9 @@ function (_React$Component) {
           reset = _this$props.reset,
           animDelay = _this$props.animDelay,
           color = _this$props.color,
-          labelColor = _this$props.labelColor;
+          labelColor = _this$props.labelColor,
+          props = objectWithoutProperties(_this$props, ["width", "height", "borderColor", "dotRadius", "springConfig", "label", "reset", "animDelay", "color", "labelColor"]);
+
       var lines = this.getLines(); // the provided values, up to this point
 
       var valuesCount = this.getValuesCount(); // the total amount of values
@@ -20490,7 +18057,16 @@ function (_React$Component) {
       var totalCount = this.getTotalCount();
       var labels = label && totalCount > 0 ? toConsumableArray(Array(totalCount).keys()).map(label) : null;
       var chartHeight = height - (labels ? LABELS_HEIGHT : 0);
-      return React__default.createElement("div", null, React__default.createElement(SvgWrapper, null, React__default.createElement(Spring, {
+      var rectangle = React__default.createElement("rect", {
+        width: width,
+        height: chartHeight,
+        rx: "3",
+        ry: "3",
+        fill: "#ffffff",
+        strokeWidth: "1",
+        stroke: borderColor
+      });
+      return React__default.createElement(Spring, {
         from: {
           progress: 0
         },
@@ -20502,17 +18078,15 @@ function (_React$Component) {
         reset: reset
       }, function (_ref) {
         var progress = _ref.progress;
-        return React__default.createElement("svg", {
-          viewBox: "0 0 ".concat(width, " ").concat(height)
-        }, React__default.createElement("rect", {
+        return React__default.createElement(_StyledSvg, _extends_1({
+          viewBox: "0 0 ".concat(width, " ").concat(height),
           width: width,
-          height: chartHeight,
-          rx: "3",
-          ry: "3",
-          fill: "#ffffff",
-          strokeWidth: "1",
-          stroke: borderColor
-        }), totalCount > 0 && React__default.createElement("path", {
+          height: height
+        }, props), React__default.createElement("mask", {
+          id: "chart-mask"
+        }, rectangle), rectangle, React__default.createElement("g", {
+          mask: "url(#chart-mask)"
+        }, totalCount > 0 && React__default.createElement("path", {
           d: "\n                    ".concat(toConsumableArray(new Array(totalCount - 1)).reduce(function (path, _, index) {
             return "".concat(path, " M ").concat(_this.getX(index), ",").concat(chartHeight, " l 0,-8");
           }, ''), "\n                  "),
@@ -20550,10 +18124,10 @@ function (_React$Component) {
           y2: chartHeight,
           stroke: "#DAEAEF",
           strokeWidth: "3"
-        }), labels && React__default.createElement("g", {
+        })), labels && React__default.createElement("g", {
           transform: "translate(0,".concat(chartHeight, ")")
         }, labels.map(function (label, index) {
-          return React__default.createElement(LabelText, {
+          return React__default.createElement(_StyledText$1, {
             key: index,
             x: _this.getX(index),
             y: LABELS_HEIGHT / 2,
@@ -20561,7 +18135,7 @@ function (_React$Component) {
             fill: labelColor
           }, label);
         })));
-      })));
+      });
     }
   }]);
 
@@ -20610,16 +18184,565 @@ defineProperty(LineChart, "defaultProps", {
   }
 });
 
-var SvgWrapper = styled__default.div.withConfig({
-  displayName: "LineChart__SvgWrapper",
-  componentId: "sc-8kiakb-0"
-})(["svg{display:block;}"]);
-var LabelText = styled__default.text.withConfig({
-  displayName: "LineChart__LabelText",
-  componentId: "sc-8kiakb-1"
-})(["alignment-baseline:middle;font-size:12px;font-weight:300;", ";"], unselectable);
+var _StyledSvg = styled__default("svg")(_templateObject$b());
 
-var Main$a = function Main(_ref) {
+var _StyledText$1 = styled__default("text")(_templateObject2$7(), unselectable);
+
+function _templateObject3$7() {
+  var data = taggedTemplateLiteral(["\n            position: absolute;\n            top: 50%;\n            left: 50%;\n            transform: translate(-50%, -50%);\n            width: 14px;\n            height: 14px;\n            border-radius: 50%;\n            border: 1px solid ", ";\n          "]);
+
+  _templateObject3$7 = function _templateObject3() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject2$8() {
+  var data = taggedTemplateLiteral(["\n          position: relative;\n          width: 10px;\n          height: 100%;\n        "]);
+
+  _templateObject2$8 = function _templateObject2() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject$c() {
+  var data = taggedTemplateLiteral(["\n        position: relative;\n        display: flex;\n        align-items: center;\n        justify-content: center;\n        width: 22px;\n        height: 22px;\n        animation-duration: 1s;\n        animation-iteration-count: infinite;\n        animation-timing-function: linear;\n        animation-name: ", ";\n      "]);
+
+  _templateObject$c = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+var spin = styled.keyframes(["from{transform:rotate(0deg);}to{transform:rotate(360deg);}"]);
+var LoadingRing = React__default.memo(function LoadingRing(_ref) {
+  var paused = _ref.paused,
+      props = objectWithoutProperties(_ref, ["paused"]);
+
+  return React__default.createElement(_StyledSpan$1, _extends_1({}, props, {
+    _css: paused ? 'none' : spin
+  }), React__default.createElement(_StyledSpan2$1, {
+    style: {
+      overflow: paused ? 'visible' : 'hidden'
+    }
+  }, React__default.createElement(_StyledSpan3$1, {
+    _css2: theme.accent
+  })));
+});
+LoadingRing.propTypes = {
+  paused: propTypes.bool
+};
+LoadingRing.defaultProps = {
+  paused: false
+};
+
+var _StyledSpan$1 = styled__default("span")(_templateObject$c(), function (p) {
+  return p._css;
+});
+
+var _StyledSpan2$1 = styled__default("span")(_templateObject2$8());
+
+var _StyledSpan3$1 = styled__default("span")(_templateObject3$7(), function (p) {
+  return p._css2;
+});
+
+/**
+ * Gets the timestamp of the number of milliseconds that have elapsed since
+ * the Unix epoch (1 January 1970 00:00:00 UTC).
+ *
+ * @static
+ * @memberOf _
+ * @since 2.4.0
+ * @category Date
+ * @returns {number} Returns the timestamp.
+ * @example
+ *
+ * _.defer(function(stamp) {
+ *   console.log(_.now() - stamp);
+ * }, _.now());
+ * // => Logs the number of milliseconds it took for the deferred invocation.
+ */
+var now$1 = function() {
+  return root.Date.now();
+};
+
+/** Used as references for various `Number` constants. */
+var NAN = 0 / 0;
+
+/** Used to match leading and trailing whitespace. */
+var reTrim = /^\s+|\s+$/g;
+
+/** Used to detect bad signed hexadecimal string values. */
+var reIsBadHex = /^[-+]0x[0-9a-f]+$/i;
+
+/** Used to detect binary string values. */
+var reIsBinary = /^0b[01]+$/i;
+
+/** Used to detect octal string values. */
+var reIsOctal = /^0o[0-7]+$/i;
+
+/** Built-in method references without a dependency on `root`. */
+var freeParseInt = parseInt;
+
+/**
+ * Converts `value` to a number.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to process.
+ * @returns {number} Returns the number.
+ * @example
+ *
+ * _.toNumber(3.2);
+ * // => 3.2
+ *
+ * _.toNumber(Number.MIN_VALUE);
+ * // => 5e-324
+ *
+ * _.toNumber(Infinity);
+ * // => Infinity
+ *
+ * _.toNumber('3.2');
+ * // => 3.2
+ */
+function toNumber(value) {
+  if (typeof value == 'number') {
+    return value;
+  }
+  if (isSymbol(value)) {
+    return NAN;
+  }
+  if (isObject(value)) {
+    var other = typeof value.valueOf == 'function' ? value.valueOf() : value;
+    value = isObject(other) ? (other + '') : other;
+  }
+  if (typeof value != 'string') {
+    return value === 0 ? value : +value;
+  }
+  value = value.replace(reTrim, '');
+  var isBinary = reIsBinary.test(value);
+  return (isBinary || reIsOctal.test(value))
+    ? freeParseInt(value.slice(2), isBinary ? 2 : 8)
+    : (reIsBadHex.test(value) ? NAN : +value);
+}
+
+/** Error message constants. */
+var FUNC_ERROR_TEXT$1 = 'Expected a function';
+
+/* Built-in method references for those with the same name as other `lodash` methods. */
+var nativeMax$1 = Math.max,
+    nativeMin = Math.min;
+
+/**
+ * Creates a debounced function that delays invoking `func` until after `wait`
+ * milliseconds have elapsed since the last time the debounced function was
+ * invoked. The debounced function comes with a `cancel` method to cancel
+ * delayed `func` invocations and a `flush` method to immediately invoke them.
+ * Provide `options` to indicate whether `func` should be invoked on the
+ * leading and/or trailing edge of the `wait` timeout. The `func` is invoked
+ * with the last arguments provided to the debounced function. Subsequent
+ * calls to the debounced function return the result of the last `func`
+ * invocation.
+ *
+ * **Note:** If `leading` and `trailing` options are `true`, `func` is
+ * invoked on the trailing edge of the timeout only if the debounced function
+ * is invoked more than once during the `wait` timeout.
+ *
+ * If `wait` is `0` and `leading` is `false`, `func` invocation is deferred
+ * until to the next tick, similar to `setTimeout` with a timeout of `0`.
+ *
+ * See [David Corbacho's article](https://css-tricks.com/debouncing-throttling-explained-examples/)
+ * for details over the differences between `_.debounce` and `_.throttle`.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Function
+ * @param {Function} func The function to debounce.
+ * @param {number} [wait=0] The number of milliseconds to delay.
+ * @param {Object} [options={}] The options object.
+ * @param {boolean} [options.leading=false]
+ *  Specify invoking on the leading edge of the timeout.
+ * @param {number} [options.maxWait]
+ *  The maximum time `func` is allowed to be delayed before it's invoked.
+ * @param {boolean} [options.trailing=true]
+ *  Specify invoking on the trailing edge of the timeout.
+ * @returns {Function} Returns the new debounced function.
+ * @example
+ *
+ * // Avoid costly calculations while the window size is in flux.
+ * jQuery(window).on('resize', _.debounce(calculateLayout, 150));
+ *
+ * // Invoke `sendMail` when clicked, debouncing subsequent calls.
+ * jQuery(element).on('click', _.debounce(sendMail, 300, {
+ *   'leading': true,
+ *   'trailing': false
+ * }));
+ *
+ * // Ensure `batchLog` is invoked once after 1 second of debounced calls.
+ * var debounced = _.debounce(batchLog, 250, { 'maxWait': 1000 });
+ * var source = new EventSource('/stream');
+ * jQuery(source).on('message', debounced);
+ *
+ * // Cancel the trailing debounced invocation.
+ * jQuery(window).on('popstate', debounced.cancel);
+ */
+function debounce$1(func, wait, options) {
+  var lastArgs,
+      lastThis,
+      maxWait,
+      result,
+      timerId,
+      lastCallTime,
+      lastInvokeTime = 0,
+      leading = false,
+      maxing = false,
+      trailing = true;
+
+  if (typeof func != 'function') {
+    throw new TypeError(FUNC_ERROR_TEXT$1);
+  }
+  wait = toNumber(wait) || 0;
+  if (isObject(options)) {
+    leading = !!options.leading;
+    maxing = 'maxWait' in options;
+    maxWait = maxing ? nativeMax$1(toNumber(options.maxWait) || 0, wait) : maxWait;
+    trailing = 'trailing' in options ? !!options.trailing : trailing;
+  }
+
+  function invokeFunc(time) {
+    var args = lastArgs,
+        thisArg = lastThis;
+
+    lastArgs = lastThis = undefined;
+    lastInvokeTime = time;
+    result = func.apply(thisArg, args);
+    return result;
+  }
+
+  function leadingEdge(time) {
+    // Reset any `maxWait` timer.
+    lastInvokeTime = time;
+    // Start the timer for the trailing edge.
+    timerId = setTimeout(timerExpired, wait);
+    // Invoke the leading edge.
+    return leading ? invokeFunc(time) : result;
+  }
+
+  function remainingWait(time) {
+    var timeSinceLastCall = time - lastCallTime,
+        timeSinceLastInvoke = time - lastInvokeTime,
+        timeWaiting = wait - timeSinceLastCall;
+
+    return maxing
+      ? nativeMin(timeWaiting, maxWait - timeSinceLastInvoke)
+      : timeWaiting;
+  }
+
+  function shouldInvoke(time) {
+    var timeSinceLastCall = time - lastCallTime,
+        timeSinceLastInvoke = time - lastInvokeTime;
+
+    // Either this is the first call, activity has stopped and we're at the
+    // trailing edge, the system time has gone backwards and we're treating
+    // it as the trailing edge, or we've hit the `maxWait` limit.
+    return (lastCallTime === undefined || (timeSinceLastCall >= wait) ||
+      (timeSinceLastCall < 0) || (maxing && timeSinceLastInvoke >= maxWait));
+  }
+
+  function timerExpired() {
+    var time = now$1();
+    if (shouldInvoke(time)) {
+      return trailingEdge(time);
+    }
+    // Restart the timer.
+    timerId = setTimeout(timerExpired, remainingWait(time));
+  }
+
+  function trailingEdge(time) {
+    timerId = undefined;
+
+    // Only invoke if we have `lastArgs` which means `func` has been
+    // debounced at least once.
+    if (trailing && lastArgs) {
+      return invokeFunc(time);
+    }
+    lastArgs = lastThis = undefined;
+    return result;
+  }
+
+  function cancel() {
+    if (timerId !== undefined) {
+      clearTimeout(timerId);
+    }
+    lastInvokeTime = 0;
+    lastArgs = lastCallTime = lastThis = timerId = undefined;
+  }
+
+  function flush() {
+    return timerId === undefined ? result : trailingEdge(now$1());
+  }
+
+  function debounced() {
+    var time = now$1(),
+        isInvoking = shouldInvoke(time);
+
+    lastArgs = arguments;
+    lastThis = this;
+    lastCallTime = time;
+
+    if (isInvoking) {
+      if (timerId === undefined) {
+        return leadingEdge(lastCallTime);
+      }
+      if (maxing) {
+        // Handle invocations in a tight loop.
+        timerId = setTimeout(timerExpired, wait);
+        return invokeFunc(lastCallTime);
+      }
+    }
+    if (timerId === undefined) {
+      timerId = setTimeout(timerExpired, wait);
+    }
+    return result;
+  }
+  debounced.cancel = cancel;
+  debounced.flush = flush;
+  return debounced;
+}
+
+/** Error message constants. */
+var FUNC_ERROR_TEXT$2 = 'Expected a function';
+
+/**
+ * Creates a throttled function that only invokes `func` at most once per
+ * every `wait` milliseconds. The throttled function comes with a `cancel`
+ * method to cancel delayed `func` invocations and a `flush` method to
+ * immediately invoke them. Provide `options` to indicate whether `func`
+ * should be invoked on the leading and/or trailing edge of the `wait`
+ * timeout. The `func` is invoked with the last arguments provided to the
+ * throttled function. Subsequent calls to the throttled function return the
+ * result of the last `func` invocation.
+ *
+ * **Note:** If `leading` and `trailing` options are `true`, `func` is
+ * invoked on the trailing edge of the timeout only if the throttled function
+ * is invoked more than once during the `wait` timeout.
+ *
+ * If `wait` is `0` and `leading` is `false`, `func` invocation is deferred
+ * until to the next tick, similar to `setTimeout` with a timeout of `0`.
+ *
+ * See [David Corbacho's article](https://css-tricks.com/debouncing-throttling-explained-examples/)
+ * for details over the differences between `_.throttle` and `_.debounce`.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Function
+ * @param {Function} func The function to throttle.
+ * @param {number} [wait=0] The number of milliseconds to throttle invocations to.
+ * @param {Object} [options={}] The options object.
+ * @param {boolean} [options.leading=true]
+ *  Specify invoking on the leading edge of the timeout.
+ * @param {boolean} [options.trailing=true]
+ *  Specify invoking on the trailing edge of the timeout.
+ * @returns {Function} Returns the new throttled function.
+ * @example
+ *
+ * // Avoid excessively updating the position while scrolling.
+ * jQuery(window).on('scroll', _.throttle(updatePosition, 100));
+ *
+ * // Invoke `renewToken` when the click event is fired, but not more than once every 5 minutes.
+ * var throttled = _.throttle(renewToken, 300000, { 'trailing': false });
+ * jQuery(element).on('click', throttled);
+ *
+ * // Cancel the trailing throttled invocation.
+ * jQuery(window).on('popstate', throttled.cancel);
+ */
+function throttle(func, wait, options) {
+  var leading = true,
+      trailing = true;
+
+  if (typeof func != 'function') {
+    throw new TypeError(FUNC_ERROR_TEXT$2);
+  }
+  if (isObject(options)) {
+    leading = 'leading' in options ? !!options.leading : leading;
+    trailing = 'trailing' in options ? !!options.trailing : trailing;
+  }
+  return debounce$1(func, wait, {
+    'leading': leading,
+    'maxWait': wait,
+    'trailing': trailing
+  });
+}
+
+var getCurrentWindowSize = function getCurrentWindowSize() {
+  return {
+    width: window.innerWidth,
+    height: window.innerHeight
+  };
+};
+
+var WINDOW_SIZE_BASE = objectSpread({
+  breakpoints: BREAKPOINTS
+}, getCurrentWindowSize());
+
+var ViewportContext = React__default.createContext(WINDOW_SIZE_BASE);
+
+var ViewportProvider =
+/*#__PURE__*/
+function (_React$Component) {
+  inherits(ViewportProvider, _React$Component);
+
+  function ViewportProvider() {
+    var _getPrototypeOf2;
+
+    var _this;
+
+    classCallCheck(this, ViewportProvider);
+
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    _this = possibleConstructorReturn(this, (_getPrototypeOf2 = getPrototypeOf(ViewportProvider)).call.apply(_getPrototypeOf2, [this].concat(args)));
+
+    defineProperty(assertThisInitialized(assertThisInitialized(_this)), "state", {
+      windowSize: _this.getWindowSize()
+    });
+
+    defineProperty(assertThisInitialized(assertThisInitialized(_this)), "updateWindowSize", function () {
+      _this.setState({
+        windowSize: _this.getWindowSize()
+      });
+    });
+
+    defineProperty(assertThisInitialized(assertThisInitialized(_this)), "within", function (min, max) {
+      var width = _this.state.windowSize.width; // Accept "" or -1 indifferently
+
+      if (min === '') min = -1;
+      if (max === '') max = -1; // Convert breakpoints into numbers
+
+      if (typeof min === 'string') min = BREAKPOINTS[min];
+      if (typeof max === 'string') max = BREAKPOINTS[max];
+
+      if (typeof min !== 'number') {
+        throw new Error("Viewport: invalid minimum value (".concat(min, ")."));
+      }
+
+      if (typeof max !== 'number') {
+        throw new Error("Viewport: invalid maximum value (".concat(max, ")."));
+      }
+
+      return (min === -1 || width >= min) && (max === -1 || width < max);
+    });
+
+    defineProperty(assertThisInitialized(assertThisInitialized(_this)), "above", function (value) {
+      return _this.within(value, -1);
+    });
+
+    defineProperty(assertThisInitialized(assertThisInitialized(_this)), "below", function (value) {
+      return _this.within(-1, value);
+    });
+
+    return _this;
+  }
+
+  createClass(ViewportProvider, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.resizeStart();
+    }
+  }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      this.resizeStop();
+    }
+  }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps) {
+      var throttle$$1 = this.props.throttle;
+
+      if (prevProps.throttle !== throttle$$1) {
+        this.resizeStop();
+        this.resizeStart();
+      }
+    }
+  }, {
+    key: "resizeStart",
+    value: function resizeStart() {
+      this._handleResize = throttle(this.updateWindowSize, this.props.throttle);
+      this.updateWindowSize();
+      window.addEventListener('resize', this._handleResize);
+    }
+  }, {
+    key: "resizeStop",
+    value: function resizeStop() {
+      if (!this._handleResize) {
+        return;
+      }
+
+      window.removeEventListener('resize', this._handleResize);
+
+      this._handleResize.cancel();
+
+      delete this._handleResize;
+    }
+  }, {
+    key: "getWindowSize",
+    value: function getWindowSize() {
+      return objectSpread({}, WINDOW_SIZE_BASE, getCurrentWindowSize());
+    } // Check if the current width is between two points.
+    // Accepts a breakpoint string ('small', 'large') or numbers (width in pixels).
+    // `min` is inclusive and `max` is exclusive.
+
+  }, {
+    key: "render",
+    value: function render() {
+      var windowSize = this.state.windowSize;
+      var children = this.props.children;
+      var within = this.within,
+          above = this.above,
+          below = this.below;
+      return React__default.createElement(ViewportContext.Provider, {
+        value: objectSpread({}, windowSize, {
+          within: within,
+          above: above,
+          below: below
+        })
+      }, children);
+    }
+  }]);
+
+  return ViewportProvider;
+}(React__default.Component); // React emits a warning message if `Provider` is attached to `Consumer`, this
+// is only to prevent it.
+
+
+defineProperty(ViewportProvider, "propTypes", {
+  children: propTypes.node,
+  throttle: propTypes.number
+});
+
+defineProperty(ViewportProvider, "defaultProps", {
+  throttle: 100
+});
+
+var Viewport = function Viewport(props) {
+  return React__default.createElement(ViewportContext.Consumer, props);
+};
+
+Viewport.Provider = ViewportProvider;
+var useViewport = function useViewport() {
+  return React__default.useContext(ViewportContext);
+};
+
+var Main$9 = function Main(_ref) {
   var children = _ref.children,
       assetsUrl = _ref.assetsUrl,
       legacyFonts = _ref.legacyFonts;
@@ -20630,15 +18753,25 @@ var Main$a = function Main(_ref) {
   }), React__default.createElement(ToastHubProvider, null, children))));
 };
 
-Main$a.propTypes = {
+Main$9.propTypes = {
   children: propTypes.node,
   legacyFonts: propTypes.bool,
   assetsUrl: propTypes.string
 };
-Main$a.defaultProps = {
+Main$9.defaultProps = {
   legacyFonts: false,
   assetsUrl: './aragon-ui/'
 };
+
+function _templateObject$d() {
+  var data = taggedTemplateLiteral(["padding: 24px 12px"]);
+
+  _templateObject$d = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
 
 var cssPx = function cssPx(value) {
   return typeof value === 'number' ? value + 'px' : value;
@@ -20687,7 +18820,7 @@ var Modal = function Modal(_ref) {
               return "scale3d(".concat(v, ", ").concat(v, ", 1)");
             })
           }
-        }, React__default.createElement(_StyledDiv$4, null, React__default.createElement(Content$2, {
+        }, React__default.createElement(_StyledDiv$6, null, React__default.createElement(Content$2, {
           role: "alertdialog",
           onEscapeOutside: onClose,
           style: {
@@ -20734,10 +18867,7 @@ var Overlay = styled__default(extendedAnimated.div).withConfig({
   componentId: "sc-1ofisn3-2"
 })(["position:absolute;z-index:1;top:0;left:0;right:0;bottom:0;"]);
 
-var _StyledDiv$4 = styled__default("div").withConfig({
-  displayName: "Modal___StyledDiv",
-  componentId: "sc-1ofisn3-3"
-})(["undefined"]);
+var _StyledDiv$6 = styled__default("div")(_templateObject$d());
 
 var LeftIcon = function LeftIcon() {
   return React__default.createElement("svg", {
@@ -20758,20 +18888,20 @@ var LeftIcon = function LeftIcon() {
 var NavigationBar =
 /*#__PURE__*/
 function (_React$Component) {
-  inherits$1(NavigationBar, _React$Component);
+  inherits(NavigationBar, _React$Component);
 
   function NavigationBar() {
     var _getPrototypeOf2;
 
     var _this;
 
-    classCallCheck$1(this, NavigationBar);
+    classCallCheck(this, NavigationBar);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    _this = possibleConstructorReturn$1(this, (_getPrototypeOf2 = getPrototypeOf(NavigationBar)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this = possibleConstructorReturn(this, (_getPrototypeOf2 = getPrototypeOf(NavigationBar)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
     defineProperty(assertThisInitialized(assertThisInitialized(_this)), "state", {
       cachedItems: null,
@@ -20819,7 +18949,7 @@ function (_React$Component) {
         native: true
       }, function (item) {
         return function (styles) {
-          return React__default.createElement(Item, _extends_1({
+          return React__default.createElement(Item$1, _extends_1({
             label: item.node,
             onBack: onBack,
             displayBack: item.index > 0,
@@ -20860,7 +18990,7 @@ defineProperty(NavigationBar, "defaultProps", {
   compact: false
 });
 
-var Item = function Item(_ref) {
+var Item$1 = function Item(_ref) {
   var opacity = _ref.opacity,
       position = _ref.position,
       displayBack = _ref.displayBack,
@@ -20882,7 +19012,7 @@ var Item = function Item(_ref) {
   }, React__default.createElement(LeftIcon, null)), React__default.createElement(Label$1, null, label)));
 };
 
-Item.propTypes = {
+Item$1.propTypes = {
   compact: propTypes.bool,
   displayBack: propTypes.bool,
   label: propTypes.node,
@@ -20927,7 +19057,7 @@ var DEFAULT_CAPTION = function DEFAULT_CAPTION(_ref) {
 var PartitionBar = function PartitionBar(_ref2) {
   var data = _ref2.data,
       caption = _ref2.caption,
-      colors$$1 = _ref2.colors;
+      colors = _ref2.colors;
 
   if (!Array.isArray(data) || data.length === 0) {
     return null;
@@ -20941,7 +19071,7 @@ var PartitionBar = function PartitionBar(_ref2) {
     return {
       name: name,
       percentage: percentage,
-      color: colors$$1[index % colors$$1.length]
+      color: colors[index % colors.length]
     };
   });
   return React__default.createElement(React__default.Fragment, null, React__default.createElement(Bar, null, partitions.map(function (_ref4, index) {
@@ -22992,6 +21122,15 @@ var extendedAnimated$1 = domElements$1.reduce(function (acc, element) {
   return acc;
 }, createAnimatedComponent$1);
 
+function _templateObject$e() {
+  var data = taggedTemplateLiteral(["\n        width: 100%;\n        height: ", "px;\n        background: ", ";\n        border-radius: ", "px;\n        overflow: hidden;\n      "]);
+
+  _templateObject$e = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
 var RADIUS = 2;
 var BAR_HEIGHT$1 = 6;
 var INDETERMINATE_WIDTH = 1 / 4;
@@ -23031,8 +21170,8 @@ var ProgressBar = React__default.memo(function (_ref) {
     },
     immediate: !animate
   });
-  return React__default.createElement(_StyledDiv$5, {
-    _$p_: theme.secondaryBackground
+  return React__default.createElement(_StyledDiv$7, {
+    _css: theme.secondaryBackground
   }, React__default.createElement(Bar$1, {
     style: {
       width: "".concat((indeterminate ? INDETERMINATE_WIDTH : 1) * 100, "%"),
@@ -23061,11 +21200,8 @@ ProgressBar.propTypes = {
   value: ExtendedPropTypes.oneOfType([ExtendedPropTypes._0to1, ExtendedPropTypes.oneOf([-1])])
 };
 
-var _StyledDiv$5 = styled__default("div").withConfig({
-  displayName: "ProgressBar___StyledDiv",
-  componentId: "sc-1gly9sn-1"
-})(["width:100%;height:", "px;background:", ";border-radius:", "px;overflow:hidden;"], BAR_HEIGHT$1, function (p) {
-  return p._$p_;
+var _StyledDiv$7 = styled__default("div")(_templateObject$e(), BAR_HEIGHT$1, function (p) {
+  return p._css;
 }, RADIUS);
 
 var _React$createContext$3 = React__default.createContext({}),
@@ -23075,20 +21211,20 @@ var _React$createContext$3 = React__default.createContext({}),
 var RadioGroup =
 /*#__PURE__*/
 function (_React$PureComponent) {
-  inherits$1(RadioGroup, _React$PureComponent);
+  inherits(RadioGroup, _React$PureComponent);
 
   function RadioGroup() {
     var _getPrototypeOf2;
 
     var _this;
 
-    classCallCheck$1(this, RadioGroup);
+    classCallCheck(this, RadioGroup);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    _this = possibleConstructorReturn$1(this, (_getPrototypeOf2 = getPrototypeOf(RadioGroup)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this = possibleConstructorReturn(this, (_getPrototypeOf2 = getPrototypeOf(RadioGroup)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
     defineProperty(assertThisInitialized(assertThisInitialized(_this)), "state", {
       // keep track of the radios buttons to handle keyboard navigation
@@ -23215,20 +21351,20 @@ var KEYS_NEXT = ['ArrowDown', 'ArrowRight', // IE / Edge support
 var RadioButton =
 /*#__PURE__*/
 function (_React$PureComponent) {
-  inherits$1(RadioButton, _React$PureComponent);
+  inherits(RadioButton, _React$PureComponent);
 
   function RadioButton() {
     var _getPrototypeOf2;
 
     var _this;
 
-    classCallCheck$1(this, RadioButton);
+    classCallCheck(this, RadioButton);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    _this = possibleConstructorReturn$1(this, (_getPrototypeOf2 = getPrototypeOf(RadioButton)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this = possibleConstructorReturn(this, (_getPrototypeOf2 = getPrototypeOf(RadioButton)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
     defineProperty(assertThisInitialized(assertThisInitialized(_this)), "_element", React__default.createRef());
 
@@ -23341,12 +21477,12 @@ defineProperty(RadioButton, "defaultProps", {
 var Radio =
 /*#__PURE__*/
 function (_React$PureComponent2) {
-  inherits$1(Radio, _React$PureComponent2);
+  inherits(Radio, _React$PureComponent2);
 
   function Radio() {
-    classCallCheck$1(this, Radio);
+    classCallCheck(this, Radio);
 
-    return possibleConstructorReturn$1(this, getPrototypeOf(Radio).apply(this, arguments));
+    return possibleConstructorReturn(this, getPrototypeOf(Radio).apply(this, arguments));
   }
 
   createClass(Radio, [{
@@ -23381,8 +21517,8 @@ defineProperty(Radio, "propTypes", RadioButton.propTypes);
 
 defineProperty(Radio, "defaultProps", RadioButton.defaultProps);
 
-var contentBorder$2 = theme.contentBorder;
-var labelBoxBorder = onecolor(colors.Sea['Light Sea']);
+var contentBorder$3 = theme.contentBorder;
+var labelBoxBorder = onecolor(colors$1.Sea['Light Sea']);
 
 var RadioListItem = function RadioListItem(_ref) {
   var description = _ref.description,
@@ -23406,7 +21542,7 @@ var Label$2 = styled__default.label.withConfig({
 var LabelBox = styled__default.div.withConfig({
   displayName: "RadioListItem__LabelBox",
   componentId: "sc-1utxw89-1"
-})(["flex-grow:1;margin-left:12px;padding:12px 12px;border:1px ", " solid;border-radius:3px;transition:border 200ms linear;cursor:pointer;&:focus,&:hover{border-color:", ";}"], contentBorder$2, labelBoxBorder.alpha(0.35).cssa());
+})(["flex-grow:1;margin-left:12px;padding:12px 12px;border:1px ", " solid;border-radius:3px;transition:border 200ms linear;cursor:pointer;&:focus,&:hover{border-color:", ";}"], contentBorder$3, labelBoxBorder.alpha(0.35).cssa());
 var Title$3 = styled__default(Text).attrs({
   weight: 'bold'
 }).withConfig({
@@ -23425,12 +21561,12 @@ var RadioWrapper = styled__default(Radio).withConfig({
 var RadioList =
 /*#__PURE__*/
 function (_React$Component) {
-  inherits$1(RadioList, _React$Component);
+  inherits(RadioList, _React$Component);
 
   function RadioList() {
-    classCallCheck$1(this, RadioList);
+    classCallCheck(this, RadioList);
 
-    return possibleConstructorReturn$1(this, getPrototypeOf(RadioList).apply(this, arguments));
+    return possibleConstructorReturn(this, getPrototypeOf(RadioList).apply(this, arguments));
   }
 
   createClass(RadioList, [{
@@ -23506,20 +21642,20 @@ var CONTENT_PADDING = 30;
 var SidePanel =
 /*#__PURE__*/
 function (_React$PureComponent) {
-  inherits$1(SidePanel, _React$PureComponent);
+  inherits(SidePanel, _React$PureComponent);
 
   function SidePanel() {
     var _getPrototypeOf2;
 
     var _this;
 
-    classCallCheck$1(this, SidePanel);
+    classCallCheck(this, SidePanel);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    _this = possibleConstructorReturn$1(this, (_getPrototypeOf2 = getPrototypeOf(SidePanel)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this = possibleConstructorReturn(this, (_getPrototypeOf2 = getPrototypeOf(SidePanel)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
     defineProperty(assertThisInitialized(assertThisInitialized(_this)), "handleClose", function () {
       if (!_this.props.blocking) {
@@ -23544,7 +21680,7 @@ function (_React$PureComponent) {
           title = _this$props.title,
           opened = _this$props.opened,
           blocking = _this$props.blocking;
-      return React__default.createElement(Main$b, {
+      return React__default.createElement(Main$a, {
         opened: opened
       }, React__default.createElement(Overlay$1, {
         style: {
@@ -23617,7 +21753,7 @@ SidePanel.defaultProps = {
   onClose: function onClose() {},
   onTransitionEnd: function onTransitionEnd() {}
 };
-var Main$b = styled__default.div.withConfig({
+var Main$a = styled__default.div.withConfig({
   displayName: "SidePanel__Main",
   componentId: "sc-1kjx6mk-0"
 })(["position:fixed;z-index:3;top:0;left:0;right:0;bottom:0;pointer-events:", ";"], function (_ref2) {
@@ -23665,17 +21801,17 @@ var SidePanelSplit = function SidePanelSplit(_ref) {
   var children = _ref.children,
       props = objectWithoutProperties(_ref, ["children"]);
 
-  return React__default.createElement(Main$c, props, React__default.createElement(Part$1, null, children[0]), React__default.createElement(Part$1, null, children[1]));
+  return React__default.createElement(Main$b, props, React__default.createElement(Part, null, children[0]), React__default.createElement(Part, null, children[1]));
 };
 
 SidePanelSplit.propTypes = {
   children: propTypes.node
 };
-var Main$c = styled__default.div.withConfig({
+var Main$b = styled__default.div.withConfig({
   displayName: "SidePanelSplit__Main",
   componentId: "d0csv3-0"
 })(["display:flex;width:calc(100% + ", "px);margin:0 -", "px;border:1px solid ", ";border-width:1px 0;"], SidePanel.HORIZONTAL_PADDING * 2, SidePanel.HORIZONTAL_PADDING, theme.contentBorder);
-var Part$1 = styled__default.div.withConfig({
+var Part = styled__default.div.withConfig({
   displayName: "SidePanelSplit__Part",
   componentId: "d0csv3-1"
 })(["width:50%;padding:20px ", "px;&:first-child{border-right:1px solid ", ";}"], SidePanel.HORIZONTAL_PADDING, theme.contentBorder);
@@ -23690,20 +21826,20 @@ var HEIGHT = Math.max(HANDLE_SIZE, BAR_HEIGHT$2) + PADDING * 2;
 var Slider =
 /*#__PURE__*/
 function (_React$Component) {
-  inherits$1(Slider, _React$Component);
+  inherits(Slider, _React$Component);
 
   function Slider() {
     var _getPrototypeOf2;
 
     var _this;
 
-    classCallCheck$1(this, Slider);
+    classCallCheck(this, Slider);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    _this = possibleConstructorReturn$1(this, (_getPrototypeOf2 = getPrototypeOf(Slider)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this = possibleConstructorReturn(this, (_getPrototypeOf2 = getPrototypeOf(Slider)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
     defineProperty(assertThisInitialized(assertThisInitialized(_this)), "state", {
       pressed: false
@@ -23841,7 +21977,7 @@ function (_React$Component) {
       }, function (_ref) {
         var value = _ref.value,
             pressProgress = _ref.pressProgress;
-        return React__default.createElement(Main$d, null, React__default.createElement(Area, {
+        return React__default.createElement(Main$c, null, React__default.createElement(Area, {
           ref: _this2.handleRef,
           onMouseDown: _this2.dragStart,
           onTouchStart: _this2.dragStart
@@ -23869,7 +22005,7 @@ defineProperty(Slider, "defaultProps", {
   onUpdate: function onUpdate() {}
 });
 
-var Main$d = styled__default.div.withConfig({
+var Main$c = styled__default.div.withConfig({
   displayName: "Slider__Main",
   componentId: "sc-94djfe-0"
 })(["min-width:", "px;padding:0 ", "px;", ";"], MIN_WIDTH, HANDLE_SIZE / 2 + PADDING, unselectable);
@@ -23906,23 +22042,53 @@ var Handle = styled__default(extendedAnimated.div).withConfig({
   componentId: "sc-94djfe-8"
 })(["position:absolute;top:50%;left:0;width:", "px;height:", "px;border:0.5px solid #dcecf5;border-radius:50%;"], HANDLE_SIZE, HANDLE_SIZE);
 
+function _templateObject$f() {
+  var data = taggedTemplateLiteral(["margin-left: 5px"]);
+
+  _templateObject$f = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+
+function SyncIndicator(_ref) {
+  var visible = _ref.visible,
+      label = _ref.label;
+  return React__default.createElement(FloatIndicator, {
+    visible: visible
+  }, React__default.createElement(LoadingRing, {
+    animated: true
+  }), React__default.createElement(_StyledSpan$2, null, label));
+}
+
+SyncIndicator.propTypes = {
+  label: propTypes.string,
+  visible: propTypes.bool
+};
+SyncIndicator.defaultProps = {
+  label: 'Syncing data…'
+};
+
+var _StyledSpan$2 = styled__default("span")(_templateObject$f());
+
 var TabBar =
 /*#__PURE__*/
 function (_React$Component) {
-  inherits$1(TabBar, _React$Component);
+  inherits(TabBar, _React$Component);
 
   function TabBar() {
     var _getPrototypeOf2;
 
     var _this;
 
-    classCallCheck$1(this, TabBar);
+    classCallCheck(this, TabBar);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    _this = possibleConstructorReturn$1(this, (_getPrototypeOf2 = getPrototypeOf(TabBar)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this = possibleConstructorReturn(this, (_getPrototypeOf2 = getPrototypeOf(TabBar)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
     defineProperty(assertThisInitialized(assertThisInitialized(_this)), "state", {
       displayFocusRing: false
@@ -24088,7 +22254,7 @@ var StyledTableRow = styled__default.tr.withConfig({
   componentId: "sc-3jn6yz-0"
 })([""]);
 
-var contentBorder$3 = theme.contentBorder;
+var contentBorder$4 = theme.contentBorder;
 
 var Table = function Table(_ref) {
   var header = _ref.header,
@@ -24109,12 +22275,12 @@ Table.defaultProps = {
 var StyledTable = styled__default.table.withConfig({
   displayName: "Table__StyledTable",
   componentId: "uvcan9-0"
-})(["width:100%;border-spacing:0;td{border-bottom:1px solid ", ";}", ":first-child td{border-top:1px solid ", ";}td:first-child{border-left:", ";}td:last-child{border-right:", ";}", ":first-child td:first-child{border-top-left-radius:", ";}", ":first-child td:last-child{border-top-right-radius:", ";}", ":last-child td:first-child{border-bottom-left-radius:", ";}", ":last-child td:last-child{border-bottom-right-radius:", ";}"], contentBorder$3, StyledTableRow, contentBorder$3, function (_ref2) {
+})(["width:100%;border-spacing:0;td{border-bottom:1px solid ", ";}", ":first-child td{border-top:1px solid ", ";}td:first-child{border-left:", ";}td:last-child{border-right:", ";}", ":first-child td:first-child{border-top-left-radius:", ";}", ":first-child td:last-child{border-top-right-radius:", ";}", ":last-child td:first-child{border-bottom-left-radius:", ";}", ":last-child td:last-child{border-bottom-right-radius:", ";}"], contentBorder$4, StyledTableRow, contentBorder$4, function (_ref2) {
   var noSideBorders = _ref2.noSideBorders;
-  return noSideBorders ? 0 : "1px solid ".concat(contentBorder$3);
+  return noSideBorders ? 0 : "1px solid ".concat(contentBorder$4);
 }, function (_ref3) {
   var noSideBorders = _ref3.noSideBorders;
-  return noSideBorders ? 0 : "1px solid ".concat(contentBorder$3);
+  return noSideBorders ? 0 : "1px solid ".concat(contentBorder$4);
 }, StyledTableRow, function (_ref4) {
   var noSideBorders = _ref4.noSideBorders;
   return noSideBorders ? 0 : '3px';
@@ -24129,11 +22295,11 @@ var StyledTable = styled__default.table.withConfig({
   return noSideBorders ? 0 : '3px';
 });
 
-var contentBackground$2 = theme.contentBackground;
+var contentBackground$3 = theme.contentBackground;
 var StyledTableCell = styled__default.td.withConfig({
   displayName: "TableCell__StyledTableCell",
   componentId: "sc-110j155-0"
-})(["padding:20px;background:", ";text-align:", ";"], contentBackground$2, function (_ref) {
+})(["padding:20px;background:", ";text-align:", ";"], contentBackground$3, function (_ref) {
   var align = _ref.align;
   return align;
 });
@@ -24203,21 +22369,363 @@ TableHeader.defaultProps = {
   align: 'left'
 };
 
+function _templateObject7$1() {
+  var data = taggedTemplateLiteral(["\n        width: 26px;\n        height: 26px;\n        background-size: contain;\n        background-position: 50% 50%;\n        background-repeat: no-repeat;\n        background-image: url(", ");\n      "]);
+
+  _templateObject7$1 = function _templateObject7() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject6$2() {
+  var data = taggedTemplateLiteral(["\n      flex-shrink: 0;\n      display: flex;\n      width: 40px;\n      height: 40px;\n      align-items: center;\n      justify-content: center;\n    "]);
+
+  _templateObject6$2 = function _templateObject6() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject5$4() {
+  var data = taggedTemplateLiteral(["\n                color: ", ";\n              "]);
+
+  _templateObject5$4 = function _templateObject5() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject4$6() {
+  var data = taggedTemplateLiteral(["\n              padding: 10px 0 0;\n              text-align: right;\n              ", ";\n            "]);
+
+  _templateObject4$6 = function _templateObject4() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject3$8() {
+  var data = taggedTemplateLiteral(["\n              display: flex;\n              align-items: center;\n              padding: 5px 0;\n              ", ";\n              color: ", ";\n            "]);
+
+  _templateObject3$8 = function _templateObject3() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject2$9() {
+  var data = taggedTemplateLiteral(["\n              position: absolute;\n              top: 0;\n              right: 0;\n              width: 46px;\n              height: 40px;\n            "]);
+
+  _templateObject2$9 = function _templateObject2() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject$g() {
+  var data = taggedTemplateLiteral(["\n            position: relative;\n            padding: 10px 18px 20px;\n            max-width: calc(100vw - 20px);\n            min-width: 300px;\n          "]);
+
+  _templateObject$g = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+
+var TokenBadgePopover =
+/*#__PURE__*/
+function (_React$PureComponent) {
+  inherits(TokenBadgePopover, _React$PureComponent);
+
+  function TokenBadgePopover() {
+    classCallCheck(this, TokenBadgePopover);
+
+    return possibleConstructorReturn(this, getPrototypeOf(TokenBadgePopover).apply(this, arguments));
+  }
+
+  createClass(TokenBadgePopover, [{
+    key: "render",
+    value: function render() {
+      var _this$props = this.props,
+          address = _this$props.address,
+          iconUrl = _this$props.iconUrl,
+          label = _this$props.label,
+          networkType = _this$props.networkType,
+          onClose = _this$props.onClose,
+          opener = _this$props.opener,
+          visible = _this$props.visible;
+      return React__default.createElement(Popover, {
+        visible: visible,
+        opener: opener,
+        onClose: onClose
+      }, React__default.createElement(_StyledSection$1, null, React__default.createElement(_StyledButtonIcon$2, {
+        label: "Close",
+        onClick: onClose
+      }, React__default.createElement(Close, null)), React__default.createElement(_StyledH$1, {
+        _css: font({
+          size: 'large',
+          weight: 'bold'
+        }),
+        _css2: theme.textPrimary
+      }, label), iconUrl ? React__default.createElement(ImageExists, {
+        src: iconUrl
+      }, function (_ref) {
+        var exists = _ref.exists;
+        return React__default.createElement(AddressField, {
+          address: address,
+          icon: exists ? React__default.createElement(Icon$1, {
+            src: iconUrl
+          }) : null
+        });
+      }) : React__default.createElement(AddressField, {
+        address: address
+      }), React__default.createElement(_StyledP$1, {
+        _css3: font({
+          size: 'small'
+        })
+      }, React__default.createElement(_StyledSafeLink$1, {
+        href: blockExplorerUrl('token', address, {
+          networkType: networkType
+        }),
+        target: "_blank",
+        _css4: theme.accent
+      }, "See on Etherscan"))));
+    }
+  }]);
+
+  return TokenBadgePopover;
+}(React__default.PureComponent);
+
+defineProperty(TokenBadgePopover, "propTypes", {
+  address: propTypes.string.isRequired,
+  iconUrl: propTypes.string,
+  label: propTypes.string.isRequired,
+  visible: propTypes.bool,
+  opener: propTypes.instanceOf(Element),
+  onClose: propTypes.func,
+  networkType: propTypes.string
+});
+
+var Icon$1 = function Icon(_ref2) {
+  var src = _ref2.src;
+  return React__default.createElement(_StyledDiv$8, null, React__default.createElement(_StyledDiv2$5, {
+    _css5: src
+  }));
+};
+
+Icon$1.propTypes = {
+  src: propTypes.string.isRequired
+};
+
+var _StyledSection$1 = styled__default("section")(_templateObject$g());
+
+var _StyledButtonIcon$2 = styled__default(ButtonIcon)(_templateObject2$9());
+
+var _StyledH$1 = styled__default("h1")(_templateObject3$8(), function (p) {
+  return p._css;
+}, function (p) {
+  return p._css2;
+});
+
+var _StyledP$1 = styled__default("p")(_templateObject4$6(), function (p) {
+  return p._css3;
+});
+
+var _StyledSafeLink$1 = styled__default(SafeLink)(_templateObject5$4(), function (p) {
+  return p._css4;
+});
+
+var _StyledDiv$8 = styled__default("div")(_templateObject6$2());
+
+var _StyledDiv2$5 = styled__default("div")(_templateObject7$1(), function (p) {
+  return p._css5;
+});
+
+function _templateObject4$7() {
+  var data = taggedTemplateLiteral(["\n                  position: relative;\n                  top: 1px;\n                "]);
+
+  _templateObject4$7 = function _templateObject4() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject3$9() {
+  var data = taggedTemplateLiteral(["\n                white-space: nowrap;\n                text-overflow: ellipsis;\n                overflow: hidden;\n              "]);
+
+  _templateObject3$9 = function _templateObject3() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject2$a() {
+  var data = taggedTemplateLiteral(["\n              overflow: hidden;\n              display: flex;\n              align-items: center;\n              background: #daeaef;\n              border-radius: 3px;\n              text-decoration: none;\n              font-size: 15px;\n              min-width: 0;\n              flex-shrink: 1;\n              padding: 0 8px;\n            "]);
+
+  _templateObject2$a = function _templateObject2() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject$h() {
+  var data = taggedTemplateLiteral(["\n            display: inline-flex;\n            overflow: hidden;\n            height: 24px;\n            color: ", ";\n          "]);
+
+  _templateObject$h = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+
+var TokenBadge =
+/*#__PURE__*/
+function (_React$PureComponent) {
+  inherits(TokenBadge, _React$PureComponent);
+
+  function TokenBadge() {
+    var _getPrototypeOf2;
+
+    var _this;
+
+    classCallCheck(this, TokenBadge);
+
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    _this = possibleConstructorReturn(this, (_getPrototypeOf2 = getPrototypeOf(TokenBadge)).call.apply(_getPrototypeOf2, [this].concat(args)));
+
+    defineProperty(assertThisInitialized(assertThisInitialized(_this)), "_element", React__default.createRef());
+
+    defineProperty(assertThisInitialized(assertThisInitialized(_this)), "state", {
+      opened: false
+    });
+
+    defineProperty(assertThisInitialized(assertThisInitialized(_this)), "handleClose", function () {
+      _this.setState({
+        opened: false
+      });
+    });
+
+    defineProperty(assertThisInitialized(assertThisInitialized(_this)), "handleOpen", function () {
+      _this.setState({
+        opened: true
+      });
+    });
+
+    return _this;
+  }
+
+  createClass(TokenBadge, [{
+    key: "render",
+    value: function render() {
+      var opened = this.state.opened;
+      var _this$props = this.props,
+          address = _this$props.address,
+          symbol = _this$props.symbol,
+          name = _this$props.name,
+          networkType = _this$props.networkType;
+      var isValidAddress = isAddress(address);
+      var iconUrl = isValidAddress && networkType === 'main' ? tokenIconUrl(address) : null;
+      var label = name && symbol ? "".concat(name, " (").concat(symbol, ")") : symbol;
+      return React__default.createElement(React__default.Fragment, null, React__default.createElement(_StyledButtonBase$4, {
+        ref: this._element,
+        title: "".concat(label, " \u2212 ").concat(address || 'No address'),
+        onClick: isValidAddress ? this.handleOpen : null,
+        _css: theme.textPrimary
+      }, React__default.createElement(_StyledDiv$9, stylingProps(this), React__default.createElement(ImageExists, {
+        src: iconUrl
+      }, function (_ref) {
+        var exists = _ref.exists;
+        return exists && React__default.createElement(Icon$2, {
+          src: iconUrl
+        });
+      }), React__default.createElement(_StyledDiv2$6, null, React__default.createElement(_StyledNameWrapper, null, name && React__default.createElement(Name, null, name), React__default.createElement(_Symbol, null, name ? "(".concat(symbol, ")") : symbol))))), address && React__default.createElement(TokenBadgePopover, {
+        address: address,
+        iconUrl: iconUrl,
+        label: label,
+        networkType: networkType,
+        onClose: this.handleClose,
+        opener: this._element.current,
+        visible: opened
+      }));
+    }
+  }]);
+
+  return TokenBadge;
+}(React__default.PureComponent);
+
+defineProperty(TokenBadge, "propTypes", {
+  address: propTypes.string,
+  name: propTypes.string,
+  networkType: propTypes.string,
+  symbol: propTypes.string.isRequired
+});
+
+defineProperty(TokenBadge, "defaultProps", {
+  address: '',
+  name: '',
+  networkType: 'main'
+});
+
+var Icon$2 = styled__default.span.withConfig({
+  displayName: "TokenBadge__Icon",
+  componentId: "sc-7bvdqo-0"
+})(["flex-shrink:0;display:block;width:18px;height:18px;margin-right:4px;margin-left:-4px;background-size:contain;background-position:50% 50%;background-repeat:no-repeat;background-image:url(", ");"], function (p) {
+  return p.src;
+});
+var NameWrapper = styled__default.span.withConfig({
+  displayName: "TokenBadge__NameWrapper",
+  componentId: "sc-7bvdqo-1"
+})(["flex-shrink:1;display:flex;min-width:0;"]);
+var Name = styled__default.span.withConfig({
+  displayName: "TokenBadge__Name",
+  componentId: "sc-7bvdqo-2"
+})(["flex-shrink:1;overflow:hidden;text-overflow:ellipsis;min-width:20%;margin-right:4px;"]);
+
+var _Symbol = styled__default.span.withConfig({
+  displayName: "TokenBadge___Symbol",
+  componentId: "sc-7bvdqo-3"
+})(["flex-shrink:0;"]);
+
+var _StyledButtonBase$4 = styled__default(ButtonBase$1)(_templateObject$h(), function (p) {
+  return p._css;
+});
+
+var _StyledDiv$9 = styled__default("div")(_templateObject2$a());
+
+var _StyledDiv2$6 = styled__default("div")(_templateObject3$9());
+
+var _StyledNameWrapper = styled__default(NameWrapper)(_templateObject4$7());
+
 var TransactionBadge =
 /*#__PURE__*/
 function (_React$PureComponent) {
-  inherits$1(TransactionBadge, _React$PureComponent);
+  inherits(TransactionBadge, _React$PureComponent);
 
   function TransactionBadge() {
-    classCallCheck$1(this, TransactionBadge);
+    classCallCheck(this, TransactionBadge);
 
-    return possibleConstructorReturn$1(this, getPrototypeOf(TransactionBadge).apply(this, arguments));
+    return possibleConstructorReturn(this, getPrototypeOf(TransactionBadge).apply(this, arguments));
   }
 
   createClass(TransactionBadge, [{
     key: "getMainProps",
     value: function getMainProps(transaction) {
-      var networkType = this.props.networkType;
+      var _this$props = this.props,
+          networkType = _this$props.networkType,
+          background = _this$props.background;
       var baseProps = stylingProps(this);
 
       if (!transaction) {
@@ -24231,7 +22739,8 @@ function (_React$PureComponent) {
           networkType: networkType
         }),
         style: objectSpread({}, baseProps.style, {
-          cursor: 'pointer'
+          cursor: 'pointer',
+          backgroundColor: background
         })
       });
     }
@@ -24253,7 +22762,7 @@ function (_React$PureComponent) {
       var fontSize = props.fontSize;
       var transaction = isTransaction(props.transaction) ? props.transaction : null;
       var mainProps = this.getMainProps(transaction);
-      return React__default.createElement(Main$e, _extends_1({
+      return React__default.createElement(Main$d, _extends_1({
         title: transaction,
         onClick: this.handleClick
       }, mainProps), React__default.createElement(Label$4, {
@@ -24277,13 +22786,14 @@ defineProperty(TransactionBadge, "defaultProps", {
   transaction: '',
   shorten: true,
   fontSize: 'normal',
-  networkType: 'main'
+  networkType: 'main',
+  background: '#daeaef'
 });
 
-var Main$e = styled__default.div.withConfig({
+var Main$d = styled__default.div.withConfig({
   displayName: "TransactionBadge__Main",
   componentId: "sc-1ceh9ki-0"
-})(["overflow:hidden;display:inline-flex;align-items:center;border-radius:3px;cursor:default;text-decoration:none;background:#daeaef;"]);
+})(["overflow:hidden;display:inline-flex;align-items:center;border-radius:3px;cursor:default;text-decoration:none;"]);
 var Label$4 = styled__default(Text).withConfig({
   displayName: "TransactionBadge__Label",
   componentId: "sc-1ceh9ki-1"
@@ -24292,12 +22802,12 @@ var Label$4 = styled__default(Text).withConfig({
 var TransactionProgress =
 /*#__PURE__*/
 function (_React$Component) {
-  inherits$1(TransactionProgress, _React$Component);
+  inherits(TransactionProgress, _React$Component);
 
   function TransactionProgress() {
-    classCallCheck$1(this, TransactionProgress);
+    classCallCheck(this, TransactionProgress);
 
-    return possibleConstructorReturn$1(this, getPrototypeOf(TransactionProgress).apply(this, arguments));
+    return possibleConstructorReturn(this, getPrototypeOf(TransactionProgress).apply(this, arguments));
   }
 
   createClass(TransactionProgress, [{
@@ -24329,7 +22839,7 @@ function (_React$Component) {
         end: endTime
       })), React__default.createElement(ProgressBar, {
         color: theme.accent,
-        progress: progress
+        value: progress
       }), React__default.createElement(FooterWrapper, {
         slow: slow
       }, slow && React__default.createElement(SlowTransaction, null, React__default.createElement(Info$1.Alert, null, "Slow transaction. Retry with more gas")), React__default.createElement(Link, {
@@ -24375,7 +22885,7 @@ var FooterWrapper = styled__default.div.withConfig({
   var slow = _ref.slow;
   return slow ? 'space-between' : 'end';
 });
-var Link = styled__default(SafeLink).withConfig({
+var Link = styled__default(ExternalLink).withConfig({
   displayName: "TransactionProgress__Link",
   componentId: "vvbhu5-4"
 })(["color:#21aae7;text-decoration:none;"]);
@@ -24384,70 +22894,223 @@ var SlowTransaction = styled__default.div.withConfig({
   componentId: "vvbhu5-5"
 })(["margin-right:10px;"]);
 
-exports.IconAdd = Add;
-exports.IconApps = Apps;
-exports.IconArrowRight = ArrowRight;
-exports.IconAttention = Attention;
-exports.IconBlank = Blank;
-exports.IconCheck = Check;
-exports.IconClose = Close;
-exports.IconCopy = Copy;
-exports.IconCross = Cross;
-exports.IconError = Error$1;
-exports.IconFilter = Filter;
-exports.IconFundraising = Fundraising;
-exports.IconGroups = Groups;
-exports.IconHome = Home;
-exports.IconIdentity = Identity;
-exports.IconMenu = Menu;
-exports.IconNotifications = Notifications;
-exports.IconPermissions = Permissions;
-exports.IconPlus = Plus;
-exports.IconRemove = Remove;
-exports.IconSettings = Settings;
-exports.IconShare = Share;
-exports.IconTime = Time;
-exports.IconWallet = Wallet;
-exports.theme = theme;
-exports.themeDark = themeDark;
-exports.brand = brand;
-exports.colors = colors;
-exports.difference = difference;
-exports.formatHtmlDatetime = formatHtmlDatetime;
-exports.formatIntegerRange = formatIntegerRange;
-exports.unselectable = unselectable;
-exports.BREAKPOINTS = BREAKPOINTS;
-exports.breakpoint = breakpoint;
-exports.BreakPoint = BreakPoint;
-exports.font = font;
-exports.grid = grid;
-exports.springs = springs;
-exports.spring = spring;
-exports.addressesEqual = addressesEqual;
-exports.shortenAddress = shortenAddress;
-exports.shortenTransaction = shortenTransaction;
-exports.isAddress = isAddress;
-exports.isTransaction = isTransaction;
-exports.blockExplorerUrl = blockExplorerUrl;
-exports.forwardProps = forwardProps;
-exports.stylingProps = stylingProps;
-exports.devOnly = devOnly;
-exports.log = log;
-exports.warn = warn;
-exports.noop = noop;
-exports.observe = observe;
-exports.PublicUrl = PublicUrl;
-exports.Redraw = Redraw;
-exports.RedrawFromDate = RedrawFromDate;
-exports.Root = Root;
-exports.Viewport = Viewport;
-exports.useViewport = useViewport;
+var observe = function observe(_observe) {
+  var initialState = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+  return function (Component) {
+    var _class, _temp;
+
+    return _temp = _class =
+    /*#__PURE__*/
+    function (_React$Component) {
+      inherits(_class, _React$Component);
+
+      function _class() {
+        var _getPrototypeOf2;
+
+        var _this;
+
+        classCallCheck(this, _class);
+
+        for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+          args[_key] = arguments[_key];
+        }
+
+        _this = possibleConstructorReturn(this, (_getPrototypeOf2 = getPrototypeOf(_class)).call.apply(_getPrototypeOf2, [this].concat(args)));
+
+        defineProperty(assertThisInitialized(assertThisInitialized(_this)), "state", initialState);
+
+        defineProperty(assertThisInitialized(assertThisInitialized(_this)), "subscribe", function (observable) {
+          if (observable) {
+            _this.setState({
+              subscription: _observe(observable).subscribe(function (state) {
+                _this.setState(state);
+              })
+            });
+          }
+        });
+
+        defineProperty(assertThisInitialized(assertThisInitialized(_this)), "unsubscribe", function () {
+          _this.state.subscription && _this.state.subscription.unsubscribe();
+        });
+
+        return _this;
+      }
+
+      createClass(_class, [{
+        key: "componentDidMount",
+        value: function componentDidMount() {
+          this.subscribe(this.props.observable);
+        }
+      }, {
+        key: "componentWillReceiveProps",
+        value: function componentWillReceiveProps(_ref) {
+          var nextObservable = _ref.observable;
+          var observable = this.props.observable; // If a new observable gets passed in, unsubscribe from the old and subscribe to the new
+
+          if (nextObservable !== observable) {
+            this.unsubscribe();
+            this.subscribe(nextObservable);
+          }
+        }
+      }, {
+        key: "componentWillUnmount",
+        value: function componentWillUnmount() {
+          this.unsubscribe();
+        }
+      }, {
+        key: "render",
+        value: function render() {
+          var props = _extends_1({}, this.props); // Don't pass down the given observable
+
+
+          delete props.observable;
+          return React__default.createElement(Component, _extends_1({}, this.state, props));
+        }
+      }]);
+
+      return _class;
+    }(React__default.Component), defineProperty(_class, "displayName", "Observe(".concat(getDisplayName(Component), ")")), defineProperty(_class, "propTypes", {
+      observable: function observable(_ref2, _, componentName) {
+        var _observable = _ref2.observable;
+
+        if (_observable && typeof _observable.subscribe !== 'function') {
+          throw new Error("Invalid prop `observable` supplied to `".concat(componentName, "` ") + '(wrapped by `observe()`). ' + '`observable` must be an RxJS Observable-like object. ' + "Given ".concat(_observable, " instead."));
+        }
+      }
+    }), _temp;
+  };
+};
+
+// adjusts the re-render timer to be one second, minute, or hour based on the
+// fromDate prop.
+// For a discussion on pitfalls, see
+// https://gist.github.com/staltz/08bf613199092eeb41ac8137d51eb5e6
+
+var EVERY_SECOND = 1000;
+var EVERY_MINUTE = EVERY_SECOND * 60;
+var EVERY_HOUR = EVERY_MINUTE * 60;
+
+var getRedrawTime = function getRedrawTime(fromDate) {
+  var _difference = difference(new Date(), fromDate),
+      days = _difference.days,
+      hours = _difference.hours,
+      minutes = _difference.minutes;
+
+  return hours || days ? EVERY_HOUR : minutes > 1 ? EVERY_MINUTE : EVERY_SECOND;
+};
+
+var RedrawFromDate =
+/*#__PURE__*/
+function (_React$Component) {
+  inherits(RedrawFromDate, _React$Component);
+
+  function RedrawFromDate() {
+    var _getPrototypeOf2;
+
+    var _this;
+
+    classCallCheck(this, RedrawFromDate);
+
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    _this = possibleConstructorReturn(this, (_getPrototypeOf2 = getPrototypeOf(RedrawFromDate)).call.apply(_getPrototypeOf2, [this].concat(args)));
+
+    defineProperty(assertThisInitialized(assertThisInitialized(_this)), "state", {
+      redrawTime: EVERY_HOUR,
+      lastDraw: -1
+    });
+
+    defineProperty(assertThisInitialized(assertThisInitialized(_this)), "clearInterval", function () {
+      _this.interval && clearInterval(_this.interval);
+    });
+
+    defineProperty(assertThisInitialized(assertThisInitialized(_this)), "restartDrawInterval", function (redrawTime) {
+      _this.clearInterval();
+
+      _this.interval = setInterval(function () {
+        _this.setState({
+          lastDraw: Date.now()
+        });
+
+        var newRedrawTime = getRedrawTime(_this.props.fromDate);
+
+        if (newRedrawTime !== redrawTime) {
+          _this.restartDrawInterval(newRedrawTime);
+        }
+      }, redrawTime);
+    });
+
+    return _this;
+  }
+
+  createClass(RedrawFromDate, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var fromDate = this.props.fromDate;
+
+      if (fromDate) {
+        this.restartDrawInterval(getRedrawTime(fromDate));
+      }
+    }
+  }, {
+    key: "componentWillReceiveProps",
+    value: function componentWillReceiveProps(_ref) {
+      var fromDate = _ref.fromDate;
+
+      if (!fromDate && this.props.fromDate) {
+        this.clearInterval();
+      } else if (!dayjs_min(fromDate).isSame(this.props.fromDate)) {
+        this.restartDrawInterval(getRedrawTime(this.props.fromDate));
+      }
+    }
+  }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      this.clearInterval();
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      return this.props.children();
+    }
+  }]);
+
+  return RedrawFromDate;
+}(React__default.Component);
+
+defineProperty(RedrawFromDate, "propTypes", {
+  children: propTypes.func.isRequired,
+  fromDate: propTypes.oneOfType([propTypes.string, propTypes.number, propTypes.instanceOf(Date)]).isRequired
+});
+
+var hocWrap$2 = function hocWrap(Component) {
+  var HOC = function HOC(props) {
+    return React__default.createElement(RedrawFromDate, {
+      fromDate: props.fromDate
+    }, function () {
+      return React__default.createElement(Component, props);
+    });
+  };
+
+  HOC.propTypes = {
+    fromDate: RedrawFromDate.propTypes.fromDate
+  };
+  HOC.displayName = "RedrawFromDate(".concat(getDisplayName(Component), ")");
+  return HOC;
+};
+
+RedrawFromDate.hocWrap = hocWrap$2;
+
 exports.ToastHub = ToastHubProvider;
 exports.Toast = Toast;
 exports.AddressField = AddressField;
 exports.AppBar = AppBar;
 exports.AppView = AppView;
 exports.AragonApp = AragonApp;
+exports._AutoComplete = AutoComplete$1;
+exports._AutoCompleteSelected = AutoCompleteSelected$1;
 exports.Badge = Badge;
 exports.BadgeNumber = BadgeNumber;
 exports.BaseStyles = BaseStyles$1;
@@ -24466,11 +23129,13 @@ exports.EscapeOutside = EscapeOutside;
 exports.EthIdenticon = EthIdenticon;
 exports.ExternalLink = ExternalLink;
 exports.Field = Field;
+exports.FloatIndicator = FloatIndicator;
 exports.FocusVisible = FocusVisible;
 exports.IdentityBadge = IdentityBadge;
 exports.Info = Info$1;
 exports.LineChart = LineChart;
-exports.Main = Main$a;
+exports.LoadingRing = LoadingRing;
+exports.Main = Main$9;
 exports.Modal = Modal;
 exports.NavigationBar = NavigationBar;
 exports.PartitionBar = PartitionBar;
@@ -24486,6 +23151,7 @@ exports.SidePanel = SidePanel;
 exports.SidePanelSeparator = SidePanelSeparator;
 exports.SidePanelSplit = SidePanelSplit;
 exports.Slider = Slider;
+exports.SyncIndicator = SyncIndicator;
 exports.TabBar = TabBar;
 exports.Table = Table;
 exports.TableCell = TableCell;
@@ -24494,5 +23160,74 @@ exports.TableRow = StyledTableRow;
 exports.Text = Text;
 exports.TextInput = WrapperTextInput;
 exports.Timer = Timer;
+exports.TokenBadge = TokenBadge;
 exports.TransactionBadge = TransactionBadge;
 exports.TransactionProgress = TransactionProgress;
+exports.useImageExists = useImageExists;
+exports.ImageExists = ImageExists;
+exports.useClickOutside = useClickOutside;
+exports.useOnBlur = useOnBlur;
+exports.useArrowKeysFocus = useArrowKeysFocus;
+exports.IconAdd = Add;
+exports.IconApps = Apps;
+exports.IconArrowDown = ArrowDown;
+exports.IconArrowRight = ArrowRight;
+exports.IconAttention = Attention;
+exports.IconBlank = Blank;
+exports.IconBylaw = Bylaw;
+exports.IconCheck = Check;
+exports.IconClose = Close;
+exports.IconCopy = Copy;
+exports.IconCross = Cross;
+exports.IconEllipsis = Ellipsis;
+exports.IconError = Error$1;
+exports.IconFilter = Filter;
+exports.IconFundraising = Fundraising;
+exports.IconGroups = Groups;
+exports.IconHome = Home;
+exports.IconIdentity = Identity;
+exports.IconMenu = Menu;
+exports.IconNotifications = Notifications;
+exports.IconPermissions = Permissions;
+exports.IconPlus = Plus;
+exports.IconRemove = Remove;
+exports.IconSettings = Settings;
+exports.IconShare = Share;
+exports.IconTime = Time;
+exports.IconWallet = Wallet;
+exports.observe = observe;
+exports.PublicUrl = PublicUrl;
+exports.Redraw = Redraw;
+exports.RedrawFromDate = RedrawFromDate;
+exports.Root = Root;
+exports.Viewport = Viewport;
+exports.useViewport = useViewport;
+exports.theme = theme;
+exports.themeDark = themeDark;
+exports.brand = brand;
+exports.colors = colors$1;
+exports.difference = difference;
+exports.formatHtmlDatetime = formatHtmlDatetime;
+exports.formatIntegerRange = formatIntegerRange;
+exports.unselectable = unselectable;
+exports.BREAKPOINTS = BREAKPOINTS;
+exports.breakpoint = breakpoint;
+exports.BreakPoint = BreakPoint;
+exports.font = font;
+exports.grid = grid;
+exports.springs = springs;
+exports.spring = spring;
+exports.addressesEqual = addressesEqual;
+exports.shortenAddress = shortenAddress;
+exports.shortenTransaction = shortenTransaction;
+exports.isAddress = isAddress;
+exports.isTransaction = isTransaction;
+exports.blockExplorerUrl = blockExplorerUrl;
+exports.tokenIconUrl = tokenIconUrl;
+exports.forwardProps = forwardProps;
+exports.stylingProps = stylingProps;
+exports.devOnly = devOnly;
+exports.log = log;
+exports.warn = warn;
+exports.noop = noop;
+exports.identity = identity;
