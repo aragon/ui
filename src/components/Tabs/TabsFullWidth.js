@@ -1,13 +1,13 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import { Transition, animated } from 'react-spring'
 import { GU, textStyle, springs } from '../../style'
-import { useOnBlur, useKeyDown } from '../../hooks'
+import { useOnBlur } from '../../hooks'
 import { IconDown } from '../../icons'
 import { useTheme } from '../../theme'
 import { useInside } from '../../utils'
 import { ButtonBase } from '../Button/ButtonBase'
 
-const ESC_CODE = 27
+const KEY_ESC = 27
 
 // TabsFullWidth is an internal component
 /* eslint-disable react/prop-types */
@@ -41,9 +41,23 @@ function TabsFullWidth({ items, selected, onChange }) {
     setOpened(false)
   }, [selectedItem])
 
-  useKeyDown(ESC_CODE, () => {
-    close()
-  })
+  useEffect(() => {
+    // only react to the escape key when the menu is opened
+    if (!opened) {
+      return
+    }
+
+    const onKeyDown = event => {
+      if (event.keyCode === KEY_ESC) {
+        close()
+      }
+    }
+    window.addEventListener('keydown', onKeyDown)
+
+    return () => {
+      window.removeEventListener('keydown', onKeyDown)
+    }
+  }, [opened, close])
 
   return (
     <div
