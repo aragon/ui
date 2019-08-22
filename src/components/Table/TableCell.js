@@ -1,33 +1,36 @@
 import React from 'react'
 import PropTypes from '../../proptypes'
-import styled from 'styled-components'
-import { theme } from '../../theme-legacy'
+import { GU } from '../../style'
+import { useTheme } from '../../theme'
 
-const { contentBackground } = theme
+function ContentContainerDefault({ align, ...props }) {
+  return (
+    <div
+      css={`
+        display: flex;
+        align-items: center;
+        justify-content: ${align === 'right' ? 'flex-end' : 'space-between'};
+      `}
+      {...props}
+    />
+  )
+}
 
-const StyledTableCell = styled.td`
-  padding: 20px;
-  background: ${contentBackground};
-  text-align: ${({ align }) => align};
-`
-
-const StyledTableCellContent = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: ${({ align }) =>
-    align === 'right' ? 'flex-end' : 'space-between'};
-`
-
-const TableCell = ({
-  children,
-  contentContainer: Container,
-  align,
-  ...props
-}) => (
-  <StyledTableCell align={align} {...props}>
-    <Container align={align}>{children}</Container>
-  </StyledTableCell>
-)
+function TableCell({ children, contentContainer: Container, align, ...props }) {
+  const theme = useTheme()
+  return (
+    <td
+      {...props}
+      css={`
+        padding: ${2.5 * GU}px;
+        background: ${theme.surface};
+        text-align: ${align};
+      `}
+    >
+      <Container align={align}>{children}</Container>
+    </td>
+  )
+}
 
 TableCell.propTypes = {
   align: PropTypes.string,
@@ -37,8 +40,10 @@ TableCell.propTypes = {
 
 TableCell.defaultProps = {
   align: 'left',
-  contentContainer: StyledTableCellContent,
+  contentContainer: ContentContainerDefault,
 }
 
-export { StyledTableCellContent }
+// Compatibility (not sure this is used at all?)
+export { ContentContainerDefault as StyledTableCellContent }
+
 export default TableCell
