@@ -7,7 +7,7 @@ import readme from 'ui-src/components/Table/Table.md'
 
 const PageTable = ({ title }) => (
   <Page title={title} readme={readme}>
-    <Page.Demo opaque>
+    <Page.Demo>
       <Container>
         <Table
           header={
