@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react'
+import React, { useCallback, useRef, useState } from 'react'
 import { Transition, animated } from 'react-spring'
 import { GU, textStyle, springs } from '../../style'
 import { useOnBlur } from '../../hooks'
@@ -34,10 +34,13 @@ function TabsFullWidth({ items, selected, onChange }) {
 
   const change = useCallback(
     index => {
-      onChange(index)
-      close()
+      if (index !== selectedItem) {
+        onChange(index)
+        close()
+        focusButton()
+      }
     },
-    [onChange]
+    [onChange, close, focusButton]
   )
 
   const { handleBlur, ref } = useOnBlur(close)
@@ -50,14 +53,8 @@ function TabsFullWidth({ items, selected, onChange }) {
         focusButton()
       }
     },
-    [close]
+    [close, focusButton]
   )
-
-  // close when the selected item changes
-  useEffect(() => {
-    close()
-    focusButton()
-  }, [selectedItem])
 
   return (
     <div
