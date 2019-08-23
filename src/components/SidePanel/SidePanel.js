@@ -6,7 +6,7 @@ import { IconClose } from '../../icons'
 import { useViewport } from '../../providers/Viewport/Viewport'
 import { GU, springs, textStyle } from '../../style'
 import { useTheme } from '../../theme'
-import { Inside, unselectable } from '../../utils'
+import { Inside, unselectable, KEY_ESC } from '../../utils'
 import RootPortal from '../RootPortal/RootPortal'
 
 const CONTENT_PADDING = 3 * GU
@@ -31,7 +31,7 @@ function SidePanel({
 
   const handleEscape = useCallback(
     event => {
-      if (event.keyCode === 27 && opened) {
+      if (event.keyCode === KEY_ESC && opened) {
         handleClose()
       }
     },

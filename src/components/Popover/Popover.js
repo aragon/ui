@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Popper from 'popper.js'
 import { Transition, animated } from 'react-spring'
-import { noop, stylingProps } from '../../utils'
+import { noop, stylingProps, KEY_ESC } from '../../utils'
 import { useTheme } from '../../theme'
 import { springs, RADIUS } from '../../style'
 import RootPortal from '../RootPortal/RootPortal'
@@ -119,7 +119,7 @@ class PopoverBase extends React.Component {
 
   handleEscape = ({ keyCode }) => {
     const { opener, onClose } = this.props
-    if (keyCode === 27) {
+    if (keyCode === KEY_ESC) {
       // On escape, we always move the focus back to the opener.
       opener.focus()
       onClose()
