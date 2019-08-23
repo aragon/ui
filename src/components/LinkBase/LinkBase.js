@@ -55,7 +55,9 @@ LinkBase.propTypes = {
   focusRingRadius: PropTypes.number,
   focusRingSpacing: PropTypes.number,
   focusVisible: PropTypes.bool,
+  innerRef: PropTypes.any,
   rel: PropTypes.string,
+  showFocusRing: PropTypes.bool,
 }
 
 LinkBase.defaultProps = {
