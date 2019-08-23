@@ -106,13 +106,18 @@ function TabsFullWidth({ items, selected, onChange }) {
             css={`
               display: flex;
               align-items: center;
-              padding: 0 ${2 * GU}px;
+              justify-content: center;
+              width: ${7 * GU}px;
+              height: 100%;
               color: ${theme.surfaceIcon};
-              transition: transform 150ms ease-in-out;
-              transform: rotate3d(0, 0, 1, ${opened ? 180 : 0}deg);
             `}
           >
-            <IconDown />
+            <IconDown
+              css={`
+                transition: transform 150ms ease-in-out;
+                transform: rotate3d(0, 0, 1, ${opened ? 180 : 0}deg);
+              `}
+            />
           </div>
         </ButtonBase>
         <Transition
