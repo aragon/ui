@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { createGlobalStyle } from 'styled-components'
 import { useTheme } from '../../theme'
+import { textStyle } from '../../style'
 import { PublicUrl } from '../../providers/PublicUrl'
 
 import overpassLightWoff2 from './assets/overpass/overpass-light.woff2'
@@ -68,6 +69,7 @@ const BaseStyles = React.memo(function BaseStyles(props) {
       {...props}
       theme={theme}
       fontFaces={fontFaceDeclarations(props)}
+      textStyleCss={textStyle('body2')}
     />
   )
 })
@@ -96,12 +98,10 @@ const GlobalStyle = createGlobalStyle`
   body {
     height: 0;
     min-height: 100vh;
-    font-family: ${p => p.fontFamily};
-    font-size: 15px;
-    font-weight: 400;
-    line-height: 1.5;
     color: ${p => p.theme.content};
     background: ${p => p.theme.background};
+    font-family: ${p => p.fontFamily};
+    ${p => p.textStyleCss};
   }
   html, body {
     overflow: hidden;
