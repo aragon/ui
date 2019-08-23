@@ -13,6 +13,7 @@ function Split({ primary, secondary }) {
         css={`
           display: ${oneColumn ? 'block' : 'flex'};
           padding-bottom: ${3 * GU}px;
+          width: 100%;
         `}
       >
         <Inside name="Split:primary">

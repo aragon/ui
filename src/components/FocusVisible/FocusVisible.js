@@ -12,7 +12,7 @@ import PropTypes from 'prop-types'
 //  - https://github.com/WICG/focus-visible/issues/88#issuecomment-363227219
 //  - https://chromium-review.googlesource.com/c/chromium/src/+/897002<Paste>
 //
-class FocusVisible extends React.PureComponent {
+class FocusVisible extends React.Component {
   static propTypes = {
     // children is called with an object containing two entries:
     //   - focusVisible represents the visibility of the focus (boolean).
@@ -51,8 +51,8 @@ class FocusVisible extends React.PureComponent {
       this._document.removeEventListener('touchend', this.handlePointerEvent)
     }
   }
-  // It doesn’t seem to be specified, but pointer events happen before focus
-  // events on modern browsers.
+  // It doesn’t seem to be specified, but pointer-related events happen before
+  // the focus-related events on every modern browser.
   handlePointerEvent = e => {
     this._pointerActive = true
     this._timer = setTimeout(() => {
