@@ -1,49 +1,60 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useRef, useState } from 'react'
 import { Transition, animated } from 'react-spring'
 import { GU, textStyle, springs } from '../../style'
-import { useOnBlur, useKeyDown } from '../../hooks'
+import { useOnBlur } from '../../hooks'
 import { IconDown } from '../../icons'
 import { useTheme } from '../../theme'
 import { useInside } from '../../utils'
 import { ButtonBase } from '../Button/ButtonBase'
 
-const ESC_CODE = 27
+const KEY_ESC = 27
 
 // TabsFullWidth is an internal component
 /* eslint-disable react/prop-types */
 
 function TabsFullWidth({ items, selected, onChange }) {
   const theme = useTheme()
+  const buttonRef = useRef(null)
   const [insideSidePanel] = useInside('SidePanel')
   const [opened, setOpened] = useState(false)
 
   const selectedItem = items[selected]
 
-  const close = useCallback(() => {
-    setOpened(false)
+  const close = useCallback(() => setOpened(false), [])
+
+  const focusButton = useCallback(() => {
+    if (buttonRef.current) {
+      buttonRef.current.focus()
+    }
   }, [])
 
   const toggle = useCallback(() => {
     setOpened(opened => !opened)
   }, [])
 
-  const { handleBlur, ref } = useOnBlur(close)
-
   const change = useCallback(
     index => {
-      onChange(index)
-      close()
+      if (index !== selectedItem) {
+        onChange(index)
+        close()
+        focusButton()
+      }
     },
-    [onChange]
+    [onChange, close, focusButton]
   )
 
-  useEffect(() => {
-    setOpened(false)
-  }, [selectedItem])
+  const { handleBlur, ref } = useOnBlur(close)
 
-  useKeyDown(ESC_CODE, () => {
-    close()
-  })
+  // close on escape
+  const handleMenuKeyDown = useCallback(
+    event => {
+      if (event.keyCode === KEY_ESC) {
+        close()
+        focusButton()
+      }
+    },
+    [close, focusButton]
+  )
 
   return (
     <div
@@ -64,6 +75,7 @@ function TabsFullWidth({ items, selected, onChange }) {
         `}
       >
         <ButtonBase
+          ref={buttonRef}
           css={`
             display: flex;
             align-items: center;
@@ -94,13 +106,18 @@ function TabsFullWidth({ items, selected, onChange }) {
             css={`
               display: flex;
               align-items: center;
-              padding: 0 ${2 * GU}px;
+              justify-content: center;
+              width: ${7 * GU}px;
+              height: 100%;
               color: ${theme.surfaceIcon};
-              transition: transform 150ms ease-in-out;
-              transform: rotate3d(0, 0, 1, ${opened ? 180 : 0}deg);
             `}
           >
-            <IconDown />
+            <IconDown
+              css={`
+                transition: transform 150ms ease-in-out;
+                transform: rotate3d(0, 0, 1, ${opened ? 180 : 0}deg);
+              `}
+            />
           </div>
         </ButtonBase>
         <Transition
@@ -132,7 +149,11 @@ function TabsFullWidth({ items, selected, onChange }) {
                   ),
                 }}
               >
-                <Menu items={items} onChange={change} />
+                <Menu
+                  items={items}
+                  onChange={change}
+                  onKeyDown={handleMenuKeyDown}
+                />
               </animated.div>
             ))
           }
@@ -142,12 +163,22 @@ function TabsFullWidth({ items, selected, onChange }) {
   )
 }
 
-function Menu({ items, onChange }) {
+function Menu({ items, onChange, ...props }) {
+  const handleRef = useCallback(element => {
+    if (element) {
+      element.focus()
+    }
+  }, [])
+
   return (
     <div
+      ref={handleRef}
+      tabIndex="0"
+      {...props}
       css={`
         display: flex;
         flex-direction: column;
+        outline: 0;
       `}
     >
       {items.map((item, index) => (
@@ -166,7 +197,6 @@ function MenuItem({ item, index, onChange }) {
 
   return (
     <ButtonBase
-      key={index}
       onClick={change}
       css={`
         height: ${8 * GU}px;
