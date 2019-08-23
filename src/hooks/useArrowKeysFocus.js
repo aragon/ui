@@ -1,7 +1,5 @@
 import { useState, useCallback, useEffect } from 'react'
-
-const KEYCODE_UP = 38
-const KEYCODE_DOWN = 40
+import { KEY_UP, KEY_DOWN } from '../utils'
 
 /* eslint-disable react-hooks/rules-of-hooks */
 export function useArrowKeysFocus(refs) {
@@ -25,8 +23,8 @@ export function useArrowKeysFocus(refs) {
   const handleKeyDown = useCallback(
     e => {
       const { keyCode } = e
-      if (keyCode === KEYCODE_UP || keyCode === KEYCODE_DOWN) {
-        cycleFocus(e, keyCode === KEYCODE_UP ? -1 : 1)
+      if (keyCode === KEY_UP || keyCode === KEY_DOWN) {
+        cycleFocus(e, keyCode === KEY_UP ? -1 : 1)
       }
     },
     [cycleFocus]
