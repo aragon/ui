@@ -8,6 +8,7 @@ import BaseStyles from '../BaseStyles/BaseStyles'
 import { ToastHub } from '../ToastHub/ToastHub'
 import { Layout } from '../Layout/Layout'
 import { MainTheme } from '../../theme'
+import ScrollView from '../ScrollView/ScrollView'
 import { initContainsComponent } from '../../utils/contains-component'
 
 const [
@@ -16,12 +17,26 @@ const [
   useAppViewsCounter,
 ] = initContainsComponent()
 
-const Main = ({ children, assetsUrl, layout }) => {
-  const [appViews, contextValue] = useAppViewsCounter()
+function Main({ children, assetsUrl, layout, scrollView }) {
+  const [hasAppView, contextValue] = useAppViewsCounter()
 
   if (layout === undefined) {
-    layout = appViews === 0
+    layout = !hasAppView
   }
+
+  if (scrollView === undefined) {
+    scrollView = !hasAppView
+  }
+
+  // Optionally wrap `children` with Layout and/or ScrollView
+  let content = layout ? <Layout>{children}</Layout> : children
+  content = scrollView ? (
+    // The main ScrollView is set to 100vh by default (best for Aragon apps)
+    // Disable `scrollView` and insert your own if needed.
+    <ScrollView css="height: 100vh">{content}</ScrollView>
+  ) : (
+    content
+  )
 
   return (
     <ContainsAppViews contextValue={contextValue}>
@@ -30,9 +45,7 @@ const Main = ({ children, assetsUrl, layout }) => {
           <Viewport.Provider>
             <PublicUrl.Provider url={ensureTrailingSlash(assetsUrl)}>
               <BaseStyles />
-              <ToastHub>
-                {layout ? <Layout>{children}</Layout> : children}
-              </ToastHub>
+              <ToastHub>{content}</ToastHub>
             </PublicUrl.Provider>
           </Viewport.Provider>
         </Root.Provider>
@@ -45,6 +58,7 @@ Main.propTypes = {
   assetsUrl: PropTypes.string,
   children: PropTypes.node,
   layout: PropTypes.bool,
+  scrollView: PropTypes.bool,
 }
 Main.defaultProps = {
   assetsUrl: './aragon-ui/',

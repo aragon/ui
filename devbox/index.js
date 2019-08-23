@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { Main } from '@aragon/ui'
+import { Layout, Main } from '@aragon/ui'
 
 import * as APPS from './apps'
 
@@ -31,8 +31,10 @@ class Index extends React.Component {
     const { appName } = this.state
     const CurrentApp = APPS[appName]
     return CurrentApp ? (
-      <Main>
-        <CurrentApp />
+      <Main layout={false}>
+        <Layout paddingBottom={0}>
+          <CurrentApp />
+        </Layout>
       </Main>
     ) : (
       <React.Fragment>

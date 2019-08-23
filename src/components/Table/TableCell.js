@@ -16,6 +16,10 @@ function ContentContainerDefault({ align, ...props }) {
   )
 }
 
+ContentContainerDefault.propTypes = {
+  align: PropTypes.string,
+}
+
 function TableCell({ children, contentContainer: Container, align, ...props }) {
   const theme = useTheme()
   return (

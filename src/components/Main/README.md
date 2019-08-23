@@ -16,16 +16,23 @@ const App = () => (
 
 ## Props
 
-### `legacyFonts`
-
-- Type: `Boolean`
-- Default: `false`
-
-Set this to `true` if you wish to support for WOFF 1.0 browsers (like Internet Explorer 11).
-
-### `publicUrl`
+### `assetsUrl`
 
 - Type: `String`
 - Default: `./aragon-ui/`
 
 Set this to configure the URL of the directory containing your aragonUI assets.
+
+### `layout`
+
+- Type: `Boolean`
+- Default: `true`
+
+Enable `<Layout />`.
+
+### `scrollView`
+
+- Type: `Boolean`
+- Default: `true`
+
+Enable `<ScrollView />`.

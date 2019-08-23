@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import { Button, Modal } from '@aragon/ui'
+import { Button, Modal, IconPlus, IconMinus } from '@aragon/ui'
+import Lorem from '../components/Lorem'
 
 function App() {
-  const [opened, setOpened] = useState(true)
+  const [opened, setOpened] = useState(false)
   const [paragraphs, setParagraphs] = useState(3)
   return (
     <div
@@ -15,19 +16,8 @@ function App() {
         padding: 20px;
       `}
     >
-      <Button
-        onClick={() => {
-          setOpened(true)
-        }}
-      >
-        Modal
-      </Button>
-      <Modal
-        visible={opened}
-        onClose={() => {
-          setOpened(false)
-        }}
-      >
+      <Button onClick={() => setOpened(true)}>Modal</Button>
+      <Modal visible={opened} onClose={() => setOpened(false)}>
         <div
           css={`
             overflow: hidden;
@@ -49,20 +39,20 @@ function App() {
             `}
           >
             <span>Modal title </span>
-            <button onClick={() => setParagraphs(Math.max(1, paragraphs - 1))}>
-              -
-            </button>
-            <button onClick={() => setParagraphs(paragraphs + 1)}>+</button>
+            <div>
+              <Button
+                icon={<IconMinus />}
+                onClick={() => setParagraphs(Math.max(1, paragraphs - 1))}
+              />
+            </div>
+            <div>
+              <Button
+                icon={<IconPlus />}
+                onClick={() => setParagraphs(paragraphs + 1)}
+              />
+            </div>
           </h1>
-          {[...Array(paragraphs)].map((_, i) => (
-            <p key={i}>
-              Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-              nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
-              erat, sed diam voluptua. At vero eos et accusam et justo duo
-              dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
-              sanctus est Lorem ipsum dolor sit amet.
-            </p>
-          ))}
+          <Lorem repeat={paragraphs} />
         </div>
       </Modal>
     </div>
