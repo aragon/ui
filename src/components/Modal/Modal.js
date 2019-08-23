@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Transition, animated } from 'react-spring'
-import { noop } from '../../utils'
+import { cssPx, noop } from '../../utils'
 import { springs, GU, RADIUS } from '../../style'
 import { useTheme } from '../../theme'
 import { useViewport } from '../../providers/Viewport'
@@ -9,8 +9,6 @@ import { IconCross } from '../../icons'
 import { ButtonIcon } from '../Button/ButtonIcon'
 import EscapeOutside from '../EscapeOutside/EscapeOutside'
 import RootPortal from '../RootPortal/RootPortal'
-
-const cssPx = value => (typeof value === 'number' ? value + 'px' : value)
 
 function Modal({
   children,
@@ -40,7 +38,7 @@ function Modal({
           (({ opacity, scale }) => (
             <animated.div
               css={`
-                position: absolute;
+                position: fixed;
                 top: 0;
                 left: 0;
                 right: 0;

@@ -37,7 +37,7 @@ function initContainsComponent() {
         setCount(count => count - 1)
       }, [])
 
-      return [count, { add, remove }]
+      return [count > 0, { add, remove }]
     },
   ]
 }

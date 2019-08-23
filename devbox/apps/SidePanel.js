@@ -1,84 +1,87 @@
-import React from 'react'
+import React, { useCallback, useState } from 'react'
 import styled from 'styled-components'
 import {
+  Box,
   Button,
+  Header,
+  GU,
   SidePanel,
   SidePanelSeparator,
   SidePanelSplit,
-  GU,
-  unselectable,
+  Split,
 } from '@aragon/ui'
+import Lorem from '../components/Lorem'
 
-class App extends React.Component {
-  state = {
-    opened: false,
-  }
+function App() {
+  const [opened, setOpened] = useState(false)
 
-  open = () => {
-    this.setState({ opened: true })
-  }
-  close = () => {
-    this.setState({ opened: false })
-  }
+  const open = useCallback(() => {
+    setOpened(true)
+  }, [])
 
-  render() {
-    return (
-      <React.Fragment>
-        <Main>
-          <Button mode="secondary" compact onClick={this.open}>
-            Open
+  const close = useCallback(() => {
+    setOpened(false)
+  }, [])
+
+  return (
+    <React.Fragment>
+      <Header
+        primary="SidePanel"
+        secondary={
+          <Button onClick={open} mode="strong">
+            Open SidePanel
           </Button>
-        </Main>
-        <SidePanel
-          title="My Panel"
-          opened={this.state.opened}
-          onClose={this.close}
-        >
-          <div
+        }
+      />
+      <Split
+        primary={
+          <Box>
+            <Lorem repeat={10} />
+          </Box>
+        }
+        secondary={
+          <Box
             css={`
-              margin-top: ${3 * GU}px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
             `}
           >
-            <p
-              css={`
-                margin-bottom: ${3 * GU}px;
-              `}
-            >
-              Panel content
-            </p>
-            <SidePanelSeparator />
-            <p
-              css={`
-                margin: ${2 * GU}px 0;
-              `}
-            >
-              Some more panel content
-            </p>
-            <SidePanelSeparator />
-            <SidePanelSplit>
-              <p>Left split</p>
-              <p>Right split</p>
-            </SidePanelSplit>
-            <SidePanelSeparator />
-          </div>
-        </SidePanel>
-      </React.Fragment>
-    )
-  }
+            <Lorem repeat={3} />
+          </Box>
+        }
+      />
+      <SidePanel title="My Panel" opened={opened} onClose={close}>
+        <div
+          css={`
+            margin-top: ${3 * GU}px;
+          `}
+        >
+          <p
+            css={`
+              margin-bottom: ${3 * GU}px;
+            `}
+          >
+            Panel content
+          </p>
+          <SidePanelSeparator />
+          <p
+            css={`
+              margin: ${2 * GU}px 0;
+            `}
+          >
+            Some more panel content
+          </p>
+          <SidePanelSeparator />
+          <SidePanelSplit>
+            <p>Left split</p>
+            <p>Right split</p>
+          </SidePanelSplit>
+          <SidePanelSeparator />
+        </div>
+      </SidePanel>
+    </React.Fragment>
+  )
 }
-
-const Main = styled.div`
-  ${unselectable};
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: #fff;
-`
 
 export default App

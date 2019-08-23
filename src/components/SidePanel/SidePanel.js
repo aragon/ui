@@ -62,13 +62,14 @@ function SidePanel({
           {({ progress }) => (
             <div
               css={`
-                position: fixed;
-                z-index: 3;
+                position: absolute;
+                z-index: 1;
                 top: 0;
                 left: 0;
                 right: 0;
                 bottom: 0;
                 pointer-events: ${opened ? 'auto' : 'none'};
+                overflow: hidden;
               `}
             >
               <animated.div
@@ -213,6 +214,10 @@ const Panel = React.memo(function Panel({ compact, ...props }) {
     />
   )
 })
+
+Panel.propTypes = {
+  compact: PropTypes.bool,
+}
 
 // Used for spacing in SidePanelSplit and SidePanelSeparator
 SidePanel.HORIZONTAL_PADDING = CONTENT_PADDING
