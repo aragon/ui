@@ -4,10 +4,8 @@ import { GU, textStyle, springs } from '../../style'
 import { useOnBlur } from '../../hooks'
 import { IconDown } from '../../icons'
 import { useTheme } from '../../theme'
-import { useInside } from '../../utils'
+import { useInside, KEY_ESC } from '../../utils'
 import { ButtonBase } from '../Button/ButtonBase'
-
-const KEY_ESC = 27
 
 // TabsFullWidth is an internal component
 /* eslint-disable react/prop-types */
