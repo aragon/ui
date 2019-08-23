@@ -116,6 +116,7 @@ function SidePanel({
                   <h1
                     css={`
                       ${textStyle('body1')}
+                      color: ${theme.surfaceContent};
                     `}
                   >
                     {title}
