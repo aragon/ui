@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react'
 import PropTypes from 'prop-types'
-import LinkBase from './LinkBase'
+import LinkBase from '../LinkBase/LinkBase'
 import { useTheme } from '../../theme'
 
 const KEYCODE_ENTER = 13
