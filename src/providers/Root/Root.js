@@ -1,26 +1,21 @@
-import React from 'react'
+import React, { useCallback, useState } from 'react'
 import PropTypes from 'prop-types'
 
-const { Provider, Consumer } = React.createContext(null)
+const RootContext = React.createContext(null)
 
-class RootProvider extends React.Component {
-  static propTypes = {
-    children: PropTypes.node,
-  }
-  _element = React.createRef()
-  state = {
-    element: null,
-  }
-  componentDidMount() {
-    this.setState({ element: this._element.current })
-  }
-  render() {
-    const { element } = this.state
-    const { children } = this.props
-    return (
-      <Provider value={element}>
-        <div ref={this._element}>
-          {/*
+function RootProvider({ children, ...props }) {
+  const [element, setElement] = useState(null)
+
+  const handleRef = useCallback(element => {
+    if (element !== null) {
+      setElement(element)
+    }
+  }, [])
+
+  return (
+    <RootContext.Provider value={element}>
+      <div ref={handleRef} {...props}>
+        {/*
             We don’t render the children tree until the element is present, at
             the second rendering.
 
@@ -33,14 +28,19 @@ class RootProvider extends React.Component {
             than the element, it’s because <Root.Provider /> has to be defined
             at an upper level.
           */
-          element ? children : null}
-        </div>
-      </Provider>
-    )
-  }
+        element ? children : null}
+      </div>
+    </RootContext.Provider>
+  )
 }
 
-const Root = props => <Consumer {...props} />
+RootProvider.propTypes = {
+  children: PropTypes.node,
+}
+
+function Root(props) {
+  return <RootContext.Consumer {...props} />
+}
 
 Root.Provider = RootProvider
 

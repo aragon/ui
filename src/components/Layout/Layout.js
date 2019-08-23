@@ -2,6 +2,7 @@ import React, { useContext, useMemo } from 'react'
 import PropTypes from 'prop-types'
 import { useViewport } from '../../providers/Viewport/Viewport'
 import { BREAKPOINTS, GU } from '../../style'
+import { cssPx } from '../../utils'
 
 function getSizes(breakpoints) {
   return Object.entries(breakpoints)
@@ -42,7 +43,13 @@ function useLayout() {
   }
 }
 
-function Layout({ children, parentWidth, breakpoints, ...props }) {
+function Layout({
+  breakpoints,
+  children,
+  paddingBottom,
+  parentWidth,
+  ...props
+}) {
   const { width: viewportWidth } = useViewport()
 
   const mergedBreakpoints = useMemo(
@@ -65,10 +72,10 @@ function Layout({ children, parentWidth, breakpoints, ...props }) {
       <div
         {...props}
         css={`
-          margin: 0 auto;
-          padding-bottom: ${3 * GU}px;
           width: ${layoutName === 'small' ? 'auto' : `${layoutWidth}px`};
           min-width: ${mergedBreakpoints.min}px;
+          margin: 0 auto;
+          padding-bottom: ${cssPx(paddingBottom)};
         `}
       >
         {children}
@@ -78,18 +85,20 @@ function Layout({ children, parentWidth, breakpoints, ...props }) {
 }
 
 Layout.propTypes = {
-  children: PropTypes.node,
-  parentWidth: PropTypes.number,
   breakpoints: PropTypes.shape({
     min: PropTypes.number,
     small: PropTypes.number,
     medium: PropTypes.number,
     large: PropTypes.number,
   }),
+  children: PropTypes.node,
+  paddingBottom: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  parentWidth: PropTypes.number,
 }
 
 Layout.defaultProps = {
   breakpoints: {},
+  paddingBottom: 3 * GU,
 }
 
 export { useLayout, Layout }
