@@ -16,13 +16,13 @@ function IconPlus({ size, ...props }) {
         fill="currentColor"
         stroke="currentColor"
         strokeWidth={0.3}
-        d="M12 5a.566.566 0 0 0-.566.566v12.869a.566.566 0 0 0 1.132 0V5.565A.566.566 0 0 0 12 5z"
+        d="M12 5a.566.566 0 00-.566.566v12.869a.566.566 0 001.132 0V5.565A.566.566 0 0012 5z"
       />
       <path
         fill="currentColor"
         stroke="currentColor"
         strokeWidth={0.3}
-        d="M18.434 11.434H5.566a.566.566 0 0 0 0 1.132h12.869a.565.565 0 1 0 0-1.132z"
+        d="M18.434 11.434H5.566a.566.566 0 000 1.132h12.869a.565.565 0 100-1.132z"
       />
     </svg>
   )
