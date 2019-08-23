@@ -1,21 +1,29 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Tabs } from '@aragon/ui'
+import { Tabs, GU } from '@aragon/ui'
 
 const ITEMS = ['One', 'Two', 'Three', 'Four', 'Five']
 
 class App extends React.Component {
   render() {
     return (
-      <Main>
-        <Container>
-          {ITEMS.map((item, i) => (
-            <div style={{ marginBottom: '20px' }}>
-              <TabsDemo items={ITEMS.slice(0, i + 1)} />
-            </div>
-          ))}
-        </Container>
-      </Main>
+      <div
+        css={`
+          height: 100vh;
+          padding-top: ${3 * GU}px;
+        `}
+      >
+        {ITEMS.map((item, i) => (
+          <div
+            key={i}
+            css={`
+              margin-bottom: ${3 * GU}px;
+            `}
+          >
+            <TabsDemo items={ITEMS.slice(0, i + 1)} />
+          </div>
+        ))}
+      </div>
     )
   }
 }
@@ -30,29 +38,8 @@ class TabsDemo extends React.Component {
   render() {
     const { index } = this.state
     const { items } = this.props
-    return (
-      <Tabs onChange={this.handleSelect} selected={index} items={items} />
-    )
+    return <Tabs onChange={this.handleSelect} selected={index} items={items} />
   }
 }
-
-const Main = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  overflow-y: scroll;
-  overflow-x: hidden;
-`
-
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-`
 
 export default App
