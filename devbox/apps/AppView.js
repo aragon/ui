@@ -1,19 +1,13 @@
 import React from 'react'
 import { AppView } from '@aragon/ui'
+import Lorem from '../components/Lorem'
 
-class App extends React.Component {
-  state = { active: 0 }
-  handleChange = index => {
-    this.setState({ active: index })
-  }
-  render() {
-    const { active } = this.state
-    return (
-      <AppView>
-        hello
-      </AppView>
-    )
-  }
+function App() {
+  return (
+    <AppView title="Title">
+      <Lorem repeat={10} />
+    </AppView>
+  )
 }
 
 export default App
