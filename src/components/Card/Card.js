@@ -45,7 +45,6 @@ function Card({ children, width, height, onClick, ...props }) {
 
         ${interactive &&
           css`
-            position: relative;
             border: 0;
             box-shadow: 0px 1px 3px rgba(51, 77, 117, 0.15);
             transition-property: top, box-shadow;
@@ -56,13 +55,6 @@ function Card({ children, width, height, onClick, ...props }) {
             &:active {
               top: 1px;
               box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.075);
-            }
-
-            &:focus {
-              outline: 0;
-              .focus-ring {
-                display: block !important;
-              }
             }
           `}
       `}
