@@ -4,7 +4,7 @@ import { css } from 'styled-components'
 import { GU, RADIUS } from '../../style'
 import { useTheme } from '../../theme'
 import { unselectable, useInside } from '../../utils'
-import FocusVisible from '../FocusVisible/FocusVisible'
+import { ButtonBase } from '../Button/ButtonBase'
 
 const DEFAULT_WIDTH = 35 * GU
 const DEFAULT_HEIGHT = 40 * GU
@@ -25,61 +25,51 @@ function Card({ children, width, height, onClick, ...props }) {
   const interactive = Boolean(onClick)
 
   const interactiveProps = interactive
-    ? { role: 'button', tabIndex: '0', onClick }
+    ? { as: ButtonBase, focusRingRadius: RADIUS, onClick }
     : {}
 
   return (
-    <FocusVisible>
-      {({ focusVisible, onFocus }) => (
-        <div
-          {...interactiveProps}
-          onFocus={onFocus}
-          css={`
+    <div
+      {...interactiveProps}
+      css={`
+        position: relative;
+        width: ${dimension(insideCardLayout, width, `${DEFAULT_WIDTH}px`)};
+        height: ${dimension(insideCardLayout, height, `${DEFAULT_HEIGHT}px`)};
+        background: ${theme.surface};
+        border: 1px solid ${theme.border};
+        border-radius: ${RADIUS}px;
+        cursor: ${interactive ? 'pointer' : 'default'};
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        ${interactive &&
+          css`
             position: relative;
-            width: ${dimension(insideCardLayout, width, `${DEFAULT_WIDTH}px`)};
-            height: ${dimension(
-              insideCardLayout,
-              height,
-              `${DEFAULT_HEIGHT}px`
-            )};
-            background: ${theme.surface};
-            border: 1px solid ${theme.border};
-            border-radius: ${RADIUS}px;
-            cursor: ${interactive ? 'pointer' : 'default'};
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            border: 0;
+            box-shadow: 0px 1px 3px rgba(51, 77, 117, 0.15);
+            transition-property: top, box-shadow;
+            transition-duration: 50ms;
+            transition-timing-function: ease-in-out;
+            ${unselectable};
 
-            ${interactive &&
-              css`
-                position: relative;
-                border: 0;
-                box-shadow: 0px 1px 3px rgba(51, 77, 117, 0.15);
-                transition-property: top, box-shadow;
-                transition-duration: 50ms;
-                transition-timing-function: ease-in-out;
-                ${unselectable};
+            &:active {
+              top: 1px;
+              box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.075);
+            }
 
-                &:active {
-                  top: 1px;
-                  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.075);
-                }
-
-                &:focus {
-                  outline: 0;
-                  .focus-ring {
-                    display: block !important;
-                  }
-                }
-              `}
+            &:focus {
+              outline: 0;
+              .focus-ring {
+                display: block !important;
+              }
+            }
           `}
-          {...props}
-        >
-          {children}
-          {focusVisible && <FocusRing />}
-        </div>
-      )}
-    </FocusVisible>
+      `}
+      {...props}
+    >
+      {children}
+    </div>
   )
 }
 
@@ -88,25 +78,6 @@ Card.propTypes = {
   height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   onClick: PropTypes.func,
-}
-
-function FocusRing() {
-  const theme = useTheme()
-  return (
-    <span
-      className="focus-ring"
-      css={`
-        display: none;
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        border: 2px solid ${theme.focus};
-        border-radius: ${RADIUS}px;
-      `}
-    />
-  )
 }
 
 export default Card

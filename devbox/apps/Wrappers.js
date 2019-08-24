@@ -49,7 +49,13 @@ function Bar3() {
 }
 
 function Cards({ number = 10, interactive }) {
-  const cardProps = interactive ? { onClick: () => {} } : {}
+  const cardProps = interactive
+    ? {
+        onClick: () => {
+          console.log('click click')
+        },
+      }
+    : {}
   return (
     <CardLayout>
       {[...Array(number)].map((v, i) => (
