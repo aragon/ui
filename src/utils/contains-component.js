@@ -1,45 +1,55 @@
-import React, { useState, useCallback, useContext, useEffect } from 'react'
+import React, {
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react'
 
 function initContainsComponent() {
-  const Context = React.createContext({})
+  const ContainsContext = React.createContext({ contains: false })
 
-  return [
-    /* eslint-disable react/prop-types */
-    function Provider({ contextValue, children }) {
-      return (
-        <Context.Provider value={contextValue}>{children}</Context.Provider>
-      )
-    },
-    /* eslint-enable react/prop-types */
-
-    function useRegisterComponent() {
-      const { add, remove } = useContext(Context)
-      useEffect(() => {
-        if (add) {
-          add()
-        }
-        return () => {
-          if (remove) {
-            remove()
-          }
-        }
-      }, [])
-    },
-
-    function useComponentCounter() {
+  return {
+    // Wrap the parent component with this provider.
+    Provider({ children }) {
       const [count, setCount] = useState(0)
 
-      const add = useCallback(() => {
-        setCount(count => count + 1)
-      }, [])
+      const contextValue = useMemo(() => {
+        return {
+          updateCount(diff) {
+            setCount(count => count + diff)
+          },
+          contains: count > 0,
+        }
+      }, [count])
 
-      const remove = useCallback(() => {
-        setCount(count => count - 1)
-      }, [])
-
-      return [count > 0, { add, remove }]
+      return (
+        <ContainsContext.Provider value={contextValue}>
+          {children}
+        </ContainsContext.Provider>
+      )
     },
-  ]
+
+    // Call this from the parent component (returns a boolean)
+    useContains() {
+      return useContext(ContainsContext).contains
+    },
+
+    // Call this from the child component
+    useRegister() {
+      const { updateCount } = useContext(ContainsContext)
+
+      useEffect(() => {
+        if (!updateCount) {
+          return
+        }
+        updateCount(1)
+        return () => {
+          updateCount(-1)
+        }
+      }, [])
+    },
+  }
 }
 
 export { initContainsComponent }

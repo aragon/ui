@@ -11,21 +11,21 @@ import { MainTheme } from '../../theme'
 import ScrollView from '../ScrollView/ScrollView'
 import { initContainsComponent } from '../../utils/contains-component'
 
-const [
-  ContainsAppViews,
-  useAppViewRegister,
-  useAppViewsCounter,
-] = initContainsComponent()
+const {
+  Provider: ContainsAppViewProvider,
+  useContains: useContainsAppView,
+  useRegister: useRegisterAppView,
+} = initContainsComponent()
 
 function Main({ children, assetsUrl, layout, scrollView }) {
-  const [hasAppView, contextValue] = useAppViewsCounter()
+  const containsAppView = useContainsAppView()
 
   if (layout === undefined) {
-    layout = !hasAppView
+    layout = !containsAppView
   }
 
   if (scrollView === undefined) {
-    scrollView = !hasAppView
+    scrollView = !containsAppView
   }
 
   // Optionally wrap `children` with Layout and/or ScrollView
@@ -39,18 +39,16 @@ function Main({ children, assetsUrl, layout, scrollView }) {
   )
 
   return (
-    <ContainsAppViews contextValue={contextValue}>
-      <MainTheme>
-        <Root.Provider>
-          <Viewport.Provider>
-            <PublicUrl.Provider url={ensureTrailingSlash(assetsUrl)}>
-              <BaseStyles />
-              <ToastHub>{content}</ToastHub>
-            </PublicUrl.Provider>
-          </Viewport.Provider>
-        </Root.Provider>
-      </MainTheme>
-    </ContainsAppViews>
+    <MainTheme>
+      <Root.Provider>
+        <Viewport.Provider>
+          <PublicUrl.Provider url={ensureTrailingSlash(assetsUrl)}>
+            <BaseStyles />
+            <ToastHub>{content}</ToastHub>
+          </PublicUrl.Provider>
+        </Viewport.Provider>
+      </Root.Provider>
+    </MainTheme>
   )
 }
 
@@ -64,5 +62,10 @@ Main.defaultProps = {
   assetsUrl: './aragon-ui/',
 }
 
-export { useAppViewRegister }
-export default Main
+export { useContainsAppView, useRegisterAppView }
+
+export default props => (
+  <ContainsAppViewProvider>
+    <Main {...props} />
+  </ContainsAppViewProvider>
+)
