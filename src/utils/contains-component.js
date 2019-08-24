@@ -1,16 +1,11 @@
-import React, {
-  useCallback,
-  useContext,
-  useEffect,
-  useMemo,
-  useState,
-} from 'react'
+import React, { useContext, useEffect, useMemo, useState } from 'react'
 
 function initContainsComponent() {
   const ContainsContext = React.createContext({ contains: false })
 
   return {
     // Wrap the parent component with this provider.
+    /* eslint-disable react/prop-types */
     Provider({ children }) {
       const [count, setCount] = useState(0)
 
@@ -29,6 +24,7 @@ function initContainsComponent() {
         </ContainsContext.Provider>
       )
     },
+    /* eslint-enable react/prop-types */
 
     // Call this from the parent component (returns a boolean)
     useContains() {
