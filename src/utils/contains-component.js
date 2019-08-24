@@ -1,45 +1,51 @@
-import React, { useState, useCallback, useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useMemo, useState } from 'react'
 
 function initContainsComponent() {
-  const Context = React.createContext({})
+  const ContainsContext = React.createContext({ contains: false })
 
-  return [
+  return {
+    // Wrap the parent component with this provider.
     /* eslint-disable react/prop-types */
-    function Provider({ contextValue, children }) {
+    Provider({ children }) {
+      const [count, setCount] = useState(0)
+
+      const contextValue = useMemo(() => {
+        return {
+          updateCount(diff) {
+            setCount(count => count + diff)
+          },
+          contains: count > 0,
+        }
+      }, [count])
+
       return (
-        <Context.Provider value={contextValue}>{children}</Context.Provider>
+        <ContainsContext.Provider value={contextValue}>
+          {children}
+        </ContainsContext.Provider>
       )
     },
     /* eslint-enable react/prop-types */
 
-    function useRegisterComponent() {
-      const { add, remove } = useContext(Context)
+    // Call this from the parent component (returns a boolean)
+    useContains() {
+      return useContext(ContainsContext).contains
+    },
+
+    // Call this from the child component
+    useRegister() {
+      const { updateCount } = useContext(ContainsContext)
+
       useEffect(() => {
-        if (add) {
-          add()
+        if (!updateCount) {
+          return
         }
+        updateCount(1)
         return () => {
-          if (remove) {
-            remove()
-          }
+          updateCount(-1)
         }
       }, [])
     },
-
-    function useComponentCounter() {
-      const [count, setCount] = useState(0)
-
-      const add = useCallback(() => {
-        setCount(count => count + 1)
-      }, [])
-
-      const remove = useCallback(() => {
-        setCount(count => count - 1)
-      }, [])
-
-      return [count > 0, { add, remove }]
-    },
-  ]
+  }
 }
 
 export { initContainsComponent }

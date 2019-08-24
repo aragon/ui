@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import ReactDOM from 'react-dom'
-import { Layout, Main } from '@aragon/ui'
+import { Layout, Main, useContainsAppView } from '@aragon/ui'
 
 import * as APPS from './apps'
 
@@ -9,51 +9,64 @@ if (process.env.A11Y_CHECK === 'on') {
   axe(React, ReactDOM, 1000)
 }
 
-class Index extends React.Component {
-  state = {
-    appName: '',
-  }
-  componentDidMount() {
-    this.handleHashChange()
-    window.addEventListener('hashchange', this.handleHashChange)
-  }
-  componentWillUnmount() {
-    window.removeEventListener('hashchange', this.handleHashChange)
-  }
-  appNameFromHash(hash) {
-    return hash.replace(/^#/, '')
-  }
-  handleHashChange = () => {
-    const appName = this.appNameFromHash(window.location.hash)
-    this.setState({ appName })
-  }
-  render() {
-    const { appName } = this.state
-    const CurrentApp = APPS[appName]
-    return CurrentApp ? (
+function appNameFromHash() {
+  return window.location.hash.replace(/^#/, '')
+}
+
+function Devbox() {
+  const [appName, setAppName] = useState(appNameFromHash())
+
+  useEffect(() => {
+    const updateAppName = () => {
+      setAppName(appNameFromHash())
+    }
+    updateAppName()
+    window.addEventListener('hashchange', updateAppName)
+    return () => {
+      window.removeEventListener('hashchange', updateAppName)
+    }
+  }, [])
+
+  const CurrentApp = APPS[appName]
+
+  // Selected app
+  if (CurrentApp) {
+    return (
       <Main layout={false}>
-        <Layout paddingBottom={0}>
+        <AppWrapper>
           <CurrentApp />
-        </Layout>
+        </AppWrapper>
       </Main>
-    ) : (
-      <React.Fragment>
-        <style>{STYLES}</style>
-        <main>
-          <h1>Devbox</h1>
-          <ul>
-            {Object.keys(APPS)
-              .sort()
-              .map(appName => (
-                <li key={appName}>
-                  <a href={`#${appName}`}>{appName}</a>
-                </li>
-              ))}
-          </ul>
-        </main>
-      </React.Fragment>
     )
   }
+
+  // Apps index
+  return (
+    <React.Fragment>
+      <style>{STYLES}</style>
+      <main>
+        <h1>Devbox</h1>
+        <ul>
+          {Object.keys(APPS)
+            .sort()
+            .map(appName => (
+              <li key={appName}>
+                <a href={`#${appName}`}>{appName}</a>
+              </li>
+            ))}
+        </ul>
+      </main>
+    </React.Fragment>
+  )
+}
+
+function AppWrapper({ children }) {
+  const containsAppView = useContainsAppView()
+  return containsAppView ? (
+    children
+  ) : (
+    <Layout paddingBottom={0}>{children}</Layout>
+  )
 }
 
 const STYLES = `
@@ -123,6 +136,6 @@ li a:active {
 `
 
 ReactDOM.render(
-  <Index />,
+  <Devbox />,
   document.body.appendChild(document.createElement('div'))
 )

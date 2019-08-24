@@ -1,11 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import AppBar from './AppBar'
-import { useAppViewRegister } from '../Main/Main'
+import { useRegisterAppView } from '../Main/Main'
 
 function AppView({ appBar, children, height, padding, tabs, title, ...props }) {
   // Notify Main that it contains this AppView
-  useAppViewRegister()
+  useRegisterAppView()
 
   return (
     <div
