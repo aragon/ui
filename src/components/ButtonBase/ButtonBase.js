@@ -21,6 +21,11 @@ function ButtonBase({
 }) {
   const theme = useTheme()
 
+  // `external` defaults to `true` if `href` is present, `false` otherwise.
+  if (external === undefined) {
+    external = Boolean(href)
+  }
+
   // element-specific props
   const elementProps = href
     ? // <a href>
@@ -84,9 +89,9 @@ ButtonBase.propTypes = {
   onClick: PropTypes.func,
   showFocusRing: PropTypes.bool,
 }
+
 ButtonBase.defaultProps = {
   disabled: false,
-  external: false,
   focusRingRadius: 0,
   focusRingSpacing: 0,
   showFocusRing: true,

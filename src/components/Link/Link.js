@@ -5,6 +5,12 @@ import { useTheme } from '../../theme'
 
 function Link({ onClick, href, external, ...props }) {
   const theme = useTheme()
+
+  // `external` defaults to `true` if `href` is present, `false` otherwise.
+  if (external === undefined) {
+    external = Boolean(href)
+  }
+
   return (
     <ButtonBase
       href={href}
@@ -26,10 +32,6 @@ Link.propTypes = {
   href: PropTypes.string,
   onClick: PropTypes.func,
   external: PropTypes.bool,
-}
-
-Link.defaultProps = {
-  external: false,
 }
 
 export default Link
