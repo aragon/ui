@@ -4,7 +4,7 @@ import { css } from 'styled-components'
 import { GU, RADIUS } from '../../style'
 import { useTheme } from '../../theme'
 import { unselectable, useInside } from '../../utils'
-import { ButtonBase } from '../Button/ButtonBase'
+import ButtonBase from '../ButtonBase/ButtonBase'
 
 const DEFAULT_WIDTH = 35 * GU
 const DEFAULT_HEIGHT = 40 * GU

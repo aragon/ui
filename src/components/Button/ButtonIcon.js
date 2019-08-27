@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { warnOnce } from '../../utils'
 import { GU } from '../../style'
 import { Button } from './Button'
-import { ButtonBase } from './ButtonBase'
+import ButtonBase from '../ButtonBase/ButtonBase'
 
 function ButtonIcon({ label, children, mode, ...props }) {
   if (mode !== undefined) {
