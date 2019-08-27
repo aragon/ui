@@ -35,13 +35,6 @@ function prepareFields(fields) {
   })
 }
 
-function entryChildrenFromChild(child) {
-  if (!child) {
-    return []
-  }
-  return Array.isArray(child) ? child : [child]
-}
-
 function renderEntries(
   entries,
   { fields, renderEntry, renderEntryActions, renderEntryChild, mode }
@@ -66,11 +59,10 @@ function renderEntries(
       actions: renderEntryActions
         ? renderEntryActions(value, index, { selected, mode })
         : null,
-      children: entryChildrenFromChild(
-        renderEntryChild
+      children:
+        (renderEntryChild
           ? renderEntryChild(value, index, { selected, mode })
-          : null
-      ),
+          : null) || [],
       selected,
     }
   })
@@ -252,6 +244,7 @@ const DataView = React.memo(function DataView({
           onSelect={toggleEntry}
           onSelectAll={selectAll}
           renderSelectionCount={renderSelectionCount}
+          rowHeight={tableRowHeight}
           selectable={canSelect}
         />
       ) : (

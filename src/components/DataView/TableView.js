@@ -42,7 +42,9 @@ function rowFromEntry(
     toggleChildContent,
   }
 ) {
-  const hasChildren = entry.children.length > 0
+  const hasChildren = Array.isArray(entry.children)
+    ? entry.children.length > 0
+    : Boolean(entry.children)
 
   const cells = entry.entryNodes.map((content, index) => [
     content,
@@ -304,12 +306,30 @@ function EntryChildren({
   rowHeight,
 }) {
   const theme = useTheme()
+  const singleNode = !Array.isArray(entry.children)
+  const children = singleNode ? [entry.children] : entry.children
+
+  // Handles the height of a single node, which is variable
+  const [singleNodeHeight, setSingleNodeHeight] = useState(0)
+
+  const handleSingleNodeContainerRef = useCallback(element => {
+    if (element) {
+      setSingleNodeHeight(element.getBoundingClientRect().height)
+    }
+  }, [])
+
+  const openedHeight = singleNode
+    ? singleNodeHeight
+    : rowHeight * children.length
+
   return (
     <Transition
       native
+      unique
       items={opened}
       from={{ totalHeight: 0 }}
-      enter={{ totalHeight: rowHeight * entry.children.length }}
+      enter={{ totalHeight: openedHeight }}
+      update={{ totalHeight: openedHeight }}
       leave={{ totalHeight: 0 }}
       config={{ ...springs.smooth, precision: 0.1 }}
     >
@@ -330,19 +350,14 @@ function EntryChildren({
               <td colSpan={alignChildOnCell}>
                 <OpenedSurfaceBorder opened={opened} />
                 <animated.div
-                  css={`
-                    overflow: hidden;
-                    will-change: height;
-                  `}
-                  style={{
-                    height: totalHeight.interpolate(v => `${v}px`),
-                  }}
+                  css="overflow: hidden"
+                  style={{ height: totalHeight }}
                 >
-                  {entry.children.map((child, i) => (
+                  {children.map((child, i) => (
                     <div
                       key={i}
                       css={`
-                        height: ${rowHeight}px;
+                        height: ${singleNode ? 'auto' : `${rowHeight}px`};
                         border-top: 1px solid ${theme.border};
                       `}
                     />
@@ -358,21 +373,17 @@ function EntryChildren({
               }
             >
               <animated.div
-                css={`
-                  overflow: hidden;
-                  will-change: height;
-                `}
-                style={{
-                  height: totalHeight.interpolate(v => `${v}px`),
-                }}
+                css="overflow: hidden"
+                style={{ height: totalHeight }}
               >
-                {entry.children.map((child, i) => (
+                {children.map((child, i) => (
                   <div
                     key={i}
+                    ref={singleNode ? handleSingleNodeContainerRef : null}
                     css={`
                       display: flex;
                       align-items: center;
-                      height: ${rowHeight}px;
+                      height: ${singleNode ? 'auto' : `${rowHeight}px`};
                       padding-left: ${alignChildOnCell < 1 ? 3 * GU : 0}px;
                       padding-right: ${3 * GU}px;
                       border-top: 1px solid ${theme.border};

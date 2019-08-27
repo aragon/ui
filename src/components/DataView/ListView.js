@@ -16,6 +16,7 @@ function ListView({
   onSelectAll,
   renderSelectionCount,
   selectable,
+  rowHeight,
 }) {
   const theme = useTheme()
 
@@ -30,7 +31,9 @@ function ListView({
   return (
     <React.Fragment>
       {entries.map((entry, index) => {
-        const hasChildren = entry.children.length > 0
+        const hasChildren = Array.isArray(entry.children)
+          ? entry.children.length > 0
+          : Boolean(entry.children)
         return (
           <div
             key={index}
@@ -122,49 +125,13 @@ function ListView({
                   </div>
                 ))}
             </div>
-            <Transition
-              native
-              items={hasChildren && entry.index === opened}
-              from={{ totalHeight: 0 }}
-              enter={{ totalHeight: 8 * GU * entry.children.length }}
-              leave={{ totalHeight: 0 }}
-              config={springs.lazy}
-            >
-              {show =>
-                show &&
-                /* eslint-disable react/prop-types */
-                (({ totalHeight }) => (
-                  <animated.div
-                    css={`
-                      overflow: hidden;
-                      background: ${theme.surfaceUnder};
-                      margin-left: ${-6.5 * GU}px;
-                      margin-right: ${-3 * GU}px;
-                      padding-left: ${6.5 * GU}px;
-                      box-shadow: inset 0 6px 4px -4px rgba(0, 0, 0, 0.16);
-                    `}
-                    style={{
-                      height: totalHeight.interpolate(v => `${v}px`),
-                    }}
-                  >
-                    {entry.children.map((child, i) => (
-                      <div
-                        key={i}
-                        css={`
-                          display: flex;
-                          align-items: center;
-                          height: ${8 * GU}px;
-                          padding-right: ${3 * GU}px;
-                        `}
-                      >
-                        {child}
-                      </div>
-                    ))}
-                  </animated.div>
-                ))
-              /* eslint-enable react/prop-types */
-              }
-            </Transition>
+            {hasChildren && (
+              <EntryChildren
+                entry={entry}
+                opened={opened}
+                rowHeight={rowHeight}
+              />
+            )}
           </div>
         )
       })}
@@ -180,10 +147,77 @@ ListView.propTypes = {
   onSelect: PropTypes.func.isRequired,
   onSelectAll: PropTypes.func.isRequired,
   renderSelectionCount: PropTypes.func.isRequired,
+  rowHeight: PropTypes.number.isRequired,
   selectable: PropTypes.bool.isRequired,
 }
 
+// Disable prop types check for internal components
 /* eslint-disable react/prop-types */
+
+function EntryChildren({ entry, opened, rowHeight }) {
+  const theme = useTheme()
+  const singleNode = !Array.isArray(entry.children)
+  const children = singleNode ? [entry.children] : entry.children
+
+  // Handles the height of a single node, which is variable
+  const [singleNodeHeight, setSingleNodeHeight] = useState(0)
+
+  const handleSingleNodeContainerRef = useCallback(element => {
+    if (element) {
+      setSingleNodeHeight(element.getBoundingClientRect().height)
+    }
+  }, [])
+
+  const openedHeight = singleNode
+    ? singleNodeHeight
+    : rowHeight * children.length
+
+  return (
+    <Transition
+      native
+      items={entry.index === opened}
+      from={{ totalHeight: 0 }}
+      enter={{ totalHeight: openedHeight }}
+      update={{ totalHeight: openedHeight }}
+      leave={{ totalHeight: 0 }}
+      config={{ ...springs.smooth, precision: 0.1 }}
+    >
+      {show =>
+        show &&
+        (({ totalHeight }) => (
+          <animated.div
+            css={`
+              overflow: hidden;
+              background: ${theme.surfaceUnder};
+              margin-left: ${-6.5 * GU}px;
+              margin-right: ${-3 * GU}px;
+              padding-left: ${6.5 * GU}px;
+              box-shadow: inset 0 6px 4px -4px rgba(0, 0, 0, 0.16);
+            `}
+            style={{
+              height: totalHeight.interpolate(v => `${v}px`),
+            }}
+          >
+            {children.map((child, i) => (
+              <div
+                key={i}
+                ref={singleNode ? handleSingleNodeContainerRef : null}
+                css={`
+                  display: flex;
+                  align-items: center;
+                  height: ${singleNode ? 'auto' : `${rowHeight}px`};
+                  padding-right: ${3 * GU}px;
+                `}
+              >
+                {child}
+              </div>
+            ))}
+          </animated.div>
+        ))
+      }
+    </Transition>
+  )
+}
 
 function Select({ index, selected, onSelect }) {
   const change = useCallback(
