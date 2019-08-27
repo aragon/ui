@@ -164,8 +164,7 @@ Number of items per page.
 | ------- | ------------- |
 | `Array` | None          |
 
-A list of selected items, using their indexes. When not provided, `DataView`
-will manage the selection itself. See also `onSelectEntries()`.
+A list of selected items, using their indexes. When not provided, `DataView` will manage the selection itself. See also `onSelectEntries()`.
 
 ### onSelectEntries(entries, indexes)
 
@@ -173,12 +172,9 @@ will manage the selection itself. See also `onSelectEntries()`.
 | ---------- | ------------- |
 | `Function` | None          |
 
-Gets called when the entries selection changes. If not set, the checkboxes
-won’t be displayed. Use with `selection` to manage the selection in a
-[controlled](https://reactjs.org/docs/forms.html#controlled-components) way.
+Gets called when the entries selection changes. If not set, the checkboxes won’t be displayed. Use with `selection` to manage the selection in a [controlled](https://reactjs.org/docs/forms.html#controlled-components) way.
 
-Note: only one of `onSelectEntries` and `renderEntryChild` can be set at a
-time.
+Note: only one of `onSelectEntries` and `renderEntryChild` can be set at a time.
 
 ### renderEntry(entry, index, { selected, mode })
 
@@ -186,8 +182,7 @@ time.
 | ---------- | --------------- |
 | `Function` | None (required) |
 
-Renders an entry by returning an array of nodes with items corresponding to
-every field.
+Renders an entry by returning an array of nodes with items corresponding to every field.
 
 #### Note: hooks in render props
 
@@ -268,9 +263,15 @@ Renders the actions of an entry, usually as a `ContextMenu`.
 
 Renders the child content of a given entry.
 
-It can return either an array, that will be displayed as individual rows, or a React node directly for a simple container. Return `null` if the entry doesn’t have any child content.
+It can return:
 
-The child content can also be aligned on a specific column in table mode, see `field.childStart`.
+- An array, that will be displayed as individual rows.
+- A React node, to be used as a single container.
+- `null`, if the entry doesn’t have any child content.
+
+When an array is returned, each entry in this array will be displayed as a row, whose height will be determined by the value of `tableRowHeight` − even in list view mode. The alignment of these rows can also start from a specific column in table mode: see `field.childStart`.
+
+When a React node is returned, the height is dynamic and should be set in the child content itself.
 
 ### renderSelectionCount(count)
 
