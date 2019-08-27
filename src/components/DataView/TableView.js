@@ -306,8 +306,6 @@ function EntryChildren({
   rowHeight,
 }) {
   const theme = useTheme()
-  const singleNode = !Array.isArray(entry.children)
-  const children = singleNode ? [entry.children] : entry.children
 
   // Handles the height of a single node, which is variable
   const [singleNodeHeight, setSingleNodeHeight] = useState(0)
@@ -318,7 +316,9 @@ function EntryChildren({
     }
   }, [])
 
-  const openedHeight = singleNode
+  const { singleNodeChildren, children } = entry
+
+  const openedHeight = singleNodeChildren
     ? singleNodeHeight
     : rowHeight * children.length
 
@@ -357,7 +357,9 @@ function EntryChildren({
                     <div
                       key={i}
                       css={`
-                        height: ${singleNode ? 'auto' : `${rowHeight}px`};
+                        height: ${singleNodeChildren
+                          ? 'auto'
+                          : `${rowHeight}px`};
                         border-top: 1px solid ${theme.border};
                       `}
                     />
@@ -379,11 +381,13 @@ function EntryChildren({
                 {children.map((child, i) => (
                   <div
                     key={i}
-                    ref={singleNode ? handleSingleNodeContainerRef : null}
+                    ref={
+                      singleNodeChildren ? handleSingleNodeContainerRef : null
+                    }
                     css={`
                       display: flex;
                       align-items: center;
-                      height: ${singleNode ? 'auto' : `${rowHeight}px`};
+                      height: ${singleNodeChildren ? 'auto' : `${rowHeight}px`};
                       padding-left: ${alignChildOnCell < 1 ? 3 * GU : 0}px;
                       padding-right: ${3 * GU}px;
                       border-top: 1px solid ${theme.border};

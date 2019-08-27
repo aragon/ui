@@ -156,8 +156,7 @@ ListView.propTypes = {
 
 function EntryChildren({ entry, opened, rowHeight }) {
   const theme = useTheme()
-  const singleNode = !Array.isArray(entry.children)
-  const children = singleNode ? [entry.children] : entry.children
+  const { singleNodeChildren, children } = entry
 
   // Handles the height of a single node, which is variable
   const [singleNodeHeight, setSingleNodeHeight] = useState(0)
@@ -168,7 +167,7 @@ function EntryChildren({ entry, opened, rowHeight }) {
     }
   }, [])
 
-  const openedHeight = singleNode
+  const openedHeight = singleNodeChildren
     ? singleNodeHeight
     : rowHeight * children.length
 
@@ -201,11 +200,11 @@ function EntryChildren({ entry, opened, rowHeight }) {
             {children.map((child, i) => (
               <div
                 key={i}
-                ref={singleNode ? handleSingleNodeContainerRef : null}
+                ref={singleNodeChildren ? handleSingleNodeContainerRef : null}
                 css={`
                   display: flex;
                   align-items: center;
-                  height: ${singleNode ? 'auto' : `${rowHeight}px`};
+                  height: ${singleNodeChildren ? 'auto' : `${rowHeight}px`};
                   padding-right: ${3 * GU}px;
                 `}
               >

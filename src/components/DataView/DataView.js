@@ -35,6 +35,25 @@ function prepareFields(fields) {
   })
 }
 
+function entryChildrenFromChild(child) {
+  if (!child) {
+    return {
+      children: null,
+      singleNodeChildren: false,
+    }
+  }
+  if (Array.isArray(child)) {
+    return {
+      children: child,
+      singleNodeChildren: false,
+    }
+  }
+  return {
+    children: [child],
+    singleNodeChildren: true,
+  }
+}
+
 function renderEntries(
   entries,
   { fields, renderEntry, renderEntryActions, renderEntryChild, mode }
@@ -53,17 +72,23 @@ function renderEntries(
       entryNodes.push(null)
     }
 
+    const { children, singleNodeChildren } = entryChildrenFromChild(
+      renderEntryChild
+        ? renderEntryChild(value, index, { selected, mode })
+        : null
+    )
+
+    const actions = renderEntryActions
+      ? renderEntryActions(value, index, { selected, mode })
+      : null
+
     return {
-      index,
+      actions,
+      children,
       entryNodes,
-      actions: renderEntryActions
-        ? renderEntryActions(value, index, { selected, mode })
-        : null,
-      children:
-        (renderEntryChild
-          ? renderEntryChild(value, index, { selected, mode })
-          : null) || [],
+      index,
       selected,
+      singleNodeChildren,
     }
   })
 }
