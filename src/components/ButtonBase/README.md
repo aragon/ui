@@ -24,7 +24,7 @@ function App() {
 | --------- | ------------- |
 | `Boolean` | false         |
 
-When set to true, the `disabled` prop will be passed to the button element. And `onClick` will get ignored. If an `href` is present, it won’t get passed to the `<a>` element underneath.
+When set to true, the `disabled` prop will be passed to the button element. And `onClick` will get ignored. If an `href` is present and `disabled` is true, the `href` won’t get passed to the `<a>` element underneath.
 
 ### external
 
