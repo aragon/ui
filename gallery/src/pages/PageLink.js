@@ -10,9 +10,7 @@ const PageLink = ({ title }) => (
     <Page.Demo opaque>
       <DemoContainer>
         <div>
-          <Link href="https://example.com/" external>
-            Normal link
-          </Link>
+          <Link>Default link</Link>
         </div>
         <div>
           <Link

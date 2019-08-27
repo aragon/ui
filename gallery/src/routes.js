@@ -29,7 +29,6 @@ import PageEthIdenticon from './pages/PageEthIdenticon'
 import PageIdentityBadge from './pages/PageIdentityBadge'
 import PageInfo from './pages/PageInfo'
 import PageProgressBar from './pages/PageProgressBar'
-import PagePopover from './pages/PagePopover'
 import PageModal from './pages/PageModal'
 import PageRootPortal from './pages/PageRootPortal'
 import PageLineChart from './pages/PageLineChart'
@@ -50,7 +49,9 @@ import PageTable from './pages/PageTable'
 import PageFocusVisible from './pages/PageFocusVisible'
 import PageDataView from './pages/PageDataView'
 
-// Providers
+// Advanced
+import PagePopover from './pages/PagePopover'
+import PageButtonBase from './pages/PageButtonBase'
 import PageRedraw from './pages/PageRedraw'
 import PageRoot from './pages/PageRoot'
 import PageRedrawFromDate from './pages/PageRedrawFromDate'
@@ -126,7 +127,6 @@ export const PAGE_GROUPS = [
       [PageInfo, 'Info'],
       [PageLineChart, 'LineChart'],
       [PageModal, 'Modal'],
-      [PagePopover, 'Popover'],
       [PageProgressBar, 'ProgressBar'],
       [PageRootPortal, 'RootPortal'],
       [PageTimer, 'Timer'],
@@ -136,15 +136,17 @@ export const PAGE_GROUPS = [
     ],
   },
   {
-    name: 'Providers',
+    name: 'Advanced',
     pages: [
+      [PagePopover, 'Popover'],
+      [PageButtonBase, 'ButtonBase'],
+      [PageViewport, 'Viewport'],
       [PageObserve, 'Observe'],
       [PagePublicUrl, 'PublicUrl'],
       [PageRedraw, 'Redraw'],
       [PageRedrawFromDate, 'RedrawFromDate'],
       [PageRoot, 'Root'],
       [PageToastHub, 'ToastHub'],
-      [PageViewport, 'Viewport'],
     ],
   },
 ].map(group => ({ ...group, pages: group.pages.map(preparePage) }))

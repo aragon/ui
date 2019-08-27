@@ -1,31 +1,42 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import FocusVisible from '../FocusVisible/FocusVisible'
-import { Link } from '../Link'
 import { useTheme } from '../../theme'
 import { RADIUS, textStyle } from '../../style'
-import { unselectable } from '../../utils'
+import { warnOnce } from '../../utils'
+
+const ANCHOR_EXTERNAL_PROPS = { rel: 'noopener noreferrer', target: '_blank' }
 
 function ButtonBase({
   disabled,
+  external,
   focusRingRadius,
   focusRingSpacing,
   focusVisible,
   href,
   innerRef,
+  onClick,
   showFocusRing,
   ...props
 }) {
   const theme = useTheme()
 
-  const asProps = href
-    ? { as: Link, href }
-    : { as: 'button', disabled, type: 'button' }
+  // element-specific props
+  const elementProps = href
+    ? // <a href>
+      {
+        as: 'a',
+        href: disabled ? undefined : href,
+        ...(external ? ANCHOR_EXTERNAL_PROPS : {}),
+      }
+    : // <button>
+      { as: 'button', type: 'button', disabled }
 
   return (
     <button
       ref={innerRef}
-      {...asProps}
+      onClick={disabled ? undefined : onClick}
+      {...elementProps}
       {...props}
       css={`
         position: relative;
@@ -33,13 +44,12 @@ function ButtonBase({
         padding: 0;
         white-space: nowrap;
         ${textStyle('body3')};
-        ${unselectable};
-
+        user-select: text;
+        text-decoration: none;
         background: none;
-        border: 0;
         border-radius: ${RADIUS}px;
+        border: 0;
         outline: 0;
-
         cursor: ${disabled ? 'default' : 'pointer'};
 
         &::-moz-focus-inner {
@@ -65,15 +75,18 @@ function ButtonBase({
 
 ButtonBase.propTypes = {
   disabled: PropTypes.bool,
+  external: PropTypes.bool,
   focusRingRadius: PropTypes.number,
   focusRingSpacing: PropTypes.number,
   focusVisible: PropTypes.bool,
   href: PropTypes.string,
   innerRef: PropTypes.any,
+  onClick: PropTypes.func,
   showFocusRing: PropTypes.bool,
 }
 ButtonBase.defaultProps = {
   disabled: false,
+  external: false,
   focusRingRadius: 0,
   focusRingSpacing: 0,
   showFocusRing: true,
@@ -92,5 +105,13 @@ const ButtonBaseWithFocus = React.forwardRef((props, ref) => (
   </FocusVisible>
 ))
 
-export { ButtonBaseWithFocus as ButtonBase }
+const LinkBase = React.forwardRef((props, ref) => {
+  warnOnce(
+    'LinkBase',
+    'LinkBase is deprecated: please use ButtonBase with a href prop instead.'
+  )
+  return <ButtonBase ref={ref} {...props} />
+})
+
+export { LinkBase }
 export default ButtonBaseWithFocus
