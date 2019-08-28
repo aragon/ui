@@ -271,7 +271,7 @@ It should return one of these:
 
 When a non-empty array is returned, each of its entries will be displayed as a row, whose height is determined by the value of `tableRowHeight` − even in list view mode. The alignment of these rows can also start from a specific column in table mode: see `field.childStart`.
 
-When a React node is returned there is no layout constraints anymore, and the height depends on the content.
+When a React node is returned, there are no layout constraints anymore and the expansion's height depends on the returned content.
 
 Note: only one of `onSelectEntries` and `renderEntryExpansion` can be set at a time.
 
