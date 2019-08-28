@@ -23,6 +23,7 @@ const Labels = ({ enabled, text }) => {
     <div
       css={`
         z-index: 2;
+        cursor: pointer;
         background: ${theme.surface};
         ${unselectable}
       `}
