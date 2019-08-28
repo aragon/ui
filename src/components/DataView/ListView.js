@@ -11,7 +11,7 @@ function ListView({
   allSelected,
   entries,
   fields,
-  hasAnyChild,
+  hasAnyExpansion,
   onSelect,
   onSelectAll,
   renderSelectionCount,
@@ -26,14 +26,12 @@ function ListView({
     setOpened(opened => (opened === index ? -1 : index))
   }, [])
 
-  const sideSpace = selectable || hasAnyChild
+  const sideSpace = selectable || hasAnyExpansion
 
   return (
     <React.Fragment>
       {entries.map((entry, index) => {
-        const hasChildren = Array.isArray(entry.children)
-          ? entry.children.length > 0
-          : Boolean(entry.children)
+        const hasExpansion = entry.expansion.content.length > 0
         return (
           <div
             key={index}
@@ -67,7 +65,7 @@ function ListView({
                     onSelect={onSelect}
                   />
                 )}
-                {!selectable && hasChildren && (
+                {!selectable && hasExpansion && (
                   <ToggleButton
                     opened={entry.index === opened}
                     onClick={() => toggleEntry(entry.index)}
@@ -125,10 +123,10 @@ function ListView({
                   </div>
                 ))}
             </div>
-            {hasChildren && (
-              <EntryChildren
-                entry={entry}
-                opened={opened}
+            {hasExpansion && (
+              <EntryExpansion
+                expansion={entry.expansion}
+                opened={opened === entry.index}
                 rowHeight={rowHeight}
               />
             )}
@@ -143,7 +141,7 @@ ListView.propTypes = {
   allSelected: PropTypes.oneOf([-1, 0, 1]).isRequired,
   entries: PropTypes.array.isRequired,
   fields: PropTypes.array.isRequired,
-  hasAnyChild: PropTypes.bool.isRequired,
+  hasAnyExpansion: PropTypes.bool.isRequired,
   onSelect: PropTypes.func.isRequired,
   onSelectAll: PropTypes.func.isRequired,
   renderSelectionCount: PropTypes.func.isRequired,
@@ -154,36 +152,35 @@ ListView.propTypes = {
 // Disable prop types check for internal components
 /* eslint-disable react/prop-types */
 
-function EntryChildren({ entry, opened, rowHeight }) {
+function EntryExpansion({ expansion, opened, rowHeight }) {
   const theme = useTheme()
-  const { singleNodeChildren, children } = entry
 
-  // Handles the height of a single node, which is variable
-  const [singleNodeHeight, setSingleNodeHeight] = useState(0)
+  // Handles the height of the expansion in free layout mode
+  const [freeLayoutContentHeight, setFreeLayoutContentHeight] = useState(0)
 
-  const handleSingleNodeContainerRef = useCallback(element => {
+  const handleFreeLayoutContentRef = useCallback(element => {
     if (element) {
-      setSingleNodeHeight(element.getBoundingClientRect().height)
+      setFreeLayoutContentHeight(element.getBoundingClientRect().height)
     }
   }, [])
 
-  const openedHeight = singleNodeChildren
-    ? singleNodeHeight
-    : rowHeight * children.length
+  const height = expansion.freeLayout
+    ? freeLayoutContentHeight
+    : rowHeight * expansion.content.length
 
   return (
     <Transition
       native
-      items={entry.index === opened}
-      from={{ totalHeight: 0 }}
-      enter={{ totalHeight: openedHeight }}
-      update={{ totalHeight: openedHeight }}
-      leave={{ totalHeight: 0 }}
+      items={opened}
+      from={{ height: 0 }}
+      enter={{ height }}
+      update={{ height }}
+      leave={{ height: 0 }}
       config={{ ...springs.smooth, precision: 0.1 }}
     >
       {show =>
         show &&
-        (({ totalHeight }) => (
+        (({ height }) => (
           <animated.div
             css={`
               overflow: hidden;
@@ -194,17 +191,17 @@ function EntryChildren({ entry, opened, rowHeight }) {
               box-shadow: inset 0 6px 4px -4px rgba(0, 0, 0, 0.16);
             `}
             style={{
-              height: totalHeight.interpolate(v => `${v}px`),
+              height: height.interpolate(v => `${v}px`),
             }}
           >
-            {children.map((child, i) => (
+            {expansion.content.map((child, i) => (
               <div
                 key={i}
-                ref={singleNodeChildren ? handleSingleNodeContainerRef : null}
+                ref={expansion.freeLayout ? handleFreeLayoutContentRef : null}
                 css={`
                   display: flex;
                   align-items: center;
-                  height: ${singleNodeChildren ? 'auto' : `${rowHeight}px`};
+                  height: ${expansion.freeLayout ? 'auto' : `${rowHeight}px`};
                   padding-right: ${3 * GU}px;
                 `}
               >

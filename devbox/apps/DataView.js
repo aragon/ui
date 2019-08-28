@@ -214,7 +214,7 @@ const DEMOS = new Map([
   ],
 
   [
-    'Children',
+    'Expansion',
     props => (
       <DataView
         {...props}
@@ -264,7 +264,7 @@ const DEMOS = new Map([
             <ContextMenuItem>Open on Etherscan</ContextMenuItem>
           </ContextMenu>
         )}
-        renderEntryChild={([_, entities]) => {
+        renderEntryExpansion={([_, entities]) => {
           if (entities.length < 2) {
             return null
           }
@@ -288,7 +288,7 @@ const DEMOS = new Map([
   ],
 
   [
-    'Children (single node)',
+    'Expansion (free layout)',
     props => (
       <DataView
         {...props}
@@ -339,7 +339,7 @@ const DEMOS = new Map([
             <ContextMenuItem>Open on Etherscan</ContextMenuItem>
           </ContextMenu>
         )}
-        renderEntryChild={([action, entities, manager, height]) => (
+        renderEntryExpansion={([action, entities, manager, height]) => (
           <div
             css={`
               height: ${height}px;
