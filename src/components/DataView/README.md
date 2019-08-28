@@ -59,7 +59,7 @@ Table mode only. Forces the table header to be aligned on a specific side: `end`
 
 #### field.childStart
 
-Table mode only. Set this to `true` on the field you want the child content to be aligned. See `renderEntryChild()` for more details.
+Table mode only. Set this to `true` on the field you want the expansion rows to be aligned. See `renderEntryExpansion()` for more details.
 
 ### entries
 
@@ -164,8 +164,7 @@ Number of items per page.
 | ------- | ------------- |
 | `Array` | None          |
 
-A list of selected items, using their indexes. When not provided, `DataView`
-will manage the selection itself. See also `onSelectEntries()`.
+A list of selected items, using their indexes. When not provided, `DataView` will manage the selection itself. See also `onSelectEntries()`.
 
 ### onSelectEntries(entries, indexes)
 
@@ -173,12 +172,9 @@ will manage the selection itself. See also `onSelectEntries()`.
 | ---------- | ------------- |
 | `Function` | None          |
 
-Gets called when the entries selection changes. If not set, the checkboxes
-won’t be displayed. Use with `selection` to manage the selection in a
-[controlled](https://reactjs.org/docs/forms.html#controlled-components) way.
+Gets called when the entries selection changes. If not set, the checkboxes won’t be displayed. Use with `selection` to manage the selection in a [controlled](https://reactjs.org/docs/forms.html#controlled-components) way.
 
-Note: only one of `onSelectEntries` and `renderEntryChild` can be set at a
-time.
+Note: only one of `onSelectEntries` and `renderEntryExpansion` can be set at a time.
 
 ### renderEntry(entry, index, { selected, mode })
 
@@ -186,8 +182,7 @@ time.
 | ---------- | --------------- |
 | `Function` | None (required) |
 
-Renders an entry by returning an array of nodes with items corresponding to
-every field.
+Renders an entry by returning an array of nodes with items corresponding to every field.
 
 #### Note: hooks in render props
 
@@ -260,17 +255,25 @@ function App() {
 
 Renders the actions of an entry, usually as a `ContextMenu`.
 
-### renderEntryChild(entry, index, { selected, mode })
+### renderEntryExpansion(entry, index, { selected, mode })
 
 | Type       | Default value |
 | ---------- | ------------- |
 | `Function` | None          |
 
-Renders the child content of a given entry.
+Make it possible for the user to expand a given entry, and reveal more content related to it. This content can be a series of rows that will adhere to the table layout or a custom React tree.
 
-It can return either an array, that will be displayed as individual rows, or a React node directly for a simple container. Return `null` if the entry doesn’t have any child content.
+It should return one of these:
 
-The child content can also be aligned on a specific column in table mode, see `field.childStart`.
+- A non empty array, to be displayed as individual rows.
+- A React node, to remove any specific layout constraint.
+- `null` or an empty array, to make the entry not expandable.
+
+When a non-empty array is returned, each of its entries will be displayed as a row, whose height is determined by the value of `tableRowHeight` − even in list view mode. The alignment of these rows can also start from a specific column in table mode: see `field.childStart`.
+
+When a React node is returned, there are no layout constraints anymore and the expansion's height depends on the returned content.
+
+Note: only one of `onSelectEntries` and `renderEntryExpansion` can be set at a time.
 
 ### renderSelectionCount(count)
 

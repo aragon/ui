@@ -11,14 +11,14 @@ import { OpenedSurfaceBorder } from './OpenedSurfaceBorder'
 // Table head row
 function cellsFromFields(
   fields,
-  { hasAnyActions, hasAnyChild, selectContent, selectable }
+  { hasAnyActions, hasAnyExpansion, selectContent, selectable }
 ) {
   const cells = fields.map((field, index) => [
     field.label,
     field.align === 'end' ? 'right' : 'left',
   ])
 
-  if (hasAnyChild || selectable) {
+  if (hasAnyExpansion || selectable) {
     cells.unshift([selectable ? selectContent : null, 'left'])
   }
 
@@ -35,14 +35,14 @@ function rowFromEntry(
   {
     fields,
     hasAnyActions,
-    hasAnyChild,
+    hasAnyExpansion,
     opened,
     selectContent,
     selectable,
     toggleChildContent,
   }
 ) {
-  const hasChildren = entry.children.length > 0
+  const hasExpansion = entry.expansion.content.length > 0
 
   const cells = entry.entryNodes.map((content, index) => [
     content,
@@ -56,8 +56,8 @@ function rowFromEntry(
   }
 
   // Toggle child
-  if (!selectable && hasAnyChild) {
-    cells.unshift([hasChildren && toggleChildContent, 'start', true])
+  if (!selectable && hasAnyExpansion) {
+    cells.unshift([hasExpansion && toggleChildContent, 'start', true])
   }
 
   // Actions
@@ -68,7 +68,7 @@ function rowFromEntry(
   return {
     cells,
     entry,
-    hasChildren,
+    hasExpansion,
     opened,
   }
 }
@@ -79,7 +79,7 @@ function TableView({
   entries,
   fields,
   hasAnyActions,
-  hasAnyChild,
+  hasAnyExpansion,
   onSelect,
   onSelectAll,
   renderSelectionCount,
@@ -97,7 +97,7 @@ function TableView({
     () =>
       cellsFromFields(fields, {
         hasAnyActions,
-        hasAnyChild,
+        hasAnyExpansion,
         selectContent: (
           <Checkbox
             indeterminate={allSelected === 0}
@@ -107,7 +107,7 @@ function TableView({
         ),
         selectable,
       }),
-    [fields, hasAnyChild, hasAnyActions]
+    [fields, hasAnyExpansion, hasAnyActions]
   )
 
   const entryRows = useMemo(
@@ -117,9 +117,9 @@ function TableView({
         return rowFromEntry(entry, {
           fields,
           hasAnyActions,
-          hasAnyChild,
+          hasAnyExpansion,
           opened: rowOpened,
-          toggleChildContent: hasAnyChild ? (
+          toggleChildContent: hasAnyExpansion ? (
             <Toggle
               index={entry.index}
               opened={rowOpened}
@@ -140,7 +140,7 @@ function TableView({
       entries,
       fields,
       hasAnyActions,
-      hasAnyChild,
+      hasAnyExpansion,
       onSelect,
       opened,
       selectable,
@@ -168,18 +168,18 @@ function TableView({
         />
       </thead>
       <tbody>
-        {entryRows.map(({ cells, entry, hasChildren, opened }, index) => (
+        {entryRows.map(({ cells, entry, hasExpansion, opened }, index) => (
           <React.Fragment key={entry.index}>
             <EntryRow
               cells={cells}
               rowHeight={rowHeight}
               selected={entry.selected}
             />
-            {hasChildren && (
-              <EntryChildren
+            {hasExpansion && (
+              <EntryExpansion
                 alignChildOnCell={alignChildOnField + 1}
                 cellsCount={cells.length}
-                entry={entry}
+                expansion={entry.expansion}
                 opened={opened}
                 rowHeight={rowHeight}
               />
@@ -197,7 +197,7 @@ TableView.propTypes = {
   entries: PropTypes.array.isRequired,
   fields: PropTypes.array.isRequired,
   hasAnyActions: PropTypes.bool.isRequired,
-  hasAnyChild: PropTypes.bool.isRequired,
+  hasAnyExpansion: PropTypes.bool.isRequired,
   onSelect: PropTypes.func.isRequired,
   onSelectAll: PropTypes.func.isRequired,
   renderSelectionCount: PropTypes.func.isRequired,
@@ -296,26 +296,42 @@ function EntryRow({ cells, selected, rowHeight }) {
   )
 }
 
-function EntryChildren({
+function EntryExpansion({
   alignChildOnCell,
   cellsCount,
-  entry,
+  expansion,
   opened,
   rowHeight,
 }) {
   const theme = useTheme()
+
+  // Handles the height of the expansion in free layout mode
+  const [freeLayoutContentHeight, setFreeLayoutContentHeight] = useState(0)
+
+  const handleFreeLayoutContentRef = useCallback(element => {
+    if (element) {
+      setFreeLayoutContentHeight(element.getBoundingClientRect().height)
+    }
+  }, [])
+
+  const height = expansion.freeLayout
+    ? freeLayoutContentHeight
+    : rowHeight * expansion.content.length
+
   return (
     <Transition
       native
+      unique
       items={opened}
-      from={{ totalHeight: 0 }}
-      enter={{ totalHeight: rowHeight * entry.children.length }}
-      leave={{ totalHeight: 0 }}
+      from={{ height: 0 }}
+      enter={{ height }}
+      update={{ height }}
+      leave={{ height: 0 }}
       config={{ ...springs.smooth, precision: 0.1 }}
     >
       {show =>
         show &&
-        (({ totalHeight }) => (
+        (({ height }) => (
           <tr
             css={`
               td {
@@ -329,20 +345,14 @@ function EntryChildren({
             {alignChildOnCell > 0 && (
               <td colSpan={alignChildOnCell}>
                 <OpenedSurfaceBorder opened={opened} />
-                <animated.div
-                  css={`
-                    overflow: hidden;
-                    will-change: height;
-                  `}
-                  style={{
-                    height: totalHeight.interpolate(v => `${v}px`),
-                  }}
-                >
-                  {entry.children.map((child, i) => (
+                <animated.div css="overflow: hidden" style={{ height }}>
+                  {expansion.content.map((child, i) => (
                     <div
                       key={i}
                       css={`
-                        height: ${rowHeight}px;
+                        height: ${expansion.freeLayout
+                          ? 'auto'
+                          : `${rowHeight}px`};
                         border-top: 1px solid ${theme.border};
                       `}
                     />
@@ -357,22 +367,19 @@ function EntryChildren({
                   : cellsCount - alignChildOnCell
               }
             >
-              <animated.div
-                css={`
-                  overflow: hidden;
-                  will-change: height;
-                `}
-                style={{
-                  height: totalHeight.interpolate(v => `${v}px`),
-                }}
-              >
-                {entry.children.map((child, i) => (
+              <animated.div css="overflow: hidden" style={{ height }}>
+                {expansion.content.map((child, i) => (
                   <div
                     key={i}
+                    ref={
+                      expansion.freeLayout ? handleFreeLayoutContentRef : null
+                    }
                     css={`
                       display: flex;
                       align-items: center;
-                      height: ${rowHeight}px;
+                      height: ${expansion.freeLayout
+                        ? 'auto'
+                        : `${rowHeight}px`};
                       padding-left: ${alignChildOnCell < 1 ? 3 * GU : 0}px;
                       padding-right: ${3 * GU}px;
                       border-top: 1px solid ${theme.border};
