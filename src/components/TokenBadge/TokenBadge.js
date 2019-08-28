@@ -5,7 +5,7 @@ import { stylingProps } from '../../utils/components'
 import { isAddress, tokenIconUrl } from '../../utils/web3'
 import { theme } from '../../theme-legacy'
 import { ImageExists } from '../../hooks'
-import { ButtonBase } from '../Button/ButtonBase'
+import ButtonBase from '../ButtonBase/ButtonBase'
 import TokenBadgePopover from './TokenBadgePopover'
 
 class TokenBadge extends React.PureComponent {

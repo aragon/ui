@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { GU } from '../../style'
 import { useTheme } from '../../theme'
-import { ButtonBase } from '../Button/ButtonBase'
+import ButtonBase from '../ButtonBase/ButtonBase'
 
 function DiscButton({ children, description, size, ...props }) {
   const theme = useTheme()

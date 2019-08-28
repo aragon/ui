@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { ButtonBase } from './ButtonBase'
+import ButtonBase from '../ButtonBase/ButtonBase'
 import { GU } from '../../style'
 import { useTheme } from '../../theme'
 
@@ -19,7 +19,6 @@ function ButtonText({ horizontalPadding, ...props }) {
       css={`
         padding: ${1 * GU}px ${rightPadding}px ${1 * GU}px ${leftPadding}px;
         color: ${theme.link};
-        text-decoration: none;
         font-size: inherit;
       `}
     />

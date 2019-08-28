@@ -4,7 +4,7 @@ import { RADIUS, GU } from '../../style'
 import { useTheme } from '../../theme'
 import { useInside } from '../../utils'
 import { Bar } from '../Bar/Bar'
-import { ButtonBase } from '../Button/ButtonBase'
+import ButtonBase from '../ButtonBase/ButtonBase'
 import { IconArrowLeft } from '../../icons'
 
 function BackButton({ label, ...props }) {
