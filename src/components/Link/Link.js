@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import ButtonBase from '../ButtonBase/ButtonBase'
 import { useTheme } from '../../theme'
+import { RADIUS } from '../../style'
 
 function Link({ onClick, href, external, ...props }) {
   const theme = useTheme()
@@ -16,7 +17,8 @@ function Link({ onClick, href, external, ...props }) {
       href={href}
       onClick={onClick}
       external={external}
-      focusRingSpacing={6}
+      focusRingSpacing={[6, 2]}
+      focusRingRadius={RADIUS}
       {...props}
       css={`
         color: ${theme.link};
