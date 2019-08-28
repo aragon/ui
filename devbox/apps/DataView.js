@@ -17,9 +17,12 @@ import {
   useTheme,
 } from '@aragon/ui'
 import { createAddress } from '../create-address'
-import { seedShuffleArray, multiplyArray } from '../utils'
+import { createRandomInt, seedShuffleArray, multiplyArray } from '../utils'
+
+const DEMO_DEFAULT = 0
 
 const addr = createAddress()
+const randomInt = createRandomInt()
 
 const SORTING_ENTRIES = [
   { name: 'Strawberry', account: addr() },
@@ -211,7 +214,7 @@ const DEMOS = new Map([
   ],
 
   [
-    'Children',
+    'Expansion',
     props => (
       <DataView
         {...props}
@@ -261,7 +264,7 @@ const DEMOS = new Map([
             <ContextMenuItem>Open on Etherscan</ContextMenuItem>
           </ContextMenu>
         )}
-        renderEntryChild={([_, entities]) => {
+        renderEntryExpansion={([_, entities]) => {
           if (entities.length < 2) {
             return null
           }
@@ -280,6 +283,75 @@ const DEMOS = new Map([
             </div>
           ))
         }}
+      />
+    ),
+  ],
+
+  [
+    'Expansion (free layout)',
+    props => (
+      <DataView
+        {...props}
+        fields={[
+          { label: 'Action', priority: 1 },
+          { label: 'Assigned to entity', priority: 4 },
+          { label: 'Managed by', priority: 2 },
+        ]}
+        alignChildOnField={1}
+        entries={seedShuffleArray(
+          multiplyArray(
+            [
+              ['Modify quorum', [], addr()],
+              ['Vote', [addr()], addr()],
+              ['Create new votes', [addr(), addr()], addr()],
+              ['Change budget', [addr()], addr()],
+              ['Create payments', [addr(), addr(), addr()], addr()],
+            ],
+            10
+          )
+        ).map(entry => [
+          entry[0],
+          entry[1].map(() => addr()),
+          entry[2] ? addr() : entry[2],
+          randomInt(100, 400),
+        ])}
+        renderEntry={([action, entities, manager], index) => [
+          <div>{action}</div>,
+          <div
+            css={`
+              display: flex;
+            `}
+          >
+            {entities.length === 1 ? (
+              <IdentityBadge key={entities[0]} entity={entities[0]} />
+            ) : entities.length === 0 ? (
+              'None'
+            ) : (
+              `${entities.length} entities`
+            )}
+          </div>,
+          <div>
+            <IdentityBadge entity={manager} />
+          </div>,
+        ]}
+        renderEntryActions={() => (
+          <ContextMenu>
+            <ContextMenuItem>Open on Etherscan</ContextMenuItem>
+          </ContextMenu>
+        )}
+        renderEntryExpansion={([action, entities, manager, height]) => (
+          <div
+            css={`
+              height: ${height}px;
+              width: 100%;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            `}
+          >
+            variable height ({height}px)
+          </div>
+        )}
       />
     ),
   ],
@@ -380,7 +452,7 @@ const DEMOS = new Map([
 ])
 
 function App() {
-  const [demo, setDemo] = useState(0)
+  const [demo, setDemo] = useState(DEMO_DEFAULT)
   const [page, setPage] = useState(0)
 
   const demoNames = [...DEMOS.keys()]

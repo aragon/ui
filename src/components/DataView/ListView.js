@@ -11,11 +11,12 @@ function ListView({
   allSelected,
   entries,
   fields,
-  hasAnyChild,
+  hasAnyExpansion,
   onSelect,
   onSelectAll,
   renderSelectionCount,
   selectable,
+  rowHeight,
 }) {
   const theme = useTheme()
 
@@ -25,12 +26,12 @@ function ListView({
     setOpened(opened => (opened === index ? -1 : index))
   }, [])
 
-  const sideSpace = selectable || hasAnyChild
+  const sideSpace = selectable || hasAnyExpansion
 
   return (
     <React.Fragment>
       {entries.map((entry, index) => {
-        const hasChildren = entry.children.length > 0
+        const hasExpansion = entry.expansion.content.length > 0
         return (
           <div
             key={index}
@@ -64,7 +65,7 @@ function ListView({
                     onSelect={onSelect}
                   />
                 )}
-                {!selectable && hasChildren && (
+                {!selectable && hasExpansion && (
                   <ToggleButton
                     opened={entry.index === opened}
                     onClick={() => toggleEntry(entry.index)}
@@ -122,49 +123,13 @@ function ListView({
                   </div>
                 ))}
             </div>
-            <Transition
-              native
-              items={hasChildren && entry.index === opened}
-              from={{ totalHeight: 0 }}
-              enter={{ totalHeight: 8 * GU * entry.children.length }}
-              leave={{ totalHeight: 0 }}
-              config={springs.lazy}
-            >
-              {show =>
-                show &&
-                /* eslint-disable react/prop-types */
-                (({ totalHeight }) => (
-                  <animated.div
-                    css={`
-                      overflow: hidden;
-                      background: ${theme.surfaceUnder};
-                      margin-left: ${-6.5 * GU}px;
-                      margin-right: ${-3 * GU}px;
-                      padding-left: ${6.5 * GU}px;
-                      box-shadow: inset 0 6px 4px -4px rgba(0, 0, 0, 0.16);
-                    `}
-                    style={{
-                      height: totalHeight.interpolate(v => `${v}px`),
-                    }}
-                  >
-                    {entry.children.map((child, i) => (
-                      <div
-                        key={i}
-                        css={`
-                          display: flex;
-                          align-items: center;
-                          height: ${8 * GU}px;
-                          padding-right: ${3 * GU}px;
-                        `}
-                      >
-                        {child}
-                      </div>
-                    ))}
-                  </animated.div>
-                ))
-              /* eslint-enable react/prop-types */
-              }
-            </Transition>
+            {hasExpansion && (
+              <EntryExpansion
+                expansion={entry.expansion}
+                opened={opened === entry.index}
+                rowHeight={rowHeight}
+              />
+            )}
           </div>
         )
       })}
@@ -176,14 +141,79 @@ ListView.propTypes = {
   allSelected: PropTypes.oneOf([-1, 0, 1]).isRequired,
   entries: PropTypes.array.isRequired,
   fields: PropTypes.array.isRequired,
-  hasAnyChild: PropTypes.bool.isRequired,
+  hasAnyExpansion: PropTypes.bool.isRequired,
   onSelect: PropTypes.func.isRequired,
   onSelectAll: PropTypes.func.isRequired,
   renderSelectionCount: PropTypes.func.isRequired,
+  rowHeight: PropTypes.number.isRequired,
   selectable: PropTypes.bool.isRequired,
 }
 
+// Disable prop types check for internal components
 /* eslint-disable react/prop-types */
+
+function EntryExpansion({ expansion, opened, rowHeight }) {
+  const theme = useTheme()
+
+  // Handles the height of the expansion in free layout mode
+  const [freeLayoutContentHeight, setFreeLayoutContentHeight] = useState(0)
+
+  const handleFreeLayoutContentRef = useCallback(element => {
+    if (element) {
+      setFreeLayoutContentHeight(element.getBoundingClientRect().height)
+    }
+  }, [])
+
+  const height = expansion.freeLayout
+    ? freeLayoutContentHeight
+    : rowHeight * expansion.content.length
+
+  return (
+    <Transition
+      native
+      items={opened}
+      from={{ height: 0 }}
+      enter={{ height }}
+      update={{ height }}
+      leave={{ height: 0 }}
+      config={{ ...springs.smooth, precision: 0.1 }}
+    >
+      {show =>
+        show &&
+        (({ height }) => (
+          <animated.div
+            css={`
+              overflow: hidden;
+              background: ${theme.surfaceUnder};
+              margin-left: ${-6.5 * GU}px;
+              margin-right: ${-3 * GU}px;
+              padding-left: ${6.5 * GU}px;
+              box-shadow: inset 0 6px 4px -4px rgba(0, 0, 0, 0.16);
+            `}
+            style={{
+              height: height.interpolate(v => `${v}px`),
+            }}
+          >
+            {expansion.content.map((child, i) => (
+              <div
+                key={i}
+                ref={expansion.freeLayout ? handleFreeLayoutContentRef : null}
+                css={`
+                  display: flex;
+                  align-items: center;
+                  height: ${expansion.freeLayout ? 'auto' : `${rowHeight}px`};
+                  padding-right: ${3 * GU}px;
+                `}
+              >
+                {child}
+              </div>
+            ))}
+          </animated.div>
+        ))
+      }
+    </Transition>
+  )
+}
 
 function Select({ index, selected, onSelect }) {
   const change = useCallback(

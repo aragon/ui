@@ -1,6 +1,6 @@
 import React, { useCallback, useMemo, useState } from 'react'
 import PropTypes from 'prop-types'
-import { noop } from '../../utils'
+import { noop, warnOnce } from '../../utils'
 import { textStyle, GU } from '../../style'
 import { useTheme } from '../../theme'
 import { Box } from '../../components/Box/Box'
@@ -35,16 +35,31 @@ function prepareFields(fields) {
   })
 }
 
-function entryChildrenFromChild(child) {
-  if (!child) {
-    return []
+function entryExpansion(content) {
+  // Rows
+  if (Array.isArray(content) && content.length > 0) {
+    return {
+      content,
+      freeLayout: false,
+    }
   }
-  return Array.isArray(child) ? child : [child]
+  // Free layout
+  if (content && !Array.isArray(content)) {
+    return {
+      content: [content],
+      freeLayout: true,
+    }
+  }
+  // No expansion
+  return {
+    content: [],
+    freeLayout: false,
+  }
 }
 
 function renderEntries(
   entries,
-  { fields, renderEntry, renderEntryActions, renderEntryChild, mode }
+  { fields, renderEntry, renderEntryActions, renderEntryExpansion, mode }
 ) {
   return entries.map(entry => {
     const { value, index, selected } = entry
@@ -60,17 +75,21 @@ function renderEntries(
       entryNodes.push(null)
     }
 
+    const expansion = entryExpansion(
+      renderEntryExpansion
+        ? renderEntryExpansion(value, index, { selected, mode })
+        : null
+    )
+
+    const actions = renderEntryActions
+      ? renderEntryActions(value, index, { selected, mode })
+      : null
+
     return {
-      index,
+      actions,
       entryNodes,
-      actions: renderEntryActions
-        ? renderEntryActions(value, index, { selected, mode })
-        : null,
-      children: entryChildrenFromChild(
-        renderEntryChild
-          ? renderEntryChild(value, index, { selected, mode })
-          : null
-      ),
+      expansion,
+      index,
       selected,
     }
   })
@@ -150,16 +169,30 @@ const DataView = React.memo(function DataView({
   renderEntry,
   renderEntryActions,
   renderEntryChild,
+  renderEntryExpansion,
   renderSelectionCount,
   mode,
   selection,
   tableRowHeight,
 }) {
-  if (renderEntryChild && onSelectEntries) {
-    throw new Error(
-      'A DataView cannot be made selectable if its entries have children. ' +
-        'Please use only one of renderEntryChild or onSelectEntries at a time.'
+  if (renderEntryChild && !renderEntryExpansion) {
+    warnOnce(
+      'DataView:renderEntryChild',
+      'DataView: the renderEntryChild prop has been renamed ' +
+        'renderEntryExpansion and will be removed in a future version. ' +
+        'Please use the new name.'
     )
+    renderEntryExpansion = renderEntryChild
+  }
+
+  if (renderEntryExpansion && onSelectEntries) {
+    warnOnce(
+      'DataView: renderEntryExpansion + onSelectEntries',
+      'A DataView cannot be made selectable with some of its entries ' +
+        'expandable. Please use only one of renderEntryExpansion or ' +
+        'onSelectEntries at a time. Ignoring renderEntryExpansion.'
+    )
+    renderEntryExpansion = undefined
   }
 
   // Only used if `page` is not passed. The pagination supports both a
@@ -195,7 +228,7 @@ const DataView = React.memo(function DataView({
   )
 
   const hasAnyActions = Boolean(renderEntryActions)
-  const hasAnyChild = Boolean(renderEntryChild)
+  const hasAnyExpansion = Boolean(renderEntryExpansion)
   const canSelect = Boolean(onSelectEntries)
 
   const pages = Math.ceil(entries.length / entriesPerPage)
@@ -214,7 +247,7 @@ const DataView = React.memo(function DataView({
     fields,
     renderEntry,
     renderEntryActions,
-    renderEntryChild,
+    renderEntryExpansion,
     mode: listMode ? 'list' : 'table',
   })
 
@@ -248,10 +281,11 @@ const DataView = React.memo(function DataView({
           allSelected={allSelected}
           entries={renderedEntries}
           fields={preparedFields}
-          hasAnyChild={hasAnyChild}
+          hasAnyExpansion={hasAnyExpansion}
           onSelect={toggleEntry}
           onSelectAll={selectAll}
           renderSelectionCount={renderSelectionCount}
+          rowHeight={tableRowHeight}
           selectable={canSelect}
         />
       ) : (
@@ -264,7 +298,7 @@ const DataView = React.memo(function DataView({
           entries={renderedEntries}
           fields={preparedFields}
           hasAnyActions={hasAnyActions}
-          hasAnyChild={hasAnyChild}
+          hasAnyExpansion={hasAnyExpansion}
           onSelect={toggleEntry}
           onSelectAll={selectAll}
           renderSelectionCount={renderSelectionCount}
@@ -303,10 +337,13 @@ DataView.propTypes = {
   onSelectEntries: PropTypes.func,
   renderEntry: PropTypes.func.isRequired,
   renderEntryActions: PropTypes.func,
-  renderEntryChild: PropTypes.func,
+  renderEntryExpansion: PropTypes.func,
   renderSelectionCount: PropTypes.func,
   selection: PropTypes.array,
   tableRowHeight: PropTypes.number,
+
+  // deprecated
+  renderEntryChild: PropTypes.func,
 }
 
 DataView.defaultProps = {
