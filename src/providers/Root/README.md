@@ -1,6 +1,6 @@
 # Root
 
-`Root` can be used to re render a component at the top level in the DOM tree. `Root.Provider` can be used to redefined the root level.
+`Root` can be used to re render a component at the top level in the DOM tree. `Root.Provider` can be used to redefine the root level.
 
 ## Usage
 
