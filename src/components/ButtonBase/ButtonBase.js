@@ -1,14 +1,13 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import PropTypes from 'prop-types'
 import FocusVisible from '../FocusVisible/FocusVisible'
 import { useTheme } from '../../theme'
 import { RADIUS, textStyle } from '../../style'
-import { warnOnce } from '../../utils'
-
-const ANCHOR_EXTERNAL_PROPS = { rel: 'noopener noreferrer', target: '_blank' }
+import { warnOnce, KEY_ENTER } from '../../utils'
 
 function ButtonBase({
   disabled,
+  element,
   external,
   focusRingRadius,
   focusRingSpacing,
@@ -16,6 +15,7 @@ function ButtonBase({
   href,
   innerRef,
   onClick,
+  onKeyDown,
   showFocusRing,
   ...props
 }) {
@@ -26,21 +26,55 @@ function ButtonBase({
     external = Boolean(href)
   }
 
-  // element-specific props
-  const elementProps = href
-    ? // <a href>
-      {
-        as: 'a',
-        href: disabled ? undefined : href,
-        ...(external ? ANCHOR_EXTERNAL_PROPS : {}),
+  if (!element) {
+    element = href ? 'a' : 'button'
+  }
+
+  const elementProps = { as: element }
+
+  // <button> (handle key events)
+  if (element === 'button') {
+    elementProps.type = 'button'
+    elementProps.disabled = disabled
+  }
+
+  // <a href=""> (handle key events)
+  if (element === 'a' && href && !disabled) {
+    elementProps.href = href
+    elementProps.rel = 'noopener noreferrer'
+    elementProps.target = '_blank'
+  }
+
+  // <a> or <div> (doesn’t handle key events)
+  if ((element === 'a' && !href) || element === 'div') {
+    elementProps.role = 'button'
+    elementProps.tabIndex = '0'
+  }
+
+  const handleKeyDown = useCallback(
+    event => {
+      // Only applies to cases where the enter key is not handled already
+      if (
+        ((element === 'a' && !href) || element === 'div') &&
+        event.keyCode === KEY_ENTER &&
+        onClick
+      ) {
+        onClick()
       }
-    : // <button>
-      { as: 'button', type: 'button', disabled }
+
+      // Pass the event up
+      if (onKeyDown) {
+        onKeyDown(event)
+      }
+    },
+    [onClick, element]
+  )
 
   return (
     <button
       ref={innerRef}
       onClick={disabled ? undefined : onClick}
+      onKeyDown={disabled ? undefined : handleKeyDown}
       {...elementProps}
       {...props}
       css={`
@@ -87,7 +121,9 @@ ButtonBase.propTypes = {
   href: PropTypes.string,
   innerRef: PropTypes.any,
   onClick: PropTypes.func,
+  onKeyDown: PropTypes.func,
   showFocusRing: PropTypes.bool,
+  element: PropTypes.oneOf(['button', 'div', 'a']),
 }
 
 ButtonBase.defaultProps = {

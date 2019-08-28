@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { css } from 'styled-components'
 import { GU, RADIUS } from '../../style'
 import { useTheme } from '../../theme'
-import { unselectable, useInside } from '../../utils'
+import { useInside } from '../../utils'
 import ButtonBase from '../ButtonBase/ButtonBase'
 
 const DEFAULT_WIDTH = 35 * GU
@@ -25,7 +25,7 @@ function Card({ children, width, height, onClick, ...props }) {
   const interactive = Boolean(onClick)
 
   const interactiveProps = interactive
-    ? { as: ButtonBase, focusRingRadius: RADIUS, onClick }
+    ? { as: ButtonBase, element: 'div', focusRingRadius: RADIUS, onClick }
     : {}
 
   const cssWidth = dimension(insideCardLayout, width, `${DEFAULT_WIDTH}px`)
@@ -43,36 +43,32 @@ function Card({ children, width, height, onClick, ...props }) {
         border-radius: ${RADIUS}px;
         cursor: ${interactive ? 'pointer' : 'default'};
 
+        // Default layout
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
         ${interactive &&
           css`
-            border: 0;
             box-shadow: 0px 1px 3px rgba(51, 77, 117, 0.15);
-            transition-property: top, box-shadow;
+            transition-property: transform, box-shadow;
             transition-duration: 50ms;
             transition-timing-function: ease-in-out;
+
+            // Reset some styles applied by ButtonBase
+            text-align: left;
             white-space: normal;
-            ${unselectable};
 
             &:active {
-              top: 1px;
+              transform: translateY(1px);
               box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.075);
             }
           `}
       `}
       {...props}
     >
-      <div
-        css={`
-          position: relative;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          width: ${cssWidth};
-          height: ${cssHeight};
-        `}
-      >
-        {children}
-      </div>
+      {children}
     </div>
   )
 }
