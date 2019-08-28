@@ -1,42 +1,37 @@
-import React, { useCallback } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
-import LinkBase from '../LinkBase/LinkBase'
+import ButtonBase from '../ButtonBase/ButtonBase'
 import { useTheme } from '../../theme'
 
-const KEYCODE_ENTER = 13
-
-function Link({ onClick, href, ...props }) {
+function Link({ onClick, href, external, ...props }) {
   const theme = useTheme()
 
-  const handleKeyDown = useCallback(
-    event => {
-      if (event.keyCode === KEYCODE_ENTER && onClick) {
-        onClick()
-      }
-    },
-    [onClick]
-  )
+  // `external` defaults to `true` if `href` is present, `false` otherwise.
+  if (external === undefined) {
+    external = Boolean(href)
+  }
 
   return (
-    <LinkBase
+    <ButtonBase
       href={href}
       onClick={onClick}
-      onKeyDown={handleKeyDown}
+      external={external}
+      focusRingSpacing={6}
       {...props}
       css={`
         color: ${theme.link};
-        text-decoration: none;
+        text-decoration: ${external ? 'underline' : 'none'};
         font-size: inherit;
-        cursor: pointer;
       `}
     />
   )
 }
 
 Link.propTypes = {
-  ...LinkBase.propTypes,
+  ...ButtonBase.propTypes,
   href: PropTypes.string,
   onClick: PropTypes.func,
+  external: PropTypes.bool,
 }
 
 export default Link

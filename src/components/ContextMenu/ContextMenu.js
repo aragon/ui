@@ -6,7 +6,7 @@ import ClickOutHandler from 'react-onclickout'
 import { useTheme } from '../../theme'
 import { springs, RADIUS } from '../../style'
 import { IconEllipsis, IconDown } from '../../icons/components'
-import { ButtonBase } from '../Button/ButtonBase'
+import ButtonBase from '../ButtonBase/ButtonBase'
 
 const BASE_WIDTH = 46
 const BASE_HEIGHT = 32

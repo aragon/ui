@@ -1,12 +1,12 @@
 import React, { useState, useRef, useEffect, useCallback, useMemo } from 'react'
 import PropTypes from 'prop-types'
-import { ButtonBase } from '../Button/ButtonBase'
-import Popover from '../Popover/Popover'
-import { IconDown } from '../../icons'
+import { warnOnce, unselectable } from '../../utils'
 import { GU, RADIUS, textStyle } from '../../style'
 import { useTheme } from '../../theme'
-import { warnOnce, unselectable } from '../../utils'
+import { IconDown } from '../../icons'
 import { useViewport } from '../../providers/Viewport/Viewport'
+import ButtonBase from '../ButtonBase/ButtonBase'
+import Popover from '../Popover/Popover'
 
 function useDropDown({
   buttonRef,

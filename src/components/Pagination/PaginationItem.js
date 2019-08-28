@@ -2,7 +2,7 @@ import React, { useCallback } from 'react'
 import PropTypes from 'prop-types'
 import { css } from 'styled-components'
 import { useTheme } from '../../theme'
-import { ButtonBase } from '../Button/ButtonBase'
+import ButtonBase from '../ButtonBase/ButtonBase'
 import { GU, RADIUS } from '../../style'
 
 function PaginationItem({ touchMode, selected, index, onChange }) {
