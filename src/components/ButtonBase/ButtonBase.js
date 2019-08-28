@@ -103,6 +103,7 @@ function ButtonBase({
         ${textStyle('body3')};
         user-select: text;
         text-decoration: none;
+        text-align: center;
         background: none;
         border-radius: ${RADIUS}px;
         border: 0;
