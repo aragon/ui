@@ -47,6 +47,7 @@ function Card({ children, width, height, onClick, ...props }) {
           css`
             border: 0;
             box-shadow: 0px 1px 3px rgba(51, 77, 117, 0.15);
+            text-align: unset;
             transition-property: top, box-shadow;
             transition-duration: 50ms;
             transition-timing-function: ease-in-out;
