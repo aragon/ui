@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import FocusVisible from '../FocusVisible/FocusVisible'
 import { useTheme } from '../../theme'
 import { RADIUS, textStyle } from '../../style'
-import { warnOnce, KEY_ENTER } from '../../utils'
+import { warnOnce, KEY_ENTER, unselectable } from '../../utils'
 
 function getElementProps({ element, href, disabled }) {
   // <button> (handles key events)
@@ -101,7 +101,6 @@ function ButtonBase({
         padding: 0;
         white-space: nowrap;
         ${textStyle('body3')};
-        user-select: text;
         text-decoration: none;
         text-align: center;
         background: none;
@@ -109,6 +108,7 @@ function ButtonBase({
         border: 0;
         outline: 0;
         cursor: ${disabled ? 'default' : 'pointer'};
+        ${unselectable};
 
         &::-moz-focus-inner {
           border: 0;
