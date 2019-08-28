@@ -101,4 +101,7 @@ Layout.defaultProps = {
   paddingBottom: 3 * GU,
 }
 
+// Can be used to build an alternative Layout component
+Layout.__Context = LayoutContext
+
 export { useLayout, Layout }
