@@ -28,20 +28,20 @@ function Card({ children, width, height, onClick, ...props }) {
     ? { as: ButtonBase, focusRingRadius: RADIUS, onClick }
     : {}
 
+  const cssWidth = dimension(insideCardLayout, width, `${DEFAULT_WIDTH}px`)
+  const cssHeight = dimension(insideCardLayout, height, `${DEFAULT_HEIGHT}px`)
+
   return (
     <div
       {...interactiveProps}
       css={`
         position: relative;
-        width: ${dimension(insideCardLayout, width, `${DEFAULT_WIDTH}px`)};
-        height: ${dimension(insideCardLayout, height, `${DEFAULT_HEIGHT}px`)};
+        width: ${cssWidth};
+        height: ${cssHeight};
         background: ${theme.surface};
         border: 1px solid ${theme.border};
         border-radius: ${RADIUS}px;
         cursor: ${interactive ? 'pointer' : 'default'};
-        display: flex;
-        align-items: center;
-        justify-content: center;
 
         ${interactive &&
           css`
@@ -50,6 +50,7 @@ function Card({ children, width, height, onClick, ...props }) {
             transition-property: top, box-shadow;
             transition-duration: 50ms;
             transition-timing-function: ease-in-out;
+            white-space: normal;
             ${unselectable};
 
             &:active {
@@ -60,7 +61,18 @@ function Card({ children, width, height, onClick, ...props }) {
       `}
       {...props}
     >
-      {children}
+      <div
+        css={`
+          position: relative;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: ${cssWidth};
+          height: ${cssHeight};
+        `}
+      >
+        {children}
+      </div>
     </div>
   )
 }
