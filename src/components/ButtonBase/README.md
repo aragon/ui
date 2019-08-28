@@ -32,23 +32,23 @@ When set to true, the `disabled` prop will be passed to the button element, and 
 | --------- | ------------- |
 | `Boolean` | `false`       |
 
-Ignored if `href` is not set.  Set to `true` to add a `target="_blank"` attribute and [make it safe](https://mathiasbynens.github.io/rel-noopener/) by default.
+Ignored if `href` is not set. Set to `true` to add a `target="_blank"` attribute and [make it safe](https://mathiasbynens.github.io/rel-noopener/) by default.
 
 ### focusRingRadius
 
 | Type     | Default value |
 | -------- | ------------- |
-| `Number` | `4`           |
+| `Number` | `0`           |
 
 The radius applied to the focus ring.
 
 ### focusRingSpacing
 
-| Type     | Default value |
-| -------- | ------------- |
-| `Number` | `6`           |
+| Type                | Default value |
+| ------------------- | ------------- |
+| `Number` or `Array` | `0`           |
 
-The space between the element and the focus ring.
+The space between the element and the focus ring. When an array is used, the first and second values will be used for the horizontal and vertical spacings, respectively.
 
 ### href
 
