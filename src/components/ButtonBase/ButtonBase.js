@@ -5,6 +5,42 @@ import { useTheme } from '../../theme'
 import { RADIUS, textStyle } from '../../style'
 import { warnOnce, KEY_ENTER } from '../../utils'
 
+function getElementProps({ element, href, disabled }) {
+  // <button> (handles key events)
+  if (element === 'button') {
+    return [
+      'button',
+      {
+        type: 'button',
+        disabled,
+      },
+    ]
+  }
+
+  // <a href=""> (handles key events)
+  if (element === 'a' && href) {
+    return [
+      'anchor',
+      disabled
+        ? {}
+        : {
+            href: href,
+            rel: 'noopener noreferrer',
+            target: '_blank',
+          },
+    ]
+  }
+
+  // <a> or <div> (doesn’t handle key events)
+  return [
+    'basic',
+    {
+      role: 'button',
+      tabIndex: disabled ? '-1' : '0',
+    },
+  ]
+}
+
 function ButtonBase({
   disabled,
   element,
@@ -30,35 +66,16 @@ function ButtonBase({
     element = href ? 'a' : 'button'
   }
 
-  const elementProps = { as: element }
-
-  // <button> (handle key events)
-  if (element === 'button') {
-    elementProps.type = 'button'
-    elementProps.disabled = disabled
-  }
-
-  // <a href=""> (handle key events)
-  if (element === 'a' && href && !disabled) {
-    elementProps.href = href
-    elementProps.rel = 'noopener noreferrer'
-    elementProps.target = '_blank'
-  }
-
-  // <a> or <div> (doesn’t handle key events)
-  if ((element === 'a' && !href) || element === 'div') {
-    elementProps.role = 'button'
-    elementProps.tabIndex = '0'
-  }
+  const [elementType, elementProps] = getElementProps({
+    element,
+    href,
+    disabled,
+  })
 
   const handleKeyDown = useCallback(
     event => {
       // Only applies to cases where the enter key is not handled already
-      if (
-        ((element === 'a' && !href) || element === 'div') &&
-        event.keyCode === KEY_ENTER &&
-        onClick
-      ) {
+      if (elementType === 'basic' && event.keyCode === KEY_ENTER && onClick) {
         onClick()
       }
 
@@ -72,6 +89,7 @@ function ButtonBase({
 
   return (
     <button
+      as={element}
       ref={innerRef}
       onClick={disabled ? undefined : onClick}
       onKeyDown={disabled ? undefined : handleKeyDown}
