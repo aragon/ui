@@ -23,6 +23,7 @@ const Labels = ({ enabled, text }) => {
     <div
       css={`
         z-index: 2;
+        cursor: pointer;
         background: ${theme.surface};
         ${unselectable}
       `}
@@ -121,7 +122,7 @@ class DateRangeInput extends React.PureComponent {
 
   handleClick = event => {
     event.stopPropagation()
-    this.setState({ showPicker: true })
+    this.setState(({ showPicker }) => ({ showPicker: !showPicker }))
   }
 
   handleClickOutside = event => {
