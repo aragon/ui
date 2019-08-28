@@ -25,7 +25,7 @@ function Card({ children, width, height, onClick, ...props }) {
   const interactive = Boolean(onClick)
 
   const interactiveProps = interactive
-    ? { as: ButtonBase, focusRingRadius: RADIUS, onClick }
+    ? { as: ButtonBase, element: 'div', focusRingRadius: RADIUS, onClick }
     : {}
 
   const cssWidth = dimension(insideCardLayout, width, `${DEFAULT_WIDTH}px`)
@@ -42,6 +42,11 @@ function Card({ children, width, height, onClick, ...props }) {
         border: 1px solid ${theme.border};
         border-radius: ${RADIUS}px;
         cursor: ${interactive ? 'pointer' : 'default'};
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
 
         ${interactive &&
           css`
@@ -61,18 +66,7 @@ function Card({ children, width, height, onClick, ...props }) {
       `}
       {...props}
     >
-      <div
-        css={`
-          position: relative;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          width: ${cssWidth};
-          height: ${cssHeight};
-        `}
-      >
-        {children}
-      </div>
+      {children}
     </div>
   )
 }
