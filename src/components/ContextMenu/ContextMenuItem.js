@@ -2,7 +2,7 @@ import React from 'react'
 import { textStyle } from '../../style'
 import { useTheme } from '../../theme'
 import { unselectable } from '../../utils'
-import { ButtonBase } from '../Button/ButtonBase'
+import ButtonBase from '../ButtonBase/ButtonBase'
 
 const ContextMenuItem = React.memo(function ContextMenuItem(props) {
   const theme = useTheme()

@@ -2,11 +2,10 @@ import React, { useMemo } from 'react'
 import PropTypes from 'prop-types'
 import { textStyle, GU, RADIUS } from '../../style'
 import { useTheme } from '../../theme'
-import { warn, warnOnce, useInside } from '../../utils'
-import { Link } from '../Link'
-import { useLayout } from '../Layout/Layout'
-import { ButtonBase } from './ButtonBase'
+import { warn, warnOnce, useInside, unselectable } from '../../utils'
 import { Inside } from '../../utils/inside'
+import { useLayout } from '../Layout/Layout'
+import ButtonBase from '../ButtonBase/ButtonBase'
 
 // Base styles related to every size.
 // See src/icons/icon-size.js for the corresponding icon sizes.
@@ -233,6 +232,7 @@ function Button({
       focusRingSpacing={border === '0' ? 0 : 1}
       focusRingRadius={RADIUS}
       disabled={disabled}
+      {...props}
       css={`
         display: ${wide ? 'flex' : 'inline-flex'};
         align-items: center;
@@ -242,6 +242,7 @@ function Button({
         min-width: ${minWidth};
         padding: ${padding};
         ${textStyleCss};
+        ${unselectable};
         background: ${background};
         color: ${color};
         white-space: nowrap;
@@ -255,7 +256,6 @@ function Button({
           box-shadow: ${disabled ? 'none' : '0px 1px 3px rgba(0, 0, 0, 0.125)'};
         }
       `}
-      {...props}
     >
       <Inside name="Button" data={insideData}>
         {children || (
@@ -337,7 +337,7 @@ ButtonWithRef.Anchor = React.forwardRef((props, ref) => {
     'Button.Anchor',
     'Button.Anchor is deprecated: please use Button with a href prop instead.'
   )
-  return <ButtonWithRef ref={ref} as={Link} {...props} />
+  return <ButtonWithRef ref={ref} {...props} />
 })
 
 export { ButtonWithRef as Button }

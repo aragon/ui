@@ -5,7 +5,7 @@ import { theme } from '../../theme-legacy'
 import { RADIUS } from '../../style'
 import Text from '../Text/Text'
 import EthIdenticon from '../EthIdenticon/EthIdenticon'
-import { ButtonBase } from '../Button/ButtonBase'
+import ButtonBase from '../ButtonBase/ButtonBase'
 import IdentityBadgePopover from './IdentityBadgePopover'
 import PopoverActionType from './PopoverActionType'
 

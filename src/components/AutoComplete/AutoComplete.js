@@ -6,7 +6,7 @@ import { unselectable, noop, identity } from '../../utils'
 import { springs } from '../../style'
 import { theme } from '../../theme-legacy'
 import { useClickOutside, useOnBlur, useArrowKeysFocus } from '../../hooks'
-import { ButtonBase } from '../Button/ButtonBase'
+import ButtonBase from '../ButtonBase/ButtonBase'
 import TextInput from '../Input/TextInput'
 import { IconSearch } from '../../icons'
 

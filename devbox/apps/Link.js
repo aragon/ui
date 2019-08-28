@@ -15,10 +15,13 @@ export default () => {
         `}
       >
         <div>
-          <Link>A normal link</Link>
+          <Link>Default link</Link>
         </div>
         <div>
           <Link href="http://example.com/">Using the href attribute</Link>
+        </div>
+        <div>
+          <Link external>External</Link>
         </div>
         <div>
           <Link onClick={() => setClicks(v => v + 1)}>

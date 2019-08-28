@@ -1,6 +1,6 @@
-# LinkBase
+# Link
 
-The equivalent of the `<a />` element, but [safe](https://mathiasbynens.github.io/rel-noopener/) by default and featuring some styles and a focused state. It acts as a button when `onClick` is set.
+A textual interactive element that can be used as an anchor (`<a>`) or as a button.
 
 ## Usage
 
@@ -36,8 +36,8 @@ When set, the component will act like a normal HTML anchor.
 | --------- | ------------- |
 | `Boolean` | `false`       |
 
-Set to `true` to add a `target="_blank"` attribute.
+Set to `true` to make the link external, which will add an underline. If a `href` is present, it will also add a `target="_blank"` attribute and [make it safe](https://mathiasbynens.github.io/rel-noopener/) by default.
 
 ### Other props
 
-Any other prop will be passed to the `LinkBase` component, then to the [`<a>` element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a).
+Any other prop will be passed to the `ButtonBase` component.

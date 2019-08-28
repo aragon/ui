@@ -5,7 +5,7 @@ import { useOnBlur } from '../../hooks'
 import { IconDown } from '../../icons'
 import { useTheme } from '../../theme'
 import { useInside, KEY_ESC } from '../../utils'
-import { ButtonBase } from '../Button/ButtonBase'
+import ButtonBase from '../ButtonBase/ButtonBase'
 
 // TabsFullWidth is an internal component
 /* eslint-disable react/prop-types */
