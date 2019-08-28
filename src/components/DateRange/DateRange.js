@@ -122,7 +122,7 @@ class DateRangeInput extends React.PureComponent {
 
   handleClick = event => {
     event.stopPropagation()
-    this.setState({ showPicker: true })
+    this.setState(({ showPicker }) => ({ showPicker: !showPicker }))
   }
 
   handleClickOutside = event => {
