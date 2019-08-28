@@ -62,6 +62,10 @@ function ButtonBase({
     external = Boolean(href)
   }
 
+  if (typeof focusRingSpacing === 'number') {
+    focusRingSpacing = [focusRingSpacing, focusRingSpacing]
+  }
+
   if (!element) {
     element = href ? 'a' : 'button'
   }
@@ -116,15 +120,14 @@ function ButtonBase({
 
         &:focus:after {
           content: '';
+          display: ${focusVisible && showFocusRing ? 'block' : 'none'};
           position: absolute;
-          top: ${-focusRingSpacing}px;
-          left: ${-focusRingSpacing}px;
-          right: ${-focusRingSpacing}px;
-          bottom: ${-focusRingSpacing}px;
+          top: ${-focusRingSpacing[1]}px;
+          left: ${-focusRingSpacing[0]}px;
+          right: ${-focusRingSpacing[0]}px;
+          bottom: ${-focusRingSpacing[1]}px;
           border-radius: ${focusRingRadius}px;
-          border: ${focusVisible && showFocusRing
-            ? `2px solid ${theme.focus}`
-            : '0'};
+          border: 2px solid ${theme.focus};
         }
       `}
     />
@@ -135,7 +138,10 @@ ButtonBase.propTypes = {
   disabled: PropTypes.bool,
   external: PropTypes.bool,
   focusRingRadius: PropTypes.number,
-  focusRingSpacing: PropTypes.number,
+  focusRingSpacing: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.arrayOf(PropTypes.number),
+  ]),
   focusVisible: PropTypes.bool,
   href: PropTypes.string,
   innerRef: PropTypes.any,
