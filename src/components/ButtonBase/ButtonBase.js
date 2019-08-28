@@ -112,7 +112,7 @@ function ButtonBase({
         border: 0;
         outline: 0;
         cursor: ${disabled ? 'default' : 'pointer'};
-        ${unselectable};
+        ${elementType === 'basic' ? unselectable : ''};
 
         &::-moz-focus-inner {
           border: 0;
