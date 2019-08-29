@@ -2,14 +2,17 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Popper from 'popper.js'
 import { Transition, animated } from 'react-spring'
-import { noop, stylingProps, KEY_ESC } from '../../utils'
-import { useTheme } from '../../theme'
+import { useRoot } from '../../providers'
 import { springs, RADIUS } from '../../style'
+import { useTheme } from '../../theme'
+import { noop, stylingProps, KEY_ESC } from '../../utils'
 import RootPortal from '../RootPortal/RootPortal'
 
 class PopoverBase extends React.Component {
   static propTypes = {
+    children: PropTypes.node,
     closeOnOpenerFocus: PropTypes.bool,
+    onClose: PropTypes.func,
     opener: PropTypes.instanceOf(Element),
     placement: PropTypes.oneOf(
       // "center" is a value that doesn’t exist in Popper, but we are using it
@@ -22,11 +25,10 @@ class PopoverBase extends React.Component {
         ])
       )
     ),
-    zIndex: PropTypes.number,
-    onClose: PropTypes.func,
-    children: PropTypes.node,
-    transitionStyles: PropTypes.object,
+    rootBoundary: PropTypes.instanceOf(Element),
     theme: PropTypes.object,
+    transitionStyles: PropTypes.object,
+    zIndex: PropTypes.number,
   }
 
   static defaultProps = {
@@ -69,7 +71,7 @@ class PopoverBase extends React.Component {
   }
 
   getPopperSettings() {
-    const { placement } = this.props
+    const { placement, rootBoundary } = this.props
 
     const settings = {
       placement,
@@ -77,7 +79,7 @@ class PopoverBase extends React.Component {
         preventOverflow: {
           enabled: true,
           padding: 10,
-          boundariesElement: 'window',
+          boundariesElement: rootBoundary || 'window',
         },
       },
       positionFixed: false,
@@ -192,6 +194,8 @@ class PopoverBase extends React.Component {
 
 function Popover({ scaleEffect, visible, ...props }) {
   const theme = useTheme()
+  const root = useRoot()
+
   return (
     <RootPortal>
       <Transition
@@ -207,6 +211,7 @@ function Popover({ scaleEffect, visible, ...props }) {
           (transitionStyles => (
             <PopoverBase
               {...props}
+              rootBoundary={root}
               theme={theme}
               transitionStyles={transitionStyles}
             />
