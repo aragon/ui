@@ -56,7 +56,6 @@ function AutoComplete({
     <div css="position: relative" ref={wrapRef} onBlur={handleBlur}>
       <TextInput
         css={`
-          caret-color: ${accent};
           padding-right: 35px;
         `}
         ref={ref}
