@@ -2,14 +2,16 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Popper from 'popper.js'
 import { Transition, animated } from 'react-spring'
-import { noop, stylingProps, KEY_ESC } from '../../utils'
-import { useTheme } from '../../theme'
 import { springs, RADIUS } from '../../style'
+import { useTheme } from '../../theme'
+import { noop, stylingProps, KEY_ESC } from '../../utils'
 import RootPortal from '../RootPortal/RootPortal'
 
 class PopoverBase extends React.Component {
   static propTypes = {
+    children: PropTypes.node,
     closeOnOpenerFocus: PropTypes.bool,
+    onClose: PropTypes.func,
     opener: PropTypes.instanceOf(Element),
     placement: PropTypes.oneOf(
       // "center" is a value that doesn’t exist in Popper, but we are using it
@@ -22,11 +24,9 @@ class PopoverBase extends React.Component {
         ])
       )
     ),
-    zIndex: PropTypes.number,
-    onClose: PropTypes.func,
-    children: PropTypes.node,
-    transitionStyles: PropTypes.object,
     theme: PropTypes.object,
+    transitionStyles: PropTypes.object,
+    zIndex: PropTypes.number,
   }
 
   static defaultProps = {
