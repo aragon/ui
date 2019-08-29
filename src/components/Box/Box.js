@@ -1,27 +1,53 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import PropTypes from 'prop-types'
 import { GU, RADIUS, textStyle } from '../../style'
 import { useTheme } from '../../theme/Theme'
 import { useLayout } from '../Layout/Layout'
 import { useInside } from '../../utils'
 
-// Padding values for the heading and the content.
-function getPaddingValues(padding, { insideSplitPrimary, fullWidth }) {
-  const defaultPadding = (fullWidth ? 2 : insideSplitPrimary ? 5 : 3) * GU
+function getHeadingPadding(padding, defaultPadding) {
+  // only follow the shared padding if not 0
+  if (typeof padding === 'number') {
+    return padding === 0 ? defaultPadding : padding
+  }
 
-  // Separate values for the header and content
-  if (Array.isArray(padding)) {
+  // always follow the heading padding if set independently
+  if (typeof padding === 'object' && typeof padding.heading === 'number') {
+    return padding.heading
+  }
+
+  // 0 if heading is set to false independently
+  if (typeof padding === 'object' && padding.heading === false) {
+    return 0
+  }
+
+  // default padding in all the other cases
+  return defaultPadding
+}
+
+function getContentPadding(padding, defaultPadding) {
+  // always follow the shared padding if set
+  if (typeof padding === 'number') {
     return padding
   }
 
-  // Default value if true, disable padding on the content otherwise
+  // use the default padding if set to true, 0 otherwise
   if (typeof padding === 'boolean') {
-    return [defaultPadding, padding ? defaultPadding : 0]
+    return padding ? defaultPadding : 0
   }
 
-  // The heading follows the content padding except when 0,
-  // in which case it will follow the default value.
-  return [padding === 0 ? defaultPadding : padding, padding]
+  // always follow the content padding if set independently
+  if (typeof padding === 'object' && typeof padding.content === 'number') {
+    return padding.content
+  }
+
+  // always 0 if content is set to false independently
+  if (typeof padding === 'object' && padding.content === false) {
+    return 0
+  }
+
+  // default padding in all the other cases
+  return defaultPadding
 }
 
 function Box({ heading, children, padding, ...props }) {
@@ -30,10 +56,14 @@ function Box({ heading, children, padding, ...props }) {
   const { layoutName } = useLayout()
   const fullWidth = layoutName === 'small'
 
-  const [headerPadding, contentPadding] = getPaddingValues(padding, {
-    insideSplitPrimary,
-    fullWidth,
-  })
+  const [headingPadding, contentPadding] = useMemo(() => {
+    const defaultPadding = (fullWidth ? 2 : insideSplitPrimary ? 5 : 3) * GU
+
+    return [
+      getHeadingPadding(padding, defaultPadding),
+      getContentPadding(padding, defaultPadding),
+    ]
+  }, [fullWidth, insideSplitPrimary, padding])
 
   return (
     <div
@@ -66,7 +96,7 @@ function Box({ heading, children, padding, ...props }) {
           ) : (
             <h1
               css={`
-                padding: 0 ${headerPadding}px;
+                padding: 0 ${headingPadding}px;
                 ${textStyle('label2')};
                 color: ${theme.surfaceContentSecondary};
               `}
@@ -93,7 +123,10 @@ Box.propTypes = {
   padding: PropTypes.oneOfType([
     PropTypes.bool,
     PropTypes.number,
-    PropTypes.arrayOf(PropTypes.number),
+    PropTypes.shape({
+      heading: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
+      content: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
+    }),
   ]),
 }
 
