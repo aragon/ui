@@ -7,21 +7,28 @@ import { useInside } from '../../utils'
 
 // Padding values for the heading and the content.
 function getPaddingValues(padding, { insideSplitPrimary, fullWidth }) {
-  const defaultPadding = (fullWidth ? 2 : insideSplitPrimary ? 5 : 3) * GU
-
-  // Separate values for the header and content
   if (Array.isArray(padding)) {
+    // User declared separate values for the header and content;
+    // just use their values
     return padding
   }
 
-  // Default value if true, disable padding on the content otherwise
+  const defaultPadding = (fullWidth ? 2 : insideSplitPrimary ? 5 : 3) * GU
+
   if (typeof padding === 'boolean') {
-    return [defaultPadding, padding ? defaultPadding : 0]
+    return [
+      // Header - always use default value even if user doesn't want padding
+      defaultPadding,
+      // Content - use default value if user wanted padding
+      padding ? defaultPadding : 0,
+    ]
   }
 
-  // The heading follows the content padding except when 0,
-  // in which case it will follow the default value.
-  return [padding === 0 ? defaultPadding : padding, padding]
+  return [
+    // Header - use declared padding, unless it was 0 (use default value instead)
+    padding === 0 ? defaultPadding : padding,
+    padding,
+  ]
 }
 
 function Box({ heading, children, padding, ...props }) {
