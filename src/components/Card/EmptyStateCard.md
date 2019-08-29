@@ -39,7 +39,7 @@ An illustration to visually represent the empty state.
 #### Example:
 
 ```jsx
-const App = () => <EmptyStateCard icon={() => <IconHome color="blue" />} />
+const App = () => <EmptyStateCard illustration={<IconHome color="blue" />} />
 ```
 
 ### `action`
