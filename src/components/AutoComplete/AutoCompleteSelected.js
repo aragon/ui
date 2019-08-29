@@ -1,7 +1,8 @@
 import React, { useRef, useCallback } from 'react'
 import PropTypes from 'prop-types'
+import { RADIUS } from '../../style'
+import { useTheme } from '../../theme'
 import { identity, noop } from '../../utils'
-import { theme } from '../../theme-legacy'
 import ButtonBase from '../ButtonBase/ButtonBase'
 import AutoComplete from './AutoComplete'
 
@@ -21,6 +22,8 @@ function AutoCompleteSelected({
   value,
   wide,
 }) {
+  const theme = useTheme()
+
   const ref = forwardedRef
   const selectedRef = useRef()
 
@@ -48,21 +51,16 @@ function AutoCompleteSelected({
       <ButtonBase
         onClick={handleSelectedClick}
         ref={selectedRef}
+        focusRingRadius={RADIUS}
+        focusRingSpacing={1}
         css={`
           height: 40px;
           width: 100%;
           text-align: left;
-          background: #fff;
+          background: ${theme.surface};
           cursor: pointer;
-          border: 1px solid ${theme.contentBorder};
-          border-radius: 3px;
+          border: 1px solid ${theme.border};
           padding: 4px 8px;
-          &:hover,
-          &:focus {
-            outline: none;
-            border: 1px solid ${theme.accent};
-            border-radius: 3px;
-          }
           ${selectedButtonStyles};
         `}
       >
