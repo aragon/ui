@@ -79,6 +79,7 @@ class DateRangeInput extends React.PureComponent {
     startDateSelected: false,
     endDateSelected: false,
   }
+  _datePickerContainer = React.createRef()
 
   get formattedStartDate() {
     const { format } = this.props
@@ -122,7 +123,12 @@ class DateRangeInput extends React.PureComponent {
 
   handleClick = event => {
     event.stopPropagation()
-    this.setState(({ showPicker }) => ({ showPicker: !showPicker }))
+    if (
+      !this._datePickerContainer.current ||
+      !this._datePickerContainer.current.contains(event.target)
+    ) {
+      this.setState(({ showPicker }) => ({ showPicker: !showPicker }))
+    }
   }
 
   handleClickOutside = event => {
@@ -250,6 +256,7 @@ class DateRangeInput extends React.PureComponent {
         <Labels enabled={showPicker} text={this.getValueText()} />
         {this.state.showPicker && (
           <div
+            ref={this._datePickerContainer}
             css={`
               position: absolute;
               top: ${INPUT_HEIGHT_WITHOUT_BORDER}px;
