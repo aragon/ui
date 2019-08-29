@@ -5,11 +5,16 @@ import { useTheme } from '../../theme'
 import { useInside } from '../../utils'
 import { Bar } from '../Bar/Bar'
 import ButtonBase from '../ButtonBase/ButtonBase'
+import { useLayout } from '../Layout/Layout'
 import { IconArrowLeft } from '../../icons'
 
 function BackButton({ label, ...props }) {
   const theme = useTheme()
   const [insideBarPrimary] = useInside('Bar:primary')
+
+  const { layoutName } = useLayout()
+  const compact = layoutName === 'small'
+  const horizontalPadding = (compact ? 2 : 3) * GU
 
   return (
     <ButtonBase
@@ -21,7 +26,8 @@ function BackButton({ label, ...props }) {
         border-radius: ${RADIUS}px 0 0 ${RADIUS}px;
         height: 100%;
         margin-left: ${insideBarPrimary ? -Bar.PADDING : 0}px;
-        padding: 0 ${3 * GU}px;
+        /* Adjust for icon's padding on the left */
+        padding: 0 ${horizontalPadding}px 0 ${horizontalPadding - 4}px;
         border-right: 1px solid ${theme.border};
         color: ${theme.surfaceContent};
         background: ${theme.surfaceInteractive};
