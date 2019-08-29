@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useContext, useState } from 'react'
 import PropTypes from 'prop-types'
 
 const RootContext = React.createContext(null)
@@ -41,8 +41,9 @@ RootProvider.propTypes = {
 function Root(props) {
   return <RootContext.Consumer {...props} />
 }
-
 Root.Provider = RootProvider
 
-export { Root }
+const useRoot = () => useContext(RootContext)
+
+export { Root, useRoot }
 export default Root
