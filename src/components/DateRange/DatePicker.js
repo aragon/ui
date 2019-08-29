@@ -14,6 +14,7 @@ class DatePicker extends React.PureComponent {
   }
 
   handleSelection = date => event => {
+    event.stopPropagation()
     event.preventDefault()
 
     if (typeof this.props.onSelect === 'function') {
