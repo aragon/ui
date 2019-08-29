@@ -158,6 +158,7 @@ const Item = styled.li`
   cursor: pointer;
 `
 
+/* eslint-disable react/prop-types */
 const Items = React.forwardRef(({ theme, ...props }, ref) => (
   <animated.ul
     ref={ref}
@@ -188,6 +189,7 @@ const Items = React.forwardRef(({ theme, ...props }, ref) => (
     {...props}
   />
 ))
+/* eslint-enable react/prop-types */
 
 const AutoCompleteMemo = React.memo(AutoComplete)
 
