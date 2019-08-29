@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Popper from 'popper.js'
 import { Transition, animated } from 'react-spring'
+import { useRoot } from '../../providers'
 import { springs, RADIUS } from '../../style'
 import { useTheme } from '../../theme'
 import { noop, stylingProps, KEY_ESC } from '../../utils'
@@ -24,6 +25,7 @@ class PopoverBase extends React.Component {
         ])
       )
     ),
+    rootBoundary: PropTypes.instanceOf(Element),
     theme: PropTypes.object,
     transitionStyles: PropTypes.object,
     zIndex: PropTypes.number,
@@ -69,7 +71,7 @@ class PopoverBase extends React.Component {
   }
 
   getPopperSettings() {
-    const { placement } = this.props
+    const { placement, rootBoundary } = this.props
 
     const settings = {
       placement,
@@ -77,7 +79,7 @@ class PopoverBase extends React.Component {
         preventOverflow: {
           enabled: true,
           padding: 10,
-          boundariesElement: 'window',
+          boundariesElement: rootBoundary || 'window',
         },
       },
       positionFixed: false,
@@ -192,6 +194,8 @@ class PopoverBase extends React.Component {
 
 function Popover({ scaleEffect, visible, ...props }) {
   const theme = useTheme()
+  const root = useRoot()
+
   return (
     <RootPortal>
       <Transition
@@ -207,6 +211,7 @@ function Popover({ scaleEffect, visible, ...props }) {
           (transitionStyles => (
             <PopoverBase
               {...props}
+              rootBoundary={root}
               theme={theme}
               transitionStyles={transitionStyles}
             />
