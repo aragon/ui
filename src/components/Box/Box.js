@@ -5,11 +5,23 @@ import { useTheme } from '../../theme/Theme'
 import { useLayout } from '../Layout/Layout'
 import { useInside } from '../../utils'
 
-function getPaddingValue(padding, insideSplitPrimary) {
-  if (typeof padding === 'boolean') {
-    return padding ? (insideSplitPrimary ? 5 : 2) * GU : 0
+// Padding values for the heading and the content.
+function getPaddingValues(padding, { insideSplitPrimary, fullWidth }) {
+  const defaultPadding = (fullWidth ? 2 : insideSplitPrimary ? 5 : 3) * GU
+
+  // Separate values for the header and content
+  if (Array.isArray(padding)) {
+    return padding
   }
-  return padding
+
+  // Default value if true, disable padding on the content otherwise
+  if (typeof padding === 'boolean') {
+    return [defaultPadding, padding ? defaultPadding : 0]
+  }
+
+  // The heading follows the content padding except when 0,
+  // in which case it will follow the default value.
+  return [padding === 0 ? defaultPadding : padding, padding]
 }
 
 function Box({ heading, children, padding, ...props }) {
@@ -18,7 +30,10 @@ function Box({ heading, children, padding, ...props }) {
   const { layoutName } = useLayout()
   const fullWidth = layoutName === 'small'
 
-  const paddingValue = getPaddingValue(padding, insideSplitPrimary)
+  const [headerPadding, contentPadding] = getPaddingValues(padding, {
+    insideSplitPrimary,
+    fullWidth,
+  })
 
   return (
     <div
@@ -46,12 +61,24 @@ function Box({ heading, children, padding, ...props }) {
             border-bottom: 1px solid ${theme.border};
           `}
         >
-          <HeaderContent heading={heading} padding={paddingValue} />
+          {typeof heading !== 'string' ? (
+            heading
+          ) : (
+            <h1
+              css={`
+                padding: 0 ${headerPadding}px;
+                ${textStyle('label2')};
+                color: ${theme.surfaceContentSecondary};
+              `}
+            >
+              {heading}
+            </h1>
+          )}
         </div>
       )}
       <div
         css={`
-          padding: ${paddingValue}px;
+          padding: ${contentPadding}px;
         `}
       >
         <div>{children}</div>
@@ -63,40 +90,15 @@ function Box({ heading, children, padding, ...props }) {
 Box.propTypes = {
   heading: PropTypes.node,
   children: PropTypes.node,
-  padding: PropTypes.oneOfType([PropTypes.bool, PropTypes.number]),
+  padding: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.number,
+    PropTypes.arrayOf(PropTypes.number),
+  ]),
 }
 
 Box.defaultProps = {
   padding: true,
-}
-
-function HeaderContent({ heading, padding }) {
-  const theme = useTheme()
-
-  if (!heading) {
-    return null
-  }
-
-  if (typeof heading !== 'string') {
-    return heading
-  }
-
-  return (
-    <h1
-      css={`
-        padding: 0 ${padding}px;
-        color: ${theme.surfaceContentSecondary};
-        ${textStyle('label2')};
-      `}
-    >
-      {heading}
-    </h1>
-  )
-}
-
-HeaderContent.propTypes = {
-  heading: PropTypes.node,
-  padding: PropTypes.number,
 }
 
 export { Box }
