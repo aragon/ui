@@ -231,6 +231,11 @@ const DataView = React.memo(function DataView({
   const hasAnyExpansion = Boolean(renderEntryExpansion)
   const canSelect = Boolean(onSelectEntries)
 
+  // If entriesPerPage is -1 (or 0): no pagination
+  if (entriesPerPage < 1) {
+    entriesPerPage = entries.length
+  }
+
   const pages = Math.ceil(entries.length / entriesPerPage)
 
   const displayFrom = entriesPerPage * selectedPage
