@@ -55,6 +55,10 @@ function Box({ heading, children, padding, ...props }) {
             height: ${4 * GU}px;
             padding: 0 ${defaultPadding}px;
             border-bottom: 1px solid ${theme.border};
+
+            // We pass the text style and color to the heading children, so
+            // that a node structure can inherit from it. Most components set
+            // their color and text style, but it is something to be aware of.
             color: ${theme.surfaceContentSecondary};
             ${textStyle('label2')};
           `}
