@@ -58,7 +58,9 @@ class FocusVisible extends React.Component {
     this._timer = setTimeout(() => {
       this._pointerActive = false
     }, 0)
-    this.setState({ focusVisible: false })
+    if (this.state.focusVisible) {
+      this.setState({ focusVisible: false })
+    }
   }
   // This is passed to `children()`, and called from the outside.
   handleFocus = () => {
