@@ -3,14 +3,7 @@ import PropTypes from 'prop-types'
 import { GU, RADIUS, textStyle } from '../../style'
 import { useTheme } from '../../theme/Theme'
 import { useLayout } from '../Layout/Layout'
-import { useInside } from '../../utils'
-
-function getPaddingValue(padding, insideSplitPrimary) {
-  if (typeof padding === 'boolean') {
-    return padding ? (insideSplitPrimary ? 5 : 2) * GU : 0
-  }
-  return padding
-}
+import { useInside, warnOnce } from '../../utils'
 
 function Box({ heading, children, padding, ...props }) {
   const theme = useTheme()
@@ -18,7 +11,24 @@ function Box({ heading, children, padding, ...props }) {
   const { layoutName } = useLayout()
   const fullWidth = layoutName === 'small'
 
-  const paddingValue = getPaddingValue(padding, insideSplitPrimary)
+  const defaultPadding = (fullWidth ? 2 : insideSplitPrimary ? 5 : 3) * GU
+
+  if (padding === true) {
+    warnOnce(
+      'Box:padding:true',
+      'Box: setting true on the padding prop is deprecated. Omit it, or set it to undefined instead.'
+    )
+    padding = defaultPadding
+  }
+  if (padding === false) {
+    warnOnce(
+      'Box:padding:false',
+      'Box: setting false on the padding prop is deprecated. Use 0.'
+    )
+    padding = 0
+  }
+
+  const contentPadding = padding === undefined ? defaultPadding : padding
 
   return (
     <div
@@ -38,20 +48,27 @@ function Box({ heading, children, padding, ...props }) {
       {...props}
     >
       {heading && (
-        <div
+        <h1
           css={`
             display: flex;
             align-items: center;
             height: ${4 * GU}px;
+            padding: 0 ${defaultPadding}px;
             border-bottom: 1px solid ${theme.border};
+
+            // We pass the text style and color to the heading children, so
+            // that a node structure can inherit from it. Most components set
+            // their color and text style, but it is something to be aware of.
+            color: ${theme.surfaceContentSecondary};
+            ${textStyle('label2')};
           `}
         >
-          <HeaderContent heading={heading} padding={paddingValue} />
-        </div>
+          {heading}
+        </h1>
       )}
       <div
         css={`
-          padding: ${paddingValue}px;
+          padding: ${contentPadding}px;
         `}
       >
         <div>{children}</div>
@@ -63,40 +80,12 @@ function Box({ heading, children, padding, ...props }) {
 Box.propTypes = {
   heading: PropTypes.node,
   children: PropTypes.node,
-  padding: PropTypes.oneOfType([PropTypes.bool, PropTypes.number]),
-}
+  padding: PropTypes.oneOfType([
+    PropTypes.number,
 
-Box.defaultProps = {
-  padding: true,
-}
-
-function HeaderContent({ heading, padding }) {
-  const theme = useTheme()
-
-  if (!heading) {
-    return null
-  }
-
-  if (typeof heading !== 'string') {
-    return heading
-  }
-
-  return (
-    <h1
-      css={`
-        padding: 0 ${padding}px;
-        color: ${theme.surfaceContentSecondary};
-        ${textStyle('label2')};
-      `}
-    >
-      {heading}
-    </h1>
-  )
-}
-
-HeaderContent.propTypes = {
-  heading: PropTypes.node,
-  padding: PropTypes.number,
+    // deprecated
+    PropTypes.bool,
+  ]),
 }
 
 export { Box }
