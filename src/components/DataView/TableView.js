@@ -26,6 +26,11 @@ function cellsFromFields(
     cells.push([null, 'left'])
   }
 
+  // Return null if all the fields are empty
+  if (cells.every(cell => !cell[0])) {
+    return null
+  }
+
   return cells
 }
 
@@ -160,13 +165,15 @@ function TableView({
         border-collapse: separate;
       `}
     >
-      <thead>
-        <HeadRow
-          cells={headCells}
-          selectedCount={selectedCount}
-          renderSelectionCount={renderSelectionCount}
-        />
-      </thead>
+      {headCells && (
+        <thead>
+          <HeadRow
+            cells={headCells}
+            selectedCount={selectedCount}
+            renderSelectionCount={renderSelectionCount}
+          />
+        </thead>
+      )}
       <tbody>
         {entryRows.map(({ cells, entry, hasExpansion, opened }, index) => (
           <React.Fragment key={entry.index}>
@@ -239,6 +246,7 @@ function HeadRow({ cells, selectedCount, renderSelectionCount }) {
                 text-align: ${cell[1]};
                 ${textStyle('label2')};
                 color: ${theme.surfaceContentSecondary};
+                border-bottom: 1px solid ${theme.border};
               `}
               colSpan={selectedCount > 0 && index === 1 ? cells.length - 1 : 1}
             >
@@ -277,7 +285,7 @@ function EntryRow({ cells, selected, rowHeight }) {
               padding-right: ${(!first && (align !== 'end' || last)) || compact
                 ? sidePadding
                 : 0}px;
-              border-top: 1px solid ${theme.border};
+              border-top: ${firstRow ? '0' : `1px solid ${theme.border}`};
             `}
           >
             <div

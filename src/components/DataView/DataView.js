@@ -256,7 +256,7 @@ const DataView = React.memo(function DataView({
     mode: listMode ? 'list' : 'table',
   })
 
-  const alignChildOnField = fields.findIndex(field => field.childStart)
+  const alignChildOnField = fields.findIndex(field => field && field.childStart)
 
   return (
     <Box padding={false}>
