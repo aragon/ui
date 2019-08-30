@@ -259,7 +259,7 @@ const DataView = React.memo(function DataView({
   const alignChildOnField = fields.findIndex(field => field && field.childStart)
 
   return (
-    <Box padding={false}>
+    <Box padding={0}>
       {heading && (
         <div
           css={`
