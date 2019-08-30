@@ -48,28 +48,19 @@ function Box({ heading, children, padding, ...props }) {
       {...props}
     >
       {heading && (
-        <div
+        <h1
           css={`
             display: flex;
             align-items: center;
             height: ${4 * GU}px;
+            padding: 0 ${defaultPadding}px;
             border-bottom: 1px solid ${theme.border};
+            color: ${theme.surfaceContentSecondary};
+            ${textStyle('label2')};
           `}
         >
-          {typeof heading !== 'string' ? (
-            heading
-          ) : (
-            <h1
-              css={`
-                padding: 0 ${defaultPadding}px;
-                ${textStyle('label2')};
-                color: ${theme.surfaceContentSecondary};
-              `}
-            >
-              {heading}
-            </h1>
-          )}
-        </div>
+          {heading}
+        </h1>
       )}
       <div
         css={`
