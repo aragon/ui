@@ -291,7 +291,9 @@ function EntryRow({ firstRow, cells, selected, rowHeight, mode }) {
             key={index}
             css={`
               position: relative;
-              width: ${compact ? 0 : 'auto'};
+              width: ${compact
+                ? '1px' // For some reason Blink tends to make 0 grow but not 1px
+                : 'auto'};
               height: ${rowHeight}px;
               padding-top: 0;
               padding-bottom: 0;
