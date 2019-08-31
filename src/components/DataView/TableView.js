@@ -8,8 +8,8 @@ import { Checkbox } from '../Input/Checkbox'
 import { ToggleButton } from './ToggleButton'
 import { OpenedSurfaceBorder } from './OpenedSurfaceBorder'
 
-// Table head row
-function cellsFromFields(
+// Table heading cells
+function headingsFromFields(
   fields,
   { hasAnyActions, hasAnyExpansion, selectContent, selectable }
 ) {
@@ -92,7 +92,7 @@ function TableView({
 
   const headCells = useMemo(
     () =>
-      cellsFromFields(fields, {
+      headingsFromFields(fields, {
         hasAnyActions,
         hasAnyExpansion,
         selectContent: (
@@ -132,6 +132,7 @@ function TableView({
         {entries.map((entry, index) => (
           <Entry
             key={entry.index}
+            alignChildOnField={alignChildOnField}
             entry={entry}
             fields={fields}
             firstRow={index === 0}
@@ -141,7 +142,6 @@ function TableView({
             opened={opened === entry.index}
             rowHeight={rowHeight}
             selectable={selectable}
-            alignChildOnField={alignChildOnField}
           />
         ))}
       </tbody>
