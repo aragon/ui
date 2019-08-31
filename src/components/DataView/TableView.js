@@ -139,6 +139,7 @@ function TableView({
             hasAnyActions={hasAnyActions}
             hasAnyExpansion={hasAnyExpansion}
             onToggle={toggleEntry}
+            onSelect={onSelect}
             opened={opened === entry.index}
             rowHeight={rowHeight}
             selectable={selectable}
