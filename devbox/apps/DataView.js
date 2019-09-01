@@ -406,11 +406,9 @@ const DEMOS = new Map([
     'Select',
     props => {
       const [selection, setSelection] = useState([])
-      return (
-        <DataView
-          {...props}
-          fields={['Account', 'Amount']}
-          entries={multiplyArray(
+      const entries = useMemo(
+        () =>
+          multiplyArray(
             [
               [addr(), '-7.900,33 ANT'],
               [addr(), '-8.760,90 ANT'],
@@ -420,7 +418,14 @@ const DEMOS = new Map([
               [addr(), '-328,65 ANT'],
             ],
             10
-          )}
+          ),
+        []
+      )
+      return (
+        <DataView
+          {...props}
+          fields={['Account', 'Amount']}
+          entries={entries}
           renderEntry={([address, amount]) => [
             <IdentityBadge entity={address} />,
             <Amount>{amount}</Amount>,
