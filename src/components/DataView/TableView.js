@@ -8,8 +8,8 @@ import { Checkbox } from '../Input/Checkbox'
 import { ToggleButton } from './ToggleButton'
 import { OpenedSurfaceBorder } from './OpenedSurfaceBorder'
 
-// Table head row
-function cellsFromFields(
+// Table heading cells
+function headingsFromFields(
   fields,
   { hasAnyActions, hasAnyExpansion, selectContent, selectable }
 ) {
@@ -26,24 +26,26 @@ function cellsFromFields(
     cells.push([null, 'left'])
   }
 
+  // Return null if all the fields are empty
+  if (cells.every(cell => !cell[0])) {
+    return null
+  }
+
   return cells
 }
 
-// Table content row
-function rowFromEntry(
+function cellsFromEntry(
   entry,
   {
     fields,
     hasAnyActions,
     hasAnyExpansion,
-    opened,
+    hasExpansion,
     selectContent,
     selectable,
     toggleChildContent,
   }
 ) {
-  const hasExpansion = entry.expansion.content.length > 0
-
   const cells = entry.entryNodes.map((content, index) => [
     content,
     fields[index].align,
@@ -65,12 +67,7 @@ function rowFromEntry(
     cells.push([entry.actions, 'end', true])
   }
 
-  return {
-    cells,
-    entry,
-    hasExpansion,
-    opened,
-  }
+  return cells
 }
 
 function TableView({
@@ -95,7 +92,7 @@ function TableView({
 
   const headCells = useMemo(
     () =>
-      cellsFromFields(fields, {
+      headingsFromFields(fields, {
         hasAnyActions,
         hasAnyExpansion,
         selectContent: (
@@ -110,46 +107,8 @@ function TableView({
     [fields, hasAnyExpansion, hasAnyActions]
   )
 
-  const entryRows = useMemo(
-    () =>
-      entries.map(entry => {
-        const rowOpened = opened === entry.index
-        return rowFromEntry(entry, {
-          fields,
-          hasAnyActions,
-          hasAnyExpansion,
-          opened: rowOpened,
-          toggleChildContent: hasAnyExpansion ? (
-            <Toggle
-              index={entry.index}
-              opened={rowOpened}
-              onToggle={toggleEntry}
-            />
-          ) : null,
-          selectable,
-          selectContent: selectable ? (
-            <Select
-              index={entry.index}
-              selected={entry.selected}
-              onSelect={onSelect}
-            />
-          ) : null,
-        })
-      }),
-    [
-      entries,
-      fields,
-      hasAnyActions,
-      hasAnyExpansion,
-      onSelect,
-      opened,
-      selectable,
-      toggleEntry,
-    ]
-  )
-
   useEffect(() => {
-    setOpened(false)
+    setOpened(-1)
   }, [entries, fields])
 
   return (
@@ -160,31 +119,31 @@ function TableView({
         border-collapse: separate;
       `}
     >
-      <thead>
-        <HeadRow
-          cells={headCells}
-          selectedCount={selectedCount}
-          renderSelectionCount={renderSelectionCount}
-        />
-      </thead>
+      {headCells && (
+        <thead>
+          <HeadRow
+            cells={headCells}
+            selectedCount={selectedCount}
+            renderSelectionCount={renderSelectionCount}
+          />
+        </thead>
+      )}
       <tbody>
-        {entryRows.map(({ cells, entry, hasExpansion, opened }, index) => (
-          <React.Fragment key={entry.index}>
-            <EntryRow
-              cells={cells}
-              rowHeight={rowHeight}
-              selected={entry.selected}
-            />
-            {hasExpansion && (
-              <EntryExpansion
-                alignChildOnCell={alignChildOnField + 1}
-                cellsCount={cells.length}
-                expansion={entry.expansion}
-                opened={opened}
-                rowHeight={rowHeight}
-              />
-            )}
-          </React.Fragment>
+        {entries.map((entry, index) => (
+          <Entry
+            key={entry.index}
+            alignChildOnField={alignChildOnField}
+            entry={entry}
+            fields={fields}
+            firstRow={index === 0}
+            hasAnyActions={hasAnyActions}
+            hasAnyExpansion={hasAnyExpansion}
+            onToggle={toggleEntry}
+            onSelect={onSelect}
+            opened={opened === entry.index}
+            rowHeight={rowHeight}
+            selectable={selectable}
+          />
         ))}
       </tbody>
     </table>
@@ -239,6 +198,7 @@ function HeadRow({ cells, selectedCount, renderSelectionCount }) {
                 text-align: ${cell[1]};
                 ${textStyle('label2')};
                 color: ${theme.surfaceContentSecondary};
+                border-bottom: 1px solid ${theme.border};
               `}
               colSpan={selectedCount > 0 && index === 1 ? cells.length - 1 : 1}
             >
@@ -251,9 +211,72 @@ function HeadRow({ cells, selectedCount, renderSelectionCount }) {
   )
 }
 
-function EntryRow({ cells, selected, rowHeight }) {
+const Entry = React.memo(function Entry({
+  alignChildOnField,
+  entry,
+  fields,
+  firstRow,
+  hasAnyActions,
+  hasAnyExpansion,
+  onSelect,
+  onToggle,
+  opened,
+  rowHeight,
+  selectable,
+}) {
+  const hasExpansion = entry.expansion.content.length > 0
+  const entryIndex = entry.index
+
+  const handleToggle = useCallback(() => {
+    onToggle(entryIndex)
+  }, [entryIndex, onToggle])
+
+  const handleSelectChange = useCallback(
+    check => {
+      onSelect(entryIndex, check)
+    },
+    [entryIndex, onSelect]
+  )
+
+  const cells = cellsFromEntry(entry, {
+    fields,
+    hasAnyActions,
+    hasAnyExpansion,
+    hasExpansion,
+    selectable,
+    toggleChildContent: hasAnyExpansion ? (
+      <Toggle opened={opened} onToggle={handleToggle} />
+    ) : null,
+    selectContent: selectable ? (
+      <Checkbox onChange={handleSelectChange} checked={entry.selected} />
+    ) : null,
+  })
+
+  return (
+    <React.Fragment>
+      <EntryRow
+        cells={cells}
+        firstRow={firstRow}
+        rowHeight={rowHeight}
+        selected={entry.selected}
+      />
+      {hasExpansion && (
+        <EntryExpansion
+          alignChildOnCell={alignChildOnField + 1}
+          cellsCount={cells.length}
+          expansion={entry.expansion}
+          opened={opened}
+          rowHeight={rowHeight}
+        />
+      )}
+    </React.Fragment>
+  )
+})
+
+function EntryRow({ firstRow, cells, selected, rowHeight, mode }) {
   const theme = useTheme()
   const sidePadding = useSidePadding()
+
   return (
     <tr
       css={`
@@ -277,7 +300,7 @@ function EntryRow({ cells, selected, rowHeight }) {
               padding-right: ${(!first && (align !== 'end' || last)) || compact
                 ? sidePadding
                 : 0}px;
-              border-top: 1px solid ${theme.border};
+              border-top: ${firstRow ? '0' : `1px solid ${theme.border}`};
             `}
           >
             <div
@@ -397,22 +420,7 @@ function EntryExpansion({
   )
 }
 
-function Select({ index, selected, onSelect }) {
-  const change = useCallback(
-    check => {
-      onSelect(index, check)
-    },
-    [index, onSelect]
-  )
-
-  return <Checkbox onChange={change} checked={selected} />
-}
-
-function Toggle({ index, opened, onToggle }) {
-  const toggle = useCallback(() => {
-    onToggle(index)
-  }, [index, onToggle])
-
+const Toggle = React.memo(function Toggle({ opened, onToggle }) {
   return (
     <div
       css={`
@@ -421,10 +429,10 @@ function Toggle({ index, opened, onToggle }) {
       `}
     >
       <OpenedSurfaceBorder opened={opened} />
-      <ToggleButton opened={opened} onClick={toggle} />
+      <ToggleButton opened={opened} onClick={onToggle} />
     </div>
   )
-}
+})
 
 /* eslint-enable react/prop-types */
 

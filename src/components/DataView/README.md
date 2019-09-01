@@ -156,7 +156,7 @@ Gets called when a page change is requested. Use with `page` to manage the pagin
 | -------- | ------------- |
 | `Number` | `10`          |
 
-Number of items per page.
+Number of items per page. Set to `-1` to display the items without pagination.
 
 ### selection
 
