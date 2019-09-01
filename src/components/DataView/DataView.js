@@ -133,7 +133,7 @@ function useSelection(entries, selection, onSelectEntries) {
     return 0
   }, [entries, currentSelection])
 
-  const toggleEntry = useCallback(
+  const toggleEntrySelect = useCallback(
     entryIndex => {
       updateSelection(
         currentSelection.includes(entryIndex)
@@ -153,7 +153,7 @@ function useSelection(entries, selection, onSelectEntries) {
   return {
     allSelected,
     selectAll,
-    toggleEntry,
+    toggleEntrySelect,
     selectedIndexes: currentSelection,
   }
 }
@@ -221,15 +221,21 @@ const DataView = React.memo(function DataView({
   const listMode =
     mode === 'list' || (mode !== 'table' && layoutName === 'small')
 
-  const { allSelected, selectAll, toggleEntry, selectedIndexes } = useSelection(
-    entries,
-    selection,
-    onSelectEntries
-  )
+  const {
+    allSelected,
+    selectAll,
+    toggleEntrySelect,
+    selectedIndexes,
+  } = useSelection(entries, selection, onSelectEntries)
 
   const hasAnyActions = Boolean(renderEntryActions)
   const hasAnyExpansion = Boolean(renderEntryExpansion)
   const canSelect = Boolean(onSelectEntries)
+
+  // If entriesPerPage is -1 (or 0): no pagination
+  if (entriesPerPage < 1) {
+    entriesPerPage = entries.length
+  }
 
   const pages = Math.ceil(entries.length / entriesPerPage)
 
@@ -251,10 +257,10 @@ const DataView = React.memo(function DataView({
     mode: listMode ? 'list' : 'table',
   })
 
-  const alignChildOnField = fields.findIndex(field => field.childStart)
+  const alignChildOnField = fields.findIndex(field => field && field.childStart)
 
   return (
-    <Box padding={false}>
+    <Box padding={0}>
       {heading && (
         <div
           css={`
@@ -282,7 +288,7 @@ const DataView = React.memo(function DataView({
           entries={renderedEntries}
           fields={preparedFields}
           hasAnyExpansion={hasAnyExpansion}
-          onSelect={toggleEntry}
+          onSelect={toggleEntrySelect}
           onSelectAll={selectAll}
           renderSelectionCount={renderSelectionCount}
           rowHeight={tableRowHeight}
@@ -299,7 +305,7 @@ const DataView = React.memo(function DataView({
           fields={preparedFields}
           hasAnyActions={hasAnyActions}
           hasAnyExpansion={hasAnyExpansion}
-          onSelect={toggleEntry}
+          onSelect={toggleEntrySelect}
           onSelectAll={selectAll}
           renderSelectionCount={renderSelectionCount}
           rowHeight={tableRowHeight}
