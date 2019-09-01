@@ -1,6 +1,5 @@
 export { Bar } from './Bar/Bar'
 export { DataView } from './DataView/DataView'
-export { DateRange as _DateRange } from './DateRange/DateRange'
 export { DiscButton } from './DiscButton/DiscButton'
 export { Info } from './Info'
 export { Layout, useLayout } from './Layout/Layout'
@@ -8,6 +7,7 @@ export { Link, ExternalLink, SafeLink } from './Link'
 export { Pagination } from './Pagination/Pagination'
 export { Tag } from './Tag/Tag'
 export { ToastHub, Toast, useToast } from './ToastHub/ToastHub'
+export { default as Accordion } from './Accordion/Accordion'
 export { default as AddressField } from './AddressField/AddressField'
 export { default as BackButton } from './BackButton/BackButton'
 export { default as BaseStyles } from './BaseStyles/BaseStyles'
@@ -67,10 +67,6 @@ export {
 export {
   default as TransactionProgress,
 } from './TransactionProgress/TransactionProgress'
-export { default as _AutoComplete } from './AutoComplete/AutoComplete'
-export {
-  default as _AutoCompleteSelected,
-} from './AutoComplete/AutoCompleteSelected'
 
 // Deprecated / to be deprecated components
 export { default as AppBar } from './AppView/AppBar'
@@ -78,3 +74,10 @@ export { default as AppView } from './AppView/AppView'
 export { default as Badge, BadgeNumber } from './Badge/Badge'
 export { TabBarLegacyCompatibility as TabBar } from './Tabs/Tabs'
 export { default as Text } from './Text/Text'
+
+// Experimental components
+export { DateRange as _DateRange } from './DateRange/DateRange'
+export { default as _AutoComplete } from './AutoComplete/AutoComplete'
+export {
+  default as _AutoCompleteSelected,
+} from './AutoComplete/AutoCompleteSelected'
