@@ -133,7 +133,7 @@ function useSelection(entries, selection, onSelectEntries) {
     return 0
   }, [entries, currentSelection])
 
-  const toggleEntry = useCallback(
+  const toggleEntrySelect = useCallback(
     entryIndex => {
       updateSelection(
         currentSelection.includes(entryIndex)
@@ -153,7 +153,7 @@ function useSelection(entries, selection, onSelectEntries) {
   return {
     allSelected,
     selectAll,
-    toggleEntry,
+    toggleEntrySelect,
     selectedIndexes: currentSelection,
   }
 }
@@ -221,11 +221,12 @@ const DataView = React.memo(function DataView({
   const listMode =
     mode === 'list' || (mode !== 'table' && layoutName === 'small')
 
-  const { allSelected, selectAll, toggleEntry, selectedIndexes } = useSelection(
-    entries,
-    selection,
-    onSelectEntries
-  )
+  const {
+    allSelected,
+    selectAll,
+    toggleEntrySelect,
+    selectedIndexes,
+  } = useSelection(entries, selection, onSelectEntries)
 
   const hasAnyActions = Boolean(renderEntryActions)
   const hasAnyExpansion = Boolean(renderEntryExpansion)
@@ -287,7 +288,7 @@ const DataView = React.memo(function DataView({
           entries={renderedEntries}
           fields={preparedFields}
           hasAnyExpansion={hasAnyExpansion}
-          onSelect={toggleEntry}
+          onSelect={toggleEntrySelect}
           onSelectAll={selectAll}
           renderSelectionCount={renderSelectionCount}
           rowHeight={tableRowHeight}
@@ -304,7 +305,7 @@ const DataView = React.memo(function DataView({
           fields={preparedFields}
           hasAnyActions={hasAnyActions}
           hasAnyExpansion={hasAnyExpansion}
-          onSelect={toggleEntry}
+          onSelect={toggleEntrySelect}
           onSelectAll={selectAll}
           renderSelectionCount={renderSelectionCount}
           rowHeight={tableRowHeight}
