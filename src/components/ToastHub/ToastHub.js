@@ -44,10 +44,11 @@ class ToastHubProvider extends React.PureComponent {
     const threshold = this.props.threshold
     this.setState(state => {
       // This calls cancel on all leaving animations that stack up too much
-      if (threshold !== Infinity)
+      if (threshold !== Infinity) {
         state.leaving
           .slice(threshold - 1)
           .forEach(item => this.cancel(item, true))
+      }
       return { items: [...state.items, { key: id++, msg }] }
     })
   }

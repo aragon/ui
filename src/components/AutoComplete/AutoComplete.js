@@ -49,7 +49,7 @@ function AutoComplete({
   const { ref: containerRef, handleBlur: handleResetBlur } = useOnBlur(reset)
   useEffect(() => {
     reset()
-  }, [opened, items, value])
+  }, [opened, items, value, reset])
   useClickOutside(handleClose, wrapRef)
 
   return (
