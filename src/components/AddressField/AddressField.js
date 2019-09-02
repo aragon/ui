@@ -15,6 +15,7 @@ const AddressFieldBase = React.memo(function AddressFieldBase({
   address,
   icon,
   onCopy,
+  ...props
 }) {
   const theme = useTheme()
   const inputRef = useRef(null)
@@ -57,6 +58,7 @@ const AddressFieldBase = React.memo(function AddressFieldBase({
         border-radius: ${RADIUS}px;
         box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.06);
       `}
+      {...props}
     >
       <div
         css={`
