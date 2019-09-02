@@ -1,68 +1,71 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { blockExplorerUrl, font } from '../../utils'
-import { theme } from '../../theme-legacy'
 import { IconClose } from '../../icons'
 import { ImageExists } from '../../hooks'
-import { Link } from '../Link'
-import Popover from '../Popover/Popover'
-import { ButtonIcon } from '../Button/ButtonIcon'
+import { GU, textStyle } from '../../style'
+import { useTheme } from '../../theme'
+import { blockExplorerUrl } from '../../utils'
 import AddressField from '../AddressField/AddressField'
+import { ButtonIcon } from '../Button/ButtonIcon'
+import Link from '../Link/Link'
+import Popover from '../Popover/Popover'
 
-class TokenBadgePopover extends React.PureComponent {
-  static propTypes = {
-    address: PropTypes.string.isRequired,
-    iconUrl: PropTypes.string,
-    label: PropTypes.string.isRequired,
-    visible: PropTypes.bool,
-    opener: PropTypes.instanceOf(Element),
-    onClose: PropTypes.func,
-    networkType: PropTypes.string,
-  }
-  render() {
-    const {
-      address,
-      iconUrl,
-      label,
-      networkType,
-      onClose,
-      opener,
-      visible,
-    } = this.props
-    return (
-      <Popover visible={visible} opener={opener} onClose={onClose}>
-        <section
+const TokenBadgePopover = React.memo(function TokenBadgePopover({
+  address,
+  iconUrl,
+  networkType,
+  label,
+  onClose,
+  opener,
+  visible,
+}) {
+  const theme = useTheme()
+  return (
+    <Popover visible={visible} opener={opener} onClose={onClose}>
+      <section
+        css={`
+          position: relative;
+          max-width: calc(100vw - 20px);
+          min-width: 300px;
+        `}
+      >
+        <ButtonIcon
+          label="Close"
+          onClick={onClose}
           css={`
-            position: relative;
-            padding: 10px 18px 20px;
-            max-width: calc(100vw - 20px);
-            min-width: 300px;
+            position: absolute;
+            top: 0;
+            right: 0;
+            border-radius: 0;
+            color: ${theme.surfaceIcon};
           `}
         >
-          <ButtonIcon
-            label="Close"
-            onClick={onClose}
-            css={`
-              position: absolute;
-              top: 0;
-              right: 0;
-              width: 46px;
-              height: 40px;
-            `}
-          >
-            <IconClose />
-          </ButtonIcon>
+          <IconClose size="small" />
+        </ButtonIcon>
+        <header
+          css={`
+            display: flex;
+            align-items: center;
+            height: ${4 * GU}px;
+            padding-left: ${2 * GU}px;
+            border-bottom: 1px solid ${theme.border};
+          `}
+        >
           <h1
             css={`
-              display: flex;
-              align-items: center;
-              padding: 5px 0;
-              ${font({ size: 'large', weight: 'bold' })};
-              color: ${theme.textPrimary};
+              ${textStyle('label2')}
+              font-weight: 400;
+              color: ${theme.surfaceContentSecondary};
             `}
           >
             {label}
           </h1>
+        </header>
+        <div
+          css={`
+            padding: ${2 * GU}px;
+          `}
+        >
           {iconUrl ? (
             <ImageExists src={iconUrl}>
               {({ exists }) => (
@@ -75,27 +78,36 @@ class TokenBadgePopover extends React.PureComponent {
           ) : (
             <AddressField address={address} />
           )}
-          <p
+          <div
             css={`
-              padding: 10px 0 0;
-              text-align: right;
-              ${font({ size: 'small' })};
+              display: flex;
+              justify-content: flex-end;
+              margin-top: ${2 * GU}px;
             `}
           >
-            <Link
-              external
-              href={blockExplorerUrl('token', address, { networkType })}
+            <p
               css={`
-                color: ${theme.accent};
+                ${textStyle('body3')};
               `}
             >
-              See on Etherscan
-            </Link>
-          </p>
-        </section>
-      </Popover>
-    )
-  }
+              <Link href={blockExplorerUrl('token', address, { networkType })}>
+                See on Etherscan
+              </Link>
+            </p>
+          </div>
+        </div>
+      </section>
+    </Popover>
+  )
+})
+TokenBadgePopover.propTypes = {
+  address: PropTypes.string.isRequired,
+  iconUrl: PropTypes.string,
+  label: PropTypes.string.isRequired,
+  visible: PropTypes.bool,
+  opener: PropTypes.instanceOf(Element),
+  onClose: PropTypes.func,
+  networkType: PropTypes.string,
 }
 
 const Icon = ({ src }) => (
@@ -103,8 +115,8 @@ const Icon = ({ src }) => (
     css={`
       flex-shrink: 0;
       display: flex;
-      width: 40px;
-      height: 40px;
+      width: 38px;
+      height: 38px;
       align-items: center;
       justify-content: center;
     `}
