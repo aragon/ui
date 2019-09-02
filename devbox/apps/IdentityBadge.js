@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { IdentityBadge } from '@aragon/ui'
+import { IconLabel, IdentityBadge, GU } from '@aragon/ui'
 
 class App extends React.Component {
   render() {
@@ -21,8 +21,27 @@ class App extends React.Component {
           connectedAccount
         />
         <IdentityBadge
+          customLabel="Has action"
           entity="0x2c9341a52cfa3f2c2554ca1803134137b9366b3c"
           connectedAccount
+          popoverAction={{
+            label: (
+              <div
+                css={`
+                  display: flex;
+                  align-content: center;
+                `}
+              >
+                <IconLabel
+                  css={`
+                    margin-right: ${1 * GU}px;
+                  `}
+                />
+                Add name
+              </div>
+            ),
+            onClick: () => console.log('clicked action'),
+          }}
         />
         <IdentityBadge
           entity="0x7c708ac7db979fa06705f8880f29f82cfc406993"
