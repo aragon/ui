@@ -2,7 +2,7 @@ import React, { useCallback, useRef, useState } from 'react'
 import PropTypes from 'prop-types'
 import { GU, RADIUS, textStyle } from '../../style'
 import { useTheme } from '../../theme'
-import { isAddress, monospace, shortenAddress, warnOnce } from '../../utils'
+import { isAddress, shortenAddress, warnOnce } from '../../utils'
 import ButtonBase from '../ButtonBase/ButtonBase'
 import EthIdenticon from '../EthIdenticon/EthIdenticon'
 import IdentityBadgePopover from './IdentityBadgePopover'
@@ -102,8 +102,7 @@ const IdentityBadge = React.memo(function IdentityBadge({
               white-space: nowrap;
               text-overflow: ellipsis;
               overflow: hidden;
-              ${textStyle('body2')}
-              ${!customLabel && address ? monospace : ''}
+              ${textStyle(!customLabel && address ? 'address1' : 'body2')}
             `}
             {...labelStyle}
           >

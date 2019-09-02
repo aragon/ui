@@ -1,9 +1,9 @@
 import React, { useCallback, useEffect, useRef } from 'react'
 import PropTypes from 'prop-types'
 import { IconCopy } from '../../icons/'
-import { GU, RADIUS } from '../../style'
+import { GU, RADIUS, textStyle } from '../../style'
 import { useTheme } from '../../theme'
-import { monospace, noop, warn } from '../../utils'
+import { noop, warn } from '../../utils'
 import TextInput from '../Input/TextInput'
 import { ButtonIcon } from '../Button/ButtonIcon'
 import EthIdenticon from '../EthIdenticon/EthIdenticon'
@@ -113,7 +113,7 @@ const AddressFieldBase = React.memo(function AddressFieldBase({
           max-width: 100%;
           border: 0;
           ${icon ? `padding-left: ${1 * GU}px` : ''};
-          ${monospace};
+          ${textStyle('address2')};
           &:read-only {
             color: ${theme.surfaceContent};
             text-shadow: none;
