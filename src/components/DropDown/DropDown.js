@@ -25,7 +25,7 @@ function useDropDown({
     if (buttonRef.current) {
       buttonRef.current.focus()
     }
-  }, [])
+  }, [buttonRef])
 
   const toggle = useCallback(() => setOpened(opened => !opened), [])
 
@@ -131,7 +131,7 @@ const DropDown = React.memo(function DropDown({
     if (buttonRef.current) {
       setButtonWidth(buttonRef.current.clientWidth)
     }
-  }, [vw])
+  }, [buttonRef, vw])
 
   const {
     handleItemSelect,

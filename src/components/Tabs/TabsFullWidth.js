@@ -32,13 +32,13 @@ function TabsFullWidth({ items, selected, onChange }) {
 
   const change = useCallback(
     index => {
-      if (index !== selectedItem) {
+      if (index !== selected) {
         onChange(index)
         close()
         focusButton()
       }
     },
-    [onChange, close, focusButton]
+    [selected, onChange, close, focusButton]
   )
 
   const { handleBlur, ref } = useOnBlur(close)

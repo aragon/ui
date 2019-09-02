@@ -117,7 +117,7 @@ function useSelection(entries, selection, onSelectEntries) {
         newSelection
       )
     },
-    [selection, onSelectEntries]
+    [selection, onSelectEntries, entries]
   )
 
   const allSelected = useMemo(() => {

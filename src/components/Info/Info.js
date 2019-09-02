@@ -53,7 +53,7 @@ function Info({
     const styles = getModeStyles(theme, mode)
 
     return styles
-  }, [mode, theme, title])
+  }, [mode, theme])
 
   return (
     <section
