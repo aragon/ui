@@ -43,6 +43,8 @@ function initContainsComponent() {
         return () => {
           updateCount(-1)
         }
+        // We don't want this effect to ever re-run
+        // eslint-disable-next-line react-hooks/exhaustive-deps
       }, [])
     },
   }
