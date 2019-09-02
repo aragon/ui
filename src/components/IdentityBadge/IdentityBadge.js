@@ -15,13 +15,15 @@ const IdentityBadge = React.memo(function IdentityBadge({
   connectedAccount,
   customLabel,
   entity,
-  fontSize,
   labelStyle,
   networkType,
   popoverAction,
   popoverTitle,
   shorten,
   style,
+
+  // Deprecated
+  fontSize,
 }) {
   if (fontSize) {
     warnOnce(
@@ -103,8 +105,8 @@ const IdentityBadge = React.memo(function IdentityBadge({
               text-overflow: ellipsis;
               overflow: hidden;
               ${textStyle(!customLabel && address ? 'address1' : 'body2')}
+              ${labelStyle}
             `}
-            {...labelStyle}
           >
             {label}
           </span>
