@@ -88,7 +88,7 @@ function ButtonBase({
         onKeyDown(event)
       }
     },
-    [onClick, element]
+    [elementType, onClick, onKeyDown]
   )
 
   return (

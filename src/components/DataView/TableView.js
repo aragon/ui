@@ -104,7 +104,14 @@ function TableView({
         ),
         selectable,
       }),
-    [fields, hasAnyExpansion, hasAnyActions]
+    [
+      fields,
+      hasAnyActions,
+      hasAnyExpansion,
+      allSelected,
+      onSelectAll,
+      selectable,
+    ]
   )
 
   useEffect(() => {
