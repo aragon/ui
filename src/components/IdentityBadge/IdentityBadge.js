@@ -59,7 +59,7 @@ const IdentityBadge = React.memo(function IdentityBadge({
           color: ${theme.textPrimary};
           height: ${3 * GU}px;
           &:active {
-            ${compact ? 'background: rgba(220, 234, 239, 0.3);' : ''};
+            ${compact ? `background: ${theme.surfacePressed};` : ''};
           }
         `}
       >
@@ -86,12 +86,11 @@ const IdentityBadge = React.memo(function IdentityBadge({
             <div
               css={`
                 display: block;
-                margin-right: -3px;
                 ${compact ? 'position: relative; top: -1px;' : ''};
               `}
             >
               <EthIdenticon
-                scale={compact ? 0.58 : 1}
+                scale={compact ? 0.75 : 1}
                 radius={compact ? 2 : 0}
                 address={address}
               />
@@ -99,7 +98,7 @@ const IdentityBadge = React.memo(function IdentityBadge({
           )}
           <span
             css={`
-              padding: 0 ${1 * GU}px;
+              padding: 0 ${(address ? 1 : 1.5) * GU}px;
               white-space: nowrap;
               text-overflow: ellipsis;
               overflow: hidden;
