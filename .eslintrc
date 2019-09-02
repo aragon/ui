@@ -20,13 +20,16 @@
     },
     "sourceType": "module"
   },
-  "plugins": ["prettier", "react", "import", "promise", "jest"],
+  "plugins": ["prettier", "react", "react-hooks", "import", "promise", "jest"],
   "rules": {
+    "react/jsx-boolean-value": "off",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
     "import/no-unresolved": [
       "error",
       { "ignore": ["^react(-dom)?$", "^styled-components$"] }
     ],
     "linebreak-style": ["error", "unix"],
-    "react/jsx-boolean-value": "off"
+    "curly": "error"
   }
 }
