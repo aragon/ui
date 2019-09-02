@@ -51,6 +51,8 @@ export default {
   positiveSurfaceContent: colors.MintGreenDark,
 
   badge: colors.AragonBlueLighter,
+  badgeContent: colors.GreyDark,
+  badgePressed: colors.ArcticBlueLight,
 
   tagIdentifier: colors.PurpleLight,
   tagIdentifierContent: colors.PurpleDark,

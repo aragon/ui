@@ -56,10 +56,10 @@ const IdentityBadge = React.memo(function IdentityBadge({
         css={`
           display: inline-flex;
           overflow: hidden;
-          color: ${theme.textPrimary};
+          color: ${theme.badgeContent};
           height: ${3 * GU}px;
           &:active {
-            ${compact ? `background: ${theme.surfacePressed};` : ''};
+            ${compact ? `background: ${theme.badgePressed};` : ''};
           }
         `}
       >

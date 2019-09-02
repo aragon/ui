@@ -42,7 +42,7 @@ const TokenBadge = React.memo(function TokenBadge({
         css={`
           display: inline-flex;
           overflow: hidden;
-          color: ${theme.textPrimary};
+          color: ${theme.badgeContent};
           height: ${3 * GU}px;
         `}
       >
@@ -76,6 +76,7 @@ const TokenBadge = React.memo(function TokenBadge({
                 display: flex;
                 flex-shrink: 1;
                 min-width: 0;
+                color: ${theme.badgeContent};
                 ${textStyle('body2')}
               `}
             >
