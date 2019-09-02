@@ -106,7 +106,7 @@ The action of the popover.
 
 #### popoverAction.label
 
-The text to display in the popover's action button.
+The node rendered in the popover's action button.
 
 #### popoverAction.onClick
 
