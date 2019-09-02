@@ -61,24 +61,13 @@ If it exists, it replaces the user's Ethereum account with a custom label.
 It is passed to the method isAddress from Web3.js
 "Checks if a given string is a valid Ethereum address. It will also check the checksum, if the address has upper and lowercase letters." (More info)[https://web3js.readthedocs.io/en/1.0/web3-utils.html#isaddress]
 
-### `fontSize`
+### `labelStyle`
 
 | Type     | Default value |
 | -------- | ------------- |
-| `String` | `normal`        |
+| `String` | None          |
 
-Determines the font size of the label.
-
-Variations:
-
-- xxsmall: '11px'
-- xsmall: '12px'
-- small: '14px'
-- normal: '15px'
-- large: '16px'
-- xlarge: '20px'
-- xxlarge: '22px'
-- great: '37px'
+Styles to apply to the label.
 
 ### `networkType`
 

@@ -2,7 +2,7 @@ import React, { useCallback, useRef, useState } from 'react'
 import PropTypes from 'prop-types'
 import { GU, RADIUS, textStyle } from '../../style'
 import { useTheme } from '../../theme'
-import { isAddress, monospace, shortenAddress } from '../../utils'
+import { isAddress, monospace, shortenAddress, warnOnce } from '../../utils'
 import ButtonBase from '../ButtonBase/ButtonBase'
 import EthIdenticon from '../EthIdenticon/EthIdenticon'
 import IdentityBadgePopover from './IdentityBadgePopover'
@@ -16,12 +16,20 @@ const IdentityBadge = React.memo(function IdentityBadge({
   customLabel,
   entity,
   fontSize,
+  labelStyle,
   networkType,
   popoverAction,
   popoverTitle,
   shorten,
   style,
 }) {
+  if (fontSize) {
+    warnOnce(
+      'IdentityBadge:fontSize',
+      'The “fontSize” prop is deprecated. Please use “labelStyle” to style the label instead.'
+    )
+  }
+
   const theme = useTheme()
   const elementRef = useRef(null)
 
@@ -98,6 +106,7 @@ const IdentityBadge = React.memo(function IdentityBadge({
               ${textStyle('body2')}
               ${!customLabel && address ? monospace : ''}
             `}
+            {...labelStyle}
           >
             {label}
           </span>
@@ -125,17 +134,19 @@ IdentityBadge.propTypes = {
   connectedAccount: PropTypes.bool,
   customLabel: PropTypes.string,
   entity: PropTypes.string,
-  fontSize: PropTypes.string,
+  labelStyle: PropTypes.string,
   networkType: PropTypes.string,
   popoverAction: PopoverActionType,
   popoverTitle: PropTypes.node,
   shorten: PropTypes.bool,
   style: PropTypes.object,
+
+  // Deprecated
+  fontSize: PropTypes.string,
 }
 IdentityBadge.defaultProps = {
   entity: '',
   shorten: true,
-  fontSize: 'normal',
   networkType: 'main',
   connectedAccount: false,
   compact: false,
