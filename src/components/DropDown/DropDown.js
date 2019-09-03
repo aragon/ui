@@ -8,6 +8,8 @@ import { useViewport } from '../../providers/Viewport/Viewport'
 import ButtonBase from '../ButtonBase/ButtonBase'
 import Popover from '../Popover/Popover'
 
+const MIN_WIDTH = 128
+
 function useDropDown({
   buttonRef,
   items,
@@ -118,6 +120,10 @@ const DropDown = React.memo(function DropDown({
     return -1
   }, [active, selected])
 
+  const [widthNoPx = MIN_WIDTH] = (width || '').split('px')
+  const [placeholderMinWidth, setPlaceholderMinWidth] = useState(
+    Math.min(widthNoPx, MIN_WIDTH)
+  )
   const [buttonWidth, setButtonWidth] = useState(0)
 
   const { refCallback, buttonRef } = useButtonRef(el => {
@@ -128,9 +134,10 @@ const DropDown = React.memo(function DropDown({
   // And every time the viewport resizes
   const { width: vw } = useViewport()
   useEffect(() => {
-    if (buttonRef.current) {
-      setButtonWidth(buttonRef.current.clientWidth)
+    if (!buttonRef.current) {
+      return
     }
+    setButtonWidth(buttonRef.current.clientWidth)
   }, [buttonRef, vw])
 
   const {
@@ -163,13 +170,15 @@ const DropDown = React.memo(function DropDown({
           justify-content: space-between;
           align-items: center;
           height: ${5 * GU}px;
-          padding: 0 ${2 * GU}px;
+          padding-left: ${2 * GU}px;
+          padding-right: ${1.5 * GU}px;
           width: ${width || (wide ? '100%' : 'auto')};
+          min-width: ${placeholderMinWidth}px;
           background: ${disabled ? theme.disabled : theme.surface};
           color: ${disabled ? theme.disabledContent : theme.surfaceContent};
           border: ${disabled ? 0 : 1}px solid
             ${closedWithChanges ? theme.selected : theme.border};
-          ${textStyle('body2')};
+          ${textStyle('label2')};
           ${disabled
             ? 'font-weight: 600;'
             : `
@@ -184,7 +193,7 @@ const DropDown = React.memo(function DropDown({
         <IconDown
           size="tiny"
           css={`
-            margin-left: ${1 * GU}px;
+            margin-left: ${1.5 * GU}px;
             color: ${closedWithChanges && !disabled ? theme.accent : 'inherit'};
           `}
         />
