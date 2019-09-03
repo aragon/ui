@@ -189,12 +189,7 @@ const DropDown = React.memo(function DropDown({
           `}
         />
       </ButtonBase>
-      <Popover
-        closeOnOpenerFocus
-        onClose={close}
-        opener={buttonRef.current}
-        visible={opened}
-      >
+      <Popover onClose={close} opener={buttonRef.current} visible={opened}>
         <div
           css={`
             min-width: ${buttonWidth}px;
