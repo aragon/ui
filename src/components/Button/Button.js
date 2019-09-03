@@ -253,7 +253,7 @@ function Button({
         transition-timing-function: ease-in-out;
         &:active {
           transform: ${disabled ? 'none' : 'translateY(1px)'};
-          box-shadow: ${disabled ? 'none' : '0px 1px 3px rgba(0, 0, 0, 0.125)'};
+          box-shadow: ${disabled ? 'none' : '0px 1px 3px rgba(0, 0, 0, 0.08)'};
         }
       `}
     >
