@@ -16,33 +16,21 @@ function App() {
 
 ### `transaction`
 
-- Type: `String` (Required)
-- Default: `""`
+| Type     | Default value   |
+| -------- | --------------- |
+| `String` | None (required) |
 
-A valid transaction hash. If using the default string or any invalid Txn Hash it will show "Invalid" in the badge.
+The transaction hash.
+
+If this is not supplied or an invalid transaction hash is supplied, the badge will display "Invalid".
 
 ### `shorten`
 
-- Type: `Bool`
-- Default: `true`
+| Type   | Default value |
+| ------ | ------------- |
+| `Bool` | `true`        |
 
-If true renders the first and last four characters of an Ethereum Address ('0x' doesn't count as part of the first four characters). i.e: address="0xcaf…5f2C"
-
-### `fontSize`
-
-- Type: `String`
-- Default: `normal`
-- Variations: {
-  xxsmall: '11px',
-  xsmall: '12px',
-  small: '14px',
-  normal: '15px',
-  large: '16px',
-  xlarge: '20px',
-  xxlarge: '22px',
-  great: '37px',}
-
-Determines the fontSize of the label.
+If true, only render the first and last four characters of the transaction hash (excluding the '0x' prefix).
 
 ### `networkType`
 
@@ -50,9 +38,3 @@ Determines the fontSize of the label.
 - Default: `main`
 
 Checks the type of network to get Etherscan's URL.
-
-### `background`
-
-- Type: `String`
-
-Change the background color.

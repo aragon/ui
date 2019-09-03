@@ -1,82 +1,94 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import styled from 'styled-components'
-import Text from '../Text/Text'
-import { Link } from '../Link'
+import { GU, RADIUS } from '../../style'
+import { useTheme } from '../../theme'
 import {
+  blockExplorerUrl,
   isTransaction,
   shortenTransaction,
-  blockExplorerUrl,
-  stylingProps,
+  warnOnce,
 } from '../../utils'
+import { Link } from '../Link'
 
-class TransactionBadge extends React.PureComponent {
-  static propTypes = {
-    transaction: PropTypes.string.isRequired,
-    shorten: PropTypes.bool,
-    fontSize: PropTypes.string,
-    networkType: PropTypes.string,
-    background: PropTypes.string,
-  }
-  static defaultProps = {
-    transaction: '',
-    shorten: true,
-    fontSize: 'normal',
-    networkType: 'main',
-    background: '#daeaef',
-  }
-  getMainProps(transaction) {
-    const { networkType, background } = this.props
-    const baseProps = stylingProps(this)
-    if (!transaction) {
-      return baseProps
-    }
-    return {
-      ...baseProps,
-      as: Link,
-      target: '_blank',
-      href: blockExplorerUrl('transaction', transaction, { networkType }),
-      style: {
-        ...baseProps.style,
-        cursor: 'pointer',
-        backgroundColor: background,
-      },
-    }
-  }
-  getLabel(transaction) {
-    const { shorten } = this.props
-    if (!transaction) {
-      return 'Invalid'
-    }
-    return shorten ? shortenTransaction(transaction) : transaction
-  }
-  render() {
-    const { props } = this
-    const { fontSize } = props
-    const transaction = isTransaction(props.transaction)
-      ? props.transaction
-      : null
-    const mainProps = this.getMainProps(transaction)
-    return (
-      <Main title={transaction} onClick={this.handleClick} {...mainProps}>
-        <Label size={fontSize}>{this.getLabel(transaction)}</Label>
-      </Main>
+const TransactionBadge = React.memo(function TransactionBadge({
+  className,
+  labelStyle,
+  networkType,
+  shorten,
+  style,
+  transaction,
+
+  // Deprecated
+  background,
+  fontSize,
+}) {
+  if (fontSize) {
+    warnOnce(
+      'TransactionBadge:fontSize',
+      'The “fontSize” prop is deprecated. Please use “labelStyle” to style the label instead.'
     )
   }
+  if (background) {
+    warnOnce(
+      'TransactionBadge:background',
+      'The “background” prop is deprecated. Please use “className” to style the badge instead.'
+    )
+  }
+
+  const theme = useTheme()
+
+  const isTx = isTransaction(transaction)
+  const transactionUrl = isTx
+    ? blockExplorerUrl('transaction', transaction, { networkType })
+    : ''
+  const label = !isTx
+    ? 'Invalid'
+    : shorten
+    ? shortenTransaction(transaction)
+    : transaction
+  return (
+    <Link
+      title={transaction}
+      href={transactionUrl}
+      css={`
+        overflow: hidden;
+        display: inline-flex;
+        align-items: center;
+        background: ${theme.badge};
+        color: ${theme.badgeContent};
+        border-radius: ${RADIUS}px;
+        text-decoration: none;
+      `}
+      className={className}
+      style={style}
+    >
+      <div
+        css={`
+          padding: 0 ${1.5 * GU}px;
+          white-space: nowrap;
+          ${labelStyle}
+        `}
+      >
+        {label}
+      </div>
+    </Link>
+  )
+})
+TransactionBadge.propTypes = {
+  className: PropTypes.string,
+  labelStyle: PropTypes.string,
+  networkType: PropTypes.string,
+  shorten: PropTypes.bool,
+  style: PropTypes.object,
+  transaction: PropTypes.string.isRequired,
+
+  // Deprecated
+  background: PropTypes.string,
+  fontSize: PropTypes.string,
 }
-
-const Main = styled.div`
-  overflow: hidden;
-  display: inline-flex;
-  align-items: center;
-  border-radius: 3px;
-  cursor: default;
-  text-decoration: none;
-`
-
-const Label = styled(Text)`
-  padding: 0 8px;
-  white-space: nowrap;
-`
+TransactionBadge.defaultProps = {
+  networkType: 'main',
+  shorten: true,
+}
 
 export default TransactionBadge
