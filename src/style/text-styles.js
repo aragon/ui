@@ -1,3 +1,5 @@
+import { monospace } from '../utils'
+
 const TEXT_STYLES = {
   title1: {
     size: 32,
@@ -57,6 +59,18 @@ const TEXT_STYLES = {
     lineHeight: 1.5,
     transform: 'uppercase',
   },
+  address1: {
+    size: 16,
+    weight: 400,
+    lineHeight: 1.5,
+    monospace: true,
+  },
+  address2: {
+    size: 14,
+    weight: 400,
+    lineHeight: 1.5,
+    monospace: true,
+  },
 }
 
 const STYLES_CSS = {
@@ -64,6 +78,7 @@ const STYLES_CSS = {
   weight: value => `font-weight: ${value};`,
   transform: value => `text-transform: ${value};`,
   lineHeight: value => `line-height: ${value};`,
+  monospace: value => (value ? monospace() : ''),
 }
 
 function textStyleToCss(textStyle) {

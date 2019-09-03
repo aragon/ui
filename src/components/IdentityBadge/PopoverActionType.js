@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 
 export default PropTypes.shape({
-  label: PropTypes.string.isRequired,
+  label: PropTypes.node.isRequired,
   onClick: PropTypes.func.isRequired,
 })

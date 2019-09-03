@@ -10,10 +10,7 @@ const PageTransactionBadge = ({ title }) => (
         <TransactionBadge transaction="0x281c36aee917b24d8e5f59481f6639d81e4cf7125b09fb93a2b43c31ef3fc115" />
       </div>
       <div style={{ padding: '30px' }}>
-        <TransactionBadge
-          transaction="0x281c36aee917b24d8e5f59481f6639d81e4cf7125b09fb93a2b43c31ef3fc115"
-          fontSize="xxlarge"
-        />
+        <TransactionBadge transaction="0x281c36aee917b24d8e5f59481f6639d81e4cf7125b09fb93a2b43c31ef3fc115" />
       </div>
       <div style={{ padding: '30px' }}>
         <TransactionBadge

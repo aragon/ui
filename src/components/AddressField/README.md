@@ -18,7 +18,9 @@ function App() {
 
 ### `address`
 
-- Type: `String` (Required)
+| Type     | Default value   |
+| -------- | --------------- |
+| `String` | None (Required) |
 
 Adress to display in the field.
 
@@ -30,7 +32,9 @@ Adress to display in the field.
 
 ### `icon`
 
-- Type: `Node`
+| Type   | Default value   |
+| ------ | --------------- |
+| `Node` | None            |
 
 Icon to display in the field. Can pass anything that can be rendered, such as num, string, DOM elements, an array of them, or fragments that contain them.
 
