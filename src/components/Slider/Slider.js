@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { Spring, animated } from 'react-spring'
 import { springs } from '../../style'
+import { useTheme } from '../../theme'
 import { unselectable } from '../../utils'
 
 const BAR_HEIGHT = 6
@@ -16,6 +17,7 @@ class Slider extends React.Component {
   static propTypes = {
     value: PropTypes.number,
     onUpdate: PropTypes.func,
+    theme: PropTypes.object,
   }
   static defaultProps = {
     value: 0,
@@ -82,10 +84,10 @@ class Slider extends React.Component {
   getHandleStyles(pressProgress) {
     return {
       transform: pressProgress.interpolate(
-        t => `translate3d(0, calc(${t}px - 50%), 0)`
+        t => `translate3d(0, calc(${t * 0.5}px - 50%), 0)`
       ),
       boxShadow: pressProgress.interpolate(
-        t => `0 4px 8px 0 rgba(0, 0, 0, ${0.13 * (1 - t)})`
+        t => `0 1px 3px rgba(0, 0, 0, ${0.1 - 0.02 * t})`
       ),
       background: pressProgress.interpolate(
         t => `hsl(0, 0%, ${100 * (1 - t * 0.01)}%)`
@@ -102,34 +104,51 @@ class Slider extends React.Component {
   getActiveBarStyles(value, pressProgress) {
     return {
       transform: value.interpolate(t => `scaleX(${t}) translateZ(0)`),
-      background: pressProgress.interpolate(
-        t => `hsl(179, ${Math.round(76 * (1 + 0.2 * t))}%, 48%)`
-      ),
     }
   }
   render() {
     const { pressed } = this.state
-    const value = Math.max(0, Math.min(1, this.props.value))
+    const { onUpdate, value, theme, ...props } = this.props
     return (
       <Spring
+        native
         config={springs.swift}
         to={{
           pressProgress: Number(pressed),
-          value,
+          value: Math.max(0, Math.min(1, value)),
         }}
-        native
       >
         {({ value, pressProgress }) => (
-          <Main>
-            <Area
+          <div
+            css={`
+              min-width: ${MIN_WIDTH}px;
+              padding: 0 ${HANDLE_SIZE / 2 + PADDING}px;
+              ${unselectable};
+            `}
+            {...props}
+          >
+            <div
               ref={this.handleRef}
               onMouseDown={this.dragStart}
               onTouchStart={this.dragStart}
+              css={`
+                position: relative;
+                height: ${HEIGHT}px;
+                cursor: pointer;
+              `}
             >
               <Bars>
-                <BaseBar />
-                <ActiveBar
+                <Bar
+                  css={`
+                    background: ${theme.surfaceUnder};
+                  `}
+                />
+                <Bar
                   style={this.getActiveBarStyles(value, pressProgress)}
+                  css={`
+                    transform-origin: 0 0;
+                    background: ${theme.selected};
+                  `}
                 />
               </Bars>
 
@@ -137,28 +156,27 @@ class Slider extends React.Component {
                 <HandlePosition
                   style={this.getHandlePositionStyles(value, pressProgress)}
                 >
-                  <Handle style={this.getHandleStyles(pressProgress)} />
+                  <animated.div
+                    style={this.getHandleStyles(pressProgress)}
+                    css={`
+                      position: absolute;
+                      top: 50%;
+                      left: 0;
+                      width: ${HANDLE_SIZE}px;
+                      height: ${HANDLE_SIZE}px;
+                      border: 1px solid ${theme.border};
+                      border-radius: 50%;
+                    `}
+                  />
                 </HandlePosition>
               </HandleClip>
-            </Area>
-          </Main>
+            </div>
+          </div>
         )}
       </Spring>
     )
   }
 }
-
-const Main = styled.div`
-  min-width: ${MIN_WIDTH}px;
-  padding: 0 ${HANDLE_SIZE / 2 + PADDING}px;
-  ${unselectable};
-`
-
-const Area = styled.div`
-  position: relative;
-  height: ${HEIGHT}px;
-  cursor: pointer;
-`
 
 const Bars = styled(animated.div)`
   position: absolute;
@@ -179,14 +197,6 @@ const Bar = styled(animated.div)`
   bottom: 0;
 `
 
-const BaseBar = styled(Bar)`
-  background: #edf3f6;
-`
-
-const ActiveBar = styled(Bar)`
-  transform-origin: 0 0;
-`
-
 const HandleClip = styled.div`
   pointer-events: none;
   overflow: hidden;
@@ -205,14 +215,7 @@ const HandlePosition = styled(animated.div)`
   transform-origin: 50% 50%;
 `
 
-const Handle = styled(animated.div)`
-  position: absolute;
-  top: 50%;
-  left: 0;
-  width: ${HANDLE_SIZE}px;
-  height: ${HANDLE_SIZE}px;
-  border: 0.5px solid #dcecf5;
-  border-radius: 50%;
-`
-
-export default Slider
+export default props => {
+  const theme = useTheme()
+  return <Slider theme={theme} {...props} />
+}
