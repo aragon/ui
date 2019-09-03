@@ -56,6 +56,7 @@ const IdentityBadge = React.memo(function IdentityBadge({
         ref={elementRef}
         title={address}
         disabled={localBadgeOnly}
+        element={localBadgeOnly ? 'a' : 'button'}
         onClick={address && !localBadgeOnly ? handleOpen : undefined}
         focusRingRadius={RADIUS}
         css={`
