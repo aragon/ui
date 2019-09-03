@@ -5,7 +5,7 @@ import { Transition, animated } from 'react-spring'
 import { useRoot } from '../../providers'
 import { springs, RADIUS } from '../../style'
 import { useTheme } from '../../theme'
-import { noop, stylingProps, KEY_ESC } from '../../utils'
+import { noop, stylingProps, warn, KEY_ESC } from '../../utils'
 import RootPortal from '../RootPortal/RootPortal'
 
 class PopoverBase extends React.Component {
@@ -140,6 +140,17 @@ class PopoverBase extends React.Component {
         this._cardElement.current.contains(focusedElement)) ||
       (closeOnOpenerFocus && opener && opener.contains(focusedElement))
     ) {
+      if (
+        closeOnOpenerFocus &&
+        (opener.tagName === 'BUTTON' || opener.tagName === 'INPUT')
+      ) {
+        warn(
+          'Popover: using "closeOnOpenerFocus" with a <button> or <input> may lead to bugs due ' +
+            'to cross-environment focus event handling. ' +
+            'See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#Clicking_and_focus ' +
+            'for more information.'
+        )
+      }
       return
     }
 
