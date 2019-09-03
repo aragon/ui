@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect, useCallback, useMemo } from 'react'
 import PropTypes from 'prop-types'
-import { warnOnce, unselectable } from '../../utils'
+import { warnOnce, unselectable, Inside } from '../../utils'
 import { GU, RADIUS, textStyle } from '../../style'
 import { useTheme } from '../../theme'
 import { IconDown } from '../../icons'
@@ -151,7 +151,7 @@ const DropDown = React.memo(function DropDown({
   const Label = renderLabel
 
   return (
-    <React.Fragment>
+    <Inside name="DropDown">
       <ButtonBase
         ref={refCallback}
         disabled={disabled}
@@ -219,24 +219,26 @@ const DropDown = React.memo(function DropDown({
               width: 100%;
             `}
           >
-            {items.map((item, index) => {
-              return (
-                <Item
-                  key={index}
-                  index={index}
-                  onSelect={handleItemSelect}
-                  theme={theme}
-                  item={item}
-                  header={header}
-                  length={items.length}
-                  selected={selectedIndex}
-                />
-              )
-            })}
+            <Inside name="DropDown:menu">
+              {items.map((item, index) => {
+                return (
+                  <Item
+                    key={index}
+                    index={index}
+                    onSelect={handleItemSelect}
+                    theme={theme}
+                    item={item}
+                    header={header}
+                    length={items.length}
+                    selected={selectedIndex}
+                  />
+                )
+              })}
+            </Inside>
           </ul>
         </div>
       </Popover>
-    </React.Fragment>
+    </Inside>
   )
 })
 
