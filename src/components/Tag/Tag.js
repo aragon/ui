@@ -96,8 +96,7 @@ function useLabel({ label, limitDigits }) {
     return formatedValue
   }, [label, limitDigits])
 
-  // Always convert to a string so we can check the length
-  return String(finalLabel)
+  return finalLabel
 }
 
 function Tag({
