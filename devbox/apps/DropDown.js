@@ -1,8 +1,23 @@
 import React from 'react'
 import styled from 'styled-components'
-import { DropDown, unselectable } from '@aragon/ui'
+import { IdentityBadge, DropDown, unselectable } from '@aragon/ui'
 
-const items = ['Strawberry', 'Banana', 'Apple', 'Cherry']
+const items = [
+  'Strawberry',
+  'Banana',
+  'Apple',
+  'Cherry',
+  <span
+    style={{
+      display: 'flex',
+      width: '100%',
+      justifyContent: 'space-between',
+    }}
+  >
+    <span>Test</span>
+    <IdentityBadge entity="0xc41e4c10b37d3397a99d4a90e7d85508a69a5c4c" />
+  </span>,
+]
 
 class App extends React.Component {
   state = { active: -1 }
