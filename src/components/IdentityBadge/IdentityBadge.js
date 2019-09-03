@@ -2,7 +2,7 @@ import React, { useCallback, useRef, useState } from 'react'
 import PropTypes from 'prop-types'
 import { GU, RADIUS, textStyle } from '../../style'
 import { useTheme } from '../../theme'
-import { isAddress, shortenAddress, warnOnce } from '../../utils'
+import { useInside, isAddress, shortenAddress, warnOnce } from '../../utils'
 import ButtonBase from '../ButtonBase/ButtonBase'
 import EthIdenticon from '../EthIdenticon/EthIdenticon'
 import IdentityBadgePopover from './IdentityBadgePopover'
@@ -34,6 +34,7 @@ const IdentityBadge = React.memo(function IdentityBadge({
 
   const theme = useTheme()
   const elementRef = useRef(null)
+  const [insideDropDownMenu] = useInside('DropDown')
 
   const [opened, setOpened] = useState(false)
   const handleClose = useCallback(() => {
@@ -47,13 +48,15 @@ const IdentityBadge = React.memo(function IdentityBadge({
   const label =
     customLabel || (address && shorten ? shortenAddress(address) : entity)
 
+  const localBadgeOnly = insideDropDownMenu || badgeOnly
+
   return (
     <React.Fragment>
       <ButtonBase
         ref={elementRef}
         title={address}
-        disabled={badgeOnly}
-        onClick={address && !badgeOnly ? handleOpen : undefined}
+        disabled={localBadgeOnly}
+        onClick={address && !localBadgeOnly ? handleOpen : undefined}
         focusRingRadius={RADIUS}
         css={`
           display: inline-flex;
@@ -112,7 +115,7 @@ const IdentityBadge = React.memo(function IdentityBadge({
           </span>
         </div>
       </ButtonBase>
-      {address && !badgeOnly && (
+      {address && !localBadgeOnly && (
         <IdentityBadgePopover
           address={address}
           visible={opened}
