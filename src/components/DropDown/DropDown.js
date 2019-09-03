@@ -220,8 +220,6 @@ const DropDown = React.memo(function DropDown({
             buttonWidth={buttonWidth}
             header={header}
             items={items}
-            handleItemSelect={handleItemSelect}
-            selectedIndex={selectedIndex}
           />
         </div>
       )}
@@ -238,8 +236,30 @@ const DropDown = React.memo(function DropDown({
   )
 })
 
-function PopoverContent({
-  refCallback = () => null,
+DropDown.propTypes = {
+  disabled: PropTypes.bool,
+  header: PropTypes.node,
+  items: PropTypes.arrayOf(PropTypes.node).isRequired,
+  onChange: PropTypes.func.isRequired,
+  placeholder: PropTypes.node,
+  renderLabel: PropTypes.func,
+  selected: PropTypes.number,
+  wide: PropTypes.bool,
+  width: PropTypes.string,
+
+  // deprecated
+  active: PropTypes.number,
+  label: PropTypes.string,
+}
+
+DropDown.defaultProps = {
+  placeholder: 'Select an item',
+  renderLabel: ({ selectedLabel }) => selectedLabel,
+  wide: false,
+}
+
+const PopoverContent = React.memo(function PopoverContent({
+  refCallback,
   buttonWidth,
   header,
   items,
@@ -291,28 +311,21 @@ function PopoverContent({
       </ul>
     </div>
   )
+})
+
+PopoverContent.propTypes = {
+  refCallback: PropTypes.func.isRequired,
+  buttonWidth: PropTypes.number.isRequired,
+  header: PropTypes.node.isRequired,
+  items: PropTypes.array.isRequired,
+  handleItemSelect: PropTypes.func.isRequired,
+  selectedIndex: PropTypes.number.isRequired,
 }
 
-DropDown.propTypes = {
-  disabled: PropTypes.bool,
-  header: PropTypes.node,
-  items: PropTypes.arrayOf(PropTypes.node).isRequired,
-  onChange: PropTypes.func.isRequired,
-  placeholder: PropTypes.node,
-  renderLabel: PropTypes.func,
-  selected: PropTypes.number,
-  wide: PropTypes.bool,
-  width: PropTypes.string,
-
-  // deprecated
-  active: PropTypes.number,
-  label: PropTypes.string,
-}
-
-DropDown.defaultProps = {
-  placeholder: 'Select an item',
-  renderLabel: ({ selectedLabel }) => selectedLabel,
-  wide: false,
+PopoverContent.defaultProps = {
+  refCallback: () => null,
+  handleItemSelect: () => null,
+  selectedIndex: -1,
 }
 
 const Item = React.memo(function Item({
