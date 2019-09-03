@@ -91,9 +91,9 @@ function useLabel({ label, limitDigits }) {
     }
 
     const max = Math.pow(10, digits) - 1
-    const formatedValue = parsed > max ? `${max}+` : parsed
+    const formattedValue = parsed > max ? `${max}+` : parsed
 
-    return formatedValue
+    return String(formattedValue)
   }, [label, limitDigits])
 
   return finalLabel
