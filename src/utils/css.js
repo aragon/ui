@@ -1,3 +1,9 @@
+import { MONOSPACE_FONT_FAMILY } from '../components/BaseStyles/BaseStyles'
+
+export const monospace = () => `
+  font-family: ${MONOSPACE_FONT_FAMILY}, monospace;
+`
+
 export const unselectable = () => `
   -webkit-touch-callout: none;
   -webkit-user-select: none;

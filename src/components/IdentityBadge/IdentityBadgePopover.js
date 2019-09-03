@@ -1,135 +1,147 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import PropTypes from 'prop-types'
-import { blockExplorerUrl, noop, font } from '../../utils'
-import { theme } from '../../theme-legacy'
 import { IconClose } from '../../icons'
-import { Link } from '../Link'
-import Popover from '../Popover/Popover'
+import { GU, textStyle } from '../../style'
+import { useTheme } from '../../theme'
+import { blockExplorerUrl, noop } from '../../utils'
+import AddressField from '../AddressField/AddressField'
 import { Button } from '../Button/Button'
 import { ButtonIcon } from '../Button/ButtonIcon'
-import AddressField from '../AddressField/AddressField'
+import Link from '../Link/Link'
+import Popover from '../Popover/Popover'
 import { Tag } from '../Tag/Tag'
 import PopoverActionType from './PopoverActionType'
 
-class IdentityBadgePopover extends React.PureComponent {
-  static propTypes = {
-    address: PropTypes.string,
-    connectedAccount: PropTypes.bool,
-    networkType: PropTypes.string,
-    onClose: PropTypes.func,
-    opener: PropTypes.instanceOf(Element),
-    popoverAction: PopoverActionType,
-    title: PropTypes.node,
-    visible: PropTypes.bool,
-  }
+const IdentityBadgePopover = React.memo(function IdentityBadgePopover({
+  address,
+  connectedAccount,
+  networkType,
+  onClose,
+  opener,
+  popoverAction,
+  title,
+  visible,
+}) {
+  const theme = useTheme()
+  const handlePopoverActionClick = useCallback(() => {
+    onClose()
+    if (popoverAction && popoverAction.onClick) {
+      popoverAction.onClick()
+    }
+  }, [onClose, popoverAction])
 
-  static defaultProps = { title: 'Address', onClose: noop }
+  const etherscanUrl = blockExplorerUrl('address', address, { networkType })
 
-  render() {
-    const {
-      address,
-      connectedAccount,
-      popoverAction,
-      networkType,
-      onClose,
-      opener,
-      title,
-      visible,
-    } = this.props
-    const etherscanUrl = blockExplorerUrl('address', address, { networkType })
-
-    return (
-      <Popover visible={visible} opener={opener} onClose={onClose}>
-        <section
+  return (
+    <Popover visible={visible} opener={opener} onClose={onClose}>
+      <section
+        css={`
+          position: relative;
+          max-width: calc(100vw - 20px);
+          min-width: 300px;
+        `}
+      >
+        <ButtonIcon
+          label="Close"
+          onClick={onClose}
           css={`
-            position: relative;
-            padding: 10px 18px 20px;
-            max-width: calc(100vw - 20px);
-            min-width: 300px;
+            position: absolute;
+            top: 0;
+            right: 0;
+            border-radius: 0;
+            color: ${theme.surfaceIcon};
           `}
         >
-          <ButtonIcon
-            label="Close"
-            onClick={onClose}
+          <IconClose size="small" />
+        </ButtonIcon>
+        <header
+          css={`
+            display: flex;
+            align-items: center;
+            height: ${4 * GU}px;
+            padding-left: ${2 * GU}px;
+            border-bottom: 1px solid ${theme.border};
+          `}
+        >
+          <h1
             css={`
-              position: absolute;
-              top: 0;
-              right: 0;
-              width: 46px;
-              height: 40px;
+              ${textStyle('label2')}
+              font-weight: 400;
+              color: ${theme.surfaceContentSecondary};
             `}
           >
-            <IconClose />
-          </ButtonIcon>
-          <header
+            {title}
+          </h1>
+          {connectedAccount && (
+            <Tag
+              css={`
+                margin-left: ${1.5 * GU}px;
+                max-width: ${15 * GU}px;
+              `}
+              size="small"
+              title="This is your Ethereum address"
+            >
+              you
+            </Tag>
+          )}
+        </header>
+        <div
+          css={`
+            padding: ${2 * GU}px;
+          `}
+        >
+          <AddressField
+            address={address}
+            css={`
+              margin-bottom: ${2 * GU}px;
+            `}
+          />
+          <div
             css={`
               display: flex;
-              align-items: center;
-              padding: 5px 0;
+              flex-direction: row-reverse;
+              justify-content: space-between;
             `}
           >
-            <h1
+            <p
               css={`
-                ${font({ size: 'large' })};
-                color: ${theme.textSecondary};
+                ${textStyle('body3')};
               `}
             >
-              {title}
-            </h1>
-            {connectedAccount && (
-              <Tag
+              {etherscanUrl && (
+                <Link href={etherscanUrl}>See on Etherscan</Link>
+              )}
+            </p>
+            {popoverAction && (
+              <Button
+                size="medium"
+                onClick={handlePopoverActionClick}
                 css={`
-                  margin: -1px 0 0 5px;
-                `}
-                size="small"
-                title="This is your Ethereum address"
-              >
-                you
-              </Tag>
-            )}
-          </header>
-          <AddressField address={address} />
-          <p
-            css={`
-              padding: 10px 0 0;
-              text-align: right;
-              ${font({ size: 'small' })};
-            `}
-          >
-            {etherscanUrl && (
-              <Link
-                external
-                href={etherscanUrl}
-                css={`
-                  color: ${theme.accent};
+                  color: ${theme.surfaceContentSecondary};
                 `}
               >
-                See on Etherscan
-              </Link>
+                {popoverAction.label}
+              </Button>
             )}
-          </p>
-          {popoverAction && (
-            <Button
-              mode="outline"
-              size="small"
-              onClick={this.handlePopoverActionClick}
-            >
-              {popoverAction.label}
-            </Button>
-          )}
-        </section>
-      </Popover>
-    )
-  }
-
-  handlePopoverActionClick = () => {
-    const {
-      onClose,
-      popoverAction: { onClick = noop },
-    } = this.props
-    onClose()
-    onClick()
-  }
+          </div>
+        </div>
+      </section>
+    </Popover>
+  )
+})
+IdentityBadgePopover.propTypes = {
+  address: PropTypes.string,
+  connectedAccount: PropTypes.bool,
+  networkType: PropTypes.string,
+  onClose: PropTypes.func,
+  opener: PropTypes.instanceOf(Element),
+  popoverAction: PopoverActionType,
+  title: PropTypes.node,
+  visible: PropTypes.bool,
+}
+IdentityBadgePopover.defaultProps = {
+  title: 'Address',
+  onClose: noop,
 }
 
 export default IdentityBadgePopover
