@@ -120,8 +120,10 @@ const DropDown = React.memo(function DropDown({
     return -1
   }, [active, selected])
 
+  const [getContentWidth, setGetContentWidth] = useState(true)
   const { refCallback: popoverRefCallback } = useButtonRef(el => {
     setPlaceholderMinWidth(el.clientWidth)
+    setGetContentWidth(false)
   })
   const [widthNoPx = MIN_WIDTH] = (width || '').split('px')
   const [placeholderMinWidth, setPlaceholderMinWidth] = useState(
@@ -142,6 +144,10 @@ const DropDown = React.memo(function DropDown({
     }
     setButtonWidth(buttonRef.current.clientWidth)
   }, [buttonRef, vw])
+
+  useEffect(() => {
+    setGetContentWidth(true)
+  }, [vw])
 
   const {
     handleItemSelect,
@@ -201,54 +207,91 @@ const DropDown = React.memo(function DropDown({
           `}
         />
       </ButtonBase>
-      <Popover onClose={close} opener={buttonRef.current} visible={opened}>
+      {getContentWidth && (
         <div
           css={`
-            min-width: ${buttonWidth}px;
-            color: ${theme.surfaceContentSecondary};
+            position: absolute;
+            top: -100vh;
+            left: -100vw;
           `}
-          ref={popoverRefCallback}
         >
-          {header && (
-            <div
-              css={`
-                padding: ${1.5 * GU}px ${2 * GU}px ${1.25 * GU}px;
-                ${textStyle('label2')};
-                ${unselectable};
-              `}
-            >
-              {header}
-            </div>
-          )}
-          <ul
-            css={`
-              margin: 0;
-              list-style: none;
-              width: 100%;
-            `}
-          >
-            <Inside name="DropDown:menu">
-              {items.map((item, index) => {
-                return (
-                  <Item
-                    key={index}
-                    index={index}
-                    onSelect={handleItemSelect}
-                    theme={theme}
-                    item={item}
-                    header={header}
-                    length={items.length}
-                    selected={selectedIndex}
-                  />
-                )
-              })}
-            </Inside>
-          </ul>
+          <PopoverContent
+            refCallback={popoverRefCallback}
+            buttonWidth={buttonWidth}
+            header={header}
+            items={items}
+            handleItemSelect={handleItemSelect}
+            selectedIndex={selectedIndex}
+          />
         </div>
+      )}
+      <Popover onClose={close} opener={buttonRef.current} visible={opened}>
+        <PopoverContent
+          buttonWidth={buttonWidth}
+          header={header}
+          items={items}
+          handleItemSelect={handleItemSelect}
+          selectedIndex={selectedIndex}
+        />
       </Popover>
     </Inside>
   )
 })
+
+function PopoverContent({
+  refCallback = () => null,
+  buttonWidth,
+  header,
+  items,
+  handleItemSelect,
+  selectedIndex,
+}) {
+  const theme = useTheme()
+  return (
+    <div
+      css={`
+        min-width: ${buttonWidth}px;
+        color: ${theme.surfaceContentSecondary};
+      `}
+    >
+      {header && (
+        <div
+          css={`
+            padding: ${1.5 * GU}px ${2 * GU}px ${1.25 * GU}px;
+            ${textStyle('label2')};
+            ${unselectable};
+          `}
+        >
+          {header}
+        </div>
+      )}
+      <ul
+        css={`
+          margin: 0;
+          list-style: none;
+          width: 100%;
+        `}
+      >
+        <Inside name="DropDown:menu">
+          {items.map((item, index) => {
+            return (
+              <Item
+                key={index}
+                index={index}
+                onSelect={handleItemSelect}
+                theme={theme}
+                item={item}
+                header={header}
+                length={items.length}
+                selected={selectedIndex}
+              />
+            )
+          })}
+        </Inside>
+      </ul>
+    </div>
+  )
+}
 
 DropDown.propTypes = {
   disabled: PropTypes.bool,
