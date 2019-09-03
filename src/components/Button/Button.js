@@ -149,19 +149,24 @@ function Button({
 }) {
   // backward compatibility and deprecated props
   if (iconOnly) {
-    warnOnce('Button: "iconOnly" is deprecated, please use "display".')
+    warnOnce(
+      'Button:iconOnly',
+      'Button: "iconOnly" is deprecated, please use "display".'
+    )
     display = 'icon'
   }
   if (mode === 'outline' || mode === 'secondary') {
-    warnOnce(`Button: the mode "${mode}" is deprecated, please use "normal".`)
+    warnOnce(
+      'Button:mode',
+      `Button: the mode "${mode}" is deprecated, please use "normal".`
+    )
     mode = 'normal'
   }
-  if (size === 'normal') {
-    warnOnce(`Button: the size "normal" is deprecated, please use "medium".`)
-    size = 'medium'
-  }
-  if (size === 'large') {
-    warnOnce(`Button: the size "large" is deprecated, please use "medium".`)
+  if (size === 'normal' || size === 'large') {
+    warnOnce(
+      'Button:size',
+      `Button: the size "${size}" is deprecated, please use "medium".`
+    )
     size = 'medium'
   }
 
