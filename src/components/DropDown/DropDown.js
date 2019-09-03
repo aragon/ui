@@ -213,6 +213,8 @@ const DropDown = React.memo(function DropDown({
             position: absolute;
             top: -100vh;
             left: -100vw;
+            opacity: 0;
+            visibility: hidden;
           `}
         >
           <PopoverContent
