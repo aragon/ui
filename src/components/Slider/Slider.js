@@ -156,7 +156,18 @@ class Slider extends React.Component {
                 <HandlePosition
                   style={this.getHandlePositionStyles(value, pressProgress)}
                 >
-                  <Handle style={this.getHandleStyles(pressProgress)} />
+                  <animated.div
+                    style={this.getHandleStyles(pressProgress)}
+                    css={`
+                      position: absolute;
+                      top: 50%;
+                      left: 0;
+                      width: ${HANDLE_SIZE}px;
+                      height: ${HANDLE_SIZE}px;
+                      border: 1px solid ${theme.border};
+                      border-radius: 50%;
+                    `}
+                  />
                 </HandlePosition>
               </HandleClip>
             </div>
@@ -202,16 +213,6 @@ const HandlePosition = styled(animated.div)`
   width: calc(100% - ${HANDLE_SIZE + HANDLE_SHADOW_MARGIN * 2}px);
   height: 100%;
   transform-origin: 50% 50%;
-`
-
-const Handle = styled(animated.div)`
-  position: absolute;
-  top: 50%;
-  left: 0;
-  width: ${HANDLE_SIZE}px;
-  height: ${HANDLE_SIZE}px;
-  border: 1px solid #e0e2ea;
-  border-radius: 50%;
 `
 
 export default props => {
