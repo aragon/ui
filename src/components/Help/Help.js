@@ -12,7 +12,7 @@ function Help({ hint, children }) {
   const buttonElement = useRef()
   const [visible, setVisible] = useState(false)
   const open = useCallback(() => setVisible(true), [])
-  const close = useCallback(() => setVisible(true), [])
+  const close = useCallback(() => setVisible(false), [])
   const [insideBoxHeading] = useInside('Box:heading')
   return (
     <React.Fragment>
