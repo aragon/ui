@@ -15,6 +15,8 @@ const App = () => (
 )
 ```
 
+## Props
+
 ### `zIndex`
 
 | Type     | Default value |
