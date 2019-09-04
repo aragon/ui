@@ -209,7 +209,7 @@ const DropDown = React.memo(function DropDown({
           css={`
             margin-left: ${1.5 * GU}px;
             color: ${disabled
-              ? theme.disabledContent
+              ? theme.disabledIcon
               : closedWithChanges
               ? theme.accent
               : theme.surfaceIcon};
