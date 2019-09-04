@@ -112,7 +112,7 @@ IdentityBadge.propTypes = {
   popoverTitle: PropTypes.node,
 }
 
-const Icon = ({ compact, src }) => {
+const Icon = ({ compact, src, ...props }) => {
   const size = (compact ? 2.25 : 3) * GU
   return (
     <span
@@ -127,6 +127,7 @@ const Icon = ({ compact, src }) => {
         background-repeat: no-repeat;
         background-image: url(${src});
       `}
+      {...props}
     />
   )
 }
