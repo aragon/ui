@@ -57,13 +57,16 @@ function ContextMenu({ children, zIndex, disabled }) {
                   ? theme.accent
                   : theme.surfaceContent};
                 background: ${disabled ? theme.disabled : theme.surface};
-                border: ${!disabled && `1px solid ${theme.border}`};
+                border: ${disabled ? '0' : `1px solid ${theme.border}`};
                 border-bottom-color: ${opened ? theme.surface : theme.border};
-                &:active {
-                  background: ${!disabled && theme.surfacePressed};
-                  border-bottom-color: ${!disabled &&
-                    (opened ? theme.surfacePressed : theme.border)};
-                }
+                ${disabled
+                  ? ''
+                  : `&:active {
+                  background: ${theme.surfacePressed};
+                  border-bottom-color: ${
+                    opened ? theme.surfacePressed : theme.border
+                  };
+                }`}
               `}
             >
               <IconEllipsis css={``} />
@@ -154,7 +157,7 @@ const Button = styled(ButtonBase)`
     opened ? `${RADIUS}px ${RADIUS}px 0 0` : `${RADIUS}px`};
 
   box-shadow: ${({ disabled }) =>
-    !disabled && `0px 1px 3px rgba(0, 0, 0, 0.1)`};
+    disabled ? 'none' : `0px 1px 3px rgba(0, 0, 0, 0.1)`};
 `
 
 export default ContextMenu
