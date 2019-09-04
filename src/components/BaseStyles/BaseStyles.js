@@ -1,19 +1,15 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { createGlobalStyle } from 'styled-components'
-import { useTheme } from '../../theme'
-import { textStyle } from '../../style'
 import { PublicUrl } from '../../providers/PublicUrl'
+import { DEFAULT_FONT_FAMILY, MONOSPACE_FONT_FAMILY } from '../../utils'
+import { textStyle } from '../../style'
+import { useTheme } from '../../theme'
 
 import overpassLightWoff2 from './assets/overpass/overpass-light.woff2'
 import overpassRegularWoff2 from './assets/overpass/overpass-regular.woff2'
 import overpassSemiBoldWoff2 from './assets/overpass/overpass-semibold.woff2'
 import overpassMonoLightWoff2 from './assets/overpass-mono/overpass-mono-light.woff2'
-
-// Using generic names so we can change the font if needed, while using these
-// generic names in our components.
-export const DEFAULT_FONT_FAMILY = 'aragon-ui'
-export const MONOSPACE_FONT_FAMILY = 'aragon-ui-monospace'
 
 const DEFAULT_FONTS = {
   '400': { url: overpassLightWoff2, format: 'woff2' },
