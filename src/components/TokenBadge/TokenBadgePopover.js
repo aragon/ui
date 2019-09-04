@@ -1,6 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { ImageExists } from '../../hooks'
+import { GU, RADIUS } from '../../style'
+import { useTheme } from '../../theme'
 import { blockExplorerUrl } from '../../utils'
 import AddressField from '../AddressField/AddressField'
 import BadgePopoverBase from '../BadgeBase/BadgePopoverBase'
@@ -15,6 +17,7 @@ const TokenBadgePopover = React.memo(function TokenBadgePopover({
   title,
   visible,
 }) {
+  const theme = useTheme()
   const etherscanUrl = blockExplorerUrl('token', address, { networkType })
 
   return (
@@ -25,7 +28,7 @@ const TokenBadgePopover = React.memo(function TokenBadgePopover({
             {({ exists }) => (
               <AddressField
                 address={address}
-                icon={exists ? <Icon src={iconUrl} /> : null}
+                icon={exists ? <Icon src={iconUrl} theme={theme} /> : null}
               />
             )}
           </ImageExists>
@@ -51,15 +54,20 @@ TokenBadgePopover.propTypes = {
   visible: PropTypes.bool,
 }
 
-const Icon = ({ src }) => (
+const Icon = ({ src, theme }) => (
   <div
     css={`
       flex-shrink: 0;
       display: flex;
-      width: 38px;
-      height: 38px;
+      width: ${5 * GU}px;
+      height: ${5 * GU}px;
       align-items: center;
       justify-content: center;
+      border: 1px solid ${theme.border};
+      border-radius: ${RADIUS}px;
+      border-right: 0;
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
     `}
   >
     <div
@@ -77,6 +85,7 @@ const Icon = ({ src }) => (
 
 Icon.propTypes = {
   src: PropTypes.string.isRequired,
+  theme: PropTypes.object.isRequired,
 }
 
 export default TokenBadgePopover
