@@ -29,6 +29,14 @@ function App() {
 
 The app's contract address.
 
+### `badgeOnly`
+
+| Type   | Default value |
+| ------ | ------------- |
+| `Bool` | `false`       |
+
+Disables the badge as a button and avoids prompting the popover on click.
+
 ### `iconSrc`
 
 | Type     | Default value   |
@@ -45,13 +53,13 @@ Source of app's icon asset, preferrably 24x24. A default app icon will be used i
 
 The app's identifier.
 
-###  `label`
+### `labelStyle`
 
-| Type     | Default value   |
-| -------- | --------------- |
-| `String` | None            |
+| Type     | Default value |
+| -------- | ------------- |
+| `String` | None          |
 
-A custom label for the app. If both the `identifier` and `label` are provided, `label` will take precendence.
+Styles to apply to the `label`.
 
 ###  `name`
 
@@ -66,4 +74,28 @@ App's short human readable name.
 - Type: `String`
 - Default: `main`
 
-Checks the type of network to get Etherscan's URL.
+Checks the type of network to get an Etherscan URL from the `appAddress`.
+
+### `popoverTitle`
+
+| Type   | Default value |
+| ------ | ------------- |
+| `Node` | `main`        |
+
+The title of the popover. You can pass anything that can be rendered, such as a num, string, DOM element, an array of them, or React fragments that contain them.
+
+### `popoverAction`
+
+| Type                     | Default value |
+| ------------------------ | ------------- |
+| `BadgePopoverActionType` | None          |
+
+The action of the popover
+
+#### popoverAction.label
+
+The node rendered in the popover's action button.
+
+#### popoverAction.onClick
+
+The onclick handler for the popover's action button.
