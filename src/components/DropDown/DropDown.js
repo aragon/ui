@@ -121,10 +121,13 @@ const DropDown = React.memo(function DropDown({
   }, [active, selected])
 
   const [getContentWidth, setGetContentWidth] = useState(true)
-  const { refCallback: popoverRefCallback } = useButtonRef(el => {
+  const popoverRefCallback = useCallback(el => {
+    if (!el) {
+      return
+    }
     setPlaceholderMinWidth(el.clientWidth)
     setGetContentWidth(false)
-  })
+  }, [])
   const [widthNoPx = MIN_WIDTH] = (width || '').split('px')
   const [placeholderMinWidth, setPlaceholderMinWidth] = useState(
     Math.min(widthNoPx, MIN_WIDTH)
