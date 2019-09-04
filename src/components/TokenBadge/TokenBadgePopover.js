@@ -1,113 +1,54 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { IconClose } from '../../icons'
 import { ImageExists } from '../../hooks'
-import { GU, textStyle } from '../../style'
-import { useTheme } from '../../theme'
 import { blockExplorerUrl } from '../../utils'
 import AddressField from '../AddressField/AddressField'
-import { ButtonIcon } from '../Button/ButtonIcon'
+import BadgePopoverBase from '../BadgeBase/BadgePopoverBase'
 import Link from '../Link/Link'
-import Popover from '../Popover/Popover'
 
 const TokenBadgePopover = React.memo(function TokenBadgePopover({
   address,
   iconUrl,
   networkType,
-  label,
   onClose,
   opener,
+  title,
   visible,
 }) {
-  const theme = useTheme()
+  const etherscanUrl = blockExplorerUrl('token', address, { networkType })
+
   return (
-    <Popover visible={visible} opener={opener} onClose={onClose}>
-      <section
-        css={`
-          position: relative;
-          max-width: calc(100vw - 20px);
-          min-width: 300px;
-        `}
-      >
-        <ButtonIcon
-          label="Close"
-          onClick={onClose}
-          css={`
-            position: absolute;
-            top: 0;
-            right: 0;
-            border-radius: 0;
-            color: ${theme.surfaceIcon};
-          `}
-        >
-          <IconClose size="small" />
-        </ButtonIcon>
-        <header
-          css={`
-            display: flex;
-            align-items: center;
-            height: ${4 * GU}px;
-            padding-left: ${2 * GU}px;
-            border-bottom: 1px solid ${theme.border};
-          `}
-        >
-          <h1
-            css={`
-              ${textStyle('label2')}
-              font-weight: 400;
-              color: ${theme.surfaceContentSecondary};
-            `}
-          >
-            {label}
-          </h1>
-        </header>
-        <div
-          css={`
-            padding: ${2 * GU}px;
-          `}
-        >
-          {iconUrl ? (
-            <ImageExists src={iconUrl}>
-              {({ exists }) => (
-                <AddressField
-                  address={address}
-                  icon={exists ? <Icon src={iconUrl} /> : null}
-                />
-              )}
-            </ImageExists>
-          ) : (
-            <AddressField address={address} />
-          )}
-          <div
-            css={`
-              display: flex;
-              justify-content: flex-end;
-              margin-top: ${2 * GU}px;
-            `}
-          >
-            <p
-              css={`
-                ${textStyle('body3')};
-              `}
-            >
-              <Link href={blockExplorerUrl('token', address, { networkType })}>
-                See on Etherscan
-              </Link>
-            </p>
-          </div>
-        </div>
-      </section>
-    </Popover>
+    <BadgePopoverBase
+      addressField={
+        iconUrl ? (
+          <ImageExists src={iconUrl}>
+            {({ exists }) => (
+              <AddressField
+                address={address}
+                icon={exists ? <Icon src={iconUrl} /> : null}
+              />
+            )}
+          </ImageExists>
+        ) : (
+          <AddressField address={address} />
+        )
+      }
+      link={etherscanUrl && <Link href={etherscanUrl}>See on Etherscan</Link>}
+      onClose={onClose}
+      opener={opener}
+      title={title}
+      visible={visible}
+    />
   )
 })
 TokenBadgePopover.propTypes = {
   address: PropTypes.string.isRequired,
   iconUrl: PropTypes.string,
-  label: PropTypes.string.isRequired,
-  visible: PropTypes.bool,
-  opener: PropTypes.instanceOf(Element),
-  onClose: PropTypes.func,
   networkType: PropTypes.string,
+  onClose: PropTypes.func,
+  opener: PropTypes.instanceOf(Element),
+  title: PropTypes.string.isRequired,
+  visible: PropTypes.bool,
 }
 
 const Icon = ({ src }) => (
