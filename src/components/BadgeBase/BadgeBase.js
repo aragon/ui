@@ -6,7 +6,6 @@ import { useInside } from '../../utils'
 import ButtonBase from '../ButtonBase/ButtonBase'
 
 const BadgeBase = React.memo(function BadgeBase({
-  badgeOnly,
   badgeRef,
   children,
   className,
@@ -32,7 +31,7 @@ const BadgeBase = React.memo(function BadgeBase({
         title={title}
         disabled={isDisabled}
         element={href || insideDropDownMenu ? 'a' : 'button'}
-        onClick={!isDisabled && !badgeOnly ? onClick : undefined}
+        onClick={!isDisabled ? onClick : undefined}
         href={!isDisabled ? href : undefined}
         focusRingRadius={RADIUS}
         css={`
@@ -81,13 +80,12 @@ const BadgeBase = React.memo(function BadgeBase({
         </div>
       </ButtonBase>
       {typeof children === 'function'
-        ? children(badgeOnly || isDisabled) // whether popover is disabled
+        ? children(isDisabled) // whether popover is disabled
         : children}
     </React.Fragment>
   )
 })
 BadgeBase.propTypes = {
-  badgeOnly: PropTypes.bool,
   badgeRef: PropTypes.any,
   children: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
   className: PropTypes.string,
@@ -100,10 +98,6 @@ BadgeBase.propTypes = {
   onClick: PropTypes.func,
   style: PropTypes.object,
   title: PropTypes.string,
-}
-BadgeBase.defaultProps = {
-  badgeOnly: false,
-  compact: false,
 }
 
 export default BadgeBase

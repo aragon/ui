@@ -8,6 +8,7 @@ import EthIdenticon from '../EthIdenticon/EthIdenticon'
 import IdentityBadgePopover from './IdentityBadgePopover'
 
 const IdentityBadge = React.memo(function IdentityBadge({
+  badgeOnly,
   compact,
   connectedAccount,
   entity,
@@ -51,6 +52,7 @@ const IdentityBadge = React.memo(function IdentityBadge({
     <BadgeBase
       badgeRef={badgeRef}
       compact={compact}
+      disabled={badgeOnly}
       icon={
         address && (
           <div
@@ -104,7 +106,6 @@ IdentityBadge.propTypes = {
   badgeOnly: PropTypes.bool,
   compact: PropTypes.bool,
   connectedAccount: PropTypes.bool,
-  disabled: PropTypes.bool,
   entity: PropTypes.string,
   label: PropTypes.string,
   labelStyle: PropTypes.string,
