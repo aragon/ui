@@ -87,7 +87,15 @@ const IdentityBadgePopover = React.memo(function IdentityBadgePopover({
                 : ''}
             `}
           >
-            {link}
+            {link && (
+              <p
+                css={`
+                  ${textStyle('body3')};
+                `}
+              >
+                {link}
+              </p>
+            )}
             {popoverAction && (
               <Button
                 size="medium"

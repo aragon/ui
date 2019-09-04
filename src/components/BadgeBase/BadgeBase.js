@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { GU, RADIUS } from '../../style'
+import { GU, RADIUS, textStyle } from '../../style'
 import { useTheme } from '../../theme'
 import { useInside } from '../../utils'
 import ButtonBase from '../ButtonBase/ButtonBase'
@@ -71,6 +71,7 @@ const IdentityBadge = React.memo(function IdentityBadge({
               white-space: nowrap;
               text-overflow: ellipsis;
               overflow: hidden;
+              ${textStyle('body2')}
               ${labelStyle}
             `}
           >
