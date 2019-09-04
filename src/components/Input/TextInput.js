@@ -5,53 +5,49 @@ import { warnOnce } from '../../utils'
 import { textStyle, GU, RADIUS } from '../../style'
 
 // Simple text input
-const TextInput = React.forwardRef(
-  ({ multiline, type, value, ...props }, ref) => {
-    const theme = useTheme()
-    return (
-      <input
-        as={multiline ? 'textarea' : 'input'}
-        type={multiline ? undefined : type}
-        value={value}
-        {...props}
-        ref={ref}
-        css={`
-          width: ${({ wide }) => (wide ? '100%' : 'auto')};
-          height: ${5 * GU}px;
-          padding: 0 ${1.5 * GU}px;
-          background: ${theme.surface};
-          border: 1px solid ${theme.border};
-          color: ${theme.surfaceContent};
-          border-radius: ${RADIUS}px;
-          appearance: none;
-          ${textStyle('body3')};
+const TextInput = React.forwardRef(({ multiline, type, ...props }, ref) => {
+  const theme = useTheme()
+  return (
+    <input
+      as={multiline ? 'textarea' : 'input'}
+      type={multiline ? undefined : type}
+      {...props}
+      ref={ref}
+      css={`
+        width: ${({ wide }) => (wide ? '100%' : 'auto')};
+        height: ${5 * GU}px;
+        padding: 0 ${1.5 * GU}px;
+        background: ${theme.surface};
+        border: 1px solid ${theme.border};
+        color: ${theme.surfaceContent};
+        border-radius: ${RADIUS}px;
+        appearance: none;
+        ${textStyle('body3')};
 
-          ${multiline
-            ? `
+        ${multiline
+          ? `
             height: auto;
             padding: ${1 * GU}px ${1.5 * GU}px;
             resize: vertical;
           `
-            : ''}
+          : ''}
 
-          &:focus {
-            outline: none;
-            border-color: ${theme.selected};
-          }
-          &:read-only {
-            color: transparent;
-            text-shadow: 0 0 0 ${theme.surfaceContentSecondary};
-            border-color: ${theme.border};
-          }
-          &:invalid {
-            border-color: ${value ? theme.negative : theme.border};
-            box-shadow: none;
-          }
-        `}
-      />
-    )
-  }
-)
+        &:focus {
+          outline: none;
+          border-color: ${theme.selected};
+        }
+        &:read-only {
+          color: transparent;
+          text-shadow: 0 0 0 ${theme.surfaceContentSecondary};
+          border-color: ${theme.border};
+        }
+        &:invalid {
+          box-shadow: none;
+        }
+      `}
+    />
+  )
+})
 
 TextInput.propTypes = {
   required: PropTypes.bool,
