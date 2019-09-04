@@ -1,30 +1,36 @@
 import React, { useCallback, useRef, useState } from 'react'
 import PropTypes from 'prop-types'
-import { GU, RADIUS, textStyle } from '../../style'
-import { useTheme } from '../../theme'
-import { useInside, isAddress, shortenAddress, warnOnce } from '../../utils'
-import ButtonBase from '../ButtonBase/ButtonBase'
+import { GU, textStyle } from '../../style'
+import { isAddress, shortenAddress, warnOnce } from '../../utils'
+import BadgeBase from '../BadgeBase/BadgeBase'
+import BadgePopoverActionType from '../BadgeBase/BadgePopoverActionType'
 import EthIdenticon from '../EthIdenticon/EthIdenticon'
 import IdentityBadgePopover from './IdentityBadgePopover'
-import PopoverActionType from './PopoverActionType'
 
 const IdentityBadge = React.memo(function IdentityBadge({
-  badgeOnly,
-  className,
   compact,
   connectedAccount,
-  customLabel,
   entity,
+  label,
   labelStyle,
   networkType,
   popoverAction,
   popoverTitle,
   shorten,
-  style,
 
   // Deprecated
+  customLabel,
   fontSize,
+
+  ...props
 }) {
+  if (customLabel) {
+    warnOnce(
+      'IdentityBadge:customLabel',
+      'The “customLabel” prop is deprecated. Please use “label” instead.'
+    )
+    label = label || customLabel
+  }
   if (fontSize) {
     warnOnce(
       'IdentityBadge:fontSize',
@@ -32,129 +38,87 @@ const IdentityBadge = React.memo(function IdentityBadge({
     )
   }
 
-  const theme = useTheme()
-  const elementRef = useRef(null)
-  const [insideDropDownMenu] = useInside('DropDown')
-
+  const badgeRef = useRef(null)
   const [opened, setOpened] = useState(false)
-  const handleClose = useCallback(() => {
-    setOpened(false)
-  }, [])
-  const handleOpen = useCallback(() => {
-    setOpened(true)
-  }, [])
+  const handleClose = useCallback(() => setOpened(false), [])
+  const handleOpen = useCallback(() => setOpened(true), [])
 
   const address = isAddress(entity) ? entity : null
-  const label =
-    customLabel || (address && shorten ? shortenAddress(address) : entity)
-
-  const localBadgeOnly = insideDropDownMenu || badgeOnly
+  const displayLabel =
+    label || (address && shorten ? shortenAddress(address) : entity)
 
   return (
-    <React.Fragment>
-      <ButtonBase
-        ref={elementRef}
-        title={address}
-        disabled={localBadgeOnly}
-        element={localBadgeOnly ? 'a' : 'button'}
-        onClick={address && !localBadgeOnly ? handleOpen : undefined}
-        focusRingRadius={RADIUS}
-        css={`
-          display: inline-flex;
-          overflow: hidden;
-          color: ${theme.badgeContent};
-          height: ${3 * GU}px;
-          &:active {
-            ${compact ? `background: ${theme.badgePressed};` : ''};
-          }
-        `}
-      >
-        <div
-          css={`
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            ${compact
-              ? `
-                padding-left: ${1 * GU}px;
-                border-radius: 2px;
-              `
-              : `
-                background: ${theme.badge};
-                border-radius: ${RADIUS}px;
-              `};
-            text-decoration: none;
-          `}
-          className={className}
-          style={style}
-        >
-          {address && (
-            <div
-              css={`
-                display: block;
-                ${compact ? 'position: relative; top: -1px;' : ''};
-              `}
-            >
-              <EthIdenticon
-                scale={compact ? 0.75 : 1}
-                radius={compact ? 2 : 0}
-                address={address}
-              />
-            </div>
-          )}
-          <span
+    <BadgeBase
+      badgeRef={badgeRef}
+      compact={compact}
+      icon={
+        address && (
+          <div
             css={`
-              padding: 0 ${(address ? 1 : 1.5) * GU}px;
-              white-space: nowrap;
-              text-overflow: ellipsis;
-              overflow: hidden;
-              ${textStyle(!customLabel && address ? 'address1' : 'body2')}
-              ${labelStyle}
+              display: block;
+              margin-right: ${1 * GU}px;
+              ${compact
+                ? `
+                  position: relative;
+                  top: -1px;
+                `
+                : ''};
             `}
           >
-            {label}
-          </span>
-        </div>
-      </ButtonBase>
-      {address && !localBadgeOnly && (
-        <IdentityBadgePopover
-          address={address}
-          visible={opened}
-          connectedAccount={connectedAccount}
-          networkType={networkType}
-          opener={elementRef.current}
-          onClose={handleClose}
-          popoverAction={popoverAction}
-          title={popoverTitle}
-        />
-      )}
-    </React.Fragment>
+            <EthIdenticon
+              scale={compact ? 0.75 : 1}
+              radius={compact ? 2 : 0}
+              address={address}
+            />
+          </div>
+        )
+      }
+      label={displayLabel}
+      labelStyle={`
+        ${!label && address ? textStyle('address1') : ''}
+        ${labelStyle}
+      `}
+      onClick={address ? handleOpen : undefined}
+      title={address}
+      {...props}
+    >
+      {badgeOnly =>
+        !badgeOnly &&
+        address && (
+          <IdentityBadgePopover
+            address={address}
+            connectedAccount={connectedAccount}
+            networkType={networkType}
+            onClose={handleClose}
+            opener={badgeRef.current}
+            popoverAction={popoverAction}
+            title={popoverTitle}
+            visible={opened}
+          />
+        )
+      }
+    </BadgeBase>
   )
 })
 IdentityBadge.propTypes = {
-  badgeOnly: PropTypes.bool,
-  className: PropTypes.string,
   compact: PropTypes.bool,
   connectedAccount: PropTypes.bool,
-  customLabel: PropTypes.string,
   entity: PropTypes.string,
+  label: PropTypes.string,
   labelStyle: PropTypes.string,
   networkType: PropTypes.string,
-  popoverAction: PopoverActionType,
+  popoverAction: BadgePopoverActionType,
   popoverTitle: PropTypes.node,
   shorten: PropTypes.bool,
-  style: PropTypes.object,
 
   // Deprecated
+  customLabel: PropTypes.string,
   fontSize: PropTypes.string,
 }
 IdentityBadge.defaultProps = {
   entity: '',
-  shorten: true,
   networkType: 'main',
-  connectedAccount: false,
-  compact: false,
-  badgeOnly: false,
+  shorten: true,
 }
 
 export default IdentityBadge

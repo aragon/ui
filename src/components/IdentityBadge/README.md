@@ -26,7 +26,7 @@ function App() {
 | ------ | ------------- |
 | `Bool` | `false`       |
 
-Disables the badge as a button and doesn't prompt the popover.
+Disables the badge as a button and avoids prompting the popover on click.
 
 ### `compact`
 
@@ -34,7 +34,7 @@ Disables the badge as a button and doesn't prompt the popover.
 | ------ | ------------- |
 | `Bool` | `false`       |
 
-Smaller version of the IdentityBadge.
+Smaller version of the IdentityBadge. Should be used when the IdentityBadge is placed inline with text.
 
 ### `connectedAccount`
 
@@ -42,15 +42,7 @@ Smaller version of the IdentityBadge.
 | ------ | ------------- |
 | `Bool` | `false`       |
 
-When diplaying the Badge Popover, verifies if the Badge is the same as the connected account, and renders: "This is your Ethereum address"
-
-### `customLabel`
-
-| Type     | Default value |
-| -------- | ------------- |
-| `String` | None          |
-
-If it exists, it replaces the user's Ethereum account with a custom label.
+If the given `entity` is the same as the connected account, rendering "you" in the popover.
 
 ### `entity`
 
@@ -58,8 +50,15 @@ If it exists, it replaces the user's Ethereum account with a custom label.
 | -------- | ------------------- |
 | `String` | `""` (Empty string) |
 
-It is passed to the method isAddress from Web3.js
-"Checks if a given string is a valid Ethereum address. It will also check the checksum, if the address has upper and lowercase letters." (More info)[https://web3js.readthedocs.io/en/1.0/web3-utils.html#isaddress]
+The Ethereum entity. If the given string is a valid Ethereum address (also based on the checksum, if provided (more info)[https://web3js.readthedocs.io/en/1.0/web3-utils.html#isaddress]), an Identicon will be automatically displayed.
+
+### `label`
+
+| Type     | Default value |
+| -------- | ------------- |
+| `String` | None          |
+
+A label for the `entity`. If available, `label` is displayed instead of the `entity` on the badge.
 
 ### `labelStyle`
 
@@ -67,7 +66,7 @@ It is passed to the method isAddress from Web3.js
 | -------- | ------------- |
 | `String` | None          |
 
-Styles to apply to the label.
+Styles to apply to the `label`.
 
 ### `networkType`
 
@@ -75,7 +74,7 @@ Styles to apply to the label.
 | -------- | ------------- |
 | `String` | `main`        |
 
-Checks the type of network to get Etherscan's URL.
+Checks the type of network to get an Etherscan URL from the `entity`.
 
 ### `popoverTitle`
 
@@ -83,15 +82,15 @@ Checks the type of network to get Etherscan's URL.
 | ------ | ------------- |
 | `Node` | `main`        |
 
-The title of the popover. The type Node means that it can pass anything that can be rendered, such as num, string, DOM elements, an array of them, or fragments that contain them.
+The title of the popover. You can pass anything that can be rendered, such as a num, string, DOM element, an array of them, or React fragments that contain them.
 
 ### `popoverAction`
 
-| Type                | Default value |
-| ------------------- | ------------- |
-| `PopoverActionType` | None          |
+| Type                     | Default value |
+| ------------------------ | ------------- |
+| `BadgePopoverActionType` | None          |
 
-The action of the popover.
+The action of the popover
 
 #### popoverAction.label
 
@@ -107,4 +106,4 @@ The onclick handler for the popover's action button.
 | ------ | ------------- |
 | `Bool` | `true`        |
 
-If true renders the first and last four characters of an Ethereum Address ('0x' doesn't count as part of the first four characters). i.e: address="0xcaf…5f2C"
+If true and `entity` is a valid address, reduces `entity` to only the first and last four characters (excluding the "0x" prefix) for display. i.e: address="0xcafe…5f2C"
