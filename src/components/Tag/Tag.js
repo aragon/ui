@@ -65,13 +65,13 @@ function getSize(size, { uppercase, discMode, iconAndLabel }) {
 
   // normal
   return `
-    min-width: ${3 * GU}px;
+    min-width: ${2.5 * GU}px;
     width: ${discMode ? `${3 * GU}px` : 'auto'};
-    height: ${3 * GU}px;
+    height: ${2.5 * GU}px;
     padding: ${discMode ? '0' : `0 ${1.5 * GU}px`} ;
     padding-top: ${uppercase ? '1px' : 0};
     ${iconAndLabel ? `padding-left: ${1.25 * GU}px` : ''};
-    border-radius: ${3 * GU}px;
+    border-radius: ${2.5 * GU}px;
     ${textStyle('label2')};
     font-weight: 600;
   `
