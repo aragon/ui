@@ -56,12 +56,9 @@ export function useImageExists(src, timeUntilFallback = 50) {
     return done
   }, [src, timeUntilFallback])
 
-  return useMemo(() => ({ src, displayFallback, exists, loading }), [
-    src,
-    displayFallback,
-    exists,
-    loading,
-  ])
+  return useMemo(() => {
+    return { src, displayFallback, exists, loading }
+  }, [src, displayFallback, exists, loading])
 }
 
 // render prop
