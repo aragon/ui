@@ -1,9 +1,10 @@
 import React, { useCallback, useRef, useState } from 'react'
+import PropTypes from 'prop-types'
 import { GU, textStyle } from '../../style'
 import { useTheme } from '../../theme'
 import { Inside, useInside } from '../../utils'
 import { IconQuestion } from '../../icons'
-import DiscButton from '../DiscButton/DiscButton'
+import { DiscButton } from '../DiscButton/DiscButton'
 import Popover from '../Popover/Popover'
 
 function Help({ hint, children }) {
@@ -58,6 +59,11 @@ function Help({ hint, children }) {
       </Popover>
     </React.Fragment>
   )
+}
+
+Help.propTypes = {
+  hint: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired,
 }
 
 export default Help
