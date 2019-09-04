@@ -7,7 +7,7 @@ import ButtonBase from '../ButtonBase/ButtonBase'
 
 const BadgeBase = React.memo(function BadgeBase({
   badgeOnly,
-  buttonRef,
+  badgeRef,
   children,
   className,
   compact,
@@ -27,7 +27,7 @@ const BadgeBase = React.memo(function BadgeBase({
   return (
     <React.Fragment>
       <ButtonBase
-        ref={buttonRef}
+        ref={badgeRef}
         title={title}
         disabled={localBadgeOnly}
         element={localBadgeOnly ? 'a' : 'button'}
@@ -85,7 +85,7 @@ const BadgeBase = React.memo(function BadgeBase({
 })
 BadgeBase.propTypes = {
   badgeOnly: PropTypes.bool,
-  buttonRef: PropTypes.any,
+  badgeRef: PropTypes.any,
   children: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
   className: PropTypes.string,
   compact: PropTypes.bool,
