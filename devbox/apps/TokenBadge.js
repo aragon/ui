@@ -1,5 +1,4 @@
 import React from 'react'
-import styled from 'styled-components'
 import { TokenBadge } from '@aragon/ui'
 
 class App extends React.Component {
@@ -49,13 +48,6 @@ class App extends React.Component {
             name: 'Aragon badge only',
             width: '250px',
             badgeOnly: true,
-          },
-          {
-            address: '0x960b236a07cf122663c4303350609a66a7b288c0',
-            symbol: 'ANT',
-            name: 'Aragon disabled',
-            width: '250px',
-            disabled: true,
           },
           {
             address: '0x960b236a07cf122663c4303350609a66a7b288c0',
