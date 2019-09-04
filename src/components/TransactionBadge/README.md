@@ -34,7 +34,16 @@ If true, only render the first and last four characters of the transaction hash 
 
 ### `networkType`
 
-- Type: `String`
-- Default: `main`
+| Type     | Default value   |
+| -------- | --------------- |
+| `String` | `main`          |
 
 Checks the type of network to get Etherscan's URL.
+
+### `disabled`
+
+| Type   | Default value |
+| ------ | ------------- |
+| `Bool` | `true`        |
+
+Disable the link.
