@@ -8,6 +8,8 @@ import { useViewport } from '../../providers/Viewport/Viewport'
 import ButtonBase from '../ButtonBase/ButtonBase'
 import Popover from '../Popover/Popover'
 
+const MIN_WIDTH = 128
+
 function useDropDown({
   buttonRef,
   items,
@@ -107,6 +109,40 @@ const DropDown = React.memo(function DropDown({
   }
 
   const theme = useTheme()
+  const { width: vw } = useViewport()
+
+  const [widthNoPx = MIN_WIDTH] = (width || '').split('px')
+  const [placeholderMinWidth, setPlaceholderMinWidth] = useState(
+    Math.min(widthNoPx, MIN_WIDTH)
+  )
+  const [buttonWidth, setButtonWidth] = useState(0)
+  const [getContentWidth, setGetContentWidth] = useState(true)
+
+  // Adjust the button width if the item widths are larger than declared width
+  const popoverRefCallback = useCallback(el => {
+    if (!el) {
+      return
+    }
+    // Add 4 GU to accomodate for caret spacing
+    setPlaceholderMinWidth(el.clientWidth + 4 * GU)
+    setGetContentWidth(false)
+  }, [])
+  // Re-adjust if the width or items ever change
+  useEffect(() => {
+    setGetContentWidth(true)
+  }, [vw, items])
+
+  // Update the button width every time the reference updates
+  const { refCallback, buttonRef } = useButtonRef(el => {
+    setButtonWidth(el.clientWidth)
+  })
+  // And every time the viewport resizes
+  useEffect(() => {
+    if (!buttonRef.current) {
+      return
+    }
+    setButtonWidth(buttonRef.current.clientWidth)
+  }, [buttonRef, vw])
 
   const selectedIndex = useMemo(() => {
     if (selected !== undefined) {
@@ -117,21 +153,6 @@ const DropDown = React.memo(function DropDown({
     }
     return -1
   }, [active, selected])
-
-  const [buttonWidth, setButtonWidth] = useState(0)
-
-  const { refCallback, buttonRef } = useButtonRef(el => {
-    // Update the button width every time the reference updates
-    setButtonWidth(el.clientWidth)
-  })
-
-  // And every time the viewport resizes
-  const { width: vw } = useViewport()
-  useEffect(() => {
-    if (buttonRef.current) {
-      setButtonWidth(buttonRef.current.clientWidth)
-    }
-  }, [buttonRef, vw])
 
   const {
     handleItemSelect,
@@ -163,8 +184,10 @@ const DropDown = React.memo(function DropDown({
           justify-content: space-between;
           align-items: center;
           height: ${5 * GU}px;
-          padding: 0 ${2 * GU}px;
+          padding-left: ${2 * GU}px;
+          padding-right: ${1.5 * GU}px;
           width: ${width || (wide ? '100%' : 'auto')};
+          min-width: ${placeholderMinWidth}px;
           background: ${disabled ? theme.disabled : theme.surface};
           color: ${disabled ? theme.disabledContent : theme.surfaceContent};
           border: ${disabled ? 0 : 1}px solid
@@ -184,54 +207,37 @@ const DropDown = React.memo(function DropDown({
         <IconDown
           size="tiny"
           css={`
-            margin-left: ${1 * GU}px;
+            margin-left: ${1.5 * GU}px;
             color: ${closedWithChanges && !disabled ? theme.accent : 'inherit'};
           `}
         />
       </ButtonBase>
-      <Popover onClose={close} opener={buttonRef.current} visible={opened}>
+      {getContentWidth && (
         <div
           css={`
-            min-width: ${buttonWidth}px;
-            color: ${theme.surfaceContentSecondary};
+            position: absolute;
+            top: -100vh;
+            left: -100vw;
+            opacity: 0;
+            visibility: hidden;
           `}
         >
-          {header && (
-            <div
-              css={`
-                padding: ${1.5 * GU}px ${2 * GU}px ${1.25 * GU}px;
-                ${textStyle('label2')};
-                ${unselectable};
-              `}
-            >
-              {header}
-            </div>
-          )}
-          <ul
-            css={`
-              margin: 0;
-              list-style: none;
-              width: 100%;
-            `}
-          >
-            <Inside name="DropDown:menu">
-              {items.map((item, index) => {
-                return (
-                  <Item
-                    key={index}
-                    index={index}
-                    onSelect={handleItemSelect}
-                    theme={theme}
-                    item={item}
-                    header={header}
-                    length={items.length}
-                    selected={selectedIndex}
-                  />
-                )
-              })}
-            </Inside>
-          </ul>
+          <PopoverContent
+            refCallback={popoverRefCallback}
+            buttonWidth={buttonWidth}
+            header={header}
+            items={items}
+          />
         </div>
+      )}
+      <Popover onClose={close} opener={buttonRef.current} visible={opened}>
+        <PopoverContent
+          buttonWidth={buttonWidth}
+          header={header}
+          items={items}
+          handleItemSelect={handleItemSelect}
+          selectedIndex={selectedIndex}
+        />
       </Popover>
     </Inside>
   )
@@ -257,6 +263,77 @@ DropDown.defaultProps = {
   placeholder: 'Select an item',
   renderLabel: ({ selectedLabel }) => selectedLabel,
   wide: false,
+}
+
+const PopoverContent = React.memo(function PopoverContent({
+  refCallback,
+  buttonWidth,
+  header,
+  items,
+  handleItemSelect,
+  selectedIndex,
+}) {
+  const theme = useTheme()
+  return (
+    <div
+      ref={refCallback}
+      css={`
+        min-width: ${buttonWidth}px;
+        color: ${theme.surfaceContentSecondary};
+      `}
+    >
+      {header && (
+        <div
+          css={`
+            padding: ${1.5 * GU}px ${2 * GU}px ${1.25 * GU}px;
+            ${textStyle('label2')};
+            ${unselectable};
+          `}
+        >
+          {header}
+        </div>
+      )}
+      <ul
+        css={`
+          margin: 0;
+          list-style: none;
+          width: 100%;
+        `}
+      >
+        <Inside name="DropDown:menu">
+          {items.map((item, index) => {
+            return (
+              <Item
+                key={index}
+                index={index}
+                onSelect={handleItemSelect}
+                theme={theme}
+                item={item}
+                header={header}
+                length={items.length}
+                selected={selectedIndex}
+              />
+            )
+          })}
+        </Inside>
+      </ul>
+    </div>
+  )
+})
+
+PopoverContent.propTypes = {
+  refCallback: PropTypes.func.isRequired,
+  buttonWidth: PropTypes.number.isRequired,
+  header: PropTypes.node.isRequired,
+  items: PropTypes.array.isRequired,
+  handleItemSelect: PropTypes.func.isRequired,
+  selectedIndex: PropTypes.number.isRequired,
+}
+
+PopoverContent.defaultProps = {
+  refCallback: () => null,
+  handleItemSelect: () => null,
+  selectedIndex: -1,
 }
 
 const Item = React.memo(function Item({
