@@ -51,12 +51,8 @@ function ContextMenu({ children, zIndex, disabled }) {
               disabled={disabled}
               focusRingRadius={RADIUS}
               css={`
-                color: ${disabled
-                  ? theme.disabled
-                  : opened
-                  ? theme.accent
-                  : theme.surfaceContent};
-                background: ${theme.surface};
+                color: ${opened ? theme.accent : theme.surfaceContent};
+                background: ${disabled ? theme.surfaceUnder : theme.surface};
                 border: 1px solid ${theme.border};
                 border-bottom-color: ${opened ? theme.surface : theme.border};
                 &:active {
