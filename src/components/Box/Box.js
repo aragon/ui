@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { GU, RADIUS, textStyle } from '../../style'
 import { useTheme } from '../../theme/Theme'
 import { useLayout } from '../Layout/Layout'
-import { useInside, warnOnce } from '../../utils'
+import { Inside, useInside, warnOnce } from '../../utils'
 
 function Box({ heading, children, padding, ...props }) {
   const theme = useTheme()
@@ -31,49 +31,53 @@ function Box({ heading, children, padding, ...props }) {
   const contentPadding = padding === undefined ? defaultPadding : padding
 
   return (
-    <div
-      as={heading ? 'section' : 'div'}
-      css={`
-        position: relative;
-        border-radius: ${fullWidth ? 0 : RADIUS}px;
-        border-style: solid;
-        border-color: ${theme.border};
-        border-width: ${fullWidth ? '1px 0' : '1px'};
-        background: ${theme.surface};
-        color: ${theme.surfaceContent};
-        & + & {
-          margin-top: ${2 * GU}px;
-        }
-      `}
-      {...props}
-    >
-      {heading && (
-        <h1
-          css={`
-            display: flex;
-            align-items: center;
-            height: ${4 * GU}px;
-            padding: 0 ${defaultPadding}px;
-            border-bottom: 1px solid ${theme.border};
+    <Inside name="Box">
+      <div
+        as={heading ? 'section' : 'div'}
+        css={`
+          position: relative;
+          border-radius: ${fullWidth ? 0 : RADIUS}px;
+          border-style: solid;
+          border-color: ${theme.border};
+          border-width: ${fullWidth ? '1px 0' : '1px'};
+          background: ${theme.surface};
+          color: ${theme.surfaceContent};
+          & + & {
+            margin-top: ${2 * GU}px;
+          }
+        `}
+        {...props}
+      >
+        {heading && (
+          <h1
+            css={`
+              display: flex;
+              align-items: center;
+              height: ${4 * GU}px;
+              padding: 0 ${defaultPadding}px;
+              border-bottom: 1px solid ${theme.border};
 
-            // We pass the text style and color to the heading children, so
-            // that a node structure can inherit from it. Most components set
-            // their color and text style, but it is something to be aware of.
-            color: ${theme.surfaceContentSecondary};
-            ${textStyle('label2')};
+              // We pass the text style and color to the heading children, so
+              // that a node structure can inherit from it. Most components set
+              // their color and text style, but it is something to be aware of.
+              color: ${theme.surfaceContentSecondary};
+              ${textStyle('label2')};
+            `}
+          >
+            <Inside name="Box:heading">{heading}</Inside>
+          </h1>
+        )}
+        <div
+          css={`
+            padding: ${contentPadding}px;
           `}
         >
-          {heading}
-        </h1>
-      )}
-      <div
-        css={`
-          padding: ${contentPadding}px;
-        `}
-      >
-        <div>{children}</div>
+          <div>
+            <Inside name="Box:content">{children}</Inside>
+          </div>
+        </div>
       </div>
-    </div>
+    </Inside>
   )
 }
 
