@@ -12,6 +12,7 @@ const EmptyStateCard = React.memo(function EmptyStateCard({
   icon,
   illustration,
   text,
+  ...props
 }) {
   const theme = useTheme()
   const publicUrl = usePublicUrl()
@@ -44,6 +45,7 @@ const EmptyStateCard = React.memo(function EmptyStateCard({
           padding: ${2 * GU}px;
           text-align: center;
         `}
+        {...props}
       >
         <div
           css={`
