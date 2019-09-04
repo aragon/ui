@@ -61,7 +61,7 @@ function Field({ children, label, required, ...props }) {
             </Inside>
           </div>
           <Inside name="Field:content">
-            {id === null ? children : children({ id })}
+            {typeof children === 'function' ? children({ id }) : children}
           </Inside>
         </label>
       </div>
