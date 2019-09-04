@@ -125,7 +125,8 @@ const DropDown = React.memo(function DropDown({
     if (!el) {
       return
     }
-    setPlaceholderMinWidth(el.clientWidth)
+    // Add 4 GU to accomodate for caret spacing
+    setPlaceholderMinWidth(el.clientWidth + 4 * GU)
     setGetContentWidth(false)
   }, [])
   const [widthNoPx = MIN_WIDTH] = (width || '').split('px')
