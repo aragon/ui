@@ -23,17 +23,17 @@ const BadgeBase = React.memo(function BadgeBase({
 }) {
   const theme = useTheme()
   const [insideDropDownMenu] = useInside('DropDown')
-  const localBadgeOnly = insideDropDownMenu || badgeOnly
+  const isDisabled = disabled || insideDropDownMenu
 
   return (
     <React.Fragment>
       <ButtonBase
         ref={badgeRef}
         title={title}
-        disabled={disabled || localBadgeOnly}
-        element={localBadgeOnly || href ? 'a' : 'button'}
-        onClick={!localBadgeOnly ? onClick : undefined}
-        href={!localBadgeOnly ? href : undefined}
+        disabled={isDisabled}
+        element={href || insideDropDownMenu ? 'a' : 'button'}
+        onClick={!isDisabled && !badgeOnly ? onClick : undefined}
+        href={!isDisabled ? href : undefined}
         focusRingRadius={RADIUS}
         css={`
           display: inline-flex;
@@ -80,7 +80,9 @@ const BadgeBase = React.memo(function BadgeBase({
           </span>
         </div>
       </ButtonBase>
-      {typeof children === 'function' ? children(localBadgeOnly) : children}
+      {typeof children === 'function'
+        ? children(badgeOnly || isDisabled) // whether popover is disabled
+        : children}
     </React.Fragment>
   )
 })

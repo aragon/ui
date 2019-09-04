@@ -12,6 +12,7 @@ const TokenBadge = React.memo(function TokenBadge({
   badgeOnly,
   className,
   compact,
+  disabled,
   name,
   networkType,
   style,
@@ -34,6 +35,7 @@ const TokenBadge = React.memo(function TokenBadge({
       badgeOnly={badgeOnly}
       className={className}
       compact={compact}
+      disabled={disabled}
       icon={
         <ImageExists src={iconUrl}>
           {({ exists }) => exists && <Icon compact={compact} src={iconUrl} />}
@@ -57,8 +59,8 @@ const TokenBadge = React.memo(function TokenBadge({
       style={style}
       title={`${title} − ${address || 'No address'}`}
     >
-      {badgeOnly =>
-        !badgeOnly &&
+      {popoverDisabled =>
+        !popoverDisabled &&
         address && (
           <TokenBadgePopover
             address={address}
@@ -79,6 +81,7 @@ TokenBadge.propTypes = {
   badgeOnly: PropTypes.bool,
   className: PropTypes.string,
   compact: PropTypes.bool,
+  disabled: PropTypes.bool,
   name: PropTypes.string,
   networkType: PropTypes.string,
   style: PropTypes.object,

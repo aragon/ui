@@ -42,7 +42,15 @@ Smaller version of the IdentityBadge. Should be used when the IdentityBadge is p
 | ------ | ------------- |
 | `Bool` | `false`       |
 
-If the given `entity` is the same as the connected account, rendering "you" in the popover.
+If the given, assumes `entity` is the same as the connected account and renders "you" in the popover.
+
+### `disabled`
+
+| Type   | Default value |
+| ------ | ------------- |
+| `Bool` | `false`       |
+
+Disable popover.
 
 ### `entity`
 

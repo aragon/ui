@@ -82,8 +82,8 @@ const IdentityBadge = React.memo(function IdentityBadge({
       title={address}
       {...props}
     >
-      {badgeOnly =>
-        !badgeOnly &&
+      {popoverDisabled =>
+        !popoverDisabled &&
         address && (
           <IdentityBadgePopover
             address={address}
@@ -101,8 +101,10 @@ const IdentityBadge = React.memo(function IdentityBadge({
   )
 })
 IdentityBadge.propTypes = {
+  badgeOnly: PropTypes.bool,
   compact: PropTypes.bool,
   connectedAccount: PropTypes.bool,
+  disabled: PropTypes.bool,
   entity: PropTypes.string,
   label: PropTypes.string,
   labelStyle: PropTypes.string,
