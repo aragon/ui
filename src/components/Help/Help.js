@@ -14,6 +14,7 @@ function Help({ hint, children }) {
   const open = useCallback(() => setVisible(true), [])
   const close = useCallback(() => setVisible(false), [])
   const [insideBoxHeading] = useInside('Box:heading')
+  const [insideFieldLabel] = useInside('Field:label')
   return (
     <React.Fragment>
       <DiscButton
@@ -22,7 +23,8 @@ function Help({ hint, children }) {
         onClick={open}
         size={2 * GU}
         css={`
-          margin-left: ${insideBoxHeading ? 1 * GU : 0}px;
+          margin-top: ${insideFieldLabel ? -3 : 0}px;
+          margin-left: ${insideBoxHeading || insideFieldLabel ? 1 * GU : 0}px;
         `}
       >
         <IconQuestion size="tiny" />
