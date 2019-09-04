@@ -11,6 +11,7 @@ const BadgeBase = React.memo(function BadgeBase({
   children,
   className,
   compact,
+  disabled,
   icon,
   href,
   label,
@@ -29,8 +30,8 @@ const BadgeBase = React.memo(function BadgeBase({
       <ButtonBase
         ref={badgeRef}
         title={title}
-        disabled={localBadgeOnly}
-        element={localBadgeOnly ? 'a' : 'button'}
+        disabled={disabled || localBadgeOnly}
+        element={localBadgeOnly || href ? 'a' : 'button'}
         onClick={!localBadgeOnly ? onClick : undefined}
         href={!localBadgeOnly ? href : undefined}
         focusRingRadius={RADIUS}
@@ -89,6 +90,7 @@ BadgeBase.propTypes = {
   children: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
   className: PropTypes.string,
   compact: PropTypes.bool,
+  disabled: PropTypes.bool,
   href: PropTypes.string,
   icon: PropTypes.node,
   label: PropTypes.node.isRequired,
