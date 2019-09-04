@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import ButtonBase from '../ButtonBase/ButtonBase'
-import { useInside } from '../../utils'
 import { useTheme } from '../../theme'
 import { RADIUS } from '../../style'
 
@@ -13,8 +12,6 @@ function Link({ onClick, href, external, ...props }) {
     external = Boolean(href)
   }
 
-  const [insideHelp] = useInside('Help')
-
   return (
     <ButtonBase
       href={href}
@@ -24,7 +21,7 @@ function Link({ onClick, href, external, ...props }) {
       focusRingRadius={RADIUS}
       {...props}
       css={`
-        color: ${insideHelp ? theme.help : theme.link};
+        color: ${theme.link};
         text-decoration: ${external ? 'underline' : 'none'};
         font-size: inherit;
       `}

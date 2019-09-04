@@ -2,7 +2,7 @@ import React, { useCallback, useRef, useState } from 'react'
 import PropTypes from 'prop-types'
 import { GU, textStyle } from '../../style'
 import { useTheme } from '../../theme'
-import { Inside, useInside } from '../../utils'
+import { useInside } from '../../utils'
 import { IconQuestion } from '../../icons'
 import { DiscButton } from '../DiscButton/DiscButton'
 import Popover from '../Popover/Popover'
@@ -54,7 +54,7 @@ function Help({ hint, children }) {
             }
           `}
         >
-          <Inside name="Help">{children}</Inside>
+          {children}
         </div>
       </Popover>
     </React.Fragment>

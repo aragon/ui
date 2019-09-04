@@ -2,10 +2,7 @@
 
 Provide contextual help content.
 
-Notes:
-
-- When `Link` is used inside the help component, its default color will become `theme.help`.
-- When `Help` is used inside a `Box` heading, it will add the proper spacing automatically.
+Note: when `Help` is used inside a `Box` heading, it will add the right margin automatically.
 
 ## Usage
 
