@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import Blockies from 'react-blockies'
-import { stylingProps } from '../../utils'
+import { stylingProps, isAddress } from '../../utils'
 
 const PX_RATIO = typeof devicePixelRatio === 'undefined' ? 2 : devicePixelRatio
 const BLOCKIES_SQUARES = 8 // commonly used to represent Ethereum addresses
@@ -23,7 +23,7 @@ class EthIdenticon extends React.Component {
   render() {
     const { address, scale, radius, soften } = this.props
     const blockiesScale = scale * BASE_SCALE
-    return (
+    return isAddress(address) ? (
       <Main
         size={BLOCKIES_SQUARES * blockiesScale}
         radius={radius}
@@ -39,7 +39,7 @@ class EthIdenticon extends React.Component {
           </BlockiesOpacity>
         </BlockiesScaling>
       </Main>
-    )
+    ) : null
   }
 }
 
