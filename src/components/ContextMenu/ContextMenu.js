@@ -11,7 +11,7 @@ import ButtonBase from '../ButtonBase/ButtonBase'
 const BASE_WIDTH = 46
 const BASE_HEIGHT = 32
 
-function ContextMenu({ children, zIndex }) {
+function ContextMenu({ children, zIndex, disabled }) {
   const theme = useTheme()
   const [opened, setOpened] = useState(false)
 
@@ -48,18 +48,25 @@ function ContextMenu({ children, zIndex }) {
             <Button
               onClick={handleBaseButtonClick}
               opened={opened}
+              disabled={disabled}
               focusRingRadius={RADIUS}
               css={`
-                color: ${opened ? theme.accent : theme.surfaceContent};
-                background: ${theme.surface};
-                border: 1px solid ${theme.border};
+                color: ${disabled
+                  ? theme.disabledContent
+                  : opened
+                  ? theme.accent
+                  : theme.surfaceContent};
+                background: ${disabled ? theme.disabled : theme.surface};
+                border: ${disabled ? '0' : `1px solid ${theme.border}`};
                 border-bottom-color: ${opened ? theme.surface : theme.border};
-                &:active {
+                ${disabled
+                  ? ''
+                  : `&:active {
                   background: ${theme.surfacePressed};
-                  border-bottom-color: ${opened
-                    ? theme.surfacePressed
-                    : theme.border};
-                }
+                  border-bottom-color: ${
+                    opened ? theme.surfacePressed : theme.border
+                  };
+                }`}
               `}
             >
               <IconEllipsis css={``} />
@@ -73,7 +80,12 @@ function ContextMenu({ children, zIndex }) {
                   ),
                 }}
               >
-                <IconDown size="tiny" />
+                <IconDown
+                  size="tiny"
+                  css={`
+                    color: ${disabled ? theme.disabledIcon : theme.surfaceIcon};
+                  `}
+                />
               </animated.div>
             </Button>
             {opened && (
@@ -122,9 +134,11 @@ function ContextMenu({ children, zIndex }) {
 ContextMenu.propTypes = {
   children: PropTypes.node,
   zIndex: PropTypes.number,
+  disabled: PropTypes.bool,
 }
 ContextMenu.defaultProps = {
   zIndex: 0,
+  disabled: false,
 }
 
 const Main = styled(animated.div)`
@@ -142,7 +156,8 @@ const Button = styled(ButtonBase)`
   border-radius: ${({ opened }) =>
     opened ? `${RADIUS}px ${RADIUS}px 0 0` : `${RADIUS}px`};
 
-  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: ${({ disabled }) =>
+    disabled ? 'none' : `0px 1px 3px rgba(0, 0, 0, 0.1)`};
 `
 
 export default ContextMenu
