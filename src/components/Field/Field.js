@@ -4,6 +4,9 @@ import { useTheme } from '../../theme'
 import { textStyle, GU } from '../../style'
 import { unselectable, Inside } from '../../utils'
 
+// This variable is used as a simple mechanism to generate unique IDs, that can
+// be used to link the <label> to a specific form element by using a render
+// prop. See `children` in the Field documentation for more details.
 let fieldId = 1
 
 function Field({ children, label, required, ...props }) {
