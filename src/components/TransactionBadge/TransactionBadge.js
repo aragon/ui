@@ -1,17 +1,16 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { GU, RADIUS } from '../../style'
-import { useTheme } from '../../theme'
 import {
   blockExplorerUrl,
   isTransaction,
   shortenTransaction,
   warnOnce,
 } from '../../utils'
-import { Link } from '../Link'
+import BadgeBase from '../BadgeBase/BadgeBase'
 
 const TransactionBadge = React.memo(function TransactionBadge({
   className,
+  disabled,
   labelStyle,
   networkType,
   shorten,
@@ -35,47 +34,30 @@ const TransactionBadge = React.memo(function TransactionBadge({
     )
   }
 
-  const theme = useTheme()
-
   const isTx = isTransaction(transaction)
   const transactionUrl = isTx
     ? blockExplorerUrl('transaction', transaction, { networkType })
     : ''
   const label = !isTx
-    ? 'Invalid'
+    ? 'Invalid transaction'
     : shorten
     ? shortenTransaction(transaction)
     : transaction
+
   return (
-    <Link
-      title={transaction}
+    <BadgeBase
+      badgeOnly={true}
+      disabled={disabled || !transactionUrl}
       href={transactionUrl}
-      css={`
-        overflow: hidden;
-        display: inline-flex;
-        align-items: center;
-        background: ${theme.badge};
-        color: ${theme.badgeContent};
-        border-radius: ${RADIUS}px;
-        text-decoration: none;
-      `}
-      className={className}
-      style={style}
-    >
-      <div
-        css={`
-          padding: 0 ${1.5 * GU}px;
-          white-space: nowrap;
-          ${labelStyle}
-        `}
-      >
-        {label}
-      </div>
-    </Link>
+      label={label}
+      labelStyle={labelStyle}
+      title={transaction}
+    />
   )
 })
 TransactionBadge.propTypes = {
   className: PropTypes.string,
+  disabled: PropTypes.bool,
   labelStyle: PropTypes.string,
   networkType: PropTypes.string,
   shorten: PropTypes.bool,
