@@ -5,7 +5,7 @@ import { useTheme } from '../../theme'
 import { useInside } from '../../utils'
 import ButtonBase from '../ButtonBase/ButtonBase'
 
-const IdentityBadge = React.memo(function IdentityBadge({
+const BadgeBase = React.memo(function BadgeBase({
   badgeOnly,
   buttonRef,
   children,
@@ -85,7 +85,7 @@ const IdentityBadge = React.memo(function IdentityBadge({
     </React.Fragment>
   )
 })
-IdentityBadge.propTypes = {
+BadgeBase.propTypes = {
   badgeOnly: PropTypes.bool,
   buttonRef: PropTypes.any,
   children: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
@@ -99,9 +99,9 @@ IdentityBadge.propTypes = {
   style: PropTypes.object,
   title: PropTypes.string,
 }
-IdentityBadge.defaultProps = {
+BadgeBase.defaultProps = {
   badgeOnly: false,
   compact: false,
 }
 
-export default IdentityBadge
+export default BadgeBase

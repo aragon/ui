@@ -9,7 +9,7 @@ import { ButtonIcon } from '../Button/ButtonIcon'
 import Popover from '../Popover/Popover'
 import BadgePopoverActionType from './BadgePopoverActionType'
 
-const IdentityBadgePopover = React.memo(function IdentityBadgePopover({
+const BadgePopoverBase = React.memo(function BadgePopoverBase({
   addressField,
   link,
   onClose,
@@ -113,7 +113,7 @@ const IdentityBadgePopover = React.memo(function IdentityBadgePopover({
     </Popover>
   )
 })
-IdentityBadgePopover.propTypes = {
+BadgePopoverBase.propTypes = {
   addressField: PropTypes.node.isRequired,
   link: PropTypes.node,
   onClose: PropTypes.func,
@@ -123,8 +123,8 @@ IdentityBadgePopover.propTypes = {
   titleTag: PropTypes.node,
   visible: PropTypes.bool,
 }
-IdentityBadgePopover.defaultProps = {
+BadgePopoverBase.defaultProps = {
   onClose: noop,
 }
 
-export default IdentityBadgePopover
+export default BadgePopoverBase
