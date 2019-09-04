@@ -53,14 +53,9 @@ class App extends React.Component {
           connectedAccount
         />
         <IdentityBadge
-          label="Only badge"
+          label="Badge only"
           entity="0xc41e4c10b37d3397a99d4a90e7d85508a69a5c4c"
           badgeOnly
-        />
-        <IdentityBadge
-          label="Disabled"
-          entity="0xc41e4c10b37d3397a99d4a90e7d85508a69a5c4c"
-          disabled
         />
       </div>
     )

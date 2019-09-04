@@ -3,13 +3,18 @@ import cachedMap from '../utils/cached-map'
 
 const srcCache = cachedMap()
 
-// Check if a remote image exists.
-export function useImageExists(src) {
+// Check if a remote image exists and can be loaded within a specific amount of time.
+export function useImageExists(src, timeUntilFallback = 50) {
   const [exists, setExists] = useState(false)
   const [loading, setLoading] = useState(true)
+  const [displayFallback, setDisplayFallback] = useState(false)
 
   useEffect(() => {
     let image = new Image()
+    const fallbackTimer = setTimeout(
+      () => setDisplayFallback(true),
+      timeUntilFallback
+    )
 
     const init = () => {
       if (!src) {
@@ -39,6 +44,7 @@ export function useImageExists(src) {
     }
 
     const done = () => {
+      clearTimeout(fallbackTimer)
       if (image) {
         image.removeEventListener('load', success)
         image = null
@@ -48,10 +54,13 @@ export function useImageExists(src) {
     init()
 
     return done
-  }, [src])
+  }, [src, timeUntilFallback])
 
-  return useMemo(() => ({ src, exists, loading }), [src, exists, loading])
+  return useMemo(() => {
+    return { src, displayFallback, exists, loading }
+  }, [src, displayFallback, exists, loading])
 }
 
 // render prop
-export const ImageExists = ({ src, children }) => children(useImageExists(src))
+export const ImageExists = ({ timeUntilFallback, src, children }) =>
+  children(useImageExists(src, timeUntilFallback))

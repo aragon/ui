@@ -44,14 +44,6 @@ Smaller version of the IdentityBadge. Should be used when the IdentityBadge is p
 
 If the given, assumes `entity` is the same as the connected account and renders "you" in the popover.
 
-### `disabled`
-
-| Type   | Default value |
-| ------ | ------------- |
-| `Bool` | `false`       |
-
-Disable popover.
-
 ### `entity`
 
 | Type     | Default value       |
