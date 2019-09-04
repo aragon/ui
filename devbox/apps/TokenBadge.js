@@ -1,5 +1,4 @@
 import React from 'react'
-import styled from 'styled-components'
 import { TokenBadge } from '@aragon/ui'
 
 class App extends React.Component {

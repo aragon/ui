@@ -4,6 +4,7 @@
 
 export { default as Accordion } from './Accordion'
 export { default as AddressField } from './AddressField'
+export { default as AppBadge } from './AppBadge'
 export { default as AppBarTabs } from './AppBarTabs'
 export { default as AppView } from './AppView'
 export { default as AutoComplete } from './AutoComplete'

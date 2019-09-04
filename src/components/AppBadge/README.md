@@ -43,7 +43,7 @@ Disables the badge as a button and avoids prompting the popover on click.
 | -------- | --------------- |
 | `String` | None            |
 
-Source of app's icon asset, preferrably 24x24. A default app icon will be used if this prop is not provided or if the given src was not loadable.
+Source of app's icon asset, preferrably 40x40. A default app icon will be used if this prop is not provided or if the given src was not loadable.
 
 ###  `identifier`
 
@@ -61,13 +61,13 @@ The app's identifier.
 
 Styles to apply to the `label`.
 
-###  `name`
+###  `label`
 
 | Type     | Default value   |
 | -------- | --------------- |
 | `String` | None (required) |
 
-App's short human readable name.
+The app's short human readable name or custom label.
 
 ### `networkType`
 
