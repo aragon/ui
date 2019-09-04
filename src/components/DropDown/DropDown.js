@@ -109,6 +109,40 @@ const DropDown = React.memo(function DropDown({
   }
 
   const theme = useTheme()
+  const { width: vw } = useViewport()
+
+  const [widthNoPx = MIN_WIDTH] = (width || '').split('px')
+  const [placeholderMinWidth, setPlaceholderMinWidth] = useState(
+    Math.min(widthNoPx, MIN_WIDTH)
+  )
+  const [buttonWidth, setButtonWidth] = useState(0)
+  const [getContentWidth, setGetContentWidth] = useState(true)
+
+  // Adjust the button width if the item widths are larger than declared width
+  const popoverRefCallback = useCallback(el => {
+    if (!el) {
+      return
+    }
+    // Add 4 GU to accomodate for caret spacing
+    setPlaceholderMinWidth(el.clientWidth + 4 * GU)
+    setGetContentWidth(false)
+  }, [])
+  // Re-adjust if the width or items ever change
+  useEffect(() => {
+    setGetContentWidth(true)
+  }, [vw, items])
+
+  // Update the button width every time the reference updates
+  const { refCallback, buttonRef } = useButtonRef(el => {
+    setButtonWidth(el.clientWidth)
+  })
+  // And every time the viewport resizes
+  useEffect(() => {
+    if (!buttonRef.current) {
+      return
+    }
+    setButtonWidth(buttonRef.current.clientWidth)
+  }, [buttonRef, vw])
 
   const selectedIndex = useMemo(() => {
     if (selected !== undefined) {
@@ -119,39 +153,6 @@ const DropDown = React.memo(function DropDown({
     }
     return -1
   }, [active, selected])
-
-  const [getContentWidth, setGetContentWidth] = useState(true)
-  const popoverRefCallback = useCallback(el => {
-    if (!el) {
-      return
-    }
-    // Add 4 GU to accomodate for caret spacing
-    setPlaceholderMinWidth(el.clientWidth + 4 * GU)
-    setGetContentWidth(false)
-  }, [])
-  const [widthNoPx = MIN_WIDTH] = (width || '').split('px')
-  const [placeholderMinWidth, setPlaceholderMinWidth] = useState(
-    Math.min(widthNoPx, MIN_WIDTH)
-  )
-  const [buttonWidth, setButtonWidth] = useState(0)
-
-  const { refCallback, buttonRef } = useButtonRef(el => {
-    // Update the button width every time the reference updates
-    setButtonWidth(el.clientWidth)
-  })
-
-  // And every time the viewport resizes
-  const { width: vw } = useViewport()
-  useEffect(() => {
-    if (!buttonRef.current) {
-      return
-    }
-    setButtonWidth(buttonRef.current.clientWidth)
-  }, [buttonRef, vw])
-
-  useEffect(() => {
-    setGetContentWidth(true)
-  }, [vw, items])
 
   const {
     handleItemSelect,
