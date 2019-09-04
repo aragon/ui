@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { IdentityBadge, DropDown, unselectable } from '@aragon/ui'
+import { IdentityBadge, DropDown, GU, unselectable } from '@aragon/ui'
 
 const items = [
   'Strawberry',
@@ -36,6 +36,18 @@ class App extends React.Component {
             selected={active}
             onChange={this.handleChange}
             wide
+          />
+          <DropDown
+            items={items}
+            placeholder="Which fruit?"
+            header="Fruits"
+            selected={active}
+            onChange={this.handleChange}
+            disabled
+            wide
+            css={`
+              margin-top: ${2 * GU}px;
+            `}
           />
         </Container>
       </Main>
