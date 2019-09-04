@@ -14,14 +14,7 @@ const items = [
       justifyContent: 'space-between',
     }}
   >
-    <span
-      css={`
-        /* Adjust for no descenders (due to textstyle: uppercase) */
-        padding-top: 4px;
-      `}
-    >
-      Test
-    </span>
+    <span>Test</span>
     <IdentityBadge entity="0xc41e4c10b37d3397a99d4a90e7d85508a69a5c4c" />
   </span>,
 ]

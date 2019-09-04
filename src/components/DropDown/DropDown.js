@@ -192,7 +192,7 @@ const DropDown = React.memo(function DropDown({
           color: ${disabled ? theme.disabledContent : theme.surfaceContent};
           border: ${disabled ? 0 : 1}px solid
             ${closedWithChanges ? theme.selected : theme.border};
-          ${textStyle('label2')};
+          ${textStyle('body2')};
           ${disabled
             ? 'font-weight: 600;'
             : `
