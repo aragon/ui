@@ -100,12 +100,12 @@ const IdentityBadge = React.memo(function IdentityBadge({
   )
 })
 IdentityBadge.propTypes = {
-  appAddress: PropTypes.string,
+  appAddress: PropTypes.string.isRequired,
   badgeOnly: PropTypes.bool,
   compact: PropTypes.bool,
   iconSrc: PropTypes.string,
   identifier: PropTypes.string,
-  label: PropTypes.string,
+  label: PropTypes.string.isRequired,
   labelStyle: PropTypes.string,
   networkType: PropTypes.string,
   popoverAction: BadgePopoverActionType,
