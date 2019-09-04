@@ -1,4 +1,4 @@
-import { monospace } from '../utils'
+import { monospace } from '../utils/font'
 
 const TEXT_STYLES = {
   title1: {
