@@ -12,7 +12,7 @@ export default {
   surface: '#35425E',
   surfaceContent: colors.White,
   surfaceContentSecondary: colors.ArcticBlueDark,
-  surfaceIcon: colors.ArcticBlueDark,
+  surfaceIcon: colors.ArcticBlueDarker,
 
   surfaceUnder: colors.ArcticBlue,
   surfaceOpened: colors.ArcticBlueDark,
@@ -71,8 +71,10 @@ export default {
   focus: colors.Blue,
   selected: colors.AragonBlue,
   selectedContent: colors.White,
-  disabled: colors.GreyLight,
-  disabledContent: colors.White,
+
+  disabled: colors.ArcticBlue,
+  disabledContent: colors.GreyMedium,
+  disabledIcon: colors.ArcticBlueDarker,
 
   control: '#F3F9FB',
   controlBorder: '#DEEDF1',
