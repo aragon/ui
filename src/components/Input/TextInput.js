@@ -41,6 +41,9 @@ const TextInput = React.forwardRef(({ multiline, type, ...props }, ref) => {
           text-shadow: 0 0 0 ${theme.surfaceContentSecondary};
           border-color: ${theme.border};
         }
+        &:invalid {
+          box-shadow: none;
+        }
       `}
     />
   )
