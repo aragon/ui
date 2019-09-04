@@ -79,9 +79,7 @@ const BadgeBase = React.memo(function BadgeBase({
           </span>
         </div>
       </ButtonBase>
-      {typeof children === 'function'
-        ? children({ badgeOnly: localBadgeOnly })
-        : children}
+      {typeof children === 'function' ? children(localBadgeOnly) : children}
     </React.Fragment>
   )
 })
