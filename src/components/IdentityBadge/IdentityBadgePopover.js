@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { GU } from '../../style'
-import { blockExplorerUrl, noop } from '../../utils'
+import { blockExplorerUrl } from '../../utils'
 import AddressField from '../AddressField/AddressField'
 import BadgePopoverBase from '../BadgeBase/BadgePopoverBase'
 import BadgePopoverActionType from '../BadgeBase/BadgePopoverActionType'
@@ -32,7 +32,7 @@ const IdentityBadgePopover = React.memo(function IdentityBadgePopover({
         connectedAccount && (
           <Tag
             css={`
-              margin-left: ${0.5 * GU}px;
+              margin-left: ${1 * GU}px;
             `}
             size="small"
             title="This is your Ethereum address"
@@ -57,7 +57,6 @@ IdentityBadgePopover.propTypes = {
 }
 IdentityBadgePopover.defaultProps = {
   title: 'Address',
-  onClose: noop,
 }
 
 export default IdentityBadgePopover
