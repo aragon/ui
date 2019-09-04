@@ -208,7 +208,11 @@ const DropDown = React.memo(function DropDown({
           size="tiny"
           css={`
             margin-left: ${1.5 * GU}px;
-            color: ${closedWithChanges && !disabled ? theme.accent : 'inherit'};
+            color: ${disabled
+              ? theme.disabledIcon
+              : closedWithChanges
+              ? theme.accent
+              : theme.surfaceIcon};
           `}
         />
       </ButtonBase>
