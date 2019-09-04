@@ -4,36 +4,42 @@ import { GU } from '../../style'
 import { useTheme } from '../../theme'
 import ButtonBase from '../ButtonBase/ButtonBase'
 
-function DiscButton({ children, description, size, ...props }) {
-  const theme = useTheme()
-  return (
-    <ButtonBase
-      focusRingSpacing={4}
-      focusRingRadius={size}
-      title={description}
-      css={`
-        width: ${size}px;
-        height: ${size}px;
-        background: ${theme.help};
-        color: ${theme.helpContent};
-        border-radius: 50%;
+const DiscButton = React.forwardRef(
+  ({ children, description, size, ...props }, ref) => {
+    const theme = useTheme()
+    return (
+      <ButtonBase
+        ref={ref}
+        focusRingSpacing={4}
+        focusRingRadius={size}
+        title={description}
+        css={`
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: ${size}px;
+          height: ${size}px;
+          background: ${theme.help};
+          color: ${theme.helpContent};
+          border-radius: 50%;
 
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
-        transition-property: transform, box-shadow;
-        transition-duration: 50ms;
-        transition-timing-function: ease-in-out;
+          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+          transition-property: transform, box-shadow;
+          transition-duration: 50ms;
+          transition-timing-function: ease-in-out;
 
-        &:active {
-          transform: translateY(1px);
-          box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.125);
-        }
-      `}
-      {...props}
-    >
-      {children}
-    </ButtonBase>
-  )
-}
+          &:active {
+            transform: translateY(1px);
+            box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.125);
+          }
+        `}
+        {...props}
+      >
+        {children}
+      </ButtonBase>
+    )
+  }
+)
 
 DiscButton.propTypes = {
   children: PropTypes.node.isRequired,
@@ -45,4 +51,5 @@ DiscButton.defaultProps = {
   size: 5 * GU,
 }
 
+export default DiscButton
 export { DiscButton }
