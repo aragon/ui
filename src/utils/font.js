@@ -1,5 +1,11 @@
-import { MONOSPACE_FONT_FAMILY } from '../components/BaseStyles/BaseStyles'
+// Using generic names so we can change the font if needed, while using these
+// generic names in our components.
+export const DEFAULT_FONT_FAMILY = 'aragon-ui'
+export const MONOSPACE_FONT_FAMILY = 'aragon-ui-monospace'
 
+export const monospace = () => `
+  font-family: ${MONOSPACE_FONT_FAMILY}, monospace;
+`
 const FONT_SIZES = {
   xxsmall: '11px',
   xsmall: '12px',
