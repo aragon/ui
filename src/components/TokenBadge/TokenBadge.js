@@ -9,7 +9,9 @@ import TokenBadgePopover from './TokenBadgePopover'
 
 const TokenBadge = React.memo(function TokenBadge({
   address,
+  badgeOnly,
   className,
+  compact,
   name,
   networkType,
   style,
@@ -29,10 +31,12 @@ const TokenBadge = React.memo(function TokenBadge({
   return (
     <BadgeBase
       badgeRef={badgeRef}
+      badgeOnly={badgeOnly}
       className={className}
+      compact={compact}
       icon={
         <ImageExists src={iconUrl}>
-          {({ exists }) => exists && <Icon src={iconUrl} />}
+          {({ exists }) => exists && <Icon compact={compact} src={iconUrl} />}
         </ImageExists>
       }
       label={
@@ -72,7 +76,9 @@ const TokenBadge = React.memo(function TokenBadge({
 })
 TokenBadge.propTypes = {
   address: PropTypes.string,
+  badgeOnly: PropTypes.bool,
   className: PropTypes.string,
+  compact: PropTypes.bool,
   name: PropTypes.string,
   networkType: PropTypes.string,
   style: PropTypes.object,
@@ -89,7 +95,7 @@ const Icon = styled.span`
   display: block;
   width: 18px;
   height: 18px;
-  margin: 0 ${1 * GU}px;
+  margin: 0 ${1 * GU}px 0 ${({ compact }) => (compact ? 0 : `${1 * GU}px`)};
   background-size: contain;
   background-position: 50% 50%;
   background-repeat: no-repeat;

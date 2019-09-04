@@ -43,6 +43,20 @@ class App extends React.Component {
             name: 'Aragon very very very very long name',
             width: '300px',
           },
+          {
+            address: '0x960b236a07cf122663c4303350609a66a7b288c0',
+            symbol: 'ANT',
+            name: 'Aragon badge only',
+            width: '200px',
+            badgeOnly: true,
+          },
+          {
+            address: '0x960b236a07cf122663c4303350609a66a7b288c0',
+            symbol: 'ANT',
+            name: 'Aragon compact and very very very very long name',
+            width: '150px',
+            compact: true,
+          },
         ].map(({ width, ...props }, i) => (
           <div
             key={i}
