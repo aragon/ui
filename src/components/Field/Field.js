@@ -43,7 +43,7 @@ function Field({ children, label, required, ...props }) {
               color: ${theme.surfaceContentSecondary};
               white-space: nowrap;
               ${textStyle('label2')};
-              ${unselectable()};
+              ${unselectable};
             `}
           >
             <Inside name="Field:label">
