@@ -54,7 +54,7 @@ AppBadgePopover.propTypes = {
   visible: PropTypes.bool,
 }
 
-const Icon = ({ src }) => (
+const Icon = ({ src, ...props }) => (
   <div
     css={`
       width: ${5 * GU}px;
@@ -64,6 +64,7 @@ const Icon = ({ src }) => (
       background-repeat: no-repeat;
       background-image: url(${src});
     `}
+    {...props}
   />
 )
 
