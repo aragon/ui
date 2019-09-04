@@ -51,6 +51,7 @@ const TokenBadge = React.memo(function TokenBadge({
             display: flex;
             flex-shrink: 1;
             min-width: 0;
+            margin-left: ${compact ? 0 : `${1 * GU}px`};
           `}
         >
           {name && <Name>{name}</Name>}
@@ -94,17 +95,29 @@ TokenBadge.defaultProps = {
   networkType: 'main',
 }
 
-const Icon = styled.span`
-  flex-shrink: 0;
-  display: block;
-  width: 18px;
-  height: 18px;
-  margin: 0 ${1 * GU}px 0 ${({ compact }) => (compact ? 0 : `${1 * GU}px`)};
-  background-size: contain;
-  background-position: 50% 50%;
-  background-repeat: no-repeat;
-  background-image: url(${p => p.src});
-`
+function Icon({ compact, src, ...props }) {
+  const margin = 1 * GU
+  return (
+    <span
+      css={`
+        flex-shrink: 0;
+        display: block;
+        width: 18px;
+        height: 18px;
+        margin: 0 ${compact ? margin : 0}px 0 ${compact ? 0 : margin}px;
+        background-size: contain;
+        background-position: 50% 50%;
+        background-repeat: no-repeat;
+        background-image: url(${src});
+      `}
+      {...props}
+    />
+  )
+}
+Icon.propTypes = {
+  compact: PropTypes.bool,
+  src: PropTypes.string.isRequired,
+}
 
 const Name = styled.span`
   flex-shrink: 1;
