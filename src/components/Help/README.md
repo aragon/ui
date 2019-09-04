@@ -2,7 +2,7 @@
 
 Provide contextual help content.
 
-Note: when `Help` is used inside a `Box` heading, it will add the right margin automatically.
+Note: when `Help` is used inside a `Box` heading, it will add the left margin automatically.
 
 ## Usage
 
