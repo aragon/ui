@@ -12,7 +12,7 @@ export default {
   surface: '#35425E',
   surfaceContent: colors.White,
   surfaceContentSecondary: colors.ArcticBlueDark,
-  surfaceIcon: colors.ArcticBlueDark,
+  surfaceIcon: colors.ArcticBlueDarker,
 
   surfaceUnder: colors.ArcticBlue,
   surfaceOpened: colors.ArcticBlueDark,

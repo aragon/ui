@@ -12,7 +12,7 @@ export default {
   surface: colors.White,
   surfaceContent: colors.GreyDark,
   surfaceContentSecondary: colors.GreyMedium,
-  surfaceIcon: colors.ArcticBlueDark,
+  surfaceIcon: colors.ArcticBlueDarker,
 
   surfaceUnder: colors.ArcticBlue,
   surfaceOpened: colors.ArcticBlueDark,
