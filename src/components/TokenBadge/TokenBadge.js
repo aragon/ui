@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { ImageExists } from '../../hooks'
 import { GU } from '../../style'
-import { isAddress, tokenIconUrl } from '../../utils/web3'
+import { isAddress, tokenIconUrl, warn } from '../../utils'
 import BadgeBase from '../BadgeBase/BadgeBase'
 import TokenBadgePopover from './TokenBadgePopover'
 
@@ -12,7 +12,6 @@ const TokenBadge = React.memo(function TokenBadge({
   badgeOnly,
   className,
   compact,
-  disabled,
   name,
   networkType,
   style,
@@ -25,20 +24,23 @@ const TokenBadge = React.memo(function TokenBadge({
   const handleOpen = useCallback(() => setOpened(true), [])
 
   const isValidAddress = isAddress(address)
-  const iconUrl =
+  const iconSrc =
     isValidAddress && networkType === 'main' ? tokenIconUrl(address) : null
   const title = name && symbol ? `${name} (${symbol})` : symbol
+
+  if (!isValidAddress) {
+    warn(`TokenBadge: provided invalid address (${address})`)
+  }
 
   return (
     <BadgeBase
       badgeRef={badgeRef}
-      badgeOnly={badgeOnly}
       className={className}
       compact={compact}
-      disabled={disabled}
+      disabled={badgeOnly}
       icon={
-        <ImageExists src={iconUrl}>
-          {({ exists }) => exists && <Icon compact={compact} src={iconUrl} />}
+        <ImageExists src={iconSrc}>
+          {({ exists }) => exists && <Icon compact={compact} src={iconSrc} />}
         </ImageExists>
       }
       label={
@@ -64,7 +66,7 @@ const TokenBadge = React.memo(function TokenBadge({
         address && (
           <TokenBadgePopover
             address={address}
-            iconUrl={iconUrl}
+            iconSrc={iconSrc}
             networkType={networkType}
             onClose={handleClose}
             opener={badgeRef.current}
@@ -81,7 +83,6 @@ TokenBadge.propTypes = {
   badgeOnly: PropTypes.bool,
   className: PropTypes.string,
   compact: PropTypes.bool,
-  disabled: PropTypes.bool,
   name: PropTypes.string,
   networkType: PropTypes.string,
   style: PropTypes.object,

@@ -9,6 +9,7 @@ import { ButtonIcon } from '../Button/ButtonIcon'
 import EthIdenticon from '../EthIdenticon/EthIdenticon'
 import { Toast } from '../ToastHub/ToastHub'
 
+const HEIGHT = 5 * GU
 const HEIGHT_ADJUSTED_FOR_BORDER = 5 * GU - 2
 
 const AddressFieldBase = React.memo(function AddressFieldBase({
@@ -51,24 +52,17 @@ const AddressFieldBase = React.memo(function AddressFieldBase({
         position: relative;
         display: inline-flex;
         max-width: 100%;
-        height: ${5 * GU}px;
-        padding-left: ${5 * GU}px;
+        height: ${HEIGHT}px;
         background: ${theme.surface};
-        border: 1px solid ${theme.border};
-        border-radius: ${RADIUS}px;
-        box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.06);
       `}
       {...props}
     >
       <div
         css={`
-          position: absolute;
-          top: -1px;
-          left: -1px;
-          height: 40px;
+          position: relative;
+          width: ${HEIGHT}px;
           overflow: hidden;
           border-radius: ${RADIUS}px 0 0 ${RADIUS}px;
-          border: 1px solid transparent;
         `}
       >
         {icon || (
@@ -76,7 +70,7 @@ const AddressFieldBase = React.memo(function AddressFieldBase({
             address={address}
             scale={2}
             css={`
-              transform: scale(calc(38 / 48));
+              transform: scale(calc(${HEIGHT} / 48));
               transform-origin: 0 0;
             `}
           />
@@ -94,6 +88,7 @@ const AddressFieldBase = React.memo(function AddressFieldBase({
             css={`
               width: ${HEIGHT_ADJUSTED_FOR_BORDER}px;
               height: ${HEIGHT_ADJUSTED_FOR_BORDER}px;
+              border-radius: 0;
               color: ${theme.surfaceIcon};
             `}
           >
@@ -108,10 +103,13 @@ const AddressFieldBase = React.memo(function AddressFieldBase({
         }}
         css={`
           text-overflow: ellipsis;
-          height: ${HEIGHT_ADJUSTED_FOR_BORDER}px;
+          height: ${HEIGHT}px;
           width: ${52.5 * GU}px;
           max-width: 100%;
-          border: 0;
+          border: 1px solid ${theme.border};
+          border-left: 0;
+          border-top-left-radius: 0;
+          border-bottom-left-radius: 0;
           ${icon ? `padding-left: ${1 * GU}px` : ''};
           ${textStyle('address2')};
           &:read-only {

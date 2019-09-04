@@ -101,6 +101,7 @@ const BadgePopoverBase = React.memo(function BadgePopoverBase({
                 size="medium"
                 onClick={handlePopoverActionClick}
                 css={`
+                  padding: 0 ${2 * GU}px;
                   color: ${theme.surfaceContentSecondary};
                 `}
               >
