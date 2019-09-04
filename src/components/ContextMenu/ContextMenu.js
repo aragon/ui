@@ -57,7 +57,7 @@ function ContextMenu({ children, zIndex, disabled }) {
                   ? theme.accent
                   : theme.surfaceContent};
                 background: ${disabled ? theme.disabled : theme.surface};
-                border: 1px solid ${theme.border};
+                border: ${!disabled && `1px solid ${theme.border}`};
                 border-bottom-color: ${opened ? theme.surface : theme.border};
                 &:active {
                   background: ${!disabled && theme.surfacePressed};
@@ -77,7 +77,12 @@ function ContextMenu({ children, zIndex, disabled }) {
                   ),
                 }}
               >
-                <IconDown size="tiny" />
+                <IconDown
+                  size="tiny"
+                  css={`
+                    color: ${disabled ? theme.disabledIcon : theme.surfaceIcon};
+                  `}
+                />
               </animated.div>
             </Button>
             {opened && (
@@ -148,7 +153,8 @@ const Button = styled(ButtonBase)`
   border-radius: ${({ opened }) =>
     opened ? `${RADIUS}px ${RADIUS}px 0 0` : `${RADIUS}px`};
 
-  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: ${({ disabled }) =>
+    !disabled && `0px 1px 3px rgba(0, 0, 0, 0.1)`};
 `
 
 export default ContextMenu
