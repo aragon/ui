@@ -274,6 +274,7 @@ const PopoverContent = React.memo(function PopoverContent({
   const theme = useTheme()
   return (
     <div
+      ref={refCallback}
       css={`
         min-width: ${buttonWidth}px;
         color: ${theme.surfaceContentSecondary};
