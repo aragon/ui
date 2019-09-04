@@ -16,12 +16,12 @@ class App extends React.Component {
         `}
       >
         <IdentityBadge
-          customLabel="Olive Oyl"
+          label="Olive Oyl"
           entity="0xc41e4c10b37d3397a99d4a90e7d85508a69a5c4c"
           connectedAccount
         />
         <IdentityBadge
-          customLabel="Has action"
+          label="Has action"
           entity="0x2c9341a52cfa3f2c2554ca1803134137b9366b3c"
           connectedAccount
           popoverAction={{
@@ -51,6 +51,16 @@ class App extends React.Component {
           entity="0x7c708ac7db979fa06705f8880f29f82cfc406993"
           compact={true}
           connectedAccount
+        />
+        <IdentityBadge
+          label="Only badge"
+          entity="0xc41e4c10b37d3397a99d4a90e7d85508a69a5c4c"
+          badgeOnly
+        />
+        <IdentityBadge
+          label="Disabled"
+          entity="0xc41e4c10b37d3397a99d4a90e7d85508a69a5c4c"
+          disabled
         />
       </div>
     )
