@@ -11,7 +11,7 @@ import ButtonBase from '../ButtonBase/ButtonBase'
 const BASE_WIDTH = 46
 const BASE_HEIGHT = 32
 
-function ContextMenu({ children, zIndex }) {
+function ContextMenu({ children, zIndex, disabled }) {
   const theme = useTheme()
   const [opened, setOpened] = useState(false)
 
@@ -48,17 +48,21 @@ function ContextMenu({ children, zIndex }) {
             <Button
               onClick={handleBaseButtonClick}
               opened={opened}
+              disabled={disabled}
               focusRingRadius={RADIUS}
               css={`
-                color: ${opened ? theme.accent : theme.surfaceContent};
+                color: ${disabled
+                  ? theme.disabled
+                  : opened
+                  ? theme.accent
+                  : theme.surfaceContent};
                 background: ${theme.surface};
                 border: 1px solid ${theme.border};
                 border-bottom-color: ${opened ? theme.surface : theme.border};
                 &:active {
-                  background: ${theme.surfacePressed};
-                  border-bottom-color: ${opened
-                    ? theme.surfacePressed
-                    : theme.border};
+                  background: ${!disabled && theme.surfacePressed};
+                  border-bottom-color: ${!disabled &&
+                    (opened ? theme.surfacePressed : theme.border)};
                 }
               `}
             >
@@ -122,9 +126,11 @@ function ContextMenu({ children, zIndex }) {
 ContextMenu.propTypes = {
   children: PropTypes.node,
   zIndex: PropTypes.number,
+  disabled: PropTypes.bool,
 }
 ContextMenu.defaultProps = {
   zIndex: 0,
+  disabled: false,
 }
 
 const Main = styled(animated.div)`
