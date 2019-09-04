@@ -34,7 +34,6 @@ const IdentityBadgePopover = React.memo(function IdentityBadgePopover({
             css={`
               margin-left: ${1 * GU}px;
             `}
-            size="small"
             title="This is your Ethereum address"
           >
             you
