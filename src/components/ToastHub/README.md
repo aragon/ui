@@ -55,6 +55,13 @@ Set this property to change the position where toasts will appear.
 
 Set this property to `true` to make toasts appear from the top.
 
+### `shift`
+
+- Type: `Number`
+- Default value: `0`
+
+Use this property to shift the position of the toast from the selected position.
+
 ## Compound components
 
 ### `Toast`
