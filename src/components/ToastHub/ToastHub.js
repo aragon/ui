@@ -24,6 +24,7 @@ class ToastHubProvider extends React.PureComponent {
   static propTypes = {
     children: PropTypes.node,
     position: PropTypes.PropTypes.oneOf(['left', 'center', 'right']),
+    shift: PropTypes.number,
     showIndicator: PropTypes.bool,
     threshold: PropTypes.number,
     timeout: PropTypes.number,
@@ -86,7 +87,7 @@ class ToastHubProvider extends React.PureComponent {
     }))
   }
   render() {
-    const { children, showIndicator, position, top } = this.props
+    const { children, showIndicator, position, top, shift } = this.props
     const { items, leaving } = this.state
     const showList = items.length > 0 || leaving.length > 0
     return (
@@ -102,6 +103,7 @@ class ToastHubProvider extends React.PureComponent {
             showIndicator={showIndicator}
             top={top}
             {...stylingProps(this)}
+            shift={shift}
           />
         )}
       </React.Fragment>
@@ -119,9 +121,10 @@ const ToastList = React.memo(
     remove,
     showIndicator,
     top,
+    shift,
     ...props
   }) => (
-    <Container position={position} top={top} {...props}>
+    <Container position={position} top={top} shift={shift} {...props}>
       <Transition
         native
         items={items}
@@ -150,13 +153,14 @@ const ToastList = React.memo(
 )
 
 ToastList.propTypes = {
-  showIndicator: PropTypes.bool,
-  position: PropTypes.PropTypes.oneOf(['left', 'center', 'right']),
-  top: PropTypes.bool,
   config: PropTypes.func,
   items: PropTypes.array,
   leave: PropTypes.func,
+  position: PropTypes.PropTypes.oneOf(['left', 'center', 'right']),
   remove: PropTypes.func,
+  shift: PropTypes.number,
+  showIndicator: PropTypes.bool,
+  top: PropTypes.bool,
 }
 
 const Container = styled.div`
