@@ -85,6 +85,9 @@ export default {
   accentEnd: colors.AragonTurquoise,
   accentContent: colors.White,
 
+  floating: rgba(48, 64, 79, 0.8),
+  floatingContent: corlors.white,
+
   green: colors.GrassGreen,
   yellow: colors.Yellow,
   red: colors.Coral,
