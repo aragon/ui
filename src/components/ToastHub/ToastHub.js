@@ -206,8 +206,8 @@ const Message = styled(animated.div)`
 
 const Content = styled.div`
   ${textStyle('body3')}
-  color: ${({ theme }) => theme.surface};
-  background: rgba(48, 64, 79, 0.8);
+  color: ${({ theme }) => theme.floatingContent};
+  background: ${({ theme }) => theme.floating};
   margin-top: ${props => (props.top ? '0' : `${1.25 * GU}px`)};
   margin-bottom: ${props => (props.top ? `${1.25 * GU}px` : '0')};
   padding: ${2 * GU}px ${2.5 * GU}px;
