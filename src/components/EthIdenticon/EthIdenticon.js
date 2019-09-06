@@ -57,6 +57,10 @@ const Main = styled.div`
   width: ${p => p.size}px;
   height: ${p => p.size}px;
   border-radius: ${p => p.radius}px;
+
+  // Fix an issue where the border-radius wasn’t visible on Blink browsers.
+  // See https://gist.github.com/ayamflow/b602ab436ac9f05660d9c15190f4fd7b
+  mask-image: linear-gradient(red, red);
 `
 
 const BlockiesOpacity = styled.div`
