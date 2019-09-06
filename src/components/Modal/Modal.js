@@ -56,9 +56,9 @@ function Modal({
                   left: 0;
                   right: 0;
                   bottom: 0;
-                  display: grid;
+                  display: flex;
                   align-items: center;
-                  justify-items: center;
+                  justify-content: center;
                   overflow: auto;
                 `}
                 style={{
