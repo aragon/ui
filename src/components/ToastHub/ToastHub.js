@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { animated, Transition } from 'react-spring'
 import { stylingProps } from '../../utils'
+import { useTheme } from '../../theme'
 import { springs, textStyle, GU, RADIUS } from '../../style'
 import Text from '../Text/Text'
 
@@ -123,33 +124,37 @@ const ToastList = React.memo(
     top,
     shift,
     ...props
-  }) => (
-    <Container position={position} top={top} shift={shift} {...props}>
-      <Transition
-        native
-        items={items}
-        keys={item => item.key}
-        from={{ opacity: 0, height: 0, life: '100%', transform: move(30) }}
-        enter={{ opacity: 1, height: 'auto', transform: move(0) }}
-        leave={leave}
-        onRest={remove}
-        config={config}
-      >
-        {item =>
-          /* eslint-disable react/prop-types */
-          ({ life, ...props }) => (
-            <Message style={props}>
-              <Content top={top}>
-                {showIndicator && <Life top={top} style={{ right: life }} />}
-                <Text.Paragraph>{item.msg}</Text.Paragraph>
-              </Content>
-            </Message>
-          )
-        /* eslint-enable react/prop-types */
-        }
-      </Transition>
-    </Container>
-  )
+  }) => {
+    const theme = useTheme()
+
+    return (
+      <Container position={position} top={top} shift={shift} {...props}>
+        <Transition
+          native
+          items={items}
+          keys={item => item.key}
+          from={{ opacity: 0, height: 0, life: '100%', transform: move(30) }}
+          enter={{ opacity: 1, height: 'auto', transform: move(0) }}
+          leave={leave}
+          onRest={remove}
+          config={config}
+        >
+          {item =>
+            /* eslint-disable react/prop-types */
+            ({ life, ...props }) => (
+              <Message style={props}>
+                <Content top={top} theme={theme}>
+                  {showIndicator && <Life top={top} style={{ right: life }} />}
+                  <Text.Paragraph>{item.msg}</Text.Paragraph>
+                </Content>
+              </Message>
+            )
+          /* eslint-enable react/prop-types */
+          }
+        </Transition>
+      </Container>
+    )
+  }
 )
 
 ToastList.propTypes = {
@@ -201,11 +206,11 @@ const Message = styled(animated.div)`
 
 const Content = styled.div`
   ${textStyle('body3')}
-  color: white;
+  color: ${({ theme }) => theme.surface};
   background: rgba(48, 64, 79, 0.8);
-  margin-top: ${props => (props.top ? '0' : '10px')};
-  margin-bottom: ${props => (props.top ? '10px' : '0')};
-  padding: 15px 20px;
+  margin-top: ${props => (props.top ? '0' : `${1.25 * GU}px`)};
+  margin-bottom: ${props => (props.top ? `${1.25 * GU}px` : '0')};
+  padding: ${2 * GU}px ${2.5 * GU}px;
   display: grid;
   grid-template-columns: 1fr;
   grid-gap: 10px;
@@ -215,7 +220,7 @@ const Content = styled.div`
 
 const Life = styled(animated.div)`
   position: absolute;
-  bottom: ${props => (props.top ? '10px' : '0')};
+  bottom: ${props => (props.top ? `${1.25 * GU}px` : '0')};
   left: 0px;
   width: auto;
   background-image: linear-gradient(130deg, #00b4e6, #00f0e0);
