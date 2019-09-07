@@ -5,7 +5,7 @@ import { useTheme } from '../../theme'
 import { RADIUS, textStyle } from '../../style'
 import { warnOnce, KEY_ENTER, unselectable } from '../../utils'
 
-function getElementProps({ element, href, disabled }) {
+function getElementProps({ element, href, disabled, external }) {
   // <button> (handles key events)
   if (element === 'button') {
     return [
@@ -26,7 +26,7 @@ function getElementProps({ element, href, disabled }) {
         : {
             href: href,
             rel: 'noopener noreferrer',
-            target: '_blank',
+            ...(external ? { target: '_blank' } : {}),
           },
     ]
   }
@@ -74,6 +74,7 @@ function ButtonBase({
     element,
     href,
     disabled,
+    external,
   })
 
   const handleKeyDown = useCallback(
