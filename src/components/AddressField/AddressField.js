@@ -61,8 +61,13 @@ const AddressFieldBase = React.memo(function AddressFieldBase({
         css={`
           position: relative;
           width: ${HEIGHT}px;
+          height: ${HEIGHT}px;
           overflow: hidden;
           border-radius: ${RADIUS}px 0 0 ${RADIUS}px;
+
+          // Fix an issue where the border-radius wasn’t visible on Blink browsers.
+          // See https://gist.github.com/ayamflow/b602ab436ac9f05660d9c15190f4fd7b
+          mask-image: linear-gradient(red, red);
         `}
       >
         {icon || (
@@ -72,6 +77,9 @@ const AddressFieldBase = React.memo(function AddressFieldBase({
             css={`
               transform: scale(calc(${HEIGHT} / 48));
               transform-origin: 0 0;
+              position: absolute;
+              left: 0;
+              top: 0;
             `}
           />
         )}

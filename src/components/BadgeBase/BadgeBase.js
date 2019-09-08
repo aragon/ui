@@ -30,7 +30,7 @@ const BadgeBase = React.memo(function BadgeBase({
         ref={badgeRef}
         title={title}
         disabled={isDisabled}
-        element={href || insideDropDownMenu ? 'a' : 'button'}
+        element={href || insideDropDownMenu || isDisabled ? 'a' : 'button'}
         onClick={!isDisabled ? onClick : undefined}
         href={!isDisabled ? href : undefined}
         focusRingRadius={RADIUS}
@@ -41,7 +41,9 @@ const BadgeBase = React.memo(function BadgeBase({
           height: ${3 * GU}px;
           ${insideDropDownMenu ? 'cursor: pointer;' : ''}
           &:active {
-            ${compact ? `background: ${theme.badgePressed};` : ''};
+            ${compact && !isDisabled
+              ? `background: ${theme.badgePressed};`
+              : ''};
           }
         `}
       >
