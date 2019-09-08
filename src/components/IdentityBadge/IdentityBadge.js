@@ -102,6 +102,7 @@ const IdentityBadge = React.memo(function IdentityBadge({
     </BadgeBase>
   )
 })
+
 IdentityBadge.propTypes = {
   badgeOnly: PropTypes.bool,
   compact: PropTypes.bool,
@@ -118,6 +119,7 @@ IdentityBadge.propTypes = {
   customLabel: PropTypes.string,
   fontSize: PropTypes.string,
 }
+
 IdentityBadge.defaultProps = {
   entity: '',
   networkType: 'main',
