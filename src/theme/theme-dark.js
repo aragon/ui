@@ -86,7 +86,7 @@ export default {
   accentContent: colors.White,
 
   floating: '#30404F',
-  floatingContent: colors.white,
+  floatingContent: colors.White,
 
   green: colors.GrassGreen,
   yellow: colors.Yellow,
