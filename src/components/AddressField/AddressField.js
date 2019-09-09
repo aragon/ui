@@ -11,6 +11,7 @@ import { Toast } from '../ToastHub/ToastHub'
 
 const HEIGHT = 5 * GU
 const HEIGHT_ADJUSTED_FOR_BORDER = 5 * GU - 2
+const ICON_WIDTH = 5 * GU
 
 const AddressFieldBase = React.memo(function AddressFieldBase({
   address,
@@ -54,13 +55,16 @@ const AddressFieldBase = React.memo(function AddressFieldBase({
         max-width: 100%;
         height: ${HEIGHT}px;
         background: ${theme.surface};
+        padding-left: ${ICON_WIDTH}px;
       `}
       {...props}
     >
       <div
         css={`
-          position: relative;
-          width: ${HEIGHT}px;
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: ${ICON_WIDTH}px;
           height: ${HEIGHT}px;
           overflow: hidden;
           border-radius: ${RADIUS}px 0 0 ${RADIUS}px;
@@ -89,6 +93,7 @@ const AddressFieldBase = React.memo(function AddressFieldBase({
         value={address}
         onFocus={handleFocus}
         readOnly
+        wide
         adornment={
           <ButtonIcon
             onClick={handleCopy}
