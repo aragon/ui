@@ -328,7 +328,7 @@ const PopoverContent = React.memo(function PopoverContent({
 PopoverContent.propTypes = {
   refCallback: PropTypes.func.isRequired,
   buttonWidth: PropTypes.number.isRequired,
-  header: PropTypes.node.isRequired,
+  header: PropTypes.node,
   items: PropTypes.array.isRequired,
   handleItemSelect: PropTypes.func.isRequired,
   selectedIndex: PropTypes.number.isRequired,
