@@ -28,7 +28,6 @@ export default {
       filesize({
         showMinifiedSize: true,
         showGzippedSize: true,
-        showBrotliSize: true,
       }),
     production && sizes(),
     production && visualizer(),
