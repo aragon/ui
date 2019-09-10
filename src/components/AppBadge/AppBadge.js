@@ -9,7 +9,7 @@ import { Tag } from '../Tag/Tag'
 import AppBadgePopover from './AppBadgePopover'
 import iconDefaultSvg from './assets/app-default.svg'
 
-const IdentityBadge = React.memo(function IdentityBadge({
+const AppBadge = React.memo(function AppBadge({
   appAddress,
   badgeOnly,
   compact,
@@ -99,7 +99,7 @@ const IdentityBadge = React.memo(function IdentityBadge({
     </BadgeBase>
   )
 })
-IdentityBadge.propTypes = {
+AppBadge.propTypes = {
   appAddress: PropTypes.string.isRequired,
   badgeOnly: PropTypes.bool,
   compact: PropTypes.bool,
@@ -136,4 +136,4 @@ Icon.propTypes = {
   src: PropTypes.string.isRequired,
 }
 
-export default IdentityBadge
+export default AppBadge
