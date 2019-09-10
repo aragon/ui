@@ -57,7 +57,7 @@ function Modal({
                   right: 0;
                   bottom: 0;
                   display: grid;
-                  align-content: center;
+                  align-items: center;
                   justify-content: center;
                   overflow: auto;
                 `}
