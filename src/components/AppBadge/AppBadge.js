@@ -100,7 +100,7 @@ const AppBadge = React.memo(function AppBadge({
   )
 })
 AppBadge.propTypes = {
-  appAddress: PropTypes.string.isRequired,
+  appAddress: PropTypes.string,
   badgeOnly: PropTypes.bool,
   compact: PropTypes.bool,
   iconSrc: PropTypes.string,
