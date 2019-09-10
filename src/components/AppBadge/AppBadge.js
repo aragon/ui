@@ -28,7 +28,7 @@ const IdentityBadge = React.memo(function IdentityBadge({
   const handleOpen = useCallback(() => setOpened(true), [])
 
   const isValidAddress = isAddress(appAddress)
-  if (!isValidAddress) {
+  if (!badgeOnly && !isValidAddress) {
     warn(`AppBadge: provided invalid app address (${appAddress})`)
   }
 
