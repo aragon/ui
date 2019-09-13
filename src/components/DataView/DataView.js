@@ -212,7 +212,7 @@ const DataView = React.memo(function DataView({
     },
     [onPageChange, page]
   )
-  // reset managed pagination if data source changes
+  // Reset managed pagination if the entries or the pagination changes.
   useEffect(() => {
     setPageManaged(0)
   }, [entries])
