@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState } from 'react'
+import React, { useEffect, useCallback, useMemo, useState } from 'react'
 import PropTypes from 'prop-types'
 import { noop, warnOnce } from '../../utils'
 import { textStyle, GU } from '../../style'
@@ -212,6 +212,10 @@ const DataView = React.memo(function DataView({
     },
     [onPageChange, page]
   )
+  // Reset managed pagination if the entries or the pagination changes.
+  useEffect(() => {
+    setPageManaged(0)
+  }, [entries])
 
   const selectedPage = page === undefined ? pageManaged : page
 
