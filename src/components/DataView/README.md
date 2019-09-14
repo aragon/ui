@@ -69,6 +69,8 @@ Table mode only. Set this to `true` on the field you want the expansion rows to 
 
 The actual data entries. An array of any kind of data structure. Every value set in this array will be passed to `renderEntry`.
 
+Important: `entries` should always be cached, for example by using `useMemo()`, rather than being passed inline. That way, `DataView` will know that your entries haven’t changed, and won’t do unecessary renders or reset the pagination state.
+
 Example with an array of objects:
 
 ```jsx
