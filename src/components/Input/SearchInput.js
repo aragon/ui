@@ -24,9 +24,8 @@ const SearchInput = React.forwardRef(({ onChange, ...props }, ref) => {
     const input = localRef.current
     input.value = EMPTY
     const event = new Event('input', { bubbles: true })
-    let tracker = input._valueTracker
-    if (tracker) {
-      tracker.setValue(value)
+    if (input._valueTracker) {
+      input._valueTracker.setValue(value)
     }
     input.dispatchEvent(event)
   }, [value, localRef])
