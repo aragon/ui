@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { TextInput, IconBlank } from '@aragon/ui'
+import { TextInput, IconBlank, _SearchInput as SearchInput } from '@aragon/ui'
 
 class App extends React.Component {
   render() {
@@ -37,6 +37,11 @@ class App extends React.Component {
         <TextInput adornment={<IconBlank />} adornmentPosition="start" />
         <TextInput adornment={<IconBlank />} adornmentPosition="end" />
         <TextInput.Multiline />
+        <SearchInput
+          onChange={ev => {
+            console.log('Search term changed: ', ev.currentTarget.value)
+          }}
+        />
       </div>
     )
   }
