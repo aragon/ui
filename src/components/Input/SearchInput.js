@@ -1,5 +1,5 @@
-import React, { useRef, useState, useCallback, useMemo } from 'react'
-import ButtonIcon from '../Button/ButtonIcon'
+import React, { useRef, useState, useCallback } from 'react'
+import { ButtonIcon } from '../Button/ButtonIcon'
 import TextInput from './TextInput'
 import { IconSearch, IconCross } from '../../icons'
 import { useTheme } from '../../theme'
@@ -15,7 +15,7 @@ const SearchInput = React.forwardRef(({ onChange, ...props }, ref) => {
       setValue(ev.currentTarget.value)
       onChange(ev)
     },
-    [onChange, value]
+    [onChange]
   )
   const clear = useCallback(() => {
     // https://github.com/facebook/react/issues/11488
@@ -29,7 +29,7 @@ const SearchInput = React.forwardRef(({ onChange, ...props }, ref) => {
       tracker.setValue(value)
     }
     input.dispatchEvent(event)
-  }, [onChange, value, localRef])
+  }, [value, localRef])
 
   return (
     <TextInput
@@ -59,5 +59,9 @@ const SearchInput = React.forwardRef(({ onChange, ...props }, ref) => {
     />
   )
 })
+
+SearchInput.propTypes = {
+  ...TextInput.propTypes,
+}
 
 export { SearchInput }
