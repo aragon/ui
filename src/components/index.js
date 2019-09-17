@@ -78,6 +78,7 @@ export { TabBarLegacyCompatibility as TabBar } from './Tabs/Tabs'
 export { default as Text } from './Text/Text'
 
 // Experimental components
+export { SearchInput as _SearchInput } from './Input/SearchInput'
 export { DateRange as _DateRange } from './DateRange/DateRange'
 export { default as _AutoComplete } from './AutoComplete/AutoComplete'
 export {
