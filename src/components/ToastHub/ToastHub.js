@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { animated, Transition } from 'react-spring'
+import RootPortal from '../RootPortal/RootPortal'
 import { stylingProps } from '../../utils'
 import { useTheme } from '../../theme'
 import { springs, textStyle, GU, RADIUS } from '../../style'
@@ -95,17 +96,19 @@ class ToastHubProvider extends React.PureComponent {
       <React.Fragment>
         <Provider value={this.add}>{children}</Provider>
         {showList && (
-          <ToastList
-            config={this.config}
-            items={this.state.items}
-            leave={this.leave}
-            position={position}
-            remove={this.remove}
-            showIndicator={showIndicator}
-            top={top}
-            {...stylingProps(this)}
-            shift={shift}
-          />
+          <RootPortal>
+            <ToastList
+              config={this.config}
+              items={this.state.items}
+              leave={this.leave}
+              position={position}
+              remove={this.remove}
+              showIndicator={showIndicator}
+              top={top}
+              {...stylingProps(this)}
+              shift={shift}
+            />
+          </RootPortal>
         )}
       </React.Fragment>
     )
