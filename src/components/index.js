@@ -82,5 +82,10 @@ export { TabBarLegacyCompatibility as TabBar } from './Tabs/Tabs'
 export { default as Text } from './Text/Text'
 
 // Experimental components
+export {
+  FeedbackModule as _FeedbackModule,
+  FeedbackIndicator as _FeedbackIndicator,
+  FEEDBACK_STATUS as _FEEDBACK_STATUS,
+} from './FeedbackModule/FeedbackModule'
 export { default as _AutoComplete } from './AutoComplete/AutoComplete'
 export { default as _AutoCompleteSelected } from './AutoComplete/AutoCompleteSelected'
