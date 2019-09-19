@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { TextInput, IconBlank, _SearchInput as SearchInput } from '@aragon/ui'
+import { TextInput, IconBlank, SearchInput } from '@aragon/ui'
 
 class App extends React.Component {
   render() {
