@@ -38,8 +38,9 @@ class App extends React.Component {
         <TextInput adornment={<IconBlank />} adornmentPosition="end" />
         <TextInput.Multiline />
         <SearchInput
-          onChange={ev => {
-            console.log('Search term changed: ', ev.currentTarget.value)
+          onChange={(value, ev) => {
+            console.log('Search term changed: ', value)
+            console.log('Search change event: ', ev)
           }}
         />
       </div>
