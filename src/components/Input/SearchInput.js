@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState, useCallback } from 'react'
+import React, { useRef, useCallback } from 'react'
 import { ButtonIcon } from '../Button/ButtonIcon'
 import TextInput from './TextInput'
 import { IconSearch, IconCross } from '../../icons'
