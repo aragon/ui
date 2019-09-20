@@ -268,7 +268,7 @@ const DataView = React.memo(function DataView({
       {heading && (
         <div
           css={`
-            padding: ${2 * GU}px ${3 * GU}px;
+            padding: ${2 * GU}px ${layoutName === 'small' ? 2 * GU : 3 * GU}px;
           `}
         >
           {typeof heading === 'string' ? (
