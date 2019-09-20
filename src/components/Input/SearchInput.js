@@ -6,61 +6,51 @@ import { useTheme } from '../../theme'
 
 const EMPTY = ''
 
-const SearchInput = React.forwardRef(
-  ({ onChange, value: propsValue, ...props }, ref) => {
-    const theme = useTheme()
-    const localRef = ref || useRef()
-    const [value, setValue] = useState(propsValue || EMPTY)
-    const handleChange = useCallback(
-      ev => {
-        const { value } = ev.currentTarget
-        setValue(value)
-        onChange(value, { inputChangeEvent: ev })
-      },
-      [onChange]
-    )
-    const clear = useCallback(
-      ev => {
-        setValue(EMPTY)
-        onChange(EMPTY, { clearClickEvent: ev })
-      },
-      [onChange]
-    )
+const SearchInput = React.forwardRef(({ onChange, ...props }, ref) => {
+  const theme = useTheme()
+  const localRef = ref || useRef()
+  const handleChange = useCallback(
+    ev => {
+      const { value } = ev.currentTarget
+      onChange(value, { inputChangeEvent: ev })
+    },
+    [onChange]
+  )
+  const clear = useCallback(
+    ev => {
+      onChange(EMPTY, { clearClickEvent: ev })
+    },
+    [onChange]
+  )
 
-    useEffect(() => {
-      setValue(propsValue || EMPTY)
-    }, [propsValue])
-
-    return (
-      <TextInput
-        value={value}
-        {...props}
-        ref={localRef}
-        onChange={handleChange}
-        adornment={
-          value.trim() === EMPTY ? (
-            <IconSearch
-              css={`
-                color: ${theme.surfaceOpened};
-              `}
-            />
-          ) : (
-            <ButtonIcon
-              onClick={clear}
-              label="Clear search input"
-              css={`
-                color: ${theme.surfaceOpened};
-              `}
-            >
-              <IconCross />
-            </ButtonIcon>
-          )
-        }
-        adornmentPosition="end"
-      />
-    )
-  }
-)
+  return (
+    <TextInput
+      {...props}
+      ref={localRef}
+      onChange={handleChange}
+      adornment={
+        (props.value || '').trim() === EMPTY ? (
+          <IconSearch
+            css={`
+              color: ${theme.surfaceOpened};
+            `}
+          />
+        ) : (
+          <ButtonIcon
+            onClick={clear}
+            label="Clear search input"
+            css={`
+              color: ${theme.surfaceOpened};
+            `}
+          >
+            <IconCross />
+          </ButtonIcon>
+        )
+      }
+      adornmentPosition="end"
+    />
+  )
+})
 
 SearchInput.propTypes = {
   ...TextInput.propTypes,
