@@ -10,6 +10,8 @@ import { ButtonIcon } from '../Button/ButtonIcon'
 import EscapeOutside from '../EscapeOutside/EscapeOutside'
 import RootPortal from '../RootPortal/RootPortal'
 
+const SPACE_AROUND = 4 * GU
+
 function Modal({
   children,
   onClose,
@@ -68,7 +70,7 @@ function Modal({
               >
                 <div
                   css={`
-                    padding: ${2 * GU}px;
+                    padding: ${SPACE_AROUND}px 0;
                   `}
                 >
                   <EscapeOutside
@@ -78,7 +80,7 @@ function Modal({
                     css={`
                       position: relative;
                       overflow: hidden;
-                      min-width: ${360 - 4 * GU}px;
+                      min-width: ${360 - SPACE_AROUND * 2}px;
                       background: ${theme.surface};
                       box-shadow: 0 10px 28px rgba(0, 0, 0, 0.2);
                     `}
@@ -141,7 +143,7 @@ Modal.defaultProps = {
   closeButton: true,
   onClose: noop,
   padding: 3 * GU,
-  width: viewport => Math.min(viewport.width - 6 * GU, 600),
+  width: viewport => Math.min(viewport.width - SPACE_AROUND * 2, 600),
 }
 
 export default Modal
