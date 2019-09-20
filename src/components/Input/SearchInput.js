@@ -7,10 +7,10 @@ import { useTheme } from '../../theme'
 const EMPTY = ''
 
 const SearchInput = React.forwardRef(
-  ({ onChange, defaultValue, value: propsValue, ...props }, ref) => {
+  ({ onChange, value: propsValue, ...props }, ref) => {
     const theme = useTheme()
     const localRef = ref || useRef()
-    const [value, setValue] = useState(defaultValue || propsValue || EMPTY)
+    const [value, setValue] = useState(propsValue || EMPTY)
     const handleChange = useCallback(
       ev => {
         const { value } = ev.currentTarget
@@ -28,8 +28,8 @@ const SearchInput = React.forwardRef(
     )
 
     useEffect(() => {
-      setValue(defaultValue || propsValue || EMPTY)
-    }, [propsValue, defaultValue])
+      setValue(propsValue || EMPTY)
+    }, [propsValue])
 
     return (
       <TextInput
