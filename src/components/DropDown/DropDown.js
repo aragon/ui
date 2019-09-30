@@ -123,8 +123,7 @@ const DropDown = React.memo(function DropDown({
     if (!el) {
       return
     }
-    // Add 4 GU to accomodate for caret spacing
-    setPlaceholderMinWidth(el.clientWidth + 4 * GU)
+    setPlaceholderMinWidth(el.clientWidth)
     setGetContentWidth(false)
   }, [])
   // Re-adjust if the width or items ever change
@@ -187,7 +186,7 @@ const DropDown = React.memo(function DropDown({
           padding-left: ${2 * GU}px;
           padding-right: ${1.5 * GU}px;
           width: ${width || (wide ? '100%' : 'auto')};
-          min-width: ${placeholderMinWidth}px;
+          min-width: ${wide ? 'auto' : `${placeholderMinWidth}px`};
           background: ${disabled ? theme.disabled : theme.surface};
           color: ${disabled ? theme.disabledContent : theme.surfaceContent};
           border: ${disabled ? 0 : 1}px solid
@@ -203,7 +202,15 @@ const DropDown = React.memo(function DropDown({
         `}
         {...props}
       >
-        <Label selectedIndex={selectedIndex} selectedLabel={selectedLabel} />
+        <div
+          css={`
+            max-width: calc(
+              ${placeholderMinWidth}px - ${4 * GU}px - ${4.5 * GU}px
+            );
+          `}
+        >
+          <Label selectedIndex={selectedIndex} selectedLabel={selectedLabel} />
+        </div>
         <IconDown
           size="tiny"
           css={`
@@ -280,7 +287,6 @@ const PopoverContent = React.memo(function PopoverContent({
   const theme = useTheme()
   return (
     <div
-      ref={refCallback}
       css={`
         min-width: ${buttonWidth}px;
         color: ${theme.surfaceContentSecondary};
@@ -298,8 +304,10 @@ const PopoverContent = React.memo(function PopoverContent({
         </div>
       )}
       <ul
+        ref={refCallback}
         css={`
           margin: 0;
+          padding: 0;
           list-style: none;
           width: 100%;
         `}
