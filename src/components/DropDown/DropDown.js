@@ -117,18 +117,21 @@ const DropDown = React.memo(function DropDown({
 
   // Adjust the button width if the item widths are larger than declared width
   const [ghostElement, setGhostElement] = useState(null)
-  const popoverRefCallback = useCallback(el => {
-    if (!el) {
-      return
-    }
-    setGhostElement(el)
-  })
-  const placeholderMinWidth = React.useMemo(() => {
+  const popoverRefCallback = useCallback(
+    el => {
+      if (!el) {
+        return
+      }
+      setGhostElement(el)
+    },
+    [setGhostElement]
+  )
+  const placeholderMinWidth = useMemo(() => {
     if (!ghostElement) {
       return Math.min(widthNoPx, MIN_WIDTH)
     }
     return ghostElement.clientWidth
-  }, [vw, ghostElement])
+  }, [ghostElement, widthNoPx])
 
   useEffect(() => {
     setGetContentWidth(true)
