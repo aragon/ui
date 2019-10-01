@@ -1,4 +1,4 @@
-import React, { useState, useRef, useCallback, useEffect } from 'react'
+import React, { useMemo, useState, useRef, useCallback, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { Transition, animated } from 'react-spring'
@@ -7,7 +7,7 @@ import { springs } from '../../style'
 import { useTheme } from '../../theme'
 import { unselectable, noop, identity } from '../../utils'
 import ButtonBase from '../ButtonBase/ButtonBase'
-import TextInput from '../Input/TextInput'
+import { SearchInput } from '../Input/SearchInput'
 import { IconSearch } from '../../icons'
 
 function AutoComplete({
@@ -36,50 +36,29 @@ function AutoComplete({
     item => e => {
       e.preventDefault()
       onSelect(item)
+      setOpened(false)
     },
     [onSelect]
   )
-  const handleChange = useCallback(({ target: { value } }) => onChange(value), [
-    onChange,
-  ])
 
   const { handleBlur } = useOnBlur(handleClose, wrapRef)
   const { highlightedIndex, setHighlightedIndex } = useArrowKeysFocus(refs)
-  const reset = setHighlightedIndex(-1)
-  const { ref: containerRef, handleBlur: handleResetBlur } = useOnBlur(reset)
-  useEffect(() => {
-    reset()
-  }, [opened, items, value, reset])
   useClickOutside(handleClose, wrapRef)
+  useEffect(() => {
+    setHighlightedIndex(-1)()
+  }, [opened, items, value, setHighlightedIndex])
 
   return (
     <div css="position: relative" ref={wrapRef} onBlur={handleBlur}>
-      <TextInput
-        css={`
-          padding-right: 35px;
-        `}
+      <SearchInput
         ref={ref}
         wide={wide}
         placeholder={placeholder}
         required={required}
-        onChange={handleChange}
+        onChange={onChange}
         onFocus={handleFocus}
         value={value}
       />
-      <div
-        css={`
-          position: absolute;
-          top: 0;
-          right: 0;
-          height: 40px;
-          width: 35px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        `}
-      >
-        <IconSearch css="color: #a8b3c8" />
-      </div>
       <Transition
         config={springs.swift}
         items={opened && !!items.length}
@@ -93,8 +72,6 @@ function AutoComplete({
           /* eslint-disable react/prop-types */
           (({ scale, opacity }) => (
             <Items
-              ref={containerRef}
-              onBlur={handleResetBlur}
               role="listbox"
               style={{
                 opacity,
