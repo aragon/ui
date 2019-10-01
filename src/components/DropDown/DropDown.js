@@ -113,7 +113,7 @@ const DropDown = React.memo(function DropDown({
 
   const [widthNoPx = MIN_WIDTH] = (width || '').split('px')
   const [buttonWidth, setButtonWidth] = useState(0)
-  const [getContentWidth, setGetContentWidth] = useState(true)
+  const [measureWidth, setMeasureWidth] = useState(true)
 
   // Adjust the button width if the item widths are larger than declared width
   const [ghostElement, setGhostElement] = useState(null)
@@ -134,7 +134,7 @@ const DropDown = React.memo(function DropDown({
   }, [ghostElement, widthNoPx])
 
   useEffect(() => {
-    setGetContentWidth(true)
+    setMeasureWidth(true)
   }, [vw, items])
 
   // Update the button width every time the reference updates
@@ -223,7 +223,7 @@ const DropDown = React.memo(function DropDown({
           `}
         />
       </ButtonBase>
-      {getContentWidth && (
+      {measureWidth && (
         <div
           css={`
             position: absolute;
