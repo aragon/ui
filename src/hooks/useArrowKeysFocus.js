@@ -46,6 +46,9 @@ export function useArrowKeysFocus(refs) {
 
   return {
     highlightedIndex,
-    setHighlightedIndex: index => () => setHighlightedIndex(index),
+    setHighlightedIndex: useCallback(
+      index => () => setHighlightedIndex(index),
+      []
+    ),
   }
 }
