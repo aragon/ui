@@ -112,24 +112,22 @@ const DropDown = React.memo(function DropDown({
   const { width: vw } = useViewport()
 
   const [widthNoPx = MIN_WIDTH] = (width || '').split('px')
+  const [buttonWidth, setButtonWidth] = useState(0)
+  const [measureWidth, setMeasureWidth] = useState(true)
+
+  // Adjust the button width if the item widths are larger than declared width
   const [placeholderMinWidth, setPlaceholderMinWidth] = useState(
     Math.min(widthNoPx, MIN_WIDTH)
   )
-  const [buttonWidth, setButtonWidth] = useState(0)
-  const [getContentWidth, setGetContentWidth] = useState(true)
-
-  // Adjust the button width if the item widths are larger than declared width
   const popoverRefCallback = useCallback(el => {
     if (!el) {
       return
     }
-    // Add 4 GU to accomodate for caret spacing
-    setPlaceholderMinWidth(el.clientWidth + 4 * GU)
-    setGetContentWidth(false)
+    setPlaceholderMinWidth(el.clientWidth)
+    setMeasureWidth(false)
   }, [])
-  // Re-adjust if the width or items ever change
   useEffect(() => {
-    setGetContentWidth(true)
+    setMeasureWidth(true)
   }, [vw, items])
 
   // Update the button width every time the reference updates
@@ -187,7 +185,7 @@ const DropDown = React.memo(function DropDown({
           padding-left: ${2 * GU}px;
           padding-right: ${1.5 * GU}px;
           width: ${width || (wide ? '100%' : 'auto')};
-          min-width: ${placeholderMinWidth}px;
+          min-width: ${wide ? 'auto' : `${placeholderMinWidth}px`};
           background: ${disabled ? theme.disabled : theme.surface};
           color: ${disabled ? theme.disabledContent : theme.surfaceContent};
           border: ${disabled ? 0 : 1}px solid
@@ -203,7 +201,9 @@ const DropDown = React.memo(function DropDown({
         `}
         {...props}
       >
-        <Label selectedIndex={selectedIndex} selectedLabel={selectedLabel} />
+        <div css="overflow: hidden;">
+          <Label selectedIndex={selectedIndex} selectedLabel={selectedLabel} />
+        </div>
         <IconDown
           size="tiny"
           css={`
@@ -216,7 +216,7 @@ const DropDown = React.memo(function DropDown({
           `}
         />
       </ButtonBase>
-      {getContentWidth && (
+      {measureWidth && (
         <div
           css={`
             position: absolute;
@@ -280,7 +280,6 @@ const PopoverContent = React.memo(function PopoverContent({
   const theme = useTheme()
   return (
     <div
-      ref={refCallback}
       css={`
         min-width: ${buttonWidth}px;
         color: ${theme.surfaceContentSecondary};
@@ -298,8 +297,10 @@ const PopoverContent = React.memo(function PopoverContent({
         </div>
       )}
       <ul
+        ref={refCallback}
         css={`
           margin: 0;
+          padding: 0;
           list-style: none;
           width: 100%;
         `}
