@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import Popper from 'popper.js'
 import { Transition, animated } from 'react-spring'
 import { useRoot } from '../../providers'
-import { springs, RADIUS } from '../../style'
+import { springs, GU, RADIUS } from '../../style'
 import { useTheme } from '../../theme'
 import { noop, stylingProps, warn, KEY_ESC } from '../../utils'
 import RootPortal from '../RootPortal/RootPortal'
@@ -162,9 +162,17 @@ class PopoverBase extends React.Component {
     onClose()
   }
 
+  boundaryDimensions() {
+    const { rootBoundary } = this.props
+    return rootBoundary
+      ? [rootBoundary.clientWidth, rootBoundary.clientHeight]
+      : [window.innerWidth, window.innerHeight]
+  }
+
   render() {
     const { children, theme, transitionStyles, zIndex } = this.props
     const { scale, opacity } = transitionStyles
+    const [maxWidth, maxHeight] = this.boundaryDimensions()
     return (
       <animated.div
         css={`
@@ -183,6 +191,8 @@ class PopoverBase extends React.Component {
           style={{
             opacity,
             transform: scale.interpolate(v => `scale3d(${v}, ${v}, 1)`),
+            maxHeight: `${maxHeight - 2 * GU}px`,
+            maxWidth: `${maxWidth - 2 * GU}px`,
           }}
           css={`
             background: ${theme.surface};
@@ -193,6 +203,7 @@ class PopoverBase extends React.Component {
               /* Having the popover visible already means that it focused. */
               outline: 0;
             }
+            overflow-y: auto;
           `}
           {...stylingProps(this)}
         >
