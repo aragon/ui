@@ -162,9 +162,17 @@ class PopoverBase extends React.Component {
     onClose()
   }
 
+  boundaryDimensions() {
+    const { rootBoundary } = this.props
+    return rootBoundary
+      ? [rootBoundary.clientWidth, rootBoundary.clientHeight]
+      : [window.innerWidth, window.innerHeight]
+  }
+
   render() {
     const { children, theme, transitionStyles, zIndex } = this.props
     const { scale, opacity } = transitionStyles
+    const [maxWidth, maxHeight] = this.boundaryDimensions()
     return (
       <animated.div
         css={`
@@ -193,8 +201,8 @@ class PopoverBase extends React.Component {
               /* Having the popover visible already means that it focused. */
               outline: 0;
             }
-            max-height: calc(100vh - ${2 * GU}px);
-            max-width: calc(100vw - ${2 * GU}px);
+            max-height: calc(${maxHeight}px - ${2 * GU}px);
+            max-width: calc(${maxWidth}px - ${2 * GU}px);
             overflow-y: auto;
           `}
           {...stylingProps(this)}
