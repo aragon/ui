@@ -208,14 +208,7 @@ const DropDown = React.memo(function DropDown({
         `}
         {...props}
       >
-        <div
-          css={`
-            overflow: hidden;
-            max-width: calc(
-              ${placeholderMinWidth}px - ${4 * GU}px - ${4.5 * GU}px
-            );
-          `}
-        >
+        <div css="overflow: hidden;">
           <Label selectedIndex={selectedIndex} selectedLabel={selectedLabel} />
         </div>
         <IconDown
