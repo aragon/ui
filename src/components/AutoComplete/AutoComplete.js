@@ -1,4 +1,4 @@
-import React, { useMemo, useState, useRef, useCallback, useEffect } from 'react'
+import React, { useState, useRef, useCallback, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { Transition, animated } from 'react-spring'
@@ -8,7 +8,6 @@ import { useTheme } from '../../theme'
 import { unselectable, noop, identity } from '../../utils'
 import ButtonBase from '../ButtonBase/ButtonBase'
 import { SearchInput } from '../Input/SearchInput'
-import { IconSearch } from '../../icons'
 
 function AutoComplete({
   forwardedRef,
