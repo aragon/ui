@@ -191,6 +191,8 @@ class PopoverBase extends React.Component {
           style={{
             opacity,
             transform: scale.interpolate(v => `scale3d(${v}, ${v}, 1)`),
+            maxHeight: `${maxHeight - 2 * GU}px`,
+            maxWidth: `${maxWidth - 2 * GU}px`,
           }}
           css={`
             background: ${theme.surface};
@@ -201,8 +203,6 @@ class PopoverBase extends React.Component {
               /* Having the popover visible already means that it focused. */
               outline: 0;
             }
-            max-height: calc(${maxHeight}px - ${2 * GU}px);
-            max-width: calc(${maxWidth}px - ${2 * GU}px);
             overflow-y: auto;
           `}
           {...stylingProps(this)}
