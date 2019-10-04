@@ -6,8 +6,13 @@ import { useTheme } from '../../theme'
 import { Box } from '../../components/Box/Box'
 import { Pagination } from '../../components/Pagination/Pagination'
 import { useLayout } from '../../components/Layout/Layout'
+import { usePublicUrl } from '../../providers/PublicUrl'
+import LoadingRing from '../LoadingRing/LoadingRing'
+import Link from '../Link/Link'
 import { TableView } from './TableView'
 import { ListView } from './ListView'
+import illustrationRedImage from './assets/empty-state-illustration-red.png'
+import illustrationBlueImage from './assets/empty-state-illustration-blue.png'
 
 function prepareEntries(entries, from, to, selectedIndexes) {
   return entries.slice(from, to).map((entry, index) => {
@@ -174,6 +179,12 @@ const DataView = React.memo(function DataView({
   mode,
   selection,
   tableRowHeight,
+  status,
+  statusEmpty,
+  statusLoading,
+  statusEmptyFilters,
+  statusEmptySearch,
+  onStatusEmptyClear,
 }) {
   if (renderEntryChild && !renderEntryExpansion) {
     warnOnce(
@@ -217,6 +228,7 @@ const DataView = React.memo(function DataView({
 
   const theme = useTheme()
   const { layoutName } = useLayout()
+  const publicUrl = usePublicUrl()
 
   const listMode =
     mode === 'list' || (mode !== 'table' && layoutName === 'small')
@@ -259,6 +271,8 @@ const DataView = React.memo(function DataView({
 
   const alignChildOnField = fields.findIndex(field => field && field.childStart)
 
+  const emptyEntries = renderedEntries.length === 0
+
   return (
     <Box padding={0}>
       {heading && (
@@ -282,36 +296,144 @@ const DataView = React.memo(function DataView({
         </div>
       )}
 
-      {listMode ? (
-        <ListView
-          allSelected={allSelected}
-          entries={renderedEntries}
-          fields={preparedFields}
-          hasAnyExpansion={hasAnyExpansion}
-          onSelect={toggleEntrySelect}
-          onSelectAll={selectAll}
-          renderSelectionCount={renderSelectionCount}
-          rowHeight={tableRowHeight}
-          selectable={canSelect}
-        />
-      ) : (
-        <TableView
-          alignChildOnField={Math.min(
-            Math.max(-1, alignChildOnField),
-            fields.length - 1
-          )}
-          allSelected={allSelected}
-          entries={renderedEntries}
-          fields={preparedFields}
-          hasAnyActions={hasAnyActions}
-          hasAnyExpansion={hasAnyExpansion}
-          onSelect={toggleEntrySelect}
-          onSelectAll={selectAll}
-          renderSelectionCount={renderSelectionCount}
-          rowHeight={tableRowHeight}
-          selectable={canSelect}
-          selectedCount={selectedIndexes.length}
-        />
+      {!emptyEntries &&
+        (listMode ? (
+          <ListView
+            allSelected={allSelected}
+            entries={renderedEntries}
+            fields={preparedFields}
+            hasAnyExpansion={hasAnyExpansion}
+            onSelect={toggleEntrySelect}
+            onSelectAll={selectAll}
+            renderSelectionCount={renderSelectionCount}
+            rowHeight={tableRowHeight}
+            selectable={canSelect}
+          />
+        ) : (
+          <TableView
+            alignChildOnField={Math.min(
+              Math.max(-1, alignChildOnField),
+              fields.length - 1
+            )}
+            allSelected={allSelected}
+            entries={renderedEntries}
+            fields={preparedFields}
+            hasAnyActions={hasAnyActions}
+            hasAnyExpansion={hasAnyExpansion}
+            onSelect={toggleEntrySelect}
+            onSelectAll={selectAll}
+            renderSelectionCount={renderSelectionCount}
+            rowHeight={tableRowHeight}
+            selectable={canSelect}
+            selectedCount={selectedIndexes.length}
+          />
+        ))}
+
+      {emptyEntries && (
+        <div
+          css={`
+            height: ${85 * GU}px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          `}
+        >
+          <div
+            css={`
+              width: ${31 * GU}px;
+              text-align: center;
+            `}
+          >
+            {(status === 'default' || status === 'loading') && (
+              <img
+                src={publicUrl + illustrationBlueImage}
+                alt=""
+                height={20 * GU}
+                css={`
+                  margin-bottom: ${2 * GU}px;
+                `}
+              />
+            )}
+
+            {(status === 'empty-filters' || status === 'empty-search') && (
+              <img
+                src={publicUrl + illustrationRedImage}
+                alt=""
+                height={20 * GU}
+                css={`
+                  margin-bottom: ${2 * GU}px;
+                `}
+              />
+            )}
+
+            {status === 'default' &&
+              (statusEmpty || (
+                <p
+                  css={`
+                    ${textStyle('title2')};
+                  `}
+                >
+                  No data available.
+                </p>
+              ))}
+
+            {status === 'loading' &&
+              (statusLoading || (
+                <p
+                  css={`
+                    ${textStyle('title2')};
+                    display: flex;
+                    align-items: center;
+                  `}
+                >
+                  <LoadingRing
+                    css={`
+                      margin-right: ${2 * GU}px;
+                    `}
+                  />{' '}
+                  Loading data…
+                </p>
+              ))}
+
+            {status === 'empty-filters' && (
+              <>
+                <p
+                  css={`
+                    ${textStyle('title2')};
+                    margin-top: ${2 * GU}px;
+                  `}
+                >
+                  No results found.
+                </p>
+                {statusEmptyFilters || (
+                  <p>
+                    {'We can’t find any item matching your filter selection. '}
+                    <Link onClick={onStatusEmptyClear}>Clear filters</Link>
+                  </p>
+                )}
+              </>
+            )}
+
+            {status === 'empty-search' && (
+              <>
+                <p
+                  css={`
+                    ${textStyle('title2')};
+                    margin-top: ${2 * GU}px;
+                  `}
+                >
+                  No results found.
+                </p>
+                {statusEmptySearch || (
+                  <p>
+                    {'We can’t find any item matching your search query. '}
+                    <Link onClick={onStatusEmptyClear}>Clear search</Link>
+                  </p>
+                )}
+              </>
+            )}
+          </div>
+        </div>
       )}
 
       {pages > 1 && (
@@ -347,6 +469,17 @@ DataView.propTypes = {
   renderSelectionCount: PropTypes.func,
   selection: PropTypes.array,
   tableRowHeight: PropTypes.number,
+  status: PropTypes.oneOf([
+    'default',
+    'loading',
+    'empty-filters',
+    'empty-search',
+  ]),
+  statusEmpty: PropTypes.node,
+  statusLoading: PropTypes.node,
+  statusEmptyFilters: PropTypes.node,
+  statusEmptySearch: PropTypes.node,
+  onStatusEmptyClear: PropTypes.func,
 
   // deprecated
   renderEntryChild: PropTypes.func,
@@ -358,6 +491,7 @@ DataView.defaultProps = {
   onPageChange: noop,
   renderSelectionCount: count => `${count} items selected`,
   tableRowHeight: 8 * GU,
+  status: 'default',
 }
 
 export { DataView }

@@ -290,3 +290,51 @@ Renders the label used to indicate the current selection. If not provided, “X 
 | `Number` | `8 * GU` (`64px`) |
 
 The height of a row, in `px`.
+
+### status
+
+| Type     | Default value |
+| -------- | ------------- |
+| `String` | `default`     |
+
+Can be `default`, `loading`, `empty-filters` and `empty-search`. The correct illustration and text styles are used depending on the status.
+
+### statusEmpty
+
+| Type     | Default value |
+| -------- | ------------- |
+| `Node`   | None          |
+
+If you want to customize the `default` status content.
+
+### statusLoading
+
+| Type     | Default value |
+| -------- | ------------- |
+| `Node`   | None          |
+
+If you want to customize the `loading` status content.
+
+### statusEmptyFilters
+
+| Type     | Default value |
+| -------- | ------------- |
+| `Node`   | None          |
+
+If you want to customize the `empty-filters` status content.
+
+### statusEmptySearch
+
+| Type     | Default value |
+| -------- | ------------- |
+| `Node`   | None          |
+
+If you want to customize the `empty-search` status content.
+
+### onStatusEmptyClear
+
+| Type         | Default value |
+| ------------ | ------------- |
+| `Function`   | None          |
+
+Called when one of the default clearing links gets clicked. This is happening in `empty-filters` or `empty-search` depending on the status.

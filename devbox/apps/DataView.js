@@ -116,6 +116,37 @@ function SortingDemo(props) {
 }
 
 const DEMOS = new Map([
+  [
+    'Default empty state',
+    props => <DataView {...props} fields={[]} entries={[]} />,
+  ],
+  [
+    'Loading empty state',
+    props => <DataView {...props} fields={[]} entries={[]} status="loading" />,
+  ],
+  [
+    'Filters empty state',
+    props => (
+      <DataView {...props} fields={[]} entries={[]} status="empty-filters" />
+    ),
+  ],
+  [
+    'Search empty state',
+    props => (
+      <DataView {...props} fields={[]} entries={[]} status="empty-search" />
+    ),
+  ],
+  [
+    'Custom empty state',
+    props => (
+      <DataView
+        {...props}
+        fields={[]}
+        entries={[]}
+        statusEmpty={<p>Custom stuff here...</p>}
+      />
+    ),
+  ],
   ['Sorting', SortingDemo],
   [
     'One column',
