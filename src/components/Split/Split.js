@@ -9,7 +9,8 @@ function Split({ primary, secondary, invert }) {
   const oneColumn = layout === 'small' || layout === 'medium'
 
   const inverted =
-    (!oneColumn && invert === 'rows') || (oneColumn && invert === 'columns')
+    (!oneColumn && invert === 'horizontal') ||
+    (oneColumn && invert === 'vertical')
 
   const primaryContent = (
     <Inside name="Split:primary">
@@ -58,7 +59,7 @@ function Split({ primary, secondary, invert }) {
 }
 
 Split.propTypes = {
-  invert: PropTypes.oneOf(['none', 'rows', 'columns']),
+  invert: PropTypes.oneOf(['none', 'horizontal', 'vertical']),
   primary: PropTypes.node,
   secondary: PropTypes.node,
 }
