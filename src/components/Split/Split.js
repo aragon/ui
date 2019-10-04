@@ -4,9 +4,43 @@ import { useLayout } from '../Layout/Layout'
 import { GU } from '../../style'
 import { Inside } from '../../utils'
 
-function Split({ primary, secondary }) {
+function Split({ primary, secondary, invert }) {
   const { name: layout } = useLayout()
   const oneColumn = layout === 'small' || layout === 'medium'
+
+  const inverted =
+    (!oneColumn && invert === 'rows') || (oneColumn && invert === 'columns')
+
+  const primaryContent = (
+    <Inside name="Split:primary">
+      <div
+        css={`
+          flex-grow: 1;
+          margin-left: ${!oneColumn && inverted ? 2 * GU : 0}px;
+          padding-top: ${oneColumn && inverted ? 2 * GU : 0}px;
+        `}
+      >
+        {primary}
+      </div>
+    </Inside>
+  )
+
+  const secondaryContent = (
+    <Inside name="Split:secondary">
+      <div
+        css={`
+          flex-shrink: 0;
+          flex-grow: 0;
+          width: ${oneColumn ? '100%' : `${33 * GU}px`};
+          margin-left: ${!oneColumn && !inverted ? 2 * GU : 0}px;
+          padding-top: ${oneColumn && !inverted ? 2 * GU : 0}px;
+        `}
+      >
+        {secondary}
+      </div>
+    </Inside>
+  )
+
   return (
     <Inside name="Split">
       <div
@@ -16,30 +50,21 @@ function Split({ primary, secondary }) {
           width: 100%;
         `}
       >
-        <Inside name="Split:primary">
-          <div css="flex-grow: 1">{primary}</div>
-        </Inside>
-        <Inside name="Split:secondary">
-          <div
-            css={`
-              flex-shrink: 0;
-              flex-grow: 0;
-              width: ${oneColumn ? '100%' : `${33 * GU}px`};
-              margin-left: ${oneColumn ? 0 : 2 * GU}px;
-              padding-top: ${oneColumn ? 2 * GU : 0}px;
-            `}
-          >
-            {secondary}
-          </div>
-        </Inside>
+        {inverted ? secondaryContent : primaryContent}
+        {inverted ? primaryContent : secondaryContent}
       </div>
     </Inside>
   )
 }
 
 Split.propTypes = {
+  invert: PropTypes.oneOf(['none', 'rows', 'columns']),
   primary: PropTypes.node,
   secondary: PropTypes.node,
+}
+
+Split.defaultProps = {
+  invert: 'none',
 }
 
 export { Split }
