@@ -15,6 +15,7 @@ import PageLink from './pages/PageLink'
 import PageRadio from './pages/PageRadio'
 import PageRadioGroup from './pages/PageRadioGroup'
 import PageRadioList from './pages/PageRadioList'
+import PageTextCopy from './pages/PageTextCopy'
 import PageTextInput from './pages/PageTextInput'
 import PageField from './pages/PageField'
 import PageSlider from './pages/PageSlider'
@@ -96,6 +97,7 @@ export const PAGE_GROUPS = [
       [PageRadioGroup, 'RadioGroup'],
       [PageRadioList, 'RadioList'],
       [PageSlider, 'Slider'],
+      [PageTextCopy, 'TextCopy'],
       [PageTextInput, 'TextInput'],
       [PageAutoComplete, 'AutoComplete'],
     ],

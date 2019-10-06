@@ -7,6 +7,7 @@ import { textStyle, GU, RADIUS } from '../../style'
 // Simple text input
 const TextInput = React.forwardRef(({ multiline, type, ...props }, ref) => {
   const theme = useTheme()
+  console.warn('multiLine text input', multiline)
   return (
     <input
       as={multiline ? 'textarea' : 'input'}
