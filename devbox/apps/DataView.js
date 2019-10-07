@@ -15,9 +15,10 @@ import {
   IconUp,
   IdentityBadge,
   useTheme,
+  noop,
 } from '@aragon/ui'
 import { createAddress } from '../create-address'
-import { createRandomInt, seedShuffleArray, multiplyArray } from '../utils'
+import { createRandomInt, multiplyArray, seedShuffleArray } from '../utils'
 
 const DEMO_DEFAULT = 0
 
@@ -116,6 +117,59 @@ function SortingDemo(props) {
 }
 
 const DEMOS = new Map([
+  [
+    'Default empty state',
+    props => (
+      <DataView {...props} fields={[]} entries={[]} renderEntry={noop} />
+    ),
+  ],
+  [
+    'Loading empty state',
+    props => (
+      <DataView
+        {...props}
+        fields={[]}
+        entries={[]}
+        renderEntry={noop}
+        status="loading"
+      />
+    ),
+  ],
+  [
+    'Filters empty state',
+    props => (
+      <DataView
+        {...props}
+        fields={[]}
+        entries={[]}
+        renderEntry={noop}
+        status="empty-filters"
+      />
+    ),
+  ],
+  [
+    'Search empty state',
+    props => (
+      <DataView
+        {...props}
+        fields={[]}
+        entries={[]}
+        renderEntry={noop}
+        status="empty-search"
+      />
+    ),
+  ],
+  [
+    'Custom empty state',
+    props => (
+      <DataView
+        {...props}
+        fields={[]}
+        entries={[]}
+        statusEmpty={<p>Custom stuff here...</p>}
+      />
+    ),
+  ],
   ['Sorting', SortingDemo],
   [
     'One column',
