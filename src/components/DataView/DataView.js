@@ -406,7 +406,11 @@ const DataView = React.memo(function DataView({
                   No results found.
                 </p>
                 {statusEmptyFilters || (
-                  <p>
+                  <p
+                    css={`
+                      color: ${theme.surfaceContentSecondary};
+                    `}
+                  >
                     {'We can’t find any item matching your filter selection. '}
                     <Link onClick={onStatusEmptyClear}>Clear filters</Link>
                   </p>
@@ -425,7 +429,11 @@ const DataView = React.memo(function DataView({
                   No results found.
                 </p>
                 {statusEmptySearch || (
-                  <p>
+                  <p
+                    css={`
+                      color: ${theme.surfaceContentSecondary};
+                    `}
+                  >
                     {'We can’t find any item matching your search query. '}
                     <Link onClick={onStatusEmptyClear}>Clear search</Link>
                   </p>
