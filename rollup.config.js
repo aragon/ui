@@ -19,6 +19,12 @@ export default {
       preserveModules: true,
       sourcemap: true,
     },
+    {
+      file: pkg.main,
+      format: 'cjs',
+      preserveModules: false,
+      sourcemap: true,
+    },
   ],
   external: ['react', 'react-dom', 'styled-components'],
   treeshake: production,
