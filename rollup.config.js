@@ -19,6 +19,8 @@ export default {
       preserveModules: true,
       sourcemap: true,
     },
+    // The CJS build is used by node tools we are using, like
+    // eslint-plugin-import.
     {
       file: pkg.main,
       format: 'cjs',
