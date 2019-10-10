@@ -336,7 +336,6 @@ const DataView = React.memo(function DataView({
       {emptyEntries && (
         <div
           css={`
-            height: ${85 * GU}px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -346,6 +345,7 @@ const DataView = React.memo(function DataView({
             css={`
               width: ${31 * GU}px;
               text-align: center;
+              padding: ${8 * GU}px 0;
             `}
           >
             {(status === 'default' || status === 'loading') && (
