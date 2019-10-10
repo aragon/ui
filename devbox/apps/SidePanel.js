@@ -1,14 +1,16 @@
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import styled from 'styled-components'
 import {
   Box,
   Button,
-  Header,
+  Field,
   GU,
+  Header,
   SidePanel,
   SidePanelSeparator,
   SidePanelSplit,
   Split,
+  TextInput,
 } from '@aragon/ui'
 import Lorem from '../components/Lorem'
 
@@ -52,35 +54,52 @@ function App() {
         }
       />
       <SidePanel title="My Panel" opened={opened} onClose={close}>
-        <div
-          css={`
-            margin-top: ${3 * GU}px;
-          `}
-        >
-          <p
-            css={`
-              margin-bottom: ${3 * GU}px;
-            `}
-          >
-            Panel content
-          </p>
-          <SidePanelSeparator />
-          <p
-            css={`
-              margin: ${2 * GU}px 0;
-            `}
-          >
-            Some more panel content
-          </p>
-          <SidePanelSeparator />
-          <SidePanelSplit>
-            <p>Left split</p>
-            <p>Right split</p>
-          </SidePanelSplit>
-          <SidePanelSeparator />
-        </div>
+        {SidePanelContent}
       </SidePanel>
     </React.Fragment>
+  )
+}
+
+function SidePanelContent({ status, readyToFocus }) {
+  const inputRef = useRef()
+
+  useEffect(() => {
+    if (readyToFocus && inputRef.current) {
+      inputRef.current.focus()
+    }
+  }, [readyToFocus, inputRef])
+
+  return (
+    <div
+      css={`
+        margin-top: ${3 * GU}px;
+      `}
+    >
+      <p
+        css={`
+          margin-bottom: ${3 * GU}px;
+        `}
+      >
+        Panel content ({status})
+      </p>
+      <SidePanelSeparator />
+      <p
+        css={`
+          margin: ${2 * GU}px 0;
+        `}
+      >
+        Some more panel content
+      </p>
+      <Field label="Focus test">
+        <TextInput wide ref={inputRef} />
+      </Field>
+      <SidePanelSeparator />
+      <SidePanelSplit>
+        <p>Left split</p>
+        <p>Right split</p>
+      </SidePanelSplit>
+      <SidePanelSeparator />
+    </div>
   )
 }
 
