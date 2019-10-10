@@ -77,8 +77,6 @@ About the need to have `readyToFocus`: browser engines tend to force newly focus
 
 #### Example
 
-This is how `readyToFocus` can be used:
-
 ```jsx
 // MySidePanel.js
 
