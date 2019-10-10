@@ -84,8 +84,6 @@ function SidePanel({
     }
   }, [handleEscape])
 
-  const Children = typeof children === 'function' ? children : null
-
   return (
     <RootPortal>
       <Inside name="SidePanel">
@@ -282,23 +280,26 @@ function useSidePanel() {
   return value
 }
 
-function useSidePanelFocusOnReady(ref = useRef()) {
+function useSidePanelFocusOnReady(ref) {
   const { readyToFocus } = useSidePanel()
+  const fallbackRef = useRef()
+
+  const _ref = ref || fallbackRef
 
   useEffect(() => {
-    if (readyToFocus && ref.current) {
-      if (ref.current.focus) {
-        ref.current.focus()
+    if (readyToFocus && _ref.current) {
+      if (_ref.current.focus) {
+        _ref.current.focus()
       } else {
         warn(
           'useSidePanelFocusOnReady(): the focus() method wasn’t available on ' +
-            'the passed reference.'
+            'the passed ref.'
         )
       }
     }
-  }, [readyToFocus, ref])
+  }, [readyToFocus, _ref])
 
-  return ref
+  return _ref
 }
 
 // Used for spacing in SidePanelSplit and SidePanelSeparator
