@@ -9,6 +9,7 @@ const EMPTY = ''
 const SearchInput = React.forwardRef(({ onChange, ...props }, ref) => {
   const theme = useTheme()
   const localRef = ref || useRef()
+
   const handleChange = useCallback(
     ev => {
       const { value } = ev.currentTarget
@@ -16,31 +17,33 @@ const SearchInput = React.forwardRef(({ onChange, ...props }, ref) => {
     },
     [onChange]
   )
-  const clear = useCallback(
+
+  const handleClearClick = useCallback(
     ev => {
       onChange(EMPTY, { clearClickEvent: ev })
+      if (localRef.current) {
+        localRef.current.focus()
+      }
     },
-    [onChange]
+    [onChange, localRef]
   )
 
   return (
     <TextInput
-      {...props}
       ref={localRef}
-      onChange={handleChange}
       adornment={
-        (props.value || '').trim() === EMPTY ? (
+        (props.value || '') === EMPTY ? (
           <IconSearch
             css={`
-              color: ${theme.surfaceOpened};
+              color: ${theme.surfaceIcon};
             `}
           />
         ) : (
           <ButtonIcon
-            onClick={clear}
+            onClick={handleClearClick}
             label="Clear search input"
             css={`
-              color: ${theme.surfaceOpened};
+              color: ${theme.surfaceIcon};
             `}
           >
             <IconCross />
@@ -48,6 +51,8 @@ const SearchInput = React.forwardRef(({ onChange, ...props }, ref) => {
         )
       }
       adornmentPosition="end"
+      onChange={handleChange}
+      {...props}
     />
   )
 })
