@@ -8,7 +8,8 @@ const EMPTY = ''
 
 const SearchInput = React.forwardRef(({ onChange, ...props }, ref) => {
   const theme = useTheme()
-  const localRef = ref || useRef()
+  const fallbackRef = useRef()
+  const _ref = ref || fallbackRef
 
   const handleChange = useCallback(
     ev => {
@@ -21,16 +22,16 @@ const SearchInput = React.forwardRef(({ onChange, ...props }, ref) => {
   const handleClearClick = useCallback(
     ev => {
       onChange(EMPTY, { clearClickEvent: ev })
-      if (localRef.current) {
-        localRef.current.focus()
+      if (_ref.current) {
+        _ref.current.focus()
       }
     },
-    [onChange, localRef]
+    [onChange, _ref]
   )
 
   return (
     <TextInput
-      ref={localRef}
+      ref={_ref}
       adornment={
         (props.value || '') === EMPTY ? (
           <IconSearch
