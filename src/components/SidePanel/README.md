@@ -66,7 +66,7 @@ When set, removes the ability to close the panel by using the close button or th
 
 ## Related hooks
 
-### useSidePanel({ status, readyToFocus })
+### useSidePanel()
 
 This hook should be used inside `SidePanel`, and returns an object with two entries:
 
@@ -105,11 +105,11 @@ export default props => (
 
 And because calling `.focus()` on a reference is a very common use case, another hook is provided to do it easily: `useSidePanelFocusOnReady()`.
 
-### useSidePanelFocusOnReady(ref)
+### useSidePanelFocusOnReady()
 
 This hook can be used to focus a ref (usually a `TextInput`) when `readyToFocus` is set to `true`.
 
-It takes a React ref as a parameter, and creates one if not provided. It returns this ref.
+It takes a React ref as a parameter, or creates one if not provided. It returns this ref.
 
 This is how `useSidePanelFocusOnReady()` can be used:
 
