@@ -50,7 +50,11 @@ export { default as RadioGroup } from './Radio/RadioGroup'
 export { default as RadioList } from './Radio/RadioList'
 export { default as RootPortal } from './RootPortal/RootPortal'
 export { default as ScrollView } from './ScrollView/ScrollView'
-export { default as SidePanel } from './SidePanel/SidePanel'
+export {
+  default as SidePanel,
+  useSidePanel,
+  useSidePanelFocusOnReady,
+} from './SidePanel/SidePanel'
 export { default as SidePanelSeparator } from './SidePanel/SidePanelSeparator'
 export { default as SidePanelSplit } from './SidePanel/SidePanelSplit'
 export { default as Slider } from './Slider/Slider'

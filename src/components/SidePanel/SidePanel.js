@@ -1,4 +1,10 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, {
+  useCallback,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from 'react'
 import PropTypes from 'prop-types'
 import { Transition, animated } from 'react-spring'
 import { ButtonIcon } from '../Button/ButtonIcon'
@@ -6,7 +12,7 @@ import { IconClose } from '../../icons'
 import { useViewport } from '../../providers/Viewport/Viewport'
 import { GU, springs, textStyle } from '../../style'
 import { useTheme } from '../../theme'
-import { Inside, unselectable, KEY_ESC } from '../../utils'
+import { Inside, unselectable, KEY_ESC, warn } from '../../utils'
 import RootPortal from '../RootPortal/RootPortal'
 
 const CONTENT_PADDING = 3 * GU
@@ -14,6 +20,8 @@ const CONTENT_PADDING = 3 * GU
 // The closing position of the panel, on the right side of the viewport.
 // It takes into consideration the shadow of the panel.
 const CLOSING_POSITION = 5 * GU
+
+const SidePanelContext = React.createContext(null)
 
 function SidePanel({
   blocking,
@@ -205,11 +213,11 @@ function SidePanel({
                         padding-bottom: ${CONTENT_PADDING}px;
                       `}
                     >
-                      {Children ? (
-                        <Children status={status} readyToFocus={readyToFocus} />
-                      ) : (
-                        children
-                      )}
+                      <SidePanelContext.Provider
+                        value={{ status, readyToFocus }}
+                      >
+                        {children}
+                      </SidePanelContext.Provider>
                     </div>
                   </div>
                 </Panel>
@@ -224,7 +232,7 @@ function SidePanel({
 
 SidePanel.propTypes = {
   blocking: PropTypes.bool,
-  children: PropTypes.oneOfType([PropTypes.node, PropTypes.func]).isRequired,
+  children: PropTypes.node.isRequired,
   opened: PropTypes.bool,
   onClose: PropTypes.func,
   onTransitionEnd: PropTypes.func,
@@ -263,7 +271,38 @@ Panel.propTypes = {
   compact: PropTypes.bool,
 }
 
+function useSidePanel() {
+  const value = useContext(SidePanelContext)
+  if (value === null) {
+    throw new Error(
+      'useSidePanel() need to be part of the SidePanel tree, ' +
+        'which has to be declared at an upper level!'
+    )
+  }
+  return value
+}
+
+function useSidePanelFocusOnReady(ref = useRef()) {
+  const { readyToFocus } = useSidePanel()
+
+  useEffect(() => {
+    if (readyToFocus && ref.current) {
+      if (ref.current.focus) {
+        ref.current.focus()
+      } else {
+        warn(
+          'useSidePanelFocusOnReady(): the focus() method wasn’t available on ' +
+            'the passed reference.'
+        )
+      }
+    }
+  }, [readyToFocus, ref])
+
+  return ref
+}
+
 // Used for spacing in SidePanelSplit and SidePanelSeparator
 SidePanel.HORIZONTAL_PADDING = CONTENT_PADDING
 
+export { useSidePanel, useSidePanelFocusOnReady }
 export default SidePanel

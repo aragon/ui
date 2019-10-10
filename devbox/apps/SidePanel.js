@@ -11,6 +11,7 @@ import {
   SidePanelSplit,
   Split,
   TextInput,
+  useSidePanelFocusOnReady,
 } from '@aragon/ui'
 import Lorem from '../components/Lorem'
 
@@ -53,21 +54,16 @@ function App() {
           </Box>
         }
       />
+
       <SidePanel title="My Panel" opened={opened} onClose={close}>
-        {SidePanelContent}
+        <MySidePanelContent />
       </SidePanel>
     </React.Fragment>
   )
 }
 
-function SidePanelContent({ status, readyToFocus }) {
-  const inputRef = useRef()
-
-  useEffect(() => {
-    if (readyToFocus && inputRef.current) {
-      inputRef.current.focus()
-    }
-  }, [readyToFocus, inputRef])
+function MySidePanelContent() {
+  const inputRef = useSidePanelFocusOnReady(inputRef)
 
   return (
     <div
