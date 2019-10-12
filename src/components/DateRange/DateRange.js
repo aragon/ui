@@ -141,6 +141,13 @@ class DateRangeInput extends React.PureComponent {
   handleSelectStartDate = date => {
     const { endDate } = this.state
     const isValidDate = !endDate || !dayjs(date).isAfter(endDate)
+    if (date === null) {
+      this.setState({
+        startDate: null,
+        startDateSelected: false,
+      })
+      return
+    }
     if (isValidDate) {
       this.setState({
         startDateSelected: true,
@@ -154,6 +161,13 @@ class DateRangeInput extends React.PureComponent {
   handleSelectEndDate = date => {
     const { startDate } = this.state
     const isValidDate = !startDate || !dayjs(date).isBefore(startDate)
+    if (date === null) {
+      this.setState({
+        endDate: null,
+        endDateSelected: false,
+      })
+      return
+    }
     if (isValidDate) {
       this.setState({
         endDateSelected: true,

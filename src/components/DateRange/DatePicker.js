@@ -18,7 +18,11 @@ class DatePicker extends React.PureComponent {
     event.preventDefault()
 
     if (typeof this.props.onSelect === 'function') {
-      this.props.onSelect(date)
+      const currentDate = this.props.currentDate
+      const same = dayjs(currentDate)
+        .startOf('day')
+        .isSame(dayjs(date).startOf('day'))
+      this.props.onSelect(same ? null : date)
     }
   }
 
