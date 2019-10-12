@@ -3,10 +3,13 @@ import styled from 'styled-components'
 import { _DateRange as DateRange, unselectable } from '@aragon/ui'
 
 export default function() {
-  const [selectedDateRange, setSelectedDateRange] = useState({
+	const initialState = {
     start: null,
     end: null,
-  })
+  }
+  const [selectedDateRange, setSelectedDateRange] = useState(initialState)
+  const [selectedStartDateRange, setSelectedStartDateRange] = useState(initialState)
+  const [selectedEndDateRange, setSelectedEndDateRange] = useState(initialState)
   return (
     <Main>
       <Container>
@@ -14,6 +17,20 @@ export default function() {
           startDate={selectedDateRange.start}
           endDate={selectedDateRange.end}
           onChange={setSelectedDateRange}
+        />
+				With partial = 'start'
+        <DateRange
+          startDate={selectedStartDateRange.start}
+          endDate={selectedStartDateRange.end}
+          onChange={setSelectedStartDateRange}
+					partial="start"
+        />
+				With partial = 'end'
+        <DateRange
+          startDate={selectedEndDateRange.start}
+          endDate={selectedEndDateRange.end}
+          onChange={setSelectedEndDateRange}
+					partial="end"
         />
       </Container>
     </Main>

@@ -15,9 +15,9 @@ const INPUT_HEIGHT_WITHOUT_BORDER = INPUT_HEIGHT - 2
 const START_DATE = 'Start date'
 const END_DATE = 'End date'
 
-const Labels = ({ enabled, text }) => {
+const Labels = ({ enabled, text, invalid }) => {
   const theme = useTheme()
-  const color = text.indexOf(START_DATE) > -1 ? theme.hint : 'inherit'
+  const color = invalid ? theme.hint : 'inherit'
   const [start, end] = text.split('|')
   return (
     <div
@@ -67,6 +67,7 @@ const Labels = ({ enabled, text }) => {
 Labels.propTypes = {
   enabled: PropTypes.bool,
   text: PropTypes.string.isRequired,
+  invalid: PropTypes.bool,
 }
 
 class DateRangeInput extends React.PureComponent {
@@ -169,14 +170,24 @@ class DateRangeInput extends React.PureComponent {
     this.setState({ showPicker: false })
 
     const { startDate, endDate } = this.state
-    if (startDate && endDate) {
+    const startDateAllowed = this.props.partial === 'end' || startDate
+    const endDateAllowed = this.props.partial === 'start' || endDate
+
+    if (startDateAllowed && endDateAllowed) {
+      const start = startDate
+        ? dayjs(startDate)
+            .startOf('day')
+            .toDate()
+        : null
+      const end = endDate
+        ? dayjs(endDate)
+            .endOf('day')
+            .toDate()
+        : null
+
       this.props.onChange({
-        start: dayjs(startDate)
-          .startOf('day')
-          .toDate(),
-        end: dayjs(endDate)
-          .endOf('day')
-          .toDate(),
+        start,
+        end,
       })
     }
   }
@@ -203,11 +214,15 @@ class DateRangeInput extends React.PureComponent {
     // closed
     // shows props, if props null then placeholder
     if (!showPicker) {
-      return startDateProps && endDateProps
-        ? `${dayjs(startDateProps).format(format)} | ${dayjs(
-            endDateProps
-          ).format(format)}`
-        : `${START_DATE} | ${END_DATE}`
+      const startStr = startDateProps
+        ? dayjs(startDateProps).format(format)
+        : START_DATE
+      // Ok seriously
+      // startStr should be Start Date when there's nothing
+      const endStr = endDateProps
+        ? dayjs(endDateProps).format(format)
+        : END_DATE
+      return `${startStr} | ${endStr}`
     }
 
     // opened
@@ -239,6 +254,11 @@ class DateRangeInput extends React.PureComponent {
       endDate: endDateProps,
     } = this.props
 
+    const partial = this.props.partial
+    const invalid =
+      (partial !== 'end' && !startDateSelected) ||
+      (partial !== 'start' && !endDateSelected)
+
     return (
       <div
         css={`
@@ -253,7 +273,11 @@ class DateRangeInput extends React.PureComponent {
         ref={el => (this.rootRef = el)}
         onClick={this.handleClick}
       >
-        <Labels enabled={showPicker} text={this.getValueText()} />
+        <Labels
+          enabled={showPicker}
+          text={this.getValueText()}
+          invalid={invalid}
+        />
         {this.state.showPicker && (
           <div
             ref={this._datePickerContainer}
@@ -299,7 +323,7 @@ class DateRangeInput extends React.PureComponent {
                 `}
                 mode="strong"
                 onClick={this.handleApply}
-                disabled={!startDateSelected || !endDateSelected}
+                disabled={invalid}
               >
                 Apply
               </Button>
@@ -314,6 +338,8 @@ class DateRangeInput extends React.PureComponent {
 DateRangeInput.propTypes = {
   endDate: PropTypes.instanceOf(Date),
   format: PropTypes.string,
+  // partial is 'start' if beginning is required, 'end' if end is required
+  partial: PropTypes.string,
   onChange: PropTypes.func,
   startDate: PropTypes.instanceOf(Date),
   compactMode: PropTypes.bool,
@@ -323,6 +349,7 @@ DateRangeInput.propTypes = {
 DateRangeInput.defaultProps = {
   format: 'MM/DD/YYYY',
   onChange: () => {},
+  partial: null,
 }
 
 const Controls = styled.div`
