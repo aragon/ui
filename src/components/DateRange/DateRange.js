@@ -209,7 +209,7 @@ class DateRangeInput extends React.PureComponent {
   handleClear = e => {
     e.preventDefault()
     e.stopPropagation()
-    this.setState({ showPicker: false, startDate: null, endDate: null })
+    this.setState({ showPicker: true, startDate: null, endDate: null })
     this.props.onChange({
       start: null,
       end: null,
