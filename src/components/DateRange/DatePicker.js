@@ -7,10 +7,15 @@ import Text from '../Text/Text'
 import { GU } from '../../style'
 import { useTheme } from '../../theme'
 import { eachDayOfInterval } from '../../utils'
+import isBetween from 'dayjs/plugin/isBetween'
+
+const infinityRange = 8
+
+dayjs.extend(isBetween)
 
 class DatePicker extends React.PureComponent {
   state = {
-    value: this.props.currentDate || new Date(),
+    value: this.props.endDate || this.props.startDate || new Date(),
   }
 
   handleSelection = date => event => {
@@ -18,11 +23,7 @@ class DatePicker extends React.PureComponent {
     event.preventDefault()
 
     if (typeof this.props.onSelect === 'function') {
-      const currentDate = this.props.currentDate
-      const same = dayjs(currentDate)
-        .startOf('day')
-        .isSame(dayjs(date).startOf('day'))
-      this.props.onSelect(same ? null : date)
+      this.props.onSelect(date)
     }
   }
 
@@ -72,7 +73,8 @@ class DatePicker extends React.PureComponent {
 
   render() {
     const {
-      currentDate,
+      startDate,
+      endDate,
       hideMonthSelector,
       hideWeekDays,
       hideYearSelector,
@@ -83,11 +85,34 @@ class DatePicker extends React.PureComponent {
       weekDayFormat,
       yearFormat,
     } = this.props
+    const editedDate = endDate || startDate
     const today = dayjs()
       .startOf('day')
       .toDate()
     const { value: selected = today } = this.state
     const selectedDayjs = dayjs(selected)
+
+    const isDayBetween = day =>
+      (!!startDate &&
+        (!!endDate && day.isBetween(startDate, dayjs(endDate).endOf('day')))) ||
+      (!endDate &&
+        day.isBetween(startDate, dayjs(startDate).add(infinityRange, 'day'))) ||
+      (!startDate &&
+        !!endDate &&
+        day.isBetween(dayjs(endDate).subtract(infinityRange, 'day'), endDate))
+
+    const isDayInfiniteMarker = day => {
+      return (
+        (!!startDate &&
+          !endDate &&
+          day.isSame(dayjs(startDate).add(infinityRange, 'day')) &&
+          'start') ||
+        (!startDate &&
+          !!endDate &&
+          day.isSame(dayjs(endDate).subtract(infinityRange, 'day'), 'day') &&
+          'end')
+      )
+    }
 
     return (
       <Container overlay={this.props.overlay}>
@@ -146,8 +171,12 @@ class DatePicker extends React.PureComponent {
               <DayView
                 key={day.valueOf()}
                 disabled={!selectedDayjs.isSame(day, 'month')}
-                selected={day.isSame(currentDate, 'day')}
+                selected={day.isSame(editedDate, 'day')}
                 today={day.isSame(today, 'day')}
+                startDate={startDate && day.isSame(startDate, 'day')}
+                endDate={endDate && day.isSame(endDate, 'day')}
+                between={isDayBetween(day)}
+                infinite={isDayInfiniteMarker(day)}
                 onClick={this.handleSelection(day.toDate())}
               >
                 <Text size="small">{day.format(dayFormat)}</Text>
@@ -160,7 +189,8 @@ class DatePicker extends React.PureComponent {
 }
 
 DatePicker.propTypes = {
-  currentDate: PropTypes.instanceOf(Date),
+  startDate: PropTypes.instanceOf(Date),
+  endDate: PropTypes.instanceOf(Date),
   name: PropTypes.string,
 
   // Events
@@ -254,14 +284,43 @@ const MonthView = styled.ol`
 `
 
 /* eslint-disable react/prop-types */
-const DayView = function({ disabled, selected, today, ...props }) {
+const DayView = function({
+  disabled,
+  selected,
+  today,
+  startDate,
+  endDate,
+  between,
+  infinite,
+  ...props
+}) {
   const theme = useTheme()
+
+  const DAY_SELECTION_WIDTH = '2.571em'
+
+  const children = (
+    <div
+      css={`
+        z-index: 100;
+      `}
+    >
+      {props.children}
+    </div>
+  )
+  const wrappedProps = { ...props, children }
+
+  const betweenMarkerPosition = css`
+    bottom: calc(${DAY_SELECTION_WIDTH} / 4);
+    height: calc(${DAY_SELECTION_WIDTH} / 1.66);
+    opacity: 0.5;
+  `
+
   return (
     <li
       css={`
         position: relative;
-        width: 2.571em;
-        height: 2.571em;
+        width: ${DAY_SELECTION_WIDTH};
+        height: ${DAY_SELECTION_WIDTH};
         display: flex;
         align-items: center;
         justify-content: center;
@@ -272,6 +331,7 @@ const DayView = function({ disabled, selected, today, ...props }) {
 
         ${today &&
           css`
+            top: 1px;
             border: 1px solid ${theme.accent};
           `}
 
@@ -281,15 +341,69 @@ const DayView = function({ disabled, selected, today, ...props }) {
             color: ${theme.disabled};
           `}
 
-        ${selected &&
+				${(selected || startDate || endDate) &&
           !disabled &&
           css`
             &&& {
+              z-index: 100;
               background: ${theme.accent};
               border-color: ${theme.accent};
               color: ${theme.positiveContent};
             }
           `}
+
+					${startDate &&
+            !disabled &&
+            css`
+              &:after {
+                position: absolute;
+                left: calc(${DAY_SELECTION_WIDTH} / 2);
+                width: calc(${DAY_SELECTION_WIDTH} / 2 + 2px);
+
+                background: ${theme.accent};
+                ${betweenMarkerPosition}
+              }
+            `}
+
+					${(selected || endDate) &&
+            !disabled &&
+            css`
+              &:after {
+                position: absolute;
+                right: calc(${DAY_SELECTION_WIDTH} / 2);
+                width: calc(${DAY_SELECTION_WIDTH} / 2 + 2px);
+                background: ${theme.accent};
+                ${betweenMarkerPosition}
+              }
+            `}
+
+					${between &&
+            !selected &&
+            !disabled &&
+            css`
+              &:after {
+                position: absolute;
+                z-index: 50;
+                width: calc(${DAY_SELECTION_WIDTH} + 4px);
+                background: ${theme.accent};
+                ${betweenMarkerPosition}
+              }
+            `}
+
+						${infinite &&
+              !disabled &&
+              css`
+              &:after {
+                position: absolute;
+                z-index: 50;
+                width: calc(${DAY_SELECTION_WIDTH} + 4px);
+								${infinite === 'start' &&
+                  `background-image: linear-gradient(to right, ${theme.accent}, transparent);`}
+								${infinite === 'end' &&
+                  `background-image: linear-gradient(to right, transparent, ${theme.accent});`}
+                ${betweenMarkerPosition}
+              }
+            `}
 
         &:after {
           display: block;
@@ -301,10 +415,11 @@ const DayView = function({ disabled, selected, today, ...props }) {
           background: ${theme.surfaceHighlight};
         }
       `}
-      {...props}
+      {...wrappedProps}
     />
   )
 }
+
 /* eslint-enable react/prop-types */
 
 const WeekDay = function(props) {
@@ -320,5 +435,10 @@ const WeekDay = function(props) {
     />
   )
 }
+
+/*
+ * TODO write a wrapper so once can use DatePicker standalone
+ * with currentDate instead of Start/End
+ */
 
 export default DatePicker
