@@ -141,26 +141,19 @@ class DateRangeInput extends React.PureComponent {
     }
   }
 
-  handleSelectStartDate = date => {
-    const { endDate } = this.state
-    const isValidDate = !endDate || !dayjs(date).isAfter(endDate)
-    if (isValidDate) {
-      this.setState({
-        startDateSelected: true,
-        startDate: dayjs(date)
-          .startOf('day')
-          .toDate(),
-      })
-    }
-  }
+  handleSelectDate = date => {
+    const { startDate, endDate } = this.state
 
-  handleSelectEndDate = date => {
-    const { startDate } = this.state
-    const isValidDate = !startDate || !dayjs(date).isBefore(startDate)
+    const isValidStartDate = !endDate || !dayjs(date).isAfter(endDate)
+    const isValidEndDate = !startDate || !dayjs(date).isBefore(startDate)
+
+    // if we have startDate, then `date` is the end date
+    const isValidDate = startDate ? isValidEndDate : isValidStartDate
+
     if (isValidDate) {
       this.setState({
-        endDateSelected: true,
-        endDate: dayjs(date)
+        [startDate ? 'endDateSelected' : 'startDateSelected']: true,
+        [startDate ? 'endDate' : 'startDate']: dayjs(date)
           .endOf('day')
           .toDate(),
       })
@@ -275,14 +268,14 @@ class DateRangeInput extends React.PureComponent {
               {(!compactMode || !startDateSelected) && (
                 <DatePicker
                   currentDate={startDate}
-                  onSelect={this.handleSelectStartDate}
+                  onSelect={this.handleSelectDate}
                   overlay={false}
                 />
               )}
               {(!compactMode || startDateSelected) && (
                 <DatePicker
                   currentDate={endDate}
-                  onSelect={this.handleSelectEndDate}
+                  onSelect={this.handleSelectDate}
                   overlay={false}
                 />
               )}
