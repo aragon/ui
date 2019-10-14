@@ -76,9 +76,10 @@ export default {
   disabledContent: colors.GreyMedium,
   disabledIcon: colors.ArcticBlueDarker,
 
-  control: '#F3F9FB',
-  controlBorder: '#DEEDF1',
-  controlBorderPressed: '#C9D9DE',
+  control: colors.ArcticBlue,
+  controlBorder: colors.GreyBasic,
+  controlBorderPressed: colors.Grey,
+  controlDisabled: colors.GreyBasic,
 
   accent: colors.AragonBlue,
   accentStart: colors.AragonBlue,
