@@ -72,7 +72,11 @@ Labels.propTypes = {
 class DateRangeInput extends React.PureComponent {
   state = {
     showPicker: false,
-    startDate: this.props.startDate,
+    startDate:
+      this.props.startDate ||
+      dayjs()
+        .subtract(1, 'month')
+        .toDate(),
     endDate: this.props.endDate,
     startPicker: null,
     endPicker: null,
