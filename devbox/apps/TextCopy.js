@@ -1,12 +1,6 @@
-import React, { useState } from 'react'
+import React, { useEffect, useRef } from 'react'
 import styled from 'styled-components'
-import {
-	EthIdenticon,  
-	IconBlank, 
-	SearchCopy, 
-	TextCopy
-} from '@aragon/ui'
-
+import { EthIdenticon, IconBlank, SearchCopy, TextCopy } from '@aragon/ui'
 
 const ADDRESS = '0x2c9341a52cfa3f2c2554ca1803134137b9366b3c'
 
@@ -14,8 +8,14 @@ const GU = 8
 const HEIGHT = 5 * GU
 
 function App() {
-  const [searchTerm, setSearchTerm] = useState('')
-	const address = ADDRESS;
+  const textCopyRef = useRef()
+
+  useEffect(() => {
+    const id = setTimeout(() => {
+      textCopyRef.current.focus()
+    }, 0)
+    return () => clearTimeout(id)
+  }, [])
 
   return (
     <div
@@ -28,18 +28,12 @@ function App() {
         justify-content: center;
       `}
     >
+      <TextCopy value="Copy me!" />
+      <TextCopy value="Focused on mount" ref={textCopyRef} />
       <TextCopy
-        value="Copy me!"
-        adornment={<IconBlank />}
-        adornmentPosition="end"
-      />
-      <TextCopy
-        value="With an icon"
-        adornment={<IconBlank />}
-        adornmentPosition="end"
-				icon={
+        adornment={
           <EthIdenticon
-            address={address}
+            address={ADDRESS}
             scale={2}
             css={`
               transform: scale(calc(${HEIGHT} / 48));
@@ -49,7 +43,8 @@ function App() {
               top: 0;
             `}
           />
-				}
+        }
+        value="With an icon"
       />
     </div>
   )
