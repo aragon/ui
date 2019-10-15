@@ -1,12 +1,15 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import styled, { css } from 'styled-components'
+import { css } from 'styled-components'
 import dayjs from 'dayjs'
+
 import ButtonBase from '../ButtonBase/ButtonBase'
 import Text from '../Text/Text'
 import { GU } from '../../style'
 import { useTheme } from '../../theme'
 import { eachDayOfInterval } from '../../utils'
+import { Selector, MonthWrapper } from './styled'
+import MonthDay from './MonthDay'
 
 class DatePicker extends React.PureComponent {
   state = {
@@ -136,47 +139,49 @@ class DatePicker extends React.PureComponent {
           </Selector>
         )}
 
-        <MonthView>
+        <MonthWrapper>
           {!hideWeekDays &&
             eachDayOfInterval({
               start: selectedDayjs.startOf('week'),
               end: selectedDayjs.endOf('week'),
-            })
-              .map(day => dayjs(day))
-              .map(day => (
-                <WeekDay key={day.format('dd')}>
-                  <Text size="xsmall">{day.format(weekDayFormat)}</Text>
-                </WeekDay>
-              ))}
+            }).map(day => {
+              const dayJs = dayjs(day)
+              return (
+                <MonthDay key={dayJs.format('dd')} weekDay>
+                  <Text size="xsmall">{dayJs.format(weekDayFormat)}</Text>
+                </MonthDay>
+              )
+            })}
 
           {eachDayOfInterval({
             start: selectedDayjs.startOf('month').startOf('week'),
             end: selectedDayjs.endOf('month').endOf('week'),
-          })
-            .map(day => dayjs(day))
-            .map(day => (
-              <DayView
-                key={day.valueOf()}
-                disabled={!selectedDayjs.isSame(day, 'month')}
-                selected={isSelected(day)}
-                inRange={isInRange(day)}
+          }).map(day => {
+            const dayJs = dayjs(day)
+            return (
+              <MonthDay
+                key={dayJs.valueOf()}
+                disabled={!selectedDayjs.isSame(dayJs, 'month')}
+                selected={isSelected(dayJs)}
+                inRange={isInRange(dayJs)}
                 rangeBoundaryBegin={
                   datesRangeStart &&
                   datesRangeEnd &&
-                  day.isSame(datesRangeStart, 'day')
+                  dayJs.isSame(datesRangeStart, 'day')
                 }
                 rangeBoundaryEnd={
                   datesRangeStart &&
                   datesRangeEnd &&
-                  day.isSame(datesRangeEnd, 'day')
+                  dayJs.isSame(datesRangeEnd, 'day')
                 }
-                today={day.isSame(today, 'day')}
-                onClick={this.handleSelection(day.toDate())}
+                today={dayJs.isSame(today, 'day')}
+                onClick={this.handleSelection(dayJs.toDate())}
               >
-                <Text size="small">{day.format(dayFormat)}</Text>
-              </DayView>
-            ))}
-        </MonthView>
+                <Text size="small">{dayJs.format(dayFormat)}</Text>
+              </MonthDay>
+            )
+          })}
+        </MonthWrapper>
       </Container>
     )
   }
@@ -223,7 +228,6 @@ DatePicker.defaultProps = {
   yearFormat: 'YYYY',
 }
 
-/* eslint-disable react/prop-types */
 const Container = ({ overlay, ...props }) => {
   const theme = useTheme()
   return (
@@ -252,13 +256,10 @@ const Container = ({ overlay, ...props }) => {
     />
   )
 }
-/* eslint-enable react/prop-types */
 
-const Selector = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-`
+Container.propTypes = {
+  overlay: PropTypes.bool,
+}
 
 const ArrowButton = props => {
   const theme = useTheme()
@@ -272,135 +273,6 @@ const ArrowButton = props => {
         &:hover {
           color: inherit;
         }
-      `}
-      {...props}
-    />
-  )
-}
-
-const MonthView = styled.ol`
-  margin: 0;
-  padding: 0.5em;
-  display: grid;
-  grid-template: auto / repeat(7, 1fr);
-  list-style: none;
-`
-
-const TodayIndicator = styled.span`
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  border-radius: 50%;
-  ${({ theme, selected }) => css`
-    background: ${selected ? theme.selected : theme.surface};
-    border: 2px solid ${theme.accent};
-  `}
-`
-
-/* eslint-disable react/prop-types */
-const DayView = function({
-  children,
-  disabled,
-  selected,
-  inRange,
-  rangeBoundaryBegin,
-  rangeBoundaryEnd,
-  today,
-  ...props
-}) {
-  const theme = useTheme()
-  const dimmedSelectedColor = theme.selected.alpha(0.09)
-
-  return (
-    <li
-      css={`
-        position: relative;
-        width: 2.571em;
-        height: 2.571em;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 50%;
-        cursor: pointer;
-        font-size: 90%;
-        user-select: none;
-
-        padding: 0.20em 0.25em;
-        margin-top: 0.05em;
-        margin-bottom: 0.05em;
-
-        ${disabled &&
-          css`
-            pointer-events: none;
-            color: ${theme.disabled};
-          `}
-
-        ${selected &&
-          !disabled &&
-          css`
-            &&& {
-              background: ${theme.selected};
-              color: ${theme.positiveContent};
-            }
-          `}
-
-        ${inRange &&
-          !selected &&
-          !disabled &&
-          css`
-            background: ${dimmedSelectedColor};
-            border-radius: 0;
-          `}
-
-        ${(rangeBoundaryBegin || rangeBoundaryEnd) &&
-          css`
-            z-index: 1;
-            &:before {
-              content: '';
-              position: absolute;
-              top: 0;
-              ${rangeBoundaryBegin ? 'right' : 'left'}: 0;
-              z-index: 0;
-              background: ${dimmedSelectedColor};
-              width: 50%;
-              height: 100%;
-            }
-          `}
-
-        ${today &&
-          css`
-            > * {
-              z-index: 1;
-            }
-          `}
-
-        &:after {
-          display: block;
-          content: '';
-          margin-top: 100%;
-        }
-
-        &:hover {
-          background: ${theme.surfaceHighlight};
-        }
-      `}
-      {...props}
-    >
-      {today ? <TodayIndicator theme={theme} selected={selected} /> : null}
-      {children}
-    </li>
-  )
-}
-/* eslint-enable react/prop-types */
-
-const WeekDay = function(props) {
-  const theme = useTheme()
-  return (
-    <DayView
-      css={`
-        pointer-events: none;
-        color: ${theme.disabled};
-        text-transform: uppercase;
       `}
       {...props}
     />

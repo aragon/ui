@@ -1,83 +1,27 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import styled from 'styled-components'
 import dayjs from 'dayjs'
+
 import { Button } from '../Button/Button'
-import { IconCalendar } from '../../icons/components'
 import { useViewport } from '../../providers/Viewport/Viewport'
-import { GU, RADIUS, breakpoint, textStyle } from '../../style'
+import { RADIUS, breakpoint } from '../../style'
 import { useTheme } from '../../theme'
-import { unselectable } from '../../utils'
 import DatePicker from './DatePicker'
-
-const INPUT_HEIGHT = 5 * GU
-const INPUT_HEIGHT_WITHOUT_BORDER = INPUT_HEIGHT - 2
-const START_DATE = 'Start date'
-const END_DATE = 'End date'
-
-const Labels = ({ enabled, text }) => {
-  const theme = useTheme()
-  const color = text.indexOf(START_DATE) > -1 ? theme.hint : 'inherit'
-  const [start, end] = text.split('|')
-  return (
-    <div
-      css={`
-        z-index: 2;
-        cursor: pointer;
-        background: ${theme.surface};
-        ${unselectable}
-      `}
-    >
-      <div
-        css={`
-          position: absolute;
-          width: calc(100% - 28px);
-          display: grid;
-          grid-template-columns: 50% 2px 50%;
-          align-items: center;
-          height: ${INPUT_HEIGHT_WITHOUT_BORDER}px;
-          overflow: hidden;
-          color: ${color};
-          ${textStyle('body2')}
-        `}
-      >
-        <div css="text-align: center;">{start}</div>
-        <div>|</div>
-        <div css="text-align: center;">{end}</div>
-      </div>
-      <div
-        css={`
-          position: absolute;
-          right: 4px;
-          display: flex;
-          align-items: center;
-          height: ${INPUT_HEIGHT_WITHOUT_BORDER}px;
-        `}
-      >
-        <IconCalendar
-          css={`
-            color: ${enabled ? theme.accent : theme.surfaceIcon};
-          `}
-        />
-      </div>
-    </div>
-  )
-}
-
-Labels.propTypes = {
-  enabled: PropTypes.bool,
-  text: PropTypes.string.isRequired,
-}
+import Labels from './Labels'
+import { Controls, Wrap } from './styled'
+import {
+  START_DATE,
+  END_DATE,
+  INPUT_HEIGHT,
+  INPUT_HEIGHT_WITHOUT_BORDER,
+} from './consts'
+import { handleDateSelect } from './utils'
 
 class DateRangeInput extends React.PureComponent {
   state = {
     showPicker: false,
     startDate: this.props.startDate,
     endDate: this.props.endDate,
-    startPicker: null,
-    endPicker: null,
-    startDateSelected: false,
-    endDateSelected: false,
   }
   _datePickerContainer = React.createRef()
 
@@ -123,79 +67,9 @@ class DateRangeInput extends React.PureComponent {
 
   handleSelectDate = date => {
     const { startDate, endDate } = this.state
-
-    // clicking on start date resets it, so it can be re-picked
-    if (startDate && dayjs(date).isSame(startDate, 'day')) {
-      this.setState({
-        startDateSelected: false,
-        startDate: null,
-      })
-      return
-    }
-    // clicking on end date resets it, so it can be re-picked
-    if (endDate && dayjs(date).isSame(endDate, 'day')) {
-      this.setState({
-        endDateSelected: false,
-        endDate: null,
-      })
-      return
-    }
-
-    const isValidStartDate = !endDate || !dayjs(date).isAfter(endDate)
-    const isValidEndDate = !startDate || !dayjs(date).isBefore(startDate)
-    // if we have startDate, then `date` is the end date
-    const isValidDate = startDate ? isValidEndDate : isValidStartDate
-
-    const selectedDate = dayjs(date)
-      .endOf('day')
-      .toDate()
-
-    // both dates are selected - if a date is clicked and it's before
-    // start date, it should be the new start date
-    // (this way the start date does not have to be reset before setting)
-    // (the converse case for end date is handled implicitly below, because
-    // after both dates are selected, any selected date will be candidate for
-    // new end date)
-    if (
-      startDate &&
-      endDate &&
-      isValidStartDate &&
-      dayjs(date).isBefore(startDate, 'day')
-    ) {
-      this.setState({
-        startDateSelected: true,
-        startDate: selectedDate,
-      })
-      return
-    }
-
-    // one date is selected, but the clicked date is not corresponding
-    // (start selected, but clicked a date before start, and vice-versa)
-    // in this case, reverse the range
-    if (!startDate && endDate && dayjs(date).isAfter(endDate)) {
-      this.setState({
-        startDateSelected: true,
-        startDate: endDate,
-        endDateSelected: true,
-        endDate: selectedDate,
-      })
-      return
-    }
-    if (!endDate && startDate && dayjs(date).isBefore(startDate)) {
-      this.setState({
-        startDateSelected: true,
-        startDate: selectedDate,
-        endDateSelected: true,
-        endDate: startDate,
-      })
-      return
-    }
-
-    if (isValidDate) {
-      this.setState({
-        [startDate ? 'endDateSelected' : 'startDateSelected']: true,
-        [startDate ? 'endDate' : 'startDate']: selectedDate,
-      })
+    const newState = handleDateSelect({ date, startDate, endDate })
+    if (newState) {
+      this.setState(newState)
     }
   }
 
@@ -252,13 +126,7 @@ class DateRangeInput extends React.PureComponent {
   }
 
   render() {
-    const {
-      startDate,
-      endDate,
-      startDateSelected,
-      endDateSelected,
-      showPicker,
-    } = this.state
+    const { startDate, endDate, showPicker } = this.state
     const {
       compactMode,
       theme,
@@ -330,7 +198,7 @@ class DateRangeInput extends React.PureComponent {
                 `}
                 mode="strong"
                 onClick={this.handleApply}
-                disabled={!startDateSelected || !endDateSelected}
+                disabled={!startDate || !endDate}
               >
                 Apply
               </Button>
@@ -355,38 +223,6 @@ DateRangeInput.defaultProps = {
   format: 'MM/DD/YYYY',
   onChange: () => {},
 }
-
-const Controls = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin: 16px 0;
-  padding: 0 8px;
-
-  ${breakpoint(
-    'medium',
-    `
-      display: block;
-      text-align: right;
-    `
-  )}
-`
-
-const Wrap = styled.div`
-  > div {
-    border: 0;
-    box-shadow: none;
-  }
-
-  ${breakpoint(
-    'medium',
-    `
-      display: flex;
-      flex-direction: row;
-      align-items: baseline;
-    `
-  )}
-`
 
 const DateRange = props => {
   const { below } = useViewport()
