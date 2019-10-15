@@ -82,7 +82,7 @@ class DatePicker extends React.PureComponent {
     const today = dayjs()
       .startOf('day')
       .toDate()
-    const { value: selected = today } = this.state
+    const { value: selected } = this.state
     const selectedDayjs = dayjs(selected)
 
     return (
