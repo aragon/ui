@@ -72,11 +72,7 @@ Labels.propTypes = {
 class DateRangeInput extends React.PureComponent {
   state = {
     showPicker: false,
-    startDate:
-      this.props.startDate ||
-      dayjs()
-        .subtract(1, 'month')
-        .toDate(),
+    startDate: this.props.startDate,
     endDate: this.props.endDate,
     startPicker: null,
     endPicker: null,
@@ -144,9 +140,25 @@ class DateRangeInput extends React.PureComponent {
   handleSelectDate = date => {
     const { startDate, endDate } = this.state
 
+    // clicking on start date resets it, so it can be re-picked
+    if (startDate && dayjs(date).isSame(startDate, 'day')) {
+      this.setState({
+        startDateSelected: false,
+        startDate: null,
+      })
+      return
+    }
+    // clicking on end date resets it, so it can be re-picked
+    if (endDate && dayjs(date).isSame(endDate, 'day')) {
+      this.setState({
+        endDateSelected: false,
+        endDate: null,
+      })
+      return
+    }
+
     const isValidStartDate = !endDate || !dayjs(date).isAfter(endDate)
     const isValidEndDate = !startDate || !dayjs(date).isBefore(startDate)
-
     // if we have startDate, then `date` is the end date
     const isValidDate = startDate ? isValidEndDate : isValidStartDate
 
@@ -267,14 +279,19 @@ class DateRangeInput extends React.PureComponent {
             <Wrap>
               {(!compactMode || !startDateSelected) && (
                 <DatePicker
-                  currentDate={startDate}
+                  datesRangeStart={startDate}
+                  datesRangeEnd={endDate}
                   onSelect={this.handleSelectDate}
                   overlay={false}
+                  initialDate={dayjs()
+                    .subtract(1, 'month')
+                    .toDate()}
                 />
               )}
               {(!compactMode || startDateSelected) && (
                 <DatePicker
-                  currentDate={endDate}
+                  datesRangeStart={startDate}
+                  datesRangeEnd={endDate}
                   onSelect={this.handleSelectDate}
                   overlay={false}
                 />
