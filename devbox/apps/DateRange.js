@@ -8,32 +8,23 @@ export default function() {
     end: null,
   })
   return (
-    <Main>
-      <Container>
-        <DateRange
-          startDate={selectedDateRange.start}
-          endDate={selectedDateRange.end}
-          onChange={setSelectedDateRange}
-        />
-      </Container>
-    </Main>
+    <Wrapper>
+      <DateRange
+        startDate={selectedDateRange.start}
+        endDate={selectedDateRange.end}
+        onChange={setSelectedDateRange}
+      />
+    </Wrapper>
   )
 }
 
-const Main = styled.div`
+const Wrapper = styled.div`
   ${unselectable};
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  padding: 20px;
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: #fff;
-`
-
-const Container = styled.div`
-  width: 400px;
+  background: #f5f7fa;
 `
