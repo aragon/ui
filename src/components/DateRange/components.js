@@ -1,6 +1,10 @@
+import React from 'react'
 import styled, { css } from 'styled-components'
 
-import { breakpoint } from '../../style'
+import ButtonBase from '../ButtonBase/ButtonBase'
+import { useTheme } from '../../theme'
+import { GU, breakpoint, textStyle } from '../../style'
+import { IconLeft, IconRight } from '../../icons/components'
 
 export const Controls = styled.div`
   display: flex;
@@ -34,15 +38,9 @@ export const Wrap = styled.div`
   )}
 `
 
-export const Selector = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-`
-
 export const MonthWrapper = styled.ol`
   margin: 0;
-  padding: 0.5em;
+  padding: 0 0.5em 0.5em;
   display: grid;
   grid-template: auto / repeat(7, 1fr);
   list-style: none;
@@ -58,3 +56,54 @@ export const TodayIndicator = styled.span`
     border: 2px solid ${theme.accent};
   `}
 `
+
+const ArrowButton = props => {
+  const theme = useTheme()
+  return (
+    <ButtonBase
+      css={`
+        padding: ${GU / 2}px ${GU}px;
+        font-size: 9px;
+        color: ${theme.hint};
+
+        &:hover {
+          color: inherit;
+        }
+      `}
+      {...props}
+    />
+  )
+}
+
+const SelectorWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  span {
+    ${({ small, theme }) => css`
+      ${textStyle(small ? 'body4' : 'body3')};
+      ${small &&
+        css`
+          color: ${theme.hint};
+          font-weight: 600;
+        `}
+    `}
+  }
+`
+
+// eslint-disable-next-line react/prop-types
+export const Selector = ({ prev, next, children, small }) => {
+  const theme = useTheme()
+  return (
+    <SelectorWrapper small={small} theme={theme}>
+      <ArrowButton onClick={prev}>
+        <IconLeft size="small" />
+      </ArrowButton>
+      <span>{children}</span>
+      <ArrowButton onClick={next}>
+        <IconRight size="small" />
+      </ArrowButton>
+    </SelectorWrapper>
+  )
+}

@@ -27,7 +27,7 @@ const Labels = ({ enabled, startText, endText }) => {
       <div
         css={`
           position: absolute;
-          width: calc(100% - 28px);
+          width: calc(100% - 37px);
           display: grid;
           grid-template-columns: 50% 2px 50%;
           align-items: center;
@@ -63,7 +63,7 @@ const Labels = ({ enabled, startText, endText }) => {
       <div
         css={`
           position: absolute;
-          right: 4px;
+          right: 11px;
           display: flex;
           align-items: center;
           height: ${INPUT_HEIGHT_WITHOUT_BORDER}px;

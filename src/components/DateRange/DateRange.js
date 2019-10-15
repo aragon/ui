@@ -4,7 +4,7 @@ import dayjs from 'dayjs'
 
 import { Button } from '../Button/Button'
 import { useViewport } from '../../providers/Viewport/Viewport'
-import { RADIUS, breakpoint } from '../../style'
+import { RADIUS, breakpoint, GU } from '../../style'
 import { useTheme } from '../../theme'
 import DatePicker from './DatePicker'
 import Labels from './Labels'
@@ -116,7 +116,7 @@ class DateRangeInput extends React.PureComponent {
       <div
         css={`
           height: ${INPUT_HEIGHT}px;
-          width: 250px;
+          width: ${GU * 31}px;
           position: relative;
           border: ${startDateProps && endDateProps
             ? `${INPUT_BORDER}px solid ${theme.accent}`

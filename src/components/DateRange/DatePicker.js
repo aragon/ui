@@ -3,9 +3,7 @@ import PropTypes from 'prop-types'
 import { css } from 'styled-components'
 import dayjs from 'dayjs'
 
-import ButtonBase from '../ButtonBase/ButtonBase'
 import Text from '../Text/Text'
-import { GU } from '../../style'
 import { useTheme } from '../../theme'
 import { eachDayOfInterval } from '../../utils'
 import { Selector, MonthWrapper } from './components'
@@ -120,22 +118,16 @@ class DatePicker extends React.PureComponent {
         )}
 
         {!hideYearSelector && (
-          <Selector>
-            <ArrowButton onClick={this.previousYear}>◀</ArrowButton>
-            <Text size="normal">{selectedDayjs.format(yearFormat)}</Text>
-            <ArrowButton onClick={this.nextYear}>▶</ArrowButton>
+          <Selector prev={this.previousYear} next={this.nextYear} small>
+            {selectedDayjs.format(yearFormat)}
           </Selector>
         )}
 
         {!hideMonthSelector && (
-          <Selector>
-            <ArrowButton onClick={this.previousMonth}>◀</ArrowButton>
-            <Text size="large" weight="bold">
-              {selectedDayjs.format(
-                !hideYearSelector ? monthFormat : monthYearFormat
-              )}
-            </Text>
-            <ArrowButton onClick={this.nextMonth}>▶</ArrowButton>
+          <Selector prev={this.previousMonth} next={this.nextMonth}>
+            {selectedDayjs.format(
+              !hideYearSelector ? monthFormat : monthYearFormat
+            )}
           </Selector>
         )}
 
@@ -259,24 +251,6 @@ const Container = ({ overlay, ...props }) => {
 
 Container.propTypes = {
   overlay: PropTypes.bool,
-}
-
-const ArrowButton = props => {
-  const theme = useTheme()
-  return (
-    <ButtonBase
-      css={`
-        padding: ${1 * GU}px ${3 * GU}px;
-        font-size: 9px;
-        color: ${theme.border};
-
-        &:hover {
-          color: inherit;
-        }
-      `}
-      {...props}
-    />
-  )
 }
 
 export default DatePicker
