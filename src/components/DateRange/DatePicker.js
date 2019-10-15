@@ -10,7 +10,7 @@ import { eachDayOfInterval } from '../../utils'
 
 class DatePicker extends React.PureComponent {
   state = {
-    value: this.props.initialDate || this.props.currentDate,
+    selectedDate: this.props.initialDate,
   }
 
   handleSelection = date => event => {
@@ -26,7 +26,7 @@ class DatePicker extends React.PureComponent {
     event.stopPropagation()
 
     this.setState({
-      value: dayjs(this.state.value)
+      selectedDate: dayjs(this.state.selectedDate)
         .startOf('month')
         .add(1, 'month')
         .toDate(),
@@ -37,7 +37,7 @@ class DatePicker extends React.PureComponent {
     event.stopPropagation()
 
     this.setState({
-      value: dayjs(this.state.value)
+      selectedDate: dayjs(this.state.selectedDate)
         .startOf('month')
         .add(1, 'year')
         .toDate(),
@@ -48,7 +48,7 @@ class DatePicker extends React.PureComponent {
     event.stopPropagation()
 
     this.setState({
-      value: dayjs(this.state.value)
+      selectedDate: dayjs(this.state.selectedDate)
         .startOf('month')
         .subtract(1, 'month')
         .toDate(),
@@ -59,7 +59,7 @@ class DatePicker extends React.PureComponent {
     event.stopPropagation()
 
     this.setState({
-      value: dayjs(this.state.value)
+      selectedDate: dayjs(this.state.selectedDate)
         .startOf('month')
         .subtract(1, 'year')
         .toDate(),
@@ -68,7 +68,6 @@ class DatePicker extends React.PureComponent {
 
   render() {
     const {
-      currentDate,
       datesRangeStart,
       datesRangeEnd,
       hideMonthSelector,
@@ -84,16 +83,14 @@ class DatePicker extends React.PureComponent {
     const today = dayjs()
       .startOf('day')
       .toDate()
-    const { value: selected } = this.state
-    const selectedDayjs = dayjs(selected)
+    const { selectedDate } = this.state
+    const selectedDayjs = dayjs(selectedDate || today)
 
     const isSelected = day => {
       if (datesRangeStart || datesRangeEnd) {
         return (
           day.isSame(datesRangeStart, 'day') || day.isSame(datesRangeEnd, 'day')
         )
-      } else if (currentDate) {
-        return day.isSame(currentDate, 'day')
       }
       return false
     }
@@ -187,10 +184,6 @@ class DatePicker extends React.PureComponent {
 
 DatePicker.propTypes = {
   /**
-   * For displaying a single selected date on the calendar
-   */
-  currentDate: PropTypes.instanceOf(Date),
-  /**
    * For displaying a selected dates range - start
    */
   datesRangeStart: PropTypes.instanceOf(Date),
@@ -200,7 +193,6 @@ DatePicker.propTypes = {
   datesRangeEnd: PropTypes.instanceOf(Date),
   /**
    * Initial date - calendar will start from here.
-   * If not set, currentDate will be used.
    */
   initialDate: PropTypes.instanceOf(Date),
   name: PropTypes.string,
