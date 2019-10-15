@@ -162,12 +162,33 @@ class DateRangeInput extends React.PureComponent {
     // if we have startDate, then `date` is the end date
     const isValidDate = startDate ? isValidEndDate : isValidStartDate
 
+    const selectedDate = dayjs(date)
+      .endOf('day')
+      .toDate()
+
+    // both dates are selected - if a date is clicked and it's before
+    // start date, it should be the new start date
+    // (this way the start date does not have to be reset before setting)
+    // (the converse case for end date is handled implicitly below, because
+    // after both dates are selected, any selected date will be candidate for
+    // new end date)
+    if (
+      startDate &&
+      endDate &&
+      isValidStartDate &&
+      dayjs(date).isBefore(startDate, 'day')
+    ) {
+      this.setState({
+        startDateSelected: true,
+        startDate: selectedDate,
+      })
+      return
+    }
+
     if (isValidDate) {
       this.setState({
         [startDate ? 'endDateSelected' : 'startDateSelected']: true,
-        [startDate ? 'endDate' : 'startDate']: dayjs(date)
-          .endOf('day')
-          .toDate(),
+        [startDate ? 'endDate' : 'startDate']: selectedDate,
       })
     }
   }
