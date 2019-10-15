@@ -7,7 +7,7 @@ import { unselectable } from '../../utils'
 
 import { START_DATE, END_DATE, INPUT_HEIGHT_WITHOUT_BORDER } from './consts'
 
-const Labels = ({ enabled, startText, endText }) => {
+const Labels = ({ enabled, startText, endText, ...props }) => {
   const theme = useTheme()
 
   const hasNoStart = startText === START_DATE
@@ -23,6 +23,7 @@ const Labels = ({ enabled, startText, endText }) => {
         background: ${theme.surface};
         ${unselectable}
       `}
+      {...props}
     >
       <div
         css={`
