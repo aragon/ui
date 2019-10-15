@@ -10,7 +10,7 @@ import { eachDayOfInterval } from '../../utils'
 
 class DatePicker extends React.PureComponent {
   state = {
-    value: this.props.currentDate || new Date(),
+    value: this.props.initialDate || this.props.currentDate,
   }
 
   handleSelection = date => event => {
@@ -156,7 +156,16 @@ class DatePicker extends React.PureComponent {
 }
 
 DatePicker.propTypes = {
+  /**
+   * For displaying a single selected date on the calendar
+   */
   currentDate: PropTypes.instanceOf(Date),
+  /**
+  /**
+   * Initial date - calendar will start from here.
+   * If not set, currentDate will be used.
+   */
+  initialDate: PropTypes.instanceOf(Date),
   name: PropTypes.string,
 
   // Events
