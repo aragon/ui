@@ -98,6 +98,12 @@ class DatePicker extends React.PureComponent {
       return false
     }
 
+    const isInRange = day => {
+      if (datesRangeStart && datesRangeEnd) {
+        return day.isAfter(datesRangeStart) && day.isBefore(datesRangeEnd)
+      }
+    }
+
     return (
       <Container overlay={this.props.overlay}>
         {name && (
@@ -156,6 +162,17 @@ class DatePicker extends React.PureComponent {
                 key={day.valueOf()}
                 disabled={!selectedDayjs.isSame(day, 'month')}
                 selected={isSelected(day)}
+                inRange={isInRange(day)}
+                rangeBoundaryBegin={
+                  datesRangeStart &&
+                  datesRangeEnd &&
+                  day.isSame(datesRangeStart, 'day')
+                }
+                rangeBoundaryEnd={
+                  datesRangeStart &&
+                  datesRangeEnd &&
+                  day.isSame(datesRangeEnd, 'day')
+                }
                 today={day.isSame(today, 'day')}
                 onClick={this.handleSelection(day.toDate())}
               >
@@ -273,14 +290,35 @@ const MonthView = styled.ol`
   margin: 0;
   padding: 0.5em;
   display: grid;
-  grid-gap: 0.25em;
   grid-template: auto / repeat(7, 1fr);
   list-style: none;
 `
 
+const TodayIndicator = styled.span`
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  border-radius: 50%;
+  ${({ theme, selected }) => css`
+    background: ${selected ? theme.selected : theme.surface};
+    border: 2px solid ${theme.accent};
+  `}
+`
+
 /* eslint-disable react/prop-types */
-const DayView = function({ disabled, selected, today, ...props }) {
+const DayView = function({
+  children,
+  disabled,
+  selected,
+  inRange,
+  rangeBoundaryBegin,
+  rangeBoundaryEnd,
+  today,
+  ...props
+}) {
   const theme = useTheme()
+  const dimmedSelectedColor = theme.selected.alpha(0.09)
+
   return (
     <li
       css={`
@@ -295,10 +333,9 @@ const DayView = function({ disabled, selected, today, ...props }) {
         font-size: 90%;
         user-select: none;
 
-        ${today &&
-          css`
-            border: 1px solid ${theme.accent};
-          `}
+        padding: 0.20em 0.25em;
+        margin-top: 0.05em;
+        margin-bottom: 0.05em;
 
         ${disabled &&
           css`
@@ -310,9 +347,38 @@ const DayView = function({ disabled, selected, today, ...props }) {
           !disabled &&
           css`
             &&& {
-              background: ${theme.accent};
-              border-color: ${theme.accent};
+              background: ${theme.selected};
               color: ${theme.positiveContent};
+            }
+          `}
+
+        ${inRange &&
+          !selected &&
+          !disabled &&
+          css`
+            background: ${dimmedSelectedColor};
+            border-radius: 0;
+          `}
+
+        ${(rangeBoundaryBegin || rangeBoundaryEnd) &&
+          css`
+            z-index: 1;
+            &:before {
+              content: '';
+              position: absolute;
+              top: 0;
+              ${rangeBoundaryBegin ? 'right' : 'left'}: 0;
+              z-index: 0;
+              background: ${dimmedSelectedColor};
+              width: 50%;
+              height: 100%;
+            }
+          `}
+
+        ${today &&
+          css`
+            > * {
+              z-index: 1;
             }
           `}
 
@@ -327,7 +393,10 @@ const DayView = function({ disabled, selected, today, ...props }) {
         }
       `}
       {...props}
-    />
+    >
+      {today ? <TodayIndicator theme={theme} selected={selected} /> : null}
+      {children}
+    </li>
   )
 }
 /* eslint-enable react/prop-types */
