@@ -185,6 +185,28 @@ class DateRangeInput extends React.PureComponent {
       return
     }
 
+    // one date is selected, but the clicked date is not corresponding
+    // (start selected, but clicked a date before start, and vice-versa)
+    // in this case, reverse the range
+    if (!startDate && endDate && dayjs(date).isAfter(endDate)) {
+      this.setState({
+        startDateSelected: true,
+        startDate: endDate,
+        endDateSelected: true,
+        endDate: selectedDate,
+      })
+      return
+    }
+    if (!endDate && startDate && dayjs(date).isBefore(startDate)) {
+      this.setState({
+        startDateSelected: true,
+        startDate: selectedDate,
+        endDateSelected: true,
+        endDate: startDate,
+      })
+      return
+    }
+
     if (isValidDate) {
       this.setState({
         [startDate ? 'endDateSelected' : 'startDateSelected']: true,
