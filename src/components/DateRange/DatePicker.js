@@ -1,24 +1,35 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
-import { css } from 'styled-components'
 import dayjs from 'dayjs'
 
 import Text from '../Text/Text'
-import { useTheme } from '../../theme'
 import { eachDayOfInterval } from '../../utils'
 import { Selector, MonthWrapper } from './components'
 import MonthDay from './MonthDay'
 
-const DatePicker = props => {
-  const theme = useTheme()
-  const [selectedDate, setSelectedDate] = useState(props.initialDate)
+const DatePicker = ({
+  initialDate,
+  onSelect,
+  datesRangeStart,
+  datesRangeEnd,
+  hideYearSelector,
+  name,
+  yearFormat,
+  hideMonthSelector,
+  monthFormat,
+  monthYearFormat,
+  hideWeekDays,
+  weekDayFormat,
+  ...props
+}) => {
+  const [selectedDate, setSelectedDate] = useState(initialDate)
 
   const handleSelection = date => event => {
     event.stopPropagation()
     event.preventDefault()
 
-    if (typeof props.onSelect === 'function') {
-      props.onSelect(date)
+    if (typeof onSelect === 'function') {
+      onSelect(date)
     }
   }
 
@@ -32,8 +43,6 @@ const DatePicker = props => {
         .toDate()
     )
   }
-
-  const { datesRangeStart, datesRangeEnd, hideYearSelector, name } = props
 
   const today = dayjs()
     .startOf('day')
@@ -59,24 +68,8 @@ const DatePicker = props => {
     <div
       css={`
         display: grid;
-        min-width: 15em;
-        margin: 0 auto;
-        padding-top: 0.5em;
-        background: ${theme.surface};
-        border: 1px solid ${theme.border};
-        border-radius: 3px;
-        box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.06);
-
-        ${props.overlay &&
-          css`
-            &&& {
-              position: absolute;
-              right: 0;
-              z-index: 10;
-              box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
-            }
-          `}
       `}
+      {...props}
     >
       {name && (
         <Text
@@ -97,23 +90,23 @@ const DatePicker = props => {
           next={setDate({ year: true, add: true })}
           small
         >
-          {selectedDayjs.format(props.yearFormat)}
+          {selectedDayjs.format(yearFormat)}
         </Selector>
       )}
 
-      {!props.hideMonthSelector && (
+      {!hideMonthSelector && (
         <Selector
           prev={setDate({ year: false, add: false })}
           next={setDate({ year: false, add: true })}
         >
           {selectedDayjs.format(
-            !hideYearSelector ? props.monthFormat : props.monthYearFormat
+            !hideYearSelector ? monthFormat : monthYearFormat
           )}
         </Selector>
       )}
 
       <MonthWrapper>
-        {!props.hideWeekDays &&
+        {!hideWeekDays &&
           eachDayOfInterval({
             start: selectedDayjs.startOf('week'),
             end: selectedDayjs.endOf('week'),
@@ -121,7 +114,7 @@ const DatePicker = props => {
             const dayJs = dayjs(day)
             return (
               <MonthDay key={dayJs.format('dd')} weekDay>
-                <Text size="xsmall">{dayJs.format(props.weekDayFormat)}</Text>
+                <Text size="xsmall">{dayJs.format(weekDayFormat)}</Text>
               </MonthDay>
             )
           })}
@@ -181,7 +174,6 @@ DatePicker.propTypes = {
   hideMonthSelector: PropTypes.bool,
   hideWeekDays: PropTypes.bool,
   hideYearSelector: PropTypes.bool,
-  overlay: PropTypes.bool,
 
   // Formatting
   dayFormat: PropTypes.string,

@@ -5,7 +5,7 @@ import { textStyle } from '../../style'
 import { useTheme } from '../../theme'
 import { unselectable } from '../../utils'
 
-import { START_DATE, END_DATE, INPUT_HEIGHT_WITHOUT_BORDER } from './consts'
+import { START_DATE, END_DATE } from './consts'
 
 const Labels = ({ enabled, startText, endText, ...props }) => {
   const theme = useTheme()
@@ -14,40 +14,41 @@ const Labels = ({ enabled, startText, endText, ...props }) => {
   const hasNoEnd = endText === END_DATE
   const startColor = hasNoStart ? theme.hint : 'inherit'
   const endColor = hasNoEnd ? theme.hint : 'inherit'
-  const dividerColor = hasNoStart || hasNoEnd ? theme.hint : 'inherit'
   return (
     <div
       css={`
-        z-index: 2;
+        position: relative;
+        z-index: 1;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 7px 6px;
         cursor: pointer;
-        background: ${theme.surface};
         ${unselectable}
       `}
       {...props}
     >
       <div
         css={`
-          position: absolute;
-          width: calc(100% - 37px);
-          display: grid;
-          grid-template-columns: 50% 2px 50%;
+          display: flex;
+          flex: 1;
+          justify-content: space-around;
           align-items: center;
-          height: ${INPUT_HEIGHT_WITHOUT_BORDER}px;
-          overflow: hidden;
-          ${textStyle('body2')}
         `}
       >
         <div
           css={`
             color: ${startColor};
             text-align: center;
+            ${textStyle(hasNoStart ? 'body2' : 'body3')}
           `}
         >
           {startText}
         </div>
         <div
           css={`
-            color: ${dividerColor};
+            color: ${theme.hint.alpha(0.3)};
+            font-size: 13px;
           `}
         >
           |
@@ -56,6 +57,7 @@ const Labels = ({ enabled, startText, endText, ...props }) => {
           css={`
             color: ${endColor};
             text-align: center;
+            ${textStyle(hasNoEnd ? 'body2' : 'body3')}
           `}
         >
           {endText}
@@ -63,11 +65,8 @@ const Labels = ({ enabled, startText, endText, ...props }) => {
       </div>
       <div
         css={`
-          position: absolute;
-          right: 11px;
           display: flex;
-          align-items: center;
-          height: ${INPUT_HEIGHT_WITHOUT_BORDER}px;
+          padding: 0 4px 0 10px;
         `}
       >
         <IconCalendar

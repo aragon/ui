@@ -23,8 +23,8 @@ const MonthDay = function({
     <li
       css={`
         position: relative;
-        width: 2.571em;
-        height: 2.571em;
+        width: 36px;
+        height: ${weekDay ? 28 : 36}px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -33,7 +33,7 @@ const MonthDay = function({
         font-size: 90%;
         user-select: none;
 
-        padding: 0.20em 0.25em;
+        padding: 0 19px;
         margin-top: 0.05em;
         margin-bottom: 0.05em;
 

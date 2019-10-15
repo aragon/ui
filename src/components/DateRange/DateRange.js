@@ -4,12 +4,12 @@ import dayjs from 'dayjs'
 
 import { Button } from '../Button/Button'
 import { useViewport } from '../../providers/Viewport/Viewport'
-import { RADIUS, breakpoint, GU } from '../../style'
+import { RADIUS, breakpoint } from '../../style'
 import { useTheme } from '../../theme'
 import DatePicker from './DatePicker'
 import Labels from './Labels'
-import { Controls, Wrap } from './components'
-import { START_DATE, END_DATE, INPUT_HEIGHT, INPUT_BORDER } from './consts'
+import { Controls, DatePickersWrapper } from './components'
+import { START_DATE, END_DATE, INPUT_BORDER } from './consts'
 import { handleDateSelect } from './utils'
 
 const DateRange = props => {
@@ -45,9 +45,7 @@ const DateRange = props => {
     result.endDate !== undefined && setEndDate(result.endDate)
   }
 
-  const handleApply = e => {
-    e.preventDefault()
-    e.stopPropagation()
+  const handleApply = () => {
     setShowPicker(false)
 
     if (startDate && endDate) {
@@ -62,10 +60,7 @@ const DateRange = props => {
     }
   }
 
-  const handleClear = e => {
-    e.preventDefault()
-    e.stopPropagation()
-
+  const handleClear = () => {
     setStartDate(null)
     setEndDate(null)
     setShowPicker(false)
@@ -107,13 +102,23 @@ const DateRange = props => {
   return (
     <div
       css={`
-        height: ${INPUT_HEIGHT}px;
-        width: ${GU * 31}px;
         position: relative;
+        width: 219px;
         border: ${startDateProp && endDateProp
           ? `${INPUT_BORDER}px solid ${theme.accent}`
           : `${INPUT_BORDER}px solid ${theme.border}`};
         border-radius: ${RADIUS}px;
+        &:after {
+          content: '';
+          position: absolute;
+          z-index: 0;
+          top: 0;
+          left: 0;
+          border-radius: ${RADIUS}px;
+          background: ${theme.surface};
+          width: 100%;
+          height: 100%;
+        }
       `}
       ref={rootRef}
     >
@@ -126,21 +131,20 @@ const DateRange = props => {
         <div
           css={`
             position: absolute;
-            top: ${INPUT_HEIGHT}px;
+            top: calc(100% + ${INPUT_BORDER * 2}px);
             left: -${INPUT_BORDER}px;
             z-index: 10;
+            padding: 20px 18px 23px 18px;
             border: 1px solid ${theme.border};
             border-radius: ${RADIUS}px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
             background: ${theme.surface};
           `}
         >
-          <Wrap>
+          <DatePickersWrapper>
             <DatePicker
               datesRangeStart={startDate}
               datesRangeEnd={endDate}
               onSelect={handleDateClick}
-              overlay={false}
               initialDate={dayjs(startDateProp || undefined)
                 .subtract(displayMonthBeforeOnLeft ? 1 : 0, 'month')
                 .toDate()}
@@ -150,24 +154,30 @@ const DateRange = props => {
                 datesRangeStart={startDate}
                 datesRangeEnd={endDate}
                 onSelect={handleDateClick}
-                overlay={false}
                 initialDate={dayjs(endDateProp || undefined).toDate()}
+                css={`
+                  margin-left: 9px;
+                `}
               />
             )}
-          </Wrap>
+          </DatePickersWrapper>
 
           <Controls>
-            <Button onClick={handleClear}>Clear</Button>
+            <Button wide size="small" onClick={handleClear}>
+              Reset
+            </Button>
             <Button
+              wide
               css={`
                 ${breakpoint(
                   'medium',
                   `
-                      margin-left: 19px;
-                    `
+                    margin-left: 12px;
+                  `
                 )}
               `}
               mode="strong"
+              size="small"
               onClick={handleApply}
               disabled={!startDate || !endDate}
             >

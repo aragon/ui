@@ -10,24 +10,20 @@ export const Controls = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 16px 0;
-  padding: 0 8px;
+  margin-top: ${GU * 2.25}px;
+  padding-right: 7px;
 
   ${breakpoint(
     'medium',
     `
-      display: block;
-      text-align: right;
+      max-width: 255px;
+      margin-right: 0;
+      margin-left: auto;
     `
   )}
 `
 
-export const Wrap = styled.div`
-  > div {
-    border: 0;
-    box-shadow: none;
-  }
-
+export const DatePickersWrapper = styled.div`
   ${breakpoint(
     'medium',
     `
@@ -40,7 +36,7 @@ export const Wrap = styled.div`
 
 export const MonthWrapper = styled.ol`
   margin: 0;
-  padding: 0 0.5em 0.5em;
+  padding: 0;
   display: grid;
   grid-template: auto / repeat(7, 1fr);
   list-style: none;
@@ -62,8 +58,8 @@ const ArrowButton = props => {
   return (
     <ButtonBase
       css={`
-        padding: ${GU / 2}px ${GU}px;
         font-size: 9px;
+        padding: 0 4px;
         color: ${theme.hint};
 
         &:hover {
@@ -79,10 +75,11 @@ const SelectorWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-bottom: ${GU}px;
 
   span {
     ${({ small, theme }) => css`
-      ${textStyle(small ? 'body4' : 'body3')};
+      ${textStyle(small ? 'label2' : 'body2')};
       ${small &&
         css`
           color: ${theme.hint};
