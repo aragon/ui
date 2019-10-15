@@ -266,6 +266,8 @@ class DateRangeInput extends React.PureComponent {
       endDate: endDateProps,
     } = this.props
 
+    const substractMonthInFirstDatePicker = !(compactMode || startDateProps)
+
     return (
       <div
         css={`
@@ -300,8 +302,8 @@ class DateRangeInput extends React.PureComponent {
                 datesRangeEnd={endDate}
                 onSelect={this.handleSelectDate}
                 overlay={false}
-                initialDate={dayjs()
-                  .subtract(compactMode ? 0 : 1, 'month')
+                initialDate={dayjs(startDateProps || undefined)
+                  .subtract(substractMonthInFirstDatePicker ? 1 : 0, 'month')
                   .toDate()}
               />
               {!compactMode && (
@@ -310,6 +312,7 @@ class DateRangeInput extends React.PureComponent {
                   datesRangeEnd={endDate}
                   onSelect={this.handleSelectDate}
                   overlay={false}
+                  initialDate={dayjs(endDateProps || undefined).toDate()}
                 />
               )}
             </Wrap>
