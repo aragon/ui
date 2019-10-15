@@ -19,10 +19,6 @@ export const handleDateSelect = ({ date, startDate, endDate }) => {
   // if we have startDate, then `date` is the end date
   const isValidDate = startDate ? isValidEndDate : isValidStartDate
 
-  const selectedDate = dayjs(date)
-    .endOf('day')
-    .toDate()
-
   // both dates are selected - if a date is clicked and it's before
   // start date, it should be the new start date
   // (this way the start date does not have to be reset before setting)
@@ -36,7 +32,7 @@ export const handleDateSelect = ({ date, startDate, endDate }) => {
     dayjs(date).isBefore(startDate, 'day')
   ) {
     return {
-      startDate: selectedDate,
+      startDate: date,
     }
   }
 
@@ -46,19 +42,19 @@ export const handleDateSelect = ({ date, startDate, endDate }) => {
   if (!startDate && endDate && dayjs(date).isAfter(endDate)) {
     return {
       startDate: endDate,
-      endDate: selectedDate,
+      endDate: date,
     }
   }
   if (!endDate && startDate && dayjs(date).isBefore(startDate)) {
     return {
-      startDate: selectedDate,
+      startDate: date,
       endDate: startDate,
     }
   }
 
   if (isValidDate) {
     return {
-      [startDate ? 'endDate' : 'startDate']: selectedDate,
+      [startDate ? 'endDate' : 'startDate']: date,
     }
   }
 }
