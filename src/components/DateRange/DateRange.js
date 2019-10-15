@@ -97,28 +97,12 @@ class DateRangeInput extends React.PureComponent {
     return isDate ? dayjs(endDate).format(format) : ''
   }
 
-  componentWillUnmount() {
-    document.removeEventListener('mousedown', this.handleClickOutside)
+  componentDidMount() {
+    document.addEventListener('mousedown', this.handleClickOutside)
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    if (this.state.showPicker !== prevState.showPicker) {
-      const { startDate, endDate, compactMode } = this.props
-      // unsetting selection for compact because it shows one calendar at a time
-      /* eslint-disable */
-      this.setState({
-        startDateSelected: !compactMode && !!startDate,
-        endDateSelected: !compactMode && !!endDate,
-        startDate: !compactMode ? startDate : null,
-        endDate: !compactMode ? endDate : null,
-      })
-      /* eslint-enable */
-      if (this.state.showPicker) {
-        document.addEventListener('mousedown', this.handleClickOutside)
-      } else {
-        document.removeEventListener('mousedown', this.handleClickOutside)
-      }
-    }
+  componentWillUnmount() {
+    document.removeEventListener('mousedown', this.handleClickOutside)
   }
 
   handleClick = event => {
@@ -245,12 +229,11 @@ class DateRangeInput extends React.PureComponent {
 
   getValueText = () => {
     const {
-      compactMode,
       format,
       startDate: startDateProps,
       endDate: endDateProps,
     } = this.props
-    const { showPicker, startDateSelected, endDateSelected } = this.state
+    const { showPicker } = this.state
 
     // closed
     // shows props, if props null then placeholder
@@ -260,14 +243,6 @@ class DateRangeInput extends React.PureComponent {
             endDateProps
           ).format(format)}`
         : `${START_DATE} | ${END_DATE}`
-    }
-
-    // opened
-    // shows constants, till dates selected
-    if (compactMode) {
-      return `${startDateSelected ? this.formattedStartDate : START_DATE} | ${
-        endDateSelected ? this.formattedEndDate : END_DATE
-      }`
     }
 
     //  shows props, changes with selection
@@ -320,18 +295,16 @@ class DateRangeInput extends React.PureComponent {
             `}
           >
             <Wrap>
-              {(!compactMode || !startDateSelected) && (
-                <DatePicker
-                  datesRangeStart={startDate}
-                  datesRangeEnd={endDate}
-                  onSelect={this.handleSelectDate}
-                  overlay={false}
-                  initialDate={dayjs()
-                    .subtract(1, 'month')
-                    .toDate()}
-                />
-              )}
-              {(!compactMode || startDateSelected) && (
+              <DatePicker
+                datesRangeStart={startDate}
+                datesRangeEnd={endDate}
+                onSelect={this.handleSelectDate}
+                overlay={false}
+                initialDate={dayjs()
+                  .subtract(compactMode ? 0 : 1, 'month')
+                  .toDate()}
+              />
+              {!compactMode && (
                 <DatePicker
                   datesRangeStart={startDate}
                   datesRangeEnd={endDate}
