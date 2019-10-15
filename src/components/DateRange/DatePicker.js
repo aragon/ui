@@ -8,7 +8,7 @@ import Text from '../Text/Text'
 import { GU } from '../../style'
 import { useTheme } from '../../theme'
 import { eachDayOfInterval } from '../../utils'
-import { Selector, MonthWrapper } from './styled'
+import { Selector, MonthWrapper } from './components'
 import MonthDay from './MonthDay'
 
 class DatePicker extends React.PureComponent {

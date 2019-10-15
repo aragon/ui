@@ -5,12 +5,16 @@ import { textStyle } from '../../style'
 import { useTheme } from '../../theme'
 import { unselectable } from '../../utils'
 
-import { START_DATE, INPUT_HEIGHT_WITHOUT_BORDER } from './consts'
+import { START_DATE, END_DATE, INPUT_HEIGHT_WITHOUT_BORDER } from './consts'
 
-const Labels = ({ enabled, text }) => {
+const Labels = ({ enabled, startText, endText }) => {
   const theme = useTheme()
-  const color = text.indexOf(START_DATE) > -1 ? theme.hint : 'inherit'
-  const [start, end] = text.split('|')
+
+  const hasNoStart = startText === START_DATE
+  const hasNoEnd = endText === END_DATE
+  const startColor = hasNoStart ? theme.hint : 'inherit'
+  const endColor = hasNoEnd ? theme.hint : 'inherit'
+  const dividerColor = hasNoStart || hasNoEnd ? theme.hint : 'inherit'
   return (
     <div
       css={`
@@ -29,13 +33,32 @@ const Labels = ({ enabled, text }) => {
           align-items: center;
           height: ${INPUT_HEIGHT_WITHOUT_BORDER}px;
           overflow: hidden;
-          color: ${color};
           ${textStyle('body2')}
         `}
       >
-        <div css="text-align: center;">{start}</div>
-        <div>|</div>
-        <div css="text-align: center;">{end}</div>
+        <div
+          css={`
+            color: ${startColor};
+            text-align: center;
+          `}
+        >
+          {startText}
+        </div>
+        <div
+          css={`
+            color: ${dividerColor};
+          `}
+        >
+          |
+        </div>
+        <div
+          css={`
+            color: ${endColor};
+            text-align: center;
+          `}
+        >
+          {endText}
+        </div>
       </div>
       <div
         css={`
@@ -58,7 +81,8 @@ const Labels = ({ enabled, text }) => {
 
 Labels.propTypes = {
   enabled: PropTypes.bool,
-  text: PropTypes.string.isRequired,
+  startText: PropTypes.string.isRequired,
+  endText: PropTypes.string.isRequired,
 }
 
 export default Labels

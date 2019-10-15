@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { css } from 'styled-components'
 
 import { useTheme } from '../../theme'
-import { TodayIndicator } from './styled'
+import { TodayIndicator } from './components'
 
 const MonthDay = function({
   children,
@@ -40,7 +40,7 @@ const MonthDay = function({
         ${disabled &&
           css`
             pointer-events: none;
-            color: ${theme.disabled};
+            opacity: 0;
           `}
 
         ${selected &&
@@ -85,7 +85,7 @@ const MonthDay = function({
         ${weekDay &&
           css`
             pointer-events: none;
-            color: ${theme.disabled};
+            color: ${theme.contentSecondary};
             text-transform: uppercase;
           `}
 

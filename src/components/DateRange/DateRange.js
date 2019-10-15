@@ -8,13 +8,8 @@ import { RADIUS, breakpoint } from '../../style'
 import { useTheme } from '../../theme'
 import DatePicker from './DatePicker'
 import Labels from './Labels'
-import { Controls, Wrap } from './styled'
-import {
-  START_DATE,
-  END_DATE,
-  INPUT_HEIGHT,
-  INPUT_HEIGHT_WITHOUT_BORDER,
-} from './consts'
+import { Controls, Wrap } from './components'
+import { START_DATE, END_DATE, INPUT_HEIGHT, INPUT_BORDER } from './consts'
 import { handleDateSelect } from './utils'
 
 class DateRangeInput extends React.PureComponent {
@@ -24,22 +19,6 @@ class DateRangeInput extends React.PureComponent {
     endDate: this.props.endDate,
   }
   _datePickerContainer = React.createRef()
-
-  get formattedStartDate() {
-    const { format } = this.props
-    const { startDate } = this.state
-    const isDate = startDate instanceof Date
-
-    return isDate ? dayjs(startDate).format(format) : ''
-  }
-
-  get formattedEndDate() {
-    const { format } = this.props
-    const { endDate } = this.state
-    const isDate = endDate instanceof Date
-
-    return isDate ? dayjs(endDate).format(format) : ''
-  }
 
   componentDidMount() {
     document.addEventListener('mousedown', this.handleClickOutside)
@@ -67,9 +46,9 @@ class DateRangeInput extends React.PureComponent {
 
   handleSelectDate = date => {
     const { startDate, endDate } = this.state
-    const newState = handleDateSelect({ date, startDate, endDate })
-    if (newState) {
-      this.setState(newState)
+    const stateUpdate = handleDateSelect({ date, startDate, endDate })
+    if (stateUpdate) {
+      this.setState(stateUpdate)
     }
   }
 
@@ -101,28 +80,16 @@ class DateRangeInput extends React.PureComponent {
     })
   }
 
-  getValueText = () => {
-    const {
-      format,
-      startDate: startDateProps,
-      endDate: endDateProps,
-    } = this.props
+  getLabelsProps = () => {
+    const { format } = this.props
     const { showPicker } = this.state
 
-    // closed
-    // shows props, if props null then placeholder
-    if (!showPicker) {
-      return startDateProps && endDateProps
-        ? `${dayjs(startDateProps).format(format)} | ${dayjs(
-            endDateProps
-          ).format(format)}`
-        : `${START_DATE} | ${END_DATE}`
+    const startDate = showPicker ? this.state.startDate : this.props.startDate
+    const endDate = showPicker ? this.state.endDate : this.props.endDate
+    return {
+      startText: startDate ? dayjs(startDate).format(format) : START_DATE,
+      endText: endDate ? dayjs(endDate).format(format) : END_DATE,
     }
-
-    //  shows props, changes with selection
-    return `${
-      this.formattedStartDate ? this.formattedStartDate : START_DATE
-    } | ${this.formattedEndDate ? this.formattedEndDate : END_DATE}`
   }
 
   render() {
@@ -143,20 +110,21 @@ class DateRangeInput extends React.PureComponent {
           width: 250px;
           position: relative;
           border: ${startDateProps && endDateProps
-            ? `1px solid ${theme.accent}`
-            : `1px solid ${theme.border}`};
+            ? `${INPUT_BORDER}px solid ${theme.accent}`
+            : `${INPUT_BORDER}px solid ${theme.border}`};
           border-radius: ${RADIUS}px;
         `}
         ref={el => (this.rootRef = el)}
         onClick={this.handleClick}
       >
-        <Labels enabled={showPicker} text={this.getValueText()} />
+        <Labels enabled={showPicker} {...this.getLabelsProps()} />
         {this.state.showPicker && (
           <div
             ref={this._datePickerContainer}
             css={`
               position: absolute;
-              top: ${INPUT_HEIGHT_WITHOUT_BORDER}px;
+              top: ${INPUT_HEIGHT}px;
+              left: -${INPUT_BORDER}px;
               z-index: 10;
               border: 1px solid ${theme.border};
               border-radius: ${RADIUS}px;
