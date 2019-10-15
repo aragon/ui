@@ -101,7 +101,16 @@ class DateRangeInput extends React.PureComponent {
       endDate: endDateProps,
     } = this.props
 
-    const substractMonthInFirstDatePicker = !(compactMode || startDateProps)
+    // if both dates are in the same month, use the right calendar for it,
+    // and display month before on the left calendar
+    const propsDatesInSameMonth =
+      startDateProps &&
+      endDateProps &&
+      dayjs(startDateProps).isSame(dayjs(endDateProps), 'month')
+
+    const displayMonthBeforeOnLeft = compactMode
+      ? false
+      : propsDatesInSameMonth || !startDateProps
 
     return (
       <div
@@ -139,7 +148,7 @@ class DateRangeInput extends React.PureComponent {
                 onSelect={this.handleSelectDate}
                 overlay={false}
                 initialDate={dayjs(startDateProps || undefined)
-                  .subtract(substractMonthInFirstDatePicker ? 1 : 0, 'month')
+                  .subtract(displayMonthBeforeOnLeft ? 1 : 0, 'month')
                   .toDate()}
               />
               {!compactMode && (
