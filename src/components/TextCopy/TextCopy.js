@@ -1,9 +1,4 @@
-import React, {
-  useCallback,
-  useEffect,
-  useImperativeHandle,
-  useRef,
-} from 'react'
+import React, { useCallback, useImperativeHandle, useRef } from 'react'
 import PropTypes from 'prop-types'
 import { IconCopy } from '../../icons/'
 import { GU, RADIUS, textStyle } from '../../style'
@@ -52,7 +47,7 @@ const TextCopy = React.memo(
           warn(err)
         }
       }
-    }, [onCopyOrToast])
+    }, [message, onCopyOrToast])
 
     return (
       <div
