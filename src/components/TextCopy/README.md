@@ -1,81 +1,57 @@
 # TextCopy
 
-A field component to allow the user to copy its content to clipboard
+A read-only text input component that allows the user to copy the value to the clipboard.
+
+Extra props will be passed to the `TextInput` component which is used internally.
 
 ## Usage
 
 ```jsx
-import { TextCopy } from '@aragon-ui
-
-function App() {
-	return <TextCopy
-		value="0xcafE1A77e84698c83CA8931F54A755176eF75f2C"
-		icon={
-			<Tag mode="identity"
-				css={`
-					width: 39px;
-					height: 38px;
-					display: flex;
-					align-items: center;
-					justify-content: center;
-				`}
-			>
-				Icon
-			</Tag>
-		}
-	/>
-}
+<TextCopy value="Something to copy" />
 ```
 
 ## Props
 
-### `value`
+### `adornment`
 
-| Type     | Default value   |
-| -------- | --------------- |
-| `String` | None (Required) |
+| Type         | Default value |
+| ------------ | ------------- |
+| `React node` | None          |
 
-Value of the field
+Allows to set an adornment that will get used on the left side of the text field (in left to right languages). The copy button is always displayed on the other side.
 
-### Example
+### `message`
 
-```jsx
-<TextCopy value="Copy me!" />
-```
+| Type     | Default value |
+| -------- | ------------- |
+| `String` | `"Copied"`    |
 
-### `icon`
+The message that gets displayed when the copy is successful.
 
-| Type   | Default value   |
-| ------ | --------------- |
-| `Node` | None            |
+### `monospace`
 
-Icon to display in the field. Can pass anything that can be rendered, such as
-num, string, DOM elements, an array of them, or fragments that contain them.
+| Type      | Default value |
+| --------- | ------------- |
+| `Boolean` | `true`        |
 
-```jsx
-<TextCopy
-  value="0xcafE1A77e84698c83CA8931F54A755176eF75f2C"
-  icon={
-    <img />
-  }
-/>
-```
+Set this to false to disable the use of the monospace font.
 
 ### `onCopy`
 
-| Type       | Default value   |
-| ---------- | --------------- |
-| `function` | None            |
+| Type                 | Default value |
+| -------------------- | ------------- |
+| `Function` or `null` | None          |
 
-Callback that will be triggered in place of the toast. You can pass `null` to disable showing the toast.
+When not set, a toast will get displayed on copy, with the `message` provided.
 
-#### Example:
+When set to `null`, disables the message entirely.
 
-```jsx
-<TextCopy
-  value="0xcafE1A77e84698c83CA8931F54A755176eF75f2C"
-	onCopy={text => {
-		console.log('Text copied!')
-	}}
-/>
-```
+When set to a function, calls this function when the copy is successful, with the `message` as a parameter.
+
+### `value`
+
+| Type     | Default value |
+| -------- | ------------- |
+| `String` | None          |
+
+The field content (single line).
