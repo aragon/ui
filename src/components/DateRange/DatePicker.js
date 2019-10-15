@@ -69,6 +69,8 @@ class DatePicker extends React.PureComponent {
   render() {
     const {
       currentDate,
+      datesRangeStart,
+      datesRangeEnd,
       hideMonthSelector,
       hideWeekDays,
       hideYearSelector,
@@ -84,6 +86,17 @@ class DatePicker extends React.PureComponent {
       .toDate()
     const { value: selected } = this.state
     const selectedDayjs = dayjs(selected)
+
+    const isSelected = day => {
+      if (datesRangeStart || datesRangeEnd) {
+        return (
+          day.isSame(datesRangeStart, 'day') || day.isSame(datesRangeEnd, 'day')
+        )
+      } else if (currentDate) {
+        return day.isSame(currentDate, 'day')
+      }
+      return false
+    }
 
     return (
       <Container overlay={this.props.overlay}>
@@ -142,7 +155,7 @@ class DatePicker extends React.PureComponent {
               <DayView
                 key={day.valueOf()}
                 disabled={!selectedDayjs.isSame(day, 'month')}
-                selected={day.isSame(currentDate, 'day')}
+                selected={isSelected(day)}
                 today={day.isSame(today, 'day')}
                 onClick={this.handleSelection(day.toDate())}
               >
@@ -161,6 +174,13 @@ DatePicker.propTypes = {
    */
   currentDate: PropTypes.instanceOf(Date),
   /**
+   * For displaying a selected dates range - start
+   */
+  datesRangeStart: PropTypes.instanceOf(Date),
+  /**
+   * For displaying a selected dates range - end
+   */
+  datesRangeEnd: PropTypes.instanceOf(Date),
   /**
    * Initial date - calendar will start from here.
    * If not set, currentDate will be used.
