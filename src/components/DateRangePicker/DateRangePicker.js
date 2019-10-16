@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import dayjs from 'dayjs'
 
@@ -20,6 +20,14 @@ const DateRangePicker = props => {
 
   const [startDate, setStartDate] = useState(props.startDate)
   const [endDate, setEndDate] = useState(props.endDate)
+
+  // on closing the picked, reset state
+  useEffect(() => {
+    if (!showPicker) {
+      setStartDate(props.startDate)
+      setEndDate(props.endDate)
+    }
+  }, [props.endDate, props.startDate, showPicker])
 
   const handleLabelsClick = () => {
     setShowPicker(!showPicker)
