@@ -90,7 +90,7 @@ Communicates that a _surface_ is being “opened”, generally revealing a surfa
 
 #### _surfaceSelected_
 
-Indicates that a _surface_, or a part of it, is being selected. This is the color _DataView_ is using to indicate that an entire row is selected.
+Indicates that a _surface_, or a part of it, is being selected. This is the color DataView is using to indicate that an entire row is selected.
 
 #### _surfaceHighlight_
 
