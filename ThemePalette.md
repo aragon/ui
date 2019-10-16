@@ -62,7 +62,7 @@ This is the gradient equivalent of _accent_.
 
 ### Surface
 
-The main surface as defined by aragonDS and its different states. This group of colors is being used by containers components (Box, DataView, etc.) and more (handles, Button, etc.).
+The main surface as defined by aragonDS and its different states. This group of colors is used by components providing surfaces: Box, DataView, the default Button, the Slider handle, and many more.
 
 #### _surface_
 
