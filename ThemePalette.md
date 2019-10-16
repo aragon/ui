@@ -130,7 +130,7 @@ The primary color to be used for text and outline content over _feedbackSurface_
 
 #### _feedbackSurfaceContentSecondary_
 
-Secondary color to be used for text and outline content over _feedbackSurface_.
+The secondary color to be used for text and outline content over _feedbackSurface_.
 
 ### Warning
 
