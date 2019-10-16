@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import { _DateRange as DateRange, unselectable } from '@aragon/ui'
+import { DateRangePicker, unselectable } from '@aragon/ui'
 
 export default function() {
   const [selectedDateRange, setSelectedDateRange] = useState({
@@ -9,7 +9,7 @@ export default function() {
   })
   return (
     <Wrapper>
-      <DateRange
+      <DateRangePicker
         startDate={selectedDateRange.start}
         endDate={selectedDateRange.end}
         onChange={setSelectedDateRange}

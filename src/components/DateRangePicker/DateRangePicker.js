@@ -12,7 +12,7 @@ import { Controls, DatePickersWrapper } from './components'
 import { START_DATE, END_DATE, INPUT_BORDER } from './consts'
 import { handleDateSelect } from './utils'
 
-const DateRange = props => {
+const DateRangePicker = props => {
   const [showPicker, setShowPicker] = useState(false)
   const [startDate, setStartDate] = useState(props.startDate)
   const [endDate, setEndDate] = useState(props.endDate)
@@ -190,16 +190,17 @@ const DateRange = props => {
   )
 }
 
-DateRange.propTypes = {
+DateRangePicker.propTypes = {
   format: PropTypes.string,
   onChange: PropTypes.func,
   startDate: PropTypes.instanceOf(Date),
   endDate: PropTypes.instanceOf(Date),
 }
 
-DateRange.defaultProps = {
+DateRangePicker.defaultProps = {
   format: 'MM/DD/YYYY',
   onChange: () => {},
 }
 
-export { DateRange }
+export { DateRangePicker }
+export default DateRangePicker
