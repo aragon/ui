@@ -174,7 +174,7 @@ Used to communicate something positive. It can be used for successful operations
 
 #### _positive_
 
-Use this color to communicate a positive information (e.g. success, an action to vote yes).
+Use this color to communicate positive information (e.g. success, an action to vote yes).
 
 #### _positiveContent_
 
