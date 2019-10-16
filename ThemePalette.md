@@ -82,7 +82,7 @@ This color is generally used for icons over _surface_. Note: in some cases, icon
 
 #### _surfaceUnder_
 
-This is used as a background base for surfaces that appear to be at a lower level than the parent _surface_ itself. For instance, the _DataView_ component is using this color for its entry expansion.
+This is used as a background base for surfaces that appear to be at a lower level than the parent _surface_ itself. For instance, the DataView component is using this color for its entry expansion, which opens underneath the primary surface provided by DataView.
 
 #### _surfaceOpened_
 
@@ -126,11 +126,11 @@ Use this color as a background color for feedback.
 
 #### _feedbackSurfaceContent_
 
-Primary color to be used for text and outline content over _feedbackSurface_.
+The primary color to be used for text and outline content over _feedbackSurface_.
 
 #### _feedbackSurfaceContentSecondary_
 
-Secondary color to be used for text and outline content over _feedbackSurface_.
+The secondary color to be used for text and outline content over _feedbackSurface_.
 
 ### Warning
 
@@ -174,7 +174,7 @@ Used to communicate something positive. It can be used for successful operations
 
 #### _positive_
 
-Use this color to communicate a positive information (e.g. success, an action to vote yes).
+Use this color to communicate positive information (e.g. success, an action to vote yes).
 
 #### _positiveContent_
 
