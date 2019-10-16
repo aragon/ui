@@ -46,7 +46,7 @@ Used as a base color for links.
 
 #### _focus_
 
-The color of the focus ring.
+The color for focus rings.
 
 #### _accent_
 
