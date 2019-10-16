@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useRef } from 'react'
 import PropTypes from 'prop-types'
 import dayjs from 'dayjs'
 
@@ -11,29 +11,19 @@ import Labels from './Labels'
 import { Controls, DatePickersWrapper } from './components'
 import { START_DATE, END_DATE, INPUT_BORDER } from './consts'
 import { handleDateSelect } from './utils'
+import Popover from '../Popover/Popover'
 
 const DateRangePicker = props => {
   const [showPicker, setShowPicker] = useState(false)
+  const labelsRef = useRef()
+  const closePicker = () => setShowPicker(false)
+
   const [startDate, setStartDate] = useState(props.startDate)
   const [endDate, setEndDate] = useState(props.endDate)
 
   const handleLabelsClick = () => {
     setShowPicker(!showPicker)
   }
-
-  const rootRef = useRef()
-  const handleClickOutside = event => {
-    if (rootRef.current && !rootRef.current.contains(event.target)) {
-      setShowPicker(false)
-    }
-  }
-
-  useEffect(() => {
-    document.addEventListener('mousedown', handleClickOutside)
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside)
-    }
-  }, [])
 
   const handleDateClick = date => {
     const result = handleDateSelect({
@@ -108,32 +98,31 @@ const DateRangePicker = props => {
           ? `${INPUT_BORDER}px solid ${theme.accent}`
           : `${INPUT_BORDER}px solid ${theme.border}`};
         border-radius: ${RADIUS}px;
-        &:after {
-          content: '';
-          position: absolute;
-          z-index: 0;
-          top: 0;
-          left: 0;
-          border-radius: ${RADIUS}px;
-          background: ${theme.surface};
-          width: 100%;
-          height: 100%;
-        }
+        background: ${theme.surface};
+        overflow: hidden;
       `}
-      ref={rootRef}
     >
       <Labels
         {...getLabelsProps()}
         enabled={showPicker}
         onClick={handleLabelsClick}
+        ref={labelsRef}
       />
-      {showPicker && (
+      <Popover
+        opener={labelsRef.current}
+        visible={showPicker}
+        onClose={closePicker}
+        placement="bottom-start"
+        closeOnOpenerFocus
+        css={`
+          border: 0;
+          filter: none;
+          background: none;
+          margin: 2px 0px 0px -1px;
+        `}
+      >
         <div
           css={`
-            position: absolute;
-            top: calc(100% + ${INPUT_BORDER * 2}px);
-            left: -${INPUT_BORDER}px;
-            z-index: 10;
             padding: 20px 18px 23px 18px;
             border: 1px solid ${theme.border};
             border-radius: ${RADIUS}px;
@@ -180,7 +169,7 @@ const DateRangePicker = props => {
             </Button>
           </Controls>
         </div>
-      )}
+      </Popover>
     </div>
   )
 }

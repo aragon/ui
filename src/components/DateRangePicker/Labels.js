@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { forwardRef } from 'react'
 import PropTypes from 'prop-types'
 import { IconCalendar } from '../../icons/components'
 import { textStyle } from '../../style'
@@ -7,7 +7,7 @@ import { unselectable } from '../../utils'
 
 import { START_DATE, END_DATE } from './consts'
 
-const Labels = ({ enabled, startText, endText, ...props }) => {
+const Labels = forwardRef(({ enabled, startText, endText, ...props }, ref) => {
   const theme = useTheme()
 
   const hasNoStart = startText === START_DATE
@@ -26,7 +26,12 @@ const Labels = ({ enabled, startText, endText, ...props }) => {
         cursor: pointer;
         ${unselectable}
       `}
+      // tabIndex is provided so that this element is recognized
+      // as event.relatedTarget when Popover loses focus
+      // more on that: https://stackoverflow.com/a/42764495/3772847
+      tabIndex="0"
       {...props}
+      ref={ref}
     >
       <div
         css={`
@@ -77,7 +82,7 @@ const Labels = ({ enabled, startText, endText, ...props }) => {
       </div>
     </div>
   )
-}
+})
 
 Labels.propTypes = {
   enabled: PropTypes.bool,
