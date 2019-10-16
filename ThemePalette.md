@@ -30,7 +30,7 @@ The border color used everywhere by default, except in specific cases like _cont
 
 #### _overlay_
 
-The color used for overlays. Some components making using an overlay color are SidePanel or Modal.
+The color used for overlays. Some components using an overlay color are SidePanel or Modal.
 
 #### _content_
 
