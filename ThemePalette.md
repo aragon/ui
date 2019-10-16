@@ -1,6 +1,6 @@
 # aragonUI Theme Palette
 
-An aragonUI theme is a set of colors assigned to a predefined palette. aragonUI and the apps using it are using colors from this palette, making it possible to swap the palette (theme) for another one. aragonUI includes two themes by default, _light_ and _dark_, but any other can be provided, including by extending them.
+An aragonUI theme is a set of colors assigned to a predefined palette. All aragonUI components use colors from this palette, making it possible to swap the palette (theme) for another one in an app. aragonUI includes two themes by default, _light_ and _dark_, but any other can be provided, including by extending them.
 
 ## Notes
 
