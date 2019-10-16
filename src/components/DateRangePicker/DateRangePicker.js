@@ -4,7 +4,7 @@ import dayjs from 'dayjs'
 
 import { Button } from '../Button/Button'
 import { useViewport } from '../../providers/Viewport/Viewport'
-import { RADIUS, breakpoint } from '../../style'
+import { RADIUS } from '../../style'
 import { useTheme } from '../../theme'
 import DatePicker from './DatePicker'
 import Labels from './Labels'
@@ -169,12 +169,7 @@ const DateRangePicker = props => {
             <Button
               wide
               css={`
-                ${breakpoint(
-                  'medium',
-                  `
-                    margin-left: 12px;
-                  `
-                )}
+                margin-left: 12px;
               `}
               mode="strong"
               size="small"
