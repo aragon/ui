@@ -202,7 +202,7 @@ To be used for text and outline content over _negative_.
 
 #### _negativeSurface_
 
-A softer _negative_, to be used when a large amount of information need to be communicated. For instance, the Info component is using it as a background color in error mode.
+A softer _negative_, to be used when a large amount of information needs to be communicated. For instance, the Info component uses it as a background color in error mode.
 
 #### _negativeSurfaceContent_
 
