@@ -9,7 +9,7 @@ import { useTheme } from '../../theme'
 import DatePicker from './DatePicker'
 import Labels from './Labels'
 import { Controls, DatePickersWrapper } from './components'
-import { START_DATE, END_DATE, INPUT_BORDER } from './consts'
+import { START_DATE, END_DATE } from './consts'
 import { handleDateSelect } from './utils'
 import Popover from '../Popover/Popover'
 
@@ -90,22 +90,12 @@ const DateRangePicker = props => {
     : propsDatesInSameMonth || !startDateProp
 
   return (
-    <div
-      css={`
-        position: relative;
-        width: 219px;
-        border: ${startDateProp && endDateProp
-          ? `${INPUT_BORDER}px solid ${theme.accent}`
-          : `${INPUT_BORDER}px solid ${theme.border}`};
-        border-radius: ${RADIUS}px;
-        background: ${theme.surface};
-        overflow: hidden;
-      `}
-    >
+    <div>
       <Labels
         {...getLabelsProps()}
         enabled={showPicker}
         onClick={handleLabelsClick}
+        hasSetDates={Boolean(startDateProp && endDateProp)}
         ref={labelsRef}
       />
       <Popover

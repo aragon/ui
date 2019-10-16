@@ -1,91 +1,101 @@
 import React, { forwardRef } from 'react'
 import PropTypes from 'prop-types'
+
 import { IconCalendar } from '../../icons/components'
-import { textStyle } from '../../style'
+import { RADIUS, textStyle } from '../../style'
 import { useTheme } from '../../theme'
-import { unselectable } from '../../utils'
+import { START_DATE, END_DATE, INPUT_BORDER } from './consts'
+import ButtonBase from '../ButtonBase/ButtonBase'
 
-import { START_DATE, END_DATE } from './consts'
+const Labels = forwardRef(
+  ({ enabled, startText, endText, hasSetDates, onClick, ...props }, ref) => {
+    const theme = useTheme()
 
-const Labels = forwardRef(({ enabled, startText, endText, ...props }, ref) => {
-  const theme = useTheme()
+    const hasNoStart = startText === START_DATE
+    const hasNoEnd = endText === END_DATE
 
-  const hasNoStart = startText === START_DATE
-  const hasNoEnd = endText === END_DATE
-  const startColor = hasNoStart ? theme.hint : 'inherit'
-  const endColor = hasNoEnd ? theme.hint : 'inherit'
-  return (
-    <div
-      css={`
-        position: relative;
-        z-index: 1;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 7px 6px;
-        cursor: pointer;
-        ${unselectable}
-      `}
-      // tabIndex is provided so that this element is recognized
-      // as event.relatedTarget when Popover loses focus
-      // more on that: https://stackoverflow.com/a/42764495/3772847
-      tabIndex="0"
-      {...props}
-      ref={ref}
-    >
-      <div
-        css={`
-          display: flex;
-          flex: 1;
-          justify-content: space-around;
-          align-items: center;
-        `}
-      >
+    return (
+      <ButtonBase focusRingRadius={RADIUS} ref={ref} onClick={onClick}>
         <div
           css={`
-            color: ${startColor};
-            text-align: center;
-            ${textStyle(hasNoStart ? 'body2' : 'body3')}
+            position: relative;
+            width: 219px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 7px 6px;
+            border: ${INPUT_BORDER}px solid
+              ${hasSetDates ? theme.accent : theme.border};
+            border-radius: ${RADIUS}px;
+            background: ${theme.surface};
+            overflow: hidden;
+            cursor: pointer;
+            &:active {
+              border-color: ${theme.controlBorderPressed};
+            }
+            &:focus {
+              outline: none;
+            }
           `}
+          {...props}
         >
-          {startText}
+          <div
+            css={`
+              display: flex;
+              flex: 1;
+              justify-content: space-around;
+              align-items: center;
+            `}
+          >
+            <div
+              css={`
+                color: ${hasNoStart ? theme.hint : 'inherit'};
+                text-align: center;
+                ${textStyle(hasNoStart ? 'body2' : 'body3')}
+              `}
+            >
+              {startText}
+            </div>
+            <div
+              css={`
+                color: ${theme.hint.alpha(0.3)};
+                font-size: 13px;
+              `}
+            >
+              |
+            </div>
+            <div
+              css={`
+                color: ${hasNoEnd ? theme.hint : 'inherit'};
+                text-align: center;
+                ${textStyle(hasNoEnd ? 'body2' : 'body3')}
+              `}
+            >
+              {endText}
+            </div>
+          </div>
+          <div
+            css={`
+              display: flex;
+              padding: 0 4px 0 10px;
+            `}
+          >
+            <IconCalendar
+              css={`
+                color: ${enabled ? theme.accent : theme.surfaceIcon};
+              `}
+            />
+          </div>
         </div>
-        <div
-          css={`
-            color: ${theme.hint.alpha(0.3)};
-            font-size: 13px;
-          `}
-        >
-          |
-        </div>
-        <div
-          css={`
-            color: ${endColor};
-            text-align: center;
-            ${textStyle(hasNoEnd ? 'body2' : 'body3')}
-          `}
-        >
-          {endText}
-        </div>
-      </div>
-      <div
-        css={`
-          display: flex;
-          padding: 0 4px 0 10px;
-        `}
-      >
-        <IconCalendar
-          css={`
-            color: ${enabled ? theme.accent : theme.surfaceIcon};
-          `}
-        />
-      </div>
-    </div>
-  )
-})
+      </ButtonBase>
+    )
+  }
+)
 
 Labels.propTypes = {
   enabled: PropTypes.bool,
+  hasSetDates: PropTypes.bool,
+  onClick: PropTypes.func,
   startText: PropTypes.string.isRequired,
   endText: PropTypes.string.isRequired,
 }
