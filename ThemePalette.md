@@ -86,7 +86,7 @@ This is used as a background base for surfaces that appear to be at a lower leve
 
 #### _surfaceOpened_
 
-Communicates that a _surface_ is being “opened”, generally revealing a surface using _surfaceUnder_ underneath. The _DataView_ component is using this color for the side border of its entry expansion.
+Communicates that a _surface_ is being “opened”, generally revealing a surface using _surfaceUnder_ underneath. The DataView component is using this color for the side border of its entry expansion.
 
 #### _surfaceSelected_
 
