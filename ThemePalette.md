@@ -182,7 +182,7 @@ To be used for text and outline content over _positive_.
 
 #### _positiveSurface_
 
-A softer _positive_, to be used when a large amount of information need to be communicated.
+A softer _positive_, to be used when a large amount of information needs to be communicated.
 
 #### _positiveSurfaceContent_
 
