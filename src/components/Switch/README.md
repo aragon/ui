@@ -10,12 +10,7 @@ import { Switch } from '@aragon/ui'
 
 const App = () => {
   const [checked, setChecked] = useState(false)
-  return (
-    <Switch
-      checked={checked}
-      onChange={setChecked}
-    />
-  )
+  return <Switch checked={checked} onChange={setChecked} />
 }
 ```
 
@@ -23,15 +18,18 @@ const App = () => {
 
 ### `checked`
 
-- Type: `Boolean`
-- Default: `false`
+| Type      | Default value |
+| --------- | ------------- |
+| `Boolean` | `false`       |
 
 ### `disabled`
 
-- Type: `Boolean`
-- Default: `false`
+| Type      | Default value |
+| --------- | ------------- |
+| `Boolean` | `false`       |
 
 ### `onChange`
 
-- Type: `Function`: `(checked: Boolean) -> *`
-- Default: `() => {}`
+| Type                                  | Default value |
+| ------------------------------------- | ------------- |
+| `Function`: `(checked: Boolean) -> *` | `() => {}`    |

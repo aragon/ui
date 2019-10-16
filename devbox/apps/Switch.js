@@ -13,8 +13,8 @@ const OptionWrapper = styled.div`
 `
 
 // eslint-disable-next-line react/prop-types
-const Option = ({ name, initialyChecked, ...passedProps }) => {
-  const [checked, setIsChecked] = useState(Boolean(initialyChecked))
+const Option = ({ name, initiallyChecked, ...passedProps }) => {
+  const [checked, setIsChecked] = useState(Boolean(initiallyChecked))
   return (
     <OptionWrapper>
       <Text>{name}</Text>
@@ -34,9 +34,9 @@ export default () => {
       `}
     >
       <div>
-        <Option name="On" initialyChecked />
+        <Option name="On" initiallyChecked />
         <Option name="Off" />
-        <Option name="Disabled on" initialyChecked disabled />
+        <Option name="Disabled on" initiallyChecked disabled />
         <Option name="Disabled off" disabled />
       </div>
     </div>
