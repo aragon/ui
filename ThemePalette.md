@@ -50,7 +50,7 @@ The color for focus rings.
 
 #### _accent_
 
-The _accent_ color can be used to put an emphasis on a certain part of a component, without any specific semantic.
+The _accent_ color can be used to put an emphasis on a component or a certain part of a component, without any specific semantic.
 
 #### _accentContent_
 
