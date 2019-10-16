@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { css } from 'styled-components'
 
 import { useTheme } from '../../theme'
-import { TodayIndicator } from './components'
+import { HoverIndicator } from './components'
 import ButtonBase from '../ButtonBase/ButtonBase'
+import { font } from '../../utils/font'
 
 const MonthDay = function({
   children,
@@ -19,9 +20,12 @@ const MonthDay = function({
 }) {
   const theme = useTheme()
   const dimmedSelectedColor = theme.selected.alpha(0.09)
+  const [isHovered, setIsHovered] = useState(false)
 
   return (
-    <li
+    <div
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
       css={`
         position: relative;
         width: 36px;
@@ -33,10 +37,7 @@ const MonthDay = function({
         cursor: pointer;
         font-size: 90%;
         user-select: none;
-
-        padding: 0 19px;
-        margin-top: 0.05em;
-        margin-bottom: 0.05em;
+        margin-bottom: 1px;
 
         ${disabled &&
           css`
@@ -76,11 +77,17 @@ const MonthDay = function({
             }
           `}
 
-        ${today &&
+        ${isHovered &&
           css`
             > * {
               z-index: 1;
             }
+          `}
+
+        ${today &&
+          css`
+            color: ${theme.selected};
+            ${font({ weight: 'bold' })};
           `}
 
         ${weekDay &&
@@ -95,16 +102,24 @@ const MonthDay = function({
           content: '';
           margin-top: 100%;
         }
-
-        &:hover {
-          background: ${theme.surfaceHighlight};
-        }
       `}
       {...props}
     >
-      {today ? <TodayIndicator theme={theme} selected={selected} /> : null}
+      {isHovered ? <HoverIndicator theme={theme} selected={selected} /> : null}
       {children}
-    </li>
+      {today ? (
+        <div
+          css={`
+            position: absolute;
+            bottom: 1px;
+            font-size: 9px;
+            color: ${selected ? theme.surface : theme.selected};
+          `}
+        >
+          ●
+        </div>
+      ) : null}
+    </div>
   )
 }
 

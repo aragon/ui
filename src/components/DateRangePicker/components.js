@@ -16,7 +16,7 @@ export const Controls = styled.div`
   ${breakpoint(
     'medium',
     `
-      max-width: 255px;
+      max-width: 247px;
       margin-right: 0;
       margin-left: auto;
     `
@@ -34,15 +34,7 @@ export const DatePickersWrapper = styled.div`
   )}
 `
 
-export const MonthWrapper = styled.ol`
-  margin: 0;
-  padding: 0;
-  display: grid;
-  grid-template: auto / repeat(7, 1fr);
-  list-style: none;
-`
-
-export const TodayIndicator = styled.span`
+export const HoverIndicator = styled.span`
   width: 100%;
   height: 100%;
   position: absolute;
@@ -57,9 +49,11 @@ const ArrowButton = props => {
   const theme = useTheme()
   return (
     <ButtonBase
+      focusRingRadius={GU * 2}
       css={`
         font-size: 9px;
-        padding: 0 4px;
+        padding: 5px 4px 0 4px;
+        margin-top: -4px;
         color: ${theme.hint};
 
         &:hover {

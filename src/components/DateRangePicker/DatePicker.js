@@ -4,7 +4,7 @@ import dayjs from 'dayjs'
 
 import Text from '../Text/Text'
 import { eachDayOfInterval } from '../../utils'
-import { Selector, MonthWrapper } from './components'
+import { Selector } from './components'
 import MonthDay from './MonthDay'
 
 const DatePicker = ({
@@ -94,7 +94,12 @@ const DatePicker = ({
         </Selector>
       )}
 
-      <MonthWrapper>
+      <div
+        css={`
+          display: grid;
+          grid-template: auto / repeat(7, 1fr);
+        `}
+      >
         {!hideWeekDays &&
           eachDayOfInterval({
             start: selectedDayjs.startOf('week'),
@@ -136,7 +141,7 @@ const DatePicker = ({
             </MonthDay>
           )
         })}
-      </MonthWrapper>
+      </div>
     </div>
   )
 }
