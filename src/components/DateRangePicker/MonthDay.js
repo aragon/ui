@@ -4,6 +4,7 @@ import { css } from 'styled-components'
 
 import { useTheme } from '../../theme'
 import { TodayIndicator } from './components'
+import ButtonBase from '../ButtonBase/ButtonBase'
 
 const MonthDay = function({
   children,
@@ -118,4 +119,16 @@ MonthDay.propTypes = {
   weekDay: PropTypes.bool,
 }
 
-export default MonthDay
+const WrappedMonthDay = ({ onClick, ...props }) => {
+  if (onClick && !props.disabled) {
+    return (
+      <ButtonBase onClick={onClick}>
+        <MonthDay {...props}></MonthDay>
+      </ButtonBase>
+    )
+  } else {
+    return <MonthDay {...props}></MonthDay>
+  }
+}
+
+export default WrappedMonthDay
