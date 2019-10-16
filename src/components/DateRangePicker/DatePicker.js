@@ -24,18 +24,7 @@ const DatePicker = ({
 }) => {
   const [selectedDate, setSelectedDate] = useState(initialDate)
 
-  const handleSelection = date => event => {
-    event.stopPropagation()
-    event.preventDefault()
-
-    if (typeof onSelect === 'function') {
-      onSelect(date)
-    }
-  }
-
   const setDate = ({ year, add }) => event => {
-    event.stopPropagation()
-
     setSelectedDate(
       dayjs(selectedDate)
         .startOf('month')
@@ -141,7 +130,7 @@ const DatePicker = ({
                 dayJs.isSame(datesRangeEnd, 'day')
               }
               today={dayJs.isSame(today, 'day')}
-              onClick={handleSelection(dayJs.toDate())}
+              onClick={() => onSelect(dayJs.toDate())}
             >
               <Text size="small">{dayJs.format(props.dayFormat)}</Text>
             </MonthDay>
