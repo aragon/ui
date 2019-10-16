@@ -38,7 +38,7 @@ The base color for text and outline content. To be used over _background_.
 
 #### _contentSecondary_
 
-Base secondary color for text and outline content. To be used over _background_.
+Secondary color for text and outline content. To be used over _background_.
 
 #### _link_
 
