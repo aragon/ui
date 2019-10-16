@@ -82,7 +82,7 @@ This color is generally used for icons over _surface_. Note: in some cases, icon
 
 #### _surfaceUnder_
 
-This is used as a background base for surfaces that appear to be at a lower level than the parent _surface_ itself. For instance, the _DataView_ component is using this color for its entry expansion.
+This is used as a background base for surfaces that appear to be at a lower level than the parent _surface_ itself. For instance, the DataView component is using this color for its entry expansion, which opens underneath the primary surface provided by DataView.
 
 #### _surfaceOpened_
 
