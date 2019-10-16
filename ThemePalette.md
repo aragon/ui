@@ -126,7 +126,7 @@ Use this color as a background color for feedback.
 
 #### _feedbackSurfaceContent_
 
-Primary color to be used for text and outline content over _feedbackSurface_.
+The primary color to be used for text and outline content over _feedbackSurface_.
 
 #### _feedbackSurfaceContentSecondary_
 
