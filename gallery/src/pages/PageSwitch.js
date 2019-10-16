@@ -17,7 +17,7 @@ const OptionWrapper = styled.div`
 
 // eslint-disable-next-line react/prop-types
 const Option = ({ name, initialyChecked, ...passedProps }) => {
-  const [checked, setIsChecked] = useState(!!initialyChecked)
+  const [checked, setIsChecked] = useState(Boolean(initialyChecked))
   return (
     <OptionWrapper>
       <Text>{name}</Text>

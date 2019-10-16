@@ -9,7 +9,7 @@ import FocusVisible from '../FocusVisible/FocusVisible'
 
 const BORDER = 1
 const WRAPPER_WIDTH = 5 * GU
-const BALL_WIDTH = GU * 2.25
+const HANDLE_WIDTH = 2.25 * GU
 
 function Switch({ checked, disabled, onChange }) {
   const theme = useTheme()
@@ -31,13 +31,13 @@ function Switch({ checked, disabled, onChange }) {
             position: relative;
             display: inline-block;
             width: ${WRAPPER_WIDTH}px;
-            height: ${BALL_WIDTH}px;
+            height: ${HANDLE_WIDTH}px;
             border: ${BORDER}px solid ${theme.border};
-            border-radius: ${BALL_WIDTH}px;
+            border-radius: ${HANDLE_WIDTH}px;
             background-color: ${checked
               ? colors.checkedBackground
               : colors.unCheckedBackground};
-            transition: border-color 100ms, background-color 100ms;
+            transition: border-color 50ms, background-color 50ms;
             cursor: ${disabled ? 'default' : 'pointer'};
 
             ${disabled
@@ -54,8 +54,8 @@ function Switch({ checked, disabled, onChange }) {
                   left: ${-BORDER * 2}px;
                   top: ${-BORDER * 2}px;
                   width: ${WRAPPER_WIDTH + BORDER * 2}px;
-                  height: ${BALL_WIDTH + BORDER * 2}px;
-                  border-radius: ${BALL_WIDTH}px;
+                  height: ${HANDLE_WIDTH + BORDER * 2}px;
+                  border-radius: ${HANDLE_WIDTH}px;
                   border: 2px solid ${theme.focus};
                 }
               `
@@ -69,17 +69,19 @@ function Switch({ checked, disabled, onChange }) {
               onFocus()
             }}
             onBlur={() => setIsFocused(false)}
+            checked={checked}
+            disabled={disabled}
+            onChange={handleChange}
             css={`
               opacity: 0;
               pointer-events: none;
             `}
-            checked={checked}
-            disabled={disabled}
-            onChange={handleChange}
           />
           <Spring
             to={{
-              progress: checked ? WRAPPER_WIDTH - BALL_WIDTH + BORDER : BORDER,
+              progress: checked
+                ? WRAPPER_WIDTH - HANDLE_WIDTH + BORDER
+                : BORDER,
             }}
             config={springs.smooth}
             native
@@ -87,18 +89,20 @@ function Switch({ checked, disabled, onChange }) {
             {({ progress }) => (
               <animated.span
                 style={{
-                  left: progress.interpolate(v => `${v}px`),
+                  transform: progress.interpolate(
+                    v => `translate3d(${v}px, 0, 0)`
+                  ),
                 }}
                 css={`
                   position: absolute;
+                  left: 0;
                   z-index: 1;
                   top: ${BORDER}px;
-                  width: ${BALL_WIDTH - BORDER * 4}px;
-                  height: ${BALL_WIDTH - BORDER * 4}px;
-                  border-radius: ${BALL_WIDTH - BORDER * 4}px;
-                  background-color: ${checked ? theme.surface : theme.surface};
+                  width: ${HANDLE_WIDTH - BORDER * 4}px;
+                  height: ${HANDLE_WIDTH - BORDER * 4}px;
+                  border-radius: ${HANDLE_WIDTH - BORDER * 4}px;
+                  background-color: ${theme.surface};
                   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.15);
-                  transition: box-shadow 200ms;
                 `}
               />
             )}
@@ -121,5 +125,4 @@ Switch.defaultProps = {
   onChange: noop,
 }
 
-export { Switch }
 export default Switch
