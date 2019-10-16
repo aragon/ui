@@ -194,7 +194,7 @@ Used to communicate something negative. It can be used for errors, but also for 
 
 #### _negative_
 
-Use this color to communicate a negative information (e.g. error, an action to vote no).
+Use this color to communicate negative information (e.g. error, an action to vote no).
 
 #### _negativeContent_
 
