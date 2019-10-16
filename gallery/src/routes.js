@@ -20,6 +20,7 @@ import PageField from './pages/PageField'
 import PageSlider from './pages/PageSlider'
 import PageTabs from './pages/PageTabs'
 import PageAutoComplete from './pages/PageAutoComplete'
+import PageDateRangePicker from './pages/PageDateRangePicker'
 
 // Other components
 import PageAddressField from './pages/PageAddressField'
@@ -98,6 +99,7 @@ export const PAGE_GROUPS = [
       [PageSlider, 'Slider'],
       [PageTextInput, 'TextInput'],
       [PageAutoComplete, 'AutoComplete'],
+      [PageDateRangePicker, 'DateRangePicker'],
     ],
   },
   {
