@@ -186,5 +186,4 @@ DateRangePicker.defaultProps = {
   onChange: () => {},
 }
 
-export { DateRangePicker }
 export default DateRangePicker
