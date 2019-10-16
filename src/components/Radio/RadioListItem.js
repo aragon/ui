@@ -4,21 +4,32 @@ import styled from 'styled-components'
 import Radio from '../Input/Radio'
 import Text from '../Text/Text'
 import color from '../../utils/color'
-import { theme, colors } from '../../theme-legacy'
+import { colors } from '../../theme-legacy'
+import { useTheme } from '../../theme'
 import { unselectable } from '../../utils'
+import GU  from '../../style'
 
-const { contentBorder } = theme
 const labelBoxBorder = color(colors.Sea['Light Sea'])
-
-const RadioListItem = ({ description, index, title }) => (
-  <Label>
-    <RadioWrapper id={index} />
-    <LabelBox>
-      <Title>{title}</Title>
-      <Description>{description}</Description>
-    </LabelBox>
-  </Label>
-)
+const RadioListItem = React.memo(function RadioListItem({
+  description,
+  index,
+  title,
+}) {
+  const theme = useTheme()
+  return (
+    <Label>
+      <RadioWrapper id={index} />
+      <LabelBox
+      css={`
+        border: 1px ${theme.contentBorder} solid;
+      `}
+      >
+        <Title>{title}</Title>
+        <Description>{description}</Description>
+      </LabelBox>
+    </Label>
+  )
+})
 
 RadioListItem.propTypes = {
   description: PropTypes.node.isRequired,
@@ -41,7 +52,6 @@ const LabelBox = styled.div`
   flex-grow: 1;
   margin-left: 12px;
   padding: 12px 12px;
-  border: 1px ${contentBorder} solid;
   border-radius: 3px;
   transition: border 100ms ease-in-out;
   cursor: pointer;
@@ -55,12 +65,12 @@ const Title = styled(Text).attrs({
 })``
 
 const Description = styled(Text.Block)`
-  margin-top: 5px;
+  margin-top: ${GU / 2}px;
 `
 
 const RadioWrapper = styled(Radio)`
   flex-shrink: 0;
-  margin-top: 16px;
+  margin-top: ${2 * GU}px;
 `
 
 export default RadioListItem
