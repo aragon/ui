@@ -9,7 +9,7 @@ import FocusVisible from '../FocusVisible/FocusVisible'
 
 const BORDER = 1
 const WRAPPER_WIDTH = 5 * GU
-const HANDLE_WIDTH = 2.25 * GU
+const WRAPPER_HEIGHT = 2.25 * GU
 
 function Switch({ checked, disabled, onChange }) {
   const theme = useTheme()
@@ -31,9 +31,9 @@ function Switch({ checked, disabled, onChange }) {
             position: relative;
             display: inline-block;
             width: ${WRAPPER_WIDTH}px;
-            height: ${HANDLE_WIDTH}px;
+            height: ${WRAPPER_HEIGHT}px;
             border: ${BORDER}px solid ${theme.border};
-            border-radius: ${HANDLE_WIDTH}px;
+            border-radius: ${WRAPPER_HEIGHT}px;
             background-color: ${checked
               ? colors.checkedBackground
               : colors.unCheckedBackground};
@@ -54,8 +54,8 @@ function Switch({ checked, disabled, onChange }) {
                   left: ${-BORDER * 2}px;
                   top: ${-BORDER * 2}px;
                   width: ${WRAPPER_WIDTH + BORDER * 2}px;
-                  height: ${HANDLE_WIDTH + BORDER * 2}px;
-                  border-radius: ${HANDLE_WIDTH}px;
+                  height: ${WRAPPER_HEIGHT + BORDER * 2}px;
+                  border-radius: ${WRAPPER_HEIGHT}px;
                   border: 2px solid ${theme.focus};
                 }
               `
@@ -80,7 +80,7 @@ function Switch({ checked, disabled, onChange }) {
           <Spring
             to={{
               progress: checked
-                ? WRAPPER_WIDTH - HANDLE_WIDTH + BORDER
+                ? WRAPPER_WIDTH - WRAPPER_HEIGHT + BORDER
                 : BORDER,
             }}
             config={springs.smooth}
@@ -98,9 +98,9 @@ function Switch({ checked, disabled, onChange }) {
                   left: 0;
                   z-index: 1;
                   top: ${BORDER}px;
-                  width: ${HANDLE_WIDTH - BORDER * 4}px;
-                  height: ${HANDLE_WIDTH - BORDER * 4}px;
-                  border-radius: ${HANDLE_WIDTH - BORDER * 4}px;
+                  width: ${WRAPPER_HEIGHT - BORDER * 4}px;
+                  height: ${WRAPPER_HEIGHT - BORDER * 4}px;
+                  border-radius: ${WRAPPER_HEIGHT - BORDER * 4}px;
                   background-color: ${theme.surface};
                   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.15);
                 `}
