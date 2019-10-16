@@ -3,13 +3,10 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import Radio from '../Input/Radio'
 import Text from '../Text/Text'
-import color from '../../utils/color'
-import { colors } from '../../theme-legacy'
 import { useTheme } from '../../theme'
 import { unselectable } from '../../utils'
-import GU  from '../../style'
+import { GU }  from '../../style'
 
-const labelBoxBorder = color(colors.Sea['Light Sea'])
 const RadioListItem = React.memo(function RadioListItem({
   description,
   index,
@@ -22,6 +19,9 @@ const RadioListItem = React.memo(function RadioListItem({
       <LabelBox
       css={`
         border: 1px ${theme.contentBorder} solid;
+        &:hover {
+          border-color: ${theme.accent.alpha(0.35)};
+        }
       `}
       >
         <Title>{title}</Title>
@@ -55,9 +55,6 @@ const LabelBox = styled.div`
   border-radius: 3px;
   transition: border 100ms ease-in-out;
   cursor: pointer;
-  &:hover {
-    border-color: ${labelBoxBorder.alpha(0.35)};
-  }
 `
 
 const Title = styled(Text).attrs({
