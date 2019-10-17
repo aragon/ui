@@ -79,6 +79,7 @@ export default {
   control: '#F3F9FB',
   controlBorder: '#DEEDF1',
   controlBorderPressed: '#F3F9FB',
+  controlDisabled: '#DDE4E9',
 
   accent: colors.AragonBlue,
   accentStart: colors.AragonBlue,
