@@ -9,7 +9,7 @@ const Text = styled.span`
   padding-right: 20px;
   min-width: 100px;
 `
-const OptionWrapper = styled.div`
+const OptionWrapper = styled.label`
   display: flex;
   align-items: center;
   justify-content: space-between;
