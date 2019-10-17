@@ -5,7 +5,7 @@ import Radio from '../Input/Radio'
 import Text from '../Text/Text'
 import { useTheme } from '../../theme'
 import { unselectable } from '../../utils'
-import { GU }  from '../../style'
+import { GU } from '../../style'
 
 const RadioListItem = React.memo(function RadioListItem({
   description,
@@ -17,12 +17,12 @@ const RadioListItem = React.memo(function RadioListItem({
     <Label>
       <RadioWrapper id={index} />
       <LabelBox
-      css={`
-        border: 1px ${theme.contentBorder} solid;
-        &:hover {
-          border-color: ${theme.accent.alpha(0.35)};
-        }
-      `}
+        css={`
+          border: 1px ${theme.contentBorder} solid;
+          &:hover {
+            border-color: ${theme.accent.alpha(0.35)};
+          }
+        `}
       >
         <Title>{title}</Title>
         <Description>{description}</Description>
