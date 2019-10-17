@@ -18,7 +18,7 @@ const RadioListItem = React.memo(function RadioListItem({
       <RadioWrapper id={index} />
       <LabelBox
         css={`
-          border: 1px ${theme.contentBorder} solid;
+          border: 1px ${theme.border} solid;
           &:hover {
             border-color: ${theme.accent.alpha(0.35)};
           }

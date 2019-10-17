@@ -36,7 +36,7 @@ const TransactionProgress = React.memo(function TransactionProgress({
           <Text
             smallcaps
             css={`
-              color: ${theme.textSecondary};
+              color: ${theme.contentSecondary};
             `}
           >
             Estimated time:

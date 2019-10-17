@@ -36,6 +36,11 @@ const FloatIndicator = React.memo(function FloatIndicator({
               `}
             >
               <Box
+                css={`
+                  background: ${theme.background};
+                  color: ${theme.contentSecondary};
+                  border: 1px solid ${theme.border};
+                `}
                 style={{
                   pointerEvents: visible ? 'auto' : 'none',
                   opacity: progress,
@@ -43,11 +48,6 @@ const FloatIndicator = React.memo(function FloatIndicator({
                     v => `translate3d(0, calc(10px * ${1 - v}), 0)`
                   ),
                 }}
-                css={`
-                  background: ${theme.contentBackground};
-                  color: ${theme.textSecondary};
-                  border: 1px solid ${theme.contentBorder};
-                `}
               >
                 {children}
               </Box>
