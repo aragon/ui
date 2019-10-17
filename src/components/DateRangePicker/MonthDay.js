@@ -137,7 +137,12 @@ MonthDay.propTypes = {
 const WrappedMonthDay = ({ onClick, ...props }) => {
   if (onClick && !props.disabled) {
     return (
-      <ButtonBase onClick={onClick}>
+      <ButtonBase
+        css={`
+          margin: 0;
+        `}
+        onClick={onClick}
+      >
         <MonthDay {...props}></MonthDay>
       </ButtonBase>
     )
