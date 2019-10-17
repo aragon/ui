@@ -26,7 +26,10 @@ function Switch({ checked, disabled, onChange }) {
     <FocusVisible>
       {({ focusVisible, onFocus }) => (
         <span
-          onClick={handleChange}
+          onClick={e => {
+            e.preventDefault()
+            handleChange()
+          }}
           css={`
             position: relative;
             display: inline-block;
