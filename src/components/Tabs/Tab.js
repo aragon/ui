@@ -16,8 +16,8 @@ function Tab({ index, item, selected, onChange }) {
   return (
     <li css="list-style: none">
       <ButtonBase
-        onClick={handleClick}
         focusRingRadius={RADIUS}
+        onClick={handleClick}
         css={`
           ${textStyle('body2')};
           transition: background 50ms ease-in-out;
