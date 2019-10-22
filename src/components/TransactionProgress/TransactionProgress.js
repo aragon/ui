@@ -59,7 +59,6 @@ const TransactionProgress = React.memo(function TransactionProgress({
             external
             href={transactionHashUrl}
             css={`
-              color: #21aae7;
               text-decoration: none;
             `}
           >
