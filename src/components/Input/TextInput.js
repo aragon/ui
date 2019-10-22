@@ -26,22 +26,29 @@ const TextInput = React.forwardRef(({ multiline, type, ...props }, ref) => {
 
         ${multiline
           ? `
-            height: auto;
-            padding: ${1 * GU}px ${1.5 * GU}px;
-            resize: vertical;
-          `
+              height: auto;
+              padding: ${1 * GU}px ${1.5 * GU}px;
+              resize: vertical;
+            `
           : ''}
 
         &:focus {
           outline: none;
           border-color: ${theme.selected};
         }
+
         &:read-only {
-          color: transparent;
-          text-shadow: 0 0 0 ${theme.surfaceContentSecondary};
+          color: ${theme.hint};
           border-color: ${theme.border};
         }
+
+        &::placeholder {
+          color: ${theme.hint};
+          opacity: 1;
+        }
+
         &:invalid {
+          border-color: ${theme.negative};
           box-shadow: none;
         }
       `}
