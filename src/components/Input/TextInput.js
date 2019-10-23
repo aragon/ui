@@ -48,7 +48,6 @@ const TextInput = React.forwardRef(({ multiline, type, ...props }, ref) => {
         }
 
         &:invalid {
-          border-color: ${theme.negative};
           box-shadow: none;
         }
       `}
