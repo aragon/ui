@@ -62,7 +62,7 @@ const Title = styled(Text).attrs({
 })``
 
 const Description = styled(Text.Block)`
-  margin-top: ${GU / 2}px;
+  margin-top: ${0.5 * GU}px;
 `
 
 const RadioWrapper = styled(Radio)`
