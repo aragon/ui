@@ -48,7 +48,11 @@ function Devbox() {
         <h1>Devbox</h1>
         <ul>
           {Object.keys(APPS)
-            .sort()
+            .sort((a, b) => {
+              if (a === 'Everything') return 1
+              if (b === 'Everything') return -1
+              return a.localeCompare(b)
+            })
             .map(appName => (
               <li key={appName}>
                 <a href={`#${appName}`}>{appName}</a>
