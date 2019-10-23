@@ -61,7 +61,7 @@ class RadioList extends React.Component {
 }
 
 const Title = styled.h2`
-  margin-bottom: ${GU / 2}px;
+  margin-bottom: ${0.5 * GU}px;
 `
 
 const Description = styled(Text.Block)`

@@ -91,8 +91,8 @@ const Wrapper = styled.div`
 
 const CloseButton = styled.button`
   position: absolute;
-  top: ${GU}px;
-  right: ${GU}px;
+  top: ${1 * GU}px;
+  right: ${1 * GU}px;
   cursor: pointer;
   background: none;
   border: 0;
@@ -117,7 +117,7 @@ const FooterWrapper = styled.div`
 `
 
 const SlowTransaction = styled.div`
-  margin-right: ${GU}px;
+  margin-right: ${1 * GU}px;
 `
 
 export default TransactionProgress
