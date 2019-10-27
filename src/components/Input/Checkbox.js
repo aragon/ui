@@ -174,8 +174,8 @@ const Bullet = ({ color }) => (
   <span
     css={`
       display: block;
-      width: 9px;
-      height: 9px;
+      width: 8px;
+      height: 8px;
       border-radius: 50%;
       background: ${color};
     `}
