@@ -8,7 +8,7 @@ Another component `AutoCompleteSelected` offers the extra functionality to selec
 
 ```jsx
 import { useState } from 'react'
-import { AutoComplete } from '@aragon/ui'
+import { _AutoComplete as AutoComplete } from '@aragon/ui'
 
 const items = [
   'Bruce Wayne',
