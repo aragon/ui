@@ -298,7 +298,10 @@ export default () => {
             </Field>
             <Field label="Slider">{() => <SliderDemo />}</Field>
             <Field label="Address field">
-              <AddressField address="0x2c9341a52cfa3f2c2554ca1803134137b9366b3c" />
+              <AddressField
+                address="0x2c9341a52cfa3f2c2554ca1803134137b9366b3c"
+                autofocus={false}
+              />
             </Field>
             <Field label="App badge">
               {() => <AppBadgeDemo layout={false} />}
