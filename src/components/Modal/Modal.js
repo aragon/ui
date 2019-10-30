@@ -82,7 +82,7 @@ function Modal({
                       overflow: hidden;
                       min-width: ${360 - SPACE_AROUND * 2}px;
                       background: ${theme.surface};
-                      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.2);
+                      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.15);
                     `}
                     style={{
                       width: cssPx(
