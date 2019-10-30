@@ -198,7 +198,7 @@ class PopoverBase extends React.Component {
             background: ${theme.surface};
             border: 1px solid ${theme.border};
             border-radius: ${RADIUS}px;
-            filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.2));
+            filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.15));
             &:focus {
               /* Having the popover visible already means that it focused. */
               outline: 0;
