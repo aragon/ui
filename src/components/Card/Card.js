@@ -52,7 +52,7 @@ function Card({ children, width, height, onClick, ...props }) {
         ${interactive &&
           css`
             border: 0;
-            box-shadow: 0px 1px 3px rgba(51, 77, 117, 0.15);
+            box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.15);
             transition-property: transform, box-shadow;
             transition-duration: 50ms;
             transition-timing-function: ease-in-out;
@@ -63,7 +63,7 @@ function Card({ children, width, height, onClick, ...props }) {
 
             &:active {
               transform: translateY(1px);
-              box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.075);
+              box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.08);
             }
           `}
       `}
