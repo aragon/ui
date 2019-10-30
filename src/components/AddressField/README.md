@@ -30,6 +30,14 @@ Adress to display in the field.
 <AddressField address="0xcafE1A77e84698c83CA8931F54A755176eF75f2C" />
 ```
 
+### `autofocus`
+
+| Type     | Default value   |
+| -------- | --------------- |
+| `Boolean` | `true` |
+
+Automatically focus the field when the component gets mounted.
+
 ### `icon`
 
 | Type   | Default value   |

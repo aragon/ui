@@ -15,6 +15,7 @@ const ICON_WIDTH = 5 * GU
 
 const AddressFieldBase = React.memo(function AddressFieldBase({
   address,
+  autofocus,
   icon,
   onCopy,
   ...props
@@ -25,6 +26,7 @@ const AddressFieldBase = React.memo(function AddressFieldBase({
   const handleFocus = useCallback(() => {
     inputRef.current && inputRef.current.select()
   }, [])
+
   const handleCopy = useCallback(() => {
     if (inputRef.current) {
       inputRef.current.focus()
@@ -42,10 +44,12 @@ const AddressFieldBase = React.memo(function AddressFieldBase({
   }, [onCopy])
 
   useEffect(() => {
-    setTimeout(() => {
-      inputRef.current && inputRef.current.focus()
-    }, 0)
-  }, [])
+    if (autofocus) {
+      setTimeout(() => {
+        inputRef.current && inputRef.current.focus()
+      }, 0)
+    }
+  }, [autofocus])
 
   return (
     <div
@@ -134,10 +138,16 @@ const AddressFieldBase = React.memo(function AddressFieldBase({
     </div>
   )
 })
+
 AddressFieldBase.propTypes = {
   address: PropTypes.string.isRequired,
+  autofocus: PropTypes.bool,
   icon: PropTypes.node,
   onCopy: PropTypes.func,
+}
+
+AddressFieldBase.defaultProps = {
+  autofocus: true,
 }
 
 const AddressField = props =>
