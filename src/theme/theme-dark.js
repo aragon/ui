@@ -80,6 +80,7 @@ export default {
   controlBorder: '#DEEDF1',
   controlBorderPressed: '#F3F9FB',
   controlDisabled: '#DDE4E9',
+  controlUnder: colors.ArcticBlue,
 
   accent: colors.AragonBlue,
   accentStart: colors.AragonBlue,

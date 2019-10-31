@@ -17,7 +17,7 @@ function Switch({ checked, disabled, onChange }) {
 
   const colors = {
     checkedBackground: disabled ? theme.controlDisabled : theme.selected,
-    unCheckedBackground: disabled ? theme.controlDisabled : theme.surfaceUnder,
+    unCheckedBackground: disabled ? theme.controlDisabled : theme.controlUnder,
   }
 
   const handleChange = disabled ? noop : () => onChange(!checked)
