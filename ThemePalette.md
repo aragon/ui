@@ -316,6 +316,10 @@ Used as a border color for the pressed state of some control components like Che
 
 The background color for the disabled state of some control components like Checkbox, Radio or Switch.
 
+#### _controlUnder_
+
+This is used as a background base for elements of control components that appear to be at a lower level. For instance, the Switch component is using this color for its inner base.
+
 ### Colors
 
 These colors can be used when a color is needed for its semantics. An example could be a chart using a red and a blue curve. Even if their theme is different, two users should still be able to refer to these by using the terms “red” or “blue”.
