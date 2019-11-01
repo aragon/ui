@@ -41,6 +41,13 @@ class App extends React.Component {
 
 Whether it is checked or not.
 
+### `disabled`
+
+- Type: `Boolean`
+- Default: `false`
+
+Set to `true` to disable the radio.
+
 ### `id`
 
 - Type: `String` or `Number`
