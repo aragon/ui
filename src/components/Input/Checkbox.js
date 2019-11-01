@@ -9,6 +9,7 @@ import FocusVisible from '../FocusVisible/FocusVisible'
 class Checkbox extends React.PureComponent {
   static propTypes = {
     checked: PropTypes.bool,
+    disabled: PropTypes.bool,
     indeterminate: PropTypes.bool,
     onChange: PropTypes.func,
     tabIndex: PropTypes.string,
@@ -17,6 +18,7 @@ class Checkbox extends React.PureComponent {
   }
   static defaultProps = {
     checked: false,
+    disabled: false,
     indeterminate: false,
     onChange: noop,
     tabIndex: '0',
@@ -37,7 +39,7 @@ class Checkbox extends React.PureComponent {
     this._element.current.focus()
   }
   renderCheck(visible, Icon) {
-    const { theme } = this.props
+    const { disabled, theme } = this.props
     return (
       <Spring
         from={{ progress: 0 }}
@@ -63,7 +65,7 @@ class Checkbox extends React.PureComponent {
               transform: progress.interpolate(v => `scale(${v})`),
             }}
           >
-            <Icon color={theme.selected} />
+            <Icon color={disabled ? theme.selectedDisabled : theme.selected} />
           </animated.span>
         )}
       </Spring>
@@ -72,6 +74,7 @@ class Checkbox extends React.PureComponent {
   render() {
     const {
       checked,
+      disabled,
       indeterminate,
       tabIndex,
       theme,
@@ -89,6 +92,7 @@ class Checkbox extends React.PureComponent {
             aria-checked={this.getAriaChecked()}
             onClick={this.handleClick}
             onFocus={onFocus}
+            disabled={disabled}
             css={`
               display: inline-flex;
               position: relative;
@@ -96,21 +100,25 @@ class Checkbox extends React.PureComponent {
               height: ${2 * GU}px;
               margin: ${0.5 * GU}px;
               padding: 0;
-              background: ${theme.control};
+              background: ${disabled ? theme.controlDisabled : theme.control};
               border: 1px solid ${theme.controlBorder};
               border-radius: ${variant === 'radio' ? '50%' : '2px'};
               outline: 0;
-              padding: 0;
-              cursor: pointer;
-              &:active {
-                border-color: ${theme.controlBorderPressed};
-              }
-              &:focus .focus-ring {
-                display: ${p => (p.focusVisible ? 'block' : 'none')};
-              }
               &::-moz-focus-inner {
                 border: 0;
               }
+
+              ${!disabled
+                ? `
+                    cursor: pointer;
+                    &:active {
+                      border-color: ${theme.controlBorderPressed};
+                    }
+                    &:focus .focus-ring {
+                      display: ${focusVisible ? 'block' : 'none'};
+                    }
+                  `
+                : ''};
             `}
             {...props}
           >
