@@ -19,7 +19,7 @@ function useMode(mode) {
 
   if (mode === MODE_IDENTIFIER) {
     return {
-      background: theme.tagIdentifier.alpha(0.16),
+      background: theme.tagIdentifier,
       color: theme.tagIdentifierContent,
       size: SIZE_NORMAL,
     }
@@ -27,7 +27,7 @@ function useMode(mode) {
 
   if (mode === MODE_NEW) {
     return {
-      background: theme.tagNew.alpha(0.16),
+      background: theme.tagNew,
       color: theme.tagNewContent,
       size: SIZE_NORMAL,
     }
