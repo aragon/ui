@@ -15,11 +15,6 @@ function Switch({ checked, disabled, onChange }) {
   const theme = useTheme()
   const [isFocused, setIsFocused] = useState(false)
 
-  const colors = {
-    checkedBackground: disabled ? theme.controlDisabled : theme.selected,
-    unCheckedBackground: disabled ? theme.controlDisabled : theme.controlUnder,
-  }
-
   const handleChange = disabled ? noop : () => onChange(!checked)
 
   return (
@@ -37,31 +32,34 @@ function Switch({ checked, disabled, onChange }) {
             height: ${WRAPPER_HEIGHT}px;
             border: ${BORDER}px solid ${theme.border};
             border-radius: ${WRAPPER_HEIGHT}px;
-            background-color: ${checked
-              ? colors.checkedBackground
-              : colors.unCheckedBackground};
-            transition: border-color 50ms, background-color 50ms;
+            background-color: ${disabled
+              ? theme.controlBorder
+              : checked
+              ? theme.selected
+              : theme.control};
             cursor: ${disabled ? 'default' : 'pointer'};
 
             ${disabled
               ? ''
-              : `&:active {
-              border-color: ${theme.controlBorderPressed};
-            }`}
+              : `
+                  &:active {
+                    border-color: ${theme.controlBorderPressed};
+                  }
+                `}
 
             ${isFocused && focusVisible
               ? `
-                &:after {
-                  content: '';
-                  position: absolute;
-                  left: ${-BORDER * 2}px;
-                  top: ${-BORDER * 2}px;
-                  width: ${WRAPPER_WIDTH + BORDER * 2}px;
-                  height: ${WRAPPER_HEIGHT + BORDER * 2}px;
-                  border-radius: ${WRAPPER_HEIGHT}px;
-                  border: 2px solid ${theme.focus};
-                }
-              `
+                  &:after {
+                    content: '';
+                    position: absolute;
+                    left: ${-BORDER * 2}px;
+                    top: ${-BORDER * 2}px;
+                    width: ${WRAPPER_WIDTH + BORDER * 2}px;
+                    height: ${WRAPPER_HEIGHT + BORDER * 2}px;
+                    border-radius: ${WRAPPER_HEIGHT}px;
+                    border: 2px solid ${theme.focus};
+                  }
+                `
               : ''};
           `}
         >
@@ -104,8 +102,10 @@ function Switch({ checked, disabled, onChange }) {
                   width: ${WRAPPER_HEIGHT - BORDER * 4}px;
                   height: ${WRAPPER_HEIGHT - BORDER * 4}px;
                   border-radius: ${WRAPPER_HEIGHT - BORDER * 4}px;
-                  background-color: ${theme.surface};
-                  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.15);
+                  background-color: ${theme.controlSurface};
+                  box-shadow: ${disabled
+                    ? 'none'
+                    : '0px 1px 3px rgba(0, 0, 0, 0.15)'};
                 `}
               />
             )}
