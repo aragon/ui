@@ -288,6 +288,10 @@ Indicates a selection in the broad sense.
 
 To be used for text and outline content over _selected_.
 
+#### _selectedDisabled_
+
+Indicates a selection in the broad sense, when disabled (non-interactive).
+
 #### _disabled_
 
 The background color of disabled components like Button.
@@ -315,6 +319,10 @@ Used as a border color for the pressed state of some control components like Che
 #### _controlDisabled_
 
 The background color for the disabled state of some control components like Checkbox, Radio or Switch.
+
+#### _controlSurface_
+
+This is used as a surface color for elements of control components that appear at an upper level. For instance, the Switch component is using this color for its handle.
 
 #### _controlUnder_
 

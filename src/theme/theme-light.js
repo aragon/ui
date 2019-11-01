@@ -71,6 +71,7 @@ export default {
   focus: colors.Blue,
   selected: colors.AragonBlue,
   selectedContent: colors.White,
+  selectedDisabled: colors.GreyLight,
 
   disabled: colors.ArcticBlue,
   disabledContent: colors.GreyMedium,
@@ -79,8 +80,9 @@ export default {
   control: colors.ArcticBlueLight,
   controlBorder: colors.GreyBasic,
   controlBorderPressed: colors.ArcticBlueDark,
-  controlDisabled: colors.GreyBasic,
-  controlUnder: colors.ArcticBlue,
+  controlDisabled: colors.ArcticBlue,
+  controlSurface: colors.ArcticBlueLight,
+  controlUnder: colors.GreyBasic,
 
   accent: colors.AragonBlue,
   accentStart: colors.AragonBlue,
