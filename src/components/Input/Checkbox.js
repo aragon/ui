@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { Spring, animated } from 'react-spring'
 import { useTheme } from '../../theme'
 import { noop } from '../../utils'
-import { springs, RADIUS } from '../../style'
+import { springs, GU, RADIUS } from '../../style'
 import FocusVisible from '../FocusVisible/FocusVisible'
 
 class Checkbox extends React.PureComponent {
@@ -36,7 +36,8 @@ class Checkbox extends React.PureComponent {
   focus = () => {
     this._element.current.focus()
   }
-  renderCheck(visible, node) {
+  renderCheck(visible, Icon) {
+    const { theme } = this.props
     return (
       <Spring
         from={{ progress: 0 }}
@@ -62,7 +63,7 @@ class Checkbox extends React.PureComponent {
               transform: progress.interpolate(v => `scale(${v})`),
             }}
           >
-            {node}
+            <Icon color={theme.selected} />
           </animated.span>
         )}
       </Spring>
@@ -87,17 +88,17 @@ class Checkbox extends React.PureComponent {
             tabIndex={tabIndex}
             aria-checked={this.getAriaChecked()}
             onClick={this.handleClick}
-            focusVisible={focusVisible}
             onFocus={onFocus}
             css={`
               display: inline-flex;
               position: relative;
-              width: 16px;
-              height: 16px;
-              margin: 4px;
+              width: ${2 * GU}px;
+              height: ${2 * GU}px;
+              margin: ${0.5 * GU}px;
+              padding: 0;
               background: ${theme.control};
               border: 1px solid ${theme.controlBorder};
-              border-radius: ${p => (p.role === 'radio' ? '50%' : '2px')};
+              border-radius: ${variant === 'radio' ? '50%' : '2px'};
               outline: 0;
               padding: 0;
               cursor: pointer;
@@ -114,14 +115,9 @@ class Checkbox extends React.PureComponent {
             {...props}
           >
             {variant === 'checkbox' &&
-              this.renderCheck(
-                checked && !indeterminate,
-                <Check color={theme.selected} />
-              )}
-            {variant === 'checkbox' &&
-              this.renderCheck(indeterminate, <Dash color={theme.selected} />)}
-            {variant === 'radio' &&
-              this.renderCheck(checked, <Bullet color={theme.selected} />)}
+              this.renderCheck(checked && !indeterminate, Check)}
+            {variant === 'checkbox' && this.renderCheck(indeterminate, Dash)}
+            {variant === 'radio' && this.renderCheck(checked, Bullet)}
 
             <span
               className="focus-ring"
