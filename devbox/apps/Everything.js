@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useRef, useReducer, useState } from 'react'
 import {
   AddressField,
   BackButton,
@@ -34,6 +34,7 @@ import {
   Link,
   ProgressBar,
   Radio,
+  RadioGroup,
   SearchInput,
   Slider,
   Split,
@@ -158,6 +159,65 @@ function SliderDemo() {
   return <Slider value={value} onUpdate={setValue} />
 }
 
+function FormControlsDemo() {
+  const [checkboxes, setCheckboxes] = useState([false, true])
+  return (
+    <React.Fragment>
+      <Field label="SearchInput">
+        <SearchInput placeholder="Placeholder" />
+        <SearchInput value="Value" css="margin-left: 16px" />
+      </Field>
+      <Field label="TextInput">
+        <TextInput placeholder="Placeholder" />
+        <TextInput value="Value" css="margin-left: 16px" />
+      </Field>
+      <Field label="Checkbox">
+        <Checkbox
+          checked={checkboxes[0]}
+          onChange={checked => setCheckboxes(v => [checked, v[1]])}
+        />
+        <Checkbox
+          checked={checkboxes[1]}
+          onChange={checked => setCheckboxes(v => [v[0], checked])}
+          css="margin-left: 16px"
+        />
+        <Checkbox disabled css="margin-left: 16px" />
+        <Checkbox checked disabled css="margin-left: 16px" />
+      </Field>
+      <Field label="Radio">
+        <RadioGroup>
+          <Radio />
+          <Radio checked css="margin-left: 16px" />
+        </RadioGroup>
+      </Field>
+      <Field label="Switch">
+        <Switch />
+        <span css="margin-left: 16px">
+          <Switch checked />
+        </span>
+      </Field>
+      <Field label="DropDown">
+        <DropDown
+          placeholder="Placeholder"
+          items={['Item 1', 'Item 2', 'Item 3']}
+        />
+        <DropDown
+          items={['Selected state', 'Item 2', 'Item 3']}
+          selected={0}
+          css="margin-left: 16px"
+        />
+      </Field>
+      <Field label="Slider">{() => <SliderDemo />}</Field>
+      <Field label="Address field">
+        <AddressField
+          address="0x2c9341a52cfa3f2c2554ca1803134137b9366b3c"
+          autofocus={false}
+        />
+      </Field>
+    </React.Fragment>
+  )
+}
+
 export default () => {
   const theme = useTheme()
   const item = useState()
@@ -263,46 +323,7 @@ export default () => {
       <Split
         primary={
           <Box>
-            <Field label="SearchInput">
-              <SearchInput placeholder="Placeholder" />
-              <SearchInput value="Value" css="margin-left: 16px" />
-            </Field>
-            <Field label="TextInput">
-              <TextInput placeholder="Placeholder" />
-              <TextInput value="Value" css="margin-left: 16px" />
-            </Field>
-            <Field label="Checkbox">
-              <Checkbox />
-              <Checkbox checked css="margin-left: 16px" />
-            </Field>
-            <Field label="Radio">
-              <Radio />
-              <Radio checked css="margin-left: 16px" />
-            </Field>
-            <Field label="Switch">
-              <Switch />
-              <span css="margin-left: 16px">
-                <Switch checked />
-              </span>
-            </Field>
-            <Field label="DropDown">
-              <DropDown
-                placeholder="Placeholder"
-                items={['Item 1', 'Item 2', 'Item 3']}
-              />
-              <DropDown
-                items={['Selected state', 'Item 2', 'Item 3']}
-                selected={0}
-                css="margin-left: 16px"
-              />
-            </Field>
-            <Field label="Slider">{() => <SliderDemo />}</Field>
-            <Field label="Address field">
-              <AddressField
-                address="0x2c9341a52cfa3f2c2554ca1803134137b9366b3c"
-                autofocus={false}
-              />
-            </Field>
+            <FormControlsDemo />
             <Field label="App badge">
               {() => <AppBadgeDemo layout={false} />}
             </Field>
@@ -393,20 +414,38 @@ export default () => {
       </div>
       <Bar primary={<BackButton />} secondary={<Button label="Button" />} />
       <DataViewExpansion />
-      <Bar primary={<BackButton />} secondary={<Button label="Button" />} />
+      <Bar
+        primary={<BackButton />}
+        secondary={<Button label="Button" />}
+        css={`
+          margin-top: ${3 * GU}px;
+        `}
+      />
       <DataViewSelect />
-      <Bar primary={<BackButton />} secondary={<Button label="Button" />} />
-      <InfoDemo header={null} />
+      <Bar
+        primary={<BackButton />}
+        secondary={<Button label="Button" />}
+        css={`
+          margin-top: ${3 * GU}px;
+        `}
+      />
+      <InfoDemo header={null} css="margin-top: 0" />
       <Split
         primary={<ButtonDemo onlyBoxes />}
         secondary={
           <React.Fragment>
             <ToastBox />
             <SyncIndicatorBox />
+            <ToastBox />
+            <SyncIndicatorBox />
           </React.Fragment>
         }
       />
-      <Split primary={<AccordionDemo count={5} header={null} />} />
+      <Bar primary={<BackButton />} secondary={<Button label="Button" />} />
+      <Split
+        primary={<AccordionDemo count={5} header={null} />}
+        secondary={<Box css="height: 100%" />}
+      />
     </>
   )
 }
