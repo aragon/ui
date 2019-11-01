@@ -20,6 +20,7 @@ function Tab({ index, item, selected, onChange }) {
         onClick={handleClick}
         css={`
           ${textStyle('body2')};
+          border-radius: 0;
           transition: background 50ms ease-in-out;
           &:active {
             background: ${theme.surfacePressed};
