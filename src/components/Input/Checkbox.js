@@ -6,6 +6,10 @@ import { noop } from '../../utils'
 import { springs, GU, RADIUS } from '../../style'
 import FocusVisible from '../FocusVisible/FocusVisible'
 
+const SIZE = 18
+const CHECKBOX_RADIUS = 2
+const RADIO_BULLET_SIZE = 10
+
 class Checkbox extends React.PureComponent {
   static propTypes = {
     checked: PropTypes.bool,
@@ -96,13 +100,15 @@ class Checkbox extends React.PureComponent {
             css={`
               display: inline-flex;
               position: relative;
-              width: ${2 * GU}px;
-              height: ${2 * GU}px;
+              width: ${SIZE}px;
+              height: ${SIZE}px;
               margin: ${0.5 * GU}px;
               padding: 0;
               background: ${disabled ? theme.controlDisabled : theme.control};
               border: 1px solid ${theme.controlBorder};
-              border-radius: ${variant === 'radio' ? '50%' : '2px'};
+              border-radius: ${variant === 'radio'
+                ? '50%'
+                : `${CHECKBOX_RADIUS}px`};
               outline: 0;
               &::-moz-focus-inner {
                 border: 0;
@@ -178,8 +184,8 @@ const Bullet = ({ color }) => (
   <span
     css={`
       display: block;
-      width: 9px;
-      height: 9px;
+      width: ${RADIO_BULLET_SIZE}px;
+      height: ${RADIO_BULLET_SIZE}px;
       border-radius: 50%;
       background: ${color};
     `}
