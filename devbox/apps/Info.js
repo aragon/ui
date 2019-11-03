@@ -1,11 +1,11 @@
 import React from 'react'
-import { Split, Box, Info } from '@aragon/ui'
+import { Split, Box, Info, GU } from '@aragon/ui'
 
 const MODES = ['info', 'warning', 'error', 'description']
 
 function InfoDemo({ content, title }) {
   return (
-    <Box css="margin-top: 48px">
+    <Box>
       {MODES.map((mode, i) => (
         <Info
           key={i}
@@ -13,7 +13,7 @@ function InfoDemo({ content, title }) {
           title={title ? mode : ''}
           css={`
             & + & {
-              margin-top: 16px;
+              margin-top: ${2 * GU}px;
             }
           `}
         >
@@ -24,11 +24,17 @@ function InfoDemo({ content, title }) {
   )
 }
 
-export default () => (
-  <Split
-    primary={
-      <InfoDemo
-        content="
+export default ({ ...props }) => (
+  <div
+    {...props}
+    css={`
+      margin-top: ${6 * GU}px;
+    `}
+  >
+    <Split
+      primary={
+        <InfoDemo
+          content="
           Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
           nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
           sed diam voluptua.
@@ -38,16 +44,17 @@ export default () => (
           aliquyam erat aliquyam consetetur sadipscing tempor magna
           aliquyam erat invidunt.
         "
-      />
-    }
-    secondary={
-      <InfoDemo
-        title
-        content="
+        />
+      }
+      secondary={
+        <InfoDemo
+          title
+          content="
           Lorem ipsum dolor sit amet, consetetur sadipscing elitr, nonumy
           eirmod tempor.
         "
-      />
-    }
-  />
+        />
+      }
+    />
+  </div>
 )

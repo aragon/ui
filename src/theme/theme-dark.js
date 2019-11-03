@@ -3,37 +3,37 @@ import colors from './aragon-colors'
 export default {
   _name: 'dark',
 
-  background: '#28334C',
-  border: '#28334C',
-  overlay: '#35425E',
+  background: '#28334c',
+  border: '#2c3a58',
+  overlay: '#35425e',
   content: colors.White,
-  contentSecondary: colors.ArcticBlueDark,
+  contentSecondary: '#7c99d6',
 
-  surface: '#35425E',
+  surface: '#35425e',
   surfaceContent: colors.White,
-  surfaceContentSecondary: colors.ArcticBlueDark,
-  surfaceIcon: colors.ArcticBlueDarker,
+  surfaceContentSecondary: '#7c99d6',
+  surfaceIcon: '#6683c3',
 
-  surfaceUnder: colors.ArcticBlue,
-  surfaceOpened: colors.ArcticBlueDark,
+  surfaceUnder: '#2d3954',
+  surfaceOpened: '#7c99d6',
 
   surfaceSelected: '#405071',
   surfaceHighlight: '#405071',
-  surfacePressed: '#456586',
+  surfacePressed: '#3f4e6d',
 
   surfaceInteractive: '#405071',
 
-  feedbackSurface: colors.ArcticBlueLight,
+  feedbackSurface: '#4c5d82',
   feedbackSurfaceContent: colors.GreyDark,
   feedbackSurfaceContentSecondary: colors.GreyMedium,
 
-  warning: colors.Orange,
+  warning: '#ffa410',
   warningSurface: colors.OrangeLight,
-  warningSurfaceContent: colors.OrangeDark,
+  warningSurfaceContent: '#ffa410',
 
-  info: colors.AragonBlue,
+  info: '#00d2ff',
   infoSurface: colors.AragonBlueLight,
-  infoSurfaceContent: colors.AragonBlueDark,
+  infoSurfaceContent: '#18d4fb',
 
   help: colors.Purple,
   helpContent: colors.White,
@@ -43,49 +43,53 @@ export default {
   negative: colors.Red,
   negativeContent: colors.White,
   negativeSurface: colors.RedLight,
-  negativeSurfaceContent: colors.RedDark,
+  negativeSurfaceContent: '#ff5454',
 
-  positive: colors.MintGreen,
+  positive: '#2cc68f',
   positiveContent: colors.White,
-  positiveSurface: colors.MintGreenLight,
+  positiveSurface: '#35585e',
   positiveSurfaceContent: colors.MintGreenDark,
 
-  badge: colors.AragonBlueLighter,
-  badgeContent: colors.GreyDark,
-  badgePressed: colors.ArcticBlueLight,
+  badge: '#415279',
+  badgeContent: '#ffffff',
+  badgePressed: '#4c5d82',
 
-  tagIdentifier: colors.PurpleLight,
-  tagIdentifierContent: colors.PurpleDark,
+  tagIdentifier: '#564090',
+  tagIdentifierContent: '#b6a1ff',
 
-  tagNew: colors.MintGreenLight,
-  tagNewContent: colors.MintGreen,
+  tagNew: '#35585e',
+  tagNewContent: '#2cc68f',
 
-  tagIndicator: colors.AragonBlueLighter,
-  tagIndicatorContent: colors.AragonBlueDark,
+  tagIndicator: '#415279',
+  tagIndicatorContent: '#00d3ff',
 
-  tagActivity: colors.AragonBlue,
+  tagActivity: '#00d2ff',
   tagActivityContent: colors.White,
 
-  hint: colors.ArcticBlueDarker,
-  link: colors.Blue,
-  focus: colors.Blue,
-  selected: colors.AragonBlue,
+  hint: '#6683c3',
+  link: '#0ca5ff',
+  focus: '#0ca5ff',
+  selected: '#00d2ff',
   selectedContent: colors.White,
+  selectedDisabled: colors.GreyDark,
 
-  disabled: colors.ArcticBlue,
-  disabledContent: colors.GreyMedium,
-  disabledIcon: colors.ArcticBlueDarker,
+  disabled: '#3f4e6f',
+  disabledContent: '#8497bf',
+  disabledIcon: '#6683c3',
 
-  control: '#F3F9FB',
-  controlBorder: '#DEEDF1',
-  controlBorderPressed: '#F3F9FB',
+  control: '#57698c',
+  controlBorder: '#2c3a58',
+  controlBorderPressed: '#65779a',
+  controlDisabled: '#3f4e6f',
+  controlSurface: colors.ArcticBlueLight,
+  controlUnder: colors.ArcticBlue,
 
-  accent: colors.AragonBlue,
-  accentStart: colors.AragonBlue,
-  accentEnd: colors.AragonTurquoise,
+  accent: '#00d2ff',
+  accentStart: '#00d2ff',
+  accentEnd: '#0aece2',
   accentContent: colors.White,
 
-  floating: '#30404F',
+  floating: '#1c2539',
   floatingContent: colors.White,
 
   green: colors.GrassGreen,
@@ -97,5 +101,5 @@ export default {
 
   // Deprecated
   error: colors.Red,
-  success: colors.MintGreen,
+  success: '#2cc68f',
 }

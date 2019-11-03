@@ -3,12 +3,17 @@ import PropTypes from 'prop-types'
 import { Spring, animated } from 'react-spring'
 import { useTheme } from '../../theme'
 import { noop } from '../../utils'
-import { springs, RADIUS } from '../../style'
+import { springs, GU, RADIUS } from '../../style'
 import FocusVisible from '../FocusVisible/FocusVisible'
+
+const SIZE = 18
+const CHECKBOX_RADIUS = 2
+const RADIO_BULLET_SIZE = 10
 
 class Checkbox extends React.PureComponent {
   static propTypes = {
     checked: PropTypes.bool,
+    disabled: PropTypes.bool,
     indeterminate: PropTypes.bool,
     onChange: PropTypes.func,
     tabIndex: PropTypes.string,
@@ -17,6 +22,7 @@ class Checkbox extends React.PureComponent {
   }
   static defaultProps = {
     checked: false,
+    disabled: false,
     indeterminate: false,
     onChange: noop,
     tabIndex: '0',
@@ -36,7 +42,8 @@ class Checkbox extends React.PureComponent {
   focus = () => {
     this._element.current.focus()
   }
-  renderCheck(visible, node) {
+  renderCheck(visible, Icon) {
+    const { disabled, theme } = this.props
     return (
       <Spring
         from={{ progress: 0 }}
@@ -62,7 +69,7 @@ class Checkbox extends React.PureComponent {
               transform: progress.interpolate(v => `scale(${v})`),
             }}
           >
-            {node}
+            <Icon color={disabled ? theme.selectedDisabled : theme.selected} />
           </animated.span>
         )}
       </Spring>
@@ -71,6 +78,7 @@ class Checkbox extends React.PureComponent {
   render() {
     const {
       checked,
+      disabled,
       indeterminate,
       tabIndex,
       theme,
@@ -87,41 +95,43 @@ class Checkbox extends React.PureComponent {
             tabIndex={tabIndex}
             aria-checked={this.getAriaChecked()}
             onClick={this.handleClick}
-            focusVisible={focusVisible}
             onFocus={onFocus}
+            disabled={disabled}
             css={`
               display: inline-flex;
               position: relative;
-              width: 16px;
-              height: 16px;
-              margin: 4px;
-              background: ${theme.control};
-              border: 1px solid ${theme.controlBorder};
-              border-radius: ${p => (p.role === 'radio' ? '50%' : '2px')};
-              outline: 0;
+              width: ${SIZE}px;
+              height: ${SIZE}px;
+              margin: ${0.5 * GU}px;
               padding: 0;
-              cursor: pointer;
-              &:active {
-                border-color: ${theme.controlBorderPressed};
-              }
-              &:focus .focus-ring {
-                display: ${p => (p.focusVisible ? 'block' : 'none')};
-              }
+              background: ${disabled ? theme.controlDisabled : theme.control};
+              border: 1px solid ${theme.controlBorder};
+              border-radius: ${variant === 'radio'
+                ? '50%'
+                : `${CHECKBOX_RADIUS}px`};
+              outline: 0;
               &::-moz-focus-inner {
                 border: 0;
               }
+
+              ${!disabled
+                ? `
+                    cursor: pointer;
+                    &:active {
+                      border-color: ${theme.controlBorderPressed};
+                    }
+                    &:focus .focus-ring {
+                      display: ${focusVisible ? 'block' : 'none'};
+                    }
+                  `
+                : ''};
             `}
             {...props}
           >
             {variant === 'checkbox' &&
-              this.renderCheck(
-                checked && !indeterminate,
-                <Check color={theme.selected} />
-              )}
-            {variant === 'checkbox' &&
-              this.renderCheck(indeterminate, <Dash color={theme.selected} />)}
-            {variant === 'radio' &&
-              this.renderCheck(checked, <Bullet color={theme.selected} />)}
+              this.renderCheck(checked && !indeterminate, Check)}
+            {variant === 'checkbox' && this.renderCheck(indeterminate, Dash)}
+            {variant === 'radio' && this.renderCheck(checked, Bullet)}
 
             <span
               className="focus-ring"
@@ -174,8 +184,8 @@ const Bullet = ({ color }) => (
   <span
     css={`
       display: block;
-      width: 9px;
-      height: 9px;
+      width: ${RADIO_BULLET_SIZE}px;
+      height: ${RADIO_BULLET_SIZE}px;
       border-radius: 50%;
       background: ${color};
     `}

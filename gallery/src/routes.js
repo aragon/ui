@@ -21,6 +21,7 @@ import PageField from './pages/PageField'
 import PageSlider from './pages/PageSlider'
 import PageTabs from './pages/PageTabs'
 import PageAutoComplete from './pages/PageAutoComplete'
+import PageSwitch from './pages/PageSwitch'
 
 // Other components
 import PageAddressField from './pages/PageAddressField'
@@ -100,6 +101,7 @@ export const PAGE_GROUPS = [
       [PageTextCopy, 'TextCopy'],
       [PageTextInput, 'TextInput'],
       [PageAutoComplete, 'AutoComplete'],
+      [PageSwitch, 'Switch'],
     ],
   },
   {

@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { keyframes } from 'styled-components'
-import { theme } from '../../theme-legacy'
+import { useTheme } from '../../theme'
 
 const spin = keyframes`
   from {
@@ -13,6 +13,7 @@ const spin = keyframes`
 `
 
 const LoadingRing = React.memo(function LoadingRing({ paused, ...props }) {
+  const theme = useTheme()
   return (
     <span
       css={`

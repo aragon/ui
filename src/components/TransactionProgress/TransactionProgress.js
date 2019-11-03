@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { theme } from '../../theme-legacy'
 import { noop } from '../../utils'
 import Text from '../Text/Text'
 import { Link } from '../Link'
@@ -10,70 +9,80 @@ import { Info } from '../Info'
 import ProgressBar from '../ProgressBar/ProgressBar'
 import Popover from '../Popover/Popover'
 import { IconClose } from '../../icons'
+import { useTheme } from '../../theme'
+import { GU } from '../../style'
 
-class TransactionProgress extends React.Component {
-  static propTypes = {
-    visible: PropTypes.bool,
-    opener: PropTypes.instanceOf(Element),
-    slow: PropTypes.bool,
-    transactionHashUrl: PropTypes.string,
-    endTime: PropTypes.instanceOf(Date),
-    onClose: PropTypes.func,
-    progress: PropTypes.number,
-  }
-  static defaultProps = {
-    visible: false,
-    onClose: noop,
-  }
+const TransactionProgress = React.memo(function TransactionProgress({
+  visible,
+  slow,
+  progress,
+  endTime,
+  transactionHashUrl,
+  onClose,
+  opener,
+}) {
+  const theme = useTheme()
 
-  render() {
-    const {
-      visible,
-      slow,
-      progress,
-      endTime,
-      transactionHashUrl,
-      onClose,
-      opener,
-    } = this.props
-
-    return (
-      <Popover visible={visible} opener={opener} onClose={onClose}>
-        <CloseButton type="button" onClick={onClose}>
-          <IconClose />
-        </CloseButton>
-        <Wrapper>
-          <Text size="large" weight="bold">
-            Pending transaction
+  return (
+    <Popover visible={visible} opener={opener} onClose={onClose}>
+      <CloseButton type="button" onClick={onClose}>
+        <IconClose />
+      </CloseButton>
+      <Wrapper>
+        <Text size="large" weight="bold">
+          Pending transaction
+        </Text>
+        <ContentWrapper>
+          <Text
+            smallcaps
+            css={`
+              color: ${theme.contentSecondary};
+            `}
+          >
+            Estimated time:
           </Text>
-          <ContentWrapper>
-            <Text smallcaps color={theme.textSecondary}>
-              Estimated time:
-            </Text>
-            <Countdown removeDaysAndHours end={endTime} />
-          </ContentWrapper>
-          <ProgressBar color={theme.accent} value={progress} />
-          <FooterWrapper slow={slow}>
-            {slow && (
-              <SlowTransaction>
-                <Info.Alert>Slow transaction. Retry with more gas</Info.Alert>
-              </SlowTransaction>
-            )}
-            <Link
-              external
-              href={transactionHashUrl}
-              css={`
-                color: #21aae7;
-                text-decoration: none;
-              `}
-            >
-              See on Etherscan
-            </Link>
-          </FooterWrapper>
-        </Wrapper>
-      </Popover>
-    )
-  }
+          <Countdown removeDaysAndHours end={endTime} />
+        </ContentWrapper>
+        <ProgressBar
+          css={`
+            color: ${theme.accent};
+          `}
+          value={progress}
+        />
+        <FooterWrapper slow={slow}>
+          {slow && (
+            <SlowTransaction>
+              <Info.Alert>Slow transaction. Retry with more gas</Info.Alert>
+            </SlowTransaction>
+          )}
+          <Link
+            external
+            href={transactionHashUrl}
+            css={`
+              text-decoration: none;
+            `}
+          >
+            See on Etherscan
+          </Link>
+        </FooterWrapper>
+      </Wrapper>
+    </Popover>
+  )
+})
+
+TransactionProgress.propTypes = {
+  visible: PropTypes.bool,
+  opener: PropTypes.instanceOf(Element),
+  slow: PropTypes.bool,
+  transactionHashUrl: PropTypes.string,
+  endTime: PropTypes.instanceOf(Date),
+  onClose: PropTypes.func,
+  progress: PropTypes.number,
+}
+
+TransactionProgress.defaultProps = {
+  visible: false,
+  onClose: noop,
 }
 
 const Wrapper = styled.div`
@@ -82,8 +91,8 @@ const Wrapper = styled.div`
 
 const CloseButton = styled.button`
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: ${1 * GU}px;
+  right: ${1 * GU}px;
   cursor: pointer;
   background: none;
   border: 0;
@@ -108,7 +117,7 @@ const FooterWrapper = styled.div`
 `
 
 const SlowTransaction = styled.div`
-  margin-right: 10px;
+  margin-right: ${1 * GU}px;
 `
 
 export default TransactionProgress

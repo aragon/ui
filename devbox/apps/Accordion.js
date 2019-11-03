@@ -6,10 +6,12 @@ import { createRandomInt } from '../utils'
 
 const randomInt = createRandomInt()
 
-const ITEMS = [...Array(20)].map((_, index) => {
-  const height = randomInt(50, 300)
-  return [`Item ${index + 1}`, <Expandable height={height} />]
-})
+function getItems(count) {
+  return [...Array(count)].map((_, index) => {
+    const height = randomInt(50, 300)
+    return [`Item ${index + 1}`, <Expandable height={height} />]
+  })
+}
 
 function Expandable({ height }) {
   return (
@@ -27,16 +29,20 @@ function Expandable({ height }) {
   )
 }
 
-function App() {
-  return (
+function App({ count = 20, header = <Header primary="Accordion" /> }) {
+  const items = getItems(count)
+  const accordion = <Accordion items={items} />
+  return header ? (
     <div
       css={`
         padding-bottom: ${5 * GU}px;
       `}
     >
-      <Header primary="Accordion" />
-      <Accordion items={ITEMS} />
+      {header}
+      {accordion}
     </div>
+  ) : (
+    accordion
   )
 }
 
