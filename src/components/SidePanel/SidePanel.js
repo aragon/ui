@@ -273,7 +273,7 @@ function useSidePanel() {
   const value = useContext(SidePanelContext)
   if (value === null) {
     throw new Error(
-      'useSidePanel() need to be part of the SidePanel tree, ' +
+      'useSidePanel() was used outside of the SidePanel render tree, ' +
         'which has to be declared at an upper level!'
     )
   }
