@@ -11,7 +11,7 @@ import {
   SidePanelSplit,
   Split,
   TextInput,
-  useSidePanelFocusOnReady,
+  useSidePanel,
 } from '@aragon/ui'
 import Lorem from '../components/Lorem'
 
@@ -63,7 +63,14 @@ function App() {
 }
 
 function MySidePanelContent() {
-  const inputRef = useSidePanelFocusOnReady(inputRef)
+  const inputRef = useRef()
+  const { readyToFocus, status } = useSidePanel()
+
+  useEffect(() => {
+    if (readyToFocus && inputRef.current) {
+      inputRef.current.focus()
+    }
+  }, [readyToFocus, inputRef])
 
   return (
     <div
@@ -76,7 +83,7 @@ function MySidePanelContent() {
           margin-bottom: ${3 * GU}px;
         `}
       >
-        Panel content ({status})
+        Panel content (status: {status})
       </p>
       <SidePanelSeparator />
       <p
