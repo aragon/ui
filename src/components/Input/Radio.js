@@ -22,23 +22,25 @@ const KEYS_NEXT = [
 
 class RadioButton extends React.PureComponent {
   static propTypes = {
-    checked: PropTypes.bool,
-    onChange: PropTypes.func,
-    id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     addRadio: PropTypes.func,
+    checked: PropTypes.bool,
+    disabled: PropTypes.bool,
+    id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    onChange: PropTypes.func,
     removeRadio: PropTypes.func,
     selectNext: PropTypes.func,
     selectPrev: PropTypes.func,
     tabIndex: PropTypes.string,
   }
   static defaultProps = {
-    checked: false,
-    id: null,
-    selectPrev: noop,
-    selectNext: noop,
-    onChange: undefined, // <Button /> need to detect if onChange has been set
     addRadio: noop,
+    checked: false,
+    disabled: false,
+    id: null,
+    onChange: undefined, // <Button /> need to detect if onChange has been set
     removeRadio: noop,
+    selectNext: noop,
+    selectPrev: noop,
   }
   _element = React.createRef()
   componentDidMount() {
@@ -77,15 +79,16 @@ class RadioButton extends React.PureComponent {
     }
   }
   render() {
-    const { checked, onChange, id, tabIndex, ...props } = this.props
+    const { checked, disabled, id, onChange, tabIndex, ...props } = this.props
     return (
       <Checkbox
         ref={this._element}
-        variant="radio"
         checked={checked}
-        tabIndex={tabIndex}
+        disabled={disabled}
         onChange={this.handleChange}
         onKeyDown={this.handleKeyDown}
+        tabIndex={tabIndex}
+        variant="radio"
         {...props}
       />
     )

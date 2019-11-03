@@ -1,16 +1,24 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
-import { RadioGroup, Radio, RadioList, unselectable } from '@aragon/ui'
+import {
+  RadioGroup,
+  Radio,
+  RadioList,
+  unselectable,
+  useKeyDown,
+} from '@aragon/ui'
+import CheckboxDemo from './Checkbox'
 
 const items = [
   ['Strawberry', 'Banana', 'Apple', 'Cherry'],
   ['Cherry', 'Strawberry', 'Banana', 'Apple'],
 ]
 
+const MODES = ['Radio', 'RadioGroup', 'RadioList']
+
 class App extends React.Component {
   state = {
     selected: [-1, -1],
-    showRadioList: false,
   }
   updateSelected(groupIndex, newId) {
     this.setState(({ selected }) => ({
@@ -20,7 +28,13 @@ class App extends React.Component {
     }))
   }
   render() {
-    const { showRadioList, selected } = this.state
+    const { mode } = this.props
+    const { selected } = this.state
+
+    if (mode === 0) {
+      return <CheckboxDemo radioMode />
+    }
+
     return (
       <Main>
         <div
@@ -34,13 +48,8 @@ class App extends React.Component {
               margin-bottom: 20px;
               font-size: 20px;
             `}
-            onClick={() =>
-              this.setState(({ showRadioList }) => ({
-                showRadioList: !showRadioList,
-              }))
-            }
           >
-            {showRadioList ? 'RadioList' : 'RadioGroup'}
+            {MODES[mode]}
           </h1>
 
           <div
@@ -48,7 +57,7 @@ class App extends React.Component {
               display: flex;
             `}
           >
-            {!showRadioList &&
+            {mode === 1 &&
               items.map((localItems, i) => (
                 <List key={i}>
                   <RadioGroup
@@ -69,7 +78,7 @@ class App extends React.Component {
                 </List>
               ))}
 
-            {showRadioList && (
+            {mode === 2 && (
               <RadioList
                 title="Action Requirement"
                 description="Here are some options you can use to perform it:"
@@ -128,4 +137,16 @@ const Main = styled.div`
   background: #fff;
 `
 
-export default App
+export default () => {
+  const [mode, setMode] = useState(0)
+
+  useKeyDown(39 /* right */, () => {
+    setMode(mode => (mode + 1) % MODES.length)
+  })
+
+  useKeyDown(37 /* left */, () => {
+    setMode(mode => (mode + (MODES.length - 1)) % MODES.length)
+  })
+
+  return <App mode={mode} />
+}
