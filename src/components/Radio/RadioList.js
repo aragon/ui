@@ -5,6 +5,7 @@ import Text from '../Text/Text'
 import RadioGroup from './RadioGroup'
 import RadioListItem from './RadioListItem'
 import { noop, stylingProps } from '../../utils'
+import { GU } from '../../style'
 
 class RadioList extends React.Component {
   static propTypes = {
@@ -60,11 +61,11 @@ class RadioList extends React.Component {
 }
 
 const Title = styled.h2`
-  margin-bottom: 5px;
+  margin-bottom: ${0.5 * GU}px;
 `
 
 const Description = styled(Text.Block)`
-  margin-bottom: 18px;
+  margin-bottom: ${2.5 * GU}px;
 `
 
 const StyledRadioGroup = styled(RadioGroup)`
