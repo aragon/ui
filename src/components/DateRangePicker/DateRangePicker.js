@@ -60,7 +60,7 @@ function DateRangePicker({
           .toDate(),
       })
     }
-  }, [])
+  }, [endDate, onChange, startDate])
 
   const handleClear = useCallback(() => {
     setStartDate(null)
@@ -76,7 +76,7 @@ function DateRangePicker({
       startText: _startDate ? dayjs(_startDate).format(format) : START_DATE,
       endText: _endDate ? dayjs(_endDate).format(format) : END_DATE,
     }
-  }, [endDate, endDateProp, format, startDate, startDateProp])
+  }, [endDate, endDateProp, format, showPicker, startDate, startDateProp])
 
   const compactMode = useViewport().below('medium')
 
