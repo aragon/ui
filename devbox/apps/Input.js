@@ -20,7 +20,8 @@ function App() {
           padding: 40px 0;
         `}
       >
-        <TextInput placeholder="Enter something" readOnly value="Enter" />
+        <TextInput placeholder="Enter something" />
+        <TextInput placeholder="Auto focused" autofocus />
         <form>
           <TextInput placeholder="Enter something" pattern="[A-Za-z]+" />
         </form>
