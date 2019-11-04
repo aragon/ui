@@ -48,7 +48,9 @@ const FilterBasedOnWhatIsTyped = () => {
 - Type: `Array`
 - Default: `[]`
 
-Use this property to define the items of the list. Objects can be used but for that you'll have to pass down your own item renderer.
+Use this property to define the items of the list. Objects can be used but that means you’ll have to pass down your own item renderer.
+
+Note: remember to limit the number of `items` to an acceptable number, like 10 items.
 
 ### `renderItem`
 
