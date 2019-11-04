@@ -8,9 +8,7 @@ A field component to display Ethereum Adresses.
 import { AddressField } from '@aragon/ui'
 
 function App() {
-  return (
-    <AddressField address="0xcafE1A77e84698c83CA8931F54A755176eF75f2C" />
-  )
+  return <AddressField address="0xcafE1A77e84698c83CA8931F54A755176eF75f2C" />
 }
 ```
 
@@ -32,17 +30,17 @@ Adress to display in the field.
 
 ### `autofocus`
 
-| Type     | Default value   |
-| -------- | --------------- |
-| `Boolean` | `true` |
+| Type      | Default value |
+| --------- | ------------- |
+| `Boolean` | `true`        |
 
-Automatically focus the field when the component gets mounted.
+Focus the text field when the component gets mounted.
 
 ### `icon`
 
-| Type   | Default value   |
-| ------ | --------------- |
-| `Node` | None            |
+| Type   | Default value |
+| ------ | ------------- |
+| `Node` | None          |
 
 Icon to display in the field. Can pass anything that can be rendered, such as num, string, DOM elements, an array of them, or fragments that contain them.
 
@@ -51,8 +49,6 @@ Icon to display in the field. Can pass anything that can be rendered, such as nu
 ```jsx
 <AddressField
   address="0xcafE1A77e84698c83CA8931F54A755176eF75f2C"
-  icon={
-    <img />
-  }
+  icon={<img />}
 />
 ```
