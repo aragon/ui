@@ -135,7 +135,7 @@ function MonthDay({
 }
 
 MonthDay.propTypes = {
-  children: PropTypes.element,
+  children: PropTypes.node,
   disabled: PropTypes.bool,
   selected: PropTypes.bool,
   inRange: PropTypes.bool,
