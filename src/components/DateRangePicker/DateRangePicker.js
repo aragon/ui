@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import dayjs from 'dayjs'
 import { Button } from '../Button/Button'
 import { useViewport } from '../../providers/Viewport/Viewport'
-import { GU, RADIUS } from '../../style'
+import { BREAKPOINTS, GU, RADIUS } from '../../style'
 import { useTheme } from '../../theme'
 import DatePicker from './DatePicker'
 import Labels from './Labels'
@@ -107,6 +107,7 @@ function DateRangePicker({
         placement="bottom-start"
         visible={showPicker}
         css={`
+          min-width: ${BREAKPOINTS.min - 2 * GU}px;
           border: 0;
           filter: none;
           background: none;
