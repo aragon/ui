@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import dayjs from 'dayjs'
 
-import Text from '../Text/Text'
 import { eachDayOfInterval } from '../../utils'
 import { Selector } from './components'
 import MonthDay from './MonthDay'
@@ -95,7 +94,7 @@ function DatePicker({
             const dayJs = dayjs(day)
             return (
               <MonthDay key={dayJs.format('dd')} weekDay>
-                <Text size="xsmall">{dayJs.format(weekDayFormat)}</Text>
+                {dayJs.format(weekDayFormat)}
               </MonthDay>
             )
           })}
@@ -124,7 +123,7 @@ function DatePicker({
               today={dayJs.isSame(today, 'day')}
               onClick={() => onSelect(dayJs.toDate())}
             >
-              <Text size="small">{dayJs.format(props.dayFormat)}</Text>
+              {dayJs.format(props.dayFormat)}
             </MonthDay>
           )
         })}

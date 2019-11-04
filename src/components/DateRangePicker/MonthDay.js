@@ -1,19 +1,18 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { css } from 'styled-components'
-
 import { useTheme } from '../../theme'
-import { HoverIndicator } from './components'
+import { textStyle } from '../../style'
 import ButtonBase from '../ButtonBase/ButtonBase'
-import { font } from '../../utils/font'
+import { HoverIndicator } from './components'
 
 function MonthDay({
   children,
   disabled,
-  selected,
   inRange,
   rangeBoundaryBegin,
   rangeBoundaryEnd,
+  selected,
   today,
   weekDay,
   ...props
@@ -28,8 +27,8 @@ function MonthDay({
       onMouseLeave={() => setIsHovered(false)}
       css={`
         position: relative;
-        width: 36px;
-        height: ${weekDay ? 28 : 36}px;
+        width: ${4.5 * GU}px;
+        height: ${weekDay ? 3.5 * GU : 4.5 * GU}px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -39,28 +38,34 @@ function MonthDay({
         user-select: none;
         margin-bottom: 1px;
 
-        ${disabled &&
-          css`
-            pointer-events: none;
-            opacity: 0;
-          `}
+        ${
+          disabled
+            ? `
+                pointer-events: none;
+                opacity: 0;
+              `
+            : ''
+        };
 
-        ${selected &&
-          !disabled &&
-          css`
-            &&& {
-              background: ${theme.selected};
-              color: ${theme.positiveContent};
-            }
-          `}
+        ${
+          selected && !disabled
+            ? `
+                &&& {
+                  background: ${theme.selected};
+                  color: ${theme.positiveContent};
+                }
+              `
+            : ''
+        }
 
-        ${inRange &&
-          !selected &&
-          !disabled &&
-          css`
-            background: ${dimmedSelectedColor};
-            border-radius: 0;
-          `}
+        ${
+          inRange && !selected && !disabled
+            ? `
+                background: ${dimmedSelectedColor};
+                border-radius: 0;
+              `
+            : ''
+        }
 
         ${(rangeBoundaryBegin || rangeBoundaryEnd) &&
           css`
@@ -87,7 +92,7 @@ function MonthDay({
         ${today &&
           css`
             color: ${theme.selected};
-            ${font({ weight: 'bold' })};
+            font-weight: 600;
           `}
 
         ${weekDay &&
@@ -106,7 +111,13 @@ function MonthDay({
       {...props}
     >
       {isHovered ? <HoverIndicator theme={theme} selected={selected} /> : null}
-      {children}
+      <span
+        css={`
+          ${textStyle(weekDay ? 'body4' : 'body3')};
+        `}
+      >
+        {children}
+      </span>
       {today ? (
         <div
           css={`
