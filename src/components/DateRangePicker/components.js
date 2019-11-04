@@ -69,7 +69,7 @@ const SelectorWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: ${GU}px;
+  margin-bottom: ${1 * GU}px;
 
   span {
     ${({ small, theme }) => css`
@@ -84,7 +84,7 @@ const SelectorWrapper = styled.div`
 `
 
 // eslint-disable-next-line react/prop-types
-export const Selector = ({ prev, next, children, small }) => {
+export function Selector({ prev, next, children, small }) {
   const theme = useTheme()
   return (
     <SelectorWrapper small={small} theme={theme}>

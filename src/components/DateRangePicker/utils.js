@@ -1,6 +1,6 @@
 import dayjs from 'dayjs'
 
-export const handleDateSelect = ({ date, startDate, endDate }) => {
+export function handleDateSelect({ date, startDate, endDate }) {
   // clicking on start date resets it, so it can be re-picked
   if (startDate && dayjs(date).isSame(startDate, 'day')) {
     return {

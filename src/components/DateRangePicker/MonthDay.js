@@ -7,7 +7,7 @@ import { HoverIndicator } from './components'
 import ButtonBase from '../ButtonBase/ButtonBase'
 import { font } from '../../utils/font'
 
-const MonthDay = function({
+function MonthDay({
   children,
   disabled,
   selected,
@@ -134,7 +134,7 @@ MonthDay.propTypes = {
   weekDay: PropTypes.bool,
 }
 
-const WrappedMonthDay = ({ onClick, ...props }) => {
+function WrappedMonthDay({ onClick, ...props }) {
   if (onClick && !props.disabled) {
     return (
       <ButtonBase

@@ -1,10 +1,9 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import PropTypes from 'prop-types'
 import dayjs from 'dayjs'
-
 import { Button } from '../Button/Button'
 import { useViewport } from '../../providers/Viewport/Viewport'
-import { RADIUS } from '../../style'
+import { GU, RADIUS } from '../../style'
 import { useTheme } from '../../theme'
 import DatePicker from './DatePicker'
 import Labels from './Labels'
@@ -13,41 +12,46 @@ import { START_DATE, END_DATE } from './consts'
 import { handleDateSelect } from './utils'
 import Popover from '../Popover/Popover'
 
-const DateRangePicker = props => {
-  const [showPicker, setShowPicker] = useState(false)
+function DateRangePicker({
+  format,
+  endDate: endDateProp,
+  onChange,
+  startDate: startDateProp,
+}) {
+  const theme = useTheme()
   const labelsRef = useRef()
-  const closePicker = () => setShowPicker(false)
-
-  const [startDate, setStartDate] = useState(props.startDate)
-  const [endDate, setEndDate] = useState(props.endDate)
+  const [showPicker, setShowPicker] = useState(false)
+  const [startDate, setStartDate] = useState(startDateProp)
+  const [endDate, setEndDate] = useState(endDateProp)
 
   // on closing the picked, reset state
   useEffect(() => {
     if (!showPicker) {
-      setStartDate(props.startDate)
-      setEndDate(props.endDate)
+      setStartDate(startDateProp)
+      setEndDate(endDateProp)
     }
-  }, [props.endDate, props.startDate, showPicker])
+  }, [endDateProp, startDateProp, showPicker])
 
-  const handleLabelsClick = () => {
-    setShowPicker(!showPicker)
-  }
+  const handlePopoverClose = useCallback(() => setShowPicker(false), [])
 
-  const handleDateClick = date => {
-    const result = handleDateSelect({
-      date,
-      startDate,
-      endDate,
-    })
-    result.startDate !== undefined && setStartDate(result.startDate)
-    result.endDate !== undefined && setEndDate(result.endDate)
-  }
+  const handleLabelsClick = useCallback(() => {
+    setShowPicker(show => !show)
+  }, [])
 
-  const handleApply = () => {
+  const handleDateClick = useCallback(
+    date => {
+      const result = handleDateSelect({ date, startDate, endDate })
+      result.startDate !== undefined && setStartDate(result.startDate)
+      result.endDate !== undefined && setEndDate(result.endDate)
+    },
+    [startDate, endDate]
+  )
+
+  const handleApply = useCallback(() => {
     setShowPicker(false)
 
     if (startDate && endDate) {
-      props.onChange({
+      onChange({
         start: dayjs(startDate)
           .startOf('day')
           .toDate(),
@@ -56,72 +60,62 @@ const DateRangePicker = props => {
           .toDate(),
       })
     }
-  }
+  }, [])
 
-  const handleClear = () => {
+  const handleClear = useCallback(() => {
     setStartDate(null)
     setEndDate(null)
     setShowPicker(false)
+    onChange({ start: null, end: null })
+  }, [onChange])
 
-    props.onChange({
-      start: null,
-      end: null,
-    })
-  }
-
-  const getLabelsProps = () => {
-    const _startDate = showPicker ? startDate : props.startDate
-    const _endDate = showPicker ? endDate : props.endDate
+  const labelProps = useMemo(() => {
+    const _startDate = showPicker ? startDate : startDateProp
+    const _endDate = showPicker ? endDate : endDateProp
     return {
-      startText: _startDate
-        ? dayjs(_startDate).format(props.format)
-        : START_DATE,
-      endText: _endDate ? dayjs(_endDate).format(props.format) : END_DATE,
+      startText: _startDate ? dayjs(_startDate).format(format) : START_DATE,
+      endText: _endDate ? dayjs(_endDate).format(format) : END_DATE,
     }
-  }
+  }, [endDate, endDateProp, format, startDate, startDateProp])
 
   const compactMode = useViewport().below('medium')
 
-  const theme = useTheme()
+  const displayMonthBeforeOnLeft = useMemo(() => {
+    // If both dates are in the same month, use the right calendar
+    // for it, and display month before on the left calendar.
+    const propsDatesInSameMonth =
+      startDateProp &&
+      endDateProp &&
+      dayjs(startDateProp).isSame(dayjs(endDateProp), 'month')
 
-  const { startDate: startDateProp, endDate: endDateProp } = props
-
-  // if both dates are in the same month, use the right calendar for it,
-  // and display month before on the left calendar
-  const propsDatesInSameMonth =
-    startDateProp &&
-    endDateProp &&
-    dayjs(startDateProp).isSame(dayjs(endDateProp), 'month')
-
-  const displayMonthBeforeOnLeft = compactMode
-    ? false
-    : propsDatesInSameMonth || !startDateProp
+    return !compactMode && (propsDatesInSameMonth || !startDateProp)
+  }, [compactMode, endDateProp, startDateProp])
 
   return (
     <div>
       <Labels
-        {...getLabelsProps()}
-        enabled={showPicker}
-        onClick={handleLabelsClick}
-        hasSetDates={Boolean(startDateProp && endDateProp)}
         ref={labelsRef}
+        enabled={showPicker}
+        hasSetDates={Boolean(startDateProp && endDateProp)}
+        onClick={handleLabelsClick}
+        {...labelProps}
       />
       <Popover
-        opener={labelsRef.current}
-        visible={showPicker}
-        onClose={closePicker}
-        placement="bottom-start"
         closeOnOpenerFocus
+        onClose={handlePopoverClose}
+        opener={labelsRef.current}
+        placement="bottom-start"
+        visible={showPicker}
         css={`
           border: 0;
           filter: none;
           background: none;
-          margin: 2px 0px 0px -1px;
+          margin: 2px 0 0 0;
         `}
       >
         <div
           css={`
-            padding: 20px 18px 23px 18px;
+            padding: ${2.5 * GU}px ${2.25 * GU}px ${1 * GU}px;
             border: 1px solid ${theme.border};
             border-radius: ${RADIUS}px;
             background: ${theme.surface};
@@ -129,21 +123,21 @@ const DateRangePicker = props => {
         >
           <DatePickersWrapper>
             <DatePicker
-              datesRangeStart={startDate}
               datesRangeEnd={endDate}
-              onSelect={handleDateClick}
+              datesRangeStart={startDate}
               initialDate={dayjs(startDateProp || undefined)
                 .subtract(displayMonthBeforeOnLeft ? 1 : 0, 'month')
                 .toDate()}
+              onSelect={handleDateClick}
             />
             {!compactMode && (
               <DatePicker
-                datesRangeStart={startDate}
                 datesRangeEnd={endDate}
-                onSelect={handleDateClick}
+                datesRangeStart={startDate}
                 initialDate={dayjs(endDateProp || undefined).toDate()}
+                onSelect={handleDateClick}
                 css={`
-                  margin-left: 9px;
+                  margin-left: ${1 * GU}px;
                 `}
               />
             )}
@@ -154,14 +148,14 @@ const DateRangePicker = props => {
               Reset
             </Button>
             <Button
+              disabled={!startDate || !endDate}
+              mode="strong"
+              onClick={handleApply}
+              size="small"
               wide
               css={`
-                margin-left: 12px;
+                margin-left: ${1.5 * GU}px;
               `}
-              mode="strong"
-              size="small"
-              onClick={handleApply}
-              disabled={!startDate || !endDate}
             >
               Apply
             </Button>
@@ -173,10 +167,10 @@ const DateRangePicker = props => {
 }
 
 DateRangePicker.propTypes = {
+  endDate: PropTypes.instanceOf(Date),
   format: PropTypes.string,
   onChange: PropTypes.func,
   startDate: PropTypes.instanceOf(Date),
-  endDate: PropTypes.instanceOf(Date),
 }
 
 DateRangePicker.defaultProps = {

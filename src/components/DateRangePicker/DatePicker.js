@@ -7,7 +7,7 @@ import { eachDayOfInterval } from '../../utils'
 import { Selector } from './components'
 import MonthDay from './MonthDay'
 
-const DatePicker = ({
+function DatePicker({
   initialDate,
   onSelect,
   datesRangeStart,
@@ -21,7 +21,7 @@ const DatePicker = ({
   hideWeekDays,
   weekDayFormat,
   ...props
-}) => {
+}) {
   const [selectedDate, setSelectedDate] = useState(initialDate)
 
   const setDate = ({ year, add }) => event => {
@@ -36,6 +36,7 @@ const DatePicker = ({
   const today = dayjs()
     .startOf('day')
     .toDate()
+
   const selectedDayjs = dayjs(selectedDate || today)
 
   const isSelected = day => {
