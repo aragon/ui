@@ -42,7 +42,7 @@ The message that gets displayed when the copy is successful.
 | --------- | ------------- |
 | `Boolean` | `true`        |
 
-Set this to false to disable the use of the monospace font.
+Set this to false to disable the use of the monospace font (e.g. for Ethereum addresses).
 
 ### `onCopy`
 
