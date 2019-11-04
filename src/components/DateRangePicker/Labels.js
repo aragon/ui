@@ -1,8 +1,7 @@
 import React, { forwardRef } from 'react'
 import PropTypes from 'prop-types'
-
 import { IconCalendar } from '../../icons/components'
-import { RADIUS, textStyle } from '../../style'
+import { GU, RADIUS, textStyle } from '../../style'
 import { useTheme } from '../../theme'
 import { START_DATE, END_DATE, INPUT_BORDER } from './consts'
 import ButtonBase from '../ButtonBase/ButtonBase'
@@ -21,7 +20,7 @@ const Labels = forwardRef(function Labels(
       <div
         css={`
           position: relative;
-          width: 219px;
+          width: ${27.5 * GU}px;
           display: flex;
           justify-content: space-between;
           align-items: center;

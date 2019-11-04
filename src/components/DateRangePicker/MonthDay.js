@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { css } from 'styled-components'
 import { useTheme } from '../../theme'
-import { textStyle } from '../../style'
+import { textStyle, GU } from '../../style'
 import ButtonBase from '../ButtonBase/ButtonBase'
 import { HoverIndicator } from './components'
 
