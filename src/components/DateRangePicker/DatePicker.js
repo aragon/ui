@@ -13,7 +13,6 @@ function DatePicker({
   datesRangeStart,
   datesRangeEnd,
   hideYearSelector,
-  name,
   yearFormat,
   hideMonthSelector,
   monthFormat,
@@ -61,19 +60,6 @@ function DatePicker({
       `}
       {...props}
     >
-      {name && (
-        <Text
-          size="normal"
-          weight="bold"
-          css={`
-            text-align: center;
-            margin-bottom: 2px;
-          `}
-        >
-          {name}
-        </Text>
-      )}
-
       {!hideYearSelector && (
         <Selector
           prev={setDate({ year: true, add: false })}
@@ -160,7 +146,6 @@ DatePicker.propTypes = {
    * Initial date - calendar will start from here.
    */
   initialDate: PropTypes.instanceOf(Date),
-  name: PropTypes.string,
 
   // Events
   onSelect: PropTypes.func,
