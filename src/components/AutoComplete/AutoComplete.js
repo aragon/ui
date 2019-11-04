@@ -176,8 +176,6 @@ const Items = React.forwardRef(({ theme, ...props }, ref) => (
       padding: 0;
       margin: 0;
       list-style: none;
-      max-height: 250px;
-      overflow-y: scroll;
 
       & ${Item}:first-child {
         border-top-left-radius: 3px;
