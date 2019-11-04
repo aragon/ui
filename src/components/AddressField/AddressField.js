@@ -22,9 +22,6 @@ const AddressField = React.forwardRef(function AddressField(
           css={`
             transform: scale(${HEIGHT / IDENTICON_SIZE});
             transform-origin: 0 0;
-            position: absolute;
-            left: 0;
-            top: 0;
           `}
         />
       }
