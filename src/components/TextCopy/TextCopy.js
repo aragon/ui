@@ -9,7 +9,6 @@ import { ButtonIcon } from '../Button/ButtonIcon'
 import { useToast } from '../ToastHub/ToastHub'
 
 const HEIGHT = 5 * GU
-const ADORNMENT_SIZE = HEIGHT - 2
 
 const TextCopy = React.memo(
   React.forwardRef(function TextCopy(
@@ -55,7 +54,7 @@ const TextCopy = React.memo(
           display: inline-flex;
           max-width: 100%;
           height: ${HEIGHT}px;
-          padding-left: ${adornment ? `${ADORNMENT_SIZE}px` : '0'};
+          padding-left: ${adornment ? `${HEIGHT}px` : '0'};
         `}
         {...props}
       >
@@ -65,18 +64,26 @@ const TextCopy = React.memo(
               position: absolute;
               top: 0;
               left: 0;
+              overflow: hidden;
               width: ${HEIGHT}px;
               height: ${HEIGHT}px;
-              overflow: hidden;
-              border-radius: ${RADIUS}px 0 0 ${RADIUS}px;
+              background: ${theme.surface};
               border: 1px solid ${theme.border};
+              border-right: 0;
 
-              // Fix an issue where the border-radius wasn’t visible on Blink browsers.
-              // See https://gist.github.com/ayamflow/b602ab436ac9f05660d9c15190f4fd7b
-              mask-image: linear-gradient(red, red);
+              // 0.0001px fixes an issue on Blink browsers, where each
+              // border-radius need to be non 0 for overflow:hidden to work.
+              border-radius: ${RADIUS}px 0.0001px 0.0001px ${RADIUS}px;
             `}
           >
-            {adornment}
+            <div
+              css={`
+                width: ${HEIGHT - 2}px;
+                height: ${HEIGHT - 2}px;
+              `}
+            >
+              {adornment}
+            </div>
           </div>
         )}
         <TextInput
@@ -86,8 +93,8 @@ const TextCopy = React.memo(
               onClick={handleCopy}
               label="Copy"
               css={`
-                width: ${ADORNMENT_SIZE}px;
-                height: ${ADORNMENT_SIZE}px;
+                width: ${HEIGHT - 2}px;
+                height: ${HEIGHT - 2}px;
                 border-radius: 0;
                 color: ${theme.surfaceIcon};
               `}
@@ -98,7 +105,7 @@ const TextCopy = React.memo(
           adornmentPosition="end"
           adornmentSettings={{
             // Keep the button square
-            width: ADORNMENT_SIZE,
+            width: HEIGHT - 2,
             padding: 0,
           }}
           autofocus={autofocus}

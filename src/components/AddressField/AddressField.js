@@ -20,7 +20,7 @@ const AddressField = React.forwardRef(function AddressField(
           onCopy={onCopy}
           scale={2}
           css={`
-            transform: scale(${HEIGHT / IDENTICON_SIZE});
+            transform: scale(${(HEIGHT - 2) / IDENTICON_SIZE});
             transform-origin: 0 0;
           `}
         />
