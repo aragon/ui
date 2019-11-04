@@ -16,6 +16,11 @@ class App extends React.Component {
       >
         {[
           {
+            address: '0x0000000000000000000000000000000000000000',
+            symbol: 'ETH',
+            name: 'Ethereum',
+          },
+          {
             address: '0x960b236a07cf122663c4303350609a66a7b288c0',
             symbol: 'ANT',
             name: 'Aragon',
