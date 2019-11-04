@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components'
 
 import ButtonBase from '../ButtonBase/ButtonBase'
 import { useTheme } from '../../theme'
-import { GU, breakpoint, textStyle } from '../../style'
+import { GU, textStyle } from '../../style'
 import { IconLeft, IconRight } from '../../icons/components'
 
 export const HoverIndicator = styled.span`
