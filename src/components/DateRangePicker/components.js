@@ -6,34 +6,6 @@ import { useTheme } from '../../theme'
 import { GU, breakpoint, textStyle } from '../../style'
 import { IconLeft, IconRight } from '../../icons/components'
 
-export const Controls = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: ${GU * 2.25}px;
-  padding-right: 7px;
-
-  ${breakpoint(
-    'medium',
-    `
-      max-width: 247px;
-      margin-right: 0;
-      margin-left: auto;
-    `
-  )}
-`
-
-export const DatePickersWrapper = styled.div`
-  ${breakpoint(
-    'medium',
-    `
-      display: flex;
-      flex-direction: row;
-      align-items: baseline;
-    `
-  )}
-`
-
 export const HoverIndicator = styled.span`
   width: 100%;
   height: 100%;

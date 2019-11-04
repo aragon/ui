@@ -27,14 +27,13 @@ function MonthDay({
       onMouseLeave={() => setIsHovered(false)}
       css={`
         position: relative;
-        width: ${4.5 * GU}px;
-        height: ${weekDay ? 3.5 * GU : 4.5 * GU}px;
         display: flex;
         align-items: center;
         justify-content: center;
+        width: ${4.5 * GU}px;
+        height: ${weekDay ? 3.5 * GU : 4.5 * GU}px;
         border-radius: 50%;
         cursor: pointer;
-        font-size: 90%;
         user-select: none;
         margin-bottom: 1px;
 
@@ -150,6 +149,9 @@ function WrappedMonthDay({ onClick, ...props }) {
     return (
       <ButtonBase
         css={`
+          display: flex;
+          width: ${4.5 * GU}px;
+          height: ${props.weekDay ? 3.5 * GU : 4.5 * GU}px;
           margin: 0;
         `}
         onClick={onClick}

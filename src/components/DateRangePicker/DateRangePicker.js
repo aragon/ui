@@ -7,7 +7,7 @@ import { BREAKPOINTS, GU, RADIUS } from '../../style'
 import { useTheme } from '../../theme'
 import DatePicker from './DatePicker'
 import Labels from './Labels'
-import { Controls, DatePickersWrapper } from './components'
+import { Controls } from './components'
 import { START_DATE, END_DATE } from './consts'
 import { handleDateSelect } from './utils'
 import Popover from '../Popover/Popover'
@@ -107,7 +107,7 @@ function DateRangePicker({
         placement="bottom-start"
         visible={showPicker}
         css={`
-          min-width: ${BREAKPOINTS.min - 2 * GU}px;
+          min-width: ${37.5 * GU + 2}px;
           border: 0;
           filter: none;
           background: none;
@@ -116,13 +116,19 @@ function DateRangePicker({
       >
         <div
           css={`
-            padding: ${2.5 * GU}px ${2.25 * GU}px ${1 * GU}px;
+            padding: ${2.5 * GU}px ${3 * GU}px ${3 * GU}px;
             border: 1px solid ${theme.border};
             border-radius: ${RADIUS}px;
             background: ${theme.surface};
           `}
         >
-          <DatePickersWrapper>
+          <div
+            css={`
+              display: flex;
+              flex-direction: row;
+              align-items: baseline;
+            `}
+          >
             <DatePicker
               datesRangeEnd={endDate}
               datesRangeStart={startDate}
@@ -142,10 +148,24 @@ function DateRangePicker({
                 `}
               />
             )}
-          </DatePickersWrapper>
+          </div>
 
-          <Controls>
-            <Button wide size="small" onClick={handleClear}>
+          <div
+            css={`
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              margin-top: ${GU * 2.25}px;
+
+              ${compactMode
+                ? ''
+                : `
+                    max-width: 247px;
+                    margin-left: auto;
+                  `};
+            `}
+          >
+            <Button onClick={handleClear} size="small" wide>
               Reset
             </Button>
             <Button
@@ -160,7 +180,7 @@ function DateRangePicker({
             >
               Apply
             </Button>
-          </Controls>
+          </div>
         </div>
       </Popover>
     </div>

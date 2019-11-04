@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import dayjs from 'dayjs'
-
+import { GU } from '../../style'
 import { eachDayOfInterval } from '../../utils'
 import { Selector } from './components'
 import MonthDay from './MonthDay'
@@ -84,6 +84,7 @@ function DatePicker({
         css={`
           display: grid;
           grid-template: auto / repeat(7, 1fr);
+          width: ${31.5 * GU}px;
         `}
       >
         {!hideWeekDays &&
