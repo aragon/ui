@@ -25,6 +25,7 @@ export { default as CircleGraph } from './CircleGraph/CircleGraph'
 export { default as ContextMenu } from './ContextMenu/ContextMenu'
 export { default as ContextMenuItem } from './ContextMenu/ContextMenuItem'
 export { default as Countdown } from './Countdown/Countdown'
+export { default as DateRangePicker } from './DateRangePicker/DateRangePicker'
 export { default as Distribution } from './Distribution/Distribution'
 export { default as DropDown } from './DropDown/DropDown'
 export { default as EmptyStateCard } from './Card/EmptyStateCard'
@@ -81,7 +82,6 @@ export { TabBarLegacyCompatibility as TabBar } from './Tabs/Tabs'
 export { default as Text } from './Text/Text'
 
 // Experimental components
-export { DateRange as _DateRange } from './DateRange/DateRange'
 export { default as _AutoComplete } from './AutoComplete/AutoComplete'
 export {
   default as _AutoCompleteSelected,

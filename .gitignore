@@ -4,3 +4,6 @@ node_modules/
 npm-debug.log
 yarn.lock
 /stats.html
+
+# testing
+coverage
