@@ -9,14 +9,17 @@ const TextInput = React.forwardRef(
   ({ autofocus, multiline, type, ...props }, ref) => {
     const theme = useTheme()
 
-    const handleRef = useCallback(element => {
-      if (ref) {
-        ref.current = element
-      }
-      if (autofocus && element) {
-        element.focus()
-      }
-    }, [])
+    const handleRef = useCallback(
+      element => {
+        if (ref) {
+          ref.current = element
+        }
+        if (autofocus && element) {
+          element.focus()
+        }
+      },
+      [autofocus, ref]
+    )
 
     return (
       <input
