@@ -52,6 +52,14 @@ The total width of the adornment.
 
 The horizontal padding of the adornment.
 
+### `autofocus`
+
+| Type      | Default value |
+| --------- | ------------- |
+| `Boolean` | `false`       |
+
+Focus the text field when the component gets mounted.
+
 ### `onChange`
 
 | Type       | Default value |
