@@ -8,7 +8,7 @@ Another component `AutoCompleteSelected` offers the extra functionality to selec
 
 ```jsx
 import { useState } from 'react'
-import { AutoComplete } from '@aragon/ui'
+import { _AutoComplete as AutoComplete } from '@aragon/ui'
 
 const items = [
   'Bruce Wayne',
@@ -48,7 +48,9 @@ const FilterBasedOnWhatIsTyped = () => {
 - Type: `Array`
 - Default: `[]`
 
-Use this property to define the items of the list. Objects can be used but for that you'll have to pass down your own item renderer.
+Use this property to define the items of the list. Objects can be used but that means you’ll have to pass down your own item renderer.
+
+Note: remember to limit the number of `items` to an acceptable number, like 10 items.
 
 ### `renderItem`
 
