@@ -20,6 +20,14 @@ Extra props will be passed to the `TextInput` component which is used internally
 
 Allows to set an adornment that will get used on the left side of the text field (in left to right languages). The copy button is always displayed on the other side.
 
+### `autofocus`
+
+| Type      | Default value |
+| --------- | ------------- |
+| `Boolean` | `false`       |
+
+Focus the text field when the component gets mounted.
+
 ### `message`
 
 | Type     | Default value |

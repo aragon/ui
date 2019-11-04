@@ -8,15 +8,6 @@ const GU = 8
 const HEIGHT = 5 * GU
 
 function App() {
-  const textCopyRef = useRef()
-
-  useEffect(() => {
-    const id = setTimeout(() => {
-      textCopyRef.current.focus()
-    }, 0)
-    return () => clearTimeout(id)
-  }, [])
-
   return (
     <div
       css={`
@@ -29,7 +20,7 @@ function App() {
       `}
     >
       <TextCopy value="Copy me!" />
-      <TextCopy value="Focused on mount" ref={textCopyRef} />
+      <TextCopy value="Focused on mount" autofocus />
       <TextCopy
         adornment={
           <EthIdenticon

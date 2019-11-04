@@ -19,7 +19,7 @@ const ICON_WIDTH = 5 * GU
 
 const TextCopy = React.memo(
   React.forwardRef(function TextCopy(
-    { adornment, message, monospace, onCopy, value, ...props },
+    { adornment, autofocus, message, monospace, onCopy, value, ...props },
     ref
   ) {
     const theme = useTheme()
@@ -87,10 +87,6 @@ const TextCopy = React.memo(
         ) : null}
         <TextInput
           ref={inputRef}
-          value={value}
-          onFocus={handleFocus}
-          readOnly
-          wide
           adornment={
             <ButtonIcon
               onClick={handleCopy}
@@ -111,6 +107,11 @@ const TextCopy = React.memo(
             width: HEIGHT_ADJUSTED_FOR_BORDER,
             padding: 0,
           }}
+          autofocus={autofocus}
+          onFocus={handleFocus}
+          readOnly
+          value={value}
+          wide
           css={`
             text-overflow: ellipsis;
             height: ${HEIGHT}px;
@@ -138,6 +139,7 @@ const TextCopy = React.memo(
 
 TextCopy.propTypes = {
   adornment: PropTypes.node,
+  autofocus: PropTypes.bool,
   message: PropTypes.string,
   monospace: PropTypes.bool,
   onCopy: PropTypes.func,
@@ -145,6 +147,7 @@ TextCopy.propTypes = {
 }
 
 TextCopy.defaultProps = {
+  autofocus: false,
   message: 'Copied',
   monospace: true,
 }
