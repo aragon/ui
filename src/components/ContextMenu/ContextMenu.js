@@ -1,12 +1,11 @@
-import React, { useState, useCallback } from 'react'
+import React, { useCallback, useRef, useState } from 'react'
 import PropTypes from 'prop-types'
-import styled from 'styled-components'
 import { Spring, animated } from 'react-spring'
-import ClickOutHandler from 'react-onclickout'
 import { useTheme } from '../../theme'
 import { springs, RADIUS } from '../../style'
 import { IconEllipsis, IconDown } from '../../icons/components'
 import ButtonBase from '../ButtonBase/ButtonBase'
+import Popover from '../Popover/Popover'
 
 const BASE_WIDTH = 46
 const BASE_HEIGHT = 32
@@ -14,6 +13,7 @@ const BASE_HEIGHT = 32
 function ContextMenu({ children, zIndex, disabled }) {
   const theme = useTheme()
   const [opened, setOpened] = useState(false)
+  const buttonRef = useRef()
 
   const handleClose = useCallback(() => {
     setOpened(false)
@@ -28,15 +28,19 @@ function ContextMenu({ children, zIndex, disabled }) {
   const appliedZIndex = opened ? zIndex + 1 : zIndex
 
   return (
-    <ClickOutHandler onClickOut={handleClose}>
+    <React.Fragment>
       <Spring
         config={springs.smooth}
         to={{ openProgress: Number(opened) }}
         native
       >
         {({ openProgress }) => (
-          <Main
+          <animated.div
+            ref={buttonRef}
             css={`
+              position: relative;
+              width: ${BASE_WIDTH}px;
+              height: ${BASE_HEIGHT}px;
               z-index: ${appliedZIndex};
             `}
             style={{
@@ -45,12 +49,23 @@ function ContextMenu({ children, zIndex, disabled }) {
               ),
             }}
           >
-            <Button
+            <ButtonBase
               onClick={handleBaseButtonClick}
               opened={opened}
               disabled={disabled}
               focusRingRadius={RADIUS}
               css={`
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+                height: ${BASE_HEIGHT}px;
+                border-radius: ${({ opened }) =>
+                  opened ? `${RADIUS}px ${RADIUS}px 0 0` : `${RADIUS}px`};
+
+                box-shadow: ${({ disabled }) =>
+                  disabled ? 'none' : `0px 1px 3px rgba(0, 0, 0, 0.1)`};
+
                 color: ${disabled
                   ? theme.disabledContent
                   : opened
@@ -58,18 +73,19 @@ function ContextMenu({ children, zIndex, disabled }) {
                   : theme.surfaceContent};
                 background: ${disabled ? theme.disabled : theme.surface};
                 border: ${disabled ? '0' : `1px solid ${theme.border}`};
-                border-bottom-color: ${opened ? theme.surface : theme.border};
                 ${disabled
                   ? ''
-                  : `&:active {
-                  background: ${theme.surfacePressed};
-                  border-bottom-color: ${
-                    opened ? theme.surfacePressed : theme.border
-                  };
-                }`}
+                  : `
+                      &:active {
+                        background: ${theme.surfacePressed};
+                        border-bottom-color: ${
+                          opened ? 'transparent' : theme.border
+                        };
+                      }
+                    `}
               `}
             >
-              <IconEllipsis css={``} />
+              <IconEllipsis />
               <animated.div
                 style={{
                   display: 'flex',
@@ -83,51 +99,46 @@ function ContextMenu({ children, zIndex, disabled }) {
                 <IconDown
                   size="tiny"
                   css={`
-                    color: ${disabled ? theme.disabledIcon : theme.surfaceIcon};
+                    color: ${disabled
+                      ? theme.disabledIcon
+                      : opened
+                      ? theme.accent
+                      : theme.surfaceIcon};
                   `}
                 />
               </animated.div>
-            </Button>
-            {opened && (
-              <React.Fragment>
-                <animated.div
-                  onClick={handleClose}
-                  style={{
-                    opacity: openProgress,
-                    boxShadow: openProgress.interpolate(
-                      t => `0 4px 4px rgba(0, 0, 0, ${t * 0.03})`
-                    ),
-                  }}
-                  css={`
-                    z-index: ${appliedZIndex + 1};
-                    overflow: hidden;
-                    position: absolute;
-                    top: ${BASE_HEIGHT - 1}px;
-                    right: 0;
-                    background: ${theme.surface};
-                    border: 1px solid ${theme.border};
-                    border-radius: 3px 0 3px 3px;
-                  `}
-                >
-                  {children}
-                </animated.div>
-                <div
-                  css={`
-                    z-index: ${appliedZIndex + 1};
-                    position: absolute;
-                    bottom: 0;
-                    right: 1px;
-                    height: 1px;
-                    width: ${BASE_WIDTH - 2}px;
-                    background: ${theme.surface};
-                  `}
-                />
-              </React.Fragment>
-            )}
-          </Main>
+            </ButtonBase>
+          </animated.div>
         )}
       </Spring>
-    </ClickOutHandler>
+      <Popover
+        closeOnOpenerFocus={true}
+        onClose={handleClose}
+        opener={buttonRef.current}
+        placement="bottom-end"
+        scaleEffect={false}
+        visible={opened}
+        css={`
+          overflow: visible;
+          border-top-right-radius: 0;
+        `}
+      >
+        {children}
+        <div
+          css={`
+            z-index: 1;
+            position: absolute;
+            top: -2px;
+            right: -1px;
+            width: ${BASE_WIDTH}px;
+            height: 2px;
+            border: 1px solid ${theme.border};
+            border-width: 0 1px;
+            background: ${theme.surface};
+          `}
+        />
+      </Popover>
+    </React.Fragment>
   )
 }
 
@@ -136,28 +147,10 @@ ContextMenu.propTypes = {
   zIndex: PropTypes.number,
   disabled: PropTypes.bool,
 }
+
 ContextMenu.defaultProps = {
   zIndex: 0,
   disabled: false,
 }
-
-const Main = styled(animated.div)`
-  position: relative;
-  width: ${BASE_WIDTH}px;
-  height: ${BASE_HEIGHT}px;
-`
-
-const Button = styled(ButtonBase)`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: ${BASE_HEIGHT}px;
-  border-radius: ${({ opened }) =>
-    opened ? `${RADIUS}px ${RADIUS}px 0 0` : `${RADIUS}px`};
-
-  box-shadow: ${({ disabled }) =>
-    disabled ? 'none' : `0px 1px 3px rgba(0, 0, 0, 0.1)`};
-`
 
 export default ContextMenu
