@@ -1,7 +1,11 @@
 import { warn } from './environment'
 
+const EMPTY_ADDRESS = '0x0000000000000000000000000000000000000000'
 const TRANSACTION_REGEX = /^0x[A-Fa-f0-9]{64}$/
 const ADDRESS_REGEX = /^0x[0-9a-fA-F]{40}$/
+
+const TRUST_WALLET_BASE_URL =
+  'https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum'
 
 const ETHERSCAN_NETWORK_TYPES = new Map([
   ['main', ''],
@@ -138,12 +142,19 @@ export function blockExplorerUrl(
 /**
  * Get the address of a token icon
  *
- * @param {string} address The contract address of the token.
+ * @param {string} address The contract address of the token, or the zero address (0x000…) to get the Ethereum icon.
  * @return {string} The generated URL, or an empty string if the parameters are invalid.
  */
 export function tokenIconUrl(address = '') {
   address = address.trim().toLowerCase()
-  return address
-    ? `https://raw.githubusercontent.com/TrustWallet/tokens/master/tokens/${address}.png`
-    : ''
+
+  if (!address) {
+    return ''
+  }
+
+  if (address === EMPTY_ADDRESS) {
+    return `${TRUST_WALLET_BASE_URL}/info/logo.png`
+  }
+
+  return `${TRUST_WALLET_BASE_URL}/assets/${address}/logo.png`
 }
