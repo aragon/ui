@@ -68,7 +68,6 @@
     "lint-staged": "^8.1.0",
     "listr": "^0.14.3",
     "prettier": "^1.17.1",
-    "react-media": "^1.6.1",
     "rollup": "^1.12.3",
     "rollup-plugin-babel": "^4.0.3",
     "rollup-plugin-commonjs": "^10.0.0",
