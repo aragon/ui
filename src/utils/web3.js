@@ -142,7 +142,7 @@ export function blockExplorerUrl(
 /**
  * Get the address of a token icon
  *
- * @param {string} address The contract address of the token, or an empty address (0x000…) to get the Ethereum icon.
+ * @param {string} address The contract address of the token, or the zero address (0x000…) to get the Ethereum icon.
  * @return {string} The generated URL, or an empty string if the parameters are invalid.
  */
 export function tokenIconUrl(address = '') {
