@@ -1,64 +1,87 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import PropTypes from 'prop-types'
 import { useTheme } from '../../theme'
 import { warnOnce } from '../../utils'
 import { textStyle, GU, RADIUS } from '../../style'
 
 // Simple text input
-const TextInput = React.forwardRef(({ multiline, type, ...props }, ref) => {
-  const theme = useTheme()
-  return (
-    <input
-      as={multiline ? 'textarea' : 'input'}
-      type={multiline ? undefined : type}
-      {...props}
-      ref={ref}
-      css={`
-        width: ${({ wide }) => (wide ? '100%' : 'auto')};
-        height: ${5 * GU}px;
-        padding: 0 ${1.5 * GU}px;
-        background: ${theme.surface};
-        border: 1px solid ${theme.border};
-        color: ${theme.surfaceContent};
-        border-radius: ${RADIUS}px;
-        appearance: none;
-        ${textStyle('body3')};
+const TextInput = React.forwardRef(
+  ({ autofocus, multiline, type, ...props }, ref) => {
+    const theme = useTheme()
 
-        ${multiline
-          ? `
-            height: auto;
-            padding: ${1 * GU}px ${1.5 * GU}px;
-            resize: vertical;
-          `
-          : ''}
+    const handleRef = useCallback(
+      element => {
+        if (ref) {
+          ref.current = element
+        }
+        if (autofocus && element) {
+          element.focus()
+        }
+      },
+      [autofocus, ref]
+    )
 
-        &:focus {
-          outline: none;
-          border-color: ${theme.selected};
-        }
-        &:read-only {
-          color: transparent;
-          text-shadow: 0 0 0 ${theme.surfaceContentSecondary};
-          border-color: ${theme.border};
-        }
-        &:invalid {
-          box-shadow: none;
-        }
-      `}
-    />
-  )
-})
+    return (
+      <input
+        ref={handleRef}
+        as={multiline ? 'textarea' : 'input'}
+        type={multiline ? undefined : type}
+        {...props}
+        css={`
+          width: ${({ wide }) => (wide ? '100%' : 'auto')};
+          height: ${5 * GU}px;
+          padding: 0 ${1.5 * GU}px;
+          background: ${theme.surface};
+          border: 1px solid ${theme.border};
+          color: ${theme.surfaceContent};
+          border-radius: ${RADIUS}px;
+          appearance: none;
+          ${textStyle('body3')};
+
+          ${multiline
+            ? `
+              height: auto;
+              padding: ${1 * GU}px ${1.5 * GU}px;
+              resize: vertical;
+            `
+            : ''}
+
+          &:focus {
+            outline: none;
+            border-color: ${theme.selected};
+          }
+
+          &:read-only {
+            color: ${theme.hint};
+            border-color: ${theme.border};
+          }
+
+          &::placeholder {
+            color: ${theme.hint};
+            opacity: 1;
+          }
+
+          &:invalid {
+            box-shadow: none;
+          }
+        `}
+      />
+    )
+  }
+)
 
 TextInput.propTypes = {
+  autofocus: PropTypes.bool,
+  multiline: PropTypes.bool,
   required: PropTypes.bool,
   type: PropTypes.string,
-  multiline: PropTypes.bool,
 }
 
 TextInput.defaultProps = {
+  autofocus: false,
+  multiline: false,
   required: false,
   type: 'text',
-  multiline: false,
 }
 
 // Text input wrapped to allow adornments

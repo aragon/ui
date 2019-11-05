@@ -25,15 +25,19 @@ function getIcon(mode) {
   return <IconAdd />
 }
 
-function App() {
+function App({ onlyBoxes }) {
   return (
     <div
       css={`
-        display: grid;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        padding: ${3 * GU}px 0 0;
+        ${onlyBoxes
+          ? ''
+          : `
+            display: grid;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: ${3 * GU}px 0 0;
+          `}
       `}
     >
       {SIZES.map(size => (

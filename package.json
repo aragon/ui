@@ -1,6 +1,6 @@
 {
   "name": "@aragon/ui",
-  "version": "1.0.0-alpha.26",
+  "version": "1.0.0-alpha.32",
   "author": "Aragon Association <legal@aragon.org>",
   "license": "MIT",
   "repository": "github:aragon/aragon-ui",
@@ -27,7 +27,7 @@
     "lint": "eslint ./src",
     "lint:fix": "eslint --fix ./src",
     "optimize:svg": "find ./src/components -name *.svg -exec svgo --config '{ \"plugins\": [ { \"removeDesc\": {\"removeAny\": true} }, { \"removeTitle\": true }, { \"removeViewBox\": false } ] }' {} \\;",
-    "prepare": "npm run build",
+    "prepare": "rm -rf ./dist && npm run build",
     "prepublishOnly": "git push && git push --tags",
     "start": "cd gallery && npm start",
     "test": "npm run lint && npm run jest"

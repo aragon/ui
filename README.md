@@ -17,10 +17,10 @@ Used by:
 
 ### Quick setup
 
-Install it from npm:
+Install aragonUI alongside styled-components from npm:
 
 ```sh
-npm install --save @aragon/ui
+npm install --save @aragon/ui styled-components
 ```
 
 Copy its assets into your public directory:
@@ -32,13 +32,16 @@ npx copy-aragon-ui-assets ./public
 Wrap your app with the `Main` component:
 
 ```jsx
+import React from 'react'
 import { Main } from '@aragon/ui'
 
-const App = () => (
-  <Main>
-    <h1>Hello aragonUI!</h1>
-  </Main>
-)
+function App() {
+  return (
+    <Main>
+      <h1>Hello aragonUI!</h1>
+    </Main>
+  )
+}
 ```
 
 *Your project is now ready to use aragonUI. 💫*

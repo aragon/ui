@@ -3,8 +3,8 @@ import styled from 'styled-components'
 import {
   Box,
   Button,
-  Header,
   GU,
+  Header,
   SidePanel,
   SidePanelSeparator,
   SidePanelSplit,
