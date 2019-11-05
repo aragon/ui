@@ -1,14 +1,17 @@
 import React, { useState, useRef, useCallback, useEffect } from 'react'
 import PropTypes from 'prop-types'
-import styled from 'styled-components'
 import { Transition, animated } from 'react-spring'
-import { useClickOutside, useOnBlur, useArrowKeysFocus } from '../../hooks'
+import {
+  useArrowKeysFocus,
+  useClickOutside,
+  useKeyDown,
+  useOnBlur,
+} from '../../hooks'
 import { springs } from '../../style'
 import { useTheme } from '../../theme'
-import { unselectable, noop, identity } from '../../utils'
+import { unselectable, noop, identity, KEY_ESC } from '../../utils'
 import ButtonBase from '../ButtonBase/ButtonBase'
-import TextInput from '../Input/TextInput'
-import { IconSearch } from '../../icons'
+import { SearchInput } from '../Input/SearchInput'
 
 function AutoComplete({
   forwardedRef,
@@ -22,67 +25,55 @@ function AutoComplete({
   value,
   wide,
 }) {
-  const theme = useTheme()
-
   const ref = forwardedRef
   const uniqueItems = new Set(items)
   const [opened, setOpened] = useState(true)
   const wrapRef = useRef()
-  const [refs] = useState([])
+  const refs = useRef([])
 
   const handleClose = useCallback(() => setOpened(false), [])
   const handleFocus = useCallback(() => setOpened(true), [])
+
   const handleSelect = useCallback(
-    item => e => {
-      e.preventDefault()
+    item => {
       onSelect(item)
+      setOpened(false)
     },
     [onSelect]
   )
-  const handleChange = useCallback(({ target: { value } }) => onChange(value), [
-    onChange,
-  ])
+
+  const handleInputChange = useCallback(
+    (...params) => {
+      setOpened(true)
+      onChange(...params)
+    },
+    [onChange]
+  )
 
   const { handleBlur } = useOnBlur(handleClose, wrapRef)
   const { highlightedIndex, setHighlightedIndex } = useArrowKeysFocus(refs)
-  const reset = setHighlightedIndex(-1)
-  const { ref: containerRef, handleBlur: handleResetBlur } = useOnBlur(reset)
-  useEffect(() => {
-    reset()
-  }, [opened, items, value, reset])
+
   useClickOutside(handleClose, wrapRef)
+  useKeyDown(KEY_ESC, handleClose)
+
+  useEffect(() => {
+    setHighlightedIndex(-1)
+  }, [opened, items, value, setHighlightedIndex])
 
   return (
     <div css="position: relative" ref={wrapRef} onBlur={handleBlur}>
-      <TextInput
-        css={`
-          padding-right: 35px;
-        `}
+      <SearchInput
         ref={ref}
         wide={wide}
         placeholder={placeholder}
         required={required}
-        onChange={handleChange}
+        onChange={handleInputChange}
         onFocus={handleFocus}
         value={value}
       />
-      <div
-        css={`
-          position: absolute;
-          top: 0;
-          right: 0;
-          height: 40px;
-          width: 35px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        `}
-      >
-        <IconSearch css="color: #a8b3c8" />
-      </div>
       <Transition
         config={springs.swift}
-        items={opened && !!items.length}
+        items={opened && items.length > 0}
         from={{ scale: 0.98, opacity: 0 }}
         enter={{ scale: 1, opacity: 1 }}
         leave={{ scale: 1, opacity: 0 }}
@@ -93,41 +84,23 @@ function AutoComplete({
           /* eslint-disable react/prop-types */
           (({ scale, opacity }) => (
             <Items
-              ref={containerRef}
-              onBlur={handleResetBlur}
-              role="listbox"
               style={{
                 opacity,
                 transform: scale.interpolate(t => `scale3d(${t},${t},1)`),
               }}
-              theme={theme}
             >
               {Array.from(uniqueItems).map((item, index) => (
-                <Item role="option" key={item.key || item}>
-                  <ButtonBase
-                    ref={node => (refs[index] = node)}
-                    onClick={handleSelect(item)}
-                    onFocus={setHighlightedIndex(index)}
-                    onMouseOver={setHighlightedIndex(index)}
-                    css={`
-                      text-align: left;
-                      padding: 4px 8px;
-                      width: 100%;
-                      border-radius: 0;
-                      border-left: 3px solid transparent;
-                      cursor: pointer;
-
-                      ${index === highlightedIndex &&
-                        `
-                          outline: 2px solid ${theme.accent};
-                          background: #f9fafc;
-                          border-left: 3px solid ${theme.accent};
-                        `}
-                      ${itemButtonStyles};
-                    `}
-                  >
-                    {renderItem(item, value)}
-                  </ButtonBase>
+                <Item
+                  key={item.key || item}
+                  ref={node => (refs.current[index] = node)}
+                  index={index}
+                  item={item}
+                  itemButtonStyles={itemButtonStyles}
+                  onHighlight={setHighlightedIndex}
+                  onSelect={handleSelect}
+                  selected={index === highlightedIndex}
+                >
+                  {renderItem(item, value)}
                 </Item>
               ))}
             </Items>
@@ -152,43 +125,98 @@ AutoComplete.propTypes = {
   wide: PropTypes.bool,
 }
 
-const Item = styled.li`
-  ${unselectable()};
-  overflow: hidden;
-  cursor: pointer;
-`
+/* eslint-disable react/prop-types */
+const Item = React.forwardRef(function Item(
+  { children, index, item, itemButtonStyles, onHighlight, onSelect, selected },
+  ref
+) {
+  const theme = useTheme()
+
+  const handleClick = useCallback(
+    event => {
+      event.preventDefault()
+      onSelect(item)
+    },
+    [item, onSelect]
+  )
+
+  const handleFocusOrMouseOver = useCallback(() => {
+    onHighlight(index)
+  }, [index, onHighlight])
+
+  return (
+    <li
+      role="option"
+      css={`
+        overflow: hidden;
+        cursor: pointer;
+        ${unselectable()};
+      `}
+    >
+      <ButtonBase
+        ref={ref}
+        onClick={handleClick}
+        onFocus={handleFocusOrMouseOver}
+        onMouseOver={handleFocusOrMouseOver}
+        css={`
+          text-align: left;
+          padding: 4px 8px;
+          width: 100%;
+          border-radius: 0;
+          border-left: 3px solid transparent;
+          cursor: pointer;
+
+          ${selected
+            ? `
+                outline: 2px solid ${theme.accent};
+                background: #f9fafc;
+                border-left: 3px solid ${theme.accent};
+              `
+            : ''};
+          ${itemButtonStyles};
+        `}
+      >
+        {children}
+      </ButtonBase>
+    </li>
+  )
+})
+/* eslint-enable react/prop-types */
 
 /* eslint-disable react/prop-types */
-const Items = React.forwardRef(({ theme, ...props }, ref) => (
-  <animated.ul
-    ref={ref}
-    css={`
-      position: absolute;
-      z-index: 2;
-      top: 100%;
-      width: 100%;
-      padding: 8px 0;
-      color: ${theme.surfaceContent};
-      background: ${theme.surface};
-      border: 1px solid ${theme.border};
-      box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.06);
-      border-radius: 3px;
-      padding: 0;
-      margin: 0;
-      list-style: none;
+const Items = function Items(props) {
+  const theme = useTheme()
+  return (
+    <animated.ul
+      role="listbox"
+      css={`
+        position: absolute;
+        z-index: 2;
+        top: 100%;
+        width: 100%;
+        padding: 8px 0;
+        color: ${theme.surfaceContent};
+        background: ${theme.surface};
+        border: 1px solid ${theme.border};
+        box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.06);
+        border-radius: 3px;
+        padding: 0;
+        margin: 0;
+        list-style: none;
 
-      & ${Item}:first-child {
-        border-top-left-radius: 3px;
-        border-top-right-radius: 3px;
-      }
-      & ${Item}:last-child {
-        border-bottom-left-radius: 3px;
-        border-bottom-right-radius: 3px;
-      }
-    `}
-    {...props}
-  />
-))
+        & > li:first-child {
+          border-top-left-radius: 3px;
+          border-top-right-radius: 3px;
+        }
+        & > li:last-child {
+          border-bottom-left-radius: 3px;
+          border-bottom-right-radius: 3px;
+        }
+      `}
+      {...props}
+    />
+  )
+}
 /* eslint-enable react/prop-types */
 
 const AutoCompleteMemo = React.memo(AutoComplete)

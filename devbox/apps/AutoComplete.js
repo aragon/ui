@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useState } from 'react'
 import {
   _AutoComplete as AutoComplete,
   _AutoCompleteSelected as AutoCompleteSelected,
@@ -32,10 +32,7 @@ export default function() {
   const [textSearchTerm, setTextSearchTerm] = useState('')
   const [customSearchTerm, setCustomSearchTerm] = useState('')
   const [selectedSearchTerm, setSelectedSearchTerm] = useState('')
-  const [selectedItem, setSelectedIem] = useState(null)
-  const textRef = useRef()
-  const customRef = useRef()
-  const selectedRef = useRef()
+  const [selectedItem, setSelectedItem] = useState(null)
 
   return (
     <Center>
@@ -55,12 +52,9 @@ export default function() {
                     name.toLowerCase().indexOf(textSearchTerm.toLowerCase()) >
                       -1
                 )}
-              onChange={setTextSearchTerm}
-              onSelect={value => {
-                textRef.current.value = value
-                setTextSearchTerm('')
-              }}
-              ref={textRef}
+              onChange={value => setTextSearchTerm(value)}
+              value={textSearchTerm}
+              onSelect={value => setTextSearchTerm(value)}
               placeholder="Hint Bruce"
             />
           </label>
@@ -79,12 +73,11 @@ export default function() {
                     hint.toLowerCase().indexOf(customSearchTerm.toLowerCase()) >
                       -1)
               )}
-              onChange={setCustomSearchTerm}
+              onChange={value => setCustomSearchTerm(value)}
               onSelect={({ name }) => {
-                customRef.current.value = name
-                setCustomSearchTerm('')
+                setCustomSearchTerm(name)
               }}
-              ref={customRef}
+              value={customSearchTerm}
               renderItem={Item}
               placeholder="Hint: I am"
             />
@@ -106,19 +99,17 @@ export default function() {
                       .toLowerCase()
                       .indexOf(selectedSearchTerm.toLowerCase()) > -1)
               )}
-              onChange={setSelectedSearchTerm}
+              onChange={value => setSelectedSearchTerm(value)}
               onSelect={item => {
                 const { name } = item
-                selectedRef.current.value = name
                 setSelectedSearchTerm(name)
-                setSelectedIem(item)
+                setSelectedItem(item)
               }}
-              ref={selectedRef}
               renderItem={Item}
               selected={selectedItem}
               renderSelected={Selected}
               onSelectedClick={() => {
-                setSelectedIem(null)
+                setSelectedItem(null)
               }}
               value={selectedSearchTerm}
               placeholder="Hint: Bruce"
