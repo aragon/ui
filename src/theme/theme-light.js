@@ -28,11 +28,11 @@ export default {
   feedbackSurfaceContentSecondary: colors.GreyMedium,
 
   warning: colors.Orange,
-  warningSurface: colors.OrangeLight,
+  warningSurface: '#FFF1DA',
   warningSurfaceContent: colors.OrangeDark,
 
   info: colors.AragonBlue,
-  infoSurface: colors.AragonBlueLight,
+  infoSurface: colors.AragonBlueLighter,
   infoSurfaceContent: colors.AragonBlueDark,
 
   help: colors.Purple,
@@ -42,26 +42,26 @@ export default {
 
   negative: colors.Red,
   negativeContent: colors.White,
-  negativeSurface: colors.RedLight,
+  negativeSurface: '#FFE8E8',
   negativeSurfaceContent: colors.RedDark,
 
   positive: colors.MintGreen,
   positiveContent: colors.White,
-  positiveSurface: colors.MintGreenLight,
+  positiveSurface: '#D8FFF1',
   positiveSurfaceContent: colors.MintGreenDark,
 
   badge: colors.AragonBlueLighter,
   badgeContent: colors.GreyDark,
   badgePressed: colors.ArcticBlueLight,
 
-  tagIdentifier: colors.PurpleLight,
+  tagIdentifier: '#EDE6FF',
   tagIdentifierContent: colors.PurpleDark,
 
-  tagNew: colors.MintGreenLight,
+  tagNew: '#D8FFF1',
   tagNewContent: colors.MintGreen,
 
   tagIndicator: colors.AragonBlueLighter,
-  tagIndicatorContent: colors.AragonBlueDark,
+  tagIndicatorContent: colors.AragonBlue,
 
   tagActivity: colors.AragonBlue,
   tagActivityContent: colors.White,

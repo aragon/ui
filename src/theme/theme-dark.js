@@ -28,11 +28,11 @@ export default {
   feedbackSurfaceContentSecondary: colors.GreyMedium,
 
   warning: '#ffa410',
-  warningSurface: colors.OrangeLight,
+  warningSurface: '#656569',
   warningSurfaceContent: '#ffa410',
 
   info: '#00d2ff',
-  infoSurface: colors.AragonBlueLight,
+  infoSurface: '#415279',
   infoSurfaceContent: '#18d4fb',
 
   help: colors.Purple,
@@ -42,7 +42,7 @@ export default {
 
   negative: colors.Red,
   negativeContent: colors.White,
-  negativeSurface: colors.RedLight,
+  negativeSurface: '#655c72',
   negativeSurfaceContent: '#ff5454',
 
   positive: '#2cc68f',
