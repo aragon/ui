@@ -5,77 +5,125 @@ Renders a side panel with an overlay over the app.
 ## Usage
 
 ```jsx
-import { SidePanel } from '@aragon/ui'
+function App() {
+  const [opened, setOpened] = useState(false)
 
-const App = (props) => (
-  <SidePanel title="Menu" opened={props.opened}>
-    {/* Content goes here */}
-  </SidePanel>
-)
+  return (
+    <Main>
+      <Button mode="strong" onClick={() => setOpened(true)}>
+        Open the panel
+      </Button>
+
+      <SidePanel title="Panel title" opened={opened}>
+        Sidepanel content goes here.
+      </SidePanel>
+    </Main>
+  )
+}
 ```
 
 ## Props
 
+### `children`
+
+| Type         | Default value   |
+| ------------ | --------------- |
+| `React node` | None (required) |
+
+The content of the sidepanel.
+
 ### `title`
 
-- Type: `String`
+| Type         | Default value   |
+| ------------ | --------------- |
+| `React node` | None (required) |
 
-Set a title for your SidePanel.
-
-#### Example:
-
-```jsx
-const MySidePanel = (props) => (
-  <SidePanel title="Checkout Details" {...props}>
-    {/* form inputs */}
-  </SidePanel>
-)
-```
+The main title for the panel.
 
 ### `opened`
 
-- Type: `Boolean`
+| Type      | Default value |
+| --------- | ------------- |
+| `Boolean` | `true`        |
 
-This property toggles the visibility of your SidePanel.
-
-#### Example:
-
-```jsx
-const MySidePanel = (props) => (
-  <SidePanel opened={props.opened} {...props}>
-    {/* contents */}
-  </SidePanel>
-)
-```
+Toggles the visibility of the panel. Note: when the panel finishes closing, the children components will get unmounted.
 
 ### `onClose`
 
-- Type: `Function`
+| Type       | Default value |
+| ---------- | ------------- |
+| `Function` | None          |
 
-This property will be called when your SidePanel is closed.
+Gets called when the user tries to close the panel, by clicking on the close button or the overlay.
 
-#### Example:
+### `blocking`
+
+| Type      | Default value |
+| --------- | ------------- |
+| `Boolean` | `false`       |
+
+When set, removes the ability to close the panel by using the close button or the overlay.
+
+## Related hooks
+
+### useSidePanel()
+
+This hook should be used inside `SidePanel`, and returns an object with two entries:
+
+- `status` represents the current state of the panel: `opened`, `closed`, `opening`, `closing`.
+- `readyToFocus` can be used to focus an element as soon as possible inside the panel without affecting the transition.
+
+About the need to have `readyToFocus`: browser engines tend to force newly focused elements to move inside the viewport, skipping current transitions in the process. `readyToFocus` detects that the transition is half way, which is generally a safe point to start focusing an element without any transition issue. If you still notice a transition issue, another option is to use `status === 'opened'`.
+
+#### Example
 
 ```jsx
-const MySidePanel = (props) => (
-  <SidePanel opened={props.opened} onClose={() => console.log('MySidePanel was closed!')} {...props}>
-    {/* contents */}
+// MySidePanel.js
+
+function MySidePanel() {
+  const inputRef = useRef()
+  const { readyToFocus } = useSidePanel()
+
+  useEffect(() => {
+    if (readyToFocus && inputRef.current) {
+      inputRef.current.focus()
+    }
+  }, [readyToFocus, inputRef])
+
+  // The TextInput will get focused as soon as possible.
+  return <TextInput wide ref={inputRef} />
+}
+
+export default props => (
+  <SidePanel title="Panel title" {...props}>
+    <MySidePanel />
   </SidePanel>
 )
 ```
 
-### `blocking`
+And because calling `.focus()` on a reference is a very common use case, another hook is provided to do it easily: `useSidePanelFocusOnReady()`.
 
-- Type: `Boolean`
+### useSidePanelFocusOnReady()
 
-When set, this property removes the ability to close the SidePanel.
+This hook can be used to focus a ref (usually a `TextInput`) when `readyToFocus` is set to `true`.
 
-#### Example:
+It takes a React ref as a parameter, or creates one if not provided. It returns this ref.
+
+This is how `useSidePanelFocusOnReady()` can be used:
 
 ```jsx
-const MySidePanel = (props) => (
-  <SidePanel blocking {...props}>
-    {/* contents */}
+// MySidePanel.js
+
+function MySidePanel() {
+  const inputRef = useSidePanelFocusOnReady()
+
+  // The TextInput will get focused as soon as possible.
+  return <TextInput wide ref={inputRef} />
+}
+
+export default props => (
+  <SidePanel title="Panel title" {...props}>
+    <MySidePanel />
   </SidePanel>
 )
 ```
