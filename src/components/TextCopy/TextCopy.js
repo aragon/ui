@@ -52,6 +52,7 @@ const TextCopy = React.memo(
         css={`
           position: relative;
           display: inline-flex;
+          width: ${52.5 * GU}px;
           max-width: 100%;
           height: ${HEIGHT}px;
           padding-left: ${adornment ? `${HEIGHT}px` : '0'};
@@ -116,7 +117,6 @@ const TextCopy = React.memo(
           css={`
             text-overflow: ellipsis;
             height: ${HEIGHT}px;
-            width: ${52.5 * GU}px;
             max-width: 100%;
             border: 1px solid ${theme.border};
             ${adornment
