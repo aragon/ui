@@ -1,13 +1,8 @@
 import { createGlobalStyle } from 'styled-components'
-import { theme } from '@aragon/ui'
 
 const GlobalStyles = createGlobalStyle`
   body {
-    background: linear-gradient(
-      130deg,
-      ${theme.mainBgGradientStart},
-      ${theme.mainBgGradientEnd}
-    );
+    background: linear-gradient(130deg, ${p => p.theme.background});
   }
   body, html {
     overflow: hidden;

@@ -7,6 +7,7 @@
     "history": "^4.7.2",
     "markdown-it": "^8.4.2",
     "markdown-it-anchor": "^5.0.2",
+    "markdown-it-link-attributes": "^3.0.0",
     "prismjs": "^1.8.1",
     "prop-types": "^15.7.1",
     "react": "^16.8.1",

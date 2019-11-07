@@ -1,79 +1,86 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Text, theme } from '@aragon/ui'
+import { GU, textStyle, useTheme } from '@aragon/ui'
 import MenuItem from './MenuItem'
 
-class Sidebar extends React.PureComponent {
-  handleHomeClick = event => {
-    event.preventDefault()
-    this.props.onOpen(this.props.root)
-  }
-  render() {
-    const { title, root, pages, activePage, groups, onOpen } = this.props
-    return (
-      <Main>
-        <StyledSidebar>
-          <Title>
-            <a href={root} onClick={this.handleHomeClick}>
-              {title}
-            </a>
-          </Title>
-          <nav>
-            <ul>
-              {groups.map(({ name, pages }) => (
-                <li key={name}>
-                  <GroupName>
-                    <Text smallcaps color={theme.textSecondary}>
-                      {name}
-                    </Text>
-                  </GroupName>
-                  <ul>
-                    {pages.map((page, i) => (
-                      <MenuItem
-                        key={page.path}
-                        active={page === activePage}
-                        path={page.path}
-                        name={page.name}
-                        onOpen={onOpen}
-                      />
-                    ))}
-                  </ul>
-                </li>
-              ))}
-            </ul>
-          </nav>
-        </StyledSidebar>
-      </Main>
-    )
-  }
+function Sidebar({ title, root, pages, activePage, groups, onOpen }) {
+  const theme = useTheme()
+  return (
+    <div
+      css={`
+        width: ${30 * GU}px;
+        flex-shrink: 0;
+        background: ${theme.surface};
+        border-right: 1px solid ${theme.border};
+        box-shadow: 2px 0 3px rgba(0, 0, 0, 0.05);
+      `}
+    >
+      <section
+        css={`
+          padding: ${5 * GU}px;
+          li {
+            list-style: none;
+          }
+        `}
+      >
+        <h1
+          css={`
+            margin-bottom: 30px;
+            font-size: 18px;
+            font-weight: 600;
+            white-space: nowrap;
+            a {
+              text-decoration: none;
+            }
+          `}
+        >
+          <a
+            href={root}
+            onClick={event => {
+              event.preventDefault()
+              onOpen(root)
+            }}
+          >
+            {title}
+          </a>
+        </h1>
+        <nav>
+          <ul>
+            {groups.map(({ name, pages }) => (
+              <li key={name}>
+                <h2
+                  css={`
+                    margin-top: ${4 * GU}px;
+                    margin-bottom: ${2 * GU}px;
+                  `}
+                >
+                  <span
+                    css={`
+                      color: ${theme.surfaceContentSecondary};
+                      ${textStyle('label2')};
+                    `}
+                  >
+                    {name}
+                  </span>
+                </h2>
+                <ul>
+                  {pages.map((page, i) => (
+                    <MenuItem
+                      key={page.path}
+                      active={page === activePage}
+                      path={page.path}
+                      name={page.name}
+                      onOpen={onOpen}
+                    />
+                  ))}
+                </ul>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </section>
+    </div>
+  )
 }
-
-const Main = styled.div`
-  width: 240px;
-  flex-shrink: 0;
-`
-
-const StyledSidebar = styled.section`
-  overflow-y: auto;
-  height: 100vh;
-  padding: 40px;
-  li {
-    list-style: none;
-  }
-`
-
-const Title = styled.h1`
-  margin-bottom: 30px;
-  font-size: 18px;
-  font-weight: 600;
-  white-space: nowrap;
-  a {
-    text-decoration: none;
-  }
-`
-
-const GroupName = styled.h2`
-  margin-top: 30px;
-`
 
 export default Sidebar

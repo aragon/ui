@@ -7,6 +7,8 @@ const CompressionPlugin = require('compression-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const WebpackMonitor = require('webpack-monitor')
 
+const aragonUiVersion = require('../package.json').version
+
 const PUBLIC_PATH = '/'
 const BASE_HTML_CONF = {
   publicUrl: PUBLIC_PATH,
@@ -49,6 +51,7 @@ module.exports = (env, argv) => {
         src: path.resolve(__dirname, 'src'),
         '@aragon/ui': path.resolve(__dirname, '..'),
         'ui-src': path.resolve(__dirname, '../src'),
+        'ui-docs': path.resolve(__dirname, '../docs'),
       },
 
       // Only needed because @aragon/ui is linked
@@ -105,6 +108,9 @@ module.exports = (env, argv) => {
         new HtmlWebpackPlugin(BASE_HTML_CONF),
         new webpack.DefinePlugin({
           ARAGON_UI_PATH: JSON.stringify(production ? '/aragon-ui/' : '/'),
+        }),
+        new webpack.DefinePlugin({
+          ARAGON_UI_VERSION: JSON.stringify(aragonUiVersion),
         }),
       ]
 

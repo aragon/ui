@@ -1,67 +1,58 @@
-// Styles
-import PageHome from './pages/PageHome'
-import PageColors from './pages/PageColors'
-import PageTheme from './pages/PageTheme'
-import PageText from './pages/PageText'
-import PageIcons from './pages/PageIcons'
-import PageBaseStyles from './pages/PageBaseStyles'
-
-// Controls
+import PageAddressField from './pages/PageAddressField'
+import PageAutoComplete from './pages/PageAutoComplete'
+import PageBar from './pages/PageBar'
 import PageButton from './pages/PageButton'
-import PageDropDown from './pages/PageDropDown'
+import PageColors from './pages/PageColors'
+import PageBox from './pages/PageBox'
+import PageButtonBase from './pages/PageButtonBase'
+import PageCard from './pages/PageCard'
 import PageCheckBox from './pages/PageCheckBox'
+import PageCircleGraph from './pages/PageCircleGraph'
 import PageContextMenu from './pages/PageContextMenu'
+import PageCountdown from './pages/PageCountdown'
+import PageDataView from './pages/PageDataView'
+import PageDateRangePicker from './pages/PageDateRangePicker'
+import PageDistribution from './pages/PageDistribution'
+import PageDropDown from './pages/PageDropDown'
+import PageEmptyStateCard from './pages/PageEmptyStateCard'
+import PageEthIdenticon from './pages/PageEthIdenticon'
+import PageField from './pages/PageField'
+import PageFocusVisible from './pages/PageFocusVisible'
+import PageGettingStarted from './pages/PageGettingStarted'
+import PageHome from './pages/PageHome'
+import PageIcons from './pages/PageIcons'
+import PageIdentityBadge from './pages/PageIdentityBadge'
+import PageInfo from './pages/PageInfo'
+import PageLineChart from './pages/PageLineChart'
 import PageLink from './pages/PageLink'
+import PageMain from './pages/PageMain'
+import PageSplit from './pages/PageSplit'
+import PageHeader from './pages/PageHeader'
+import PageModal from './pages/PageModal'
+import PageObserve from './pages/PageObserve'
+import PagePopover from './pages/PagePopover'
+import PageProgressBar from './pages/PageProgressBar'
+import PagePublicUrl from './pages/PagePublicUrl'
 import PageRadio from './pages/PageRadio'
 import PageRadioGroup from './pages/PageRadioGroup'
 import PageRadioList from './pages/PageRadioList'
+import PageRedraw from './pages/PageRedraw'
+import PageRedrawFromDate from './pages/PageRedrawFromDate'
+import PageRoot from './pages/PageRoot'
+import PageRootPortal from './pages/PageRootPortal'
+import PageSidePanel from './pages/PageSidePanel'
+import PageSlider from './pages/PageSlider'
+import PageSwitch from './pages/PageSwitch'
+import PageTable from './pages/PageTable'
+import PageTabs from './pages/PageTabs'
+import PageText from './pages/PageText'
 import PageTextCopy from './pages/PageTextCopy'
 import PageTextInput from './pages/PageTextInput'
-import PageField from './pages/PageField'
-import PageSlider from './pages/PageSlider'
-import PageTabs from './pages/PageTabs'
-import PageAutoComplete from './pages/PageAutoComplete'
-import PageDateRangePicker from './pages/PageDateRangePicker'
-import PageSwitch from './pages/PageSwitch'
-
-// Other components
-import PageAddressField from './pages/PageAddressField'
-import PageCircleGraph from './pages/PageCircleGraph'
-import PageCountdown from './pages/PageCountdown'
-import PageEthIdenticon from './pages/PageEthIdenticon'
-import PageIdentityBadge from './pages/PageIdentityBadge'
-import PageInfo from './pages/PageInfo'
-import PageProgressBar from './pages/PageProgressBar'
-import PageModal from './pages/PageModal'
-import PageRootPortal from './pages/PageRootPortal'
-import PageLineChart from './pages/PageLineChart'
 import PageTimer from './pages/PageTimer'
+import PageToastHub from './pages/PageToastHub'
 import PageTransactionBadge from './pages/PageTransactionBadge'
 import PageTransactionProgress from './pages/PageTransactionProgress'
-import PageDistribution from './pages/PageDistribution'
-
-// Containers
-import PageMain from './pages/PageMain'
-import PageAppBar from './pages/PageAppBar'
-import PageNavigationBar from './pages/PageNavigationBar'
-import PageAppView from './pages/PageAppView'
-import PageSidePanel from './pages/PageSidePanel'
-import PageCard from './pages/PageCard'
-import PageEmptyStateCard from './pages/PageEmptyStateCard'
-import PageTable from './pages/PageTable'
-import PageFocusVisible from './pages/PageFocusVisible'
-import PageDataView from './pages/PageDataView'
-
-// Advanced
-import PagePopover from './pages/PagePopover'
-import PageButtonBase from './pages/PageButtonBase'
-import PageRedraw from './pages/PageRedraw'
-import PageRoot from './pages/PageRoot'
-import PageRedrawFromDate from './pages/PageRedrawFromDate'
-import PageObserve from './pages/PageObserve'
 import PageViewport from './pages/PageViewport'
-import PageToastHub from './pages/PageToastHub'
-import PagePublicUrl from './pages/PagePublicUrl'
 
 const preparePage = ([comp, name, path = camelCaseToDashes(name)]) => ({
   comp,
@@ -78,81 +69,97 @@ const camelCaseToDashes = str =>
 
 export const PAGE_GROUPS = [
   {
-    name: 'Styles',
+    name: '',
     pages: [
-      [PageColors, 'Colors'],
+      [PageGettingStarted, 'Getting started', 'getting-started'],
+      [PageColors, 'Colors', 'colors'],
+      [PageText, 'Text styling', 'text-styling'],
+    ],
+  },
+  {
+    name: 'Base',
+    pages: [
+      [PageMain, 'Main'],
       [PageIcons, 'Icons'],
-      [PageText, 'Text'],
-      [PageTheme, 'Theme'],
+      [PageLink, 'Link'],
+      [PageButton, 'Button'],
+    ],
+  },
+  {
+    name: 'Containers',
+    pages: [
+      [PageBar, 'Bar'],
+      [PageBox, 'Box'],
+      [PageCard, 'Card'],
+      [PageHeader, 'Header'],
+      [PageModal, 'Modal'],
+      [PageSidePanel, 'SidePanel'],
+      [PageSplit, 'Split'],
+      [PageTable, 'Table'],
+      [PageTabs, 'Tabs'],
+    ],
+  },
+  {
+    name: 'Data',
+    pages: [
+      [PageCircleGraph, 'CircleGraph'],
+      [PageDataView, 'DataView'],
+      [PageDistribution, 'Distribution'],
+      [PageLineChart, 'LineChart'],
+      [PageProgressBar, 'ProgressBar'],
+      [PageTimer, 'Timer'],
     ],
   },
   {
     name: 'Controls',
     pages: [
-      [PageLink, 'Link'],
-      [PageButton, 'Button'],
+      [PageAutoComplete, 'AutoComplete'],
       [PageCheckBox, 'CheckBox'],
-      [PageContextMenu, 'ContextMenu'],
+      [PageDateRangePicker, 'DateRangePicker'],
       [PageDropDown, 'DropDown'],
       [PageField, 'Field'],
       [PageRadio, 'Radio'],
       [PageRadioGroup, 'RadioGroup'],
       [PageRadioList, 'RadioList'],
       [PageSlider, 'Slider'],
+      [PageSwitch, 'Switch'],
       [PageTextCopy, 'TextCopy'],
       [PageTextInput, 'TextInput'],
-      [PageAutoComplete, 'AutoComplete'],
-      [PageDateRangePicker, 'DateRangePicker'],
-      [PageSwitch, 'Switch'],
     ],
   },
   {
-    name: 'Containers',
-    pages: [
-      [PageMain, 'Main'],
-      [PageAppBar, 'AppBar'],
-      [PageAppView, 'AppView'],
-      [PageCard, 'Card'],
-      [PageEmptyStateCard, 'EmptyStateCard'],
-      [PageFocusVisible, 'FocusVisible'],
-      [PageNavigationBar, 'NavigationBar'],
-      [PageSidePanel, 'SidePanel'],
-      [PageTable, 'Table'],
-      [PageTabs, 'Tabs'],
-      [PageDataView, 'DataView'],
-    ],
-  },
-  {
-    name: 'Components',
+    name: 'Web3',
     pages: [
       [PageAddressField, 'AddressField'],
-      [PageCircleGraph, 'CircleGraph'],
-      [PageCountdown, 'Countdown'],
       [PageEthIdenticon, 'EthIdenticon'],
       [PageIdentityBadge, 'IdentityBadge'],
-      [PageInfo, 'Info'],
-      [PageLineChart, 'LineChart'],
-      [PageModal, 'Modal'],
-      [PageProgressBar, 'ProgressBar'],
-      [PageRootPortal, 'RootPortal'],
-      [PageTimer, 'Timer'],
       [PageTransactionBadge, 'TransactionBadge'],
       [PageTransactionProgress, 'TransactionProgress'],
-      [PageDistribution, 'Distribution'],
+    ],
+  },
+  {
+    name: 'Other',
+    pages: [
+      [PageContextMenu, 'ContextMenu'],
+      [PageCountdown, 'Countdown'],
+      [PageEmptyStateCard, 'EmptyStateCard'],
+      [PageInfo, 'Info'],
+      [PageToastHub, 'Toast'],
     ],
   },
   {
     name: 'Advanced',
     pages: [
-      [PagePopover, 'Popover'],
       [PageButtonBase, 'ButtonBase'],
-      [PageViewport, 'Viewport'],
+      [PageFocusVisible, 'FocusVisible'],
       [PageObserve, 'Observe'],
+      [PagePopover, 'Popover'],
       [PagePublicUrl, 'PublicUrl'],
       [PageRedraw, 'Redraw'],
       [PageRedrawFromDate, 'RedrawFromDate'],
       [PageRoot, 'Root'],
-      [PageToastHub, 'ToastHub'],
+      [PageRootPortal, 'RootPortal'],
+      [PageViewport, 'Viewport'],
     ],
   },
 ].map(group => ({ ...group, pages: group.pages.map(preparePage) }))

@@ -44,7 +44,7 @@ function App() {
 }
 ```
 
-*Your project is now ready to use aragonUI. 💫*
+_Your project is now ready to use aragonUI. 💫_
 
 Open https://ui.aragon.org/ to see the list of the available components and learn how to use them.
 
@@ -83,6 +83,10 @@ You may also want to add it as a build step in your project, so that aragonUI ca
 ```
 
 See `copy-aragon-ui-assets -h` for more information.
+
+## Documentation
+
+The complete documentation can be found on the [aragonUI website](https://ui.aragon.org/).
 
 ## Build & Develop
 
