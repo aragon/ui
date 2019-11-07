@@ -8,9 +8,7 @@ function StyledMarkdown(props) {
     <div
       css={`
         code {
-          padding: 0 ${0.5 * GU}px;
-          border-radius: ${RADIUS}px;
-          color: ${theme.infoSurfaceContent};
+          color: ${theme.contentSecondary};
         }
         pre {
           padding: ${3 * GU}px;
