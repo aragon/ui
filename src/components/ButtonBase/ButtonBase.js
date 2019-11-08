@@ -159,18 +159,37 @@ ButtonBase.defaultProps = {
   showFocusRing: true,
 }
 
-const ButtonBaseWithFocus = React.forwardRef((props, ref) => (
-  <FocusVisible>
-    {({ focusVisible, onFocus }) => (
-      <ButtonBase
-        innerRef={ref}
-        onFocus={onFocus}
-        focusVisible={focusVisible}
-        {...props}
-      />
-    )}
-  </FocusVisible>
-))
+const ButtonBaseWithFocus = React.forwardRef(
+  ({ onFocus: onFocusProp, ...props }, ref) => {
+    return (
+      <FocusVisible>
+        {({ focusVisible, onFocus }) => {
+          // support external onFocus handlers
+          const handleFocus = event => {
+            if (onFocusProp) {
+              onFocusProp(event)
+            }
+            onFocus(event)
+          }
+
+          return (
+            <ButtonBase
+              innerRef={ref}
+              onFocus={handleFocus}
+              focusVisible={focusVisible}
+              {...props}
+            />
+          )
+        }}
+      </FocusVisible>
+    )
+  }
+)
+
+ButtonBaseWithFocus.propTypes = {
+  ...ButtonBase.propTypes,
+  onFocus: PropTypes.func,
+}
 
 const LinkBase = React.forwardRef((props, ref) => {
   warnOnce(
