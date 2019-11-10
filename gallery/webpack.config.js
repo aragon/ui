@@ -15,13 +15,17 @@ const BASE_HTML_CONF = {
   template: './public/index.html',
 }
 
-const pages = fs.readdirSync(path.join(__dirname, 'src/pages')).map(filename =>
-  filename
-    .replace(/\.js$/, '')
-    .replace(/^Page/, '')
-    .replace(/(.)([A-Z])/g, '$1-$2')
-    .toLowerCase()
-)
+const pages = fs
+  .readdirSync(path.join(__dirname, 'src/pages'))
+  .map(filename =>
+    filename
+      .replace(/\.js$/, '')
+      .replace(/^Page/, '')
+      .replace(/(.)([A-Z])/g, '$1-$2')
+      .toLowerCase()
+  )
+  // See markdown-only pages declared in routes.js
+  .concat(['getting-started', 'spacing', 'colors', 'text-styles'])
 
 const htmlPages = () => {
   return pages.map(

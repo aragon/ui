@@ -60,6 +60,7 @@ import colorsMd from 'ui-docs/Colors.md'
 import gettingstartedMd from 'ui-docs/GettingStarted.md'
 
 // Create a page component that only renders a markdown file
+// Remember to update the list of markdown pages in webpack.config.js!
 function readmePage(readme) {
   return ({ title }) => <Page title={title} readme={readme} />
 }
