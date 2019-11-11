@@ -1,8 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { ImageExists } from '../../hooks'
-import { GU, RADIUS } from '../../style'
-import { useTheme } from '../../theme'
+import { GU } from '../../style'
 import { blockExplorerUrl } from '../../utils'
 import AddressField from '../AddressField/AddressField'
 import BadgePopoverBase from '../BadgeBase/BadgePopoverBase'
@@ -17,7 +16,6 @@ const TokenBadgePopover = React.memo(function TokenBadgePopover({
   title,
   visible,
 }) {
-  const theme = useTheme()
   const etherscanUrl = blockExplorerUrl('token', address, { networkType })
 
   return (
@@ -56,7 +54,6 @@ TokenBadgePopover.propTypes = {
 }
 
 function Icon({ src }) {
-  const theme = useTheme()
   return (
     <div
       css={`
@@ -73,7 +70,6 @@ function Icon({ src }) {
 
 Icon.propTypes = {
   src: PropTypes.string.isRequired,
-  theme: PropTypes.object.isRequired,
 }
 
 export default TokenBadgePopover

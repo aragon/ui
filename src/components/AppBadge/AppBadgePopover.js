@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { ImageExists } from '../../hooks'
-import { GU } from '../../style'
 import { blockExplorerUrl } from '../../utils'
 import AddressField from '../AddressField/AddressField'
 import BadgePopoverBase from '../BadgeBase/BadgePopoverBase'
@@ -20,7 +19,6 @@ const AppBadgePopover = React.memo(function AppBadgePopover({
   visible,
 }) {
   const etherscanUrl = blockExplorerUrl('address', appAddress, { networkType })
-
   return (
     <BadgePopoverBase
       addressField={
