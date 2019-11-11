@@ -93,15 +93,18 @@ function Page({ title, readme, children }) {
   )
 }
 
-Page.Demo = ({ opaque, height, children }) => (
-  <div>
-    <h2>Demonstration</h2>
-    <Resizable>
-      <Frame opaque={opaque} height={height}>
-        {children}
-      </Frame>
-    </Resizable>
-  </div>
-)
+function PageDemo({ opaque, height, children }) {
+  return (
+    <div>
+      <h2>Demonstration</h2>
+      <Resizable>
+        <Frame opaque={opaque} height={height}>
+          {children}
+        </Frame>
+      </Resizable>
+    </div>
+  )
+}
 
+Page.Demo = PageDemo
 export default Page
