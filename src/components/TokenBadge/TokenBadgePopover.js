@@ -28,7 +28,7 @@ const TokenBadgePopover = React.memo(function TokenBadgePopover({
             {({ exists }) => (
               <AddressField
                 address={address}
-                icon={exists ? <Icon src={iconSrc} theme={theme} /> : null}
+                icon={exists ? <Icon src={iconSrc} /> : null}
               />
             )}
           </ImageExists>
@@ -54,34 +54,21 @@ TokenBadgePopover.propTypes = {
   visible: PropTypes.bool,
 }
 
-const Icon = ({ src, theme }) => (
-  <div
-    css={`
-      flex-shrink: 0;
-      display: flex;
-      width: ${5 * GU}px;
-      height: ${5 * GU}px;
-      align-items: center;
-      justify-content: center;
-      border: 1px solid ${theme.border};
-      border-radius: ${RADIUS}px;
-      border-right: 0;
-      border-top-right-radius: 0;
-      border-bottom-right-radius: 0;
-    `}
-  >
+function Icon({ src }) {
+  const theme = useTheme()
+  return (
     <div
       css={`
-        width: 26px;
-        height: 26px;
+        width: calc(100% - ${0.5 * GU}px);
+        height: calc(100% - ${0.5 * GU}px);
         background-size: contain;
         background-position: 50% 50%;
         background-repeat: no-repeat;
         background-image: url(${src});
       `}
     />
-  </div>
-)
+  )
+}
 
 Icon.propTypes = {
   src: PropTypes.string.isRequired,
