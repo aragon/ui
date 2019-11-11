@@ -19,6 +19,7 @@ const ITEMS = new Map([
   [
     'activity',
     [
+      { label: 0 },
       { limitDigits: true, label: 1 },
       { limitDigits: true, label: 9879 },
       { limitDigits: 4, label: 9877987 },

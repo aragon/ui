@@ -77,10 +77,10 @@ function getSize(size, { uppercase, discMode, iconAndLabel }) {
   `
 }
 
-function useLabel({ label, limitDigits }) {
+function useLabel({ label = '', limitDigits }) {
   const finalLabel = useMemo(() => {
     if (limitDigits === false) {
-      return label || ''
+      return String(label) || ''
     }
 
     const digits = typeof limitDigits === 'number' ? limitDigits : COUNT_DEFAULT
@@ -111,14 +111,17 @@ function Tag({
   uppercase,
   ...props
 }) {
-  if ((icon || label) && children) {
+  if ((icon || label !== undefined) && children !== undefined) {
     throw new Error('Tag: you cannot use icon or label with children.')
   }
 
   const modeProps = useMode(mode)
 
   const finalSize = size || modeProps.size
-  const finalLabel = useLabel({ label: label || children, limitDigits })
+  const finalLabel = useLabel({
+    label: label !== undefined ? label : children,
+    limitDigits,
+  })
 
   const sizeStyles = getSize(finalSize, {
     uppercase,
