@@ -42,6 +42,7 @@ const AppBadgePopover = React.memo(function AppBadgePopover({
     />
   )
 })
+
 AppBadgePopover.propTypes = {
   appAddress: PropTypes.string.isRequired,
   iconFallbackSrc: PropTypes.string,
@@ -54,19 +55,21 @@ AppBadgePopover.propTypes = {
   visible: PropTypes.bool,
 }
 
-const Icon = ({ src, ...props }) => (
-  <div
-    css={`
-      width: ${5 * GU}px;
-      height: ${5 * GU}px;
-      background-size: contain;
-      background-position: 50% 50%;
-      background-repeat: no-repeat;
-      background-image: url(${src});
-    `}
-    {...props}
-  />
-)
+function Icon({ src, ...props }) {
+  return (
+    <div
+      css={`
+        width: 100%;
+        height: 100%;
+        background-size: contain;
+        background-position: 50% 50%;
+        background-repeat: no-repeat;
+        background-image: url(${src});
+      `}
+      {...props}
+    />
+  )
+}
 
 Icon.propTypes = {
   src: PropTypes.string.isRequired,

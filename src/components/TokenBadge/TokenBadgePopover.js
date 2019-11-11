@@ -44,6 +44,7 @@ const TokenBadgePopover = React.memo(function TokenBadgePopover({
     />
   )
 })
+
 TokenBadgePopover.propTypes = {
   address: PropTypes.string.isRequired,
   iconSrc: PropTypes.string,
