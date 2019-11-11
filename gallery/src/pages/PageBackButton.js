@@ -9,28 +9,8 @@ function PageBackButton({ title }) {
   const [selected, setSelected] = useState(9)
   return (
     <Page title={title} readme={readme}>
-      <Page.Demo opaque height={150}>
-        <div
-          css={`
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            width: 100vw;
-          `}
-        >
-          <div
-            css={`
-              width: calc(100vw - ${6 * GU}px);
-            `}
-          >
-            <Bar
-              primary={<BackButton onClick={() => goBack()} />}
-              css="margin: 0"
-            />
-          </div>
-        </div>
-      </Page.Demo>
+      <h2>Demonstration</h2>
+      <Bar primary={<BackButton onClick={() => goBack()} />} css="margin: 0" />
     </Page>
   )
 }
