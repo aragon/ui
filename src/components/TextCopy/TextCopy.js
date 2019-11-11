@@ -79,6 +79,9 @@ const TextCopy = React.memo(
           >
             <div
               css={`
+                display: flex;
+                align-items: center;
+                justify-content: center;
                 width: ${HEIGHT - 2}px;
                 height: ${HEIGHT - 2}px;
               `}
