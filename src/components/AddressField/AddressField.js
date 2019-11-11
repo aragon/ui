@@ -15,15 +15,19 @@ const AddressField = React.forwardRef(function AddressField(
     <TextCopy
       ref={ref}
       adornment={
-        <EthIdenticon
-          address={address}
-          onCopy={onCopy}
-          scale={2}
-          css={`
-            transform: scale(${(HEIGHT - 2) / IDENTICON_SIZE});
-            transform-origin: 0 0;
-          `}
-        />
+        icon || (
+          <div>
+            <EthIdenticon
+              address={address}
+              onCopy={onCopy}
+              scale={2}
+              css={`
+                transform: scale(${(HEIGHT - 2) / IDENTICON_SIZE});
+                transform-origin: 50% 50%;
+              `}
+            />
+          </div>
+        )
       }
       autofocus={autofocus}
       value={address}
