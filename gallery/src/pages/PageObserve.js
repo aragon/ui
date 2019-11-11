@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Subject } from 'rxjs'
+import { map } from 'rxjs/operators'
 import { observe, Tag, Button } from '@aragon/ui'
 
 import Page from 'comps/Page/Page'
@@ -21,11 +22,15 @@ class PageObserve extends React.Component {
     this.observable = new Subject()
   }
   launchEvents = () => {
-    ;[1, 2, 3].forEach(val => {
-      setTimeout(() => {
-        this.observable.next(val)
-      }, val * 500)
-    })
+    clearTimeout(this.tickTimer)
+
+    let val = 0
+    const tick = () => {
+      val = (val + 1) % 10
+      this.observable.next(val)
+      this.tickTimer = setTimeout(tick, 500)
+    }
+    tick()
   }
   render() {
     const { title } = this.props
@@ -44,21 +49,21 @@ class PageObserve extends React.Component {
   }
 }
 
-const Receiver = ({ propValue, value }) => (
-  <div>
-    <p>
-      Current observed value: <Tag>{value}</Tag>
-    </p>
-    <p>
-      Current passed prop value: <Tag>{propValue}</Tag>
-    </p>
-  </div>
-)
+function Receiver({ propValue, value }) {
+  return (
+    <div>
+      <p>
+        Current observed value: <Tag>{value}</Tag>
+      </p>
+      <p>
+        Current passed prop value: <Tag>{propValue}</Tag>
+      </p>
+    </div>
+  )
+}
+
 const Observed = observe(
-  observable =>
-    observable.map(value => {
-      return { value }
-    }),
+  observable => observable.pipe(map(value => ({ value }))),
   { value: 0 }
 )(Receiver)
 
