@@ -9,6 +9,20 @@ const WebpackMonitor = require('webpack-monitor')
 
 const aragonUiVersion = require('../package.json').version
 
+// See markdown-only pages declared in routes.js
+const MARKDOWN_ONLY_PAGES = [
+  'getting-started',
+  'spacing',
+  'colors',
+  'text-styles',
+  'tag',
+  'accordion',
+  'search-input',
+  'loading-ring',
+  'sync-indicator',
+  'float-indicator',
+]
+
 const PUBLIC_PATH = '/'
 const BASE_HTML_CONF = {
   publicUrl: PUBLIC_PATH,

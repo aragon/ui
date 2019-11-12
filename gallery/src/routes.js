@@ -3,10 +3,10 @@ import Page from './components/Page/Page'
 
 import PageAddressField from './pages/PageAddressField'
 import PageAutoComplete from './pages/PageAutoComplete'
+import PageBackButton from './pages/PageBackButton'
 import PageBar from './pages/PageBar'
 import PageBox from './pages/PageBox'
 import PageButton from './pages/PageButton'
-import PageTextStyles from './pages/PageTextStyles'
 import PageButtonBase from './pages/PageButtonBase'
 import PageCard from './pages/PageCard'
 import PageCheckBox from './pages/PageCheckBox'
@@ -31,6 +31,7 @@ import PageLink from './pages/PageLink'
 import PageMain from './pages/PageMain'
 import PageModal from './pages/PageModal'
 import PageObserve from './pages/PageObserve'
+import PagePagination from './pages/PagePagination'
 import PagePopover from './pages/PagePopover'
 import PageProgressBar from './pages/PageProgressBar'
 import PagePublicUrl from './pages/PagePublicUrl'
@@ -49,15 +50,23 @@ import PageTable from './pages/PageTable'
 import PageTabs from './pages/PageTabs'
 import PageTextCopy from './pages/PageTextCopy'
 import PageTextInput from './pages/PageTextInput'
+import PageTextStyles from './pages/PageTextStyles'
 import PageTimer from './pages/PageTimer'
 import PageToastHub from './pages/PageToastHub'
 import PageTransactionBadge from './pages/PageTransactionBadge'
 import PageTransactionProgress from './pages/PageTransactionProgress'
 import PageViewport from './pages/PageViewport'
 
-import spacingMd from 'ui-docs/Spacing.md'
+import accordionMd from 'ui-src/components/Accordion/README.md'
 import colorsMd from 'ui-docs/Colors.md'
+import floatIndicatorMd from 'ui-src/components/FloatIndicator/README.md'
 import gettingstartedMd from 'ui-docs/GettingStarted.md'
+import helpMd from 'ui-src/components/Help/README.md'
+import loadingRingMd from 'ui-src/components/LoadingRing/README.md'
+import searchInputMd from 'ui-src/components/Input/SearchInput.md'
+import spacingMd from 'ui-docs/Spacing.md'
+import syncIndicatorMd from 'ui-src/components/SyncIndicator/README.md'
+import tagMd from 'ui-src/components/Tag/README.md'
 
 // Create a page component that only renders a markdown file
 // Remember to update the list of markdown pages in webpack.config.js!
@@ -86,77 +95,92 @@ export const PAGE_GROUPS = [
       [readmePage(spacingMd), 'Spacing', 'spacing'],
       [readmePage(colorsMd), 'Colors', 'colors'],
       [PageTextStyles, 'Text styles', 'text-styles'],
-    ],
-  },
-  {
-    name: 'Base',
-    pages: [
-      [PageMain, 'Main'],
       [PageIcons, 'Icons'],
-      [PageLink, 'Link'],
-      [PageButton, 'Button'],
+      [PageMain, 'Main'],
     ],
   },
   {
-    name: 'Containers',
+    name: 'Actions',
+    pages: [
+      [PageButton, 'Button'],
+      [PageContextMenu, 'ContextMenu'],
+    ],
+  },
+  {
+    name: 'Navigation',
+    pages: [
+      [PageTabs, 'Tabs'],
+      [PagePagination, 'Pagination'],
+      [PageBackButton, 'BackButton'],
+      [PageLink, 'Link'],
+      [PageHeader, 'Header'],
+    ],
+  },
+  {
+    name: 'Structure',
     pages: [
       [PageBar, 'Bar'],
       [PageBox, 'Box'],
       [PageCard, 'Card'],
-      [PageHeader, 'Header'],
-      [PageModal, 'Modal'],
-      [PageSidePanel, 'SidePanel'],
       [PageSplit, 'Split'],
-      [PageTable, 'Table'],
-      [PageTabs, 'Tabs'],
-    ],
-  },
-  {
-    name: 'Data',
-    pages: [
-      [PageCircleGraph, 'CircleGraph'],
       [PageDataView, 'DataView'],
-      [PageDistribution, 'Distribution'],
-      [PageLineChart, 'LineChart'],
-      [PageProgressBar, 'ProgressBar'],
-      [PageTimer, 'Timer'],
-    ],
-  },
-  {
-    name: 'Controls',
-    pages: [
-      [PageAutoComplete, 'AutoComplete'],
-      [PageCheckBox, 'CheckBox'],
-      [PageDateRangePicker, 'DateRangePicker'],
-      [PageDropDown, 'DropDown'],
-      [PageField, 'Field'],
-      [PageRadio, 'Radio'],
-      [PageRadioGroup, 'RadioGroup'],
-      [PageRadioList, 'RadioList'],
-      [PageSlider, 'Slider'],
-      [PageSwitch, 'Switch'],
-      [PageTextCopy, 'TextCopy'],
-      [PageTextInput, 'TextInput'],
-    ],
-  },
-  {
-    name: 'Web3',
-    pages: [
-      [PageAddressField, 'AddressField'],
-      [PageEthIdenticon, 'EthIdenticon'],
+      [PageTable, 'Table'],
+      [PageEmptyStateCard, 'EmptyStateCard'],
       [PageIdentityBadge, 'IdentityBadge'],
       [PageTransactionBadge, 'TransactionBadge'],
+      [readmePage(tagMd), 'Tag'],
+      [readmePage(accordionMd), 'Accordion'],
+      [PageTimer, 'Timer'],
+      [PageCountdown, 'Countdown'],
+      [PageEthIdenticon, 'EthIdenticon'],
       [PageTransactionProgress, 'TransactionProgress'],
     ],
   },
   {
-    name: 'Other',
+    name: 'Data entry',
     pages: [
-      [PageContextMenu, 'ContextMenu'],
-      [PageCountdown, 'Countdown'],
-      [PageEmptyStateCard, 'EmptyStateCard'],
+      [PageAutoComplete, 'AutoComplete'],
+      [PageDateRangePicker, 'DateRangePicker'],
+      [PageDropDown, 'DropDown'],
+      [PageSwitch, 'Switch'],
+      [PageRadio, 'Radio'],
+      [PageCheckBox, 'CheckBox'],
+      [PageSlider, 'Slider'],
+      [PageTextInput, 'TextInput'],
+      [readmePage(searchInputMd), 'SearchInput'],
+      [PageAddressField, 'AddressField'],
+      [PageRadioGroup, 'RadioGroup'],
+      [PageRadioList, 'RadioList'],
+      [PageTextCopy, 'TextCopy'],
+      [PageField, 'Field'],
+    ],
+  },
+  {
+    name: 'Visualization',
+    pages: [
+      [PageCircleGraph, 'CircleGraph'],
+      [PageLineChart, 'LineChart'],
+      [PageDistribution, 'Distribution'],
+    ],
+  },
+  {
+    name: 'Feedback',
+    pages: [
       [PageInfo, 'Info'],
+      [PageProgressBar, 'ProgressBar'],
+      [readmePage(loadingRingMd), 'LoadingRing'],
       [PageToastHub, 'Toast'],
+      [readmePage(syncIndicatorMd), 'SyncIndicator'],
+      [readmePage(floatIndicatorMd), 'FloatIndicator'],
+    ],
+  },
+  {
+    name: 'Overlays',
+    pages: [
+      [readmePage(helpMd), 'Help'],
+      [PagePopover, 'Popover'],
+      [PageModal, 'Modal'],
+      [PageSidePanel, 'SidePanel'],
     ],
   },
   {
@@ -165,7 +189,6 @@ export const PAGE_GROUPS = [
       [PageButtonBase, 'ButtonBase'],
       [PageFocusVisible, 'FocusVisible'],
       [PageObserve, 'Observe'],
-      [PagePopover, 'Popover'],
       [PagePublicUrl, 'PublicUrl'],
       [PageRedraw, 'Redraw'],
       [PageRedrawFromDate, 'RedrawFromDate'],
