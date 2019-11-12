@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { ImageExists } from '../../hooks'
-import { GU } from '../../style'
 import { blockExplorerUrl } from '../../utils'
 import AddressField from '../AddressField/AddressField'
 import BadgePopoverBase from '../BadgeBase/BadgePopoverBase'
@@ -20,7 +19,6 @@ const AppBadgePopover = React.memo(function AppBadgePopover({
   visible,
 }) {
   const etherscanUrl = blockExplorerUrl('address', appAddress, { networkType })
-
   return (
     <BadgePopoverBase
       addressField={
@@ -42,6 +40,7 @@ const AppBadgePopover = React.memo(function AppBadgePopover({
     />
   )
 })
+
 AppBadgePopover.propTypes = {
   appAddress: PropTypes.string.isRequired,
   iconFallbackSrc: PropTypes.string,
@@ -54,19 +53,21 @@ AppBadgePopover.propTypes = {
   visible: PropTypes.bool,
 }
 
-const Icon = ({ src, ...props }) => (
-  <div
-    css={`
-      width: ${5 * GU}px;
-      height: ${5 * GU}px;
-      background-size: contain;
-      background-position: 50% 50%;
-      background-repeat: no-repeat;
-      background-image: url(${src});
-    `}
-    {...props}
-  />
-)
+function Icon({ src, ...props }) {
+  return (
+    <div
+      css={`
+        width: 100%;
+        height: 100%;
+        background-size: contain;
+        background-position: 50% 50%;
+        background-repeat: no-repeat;
+        background-image: url(${src});
+      `}
+      {...props}
+    />
+  )
+}
 
 Icon.propTypes = {
   src: PropTypes.string.isRequired,
