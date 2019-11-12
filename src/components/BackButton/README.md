@@ -20,7 +20,7 @@ function App() {
 
 <div class="info">
 
-Additional props get passed to the `ButtonBase` component.
+Additional props will get passed to the internal `ButtonBase` component.
 
 </div>
 
