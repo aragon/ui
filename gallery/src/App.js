@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { createBrowserHistory } from 'history'
 import styled from 'styled-components'
 import { Link, Main, textStyle, useTheme, GU } from '@aragon/ui'
@@ -12,20 +12,27 @@ const history = createBrowserHistory()
 function App() {
   const theme = useTheme()
   const [activePage, setActivePage] = useState(null)
+  const scrollRef = useRef(null)
   const Page = activePage && activePage.comp
 
   useEffect(() => {
     const updateLocation = location => {
       const page = PAGES.find(page => page.path === location.pathname)
       setActivePage(page || null)
+
+      if (scrollRef.current) {
+        scrollRef.current.scrollIntoView({ behavior: 'smooth' })
+      }
     }
     const stop = history.listen(updateLocation)
     updateLocation(history.location)
+
     return () => stop()
   }, [])
 
   return (
     <Main assetsUrl={env().aragonUiPath} legacyFonts layout={false}>
+      <div ref={scrollRef} />
       <div css="display: flex">
         <Sidebar
           title={PAGES[0].name}
@@ -34,11 +41,7 @@ function App() {
           activePage={activePage}
           onOpen={page => history.push(page, {})}
         />
-        <div
-          css={`
-            width: 100%;
-          `}
-        >
+        <div css="width: 100%">
           {Page ? (
             <Page title={activePage.name} />
           ) : (
