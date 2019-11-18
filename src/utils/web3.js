@@ -189,14 +189,8 @@ export function blockExplorerUrl(
  * @return {string} The generated URL, or an empty string if the parameters are invalid.
  */
 export function tokenIconUrl(address = '') {
-  address = address.trim().toLowerCase()
-
-  if (!address) {
-    return ''
-  }
-
   try {
-    address = toChecksumAddress(address)
+    address = toChecksumAddress(address.trim())
   } catch (err) {
     return ''
   }
