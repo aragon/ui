@@ -80,7 +80,7 @@ function getSize(size, { uppercase, discMode, iconAndLabel }) {
 function useLabel({ label = '', limitDigits }) {
   const finalLabel = useMemo(() => {
     if (limitDigits === false) {
-      return String(label) || ''
+      return typeof label === 'number' ? String(label) : label || ''
     }
 
     const digits = typeof limitDigits === 'number' ? limitDigits : COUNT_DEFAULT
