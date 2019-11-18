@@ -1,12 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { blockExplorerUrl, font } from '../../utils'
-import { theme } from '../../theme'
+import { theme } from '../../theme-legacy'
 import { IconClose } from '../../icons'
 import { ImageExists } from '../../hooks'
 import SafeLink from '../Link/SafeLink'
 import Popover from '../Popover/Popover'
-import ButtonIcon from '../Button/ButtonIcon'
+import { ButtonIcon } from '../Button/ButtonIcon'
 import AddressField from '../AddressField/AddressField'
 
 class TokenBadgePopover extends React.PureComponent {

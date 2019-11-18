@@ -2,9 +2,9 @@ import React from 'react'
 import PropTypes from '../../proptypes'
 import styled, { keyframes } from 'styled-components'
 import { useSpring, animated, interpolate } from 'react-spring/hooks'
-import { springs } from '../../utils/styles'
+import { springs } from '../../style'
 import { warn } from '../../utils/environment'
-import { theme } from '../../theme'
+import { theme } from '../../theme-legacy'
 
 const RADIUS = 2
 const BAR_HEIGHT = 6

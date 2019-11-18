@@ -1,20 +1,24 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { animated, Transition } from 'react-spring'
-import { springs } from '../../utils/styles/spring'
 import { stylingProps } from '../../utils'
+import { springs, textStyle, GU, RADIUS } from '../../style'
 import Text from '../Text/Text'
 
 let id = 0
 
 const move = pixel => `translate3d(0,${pixel}px,0)`
 
-const { Provider, Consumer: Toast } = React.createContext(() => {
+const ToastContext = React.createContext(() => {
   throw new Error(
     "For Toast to work it needs to be part of a ToastHub's tree, which has to be declared at an upper level!"
   )
 })
+
+const useToast = () => useContext(ToastContext)
+
+const { Provider, Consumer: Toast } = ToastContext
 
 class ToastHubProvider extends React.PureComponent {
   static propTypes = {
@@ -82,19 +86,23 @@ class ToastHubProvider extends React.PureComponent {
   }
   render() {
     const { children, showIndicator, position, top } = this.props
+    const { items, leaving } = this.state
+    const showList = items.length > 0 || leaving.length > 0
     return (
       <React.Fragment>
-        <Provider value={this.add} children={children} />
-        <ToastList
-          config={this.config}
-          items={this.state.items}
-          leave={this.leave}
-          position={position}
-          remove={this.remove}
-          showIndicator={showIndicator}
-          top={top}
-          {...stylingProps(this)}
-        />
+        <Provider value={this.add}>{children}</Provider>
+        {showList && (
+          <ToastList
+            config={this.config}
+            items={this.state.items}
+            leave={this.leave}
+            position={position}
+            remove={this.remove}
+            showIndicator={showIndicator}
+            top={top}
+            {...stylingProps(this)}
+          />
+        )}
       </React.Fragment>
     )
   }
@@ -153,11 +161,12 @@ ToastList.propTypes = {
 const Container = styled.div`
   position: fixed;
   z-index: 1000;
-  top: ${props => (props.top ? '30px' : 'unset')};
-  bottom: ${props => (props.top ? 'unset' : '30px')};
+  top: ${props => (props.top ? `${3 * GU}px` : 'unset')};
+  bottom: ${props => (props.top ? 'unset' : `${3 * GU}px`)};
   margin: 0 auto;
-  left: 30px;
-  right: 30px;
+  left: ${({ shift }) => `calc(${3 * GU}px + ${shift ? `${shift}px` : '0px'})`};
+  right: ${({ shift }) =>
+    `calc(${3 * GU}px + ${shift ? `${shift}px` : '0px'})`};
   display: flex;
   flex-direction: ${props => (props.top ? 'column-reverse' : 'column')};
   pointer-events: none;
@@ -186,17 +195,16 @@ const Message = styled(animated.div)`
 `
 
 const Content = styled.div`
+  ${textStyle('body3')}
   color: white;
-  background: #445159;
-  opacity: 0.9;
+  background: rgba(48, 64, 79, 0.8);
   margin-top: ${props => (props.top ? '0' : '10px')};
   margin-bottom: ${props => (props.top ? '10px' : '0')};
-  padding: 12px 22px;
-  font-size: 1em;
+  padding: 15px 20px;
   display: grid;
   grid-template-columns: 1fr;
   grid-gap: 10px;
-  border-radius: 3px;
+  border-radius: ${RADIUS}px;
   overflow: hidden;
 `
 
@@ -209,4 +217,4 @@ const Life = styled(animated.div)`
   height: 5px;
 `
 
-export { ToastHubProvider as ToastHub, Toast }
+export { ToastHubProvider as ToastHub, Toast, useToast }

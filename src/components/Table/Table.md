@@ -35,7 +35,7 @@ const App = () => (
 )
 ```
 
-## Properties
+## Props
 
 ### `header`
 

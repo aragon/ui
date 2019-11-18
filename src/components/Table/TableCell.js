@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from '../../proptypes'
 import styled from 'styled-components'
-import { theme } from '../../theme'
+import { theme } from '../../theme-legacy'
 
 const { contentBackground } = theme
 

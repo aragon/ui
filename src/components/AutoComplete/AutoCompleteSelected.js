@@ -1,9 +1,9 @@
 import React, { useRef, useCallback } from 'react'
 import PropTypes from 'prop-types'
-import ButtonBase from '../Button/ButtonBase'
-import { theme } from '../../theme'
-import AutoComplete from './AutoComplete'
 import { identity, noop } from '../../utils'
+import { theme } from '../../theme-legacy'
+import { ButtonBase } from '../Button/ButtonBase'
+import AutoComplete from './AutoComplete'
 
 function AutoCompleteSelected({
   forwardedRef,

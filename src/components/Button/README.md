@@ -12,7 +12,7 @@ const App = () => (
 )
 ```
 
-## Properties
+## Props
 
 ### `mode`
 

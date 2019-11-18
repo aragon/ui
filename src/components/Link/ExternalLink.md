@@ -14,6 +14,6 @@ const App = () => (
 )
 ```
 
-## Properties
+## Props
 
 See [MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a).

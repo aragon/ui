@@ -3,6 +3,7 @@ import {
   _AutoComplete as AutoComplete,
   _AutoCompleteSelected as AutoCompleteSelected,
 } from '@aragon/ui'
+import { Center } from '../components/Center'
 
 const items = [
   { name: 'Bruce Wayne', hint: 'I am Batman', key: 0, emoji: '🦇' },
@@ -37,16 +38,7 @@ export default function() {
   const selectedRef = useRef()
 
   return (
-    <div
-      css={`
-        display: flex;
-        width: 100vw;
-        height: 100vh;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-      `}
-    >
+    <Center>
       <div css="width: 250px">
         <h2>Demonstration</h2>
         <div css="margin-top: 24px">
@@ -134,6 +126,6 @@ export default function() {
           </label>
         </div>
       </div>
-    </div>
+    </Center>
   )
 }

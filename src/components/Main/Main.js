@@ -6,26 +6,49 @@ import { Root } from '../../providers/Root'
 import { Viewport } from '../../providers/Viewport'
 import BaseStyles from '../BaseStyles/BaseStyles'
 import { ToastHub } from '../ToastHub/ToastHub'
+import { Layout } from '../Layout/Layout'
+import { MainTheme } from '../../theme'
+import { initContainsComponent } from '../../utils/contains-component'
 
-const Main = ({ children, assetsUrl, legacyFonts }) => (
-  <Root.Provider>
-    <Viewport.Provider>
-      <PublicUrl.Provider url={ensureTrailingSlash(assetsUrl)}>
-        <BaseStyles enableLegacyFonts={legacyFonts} />
-        <ToastHub>{children}</ToastHub>
-      </PublicUrl.Provider>
-    </Viewport.Provider>
-  </Root.Provider>
-)
+const [
+  ContainsAppViews,
+  useAppViewRegister,
+  useAppViewsCounter,
+] = initContainsComponent()
+
+const Main = ({ children, assetsUrl, layout }) => {
+  const [appViews, contextValue] = useAppViewsCounter()
+
+  if (layout === undefined) {
+    layout = appViews === 0
+  }
+
+  return (
+    <ContainsAppViews contextValue={contextValue}>
+      <MainTheme>
+        <Root.Provider>
+          <Viewport.Provider>
+            <PublicUrl.Provider url={ensureTrailingSlash(assetsUrl)}>
+              <BaseStyles />
+              <ToastHub>
+                {layout ? <Layout>{children}</Layout> : children}
+              </ToastHub>
+            </PublicUrl.Provider>
+          </Viewport.Provider>
+        </Root.Provider>
+      </MainTheme>
+    </ContainsAppViews>
+  )
+}
 
 Main.propTypes = {
-  children: PropTypes.node,
-  legacyFonts: PropTypes.bool,
   assetsUrl: PropTypes.string,
+  children: PropTypes.node,
+  layout: PropTypes.bool,
 }
 Main.defaultProps = {
-  legacyFonts: false,
   assetsUrl: './aragon-ui/',
 }
 
+export { useAppViewRegister }
 export default Main

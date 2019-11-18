@@ -14,7 +14,7 @@ const App = () => (
 )
 ```
 
-## Properties
+## Props
 
 ### `background`
 
@@ -49,7 +49,7 @@ const App = () => (
 )
 ```
 
-## Attached Properties
+## Attached Components
 
 These components extend Info by adding icons and additionally styled titles.
 

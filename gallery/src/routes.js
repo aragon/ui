@@ -19,7 +19,7 @@ import PageTextInput from './pages/PageTextInput'
 import PageField from './pages/PageField'
 import PageSafeLink from './pages/PageSafeLink'
 import PageSlider from './pages/PageSlider'
-import PageTabBar from './pages/PageTabBar'
+import PageTabs from './pages/PageTabs'
 import PageAutoComplete from './pages/PageAutoComplete'
 
 // Other components
@@ -43,7 +43,6 @@ import PageTransactionBadge from './pages/PageTransactionBadge'
 
 // Containers
 import PageMain from './pages/PageMain'
-import PageAragonApp from './pages/PageAragonApp'
 import PageAppBar from './pages/PageAppBar'
 import PageNavigationBar from './pages/PageNavigationBar'
 import PageAppView from './pages/PageAppView'
@@ -52,6 +51,7 @@ import PageCard from './pages/PageCard'
 import PageEmptyStateCard from './pages/PageEmptyStateCard'
 import PageTable from './pages/PageTable'
 import PageFocusVisible from './pages/PageFocusVisible'
+import PageDataView from './pages/PageDataView'
 
 // Providers
 import PageRedraw from './pages/PageRedraw'
@@ -99,7 +99,6 @@ export const PAGE_GROUPS = [
       [PageRadioList, 'RadioList'],
       [PageSafeLink, 'SafeLink'],
       [PageSlider, 'Slider'],
-      [PageTabBar, 'TabBar'],
       [PageTextInput, 'TextInput'],
       [PageAutoComplete, 'AutoComplete'],
     ],
@@ -107,16 +106,17 @@ export const PAGE_GROUPS = [
   {
     name: 'Containers',
     pages: [
+      [PageMain, 'Main'],
       [PageAppBar, 'AppBar'],
       [PageAppView, 'AppView'],
-      [PageAragonApp, 'AragonApp'],
       [PageCard, 'Card'],
       [PageEmptyStateCard, 'EmptyStateCard'],
       [PageFocusVisible, 'FocusVisible'],
-      [PageMain, 'Main'],
       [PageNavigationBar, 'NavigationBar'],
       [PageSidePanel, 'SidePanel'],
       [PageTable, 'Table'],
+      [PageTabs, 'Tabs'],
+      [PageDataView, 'DataView'],
     ],
   },
   {

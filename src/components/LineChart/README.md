@@ -20,7 +20,7 @@ function App() {
 }
 ```
 
-## Properties
+## Props
 
 ### `springConfig`
 

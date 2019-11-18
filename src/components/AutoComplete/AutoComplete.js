@@ -2,13 +2,13 @@ import React, { useState, useRef, useCallback, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { Transition, animated } from 'react-spring'
-import { unselectable, springs } from '../../utils/styles'
-import ButtonBase from '../Button/ButtonBase'
-import TextInput from '../Input/TextInput'
-import { theme } from '../../theme'
+import { unselectable, noop, identity } from '../../utils'
+import { springs } from '../../style'
+import { theme } from '../../theme-legacy'
 import { useClickOutside, useOnBlur, useArrowKeysFocus } from '../../hooks'
-import { noop, identity } from '../../utils'
-import IconMagnifyingGlass from '../../icons/components/MagnifyingGlass'
+import { ButtonBase } from '../Button/ButtonBase'
+import TextInput from '../Input/TextInput'
+import { IconSearch } from '../../icons'
 
 const { accent, contentBackground, contentBorder, textPrimary } = theme
 
@@ -79,7 +79,7 @@ function AutoComplete({
           justify-content: center;
         `}
       >
-        <IconMagnifyingGlass css="color: #a8b3c8" />
+        <IconSearch css="color: #a8b3c8" />
       </div>
       <Transition
         config={springs.swift}

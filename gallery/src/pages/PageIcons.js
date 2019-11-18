@@ -1,77 +1,23 @@
 import React from 'react'
 import styled from 'styled-components'
-import {
-  Card,
-  IconAdd,
-  IconApps,
-  IconArrowDown,
-  IconArrowRight,
-  IconAttention,
-  IconBlank,
-  IconBylaw,
-  IconCheck,
-  IconClose,
-  IconCopy,
-  IconCross,
-  IconEllipsis,
-  IconError,
-  IconFilter,
-  IconFundraising,
-  IconGroups,
-  IconHome,
-  IconIdentity,
-  IconMenu,
-  IconNotifications,
-  IconPermissions,
-  IconPlus,
-  IconRemove,
-  IconSettings,
-  IconShare,
-  IconTime,
-  IconWallet,
-  Text,
-} from '@aragon/ui'
+import * as UI from '@aragon/ui'
 import Page from 'comps/Page/Page'
 import Container from 'comps/Page/DemoContainer'
 
-const icons = Object.entries({
-  IconAdd,
-  IconApps,
-  IconArrowDown,
-  IconArrowRight,
-  IconAttention,
-  IconBlank,
-  IconBylaw,
-  IconCheck,
-  IconClose,
-  IconCopy,
-  IconCross,
-  IconEllipsis,
-  IconError,
-  IconFilter,
-  IconFundraising,
-  IconGroups,
-  IconHome,
-  IconIdentity,
-  IconMenu,
-  IconNotifications,
-  IconPermissions,
-  IconPlus,
-  IconRemove,
-  IconSettings,
-  IconShare,
-  IconTime,
-  IconWallet,
-}).reduce(
-  (icons, [name, Icon]) => [
-    ...icons,
-    {
-      name: `<${name} />`,
-      Icon: Icon,
-    },
-  ],
-  []
-)
+const { Card, Text } = UI
+
+const icons = Object.entries(UI)
+  .filter(([name]) => name.startsWith('Icon'))
+  .reduce(
+    (icons, [name, Icon]) => [
+      ...icons,
+      {
+        name: `<${name} />`,
+        Icon: Icon,
+      },
+    ],
+    []
+  )
 
 const PageIcons = ({ title }) => (
   <Page title={title}>

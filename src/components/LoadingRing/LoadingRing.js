@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { keyframes } from 'styled-components'
-import { theme } from '../../theme'
+import { theme } from '../../theme-legacy'
 
 const spin = keyframes`
   from {

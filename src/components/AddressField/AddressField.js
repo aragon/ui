@@ -1,13 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { IconCopy } from '../../icons'
+import { IconCopy } from '../../icons/components'
 import TextInput from '../Input/TextInput'
-import ButtonIcon from '../Button/ButtonIcon'
+import { ButtonIcon } from '../Button/ButtonIcon'
 import EthIdenticon from '../EthIdenticon/EthIdenticon'
 import { Toast } from '../ToastHub/ToastHub'
-import { theme } from '../../theme'
-import { noop, warn } from '../../utils'
-import { font } from '../../utils/styles/font'
+import { theme } from '../../theme-legacy'
+import { font, noop, warn } from '../../utils'
 
 class AddressFieldBase extends React.PureComponent {
   static propTypes = {

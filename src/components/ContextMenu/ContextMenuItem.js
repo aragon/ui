@@ -1,13 +1,15 @@
 import styled from 'styled-components'
-import { theme } from '../../theme'
-import { unselectable } from '../../utils/styles'
+import { theme } from '../../theme-legacy'
+import { unselectable } from '../../utils'
+import { ButtonBase } from '../Button/ButtonBase'
 
-const ContextMenuItem = styled.div`
+const ContextMenuItem = styled(ButtonBase)`
   display: flex;
   align-items: center;
   padding: 5px 20px;
   cursor: pointer;
   white-space: nowrap;
+  width: 100%;
   ${unselectable()};
   &:active {
     background: ${theme.contentBackgroundActive};

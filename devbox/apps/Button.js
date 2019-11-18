@@ -1,9 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Button, Text, theme } from '@aragon/ui'
+import { IconAdd, Button, Text, theme } from '@aragon/ui'
 
 const MODES = ['normal', 'secondary', 'strong', 'outline', 'text']
-const SIZES = ['normal', 'small', 'mini']
+const SIZES = ['normal', 'small']
 const EMPHASES = ['none', 'positive', 'negative']
 const DISABLED = [false, true]
 
@@ -55,15 +55,18 @@ class App extends React.Component {
   }
   renderSomeButtons() {
     return (
-      <div style={{ padding: '100px 0' }}>
-        {['normal', 'strong', 'secondary'].map(mode => (
-          <div className="row" key={mode}>
-            {SIZES.map(size => (
-              <span key={mode + size}>
-                <Button mode={mode} size={size}>
-                  {size}
-                </Button>
-              </span>
+      <div style={{ padding: '40px 0' }}>
+        {SIZES.map(size => (
+          <div key={size} css="display: flex">
+            {['normal', 'strong'].map(mode => (
+              <div key={mode + size} css="margin: 0 20px 20px 0">
+                <Button
+                  mode={mode}
+                  size={size}
+                  icon={null && <IconAdd />}
+                  label={size}
+                />
+              </div>
             ))}
           </div>
         ))}
@@ -71,14 +74,16 @@ class App extends React.Component {
     )
   }
   render() {
-    // const buttons = this.renderSomeButtons()
-    const buttons = this.renderAllButtons()
+    const buttons = this.renderSomeButtons()
+    // const buttons = this.renderAllButtons()
     return (
       <Main>
         <Container>
-          <h1>
-            <Text size="xxlarge">Button variations</Text>
-          </h1>
+          {null && (
+            <h1>
+              <Text size="xxlarge">Button variations</Text>
+            </h1>
+          )}
           {buttons}
         </Container>
       </Main>

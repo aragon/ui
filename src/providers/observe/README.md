@@ -49,7 +49,7 @@ const Observed = observe(
 - `observeFn`: A function (`Observable -> Observable`) that receives the `Observable` as input. Must return an `Observable` whose streamed values will be passed down as destructured props.
 - `initialState: The initial state to pass down as destructured props
 
-## `ObservedComponent`'s Properties
+## `ObservedComponent`’s Props
 
 ### `observable`
 
@@ -59,7 +59,7 @@ The `Observable` to be used in `observe`. Can be initially empty.
 
 This `Observable` is modifiable while the component is still mounted. The component will automatically unsubscribe from the old `Observable` and subscribe to the new `Observable` using the `observeFn`.
 
-## `Component`'s Injected Properties
+## `Component`’s Injected Props
 
 ### `{...state}`
 

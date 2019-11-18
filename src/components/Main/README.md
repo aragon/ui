@@ -14,7 +14,7 @@ const App = () => (
 )
 ```
 
-## Properties
+## Props
 
 ### `legacyFonts`
 

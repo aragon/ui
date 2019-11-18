@@ -3,10 +3,10 @@ import PropTypes from 'prop-types'
 import memoize from 'lodash-es/memoize'
 import dayjs from 'dayjs'
 import { Redraw } from '../../providers/Redraw'
-import IconTime from '../../icons/components/Time'
+import { IconTime } from '../../icons'
 import { difference, formatHtmlDatetime } from '../../utils/date'
-import { unselectable } from '../../utils/styles'
-import { theme } from '../../theme'
+import { unselectable } from '../../utils'
+import { theme } from '../../theme-legacy'
 
 const RENDER_EVERY = 1000
 
@@ -93,11 +93,21 @@ class Timer extends React.Component {
       <time
         dateTime={formatHtmlDatetime(end || start)}
         css={`
+          display: flex;
+          align-items: center;
           white-space: nowrap;
           ${unselectable()};
         `}
       >
-        <span css="margin-right: 15px">
+        <span
+          css={`
+            display: flex;
+            align-items: center;
+            margin-right: 15px;
+            margin-top: -3px;
+            color: ${theme.textSecondary};
+          `}
+        >
           <IconTime />
         </span>
         <Redraw interval={RENDER_EVERY}>{this.renderTime}</Redraw>

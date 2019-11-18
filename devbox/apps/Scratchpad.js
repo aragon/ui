@@ -1,19 +1,19 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Text } from '@aragon/ui'
+import { Button } from '@aragon/ui'
 
 class App extends React.Component {
   render() {
     return (
-      <Text.Block
-        size="great"
+      <div
         css={`
+          font-size: 60px;
           line-height: 100vh;
           text-align: center;
         `}
       >
-        scratchpad
-      </Text.Block>
+        <Button mode="strong">change me</Button>
+      </div>
     )
   }
 }
