@@ -1,6 +1,8 @@
 import sha3 from 'js-sha3'
 import { warn } from './environment'
 
+const { keccak_256: keccak256 } = sha3
+
 const EMPTY_ADDRESS = '0x0000000000000000000000000000000000000000'
 const TRANSACTION_REGEX = /^0x[A-Fa-f0-9]{64}$/
 const ADDRESS_REGEX = /^0x[0-9a-fA-F]{40}$/
@@ -66,7 +68,7 @@ function toChecksumAddress(address) {
 
   address = address.toLowerCase().replace(/^0x/i, '')
 
-  const addressHash = sha3.keccak_256(address).replace(/^0x/i, '')
+  const addressHash = keccak256(address).replace(/^0x/i, '')
   let checksumAddress = '0x'
 
   for (let i = 0; i < address.length; i++) {
