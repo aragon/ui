@@ -56,10 +56,6 @@ const BLOCK_EXPLORERS = {
  * @return {String}
  */
 function toChecksumAddress(address) {
-  if (typeof address === 'undefined') {
-    return ''
-  }
-
   if (!/^(0x)?[0-9a-f]{40}$/i.test(address)) {
     throw new Error(
       'Given address "' + address + '" is not a valid Ethereum address.'
