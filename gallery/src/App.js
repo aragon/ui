@@ -33,7 +33,7 @@ class App extends React.Component {
     const { pages, activePage } = this.state
     const Page = activePage && activePage.comp
     return (
-      <Main assetsUrl={ARAGON_UI_PATH} legacyFonts>
+      <Main assetsUrl={ARAGON_UI_PATH} legacyFonts layout={false}>
         <div
           css={`
             display: flex;

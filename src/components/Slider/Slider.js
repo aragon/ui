@@ -2,7 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { Spring, animated } from 'react-spring'
-import { springs, unselectable } from '../../utils'
+import { springs } from '../../style'
+import { unselectable } from '../../utils'
 
 const BAR_HEIGHT = 6
 const HANDLE_SIZE = 24

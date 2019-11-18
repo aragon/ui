@@ -5,7 +5,7 @@ import { DropDown, unselectable } from '@aragon/ui'
 const items = ['Strawberry', 'Banana', 'Apple', 'Cherry']
 
 class App extends React.Component {
-  state = { active: 0 }
+  state = { active: -1 }
   handleChange = index => {
     this.setState({ active: index })
   }
@@ -16,8 +16,11 @@ class App extends React.Component {
         <Container>
           <DropDown
             items={items}
-            active={active}
+            label="Which fruit?"
+            header="Fruits"
+            selected={active}
             onChange={this.handleChange}
+            width="400px"
           />
         </Container>
       </Main>
@@ -40,7 +43,7 @@ const Main = styled.div`
 `
 
 const Container = styled.div`
-  width: 150px;
+  width: 400px;
 `
 
 export default App

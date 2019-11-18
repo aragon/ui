@@ -12,7 +12,7 @@ function App() {
 }
 ```
 
-## Properties
+## Props
 
 ### `transaction`
 

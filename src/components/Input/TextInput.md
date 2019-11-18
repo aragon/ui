@@ -13,7 +13,7 @@ const App = () => (
 )
 ```
 
-## Properties
+## Props
 
 ### `adornment`
 

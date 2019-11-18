@@ -14,7 +14,7 @@ function App() {
 }
 ```
 
-## Properties
+## Props
 
 ### `address`
 

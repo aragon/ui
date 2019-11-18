@@ -10,7 +10,7 @@ import { CircleGraph } from '@aragon/ui'
 const App = () => <CircleGraph value={1/3} />
 ```
 
-## Properties
+## Props
 
 ### `size`
 

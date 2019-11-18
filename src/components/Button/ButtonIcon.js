@@ -1,34 +1,56 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import ButtonBase from './ButtonBase'
+import { GU } from '../../style'
+import { Button } from './Button'
+import { ButtonBase } from './ButtonBase'
 
-class ButtonIcon extends React.PureComponent {
-  render() {
-    const { label, children, ...props } = this.props
+function ButtonIcon({ label, children, mode, ...props }) {
+  if (mode === 'button') {
     return (
-      <ButtonBase
+      <Button
         title={label}
         css={`
-          display: inline-flex;
-          justify-content: center;
-          align-items: center;
-          width: 32px;
-          height: 32px;
-          &:active {
-            background: rgba(220, 234, 239, 0.3);
-          }
+          width: ${5 * GU}px;
+          height: ${5 * GU}px;
+          min-width: 0;
+          padding: 0;
         `}
         {...props}
       >
         {children}
-      </ButtonBase>
+      </Button>
     )
   }
+
+  return (
+    <ButtonBase
+      title={label}
+      css={`
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        width: 32px;
+        height: 32px;
+        &:active {
+          background: rgba(220, 234, 239, 0.3);
+        }
+      `}
+      {...props}
+    >
+      {children}
+    </ButtonBase>
+  )
 }
 
 ButtonIcon.propTypes = {
+  mode: PropTypes.oneOf(['flat', 'button']),
   label: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
 }
 
+ButtonIcon.defaultProps = {
+  mode: 'flat',
+}
+
+export { ButtonIcon }
 export default ButtonIcon

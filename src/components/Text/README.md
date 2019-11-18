@@ -15,7 +15,7 @@ const App = () => (
 )
 ```
 
-## Properties
+## Props
 
 ### `color`
 

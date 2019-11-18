@@ -19,7 +19,7 @@ function App() {
 }
 ```
 
-## Properties
+## Props
 
 ### `number`
 

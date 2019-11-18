@@ -30,7 +30,7 @@ function App() {
 }
 ```
 
-## Properties
+## Props
 
 ### `opener`
 

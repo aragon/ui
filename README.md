@@ -36,7 +36,7 @@ import { Main } from '@aragon/ui'
 
 const App = () => (
   <Main>
-    <h1>Hello Aragon UI!</h1>
+    <h1>Hello aragonUI!</h1>
   </Main>
 )
 ```
@@ -64,12 +64,12 @@ import { Main } from '@aragon/ui'
 
 const App = () => (
   <Main assetsUrl="http://example.com/aragon-ui-assets/">
-    <h1>Hello Aragon UI!</h1>
+    <h1>Hello aragonUI!</h1>
   </Main>
 )
 ```
 
-You may also want to add it as a build step in your project, so that Aragon UI can be upgraded without having to worry about this.
+You may also want to add it as a build step in your project, so that aragonUI can be upgraded without having to worry about this.
 
 ```json
 "scripts": {

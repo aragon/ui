@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Checkbox from './Checkbox'
+import { Checkbox } from './Checkbox'
 import { RadioGroupConsumer } from '../Radio/RadioGroup'
 import { noop } from '../../utils'
 

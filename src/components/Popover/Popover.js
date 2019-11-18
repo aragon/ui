@@ -1,13 +1,11 @@
 import React from 'react'
-import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import Popper from 'popper.js'
 import { Transition, animated } from 'react-spring'
-
-import RootPortal from '../RootPortal/RootPortal'
-import { theme } from '../../theme'
 import { noop } from '../../utils'
-import { springs } from '../../utils/styles'
+import { useTheme } from '../../theme'
+import { springs, RADIUS } from '../../style'
+import RootPortal from '../RootPortal/RootPortal'
 
 class PopoverBase extends React.Component {
   static propTypes = {
@@ -27,6 +25,7 @@ class PopoverBase extends React.Component {
     onClose: PropTypes.func,
     children: PropTypes.node,
     transitionStyles: PropTypes.object,
+    theme: PropTypes.object,
   }
 
   static defaultProps = {
@@ -141,11 +140,20 @@ class PopoverBase extends React.Component {
   }
 
   render() {
-    const { zIndex, children, transitionStyles } = this.props
+    const { zIndex, children, transitionStyles, theme } = this.props
     const { scale, opacity } = transitionStyles
     return (
-      <Main ref={this._popperElement} style={{ zIndex }}>
-        <Card
+      <animated.div
+        css={`
+          // default styles until Popper takes over
+          position: absolute;
+          top: 0;
+          left: 0;
+        `}
+        ref={this._popperElement}
+        style={{ zIndex }}
+      >
+        <animated.div
           tabIndex="0"
           onBlur={this.handleBlur}
           ref={this._cardElement}
@@ -153,31 +161,23 @@ class PopoverBase extends React.Component {
             opacity,
             transform: scale.interpolate(v => `scale3d(${v}, ${v}, 1)`),
           }}
+          css={`
+            background: ${theme.surface};
+            border: 1px solid ${theme.border};
+            border-radius: ${RADIUS}px;
+            filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.06));
+            &:focus {
+              /* Having the popover visible already means that it focused. */
+              outline: 0;
+            }
+          `}
         >
           {children}
-        </Card>
-      </Main>
+        </animated.div>
+      </animated.div>
     )
   }
 }
-
-const Main = styled(animated.div)`
-  /* The positioning acts as a default until Popper takes over. */
-  position: absolute;
-  top: 0;
-  left: 0;
-`
-
-const Card = styled(animated.div)`
-  background: ${theme.contentBackground};
-  border: 1px solid #e6e6e6;
-  border-radius: 3px;
-  filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.06));
-  &:focus {
-    /* Having the popover visible already means that it focused. */
-    outline: 0;
-  }
-`
 
 const Popover = props => (
   <RootPortal>
@@ -208,4 +208,7 @@ Popover.defaultProps = {
   visible: true,
 }
 
-export default Popover
+export default props => {
+  const theme = useTheme()
+  return <Popover theme={theme} {...props} />
+}

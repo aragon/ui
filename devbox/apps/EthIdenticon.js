@@ -1,21 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { EthIdenticon, blockExplorerUrl } from '@aragon/ui'
-
-const ADDRESS_START = '0x2c9341a52c'
-const ADDRESS_END = '134137b936'
-
-const createAddress = () => {
-  let count = 10
-  return () => {
-    let addr = ADDRESS_START
-    let i = 4
-    while (i--) {
-      addr += String(++count).padStart(5, '0')
-    }
-    return addr + ADDRESS_END
-  }
-}
+import { createAddress } from '../create-address'
 
 class App extends React.Component {
   render() {

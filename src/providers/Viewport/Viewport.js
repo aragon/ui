@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { BREAKPOINTS } from '../../utils/styles/breakpoint'
+import { BREAKPOINTS } from '../../style'
 import throttle from 'lodash-es/throttle'
 
 const getCurrentWindowSize = () => ({

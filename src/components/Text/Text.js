@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { font } from '../../utils/styles'
+import { font } from '../../utils'
 
 const Text = styled.span`
   ${({ size, weight, smallcaps, monospace }) =>

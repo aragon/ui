@@ -32,7 +32,7 @@ const App = () => {
 }
 ```
 
-## Properties
+## Props
 
 ### `visible`
 

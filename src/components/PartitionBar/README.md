@@ -25,7 +25,7 @@ const data = [
 const App = () => <PartitionBar data={data} />
 ```
 
-## Properties
+## Props
 
 ### `data`
 
