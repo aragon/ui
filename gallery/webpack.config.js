@@ -11,16 +11,17 @@ const aragonUiVersion = require('../package.json').version
 
 // See markdown-only pages declared in routes.js
 const MARKDOWN_ONLY_PAGES = [
-  'getting-started',
-  'spacing',
-  'colors',
-  'text-styles',
-  'tag',
   'accordion',
-  'search-input',
-  'loading-ring',
-  'sync-indicator',
+  'colors',
   'float-indicator',
+  'getting-started',
+  'how-to-upgrade',
+  'loading-ring',
+  'search-input',
+  'spacing',
+  'sync-indicator',
+  'tag',
+  'text-styles',
 ]
 
 const PUBLIC_PATH = '/'

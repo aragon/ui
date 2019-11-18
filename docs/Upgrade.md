@@ -1,69 +1,62 @@
-## Theming
+# Upgrade to aragonUI 1.0
 
-A new hook, `useTheme()`, should now be used to get the theme object. This
-change was necessary to allow swapping the theme on the fly.
+### Theming
 
-Importing the `colors`, `theme`, `themeDark`, or `brand` objects still works but is deprecated.
+Theming is now done using a hook rather than statically. This change was necessary to allow the theme to change at run time. The hook `useTheme()` should now get used to fetch the theme object.
 
-## AppView
+Using the `colors`, `theme`, `themeDark`, or `brand` objects is deprecated and will get removed in the next version.
 
-`AppView` is deprecated. The layout is now provided by `Main`, and `Header`
-should be used to provide the top bar of an app.
+For more information, please consult [the documentation page for colors](https://ui.aragon.org/colors/).
 
-To keep using the `AppView` component, set `layout={false}` on `Main`.
+### AragonApp
 
-## Button
+This component was already deprecated, and has now been removed. If you were still using it, please use the [`Main`](https://ui.aragon.org/main/) component instead.
 
-The `secondary` mode doesn’t exist anymore. Setting it will display the button in normal mode (the default).
+### AppView
 
-## Springs
+`AppView` is deprecated and will get removed in the next version. The layout of an app is now implicitely handled by [`Main`](https://ui.aragon.org/main/), and [`Header`](https://ui.aragon.org/header/) should be used for the top part of an app.
 
-The `spring()` function has been removed. The `springs` object should be used instead.
+Note: if you really have to keep using the `AppView` component, you can set set `layout={false}` on `Main`.
 
-## Viewport breakpoints
+### Button
 
-small: 540 => 52 GU
-medium: 768 => 96 GU
-large: 1170 => 138 GU
+The `secondary` and `outline` modes doesn’t exist anymore. Setting them will display the button in normal mode (the default).
 
-## BreakPoint has been removed
+The `text` mode doesn’t exist anymore, and has been replaced by the `ButtonText` component.
 
-The ViewPort component should be used instead.
+The `emphasis` prop doesn’t exist anymore. `positive` and `negative` are now modes that can be set directly.
 
-## GRID / grid() have been removed
+See the [`Button` documentation page](https://ui.aragon.org/button/) for more details.
 
-The Layout component should be used instead.
+### Springs
 
-## AragonApp has been removed
+The `spring()` function has been removed. If you were using it, please use the `springs` (with an s) object instead.
 
-The Main component should be used instead.
+### BreakPoint
 
-## AppView
+[`useViewport()`](https://ui.aragon.org/viewport/) should be used instead.
 
-AppView is deprecated and should be removed. Nothing replaces it: the
-different layouts, provided by the Layout component, will be automatically
-provided by the Main component if AppView is not present.
+### GRID and grid()
 
-## AppBar is deprecated
+Responsiveness is now handled in a different way, and nothing replaces `GRID` / `grid()`.
 
-A combination of Header and Bar should be used instead.
+### AppBar and NavigationBar
 
-## Tabs (TabBar)
+For the title and the main action of an app, [`Header`](http://ui.aragon.org/header/) should get used instead. For tabs, use the `Tabs` component. For `NavigationBar`, this is now generally achieved by using [`BackButton`](http://ui.aragon.org/back-button/) inside a [`Bar`](http://ui.aragon.org/bar/).
 
-Support for the `onSelect` prop has been removed. Please use `onChange` instead.
+### TabBar
 
-`TabBar` has been renamed `Tabs`, but `TabBar` is still supported.
+`TabBar` has been renamed `Tabs`. `TabBar` will get removed in a future version.
 
-## fonts() vs. textStyle()
+The `onSelect` prop has been removed: please use `onChange` instead.
 
-`fonts()` is now deprecated: `textStyle()` should be used instead.
+### Text and font()
 
-## Table
+Both the `Text` component and the `font()` utility are deprecated and will get removed in a future version.
 
-If you were using the `Table` component, you might want to switch to
-`DataView`: it does what `Table` was doing and much more.
+Please use [`textStyle()`](https://ui.aragon.org/text-styles/) directly on your components instead.
 
-## Badge
+### Badge
 
 If you were using the `Badge` component and/or its variants (`Badge.Info`, `Badge.Identity`, `Badge.App`, `Badge.Notification`, `BadgeNumber`), you might want to switch as follows:
 
@@ -73,3 +66,7 @@ If you were using the `Badge` component and/or its variants (`Badge.Info`, `Badg
 - `Badge.App` => `<Tag />`.
 - `Badge.Notification` => `<Tag limitDigits />`.
 - `BadgeNumber` => `<Tag limitDigits />`.
+
+### Table
+
+If you were using the `Table` component, you might want to have a look at the new [`DataView`](https://ui.aragon.org/data-view/) component. It does what `Table` was doing, and much more.

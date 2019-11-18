@@ -67,6 +67,7 @@ import searchInputMd from 'ui-src/components/Input/SearchInput.md'
 import spacingMd from 'ui-docs/Spacing.md'
 import syncIndicatorMd from 'ui-src/components/SyncIndicator/README.md'
 import tagMd from 'ui-src/components/Tag/README.md'
+import upgradeMd from 'ui-docs/Upgrade.md'
 
 // Create a page component that only renders a markdown file
 // Remember to update the list of markdown pages in webpack.config.js!
@@ -92,6 +93,12 @@ export const PAGE_GROUPS = [
     name: '',
     pages: [
       [readmePage(gettingstartedMd), 'Getting started', 'getting-started'],
+      [readmePage(upgradeMd), 'How to upgrade', 'how-to-upgrade'],
+    ],
+  },
+  {
+    name: 'Base',
+    pages: [
       [readmePage(spacingMd), 'Spacing', 'spacing'],
       [readmePage(colorsMd), 'Colors', 'colors'],
       [PageTextStyles, 'Text styles', 'text-styles'],
