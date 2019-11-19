@@ -58,7 +58,6 @@ import PageButtonBase from './pages/PageButtonBase'
 import PageRedraw from './pages/PageRedraw'
 import PageRoot from './pages/PageRoot'
 import PageRedrawFromDate from './pages/PageRedrawFromDate'
-import PageObserve from './pages/PageObserve'
 import PageViewport from './pages/PageViewport'
 import PageToastHub from './pages/PageToastHub'
 import PagePublicUrl from './pages/PagePublicUrl'
@@ -147,7 +146,6 @@ export const PAGE_GROUPS = [
       [PagePopover, 'Popover'],
       [PageButtonBase, 'ButtonBase'],
       [PageViewport, 'Viewport'],
-      [PageObserve, 'Observe'],
       [PagePublicUrl, 'PublicUrl'],
       [PageRedraw, 'Redraw'],
       [PageRedrawFromDate, 'RedrawFromDate'],
