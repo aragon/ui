@@ -68,10 +68,10 @@ function App() {
                 `}
               >
                 You might want to check the{' '}
-                <Link href="/intro" external={false}>
-                  intro to aragonUI
-                </Link>
-                .
+                <Link href="/getting-started/" external={false}>
+                  getting started
+                </Link>{' '}
+                guide .
               </p>
             </div>
           )}

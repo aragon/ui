@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Button, ButtonBase, textStyle, useTheme, Link, GU } from '@aragon/ui'
+import { ButtonBase, GU, Link, textStyle, useTheme } from '@aragon/ui'
 import Page from 'comps/Page/Page'
 import env from '../environment'
 
@@ -70,7 +70,9 @@ function Badges() {
     <div
       css={`
         display: flex;
+        flex-direction: column;
         justify-content: center;
+        align-items: center;
       `}
     >
       <p
@@ -83,9 +85,7 @@ function Badges() {
       >
         <Link
           href="https://github.com/aragon/aragon-ui/"
-          css={`
-            text-decoration: none;
-          `}
+          css="text-decoration: none"
         >
           GitHub
         </Link>
@@ -109,6 +109,21 @@ function Badges() {
             alt=""
           />
         </ButtonBase>
+      </p>
+      <p
+        css={`
+          margin-top: ${6 * GU}px;
+        `}
+      >
+        <Link
+          external={false}
+          href="/getting-started/"
+          css={`
+            ${textStyle('body1')};
+          `}
+        >
+          Getting Started
+        </Link>
       </p>
     </div>
   )
