@@ -30,7 +30,6 @@ import PageLineChart from './pages/PageLineChart'
 import PageLink from './pages/PageLink'
 import PageMain from './pages/PageMain'
 import PageModal from './pages/PageModal'
-import PageObserve from './pages/PageObserve'
 import PagePagination from './pages/PagePagination'
 import PagePopover from './pages/PagePopover'
 import PageProgressBar from './pages/PageProgressBar'
@@ -195,7 +194,6 @@ export const PAGE_GROUPS = [
     pages: [
       [PageButtonBase, 'ButtonBase'],
       [PageFocusVisible, 'FocusVisible'],
-      [PageObserve, 'Observe'],
       [PagePublicUrl, 'PublicUrl'],
       [PageRedraw, 'Redraw'],
       [PageRedrawFromDate, 'RedrawFromDate'],

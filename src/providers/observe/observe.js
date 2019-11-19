@@ -1,5 +1,6 @@
 import React from 'react'
 import getDisplayName from 'react-display-name'
+import { warnOnce } from '../../utils'
 
 // Higher-order component for convenient subscriptions to RxJS observables
 const observe = (observe, initialState = {}) => Component =>
@@ -45,6 +46,10 @@ const observe = (observe, initialState = {}) => Component =>
       this.state.subscription && this.state.subscription.unsubscribe()
     }
     render() {
+      warnOnce(
+        'observe()',
+        'observe() is deprecated. If you are using it with @aragon/api, using @aragon/api-react is now recommended instead.'
+      )
       const { ...props } = this.props
       // Don't pass down the given observable
       delete props.observable

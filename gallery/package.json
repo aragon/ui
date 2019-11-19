@@ -12,7 +12,6 @@
     "prop-types": "^15.7.1",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
-    "rxjs": "^6.5.3",
     "styled-components": "^4.4.1"
   },
   "scripts": {
