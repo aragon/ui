@@ -44,7 +44,7 @@ An illustration to visually represent the empty state.
 #### Example:
 
 ```jsx
-const App = () => <EmptyStateCard illustration={<IconHome color="blue" />} />
+<EmptyStateCard illustration={<img src={illustrationSrc} alt="" />} />
 ```
 
 ### `action`
