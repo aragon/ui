@@ -2,15 +2,15 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { noop } from '../../utils'
-import Text from '../Text/Text'
-import { Link } from '../Link'
-import Countdown from '../Countdown/Countdown'
-import { Info } from '../Info'
-import ProgressBar from '../ProgressBar/ProgressBar'
-import Popover from '../Popover/Popover'
-import { IconClose } from '../../icons'
 import { useTheme } from '../../theme'
-import { GU } from '../../style'
+import { GU, textStyle } from '../../style'
+import ButtonIcon from '../Button/ButtonIcon'
+import Countdown from '../Countdown/Countdown'
+import Link from '../Link/Link'
+import Popover from '../Popover/Popover'
+import ProgressBar from '../ProgressBar/ProgressBar'
+import { IconClose } from '../../icons'
+import { Info } from '../Info'
 
 const TransactionProgress = React.memo(function TransactionProgress({
   visible,
@@ -25,99 +25,85 @@ const TransactionProgress = React.memo(function TransactionProgress({
 
   return (
     <Popover visible={visible} opener={opener} onClose={onClose}>
-      <CloseButton type="button" onClick={onClose}>
-        <IconClose />
-      </CloseButton>
-      <Wrapper>
-        <Text size="large" weight="bold">
-          Pending transaction
-        </Text>
-        <ContentWrapper>
-          <Text
-            smallcaps
+      <section
+        css={`
+          padding: ${2 * GU}px;
+        `}
+      >
+        <ButtonIcon
+          onClick={onClose}
+          css={`
+            position: absolute;
+            top: ${1 * GU}px;
+            right: ${1 * GU}px;
+          `}
+        >
+          <IconClose />
+        </ButtonIcon>
+        <h1 css="font-weight: 600">Pending transaction</h1>
+        <div
+          css={`
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin: ${2 * GU}px 0 ${1 * GU}px;
+          `}
+        >
+          <span
             css={`
+              ${textStyle('label2')};
               color: ${theme.contentSecondary};
             `}
           >
             Estimated time:
-          </Text>
+          </span>
           <Countdown removeDaysAndHours end={endTime} />
-        </ContentWrapper>
+        </div>
         <ProgressBar
           css={`
             color: ${theme.accent};
           `}
           value={progress}
         />
-        <FooterWrapper slow={slow}>
+        <div
+          css={`
+            display: flex;
+            justify-content: ${slow ? 'space-between' : 'end'};
+            align-items: center;
+            padding-top: ${2 * GU}px;
+          `}
+        >
           {slow && (
-            <SlowTransaction>
+            <div
+              css={`
+                margin-right: ${2 * GU}px;
+              `}
+            >
               <Info.Alert>Slow transaction. Retry with more gas</Info.Alert>
-            </SlowTransaction>
+            </div>
           )}
-          <Link
-            external
-            href={transactionHashUrl}
-            css={`
-              text-decoration: none;
-            `}
-          >
+          <Link href={transactionHashUrl} css="text-decoration: none">
             See on Etherscan
           </Link>
-        </FooterWrapper>
-      </Wrapper>
+        </div>
+      </section>
     </Popover>
   )
 })
 
 TransactionProgress.propTypes = {
-  visible: PropTypes.bool,
-  opener: PropTypes.instanceOf(Element),
-  slow: PropTypes.bool,
-  transactionHashUrl: PropTypes.string,
   endTime: PropTypes.instanceOf(Date),
   onClose: PropTypes.func,
+  opener: PropTypes.instanceOf(Element),
   progress: PropTypes.number,
+  slow: PropTypes.bool,
+  transactionHashUrl: PropTypes.string,
+  visible: PropTypes.bool,
 }
 
 TransactionProgress.defaultProps = {
-  visible: false,
   onClose: noop,
+  visible: false,
 }
-
-const Wrapper = styled.div`
-  padding: 1rem;
-`
-
-const CloseButton = styled.button`
-  position: absolute;
-  top: ${1 * GU}px;
-  right: ${1 * GU}px;
-  cursor: pointer;
-  background: none;
-  border: 0;
-  outline: 0;
-  &::-moz-focus-inner {
-    border: 0;
-  }
-`
-
-const ContentWrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-  margin-top: 1rem;
-  margin-bottom: 0.5rem;
-`
-
-const FooterWrapper = styled.div`
-  display: flex;
-  justify-content: ${({ slow }) => (slow ? 'space-between' : 'end')};
-  align-items: center;
-  padding-top: 1rem;
-`
-
-const SlowTransaction = styled.div`
-  margin-right: ${1 * GU}px;
-`
 
 export default TransactionProgress
