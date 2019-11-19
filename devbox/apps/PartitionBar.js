@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { PartitionBar, theme, Text } from '@aragon/ui'
+import { PartitionBar, useTheme } from '@aragon/ui'
 
 const ITEMS = [
   {
@@ -54,7 +54,15 @@ const CUSTOM_COLORS = [
 class App extends React.Component {
   render() {
     return (
-      <Main>
+      <div
+        css={`
+          display: grid;
+          align-items: center;
+          justify-content: center;
+          height: 100vh;
+          grid-gap: 0;
+        `}
+      >
         <div>
           <Container>
             <h2>Default</h2>
@@ -84,56 +92,40 @@ class App extends React.Component {
             <PartitionBar data={ITEMS} caption={null} />
           </Container>
         </div>
-      </Main>
+      </div>
     )
   }
 }
 
-const Description = props => {
+function Description(props) {
+  const theme = useTheme()
   const { name, tokenAmount, proportion, percentage, color } = props
-
   return (
-    <AllocationDescription>
+    <div
+      css={`
+        display: grid;
+        grid-template-columns: 1fr 8fr 8fr 2fr;
+        justify-items: end;
+        column-gap: 0.5em;
+      `}
+    >
       <div>
-        <Text color={theme.textSecondary}>{name}</Text>
+        <span style={{ color: theme.surfaceContentSecondary }}>{name}</span>
       </div>
       <div>
-        <Text weight="bold">{tokenAmount}</Text>
+        <strong>{tokenAmount}</strong>
       </div>
       <div>
-        <StyledFormattedProportion>{proportion}</StyledFormattedProportion>
+        <span css="color: #b0b0b0">{proportion}</span>
       </div>
-      <div>
-        <Text weight="bolder" color={color}>
-          {percentage}%
-        </Text>
-      </div>
-    </AllocationDescription>
+      <div style={{ color }}>{percentage}%</div>
+    </div>
   )
 }
-
-const Main = styled.div`
-  display: grid;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  grid-gap: 0;
-`
 
 const Container = styled.div`
   width: 400px;
   margin: 60px 0;
-`
-
-const AllocationDescription = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 8fr 8fr 2fr;
-  justify-items: end;
-  column-gap: 0.5em;
-`
-
-const StyledFormattedProportion = styled.span`
-  color: #b0b0b0;
 `
 
 export default App

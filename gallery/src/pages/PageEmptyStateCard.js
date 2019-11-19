@@ -7,17 +7,15 @@ import Container from '../components/Page/DemoContainer'
 
 const PageEmptyStateCard = ({ title }) => (
   <Page title={title} readme={readme}>
-    <Page.Demo>
-      <Container>
-        <EmptyStateCard
-          text="You seem to not have any content on your wall."
-          action={
-            <Button onClick={() => console.log('Button was clicked')}>
-              Click me
-            </Button>
-          }
-        />
-      </Container>
+    <Page.Demo container={false}>
+      <EmptyStateCard
+        text="You seem to not have any content on your wall."
+        action={
+          <Button onClick={() => console.log('Button was clicked')}>
+            Action
+          </Button>
+        }
+      />
     </Page.Demo>
   </Page>
 )

@@ -1,30 +1,28 @@
-
 import React from 'react'
-import { Viewport, Text } from '@aragon/ui'
+import { Viewport } from '@aragon/ui'
 import Page from 'comps/Page/Page'
 import readme from 'ui-src/providers/Viewport/README.md'
 
-class PageViewport extends React.Component {
-
-  render() {
-    const { title } = this.props
-    return (
-      <Page title={title} readme={readme}>
-        <Page.Demo>
-          <Text>Resize the screen to see how the text changes.</Text>
+function PageViewport({ title }) {
+  return (
+    <Page title={title} readme={readme}>
+      <div>
+        <h2>Demonstration</h2>
+        <p>
+          <span>Current viewport size: </span>
           <Viewport>
             {({ within, below, above }) => (
-              <div>
-                {below('medium') && <div>small</div>}
-                {within('medium', 'large') && <div>medium</div>}
-                {above('large') && <div>large</div>}
-              </div>
+              <strong>
+                {below('medium') && <span>small</span>}
+                {within('medium', 'large') && <span>medium</span>}
+                {above('large') && <span>large</span>}
+              </strong>
             )}
           </Viewport>
-        </Page.Demo>
-      </Page>
-    )
-  }
+        </p>
+      </div>
+    </Page>
+  )
 }
 
 export default PageViewport

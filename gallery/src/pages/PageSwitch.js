@@ -5,24 +5,27 @@ import { Switch } from '@aragon/ui'
 import Page from 'comps/Page/Page'
 import readme from 'ui-src/components/Switch/README.md'
 
-const Text = styled.span`
-  padding-right: 20px;
-  min-width: 100px;
-`
-const OptionWrapper = styled.label`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-`
-
 // eslint-disable-next-line react/prop-types
 const Option = ({ name, initiallyChecked, ...passedProps }) => {
   const [checked, setIsChecked] = useState(Boolean(initiallyChecked))
   return (
-    <OptionWrapper>
-      <Text>{name}</Text>
+    <label
+      css={`
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      `}
+    >
+      <span
+        css={`
+          padding-right: 20px;
+          min-width: 100px;
+        `}
+      >
+        {name}
+      </span>
       <Switch onChange={setIsChecked} checked={checked} {...passedProps} />
-    </OptionWrapper>
+    </label>
   )
 }
 

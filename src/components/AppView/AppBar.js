@@ -110,7 +110,9 @@ class AppBar extends React.Component {
                   onClick={onTitleClick}
                 >
                   {typeof title === 'string' ? (
-                    <Text size="xxlarge">{title}</Text>
+                    <Text size="xxlarge" deprecationNotice={false}>
+                      {title}
+                    </Text>
                   ) : (
                     title
                   )}

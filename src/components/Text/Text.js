@@ -5,17 +5,20 @@ import { font, warnOnce } from '../../utils'
 function Text({
   children,
   color,
+  deprecationNotice,
   monospace,
   size,
   smallcaps,
   weight,
   ...props
 }) {
-  warnOnce(
-    'Text',
-    'Text, Text.Block and Text.Paragraph are deprecated. ' +
-      'Please use the textStyle() utility function instead.'
-  )
+  if (deprecationNotice) {
+    warnOnce(
+      'Text',
+      'Text, Text.Block and Text.Paragraph are deprecated. ' +
+        'Please use the textStyle() utility function instead.'
+    )
+  }
   return (
     <span
       css={`
@@ -41,10 +44,15 @@ const Paragraph = props => <Text as="p" {...props} />
 Text.propTypes = Block.propTypes = Paragraph.propTypes = {
   children: PropTypes.node,
   color: PropTypes.string,
+  deprecationNotice: PropTypes.bool,
+  monospace: PropTypes.bool,
   size: PropTypes.string,
   smallcaps: PropTypes.bool,
   weight: PropTypes.string,
-  monospace: PropTypes.bool,
+}
+
+Text.defaultProps = {
+  deprecationNotice: true,
 }
 
 Text.Block = Block
