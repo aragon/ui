@@ -14,7 +14,7 @@ npm install --save @aragon/ui styled-components
 
 <div class="info">
 
-Note: while not required, we strongly recommend to add [the styled-components Babel plugin](https://www.styled-components.com/docs/tooling#babel-plugin) in your building configuration. It provides, among other things, [the css prop](https://www.styled-components.com/docs/api#css-prop) that we use widely.
+Note: while not required, we strongly recommend adding [the styled-components Babel plugin](https://www.styled-components.com/docs/tooling#babel-plugin) in your build configuration. It provides, amongst other things, [the css prop](https://www.styled-components.com/docs/api#css-prop) that we use widely to.
 
 </div>
 
@@ -24,9 +24,9 @@ Copy the aragonUI assets into your assets directory (assuming `./public`):
 npx copy-aragon-ui-assets ./public
 ```
 
-<p class="info">Note: this last step allows to serve assets like fonts and illustrations used by aragonUI. Using services like Google Fonts is not an option since apps built with aragonUI are served in a decentralized (generally through IPFS).</p>
+<p class="info">Note: doing this step ensures that any assets required by aragonUI, like fonts and illustrations, can be served properly in any environment. Most apps built with aragonUI will be served in a decentralized manner (generally through an IPFS gateway), so using services like Google Fonts is not an option.</p>
 
-The only mandatory component that you need to define is [Main](../main/). This component sets up global styles and providers used by the other components. The easiest is to wrap your entire app with it:
+The only mandatory component that you need to define is [Main](https://ui.aragon.org/main/). This component sets up the global styles and providers used by other components. We recommend wrapping your entire app with Main:
 
 ```jsx
 import React from 'react'
@@ -41,13 +41,13 @@ function App() {
 }
 ```
 
-From that point on, you are ready to start building your app! Let’s go through a simple app to see what components are often used in Aragon apps.
+From that point on, you are ready to start building your app! Let’s go through a simple app to get an overview of the components that are often used in Aragon apps.
 
 ## A typical Aragon app
 
 Aragon apps can take many shapes, but most tend to follow similar patterns. aragonUI provides components that can be used to build apps that are responsive, accessible, and theme-able by default.
 
-This section takes the [Tokens app](https://help.aragon.org/article/18-tokens) to illustrate how the different elements that consistute a typical Aragon app can be put together. Rather than implementing every behavior in the Tokens app, we are going to focus on the structure of the app, and the main components it uses. To get an idea of what the final app looks like the [source code](https://github.com/aragon/aragon-apps/tree/master/apps/token-manager/app) is available to read.
+This section takes the [Tokens app](https://help.aragon.org/article/18-tokens) to illustrate the different elements that consistute a typical Aragon app and how they might be put together. Rather than implementing every behavior in the Tokens app, we are going to focus on the structure of the app and its main components. To get an idea of what the final app looks like, you can visit the [full source code](https://github.com/aragon/aragon-apps/tree/master/apps/token-manager/app).
 
 This is how it looks:
 
@@ -67,7 +67,7 @@ Let’s start by defining what constitutes an Aragon app.
 
 As you can see, the app is only a part of what a user sees when interacting with the Aragon client, in a way that the app can not interfere with the interface of the client or the other apps.
 
-Two components that are commonly used in Aragon apps are [Header](../header/) and [Split](../split/). **Header** handles the main title of an app and its main action. **Split** creates a two column layout when the available horizontal space allows it. On smaller screens, it renders as a single column. We are also going to use the [DataView](../data-view/) and the [SidePanel](../side-panel/) components.
+Two components that are commonly used in Aragon apps are [Header](https://ui.aragon.org/header/) and [Split](https://ui.aragon.org/split/). **Header** handles the main title of an app and its main action. **Split** creates a two column layout when the available horizontal space allows it. On smaller screens, it renders as a single column. As we continue, we will also be using the [DataView](https://ui.aragon.org/data-view/) and the [SidePanel](https://ui.aragon.org/side-panel/) components.
 
 <figure>
   <img src="https://user-images.githubusercontent.com/36158/68324939-bb0ef400-00c8-11ea-8e69-d4d8ab7e4c51.png" alt="" />
@@ -81,7 +81,7 @@ This is how **Header** can be used inside an app.
 ```jsx
 // App.js
 import React from 'react'
-import { Main, Header, Button } from '@aragon/ui'
+import { Main, Header, Button, IconPlus } from '@aragon/ui'
 
 function App() {
   return (
@@ -102,18 +102,18 @@ function App() {
 }
 ```
 
-There are a few things to note, the first one being the way these props are named. `primary` and `secondary` are names used by aragonUI components for “slots”. Slots don’t really exist in a technical sense: this is only a name used to refer to props expecting a subtree to be passed, like `children` does for components accepting a single tree.
+There are a few things to note, the first one being the way these props are named. `primary` and `secondary` are names used by aragonUI components for “slots”. Slots don’t really exist in a technical sense: this is only a name for props that are expecting a subtree to be passed, similar to the way `children` works in components accepting a single tree.
 
-If you run this app, you might also notice that the [Button](../button/) component displays either a text label or an icon, adapting to the viewport size automatically. Some components adapt to where they are, which is the case here. [Button](../button/), being in [Header](../header/), follows the behavior defined by aragonDS about how it should adapt to different viewport sizes in this particular case. These variations can help to follow the patterns defined by aragonDS with little effort, and are always documented and overridable.
+If you run this app, you might also notice that the [Button](https://ui.aragon.org/button/) component displays either a text label or an icon, adapting to the viewport size automatically. Some components adapt to where they are, which is the case here. [Button](https://ui.aragon.org/button/), being in [Header](https://ui.aragon.org/header/), follows the behavior defined by aragonDS about how it should adapt to different viewport sizes. These variations make it easy to follow the patterns defined by aragonDS, and are always documented and overridable.
 
 ### SidePanel
 
-To make things a bit more interesting, we are going to add a [SidePanel](../side-panel/) that opens from the “Add tokens” header button. The **SidePanel** component can be inserted anywhere, as long as it is inside the **Main** tree.
+To make things a bit more interesting, we are going to add a [SidePanel](https://ui.aragon.org/side-panel/) that opens from the “Add tokens” header button. The **SidePanel** component can be inserted anywhere, as long as it is inside the **Main** tree.
 
 ```jsx
 // App.js
 import React, { useState } from 'react'
-import { Main, Header, Button, SidePanel } from '@aragon/ui'
+import { Main, Header, Button, IconPlus, SidePanel } from '@aragon/ui'
 
 function App() {
   const [sidePanelOpened, setSidePanelOpened] = useState(false)
@@ -147,7 +147,7 @@ function App() {
 }
 ```
 
-That’s pretty much it! We now have a drawer that opens from the right side of the screen (with left to right languages), and can get closed by the user. We’re ready to move to the next part of the app.
+That’s pretty much it! We now have a drawer that opens from the right side of the screen (with left to right languages), that can be closed by the user. We’re ready to move to the next part of the app.
 
 <figure>
   <img src="https://user-images.githubusercontent.com/36158/68330101-eeef1700-00d2-11ea-925c-9c9ed5ba5805.png" alt="" />
@@ -156,12 +156,12 @@ That’s pretty much it! We now have a drawer that opens from the right side of 
 
 ### Split
 
-Let’s define the [Split](../split/) layout, right after the Header, to get an idea of what the structure will look like:
+Let’s define the [Split](https://ui.aragon.org/split/) layout, right after the Header, to get an idea of what the structure will look like:
 
 ```jsx
 // App.js
 import React, { useState } from 'react'
-import { Main, Header, DataView, Box } from '@aragon/ui'
+import { Main, Header, Split, DataView, Box } from '@aragon/ui'
 
 function App() {
   const [sidePanelOpened, setSidePanelOpened] = useState(false)
@@ -187,11 +187,11 @@ function App() {
 }
 ```
 
-Like [Header](../header/), the [Split](../split/) component defines two slots using the same `primary` and `secondary` names.
+Like [Header](https://ui.aragon.org/header/), the [Split](https://ui.aragon.org/split/) component defines two slots using the same `primary` and `secondary` names.
 
 ### DataView
 
-[DataView](../data-view/) is a powerful component that can be used to represent data in various ways, adapting itself to the available space. We are going to use it for the “holders” table.
+[DataView](https://ui.aragon.org/data-view/) is a powerful component that can be used to represent data in various ways, adapting itself to the available space. We are going to use it for the “holders” table.
 
 ```jsx
 // TokenHoldersView.js
@@ -232,7 +232,7 @@ function entryParts([account, balance]) {
   return [<LocalIdentityBadge entity={account} />, balance]
 }
 
-// Return the contextual menu for an entry (no behavior here).
+// Return the contextual menu for an entry (no interaction behavior defined).
 function entryActions([account, balance]) {
   return (
     <ContextMenu>
@@ -245,7 +245,7 @@ function entryActions([account, balance]) {
 export default TokenHoldersView
 ```
 
-To get more details about DataView and how it works, please have a look at its [documentation page](../data-view/).
+To get more details about DataView and how it works, please have a look at its [documentation page](https://ui.aragon.org/data-view/).
 
 ### Box and useTheme()
 
@@ -308,7 +308,7 @@ export default TokenInfoBox
 
 ### Distribution
 
-Now that TokenInfoBox is done, there is one last bit remaining, which is the “ownership distribution” box. Luckily for us, the [Distribution](../distribution/) component will do most of the work.
+Now that TokenInfoBox is done, there is one last bit remaining, which is the “ownership distribution” box. Luckily for us, the [Distribution](https://ui.aragon.org/distribution/) component will do most of the work.
 
 ```jsx
 // OwnershipDistributionBox.js
@@ -389,4 +389,4 @@ function App() {
 }
 ```
 
-And this is it for the tutorial. Of course there are many components that were not covered here, the idea being to give a general overview of how an Aragon app using aragonUI is structured.
+And this is it for the tutorial. Of course, many components were not covered here, the idea being to provide an overview of an Aragon app's structure when it uses aragonUI.

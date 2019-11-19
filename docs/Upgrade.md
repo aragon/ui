@@ -1,10 +1,14 @@
 # Upgrade to aragonUI 1.0
 
+All deprecations requiring a manual upgrade will log warnings to the console in non-production environments.
+
+Outside of any listed exceptions, all deprecations in 1.0 will be removed in releases after March 2020.
+
 ### Theming
 
-Theming is now done using a hook rather than statically. This change was necessary to allow the theme to change at run time. The hook `useTheme()` should now get used to fetch the theme object.
+Theming is now done with a hook rather than statically. This change was necessary to allow the theme to change at run time. The `useTheme()` hook should now be used to fetch the theme object.
 
-Using the `colors`, `theme`, `themeDark`, or `brand` objects is deprecated and will get removed in the next version.
+The `colors`, `theme`, `themeDark`, or `brand` objects are now deprecated.
 
 For more information, please consult [the documentation page for colors](https://ui.aragon.org/colors/).
 
@@ -14,15 +18,15 @@ This component was already deprecated, and has now been removed. If you were sti
 
 ### AppView
 
-`AppView` is deprecated and will get removed in the next version. The layout of an app is now implicitely handled by [`Main`](https://ui.aragon.org/main/), and [`Header`](https://ui.aragon.org/header/) should be used for the top part of an app.
+`AppView` is now deprecated. The layout of an app should now be implicitly handled by [`Main`](https://ui.aragon.org/main/) and [`Header`](https://ui.aragon.org/header/) should be used for the app header.
 
-Note: if you really have to keep using the `AppView` component, you can set set `layout={false}` on `Main`.
+Note: if you really must keep using the `AppView` component, you can set set `layout={false}` on `Main`. This feature will be removed at the same time as other deprecations.
 
 ### Button
 
-The `secondary` and `outline` modes doesn’t exist anymore. Setting them will display the button in normal mode (the default).
+The `secondary`, `outline`, and `text` modes don’t exist anymore. Setting them will display the button in normal mode (the default).
 
-The `text` mode doesn’t exist anymore, and has been replaced by the `ButtonText` component.
+The `text` mode has been replaced by the `ButtonText` component.
 
 The `emphasis` prop doesn’t exist anymore. `positive` and `negative` are now modes that can be set directly.
 
@@ -42,23 +46,28 @@ Responsiveness is now handled in a different way, and nothing replaces `GRID` / 
 
 ### AppBar and NavigationBar
 
-For the title and the main action of an app, [`Header`](http://ui.aragon.org/header/) should get used instead. For tabs, use the `Tabs` component. For `NavigationBar`, this is now generally achieved by using [`BackButton`](http://ui.aragon.org/back-button/) inside a [`Bar`](http://ui.aragon.org/bar/).
+For the title and the main action of an app, [`Header`](http://ui.aragon.org/header/) should get used.
+
+For tabs, use the `Tabs` component.
+
+For `NavigationBar`, we now recommend achieving this by using the [`BackButton`](http://ui.aragon.org/back-button/) inside a [`Bar`](http://ui.aragon.org/bar/).
 
 ### TabBar
 
-`TabBar` has been renamed `Tabs`. `TabBar` will get removed in a future version.
+`TabBar` has been renamed to `Tabs`. A legacy `TabBar` is still available, but will be removed at the same
+time as other deprecations.
 
-The `onSelect` prop has been removed: please use `onChange` instead.
+The `onSelect` prop has been removed in `Tabs`: please use `onChange` instead.
 
 ### Text and font()
 
-Both the `Text` component and the `font()` utility are deprecated and will get removed in a future version.
+Both the `Text` component and the `font()` utility are deprecated.
 
-Please use [`textStyle()`](https://ui.aragon.org/text-styles/) directly on your components instead.
+Please use [`textStyle()`](https://ui.aragon.org/text-styles/) directly in your components instead.
 
 ### Badge
 
-If you were using the `Badge` component and/or its variants (`Badge.Info`, `Badge.Identity`, `Badge.App`, `Badge.Notification`, `BadgeNumber`), you might want to switch as follows:
+If you were using the `Badge` component and/or its variants (`Badge.Info`, `Badge.Identity`, `Badge.App`, `Badge.Notification`, `BadgeNumber`), you should switch as follows:
 
 - `Badge` => `<Tag />`.
 - `Badge.Info` => `<Tag />`.
@@ -70,6 +79,8 @@ If you were using the `Badge` component and/or its variants (`Badge.Info`, `Badg
 ### Table
 
 If you were using the `Table` component, you might want to have a look at the new [`DataView`](https://ui.aragon.org/data-view/) component. It does what `Table` was doing, and much more.
+
+`Table` is not considered deprecated yet, but may be in a future version. It will not be removed following March 2020.
 
 ## observe()
 

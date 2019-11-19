@@ -1,6 +1,6 @@
 # Text styles
 
-Text styles provided by aragonUI can be used through the `textStyle()` utility function, which returns a series of CSS declarations corresponding to the desired text style.
+Text styles provided by aragonUI can be used through the `textStyle()` utility, which returns a series of CSS declarations corresponding to the desired text style.
 
 The CSS properties can include any of the following, depending on the requested style:
 
