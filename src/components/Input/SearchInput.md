@@ -13,7 +13,11 @@ function App() {
 
 ## Props
 
-Extends `TextInput` so this component will take in the same props as `TextInput`.
+<div class="info">
+
+Additional props will get passed to the internal `TextInput` component.
+
+</div>
 
 ### `onChange`
 

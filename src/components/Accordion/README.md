@@ -5,14 +5,18 @@ A simple accordion component.
 ## Usage
 
 ```jsx
+import { Main, Accordion } from '@aragon/ui'
+
 function App() {
   return (
-    <Accordion
-      items={[
-        ['Row content', 'Expandable content'],
-        [<div>Row content</div>, <div>Expandable content</div>],
-      ]}
-    />
+    <Main>
+      <Accordion
+        items={[
+          ['Row content', 'Expandable content'],
+          [<div>Row content</div>, <div>Expandable content</div>],
+        ]}
+      />
+    </Main>
   )
 }
 ```

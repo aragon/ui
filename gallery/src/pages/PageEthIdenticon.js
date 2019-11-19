@@ -6,27 +6,21 @@ import readme from 'ui-src/components/EthIdenticon/README.md'
 import { EthIdenticon } from '@aragon/ui'
 import Container from '../components/Page/DemoContainer'
 
+const ADDRESS = '0xcafE1A77e83698c83CA8931F54A755176eF75f2d'
+
 const PageBadgeNumber = ({ title }) => (
   <Page title={title} readme={readme}>
-    <Page.Demo>
-      <Container>
+    <Page.Demo opaque height={200}>
+      <Container centered css="height: 100vh">
         <EthIdenticonRow>
           <div>
-            <EthIdenticon address="0xcafE1A77e84698c83CA8931F54A755176eF75f2C" />
+            <EthIdenticon address={ADDRESS} />
           </div>
           <div>
-            <EthIdenticon
-              address="0xcafE1A77e84698c83CA8931F54A755176eF75f2C"
-              scale={2}
-              radius={25}
-            />
+            <EthIdenticon address={ADDRESS} scale={2} radius={25} />
           </div>
           <div>
-            <EthIdenticon
-              address="0xcafE1A77e84698c83CA8931F54A755176eF75f2C"
-              scale={3}
-              soften={0.7}
-            />
+            <EthIdenticon address={ADDRESS} radius={8} scale={3} soften={0.7} />
           </div>
         </EthIdenticonRow>
       </Container>

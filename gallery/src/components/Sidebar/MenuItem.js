@@ -1,47 +1,42 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import styled from 'styled-components'
-import { theme } from '@aragon/ui'
+import { Link, useTheme, textStyle, GU } from '@aragon/ui'
 
-const StyledMenuItem = styled.li`
-  position: relative;
-  margin: 10px 0;
-  list-style: none;
-  font-size: 18px;
-  line-height: 24px;
-  font-weight: ${({ active }) => (active ? '600' : '400')};
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 100%;
-  &:before {
-    display: ${({ active }) => (active ? 'block' : 'none')};
-    content: 'I';
-    position: absolute;
-    left: -10px;
-    color: ${theme.accent};
-  }
-  a {
-    text-decoration: none;
-  }
-  a:active {
-    color: ${theme.textSecondary};
-  }
-`
+function MenuItem({ active, path, name, onOpen }) {
+  const theme = useTheme()
 
-class MenuItem extends React.Component {
-  handleClick = event => {
-    event.preventDefault()
-    this.props.onOpen(this.props.path)
-  }
-  render() {
-    const { active, path, name, onOpen } = this.props
-    return (
-      <StyledMenuItem active={active} title={name}>
-        <a href={path} onClick={this.handleClick}>
-          {name}
-        </a>
-      </StyledMenuItem>
-    )
-  }
+  const handleClick = useCallback(
+    event => {
+      event.preventDefault()
+      onOpen(path)
+    },
+    [onOpen, path]
+  )
+
+  return (
+    <li
+      title={name}
+      css={`
+        position: relative;
+        margin: ${1 * GU}px 0;
+        list-style: none;
+      `}
+    >
+      <Link
+        external={false}
+        href={path}
+        onClick={handleClick}
+        css={`
+          color: ${theme.surfaceContent};
+          ${textStyle('body1')};
+          font-weight: ${active ? '600' : '400'};
+          white-space: nowrap;
+        `}
+      >
+        {name}
+      </Link>
+    </li>
+  )
 }
 
 export default MenuItem

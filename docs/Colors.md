@@ -1,6 +1,27 @@
-# aragonUI Theme Palette
+# Colors
 
-An aragonUI theme is a set of colors assigned to a predefined palette. All aragonUI components use colors from this palette, making it possible to swap the palette (theme) for another one in an app. aragonUI includes two themes by default, _light_ and _dark_, but any other can be provided, including by extending them.
+Colors in aragonUI are managed by its theming system. An aragonUI theme is a set of colors assigned to a predefined palette. All aragonUI components use colors from this palette, making it possible to swap the theme for another one dynamically. aragonUI includes two themes by default, _light_ and _dark_, but any other can be provided.
+
+## Usage
+
+The theme palette can be obtained in a component by using the `useTheme()` hook:
+
+```jsx
+function App() {
+  const theme = useTheme()
+  return (
+    <Main>
+      <p
+        css={`
+          color: ${theme.negative};
+        `}
+      >
+        Negative content
+      </p>
+    </Main>
+  )
+}
+```
 
 ## Notes
 
