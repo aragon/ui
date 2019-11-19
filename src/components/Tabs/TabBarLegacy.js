@@ -113,7 +113,8 @@ const Tab = styled.li`
   list-style: none;
   padding: 0 30px;
   cursor: pointer;
-  ${p => font({ weight: p.selected ? 'bold' : 'normal' })};
+  ${p =>
+    font({ weight: p.selected ? 'bold' : 'normal', deprecationNotice: false })};
   ${unselectable()};
   &:focus {
     outline: 0;

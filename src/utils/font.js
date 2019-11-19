@@ -1,3 +1,5 @@
+import { warnOnce } from './environment'
+
 // Using generic names so we can change the font if needed, while using these
 // generic names in our components.
 export const DEFAULT_FONT_FAMILY = 'aragon-ui'
@@ -53,12 +55,16 @@ const monospaceCss = monospace =>
     `
     : ''
 
-export const font = ({
+export function font({
   size,
   weight,
   smallcaps = false,
   monospace = false,
-}) => {
+  deprecationNotice = true,
+}) {
+  if (deprecationNotice) {
+    warnOnce('font()', 'font() is deprecated. Please use textStyle() instead.')
+  }
   return `
     ${fontSizeCss(size)};
     ${weightCss(weight)};
