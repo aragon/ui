@@ -37,7 +37,7 @@ In single column mode, it appears above the `secondary` slot, or below if `inver
 | ------------ | ------------- |
 | `React node` | None          |
 
-In two columns mode, it is the narrowest part, that appears on the right (for left to right languages), or the left if `invert` is set to `horizontal`.
+In two columns mode, this is the narrower part. It appears on the right (for left to right languages) or the left if `invert` is set to `horizontal`.
 
 In single column mode, it appears below the `primary` slot, or above if `invert` is set to `vertical`.
 
