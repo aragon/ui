@@ -1,14 +1,14 @@
 # Spacing
 
-aragonUI components are taking care of their own spacing and responsiveness, depending on where and how they are used, when possible. For example, there is no need to set the dimensions of an app or center it: the `Main` component is taking care of that already. When a `Box` is used after another one, a margin is also applied automatically.
+aragonUI components try very hard to take care of their own spacing and responsiveness, depending on where and how they are used. For example, there is no need to set the dimensions of an app or center it: the `Main` component takes care of that automatically. As another example, using two `Box`s one after another will automatically apply a margin between the two.
 
-But there are always cases where it is necessary to set our own spacing. This is where the grid unit becomes useful.
+However, you will likely encounter cases where you would like to set your own spacing. This is where the grid unit becomes useful.
 
 ## Grid unit
 
-The grid unit is a simple value we use as a base for many things, including elements geometry and spacing. It is set to `8`.
+The grid unit is a base value we use for dimensions, including element geometry and spacing. It is set to `8`.
 
-This is how it can get used:
+This is how it is generally used:
 
 ```jsx
 import { Main, GU } from '@aragon/ui'
