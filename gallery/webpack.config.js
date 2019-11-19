@@ -2,10 +2,27 @@ const webpack = require('webpack')
 const fs = require('fs')
 const path = require('path')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
-const CleanWebpackPlugin = require('clean-webpack-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const CompressionPlugin = require('compression-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const WebpackMonitor = require('webpack-monitor')
+
+const aragonUiVersion = require('../package.json').version
+
+// See markdown-only pages declared in routes.js
+const MARKDOWN_ONLY_PAGES = [
+  'accordion',
+  'colors',
+  'float-indicator',
+  'getting-started',
+  'how-to-upgrade',
+  'loading-ring',
+  'search-input',
+  'spacing',
+  'sync-indicator',
+  'tag',
+  'text-styles',
+]
 
 const PUBLIC_PATH = '/'
 const BASE_HTML_CONF = {
@@ -13,13 +30,16 @@ const BASE_HTML_CONF = {
   template: './public/index.html',
 }
 
-const pages = fs.readdirSync(path.join(__dirname, 'src/pages')).map(filename =>
-  filename
-    .replace(/\.js$/, '')
-    .replace(/^Page/, '')
-    .replace(/(.)([A-Z])/g, '$1-$2')
-    .toLowerCase()
-)
+const pages = fs
+  .readdirSync(path.join(__dirname, 'src/pages'))
+  .map(filename =>
+    filename
+      .replace(/\.js$/, '')
+      .replace(/^Page/, '')
+      .replace(/(.)([A-Z])/g, '$1-$2')
+      .toLowerCase()
+  )
+  .concat(MARKDOWN_ONLY_PAGES)
 
 const htmlPages = () => {
   return pages.map(
@@ -49,6 +69,7 @@ module.exports = (env, argv) => {
         src: path.resolve(__dirname, 'src'),
         '@aragon/ui': path.resolve(__dirname, '..'),
         'ui-src': path.resolve(__dirname, '../src'),
+        'ui-docs': path.resolve(__dirname, '../docs'),
       },
 
       // Only needed because @aragon/ui is linked
@@ -98,13 +119,14 @@ module.exports = (env, argv) => {
     },
     plugins: (() => {
       let plugins = [
-        new CleanWebpackPlugin(['dist']),
-        new webpack.DefinePlugin({
-          PUBLIC_PATH: JSON.stringify(PUBLIC_PATH),
-        }),
+        new CleanWebpackPlugin(),
         new HtmlWebpackPlugin(BASE_HTML_CONF),
+
+        // These constants should only get used from src/environment.js
         new webpack.DefinePlugin({
           ARAGON_UI_PATH: JSON.stringify(production ? '/aragon-ui/' : '/'),
+          ARAGON_UI_VERSION: JSON.stringify(aragonUiVersion),
+          PUBLIC_PATH: JSON.stringify(PUBLIC_PATH),
         }),
       ]
 

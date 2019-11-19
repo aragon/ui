@@ -1,5 +1,6 @@
 import MarkdownIt from 'markdown-it'
 import MarkdownItAnchor from 'markdown-it-anchor'
+import MarkdownItLinkAttrs from 'markdown-it-link-attributes'
 
 import Prism from 'prismjs'
 import 'prismjs/components/prism-markup'
@@ -8,7 +9,7 @@ import 'prismjs/components/prism-javascript'
 
 // MarkdownIt plugin inspired by Joshua Gleitze’s project:
 // https://github.com/jGleitz/markdown-it-prism
-const markdownItPrism = markdownit => {
+function MarkdownItPrism(markdownit) {
   markdownit.options.highlight = (text, lang) => {
     const code = Prism.languages[lang]
       ? Prism.highlight(text, Prism.languages[lang])
@@ -62,10 +63,15 @@ const splitIntro = html => {
   }
 }
 
-const md = new MarkdownIt()
-md.use(markdownItPrism)
-md.use(MarkdownItAnchor, {
-  level: [2, 3],
+const md = new MarkdownIt({ html: true })
+md.use(MarkdownItPrism)
+md.use(MarkdownItAnchor, { level: [2, 3] })
+md.use(MarkdownItLinkAttrs, {
+  pattern: /^https?:/,
+  attrs: {
+    target: '_blank',
+    rel: 'noopener noreferrer',
+  },
 })
 
 export default async url => {

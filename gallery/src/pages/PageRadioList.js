@@ -18,7 +18,7 @@ class PageRadioList extends React.Component {
     const { selectedItem } = this.state
     return (
       <Page title={title} readme={readme}>
-        <Page.Demo height={400}>
+        <Page.Demo height={400} opaque>
           <Container>
             <RadioList
               title="This is a radio list"
