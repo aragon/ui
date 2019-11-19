@@ -1,16 +1,15 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import styled from 'styled-components'
 import { noop } from '../../utils'
 import { useTheme } from '../../theme'
 import { GU, textStyle } from '../../style'
-import ButtonIcon from '../Button/ButtonIcon'
+import { ButtonIcon } from '../Button/ButtonIcon'
 import Countdown from '../Countdown/Countdown'
+import { IconClose } from '../../icons'
+import { Info } from '../Info'
 import Link from '../Link/Link'
 import Popover from '../Popover/Popover'
 import ProgressBar from '../ProgressBar/ProgressBar'
-import { IconClose } from '../../icons'
-import { Info } from '../Info'
 
 const TransactionProgress = React.memo(function TransactionProgress({
   visible,
