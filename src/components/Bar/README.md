@@ -1,6 +1,6 @@
 # Bar
 
-`Bar` is a component that represents a horizontal bar, generally combined with inner elements like a back button, an action button, or data filters. It is generally used before components like `Box`, `DataView`, `Split` and `CardLayout`.
+`Bar` is a component that represents a horizontal bar, generally combined with inner elements like a back button, an action button, or data filters. It is generally placed right above components like `Box` (see example), `DataView`, `Split` and `CardLayout`.
 
 ## Usage
 
@@ -25,7 +25,7 @@ function App() {
 | ------------ | ------------- |
 | `React node` | None          |
 
-Sets the entire content of `Bar`. Overrides both `primary` and `secondary` and their default spacing.
+Sets the entire content of `Bar`. Overrides both `primary` and `secondary` and their default spacing. You should generally prefer using `primary` and `secondary`, when possible.
 
 ### `primary`
 

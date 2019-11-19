@@ -27,7 +27,7 @@ function App() {
 | ------------ | ------------- |
 | `React node` | None          |
 
-Sets the entire content of `Header`. Overrides both `primary` and `secondary` and their default styling.
+Sets the entire content of `Header`. Overrides both `primary` and `secondary` and their default styling. You should generally prefer using `primary` and `secondary`, when possible.
 
 ### `primary`
 
