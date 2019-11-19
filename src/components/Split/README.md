@@ -1,6 +1,6 @@
 # Split
 
-`Split` creates a two column layout when the available horizontal space makes it possible. If not it renders as a single column. Its slots generally contain components like `Box` or `DataView`.
+`Split` creates a two column layout when the available horizontal space makes it possible. If not, it renders as a single column. Its slots generally contain components like `Box` or `DataView`.
 
 ## Usage
 
