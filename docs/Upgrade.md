@@ -70,3 +70,7 @@ If you were using the `Badge` component and/or its variants (`Badge.Info`, `Badg
 ### Table
 
 If you were using the `Table` component, you might want to have a look at the new [`DataView`](https://ui.aragon.org/data-view/) component. It does what `Table` was doing, and much more.
+
+## observe()
+
+The `observe()` utility is now deprecated. If you were using it with [`@aragon/api`](https://hack.aragon.org/docs/api-js-ref-api), using [`@aragon/api-react`](https://hack.aragon.org/docs/api-js-ref-react) directly is now the recommended way to do this.
