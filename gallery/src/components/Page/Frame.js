@@ -7,12 +7,6 @@ import styled, {
 
 const { StyleSheet } = styledSecrets
 
-const StyledFrame = styled.iframe`
-  display: block;
-  width: 100%;
-  border: 0;
-`
-
 class Frame extends React.Component {
   static defaultProps = {
     height: -1,
@@ -88,12 +82,17 @@ class Frame extends React.Component {
     const { children, opaque, ...rest } = this.props
 
     return (
-      <StyledFrame
+      <iframe
         {...rest}
         ref={node => (this.node = node)}
-        srcDoc=""
         onLoad={this.handleLoad}
+        srcDoc=""
         style={{ height: `${iframeHeight}px` }}
+        css={`
+          display: block;
+          width: 100%;
+          border: 0;
+        `}
       >
         {root &&
           createPortal(
@@ -111,7 +110,7 @@ class Frame extends React.Component {
             </body>,
             root
           )}
-      </StyledFrame>
+      </iframe>
     )
   }
 }
