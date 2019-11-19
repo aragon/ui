@@ -27,7 +27,7 @@ function App() {
 | ------------ | ------------- |
 | `React node` | None          |
 
-In two columns mode, it is the largest part, that appears on the left (for left-to-right languages), or the right if `invert` is set to `horizontal`.
+In two columns mode, this takes the wider space. It appears on the left (for left-to-right languages) or the right if `invert` is set to `horizontal`.
 
 In single column mode, it appears above the `secondary` slot, or below if `invert` is set to `vertical`.
 
