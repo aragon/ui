@@ -121,15 +121,13 @@ module.exports = (env, argv) => {
     plugins: (() => {
       let plugins = [
         new CleanWebpackPlugin(),
-        new webpack.DefinePlugin({
-          PUBLIC_PATH: JSON.stringify(PUBLIC_PATH),
-        }),
         new HtmlWebpackPlugin(BASE_HTML_CONF),
+
+        // These constants should only get used from src/environment.js
         new webpack.DefinePlugin({
           ARAGON_UI_PATH: JSON.stringify(production ? '/aragon-ui/' : '/'),
-        }),
-        new webpack.DefinePlugin({
           ARAGON_UI_VERSION: JSON.stringify(aragonUiVersion),
+          PUBLIC_PATH: JSON.stringify(PUBLIC_PATH),
         }),
       ]
 
