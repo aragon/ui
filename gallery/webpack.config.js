@@ -39,8 +39,7 @@ const pages = fs
       .replace(/(.)([A-Z])/g, '$1-$2')
       .toLowerCase()
   )
-  // See markdown-only pages declared in routes.js
-  .concat(['getting-started', 'spacing', 'colors', 'text-styles'])
+  .concat(MARKDOWN_ONLY_PAGES)
 
 const htmlPages = () => {
   return pages.map(
