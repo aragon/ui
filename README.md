@@ -6,14 +6,11 @@
 
 aragonUI is a React library used to build user interfaces for Aragon and its related projects. It provides the components needed to build experiences that feel integrated with Aragon ecosystem, and can be used both client or server side.
 
-Used by:
-
-- [Aragon](https://github.com/aragon/aragon)
-- [Aragon apps by the core team](https://github.com/aragon/aragon-apps)
-- [aragon.org](https://aragon.org/)
-- [hack.aragon.org](https://hack.aragon.org/)
+The complete documentation can be found on the [aragonUI website](https://ui.aragon.org/).
 
 ## Getting Started
+
+If you are unfamiliar with aragonUI, we recommend you to start with the [getting started page](https://ui.aragon.org/getting-started/). If you only want to know how to add aragonUI to your project, have a look at the quick setup:
 
 ### Quick setup
 
@@ -84,11 +81,7 @@ You may also want to add it as a build step in your project, so that aragonUI ca
 
 See `copy-aragon-ui-assets -h` for more information.
 
-## Documentation
-
-The complete documentation can be found on the [aragonUI website](https://ui.aragon.org/).
-
-## Build & Develop
+## Build and Develop
 
 Clone this repository, install the dependencies:
 
@@ -115,6 +108,21 @@ cd devbox
 npm install
 npm start
 ```
+
+## Projects using aragonUI
+
+- [Aragon client](https://github.com/aragon/aragon) and [core apps](https://github.com/aragon/aragon-apps)
+- [Autark’s Open Enterprise](https://www.autark.xyz/apps)
+- [1Hive’s Dandelion apps](https://1hive.org/projects/dandelion-orgs/dandelion-overview)
+- [Aragon Black’s Fundraising](https://fundraising.aragon.black/)
+- [pando](https://github.com/pandonetwork/pando)
+- [P2P Models Wiki](https://github.com/P2PModels/wiki)
+- [Auction App for Cyber Foundation](https://github.com/cybercongress/aragon-auction-app)
+- [1Hive’s Apiary](https://github.com/1Hive/apiary)
+- [Uniswap Aragon App](https://github.com/empowerthedao/uniswap-aragon-app)
+- [Compound Aragon App](https://github.com/empowerthedao/compound-aragon-app)
+- [Aragon Parliament](https://github.com/PeterMPhillips/aragon-parliament)
+- [Aragon Market](https://github.com/proofoftom/aragon-market)
 
 ## License
 
