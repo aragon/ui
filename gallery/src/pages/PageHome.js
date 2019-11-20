@@ -122,7 +122,7 @@ function Badges() {
             ${textStyle('body1')};
           `}
         >
-          Getting Started
+          Get Started
         </Link>
       </p>
     </div>
