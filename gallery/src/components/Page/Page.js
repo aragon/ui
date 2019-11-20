@@ -93,15 +93,19 @@ function Page({ title, readme, children }) {
   )
 }
 
-function PageDemo({ opaque, height, children }) {
+function PageDemo({ opaque, height, children, container = true }) {
   return (
     <div>
       <h2>Demonstration</h2>
-      <Resizable>
-        <Frame opaque={opaque} height={height}>
-          {children}
-        </Frame>
-      </Resizable>
+      {container ? (
+        <Resizable>
+          <Frame opaque={opaque} height={height}>
+            {children}
+          </Frame>
+        </Resizable>
+      ) : (
+        children
+      )}
     </div>
   )
 }

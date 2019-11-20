@@ -3,12 +3,11 @@ import styled from 'styled-components'
 import {
   ContextMenu,
   ContextMenuItem,
-  Table,
-  TableRow,
-  TableHeader,
-  TableCell,
   IconShare,
-  Text,
+  Table,
+  TableCell,
+  TableHeader,
+  TableRow,
 } from '@aragon/ui'
 import Page from 'comps/Page/Page'
 import readme from 'ui-src/components/ContextMenu/README.md'

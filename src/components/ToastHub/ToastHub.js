@@ -6,7 +6,6 @@ import RootPortal from '../RootPortal/RootPortal'
 import { stylingProps } from '../../utils'
 import { useTheme } from '../../theme'
 import { springs, textStyle, GU, RADIUS } from '../../style'
-import Text from '../Text/Text'
 
 let id = 0
 
@@ -148,7 +147,7 @@ const ToastList = React.memo(
               <Message style={props}>
                 <Content top={top} theme={theme}>
                   {showIndicator && <Life top={top} style={{ right: life }} />}
-                  <Text.Paragraph>{item.msg}</Text.Paragraph>
+                  <p>{item.msg}</p>
                 </Content>
               </Message>
             )

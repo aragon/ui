@@ -1,5 +1,5 @@
 import React from 'react'
-import { Table, TableCell, TableHeader, TableRow, Text } from '@aragon/ui'
+import { Table, TableCell, TableHeader, TableRow } from '@aragon/ui'
 
 import Page from 'comps/Page/Page'
 import Container from 'comps/Page/DemoContainer'
@@ -17,20 +17,12 @@ const PageTable = ({ title }) => (
           }
         >
           <TableRow>
-            <TableCell>
-              <Text>January</Text>
-            </TableCell>
-            <TableCell>
-              <Text>February</Text>
-            </TableCell>
+            <TableCell>January</TableCell>
+            <TableCell>February</TableCell>
           </TableRow>
           <TableRow>
-            <TableCell>
-              <Text>10 commits</Text>
-            </TableCell>
-            <TableCell>
-              <Text>32 commits</Text>
-            </TableCell>
+            <TableCell>10 commits</TableCell>
+            <TableCell>32 commits</TableCell>
           </TableRow>
         </Table>
       </Container>
