@@ -1,12 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import {
-  RadioGroup,
-  Radio,
-  RadioList,
-  unselectable,
-  useKeyDown,
-} from '@aragon/ui'
+import { RadioGroup, Radio, unselectable, useKeyDown } from '@aragon/ui'
 import CheckboxDemo from './Checkbox'
 
 const items = [
@@ -14,7 +8,7 @@ const items = [
   ['Cherry', 'Strawberry', 'Banana', 'Apple'],
 ]
 
-const MODES = ['Radio', 'RadioGroup', 'RadioList']
+const MODES = ['Radio', 'RadioGroup']
 
 class App extends React.Component {
   state = {
@@ -77,21 +71,6 @@ class App extends React.Component {
                   </RadioGroup>
                 </List>
               ))}
-
-            {mode === 2 && (
-              <RadioList
-                title="Action Requirement"
-                description="Here are some options you can use to perform it:"
-                items={items[0].map(item => ({
-                  title: item,
-                  description: item,
-                }))}
-                onChange={id => {
-                  this.updateSelected(0, id)
-                }}
-                selected={selected[0]}
-              />
-            )}
           </div>
         </div>
       </Main>

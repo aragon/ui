@@ -5,11 +5,16 @@ EmptyStateCard extends the Card component to represent an empty state in your ap
 ## Usage
 
 ```jsx
-import { EmptyStateCard } from '@aragon/ui'
+import { Main, Button, EmptyStateCard } from '@aragon/ui'
 
-const App = () => (
-  <EmptyStateCard text="You seem to not have any content on your wall." />
-)
+function App() {
+  return (
+    <EmptyStateCard
+      text="There is no content."
+      action={<Button>>Action</Button>}
+    />
+  )
+}
 ```
 
 ## Props
@@ -39,7 +44,7 @@ An illustration to visually represent the empty state.
 #### Example:
 
 ```jsx
-const App = () => <EmptyStateCard illustration={<IconHome color="blue" />} />
+<EmptyStateCard illustration={<img src={illustrationSrc} alt="" />} />
 ```
 
 ### `action`

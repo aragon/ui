@@ -4,15 +4,16 @@ A Card component.
 
 ## Usage
 
-
 ```jsx
-import { Card, Text } from '@aragon/ui'
+import { Main, Card } from '@aragon/ui'
 
-const App = () => (
-  <Card>
-    <Text>Some Text</Text>
-  </Card>
-)
+function App() {
+  return (
+    <Main>
+      <Card>Card content</Card>
+    </Main>
+  )
+}
 ```
 
 ## Props
@@ -28,9 +29,7 @@ Set the width of your card in pixels.
 
 ```jsx
 const MyCard = () => (
-  <Card width="500px">
-    {/* Your card's content goes here */}
-  </Card>
+  <Card width="500px">{/* Your card's content goes here */}</Card>
 )
 ```
 
@@ -45,8 +44,6 @@ Set the height of your card in pixels.
 
 ```jsx
 const MyCard = () => (
-  <Card height="800px">
-    {/* Your card's content goes here */}
-  </Card>
+  <Card height="800px">{/* Your card's content goes here */}</Card>
 )
 ```
