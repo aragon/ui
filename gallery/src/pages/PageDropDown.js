@@ -7,7 +7,7 @@ import Container from '../components/Page/DemoContainer'
 
 class PageDropDown extends React.Component {
   state = {
-    activeItem: 0,
+    activeItem: -1,
   }
   handleChange = index => {
     this.setState({ activeItem: index })
@@ -18,31 +18,20 @@ class PageDropDown extends React.Component {
 
     return (
       <Page title={title} readme={readme}>
-        <Page.Demo height={350}>
-          <Container>
-            <div
-              style={{
-                display: 'flex',
-                height: '100%',
-                width: '100%',
-                paddingTop: '40px',
-                justifyContent: 'center',
-              }}
-            >
-              <div>
-                <DropDown
-                  active={activeItem}
-                  onChange={this.handleChange}
-                  items={[
-                    'Wandering Thunder',
-                    'Black Wildflower',
-                    'Ancient Paper',
-                    'Green Fire',
-                  ]}
-                />
-              </div>
-            </div>
-          </Container>
+        <Page.Demo container={false}>
+          <div>
+            <DropDown
+              active={activeItem}
+              onChange={this.handleChange}
+              selected={activeItem}
+              items={[
+                'Wandering Thunder',
+                'Black Wildflower',
+                'Ancient Paper',
+                'Green Fire',
+              ]}
+            />
+          </div>
         </Page.Demo>
       </Page>
     )
