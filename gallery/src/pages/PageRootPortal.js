@@ -34,11 +34,7 @@ const PageRootPortal = ({ title }) => {
       >
         This component is rendered {inside ? 'through' : 'without'} RootPortal.
       </div>
-      <Button
-        mode="secondary"
-        size="compact"
-        onClick={() => setInside(v => !v)}
-      >
+      <Button mode="secondary" size="small" onClick={() => setInside(v => !v)}>
         Render {inside ? 'without' : 'through'} RootPortal
       </Button>
     </div>
