@@ -15,6 +15,7 @@ const MARKDOWN_ONLY_PAGES = [
   'colors',
   'float-indicator',
   'getting-started',
+  'help',
   'how-to-upgrade',
   'loading-ring',
   'search-input',
