@@ -1,12 +1,16 @@
-import _styled, { css, keyframes, createGlobalStyle } from 'styled-components';
-import React, { useContext, useState as useState$1, useMemo, useEffect, useCallback, useRef, useImperativeHandle, forwardRef } from 'react';
-import ReactDOM from 'react-dom';
+'use strict';
+
+Object.defineProperty(exports, '__esModule', { value: true });
+
+function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
+
+var _styled = require('styled-components');
+var _styled__default = _interopDefault(_styled);
+var React = require('react');
+var React__default = _interopDefault(React);
+var ReactDOM = _interopDefault(require('react-dom'));
 
 var commonjsGlobal = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
-
-function commonjsRequire () {
-	throw new Error('Dynamic requires are not currently supported by rollup-plugin-commonjs');
-}
 
 function unwrapExports (x) {
 	return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, 'default') ? x['default'] : x;
@@ -14,10 +18,6 @@ function unwrapExports (x) {
 
 function createCommonjsModule(fn, module) {
 	return module = { exports: {} }, fn(module, module.exports), module.exports;
-}
-
-function getCjsExportFromNamespace (n) {
-	return n && n['default'] || n;
 }
 
 var _extends_1 = createCommonjsModule(function (module) {
@@ -81,16 +81,7 @@ function _objectWithoutProperties(source, excluded) {
 var objectWithoutProperties = _objectWithoutProperties;
 
 var reactIs_production_min = createCommonjsModule(function (module, exports) {
-/** @license React v16.11.0
- * react-is.production.min.js
- *
- * Copyright (c) Facebook, Inc. and its affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
-'use strict';Object.defineProperty(exports,"__esModule",{value:!0});
+Object.defineProperty(exports,"__esModule",{value:!0});
 var b="function"===typeof Symbol&&Symbol.for,c=b?Symbol.for("react.element"):60103,d=b?Symbol.for("react.portal"):60106,e=b?Symbol.for("react.fragment"):60107,f=b?Symbol.for("react.strict_mode"):60108,g=b?Symbol.for("react.profiler"):60114,h=b?Symbol.for("react.provider"):60109,k=b?Symbol.for("react.context"):60110,l=b?Symbol.for("react.async_mode"):60111,m=b?Symbol.for("react.concurrent_mode"):60111,n=b?Symbol.for("react.forward_ref"):60112,p=b?Symbol.for("react.suspense"):60113,q=b?Symbol.for("react.suspense_list"):
 60120,r=b?Symbol.for("react.memo"):60115,t=b?Symbol.for("react.lazy"):60116,v=b?Symbol.for("react.fundamental"):60117,w=b?Symbol.for("react.responder"):60118,x=b?Symbol.for("react.scope"):60119;function y(a){if("object"===typeof a&&null!==a){var u=a.$$typeof;switch(u){case c:switch(a=a.type,a){case l:case m:case e:case g:case f:case p:return a;default:switch(a=a&&a.$$typeof,a){case k:case n:case h:return a;default:return u}}case t:case r:case d:return u}}}function z(a){return y(a)===m}
 exports.typeOf=y;exports.AsyncMode=l;exports.ConcurrentMode=m;exports.ContextConsumer=k;exports.ContextProvider=h;exports.Element=c;exports.ForwardRef=n;exports.Fragment=e;exports.Lazy=t;exports.Memo=r;exports.Portal=d;exports.Profiler=g;exports.StrictMode=f;exports.Suspense=p;
@@ -98,7 +89,7 @@ exports.isValidElementType=function(a){return "string"===typeof a||"function"===
 exports.isElement=function(a){return "object"===typeof a&&null!==a&&a.$$typeof===c};exports.isForwardRef=function(a){return y(a)===n};exports.isFragment=function(a){return y(a)===e};exports.isLazy=function(a){return y(a)===t};exports.isMemo=function(a){return y(a)===r};exports.isPortal=function(a){return y(a)===d};exports.isProfiler=function(a){return y(a)===g};exports.isStrictMode=function(a){return y(a)===f};exports.isSuspense=function(a){return y(a)===p};
 });
 
-var reactIs_production_min$1 = unwrapExports(reactIs_production_min);
+unwrapExports(reactIs_production_min);
 var reactIs_production_min_1 = reactIs_production_min.typeOf;
 var reactIs_production_min_2 = reactIs_production_min.AsyncMode;
 var reactIs_production_min_3 = reactIs_production_min.ConcurrentMode;
@@ -129,22 +120,11 @@ var reactIs_production_min_27 = reactIs_production_min.isStrictMode;
 var reactIs_production_min_28 = reactIs_production_min.isSuspense;
 
 var reactIs_development = createCommonjsModule(function (module, exports) {
-/** @license React v16.11.0
- * react-is.development.js
- *
- * Copyright (c) Facebook, Inc. and its affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
-'use strict';
 
 
 
 if (process.env.NODE_ENV !== "production") {
   (function() {
-'use strict';
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
@@ -367,7 +347,7 @@ exports.isSuspense = isSuspense;
 }
 });
 
-var reactIs_development$1 = unwrapExports(reactIs_development);
+unwrapExports(reactIs_development);
 var reactIs_development_1 = reactIs_development.typeOf;
 var reactIs_development_2 = reactIs_development.AsyncMode;
 var reactIs_development_3 = reactIs_development.ConcurrentMode;
@@ -398,7 +378,6 @@ var reactIs_development_27 = reactIs_development.isStrictMode;
 var reactIs_development_28 = reactIs_development.isSuspense;
 
 var reactIs = createCommonjsModule(function (module) {
-'use strict';
 
 if (process.env.NODE_ENV === 'production') {
   module.exports = reactIs_production_min;
@@ -412,8 +391,6 @@ object-assign
 (c) Sindre Sorhus
 @license MIT
 */
-
-'use strict';
 /* eslint-disable no-unused-vars */
 var getOwnPropertySymbols = Object.getOwnPropertySymbols;
 var hasOwnProperty = Object.prototype.hasOwnProperty;
@@ -505,20 +482,9 @@ var objectAssign = shouldUseNative() ? Object.assign : function (target, source)
  * LICENSE file in the root directory of this source tree.
  */
 
-'use strict';
-
 var ReactPropTypesSecret = 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED';
 
 var ReactPropTypesSecret_1 = ReactPropTypesSecret;
-
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
-'use strict';
 
 var printWarning = function() {};
 
@@ -613,21 +579,6 @@ checkPropTypes.resetWarningCache = function() {
 };
 
 var checkPropTypes_1 = checkPropTypes;
-
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
-'use strict';
-
-
-
-
-
-
 
 var has$1 = Function.call.bind(Object.prototype.hasOwnProperty);
 var printWarning$1 = function() {};
@@ -1206,17 +1157,6 @@ var factoryWithTypeCheckers = function(isValidElement, throwOnDirectAccess) {
   return ReactPropTypes;
 };
 
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
-'use strict';
-
-
-
 function emptyFunction() {}
 function emptyFunctionWithReset() {}
 emptyFunctionWithReset.resetWarningCache = emptyFunction;
@@ -1234,12 +1174,10 @@ var factoryWithThrowingShims = function() {
     );
     err.name = 'Invariant Violation';
     throw err;
-  };
-  shim.isRequired = shim;
+  }  shim.isRequired = shim;
   function getShim() {
     return shim;
-  };
-  // Important!
+  }  // Important!
   // Keep this list in sync with production version in `./factoryWithTypeCheckers.js`.
   var ReactPropTypes = {
     array: shim,
@@ -1304,7 +1242,7 @@ var BREAKPOINTS = {
 }; // CSS breakpoints
 
 var breakpoint = function breakpoint(name, styles) {
-  return css(["@media (min-width:", "px){", ";}"], BREAKPOINTS[name], styles);
+  return _styled.css(["@media (min-width:", "px){", ";}"], BREAKPOINTS[name], styles);
 };
 
 // Springs to be used with react-spring
@@ -1632,7 +1570,7 @@ function textStyle(name) {
 }
 
 var dayjs_min = createCommonjsModule(function (module, exports) {
-!function(t,n){"object"=='object'&&"undefined"!='object'?module.exports=n():"function"==typeof undefined&&undefined.amd?undefined(n):t.dayjs=n();}(commonjsGlobal,function(){"use strict";var t="millisecond",n="second",e="minute",r="hour",i="day",s="week",u="month",o="quarter",a="year",h=/^(\d{4})-?(\d{1,2})-?(\d{0,2})[^0-9]*(\d{1,2})?:?(\d{1,2})?:?(\d{1,2})?.?(\d{1,3})?$/,f=/\[([^\]]+)]|Y{2,4}|M{1,4}|D{1,2}|d{1,4}|H{1,2}|h{1,2}|a|A|m{1,2}|s{1,2}|Z{1,2}|SSS/g,c=function(t,n,e){var r=String(t);return !r||r.length>=n?t:""+Array(n+1-r.length).join(e)+t},d={s:c,z:function(t){var n=-t.utcOffset(),e=Math.abs(n),r=Math.floor(e/60),i=e%60;return (n<=0?"+":"-")+c(r,2,"0")+":"+c(i,2,"0")},m:function(t,n){var e=12*(n.year()-t.year())+(n.month()-t.month()),r=t.clone().add(e,u),i=n-r<0,s=t.clone().add(e+(i?-1:1),u);return Number(-(e+(n-r)/(i?r-s:s-r))||0)},a:function(t){return t<0?Math.ceil(t)||0:Math.floor(t)},p:function(h){return {M:u,y:a,w:s,d:i,h:r,m:e,s:n,ms:t,Q:o}[h]||String(h||"").toLowerCase().replace(/s$/,"")},u:function(t){return void 0===t}},$={name:"en",weekdays:"Sunday_Monday_Tuesday_Wednesday_Thursday_Friday_Saturday".split("_"),months:"January_February_March_April_May_June_July_August_September_October_November_December".split("_")},l="en",m={};m[l]=$;var y=function(t){return t instanceof v},M=function(t,n,e){var r;if(!t)return l;if("string"==typeof t)m[t]&&(r=t),n&&(m[t]=n,r=t);else{var i=t.name;m[i]=t,r=i;}return e||(l=r),r},g=function(t,n,e){if(y(t))return t.clone();var r=n?"string"==typeof n?{format:n,pl:e}:n:{};return r.date=t,new v(r)},D=d;D.l=M,D.i=y,D.w=function(t,n){return g(t,{locale:n.$L,utc:n.$u,$offset:n.$offset})};var v=function(){function c(t){this.$L=this.$L||M(t.locale,null,!0),this.parse(t);}var d=c.prototype;return d.parse=function(t){this.$d=function(t){var n=t.date,e=t.utc;if(null===n)return new Date(NaN);if(D.u(n))return new Date;if(n instanceof Date)return new Date(n);if("string"==typeof n&&!/Z$/i.test(n)){var r=n.match(h);if(r)return e?new Date(Date.UTC(r[1],r[2]-1,r[3]||1,r[4]||0,r[5]||0,r[6]||0,r[7]||0)):new Date(r[1],r[2]-1,r[3]||1,r[4]||0,r[5]||0,r[6]||0,r[7]||0)}return new Date(n)}(t),this.init();},d.init=function(){var t=this.$d;this.$y=t.getFullYear(),this.$M=t.getMonth(),this.$D=t.getDate(),this.$W=t.getDay(),this.$H=t.getHours(),this.$m=t.getMinutes(),this.$s=t.getSeconds(),this.$ms=t.getMilliseconds();},d.$utils=function(){return D},d.isValid=function(){return !("Invalid Date"===this.$d.toString())},d.isSame=function(t,n){var e=g(t);return this.startOf(n)<=e&&e<=this.endOf(n)},d.isAfter=function(t,n){return g(t)<this.startOf(n)},d.isBefore=function(t,n){return this.endOf(n)<g(t)},d.$g=function(t,n,e){return D.u(t)?this[n]:this.set(e,t)},d.year=function(t){return this.$g(t,"$y",a)},d.month=function(t){return this.$g(t,"$M",u)},d.day=function(t){return this.$g(t,"$W",i)},d.date=function(t){return this.$g(t,"$D","date")},d.hour=function(t){return this.$g(t,"$H",r)},d.minute=function(t){return this.$g(t,"$m",e)},d.second=function(t){return this.$g(t,"$s",n)},d.millisecond=function(n){return this.$g(n,"$ms",t)},d.unix=function(){return Math.floor(this.valueOf()/1e3)},d.valueOf=function(){return this.$d.getTime()},d.startOf=function(t,o){var h=this,f=!!D.u(o)||o,c=D.p(t),d=function(t,n){var e=D.w(h.$u?Date.UTC(h.$y,n,t):new Date(h.$y,n,t),h);return f?e:e.endOf(i)},$=function(t,n){return D.w(h.toDate()[t].apply(h.toDate(),(f?[0,0,0,0]:[23,59,59,999]).slice(n)),h)},l=this.$W,m=this.$M,y=this.$D,M="set"+(this.$u?"UTC":"");switch(c){case a:return f?d(1,0):d(31,11);case u:return f?d(1,m):d(0,m+1);case s:var g=this.$locale().weekStart||0,v=(l<g?l+7:l)-g;return d(f?y-v:y+(6-v),m);case i:case"date":return $(M+"Hours",0);case r:return $(M+"Minutes",1);case e:return $(M+"Seconds",2);case n:return $(M+"Milliseconds",3);default:return this.clone()}},d.endOf=function(t){return this.startOf(t,!1)},d.$set=function(s,o){var h,f=D.p(s),c="set"+(this.$u?"UTC":""),d=(h={},h[i]=c+"Date",h.date=c+"Date",h[u]=c+"Month",h[a]=c+"FullYear",h[r]=c+"Hours",h[e]=c+"Minutes",h[n]=c+"Seconds",h[t]=c+"Milliseconds",h)[f],$=f===i?this.$D+(o-this.$W):o;if(f===u||f===a){var l=this.clone().set("date",1);l.$d[d]($),l.init(),this.$d=l.set("date",Math.min(this.$D,l.daysInMonth())).toDate();}else d&&this.$d[d]($);return this.init(),this},d.set=function(t,n){return this.clone().$set(t,n)},d.get=function(t){return this[D.p(t)]()},d.add=function(t,o){var h,f=this;t=Number(t);var c=D.p(o),d=function(n){var e=g(f);return D.w(e.date(e.date()+Math.round(n*t)),f)};if(c===u)return this.set(u,this.$M+t);if(c===a)return this.set(a,this.$y+t);if(c===i)return d(1);if(c===s)return d(7);var $=(h={},h[e]=6e4,h[r]=36e5,h[n]=1e3,h)[c]||1,l=this.$d.getTime()+t*$;return D.w(l,this)},d.subtract=function(t,n){return this.add(-1*t,n)},d.format=function(t){var n=this;if(!this.isValid())return "Invalid Date";var e=t||"YYYY-MM-DDTHH:mm:ssZ",r=D.z(this),i=this.$locale(),s=this.$H,u=this.$m,o=this.$M,a=i.weekdays,h=i.months,c=function(t,r,i,s){return t&&(t[r]||t(n,e))||i[r].substr(0,s)},d=function(t){return D.s(s%12||12,t,"0")},$=i.meridiem||function(t,n,e){var r=t<12?"AM":"PM";return e?r.toLowerCase():r},l={YY:String(this.$y).slice(-2),YYYY:this.$y,M:o+1,MM:D.s(o+1,2,"0"),MMM:c(i.monthsShort,o,h,3),MMMM:h[o]||h(this,e),D:this.$D,DD:D.s(this.$D,2,"0"),d:String(this.$W),dd:c(i.weekdaysMin,this.$W,a,2),ddd:c(i.weekdaysShort,this.$W,a,3),dddd:a[this.$W],H:String(s),HH:D.s(s,2,"0"),h:d(1),hh:d(2),a:$(s,u,!0),A:$(s,u,!1),m:String(u),mm:D.s(u,2,"0"),s:String(this.$s),ss:D.s(this.$s,2,"0"),SSS:D.s(this.$ms,3,"0"),Z:r};return e.replace(f,function(t,n){return n||l[t]||r.replace(":","")})},d.utcOffset=function(){return 15*-Math.round(this.$d.getTimezoneOffset()/15)},d.diff=function(t,h,f){var c,d=D.p(h),$=g(t),l=6e4*($.utcOffset()-this.utcOffset()),m=this-$,y=D.m(this,$);return y=(c={},c[a]=y/12,c[u]=y,c[o]=y/3,c[s]=(m-l)/6048e5,c[i]=(m-l)/864e5,c[r]=m/36e5,c[e]=m/6e4,c[n]=m/1e3,c)[d]||m,f?y:D.a(y)},d.daysInMonth=function(){return this.endOf(u).$D},d.$locale=function(){return m[this.$L]},d.locale=function(t,n){if(!t)return this.$L;var e=this.clone();return e.$L=M(t,n,!0),e},d.clone=function(){return D.w(this.$d,this)},d.toDate=function(){return new Date(this.valueOf())},d.toJSON=function(){return this.isValid()?this.toISOString():null},d.toISOString=function(){return this.$d.toISOString()},d.toString=function(){return this.$d.toUTCString()},c}();return g.prototype=v.prototype,g.extend=function(t,n){return t(n,v,g),g},g.locale=M,g.isDayjs=y,g.unix=function(t){return g(1e3*t)},g.en=m[l],g.Ls=m,g});
+!function(t,n){module.exports=n();}(commonjsGlobal,function(){var t="millisecond",n="second",e="minute",r="hour",i="day",s="week",u="month",o="quarter",a="year",h=/^(\d{4})-?(\d{1,2})-?(\d{0,2})[^0-9]*(\d{1,2})?:?(\d{1,2})?:?(\d{1,2})?.?(\d{1,3})?$/,f=/\[([^\]]+)]|Y{2,4}|M{1,4}|D{1,2}|d{1,4}|H{1,2}|h{1,2}|a|A|m{1,2}|s{1,2}|Z{1,2}|SSS/g,c=function(t,n,e){var r=String(t);return !r||r.length>=n?t:""+Array(n+1-r.length).join(e)+t},d={s:c,z:function(t){var n=-t.utcOffset(),e=Math.abs(n),r=Math.floor(e/60),i=e%60;return (n<=0?"+":"-")+c(r,2,"0")+":"+c(i,2,"0")},m:function(t,n){var e=12*(n.year()-t.year())+(n.month()-t.month()),r=t.clone().add(e,u),i=n-r<0,s=t.clone().add(e+(i?-1:1),u);return Number(-(e+(n-r)/(i?r-s:s-r))||0)},a:function(t){return t<0?Math.ceil(t)||0:Math.floor(t)},p:function(h){return {M:u,y:a,w:s,d:i,h:r,m:e,s:n,ms:t,Q:o}[h]||String(h||"").toLowerCase().replace(/s$/,"")},u:function(t){return void 0===t}},$={name:"en",weekdays:"Sunday_Monday_Tuesday_Wednesday_Thursday_Friday_Saturday".split("_"),months:"January_February_March_April_May_June_July_August_September_October_November_December".split("_")},l="en",m={};m[l]=$;var y=function(t){return t instanceof v},M=function(t,n,e){var r;if(!t)return l;if("string"==typeof t)m[t]&&(r=t),n&&(m[t]=n,r=t);else{var i=t.name;m[i]=t,r=i;}return e||(l=r),r},g=function(t,n,e){if(y(t))return t.clone();var r=n?"string"==typeof n?{format:n,pl:e}:n:{};return r.date=t,new v(r)},D=d;D.l=M,D.i=y,D.w=function(t,n){return g(t,{locale:n.$L,utc:n.$u,$offset:n.$offset})};var v=function(){function c(t){this.$L=this.$L||M(t.locale,null,!0),this.parse(t);}var d=c.prototype;return d.parse=function(t){this.$d=function(t){var n=t.date,e=t.utc;if(null===n)return new Date(NaN);if(D.u(n))return new Date;if(n instanceof Date)return new Date(n);if("string"==typeof n&&!/Z$/i.test(n)){var r=n.match(h);if(r)return e?new Date(Date.UTC(r[1],r[2]-1,r[3]||1,r[4]||0,r[5]||0,r[6]||0,r[7]||0)):new Date(r[1],r[2]-1,r[3]||1,r[4]||0,r[5]||0,r[6]||0,r[7]||0)}return new Date(n)}(t),this.init();},d.init=function(){var t=this.$d;this.$y=t.getFullYear(),this.$M=t.getMonth(),this.$D=t.getDate(),this.$W=t.getDay(),this.$H=t.getHours(),this.$m=t.getMinutes(),this.$s=t.getSeconds(),this.$ms=t.getMilliseconds();},d.$utils=function(){return D},d.isValid=function(){return !("Invalid Date"===this.$d.toString())},d.isSame=function(t,n){var e=g(t);return this.startOf(n)<=e&&e<=this.endOf(n)},d.isAfter=function(t,n){return g(t)<this.startOf(n)},d.isBefore=function(t,n){return this.endOf(n)<g(t)},d.$g=function(t,n,e){return D.u(t)?this[n]:this.set(e,t)},d.year=function(t){return this.$g(t,"$y",a)},d.month=function(t){return this.$g(t,"$M",u)},d.day=function(t){return this.$g(t,"$W",i)},d.date=function(t){return this.$g(t,"$D","date")},d.hour=function(t){return this.$g(t,"$H",r)},d.minute=function(t){return this.$g(t,"$m",e)},d.second=function(t){return this.$g(t,"$s",n)},d.millisecond=function(n){return this.$g(n,"$ms",t)},d.unix=function(){return Math.floor(this.valueOf()/1e3)},d.valueOf=function(){return this.$d.getTime()},d.startOf=function(t,o){var h=this,f=!!D.u(o)||o,c=D.p(t),d=function(t,n){var e=D.w(h.$u?Date.UTC(h.$y,n,t):new Date(h.$y,n,t),h);return f?e:e.endOf(i)},$=function(t,n){return D.w(h.toDate()[t].apply(h.toDate(),(f?[0,0,0,0]:[23,59,59,999]).slice(n)),h)},l=this.$W,m=this.$M,y=this.$D,M="set"+(this.$u?"UTC":"");switch(c){case a:return f?d(1,0):d(31,11);case u:return f?d(1,m):d(0,m+1);case s:var g=this.$locale().weekStart||0,v=(l<g?l+7:l)-g;return d(f?y-v:y+(6-v),m);case i:case"date":return $(M+"Hours",0);case r:return $(M+"Minutes",1);case e:return $(M+"Seconds",2);case n:return $(M+"Milliseconds",3);default:return this.clone()}},d.endOf=function(t){return this.startOf(t,!1)},d.$set=function(s,o){var h,f=D.p(s),c="set"+(this.$u?"UTC":""),d=(h={},h[i]=c+"Date",h.date=c+"Date",h[u]=c+"Month",h[a]=c+"FullYear",h[r]=c+"Hours",h[e]=c+"Minutes",h[n]=c+"Seconds",h[t]=c+"Milliseconds",h)[f],$=f===i?this.$D+(o-this.$W):o;if(f===u||f===a){var l=this.clone().set("date",1);l.$d[d]($),l.init(),this.$d=l.set("date",Math.min(this.$D,l.daysInMonth())).toDate();}else d&&this.$d[d]($);return this.init(),this},d.set=function(t,n){return this.clone().$set(t,n)},d.get=function(t){return this[D.p(t)]()},d.add=function(t,o){var h,f=this;t=Number(t);var c=D.p(o),d=function(n){var e=g(f);return D.w(e.date(e.date()+Math.round(n*t)),f)};if(c===u)return this.set(u,this.$M+t);if(c===a)return this.set(a,this.$y+t);if(c===i)return d(1);if(c===s)return d(7);var $=(h={},h[e]=6e4,h[r]=36e5,h[n]=1e3,h)[c]||1,l=this.$d.getTime()+t*$;return D.w(l,this)},d.subtract=function(t,n){return this.add(-1*t,n)},d.format=function(t){var n=this;if(!this.isValid())return "Invalid Date";var e=t||"YYYY-MM-DDTHH:mm:ssZ",r=D.z(this),i=this.$locale(),s=this.$H,u=this.$m,o=this.$M,a=i.weekdays,h=i.months,c=function(t,r,i,s){return t&&(t[r]||t(n,e))||i[r].substr(0,s)},d=function(t){return D.s(s%12||12,t,"0")},$=i.meridiem||function(t,n,e){var r=t<12?"AM":"PM";return e?r.toLowerCase():r},l={YY:String(this.$y).slice(-2),YYYY:this.$y,M:o+1,MM:D.s(o+1,2,"0"),MMM:c(i.monthsShort,o,h,3),MMMM:h[o]||h(this,e),D:this.$D,DD:D.s(this.$D,2,"0"),d:String(this.$W),dd:c(i.weekdaysMin,this.$W,a,2),ddd:c(i.weekdaysShort,this.$W,a,3),dddd:a[this.$W],H:String(s),HH:D.s(s,2,"0"),h:d(1),hh:d(2),a:$(s,u,!0),A:$(s,u,!1),m:String(u),mm:D.s(u,2,"0"),s:String(this.$s),ss:D.s(this.$s,2,"0"),SSS:D.s(this.$ms,3,"0"),Z:r};return e.replace(f,function(t,n){return n||l[t]||r.replace(":","")})},d.utcOffset=function(){return 15*-Math.round(this.$d.getTimezoneOffset()/15)},d.diff=function(t,h,f){var c,d=D.p(h),$=g(t),l=6e4*($.utcOffset()-this.utcOffset()),m=this-$,y=D.m(this,$);return y=(c={},c[a]=y/12,c[u]=y,c[o]=y/3,c[s]=(m-l)/6048e5,c[i]=(m-l)/864e5,c[r]=m/36e5,c[e]=m/6e4,c[n]=m/1e3,c)[d]||m,f?y:D.a(y)},d.daysInMonth=function(){return this.endOf(u).$D},d.$locale=function(){return m[this.$L]},d.locale=function(t,n){if(!t)return this.$L;var e=this.clone();return e.$L=M(t,n,!0),e},d.clone=function(){return D.w(this.$d,this)},d.toDate=function(){return new Date(this.valueOf())},d.toJSON=function(){return this.isValid()?this.toISOString():null},d.toISOString=function(){return this.$d.toISOString()},d.toString=function(){return this.$d.toUTCString()},c}();return g.prototype=v.prototype,g.extend=function(t,n){return t(n,v,g),g},g.locale=M,g.isDayjs=y,g.unix=function(t){return g(1e3*t)},g.en=m[l],g.Ls=m,g});
 });
 
 var UNITS = [['years', 'year'], ['months', 'month'], ['days', 'day'], ['hours', 'hour'], ['minutes', 'minute'], ['seconds', 'second']];
@@ -1767,7 +1705,6 @@ var sha3 = createCommonjsModule(function (module) {
  */
 /*jslint bitwise: true */
 (function () {
-  'use strict';
 
   var INPUT_ERROR = 'input is invalid type';
   var FINALIZE_ERROR = 'finalize already called';
@@ -1784,7 +1721,6 @@ var sha3 = createCommonjsModule(function (module) {
     root = self;
   }
   var COMMON_JS = !root.JS_SHA3_NO_COMMON_JS && 'object' === 'object' && module.exports;
-  var AMD = typeof undefined === 'function' && undefined.amd;
   var ARRAY_BUFFER = !root.JS_SHA3_NO_ARRAY_BUFFER && typeof ArrayBuffer !== 'undefined';
   var HEX_CHARS = '0123456789abcdef'.split('');
   var SHAKE_PADDING = [31, 7936, 2031616, 520093696];
@@ -2406,11 +2342,6 @@ var sha3 = createCommonjsModule(function (module) {
     for (i = 0; i < methodNames.length; ++i) {
       root[methodNames[i]] = methods[methodNames[i]];
     }
-    if (AMD) {
-      undefined(function () {
-        return methods;
-      });
-    }
   }
 })();
 });
@@ -2674,7 +2605,7 @@ var insideContexts = new Map(); // Creates the required context if it doesn’t 
 
 function getContext(name) {
   if (!insideContexts.has(name)) {
-    insideContexts.set(name, React.createContext({
+    insideContexts.set(name, React__default.createContext({
       inside: false,
       data: null
     }));
@@ -2689,7 +2620,7 @@ function Inside(_ref) {
       data = _ref.data,
       name = _ref.name;
   var Context = getContext(name);
-  return React.createElement(Context.Provider, {
+  return React__default.createElement(Context.Provider, {
     value: {
       inside: true,
       data: data
@@ -2705,7 +2636,7 @@ Inside.propTypes = {
 // in the tree of an <Inside> declared with the same name.
 
 function useInside(name) {
-  var _useContext = useContext(getContext(name)),
+  var _useContext = React.useContext(getContext(name)),
       inside = _useContext.inside,
       data = _useContext.data;
 
@@ -2718,7 +2649,7 @@ var KEY_DOWN = 40;
 var KEY_ENTER = 13;
 
 function initContainsComponent() {
-  var ContainsContext = React.createContext({
+  var ContainsContext = React__default.createContext({
     contains: false
   });
   return {
@@ -2728,12 +2659,12 @@ function initContainsComponent() {
     Provider: function Provider(_ref) {
       var children = _ref.children;
 
-      var _useState = useState$1(0),
+      var _useState = React.useState(0),
           _useState2 = slicedToArray(_useState, 2),
           count = _useState2[0],
           setCount = _useState2[1];
 
-      var contextValue = useMemo(function () {
+      var contextValue = React.useMemo(function () {
         return {
           updateCount: function updateCount(diff) {
             setCount(function (count) {
@@ -2743,7 +2674,7 @@ function initContainsComponent() {
           contains: count > 0
         };
       }, [count]);
-      return React.createElement(ContainsContext.Provider, {
+      return React__default.createElement(ContainsContext.Provider, {
         value: contextValue
       }, children);
     },
@@ -2751,14 +2682,14 @@ function initContainsComponent() {
     /* eslint-enable react/prop-types */
     // Call this from the parent component (returns a boolean)
     useContains: function useContains() {
-      return useContext(ContainsContext).contains;
+      return React.useContext(ContainsContext).contains;
     },
     // Call this from the child component
     useRegister: function useRegister() {
-      var _useContext = useContext(ContainsContext),
+      var _useContext = React.useContext(ContainsContext),
           updateCount = _useContext.updateCount;
 
-      useEffect(function () {
+      React.useEffect(function () {
         if (!updateCount) {
           return;
         }
@@ -2772,8 +2703,6 @@ function initContainsComponent() {
     }
   };
 }
-
-/* eslint-disable prettier/prettier */
 
 function _classCallCheck(instance, Constructor) {
   if (!(instance instanceof Constructor)) {
@@ -3302,7 +3231,7 @@ function getTheme(theme) {
   return theme;
 }
 
-var ThemeContext = React.createContext(convertThemeColors(getTheme(DEFAULT_THEME)));
+var ThemeContext = React__default.createContext(convertThemeColors(getTheme(DEFAULT_THEME)));
 
 function convertThemeColors(theme) {
   return Object.entries(theme).reduce(function (theme, _ref) {
@@ -3316,16 +3245,16 @@ function convertThemeColors(theme) {
 }
 
 function useTheme() {
-  return useContext(ThemeContext);
+  return React.useContext(ThemeContext);
 }
 
 function Theme(_ref3) {
   var theme = _ref3.theme,
       children = _ref3.children;
-  var themeConverted = useMemo(function () {
+  var themeConverted = React.useMemo(function () {
     return convertThemeColors(getTheme(theme));
   }, [theme]);
-  return React.createElement(ThemeContext.Provider, {
+  return React__default.createElement(ThemeContext.Provider, {
     value: themeConverted
   }, children);
 }
@@ -3865,7 +3794,7 @@ var WINDOW_SIZE_BASE = _objectSpread$2({
   breakpoints: BREAKPOINTS
 }, getCurrentWindowSize());
 
-var ViewportContext = React.createContext(WINDOW_SIZE_BASE);
+var ViewportContext = React__default.createContext(WINDOW_SIZE_BASE);
 
 var ViewportProvider =
 /*#__PURE__*/
@@ -3982,7 +3911,7 @@ function (_React$Component) {
       var within = this.within,
           above = this.above,
           below = this.below;
-      return React.createElement(ViewportContext.Provider, {
+      return React__default.createElement(ViewportContext.Provider, {
         value: _objectSpread$2({}, windowSize, {
           within: within,
           above: above,
@@ -3993,7 +3922,7 @@ function (_React$Component) {
   }]);
 
   return ViewportProvider;
-}(React.Component); // React emits a warning message if `Provider` is attached to `Consumer`, this
+}(React__default.Component); // React emits a warning message if `Provider` is attached to `Consumer`, this
 // is only to prevent it.
 
 
@@ -4007,12 +3936,12 @@ defineProperty(ViewportProvider, "defaultProps", {
 });
 
 var Viewport = function Viewport(props) {
-  return React.createElement(ViewportContext.Consumer, props);
+  return React__default.createElement(ViewportContext.Consumer, props);
 };
 
 Viewport.Provider = ViewportProvider;
 var useViewport = function useViewport() {
-  return React.useContext(ViewportContext);
+  return React__default.useContext(ViewportContext);
 };
 
 function ownKeys$3(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
@@ -4046,10 +3975,10 @@ function getLayoutSize(parentWidth, breakpoints) {
   return sizes[0];
 }
 
-var LayoutContext = React.createContext({});
+var LayoutContext = React__default.createContext({});
 
 function useLayout() {
-  var _useContext = useContext(LayoutContext),
+  var _useContext = React.useContext(LayoutContext),
       layoutWidth = _useContext.layoutWidth,
       layoutName = _useContext.layoutName;
 
@@ -4062,7 +3991,7 @@ function useLayout() {
   };
 }
 
-var _StyledDiv = _styled.div.withConfig({
+var _StyledDiv = _styled__default.div.withConfig({
   displayName: "Layout___StyledDiv",
   componentId: "sc-16bvfls-0"
 })(["width:", ";min-width:", "px;margin:0 auto;padding-bottom:", ";"], function (p) {
@@ -4083,23 +4012,23 @@ function Layout(_ref3) {
   var _useViewport = useViewport(),
       viewportWidth = _useViewport.width;
 
-  var mergedBreakpoints = useMemo(function () {
+  var mergedBreakpoints = React.useMemo(function () {
     return _objectSpread$3({}, BREAKPOINTS, {}, breakpoints);
   }, [breakpoints]); // If the parent width is not passed, use the viewport width.
 
-  var _useMemo = useMemo(function () {
+  var _useMemo = React.useMemo(function () {
     return getLayoutSize(parentWidth === undefined ? viewportWidth : parentWidth, mergedBreakpoints);
   }, [viewportWidth, parentWidth, mergedBreakpoints]),
       _useMemo2 = slicedToArray(_useMemo, 2),
       layoutName = _useMemo2[0],
       layoutWidth = _useMemo2[1];
 
-  return React.createElement(LayoutContext.Provider, {
+  return React__default.createElement(LayoutContext.Provider, {
     value: {
       layoutWidth: layoutWidth,
       layoutName: layoutName
     }
-  }, React.createElement(_StyledDiv, _extends_1({}, props, {
+  }, React__default.createElement(_StyledDiv, _extends_1({}, props, {
     _css: layoutName === 'small' ? 'auto' : "".concat(layoutWidth, "px"),
     _css2: mergedBreakpoints.min,
     _css3: cssPx(paddingBottom)
@@ -4126,22 +4055,22 @@ Layout.__Context = LayoutContext;
 
 var BAR_PADDING = 2 * GU;
 
-var _StyledDiv$1 = _styled.div.withConfig({
+var _StyledDiv$1 = _styled__default.div.withConfig({
   displayName: "Bar___StyledDiv",
   componentId: "sc-1tcfrs9-0"
 })(["display:flex;justify-content:space-between;width:100%;height:100%;"]);
 
-var _StyledDiv2 = _styled.div.withConfig({
+var _StyledDiv2 = _styled__default.div.withConfig({
   displayName: "Bar___StyledDiv2",
   componentId: "sc-1tcfrs9-1"
 })(["display:flex;align-items:center;height:100%;padding-left:", "px;"], BAR_PADDING);
 
-var _StyledDiv3 = _styled.div.withConfig({
+var _StyledDiv3 = _styled__default.div.withConfig({
   displayName: "Bar___StyledDiv3",
   componentId: "sc-1tcfrs9-2"
 })(["display:flex;align-items:center;height:100%;padding-right:", "px;"], BAR_PADDING);
 
-var _StyledDiv4 = _styled.div.withConfig({
+var _StyledDiv4 = _styled__default.div.withConfig({
   displayName: "Bar___StyledDiv4",
   componentId: "sc-1tcfrs9-3"
 })(["border-radius:", "px;background:", ";border-style:solid;border-color:", ";border-width:", ";height:", "px;margin-bottom:", "px;"], function (p) {
@@ -4170,14 +4099,14 @@ function Bar(_ref) {
       layoutName = _useLayout.layoutName;
 
   var fullScreen = layoutName === 'small';
-  var content = children || React.createElement(_StyledDiv$1, null, React.createElement(_StyledDiv2, null, React.createElement(Inside, {
+  var content = children || React__default.createElement(_StyledDiv$1, null, React__default.createElement(_StyledDiv2, null, React__default.createElement(Inside, {
     name: "Bar:primary"
-  }, primary)), React.createElement(_StyledDiv3, null, React.createElement(Inside, {
+  }, primary)), React__default.createElement(_StyledDiv3, null, React__default.createElement(Inside, {
     name: "Bar:secondary"
   }, secondary)));
-  return React.createElement(Inside, {
+  return React__default.createElement(Inside, {
     name: "Bar"
-  }, React.createElement(_StyledDiv4, _extends_1({}, props, {
+  }, React__default.createElement(_StyledDiv4, _extends_1({}, props, {
     _css: fullScreen ? 0 : RADIUS,
     _css2: theme.surface,
     _css3: theme.border,
@@ -4200,14 +4129,14 @@ Bar.PADDING = BAR_PADDING;
  * the mode of this main theme from anywhere, including from a sub (non main) theme.
  */
 
-var MainThemeContext = React.createContext({});
+var MainThemeContext = React__default.createContext({});
 
 function useThemeMode() {
-  var _useContext = useContext(MainThemeContext),
+  var _useContext = React.useContext(MainThemeContext),
       theme = _useContext.theme,
       setTheme = _useContext.setTheme;
 
-  var themeMode = useMemo(function () {
+  var themeMode = React.useMemo(function () {
     return {
       set: function set(name) {
         setTheme(name);
@@ -4226,17 +4155,17 @@ function useThemeMode() {
 function MainTheme(_ref) {
   var children = _ref.children;
 
-  var _useState = useState$1('light'),
+  var _useState = React.useState('light'),
       _useState2 = slicedToArray(_useState, 2),
       theme = _useState2[0],
       setTheme = _useState2[1];
 
-  return React.createElement(MainThemeContext.Provider, {
+  return React__default.createElement(MainThemeContext.Provider, {
     value: {
       theme: theme,
       setTheme: setTheme
     }
-  }, React.createElement(Theme, {
+  }, React__default.createElement(Theme, {
     theme: theme
   }, children));
 }
@@ -4245,7 +4174,7 @@ MainTheme.propTypes = {
   children: propTypes.node
 };
 
-var _StyledDiv$2 = _styled.div.withConfig({
+var _StyledDiv$2 = _styled__default.div.withConfig({
   displayName: "Box___StyledDiv",
   componentId: "sc-54p6u6-0"
 })(["position:relative;border-radius:", "px;border-style:solid;border-color:", ";border-width:", ";background:", ";color:", ";& + &{margin-top:", "px;}"], function (p) {
@@ -4262,7 +4191,7 @@ var _StyledDiv$2 = _styled.div.withConfig({
   return p._css6;
 });
 
-var _StyledH = _styled.h1.withConfig({
+var _StyledH = _styled__default.h1.withConfig({
   displayName: "Box___StyledH",
   componentId: "sc-54p6u6-1"
 })(["display:flex;align-items:center;height:", "px;padding:0 ", "px;border-bottom:1px solid ", ";color:", ";", ";"], function (p) {
@@ -4277,7 +4206,7 @@ var _StyledH = _styled.h1.withConfig({
   return p._css11;
 });
 
-var _StyledDiv2$1 = _styled.div.withConfig({
+var _StyledDiv2$1 = _styled__default.div.withConfig({
   displayName: "Box___StyledDiv2",
   componentId: "sc-54p6u6-2"
 })(["padding:", "px;"], function (p) {
@@ -4313,9 +4242,9 @@ function Box(_ref) {
   }
 
   var contentPadding = padding === undefined ? defaultPadding : padding;
-  return React.createElement(Inside, {
+  return React__default.createElement(Inside, {
     name: "Box"
-  }, React.createElement(_StyledDiv$2, _extends_1({
+  }, React__default.createElement(_StyledDiv$2, _extends_1({
     as: heading ? 'section' : 'div'
   }, props, {
     _css: fullWidth ? 0 : RADIUS,
@@ -4324,17 +4253,17 @@ function Box(_ref) {
     _css4: theme.surface,
     _css5: theme.surfaceContent,
     _css6: 2 * GU
-  }), heading && React.createElement(_StyledH, {
+  }), heading && React__default.createElement(_StyledH, {
     _css7: 4 * GU,
     _css8: defaultPadding,
     _css9: theme.border,
     _css10: theme.surfaceContentSecondary,
     _css11: textStyle('label2')
-  }, React.createElement(Inside, {
+  }, React__default.createElement(Inside, {
     name: "Box:heading"
-  }, heading)), React.createElement(_StyledDiv2$1, {
+  }, heading)), React__default.createElement(_StyledDiv2$1, {
     _css12: contentPadding
-  }, React.createElement("div", null, React.createElement(Inside, {
+  }, React__default.createElement("div", null, React__default.createElement(Inside, {
     name: "Box:content"
   }, children)))));
 }
@@ -4375,7 +4304,7 @@ function (_React$Component) {
 
     _this = possibleConstructorReturn(this, (_getPrototypeOf2 = getPrototypeOf(FocusVisible)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
-    defineProperty(assertThisInitialized(_this), "_element", React.createRef());
+    defineProperty(assertThisInitialized(_this), "_element", React__default.createRef());
 
     defineProperty(assertThisInitialized(_this), "_document", null);
 
@@ -4450,17 +4379,17 @@ function (_React$Component) {
     key: "render",
     value: function render() {
       var focusVisible = this.state.focusVisible;
-      return React.createElement(React.Fragment, null, this.props.children({
+      return React__default.createElement(React__default.Fragment, null, this.props.children({
         focusVisible: focusVisible,
         onFocus: this.handleFocus
-      }), !this._document && React.createElement("span", {
+      }), !this._document && React__default.createElement("span", {
         ref: this._element
       }));
     }
   }]);
 
   return FocusVisible;
-}(React.Component);
+}(React__default.Component);
 
 defineProperty(FocusVisible, "propTypes", {
   // children is called with an object containing two entries:
@@ -4504,7 +4433,7 @@ function getElementProps(_ref) {
   }];
 }
 
-var _StyledButton = _styled.button.withConfig({
+var _StyledButton = _styled__default.button.withConfig({
   displayName: "ButtonBase___StyledButton",
   componentId: "ur1q76-0"
 })(["position:relative;display:inline-block;padding:0;white-space:nowrap;", ";text-decoration:none;text-align:center;background:none;border-radius:", "px;border:0;outline:0;cursor:", ";", ";&::-moz-focus-inner{border:0;}&:focus:after{content:'';display:", ";position:absolute;top:", "px;left:", "px;right:", "px;bottom:", "px;border-radius:", "px;border:2px solid ", ";}"], function (p) {
@@ -4567,7 +4496,7 @@ function ButtonBase(_ref2) {
       elementType = _getElementProps2[0],
       elementProps = _getElementProps2[1];
 
-  var handleKeyDown = useCallback(function (event) {
+  var handleKeyDown = React.useCallback(function (event) {
     // Only applies to cases where the enter key is not handled already
     if (elementType === 'basic' && event.keyCode === KEY_ENTER && onClick) {
       onClick();
@@ -4578,7 +4507,7 @@ function ButtonBase(_ref2) {
       onKeyDown(event);
     }
   }, [elementType, onClick, onKeyDown]);
-  return React.createElement(_StyledButton, _extends_1({
+  return React__default.createElement(_StyledButton, _extends_1({
     as: element,
     ref: innerRef,
     onClick: disabled ? undefined : onClick,
@@ -4616,11 +4545,11 @@ ButtonBase.defaultProps = {
   focusRingSpacing: 0,
   showFocusRing: true
 };
-var ButtonBaseWithFocus = React.forwardRef(function (_ref3, ref) {
+var ButtonBaseWithFocus = React__default.forwardRef(function (_ref3, ref) {
   var onFocusProp = _ref3.onFocus,
       props = objectWithoutProperties(_ref3, ["onFocus"]);
 
-  return React.createElement(FocusVisible, null, function (_ref4) {
+  return React__default.createElement(FocusVisible, null, function (_ref4) {
     var focusVisible = _ref4.focusVisible,
         onFocus = _ref4.onFocus;
 
@@ -4633,7 +4562,7 @@ var ButtonBaseWithFocus = React.forwardRef(function (_ref3, ref) {
       onFocus(event);
     };
 
-    return React.createElement(ButtonBase, _extends_1({
+    return React__default.createElement(ButtonBase, _extends_1({
       innerRef: ref,
       onFocus: handleFocus,
       focusVisible: focusVisible
@@ -4643,14 +4572,14 @@ var ButtonBaseWithFocus = React.forwardRef(function (_ref3, ref) {
 ButtonBaseWithFocus.propTypes = _objectSpread$4({}, ButtonBase.propTypes, {
   onFocus: propTypes.func
 });
-var LinkBase = React.forwardRef(function (props, ref) {
+var LinkBase = React__default.forwardRef(function (props, ref) {
   warnOnce('LinkBase', 'LinkBase is deprecated: please use ButtonBase with a href prop instead.');
-  return React.createElement(ButtonBase, _extends_1({
+  return React__default.createElement(ButtonBase, _extends_1({
     ref: ref
   }, props));
 });
 
-var _StyledButtonBase = _styled(ButtonBaseWithFocus).withConfig({
+var _StyledButtonBase = _styled__default(ButtonBaseWithFocus).withConfig({
   displayName: "PaginationItem___StyledButtonBase",
   componentId: "kftpwz-0"
 })(["width:", "px;height:", "px;color:", ";border-radius:", "px;&:active{background:", ";}", ";"], function (p) {
@@ -4665,7 +4594,7 @@ var _StyledButtonBase = _styled(ButtonBaseWithFocus).withConfig({
   return p._css5;
 });
 
-var _StyledSpan = _styled.span.withConfig({
+var _StyledSpan = _styled__default.span.withConfig({
   displayName: "PaginationItem___StyledSpan",
   componentId: "kftpwz-1"
 })(["position:relative;top:1px;"]);
@@ -4676,10 +4605,10 @@ function PaginationItem(_ref) {
       index = _ref.index,
       onChange = _ref.onChange;
   var theme = useTheme();
-  var handleClick = useCallback(function () {
+  var handleClick = React.useCallback(function () {
     onChange(index);
   }, [index, onChange]);
-  return React.createElement("div", null, React.createElement(_StyledButtonBase, {
+  return React__default.createElement("div", null, React__default.createElement(_StyledButtonBase, {
     onClick: handleClick,
     focusRingRadius: RADIUS,
     disabled: selected,
@@ -4687,8 +4616,8 @@ function PaginationItem(_ref) {
     _css2: (touchMode ? 4 : 3) * GU,
     _css3: theme.surfaceContent,
     _css4: theme.surfacePressed,
-    _css5: selected && css(["&&{background:", ";color:", ";}"], theme.accent, theme.accentContent)
-  }, React.createElement(_StyledSpan, null, index + 1)));
+    _css5: selected && _styled.css(["&&{background:", ";color:", ";}"], theme.accent, theme.accentContent)
+  }, React__default.createElement(_StyledSpan, null, index + 1)));
 }
 
 PaginationItem.propTypes = {
@@ -4723,15 +4652,15 @@ function IconAddUser(_ref) {
       props = objectWithoutProperties(_ref, ["size"]);
 
   var sizeValue = useIconSize(size);
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: sizeValue,
     height: sizeValue,
     fill: "none",
     viewBox: "0 0 24 24"
-  }, props), React.createElement("path", {
+  }, props), React__default.createElement("path", {
     fill: "currentColor",
     d: "M15.644 14.614c-1.382-.77-3.21-1.194-5.148-1.194-1.938 0-3.766.424-5.148 1.194C3.834 15.457 3 16.627 3 17.908v.752a.727.727 0 101.454 0v-.752c0-.72.584-1.457 1.601-2.023 1.17-.652 2.747-1.01 4.44-1.01 1.695 0 3.272.358 4.442 1.01 1.017.566 1.6 1.304 1.6 2.023v.752a.727.727 0 101.455 0v-.752c0-1.281-.834-2.45-2.348-3.294zM14.223 7.55a3.71 3.71 0 00-1.054-2.093 3.733 3.733 0 00-3.19-1.054 3.74 3.74 0 00-3.146 4.243 3.711 3.711 0 001.47 2.453 3.707 3.707 0 002.773.694 3.74 3.74 0 003.147-4.243zm-3.36 2.805a2.266 2.266 0 01-1.694-.424 2.266 2.266 0 01-.897-1.498 2.284 2.284 0 012.59-2.591 2.268 2.268 0 011.923 1.922 2.284 2.284 0 01-1.922 2.59zm7.154-2.199a.727.727 0 00-.727.727v4.512a.727.727 0 101.454 0V8.883a.727.727 0 00-.727-.727z"
-  }), React.createElement("path", {
+  }), React__default.createElement("path", {
     fill: "currentColor",
     d: "M20.273 10.412H15.76a.727.727 0 100 1.454h4.513a.727.727 0 000-1.454z"
   }));
@@ -4744,12 +4673,12 @@ function IconAlert(_ref) {
       props = objectWithoutProperties(_ref, ["size"]);
 
   var sizeValue = useIconSize(size);
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: sizeValue,
     height: sizeValue,
     fill: "none",
     viewBox: "0 0 24 24"
-  }, props), React.createElement("path", {
+  }, props), React__default.createElement("path", {
     fill: "currentColor",
     fillRule: "evenodd",
     d: "M18.221 15.131c.274.334.49.632.648.892.157.261.173.522.047.783a.773.773 0 01-.616.454 4.888 4.888 0 01-.663.063h-2.952a2.57 2.57 0 01-.79 1.894 2.613 2.613 0 01-1.91.783c-.746 0-1.383-.26-1.91-.783a2.57 2.57 0 01-.789-1.894H6.398c-.242 0-.492-.029-.75-.086a.788.788 0 01-.56-.43c-.127-.262-.116-.53.031-.807.147-.277.347-.582.6-.916.284-.365.594-.78.931-1.245.337-.464.505-.947.505-1.448V9.12c0-.71.124-1.375.371-1.996a5.184 5.184 0 011.019-1.628c.431-.464.941-.83 1.53-1.096a4.558 4.558 0 011.895-.399c.684 0 1.32.133 1.91.4.59.265 1.102.63 1.54 1.095a5.11 5.11 0 011.025 1.628c.248.621.371 1.287.371 1.996v3.272c0 .512.16 1.008.482 1.488.32.48.629.897.923 1.252zm-6.237 3.78c.427 0 .792-.15 1.095-.451.302-.3.454-.662.454-1.085h-3.097c0 .423.151.785.454 1.085.303.3.667.45 1.094.45zm5.594-2.822a5.039 5.039 0 00-.168-.22 14.96 14.96 0 01-1.232-1.673 3.373 3.373 0 01-.544-1.864V9.153c0-.547-.094-1.06-.283-1.536a3.993 3.993 0 00-.773-1.247 3.668 3.668 0 00-1.155-.844 3.367 3.367 0 00-1.446-.312c-.51 0-.988.104-1.431.312-.444.208-.83.489-1.156.844-.326.355-.581.77-.765 1.247a4.236 4.236 0 00-.276 1.536v3.18a3.12 3.12 0 01-.573 1.817 48.208 48.208 0 01-1.21 1.68 4.714 4.714 0 00-.175.26h11.187z",
@@ -4764,12 +4693,12 @@ function IconAlignCenter(_ref) {
       props = objectWithoutProperties(_ref, ["size"]);
 
   var sizeValue = useIconSize(size);
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: sizeValue,
     height: sizeValue,
     fill: "none",
     viewBox: "0 0 24 24"
-  }, props), React.createElement("path", {
+  }, props), React__default.createElement("path", {
     fill: "currentColor",
     stroke: "currentColor",
     strokeWidth: 0.2,
@@ -4784,12 +4713,12 @@ function IconAlignJustify(_ref) {
       props = objectWithoutProperties(_ref, ["size"]);
 
   var sizeValue = useIconSize(size);
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: sizeValue,
     height: sizeValue,
     fill: "none",
     viewBox: "0 0 24 24"
-  }, props), React.createElement("path", {
+  }, props), React__default.createElement("path", {
     fill: "currentColor",
     stroke: "currentColor",
     strokeWidth: 0.2,
@@ -4804,12 +4733,12 @@ function IconAlignLeft(_ref) {
       props = objectWithoutProperties(_ref, ["size"]);
 
   var sizeValue = useIconSize(size);
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: sizeValue,
     height: sizeValue,
     fill: "none",
     viewBox: "0 0 24 24"
-  }, props), React.createElement("path", {
+  }, props), React__default.createElement("path", {
     fill: "currentColor",
     stroke: "currentColor",
     strokeWidth: 0.2,
@@ -4824,12 +4753,12 @@ function IconAlignRight(_ref) {
       props = objectWithoutProperties(_ref, ["size"]);
 
   var sizeValue = useIconSize(size);
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: sizeValue,
     height: sizeValue,
     fill: "none",
     viewBox: "0 0 24 24"
-  }, props), React.createElement("path", {
+  }, props), React__default.createElement("path", {
     fill: "currentColor",
     stroke: "currentColor",
     strokeWidth: 0.2,
@@ -4844,12 +4773,12 @@ function IconAragon(_ref) {
       props = objectWithoutProperties(_ref, ["size"]);
 
   var sizeValue = useIconSize(size);
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: sizeValue,
     height: sizeValue,
     fill: "none",
     viewBox: "0 0 24 24"
-  }, props), React.createElement("path", {
+  }, props), React__default.createElement("path", {
     fill: "currentColor",
     fillRule: "evenodd",
     d: "M12 4l.22.068c.595.186 4.982 1.592 8.47 4.433l.31.253-.077.383c-.088.441-.503 2.311-1.594 4.393-.728 1.39-1.617 2.613-2.647 3.627a11.751 11.751 0 01-4.443 2.76l-.24.083-.239-.082a11.739 11.739 0 01-4.442-2.756c-1.03-1.013-1.919-2.23-2.648-3.62-1.097-2.09-1.506-3.96-1.595-4.407L3 8.754l.31-.253c3.487-2.841 7.868-4.247 8.472-4.433L12 4zM4.546 9.268c.168.702.573 2.124 1.386 3.673.672 1.282 1.48 2.384 2.4 3.287A10.33 10.33 0 0012 18.57a10.351 10.351 0 003.67-2.347M4.545 9.268c2.931-2.276 6.445-3.525 7.454-3.854 1.009.33 4.524 1.58 7.454 3.853-.17.7-.577 2.12-1.385 3.664-.673 1.282-1.48 2.389-2.399 3.292",
@@ -4864,17 +4793,17 @@ function IconArrowDown(_ref) {
       props = objectWithoutProperties(_ref, ["size"]);
 
   var sizeValue = useIconSize(size);
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: sizeValue,
     height: sizeValue,
     fill: "none",
     viewBox: "0 0 24 24"
-  }, props), React.createElement("path", {
+  }, props), React__default.createElement("path", {
     fill: "currentColor",
     stroke: "currentColor",
     strokeWidth: 0.2,
     d: "M11.434 5.566v12.869a.566.566 0 001.132 0V5.565a.566.566 0 10-1.132 0z"
-  }), React.createElement("path", {
+  }), React__default.createElement("path", {
     fill: "currentColor",
     stroke: "currentColor",
     strokeWidth: 0.2,
@@ -4889,17 +4818,17 @@ function IconArrowLeft(_ref) {
       props = objectWithoutProperties(_ref, ["size"]);
 
   var sizeValue = useIconSize(size);
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: sizeValue,
     height: sizeValue,
     fill: "none",
     viewBox: "0 0 24 24"
-  }, props), React.createElement("path", {
+  }, props), React__default.createElement("path", {
     fill: "currentColor",
     stroke: "currentColor",
     strokeWidth: 0.2,
     d: "M18.434 11.434H5.566a.566.566 0 000 1.132h12.869a.565.565 0 100-1.132z"
-  }), React.createElement("path", {
+  }), React__default.createElement("path", {
     fill: "currentColor",
     stroke: "currentColor",
     strokeWidth: 0.2,
@@ -4914,17 +4843,17 @@ function IconArrowRight(_ref) {
       props = objectWithoutProperties(_ref, ["size"]);
 
   var sizeValue = useIconSize(size);
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: sizeValue,
     height: sizeValue,
     fill: "none",
     viewBox: "0 0 24 24"
-  }, props), React.createElement("path", {
+  }, props), React__default.createElement("path", {
     fill: "currentColor",
     stroke: "currentColor",
     strokeWidth: 0.2,
     d: "M5.566 12.566h12.869a.566.566 0 000-1.132H5.565a.566.566 0 100 1.132z"
-  }), React.createElement("path", {
+  }), React__default.createElement("path", {
     fill: "currentColor",
     stroke: "currentColor",
     strokeWidth: 0.2,
@@ -4939,17 +4868,17 @@ function IconArrowUp(_ref) {
       props = objectWithoutProperties(_ref, ["size"]);
 
   var sizeValue = useIconSize(size);
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: sizeValue,
     height: sizeValue,
     fill: "none",
     viewBox: "0 0 24 24"
-  }, props), React.createElement("path", {
+  }, props), React__default.createElement("path", {
     fill: "currentColor",
     stroke: "currentColor",
     strokeWidth: 0.2,
     d: "M12.566 18.434V5.566a.566.566 0 00-1.132 0v12.869a.566.566 0 101.132 0z"
-  }), React.createElement("path", {
+  }), React__default.createElement("path", {
     fill: "currentColor",
     stroke: "currentColor",
     strokeWidth: 0.2,
@@ -4964,15 +4893,15 @@ function IconAtSign(_ref) {
       props = objectWithoutProperties(_ref, ["size"]);
 
   var sizeValue = useIconSize(size);
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: sizeValue,
     height: sizeValue,
     fill: "none",
     viewBox: "0 0 24 24"
-  }, props), React.createElement("path", {
+  }, props), React__default.createElement("path", {
     fill: "currentColor",
     d: "M12 8.412a3.592 3.592 0 00-3.588 3.587A3.592 3.592 0 0012 15.587 3.592 3.592 0 0015.588 12 3.592 3.592 0 0012 8.412zm0 5.883a2.298 2.298 0 01-2.295-2.296A2.298 2.298 0 0112 9.704 2.298 2.298 0 0114.295 12 2.298 2.298 0 0112 14.295z"
-  }), React.createElement("path", {
+  }), React__default.createElement("path", {
     fill: "currentColor",
     d: "M17.657 6.343A7.947 7.947 0 0012 4a7.947 7.947 0 00-5.657 2.343A7.947 7.947 0 004 12.002c0 2.136.832 4.145 2.343 5.656A7.948 7.948 0 0012 20a8.044 8.044 0 004.864-1.648.646.646 0 10-.786-1.027A6.744 6.744 0 0112 18.707a6.664 6.664 0 01-4.743-1.964A6.664 6.664 0 015.293 12 6.715 6.715 0 0112 5.293 6.715 6.715 0 0118.707 12v.735c0 .86-.7 1.56-1.56 1.56-.86 0-1.56-.7-1.56-1.56V12a.646.646 0 10-1.292 0v.735a2.856 2.856 0 002.853 2.852A2.856 2.856 0 0020 12.735v-.736a7.948 7.948 0 00-2.343-5.656z"
   }));
@@ -4985,18 +4914,18 @@ function IconBlock(_ref) {
       props = objectWithoutProperties(_ref, ["size"]);
 
   var sizeValue = useIconSize(size);
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: sizeValue,
     height: sizeValue,
     fill: "none",
     viewBox: "0 0 24 24"
-  }, props), React.createElement("path", {
+  }, props), React__default.createElement("path", {
     fill: "currentColor",
     d: "M18.807 6.589L12.96 3.666l-.002-.001a2.165 2.165 0 00-1.918 0L5.195 6.589A2.141 2.141 0 004 8.516v6.955a2.141 2.141 0 001.186 1.936l5.847 2.924a2.154 2.154 0 001.927 0l5.845-2.923A2.141 2.141 0 0020 15.481V8.515a2.14 2.14 0 00-1.193-1.926zm-.19 8.892a.767.767 0 01-.429.69l-5.847 2.923a.774.774 0 01-.69 0l-5.845-2.922a.766.766 0 01-.423-.694V8.516c0-.294.164-.558.429-.69l5.845-2.923a.771.771 0 01.685 0l5.847 2.924c.264.13.428.395.428.689v6.964z"
-  }), React.createElement("path", {
+  }), React__default.createElement("path", {
     fill: "currentColor",
     d: "M19.693 7.418a.692.692 0 00-.928-.31L12 10.492 5.235 7.108a.692.692 0 00-.619 1.237l7.075 3.538a.692.692 0 00.618 0l7.075-3.538a.691.691 0 00.31-.927z"
-  }), React.createElement("path", {
+  }), React__default.createElement("path", {
     fill: "currentColor",
     d: "M12 10.573a.691.691 0 00-.691.691v8.595a.691.691 0 101.383 0v-8.595a.692.692 0 00-.692-.691z"
   }));
@@ -5009,12 +4938,12 @@ function IconBookmark(_ref) {
       props = objectWithoutProperties(_ref, ["size"]);
 
   var sizeValue = useIconSize(size);
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: sizeValue,
     height: sizeValue,
     fill: "none",
     viewBox: "0 0 24 24"
-  }, props), React.createElement("path", {
+  }, props), React__default.createElement("path", {
     fill: "currentColor",
     d: "M16.085 4h-8.17a2.283 2.283 0 00-2.28 2.28v13.074a.646.646 0 001.021.526L12 16.063l5.344 3.817a.646.646 0 001.022-.526V6.28A2.283 2.283 0 0016.086 4zm.988 14.098l-4.697-3.356a.646.646 0 00-.752 0l-4.697 3.356V6.28c0-.544.443-.987.988-.987h8.17c.545 0 .988.443.988.987v11.818z"
   }));
@@ -5027,22 +4956,22 @@ function IconCalendar(_ref) {
       props = objectWithoutProperties(_ref, ["size"]);
 
   var sizeValue = useIconSize(size);
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: sizeValue,
     height: sizeValue,
     fill: "none",
     viewBox: "0 0 24 24"
-  }, props), React.createElement("path", {
+  }, props), React__default.createElement("path", {
     fill: "currentColor",
     fillRule: "evenodd",
     d: "M4 6.193c0-.33.267-.597.597-.597h14.806c.33 0 .597.267.597.597v12.161c0 .33-.267.598-.597.598H4.597A.597.597 0 014 18.354V6.194zm1.193.597v10.967h13.613V6.79H5.194z",
     clipRule: "evenodd"
-  }), React.createElement("path", {
+  }), React__default.createElement("path", {
     fill: "currentColor",
     fillRule: "evenodd",
     d: "M4 6.193c0-.33.267-.597.597-.597h14.806c.33 0 .597.267.597.597v3.722c0 .33-.267.597-.597.597H4.597A.597.597 0 014 9.915V6.193zm1.193.597v2.527h13.613V6.79H5.194z",
     clipRule: "evenodd"
-  }), React.createElement("path", {
+  }), React__default.createElement("path", {
     fill: "currentColor",
     fillRule: "evenodd",
     d: "M7.783 4c.33 0 .597.267.597.597v2.527a.597.597 0 11-1.194 0V4.597c0-.33.267-.597.597-.597zm8.499 0c.33 0 .597.267.597.597v2.527a.597.597 0 11-1.194 0V4.597c0-.33.267-.597.597-.597z",
@@ -5057,23 +4986,23 @@ function IconCanvas(_ref) {
       props = objectWithoutProperties(_ref, ["size"]);
 
   var sizeValue = useIconSize(size);
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: sizeValue,
     height: sizeValue,
     fill: "none",
     viewBox: "0 0 24 24"
-  }, props), React.createElement("g", {
+  }, props), React__default.createElement("g", {
     fill: "currentColor",
     clipPath: "url(#clip0)"
-  }, React.createElement("path", {
+  }, React__default.createElement("path", {
     d: "M17.005 5H6.995C5.895 5 5 5.895 5 6.995v10.01C5 18.105 5.895 19 6.995 19h10.01c1.1 0 1.995-.895 1.995-1.995V6.995C19 5.895 18.105 5 17.005 5zm.864 12.005a.865.865 0 01-.864.864H6.995a.865.865 0 01-.864-.864V6.995c0-.476.388-.864.864-.864h10.01c.476 0 .864.388.864.864v10.01z"
-  }), React.createElement("path", {
+  }), React__default.createElement("path", {
     d: "M18.434 9.29H5.566a.566.566 0 000 1.13h12.869a.566.566 0 000-1.13z"
-  }), React.createElement("path", {
+  }), React__default.createElement("path", {
     d: "M9.855 9.29a.566.566 0 00-.565.565v8.58a.566.566 0 001.13 0v-8.58a.566.566 0 00-.565-.565z"
-  })), React.createElement("defs", null, React.createElement("clipPath", {
+  })), React__default.createElement("defs", null, React__default.createElement("clipPath", {
     id: "clip0"
-  }, React.createElement("path", {
+  }, React__default.createElement("path", {
     fill: "#fff",
     d: "M0 0h14v14H0z",
     transform: "translate(5 5)"
@@ -5087,15 +5016,15 @@ function IconCaution(_ref) {
       props = objectWithoutProperties(_ref, ["size"]);
 
   var sizeValue = useIconSize(size);
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: sizeValue,
     height: sizeValue,
     fill: "none",
     viewBox: "0 0 24 24"
-  }, props), React.createElement("path", {
+  }, props), React__default.createElement("path", {
     fill: "currentColor",
     d: "M20.807 16.488a.27.27 0 00-.006-.01L14.005 5.132l-.002-.004a2.326 2.326 0 00-1.446-1.06 2.326 2.326 0 00-1.771.272c-.32.195-.593.467-.788.788l-.002.004L3.2 16.478a2.326 2.326 0 00-.24 1.787c.162.604.55 1.109 1.09 1.422A2.347 2.347 0 005.205 20h13.6a2.344 2.344 0 002.002-3.512zm-2.015 2.039H5.21a.87.87 0 01-.741-1.298L11.26 5.891a.871.871 0 01.948-.391.862.862 0 01.535.39l6.791 11.339a.87.87 0 01-.74 1.298z"
-  }), React.createElement("path", {
+  }), React__default.createElement("path", {
     fill: "currentColor",
     d: "M12 8.898a.737.737 0 00-.736.736v3.21a.737.737 0 101.473 0v-3.21a.737.737 0 00-.736-.736zm.521 6.635a.741.741 0 00-.52-.216.742.742 0 00-.522.216.743.743 0 00-.215.52c0 .195.078.384.215.522a.742.742 0 00.521.216.742.742 0 00.521-.216.741.741 0 00.216-.521.742.742 0 00-.216-.521z"
   }));
@@ -5108,15 +5037,15 @@ function IconCenter(_ref) {
       props = objectWithoutProperties(_ref, ["size"]);
 
   var sizeValue = useIconSize(size);
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: sizeValue,
     height: sizeValue,
     fill: "none",
     viewBox: "0 0 24 24"
-  }, props), React.createElement("path", {
+  }, props), React__default.createElement("path", {
     fill: "currentColor",
     d: "M17.657 6.343A7.947 7.947 0 0012 4a7.948 7.948 0 00-5.657 2.343A7.948 7.948 0 004 12c0 2.137.832 4.146 2.343 5.657A7.948 7.948 0 0012 20a7.948 7.948 0 005.657-2.343A7.948 7.948 0 0020 12a7.948 7.948 0 00-2.343-5.657zM12 18.707A6.715 6.715 0 015.293 12 6.715 6.715 0 0112 5.293 6.715 6.715 0 0118.707 12 6.715 6.715 0 0112 18.707z"
-  }), React.createElement("path", {
+  }), React__default.createElement("path", {
     fill: "currentColor",
     d: "M12 9.883A2.12 2.12 0 009.883 12 2.12 2.12 0 0012 14.117 2.12 2.12 0 0014.117 12 2.12 2.12 0 0012 9.883zm0 2.941a.825.825 0 010-1.648.825.825 0 010 1.648z"
   }));
@@ -5129,15 +5058,15 @@ function IconChart(_ref) {
       props = objectWithoutProperties(_ref, ["size"]);
 
   var sizeValue = useIconSize(size);
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: sizeValue,
     height: sizeValue,
     fill: "none",
     viewBox: "0 0 24 24"
-  }, props), React.createElement("path", {
+  }, props), React__default.createElement("path", {
     fill: "currentColor",
     d: "M17.657 6.343A7.947 7.947 0 0012 4a7.948 7.948 0 00-5.657 2.343A7.948 7.948 0 004 12c0 2.137.832 4.146 2.343 5.657A7.948 7.948 0 0012 20a7.948 7.948 0 005.657-2.343A7.948 7.948 0 0020 12a7.948 7.948 0 00-2.343-5.657zM12 18.707A6.715 6.715 0 015.293 12 6.715 6.715 0 0112 5.293 6.715 6.715 0 0118.707 12 6.715 6.715 0 0112 18.707z"
-  }), React.createElement("path", {
+  }), React__default.createElement("path", {
     fill: "currentColor",
     d: "M19.354 11.354h-6.708V4.646a.646.646 0 10-1.292 0V12c0 .357.29.646.646.646h7.354a.646.646 0 100-1.292z"
   }));
@@ -5150,12 +5079,12 @@ function IconChat(_ref) {
       props = objectWithoutProperties(_ref, ["size"]);
 
   var sizeValue = useIconSize(size);
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: sizeValue,
     height: sizeValue,
     fill: "none",
     viewBox: "0 0 24 24"
-  }, props), React.createElement("path", {
+  }, props), React__default.createElement("path", {
     fill: "currentColor",
     d: "M19.999 11.147a7.565 7.565 0 00-2.207-4.939A7.565 7.565 0 0012.817 4h-.426a7.527 7.527 0 00-3.376.804 7.586 7.586 0 00-4.198 6.786 7.534 7.534 0 00.686 3.15l-1.47 4.41a.646.646 0 00.818.817l4.408-1.47c.979.45 2.055.686 3.13.686h.02a7.586 7.586 0 006.786-4.195A7.528 7.528 0 0020 11.59v-.408l-.001-.036zm-1.292.444v.002a6.234 6.234 0 01-.667 2.814 6.265 6.265 0 01-5.633 3.483h-.016a6.23 6.23 0 01-2.796-.666.647.647 0 00-.496-.036l-3.43 1.144L6.811 14.9a.647.647 0 00-.036-.496 6.23 6.23 0 01-.666-2.813 6.262 6.262 0 013.485-5.633 6.231 6.231 0 012.813-.666h.39a6.276 6.276 0 015.91 5.908v.39z"
   }));
@@ -5168,12 +5097,12 @@ function IconCheck(_ref) {
       props = objectWithoutProperties(_ref, ["size"]);
 
   var sizeValue = useIconSize(size);
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: sizeValue,
     height: sizeValue,
     fill: "none",
     viewBox: "0 0 24 24"
-  }, props), React.createElement("path", {
+  }, props), React__default.createElement("path", {
     fill: "currentColor",
     stroke: "currentColor",
     strokeWidth: 0.5,
@@ -5188,15 +5117,15 @@ function IconChip(_ref) {
       props = objectWithoutProperties(_ref, ["size"]);
 
   var sizeValue = useIconSize(size);
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: sizeValue,
     height: sizeValue,
     fill: "none",
     viewBox: "0 0 24 24"
-  }, props), React.createElement("path", {
+  }, props), React__default.createElement("path", {
     fill: "currentColor",
     d: "M16.011 6.006H7.99c-1.094 0-1.984.89-1.984 1.983v8.022c0 1.094.89 1.983 1.984 1.983h8.022c1.094 0 1.983-.89 1.983-1.983V7.99c0-1.094-.89-1.983-1.983-1.983zm.69 10.005a.69.69 0 01-.69.69H7.99a.69.69 0 01-.69-.69V7.99a.69.69 0 01.69-.69h8.022a.69.69 0 01.69.69v8.022z"
-  }), React.createElement("path", {
+  }), React__default.createElement("path", {
     fill: "currentColor",
     d: "M14.006 9.348H9.994a.646.646 0 00-.646.646v4.011c0 .357.29.647.646.647h4.012c.357 0 .646-.29.646-.646V9.994a.646.646 0 00-.646-.646zm-.647 4.011h-2.718v-2.718h2.718v2.718zM9.994 4a.646.646 0 00-.646.646v2.006a.646.646 0 001.293 0V4.646A.646.646 0 009.994 4zm4.011 0a.646.646 0 00-.646.646v2.006a.646.646 0 001.293 0V4.646A.646.646 0 0014.006 4zM9.994 16.702a.646.646 0 00-.646.646v2.006a.646.646 0 101.293 0v-2.006a.646.646 0 00-.647-.646zm4.011 0a.646.646 0 00-.646.646v2.006a.646.646 0 101.293 0v-2.006a.646.646 0 00-.646-.646zm5.349-7.354h-2.006a.646.646 0 100 1.293h2.006a.646.646 0 100-1.293zm0 3.342h-2.006a.646.646 0 100 1.293h2.006a.646.646 0 100-1.292zM6.652 9.348H4.646a.646.646 0 000 1.293h2.006a.646.646 0 000-1.293zm0 3.342H4.646a.646.646 0 000 1.293h2.006a.646.646 0 000-1.292z"
   }));
@@ -5209,15 +5138,15 @@ function IconCircleCheck(_ref) {
       props = objectWithoutProperties(_ref, ["size"]);
 
   var sizeValue = useIconSize(size);
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: sizeValue,
     height: sizeValue,
     fill: "none",
     viewBox: "0 0 24 24"
-  }, props), React.createElement("path", {
+  }, props), React__default.createElement("path", {
     fill: "currentColor",
     d: "M18.653 10.356a.646.646 0 00-.646.646v.651a6.316 6.316 0 01-1.865 4.495 6.316 6.316 0 01-4.492 1.859h-.004a6.364 6.364 0 01-6.353-6.36 6.316 6.316 0 011.864-4.495 6.316 6.316 0 014.493-1.86h.003a6.32 6.32 0 012.584.551.646.646 0 10.526-1.18A7.601 7.601 0 0011.654 4h-.004a7.6 7.6 0 00-5.406 2.237A7.6 7.6 0 004 11.646a7.6 7.6 0 002.237 5.41 7.6 7.6 0 005.408 2.244h.005a7.6 7.6 0 005.406-2.238 7.6 7.6 0 002.244-5.408v-.652a.646.646 0 00-.647-.646z"
-  }), React.createElement("path", {
+  }), React__default.createElement("path", {
     fill: "currentColor",
     d: "M19.81 4.894a.646.646 0 00-.913 0L11.65 12.14l-1.644-1.644a.646.646 0 10-.914.915l2.1 2.1a.644.644 0 00.915 0l7.704-7.703a.646.646 0 000-.914z"
   }));
@@ -5230,15 +5159,15 @@ function IconCircleMinus(_ref) {
       props = objectWithoutProperties(_ref, ["size"]);
 
   var sizeValue = useIconSize(size);
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: sizeValue,
     height: sizeValue,
     fill: "none",
     viewBox: "0 0 24 24"
-  }, props), React.createElement("path", {
+  }, props), React__default.createElement("path", {
     fill: "currentColor",
     d: "M17.657 6.343A7.947 7.947 0 0012 4a7.948 7.948 0 00-5.657 2.343A7.948 7.948 0 004 12c0 2.137.832 4.146 2.343 5.657A7.948 7.948 0 0012 20a7.948 7.948 0 005.657-2.343A7.948 7.948 0 0020 12a7.948 7.948 0 00-2.343-5.657zM12 18.707A6.715 6.715 0 015.293 12 6.715 6.715 0 0112 5.293 6.715 6.715 0 0118.707 12 6.715 6.715 0 0112 18.707z"
-  }), React.createElement("path", {
+  }), React__default.createElement("path", {
     fill: "currentColor",
     d: "M14.941 11.354H9.06a.646.646 0 100 1.292h5.883a.646.646 0 100-1.292z"
   }));
@@ -5251,18 +5180,18 @@ function IconCirclePlus(_ref) {
       props = objectWithoutProperties(_ref, ["size"]);
 
   var sizeValue = useIconSize(size);
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: sizeValue,
     height: sizeValue,
     fill: "none",
     viewBox: "0 0 24 24"
-  }, props), React.createElement("path", {
+  }, props), React__default.createElement("path", {
     fill: "currentColor",
     d: "M17.657 6.343A7.947 7.947 0 0012 4a7.948 7.948 0 00-5.657 2.343A7.948 7.948 0 004 12c0 2.137.832 4.146 2.343 5.657A7.948 7.948 0 0012 20a7.948 7.948 0 005.657-2.343A7.948 7.948 0 0020 12a7.948 7.948 0 00-2.343-5.657zM12 18.707A6.715 6.715 0 015.293 12 6.715 6.715 0 0112 5.293 6.715 6.715 0 0118.707 12 6.715 6.715 0 0112 18.707z"
-  }), React.createElement("path", {
+  }), React__default.createElement("path", {
     fill: "currentColor",
     d: "M12 8.412a.646.646 0 00-.646.647v5.883a.646.646 0 101.292 0V9.058A.646.646 0 0012 8.412z"
-  }), React.createElement("path", {
+  }), React__default.createElement("path", {
     fill: "currentColor",
     d: "M14.941 11.354H9.06a.646.646 0 100 1.292h5.883a.646.646 0 100-1.292z"
   }));
@@ -5275,15 +5204,15 @@ function IconClock(_ref) {
       props = objectWithoutProperties(_ref, ["size"]);
 
   var sizeValue = useIconSize(size);
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: sizeValue,
     height: sizeValue,
     fill: "none",
     viewBox: "0 0 24 24"
-  }, props), React.createElement("path", {
+  }, props), React__default.createElement("path", {
     fill: "currentColor",
     d: "M17.657 6.343A7.947 7.947 0 0012 4a7.948 7.948 0 00-5.657 2.343A7.948 7.948 0 004 12c0 2.137.832 4.146 2.343 5.657A7.948 7.948 0 0012 20a7.948 7.948 0 005.657-2.343A7.948 7.948 0 0020 12a7.948 7.948 0 00-2.343-5.657zM12 18.707A6.715 6.715 0 015.293 12 6.715 6.715 0 0112 5.293 6.715 6.715 0 0118.707 12 6.715 6.715 0 0112 18.707z"
-  }), React.createElement("path", {
+  }), React__default.createElement("path", {
     fill: "currentColor",
     d: "M14.663 13.75l-2.017-2.018V7.588a.646.646 0 10-1.292 0V12c0 .171.068.336.189.457l2.206 2.206a.644.644 0 00.914 0 .646.646 0 000-.914z"
   }));
@@ -5296,18 +5225,18 @@ function IconCloudDownload(_ref) {
       props = objectWithoutProperties(_ref, ["size"]);
 
   var sizeValue = useIconSize(size);
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: sizeValue,
     height: sizeValue,
     fill: "none",
     viewBox: "0 0 24 24"
-  }, props), React.createElement("path", {
+  }, props), React__default.createElement("path", {
     fill: "currentColor",
     d: "M15.29 15.034a.68.68 0 00-.96 0l-2.327 2.327-2.327-2.328a.68.68 0 00-.96.96l2.807 2.808a.677.677 0 00.96 0l2.807-2.807a.68.68 0 000-.96z"
-  }), React.createElement("path", {
+  }), React__default.createElement("path", {
     fill: "currentColor",
     d: "M12.003 11.325a.679.679 0 00-.68.68v6.316a.679.679 0 001.359 0v-6.317a.679.679 0 00-.68-.679z"
-  }), React.createElement("path", {
+  }), React__default.createElement("path", {
     fill: "currentColor",
     d: "M19.642 10.999a4.192 4.192 0 00-3.425-1.78h-.383A6.303 6.303 0 008.326 5.2a6.3 6.3 0 00-4.532 7.66 6.322 6.322 0 001.383 2.606.68.68 0 001.017-.9 4.958 4.958 0 01-1.085-2.044 4.941 4.941 0 013.554-6.007 4.941 4.941 0 016.008 3.554c.077.3.348.51.657.51h.888c.92 0 1.785.45 2.315 1.202a2.833 2.833 0 01-.688 3.943.679.679 0 10.782 1.111A4.193 4.193 0 0019.642 11z"
   }));
@@ -5320,18 +5249,18 @@ function IconCloudUpload(_ref) {
       props = objectWithoutProperties(_ref, ["size"]);
 
   var sizeValue = useIconSize(size);
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: sizeValue,
     height: sizeValue,
     fill: "none",
     viewBox: "0 0 24 24"
-  }, props), React.createElement("path", {
+  }, props), React__default.createElement("path", {
     fill: "currentColor",
     d: "M8.715 15.292a.679.679 0 00.96 0l2.328-2.327 2.327 2.327a.679.679 0 10.96-.96l-2.807-2.808a.676.676 0 00-.96 0l-2.808 2.808a.679.679 0 000 .96z"
-  }), React.createElement("path", {
+  }), React__default.createElement("path", {
     fill: "currentColor",
     d: "M12.003 19a.679.679 0 00.679-.679v-6.317a.679.679 0 00-1.358 0v6.317c0 .375.304.679.679.679z"
-  }), React.createElement("path", {
+  }), React__default.createElement("path", {
     fill: "currentColor",
     d: "M19.642 10.999a4.192 4.192 0 00-3.425-1.78h-.383A6.303 6.303 0 008.326 5.2a6.3 6.3 0 00-4.532 7.66 6.322 6.322 0 001.383 2.606.68.68 0 001.017-.9 4.958 4.958 0 01-1.085-2.044 4.941 4.941 0 013.554-6.007 4.941 4.941 0 016.008 3.554c.077.3.348.51.657.51h.888c.92 0 1.785.45 2.315 1.202a2.833 2.833 0 01-.688 3.943.679.679 0 10.782 1.111A4.193 4.193 0 0019.642 11z"
   }));
@@ -5344,22 +5273,22 @@ function IconCoin(_ref) {
       props = objectWithoutProperties(_ref, ["size"]);
 
   var sizeValue = useIconSize(size);
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: sizeValue,
     height: sizeValue,
     fill: "none",
     viewBox: "0 0 24 24"
-  }, props), React.createElement("path", {
+  }, props), React__default.createElement("path", {
     fill: "currentColor",
     fillRule: "evenodd",
     d: "M16.096 10.735c.074-.386.389-.626.703-.535.945.273 1.72.726 2.272 1.283.54.546.929 1.263.929 2.057 0 1.374-.966 2.429-2.1 3.096-1.186.697-2.788 1.124-4.533 1.124-1.613 0-3.1-.365-4.25-.967-1.113-.582-2.056-1.47-2.315-2.632-.086-.383.098-.778.409-.883.311-.105.633.12.718.503.113.507.624 1.155 1.645 1.69.985.515 2.313.851 3.793.851 1.605 0 3.028-.394 4.028-.983 1.053-.619 1.436-1.314 1.436-1.799 0-.199-.107-.548-.502-.946-.384-.388-.984-.76-1.798-.995-.314-.09-.509-.478-.435-.864z",
     clipRule: "evenodd"
-  }), React.createElement("path", {
+  }), React__default.createElement("path", {
     fill: "currentColor",
     fillRule: "evenodd",
     d: "M6.576 6.296C5.524 6.851 5.17 7.484 5.17 7.945c0 .484.381 1.177 1.43 1.795.996.587 2.413.981 4.01.981 1.599 0 3.016-.394 4.012-.981 1.048-.618 1.43-1.311 1.43-1.795 0-.461-.356-1.094-1.408-1.649-.998-.526-2.421-.859-4.033-.859-1.612 0-3.036.333-4.034.86zm-.46-1.32C7.295 4.353 8.884 4 10.61 4c1.725 0 3.314.353 4.494.976 1.127.594 2.115 1.575 2.115 2.969 0 1.371-.963 2.425-2.093 3.091-1.182.697-2.777 1.123-4.516 1.123-1.74 0-3.335-.426-4.517-1.123C4.963 10.37 4 9.316 4 7.945c0-1.394.989-2.375 2.115-2.97zm1.249 7.986c.323 0 .585.321.585.718 0 .474.377 1.161 1.427 1.775.997.583 2.415.974 4.013.974 1.6 0 3.017-.391 4.014-.974 1.05-.614 1.427-1.301 1.427-1.775 0-.397.262-.718.585-.718.322 0 .584.321.584.718v2.24c0 1.389-.974 2.406-2.105 3.036C16.714 19.614 15.122 20 13.39 20c-1.73 0-3.323-.386-4.505-1.044-1.13-.63-2.104-1.647-2.104-3.035v-2.24c0-.398.262-.72.584-.72zm.6 3.13c.079.459.475 1.038 1.403 1.555.996.555 2.417.916 4.022.916 1.606 0 3.026-.361 4.023-.916.928-.517 1.324-1.096 1.403-1.554-.278.25-.587.471-.91.66-1.182.69-2.777 1.113-4.515 1.113-1.739 0-3.334-.422-4.515-1.113a5.513 5.513 0 01-.911-.66z",
     clipRule: "evenodd"
-  }), React.createElement("path", {
+  }), React__default.createElement("path", {
     fill: "currentColor",
     fillRule: "evenodd",
     d: "M6.596 9.854c.997.583 2.415.974 4.014.974 1.598 0 3.016-.391 4.013-.974 1.05-.614 1.427-1.301 1.427-1.775h1.169v2.24c0 1.389-.974 2.406-2.104 3.036-1.182.658-2.774 1.044-4.505 1.044-1.732 0-3.324-.386-4.506-1.044C4.974 12.725 4 11.708 4 10.32V8.08h1.169c0 .473.378 1.16 1.427 1.774zm-1.412.638c.079.458.475 1.037 1.403 1.553.997.556 2.417.917 4.023.917 1.605 0 3.026-.361 4.022-.916.928-.517 1.324-1.096 1.403-1.554-.277.25-.587.471-.91.66-1.182.69-2.777 1.113-4.515 1.113-1.739 0-3.334-.422-4.515-1.113a5.513 5.513 0 01-.911-.66z",
@@ -5374,17 +5303,17 @@ function IconConfiguration(_ref) {
       props = objectWithoutProperties(_ref, ["size"]);
 
   var sizeValue = useIconSize(size);
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: sizeValue,
     height: sizeValue,
     fill: "none",
     viewBox: "0 0 24 24"
-  }, props), React.createElement("path", {
+  }, props), React__default.createElement("path", {
     fill: "currentColor",
     fillRule: "evenodd",
     d: "M21 17.318a.69.69 0 01-.69.69h-1.996a.69.69 0 110-1.38h1.997c.38 0 .689.31.689.69zm-6.047 0a.69.69 0 01-.69.69H3.69a.69.69 0 010-1.38h10.575c.38 0 .69.31.69.69zm-8.859-5.245a.69.69 0 01-.69.69H3.69a.69.69 0 110-1.38h1.715a.69.69 0 01.69.69zm14.906 0a.69.69 0 01-.69.69H9.597a.69.69 0 110-1.38H20.31a.69.69 0 01.689.69zm-5.906-5.246a.69.69 0 01-.69.69H3.69a.69.69 0 010-1.38h10.715c.38 0 .69.31.69.69zm5.906 0a.69.69 0 01-.69.69h-1.996a.69.69 0 010-1.38h1.997c.38 0 .689.31.689.69z",
     clipRule: "evenodd"
-  }), React.createElement("path", {
+  }), React__default.createElement("path", {
     fill: "currentColor",
     fillRule: "evenodd",
     d: "M13.912 6.665a2.342 2.342 0 114.684 0 2.342 2.342 0 01-4.684 0zm2.342-.963a.963.963 0 100 1.926.963.963 0 000-1.926zm-2.342 11.454a2.342 2.342 0 114.684 0 2.342 2.342 0 01-4.684 0zm2.342-.963a.963.963 0 100 1.926.963.963 0 000-1.926zM5.123 11.91a2.342 2.342 0 114.684 0 2.342 2.342 0 01-4.684 0zm2.342-.962a.963.963 0 100 1.925.963.963 0 000-1.925z",
@@ -5399,12 +5328,12 @@ function IconConnect(_ref) {
       props = objectWithoutProperties(_ref, ["size"]);
 
   var sizeValue = useIconSize(size);
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: sizeValue,
     height: sizeValue,
     fill: "none",
     viewBox: "0 0 24 24"
-  }, props), React.createElement("path", {
+  }, props), React__default.createElement("path", {
     fill: "currentColor",
     d: "M19.204 10.255a.646.646 0 00-.585-.372h-5.887l.645-5.156a.646.646 0 00-1.138-.494l-7.354 8.825a.646.646 0 00.496 1.06h5.887l-.645 5.156a.647.647 0 001.138.494l7.354-8.825a.647.647 0 00.09-.688zm-7.025 6.992l.462-3.695a.646.646 0 00-.641-.727H6.761l5.06-6.071-.462 3.696a.646.646 0 00.641.726h5.239l-5.06 6.071z"
   }));
@@ -5417,15 +5346,15 @@ function IconConnection(_ref) {
       props = objectWithoutProperties(_ref, ["size"]);
 
   var sizeValue = useIconSize(size);
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: sizeValue,
     height: sizeValue,
     fill: "none",
     viewBox: "0 0 24 24"
-  }, props), React.createElement("path", {
+  }, props), React__default.createElement("path", {
     fill: "currentColor",
     d: "M12 9.388a2.385 2.385 0 00-2.382 2.382A2.385 2.385 0 0012 14.152a2.385 2.385 0 002.382-2.382A2.385 2.385 0 0012 9.388zm0 3.31a.929.929 0 010-1.856.929.929 0 010 1.855zm4.022-4.951a.727.727 0 10-1.027 1.029 4.242 4.242 0 01.003 5.992l-.004.004a.727.727 0 001.029 1.028l.004-.004a5.698 5.698 0 00-.005-8.05zm-7.017 7.017a4.21 4.21 0 01-1.242-2.996 4.21 4.21 0 011.243-3 .727.727 0 00-1.029-1.029l-.004.004a5.698 5.698 0 00.005 8.05.725.725 0 001.028 0 .727.727 0 000-1.03z"
-  }), React.createElement("path", {
+  }), React__default.createElement("path", {
     fill: "currentColor",
     d: "M18.364 5.405a.727.727 0 00-1.028 1.029c2.941 2.942 2.941 7.73 0 10.672a.727.727 0 101.028 1.028A8.943 8.943 0 0021 11.77a8.943 8.943 0 00-2.636-6.365zm-11.7 1.029a.727.727 0 00-1.028-1.029A8.943 8.943 0 003 11.77a8.94 8.94 0 002.636 6.364.724.724 0 001.028 0 .727.727 0 000-1.028c-2.941-2.943-2.941-7.73 0-10.672z"
   }));
@@ -5438,17 +5367,17 @@ function IconCopy(_ref) {
       props = objectWithoutProperties(_ref, ["size"]);
 
   var sizeValue = useIconSize(size);
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: sizeValue,
     height: sizeValue,
     fill: "none",
     viewBox: "0 0 24 24"
-  }, props), React.createElement("path", {
+  }, props), React__default.createElement("path", {
     fill: "currentColor",
     stroke: "currentColor",
     strokeWidth: 0.1,
     d: "M6.437 20.505h8.807a1.99 1.99 0 001.988-1.988v-.352a.579.579 0 00-1.157 0v.352c0 .458-.373.83-.83.83H6.436a.832.832 0 01-.83-.83V9.006c0-.458.373-.831.83-.831h.353a.579.579 0 000-1.157h-.353A1.99 1.99 0 004.45 9.006v9.511a1.99 1.99 0 001.987 1.988z"
-  }), React.createElement("path", {
+  }), React__default.createElement("path", {
     fill: "currentColor",
     stroke: "currentColor",
     strokeWidth: 0.1,
@@ -5463,17 +5392,17 @@ function IconCross(_ref) {
       props = objectWithoutProperties(_ref, ["size"]);
 
   var sizeValue = useIconSize(size);
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: sizeValue,
     height: sizeValue,
     fill: "none",
     viewBox: "0 0 24 24"
-  }, props), React.createElement("path", {
+  }, props), React__default.createElement("path", {
     fill: "currentColor",
     stroke: "currentColor",
     strokeWidth: 0.5,
     d: "M17.858 6.142a.485.485 0 00-.685 0L6.142 17.172a.485.485 0 10.686.686l11.03-11.03a.485.485 0 000-.686z"
-  }), React.createElement("path", {
+  }), React__default.createElement("path", {
     fill: "currentColor",
     stroke: "currentColor",
     strokeWidth: 0.5,
@@ -5488,12 +5417,12 @@ function IconDashedSquare(_ref) {
       props = objectWithoutProperties(_ref, ["size"]);
 
   var sizeValue = useIconSize(size);
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: sizeValue,
     height: sizeValue,
     fill: "none",
     viewBox: "0 0 24 24"
-  }, props), React.createElement("path", {
+  }, props), React__default.createElement("path", {
     fill: "currentColor",
     stroke: "currentColor",
     strokeWidth: 0.2,
@@ -5508,12 +5437,12 @@ function IconDown(_ref) {
       props = objectWithoutProperties(_ref, ["size"]);
 
   var sizeValue = useIconSize(size);
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: sizeValue,
     height: sizeValue,
     fill: "none",
     viewBox: "0 0 24 24"
-  }, props), React.createElement("path", {
+  }, props), React__default.createElement("path", {
     fill: "currentColor",
     d: "M18.785 8.782a.725.725 0 00-1.038 0L12 14.632l-5.746-5.85a.725.725 0 00-1.039 0 .757.757 0 000 1.057l6.266 6.38a.726.726 0 001.038 0l6.266-6.38a.757.757 0 000-1.057z"
   }));
@@ -5526,18 +5455,18 @@ function IconDownload(_ref) {
       props = objectWithoutProperties(_ref, ["size"]);
 
   var sizeValue = useIconSize(size);
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: sizeValue,
     height: sizeValue,
     fill: "none",
     viewBox: "0 0 24 24"
-  }, props), React.createElement("path", {
+  }, props), React__default.createElement("path", {
     fill: "currentColor",
     d: "M18.618 15.03a.646.646 0 00-.646.647v2.206c0 .454-.37.824-.824.824H6.852a.825.825 0 01-.824-.824v-2.206a.646.646 0 00-1.293 0v2.206A2.12 2.12 0 006.853 20h10.295a2.12 2.12 0 002.117-2.117v-2.206a.646.646 0 00-.647-.646z"
-  }), React.createElement("path", {
+  }), React__default.createElement("path", {
     fill: "currentColor",
     d: "M15.399 11.543a.646.646 0 00-.914 0L12 14.027l-2.484-2.484a.646.646 0 00-.914.914l2.941 2.941a.646.646 0 00.914 0l2.941-2.941a.646.646 0 000-.914z"
-  }), React.createElement("path", {
+  }), React__default.createElement("path", {
     fill: "currentColor",
     d: "M12 4a.646.646 0 00-.646.646v10.296a.646.646 0 001.292 0V4.646A.646.646 0 0012 4z"
   }));
@@ -5550,15 +5479,15 @@ function IconEdit(_ref) {
       props = objectWithoutProperties(_ref, ["size"]);
 
   var sizeValue = useIconSize(size);
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: sizeValue,
     height: sizeValue,
     fill: "none",
     viewBox: "0 0 24 24"
-  }, props), React.createElement("path", {
+  }, props), React__default.createElement("path", {
     fill: "currentColor",
     d: "M17.883 13.31a.646.646 0 00-.646.646v3.927c0 .455-.37.825-.825.825H6.117a.825.825 0 01-.824-.825V7.588c0-.455.37-.825.824-.825h3.927a.646.646 0 100-1.292H6.117A2.12 2.12 0 004 7.588v10.295A2.12 2.12 0 006.117 20h10.295a2.12 2.12 0 002.117-2.117v-3.927a.646.646 0 00-.646-.646z"
-  }), React.createElement("path", {
+  }), React__default.createElement("path", {
     fill: "currentColor",
     d: "M19.81 7.13l-2.94-2.94a.646.646 0 00-.915 0l-7.354 7.353a.646.646 0 00-.189.457v2.942c0 .357.29.646.646.646H12a.646.646 0 00.457-.19l7.354-7.353a.646.646 0 000-.914zm-8.078 7.165H9.705v-2.027l6.707-6.708 2.028 2.028-6.708 6.707z"
   }));
@@ -5571,22 +5500,22 @@ function IconEllipsis(_ref) {
       props = objectWithoutProperties(_ref, ["size"]);
 
   var sizeValue = useIconSize(size);
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: sizeValue,
     height: sizeValue,
     fill: "none",
     viewBox: "0 0 24 24"
-  }, props), React.createElement("circle", {
+  }, props), React__default.createElement("circle", {
     cx: 6,
     cy: 12,
     r: 1,
     fill: "currentColor"
-  }), React.createElement("circle", {
+  }), React__default.createElement("circle", {
     cx: 12,
     cy: 12,
     r: 1,
     fill: "currentColor"
-  }), React.createElement("circle", {
+  }), React__default.createElement("circle", {
     cx: 18,
     cy: 12,
     r: 1,
@@ -5601,12 +5530,12 @@ function IconEthereum(_ref) {
       props = objectWithoutProperties(_ref, ["size"]);
 
   var sizeValue = useIconSize(size);
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: sizeValue,
     height: sizeValue,
     fill: "none",
     viewBox: "0 0 24 24"
-  }, props), React.createElement("path", {
+  }, props), React__default.createElement("path", {
     fill: "currentColor",
     fillRule: "evenodd",
     d: "M12 3a.59.59 0 01.502.248l5.402 7.785a.53.53 0 01.08.432.556.556 0 01-.277.351l-5.402 2.931a.606.606 0 01-.305.073.606.606 0 01-.306-.073l-5.401-2.93a.556.556 0 01-.277-.352.53.53 0 01.08-.432l5.402-7.785A.59.59 0 0112 3zm-.598 2.394l-3.335 4.805 3.335-1.225v-3.58zm0 4.764L7.93 11.433l3.47 1.883v-3.158zm1.197 3.158l3.47-1.883-3.47-1.275v3.158zm0-4.342l3.334 1.225-3.335-4.805v3.58zm-6.445 3.89a.604.604 0 01.728-.098L12 15.702l5.118-2.936a.604.604 0 01.728.098.531.531 0 01.045.697l-5.32 7.056a.568.568 0 01-.376.357A.609.609 0 0112 21a.61.61 0 01-.195-.026.567.567 0 01-.376-.357L6.11 13.56a.531.531 0 01.045-.697zm6.444 5.82l2.704-3.586-2.704 1.55v2.035zm-1.197-2.036v2.035l-2.703-3.585 2.704 1.55z",
@@ -5621,15 +5550,15 @@ function IconExternal(_ref) {
       props = objectWithoutProperties(_ref, ["size"]);
 
   var sizeValue = useIconSize(size);
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: sizeValue,
     height: sizeValue,
     fill: "none",
     viewBox: "0 0 24 24"
-  }, props), React.createElement("path", {
+  }, props), React__default.createElement("path", {
     fill: "currentColor",
     d: "M16.902 12.17a.646.646 0 00-.646.647v4.903a.989.989 0 01-.988.987H6.28a.989.989 0 01-.987-.987V8.732c0-.545.443-.988.987-.988h4.903a.646.646 0 100-1.293H6.28A2.283 2.283 0 004 8.731v8.989A2.283 2.283 0 006.28 20h8.988a2.283 2.283 0 002.28-2.28v-4.903a.646.646 0 00-.645-.646zM19.354 4H14.45a.646.646 0 100 1.293h4.256v4.256a.646.646 0 001.293 0V4.646A.646.646 0 0019.354 4z"
-  }), React.createElement("path", {
+  }), React__default.createElement("path", {
     fill: "currentColor",
     d: "M19.81 4.19a.646.646 0 00-.913 0l-8.988 8.988a.646.646 0 00.914.914l8.988-8.988a.646.646 0 000-.914z"
   }));
@@ -5642,15 +5571,15 @@ function IconFile(_ref) {
       props = objectWithoutProperties(_ref, ["size"]);
 
   var sizeValue = useIconSize(size);
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: sizeValue,
     height: sizeValue,
     fill: "none",
     viewBox: "0 0 24 24"
-  }, props), React.createElement("path", {
+  }, props), React__default.createElement("path", {
     fill: "currentColor",
     d: "M18.34 9.337l-5.148-5.148A.646.646 0 0012.735 4H7.588A2.12 2.12 0 005.47 6.117v11.766A2.12 2.12 0 007.588 20h8.824a2.12 2.12 0 002.117-2.117v-8.09a.646.646 0 00-.19-.456zm-1.103 8.546c0 .454-.37.824-.825.824H7.588a.825.825 0 01-.825-.824V6.117c0-.455.37-.824.825-.824h4.88l4.768 4.769v7.82z"
-  }), React.createElement("path", {
+  }), React__default.createElement("path", {
     fill: "currentColor",
     d: "M17.883 9.148h-4.501V4.646a.646.646 0 00-1.293 0v5.148c0 .357.29.646.646.646h5.148a.646.646 0 100-1.292z"
   }));
@@ -5663,12 +5592,12 @@ function IconFilter(_ref) {
       props = objectWithoutProperties(_ref, ["size"]);
 
   var sizeValue = useIconSize(size);
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: sizeValue,
     height: sizeValue,
     fill: "none",
     viewBox: "0 0 24 24"
-  }, props), React.createElement("path", {
+  }, props), React__default.createElement("path", {
     fill: "currentColor",
     d: "M19.94 5.36a.648.648 0 00-.586-.36H4.646c-.251 0-.48.14-.586.36-.106.22-.07.48.093.665l5.73 6.529v4.406a.62.62 0 00.357.557l2.942 1.417a.667.667 0 00.629-.027.618.618 0 00.306-.53v-5.823l5.73-6.53a.605.605 0 00.093-.663zm-6.963 6.564a.61.61 0 00-.153.402v5.044l-1.648-.795v-4.249a.61.61 0 00-.153-.402L6.039 6.246h11.922l-4.984 5.678z"
   }));
@@ -5681,15 +5610,15 @@ function IconFlag(_ref) {
       props = objectWithoutProperties(_ref, ["size"]);
 
   var sizeValue = useIconSize(size);
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: sizeValue,
     height: sizeValue,
     fill: "none",
     viewBox: "0 0 24 24"
-  }, props), React.createElement("path", {
+  }, props), React__default.createElement("path", {
     fill: "currentColor",
     d: "M18.572 4.88a.67.67 0 00-.755.157c-.006.006-.707.613-2.663.613-1.05 0-1.947-.376-2.897-.773C11.227 4.446 10.162 4 8.847 4c-2.578 0-3.543.931-3.644 1.037A.743.743 0 005 5.55v9.9c0 .301.164.588.433.694a.645.645 0 00.743-.173c.082-.068.808-.621 2.67-.621 1.05 0 1.947.376 2.897.773 1.03.431 2.095.877 3.41.877 2.578 0 3.543-.931 3.644-1.037A.742.742 0 0019 15.45v-9.9a.726.726 0 00-.428-.67zm-.958 10.186c-.337.185-1.091.484-2.46.484-1.05 0-1.947-.376-2.897-.773-1.03-.431-2.095-.877-3.41-.877-1.09 0-1.891.166-2.461.366V5.934c.337-.185 1.091-.484 2.46-.484 1.05 0 1.947.376 2.897.773 1.03.431 2.095.877 3.41.877 1.09 0 1.891-.166 2.461-.366v8.332z"
-  }), React.createElement("path", {
+  }), React__default.createElement("path", {
     fill: "currentColor",
     d: "M5.693 14.095a.693.693 0 00-.693.693v5.519a.693.693 0 101.386 0v-5.519a.693.693 0 00-.693-.693z"
   }));
@@ -5702,12 +5631,12 @@ function IconFolder(_ref) {
       props = objectWithoutProperties(_ref, ["size"]);
 
   var sizeValue = useIconSize(size);
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: sizeValue,
     height: sizeValue,
     fill: "none",
     viewBox: "0 0 24 24"
-  }, props), React.createElement("path", {
+  }, props), React__default.createElement("path", {
     fill: "currentColor",
     d: "M17.883 6.941H11.61l-1.28-1.918a.646.646 0 00-.537-.288H6.117A2.12 2.12 0 004 6.852v10.296a2.12 2.12 0 002.117 2.117h11.766A2.12 2.12 0 0020 17.148v-8.09a2.12 2.12 0 00-2.117-2.117zm.824 10.207c0 .454-.37.824-.824.824H6.117a.825.825 0 01-.824-.824V6.852c0-.454.37-.824.824-.824h3.331l1.279 1.918c.12.18.322.288.538.288h6.618c.454 0 .824.37.824.825v8.089z"
   }));
@@ -5720,12 +5649,12 @@ function IconGraph2(_ref) {
       props = objectWithoutProperties(_ref, ["size"]);
 
   var sizeValue = useIconSize(size);
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: sizeValue,
     height: sizeValue,
     fill: "none",
     viewBox: "0 0 24 24"
-  }, props), React.createElement("path", {
+  }, props), React__default.createElement("path", {
     fill: "currentColor",
     d: "M18.377 5H16.96c-.734 0-1.331.597-1.331 1.331V17.67c0 .734.597 1.331 1.331 1.331h1.417c.734 0 1.332-.597 1.332-1.331V6.33c0-.734-.598-1.331-1.332-1.331zm.086 12.669a.086.086 0 01-.086.085H16.96a.086.086 0 01-.086-.085V6.33c0-.047.039-.085.086-.085h1.417c.048 0 .086.038.086.085v11.34zm-5.754-9.126h-1.417c-.735 0-1.332.597-1.332 1.331v7.795c0 .734.597 1.331 1.332 1.331h1.417c.734 0 1.331-.597 1.331-1.331V9.874c0-.734-.597-1.331-1.331-1.331zm.086 9.126a.086.086 0 01-.086.085h-1.417a.086.086 0 01-.086-.085V9.874c0-.047.038-.086.086-.086h1.417c.047 0 .086.039.086.086v7.795zM7.04 12.086H5.623c-.734 0-1.332.597-1.332 1.331v4.252c0 .734.598 1.331 1.332 1.331H7.04c.734 0 1.331-.597 1.331-1.331v-4.252c0-.734-.597-1.331-1.331-1.331zm.086 5.583a.086.086 0 01-.086.085H5.623a.086.086 0 01-.086-.085v-4.252c0-.047.038-.086.086-.086H7.04c.047 0 .086.039.086.086v4.252z"
   }));
@@ -5738,12 +5667,12 @@ function IconGraph(_ref) {
       props = objectWithoutProperties(_ref, ["size"]);
 
   var sizeValue = useIconSize(size);
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: sizeValue,
     height: sizeValue,
     fill: "none",
     viewBox: "0 0 24 24"
-  }, props), React.createElement("path", {
+  }, props), React__default.createElement("path", {
     fill: "currentColor",
     d: "M12.736 4.735h-1.471c-.762 0-1.382.62-1.382 1.382v11.766c0 .762.62 1.382 1.382 1.382h1.47c.763 0 1.382-.62 1.382-1.382V6.117c0-.762-.62-1.382-1.381-1.382zm.089 13.148a.09.09 0 01-.09.089h-1.47a.09.09 0 01-.09-.09V6.118a.09.09 0 01.09-.089h1.47c.05 0 .09.04.09.09v11.765zm5.793-9.471h-1.47c-.762 0-1.382.62-1.382 1.382v8.089c0 .762.62 1.382 1.382 1.382h1.47c.762 0 1.382-.62 1.382-1.382v-8.09c0-.76-.62-1.38-1.382-1.38zm.09 9.47c0 .05-.04.09-.09.09h-1.47a.09.09 0 01-.09-.09V9.795c0-.05.04-.09.09-.09h1.47a.09.09 0 01.09.09v8.089zM6.853 12.089H5.382c-.762 0-1.382.62-1.382 1.382v4.412c0 .762.62 1.382 1.382 1.382h1.47c.762 0 1.382-.62 1.382-1.382V13.47c0-.762-.62-1.382-1.381-1.382zm.089 5.794a.09.09 0 01-.09.089h-1.47a.09.09 0 01-.09-.09v-4.411c0-.05.04-.09.09-.09h1.47c.05 0 .09.04.09.09v4.412z"
   }));
@@ -5756,12 +5685,12 @@ function IconGrid(_ref) {
       props = objectWithoutProperties(_ref, ["size"]);
 
   var sizeValue = useIconSize(size);
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: sizeValue,
     height: sizeValue,
     fill: "none",
     viewBox: "0 0 24 24"
-  }, props), React.createElement("path", {
+  }, props), React__default.createElement("path", {
     fill: "currentColor",
     d: "M9.549 4H5.463C4.657 4 4 4.657 4 5.463V9.55c0 .807.657 1.463 1.463 1.463H9.55c.807 0 1.463-.656 1.463-1.463V5.463A1.466 1.466 0 009.55 4zm.17 5.549a.17.17 0 01-.17.17H5.463a.171.171 0 01-.17-.17V5.463a.17.17 0 01.17-.17H9.55a.17.17 0 01.17.17V9.55zM18.537 4H14.45c-.807 0-1.463.657-1.463 1.463V9.55c0 .807.656 1.463 1.463 1.463h4.086c.807 0 1.463-.656 1.463-1.463V5.463A1.463 1.463 0 0018.537 4zm.17 5.549a.17.17 0 01-.17.17H14.45a.171.171 0 01-.17-.17V5.463a.17.17 0 01.17-.17h4.086a.17.17 0 01.17.17V9.55zm-.17 3.439H14.45c-.807 0-1.463.656-1.463 1.463v4.086c0 .807.656 1.463 1.463 1.463h4.086c.807 0 1.463-.657 1.463-1.463V14.45c0-.807-.656-1.463-1.463-1.463zm.17 5.549a.17.17 0 01-.17.17H14.45a.17.17 0 01-.17-.17V14.45a.17.17 0 01.17-.17h4.086a.17.17 0 01.17.17v4.086zm-9.158-5.549H5.463c-.806 0-1.463.656-1.463 1.463v4.086C4 19.343 4.657 20 5.463 20H9.55c.807 0 1.463-.657 1.463-1.463V14.45c0-.807-.656-1.463-1.463-1.463zm.17 5.549a.17.17 0 01-.17.17H5.463a.17.17 0 01-.17-.17V14.45a.17.17 0 01.17-.17H9.55a.17.17 0 01.17.17v4.086z"
   }));
@@ -5774,12 +5703,12 @@ function IconGroup(_ref) {
       props = objectWithoutProperties(_ref, ["size"]);
 
   var sizeValue = useIconSize(size);
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: sizeValue,
     height: sizeValue,
     fill: "none",
     viewBox: "0 0 24 24"
-  }, props), React.createElement("path", {
+  }, props), React__default.createElement("path", {
     fill: "currentColor",
     fillRule: "evenodd",
     d: "M2.68 18.35h11.76c-.125-1.148-.582-1.865-1.121-2.313-.657-.546-1.518-.762-2.286-.762H6.068c-1.476 0-2.304.616-2.785 1.348-.358.544-.538 1.18-.603 1.727zm-.483-2.442c.717-1.091 1.951-1.933 3.871-1.933h4.966c.982 0 2.166.271 3.117 1.063.974.81 1.624 2.098 1.624 3.962a.65.65 0 01-.65.65H2.003a.65.65 0 01-.65-.623c-.033-.828.152-2.066.844-3.119zM5.49 9.664a3.11 3.11 0 116.223 0 3.11 3.11 0 01-6.222 0zm3.112-1.81a1.81 1.81 0 100 3.621 1.81 1.81 0 000-3.622zm4.415 3.568a.65.65 0 01.65-.65h3.409c.981 0 2.166.271 3.117 1.062.973.81 1.624 2.099 1.624 3.963a.65.65 0 01-.65.65h-4.493a.65.65 0 110-1.3h3.809c-.125-1.148-.582-1.865-1.121-2.313-.657-.546-1.518-.762-2.286-.762h-3.41a.65.65 0 01-.65-.65zM11.662 6.46a3.11 3.11 0 116.222.001 3.11 3.11 0 01-6.222 0zm3.111-1.81a1.811 1.811 0 100 3.622 1.811 1.811 0 000-3.622z",
@@ -5794,17 +5723,17 @@ function IconHash(_ref) {
       props = objectWithoutProperties(_ref, ["size"]);
 
   var sizeValue = useIconSize(size);
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: sizeValue,
     height: sizeValue,
     fill: "none",
     viewBox: "0 0 24 24"
-  }, props), React.createElement("path", {
+  }, props), React__default.createElement("path", {
     fill: "currentColor",
     stroke: "currentColor",
     strokeWidth: 0.2,
     d: "M18.537 8.902H5.463a.646.646 0 000 1.293h13.074a.646.646 0 000-1.293zm0 4.903H5.463a.646.646 0 100 1.293h13.074a.646.646 0 000-1.293z"
-  }), React.createElement("path", {
+  }), React__default.createElement("path", {
     fill: "currentColor",
     stroke: "currentColor",
     strokeWidth: 0.2,
@@ -5819,12 +5748,12 @@ function IconHeart(_ref) {
       props = objectWithoutProperties(_ref, ["size"]);
 
   var sizeValue = useIconSize(size);
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: sizeValue,
     height: sizeValue,
     fill: "none",
     viewBox: "0 0 24 24"
-  }, props), React.createElement("path", {
+  }, props), React__default.createElement("path", {
     fill: "currentColor",
     d: "M18.681 6.314l-.002-.002a4.55 4.55 0 00-6.388-.002v.001h-.001l-.29.287-.288-.286A4.508 4.508 0 008.518 5a4.508 4.508 0 00-3.195 1.312A4.43 4.43 0 004 9.479c0 1.196.47 2.32 1.323 3.166l6.22 6.167a.65.65 0 00.915 0l6.22-6.166a4.456 4.456 0 00.003-6.332zm-.916 5.425L12 17.453l-5.764-5.714a3.162 3.162 0 01-.944-2.26c0-.854.335-1.657.944-2.261a3.23 3.23 0 012.28-.935 3.23 3.23 0 012.28.935l.747.74a.65.65 0 00.914 0l.746-.74.001-.001a3.247 3.247 0 014.558 0l.003.002a3.18 3.18 0 01-.001 4.52z"
   }));
@@ -5837,18 +5766,18 @@ function IconHide(_ref) {
       props = objectWithoutProperties(_ref, ["size"]);
 
   var sizeValue = useIconSize(size);
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: sizeValue,
     height: sizeValue,
     fill: "none",
     viewBox: "0 0 24 24"
-  }, props), React.createElement("path", {
+  }, props), React__default.createElement("path", {
     fill: "currentColor",
     d: "M17.046 16.027a.727.727 0 00-1.02-.138 6.8 6.8 0 01-4.032 1.4c-1.962-.001-3.828-.927-5.548-2.75a14.135 14.135 0 01-1.888-2.537A13.052 13.052 0 017.974 8.11a.727.727 0 00-.883-1.155 14.506 14.506 0 00-4.005 4.701.727.727 0 00-.01.67c.033.064.817 1.616 2.283 3.18.87.929 1.805 1.671 2.776 2.207 1.24.684 2.54 1.031 3.865 1.031h.012a8.245 8.245 0 004.896-1.698c.32-.244.381-.7.138-1.02zm3.878-4.352c-.033-.065-.817-1.617-2.283-3.18-.87-.93-1.805-1.672-2.776-2.208-1.24-.684-2.54-1.03-3.863-1.03a7.59 7.59 0 00-1.747.199.727.727 0 10.331 1.416A6.198 6.198 0 0112 6.71c1.964 0 3.833.926 5.555 2.752a14.126 14.126 0 011.888 2.537c-.391.682-.845 1.33-1.35 1.932a.727.727 0 101.112.936 14.667 14.667 0 001.71-2.524.727.727 0 00.009-.668z"
-  }), React.createElement("path", {
+  }), React__default.createElement("path", {
     fill: "currentColor",
     d: "M14.09 13.063a.727.727 0 00-1.027.036 1.52 1.52 0 01-1.065.486 1.53 1.53 0 01-1.096-2.647.727.727 0 10-.992-1.064 2.987 2.987 0 000 4.365 2.963 2.963 0 002.139.799 2.964 2.964 0 002.078-.948.727.727 0 00-.037-1.027z"
-  }), React.createElement("path", {
+  }), React__default.createElement("path", {
     fill: "currentColor",
     d: "M20.788 19.76L4.24 3.212A.727.727 0 103.212 4.24l16.546 16.547a.725.725 0 001.029 0 .727.727 0 000-1.029z"
   }));
@@ -5861,17 +5790,17 @@ function IconHome(_ref) {
       props = objectWithoutProperties(_ref, ["size"]);
 
   var sizeValue = useIconSize(size);
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: sizeValue,
     height: sizeValue,
     fill: "none",
     viewBox: "0 0 24 24"
-  }, props), React.createElement("path", {
+  }, props), React__default.createElement("path", {
     fill: "currentColor",
     stroke: "currentColor",
     strokeWidth: 0.4,
     d: "M3.191 10.338l8.533-6.248a.468.468 0 01.552 0l8.533 6.248a.468.468 0 11-.553.754L12 5.047l-8.256 6.045a.465.465 0 01-.654-.1.468.468 0 01.101-.655z"
-  }), React.createElement("path", {
+  }), React__default.createElement("path", {
     fill: "currentColor",
     stroke: "currentColor",
     strokeWidth: 0.4,
@@ -5886,15 +5815,15 @@ function IconImage(_ref) {
       props = objectWithoutProperties(_ref, ["size"]);
 
   var sizeValue = useIconSize(size);
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: sizeValue,
     height: sizeValue,
     fill: "none",
     viewBox: "0 0 24 24"
-  }, props), React.createElement("path", {
+  }, props), React__default.createElement("path", {
     fill: "currentColor",
     d: "M17.005 5H6.995C5.895 5 5 5.895 5 6.995v10.01C5 18.105 5.895 19 6.995 19h10.01c1.1 0 1.995-.895 1.995-1.995V6.995C19 5.895 18.105 5 17.005 5zm.864 12.005a.865.865 0 01-.864.864H6.995a.865.865 0 01-.864-.864V6.995c0-.476.388-.864.864-.864h10.01c.476 0 .864.388.864.864v10.01z"
-  }), React.createElement("path", {
+  }), React__default.createElement("path", {
     fill: "currentColor",
     d: "M18.834 13.745L15.26 10.17a.566.566 0 00-.8 0l-7.864 7.865a.566.566 0 00.8.8l7.464-7.465 3.175 3.175a.566.566 0 00.8-.8zM9.498 7.86A1.64 1.64 0 007.86 9.498a1.64 1.64 0 001.638 1.638 1.64 1.64 0 001.638-1.638A1.64 1.64 0 009.498 7.86zm0 2.145a.507.507 0 110-1.015.507.507 0 010 1.015z"
   }));
@@ -5907,15 +5836,15 @@ function IconInfo(_ref) {
       props = objectWithoutProperties(_ref, ["size"]);
 
   var sizeValue = useIconSize(size);
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: sizeValue,
     height: sizeValue,
     fill: "none",
     viewBox: "0 0 24 24"
-  }, props), React.createElement("path", {
+  }, props), React__default.createElement("path", {
     fill: "currentColor",
     d: "M17.657 6.343A7.947 7.947 0 0012 4a7.948 7.948 0 00-5.657 2.343A7.948 7.948 0 004 12c0 2.137.832 4.146 2.343 5.657A7.948 7.948 0 0012 20a7.948 7.948 0 005.657-2.343A7.948 7.948 0 0020 12a7.948 7.948 0 00-2.343-5.657zM12 18.707A6.715 6.715 0 015.293 12 6.715 6.715 0 0112 5.293 6.715 6.715 0 0118.707 12 6.715 6.715 0 0112 18.707z"
-  }), React.createElement("path", {
+  }), React__default.createElement("path", {
     fill: "currentColor",
     d: "M12 11.354a.646.646 0 00-.646.646v2.941a.646.646 0 101.292 0v-2.94a.646.646 0 00-.646-.647zm.457-2.752a.65.65 0 00-.457-.19.651.651 0 00-.457.19.651.651 0 00-.19.457.651.651 0 00.646.646.65.65 0 00.458-.19.65.65 0 00.19-.456.651.651 0 00-.19-.457z"
   }));
@@ -5928,12 +5857,12 @@ function IconLabel(_ref) {
       props = objectWithoutProperties(_ref, ["size"]);
 
   var sizeValue = useIconSize(size);
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: sizeValue,
     height: sizeValue,
     fill: "none",
     viewBox: "0 0 24 24"
-  }, props), React.createElement("path", {
+  }, props), React__default.createElement("path", {
     fill: "currentColor",
     fillRule: "evenodd",
     d: "M20.835 10.825c.487.664.487 1.69 0 2.35l-3.08 4.202a2.6 2.6 0 01-.921.754 2.623 2.623 0 01-1.153.299H4.446A1.649 1.649 0 012.8 16.784V7.216c0-.907.739-1.646 1.646-1.646h11.235c.38 0 .787.115 1.15.3.364.184.698.445.923.752l3.08 4.203zm-4.203-3.378l3.078 4.199c.057.08.095.21.095.355a.623.623 0 01-.097.355l-3.081 4.202v.001a1.223 1.223 0 01-.427.33 1.257 1.257 0 01-.522.148H4.446a.252.252 0 01-.25-.25v-9.57c0-.137.114-.25.25-.25h11.235c.14 0 .332.053.52.149.189.095.346.218.43.33z",
@@ -5948,15 +5877,15 @@ function IconLayers(_ref) {
       props = objectWithoutProperties(_ref, ["size"]);
 
   var sizeValue = useIconSize(size);
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: sizeValue,
     height: sizeValue,
     fill: "none",
     viewBox: "0 0 24 24"
-  }, props), React.createElement("path", {
+  }, props), React__default.createElement("path", {
     fill: "currentColor",
     d: "M19.643 7.745l-7.354-3.677a.646.646 0 00-.578 0L4.357 7.745a.646.646 0 000 1.156l7.354 3.677a.647.647 0 00.578 0l7.354-3.677a.646.646 0 000-1.156zM12 11.277L6.09 8.323 12 5.37l5.908 2.954L12 11.277zm7.932 4.111a.646.646 0 00-.868-.29L12 18.632 4.935 15.1a.646.646 0 00-.578 1.156l7.354 3.677a.646.646 0 00.578 0l7.354-3.677a.646.646 0 00.289-.867z"
-  }), React.createElement("path", {
+  }), React__default.createElement("path", {
     fill: "currentColor",
     d: "M19.932 11.71a.646.646 0 00-.868-.288L12 14.954l-7.065-3.532a.646.646 0 10-.578 1.156l7.354 3.677a.647.647 0 00.578 0l7.354-3.677a.646.646 0 00.289-.867z"
   }));
@@ -5969,12 +5898,12 @@ function IconLeft(_ref) {
       props = objectWithoutProperties(_ref, ["size"]);
 
   var sizeValue = useIconSize(size);
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: sizeValue,
     height: sizeValue,
     fill: "none",
     viewBox: "0 0 24 24"
-  }, props), React.createElement("path", {
+  }, props), React__default.createElement("path", {
     fill: "currentColor",
     d: "M15.777 18.392a.737.737 0 000-1.054L9.834 11.5l5.943-5.838a.737.737 0 000-1.055.77.77 0 00-1.074 0l-6.48 6.365a.737.737 0 000 1.055l6.48 6.365a.77.77 0 001.074 0z"
   }));
@@ -5987,27 +5916,27 @@ function IconLink(_ref) {
       props = objectWithoutProperties(_ref, ["size"]);
 
   var sizeValue = useIconSize(size);
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: sizeValue,
     height: sizeValue,
     fill: "none",
     viewBox: "0 0 24 24"
-  }, props), React.createElement("path", {
+  }, props), React__default.createElement("path", {
     fill: "currentColor",
     d: "M18.882 5.163a3.564 3.564 0 00-5.084 0l-2.542 2.578a.566.566 0 000 .793.547.547 0 00.782 0l2.542-2.578a2.454 2.454 0 011.76-.735c.667 0 1.292.261 1.76.736.467.474.725 1.107.725 1.784 0 .676-.258 1.31-.726 1.784l-3.323 3.372a2.47 2.47 0 01-3.52 0 .547.547 0 00-.782 0 .566.566 0 000 .793 3.563 3.563 0 005.084 0l3.324-3.371a3.645 3.645 0 001.05-2.578 3.65 3.65 0 00-1.05-2.578z"
-  }), React.createElement("path", {
+  }), React__default.createElement("path", {
     fill: "currentColor",
     fillRule: "evenodd",
     d: "M13.73 5.094a3.66 3.66 0 015.22 0 3.744 3.744 0 011.077 2.647 3.743 3.743 0 01-1.077 2.647l-3.324 3.37a3.654 3.654 0 01-2.61 1.095c-.945 0-1.89-.365-2.61-1.094a.665.665 0 010-.931.643.643 0 01.918 0c.933.945 2.45.945 3.384 0l3.323-3.372c.45-.455.698-1.064.698-1.715 0-.65-.248-1.26-.698-1.715a2.358 2.358 0 00-1.691-.707c-.642 0-1.242.25-1.692.706l-2.542 2.578a.643.643 0 01-.918 0 .665.665 0 010-.931l2.542-2.578zm.85.862a2.454 2.454 0 011.76-.735c.667 0 1.292.261 1.76.736.467.474.725 1.107.725 1.784 0 .676-.258 1.31-.726 1.784l-3.323 3.372a2.47 2.47 0 01-3.52 0 .548.548 0 00-.782 0 .566.566 0 000 .793 3.563 3.563 0 005.084 0l3.324-3.371a3.645 3.645 0 001.05-2.578 3.65 3.65 0 00-1.05-2.578 3.564 3.564 0 00-5.084 0l-2.542 2.578a.566.566 0 000 .793.547.547 0 00.782 0l2.542-2.578z",
     clipRule: "evenodd"
-  }), React.createElement("path", {
+  }), React__default.createElement("path", {
     stroke: "currentColor",
     strokeWidth: 0.2,
     d: "M18.95 10.388a3.743 3.743 0 001.077-2.647 3.744 3.744 0 00-1.077-2.647 3.66 3.66 0 00-5.22 0l-2.542 2.578a.665.665 0 000 .93.643.643 0 00.918 0l2.542-2.577a2.359 2.359 0 011.692-.706c.642 0 1.242.25 1.691.707.45.455.698 1.064.698 1.715 0 .65-.248 1.26-.698 1.715l-3.323 3.372s0 0 0 0a2.373 2.373 0 01-3.384 0 .643.643 0 00-.918 0 .665.665 0 000 .93 3.654 3.654 0 002.61 1.095c.945 0 1.89-.365 2.61-1.094l3.324-3.371zm0 0s0 0 0 0zm-4.37-4.432a2.454 2.454 0 011.76-.735c.667 0 1.292.261 1.76.736.467.474.725 1.107.725 1.784 0 .676-.258 1.31-.726 1.784l-3.323 3.372a2.47 2.47 0 01-3.52 0 .548.548 0 00-.782 0 .566.566 0 000 .793 3.563 3.563 0 005.084 0l3.324-3.371a3.645 3.645 0 001.05-2.578 3.65 3.65 0 00-1.05-2.578 3.564 3.564 0 00-5.084 0l-2.542 2.578a.566.566 0 000 .793.547.547 0 00.782 0l2.542-2.578z"
-  }), React.createElement("path", {
+  }), React__default.createElement("path", {
     fill: "currentColor",
     d: "M11.626 15.864l-2.151 2.181a2.453 2.453 0 01-1.76.736 2.454 2.454 0 01-1.76-.736 2.552 2.552 0 010-3.569l3.129-3.173a2.454 2.454 0 011.76-.735c.667 0 1.291.261 1.759.735a.548.548 0 00.782 0 .566.566 0 000-.793 3.564 3.564 0 00-5.084 0l-3.128 3.173a3.646 3.646 0 00-1.05 2.578c0 .976.373 1.891 1.05 2.577a3.544 3.544 0 002.542 1.064c.962 0 1.865-.378 2.541-1.064l2.151-2.18a.566.566 0 000-.794.547.547 0 00-.781 0z"
-  }), React.createElement("path", {
+  }), React__default.createElement("path", {
     fill: "currentColor",
     fillRule: "evenodd",
     stroke: "currentColor",
@@ -6024,15 +5953,15 @@ function IconLocation(_ref) {
       props = objectWithoutProperties(_ref, ["size"]);
 
   var sizeValue = useIconSize(size);
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: sizeValue,
     height: sizeValue,
     fill: "none",
     viewBox: "0 0 24 24"
-  }, props), React.createElement("path", {
+  }, props), React__default.createElement("path", {
     fill: "currentColor",
     d: "M16.711 5.952A6.62 6.62 0 0012 4a6.62 6.62 0 00-4.711 1.952 6.62 6.62 0 00-1.952 4.711c0 1.177.343 2.402 1.019 3.642.526.963 1.255 1.94 2.166 2.903a20.25 20.25 0 003.12 2.683.645.645 0 00.716 0 20.261 20.261 0 003.12-2.683c.911-.963 1.64-1.94 2.166-2.903.676-1.24 1.019-2.465 1.019-3.642a6.62 6.62 0 00-1.952-4.711zM12 18.559c-1.255-.93-5.37-4.255-5.37-7.896A5.376 5.376 0 0112 5.293a5.376 5.376 0 015.37 5.37c0 3.642-4.115 6.967-5.37 7.896z"
-  }), React.createElement("path", {
+  }), React__default.createElement("path", {
     fill: "currentColor",
     d: "M12 8.011a2.655 2.655 0 00-2.652 2.652A2.655 2.655 0 0012 13.315a2.655 2.655 0 002.652-2.652A2.655 2.655 0 0012 8.01zm0 4.011a1.36 1.36 0 010-2.718c.75 0 1.36.61 1.36 1.359 0 .75-.61 1.36-1.36 1.36z"
   }));
@@ -6045,15 +5974,15 @@ function IconLock(_ref) {
       props = objectWithoutProperties(_ref, ["size"]);
 
   var sizeValue = useIconSize(size);
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: sizeValue,
     height: sizeValue,
     fill: "none",
     viewBox: "0 0 24 24"
-  }, props), React.createElement("path", {
+  }, props), React__default.createElement("path", {
     fill: "currentColor",
     d: "M17.669 10.48H6.332A2.334 2.334 0 004 12.812v5.668a2.334 2.334 0 002.332 2.332h11.337A2.334 2.334 0 0020 18.48v-5.668a2.334 2.334 0 00-2.331-2.332zm.907 8c0 .5-.407.908-.907.908H6.332a.909.909 0 01-.908-.908v-5.668c0-.5.407-.908.908-.908h11.337c.5 0 .907.407.907.908v5.668z"
-  }), React.createElement("path", {
+  }), React__default.createElement("path", {
     fill: "currentColor",
     d: "M12 3a4.328 4.328 0 00-4.323 4.323v2.942a.646.646 0 001.293 0V7.323c0-1.67 1.359-3.03 3.03-3.03 1.671 0 3.03 1.36 3.03 3.03v2.942a.646.646 0 101.293 0V7.323A4.328 4.328 0 0012 3z"
   }));
@@ -6066,15 +5995,15 @@ function IconMail(_ref) {
       props = objectWithoutProperties(_ref, ["size"]);
 
   var sizeValue = useIconSize(size);
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: sizeValue,
     height: sizeValue,
     fill: "none",
     viewBox: "0 0 24 24"
-  }, props), React.createElement("path", {
+  }, props), React__default.createElement("path", {
     fill: "currentColor",
     d: "M17.406 6H6.594a1.948 1.948 0 00-1.945 1.945v8.11c0 1.072.872 1.945 1.945 1.945h10.812a1.948 1.948 0 001.946-1.945v-8.11A1.948 1.948 0 0017.406 6zm.758 10.055c0 .417-.34.757-.758.757H6.594a.758.758 0 01-.758-.757v-8.11c0-.417.34-.757.758-.757h10.812c.418 0 .758.34.758.757v8.11z"
-  }), React.createElement("path", {
+  }), React__default.createElement("path", {
     fill: "currentColor",
     d: "M19.245 7.605a.594.594 0 00-.827-.146L12 11.95 5.584 7.459a.594.594 0 10-.681.973l6.757 4.73a.593.593 0 00.681 0l6.758-4.73a.594.594 0 00.146-.827z"
   }));
@@ -6087,17 +6016,17 @@ function IconMaximize(_ref) {
       props = objectWithoutProperties(_ref, ["size"]);
 
   var sizeValue = useIconSize(size);
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: sizeValue,
     height: sizeValue,
     fill: "none",
     viewBox: "0 0 24 24"
-  }, props), React.createElement("path", {
+  }, props), React__default.createElement("path", {
     fill: "currentColor",
     stroke: "currentColor",
     strokeWidth: 0.2,
     d: "M18.434 5h-4.29a.566.566 0 000 1.131h3.725v3.724a.566.566 0 001.13 0v-4.29A.566.566 0 0018.435 5zM9.855 17.869H6.131v-3.724a.566.566 0 00-1.131 0v4.29c0 .312.253.565.565.565h4.29a.565.565 0 100-1.131z"
-  }), React.createElement("path", {
+  }), React__default.createElement("path", {
     fill: "currentColor",
     stroke: "currentColor",
     strokeWidth: 0.2,
@@ -6112,12 +6041,12 @@ function IconMenu(_ref) {
       props = objectWithoutProperties(_ref, ["size"]);
 
   var sizeValue = useIconSize(size);
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: sizeValue,
     height: sizeValue,
     fill: "none",
     viewBox: "0 0 24 24"
-  }, props), React.createElement("path", {
+  }, props), React__default.createElement("path", {
     fill: "currentColor",
     stroke: "currentColor",
     strokeWidth: 0.2,
@@ -6132,17 +6061,17 @@ function IconMinimize(_ref) {
       props = objectWithoutProperties(_ref, ["size"]);
 
   var sizeValue = useIconSize(size);
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: sizeValue,
     height: sizeValue,
     fill: "none",
     viewBox: "0 0 24 24"
-  }, props), React.createElement("path", {
+  }, props), React__default.createElement("path", {
     fill: "currentColor",
     stroke: "currentColor",
     strokeWidth: 0.2,
     d: "M10.57 12.864H6.28a.566.566 0 100 1.132h3.725v3.724a.565.565 0 101.13 0v-4.29a.566.566 0 00-.565-.566zm7.15-2.859h-3.725V6.28a.566.566 0 10-1.13 0v4.29c0 .313.252.566.565.566h4.29a.566.566 0 100-1.131z"
-  }), React.createElement("path", {
+  }), React__default.createElement("path", {
     fill: "currentColor",
     stroke: "currentColor",
     strokeWidth: 0.2,
@@ -6157,12 +6086,12 @@ function IconMinus(_ref) {
       props = objectWithoutProperties(_ref, ["size"]);
 
   var sizeValue = useIconSize(size);
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: sizeValue,
     height: sizeValue,
     fill: "none",
     viewBox: "0 0 24 24"
-  }, props), React.createElement("path", {
+  }, props), React__default.createElement("path", {
     fill: "currentColor",
     stroke: "currentColor",
     strokeWidth: 0.3,
@@ -6177,18 +6106,18 @@ function IconMove(_ref) {
       props = objectWithoutProperties(_ref, ["size"]);
 
   var sizeValue = useIconSize(size);
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: sizeValue,
     height: sizeValue,
     fill: "none",
     viewBox: "0 0 24 24"
-  }, props), React.createElement("path", {
+  }, props), React__default.createElement("path", {
     fill: "currentColor",
     d: "M7.31 13.75L5.56 12l1.75-1.75a.646.646 0 10-.914-.913l-2.207 2.206a.646.646 0 000 .914l2.207 2.206a.644.644 0 00.914 0 .646.646 0 000-.914zm7.353-7.355L12.457 4.19a.646.646 0 00-.914 0L9.337 6.395a.646.646 0 10.914.914l1.75-1.749 1.748 1.75a.644.644 0 00.914 0 .646.646 0 000-.915zm0 10.295a.646.646 0 00-.914 0L12 18.44l-1.749-1.75a.646.646 0 10-.914.915l2.206 2.206a.645.645 0 00.914 0l2.206-2.206a.646.646 0 000-.914zm5.147-5.147l-2.205-2.206a.646.646 0 10-.914.914L18.44 12l-1.75 1.75a.646.646 0 00.915.913l2.206-2.206a.646.646 0 000-.914z"
-  }), React.createElement("path", {
+  }), React__default.createElement("path", {
     fill: "currentColor",
     d: "M19.354 11.354H4.646a.646.646 0 000 1.292h14.708a.646.646 0 100-1.292z"
-  }), React.createElement("path", {
+  }), React__default.createElement("path", {
     fill: "currentColor",
     d: "M12 4a.646.646 0 00-.646.646v14.708a.646.646 0 101.292 0V4.646A.646.646 0 0012 4z"
   }));
@@ -6201,18 +6130,18 @@ function IconNoPicture(_ref) {
       props = objectWithoutProperties(_ref, ["size"]);
 
   var sizeValue = useIconSize(size);
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: sizeValue,
     height: sizeValue,
     fill: "none",
     viewBox: "0 0 24 24"
-  }, props), React.createElement("path", {
+  }, props), React__default.createElement("path", {
     fill: "currentColor",
     d: "M19.81 18.897L5.105 4.189a.646.646 0 10-.914.914l14.707 14.708a.644.644 0 00.914 0 .646.646 0 000-.914z"
-  }), React.createElement("path", {
+  }), React__default.createElement("path", {
     fill: "currentColor",
     d: "M18.017 17.37H5.983c-.38 0-.69-.31-.69-.69V9.326c0-.381.31-.69.69-.69H7.99a.646.646 0 000-1.293H5.983C4.89 7.343 4 8.233 4 9.326v7.354c0 1.093.89 1.983 1.983 1.983h12.034a.646.646 0 100-1.293zm0-10.027h-2.329l-1.145-1.718a.646.646 0 00-.537-.288H9.994a.646.646 0 000 1.293h3.666l1.145 1.717c.12.18.321.288.537.288h2.675c.38 0 .69.31.69.69v6.245a.646.646 0 101.293 0V9.326c0-1.094-.89-1.983-1.983-1.983z"
-  }), React.createElement("path", {
+  }), React__default.createElement("path", {
     fill: "currentColor",
     d: "M14.558 13.66a.646.646 0 00-.899.168 2.03 2.03 0 01-2.818.528 2.03 2.03 0 010-3.347.646.646 0 00-.73-1.067 3.324 3.324 0 000 5.48 3.32 3.32 0 004.615-.865.646.646 0 00-.168-.898z"
   }));
@@ -6225,15 +6154,15 @@ function IconPicture(_ref) {
       props = objectWithoutProperties(_ref, ["size"]);
 
   var sizeValue = useIconSize(size);
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: sizeValue,
     height: sizeValue,
     fill: "none",
     viewBox: "0 0 24 24"
-  }, props), React.createElement("path", {
+  }, props), React__default.createElement("path", {
     fill: "currentColor",
     d: "M18.017 7.343h-2.329l-1.145-1.718a.646.646 0 00-.537-.288H9.994a.646.646 0 00-.537.288L8.312 7.343H5.983C4.89 7.343 4 8.233 4 9.326v7.354c0 1.093.89 1.983 1.983 1.983h12.034c1.093 0 1.983-.89 1.983-1.983V9.326c0-1.094-.89-1.983-1.983-1.983zm.69 9.337c0 .38-.31.69-.69.69H5.983c-.38 0-.69-.31-.69-.69V9.326c0-.38.31-.69.69-.69h2.674a.646.646 0 00.538-.289L10.34 6.63h3.32l1.145 1.717c.12.18.321.288.538.288h2.674c.38 0 .69.31.69.69v7.355z"
-  }), React.createElement("path", {
+  }), React__default.createElement("path", {
     fill: "currentColor",
     d: "M12 9.348a3.324 3.324 0 00-3.32 3.32 3.323 3.323 0 003.32 3.32c1.83 0 3.32-1.489 3.32-3.32 0-1.83-1.49-3.32-3.32-3.32zm0 5.348a2.03 2.03 0 01-2.028-2.027A2.03 2.03 0 0112 10.64a2.03 2.03 0 012.028 2.027A2.03 2.03 0 0112 14.697z"
   }));
@@ -6246,17 +6175,17 @@ function IconPlus(_ref) {
       props = objectWithoutProperties(_ref, ["size"]);
 
   var sizeValue = useIconSize(size);
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: sizeValue,
     height: sizeValue,
     fill: "none",
     viewBox: "0 0 24 24"
-  }, props), React.createElement("path", {
+  }, props), React__default.createElement("path", {
     fill: "currentColor",
     stroke: "currentColor",
     strokeWidth: 0.3,
     d: "M12 5a.566.566 0 00-.566.566v12.869a.566.566 0 001.132 0V5.565A.566.566 0 0012 5z"
-  }), React.createElement("path", {
+  }), React__default.createElement("path", {
     fill: "currentColor",
     stroke: "currentColor",
     strokeWidth: 0.3,
@@ -6271,15 +6200,15 @@ function IconPower(_ref) {
       props = objectWithoutProperties(_ref, ["size"]);
 
   var sizeValue = useIconSize(size);
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: sizeValue,
     height: sizeValue,
     fill: "none",
     viewBox: "0 0 24 24"
-  }, props), React.createElement("path", {
+  }, props), React__default.createElement("path", {
     fill: "currentColor",
     d: "M17.658 7.155a.712.712 0 00-1.007 1.007 6.533 6.533 0 011.925 4.65 6.533 6.533 0 01-1.927 4.65A6.555 6.555 0 0112 19.384a6.557 6.557 0 01-4.65-1.924 6.584 6.584 0 010-9.298.712.712 0 10-1.008-1.007A7.948 7.948 0 004 12.811a7.95 7.95 0 002.342 5.656A7.948 7.948 0 0012 20.81a7.948 7.948 0 005.656-2.342A7.947 7.947 0 0020 12.812a7.948 7.948 0 00-2.342-5.657z"
-  }), React.createElement("path", {
+  }), React__default.createElement("path", {
     fill: "currentColor",
     d: "M12.004 3.189a.712.712 0 00-.712.712v8.098a.712.712 0 001.424 0V3.9a.712.712 0 00-.712-.712z"
   }));
@@ -6292,18 +6221,18 @@ function IconPrint(_ref) {
       props = objectWithoutProperties(_ref, ["size"]);
 
   var sizeValue = useIconSize(size);
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: sizeValue,
     height: sizeValue,
     fill: "none",
     viewBox: "0 0 24 24"
-  }, props), React.createElement("path", {
+  }, props), React__default.createElement("path", {
     fill: "currentColor",
     d: "M16.412 4H7.588a.646.646 0 00-.646.646v5.148a.646.646 0 001.292 0V5.293h7.532v4.5a.646.646 0 101.293 0V4.647A.646.646 0 0016.412 4z"
-  }), React.createElement("path", {
+  }), React__default.createElement("path", {
     fill: "currentColor",
     d: "M17.883 9.148H6.117A2.12 2.12 0 004 11.265v3.676a2.12 2.12 0 002.117 2.117h1.47a.646.646 0 100-1.292h-1.47a.825.825 0 01-.824-.825v-3.676c0-.455.37-.825.824-.825h11.766c.454 0 .824.37.824.825v3.676c0 .455-.37.825-.824.825h-1.47a.646.646 0 100 1.292h1.47A2.12 2.12 0 0020 14.941v-3.676a2.12 2.12 0 00-2.117-2.117z"
-  }), React.createElement("path", {
+  }), React__default.createElement("path", {
     fill: "currentColor",
     d: "M16.412 12.824H7.588a.646.646 0 00-.646.647v5.883c0 .357.289.646.646.646h8.824c.357 0 .647-.29.647-.646V13.47a.646.646 0 00-.647-.647zm-.646 5.883H8.234v-4.59h7.532v4.59z"
   }));
@@ -6316,15 +6245,15 @@ function IconProhibited(_ref) {
       props = objectWithoutProperties(_ref, ["size"]);
 
   var sizeValue = useIconSize(size);
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: sizeValue,
     height: sizeValue,
     fill: "none",
     viewBox: "0 0 24 24"
-  }, props), React.createElement("path", {
+  }, props), React__default.createElement("path", {
     fill: "currentColor",
     d: "M17.657 6.343A7.947 7.947 0 0012 4a7.948 7.948 0 00-5.657 2.343A7.948 7.948 0 004 12c0 2.137.832 4.146 2.343 5.657A7.948 7.948 0 0012 20a7.948 7.948 0 005.657-2.343A7.948 7.948 0 0020 12a7.948 7.948 0 00-2.343-5.657zM12 18.707A6.715 6.715 0 015.293 12 6.715 6.715 0 0112 5.293 6.715 6.715 0 0118.707 12 6.715 6.715 0 0112 18.707z"
-  }), React.createElement("path", {
+  }), React__default.createElement("path", {
     fill: "currentColor",
     d: "M17.656 16.742L7.258 6.344a.646.646 0 10-.914.914l10.398 10.398a.645.645 0 00.914 0 .647.647 0 000-.914z"
   }));
@@ -6337,12 +6266,12 @@ function IconQuestion(_ref) {
       props = objectWithoutProperties(_ref, ["size"]);
 
   var sizeValue = useIconSize(size);
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: sizeValue,
     height: sizeValue,
     fill: "none",
     viewBox: "0 0 24 24"
-  }, props), React.createElement("path", {
+  }, props), React__default.createElement("path", {
     fill: "currentColor",
     d: "M11.5 4C9.025 4 7 5.966 7 8.369c-.007.462.425.892.9.892.476 0 .907-.43.9-.892 0-1.458 1.198-2.621 2.7-2.621 1.502 0 2.7 1.163 2.7 2.62.01 1.197-.624 1.81-1.51 2.622-.442.406-.933.83-1.35 1.384-.415.554-.74 1.275-.74 2.111-.007.462.425.892.9.892.476 0 .907-.43.9-.892 0-.431.13-.731.394-1.083.263-.351.673-.724 1.134-1.146.92-.845 2.08-1.753 2.072-3.887C16 5.983 13.97 4 11.5 4zm0 12.67c-.663 0-1.2.521-1.2 1.165 0 .643.537 1.165 1.2 1.165.663 0 1.2-.522 1.2-1.165s-.537-1.165-1.2-1.165z"
   }));
@@ -6355,17 +6284,17 @@ function IconRefresh(_ref) {
       props = objectWithoutProperties(_ref, ["size"]);
 
   var sizeValue = useIconSize(size);
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: sizeValue,
     height: sizeValue,
     fill: "none",
     viewBox: "0 0 24 24"
-  }, props), React.createElement("path", {
+  }, props), React__default.createElement("path", {
     fill: "currentColor",
     stroke: "currentColor",
     strokeWidth: 0.2,
     d: "M8.99 10.216H5.96v-3.03a.582.582 0 00-1.164 0v3.612c0 .321.26.582.582.582H8.99a.582.582 0 000-1.164zm9.632 2.407H15.01a.582.582 0 000 1.165h3.03v3.03a.582.582 0 101.164 0v-3.613a.582.582 0 00-.582-.582z"
-  }), React.createElement("path", {
+  }), React__default.createElement("path", {
     fill: "currentColor",
     stroke: "currentColor",
     strokeWidth: 0.2,
@@ -6380,12 +6309,12 @@ function IconRemoveUser(_ref) {
       props = objectWithoutProperties(_ref, ["size"]);
 
   var sizeValue = useIconSize(size);
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: sizeValue,
     height: sizeValue,
     fill: "none",
     viewBox: "0 0 24 24"
-  }, props), React.createElement("path", {
+  }, props), React__default.createElement("path", {
     fill: "currentColor",
     d: "M15.644 14.614c-1.382-.77-3.21-1.194-5.148-1.194-1.938 0-3.766.424-5.148 1.194C3.834 15.457 3 16.627 3 17.908v.752a.727.727 0 101.454 0v-.752c0-.72.584-1.457 1.601-2.023 1.17-.652 2.747-1.01 4.44-1.01 1.695 0 3.272.358 4.442 1.01 1.017.566 1.6 1.304 1.6 2.023v.752a.727.727 0 001.455 0v-.752c0-1.281-.834-2.45-2.348-3.294zM14.223 7.55a3.709 3.709 0 00-1.053-2.093 3.733 3.733 0 00-3.19-1.054 3.74 3.74 0 00-3.147 4.243 3.711 3.711 0 001.47 2.453 3.707 3.707 0 002.773.694 3.74 3.74 0 003.147-4.243zm-3.36 2.805a2.266 2.266 0 01-1.694-.424 2.266 2.266 0 01-.897-1.498 2.284 2.284 0 012.59-2.591 2.268 2.268 0 011.923 1.922 2.284 2.284 0 01-1.922 2.59zm9.41.057H15.76a.727.727 0 100 1.454h4.513a.727.727 0 000-1.454z"
   }));
@@ -6398,12 +6327,12 @@ function IconRight(_ref) {
       props = objectWithoutProperties(_ref, ["size"]);
 
   var sizeValue = useIconSize(size);
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: sizeValue,
     height: sizeValue,
     fill: "none",
     viewBox: "0 0 24 24"
-  }, props), React.createElement("path", {
+  }, props), React__default.createElement("path", {
     fill: "currentColor",
     d: "M8.222 4.607a.737.737 0 000 1.055l5.944 5.838-5.944 5.838a.737.737 0 000 1.054.77.77 0 001.075 0l6.48-6.365a.737.737 0 000-1.054l-6.48-6.366a.77.77 0 00-1.075 0z"
   }));
@@ -6416,17 +6345,17 @@ function IconRotateLeft(_ref) {
       props = objectWithoutProperties(_ref, ["size"]);
 
   var sizeValue = useIconSize(size);
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: sizeValue,
     height: sizeValue,
     fill: "none",
     viewBox: "0 0 24 24"
-  }, props), React.createElement("path", {
+  }, props), React__default.createElement("path", {
     fill: "currentColor",
     stroke: "currentColor",
     strokeWidth: 0.2,
     d: "M9.425 10.142H6.131V6.847a.565.565 0 00-1.131 0v3.86c0 .313.253.566.565.566h3.86a.565.565 0 100-1.131z"
-  }), React.createElement("path", {
+  }), React__default.createElement("path", {
     fill: "currentColor",
     stroke: "currentColor",
     strokeWidth: 0.2,
@@ -6441,23 +6370,23 @@ function IconRotateRight(_ref) {
       props = objectWithoutProperties(_ref, ["size"]);
 
   var sizeValue = useIconSize(size);
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: sizeValue,
     height: sizeValue,
     fill: "none",
     viewBox: "0 0 24 24"
-  }, props), React.createElement("g", {
+  }, props), React__default.createElement("g", {
     fill: "currentColor",
     stroke: "currentColor",
     strokeWidth: 0.2,
     clipPath: "url(#clip0)"
-  }, React.createElement("path", {
+  }, React__default.createElement("path", {
     d: "M18.434 6.286a.565.565 0 00-.565.565v3.295h-3.295a.566.566 0 000 1.131h3.86a.566.566 0 00.566-.565v-3.86a.566.566 0 00-.566-.566z"
-  }), React.createElement("path", {
+  }), React__default.createElement("path", {
     d: "M18.822 10.3l-2.973-2.8a6.395 6.395 0 00-2.372-1.493 6.315 6.315 0 00-4.858.258 6.315 6.315 0 00-3.253 3.618 6.315 6.315 0 00.258 4.858 6.315 6.315 0 003.618 3.252 6.334 6.334 0 004.858-.258 6.315 6.315 0 003.253-3.618.565.565 0 10-1.067-.376 5.191 5.191 0 01-2.674 2.974 5.19 5.19 0 01-3.993.212 5.191 5.191 0 01-2.974-2.674 5.19 5.19 0 01-.212-3.994 5.191 5.191 0 012.673-2.974 5.191 5.191 0 013.994-.212 5.258 5.258 0 011.968 1.245l2.979 2.806a.565.565 0 00.775-.824z"
-  })), React.createElement("defs", null, React.createElement("clipPath", {
+  })), React__default.createElement("defs", null, React__default.createElement("clipPath", {
     id: "clip0"
-  }, React.createElement("path", {
+  }, React__default.createElement("path", {
     fill: "#fff",
     d: "M0 0h14v14H0z",
     transform: "translate(5 5)"
@@ -6471,15 +6400,15 @@ function IconSearch(_ref) {
       props = objectWithoutProperties(_ref, ["size"]);
 
   var sizeValue = useIconSize(size);
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: sizeValue,
     height: sizeValue,
     fill: "none",
     viewBox: "0 0 24 24"
-  }, props), React.createElement("path", {
+  }, props), React__default.createElement("path", {
     fill: "currentColor",
     d: "M15.565 5.984A6.73 6.73 0 0010.775 4a6.73 6.73 0 00-4.79 1.984A6.73 6.73 0 004 10.774a6.73 6.73 0 001.984 4.79 6.73 6.73 0 004.79 1.985 6.73 6.73 0 004.79-1.984 6.73 6.73 0 001.985-4.79 6.73 6.73 0 00-1.984-4.79zm-4.79 10.272a5.488 5.488 0 01-5.482-5.482 5.488 5.488 0 015.481-5.481 5.488 5.488 0 015.482 5.481 5.488 5.488 0 01-5.482 5.482z"
-  }), React.createElement("path", {
+  }), React__default.createElement("path", {
     fill: "currentColor",
     d: "M19.81 18.896l-4.248-4.248a.646.646 0 10-.914.914l4.249 4.249a.644.644 0 00.914 0 .646.646 0 000-.915z"
   }));
@@ -6492,17 +6421,17 @@ function IconSettings(_ref) {
       props = objectWithoutProperties(_ref, ["size"]);
 
   var sizeValue = useIconSize(size);
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: sizeValue,
     height: sizeValue,
     fill: "none",
     viewBox: "0 0 24 24"
-  }, props), React.createElement("path", {
+  }, props), React__default.createElement("path", {
     fill: "currentColor",
     fillRule: "evenodd",
     d: "M18.964 10.504c.236.04.46.156.672.347a.91.91 0 01.316.702v.988a.782.782 0 01-.316.648 1.835 1.835 0 01-.672.34l-1.281.309c-.05.148-.104.295-.163.44-.056.14-.12.276-.192.409l.678 1.142c.134.206.216.443.248.71a.808.808 0 01-.248.695l-.694.695a.894.894 0 01-.71.27 1.455 1.455 0 01-.726-.224l-1.111-.71c-.143.07-.287.137-.433.2a4.829 4.829 0 01-.463.17l-.278 1.282a1.36 1.36 0 01-.347.672.909.909 0 01-.702.316h-.989a.782.782 0 01-.648-.316 1.844 1.844 0 01-.34-.672l-.31-1.268a6.31 6.31 0 01-.494-.177 5.081 5.081 0 01-.478-.224l-1.142.726c-.214.14-.463.217-.718.224a.857.857 0 01-.703-.27l-.71-.696a.827.827 0 01-.232-.693c.031-.268.108-.505.232-.71l.726-1.205a8.456 8.456 0 01-.178-.379 3.19 3.19 0 01-.147-.409l-1.28-.308a1.843 1.843 0 01-.673-.34.783.783 0 01-.316-.648v-.988c0-.278.105-.513.316-.702.21-.191.435-.306.673-.348l1.264-.278c.043-.148.094-.292.155-.432.062-.144.123-.283.186-.417L6.01 8.171a1.754 1.754 0 01-.232-.71.827.827 0 01.232-.695l.71-.695a.857.857 0 01.703-.27c.282.015.522.09.716.224l1.144.726c.306-.163.626-.297.957-.401l.325-1.267c.055-.246.166-.475.323-.672a.802.802 0 01.664-.316h.989c.277 0 .509.106.694.316.186.211.304.43.355.657l.279 1.296c.307.103.606.227.896.371l1.11-.71c.218-.137.468-.214.725-.223a.893.893 0 01.71.27l.696.695a.807.807 0 01.247.693 1.625 1.625 0 01-.248.71l-.678 1.143c.071.144.14.291.208.44.067.15.12.306.162.47l1.265.279.002.002zm0 1.96l.015-.88a.543.543 0 00-.216-.108l-1.837-.418-.17-.54a2.615 2.615 0 00-.123-.37 4.37 4.37 0 00-.185-.386l-.248-.494.973-1.621a.5.5 0 00.07-.123.3.3 0 00.022-.093l-.648-.632a.367.367 0 00-.2.06l-1.591 1.02-.51-.264c-.122-.06-.245-.12-.37-.177a2.006 2.006 0 00-.385-.13l-.54-.186-.402-1.867a.457.457 0 00-.047-.116l-.031-.054h-.91a.357.357 0 00-.062.092.546.546 0 00-.046.155l-.448 1.791-.525.169a4.756 4.756 0 00-.803.34l-.51.263-1.65-1.051-.079-.038a.706.706 0 00-.093-.04l-.648.65a.33.33 0 00.023.108c.02.048.043.094.07.139L7.863 9.33l-.246.478c-.057.123-.111.246-.163.37a2.936 2.936 0 00-.115.34l-.17.54-1.868.418a.562.562 0 00-.1.046.21.21 0 01-.07.032v.91a.272.272 0 00.092.054c.05.018.103.03.155.038l1.807.464.168.524c.07.226.164.443.28.649l.231.478-1.004 1.683a.5.5 0 00-.07.123.314.314 0 00-.023.109l.648.632a.25.25 0 00.102-.023.623.623 0 00.1-.053l1.62-1.035.51.263c.257.137.525.251.803.34l.525.168.463 1.823c.01.05.024.095.038.13a.28.28 0 00.054.085h.896a.542.542 0 00.108-.2l.401-1.837.54-.186c.255-.084.503-.187.742-.308l.51-.263 1.62 1.035.078.038c.03.015.06.028.092.04l.648-.649a.314.314 0 00-.023-.108.868.868 0 00-.07-.14l-.972-1.605.248-.494c.06-.113.116-.229.162-.348a7.4 7.4 0 00.13-.362l.17-.51 1.837-.463a.671.671 0 00.132-.038.269.269 0 00.084-.055l.001.001zm-6.917-3.428c.824 0 1.526.288 2.108.864a2.845 2.845 0 01.872 2.1 2.845 2.845 0 01-.872 2.099 2.883 2.883 0 01-2.108.864 2.87 2.87 0 01-2.092-.864 2.846 2.846 0 01-.872-2.1A2.845 2.845 0 019.955 9.9a2.866 2.866 0 012.092-.864zm0 4.94a1.9 1.9 0 001.398-.58c.386-.386.579-.85.579-1.397 0-.545-.193-1.011-.58-1.397a1.903 1.903 0 00-1.397-.579 1.9 1.9 0 00-1.397.58A1.9 1.9 0 0010.07 12c0 .546.193 1.012.58 1.398a1.9 1.9 0 001.396.579z",
     clipRule: "evenodd"
-  }), React.createElement("path", {
+  }), React__default.createElement("path", {
     fill: "currentColor",
     fillRule: "evenodd",
     d: "M15.875 6.025c.218-.137.468-.214.725-.223a.892.892 0 01.71.27l.696.695a.807.807 0 01.247.693 1.634 1.634 0 01-.248.71l-.678 1.143c.071.144.14.291.208.44.067.15.12.306.162.47l1.265.279.002.002c.236.04.46.156.672.347a.91.91 0 01.316.702v.988a.782.782 0 01-.316.648 1.835 1.835 0 01-.672.34l-1.281.309c-.05.148-.104.295-.163.44-.056.14-.12.276-.192.409l.678 1.142c.134.206.216.443.248.71a.808.808 0 01-.248.695l-.694.695a.893.893 0 01-.71.27 1.454 1.454 0 01-.726-.224l-1.111-.71c-.143.07-.287.137-.433.2a4.84 4.84 0 01-.463.17l-.278 1.282a1.36 1.36 0 01-.347.672.909.909 0 01-.702.316h-.989a.782.782 0 01-.648-.316 1.844 1.844 0 01-.34-.672l-.31-1.268a6.31 6.31 0 01-.494-.177 5.081 5.081 0 01-.478-.224l-1.142.726a1.38 1.38 0 01-.718.224.857.857 0 01-.703-.27l-.71-.696a.828.828 0 01-.232-.693c.031-.268.108-.505.232-.71l.726-1.205a8.467 8.467 0 01-.178-.379 3.19 3.19 0 01-.147-.409l-1.28-.308a1.843 1.843 0 01-.673-.34.783.783 0 01-.316-.648v-.988c0-.278.105-.513.316-.702.21-.191.435-.306.673-.348l1.264-.278c.043-.148.094-.292.155-.432.062-.144.123-.283.186-.417L6.01 8.171a1.754 1.754 0 01-.232-.71.827.827 0 01.232-.695l.71-.695a.857.857 0 01.703-.27c.282.015.522.09.716.224l1.144.726c.306-.163.626-.297.957-.401l.325-1.267c.055-.246.166-.475.323-.672a.801.801 0 01.664-.316h.989c.277 0 .509.106.694.316.186.211.304.43.355.657l.279 1.296c.307.103.606.227.896.371l1.11-.71zm-1.117.602l1.066-.682c.232-.146.498-.228.771-.238a.988.988 0 01.783.298h.001l.693.694a.901.901 0 01.275.772 1.729 1.729 0 01-.26.75l-.653 1.096c.064.13.127.263.188.398.06.136.111.28.152.428l1.236.272v.001c.246.048.476.172.69.364.23.208.347.468.347.773v.988a.88.88 0 01-.353.723c-.22.172-.456.292-.706.357l-1.232.296a7.33 7.33 0 01-.148.397c-.051.126-.108.25-.172.37l.65 1.095c.143.219.229.47.262.749a.901.901 0 01-.276.774l-.692.693a.988.988 0 01-.784.298 1.55 1.55 0 01-.77-.238l-1.067-.681a8.172 8.172 0 01-.39.178 4.905 4.905 0 01-.42.157l-.264 1.227c-.054.27-.183.518-.372.717-.207.23-.467.347-.771.347h-.988a.878.878 0 01-.724-.354 1.94 1.94 0 01-.356-.704v-.001l-.298-1.217a6.436 6.436 0 01-.45-.164 5.184 5.184 0 01-.439-.202l-1.095.695c-.228.15-.492.232-.764.24a.952.952 0 01-.776-.3l-.71-.694a.921.921 0 01-.258-.772 1.86 1.86 0 01.244-.748l.7-1.16a8.57 8.57 0 01-.157-.335 3.28 3.28 0 01-.136-.368l-1.228-.296h-.001a1.939 1.939 0 01-.706-.356.88.88 0 01-.353-.725v-.987c0-.305.117-.565.348-.773.22-.2.46-.324.717-.37l1.208-.266c.04-.132.088-.262.143-.389.055-.127.11-.252.165-.373l-.7-1.162a1.849 1.849 0 01-.245-.747.922.922 0 01.26-.773l.709-.694a.952.952 0 01.777-.298c.296.016.552.094.763.239l1.095.696c.281-.147.573-.27.874-.367l.311-1.215c.06-.258.176-.5.341-.707a.897.897 0 01.74-.353h.988c.304 0 .562.118.765.349.194.22.321.453.377.698l.267 1.245c.276.094.546.206.809.335zm3.99 5.929l-1.838.464-.17.509a7.298 7.298 0 01-.13.362 2.97 2.97 0 01-.162.348l-.248.494.973 1.605a.86.86 0 01.07.14.312.312 0 01.022.108l-.648.648a.755.755 0 01-.093-.039l-.076-.038-1.621-1.035-.51.263a5.403 5.403 0 01-.741.308l-.541.186-.4 1.837a.542.542 0 01-.11.2h-.895a.268.268 0 01-.054-.084.755.755 0 01-.038-.13l-.463-1.824-.525-.169a4.755 4.755 0 01-.803-.339l-.51-.264-1.62 1.035a.615.615 0 01-.1.054.25.25 0 01-.102.023l-.648-.632a.314.314 0 01.023-.108.5.5 0 01.07-.124l1.004-1.683-.231-.478a3.313 3.313 0 01-.28-.649l-.168-.524-1.807-.464a.851.851 0 01-.155-.038.272.272 0 01-.092-.055v-.91a.21.21 0 00.07-.03.562.562 0 01.1-.047l1.869-.418.169-.54c.031-.115.07-.229.115-.34.052-.124.106-.247.163-.37l.246-.478L6.86 7.663a.947.947 0 01-.07-.14.33.33 0 01-.023-.108l.648-.648a.63.63 0 01.093.039l.078.038 1.652 1.05.509-.263c.257-.137.525-.251.803-.34l.525-.168.448-1.792a.546.546 0 01.046-.154.357.357 0 01.061-.092h.91l.032.054a.435.435 0 01.047.116l.401 1.867.54.186c.134.03.263.074.387.13.124.057.247.116.37.177l.509.264 1.591-1.02a.366.366 0 01.2-.06l.648.632a.292.292 0 01-.023.093.5.5 0 01-.07.123l-.972 1.62.248.495c.068.126.13.254.185.386.05.12.092.244.123.37l.17.54 1.837.418c.08.019.153.056.216.107l-.015.881h-.002a.267.267 0 01-.083.054.678.678 0 01-.132.038zm.095-.126a.172.172 0 00.027-.014l.013-.786a.445.445 0 00-.142-.062l-1.89-.43-.186-.593v-.003a2.51 2.51 0 00-.12-.358 4.243 4.243 0 00-.18-.377l-.002-.001-.271-.542 1.002-1.67.003-.005a.404.404 0 00.057-.1v-.001l.001-.002a.197.197 0 00.008-.022l-.582-.568a.272.272 0 00-.111.043h-.001L14.83 7.99l-.557-.289a12.13 12.13 0 00-.367-.176 1.91 1.91 0 00-.367-.124l-.005-.001-.596-.205-.413-1.918a.36.36 0 00-.036-.09l-.004-.006h-.81a.267.267 0 00-.02.036h-.001a.455.455 0 00-.038.129l-.001.005-.462 1.847-.575.185a4.656 4.656 0 00-.787.333H9.79l-.558.289L7.54 6.927l-.074-.036a.611.611 0 00-.027-.013l-.572.572a.392.392 0 00.012.04.852.852 0 00.062.123l1.03 1.713-.269.524a8.37 8.37 0 00-.16.364 2.842 2.842 0 00-.112.33v.001l-.186.594-1.917.428a.469.469 0 00-.102.05v.798c.009.004.019.01.031.014.044.015.09.026.136.033h.005l1.862.479.185.575c.068.22.159.43.271.63l.002.003.255.527-1.033 1.732-.004.004a.405.405 0 00-.056.1v.001a.22.22 0 00-.012.038l.582.568a.208.208 0 00.03-.01v-.001a.525.525 0 00.085-.046h.001l1.668-1.065.558.29c.252.134.516.245.788.332l.575.185.477 1.876v.002c.01.047.021.085.033.114a.165.165 0 00.013.025h.803a.45.45 0 00.063-.129l.41-1.885.592-.203a5.34 5.34 0 00.729-.304l.558-.287 1.662 1.061.073.036a.67.67 0 00.027.013l.572-.572a.775.775 0 00-.074-.163l-1-1.65.271-.543.001-.001c.06-.11.113-.222.157-.337a7.3 7.3 0 00.13-.358l.186-.559 1.89-.477h.003a.575.575 0 00.113-.033zm-6.796-3.394c.824 0 1.526.288 2.108.864a2.844 2.844 0 01.872 2.1 2.845 2.845 0 01-.872 2.099 2.883 2.883 0 01-2.107.864 2.868 2.868 0 01-2.093-.864 2.846 2.846 0 01-.872-2.1A2.845 2.845 0 019.955 9.9a2.867 2.867 0 012.092-.864zm-2.158.797a2.94 2.94 0 00-.901 2.166 2.94 2.94 0 00.9 2.167 2.961 2.961 0 002.16.892 2.98 2.98 0 002.174-.892 2.94 2.94 0 00.9-2.167 2.94 2.94 0 00-.9-2.167 2.98 2.98 0 00-2.174-.89 2.962 2.962 0 00-2.16.89zm3.489 3.496c.368-.368.55-.809.55-1.33 0-.52-.182-.962-.551-1.33l-.001-.001a1.81 1.81 0 00-1.327-.55h-.002c-.52 0-.962.183-1.33.552l-.001.001a1.81 1.81 0 00-.55 1.327V12c0 .52.183.962.552 1.33.368.368.809.55 1.33.55.52 0 .962-.182 1.33-.551zm-2.728-2.726a1.9 1.9 0 011.397-.58 1.904 1.904 0 011.397.579c.387.386.58.852.58 1.397 0 .546-.193 1.011-.579 1.397-.386.387-.852.58-1.398.58a1.9 1.9 0 01-1.396-.579 1.901 1.901 0 01-.58-1.398 1.903 1.903 0 01.579-1.396z",
@@ -6517,12 +6446,12 @@ function IconShare(_ref) {
       props = objectWithoutProperties(_ref, ["size"]);
 
   var sizeValue = useIconSize(size);
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: sizeValue,
     height: sizeValue,
     fill: "none",
     viewBox: "0 0 24 24"
-  }, props), React.createElement("path", {
+  }, props), React__default.createElement("path", {
     fill: "currentColor",
     fillRule: "evenodd",
     d: "M12.775 5.052a.606.606 0 01.634.089l6.386 5.377a.57.57 0 01.205.434.57.57 0 01-.202.435l-6.386 5.442a.606.606 0 01-.636.091.576.576 0 01-.348-.525v-2.548c-2.13.083-5.798 1.119-7.202 4.778a.595.595 0 01-.624.371.585.585 0 01-.52-.501c-.22-1.708-.053-4.281 1.207-6.453 1.222-2.106 3.443-3.777 7.139-3.938V5.577c0-.226.135-.431.347-.525zm.84 1.787v1.829a.585.585 0 01-.594.577c-3.634 0-5.627 1.517-6.699 3.364-.657 1.133-.98 2.412-1.09 3.588 2.233-2.95 5.978-3.586 7.817-3.501a.584.584 0 01.565.576v1.85l4.89-4.166-4.89-4.117z",
@@ -6537,15 +6466,15 @@ function IconSquareMinus(_ref) {
       props = objectWithoutProperties(_ref, ["size"]);
 
   var sizeValue = useIconSize(size);
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: sizeValue,
     height: sizeValue,
     fill: "none",
     viewBox: "0 0 24 24"
-  }, props), React.createElement("path", {
+  }, props), React__default.createElement("path", {
     fill: "currentColor",
     d: "M17.72 4H6.28A2.283 2.283 0 004 6.28v11.44A2.283 2.283 0 006.28 20h11.44A2.283 2.283 0 0020 17.72V6.28A2.283 2.283 0 0017.72 4zm.987 13.72a.99.99 0 01-.988.987H6.28a.989.989 0 01-.987-.988V6.28c0-.544.443-.987.987-.987h11.44c.544 0 .987.443.987.987v11.44z"
-  }), React.createElement("path", {
+  }), React__default.createElement("path", {
     fill: "currentColor",
     d: "M15.268 11.354H8.732a.646.646 0 100 1.292h6.536a.646.646 0 100-1.292z"
   }));
@@ -6558,18 +6487,18 @@ function IconSquarePlus(_ref) {
       props = objectWithoutProperties(_ref, ["size"]);
 
   var sizeValue = useIconSize(size);
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: sizeValue,
     height: sizeValue,
     fill: "none",
     viewBox: "0 0 24 24"
-  }, props), React.createElement("path", {
+  }, props), React__default.createElement("path", {
     fill: "currentColor",
     d: "M17.72 4H6.28A2.283 2.283 0 004 6.28v11.44A2.283 2.283 0 006.28 20h11.44A2.283 2.283 0 0020 17.72V6.28A2.283 2.283 0 0017.72 4zm.987 13.72a.99.99 0 01-.988.987H6.28a.989.989 0 01-.987-.988V6.28c0-.544.443-.987.987-.987h11.44c.544 0 .987.443.987.987v11.44z"
-  }), React.createElement("path", {
+  }), React__default.createElement("path", {
     fill: "currentColor",
     d: "M12 8.085a.646.646 0 00-.646.647v6.536a.646.646 0 101.292 0V8.732A.646.646 0 0012 8.085z"
-  }), React.createElement("path", {
+  }), React__default.createElement("path", {
     fill: "currentColor",
     d: "M15.268 11.354H8.732a.646.646 0 100 1.292h6.536a.646.646 0 100-1.292z"
   }));
@@ -6582,12 +6511,12 @@ function IconSquare(_ref) {
       props = objectWithoutProperties(_ref, ["size"]);
 
   var sizeValue = useIconSize(size);
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: sizeValue,
     height: sizeValue,
     fill: "none",
     viewBox: "0 0 24 24"
-  }, props), React.createElement("path", {
+  }, props), React__default.createElement("path", {
     fill: "currentColor",
     d: "M17.72 4H6.28A2.283 2.283 0 004 6.28v11.44A2.283 2.283 0 006.28 20h11.44A2.283 2.283 0 0020 17.72V6.28A2.283 2.283 0 0017.72 4zm.987 13.72a.989.989 0 01-.987.987H6.28a.989.989 0 01-.987-.987V6.28c0-.544.443-.987.987-.987h11.44c.544 0 .987.443.987.987v11.44z"
   }));
@@ -6600,12 +6529,12 @@ function IconStarFilled(_ref) {
       props = objectWithoutProperties(_ref, ["size"]);
 
   var sizeValue = useIconSize(size);
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: sizeValue,
     height: sizeValue,
     fill: "none",
     viewBox: "0 0 24 24"
-  }, props), React.createElement("path", {
+  }, props), React__default.createElement("path", {
     fill: "currentColor",
     d: "M19.968 10.066a.656.656 0 00-.52-.46l-4.746-.727-2.122-4.502A.644.644 0 0012 4a.644.644 0 00-.58.377L9.299 8.88l-4.745.726a.655.655 0 00-.521.461.7.7 0 00.163.694l3.434 3.502-.81 4.947a.692.692 0 00.257.662.622.622 0 00.68.051L12 17.585l4.244 2.337a.622.622 0 00.68-.051.692.692 0 00.258-.662l-.81-4.947 3.433-3.502a.7.7 0 00.163-.694z"
   }));
@@ -6618,12 +6547,12 @@ function IconStar(_ref) {
       props = objectWithoutProperties(_ref, ["size"]);
 
   var sizeValue = useIconSize(size);
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: sizeValue,
     height: sizeValue,
     fill: "none",
     viewBox: "0 0 24 24"
-  }, props), React.createElement("path", {
+  }, props), React__default.createElement("path", {
     fill: "currentColor",
     d: "M19.968 10.066a.656.656 0 00-.52-.46l-4.746-.727-2.122-4.502A.644.644 0 0012 4a.644.644 0 00-.58.377L9.299 8.88l-4.745.726a.655.655 0 00-.521.461.7.7 0 00.163.694l3.434 3.502-.81 4.947a.692.692 0 00.257.662.622.622 0 00.68.051L12 17.585l4.244 2.337a.622.622 0 00.68-.051.692.692 0 00.258-.662l-.81-4.947 3.433-3.502a.7.7 0 00.163-.694zm-4.742 3.474a.697.697 0 00-.186.6l.646 3.946-3.385-1.864a.622.622 0 00-.602 0l-3.385 1.864.646-3.946a.697.697 0 00-.186-.6l-2.74-2.793 3.787-.58a.65.65 0 00.486-.37L12 6.206l1.693 3.59a.65.65 0 00.486.371l3.786.58-2.74 2.793z"
   }));
@@ -6636,18 +6565,18 @@ function IconTarget(_ref) {
       props = objectWithoutProperties(_ref, ["size"]);
 
   var sizeValue = useIconSize(size);
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: sizeValue,
     height: sizeValue,
     fill: "none",
     viewBox: "0 0 24 24"
-  }, props), React.createElement("path", {
+  }, props), React__default.createElement("path", {
     fill: "currentColor",
     d: "M17.657 6.343A7.947 7.947 0 0012 4a7.948 7.948 0 00-5.657 2.343A7.948 7.948 0 004 12c0 2.137.832 4.146 2.343 5.657A7.948 7.948 0 0012 20a7.948 7.948 0 005.657-2.343A7.948 7.948 0 0020 12a7.948 7.948 0 00-2.343-5.657zM12 18.707A6.715 6.715 0 015.293 12 6.715 6.715 0 0112 5.293 6.715 6.715 0 0118.707 12 6.715 6.715 0 0112 18.707z"
-  }), React.createElement("path", {
+  }), React__default.createElement("path", {
     fill: "currentColor",
     d: "M12 6.942A5.064 5.064 0 006.941 12c0 2.79 2.27 5.059 5.059 5.059 2.79 0 5.059-2.27 5.059-5.059 0-2.79-2.27-5.058-5.059-5.058zm0 8.824A3.77 3.77 0 018.234 12 3.77 3.77 0 0112 8.234 3.77 3.77 0 0115.766 12 3.77 3.77 0 0112 15.766z"
-  }), React.createElement("path", {
+  }), React__default.createElement("path", {
     fill: "currentColor",
     d: "M12 9.883A2.12 2.12 0 009.883 12 2.12 2.12 0 0012 14.117 2.12 2.12 0 0014.117 12 2.12 2.12 0 0012 9.883zm0 2.941a.825.825 0 010-1.648.825.825 0 010 1.648z"
   }));
@@ -6660,17 +6589,17 @@ function IconToken(_ref) {
       props = objectWithoutProperties(_ref, ["size"]);
 
   var sizeValue = useIconSize(size);
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: sizeValue,
     height: sizeValue,
     fill: "none",
     viewBox: "0 0 24 24"
-  }, props), React.createElement("path", {
+  }, props), React__default.createElement("path", {
     fill: "currentColor",
     fillRule: "evenodd",
     d: "M8.556 16.508c0-1.93 1.542-3.493 3.444-3.493s3.444 1.564 3.444 3.492C15.444 18.438 13.902 20 12 20s-3.444-1.564-3.444-3.492zM12 14.366c-1.166 0-2.112.959-2.112 2.142 0 1.182.946 2.141 2.112 2.141 1.166 0 2.112-.959 2.112-2.142 0-1.182-.946-2.141-2.112-2.141zM3 9.183c0-1.307 1.044-2.366 2.333-2.366 1.288 0 2.333 1.06 2.333 2.366s-1.045 2.366-2.333 2.366C4.044 11.549 3 10.489 3 9.183zm2.333-1.015c-.553 0-1.001.454-1.001 1.015 0 .56.448 1.015 1 1.015.554 0 1.002-.455 1.002-1.015 0-.56-.448-1.015-1.001-1.015zm11.001 1.015c0-1.307 1.045-2.366 2.333-2.366 1.289 0 2.333 1.06 2.333 2.366s-1.044 2.366-2.333 2.366c-1.288 0-2.333-1.06-2.333-2.366zm2.333-1.015c-.553 0-1 .454-1 1.015 0 .56.447 1.015 1 1.015.553 0 1.001-.455 1.001-1.015 0-.56-.448-1.015-1-1.015zm-9-1.802C9.667 5.059 10.711 4 12 4c1.288 0 2.333 1.06 2.333 2.366S13.288 8.73 12 8.73c-1.289 0-2.333-1.059-2.333-2.365zM12 5.35c-.553 0-1 .454-1 1.015 0 .56.447 1.015 1 1.015.553 0 1-.455 1-1.015 0-.56-.447-1.015-1-1.015z",
     clipRule: "evenodd"
-  }), React.createElement("path", {
+  }), React__default.createElement("path", {
     fill: "currentColor",
     fillRule: "evenodd",
     d: "M11.334 13.68V7.775h1.332v5.907h-1.332zm1.723.396l3.907-3.962.942.955-3.907 3.962-.942-.955zm-2.166 0l-3.907-3.962-.942.955 3.907 3.962.942-.955z",
@@ -6685,18 +6614,18 @@ function IconTrash(_ref) {
       props = objectWithoutProperties(_ref, ["size"]);
 
   var sizeValue = useIconSize(size);
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: sizeValue,
     height: sizeValue,
     fill: "none",
     viewBox: "0 0 24 24"
-  }, props), React.createElement("path", {
+  }, props), React__default.createElement("path", {
     fill: "currentColor",
     d: "M18.618 6.941H5.382a.646.646 0 000 1.293h13.236a.646.646 0 100-1.293z"
-  }), React.createElement("path", {
+  }), React__default.createElement("path", {
     fill: "currentColor",
     d: "M17.148 6.941a.646.646 0 00-.647.647v10.295c0 .454-.37.824-.824.824H8.323a.825.825 0 01-.824-.824V7.588a.646.646 0 00-1.293 0v10.295A2.12 2.12 0 008.323 20h7.354a2.12 2.12 0 002.117-2.117V7.588a.646.646 0 00-.646-.647z"
-  }), React.createElement("path", {
+  }), React__default.createElement("path", {
     fill: "currentColor",
     d: "M13.47 4h-2.94a2.12 2.12 0 00-2.118 2.117v1.47a.646.646 0 001.293 0v-1.47c0-.455.37-.824.824-.824h2.942c.454 0 .824.37.824.824v1.47a.646.646 0 001.293 0v-1.47A2.12 2.12 0 0013.47 4zm-2.94 6.618a.646.646 0 00-.647.647v4.412a.646.646 0 101.293 0v-4.412a.646.646 0 00-.647-.647zm2.94 0a.646.646 0 00-.646.647v4.412a.646.646 0 101.293 0v-4.412a.646.646 0 00-.646-.647z"
   }));
@@ -6709,15 +6638,15 @@ function IconUnlock(_ref) {
       props = objectWithoutProperties(_ref, ["size"]);
 
   var sizeValue = useIconSize(size);
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: sizeValue,
     height: sizeValue,
     fill: "none",
     viewBox: "0 0 24 24"
-  }, props), React.createElement("path", {
+  }, props), React__default.createElement("path", {
     fill: "currentColor",
     d: "M17.669 10.48H6.332A2.334 2.334 0 004 12.812v5.668a2.334 2.334 0 002.332 2.332h11.337A2.334 2.334 0 0020 18.48v-5.668a2.334 2.334 0 00-2.331-2.332zm.907 8c0 .5-.407.908-.907.908H6.332a.909.909 0 01-.908-.908v-5.668c0-.5.407-.908.908-.908h11.337c.5 0 .907.407.907.908v5.668z"
-  }), React.createElement("path", {
+  }), React__default.createElement("path", {
     fill: "currentColor",
     d: "M16.666 6.813a4.774 4.774 0 00-1.655-2.74A4.773 4.773 0 0012 3h-.005A4.73 4.73 0 008.63 4.398a4.73 4.73 0 00-1.39 3.367v3.239a.712.712 0 101.423 0v-3.24c0-.891.345-1.73.975-2.36a3.315 3.315 0 012.359-.98H12a3.347 3.347 0 013.27 2.673.712.712 0 101.396-.284z"
   }));
@@ -6730,12 +6659,12 @@ function IconUp(_ref) {
       props = objectWithoutProperties(_ref, ["size"]);
 
   var sizeValue = useIconSize(size);
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: sizeValue,
     height: sizeValue,
     fill: "none",
     viewBox: "0 0 24 24"
-  }, props), React.createElement("path", {
+  }, props), React__default.createElement("path", {
     fill: "currentColor",
     d: "M5.215 15.219a.725.725 0 001.039 0L12 9.367l5.747 5.851a.725.725 0 001.038 0 .757.757 0 000-1.057l-6.266-6.38a.725.725 0 00-1.038 0l-6.266 6.38a.757.757 0 000 1.058z"
   }));
@@ -6748,15 +6677,15 @@ function IconUpload(_ref) {
       props = objectWithoutProperties(_ref, ["size"]);
 
   var sizeValue = useIconSize(size);
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: sizeValue,
     height: sizeValue,
     fill: "none",
     viewBox: "0 0 24 24"
-  }, props), React.createElement("path", {
+  }, props), React__default.createElement("path", {
     fill: "currentColor",
     d: "M18.618 15.03a.646.646 0 00-.646.647v2.206c0 .454-.37.824-.824.824H6.852a.825.825 0 01-.824-.824v-2.206a.646.646 0 00-1.293 0v2.206A2.12 2.12 0 006.853 20h10.295a2.12 2.12 0 002.117-2.117v-2.206a.646.646 0 00-.647-.646zM8.602 8.045a.646.646 0 00.914 0L12 5.56l2.485 2.485a.646.646 0 00.914-.914l-2.942-2.942a.646.646 0 00-.914 0L8.602 7.131a.646.646 0 000 .914z"
-  }), React.createElement("path", {
+  }), React__default.createElement("path", {
     fill: "currentColor",
     d: "M12 15.588c.357 0 .646-.29.646-.646V4.646a.646.646 0 00-1.292 0v10.296c0 .356.289.646.646.646z"
   }));
@@ -6769,12 +6698,12 @@ function IconUser(_ref) {
       props = objectWithoutProperties(_ref, ["size"]);
 
   var sizeValue = useIconSize(size);
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: sizeValue,
     height: sizeValue,
     fill: "none",
     viewBox: "0 0 24 24"
-  }, props), React.createElement("path", {
+  }, props), React__default.createElement("path", {
     fill: "currentColor",
     d: "M12 14c-4.806 0-8.571 2.227-8.571 5.07v.875a.694.694 0 101.388 0v-.875c0-1.996 3.29-3.682 7.183-3.682s7.183 1.686 7.183 3.682v.875a.694.694 0 101.388 0v-.875C20.57 16.227 16.806 14 12 14zm4.187-6.42a4.166 4.166 0 00-1.183-2.351 4.192 4.192 0 00-3.582-1.183A4.2 4.2 0 007.889 8.81a4.167 4.167 0 001.65 2.754 4.164 4.164 0 003.115.78 4.2 4.2 0 003.534-4.764zm-3.737 3.39a2.788 2.788 0 01-2.084-.522A2.788 2.788 0 019.26 8.607a2.81 2.81 0 013.189-3.189 2.79 2.79 0 012.365 2.365 2.81 2.81 0 01-2.365 3.188z"
   }));
@@ -6787,15 +6716,15 @@ function IconView(_ref) {
       props = objectWithoutProperties(_ref, ["size"]);
 
   var sizeValue = useIconSize(size);
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: sizeValue,
     height: sizeValue,
     fill: "none",
     viewBox: "0 0 24 24"
-  }, props), React.createElement("path", {
+  }, props), React__default.createElement("path", {
     fill: "currentColor",
     d: "M20.923 11.675c-.033-.066-.816-1.617-2.282-3.18-.87-.93-1.805-1.672-2.776-2.208-1.24-.684-2.54-1.03-3.865-1.03-1.325 0-2.626.346-3.865 1.03-.971.536-1.905 1.278-2.776 2.207-1.466 1.564-2.25 3.116-2.282 3.18a.727.727 0 000 .651c.032.066.816 1.617 2.282 3.18.87.93 1.805 1.672 2.776 2.208 1.24.684 2.54 1.03 3.865 1.03 1.325 0 2.625-.346 3.865-1.03.971-.536 1.905-1.278 2.776-2.207 1.466-1.564 2.25-3.116 2.282-3.18a.728.728 0 000-.651zM12 17.29c-1.964 0-3.833-.926-5.555-2.752A14.138 14.138 0 014.557 12C5.249 10.802 7.916 6.71 12 6.71c1.964 0 3.833.926 5.554 2.752A14.137 14.137 0 0119.444 12c-.694 1.198-3.36 5.29-7.444 5.29z"
-  }), React.createElement("path", {
+  }), React__default.createElement("path", {
     fill: "currentColor",
     d: "M12 9.017A2.987 2.987 0 009.017 12 2.987 2.987 0 0012 14.983 2.987 2.987 0 0014.983 12 2.987 2.987 0 0012 9.017zm0 4.512A1.53 1.53 0 0110.471 12c0-.843.686-1.53 1.53-1.53a1.53 1.53 0 010 3.058z"
   }));
@@ -6808,17 +6737,17 @@ function IconVote(_ref) {
       props = objectWithoutProperties(_ref, ["size"]);
 
   var sizeValue = useIconSize(size);
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: sizeValue,
     height: sizeValue,
     fill: "none",
     viewBox: "0 0 24 24"
-  }, props), React.createElement("path", {
+  }, props), React__default.createElement("path", {
     fill: "currentColor",
     fillRule: "evenodd",
     d: "M8.023 2.178a.656.656 0 01.898 0l.713.675a1.553 1.553 0 01.458 1.459l-.001.005-.427 1.928h3.849c.829 0 1.543.645 1.543 1.482v1.061a1.845 1.845 0 01-.15.72l-2.03 4.488c-.306.694-1.022 1.156-1.83 1.156H4.992C3.912 15.152 3 14.32 3 13.245V7.727c0-.536.233-1.015.592-1.355l4.43-4.194zM4.49 7.283l-.45-.456.45.456a.61.61 0 00-.198.444v5.518c0 .334.29.64.7.64h6.053a.695.695 0 00.647-.4l2.025-4.477a.594.594 0 00.045-.22v-1.06c0-.097-.093-.216-.25-.216h-4.65a.652.652 0 01-.504-.236.624.624 0 01-.129-.532l.596-2.692a.297.297 0 00-.09-.288l-.264-.25-3.981 3.77z",
     clipRule: "evenodd"
-  }), React.createElement("path", {
+  }), React__default.createElement("path", {
     fill: "currentColor",
     fillRule: "evenodd",
     d: "M15.977 21.822a.656.656 0 01-.898 0l-.713-.675a1.553 1.553 0 01-.457-1.464l.427-1.928h-3.849c-.829 0-1.543-.645-1.543-1.482v-1.061c0-.259.056-.49.14-.696l1.202.466a.6.6 0 00-.049.23v1.06c0 .097.093.216.25.216h4.65c.196 0 .381.087.504.236s.17.345.129.532l-.596 2.692a.297.297 0 00.09.288l.264.25 3.981-3.77.45.457-.45-.456a.61.61 0 00.198-.444v-5.518c0-.334-.29-.64-.7-.64H14.52V8.848h4.489c1.08 0 1.992.832 1.992 1.907v5.518c0 .536-.233 1.015-.592 1.355l-4.43 4.194z",
@@ -6833,22 +6762,22 @@ function IconWallet(_ref) {
       props = objectWithoutProperties(_ref, ["size"]);
 
   var sizeValue = useIconSize(size);
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: sizeValue,
     height: sizeValue,
     fill: "none",
     viewBox: "0 0 24 24"
-  }, props), React.createElement("path", {
+  }, props), React__default.createElement("path", {
     fill: "currentColor",
     fillRule: "evenodd",
     d: "M4 8.577c0-.329.266-.595.595-.595h14.81c.328 0 .595.266.595.595v10.815a.595.595 0 01-.595.595H4.595A.595.595 0 014 19.392V8.577zm1.19.595v9.625h13.62V9.172H5.19z",
     clipRule: "evenodd"
-  }), React.createElement("path", {
+  }), React__default.createElement("path", {
     fill: "currentColor",
     fillRule: "evenodd",
     d: "M13.033 13.862a2.562 2.562 0 012.562-2.562h3.564c.329 0 .595.266.595.595v3.933a.595.595 0 01-.595.595h-3.564a2.562 2.562 0 01-2.562-2.561zm2.562-1.372a1.371 1.371 0 100 2.743h2.969V12.49h-2.97z",
     clipRule: "evenodd"
-  }), React.createElement("path", {
+  }), React__default.createElement("path", {
     fill: "currentColor",
     fillRule: "evenodd",
     d: "M15.821 14.65a.778.778 0 100-1.556.778.778 0 000 1.557zm-.359-8.265c.078-.017.167-.04.25-.06l.05-.013a6.67 6.67 0 01.322-.073c.224-.045.413-.06.559-.04.131.02.196.062.242.123.058.076.146.263.146.686a.595.595 0 001.19 0c0-.568-.115-1.044-.384-1.402a1.514 1.514 0 00-1.024-.585c-.345-.05-.689-.004-.96.05a7.8 7.8 0 00-.438.1 6.18 6.18 0 01-.237.057L4.528 7.953a.595.595 0 00.295 1.153l10.639-2.721z",
@@ -6863,15 +6792,15 @@ function IconWarning(_ref) {
       props = objectWithoutProperties(_ref, ["size"]);
 
   var sizeValue = useIconSize(size);
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: sizeValue,
     height: sizeValue,
     fill: "none",
     viewBox: "0 0 24 24"
-  }, props), React.createElement("path", {
+  }, props), React__default.createElement("path", {
     fill: "currentColor",
     d: "M6.343 17.657A7.948 7.948 0 0012 20a7.948 7.948 0 005.657-2.343A7.947 7.947 0 0020 12a7.948 7.948 0 00-2.343-5.657A7.947 7.947 0 0012 4a7.948 7.948 0 00-5.657 2.343A7.948 7.948 0 004 12c0 2.137.832 4.146 2.343 5.657zM12 5.293A6.715 6.715 0 0118.707 12 6.715 6.715 0 0112 18.707 6.715 6.715 0 015.293 12 6.715 6.715 0 0112 5.293z"
-  }), React.createElement("path", {
+  }), React__default.createElement("path", {
     fill: "currentColor",
     d: "M12 12.646c.357 0 .646-.29.646-.646V9.058a.646.646 0 10-1.292 0V12c0 .357.29.646.646.646zm-.457 2.753c.12.12.287.189.457.189a.651.651 0 00.646-.646.651.651 0 00-.189-.458.65.65 0 00-.457-.189.65.65 0 00-.457.19.65.65 0 00-.19.456c0 .17.07.337.19.457z"
   }));
@@ -6884,18 +6813,18 @@ function IconWorld(_ref) {
       props = objectWithoutProperties(_ref, ["size"]);
 
   var sizeValue = useIconSize(size);
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: sizeValue,
     height: sizeValue,
     fill: "none",
     viewBox: "0 0 24 24"
-  }, props), React.createElement("path", {
+  }, props), React__default.createElement("path", {
     fill: "currentColor",
     d: "M17.657 6.343A7.947 7.947 0 0012 4a7.948 7.948 0 00-5.657 2.343A7.948 7.948 0 004 12c0 2.137.832 4.146 2.343 5.657A7.948 7.948 0 0012 20a7.948 7.948 0 005.657-2.343A7.948 7.948 0 0020 12a7.948 7.948 0 00-2.343-5.657zM12 18.707A6.715 6.715 0 015.293 12 6.715 6.715 0 0112 5.293 6.715 6.715 0 0118.707 12 6.715 6.715 0 0112 18.707z"
-  }), React.createElement("path", {
+  }), React__default.createElement("path", {
     fill: "currentColor",
     d: "M19.354 11.354H4.646a.646.646 0 100 1.292h14.708a.646.646 0 100-1.292z"
-  }), React.createElement("path", {
+  }), React__default.createElement("path", {
     fill: "currentColor",
     d: "M12.477 4.21a.646.646 0 00-.954 0 11.893 11.893 0 00-3.11 7.804 11.893 11.893 0 003.11 7.776.646.646 0 00.954 0 11.893 11.893 0 003.11-7.803 11.894 11.894 0 00-3.11-7.777zM12 18.358A10.6 10.6 0 019.705 12c.051-2.32.86-4.55 2.295-6.358A10.601 10.601 0 0114.295 12 10.6 10.6 0 0112 18.358z"
   }));
@@ -6908,18 +6837,18 @@ function IconWrite(_ref) {
       props = objectWithoutProperties(_ref, ["size"]);
 
   var sizeValue = useIconSize(size);
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: sizeValue,
     height: sizeValue,
     fill: "none",
     viewBox: "0 0 24 24"
-  }, props), React.createElement("path", {
+  }, props), React__default.createElement("path", {
     fill: "currentColor",
     d: "M18.518 5.479a5.029 5.029 0 00-3.58-1.483A5.029 5.029 0 0011.36 5.48l-4.964 4.964a.647.647 0 00-.189.457v6.25c0 .358.29.648.647.648h6.25a.647.647 0 00.459-.19l4.955-4.971A5.028 5.028 0 0020 9.057a5.028 5.028 0 00-1.482-3.578zm-.915 6.243v.001l-4.768 4.781H7.5v-5.336l4.775-4.775A3.743 3.743 0 0114.94 5.29c1.006 0 1.952.391 2.664 1.103a3.744 3.744 0 011.104 2.665 3.744 3.744 0 01-1.104 2.664z"
-  }), React.createElement("path", {
+  }), React__default.createElement("path", {
     fill: "currentColor",
     d: "M15.4 8.604a.647.647 0 00-.915 0L4.189 18.9a.647.647 0 00.915.914L15.399 9.52a.647.647 0 000-.915z"
-  }), React.createElement("path", {
+  }), React__default.createElement("path", {
     fill: "currentColor",
     d: "M15.678 13.563H9.794a.647.647 0 000 1.293h5.884a.647.647 0 100-1.293z"
   }));
@@ -6932,23 +6861,23 @@ function IconZoomIn(_ref) {
       props = objectWithoutProperties(_ref, ["size"]);
 
   var sizeValue = useIconSize(size);
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: sizeValue,
     height: sizeValue,
     fill: "none",
     viewBox: "0 0 24 24"
-  }, props), React.createElement("g", {
+  }, props), React__default.createElement("g", {
     fill: "currentColor",
     clipPath: "url(#clip0)"
-  }, React.createElement("path", {
+  }, React__default.createElement("path", {
     d: "M15.73 6.84A6.244 6.244 0 0011.284 5 6.244 6.244 0 006.84 6.84 6.244 6.244 0 005 11.286c0 1.679.654 3.257 1.84 4.444a6.244 6.244 0 004.445 1.841 6.244 6.244 0 004.444-1.84 6.244 6.244 0 001.841-4.445 6.244 6.244 0 00-1.84-4.444zm-4.445 9.6a5.16 5.16 0 01-5.154-5.155 5.16 5.16 0 015.154-5.154 5.16 5.16 0 015.154 5.154 5.16 5.16 0 01-5.154 5.154z"
-  }), React.createElement("path", {
+  }), React__default.createElement("path", {
     d: "M18.834 18.035l-3.11-3.11a.566.566 0 00-.8.8l3.11 3.11a.564.564 0 00.8 0 .566.566 0 000-.8zm-7.549-9.46a.566.566 0 00-.565.565v4.29a.566.566 0 001.13 0V9.14a.566.566 0 00-.565-.565z"
-  }), React.createElement("path", {
+  }), React__default.createElement("path", {
     d: "M13.43 10.72H9.14a.566.566 0 000 1.13h4.29a.565.565 0 100-1.13z"
-  })), React.createElement("defs", null, React.createElement("clipPath", {
+  })), React__default.createElement("defs", null, React__default.createElement("clipPath", {
     id: "clip0"
-  }, React.createElement("path", {
+  }, React__default.createElement("path", {
     fill: "#fff",
     d: "M0 0h14v14H0z",
     transform: "translate(5 5)"
@@ -6962,21 +6891,21 @@ function IconZoomOut(_ref) {
       props = objectWithoutProperties(_ref, ["size"]);
 
   var sizeValue = useIconSize(size);
-  return React.createElement("svg", _extends_1({
+  return React__default.createElement("svg", _extends_1({
     width: sizeValue,
     height: sizeValue,
     fill: "none",
     viewBox: "0 0 24 24"
-  }, props), React.createElement("g", {
+  }, props), React__default.createElement("g", {
     fill: "currentColor",
     clipPath: "url(#clip0)"
-  }, React.createElement("path", {
+  }, React__default.createElement("path", {
     d: "M15.73 6.84A6.244 6.244 0 0011.284 5 6.244 6.244 0 006.84 6.84 6.244 6.244 0 005 11.286c0 1.679.654 3.257 1.84 4.444a6.244 6.244 0 004.445 1.841 6.244 6.244 0 004.444-1.84 6.244 6.244 0 001.841-4.445 6.244 6.244 0 00-1.84-4.444zm-4.445 9.6a5.16 5.16 0 01-5.154-5.155 5.16 5.16 0 015.154-5.154 5.16 5.16 0 015.154 5.154 5.16 5.16 0 01-5.154 5.154z"
-  }), React.createElement("path", {
+  }), React__default.createElement("path", {
     d: "M18.834 18.035l-3.11-3.11a.566.566 0 00-.8.8l3.11 3.11a.564.564 0 00.8 0 .566.566 0 000-.8zM13.43 10.72H9.14a.566.566 0 000 1.13h4.29a.565.565 0 100-1.13z"
-  })), React.createElement("defs", null, React.createElement("clipPath", {
+  })), React__default.createElement("defs", null, React__default.createElement("clipPath", {
     id: "clip0"
-  }, React.createElement("path", {
+  }, React__default.createElement("path", {
     fill: "#fff",
     d: "M0 0h14v14H0z",
     transform: "translate(5 5)"
@@ -6985,23 +6914,21 @@ function IconZoomOut(_ref) {
 
 IconZoomOut.propTypes = IconPropTypes;
 
-// Do not edit: this file is generated by scripts/generate-icons,
-
-var _StyledDiv$3 = _styled.div.withConfig({
+var _StyledDiv$3 = _styled__default.div.withConfig({
   displayName: "PaginationSeparator___StyledDiv",
   componentId: "f1pytl-0"
 })(["display:flex;align-items:center;justify-content:center;"]);
 
-var _StyledIconEllipsis = _styled(IconEllipsis).withConfig({
+var _StyledIconEllipsis = _styled__default(IconEllipsis).withConfig({
   displayName: "PaginationSeparator___StyledIconEllipsis",
   componentId: "f1pytl-1"
 })(["color:", ";"], function (p) {
   return p._css;
 });
 
-var PaginationSeparator = React.memo(function PaginationSeparator() {
+var PaginationSeparator = React__default.memo(function PaginationSeparator() {
   var theme = useTheme();
-  return React.createElement(_StyledDiv$3, null, React.createElement(_StyledIconEllipsis, {
+  return React__default.createElement(_StyledDiv$3, null, React__default.createElement(_StyledIconEllipsis, {
     _css: theme.surfaceContentSecondary.alpha(0.4)
   }));
 });
@@ -7052,7 +6979,7 @@ function paginationItems(pages, selected) {
   return items;
 }
 
-var _StyledDiv$4 = _styled.div.withConfig({
+var _StyledDiv$4 = _styled__default.div.withConfig({
   displayName: "Pagination___StyledDiv",
   componentId: "sc-10i2kzw-0"
 })(["display:flex;align-items:center;justify-content:center;padding:", "px 0;& > div + div{margin-left:", "px;}"], function (p) {
@@ -7061,7 +6988,7 @@ var _StyledDiv$4 = _styled.div.withConfig({
   return p._css2;
 });
 
-var Pagination = React.memo(function Pagination(_ref) {
+var Pagination = React__default.memo(function Pagination(_ref) {
   var pages = _ref.pages,
       selected = _ref.selected,
       onChange = _ref.onChange,
@@ -7069,13 +6996,13 @@ var Pagination = React.memo(function Pagination(_ref) {
       props = objectWithoutProperties(_ref, ["pages", "selected", "onChange", "touchMode"]);
 
   var items = paginationItems(pages, selected);
-  return React.createElement(_StyledDiv$4, _extends_1({}, props, {
+  return React__default.createElement(_StyledDiv$4, _extends_1({}, props, {
     _css: 2 * GU,
     _css2: 1 * GU
   }), items.map(function (pageIndex, i) {
-    return pageIndex === -1 ? React.createElement(PaginationSeparator, {
+    return pageIndex === -1 ? React__default.createElement(PaginationSeparator, {
       key: "separator-".concat(i)
-    }) : React.createElement(PaginationItem, {
+    }) : React__default.createElement(PaginationItem, {
       key: pageIndex,
       index: pageIndex,
       selected: selected === pageIndex,
@@ -7098,7 +7025,6 @@ Pagination.defaultProps = {
 };
 
 var getDisplayName_1 = createCommonjsModule(function (module, exports) {
-'use strict';
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -7120,7 +7046,7 @@ var ensureTrailingSlash = function ensureTrailingSlash(path) {
   return path.endsWith('/') ? path : "".concat(path, "/");
 };
 
-var PublicUrlContext = React.createContext('');
+var PublicUrlContext = React__default.createContext('');
 var Provider = PublicUrlContext.Provider,
     Consumer = PublicUrlContext.Consumer;
 
@@ -7141,14 +7067,14 @@ function (_React$PureComponent) {
       var _this$props = this.props,
           url = _this$props.url,
           children = _this$props.children;
-      return React.createElement(Provider, {
+      return React__default.createElement(Provider, {
         value: url
       }, children);
     }
   }]);
 
   return PublicUrlProvider;
-}(React.PureComponent); // HOC wrapper
+}(React__default.PureComponent); // HOC wrapper
 
 
 defineProperty(PublicUrlProvider, "propTypes", {
@@ -7158,8 +7084,8 @@ defineProperty(PublicUrlProvider, "propTypes", {
 
 var hocWrap = function hocWrap(Component) {
   var HOC = function HOC(props) {
-    return React.createElement(Consumer, null, function (url) {
-      return React.createElement(Component, _extends_1({}, props, {
+    return React__default.createElement(Consumer, null, function (url) {
+      return React__default.createElement(Component, _extends_1({}, props, {
         publicUrl: url
       }));
     });
@@ -7178,7 +7104,7 @@ var styledUrl = function styledUrl(url) {
 };
 
 var PublicUrl = function PublicUrl(props) {
-  return React.createElement(Consumer, props);
+  return React__default.createElement(Consumer, props);
 };
 
 PublicUrl.Provider = PublicUrlProvider;
@@ -7186,42 +7112,42 @@ PublicUrl.hocWrap = hocWrap;
 PublicUrl.styledUrl = styledUrl;
 
 function usePublicUrl() {
-  return useContext(PublicUrlContext);
+  return React.useContext(PublicUrlContext);
 }
 
-var spin = keyframes(["from{transform:rotate(0deg);}to{transform:rotate(360deg);}"]);
+var spin = _styled.keyframes(["from{transform:rotate(0deg);}to{transform:rotate(360deg);}"]);
 
-var _StyledSpan$1 = _styled.span.withConfig({
+var _StyledSpan$1 = _styled__default.span.withConfig({
   displayName: "LoadingRing___StyledSpan",
   componentId: "iauf6f-0"
 })(["position:relative;display:flex;align-items:center;justify-content:center;width:22px;height:22px;animation-duration:1s;animation-iteration-count:infinite;animation-timing-function:linear;animation-name:", ";"], function (p) {
   return p._css;
 });
 
-var _StyledSpan2 = _styled.span.withConfig({
+var _StyledSpan2 = _styled__default.span.withConfig({
   displayName: "LoadingRing___StyledSpan2",
   componentId: "iauf6f-1"
 })(["position:relative;width:10px;height:100%;"]);
 
-var _StyledSpan3 = _styled.span.withConfig({
+var _StyledSpan3 = _styled__default.span.withConfig({
   displayName: "LoadingRing___StyledSpan3",
   componentId: "iauf6f-2"
 })(["position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:14px;height:14px;border-radius:50%;border:1px solid ", ";"], function (p) {
   return p._css2;
 });
 
-var LoadingRing = React.memo(function LoadingRing(_ref) {
+var LoadingRing = React__default.memo(function LoadingRing(_ref) {
   var paused = _ref.paused,
       props = objectWithoutProperties(_ref, ["paused"]);
 
   var theme = useTheme();
-  return React.createElement(_StyledSpan$1, _extends_1({}, props, {
+  return React__default.createElement(_StyledSpan$1, _extends_1({}, props, {
     _css: paused ? 'none' : spin
-  }), React.createElement(_StyledSpan2, {
+  }), React__default.createElement(_StyledSpan2, {
     style: {
       overflow: paused ? 'visible' : 'hidden'
     }
-  }, React.createElement(_StyledSpan3, {
+  }, React__default.createElement(_StyledSpan3, {
     _css2: theme.accent
   })));
 });
@@ -7236,7 +7162,7 @@ function ownKeys$5(object, enumerableOnly) { var keys = Object.keys(object); if 
 
 function _objectSpread$5(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$5(source, true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$5(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
-var _StyledButtonBase$1 = _styled(ButtonBaseWithFocus).withConfig({
+var _StyledButtonBase$1 = _styled__default(ButtonBaseWithFocus).withConfig({
   displayName: "Link___StyledButtonBase",
   componentId: "sc-57j27s-0"
 })(["color:", ";text-decoration:", ";font-size:inherit;"], function (p) {
@@ -7257,7 +7183,7 @@ function Link(_ref) {
     external = Boolean(href);
   }
 
-  return React.createElement(_StyledButtonBase$1, _extends_1({
+  return React__default.createElement(_StyledButtonBase$1, _extends_1({
     href: href,
     onClick: onClick,
     external: external,
@@ -7328,14 +7254,10 @@ var colorNames = [];
 var requestFrame = function requestFrame(cb) {
   return typeof window !== 'undefined' && window.requestAnimationFrame(cb);
 };
-var cancelFrame = function cancelFrame(cb) {
-  return typeof window !== 'undefined' && window.cancelAnimationFrame(cb);
-};
 var interpolation = undefined;
 var now$1 = function now() {
   return Date.now();
 };
-var defaultElement = undefined;
 var createAnimatedStyle = undefined;
 var injectApplyAnimatedValues = function injectApplyAnimatedValues(fn, transform) {
   return applyAnimatedValues = {
@@ -7352,40 +7274,9 @@ var injectBugfixes = function injectBugfixes(fn) {
 var injectInterpolation = function injectInterpolation(cls) {
   return interpolation = cls;
 };
-var injectFrame = function injectFrame(raf, caf) {
-  var _ref;
-
-  return _ref = [raf, caf], requestFrame = _ref[0], cancelFrame = _ref[1], _ref;
-};
-var injectNow = function injectNow(nowFn) {
-  return now$1 = nowFn;
-};
-var injectDefaultElement = function injectDefaultElement(el) {
-  return defaultElement = el;
-};
 var injectCreateAnimatedStyle = function injectCreateAnimatedStyle(factory) {
   return createAnimatedStyle = factory;
 };
-
-var Globals = /*#__PURE__*/Object.freeze({
-  get bugfixes () { return bugfixes; },
-  get applyAnimatedValues () { return applyAnimatedValues; },
-  get colorNames () { return colorNames; },
-  get requestFrame () { return requestFrame; },
-  get cancelFrame () { return cancelFrame; },
-  get interpolation () { return interpolation; },
-  get now () { return now$1; },
-  get defaultElement () { return defaultElement; },
-  get createAnimatedStyle () { return createAnimatedStyle; },
-  injectApplyAnimatedValues: injectApplyAnimatedValues,
-  injectColorNames: injectColorNames,
-  injectBugfixes: injectBugfixes,
-  injectInterpolation: injectInterpolation,
-  injectFrame: injectFrame,
-  injectNow: injectNow,
-  injectDefaultElement: injectDefaultElement,
-  injectCreateAnimatedStyle: injectCreateAnimatedStyle
-});
 
 var Animated =
 /*#__PURE__*/
@@ -8058,9 +7949,6 @@ function (_AnimatedArrayWithChi) {
 
   return AnimatedInterpolation;
 }(AnimatedArrayWithChildren);
-var interpolate$1 = function interpolate(parents, config, arg) {
-  return parents && new AnimatedInterpolation(parents, config, arg);
-};
 
 /**
  * Animated works by building a directed acyclic graph of dependencies
@@ -8344,7 +8232,7 @@ function fixAuto(props, callback) {
   };
   var elementStyles = element.props.style; // Return v.dom with injected ref
 
-  return React.createElement(element.type, _extends({
+  return React__default.createElement(element.type, _extends({
     key: element.key ? element.key : undefined
   }, element.props, {
     style: _extends({}, elementStyles, {
@@ -8448,7 +8336,6 @@ var attributeCache = {};
 injectCreateAnimatedStyle(function (style) {
   return new AnimatedStyle(style);
 });
-injectDefaultElement('div');
 injectInterpolation(createInterpolation);
 injectColorNames(colors$1);
 injectBugfixes(fixAuto);
@@ -8952,7 +8839,7 @@ function createAnimatedComponent(Component) {
           scrollLeft = _this$propsAnimated$g.scrollLeft,
           animatedProps = _objectWithoutPropertiesLoose$1(_this$propsAnimated$g, ["scrollTop", "scrollLeft"]);
 
-      return React.createElement(Component, _extends({}, animatedProps, {
+      return React__default.createElement(Component, _extends({}, animatedProps, {
         ref: function ref(node) {
           return _this2.node = handleRef(node, _this2.props.forwardRef);
         }
@@ -8960,10 +8847,10 @@ function createAnimatedComponent(Component) {
     };
 
     return AnimatedComponent;
-  }(React.Component);
+  }(React__default.Component);
 
-  return React.forwardRef(function (props, ref) {
-    return React.createElement(AnimatedComponent, _extends({}, props, {
+  return React__default.forwardRef(function (props, ref) {
+    return React__default.createElement(AnimatedComponent, _extends({}, props, {
       forwardRef: ref
     }));
   });
@@ -9163,7 +9050,7 @@ function (_React$Component) {
   };
 
   return Spring;
-}(React.Component);
+}(React__default.Component);
 
 Spring.defaultProps = {
   from: {},
@@ -9222,7 +9109,7 @@ function (_React$PureComponent) {
 
     var array = toArray(items);
     return toArray(array).map(function (item, i) {
-      return React.createElement(Spring, _extends({
+      return React__default.createElement(Spring, _extends({
         onRest: i === 0 ? onRest : null,
         key: typeof keys === 'function' ? keys(item) : toArray(keys)[i],
         from: _this2.first && initial !== void 0 ? initial || {} : from
@@ -9246,7 +9133,7 @@ function (_React$PureComponent) {
   };
 
   return Trail;
-}(React.PureComponent);
+}(React__default.PureComponent);
 
 Trail.defaultProps = {
   keys: function keys(item) {
@@ -9394,7 +9281,7 @@ function (_React$PureComponent) {
 
 
     if (Array.isArray(config)) config = config[index];
-    return React.createElement(Component, _extends({
+    return React__default.createElement(Component, _extends({
       ref: function ref(_ref) {
         return _this3.instance = handleRef(_ref, forwardRef);
       },
@@ -9408,13 +9295,13 @@ function (_React$PureComponent) {
   };
 
   return KeyframesImpl;
-}(React.PureComponent);
+}(React__default.PureComponent);
 
 KeyframesImpl.defaultProps = {
   state: DEFAULT
 };
-var Keyframes = React.forwardRef(function (props, ref) {
-  return React.createElement(KeyframesImpl, _extends({}, props, {
+var Keyframes = React__default.forwardRef(function (props, ref) {
+  return React__default.createElement(KeyframesImpl, _extends({}, props, {
     forwardRef: ref
   }));
 });
@@ -9431,7 +9318,7 @@ Keyframes.create = function (primitive) {
 
     if (typeof states === 'function' || Array.isArray(states)) states = (_states = {}, _states[DEFAULT] = states, _states);
     return function (props) {
-      return React.createElement(KeyframesImpl, _extends({
+      return React__default.createElement(KeyframesImpl, _extends({
         primitive: primitive,
         states: states,
         filter: filter
@@ -9681,7 +9568,7 @@ function (_React$PureComponent) {
           trail = _ref4.trail,
           config = _ref4.config,
           destroyed = _ref4.destroyed;
-      return React.createElement(Keyframes, _extends({
+      return React__default.createElement(Keyframes, _extends({
         reset: reset && state === 'enter',
         primitive: Spring,
         state: state,
@@ -9711,7 +9598,7 @@ function (_React$PureComponent) {
   };
 
   return Transition;
-}(React.PureComponent);
+}(React__default.PureComponent);
 
 Transition.defaultProps = {
   keys: function keys(item) {
@@ -9732,12 +9619,12 @@ var SIZE = 18;
 var CHECKBOX_RADIUS = 2;
 var RADIO_BULLET_SIZE = 10;
 
-var _StyledAnimatedSpan = _styled(extendedAnimated.span).withConfig({
+var _StyledAnimatedSpan = _styled__default(extendedAnimated.span).withConfig({
   displayName: "Checkbox___StyledAnimatedSpan",
   componentId: "sc-1avgrx5-0"
 })(["position:absolute;top:0;left:0;right:0;bottom:0;display:flex;align-items:center;justify-content:center;transform-origin:50% 50%;"]);
 
-var _StyledButton$1 = _styled.button.withConfig({
+var _StyledButton$1 = _styled__default.button.withConfig({
   displayName: "Checkbox___StyledButton",
   componentId: "sc-1avgrx5-1"
 })(["display:inline-flex;position:relative;width:", "px;height:", "px;margin:", "px;padding:0;background:", ";border:1px solid ", ";border-radius:", ";outline:0;&::-moz-focus-inner{border:0;}", ";"], SIZE, SIZE, function (p) {
@@ -9752,7 +9639,7 @@ var _StyledButton$1 = _styled.button.withConfig({
   return p._css5;
 });
 
-var _StyledSpan$2 = _styled.span.withConfig({
+var _StyledSpan$2 = _styled__default.span.withConfig({
   displayName: "Checkbox___StyledSpan",
   componentId: "sc-1avgrx5-2"
 })(["position:absolute;top:-2px;left:-2px;right:-2px;bottom:-2px;border:2px solid ", ";border-radius:", ";display:none;"], function (p) {
@@ -9779,7 +9666,7 @@ function (_React$PureComponent) {
 
     _this = possibleConstructorReturn(this, (_getPrototypeOf2 = getPrototypeOf(Checkbox)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
-    defineProperty(assertThisInitialized(_this), "_element", React.createRef());
+    defineProperty(assertThisInitialized(_this), "_element", React__default.createRef());
 
     defineProperty(assertThisInitialized(_this), "handleClick", function () {
       var _this$props = _this.props,
@@ -9812,7 +9699,7 @@ function (_React$PureComponent) {
       var _this$props3 = this.props,
           disabled = _this$props3.disabled,
           theme = _this$props3.theme;
-      return React.createElement(Spring, {
+      return React__default.createElement(Spring, {
         from: {
           progress: 0
         },
@@ -9823,14 +9710,14 @@ function (_React$PureComponent) {
         native: true
       }, function (_ref) {
         var progress = _ref.progress;
-        return React.createElement(_StyledAnimatedSpan, {
+        return React__default.createElement(_StyledAnimatedSpan, {
           style: {
             opacity: progress,
             transform: progress.interpolate(function (v) {
               return "scale(".concat(v, ")");
             })
           }
-        }, React.createElement(Icon, {
+        }, React__default.createElement(Icon, {
           color: disabled ? theme.selectedDisabled : theme.selected
         }));
       });
@@ -9849,10 +9736,10 @@ function (_React$PureComponent) {
           variant = _this$props4.variant,
           props = objectWithoutProperties(_this$props4, ["checked", "disabled", "indeterminate", "tabIndex", "theme", "variant"]);
 
-      return React.createElement(FocusVisible, null, function (_ref2) {
+      return React__default.createElement(FocusVisible, null, function (_ref2) {
         var focusVisible = _ref2.focusVisible,
             onFocus = _ref2.onFocus;
-        return React.createElement(_StyledButton$1, _extends_1({
+        return React__default.createElement(_StyledButton$1, _extends_1({
           type: "button",
           ref: _this2._element,
           role: variant,
@@ -9867,7 +9754,7 @@ function (_React$PureComponent) {
           _css3: theme.controlBorder,
           _css4: variant === 'radio' ? '50%' : "".concat(CHECKBOX_RADIUS, "px"),
           _css5: !disabled ? "\n                    cursor: pointer;\n                    &:active {\n                      border-color: ".concat(theme.controlBorderPressed, ";\n                    }\n                    &:focus .focus-ring {\n                      display: ").concat(focusVisible ? 'block' : 'none', ";\n                    }\n                  ") : ''
-        }), variant === 'checkbox' && _this2.renderCheck(checked && !indeterminate, Check), variant === 'checkbox' && _this2.renderCheck(indeterminate, Dash), variant === 'radio' && _this2.renderCheck(checked, Bullet), React.createElement(_StyledSpan$2, {
+        }), variant === 'checkbox' && _this2.renderCheck(checked && !indeterminate, Check), variant === 'checkbox' && _this2.renderCheck(indeterminate, Dash), variant === 'radio' && _this2.renderCheck(checked, Bullet), React__default.createElement(_StyledSpan$2, {
           className: "focus-ring",
           _css6: theme.focus,
           _css7: variant === 'radio' ? '50%' : "".concat(RADIUS, "px")
@@ -9877,7 +9764,7 @@ function (_React$PureComponent) {
   }]);
 
   return Checkbox;
-}(React.PureComponent);
+}(React__default.PureComponent);
 /* eslint-disable react/prop-types */
 
 
@@ -9904,11 +9791,11 @@ var Dash = function Dash(_ref3) {
   var color = _ref3.color;
   return (
     /* Use SVG to have subpixels (strokeWidth="1.5") on Chrome */
-    React.createElement("svg", {
+    React__default.createElement("svg", {
       width: "14",
       height: "14",
       viewBox: "0 0 14 14"
-    }, React.createElement("line", {
+    }, React__default.createElement("line", {
       x1: "3",
       y1: "7",
       x2: "11",
@@ -9921,17 +9808,17 @@ var Dash = function Dash(_ref3) {
 
 var Check = function Check(_ref4) {
   var color = _ref4.color;
-  return React.createElement("svg", {
+  return React__default.createElement("svg", {
     width: "12",
     height: "8",
     viewBox: "0 0 12 8"
-  }, React.createElement("path", {
+  }, React__default.createElement("path", {
     d: "\n        M11.059 1.393\n        L4.335  7.395\n        L0.944  3.260\n        L2.104  2.309\n        L4.503  5.234\n        L10.060 0.274\n        L11.059 1.393\n        Z\n      ",
     fill: color
   }));
 };
 
-var _StyledSpan2$1 = _styled.span.withConfig({
+var _StyledSpan2$1 = _styled__default.span.withConfig({
   displayName: "Checkbox___StyledSpan2",
   componentId: "sc-1avgrx5-3"
 })(["display:block;width:", "px;height:", "px;border-radius:50%;background:", ";"], RADIO_BULLET_SIZE, RADIO_BULLET_SIZE, function (p) {
@@ -9940,14 +9827,14 @@ var _StyledSpan2$1 = _styled.span.withConfig({
 
 var Bullet = function Bullet(_ref5) {
   var color = _ref5.color;
-  return React.createElement(_StyledSpan2$1, {
+  return React__default.createElement(_StyledSpan2$1, {
     _css8: color
   });
 };
 
-var CheckBoxWithTheme = React.forwardRef(function (props, ref) {
+var CheckBoxWithTheme = React__default.forwardRef(function (props, ref) {
   var theme = useTheme();
-  return React.createElement(Checkbox, _extends_1({
+  return React__default.createElement(Checkbox, _extends_1({
     theme: theme,
     ref: ref
   }, props));
@@ -10079,7 +9966,7 @@ function modeStyles(theme, mode, disabled) {
   };
 }
 
-var _StyledButtonBase$2 = _styled(ButtonBaseWithFocus).withConfig({
+var _StyledButtonBase$2 = _styled__default(ButtonBaseWithFocus).withConfig({
   displayName: "Button___StyledButtonBase",
   componentId: "sc-8npd5h-0"
 })(["display:", ";align-items:center;justify-content:center;width:", ";height:", ";min-width:", ";padding:", ";", ";", ";background:", ";color:", ";white-space:nowrap;border:", ";box-shadow:", ";transition-property:transform,box-shadow;transition-duration:50ms;transition-timing-function:ease-in-out;&:active{transform:", ";box-shadow:", ";}"], function (p) {
@@ -10108,7 +9995,7 @@ var _StyledButtonBase$2 = _styled(ButtonBaseWithFocus).withConfig({
   return p._css12;
 });
 
-var _StyledSpan$3 = _styled.span.withConfig({
+var _StyledSpan$3 = _styled__default.span.withConfig({
   displayName: "Button___StyledSpan",
   componentId: "sc-8npd5h-1"
 })(["position:relative;top:-1px;display:flex;color:", ";margin-right:", ";"], function (p) {
@@ -10187,7 +10074,7 @@ function Button(_ref) {
   var displayIcon = icon && (display === 'all' || display === 'icon');
   var displayLabel = label && (display === 'all' || display === 'label'); // Mode styles
 
-  var _useMemo = useMemo(function () {
+  var _useMemo = React.useMemo(function () {
     return modeStyles(theme, mode, disabled);
   }, [mode, theme, disabled]),
       background = _useMemo.background,
@@ -10196,7 +10083,7 @@ function Button(_ref) {
       border = _useMemo.border; // Size styles
 
 
-  var _useMemo2 = useMemo(function () {
+  var _useMemo2 = React.useMemo(function () {
     return sizeStyles(size, wide, displayIcon, displayLabel);
   }, [size, wide, displayIcon, displayLabel]),
       height = _useMemo2.height,
@@ -10214,7 +10101,7 @@ function Button(_ref) {
   var insideData = {
     size: size
   };
-  return React.createElement(_StyledButtonBase$2, _extends_1({
+  return React__default.createElement(_StyledButtonBase$2, _extends_1({
     ref: innerRef,
     focusRingSpacing: border === '0' ? 0 : 1,
     focusRingRadius: RADIUS,
@@ -10232,16 +10119,16 @@ function Button(_ref) {
     _css10: disabled ? 'none' : '0 1px 3px rgba(0, 0, 0, 0.1)',
     _css11: disabled ? 'none' : 'translateY(1px)',
     _css12: disabled ? 'none' : '0px 1px 2px rgba(0, 0, 0, 0.08)'
-  }), React.createElement(Inside, {
+  }), React__default.createElement(Inside, {
     name: "Button",
     data: insideData
-  }, children || React.createElement(React.Fragment, null, displayIcon && React.createElement(Inside, {
+  }, children || React__default.createElement(React__default.Fragment, null, displayIcon && React__default.createElement(Inside, {
     name: "Button:icon",
     data: insideData
-  }, React.createElement(_StyledSpan$3, {
+  }, React__default.createElement(_StyledSpan$3, {
     _css13: iconColor,
     _css14: middleSpace
-  }, icon)), displayLabel && React.createElement(Inside, {
+  }, icon)), displayLabel && React__default.createElement(Inside, {
     name: "Button:label",
     data: insideData
   }, label))));
@@ -10269,19 +10156,19 @@ Button.defaultProps = {
   size: 'medium',
   wide: false
 };
-var ButtonWithRef = React.forwardRef(function (props, ref) {
-  return React.createElement(Button, _extends_1({
+var ButtonWithRef = React__default.forwardRef(function (props, ref) {
+  return React__default.createElement(Button, _extends_1({
     innerRef: ref
   }, props));
 });
-ButtonWithRef.Anchor = React.forwardRef(function (props, ref) {
+ButtonWithRef.Anchor = React__default.forwardRef(function (props, ref) {
   warnOnce('Button.Anchor', 'Button.Anchor is deprecated: please use Button with a href prop instead.');
-  return React.createElement(ButtonWithRef, _extends_1({
+  return React__default.createElement(ButtonWithRef, _extends_1({
     ref: ref
   }, props));
 });
 
-var _StyledButtonBase$3 = _styled(ButtonBaseWithFocus).withConfig({
+var _StyledButtonBase$3 = _styled__default(ButtonBaseWithFocus).withConfig({
   displayName: "ButtonIcon___StyledButtonBase",
   componentId: "sc-1e3i514-0"
 })(["display:inline-flex;justify-content:center;align-items:center;width:", "px;height:", "px;&:active{background:rgba(220,234,239,0.3);}"], function (p) {
@@ -10301,14 +10188,14 @@ function ButtonIcon(_ref) {
   }
 
   if (mode === 'button') {
-    return React.createElement(ButtonWithRef, _extends_1({
+    return React__default.createElement(ButtonWithRef, _extends_1({
       label: label,
       icon: children,
       display: "icon"
     }, props));
   }
 
-  return React.createElement(_StyledButtonBase$3, _extends_1({
+  return React__default.createElement(_StyledButtonBase$3, _extends_1({
     title: label
   }, props, {
     _css: 4 * GU,
@@ -10323,14 +10210,14 @@ ButtonIcon.propTypes = {
   mode: propTypes.oneOf(['button'])
 };
 
-var _StyledButtonIcon = _styled(ButtonIcon).withConfig({
+var _StyledButtonIcon = _styled__default(ButtonIcon).withConfig({
   displayName: "ToggleButton___StyledButtonIcon",
   componentId: "sc-1fkpeh6-0"
 })(["display:flex;flex-direction:column;color:", ";& > div{display:flex;transform-origin:50% 50%;transition:transform 250ms ease-in-out;}"], function (p) {
   return p._css;
 });
 
-var _StyledDiv$5 = _styled.div.withConfig({
+var _StyledDiv$5 = _styled__default.div.withConfig({
   displayName: "ToggleButton___StyledDiv",
   componentId: "sc-1fkpeh6-1"
 })(["transform:rotate3d(", ",0,0,180deg);transform:rotate3d(0,0,", ",180deg);"], function (p) {
@@ -10339,7 +10226,7 @@ var _StyledDiv$5 = _styled.div.withConfig({
   return p._css3;
 });
 
-var _StyledDiv2$2 = _styled.div.withConfig({
+var _StyledDiv2$2 = _styled__default.div.withConfig({
   displayName: "ToggleButton___StyledDiv2",
   componentId: "sc-1fkpeh6-2"
 })(["transform:rotate3d(", ",0,0,180deg);transform:rotate3d(0,0,", ",180deg);"], function (p) {
@@ -10352,20 +10239,20 @@ function ToggleButton(_ref) {
   var onClick = _ref.onClick,
       opened = _ref.opened;
   var theme = useTheme();
-  return React.createElement(_StyledButtonIcon, {
+  return React__default.createElement(_StyledButtonIcon, {
     label: opened ? 'Close' : 'Open',
     focusRingRadius: RADIUS,
     onClick: onClick,
     _css: theme.surfaceContentSecondary
-  }, React.createElement(_StyledDiv$5, {
+  }, React__default.createElement(_StyledDiv$5, {
     _css2: opened ? 1 : 0,
     _css3: opened ? 1 : 0
-  }, React.createElement(IconUp, {
+  }, React__default.createElement(IconUp, {
     size: "small"
-  })), React.createElement(_StyledDiv2$2, {
+  })), React__default.createElement(_StyledDiv2$2, {
     _css4: opened ? -1 : 0,
     _css5: opened ? -1 : 0
-  }, React.createElement(IconDown, {
+  }, React__default.createElement(IconDown, {
     size: "small"
   })));
 }
@@ -10379,7 +10266,7 @@ function ownKeys$6(object, enumerableOnly) { var keys = Object.keys(object); if 
 
 function _objectSpread$6(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$6(source, true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$6(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
-var _StyledAnimatedDiv = _styled(extendedAnimated.div).withConfig({
+var _StyledAnimatedDiv = _styled__default(extendedAnimated.div).withConfig({
   displayName: "OpenedSurfaceBorder___StyledAnimatedDiv",
   componentId: "sc-19tx70h-0"
 })(["position:absolute;top:0;left:0;height:100%;width:3px;background:", ";transform-origin:0 0;"], function (p) {
@@ -10391,7 +10278,7 @@ function OpenedSurfaceBorder(_ref) {
       props = objectWithoutProperties(_ref, ["opened"]);
 
   var theme = useTheme();
-  return React.createElement(Spring, {
+  return React__default.createElement(Spring, {
     native: true,
     from: {
       width: 0
@@ -10402,7 +10289,7 @@ function OpenedSurfaceBorder(_ref) {
     config: _objectSpread$6({}, springs.smooth)
   }, function (_ref2) {
     var width = _ref2.width;
-    return React.createElement(_StyledAnimatedDiv, _extends_1({
+    return React__default.createElement(_StyledAnimatedDiv, _extends_1({
       style: {
         transform: width.interpolate(function (v) {
           return "scale3d(".concat(v, ", 1, 1)");
@@ -10478,7 +10365,7 @@ function cellsFromEntry(entry, _ref2) {
   return cells;
 }
 
-var _StyledTable = _styled.table.withConfig({
+var _StyledTable = _styled__default.table.withConfig({
   displayName: "TableView___StyledTable",
   componentId: "aczwu3-0"
 })(["width:100%;border-spacing:0;border-collapse:separate;"]);
@@ -10497,21 +10384,21 @@ function TableView(_ref3) {
       selectable = _ref3.selectable,
       selectedCount = _ref3.selectedCount;
 
-  var _useState = useState$1(-1),
+  var _useState = React.useState(-1),
       _useState2 = slicedToArray(_useState, 2),
       opened = _useState2[0],
       setOpened = _useState2[1];
 
-  var toggleEntry = useCallback(function (index) {
+  var toggleEntry = React.useCallback(function (index) {
     setOpened(function (opened) {
       return opened === index ? -1 : index;
     });
   }, []);
-  var headCells = useMemo(function () {
+  var headCells = React.useMemo(function () {
     return headingsFromFields(fields, {
       hasAnyActions: hasAnyActions,
       hasAnyExpansion: hasAnyExpansion,
-      selectContent: React.createElement(CheckBoxWithTheme, {
+      selectContent: React__default.createElement(CheckBoxWithTheme, {
         indeterminate: allSelected === 0,
         checked: allSelected > -1,
         onChange: onSelectAll
@@ -10519,15 +10406,15 @@ function TableView(_ref3) {
       selectable: selectable
     });
   }, [fields, hasAnyActions, hasAnyExpansion, allSelected, onSelectAll, selectable]);
-  useEffect(function () {
+  React.useEffect(function () {
     setOpened(-1);
   }, [entries, fields]);
-  return React.createElement(_StyledTable, null, headCells && React.createElement("thead", null, React.createElement(HeadRow, {
+  return React__default.createElement(_StyledTable, null, headCells && React__default.createElement("thead", null, React__default.createElement(HeadRow, {
     cells: headCells,
     selectedCount: selectedCount,
     renderSelectionCount: renderSelectionCount
-  })), React.createElement("tbody", null, entries.map(function (entry, index) {
-    return React.createElement(Entry, {
+  })), React__default.createElement("tbody", null, entries.map(function (entry, index) {
+    return React__default.createElement(Entry, {
       key: entry.index,
       alignChildOnField: alignChildOnField,
       entry: entry,
@@ -10568,7 +10455,7 @@ function useSidePadding() {
   return layoutName === 'small' ? 2 * GU : 3 * GU;
 }
 
-var _StyledTh = _styled.th.withConfig({
+var _StyledTh = _styled__default.th.withConfig({
   displayName: "TableView___StyledTh",
   componentId: "aczwu3-1"
 })(["height:", "px;padding:0;padding-left:", "px;padding-right:", "px;text-align:", ";", ";color:", ";border-bottom:1px solid ", ";"], function (p) {
@@ -10593,10 +10480,10 @@ function HeadRow(_ref4) {
       renderSelectionCount = _ref4.renderSelectionCount;
   var theme = useTheme();
   var sidePadding = useSidePadding();
-  return React.createElement("tr", null, cells.map(function (cell, index) {
+  return React__default.createElement("tr", null, cells.map(function (cell, index) {
     var hidden = selectedCount > 0 && index > 1;
     var content = selectedCount > 0 && index === 1 ? renderSelectionCount(selectedCount) : cell[0];
-    return !hidden && React.createElement(_StyledTh, {
+    return !hidden && React__default.createElement(_StyledTh, {
       key: index,
       colSpan: selectedCount > 0 && index === 1 ? cells.length - 1 : 1,
       _css: 4 * GU,
@@ -10610,7 +10497,7 @@ function HeadRow(_ref4) {
   }));
 }
 
-var Entry = React.memo(function Entry(_ref5) {
+var Entry = React__default.memo(function Entry(_ref5) {
   var alignChildOnField = _ref5.alignChildOnField,
       entry = _ref5.entry,
       fields = _ref5.fields,
@@ -10624,10 +10511,10 @@ var Entry = React.memo(function Entry(_ref5) {
       selectable = _ref5.selectable;
   var hasExpansion = entry.expansion.content.length > 0;
   var entryIndex = entry.index;
-  var handleToggle = useCallback(function () {
+  var handleToggle = React.useCallback(function () {
     onToggle(entryIndex);
   }, [entryIndex, onToggle]);
-  var handleSelectChange = useCallback(function (check) {
+  var handleSelectChange = React.useCallback(function (check) {
     onSelect(entryIndex, check);
   }, [entryIndex, onSelect]);
   var cells = cellsFromEntry(entry, {
@@ -10636,21 +10523,21 @@ var Entry = React.memo(function Entry(_ref5) {
     hasAnyExpansion: hasAnyExpansion,
     hasExpansion: hasExpansion,
     selectable: selectable,
-    toggleChildContent: hasAnyExpansion ? React.createElement(Toggle, {
+    toggleChildContent: hasAnyExpansion ? React__default.createElement(Toggle, {
       opened: opened,
       onToggle: handleToggle
     }) : null,
-    selectContent: selectable ? React.createElement(CheckBoxWithTheme, {
+    selectContent: selectable ? React__default.createElement(CheckBoxWithTheme, {
       onChange: handleSelectChange,
       checked: entry.selected
     }) : null
   });
-  return React.createElement(React.Fragment, null, React.createElement(EntryRow, {
+  return React__default.createElement(React__default.Fragment, null, React__default.createElement(EntryRow, {
     cells: cells,
     firstRow: firstRow,
     rowHeight: rowHeight,
     selected: entry.selected
-  }), hasExpansion && React.createElement(EntryExpansion, {
+  }), hasExpansion && React__default.createElement(EntryExpansion, {
     alignChildOnCell: alignChildOnField + 1,
     cellsCount: cells.length,
     expansion: entry.expansion,
@@ -10659,14 +10546,14 @@ var Entry = React.memo(function Entry(_ref5) {
   }));
 });
 
-var _StyledTr = _styled.tr.withConfig({
+var _StyledTr = _styled__default.tr.withConfig({
   displayName: "TableView___StyledTr",
   componentId: "aczwu3-2"
 })(["transition:background 150ms ease-in-out;background:", ";"], function (p) {
   return p._css8;
 });
 
-var _StyledTd = _styled.td.withConfig({
+var _StyledTd = _styled__default.td.withConfig({
   displayName: "TableView___StyledTd",
   componentId: "aczwu3-3"
 })(["position:relative;width:", ";height:", "px;padding-top:0;padding-bottom:0;padding-left:", "px;padding-right:", "px;border-top:", ";"], function (p) {
@@ -10681,7 +10568,7 @@ var _StyledTd = _styled.td.withConfig({
   return p._css13;
 });
 
-var _StyledDiv$6 = _styled.div.withConfig({
+var _StyledDiv$6 = _styled__default.div.withConfig({
   displayName: "TableView___StyledDiv",
   componentId: "aczwu3-4"
 })(["display:flex;width:100%;justify-content:", ";"], function (p) {
@@ -10696,7 +10583,7 @@ function EntryRow(_ref6) {
       mode = _ref6.mode;
   var theme = useTheme();
   var sidePadding = useSidePadding();
-  return React.createElement(_StyledTr, {
+  return React__default.createElement(_StyledTr, {
     _css8: selected ? theme.surfaceSelected : 'none'
   }, cells.map(function (_ref7, index, cells) {
     var _ref8 = slicedToArray(_ref7, 3),
@@ -10706,7 +10593,7 @@ function EntryRow(_ref6) {
 
     var first = index === 0;
     var last = index === cells.length - 1;
-    return React.createElement(_StyledTd, {
+    return React__default.createElement(_StyledTd, {
       key: index,
       _css9: compact ? '1px' // For some reason Blink tends to make 0 grow but not 1px
       : 'auto',
@@ -10714,25 +10601,25 @@ function EntryRow(_ref6) {
       _css11: first || compact ? sidePadding : 0,
       _css12: !first && (align !== 'end' || last) || compact ? sidePadding : 0,
       _css13: firstRow ? '0' : "1px solid ".concat(theme.border)
-    }, React.createElement(_StyledDiv$6, {
+    }, React__default.createElement(_StyledDiv$6, {
       _css14: "flex-".concat(align)
     }, content));
   }));
 }
 
-var _StyledTr2 = _styled.tr.withConfig({
+var _StyledTr2 = _styled__default.tr.withConfig({
   displayName: "TableView___StyledTr2",
   componentId: "aczwu3-5"
 })(["td{position:relative;padding:0;box-shadow:inset 0 6px 4px -4px rgba(0,0,0,0.16);background:", ";}"], function (p) {
   return p._css15;
 });
 
-var _StyledAnimatedDiv$1 = _styled(extendedAnimated.div).withConfig({
+var _StyledAnimatedDiv$1 = _styled__default(extendedAnimated.div).withConfig({
   displayName: "TableView___StyledAnimatedDiv",
   componentId: "aczwu3-6"
 })(["overflow:hidden"]);
 
-var _StyledDiv2$3 = _styled.div.withConfig({
+var _StyledDiv2$3 = _styled__default.div.withConfig({
   displayName: "TableView___StyledDiv2",
   componentId: "aczwu3-7"
 })(["height:", ";border-top:1px solid ", ";"], function (p) {
@@ -10741,12 +10628,12 @@ var _StyledDiv2$3 = _styled.div.withConfig({
   return p._css17;
 });
 
-var _StyledAnimatedDiv2 = _styled(extendedAnimated.div).withConfig({
+var _StyledAnimatedDiv2 = _styled__default(extendedAnimated.div).withConfig({
   displayName: "TableView___StyledAnimatedDiv2",
   componentId: "aczwu3-8"
 })(["overflow:hidden"]);
 
-var _StyledDiv3$1 = _styled.div.withConfig({
+var _StyledDiv3$1 = _styled__default.div.withConfig({
   displayName: "TableView___StyledDiv3",
   componentId: "aczwu3-9"
 })(["display:flex;align-items:center;height:", ";padding-left:", "px;padding-right:", "px;border-top:1px solid ", ";"], function (p) {
@@ -10767,18 +10654,18 @@ function EntryExpansion(_ref9) {
       rowHeight = _ref9.rowHeight;
   var theme = useTheme(); // Handles the height of the expansion in free layout mode
 
-  var _useState3 = useState$1(0),
+  var _useState3 = React.useState(0),
       _useState4 = slicedToArray(_useState3, 2),
       freeLayoutContentHeight = _useState4[0],
       setFreeLayoutContentHeight = _useState4[1];
 
-  var handleFreeLayoutContentRef = useCallback(function (element) {
+  var handleFreeLayoutContentRef = React.useCallback(function (element) {
     if (element) {
       setFreeLayoutContentHeight(element.getBoundingClientRect().height);
     }
   }, []);
   var height = expansion.freeLayout ? freeLayoutContentHeight : rowHeight * expansion.content.length;
-  return React.createElement(Transition, {
+  return React__default.createElement(Transition, {
     native: true,
     unique: true,
     items: opened,
@@ -10800,30 +10687,30 @@ function EntryExpansion(_ref9) {
   }, function (show) {
     return show && function (_ref10) {
       var height = _ref10.height;
-      return React.createElement(_StyledTr2, {
+      return React__default.createElement(_StyledTr2, {
         _css15: theme.surfaceUnder
-      }, alignChildOnCell > 0 && React.createElement("td", {
+      }, alignChildOnCell > 0 && React__default.createElement("td", {
         colSpan: alignChildOnCell
-      }, React.createElement(OpenedSurfaceBorder, {
+      }, React__default.createElement(OpenedSurfaceBorder, {
         opened: opened
-      }), React.createElement(_StyledAnimatedDiv$1, {
+      }), React__default.createElement(_StyledAnimatedDiv$1, {
         style: {
           height: height
         }
       }, expansion.content.map(function (child, i) {
-        return React.createElement(_StyledDiv2$3, {
+        return React__default.createElement(_StyledDiv2$3, {
           key: i,
           _css16: expansion.freeLayout ? 'auto' : "".concat(rowHeight, "px"),
           _css17: theme.border
         });
-      }))), React.createElement("td", {
+      }))), React__default.createElement("td", {
         colSpan: alignChildOnCell === -1 ? cellsCount : cellsCount - alignChildOnCell
-      }, React.createElement(_StyledAnimatedDiv2, {
+      }, React__default.createElement(_StyledAnimatedDiv2, {
         style: {
           height: height
         }
       }, expansion.content.map(function (child, i) {
-        return React.createElement(_StyledDiv3$1, {
+        return React__default.createElement(_StyledDiv3$1, {
           key: i,
           ref: expansion.freeLayout ? handleFreeLayoutContentRef : null,
           _css18: expansion.freeLayout ? 'auto' : "".concat(rowHeight, "px"),
@@ -10836,17 +10723,17 @@ function EntryExpansion(_ref9) {
   });
 }
 
-var _StyledDiv4$1 = _styled.div.withConfig({
+var _StyledDiv4$1 = _styled__default.div.withConfig({
   displayName: "TableView___StyledDiv4",
   componentId: "aczwu3-10"
 })(["width:100%;height:100%;"]);
 
-var Toggle = React.memo(function Toggle(_ref11) {
+var Toggle = React__default.memo(function Toggle(_ref11) {
   var opened = _ref11.opened,
       onToggle = _ref11.onToggle;
-  return React.createElement(_StyledDiv4$1, null, React.createElement(OpenedSurfaceBorder, {
+  return React__default.createElement(_StyledDiv4$1, null, React__default.createElement(OpenedSurfaceBorder, {
     opened: opened
-  }), React.createElement(ToggleButton, {
+  }), React__default.createElement(ToggleButton, {
     opened: opened,
     onClick: onToggle
   }));
@@ -10856,7 +10743,7 @@ function ownKeys$8(object, enumerableOnly) { var keys = Object.keys(object); if 
 
 function _objectSpread$8(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$8(source, true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$8(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
-var _StyledDiv$7 = _styled.div.withConfig({
+var _StyledDiv$7 = _styled__default.div.withConfig({
   displayName: "ListView___StyledDiv",
   componentId: "sc-1wnrej-0"
 })(["position:relative;padding:0;padding-right:", "px;padding-left:", "px;border-bottom:", "px solid ", ";transition:background 150ms ease-in-out;background:", ";"], function (p) {
@@ -10871,7 +10758,7 @@ var _StyledDiv$7 = _styled.div.withConfig({
   return p._css5;
 });
 
-var _StyledDiv2$4 = _styled.div.withConfig({
+var _StyledDiv2$4 = _styled__default.div.withConfig({
   displayName: "ListView___StyledDiv2",
   componentId: "sc-1wnrej-1"
 })(["position:absolute;top:", "px;left:0;display:flex;justify-content:center;width:", "px;"], function (p) {
@@ -10880,7 +10767,7 @@ var _StyledDiv2$4 = _styled.div.withConfig({
   return p._css7;
 });
 
-var _StyledDiv3$2 = _styled.div.withConfig({
+var _StyledDiv3$2 = _styled__default.div.withConfig({
   displayName: "ListView___StyledDiv3",
   componentId: "sc-1wnrej-2"
 })(["position:absolute;top:", "px;right:", "px;"], function (p) {
@@ -10889,14 +10776,14 @@ var _StyledDiv3$2 = _styled.div.withConfig({
   return p._css9;
 });
 
-var _StyledDiv4$2 = _styled.div.withConfig({
+var _StyledDiv4$2 = _styled__default.div.withConfig({
   displayName: "ListView___StyledDiv4",
   componentId: "sc-1wnrej-3"
 })(["display:flex;flex-direction:column;padding-bottom:", "px;"], function (p) {
   return p._css10;
 });
 
-var _StyledDiv5 = _styled.div.withConfig({
+var _StyledDiv5 = _styled__default.div.withConfig({
   displayName: "ListView___StyledDiv5",
   componentId: "sc-1wnrej-4"
 })(["display:flex;align-items:center;margin:", "px 0 ", "px;color:", ";", ";"], function (p) {
@@ -10921,44 +10808,44 @@ function ListView(_ref) {
       rowHeight = _ref.rowHeight;
   var theme = useTheme();
 
-  var _useState = useState$1(-1),
+  var _useState = React.useState(-1),
       _useState2 = slicedToArray(_useState, 2),
       opened = _useState2[0],
       setOpened = _useState2[1];
 
-  var toggleEntry = useCallback(function (index) {
+  var toggleEntry = React.useCallback(function (index) {
     setOpened(function (opened) {
       return opened === index ? -1 : index;
     });
   }, []);
   var sideSpace = selectable || hasAnyExpansion;
-  return React.createElement(React.Fragment, null, entries.map(function (entry, index) {
+  return React__default.createElement(React__default.Fragment, null, entries.map(function (entry, index) {
     var hasExpansion = entry.expansion.content.length > 0;
-    return React.createElement(_StyledDiv$7, {
+    return React__default.createElement(_StyledDiv$7, {
       key: index,
       _css: 3 * GU,
       _css2: (sideSpace ? 6.5 : 3) * GU,
       _css3: Number(index !== entries.length - 1),
       _css4: theme.border,
       _css5: entry.selected ? theme.surfaceSelected : 'none'
-    }, React.createElement(OpenedSurfaceBorder, {
+    }, React__default.createElement(OpenedSurfaceBorder, {
       opened: entry.index === opened
-    }), sideSpace && React.createElement(_StyledDiv2$4, {
+    }), sideSpace && React__default.createElement(_StyledDiv2$4, {
       _css6: 1.5 * GU,
       _css7: 6.5 * GU
-    }, selectable && React.createElement(Select, {
+    }, selectable && React__default.createElement(Select, {
       index: entry.index,
       selected: entry.selected,
       onSelect: onSelect
-    }), !selectable && hasExpansion && React.createElement(ToggleButton, {
+    }), !selectable && hasExpansion && React__default.createElement(ToggleButton, {
       opened: entry.index === opened,
       onClick: function onClick() {
         return toggleEntry(entry.index);
       }
-    })), entry.actions && React.createElement(_StyledDiv3$2, {
+    })), entry.actions && React__default.createElement(_StyledDiv3$2, {
       _css8: 2 * GU,
       _css9: 3 * GU
-    }, entry.actions), React.createElement("div", null, entry.entryNodes.map(function (content, index) {
+    }, entry.actions), React__default.createElement("div", null, entry.entryNodes.map(function (content, index) {
       return [// field content
       content, // field label
       fields[index].label, // priority number
@@ -10971,16 +10858,16 @@ function ListView(_ref) {
           content = _ref3[0],
           label = _ref3[1];
 
-      return React.createElement(_StyledDiv4$2, {
+      return React__default.createElement(_StyledDiv4$2, {
         key: index,
         _css10: index === entryNodes.length - 1 ? 2 * GU : 0
-      }, React.createElement(_StyledDiv5, {
+      }, React__default.createElement(_StyledDiv5, {
         _css11: 2 * GU,
         _css12: 1 * GU,
         _css13: theme.surfaceContentSecondary,
         _css14: textStyle('label2')
-      }, label), React.createElement("div", null, content));
-    })), hasExpansion && React.createElement(EntryExpansion$1, {
+      }, label), React__default.createElement("div", null, content));
+    })), hasExpansion && React__default.createElement(EntryExpansion$1, {
       expansion: entry.expansion,
       opened: opened === entry.index,
       rowHeight: rowHeight
@@ -11002,7 +10889,7 @@ ListView.propTypes = {
 
 /* eslint-disable react/prop-types */
 
-var _StyledAnimatedDiv$2 = _styled(extendedAnimated.div).withConfig({
+var _StyledAnimatedDiv$2 = _styled__default(extendedAnimated.div).withConfig({
   displayName: "ListView___StyledAnimatedDiv",
   componentId: "sc-1wnrej-5"
 })(["overflow:hidden;background:", ";margin-left:", "px;margin-right:", "px;padding-left:", "px;box-shadow:inset 0 6px 4px -4px rgba(0,0,0,0.16);"], function (p) {
@@ -11015,7 +10902,7 @@ var _StyledAnimatedDiv$2 = _styled(extendedAnimated.div).withConfig({
   return p._css18;
 });
 
-var _StyledDiv6 = _styled.div.withConfig({
+var _StyledDiv6 = _styled__default.div.withConfig({
   displayName: "ListView___StyledDiv6",
   componentId: "sc-1wnrej-6"
 })(["display:flex;align-items:center;height:", ";padding-right:", "px;"], function (p) {
@@ -11030,18 +10917,18 @@ function EntryExpansion$1(_ref4) {
       rowHeight = _ref4.rowHeight;
   var theme = useTheme(); // Handles the height of the expansion in free layout mode
 
-  var _useState3 = useState$1(0),
+  var _useState3 = React.useState(0),
       _useState4 = slicedToArray(_useState3, 2),
       freeLayoutContentHeight = _useState4[0],
       setFreeLayoutContentHeight = _useState4[1];
 
-  var handleFreeLayoutContentRef = useCallback(function (element) {
+  var handleFreeLayoutContentRef = React.useCallback(function (element) {
     if (element) {
       setFreeLayoutContentHeight(element.getBoundingClientRect().height);
     }
   }, []);
   var height = expansion.freeLayout ? freeLayoutContentHeight : rowHeight * expansion.content.length;
-  return React.createElement(Transition, {
+  return React__default.createElement(Transition, {
     native: true,
     items: opened,
     from: {
@@ -11062,7 +10949,7 @@ function EntryExpansion$1(_ref4) {
   }, function (show) {
     return show && function (_ref5) {
       var height = _ref5.height;
-      return React.createElement(_StyledAnimatedDiv$2, {
+      return React__default.createElement(_StyledAnimatedDiv$2, {
         style: {
           height: height.interpolate(function (v) {
             return "".concat(v, "px");
@@ -11073,7 +10960,7 @@ function EntryExpansion$1(_ref4) {
         _css17: -3 * GU,
         _css18: 6.5 * GU
       }, expansion.content.map(function (child, i) {
-        return React.createElement(_StyledDiv6, {
+        return React__default.createElement(_StyledDiv6, {
           key: i,
           ref: expansion.freeLayout ? handleFreeLayoutContentRef : null,
           _css19: expansion.freeLayout ? 'auto' : "".concat(rowHeight, "px"),
@@ -11088,10 +10975,10 @@ function Select(_ref6) {
   var index = _ref6.index,
       selected = _ref6.selected,
       onSelect = _ref6.onSelect;
-  var change = useCallback(function (check) {
+  var change = React.useCallback(function (check) {
     onSelect(index, check);
   }, [index, onSelect]);
-  return React.createElement(CheckBoxWithTheme, {
+  return React__default.createElement(CheckBoxWithTheme, {
     onChange: change,
     checked: selected
   });
@@ -11198,13 +11085,13 @@ function useSelection(entries, selection, onSelectEntries) {
   // Only used if `selection` is not passed via props. The selection supports
   // both a managed and a controlled mode, to provide a better developer
   // experience out of the box.
-  var _useState = useState$1([]),
+  var _useState = React.useState([]),
       _useState2 = slicedToArray(_useState, 2),
       selectionManaged = _useState2[0],
       setSelectionManaged = _useState2[1];
 
   var currentSelection = selection === undefined ? selectionManaged : selection;
-  var updateSelection = useCallback(function (newSelection) {
+  var updateSelection = React.useCallback(function (newSelection) {
     // Managed state
     if (selection === undefined) {
       setSelectionManaged(newSelection);
@@ -11215,7 +11102,7 @@ function useSelection(entries, selection, onSelectEntries) {
       return entries[index];
     }), newSelection);
   }, [selection, onSelectEntries, entries]);
-  var allSelected = useMemo(function () {
+  var allSelected = React.useMemo(function () {
     // none selected
     if (currentSelection.length === 0) {
       return -1;
@@ -11229,12 +11116,12 @@ function useSelection(entries, selection, onSelectEntries) {
 
     return 0;
   }, [entries, currentSelection]);
-  var toggleEntrySelect = useCallback(function (entryIndex) {
+  var toggleEntrySelect = React.useCallback(function (entryIndex) {
     updateSelection(currentSelection.includes(entryIndex) ? currentSelection.filter(function (index) {
       return index !== entryIndex;
     }) : [].concat(toConsumableArray(currentSelection), [entryIndex]));
   }, [updateSelection, currentSelection]);
-  var selectAll = useCallback(function () {
+  var selectAll = React.useCallback(function () {
     updateSelection(currentSelection.length === 0 ? entries.map(function (_, index) {
       return index;
     }) : []);
@@ -11247,7 +11134,7 @@ function useSelection(entries, selection, onSelectEntries) {
   };
 }
 
-var _StyledDiv$8 = _styled.div.withConfig({
+var _StyledDiv$8 = _styled__default.div.withConfig({
   displayName: "DataView___StyledDiv",
   componentId: "sc-49otbs-0"
 })(["padding:", "px ", "px;"], function (p) {
@@ -11256,7 +11143,7 @@ var _StyledDiv$8 = _styled.div.withConfig({
   return p._css2;
 });
 
-var _StyledH$1 = _styled.h1.withConfig({
+var _StyledH$1 = _styled__default.h1.withConfig({
   displayName: "DataView___StyledH",
   componentId: "sc-49otbs-1"
 })(["margin-bottom:", "px;", ";"], function (p) {
@@ -11265,12 +11152,12 @@ var _StyledH$1 = _styled.h1.withConfig({
   return p._css4;
 });
 
-var _StyledDiv2$5 = _styled.div.withConfig({
+var _StyledDiv2$5 = _styled__default.div.withConfig({
   displayName: "DataView___StyledDiv2",
   componentId: "sc-49otbs-2"
 })(["display:flex;justify-content:center;align-items:center;"]);
 
-var _StyledDiv3$3 = _styled.div.withConfig({
+var _StyledDiv3$3 = _styled__default.div.withConfig({
   displayName: "DataView___StyledDiv3",
   componentId: "sc-49otbs-3"
 })(["width:", "px;text-align:center;padding:", "px 0;"], function (p) {
@@ -11279,42 +11166,42 @@ var _StyledDiv3$3 = _styled.div.withConfig({
   return p._css6;
 });
 
-var _StyledImg = _styled.img.withConfig({
+var _StyledImg = _styled__default.img.withConfig({
   displayName: "DataView___StyledImg",
   componentId: "sc-49otbs-4"
 })(["margin-bottom:", "px;"], function (p) {
   return p._css7;
 });
 
-var _StyledImg2 = _styled.img.withConfig({
+var _StyledImg2 = _styled__default.img.withConfig({
   displayName: "DataView___StyledImg2",
   componentId: "sc-49otbs-5"
 })(["margin-bottom:", "px;"], function (p) {
   return p._css8;
 });
 
-var _StyledP = _styled.p.withConfig({
+var _StyledP = _styled__default.p.withConfig({
   displayName: "DataView___StyledP",
   componentId: "sc-49otbs-6"
 })(["", ";"], function (p) {
   return p._css9;
 });
 
-var _StyledP2 = _styled.p.withConfig({
+var _StyledP2 = _styled__default.p.withConfig({
   displayName: "DataView___StyledP2",
   componentId: "sc-49otbs-7"
 })(["", ";display:flex;align-items:center;"], function (p) {
   return p._css10;
 });
 
-var _StyledLoadingRing = _styled(LoadingRing).withConfig({
+var _StyledLoadingRing = _styled__default(LoadingRing).withConfig({
   displayName: "DataView___StyledLoadingRing",
   componentId: "sc-49otbs-8"
 })(["margin-right:", "px;"], function (p) {
   return p._css11;
 });
 
-var _StyledP3 = _styled.p.withConfig({
+var _StyledP3 = _styled__default.p.withConfig({
   displayName: "DataView___StyledP3",
   componentId: "sc-49otbs-9"
 })(["", ";margin-top:", "px;"], function (p) {
@@ -11323,14 +11210,14 @@ var _StyledP3 = _styled.p.withConfig({
   return p._css13;
 });
 
-var _StyledP4 = _styled.p.withConfig({
+var _StyledP4 = _styled__default.p.withConfig({
   displayName: "DataView___StyledP4",
   componentId: "sc-49otbs-10"
 })(["color:", ";"], function (p) {
   return p._css14;
 });
 
-var _StyledP5 = _styled.p.withConfig({
+var _StyledP5 = _styled__default.p.withConfig({
   displayName: "DataView___StyledP5",
   componentId: "sc-49otbs-11"
 })(["", ";margin-top:", "px;"], function (p) {
@@ -11339,21 +11226,21 @@ var _StyledP5 = _styled.p.withConfig({
   return p._css16;
 });
 
-var _StyledP6 = _styled.p.withConfig({
+var _StyledP6 = _styled__default.p.withConfig({
   displayName: "DataView___StyledP6",
   componentId: "sc-49otbs-12"
 })(["color:", ";"], function (p) {
   return p._css17;
 });
 
-var _StyledDiv4$3 = _styled.div.withConfig({
+var _StyledDiv4$3 = _styled__default.div.withConfig({
   displayName: "DataView___StyledDiv4",
   componentId: "sc-49otbs-13"
 })(["border-top:1px solid ", ";"], function (p) {
   return p._css18;
 });
 
-var DataView = React.memo(function DataView(_ref2) {
+var DataView = React__default.memo(function DataView(_ref2) {
   var page = _ref2.page,
       entries = _ref2.entries,
       entriesPerPage = _ref2.entriesPerPage,
@@ -11389,12 +11276,12 @@ var DataView = React.memo(function DataView(_ref2) {
   // out of the box.
 
 
-  var _useState3 = useState$1(0),
+  var _useState3 = React.useState(0),
       _useState4 = slicedToArray(_useState3, 2),
       pageManaged = _useState4[0],
       setPageManaged = _useState4[1];
 
-  var handlePageChange = useCallback(function (newPage) {
+  var handlePageChange = React.useCallback(function (newPage) {
     // Managed state
     if (page === undefined) {
       setPageManaged(newPage);
@@ -11404,7 +11291,7 @@ var DataView = React.memo(function DataView(_ref2) {
     onPageChange(newPage);
   }, [onPageChange, page]); // Reset managed pagination if the entries or the pagination changes.
 
-  useEffect(function () {
+  React.useEffect(function () {
     setPageManaged(0);
   }, [entries]);
   var selectedPage = page === undefined ? pageManaged : page;
@@ -11446,15 +11333,15 @@ var DataView = React.memo(function DataView(_ref2) {
     return field && field.childStart;
   });
   var emptyEntries = renderedEntries.length === 0;
-  return React.createElement(Box, {
+  return React__default.createElement(Box, {
     padding: 0
-  }, heading && React.createElement(_StyledDiv$8, {
+  }, heading && React__default.createElement(_StyledDiv$8, {
     _css: 2 * GU,
     _css2: layoutName === 'small' ? 2 * GU : 3 * GU
-  }, typeof heading === 'string' ? React.createElement(_StyledH$1, {
+  }, typeof heading === 'string' ? React__default.createElement(_StyledH$1, {
     _css3: 2 * GU,
     _css4: textStyle('body2')
-  }, heading) : heading), !emptyEntries && (listMode ? React.createElement(ListView, {
+  }, heading) : heading), !emptyEntries && (listMode ? React__default.createElement(ListView, {
     allSelected: allSelected,
     entries: renderedEntries,
     fields: preparedFields,
@@ -11464,7 +11351,7 @@ var DataView = React.memo(function DataView(_ref2) {
     renderSelectionCount: renderSelectionCount,
     rowHeight: tableRowHeight,
     selectable: canSelect
-  }) : React.createElement(TableView, {
+  }) : React__default.createElement(TableView, {
     alignChildOnField: Math.min(Math.max(-1, alignChildOnField), fields.length - 1),
     allSelected: allSelected,
     entries: renderedEntries,
@@ -11477,42 +11364,42 @@ var DataView = React.memo(function DataView(_ref2) {
     rowHeight: tableRowHeight,
     selectable: canSelect,
     selectedCount: selectedIndexes.length
-  })), emptyEntries && React.createElement(_StyledDiv2$5, null, React.createElement(_StyledDiv3$3, {
+  })), emptyEntries && React__default.createElement(_StyledDiv2$5, null, React__default.createElement(_StyledDiv3$3, {
     _css5: 31 * GU,
     _css6: 8 * GU
-  }, (status === 'default' || status === 'loading') && React.createElement(_StyledImg, {
+  }, (status === 'default' || status === 'loading') && React__default.createElement(_StyledImg, {
     src: publicUrl + illustrationBlueImage,
     alt: "",
     height: 20 * GU,
     _css7: 2 * GU
-  }), (status === 'empty-filters' || status === 'empty-search') && React.createElement(_StyledImg2, {
+  }), (status === 'empty-filters' || status === 'empty-search') && React__default.createElement(_StyledImg2, {
     src: publicUrl + illustrationRedImage,
     alt: "",
     height: 20 * GU,
     _css8: 2 * GU
-  }), status === 'default' && (statusEmpty || React.createElement(_StyledP, {
+  }), status === 'default' && (statusEmpty || React__default.createElement(_StyledP, {
     _css9: textStyle('title2')
-  }, "No data available.")), status === 'loading' && (statusLoading || React.createElement(_StyledP2, {
+  }, "No data available.")), status === 'loading' && (statusLoading || React__default.createElement(_StyledP2, {
     _css10: textStyle('title2')
-  }, React.createElement(_StyledLoadingRing, {
+  }, React__default.createElement(_StyledLoadingRing, {
     _css11: 2 * GU
-  }), ' ', "Loading data\u2026")), status === 'empty-filters' && React.createElement(React.Fragment, null, React.createElement(_StyledP3, {
+  }), ' ', "Loading data\u2026")), status === 'empty-filters' && React__default.createElement(React__default.Fragment, null, React__default.createElement(_StyledP3, {
     _css12: textStyle('title2'),
     _css13: 2 * GU
-  }, "No results found."), statusEmptyFilters || React.createElement(_StyledP4, {
+  }, "No results found."), statusEmptyFilters || React__default.createElement(_StyledP4, {
     _css14: theme.surfaceContentSecondary
-  }, 'We can’t find any item matching your filter selection. ', React.createElement(Link, {
+  }, 'We can’t find any item matching your filter selection. ', React__default.createElement(Link, {
     onClick: onStatusEmptyClear
-  }, "Clear filters"))), status === 'empty-search' && React.createElement(React.Fragment, null, React.createElement(_StyledP5, {
+  }, "Clear filters"))), status === 'empty-search' && React__default.createElement(React__default.Fragment, null, React__default.createElement(_StyledP5, {
     _css15: textStyle('title2'),
     _css16: 2 * GU
-  }, "No results found."), statusEmptySearch || React.createElement(_StyledP6, {
+  }, "No results found."), statusEmptySearch || React__default.createElement(_StyledP6, {
     _css17: theme.surfaceContentSecondary
-  }, 'We can’t find any item matching your search query. ', React.createElement(Link, {
+  }, 'We can’t find any item matching your search query. ', React__default.createElement(Link, {
     onClick: onStatusEmptyClear
-  }, "Clear search"))))), pages > 1 && React.createElement(_StyledDiv4$3, {
+  }, "Clear search"))))), pages > 1 && React__default.createElement(_StyledDiv4$3, {
     _css18: theme.border
-  }, React.createElement(Pagination, {
+  }, React__default.createElement(Pagination, {
     pages: pages,
     selected: selectedPage,
     onChange: handlePageChange,
@@ -11554,7 +11441,7 @@ DataView.defaultProps = {
   status: 'default'
 };
 
-var _StyledButtonBase$4 = _styled(ButtonBaseWithFocus).withConfig({
+var _StyledButtonBase$4 = _styled__default(ButtonBaseWithFocus).withConfig({
   displayName: "DiscButton___StyledButtonBase",
   componentId: "sc-1ay99f2-0"
 })(["display:flex;align-items:center;justify-content:center;width:", "px;height:", "px;background:", ";color:", ";border-radius:50%;box-shadow:0 1px 3px rgba(0,0,0,0.25);transition-property:transform,box-shadow;transition-duration:50ms;transition-timing-function:ease-in-out;&:active{transform:translateY(1px);box-shadow:0px 1px 3px rgba(0,0,0,0.125);}"], function (p) {
@@ -11567,14 +11454,14 @@ var _StyledButtonBase$4 = _styled(ButtonBaseWithFocus).withConfig({
   return p._css4;
 });
 
-var DiscButton = React.forwardRef(function (_ref, ref) {
+var DiscButton = React__default.forwardRef(function (_ref, ref) {
   var children = _ref.children,
       description = _ref.description,
       size = _ref.size,
       props = objectWithoutProperties(_ref, ["children", "description", "size"]);
 
   var theme = useTheme();
-  return React.createElement(_StyledButtonBase$4, _extends_1({
+  return React__default.createElement(_StyledButtonBase$4, _extends_1({
     ref: ref,
     focusRingSpacing: 4,
     focusRingRadius: size,
@@ -11631,7 +11518,7 @@ function getModeStyles(theme, mode) {
   };
 }
 
-var _StyledSection = _styled.section.withConfig({
+var _StyledSection = _styled__default.section.withConfig({
   displayName: "Info___StyledSection",
   componentId: "sc-1kgnlbm-0"
 })(["color:", ";background:", ";border-left:2px solid ", ";padding:", "px;border-radius:", "px;word-wrap:break-word;", ";"], function (p) {
@@ -11646,7 +11533,7 @@ var _StyledSection = _styled.section.withConfig({
   return p._css5;
 });
 
-var _StyledH$2 = _styled.h1.withConfig({
+var _StyledH$2 = _styled__default.h1.withConfig({
   displayName: "Info___StyledH",
   componentId: "sc-1kgnlbm-1"
 })(["display:flex;align-items:center;color:", ";", ";margin-bottom:", "px;"], function (p) {
@@ -11669,17 +11556,17 @@ function Info(_ref) {
 
   var theme = useTheme(); // Get styles from the current mode
 
-  var modeStyles = useMemo(function () {
+  var modeStyles = React.useMemo(function () {
     var styles = getModeStyles(theme, mode);
     return styles;
   }, [mode, theme]);
-  return React.createElement(_StyledSection, _extends_1({}, props, {
+  return React__default.createElement(_StyledSection, _extends_1({}, props, {
     _css: color || modeStyles.color,
     _css2: background || modeStyles.background,
     _css3: borderColor || modeStyles.borderColor,
     _css4: 2 * GU,
     _css5: textStyle('body3')
-  }), title && React.createElement(_StyledH$2, {
+  }), title && React__default.createElement(_StyledH$2, {
     _css6: titleColor || modeStyles.titleColor,
     _css7: textStyle('label2'),
     _css8: 1 * GU
@@ -11696,34 +11583,23 @@ Info.propTypes = {
   borderColor: propTypes.string
 };
 
-function Warning(props) {
-  return React.createElement(Info, _extends_1({
-    mode: "warning"
-  }, props));
-} // Backward compatibility
-
-
-Info.Action = Info;
-Info.Permissions = Warning;
-Info.Alert = Warning;
-
 function ExternalLink(props) {
   warnOnce('ExternalLink', 'ExternalLink is deprecated. Please use Link instead.');
-  return React.createElement(Link, _extends_1({
+  return React__default.createElement(Link, _extends_1({
     external: true
   }, props));
 }
 
 function SafeLink(props) {
   warnOnce('SafeLink', 'SafeLink is deprecated. Please use Link instead.');
-  return React.createElement(Link, props);
+  return React__default.createElement(Link, props);
 }
 
 function ownKeys$9(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread$9(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$9(source, true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$9(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
-var _StyledInput = _styled.input.withConfig({
+var _StyledInput = _styled__default.input.withConfig({
   displayName: "TextInput___StyledInput",
   componentId: "gngg3n-0"
 })(["width:", ";height:", "px;padding:0 ", "px;background:", ";border:1px solid ", ";color:", ";border-radius:", "px;appearance:none;", ";", " &:focus{outline:none;border-color:", ";}&:read-only{color:", ";border-color:", ";}&::placeholder{color:", ";opacity:1;}&:invalid{box-shadow:none;}"], function (_ref) {
@@ -11753,14 +11629,14 @@ var _StyledInput = _styled.input.withConfig({
   return p._css11;
 });
 
-var TextInput = React.forwardRef(function (_ref2, ref) {
+var TextInput = React__default.forwardRef(function (_ref2, ref) {
   var autofocus = _ref2.autofocus,
       multiline = _ref2.multiline,
       type = _ref2.type,
       props = objectWithoutProperties(_ref2, ["autofocus", "multiline", "type"]);
 
   var theme = useTheme();
-  var handleRef = useCallback(function (element) {
+  var handleRef = React.useCallback(function (element) {
     if (ref) {
       ref.current = element;
     }
@@ -11769,7 +11645,7 @@ var TextInput = React.forwardRef(function (_ref2, ref) {
       element.focus();
     }
   }, [autofocus, ref]);
-  return React.createElement(_StyledInput, _extends_1({
+  return React__default.createElement(_StyledInput, _extends_1({
     ref: handleRef,
     as: multiline ? 'textarea' : 'input',
     type: multiline ? undefined : type
@@ -11788,7 +11664,7 @@ var TextInput = React.forwardRef(function (_ref2, ref) {
   }));
 });
 
-var _StyledTextInput = _styled(TextInput).withConfig({
+var _StyledTextInput = _styled__default(TextInput).withConfig({
   displayName: "TextInput___StyledTextInput",
   componentId: "gngg3n-1"
 })(["", ":", "px;"], function (p) {
@@ -11810,14 +11686,14 @@ TextInput.defaultProps = {
   type: 'text'
 }; // Text input wrapped to allow adornments
 
-var _StyledDiv$9 = _styled.div.withConfig({
+var _StyledDiv$9 = _styled__default.div.withConfig({
   displayName: "TextInput___StyledDiv",
   componentId: "gngg3n-2"
 })(["display:inline-flex;position:relative;width:", ";"], function (p) {
   return p._css12;
 });
 
-var _StyledDiv2$6 = _styled.div.withConfig({
+var _StyledDiv2$6 = _styled__default.div.withConfig({
   displayName: "TextInput___StyledDiv2",
   componentId: "gngg3n-3"
 })(["position:absolute;top:0;bottom:0;height:100%;", ":", "px;display:flex;align-items:center;justify-content:center;color:", ";"], function (p) {
@@ -11828,7 +11704,7 @@ var _StyledDiv2$6 = _styled.div.withConfig({
   return p._css17;
 });
 
-var WrapperTextInput = React.forwardRef(function (_ref3, ref) {
+var WrapperTextInput = React__default.forwardRef(function (_ref3, ref) {
   var adornment = _ref3.adornment,
       adornmentPosition = _ref3.adornmentPosition,
       _ref3$adornmentSettin = _ref3.adornmentSettings,
@@ -11841,19 +11717,19 @@ var WrapperTextInput = React.forwardRef(function (_ref3, ref) {
   var theme = useTheme();
 
   if (!adornment) {
-    return React.createElement(TextInput, _extends_1({
+    return React__default.createElement(TextInput, _extends_1({
       ref: ref
     }, props));
   }
 
-  return React.createElement(_StyledDiv$9, {
+  return React__default.createElement(_StyledDiv$9, {
     _css12: props.wide ? '100%' : 'max-content'
-  }, React.createElement(_StyledTextInput, _extends_1({
+  }, React__default.createElement(_StyledTextInput, _extends_1({
     ref: ref
   }, props, {
     _css13: adornmentPosition === 'end' ? 'padding-right' : 'padding-left',
     _css14: adornmentWidth - adornmentPadding * 2
-  })), React.createElement(_StyledDiv2$6, {
+  })), React__default.createElement(_StyledDiv2$6, {
     _css15: adornmentPosition === 'end' ? 'right' : 'left',
     _css16: adornmentPadding,
     _css17: theme.surfaceContentSecondary
@@ -11875,14 +11751,14 @@ WrapperTextInput.defaultProps = _objectSpread$9({}, TextInput.defaultProps, {
 
 function TextInputNumber(props) {
   warnOnce('TextInputNumber', 'TextInputNumber is deprecated. Please use TextInput instead.');
-  return React.createElement(TextInput, _extends_1({
+  return React__default.createElement(TextInput, _extends_1({
     type: "number"
   }, props));
 } // Multiline input (textarea element)
 
 
 function TextInputMultiline(props) {
-  return React.createElement(TextInput, _extends_1({
+  return React__default.createElement(TextInput, _extends_1({
     multiline: true
   }, props));
 }
@@ -11901,36 +11777,36 @@ function ownKeys$a(object, enumerableOnly) { var keys = Object.keys(object); if 
 function _objectSpread$a(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$a(source, true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$a(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 var EMPTY = '';
 
-var _StyledIconSearch = _styled(IconSearch).withConfig({
+var _StyledIconSearch = _styled__default(IconSearch).withConfig({
   displayName: "SearchInput___StyledIconSearch",
   componentId: "sc-13u679s-0"
 })(["color:", ";"], function (p) {
   return p._css;
 });
 
-var _StyledButtonIcon$1 = _styled(ButtonIcon).withConfig({
+var _StyledButtonIcon$1 = _styled__default(ButtonIcon).withConfig({
   displayName: "SearchInput___StyledButtonIcon",
   componentId: "sc-13u679s-1"
 })(["color:", ";"], function (p) {
   return p._css2;
 });
 
-var SearchInput = React.forwardRef(function (_ref2, ref) {
+var SearchInput = React__default.forwardRef(function (_ref2, ref) {
   var onChange = _ref2.onChange,
       props = objectWithoutProperties(_ref2, ["onChange"]);
 
   var theme = useTheme();
-  var fallbackRef = useRef();
+  var fallbackRef = React.useRef();
 
   var _ref = ref || fallbackRef;
 
-  var handleChange = useCallback(function (ev) {
+  var handleChange = React.useCallback(function (ev) {
     var value = ev.currentTarget.value;
     onChange(value, {
       inputChangeEvent: ev
     });
   }, [onChange]);
-  var handleClearClick = useCallback(function (ev) {
+  var handleClearClick = React.useCallback(function (ev) {
     onChange(EMPTY, {
       clearClickEvent: ev
     });
@@ -11939,15 +11815,15 @@ var SearchInput = React.forwardRef(function (_ref2, ref) {
       _ref.current.focus();
     }
   }, [onChange, _ref]);
-  return React.createElement(WrapperTextInput, _extends_1({
+  return React__default.createElement(WrapperTextInput, _extends_1({
     ref: _ref,
-    adornment: (props.value || '') === EMPTY ? React.createElement(_StyledIconSearch, {
+    adornment: (props.value || '') === EMPTY ? React__default.createElement(_StyledIconSearch, {
       _css: theme.surfaceIcon
-    }) : React.createElement(_StyledButtonIcon$1, {
+    }) : React__default.createElement(_StyledButtonIcon$1, {
       onClick: handleClearClick,
       label: "Clear search input",
       _css2: theme.surfaceIcon
-    }, React.createElement(IconCross, null)),
+    }, React__default.createElement(IconCross, null)),
     adornmentPosition: "end",
     onChange: handleChange
   }, props));
@@ -12014,7 +11890,7 @@ function useLabel(_ref2) {
   var _ref2$label = _ref2.label,
       label = _ref2$label === void 0 ? '' : _ref2$label,
       limitDigits = _ref2.limitDigits;
-  var finalLabel = useMemo(function () {
+  var finalLabel = React.useMemo(function () {
     if (limitDigits === false) {
       return typeof label === 'number' ? String(label) : label || '';
     }
@@ -12033,7 +11909,7 @@ function useLabel(_ref2) {
   return finalLabel;
 }
 
-var _StyledSpan$4 = _styled.span.withConfig({
+var _StyledSpan$4 = _styled__default.span.withConfig({
   displayName: "Tag___StyledSpan",
   componentId: "sc-875dmt-0"
 })(["display:inline-flex;align-items:center;justify-content:center;white-space:nowrap;", ";", ";color:", ";background:", ";", ";"], function (p) {
@@ -12046,14 +11922,14 @@ var _StyledSpan$4 = _styled.span.withConfig({
   return p._css4;
 }, unselectable);
 
-var _StyledSpan2$2 = _styled.span.withConfig({
+var _StyledSpan2$2 = _styled__default.span.withConfig({
   displayName: "Tag___StyledSpan2",
   componentId: "sc-875dmt-1"
 })(["display:flex;align-items:center;margin-right:", "px;"], function (p) {
   return p._css5;
 });
 
-var _StyledSpan3$1 = _styled.span.withConfig({
+var _StyledSpan3$1 = _styled__default.span.withConfig({
   displayName: "Tag___StyledSpan3",
   componentId: "sc-875dmt-2"
 })(["overflow:hidden;text-overflow:ellipsis;margin-top:", ";"], function (p) {
@@ -12092,14 +11968,14 @@ function Tag(_ref3) {
   // to make the characters look more aligned.
 
   var alignmentCorrection = finalSize === SIZE_NORMAL && (uppercase || typeof label === 'number' || limitDigits !== false);
-  return React.createElement(_StyledSpan$4, _extends_1({}, props, {
+  return React__default.createElement(_StyledSpan$4, _extends_1({}, props, {
     _css: sizeStyles,
     _css2: !uppercase ? 'text-transform: unset' : '',
     _css3: color || modeProps.color,
     _css4: background || modeProps.background
-  }), icon && React.createElement(_StyledSpan2$2, {
+  }), icon && React__default.createElement(_StyledSpan2$2, {
     _css5: finalLabel ? 0.25 * GU : 0
-  }, icon), React.createElement(_StyledSpan3$1, {
+  }, icon), React__default.createElement(_StyledSpan3$1, {
     _css6: alignmentCorrection ? '1px' : '0'
   }, finalLabel));
 }
@@ -12143,7 +12019,6 @@ var runtime_1 = createCommonjsModule(function (module) {
  */
 
 var runtime = (function (exports) {
-  "use strict";
 
   var Op = Object.prototype;
   var hasOwn = Op.hasOwnProperty;
@@ -12844,7 +12719,7 @@ var runtime = (function (exports) {
   // as the regeneratorRuntime namespace. Otherwise create a new empty
   // object. Either way, the resulting object will be used to initialize
   // the regeneratorRuntime variable at the top of this file.
-  'object' === "object" ? module.exports : {}
+   module.exports 
 ));
 
 try {
@@ -12865,25 +12740,25 @@ try {
 
 var regenerator = runtime_1;
 
-var RootContext = React.createContext(null);
+var RootContext = React__default.createContext(null);
 
 function RootProvider(_ref) {
   var children = _ref.children,
       props = objectWithoutProperties(_ref, ["children"]);
 
-  var _useState = useState$1(null),
+  var _useState = React.useState(null),
       _useState2 = slicedToArray(_useState, 2),
       element = _useState2[0],
       setElement = _useState2[1];
 
-  var handleRef = useCallback(function (element) {
+  var handleRef = React.useCallback(function (element) {
     if (element !== null) {
       setElement(element);
     }
   }, []);
-  return React.createElement(RootContext.Provider, {
+  return React__default.createElement(RootContext.Provider, {
     value: element
-  }, React.createElement("div", _extends_1({
+  }, React__default.createElement("div", _extends_1({
     ref: handleRef
   }, props),
   /*
@@ -12905,17 +12780,17 @@ RootProvider.propTypes = {
 };
 
 function Root(props) {
-  return React.createElement(RootContext.Consumer, props);
+  return React__default.createElement(RootContext.Consumer, props);
 }
 
 Root.Provider = RootProvider;
 
 var useRoot = function useRoot() {
-  return useContext(RootContext);
+  return React.useContext(RootContext);
 };
 
 var RootPortal = function RootPortal(props) {
-  return React.createElement(Root, null, function (rootElement) {
+  return React__default.createElement(Root, null, function (rootElement) {
     if (!rootElement) {
       throw new Error('<RootPortal> needs to be nested in <Root.Provider>. Have you declared <Main>?');
     }
@@ -12973,12 +12848,12 @@ var move = function move(pixel) {
   return "translate3d(0,".concat(pixel, "px,0)");
 };
 
-var ToastContext = React.createContext(function () {
+var ToastContext = React__default.createContext(function () {
   throw new Error("For Toast to work it needs to be part of a ToastHub's tree, which has to be declared at an upper level!");
 });
 
 var useToast = function useToast() {
-  return useContext(ToastContext);
+  return React.useContext(ToastContext);
 };
 
 var Provider$1 = ToastContext.Provider,
@@ -13127,9 +13002,9 @@ function (_React$PureComponent) {
           items = _this$state.items,
           leaving = _this$state.leaving;
       var showList = items.length > 0 || leaving.length > 0;
-      return React.createElement(React.Fragment, null, React.createElement(Provider$1, {
+      return React__default.createElement(React__default.Fragment, null, React__default.createElement(Provider$1, {
         value: this.add
-      }, children), showList && React.createElement(RootPortal, null, React.createElement(ToastList, _extends_1({
+      }, children), showList && React__default.createElement(RootPortal, null, React__default.createElement(ToastList, _extends_1({
         config: this.config,
         items: this.state.items,
         leave: this.leave,
@@ -13144,7 +13019,7 @@ function (_React$PureComponent) {
   }]);
 
   return ToastHubProvider;
-}(React.PureComponent); // ToastList is separated from ToastHubProvider so we can skip its rendering
+}(React__default.PureComponent); // ToastList is separated from ToastHubProvider so we can skip its rendering
 
 
 defineProperty(ToastHubProvider, "propTypes", {
@@ -13165,7 +13040,7 @@ defineProperty(ToastHubProvider, "defaultProps", {
   top: false
 });
 
-var ToastList = React.memo(function (_ref) {
+var ToastList = React__default.memo(function (_ref) {
   var config = _ref.config,
       items = _ref.items,
       leave = _ref.leave,
@@ -13177,11 +13052,11 @@ var ToastList = React.memo(function (_ref) {
       props = objectWithoutProperties(_ref, ["config", "items", "leave", "position", "remove", "showIndicator", "top", "shift"]);
 
   var theme = useTheme();
-  return React.createElement(Container, _extends_1({
+  return React__default.createElement(Container, _extends_1({
     position: position,
     top: top,
     shift: shift
-  }, props), React.createElement(Transition, {
+  }, props), React__default.createElement(Transition, {
     native: true,
     items: items,
     keys: function keys(item) {
@@ -13208,17 +13083,17 @@ var ToastList = React.memo(function (_ref) {
         var life = _ref2.life,
             props = objectWithoutProperties(_ref2, ["life"]);
 
-        return React.createElement(Message, {
+        return React__default.createElement(Message, {
           style: props
-        }, React.createElement(Content, {
+        }, React__default.createElement(Content, {
           top: top,
           theme: theme
-        }, showIndicator && React.createElement(Life, {
+        }, showIndicator && React__default.createElement(Life, {
           top: top,
           style: {
             right: life
           }
-        }), React.createElement("p", null, item.msg)));
+        }), React__default.createElement("p", null, item.msg)));
       }
     );
   }
@@ -13235,7 +13110,7 @@ ToastList.propTypes = {
   showIndicator: propTypes.bool,
   top: propTypes.bool
 };
-var Container = _styled.div(_templateObject(), function (props) {
+var Container = _styled__default.div(_templateObject(), function (props) {
   return props.top ? "".concat(3 * GU, "px") : 'unset';
 }, function (props) {
   return props.top ? 'unset' : "".concat(3 * GU, "px");
@@ -13259,8 +13134,8 @@ var Container = _styled.div(_templateObject(), function (props) {
       return 'center';
   }
 });
-var Message = _styled(extendedAnimated.div)(_templateObject2());
-var Content = _styled.div(_templateObject3(), textStyle('body3'), function (_ref5) {
+var Message = _styled__default(extendedAnimated.div)(_templateObject2());
+var Content = _styled__default.div(_templateObject3(), textStyle('body3'), function (_ref5) {
   var theme = _ref5.theme;
   return theme.floatingContent;
 }, function (_ref6) {
@@ -13271,31 +13146,31 @@ var Content = _styled.div(_templateObject3(), textStyle('body3'), function (_ref
 }, function (props) {
   return props.top ? "".concat(1.25 * GU, "px") : '0';
 }, 2 * GU, 2.5 * GU, RADIUS);
-var Life = _styled(extendedAnimated.div)(_templateObject4(), function (props) {
+var Life = _styled__default(extendedAnimated.div)(_templateObject4(), function (props) {
   return props.top ? "".concat(1.25 * GU, "px") : '0';
 });
 
-var Accordion = React.memo(function Accordion(_ref) {
+var Accordion = React__default.memo(function Accordion(_ref) {
   var items = _ref.items,
       className = _ref.className,
       style = _ref.style;
-  var fields = useMemo(function () {
+  var fields = React.useMemo(function () {
     return [null];
   }, []);
-  var renderEntry = useCallback(function (_ref2) {
+  var renderEntry = React.useCallback(function (_ref2) {
     var _ref3 = slicedToArray(_ref2, 1),
         row = _ref3[0];
 
     return [row];
   }, []);
-  var renderEntryExpansion = useCallback(function (_ref4) {
+  var renderEntryExpansion = React.useCallback(function (_ref4) {
     var _ref5 = slicedToArray(_ref4, 2),
         _ = _ref5[0],
         expansion = _ref5[1];
 
-    return React.createElement(React.Fragment, null, expansion);
+    return React__default.createElement(React__default.Fragment, null, expansion);
   }, []);
-  return React.createElement(DataView, {
+  return React__default.createElement(DataView, {
     className: className,
     entries: items,
     entriesPerPage: -1,
@@ -13317,7 +13192,7 @@ Accordion.propTypes = {
 
 var HEIGHT = 5 * GU;
 
-var _StyledDiv$a = _styled.div.withConfig({
+var _StyledDiv$a = _styled__default.div.withConfig({
   displayName: "TextCopy___StyledDiv",
   componentId: "sc-1dg1uit-0"
 })(["position:relative;display:inline-flex;width:", "px;max-width:100%;height:", "px;padding-left:", ";"], function (p) {
@@ -13326,7 +13201,7 @@ var _StyledDiv$a = _styled.div.withConfig({
   return p._css2;
 });
 
-var _StyledDiv2$7 = _styled.div.withConfig({
+var _StyledDiv2$7 = _styled__default.div.withConfig({
   displayName: "TextCopy___StyledDiv2",
   componentId: "sc-1dg1uit-1"
 })(["position:absolute;top:0;left:0;overflow:hidden;width:", "px;height:", "px;background:", ";border:1px solid ", ";border-right:0;border-radius:", "px 0.0001px 0.0001px ", "px;"], HEIGHT, HEIGHT, function (p) {
@@ -13335,7 +13210,7 @@ var _StyledDiv2$7 = _styled.div.withConfig({
   return p._css4;
 }, RADIUS, RADIUS);
 
-var _StyledDiv3$4 = _styled.div.withConfig({
+var _StyledDiv3$4 = _styled__default.div.withConfig({
   displayName: "TextCopy___StyledDiv3",
   componentId: "sc-1dg1uit-2"
 })(["display:flex;align-items:center;justify-content:center;width:", "px;height:", "px;"], function (p) {
@@ -13344,7 +13219,7 @@ var _StyledDiv3$4 = _styled.div.withConfig({
   return p._css6;
 });
 
-var _StyledButtonIcon$2 = _styled(ButtonIcon).withConfig({
+var _StyledButtonIcon$2 = _styled__default(ButtonIcon).withConfig({
   displayName: "TextCopy___StyledButtonIcon",
   componentId: "sc-1dg1uit-3"
 })(["width:", "px;height:", "px;border-radius:0;color:", ";"], function (p) {
@@ -13355,7 +13230,7 @@ var _StyledButtonIcon$2 = _styled(ButtonIcon).withConfig({
   return p._css9;
 });
 
-var _StyledTextInput$1 = _styled(WrapperTextInput).withConfig({
+var _StyledTextInput$1 = _styled__default(WrapperTextInput).withConfig({
   displayName: "TextCopy___StyledTextInput",
   componentId: "sc-1dg1uit-4"
 })(["text-overflow:ellipsis;height:", "px;max-width:100%;border:1px solid ", ";", ";", ";&:read-only{color:", ";text-shadow:none;}"], HEIGHT, function (p) {
@@ -13368,7 +13243,7 @@ var _StyledTextInput$1 = _styled(WrapperTextInput).withConfig({
   return p._css13;
 });
 
-var TextCopy = React.memo(React.forwardRef(function TextCopy(_ref, ref) {
+var TextCopy = React__default.memo(React__default.forwardRef(function TextCopy(_ref, ref) {
   var adornment = _ref.adornment,
       autofocus = _ref.autofocus,
       message = _ref.message,
@@ -13379,9 +13254,9 @@ var TextCopy = React.memo(React.forwardRef(function TextCopy(_ref, ref) {
 
   var theme = useTheme();
   var toast = useToast();
-  var inputRef = useRef(null); // Allows to focus the component from the outside
+  var inputRef = React.useRef(null); // Allows to focus the component from the outside
 
-  useImperativeHandle(ref, function () {
+  React.useImperativeHandle(ref, function () {
     return {
       focus: function focus() {
         inputRef.current.focus();
@@ -13389,12 +13264,12 @@ var TextCopy = React.memo(React.forwardRef(function TextCopy(_ref, ref) {
     };
   }); // Select the content on focus
 
-  var handleFocus = useCallback(function () {
+  var handleFocus = React.useCallback(function () {
     inputRef.current && inputRef.current.select();
   }, []); // If onCopy is set (either to a function or null), Toast is not used.
 
   var onCopyOrToast = onCopy === undefined ? toast : onCopy || noop;
-  var handleCopy = useCallback(function () {
+  var handleCopy = React.useCallback(function () {
     if (inputRef.current) {
       inputRef.current.focus();
 
@@ -13406,24 +13281,24 @@ var TextCopy = React.memo(React.forwardRef(function TextCopy(_ref, ref) {
       }
     }
   }, [message, onCopyOrToast]);
-  return React.createElement(_StyledDiv$a, _extends_1({}, props, {
+  return React__default.createElement(_StyledDiv$a, _extends_1({}, props, {
     _css: 52.5 * GU,
     _css2: adornment ? "".concat(HEIGHT, "px") : '0'
-  }), adornment && React.createElement(_StyledDiv2$7, {
+  }), adornment && React__default.createElement(_StyledDiv2$7, {
     _css3: theme.surface,
     _css4: theme.border
-  }, React.createElement(_StyledDiv3$4, {
+  }, React__default.createElement(_StyledDiv3$4, {
     _css5: HEIGHT - 2,
     _css6: HEIGHT - 2
-  }, adornment)), React.createElement(_StyledTextInput$1, {
+  }, adornment)), React__default.createElement(_StyledTextInput$1, {
     ref: inputRef,
-    adornment: React.createElement(_StyledButtonIcon$2, {
+    adornment: React__default.createElement(_StyledButtonIcon$2, {
       onClick: handleCopy,
       label: "Copy",
       _css7: HEIGHT - 2,
       _css8: HEIGHT - 2,
       _css9: theme.surfaceIcon
-    }, React.createElement(IconCopy, null)),
+    }, React__default.createElement(IconCopy, null)),
     adornmentPosition: "end",
     adornmentSettings: {
       // Keep the button square
@@ -13460,7 +13335,6 @@ object-assign
 (c) Sindre Sorhus
 @license MIT
 */
-'use strict';
 /* eslint-disable no-unused-vars */
 
 var getOwnPropertySymbols$1 = Object.getOwnPropertySymbols;
@@ -13557,18 +13431,9 @@ var objectAssign$1 = shouldUseNative$1() ? Object.assign : function (target, sou
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-'use strict';
 
 var ReactPropTypesSecret$2 = 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED';
 var ReactPropTypesSecret_1$1 = ReactPropTypesSecret$2;
-
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-'use strict';
 
 var printWarning$2 = function () {};
 
@@ -13644,20 +13509,6 @@ function checkPropTypes$1(typeSpecs, values, location, componentName, getStack) 
 }
 
 var checkPropTypes_1$1 = checkPropTypes$1;
-
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-'use strict';
-
-
-
-
-
-
 
 var printWarning$3 = function () {};
 
@@ -14248,16 +14099,6 @@ var factoryWithTypeCheckers$1 = function (isValidElement, throwOnDirectAccess) {
   return ReactPropTypes;
 };
 
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-'use strict';
-
-
-
 function emptyFunction$1() {}
 
 var factoryWithThrowingShims$1 = function () {
@@ -14271,15 +14112,11 @@ var factoryWithThrowingShims$1 = function () {
     err.name = 'Invariant Violation';
     throw err;
   }
-
-  ;
   shim.isRequired = shim;
 
   function getShim() {
     return shim;
   }
-
-  ; // Important!
   // Keep this list in sync with production version in `./factoryWithTypeCheckers.js`.
 
   var ReactPropTypes = {
@@ -14332,7 +14169,6 @@ if (process.env.NODE_ENV !== 'production') {
 });
 
 var main = createCommonjsModule(function (module, exports) {
-'use strict';
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -14354,7 +14190,7 @@ var _extends = Object.assign || function (target) {
 
 
 
-var _react2 = _interopRequireDefault(React);
+var _react2 = _interopRequireDefault(React__default);
 
 
 
@@ -14500,9 +14336,9 @@ var Identicon = _react2.default.memo(function Identicon(_ref3) {
       spotColor = _ref3.spotColor,
       props = _objectWithoutProperties(_ref3, ['bgColor', 'className', 'color', 'scale', 'seed', 'size', 'spotColor']);
 
-  var canvasRef = (0, React.useRef)(); // Cache identiconData so we can use it to trigger a redraw.
+  var canvasRef = (0, React__default.useRef)(); // Cache identiconData so we can use it to trigger a redraw.
 
-  var identiconData = (0, React.useMemo)(function () {
+  var identiconData = (0, React__default.useMemo)(function () {
     return generateIdenticon({
       bgColor: bgColor,
       color: color,
@@ -14512,7 +14348,7 @@ var Identicon = _react2.default.memo(function Identicon(_ref3) {
     });
   }, [bgColor, color, seed, size, spotColor]); // Redraw when scale or identiconData updates.
 
-  (0, React.useEffect)(function () {
+  (0, React__default.useEffect)(function () {
     if (canvasRef.current) {
       drawCanvas(canvasRef.current, scale, identiconData);
     }
@@ -14603,14 +14439,14 @@ function (_React$Component) {
           radius = _this$props.radius,
           soften = _this$props.soften;
       var blockiesScale = scale * BASE_SCALE;
-      return isAddress(address) ? React.createElement(Main, _extends_1({
+      return isAddress(address) ? React__default.createElement(Main, _extends_1({
         size: BLOCKIES_SQUARES * blockiesScale,
         radius: radius
-      }, stylingProps(this)), React.createElement(BlockiesScaling, {
+      }, stylingProps(this)), React__default.createElement(BlockiesScaling, {
         size: BLOCKIES_SQUARES * blockiesScale * PX_RATIO
-      }, React.createElement(BlockiesOpacity, {
+      }, React__default.createElement(BlockiesOpacity, {
         soften: soften
-      }, React.createElement(Blockies, {
+      }, React__default.createElement(Blockies, {
         seed: address.toLowerCase(),
         size: BLOCKIES_SQUARES,
         scale: blockiesScale * PX_RATIO
@@ -14619,7 +14455,7 @@ function (_React$Component) {
   }]);
 
   return EthIdenticon;
-}(React.Component);
+}(React__default.Component);
 /*
  * `vertical-align` prevents the inline parent to have an incorrect height.
  *
@@ -14642,17 +14478,17 @@ defineProperty(EthIdenticon, "defaultProps", {
   soften: 0.3
 });
 
-var Main = _styled.div(_templateObject$1(), function (p) {
+var Main = _styled__default.div(_templateObject$1(), function (p) {
   return p.size;
 }, function (p) {
   return p.size;
 }, function (p) {
   return p.radius;
 });
-var BlockiesOpacity = _styled.div(_templateObject2$1(), function (p) {
+var BlockiesOpacity = _styled__default.div(_templateObject2$1(), function (p) {
   return 1 - p.soften;
 });
-var BlockiesScaling = _styled.div(_templateObject3$1(), function (p) {
+var BlockiesScaling = _styled__default.div(_templateObject3$1(), function (p) {
   return p.size;
 }, function (p) {
   return p.size;
@@ -14661,23 +14497,23 @@ var BlockiesScaling = _styled.div(_templateObject3$1(), function (p) {
 var HEIGHT$1 = 5 * GU;
 var IDENTICON_SIZE = 6 * GU;
 
-var _StyledEthIdenticon = _styled(EthIdenticon).withConfig({
+var _StyledEthIdenticon = _styled__default(EthIdenticon).withConfig({
   displayName: "AddressField___StyledEthIdenticon",
   componentId: "m75adw-0"
 })(["transform:scale(", ");transform-origin:50% 50%;"], function (p) {
   return p._css;
 });
 
-var AddressField = React.forwardRef(function AddressField(_ref, ref) {
+var AddressField = React__default.forwardRef(function AddressField(_ref, ref) {
   var address = _ref.address,
       autofocus = _ref.autofocus,
       icon = _ref.icon,
       onCopy = _ref.onCopy,
       props = objectWithoutProperties(_ref, ["address", "autofocus", "icon", "onCopy"]);
 
-  return React.createElement(TextCopy, {
+  return React__default.createElement(TextCopy, {
     ref: ref,
-    adornment: icon || React.createElement("div", null, React.createElement(_StyledEthIdenticon, {
+    adornment: icon || React__default.createElement("div", null, React__default.createElement(_StyledEthIdenticon, {
       address: address,
       onCopy: onCopy,
       scale: 2,
@@ -14698,12 +14534,12 @@ AddressField.defaultProps = {
 };
 
 function useArrowKeysFocus(refs) {
-  var _useState = useState$1(-1),
+  var _useState = React.useState(-1),
       _useState2 = slicedToArray(_useState, 2),
       highlightedIndex = _useState2[0],
       setHighlightedIndex = _useState2[1];
 
-  var cycleFocus = useCallback(function (e, change) {
+  var cycleFocus = React.useCallback(function (e, change) {
     e.preventDefault();
     var next = highlightedIndex + change;
 
@@ -14717,20 +14553,20 @@ function useArrowKeysFocus(refs) {
 
     setHighlightedIndex(next);
   }, [highlightedIndex, refs.length]);
-  var handleKeyDown = useCallback(function (event) {
+  var handleKeyDown = React.useCallback(function (event) {
     var keyCode = event.keyCode;
 
     if (keyCode === KEY_UP || keyCode === KEY_DOWN) {
       cycleFocus(event, keyCode === KEY_UP ? -1 : 1);
     }
   }, [cycleFocus]);
-  useEffect(function () {
+  React.useEffect(function () {
     document.addEventListener('keydown', handleKeyDown);
     return function () {
       return document.removeEventListener('keydown', handleKeyDown);
     };
   }, [handleKeyDown]);
-  useEffect(function () {
+  React.useEffect(function () {
     if (highlightedIndex === -1) {
       return;
     }
@@ -14750,15 +14586,15 @@ function useArrowKeysFocus(refs) {
 /* eslint-disable react-hooks/rules-of-hooks */
 
 function useClickOutside(cb) {
-  var ref = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : useRef();
+  var ref = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : React.useRef();
 
   /* eslint-enable react-hooks/rules-of-hooks */
-  var handleClick = useCallback(function (e) {
+  var handleClick = React.useCallback(function (e) {
     if (!ref.current.contains(e.target)) {
       cb();
     }
   }, [cb, ref]);
-  useEffect(function () {
+  React.useEffect(function () {
     document.addEventListener('click', handleClick, true);
     return function () {
       document.removeEventListener('click', handleClick, true);
@@ -14838,22 +14674,22 @@ var srcCache = cachedMap(); // Check if a remote image exists and can be loaded 
 function useImageExists(src) {
   var timeUntilFallback = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 50;
 
-  var _useState = useState$1(false),
+  var _useState = React.useState(false),
       _useState2 = slicedToArray(_useState, 2),
       exists = _useState2[0],
       setExists = _useState2[1];
 
-  var _useState3 = useState$1(true),
+  var _useState3 = React.useState(true),
       _useState4 = slicedToArray(_useState3, 2),
       loading = _useState4[0],
       setLoading = _useState4[1];
 
-  var _useState5 = useState$1(false),
+  var _useState5 = React.useState(false),
       _useState6 = slicedToArray(_useState5, 2),
       displayFallback = _useState6[0],
       setDisplayFallback = _useState6[1];
 
-  useEffect(function () {
+  React.useEffect(function () {
     var image = new Image();
     var fallbackTimer = setTimeout(function () {
       return setDisplayFallback(true);
@@ -14897,7 +14733,7 @@ function useImageExists(src) {
     init();
     return done;
   }, [src, timeUntilFallback]);
-  return useMemo(function () {
+  return React.useMemo(function () {
     return {
       src: src,
       displayFallback: displayFallback,
@@ -14915,15 +14751,15 @@ var ImageExists = function ImageExists(_ref) {
 };
 
 function useKeyDown(key, callback) {
-  var keys = useMemo(function () {
+  var keys = React.useMemo(function () {
     return Array.isArray(key) ? key : [key];
   }, [key]);
-  var handlekeyDown = useCallback(function (event) {
+  var handlekeyDown = React.useCallback(function (event) {
     if (keys.includes(event.keyCode)) {
       callback();
     }
   }, [callback, keys]);
-  useEffect(function () {
+  React.useEffect(function () {
     window.addEventListener('keydown', handlekeyDown);
     return function () {
       window.removeEventListener('keydown', handlekeyDown);
@@ -14934,10 +14770,10 @@ function useKeyDown(key, callback) {
 /* eslint-disable react-hooks/rules-of-hooks */
 
 function useOnBlur(cb) {
-  var ref = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : useRef();
+  var ref = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : React.useRef();
 
   /* eslint-enable react-hooks/rules-of-hooks */
-  var handleBlur = useCallback(function (event) {
+  var handleBlur = React.useCallback(function (event) {
     if (!ref.current.contains(event.relatedTarget)) {
       cb(event);
     }
@@ -14948,7 +14784,7 @@ function useOnBlur(cb) {
   };
 }
 
-var _StyledButtonBase$5 = _styled(ButtonBaseWithFocus).withConfig({
+var _StyledButtonBase$5 = _styled__default(ButtonBaseWithFocus).withConfig({
   displayName: "BadgeBase___StyledButtonBase",
   componentId: "sc-4zaahn-0"
 })(["display:inline-flex;overflow:hidden;color:", ";height:", "px;background:", ";", ";&:active{", ";}"], function (p) {
@@ -14963,14 +14799,14 @@ var _StyledButtonBase$5 = _styled(ButtonBaseWithFocus).withConfig({
   return p._css5;
 });
 
-var _StyledDiv$b = _styled.div.withConfig({
+var _StyledDiv$b = _styled__default.div.withConfig({
   displayName: "BadgeBase___StyledDiv",
   componentId: "sc-4zaahn-1"
 })(["overflow:hidden;display:flex;align-items:center;text-decoration:none;", ";"], function (p) {
   return p._css6;
 });
 
-var _StyledSpan$5 = _styled.span.withConfig({
+var _StyledSpan$5 = _styled__default.span.withConfig({
   displayName: "BadgeBase___StyledSpan",
   componentId: "sc-4zaahn-2"
 })(["white-space:nowrap;text-overflow:ellipsis;overflow:hidden;", " ", ""], function (p) {
@@ -14979,7 +14815,7 @@ var _StyledSpan$5 = _styled.span.withConfig({
   return p._css8;
 });
 
-var BadgeBase = React.memo(function BadgeBase(_ref) {
+var BadgeBase = React__default.memo(function BadgeBase(_ref) {
   var badgeRef = _ref.badgeRef,
       children = _ref.children,
       className = _ref.className,
@@ -15004,7 +14840,7 @@ var BadgeBase = React.memo(function BadgeBase(_ref) {
     disabled = true;
   }
 
-  return React.createElement(React.Fragment, null, React.createElement(_StyledButtonBase$5, {
+  return React__default.createElement(React__default.Fragment, null, React__default.createElement(_StyledButtonBase$5, {
     ref: badgeRef,
     title: title,
     disabled: disabled,
@@ -15017,11 +14853,11 @@ var BadgeBase = React.memo(function BadgeBase(_ref) {
     _css3: compact ? 'transparent' : theme.badge,
     _css4: insideDropDownMenu ? 'cursor: pointer' : '',
     _css5: !disabled && compact ? "background: ".concat(theme.badgePressed) : ''
-  }, React.createElement(_StyledDiv$b, {
+  }, React__default.createElement(_StyledDiv$b, {
     className: className,
     style: style,
     _css6: compact ? "\n                  padding: 0 ".concat(1 * GU, "px;\n                  border-radius: 2px;\n                ") : "\n                  padding-left: ".concat((icon ? 0 : 1.5) * GU, "px;\n                  padding-right: ").concat((icon ? 1 : 1.5) * GU, "px;\n                  border-radius: ").concat(RADIUS, "px;\n                ")
-  }, icon, React.createElement(_StyledSpan$5, {
+  }, icon, React__default.createElement(_StyledSpan$5, {
     _css7: textStyle('body2'),
     _css8: labelStyle
   }, label))), typeof children === 'function' ? children(disabled) // whether popover is disabled
@@ -17734,12 +17570,12 @@ var observe = function observe(_observe) {
 
 
           delete props.observable;
-          return React.createElement(Component, _extends_1({}, this.state, props));
+          return React__default.createElement(Component, _extends_1({}, this.state, props));
         }
       }]);
 
       return _class;
-    }(React.Component), defineProperty(_class, "displayName", "Observe(".concat(getDisplayName(Component), ")")), defineProperty(_class, "propTypes", {
+    }(React__default.Component), defineProperty(_class, "displayName", "Observe(".concat(getDisplayName(Component), ")")), defineProperty(_class, "propTypes", {
       observable: function observable(_ref2, _, componentName) {
         var _observable = _ref2.observable;
 
@@ -17812,7 +17648,7 @@ function (_React$PureComponent) {
   }]);
 
   return Redraw;
-}(React.PureComponent);
+}(React__default.PureComponent);
 
 defineProperty(Redraw, "propTypes", {
   interval: propTypes.number,
@@ -17825,10 +17661,10 @@ defineProperty(Redraw, "defaultProps", {
 
 var hocWrap$1 = function hocWrap(Component, interval) {
   var HOC = function HOC(props) {
-    return React.createElement(Redraw, {
+    return React__default.createElement(Redraw, {
       interval: interval
     }, function () {
-      return React.createElement(Component, props);
+      return React__default.createElement(Component, props);
     });
   };
 
@@ -17935,7 +17771,7 @@ function (_React$Component) {
   }]);
 
   return RedrawFromDate;
-}(React.Component);
+}(React__default.Component);
 
 defineProperty(RedrawFromDate, "propTypes", {
   children: propTypes.func.isRequired,
@@ -17944,10 +17780,10 @@ defineProperty(RedrawFromDate, "propTypes", {
 
 var hocWrap$2 = function hocWrap(Component) {
   var HOC = function HOC(props) {
-    return React.createElement(RedrawFromDate, {
+    return React__default.createElement(RedrawFromDate, {
       fromDate: props.fromDate
     }, function () {
-      return React.createElement(Component, props);
+      return React__default.createElement(Component, props);
     });
   };
 
@@ -17966,12 +17802,12 @@ function ownKeys$b(object, enumerableOnly) { var keys = Object.keys(object); if 
 
 function _objectSpread$b(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$b(source, true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$b(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
-var _StyledAnimatedDiv$3 = _styled(extendedAnimated.div).withConfig({
+var _StyledAnimatedDiv$3 = _styled__default(extendedAnimated.div).withConfig({
   displayName: "Popover___StyledAnimatedDiv",
   componentId: "sc-1hohxqp-0"
 })(["position:absolute;top:0;left:0;"]);
 
-var _StyledAnimatedDiv2$1 = _styled(extendedAnimated.div).withConfig({
+var _StyledAnimatedDiv2$1 = _styled__default(extendedAnimated.div).withConfig({
   displayName: "Popover___StyledAnimatedDiv2",
   componentId: "sc-1hohxqp-1"
 })(["background:", ";border:1px solid ", ";border-radius:", "px;filter:drop-shadow(0 4px 4px rgba(0,0,0,0.15));&:focus{outline:0;}overflow-y:auto;"], function (p) {
@@ -17998,9 +17834,9 @@ function (_React$Component) {
 
     _this = possibleConstructorReturn(this, (_getPrototypeOf2 = getPrototypeOf(PopoverBase)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
-    defineProperty(assertThisInitialized(_this), "_cardElement", React.createRef());
+    defineProperty(assertThisInitialized(_this), "_cardElement", React__default.createRef());
 
-    defineProperty(assertThisInitialized(_this), "_popperElement", React.createRef());
+    defineProperty(assertThisInitialized(_this), "_popperElement", React__default.createRef());
 
     defineProperty(assertThisInitialized(_this), "_document", null);
 
@@ -18160,12 +17996,12 @@ function (_React$Component) {
           maxWidth = _this$boundaryDimensi2[0],
           maxHeight = _this$boundaryDimensi2[1];
 
-      return React.createElement(_StyledAnimatedDiv$3, {
+      return React__default.createElement(_StyledAnimatedDiv$3, {
         ref: this._popperElement,
         style: {
           zIndex: zIndex
         }
-      }, React.createElement(_StyledAnimatedDiv2$1, _extends_1({
+      }, React__default.createElement(_StyledAnimatedDiv2$1, _extends_1({
         tabIndex: "0",
         onBlur: this.handleBlur,
         ref: this._cardElement,
@@ -18185,7 +18021,7 @@ function (_React$Component) {
   }]);
 
   return PopoverBase;
-}(React.Component);
+}(React__default.Component);
 
 defineProperty(PopoverBase, "propTypes", {
   children: propTypes.node,
@@ -18218,7 +18054,7 @@ function Popover(_ref2) {
 
   var theme = useTheme();
   var root = useRoot();
-  return React.createElement(RootPortal, null, React.createElement(Transition, {
+  return React__default.createElement(RootPortal, null, React__default.createElement(Transition, {
     items: visible,
     config: springs.swift,
     from: {
@@ -18236,7 +18072,7 @@ function Popover(_ref2) {
     native: true
   }, function (visible) {
     return visible && function (transitionStyles) {
-      return React.createElement(PopoverBase, _extends_1({}, props, {
+      return React__default.createElement(PopoverBase, _extends_1({}, props, {
         rootBoundary: root,
         theme: theme,
         transitionStyles: transitionStyles
@@ -18254,19 +18090,19 @@ Popover.defaultProps = _objectSpread$b({}, PopoverBase.defaultProps, {
   visible: true
 });
 
-var _StyledSection$1 = _styled.section.withConfig({
+var _StyledSection$1 = _styled__default.section.withConfig({
   displayName: "BadgePopoverBase___StyledSection",
   componentId: "xfkga1-0"
 })(["position:relative;max-width:calc(100vw - 20px);min-width:300px;"]);
 
-var _StyledButtonIcon$3 = _styled(ButtonIcon).withConfig({
+var _StyledButtonIcon$3 = _styled__default(ButtonIcon).withConfig({
   displayName: "BadgePopoverBase___StyledButtonIcon",
   componentId: "xfkga1-1"
 })(["position:absolute;top:0;right:0;border-radius:0;color:", ";"], function (p) {
   return p._css;
 });
 
-var _StyledHeader = _styled.header.withConfig({
+var _StyledHeader = _styled__default.header.withConfig({
   displayName: "BadgePopoverBase___StyledHeader",
   componentId: "xfkga1-2"
 })(["display:flex;align-items:center;height:", "px;padding-left:", "px;border-bottom:1px solid ", ";"], function (p) {
@@ -18277,7 +18113,7 @@ var _StyledHeader = _styled.header.withConfig({
   return p._css4;
 });
 
-var _StyledH$3 = _styled.h1.withConfig({
+var _StyledH$3 = _styled__default.h1.withConfig({
   displayName: "BadgePopoverBase___StyledH",
   componentId: "xfkga1-3"
 })(["", " font-weight:400;color:", ";"], function (p) {
@@ -18286,14 +18122,14 @@ var _StyledH$3 = _styled.h1.withConfig({
   return p._css6;
 });
 
-var _StyledDiv$c = _styled.div.withConfig({
+var _StyledDiv$c = _styled__default.div.withConfig({
   displayName: "BadgePopoverBase___StyledDiv",
   componentId: "xfkga1-4"
 })(["padding:", "px;"], function (p) {
   return p._css7;
 });
 
-var _StyledDiv2$8 = _styled.div.withConfig({
+var _StyledDiv2$8 = _styled__default.div.withConfig({
   displayName: "BadgePopoverBase___StyledDiv2",
   componentId: "xfkga1-5"
 })(["display:flex;margin-top:", "px;", ""], function (p) {
@@ -18302,14 +18138,14 @@ var _StyledDiv2$8 = _styled.div.withConfig({
   return p._css9;
 });
 
-var _StyledP$1 = _styled.p.withConfig({
+var _StyledP$1 = _styled__default.p.withConfig({
   displayName: "BadgePopoverBase___StyledP",
   componentId: "xfkga1-6"
 })(["", ";"], function (p) {
   return p._css10;
 });
 
-var _StyledButton$2 = _styled(ButtonWithRef).withConfig({
+var _StyledButton$2 = _styled__default(ButtonWithRef).withConfig({
   displayName: "BadgePopoverBase___StyledButton",
   componentId: "xfkga1-7"
 })(["padding:0 ", "px;color:", ";"], function (p) {
@@ -18318,7 +18154,7 @@ var _StyledButton$2 = _styled(ButtonWithRef).withConfig({
   return p._css12;
 });
 
-var BadgePopoverBase = React.memo(function BadgePopoverBase(_ref) {
+var BadgePopoverBase = React__default.memo(function BadgePopoverBase(_ref) {
   var addressField = _ref.addressField,
       link = _ref.link,
       onClose = _ref.onClose,
@@ -18328,38 +18164,38 @@ var BadgePopoverBase = React.memo(function BadgePopoverBase(_ref) {
       titleTag = _ref.titleTag,
       visible = _ref.visible;
   var theme = useTheme();
-  var handlePopoverActionClick = useCallback(function () {
+  var handlePopoverActionClick = React.useCallback(function () {
     onClose();
 
     if (popoverAction && popoverAction.onClick) {
       popoverAction.onClick();
     }
   }, [onClose, popoverAction]);
-  return React.createElement(Popover, {
+  return React__default.createElement(Popover, {
     visible: visible,
     opener: opener,
     onClose: onClose
-  }, React.createElement(_StyledSection$1, null, React.createElement(_StyledButtonIcon$3, {
+  }, React__default.createElement(_StyledSection$1, null, React__default.createElement(_StyledButtonIcon$3, {
     label: "Close",
     onClick: onClose,
     _css: theme.surfaceIcon
-  }, React.createElement(IconCross, {
+  }, React__default.createElement(IconCross, {
     size: "small"
-  })), React.createElement(_StyledHeader, {
+  })), React__default.createElement(_StyledHeader, {
     _css2: 4 * GU,
     _css3: 2 * GU,
     _css4: theme.border
-  }, React.createElement(_StyledH$3, {
+  }, React__default.createElement(_StyledH$3, {
     _css5: textStyle('label2'),
     _css6: theme.surfaceContentSecondary
-  }, title), titleTag), React.createElement(_StyledDiv$c, {
+  }, title), titleTag), React__default.createElement(_StyledDiv$c, {
     _css7: 2 * GU
-  }, addressField, React.createElement(_StyledDiv2$8, {
+  }, addressField, React__default.createElement(_StyledDiv2$8, {
     _css8: 2 * GU,
     _css9: link ? "\n                  flex-direction: row-reverse;\n                  justify-content: space-between;\n                " : ''
-  }, link && React.createElement(_StyledP$1, {
+  }, link && React__default.createElement(_StyledP$1, {
     _css10: textStyle('body3')
-  }, link), popoverAction && React.createElement(_StyledButton$2, {
+  }, link), popoverAction && React__default.createElement(_StyledButton$2, {
     size: "medium",
     onClick: handlePopoverActionClick,
     _css11: 2 * GU,
@@ -18380,7 +18216,7 @@ BadgePopoverBase.defaultProps = {
   onClose: noop
 };
 
-var AppBadgePopover = React.memo(function AppBadgePopover(_ref) {
+var AppBadgePopover = React__default.memo(function AppBadgePopover(_ref) {
   var appAddress = _ref.appAddress,
       iconFallbackSrc = _ref.iconFallbackSrc,
       iconSrc = _ref.iconSrc,
@@ -18393,20 +18229,20 @@ var AppBadgePopover = React.memo(function AppBadgePopover(_ref) {
   var etherscanUrl = blockExplorerUrl('address', appAddress, {
     networkType: networkType
   });
-  return React.createElement(BadgePopoverBase, {
-    addressField: React.createElement(ImageExists, {
+  return React__default.createElement(BadgePopoverBase, {
+    addressField: React__default.createElement(ImageExists, {
       src: iconSrc
     }, function (_ref2) {
       var exists = _ref2.exists,
           displayFallback = _ref2.displayFallback;
-      return React.createElement(AddressField, {
+      return React__default.createElement(AddressField, {
         address: appAddress,
-        icon: React.createElement(Icon, {
+        icon: React__default.createElement(Icon, {
           src: exists ? iconSrc : iconFallbackSrc
         })
       });
     }),
-    link: etherscanUrl && React.createElement(Link, {
+    link: etherscanUrl && React__default.createElement(Link, {
       href: etherscanUrl
     }, "See on Etherscan"),
     onClose: onClose,
@@ -18428,7 +18264,7 @@ AppBadgePopover.propTypes = {
   visible: propTypes.bool
 };
 
-var _StyledDiv$d = _styled.div.withConfig({
+var _StyledDiv$d = _styled__default.div.withConfig({
   displayName: "AppBadgePopover___StyledDiv",
   componentId: "cornse-0"
 })(["width:100%;height:100%;background-size:contain;background-position:50% 50%;background-repeat:no-repeat;background-image:url(", ");"], function (p) {
@@ -18439,7 +18275,7 @@ function Icon(_ref3) {
   var src = _ref3.src,
       props = objectWithoutProperties(_ref3, ["src"]);
 
-  return React.createElement(_StyledDiv$d, _extends_1({}, props, {
+  return React__default.createElement(_StyledDiv$d, _extends_1({}, props, {
     _css: src
   }));
 }
@@ -18450,24 +18286,24 @@ Icon.propTypes = {
 
 var iconDefaultSvg = "data:image/svg+xml,%3Csvg%20width%3D%2256%22%20height%3D%2256%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M56%200H0v56h56V0z%22%20fill%3D%22url%28%23paint0_linear%29%22%2F%3E%3Cpath%20fill-rule%3D%22evenodd%22%20clip-rule%3D%22evenodd%22%20d%3D%22M28.363%2010.74L13.04%2019.56v17.645l15.322%208.821%2015.323-8.821V19.56l-15.322-8.82z%22%20fill%3D%22url%28%23paint1_linear%29%22%2F%3E%3Cpath%20fill-rule%3D%22evenodd%22%20clip-rule%3D%22evenodd%22%20d%3D%22M28.363%2046.027V10.74l15.323%208.821v17.645l-15.323%208.821z%22%20fill%3D%22%2373F0F8%22%2F%3E%3Cpath%20fill-rule%3D%22evenodd%22%20clip-rule%3D%22evenodd%22%20d%3D%22M13.041%2019.561l15.322-8.822%2015.323%208.822-15.323%208.426-15.322-8.425z%22%20fill%3D%22url%28%23paint2_linear%29%22%2F%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22paint0_linear%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%2256%22%20y2%3D%2253.105%22%20gradientUnits%3D%22userSpaceOnUse%22%3E%3Cstop%20stop-color%3D%22%2333BCE6%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%2348E2E5%22%2F%3E%3C%2FlinearGradient%3E%3ClinearGradient%20id%3D%22paint1_linear%22%20x1%3D%2214.618%22%20y1%3D%2219.282%22%20x2%3D%2231.423%22%20y2%3D%2243.942%22%20gradientUnits%3D%22userSpaceOnUse%22%3E%3Cstop%20stop-color%3D%22%232597B7%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%2339C5E1%22%2F%3E%3C%2FlinearGradient%3E%3ClinearGradient%20id%3D%22paint2_linear%22%20x1%3D%2214.799%22%20y1%3D%2219.363%22%20x2%3D%2243.686%22%20y2%3D%2219.363%22%20gradientUnits%3D%22userSpaceOnUse%22%3E%3Cstop%20stop-color%3D%22%233DCEE5%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%2348E2E6%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3C%2Fsvg%3E";
 
-var _StyledDiv$e = _styled.div.withConfig({
+var _StyledDiv$e = _styled__default.div.withConfig({
   displayName: "AppBadge___StyledDiv",
   componentId: "sc-5gkmrm-0"
 })(["display:grid;align-items:center;grid-template-columns:auto 1fr;"]);
 
-var _StyledSpan$6 = _styled.span.withConfig({
+var _StyledSpan$6 = _styled__default.span.withConfig({
   displayName: "AppBadge___StyledSpan",
   componentId: "sc-5gkmrm-1"
 })(["display:inline-block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"]);
 
-var _StyledTag = _styled(Tag).withConfig({
+var _StyledTag = _styled__default(Tag).withConfig({
   displayName: "AppBadge___StyledTag",
   componentId: "sc-5gkmrm-2"
 })(["margin-left:", "px;"], function (p) {
   return p._css;
 });
 
-var AppBadge = React.memo(function AppBadge(_ref) {
+var AppBadge = React__default.memo(function AppBadge(_ref) {
   var appAddress = _ref.appAddress,
       badgeOnly = _ref.badgeOnly,
       compact = _ref.compact,
@@ -18480,17 +18316,17 @@ var AppBadge = React.memo(function AppBadge(_ref) {
       popoverTitle = _ref.popoverTitle,
       props = objectWithoutProperties(_ref, ["appAddress", "badgeOnly", "compact", "iconSrc", "identifier", "label", "labelStyle", "networkType", "popoverAction", "popoverTitle"]);
 
-  var badgeRef = useRef(null);
+  var badgeRef = React.useRef(null);
 
-  var _useState = useState$1(false),
+  var _useState = React.useState(false),
       _useState2 = slicedToArray(_useState, 2),
       opened = _useState2[0],
       setOpened = _useState2[1];
 
-  var handleClose = useCallback(function () {
+  var handleClose = React.useCallback(function () {
     return setOpened(false);
   }, []);
-  var handleOpen = useCallback(function () {
+  var handleOpen = React.useCallback(function () {
     return setOpened(true);
   }, []);
   var isValidAddress = isAddress(appAddress);
@@ -18499,20 +18335,20 @@ var AppBadge = React.memo(function AppBadge(_ref) {
     warn("AppBadge: provided invalid app address (".concat(appAddress, ")"));
   }
 
-  popoverTitle = popoverTitle || React.createElement(_StyledDiv$e, null, React.createElement(_StyledSpan$6, null, label), identifier && React.createElement(_StyledTag, {
+  popoverTitle = popoverTitle || React__default.createElement(_StyledDiv$e, null, React__default.createElement(_StyledSpan$6, null, label), identifier && React__default.createElement(_StyledTag, {
     mode: "identifier",
     _css: 1 * GU
   }, identifier));
-  return React.createElement(BadgeBase, {
+  return React__default.createElement(BadgeBase, {
     badgeRef: badgeRef,
     compact: compact,
     disabled: badgeOnly,
-    icon: React.createElement(ImageExists, {
+    icon: React__default.createElement(ImageExists, {
       src: iconSrc
     }, function (_ref2) {
       var displayFallback = _ref2.displayFallback,
           exists = _ref2.exists;
-      return React.createElement(Icon$1, {
+      return React__default.createElement(Icon$1, {
         compact: compact,
         src: exists ? iconSrc : iconDefaultSvg
       });
@@ -18522,7 +18358,7 @@ var AppBadge = React.memo(function AppBadge(_ref) {
     onClick: isValidAddress ? handleOpen : undefined,
     title: appAddress
   }, function (popoverDisabled) {
-    return !popoverDisabled && appAddress && React.createElement(AppBadgePopover, {
+    return !popoverDisabled && appAddress && React__default.createElement(AppBadgePopover, {
       appAddress: appAddress,
       iconFallbackSrc: iconDefaultSvg,
       iconSrc: iconSrc,
@@ -18548,7 +18384,7 @@ AppBadge.propTypes = {
   popoverTitle: propTypes.node
 };
 
-var _StyledSpan2$3 = _styled.span.withConfig({
+var _StyledSpan2$3 = _styled__default.span.withConfig({
   displayName: "AppBadge___StyledSpan2",
   componentId: "sc-5gkmrm-3"
 })(["flex-shrink:0;width:", "px;height:", "px;margin-right:", "px;border-radius:", ";background-size:contain;background-position:50% 50%;background-repeat:no-repeat;background-image:url(", ");"], function (p) {
@@ -18569,7 +18405,7 @@ var Icon$1 = function Icon(_ref3) {
       props = objectWithoutProperties(_ref3, ["compact", "src"]);
 
   var size = (compact ? 2.25 : 3) * GU;
-  return React.createElement(_StyledSpan2$3, _extends_1({}, props, {
+  return React__default.createElement(_StyledSpan2$3, _extends_1({}, props, {
     _css2: size,
     _css3: size,
     _css4: 1 * GU,
@@ -18583,7 +18419,7 @@ Icon$1.propTypes = {
   src: propTypes.string.isRequired
 };
 
-var _StyledButtonBase$6 = _styled(ButtonBaseWithFocus).withConfig({
+var _StyledButtonBase$6 = _styled__default(ButtonBaseWithFocus).withConfig({
   displayName: "BackButton___StyledButtonBase",
   componentId: "ebowg7-0"
 })(["display:inline-flex;align-items:center;border-radius:", "px 0 0 ", "px;height:100%;margin-left:", "px;padding:0 ", "px 0 ", "px;border-right:1px solid ", ";color:", ";background:", ";&:active{background:", ";}"], RADIUS, RADIUS, function (p) {
@@ -18602,14 +18438,14 @@ var _StyledButtonBase$6 = _styled(ButtonBaseWithFocus).withConfig({
   return p._css7;
 });
 
-var _StyledSpan$7 = _styled.span.withConfig({
+var _StyledSpan$7 = _styled__default.span.withConfig({
   displayName: "BackButton___StyledSpan",
   componentId: "ebowg7-1"
 })(["position:relative;top:2px;color:", ";"], function (p) {
   return p._css8;
 });
 
-var _StyledSpan2$4 = _styled.span.withConfig({
+var _StyledSpan2$4 = _styled__default.span.withConfig({
   displayName: "BackButton___StyledSpan2",
   componentId: "ebowg7-2"
 })(["padding-left:", "px;font-size:16px;font-weight:600;"], function (p) {
@@ -18631,7 +18467,7 @@ function BackButton(_ref) {
 
   var compact = layoutName === 'small';
   var horizontalPadding = (compact ? 2 : 3) * GU;
-  return React.createElement(_StyledButtonBase$6, _extends_1({
+  return React__default.createElement(_StyledButtonBase$6, _extends_1({
     focusRingRadius: RADIUS,
     focusRingSpacing: 1
   }, props, {
@@ -18642,9 +18478,9 @@ function BackButton(_ref) {
     _css5: theme.surfaceContent,
     _css6: theme.surfaceInteractive,
     _css7: theme.surfaceHighlight
-  }), React.createElement(_StyledSpan$7, {
+  }), React__default.createElement(_StyledSpan$7, {
     _css8: theme.accent
-  }, React.createElement(IconArrowLeft, null)), React.createElement(_StyledSpan2$4, {
+  }, React__default.createElement(IconArrowLeft, null)), React__default.createElement(_StyledSpan2$4, {
     _css9: 1 * GU
   }, label));
 }
@@ -18712,9 +18548,9 @@ function fontFaceDeclarations(_ref2) {
   return "\n    @font-face {\n      font-family: ".concat(DEFAULT_FONT_FAMILY, ";\n      src: ").concat(fontSrc(publicUrl, DEFAULT_FONTS['400']), ";\n      font-weight: 400;\n      font-style: normal;\n    }\n    @font-face {\n      font-family: ").concat(DEFAULT_FONT_FAMILY, ";\n      src: ").concat(fontSrc(publicUrl, DEFAULT_FONTS['600']), ";\n      font-weight: 600;\n      font-style: normal;\n    }\n    @font-face {\n      font-family: ").concat(DEFAULT_FONT_FAMILY, ";\n      src: ").concat(fontSrc(publicUrl, DEFAULT_FONTS['800']), ";\n      font-weight: 800;\n      font-style: normal;\n    }\n    @font-face {\n      font-family: ").concat(MONOSPACE_FONT_FAMILY, ";\n      src: ").concat(fontSrc(publicUrl, MONOSPACE_FONTS['400']), ";\n      font-weight: 400;\n      font-style: normal;\n    }\n  ");
 }
 
-var BaseStyles = React.memo(function BaseStyles(props) {
+var BaseStyles = React__default.memo(function BaseStyles(props) {
   var theme = useTheme();
-  return React.createElement(GlobalStyle, _extends_1({}, props, {
+  return React__default.createElement(GlobalStyle, _extends_1({}, props, {
     theme: theme,
     fontFaces: fontFaceDeclarations(props),
     textStyleCss: textStyle('body2')
@@ -18728,7 +18564,7 @@ BaseStyles.defaultProps = {
   publicUrl: '/',
   fontFamily: "".concat(DEFAULT_FONT_FAMILY, ", sans-serif")
 };
-var GlobalStyle = createGlobalStyle(_templateObject$2(), function (p) {
+var GlobalStyle = _styled.createGlobalStyle(_templateObject$2(), function (p) {
   return p.fontFaces ? p.fontFaces : '';
 }, function (p) {
   return p.theme.content;
@@ -18749,7 +18585,7 @@ function ownKeys$c(object, enumerableOnly) { var keys = Object.keys(object); if 
 
 function _objectSpread$c(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$c(source, true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$c(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
-var _StyledButtonBase$7 = _styled(ButtonBaseWithFocus).withConfig({
+var _StyledButtonBase$7 = _styled__default(ButtonBaseWithFocus).withConfig({
   displayName: "ButtonText___StyledButtonBase",
   componentId: "i6an1t-0"
 })(["padding:", "px ", "px ", "px ", "px;color:", ";font-size:inherit;"], function (p) {
@@ -18771,7 +18607,7 @@ function ButtonText(_ref) {
   var theme = useTheme();
   var leftPadding = Number(horizontalPadding === 'left' || horizontalPadding === 'both') * GU;
   var rightPadding = Number(horizontalPadding === 'right' || horizontalPadding === 'both') * GU;
-  return React.createElement(_StyledButtonBase$7, _extends_1({}, props, {
+  return React__default.createElement(_StyledButtonBase$7, _extends_1({}, props, {
     _css: 1 * GU,
     _css2: rightPadding,
     _css3: 1 * GU,
@@ -18802,7 +18638,7 @@ function dimension(insideCardLayout, value, defaultValue) {
   return value === undefined ? defaultValue : value;
 }
 
-var _StyledDiv$f = _styled.div.withConfig({
+var _StyledDiv$f = _styled__default.div.withConfig({
   displayName: "Card___StyledDiv",
   componentId: "sc-13r75gj-0"
 })(["position:relative;width:", ";height:", ";background:", ";border:1px solid ", ";border-radius:", "px;cursor:", ";display:flex;flex-direction:column;align-items:center;justify-content:center;", ""], function (p) {
@@ -18841,13 +18677,13 @@ function Card(_ref) {
   } : {};
   var cssWidth = dimension(insideCardLayout, width, "".concat(DEFAULT_WIDTH, "px"));
   var cssHeight = dimension(insideCardLayout, height, "".concat(DEFAULT_HEIGHT, "px"));
-  return React.createElement(_StyledDiv$f, _extends_1({}, interactiveProps, props, {
+  return React__default.createElement(_StyledDiv$f, _extends_1({}, interactiveProps, props, {
     _css: cssWidth,
     _css2: cssHeight,
     _css3: theme.surface,
     _css4: theme.border,
     _css5: interactive ? 'pointer' : 'default',
-    _css6: interactive && css(["border:0;box-shadow:0px 1px 3px rgba(0,0,0,0.15);transition-property:transform,box-shadow;transition-duration:50ms;transition-timing-function:ease-in-out;text-align:left;white-space:normal;&:active{transform:translateY(1px);box-shadow:0px 1px 3px rgba(0,0,0,0.08);}"])
+    _css6: interactive && _styled.css(["border:0;box-shadow:0px 1px 3px rgba(0,0,0,0.15);transition-property:transform,box-shadow;transition-duration:50ms;transition-timing-function:ease-in-out;text-align:left;white-space:normal;&:active{transform:translateY(1px);box-shadow:0px 1px 3px rgba(0,0,0,0.08);}"])
   }), children);
 }
 
@@ -18858,7 +18694,7 @@ Card.propTypes = {
   onClick: propTypes.func
 };
 
-var _StyledDiv$g = _styled.div.withConfig({
+var _StyledDiv$g = _styled__default.div.withConfig({
   displayName: "CardLayout___StyledDiv",
   componentId: "p97qvl-0"
 })(["display:grid;grid-gap:", "px;grid-auto-flow:row;grid-template-columns:repeat( ", ",minmax(", "px,1fr) );grid-auto-rows:", "px;align-items:start;padding:0 ", "px ", "px;margin:0 auto;"], function (p) {
@@ -18885,9 +18721,9 @@ function CardLayout(_ref) {
       layoutName = _useLayout.layoutName;
 
   var fullWidth = layoutName === 'small';
-  return React.createElement(Inside, {
+  return React__default.createElement(Inside, {
     name: "CardLayout"
-  }, React.createElement(_StyledDiv$g, _extends_1({}, props, {
+  }, React__default.createElement(_StyledDiv$g, _extends_1({}, props, {
     _css: 2 * GU,
     _css2: fullWidth ? 'auto-fit' : 'auto-fill',
     _css3: columnWidthMin,
@@ -18970,14 +18806,14 @@ var CircleGraph = function CircleGraph(_ref) {
       size = _ref.size;
   var length = Math.PI * 2 * (size - BORDER_WIDTH);
   var radius = (size - BORDER_WIDTH) / 2;
-  return React.createElement(Spring, {
+  return React__default.createElement(Spring, {
     to: {
       progressValue: value
     },
     native: true
   }, function (_ref2) {
     var progressValue = _ref2.progressValue;
-    return React.createElement(Main$1, {
+    return React__default.createElement(Main$1, {
       style: {
         display: 'flex',
         alignItems: 'center',
@@ -18985,15 +18821,15 @@ var CircleGraph = function CircleGraph(_ref) {
         width: "".concat(size, "px"),
         height: "".concat(size, "px")
       }
-    }, React.createElement(CircleSvg, {
+    }, React__default.createElement(CircleSvg, {
       width: size,
       height: size,
       viewBox: "0 0 ".concat(size, " ").concat(size)
-    }, React.createElement(CircleBase, {
+    }, React__default.createElement(CircleBase, {
       cx: size / 2,
       cy: size / 2,
       r: radius
-    }), React.createElement(CircleValue, {
+    }), React__default.createElement(CircleValue, {
       cx: size / 2,
       cy: size / 2,
       r: radius,
@@ -19004,7 +18840,7 @@ var CircleGraph = function CircleGraph(_ref) {
         }),
         strokeWidth: BORDER_WIDTH
       }
-    })), React.createElement(Label, null, progressValue.interpolate(function (t) {
+    })), React__default.createElement(Label, null, progressValue.interpolate(function (t) {
       return label(Math.min(1, Math.max(0, t)));
     })));
   });
@@ -19020,13 +18856,11 @@ CircleGraph.defaultProps = {
   size: SIZE_DEFAULT,
   label: LABEL_DEFAULT
 };
-var Main$1 = _styled.div(_templateObject$3());
-var CircleSvg = _styled.svg(_templateObject2$2());
-var CircleBase = _styled.circle(_templateObject3$2());
-var CircleValue = _styled(extendedAnimated.circle)(_templateObject4$1());
-var Label = _styled(extendedAnimated.div)(_templateObject5());
-
-'use strict';
+var Main$1 = _styled__default.div(_templateObject$3());
+var CircleSvg = _styled__default.svg(_templateObject2$2());
+var CircleBase = _styled__default.circle(_templateObject3$2());
+var CircleValue = _styled__default(extendedAnimated.circle)(_templateObject4$1());
+var Label = _styled__default(extendedAnimated.div)(_templateObject5());
 
 var _createClass$1 = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -19123,35 +18957,35 @@ var ClickOutComponent = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
-      return Array.isArray(this.props.children) ? React.createElement(
+      return Array.isArray(this.props.children) ? React__default.createElement(
         'div',
         null,
         this.props.children
-      ) : React.Children.only(this.props.children);
+      ) : React__default.Children.only(this.props.children);
     }
   }]);
 
   return ClickOutComponent;
-}(React.Component);
+}(React__default.Component);
 
 var reactOnclickout = ClickOutComponent;
 
 var BASE_WIDTH = 46;
 var BASE_HEIGHT = 32;
 
-var _StyledIconEllipsis$1 = _styled(IconEllipsis).withConfig({
+var _StyledIconEllipsis$1 = _styled__default(IconEllipsis).withConfig({
   displayName: "ContextMenu___StyledIconEllipsis",
   componentId: "ris724-0"
 })([""]);
 
-var _StyledIconDown = _styled(IconDown).withConfig({
+var _StyledIconDown = _styled__default(IconDown).withConfig({
   displayName: "ContextMenu___StyledIconDown",
   componentId: "ris724-1"
 })(["color:", ";"], function (p) {
   return p._css7;
 });
 
-var _StyledAnimatedDiv$4 = _styled(extendedAnimated.div).withConfig({
+var _StyledAnimatedDiv$4 = _styled__default(extendedAnimated.div).withConfig({
   displayName: "ContextMenu___StyledAnimatedDiv",
   componentId: "ris724-2"
 })(["z-index:", ";overflow:hidden;position:absolute;top:", "px;right:0;background:", ";border:1px solid ", ";border-radius:3px 0 3px 3px;"], function (p) {
@@ -19164,7 +18998,7 @@ var _StyledAnimatedDiv$4 = _styled(extendedAnimated.div).withConfig({
   return p._css11;
 });
 
-var _StyledDiv$h = _styled.div.withConfig({
+var _StyledDiv$h = _styled__default.div.withConfig({
   displayName: "ContextMenu___StyledDiv",
   componentId: "ris724-3"
 })(["z-index:", ";position:absolute;bottom:0;right:1px;height:1px;width:", "px;background:", ";"], function (p) {
@@ -19181,15 +19015,15 @@ function ContextMenu(_ref) {
       disabled = _ref.disabled;
   var theme = useTheme();
 
-  var _useState = useState$1(false),
+  var _useState = React.useState(false),
       _useState2 = slicedToArray(_useState, 2),
       opened = _useState2[0],
       setOpened = _useState2[1];
 
-  var handleClose = useCallback(function () {
+  var handleClose = React.useCallback(function () {
     setOpened(false);
   }, []);
-  var handleBaseButtonClick = useCallback(function () {
+  var handleBaseButtonClick = React.useCallback(function () {
     setOpened(function (opened) {
       return !opened;
     });
@@ -19197,9 +19031,9 @@ function ContextMenu(_ref) {
   // context menus below it using the same z-index (e.g. when used in a list)
 
   var appliedZIndex = opened ? zIndex + 1 : zIndex;
-  return React.createElement(reactOnclickout, {
+  return React__default.createElement(reactOnclickout, {
     onClickOut: handleClose
-  }, React.createElement(Spring, {
+  }, React__default.createElement(Spring, {
     config: springs.smooth,
     to: {
       openProgress: Number(opened)
@@ -19207,14 +19041,14 @@ function ContextMenu(_ref) {
     native: true
   }, function (_ref2) {
     var openProgress = _ref2.openProgress;
-    return React.createElement(_StyledMain, {
+    return React__default.createElement(_StyledMain, {
       style: {
         boxShadow: openProgress.interpolate(function (t) {
           return "0 4px 4px rgba(0, 0, 0, ".concat(t * 0.03, ")");
         })
       },
       _css: appliedZIndex
-    }, React.createElement(_StyledButton$3, {
+    }, React__default.createElement(_StyledButton$3, {
       onClick: handleBaseButtonClick,
       opened: opened,
       disabled: disabled,
@@ -19224,7 +19058,7 @@ function ContextMenu(_ref) {
       _css4: disabled ? '0' : "1px solid ".concat(theme.border),
       _css5: opened ? theme.surface : theme.border,
       _css6: disabled ? '' : "&:active {\n                  background: ".concat(theme.surfacePressed, ";\n                  border-bottom-color: ").concat(opened ? theme.surfacePressed : theme.border, ";\n                }")
-    }, React.createElement(_StyledIconEllipsis$1, null), React.createElement(extendedAnimated.div, {
+    }, React__default.createElement(_StyledIconEllipsis$1, null), React__default.createElement(extendedAnimated.div, {
       style: {
         display: 'flex',
         alignItems: 'center',
@@ -19233,10 +19067,10 @@ function ContextMenu(_ref) {
           return "rotate(".concat(v * 180, "deg)");
         })
       }
-    }, React.createElement(_StyledIconDown, {
+    }, React__default.createElement(_StyledIconDown, {
       size: "tiny",
       _css7: disabled ? theme.disabledIcon : theme.surfaceIcon
-    }))), opened && React.createElement(React.Fragment, null, React.createElement(_StyledAnimatedDiv$4, {
+    }))), opened && React__default.createElement(React__default.Fragment, null, React__default.createElement(_StyledAnimatedDiv$4, {
       onClick: handleClose,
       style: {
         opacity: openProgress,
@@ -19248,7 +19082,7 @@ function ContextMenu(_ref) {
       _css9: BASE_HEIGHT - 1,
       _css10: theme.surface,
       _css11: theme.border
-    }, children), React.createElement(_StyledDiv$h, {
+    }, children), React__default.createElement(_StyledDiv$h, {
       _css12: appliedZIndex + 1,
       _css13: BASE_WIDTH - 2,
       _css14: theme.surface
@@ -19265,19 +19099,19 @@ ContextMenu.defaultProps = {
   zIndex: 0,
   disabled: false
 };
-var Main$2 = _styled(extendedAnimated.div).withConfig({
+var Main$2 = _styled__default(extendedAnimated.div).withConfig({
   displayName: "ContextMenu__Main",
   componentId: "ris724-4"
 })(["position:relative;width:", "px;height:", "px;"], BASE_WIDTH, BASE_HEIGHT);
 
-var _StyledMain = _styled(Main$2).withConfig({
+var _StyledMain = _styled__default(Main$2).withConfig({
   displayName: "ContextMenu___StyledMain",
   componentId: "ris724-5"
 })(["z-index:", ";"], function (p) {
   return p._css;
 });
 
-var Button$1 = _styled(ButtonBaseWithFocus).withConfig({
+var Button$1 = _styled__default(ButtonBaseWithFocus).withConfig({
   displayName: "ContextMenu__Button",
   componentId: "ris724-6"
 })(["display:flex;justify-content:center;align-items:center;width:100%;height:", "px;border-radius:", ";box-shadow:", ";"], BASE_HEIGHT, function (_ref3) {
@@ -19288,7 +19122,7 @@ var Button$1 = _styled(ButtonBaseWithFocus).withConfig({
   return disabled ? 'none' : "0px 1px 3px rgba(0, 0, 0, 0.1)";
 });
 
-var _StyledButton$3 = _styled(Button$1).withConfig({
+var _StyledButton$3 = _styled__default(Button$1).withConfig({
   displayName: "ContextMenu___StyledButton",
   componentId: "ris724-7"
 })(["color:", ";background:", ";border:", ";border-bottom-color:", ";", ""], function (p) {
@@ -19303,7 +19137,7 @@ var _StyledButton$3 = _styled(Button$1).withConfig({
   return p._css6;
 });
 
-var _StyledButtonBase$8 = _styled(ButtonBaseWithFocus).withConfig({
+var _StyledButtonBase$8 = _styled__default(ButtonBaseWithFocus).withConfig({
   displayName: "ContextMenuItem___StyledButtonBase",
   componentId: "sc-6mg7lj-0"
 })(["display:flex;align-items:center;padding:5px 16px 5px 10px;cursor:pointer;white-space:nowrap;width:100%;", " ", ";&:active{background:", ";}"], function (p) {
@@ -19314,9 +19148,9 @@ var _StyledButtonBase$8 = _styled(ButtonBaseWithFocus).withConfig({
   return p._css3;
 });
 
-var ContextMenuItem = React.memo(function ContextMenuItem(props) {
+var ContextMenuItem = React__default.memo(function ContextMenuItem(props) {
   var theme = useTheme();
-  return React.createElement(_StyledButtonBase$8, _extends_1({}, props, {
+  return React__default.createElement(_StyledButtonBase$8, _extends_1({}, props, {
     _css: textStyle('body2'),
     _css2: unselectable(),
     _css3: theme.surfacePressed
@@ -20029,7 +19863,7 @@ function getTime(start, end, format, showEmpty, maxUnits) {
   };
 }
 
-var _StyledTime = _styled.time.withConfig({
+var _StyledTime = _styled__default.time.withConfig({
   displayName: "Timer___StyledTime",
   componentId: "sc-58hkwl-0"
 })(["display:flex;align-items:center;white-space:nowrap;", ";", ";"], function (p) {
@@ -20038,21 +19872,21 @@ var _StyledTime = _styled.time.withConfig({
   return p._css2;
 });
 
-var _StyledSpan$8 = _styled.span.withConfig({
+var _StyledSpan$8 = _styled__default.span.withConfig({
   displayName: "Timer___StyledSpan",
   componentId: "sc-58hkwl-1"
 })(["display:flex;align-items:center;margin-right:", "px;margin-top:-3px;"], function (p) {
   return p._css3;
 });
 
-var _StyledIconTime = _styled(IconClock).withConfig({
+var _StyledIconTime = _styled__default(IconClock).withConfig({
   displayName: "Timer___StyledIconTime",
   componentId: "sc-58hkwl-2"
 })(["color:", ";"], function (p) {
   return p._css4;
 });
 
-var _StyledSpan2$5 = _styled.span.withConfig({
+var _StyledSpan2$5 = _styled__default.span.withConfig({
   displayName: "Timer___StyledSpan2",
   componentId: "sc-58hkwl-3"
 })(["", ";color:", ";"], function (p) {
@@ -20061,7 +19895,7 @@ var _StyledSpan2$5 = _styled.span.withConfig({
   return p._css6;
 });
 
-var _StyledSpan3$2 = _styled.span.withConfig({
+var _StyledSpan3$2 = _styled__default.span.withConfig({
   displayName: "Timer___StyledSpan3",
   componentId: "sc-58hkwl-4"
 })(["color:", ";", ";"], function (p) {
@@ -20070,14 +19904,14 @@ var _StyledSpan3$2 = _styled.span.withConfig({
   return p._css8;
 });
 
-var _StyledSpan4 = _styled.span.withConfig({
+var _StyledSpan4 = _styled__default.span.withConfig({
   displayName: "Timer___StyledSpan4",
   componentId: "sc-58hkwl-5"
 })(["margin-left:2px;color:", ";"], function (p) {
   return p._css9;
 });
 
-var _StyledSpan5 = _styled.span.withConfig({
+var _StyledSpan5 = _styled__default.span.withConfig({
   displayName: "Timer___StyledSpan5",
   componentId: "sc-58hkwl-6"
 })(["margin:0 4px;color:", ";font-weight:400;"], function (p) {
@@ -20116,7 +19950,7 @@ function (_React$Component) {
           units = _getTime.units;
 
       if (totalInSeconds < 0 || Object.is(totalInSeconds, -0)) {
-        return React.createElement(_StyledSpan2$5, {
+        return React__default.createElement(_StyledSpan2$5, {
           _css5: textStyle('body2'),
           _css6: theme.surfaceContentSecondary
         }, end ? 'Time out' : '−');
@@ -20125,7 +19959,7 @@ function (_React$Component) {
       var lastUnitIndex = units.reduce(function (lastIndex, unit, index) {
         return unit[1] === null ? lastIndex : index;
       }, 0);
-      return React.createElement("span", null, units.map(function (unit, index) {
+      return React__default.createElement("span", null, units.map(function (unit, index) {
         var isLast = index === lastUnitIndex;
         var isSeconds = index === units.length - 1; // Only time units (hours, minutes and seconds).
         // Remember to update if ms gets added one day!
@@ -20136,17 +19970,17 @@ function (_React$Component) {
           return null;
         }
 
-        return React.createElement(React.Fragment, {
+        return React__default.createElement(React__default.Fragment, {
           key: index
-        }, React.createElement(_StyledSpan3$2, {
+        }, React__default.createElement(_StyledSpan3$2, {
           _css7: theme.surfaceContent,
           _css8: isSeconds && // Fix the width of the seconds unit so that
           // it doesn’t jump too much.
           "\n                      display: inline-flex;\n                      align-items: baseline;\n                      justify-content: space-between;\n                      min-width: 31px;\n                    "
-        }, formatUnit(unit[1]), React.createElement(_StyledSpan4, {
+        }, formatUnit(unit[1]), React__default.createElement(_StyledSpan4, {
           _css9: theme.surfaceContentSecondary
         }, unit[0])), !isLast && // Separator
-        React.createElement(_StyledSpan5, {
+        React__default.createElement(_StyledSpan5, {
           _css10: theme.surfaceContentSecondary
         }, isTimeUnit && ':'));
       }));
@@ -20162,22 +19996,22 @@ function (_React$Component) {
           end = _this$props2.end,
           start = _this$props2.start,
           theme = _this$props2.theme;
-      return React.createElement(_StyledTime, {
+      return React__default.createElement(_StyledTime, {
         dateTime: formatHtmlDatetime(end || start),
         _css: unselectable(),
         _css2: textStyle('body2')
-      }, React.createElement(_StyledSpan$8, {
+      }, React__default.createElement(_StyledSpan$8, {
         _css3: 0.5 * GU
-      }, React.createElement(_StyledIconTime, {
+      }, React__default.createElement(_StyledIconTime, {
         _css4: theme.surfaceIcon
-      })), React.createElement(Redraw, {
+      })), React__default.createElement(Redraw, {
         interval: RENDER_EVERY
       }, this.renderTime));
     }
   }]);
 
   return Timer;
-}(React.Component);
+}(React__default.Component);
 
 defineProperty(Timer, "propTypes", {
   end: propTypes.instanceOf(Date),
@@ -20196,7 +20030,7 @@ defineProperty(Timer, "defaultProps", {
 
 var Timer$1 = (function (props) {
   var theme = useTheme();
-  return React.createElement(Timer, _extends_1({}, props, {
+  return React__default.createElement(Timer, _extends_1({}, props, {
     theme: theme
   }));
 });
@@ -20219,7 +20053,7 @@ function (_React$Component) {
           end = _this$props.end,
           removeDaysAndHours = _this$props.removeDaysAndHours;
       var format = removeDaysAndHours ? 'ms' : 'dhms';
-      return React.createElement(Timer$1, {
+      return React__default.createElement(Timer$1, {
         end: end,
         format: format
       });
@@ -20227,7 +20061,7 @@ function (_React$Component) {
   }]);
 
   return Countdown;
-}(React.Component);
+}(React__default.Component);
 
 Countdown.propTypes = {
   end: propTypes.instanceOf(Date).isRequired,
@@ -20237,16 +20071,16 @@ Countdown.defaultProps = {
   removeDaysAndHours: false
 };
 
-var HoverIndicator = _styled.span.withConfig({
+var HoverIndicator = _styled__default.span.withConfig({
   displayName: "components__HoverIndicator",
   componentId: "lxakqh-0"
 })(["width:100%;height:100%;position:absolute;border-radius:50%;", ""], function (_ref) {
   var theme = _ref.theme,
       selected = _ref.selected;
-  return css(["background:", ";border:2px solid ", ";"], selected ? theme.selected : theme.surface, theme.accent);
+  return _styled.css(["background:", ";border:2px solid ", ";"], selected ? theme.selected : theme.surface, theme.accent);
 });
 
-var _StyledButtonBase$9 = _styled(ButtonBaseWithFocus).withConfig({
+var _StyledButtonBase$9 = _styled__default(ButtonBaseWithFocus).withConfig({
   displayName: "components___StyledButtonBase",
   componentId: "lxakqh-1"
 })(["font-size:9px;padding:5px 4px 0 4px;margin-top:-4px;color:", ";&:hover{color:inherit;}"], function (p) {
@@ -20255,20 +20089,20 @@ var _StyledButtonBase$9 = _styled(ButtonBaseWithFocus).withConfig({
 
 var ArrowButton = function ArrowButton(props) {
   var theme = useTheme();
-  return React.createElement(_StyledButtonBase$9, _extends_1({
+  return React__default.createElement(_StyledButtonBase$9, _extends_1({
     focusRingRadius: GU * 2
   }, props, {
     _css: theme.hint
   }));
 };
 
-var SelectorWrapper = _styled.div.withConfig({
+var SelectorWrapper = _styled__default.div.withConfig({
   displayName: "components__SelectorWrapper",
   componentId: "lxakqh-2"
 })(["display:flex;align-items:center;justify-content:space-between;margin-bottom:", "px;span{", "}"], 1 * GU, function (_ref2) {
   var small = _ref2.small,
       theme = _ref2.theme;
-  return css(["", ";", ""], textStyle(small ? 'label2' : 'body2'), small && css(["color:", ";font-weight:600;"], theme.hint));
+  return _styled.css(["", ";", ""], textStyle(small ? 'label2' : 'body2'), small && _styled.css(["color:", ";font-weight:600;"], theme.hint));
 }); // eslint-disable-next-line react/prop-types
 
 function Selector(_ref3) {
@@ -20277,21 +20111,21 @@ function Selector(_ref3) {
       children = _ref3.children,
       small = _ref3.small;
   var theme = useTheme();
-  return React.createElement(SelectorWrapper, {
+  return React__default.createElement(SelectorWrapper, {
     small: small,
     theme: theme
-  }, React.createElement(ArrowButton, {
+  }, React__default.createElement(ArrowButton, {
     onClick: prev
-  }, React.createElement(IconLeft, {
+  }, React__default.createElement(IconLeft, {
     size: "small"
-  })), React.createElement("span", null, children), React.createElement(ArrowButton, {
+  })), React__default.createElement("span", null, children), React__default.createElement(ArrowButton, {
     onClick: next
-  }, React.createElement(IconRight, {
+  }, React__default.createElement(IconRight, {
     size: "small"
   })));
 }
 
-var _StyledDiv$i = _styled.div.withConfig({
+var _StyledDiv$i = _styled__default.div.withConfig({
   displayName: "MonthDay___StyledDiv",
   componentId: "ngrxyo-0"
 })(["position:relative;display:flex;align-items:center;justify-content:center;width:", "px;height:", "px;border-radius:50%;cursor:pointer;user-select:none;margin-bottom:1px;", ";", " ", " ", " ", " ", " ", " &:after{display:block;content:'';margin-top:100%;}"], function (p) {
@@ -20314,14 +20148,14 @@ var _StyledDiv$i = _styled.div.withConfig({
   return p._css9;
 });
 
-var _StyledSpan$9 = _styled.span.withConfig({
+var _StyledSpan$9 = _styled__default.span.withConfig({
   displayName: "MonthDay___StyledSpan",
   componentId: "ngrxyo-1"
 })(["", ";"], function (p) {
   return p._css10;
 });
 
-var _StyledDiv2$9 = _styled.div.withConfig({
+var _StyledDiv2$9 = _styled__default.div.withConfig({
   displayName: "MonthDay___StyledDiv2",
   componentId: "ngrxyo-2"
 })(["position:absolute;bottom:1px;font-size:9px;color:", ";"], function (p) {
@@ -20342,12 +20176,12 @@ function MonthDay(_ref) {
   var theme = useTheme();
   var dimmedSelectedColor = theme.selected.alpha(0.09);
 
-  var _useState = useState$1(false),
+  var _useState = React.useState(false),
       _useState2 = slicedToArray(_useState, 2),
       isHovered = _useState2[0],
       setIsHovered = _useState2[1];
 
-  return React.createElement(_StyledDiv$i, _extends_1({
+  return React__default.createElement(_StyledDiv$i, _extends_1({
     onMouseEnter: function onMouseEnter() {
       return setIsHovered(true);
     },
@@ -20360,16 +20194,16 @@ function MonthDay(_ref) {
     _css3: disabled ? "\n                pointer-events: none;\n                opacity: 0;\n              " : '',
     _css4: selected && !disabled ? "\n                &&& {\n                  background: ".concat(theme.selected, ";\n                  color: ").concat(theme.positiveContent, ";\n                }\n              ") : '',
     _css5: inRange && !selected && !disabled ? "\n                background: ".concat(dimmedSelectedColor, ";\n                border-radius: 0;\n              ") : '',
-    _css6: (rangeBoundaryBegin || rangeBoundaryEnd) && css(["z-index:1;&:before{content:'';position:absolute;top:0;", ":0;z-index:0;background:", ";width:50%;height:100%;}"], rangeBoundaryBegin ? 'right' : 'left', dimmedSelectedColor),
-    _css7: isHovered && css(["> *{z-index:1;}"]),
-    _css8: today && css(["color:", ";font-weight:600;"], theme.selected),
-    _css9: weekDay && css(["pointer-events:none;color:", ";text-transform:uppercase;"], theme.contentSecondary)
-  }), isHovered ? React.createElement(HoverIndicator, {
+    _css6: (rangeBoundaryBegin || rangeBoundaryEnd) && _styled.css(["z-index:1;&:before{content:'';position:absolute;top:0;", ":0;z-index:0;background:", ";width:50%;height:100%;}"], rangeBoundaryBegin ? 'right' : 'left', dimmedSelectedColor),
+    _css7: isHovered && _styled.css(["> *{z-index:1;}"]),
+    _css8: today && _styled.css(["color:", ";font-weight:600;"], theme.selected),
+    _css9: weekDay && _styled.css(["pointer-events:none;color:", ";text-transform:uppercase;"], theme.contentSecondary)
+  }), isHovered ? React__default.createElement(HoverIndicator, {
     theme: theme,
     selected: selected
-  }) : null, React.createElement(_StyledSpan$9, {
+  }) : null, React__default.createElement(_StyledSpan$9, {
     _css10: textStyle(weekDay ? 'body4' : 'body3')
-  }, children), today ? React.createElement(_StyledDiv2$9, {
+  }, children), today ? React__default.createElement(_StyledDiv2$9, {
     _css11: selected ? theme.surface : theme.selected
   }, "\u25CF") : null);
 }
@@ -20385,7 +20219,7 @@ MonthDay.propTypes = {
   weekDay: propTypes.bool
 };
 
-var _StyledButtonBase$a = _styled(ButtonBaseWithFocus).withConfig({
+var _StyledButtonBase$a = _styled__default(ButtonBaseWithFocus).withConfig({
   displayName: "MonthDay___StyledButtonBase",
   componentId: "ngrxyo-3"
 })(["display:flex;width:", "px;height:", "px;margin:0;"], function (p) {
@@ -20399,22 +20233,22 @@ function WrappedMonthDay(_ref2) {
       props = objectWithoutProperties(_ref2, ["onClick"]);
 
   if (onClick && !props.disabled) {
-    return React.createElement(_StyledButtonBase$a, {
+    return React__default.createElement(_StyledButtonBase$a, {
       onClick: onClick,
       _css12: 4.5 * GU,
       _css13: props.weekDay ? 3.5 * GU : 4.5 * GU
-    }, React.createElement(MonthDay, props));
+    }, React__default.createElement(MonthDay, props));
   } else {
-    return React.createElement(MonthDay, props);
+    return React__default.createElement(MonthDay, props);
   }
 }
 
-var _StyledDiv$j = _styled.div.withConfig({
+var _StyledDiv$j = _styled__default.div.withConfig({
   displayName: "DatePicker___StyledDiv",
   componentId: "sc-6xp23y-0"
 })(["display:grid;"]);
 
-var _StyledDiv2$a = _styled.div.withConfig({
+var _StyledDiv2$a = _styled__default.div.withConfig({
   displayName: "DatePicker___StyledDiv2",
   componentId: "sc-6xp23y-1"
 })(["display:grid;grid-template:auto / repeat(7,1fr);width:", "px;"], function (p) {
@@ -20435,7 +20269,7 @@ function DatePicker(_ref) {
       weekDayFormat = _ref.weekDayFormat,
       props = objectWithoutProperties(_ref, ["initialDate", "onSelect", "datesRangeStart", "datesRangeEnd", "hideYearSelector", "yearFormat", "hideMonthSelector", "monthFormat", "monthYearFormat", "hideWeekDays", "weekDayFormat"]);
 
-  var _useState = useState$1(initialDate),
+  var _useState = React.useState(initialDate),
       _useState2 = slicedToArray(_useState, 2),
       selectedDate = _useState2[0],
       setSelectedDate = _useState2[1];
@@ -20465,7 +20299,7 @@ function DatePicker(_ref) {
     }
   };
 
-  return React.createElement(_StyledDiv$j, props, !hideYearSelector && React.createElement(Selector, {
+  return React__default.createElement(_StyledDiv$j, props, !hideYearSelector && React__default.createElement(Selector, {
     prev: setDate({
       year: true,
       add: false
@@ -20475,7 +20309,7 @@ function DatePicker(_ref) {
       add: true
     }),
     small: true
-  }, selectedDayjs.format(yearFormat)), !hideMonthSelector && React.createElement(Selector, {
+  }, selectedDayjs.format(yearFormat)), !hideMonthSelector && React__default.createElement(Selector, {
     prev: setDate({
       year: false,
       add: false
@@ -20484,14 +20318,14 @@ function DatePicker(_ref) {
       year: false,
       add: true
     })
-  }, selectedDayjs.format(!hideYearSelector ? monthFormat : monthYearFormat)), React.createElement(_StyledDiv2$a, {
+  }, selectedDayjs.format(!hideYearSelector ? monthFormat : monthYearFormat)), React__default.createElement(_StyledDiv2$a, {
     _css: 31.5 * GU
   }, !hideWeekDays && eachDayOfInterval({
     start: selectedDayjs.startOf('week'),
     end: selectedDayjs.endOf('week')
   }).map(function (day) {
     var dayJs = dayjs_min(day);
-    return React.createElement(WrappedMonthDay, {
+    return React__default.createElement(WrappedMonthDay, {
       key: dayJs.format('dd'),
       weekDay: true
     }, dayJs.format(weekDayFormat));
@@ -20500,7 +20334,7 @@ function DatePicker(_ref) {
     end: selectedDayjs.endOf('month').endOf('week')
   }).map(function (day) {
     var dayJs = dayjs_min(day);
-    return React.createElement(WrappedMonthDay, {
+    return React__default.createElement(WrappedMonthDay, {
       key: dayJs.valueOf(),
       disabled: !selectedDayjs.isSame(dayJs, 'month'),
       selected: isSelected(dayJs),
@@ -20556,7 +20390,7 @@ var INPUT_BORDER = 1;
 var START_DATE = 'Start day';
 var END_DATE = 'End day';
 
-var _StyledDiv$k = _styled.div.withConfig({
+var _StyledDiv$k = _styled__default.div.withConfig({
   displayName: "Labels___StyledDiv",
   componentId: "sc-1is9uv6-0"
 })(["position:relative;width:", "px;display:flex;justify-content:space-between;align-items:center;padding:7px 6px;border:", "px solid ", ";border-radius:", "px;background:", ";overflow:hidden;cursor:pointer;&:active{border-color:", ";}&:focus{outline:none;}"], function (p) {
@@ -20569,12 +20403,12 @@ var _StyledDiv$k = _styled.div.withConfig({
   return p._css4;
 });
 
-var _StyledDiv2$b = _styled.div.withConfig({
+var _StyledDiv2$b = _styled__default.div.withConfig({
   displayName: "Labels___StyledDiv2",
   componentId: "sc-1is9uv6-1"
 })(["display:flex;flex:1;justify-content:space-around;align-items:center;"]);
 
-var _StyledDiv3$5 = _styled.div.withConfig({
+var _StyledDiv3$5 = _styled__default.div.withConfig({
   displayName: "Labels___StyledDiv3",
   componentId: "sc-1is9uv6-2"
 })(["color:", ";text-align:center;", ""], function (p) {
@@ -20583,14 +20417,14 @@ var _StyledDiv3$5 = _styled.div.withConfig({
   return p._css6;
 });
 
-var _StyledDiv4$4 = _styled.div.withConfig({
+var _StyledDiv4$4 = _styled__default.div.withConfig({
   displayName: "Labels___StyledDiv4",
   componentId: "sc-1is9uv6-3"
 })(["color:", ";font-size:13px;"], function (p) {
   return p._css7;
 });
 
-var _StyledDiv5$1 = _styled.div.withConfig({
+var _StyledDiv5$1 = _styled__default.div.withConfig({
   displayName: "Labels___StyledDiv5",
   componentId: "sc-1is9uv6-4"
 })(["color:", ";text-align:center;", ""], function (p) {
@@ -20599,19 +20433,19 @@ var _StyledDiv5$1 = _styled.div.withConfig({
   return p._css9;
 });
 
-var _StyledDiv6$1 = _styled.div.withConfig({
+var _StyledDiv6$1 = _styled__default.div.withConfig({
   displayName: "Labels___StyledDiv6",
   componentId: "sc-1is9uv6-5"
 })(["display:flex;padding:0 4px 0 10px;"]);
 
-var _StyledIconCalendar = _styled(IconCalendar).withConfig({
+var _StyledIconCalendar = _styled__default(IconCalendar).withConfig({
   displayName: "Labels___StyledIconCalendar",
   componentId: "sc-1is9uv6-6"
 })(["color:", ";"], function (p) {
   return p._css10;
 });
 
-var Labels = forwardRef(function Labels(_ref, ref) {
+var Labels = React.forwardRef(function Labels(_ref, ref) {
   var enabled = _ref.enabled,
       startText = _ref.startText,
       endText = _ref.endText,
@@ -20622,24 +20456,24 @@ var Labels = forwardRef(function Labels(_ref, ref) {
   var theme = useTheme();
   var hasNoStart = startText === START_DATE;
   var hasNoEnd = endText === END_DATE;
-  return React.createElement(ButtonBaseWithFocus, {
+  return React__default.createElement(ButtonBaseWithFocus, {
     focusRingRadius: RADIUS,
     ref: ref,
     onClick: onClick
-  }, React.createElement(_StyledDiv$k, _extends_1({}, props, {
+  }, React__default.createElement(_StyledDiv$k, _extends_1({}, props, {
     _css: 27.5 * GU,
     _css2: hasSetDates ? theme.accent : theme.border,
     _css3: theme.surface,
     _css4: theme.controlBorderPressed
-  }), React.createElement(_StyledDiv2$b, null, React.createElement(_StyledDiv3$5, {
+  }), React__default.createElement(_StyledDiv2$b, null, React__default.createElement(_StyledDiv3$5, {
     _css5: hasNoStart ? theme.hint : 'inherit',
     _css6: textStyle(hasNoStart ? 'body2' : 'body3')
-  }, startText), React.createElement(_StyledDiv4$4, {
+  }, startText), React__default.createElement(_StyledDiv4$4, {
     _css7: theme.hint.alpha(0.3)
-  }, "|"), React.createElement(_StyledDiv5$1, {
+  }, "|"), React__default.createElement(_StyledDiv5$1, {
     _css8: hasNoEnd ? theme.hint : 'inherit',
     _css9: textStyle(hasNoEnd ? 'body2' : 'body3')
-  }, endText)), React.createElement(_StyledDiv6$1, null, React.createElement(_StyledIconCalendar, {
+  }, endText)), React__default.createElement(_StyledDiv6$1, null, React__default.createElement(_StyledIconCalendar, {
     _css10: enabled ? theme.accent : theme.surfaceIcon
   }))));
 });
@@ -20708,14 +20542,14 @@ function handleDateSelect(_ref) {
   }
 }
 
-var _StyledPopover = _styled(Popover).withConfig({
+var _StyledPopover = _styled__default(Popover).withConfig({
   displayName: "DateRangePicker___StyledPopover",
   componentId: "s3s5m9-0"
 })(["min-width:", "px;border:0;filter:none;background:none;margin:2px 0 0 0;"], function (p) {
   return p._css;
 });
 
-var _StyledDiv$l = _styled.div.withConfig({
+var _StyledDiv$l = _styled__default.div.withConfig({
   displayName: "DateRangePicker___StyledDiv",
   componentId: "s3s5m9-1"
 })(["padding:", "px ", "px ", "px;border:1px solid ", ";border-radius:", "px;background:", ";"], function (p) {
@@ -20730,19 +20564,19 @@ var _StyledDiv$l = _styled.div.withConfig({
   return p._css6;
 });
 
-var _StyledDiv2$c = _styled.div.withConfig({
+var _StyledDiv2$c = _styled__default.div.withConfig({
   displayName: "DateRangePicker___StyledDiv2",
   componentId: "s3s5m9-2"
 })(["display:flex;flex-direction:row;align-items:baseline;"]);
 
-var _StyledDatePicker = _styled(DatePicker).withConfig({
+var _StyledDatePicker = _styled__default(DatePicker).withConfig({
   displayName: "DateRangePicker___StyledDatePicker",
   componentId: "s3s5m9-3"
 })(["margin-left:", "px;"], function (p) {
   return p._css7;
 });
 
-var _StyledDiv3$6 = _styled.div.withConfig({
+var _StyledDiv3$6 = _styled__default.div.withConfig({
   displayName: "DateRangePicker___StyledDiv3",
   componentId: "s3s5m9-4"
 })(["display:flex;align-items:center;justify-content:space-between;margin-top:", "px;", ";"], function (p) {
@@ -20751,7 +20585,7 @@ var _StyledDiv3$6 = _styled.div.withConfig({
   return p._css9;
 });
 
-var _StyledButton$4 = _styled(ButtonWithRef).withConfig({
+var _StyledButton$4 = _styled__default(ButtonWithRef).withConfig({
   displayName: "DateRangePicker___StyledButton",
   componentId: "s3s5m9-5"
 })(["margin-left:", "px;"], function (p) {
@@ -20764,39 +20598,39 @@ function DateRangePicker(_ref) {
       onChange = _ref.onChange,
       startDateProp = _ref.startDate;
   var theme = useTheme();
-  var labelsRef = useRef();
+  var labelsRef = React.useRef();
 
-  var _useState = useState$1(false),
+  var _useState = React.useState(false),
       _useState2 = slicedToArray(_useState, 2),
       showPicker = _useState2[0],
       setShowPicker = _useState2[1];
 
-  var _useState3 = useState$1(startDateProp),
+  var _useState3 = React.useState(startDateProp),
       _useState4 = slicedToArray(_useState3, 2),
       startDate = _useState4[0],
       setStartDate = _useState4[1];
 
-  var _useState5 = useState$1(endDateProp),
+  var _useState5 = React.useState(endDateProp),
       _useState6 = slicedToArray(_useState5, 2),
       endDate = _useState6[0],
       setEndDate = _useState6[1]; // on closing the picked, reset state
 
 
-  useEffect(function () {
+  React.useEffect(function () {
     if (!showPicker) {
       setStartDate(startDateProp);
       setEndDate(endDateProp);
     }
   }, [endDateProp, startDateProp, showPicker]);
-  var handlePopoverClose = useCallback(function () {
+  var handlePopoverClose = React.useCallback(function () {
     return setShowPicker(false);
   }, []);
-  var handleLabelsClick = useCallback(function () {
+  var handleLabelsClick = React.useCallback(function () {
     setShowPicker(function (show) {
       return !show;
     });
   }, []);
-  var handleDateClick = useCallback(function (date) {
+  var handleDateClick = React.useCallback(function (date) {
     var result = handleDateSelect({
       date: date,
       startDate: startDate,
@@ -20805,7 +20639,7 @@ function DateRangePicker(_ref) {
     result.startDate !== undefined && setStartDate(result.startDate);
     result.endDate !== undefined && setEndDate(result.endDate);
   }, [startDate, endDate]);
-  var handleApply = useCallback(function () {
+  var handleApply = React.useCallback(function () {
     setShowPicker(false);
 
     if (startDate && endDate) {
@@ -20815,7 +20649,7 @@ function DateRangePicker(_ref) {
       });
     }
   }, [endDate, onChange, startDate]);
-  var handleClear = useCallback(function () {
+  var handleClear = React.useCallback(function () {
     setStartDate(null);
     setEndDate(null);
     setShowPicker(false);
@@ -20824,7 +20658,7 @@ function DateRangePicker(_ref) {
       end: null
     });
   }, [onChange]);
-  var labelProps = useMemo(function () {
+  var labelProps = React.useMemo(function () {
     var _startDate = showPicker ? startDate : startDateProp;
 
     var _endDate = showPicker ? endDate : endDateProp;
@@ -20835,49 +20669,49 @@ function DateRangePicker(_ref) {
     };
   }, [endDate, endDateProp, format, showPicker, startDate, startDateProp]);
   var compactMode = useViewport().below('medium');
-  var displayMonthBeforeOnLeft = useMemo(function () {
+  var displayMonthBeforeOnLeft = React.useMemo(function () {
     // If both dates are in the same month, use the right calendar
     // for it, and display month before on the left calendar.
     var propsDatesInSameMonth = startDateProp && endDateProp && dayjs_min(startDateProp).isSame(dayjs_min(endDateProp), 'month');
     return !compactMode && (propsDatesInSameMonth || !startDateProp);
   }, [compactMode, endDateProp, startDateProp]);
-  return React.createElement("div", null, React.createElement(Labels, _extends_1({
+  return React__default.createElement("div", null, React__default.createElement(Labels, _extends_1({
     ref: labelsRef,
     enabled: showPicker,
     hasSetDates: Boolean(startDateProp && endDateProp),
     onClick: handleLabelsClick
-  }, labelProps)), React.createElement(_StyledPopover, {
+  }, labelProps)), React__default.createElement(_StyledPopover, {
     closeOnOpenerFocus: true,
     onClose: handlePopoverClose,
     opener: labelsRef.current,
     placement: "bottom-start",
     visible: showPicker,
     _css: 37.5 * GU + 2
-  }, React.createElement(_StyledDiv$l, {
+  }, React__default.createElement(_StyledDiv$l, {
     _css2: 2.5 * GU,
     _css3: 3 * GU,
     _css4: 3 * GU,
     _css5: theme.border,
     _css6: theme.surface
-  }, React.createElement(_StyledDiv2$c, null, React.createElement(DatePicker, {
+  }, React__default.createElement(_StyledDiv2$c, null, React__default.createElement(DatePicker, {
     datesRangeEnd: endDate,
     datesRangeStart: startDate,
     initialDate: dayjs_min(startDateProp || undefined).subtract(displayMonthBeforeOnLeft ? 1 : 0, 'month').toDate(),
     onSelect: handleDateClick
-  }), !compactMode && React.createElement(_StyledDatePicker, {
+  }), !compactMode && React__default.createElement(_StyledDatePicker, {
     datesRangeEnd: endDate,
     datesRangeStart: startDate,
     initialDate: dayjs_min(endDateProp || undefined).toDate(),
     onSelect: handleDateClick,
     _css7: 1 * GU
-  })), React.createElement(_StyledDiv3$6, {
+  })), React__default.createElement(_StyledDiv3$6, {
     _css8: GU * 2.25,
     _css9: compactMode ? '' : "\n                    max-width: 247px;\n                    margin-left: auto;\n                  "
-  }, React.createElement(ButtonWithRef, {
+  }, React__default.createElement(ButtonWithRef, {
     onClick: handleClear,
     size: "small",
     wide: true
-  }, "Reset"), React.createElement(_StyledButton$4, {
+  }, "Reset"), React__default.createElement(_StyledButton$4, {
     disabled: !startDate || !endDate,
     mode: "strong",
     onClick: handleApply,
@@ -20898,50 +20732,50 @@ DateRangePicker.defaultProps = {
   onChange: function onChange() {}
 };
 
-var _StyledDiv$m = _styled.div.withConfig({
+var _StyledDiv$m = _styled__default.div.withConfig({
   displayName: "Distribution___StyledDiv",
   componentId: "r4l1i4-0"
 })(["margin-bottom:", "px;"], function (p) {
   return p._css;
 });
 
-var _StyledH$4 = _styled.h1.withConfig({
+var _StyledH$4 = _styled__default.h1.withConfig({
   displayName: "Distribution___StyledH",
   componentId: "r4l1i4-1"
 })(["", ""], function (p) {
   return p._css2;
 });
 
-var _StyledDiv2$d = _styled.div.withConfig({
+var _StyledDiv2$d = _styled__default.div.withConfig({
   displayName: "Distribution___StyledDiv2",
   componentId: "r4l1i4-2"
 })(["display:flex;width:100%;overflow:hidden;margin:0 0 ", "px;border-radius:3px;div{height:6px;}"], function (p) {
   return p._css3;
 });
 
-var _StyledUl = _styled.ul.withConfig({
+var _StyledUl = _styled__default.ul.withConfig({
   displayName: "Distribution___StyledUl",
   componentId: "r4l1i4-3"
 })(["margin-top:", "px;"], function (p) {
   return p._css4;
 });
 
-var _StyledLi = _styled.li.withConfig({
+var _StyledLi = _styled__default.li.withConfig({
   displayName: "Distribution___StyledLi",
   componentId: "r4l1i4-4"
 })(["display:flex;align-items:center;justify-content:space-between;margin-top:10px;list-style:none;"]);
 
-var _StyledDiv3$7 = _styled.div.withConfig({
+var _StyledDiv3$7 = _styled__default.div.withConfig({
   displayName: "Distribution___StyledDiv3",
   componentId: "r4l1i4-5"
 })(["display:flex;align-items:center;flex-shrink:1;flex-grow:1;"]);
 
-var _StyledDiv4$5 = _styled.div.withConfig({
+var _StyledDiv4$5 = _styled__default.div.withConfig({
   displayName: "Distribution___StyledDiv4",
   componentId: "r4l1i4-6"
 })(["width:0;flex-shrink:1;flex-grow:1;text-overflow:ellipsis;overflow:hidden;white-space:nowrap;"]);
 
-var _StyledDiv5$2 = _styled.div.withConfig({
+var _StyledDiv5$2 = _styled__default.div.withConfig({
   displayName: "Distribution___StyledDiv5",
   componentId: "r4l1i4-7"
 })(["padding-left:", "px;flex-shrink:0;"], function (p) {
@@ -20970,16 +20804,16 @@ function Distribution(_ref) {
   items = items.sort(function (a, b) {
     return b.percentage - a.percentage;
   });
-  return React.createElement("section", null, heading && React.createElement(_StyledDiv$m, {
+  return React__default.createElement("section", null, heading && React__default.createElement(_StyledDiv$m, {
     _css: 1 * GU
-  }, typeof heading === 'string' ? React.createElement(_StyledH$4, {
+  }, typeof heading === 'string' ? React__default.createElement(_StyledH$4, {
     _css2: textStyle('body2')
-  }, heading) : heading), React.createElement(_StyledDiv2$d, {
+  }, heading) : heading), React__default.createElement(_StyledDiv2$d, {
     _css3: 1 * GU
   }, items.map(function (_ref3, index) {
     var item = _ref3.item,
         percentage = _ref3.percentage;
-    return React.createElement("div", {
+    return React__default.createElement("div", {
       key: index,
       title: itemTitle({
         item: item,
@@ -20991,32 +20825,32 @@ function Distribution(_ref) {
         background: colors[index % colors.length]
       }
     });
-  })), showLegend && React.createElement(_StyledUl, {
+  })), showLegend && React__default.createElement(_StyledUl, {
     _css4: 3 * GU
   }, items.map(function (_ref4, index) {
     var item = _ref4.item,
         percentage = _ref4.percentage;
     var color = colors[index % colors.length];
-    return React.createElement(_StyledLi, {
+    return React__default.createElement(_StyledLi, {
       key: index
-    }, FullLegendItem ? React.createElement(FullLegendItem, {
-      bullet: React.createElement(Bullet$1, {
+    }, FullLegendItem ? React__default.createElement(FullLegendItem, {
+      bullet: React__default.createElement(Bullet$1, {
         color: color
       }),
       color: color,
       index: index,
       item: item,
       percentage: percentage
-    }) : React.createElement(React.Fragment, null, React.createElement(_StyledDiv3$7, null, React.createElement(Bullet$1, {
+    }) : React__default.createElement(React__default.Fragment, null, React__default.createElement(_StyledDiv3$7, null, React__default.createElement(Bullet$1, {
       color: color
-    }), React.createElement(_StyledDiv4$5, null, React.createElement(LegendItem, {
+    }), React__default.createElement(_StyledDiv4$5, null, React__default.createElement(LegendItem, {
       color: color,
       index: index,
       item: item,
       percentage: percentage
-    }))), React.createElement(_StyledDiv5$2, {
+    }))), React__default.createElement(_StyledDiv5$2, {
       _css5: 1 * GU
-    }, React.createElement("strong", null, percentage, "%"))));
+    }, React__default.createElement("strong", null, percentage, "%"))));
   })));
 }
 
@@ -21050,7 +20884,7 @@ Distribution.defaultProps = {
 };
 /* eslint-disable react/prop-types */
 
-var _StyledDiv6$2 = _styled.div.withConfig({
+var _StyledDiv6$2 = _styled__default.div.withConfig({
   displayName: "Distribution___StyledDiv6",
   componentId: "r4l1i4-8"
 })(["width:", "px;height:", "px;margin-right:", "px;border-radius:50%;flex-shrink:0;"], function (p) {
@@ -21063,7 +20897,7 @@ var _StyledDiv6$2 = _styled.div.withConfig({
 
 function Bullet$1(_ref7) {
   var color = _ref7.color;
-  return React.createElement(_StyledDiv6$2, {
+  return React__default.createElement(_StyledDiv6$2, {
     style: {
       background: color
     },
@@ -21083,33 +20917,33 @@ function useDropDown(_ref) {
       placeholder = _ref.placeholder,
       selected = _ref.selected;
 
-  var _useState = useState$1(displayedLabel),
+  var _useState = React.useState(displayedLabel),
       _useState2 = slicedToArray(_useState, 2),
       selectedLabel = _useState2[0],
       setSelectedLabel = _useState2[1];
 
-  var _useState3 = useState$1(false),
+  var _useState3 = React.useState(false),
       _useState4 = slicedToArray(_useState3, 2),
       opened = _useState4[0],
       setOpened = _useState4[1];
 
-  var close = useCallback(function () {
+  var close = React.useCallback(function () {
     setOpened(false);
 
     if (buttonRef.current) {
       buttonRef.current.focus();
     }
   }, [buttonRef]);
-  var toggle = useCallback(function () {
+  var toggle = React.useCallback(function () {
     return setOpened(function (opened) {
       return !opened;
     });
   }, []);
-  var handleItemSelect = useCallback(function (index) {
+  var handleItemSelect = React.useCallback(function (index) {
     onChange(index);
     close();
   }, [onChange, close]);
-  useEffect(function () {
+  React.useEffect(function () {
     if (selected === -1 || !items[selected]) {
       if (displayedLabel) {
         setSelectedLabel(displayedLabel);
@@ -21130,8 +20964,8 @@ function useDropDown(_ref) {
 }
 
 function useButtonRef(cb) {
-  var buttonRef = useRef(null);
-  var refCallback = useCallback(function (el) {
+  var buttonRef = React.useRef(null);
+  var refCallback = React.useCallback(function (el) {
     if (el) {
       cb(el);
     }
@@ -21144,7 +20978,7 @@ function useButtonRef(cb) {
   };
 }
 
-var _StyledButtonBase$b = _styled(ButtonBaseWithFocus).withConfig({
+var _StyledButtonBase$b = _styled__default(ButtonBaseWithFocus).withConfig({
   displayName: "DropDown___StyledButtonBase",
   componentId: "sc-17zpefi-0"
 })(["display:", ";justify-content:space-between;align-items:center;height:", "px;padding-left:", "px;padding-right:", "px;width:", ";min-width:", ";background:", ";color:", ";border:", "px solid ", ";", ";", ""], function (p) {
@@ -21173,12 +21007,12 @@ var _StyledButtonBase$b = _styled(ButtonBaseWithFocus).withConfig({
   return p._css12;
 });
 
-var _StyledDiv$n = _styled.div.withConfig({
+var _StyledDiv$n = _styled__default.div.withConfig({
   displayName: "DropDown___StyledDiv",
   componentId: "sc-17zpefi-1"
 })(["overflow:hidden;"]);
 
-var _StyledIconDown$1 = _styled(IconDown).withConfig({
+var _StyledIconDown$1 = _styled__default(IconDown).withConfig({
   displayName: "DropDown___StyledIconDown",
   componentId: "sc-17zpefi-2"
 })(["margin-left:", "px;color:", ";"], function (p) {
@@ -21187,12 +21021,12 @@ var _StyledIconDown$1 = _styled(IconDown).withConfig({
   return p._css14;
 });
 
-var _StyledDiv2$e = _styled.div.withConfig({
+var _StyledDiv2$e = _styled__default.div.withConfig({
   displayName: "DropDown___StyledDiv2",
   componentId: "sc-17zpefi-3"
 })(["position:absolute;top:-100vh;left:-100vw;opacity:0;visibility:hidden;"]);
 
-var DropDown = React.memo(function DropDown(_ref2) {
+var DropDown = React__default.memo(function DropDown(_ref2) {
   var disabled = _ref2.disabled,
       header = _ref2.header,
       items = _ref2.items,
@@ -21224,23 +21058,23 @@ var DropDown = React.memo(function DropDown(_ref2) {
       _split2$ = _split2[0],
       widthNoPx = _split2$ === void 0 ? MIN_WIDTH : _split2$;
 
-  var _useState5 = useState$1(0),
+  var _useState5 = React.useState(0),
       _useState6 = slicedToArray(_useState5, 2),
       buttonWidth = _useState6[0],
       setButtonWidth = _useState6[1];
 
-  var _useState7 = useState$1(true),
+  var _useState7 = React.useState(true),
       _useState8 = slicedToArray(_useState7, 2),
       measureWidth = _useState8[0],
       setMeasureWidth = _useState8[1]; // Adjust the button width if the item widths are larger than declared width
 
 
-  var _useState9 = useState$1(Math.min(widthNoPx, MIN_WIDTH)),
+  var _useState9 = React.useState(Math.min(widthNoPx, MIN_WIDTH)),
       _useState10 = slicedToArray(_useState9, 2),
       placeholderMinWidth = _useState10[0],
       setPlaceholderMinWidth = _useState10[1];
 
-  var popoverRefCallback = useCallback(function (el) {
+  var popoverRefCallback = React.useCallback(function (el) {
     if (!el) {
       return;
     }
@@ -21248,7 +21082,7 @@ var DropDown = React.memo(function DropDown(_ref2) {
     setPlaceholderMinWidth(el.clientWidth);
     setMeasureWidth(false);
   }, []);
-  useEffect(function () {
+  React.useEffect(function () {
     setMeasureWidth(true);
   }, [vw, items]); // Update the button width every time the reference updates
 
@@ -21259,14 +21093,14 @@ var DropDown = React.memo(function DropDown(_ref2) {
       buttonRef = _useButtonRef.buttonRef; // And every time the viewport resizes
 
 
-  useEffect(function () {
+  React.useEffect(function () {
     if (!buttonRef.current) {
       return;
     }
 
     setButtonWidth(buttonRef.current.clientWidth);
   }, [buttonRef, vw]);
-  var selectedIndex = useMemo(function () {
+  var selectedIndex = React.useMemo(function () {
     if (selected !== undefined) {
       return selected;
     }
@@ -21293,9 +21127,9 @@ var DropDown = React.memo(function DropDown(_ref2) {
 
   var closedWithChanges = !opened && selectedIndex !== -1;
   var Label = renderLabel;
-  return React.createElement(Inside, {
+  return React__default.createElement(Inside, {
     name: "DropDown"
-  }, React.createElement(_StyledButtonBase$b, _extends_1({
+  }, React__default.createElement(_StyledButtonBase$b, _extends_1({
     ref: refCallback,
     disabled: disabled,
     onClick: toggle,
@@ -21314,23 +21148,23 @@ var DropDown = React.memo(function DropDown(_ref2) {
     _css10: closedWithChanges ? theme.selected : theme.border,
     _css11: textStyle('body2'),
     _css12: disabled ? 'font-weight: 600;' : "\n              &:active {\n                background: ".concat(theme.surfacePressed, ";\n              }\n            ")
-  }), React.createElement(_StyledDiv$n, null, React.createElement(Label, {
+  }), React__default.createElement(_StyledDiv$n, null, React__default.createElement(Label, {
     selectedIndex: selectedIndex,
     selectedLabel: selectedLabel
-  })), React.createElement(_StyledIconDown$1, {
+  })), React__default.createElement(_StyledIconDown$1, {
     size: "tiny",
     _css13: 1.5 * GU,
     _css14: disabled ? theme.disabledIcon : closedWithChanges ? theme.accent : theme.surfaceIcon
-  })), measureWidth && React.createElement(_StyledDiv2$e, null, React.createElement(PopoverContent, {
+  })), measureWidth && React__default.createElement(_StyledDiv2$e, null, React__default.createElement(PopoverContent, {
     refCallback: popoverRefCallback,
     buttonWidth: buttonWidth,
     header: header,
     items: items
-  })), React.createElement(Popover, {
+  })), React__default.createElement(Popover, {
     onClose: close,
     opener: buttonRef.current,
     visible: opened
-  }, React.createElement(PopoverContent, {
+  }, React__default.createElement(PopoverContent, {
     buttonWidth: buttonWidth,
     header: header,
     items: items,
@@ -21361,7 +21195,7 @@ DropDown.defaultProps = {
   wide: false
 };
 
-var _StyledDiv3$8 = _styled.div.withConfig({
+var _StyledDiv3$8 = _styled__default.div.withConfig({
   displayName: "DropDown___StyledDiv3",
   componentId: "sc-17zpefi-4"
 })(["min-width:", "px;color:", ";"], function (p) {
@@ -21370,7 +21204,7 @@ var _StyledDiv3$8 = _styled.div.withConfig({
   return p._css16;
 });
 
-var _StyledDiv4$6 = _styled.div.withConfig({
+var _StyledDiv4$6 = _styled__default.div.withConfig({
   displayName: "DropDown___StyledDiv4",
   componentId: "sc-17zpefi-5"
 })(["padding:", "px ", "px ", "px;", ";", ";"], function (p) {
@@ -21383,12 +21217,12 @@ var _StyledDiv4$6 = _styled.div.withConfig({
   return p._css20;
 }, unselectable);
 
-var _StyledUl$1 = _styled.ul.withConfig({
+var _StyledUl$1 = _styled__default.ul.withConfig({
   displayName: "DropDown___StyledUl",
   componentId: "sc-17zpefi-6"
 })(["margin:0;padding:0;list-style:none;width:100%;"]);
 
-var PopoverContent = React.memo(function PopoverContent(_ref4) {
+var PopoverContent = React__default.memo(function PopoverContent(_ref4) {
   var refCallback = _ref4.refCallback,
       buttonWidth = _ref4.buttonWidth,
       header = _ref4.header,
@@ -21396,20 +21230,20 @@ var PopoverContent = React.memo(function PopoverContent(_ref4) {
       handleItemSelect = _ref4.handleItemSelect,
       selectedIndex = _ref4.selectedIndex;
   var theme = useTheme();
-  return React.createElement(_StyledDiv3$8, {
+  return React__default.createElement(_StyledDiv3$8, {
     _css15: buttonWidth,
     _css16: theme.surfaceContentSecondary
-  }, header && React.createElement(_StyledDiv4$6, {
+  }, header && React__default.createElement(_StyledDiv4$6, {
     _css17: 1.5 * GU,
     _css18: 2 * GU,
     _css19: 1.25 * GU,
     _css20: textStyle('label2')
-  }, header), React.createElement(_StyledUl$1, {
+  }, header), React__default.createElement(_StyledUl$1, {
     ref: refCallback
-  }, React.createElement(Inside, {
+  }, React__default.createElement(Inside, {
     name: "DropDown:menu"
   }, items.map(function (item, index) {
-    return React.createElement(Item, {
+    return React__default.createElement(Item, {
       key: index,
       index: index,
       onSelect: handleItemSelect,
@@ -21439,7 +21273,7 @@ PopoverContent.defaultProps = {
   selectedIndex: -1
 };
 
-var _StyledButtonBase2 = _styled(ButtonBaseWithFocus).withConfig({
+var _StyledButtonBase2 = _styled__default(ButtonBaseWithFocus).withConfig({
   displayName: "DropDown___StyledButtonBase2",
   componentId: "sc-17zpefi-7"
 })(["width:100%;text-align:left;padding:", "px ", "px;border-radius:0;color:", ";", ";", " ", " ", " &:active{background:", ";}"], function (p) {
@@ -21460,7 +21294,7 @@ var _StyledButtonBase2 = _styled(ButtonBaseWithFocus).withConfig({
   return p._css28;
 });
 
-var Item = React.memo(function Item(_ref5) {
+var Item = React__default.memo(function Item(_ref5) {
   var header = _ref5.header,
       index = _ref5.index,
       item = _ref5.item,
@@ -21468,10 +21302,10 @@ var Item = React.memo(function Item(_ref5) {
       onSelect = _ref5.onSelect,
       selected = _ref5.selected,
       theme = _ref5.theme;
-  var handleClick = useCallback(function () {
+  var handleClick = React.useCallback(function () {
     onSelect(index);
   }, [index, onSelect]);
-  return React.createElement("li", null, React.createElement(_StyledButtonBase2, {
+  return React__default.createElement("li", null, React__default.createElement(_StyledButtonBase2, {
     onClick: handleClick,
     _css21: 1.25 * GU,
     _css22: 2 * GU,
@@ -21495,7 +21329,7 @@ Item.propTypes = {
 
 var illustrationDefault = "48526b4ed811c6ff.png";
 
-var _StyledCard = _styled(Card).withConfig({
+var _StyledCard = _styled__default(Card).withConfig({
   displayName: "EmptyStateCard___StyledCard",
   componentId: "ov2yly-0"
 })(["display:grid;grid-template-columns:1fr;grid-template-rows:", "px 1fr auto;height:", "px;padding:", "px;text-align:center;"], function (p) {
@@ -21506,12 +21340,12 @@ var _StyledCard = _styled(Card).withConfig({
   return p._css3;
 });
 
-var _StyledDiv$o = _styled.div.withConfig({
+var _StyledDiv$o = _styled__default.div.withConfig({
   displayName: "EmptyStateCard___StyledDiv",
   componentId: "ov2yly-1"
 })(["display:flex;justify-content:center;overflow:hidden;"]);
 
-var _StyledDiv2$f = _styled.div.withConfig({
+var _StyledDiv2$f = _styled__default.div.withConfig({
   displayName: "EmptyStateCard___StyledDiv2",
   componentId: "ov2yly-2"
 })(["color:", ";", ";"], function (p) {
@@ -21520,7 +21354,7 @@ var _StyledDiv2$f = _styled.div.withConfig({
   return p._css5;
 });
 
-var EmptyStateCard = React.memo(function EmptyStateCard(_ref) {
+var EmptyStateCard = React__default.memo(function EmptyStateCard(_ref) {
   var action = _ref.action,
       icon = _ref.icon,
       illustration = _ref.illustration,
@@ -21540,23 +21374,23 @@ var EmptyStateCard = React.memo(function EmptyStateCard(_ref) {
 
 
   if (!illustration) {
-    illustration = React.createElement("img", {
+    illustration = React__default.createElement("img", {
       src: publicUrl + illustrationDefault,
       alt: "",
       height: 20 * GU
     });
   }
 
-  return React.createElement(Inside, {
+  return React__default.createElement(Inside, {
     name: "EmptyStateCard"
-  }, React.createElement(_StyledCard, _extends_1({}, props, {
+  }, React__default.createElement(_StyledCard, _extends_1({}, props, {
     _css: 20 * GU,
     _css2: 42 * GU,
     _css3: 2 * GU
-  }), React.createElement(_StyledDiv$o, null, illustration), React.createElement(_StyledDiv2$f, {
+  }), React__default.createElement(_StyledDiv$o, null, illustration), React__default.createElement(_StyledDiv2$f, {
     _css4: theme.surfaceContent,
     _css5: textStyle('title4')
-  }, text), React.createElement("div", null, action)));
+  }, text), React__default.createElement("div", null, action)));
 });
 EmptyStateCard.propTypes = {
   action: propTypes.node,
@@ -21584,7 +21418,7 @@ function (_React$Component) {
 
     _this = possibleConstructorReturn(this, (_getPrototypeOf2 = getPrototypeOf(EscapeOutside)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
-    defineProperty(assertThisInitialized(_this), "_element", React.createRef());
+    defineProperty(assertThisInitialized(_this), "_element", React__default.createRef());
 
     defineProperty(assertThisInitialized(_this), "_document", null);
 
@@ -21637,7 +21471,7 @@ function (_React$Component) {
           onEscapeOutside = _this$props.onEscapeOutside,
           rest = objectWithoutProperties(_this$props, ["children", "onEscapeOutside"]);
 
-      return React.createElement("div", _extends_1({}, rest, {
+      return React__default.createElement("div", _extends_1({}, rest, {
         ref: function ref(n) {
           return _this2._element = n;
         }
@@ -21646,7 +21480,7 @@ function (_React$Component) {
   }]);
 
   return EscapeOutside;
-}(React.Component);
+}(React__default.Component);
 
 defineProperty(EscapeOutside, "propTypes", {
   children: propTypes.node.isRequired,
@@ -21662,14 +21496,14 @@ defineProperty(EscapeOutside, "defaultProps", {
 
 var fieldId = 1;
 
-var _StyledDiv$p = _styled.div.withConfig({
+var _StyledDiv$p = _styled__default.div.withConfig({
   displayName: "Field___StyledDiv",
   componentId: "uqte4v-0"
 })(["margin-bottom:", "px;"], function (p) {
   return p._css;
 });
 
-var _StyledDiv2$g = _styled.div.withConfig({
+var _StyledDiv2$g = _styled__default.div.withConfig({
   displayName: "Field___StyledDiv2",
   componentId: "uqte4v-1"
 })(["display:flex;align-items:center;height:", "px;margin-bottom:", "px;color:", ";white-space:nowrap;", ";", ";"], function (p) {
@@ -21682,7 +21516,7 @@ var _StyledDiv2$g = _styled.div.withConfig({
   return p._css5;
 }, unselectable);
 
-var _StyledSpan$a = _styled.span.withConfig({
+var _StyledSpan$a = _styled__default.span.withConfig({
   displayName: "Field___StyledSpan",
   componentId: "uqte4v-2"
 })(["color:", ";"], function (p) {
@@ -21696,31 +21530,31 @@ function Field(_ref) {
       props = objectWithoutProperties(_ref, ["children", "label", "required"]);
 
   var theme = useTheme();
-  var isRequired = required || React.Children.toArray(children).some(function (_ref2) {
+  var isRequired = required || React__default.Children.toArray(children).some(function (_ref2) {
     var props = _ref2.props;
     return props && props.required;
   });
-  var id = useMemo(function () {
+  var id = React.useMemo(function () {
     return typeof children === 'function' ? "Field_".concat(fieldId++) : null;
   }, [children]);
   var labelProps = id === null ? {} : {
     htmlFor: id
   };
-  return React.createElement(Inside, {
+  return React__default.createElement(Inside, {
     name: "Field"
-  }, React.createElement(_StyledDiv$p, _extends_1({}, props, {
+  }, React__default.createElement(_StyledDiv$p, _extends_1({}, props, {
     _css: 3 * GU
-  }), React.createElement("label", labelProps, React.createElement(_StyledDiv2$g, {
+  }), React__default.createElement("label", labelProps, React__default.createElement(_StyledDiv2$g, {
     _css2: 2 * GU,
     _css3: 0.5 * GU,
     _css4: theme.surfaceContentSecondary,
     _css5: textStyle('label2')
-  }, React.createElement(Inside, {
+  }, React__default.createElement(Inside, {
     name: "Field:label"
-  }, label, isRequired && React.createElement(_StyledSpan$a, {
+  }, label, isRequired && React__default.createElement(_StyledSpan$a, {
     title: "Required",
     _css6: theme.accent
-  }, "\xA0*"))), React.createElement(Inside, {
+  }, "\xA0*"))), React__default.createElement(Inside, {
     name: "Field:content"
   }, typeof children === 'function' ? children({
     id: id
@@ -21733,16 +21567,16 @@ Field.propTypes = {
   required: propTypes.bool
 };
 
-var _StyledDiv$q = _styled.div.withConfig({
+var _StyledDiv$q = _styled__default.div.withConfig({
   displayName: "FloatIndicator___StyledDiv",
   componentId: "sc-1mhu8xn-0"
 })(["position:absolute;z-index:1;width:100%;display:flex;justify-content:center;bottom:25px;"]);
 
-var FloatIndicator = React.memo(function FloatIndicator(_ref) {
+var FloatIndicator = React__default.memo(function FloatIndicator(_ref) {
   var children = _ref.children,
       visible = _ref.visible;
   var theme = useTheme();
-  return React.createElement(RootPortal, null, React.createElement(Transition, {
+  return React__default.createElement(RootPortal, null, React__default.createElement(Transition, {
     native: true,
     items: visible,
     from: {
@@ -21760,7 +21594,7 @@ var FloatIndicator = React.memo(function FloatIndicator(_ref) {
     /* eslint-disable react/prop-types */
     function (_ref2) {
       var progress = _ref2.progress;
-      return React.createElement(_StyledDiv$q, null, React.createElement(_StyledBox, {
+      return React__default.createElement(_StyledDiv$q, null, React__default.createElement(_StyledBox, {
         style: {
           pointerEvents: visible ? 'auto' : 'none',
           opacity: progress,
@@ -21784,12 +21618,12 @@ FloatIndicator.propTypes = {
 FloatIndicator.defaultProps = {
   visible: true
 };
-var Box$1 = _styled(extendedAnimated.div).withConfig({
+var Box$1 = _styled__default(extendedAnimated.div).withConfig({
   displayName: "FloatIndicator__Box",
   componentId: "sc-1mhu8xn-1"
 })(["display:flex;padding:", "px ", "px;border-radius:", "px;", ";cursor:default;"], GU, 3 * GU, RADIUS, textStyle('body3'));
 
-var _StyledBox = _styled(Box$1).withConfig({
+var _StyledBox = _styled__default(Box$1).withConfig({
   displayName: "FloatIndicator___StyledBox",
   componentId: "sc-1mhu8xn-2"
 })(["background:", ";color:", ";border:1px solid ", ";"], function (p) {
@@ -21800,7 +21634,7 @@ var _StyledBox = _styled(Box$1).withConfig({
   return p._css3;
 });
 
-var _StyledDiv$r = _styled.div.withConfig({
+var _StyledDiv$r = _styled__default.div.withConfig({
   displayName: "Header___StyledDiv",
   componentId: "euryjq-0"
 })(["padding:", "px 0;background:", ";margin-bottom:", "px;box-shadow:", ";"], function (p) {
@@ -21813,7 +21647,7 @@ var _StyledDiv$r = _styled.div.withConfig({
   return p._css4;
 });
 
-var _StyledDiv2$h = _styled.div.withConfig({
+var _StyledDiv2$h = _styled__default.div.withConfig({
   displayName: "Header___StyledDiv2",
   componentId: "euryjq-1"
 })(["display:flex;align-items:center;justify-content:space-between;height:", "px;padding:0 ", "px;"], function (p) {
@@ -21822,14 +21656,14 @@ var _StyledDiv2$h = _styled.div.withConfig({
   return p._css6;
 });
 
-var _StyledDiv3$9 = _styled.div.withConfig({
+var _StyledDiv3$9 = _styled__default.div.withConfig({
   displayName: "Header___StyledDiv3",
   componentId: "euryjq-2"
 })(["display:flex;min-width:0;flex-shrink:1;flex-grow:1;margin-right:", "px;"], function (p) {
   return p._css7;
 });
 
-var _StyledDiv4$7 = _styled.div.withConfig({
+var _StyledDiv4$7 = _styled__default.div.withConfig({
   displayName: "Header___StyledDiv4",
   componentId: "euryjq-3"
 })(["flex-shrink:0;"]);
@@ -21846,23 +21680,23 @@ function Header(_ref) {
       layoutName = _useLayout.layoutName;
 
   var fullWidth = layoutName === 'small';
-  return React.createElement(Inside, {
+  return React__default.createElement(Inside, {
     name: "Header"
-  }, React.createElement(_StyledDiv$r, _extends_1({}, props, {
+  }, React__default.createElement(_StyledDiv$r, _extends_1({}, props, {
     _css: fullWidth ? 0 : 3 * GU,
     _css2: fullWidth ? theme.surface : 'none',
     _css3: fullWidth ? 2 * GU : 0,
     _css4: fullWidth ? '0px 2px 3px rgba(0, 0, 0, 0.05)' : 'none'
-  }), React.createElement(_StyledDiv2$h, {
+  }), React__default.createElement(_StyledDiv2$h, {
     _css5: fullWidth ? 8 * GU : 5 * GU,
     _css6: fullWidth && !children ? 2 * GU : 0
-  }, children || React.createElement(React.Fragment, null, React.createElement(Inside, {
+  }, children || React__default.createElement(React__default.Fragment, null, React__default.createElement(Inside, {
     name: "Header:primary"
-  }, React.createElement(_StyledDiv3$9, {
+  }, React__default.createElement(_StyledDiv3$9, {
     _css7: secondary ? 2 * GU : 0
-  }, typeof primary === 'string' && primary ? React.createElement(Header.Title, null, primary) : primary)), React.createElement(Inside, {
+  }, typeof primary === 'string' && primary ? React__default.createElement(Header.Title, null, primary) : primary)), React__default.createElement(Inside, {
     name: "Header:secondary"
-  }, React.createElement(_StyledDiv4$7, null, secondary))))));
+  }, React__default.createElement(_StyledDiv4$7, null, secondary))))));
 }
 
 Header.propTypes = {
@@ -21871,7 +21705,7 @@ Header.propTypes = {
   children: propTypes.node
 };
 
-var _StyledH$5 = _styled.h1.withConfig({
+var _StyledH$5 = _styled__default.h1.withConfig({
   displayName: "Header___StyledH",
   componentId: "euryjq-4"
 })(["color:", ";overflow:hidden;text-overflow:ellipsis;white-space:nowrap;", ";"], function (p) {
@@ -21890,7 +21724,7 @@ Header.Title = function HeaderTitle(_ref2) {
       layoutName = _useLayout2.layoutName;
 
   var fullWidth = layoutName === 'small';
-  return React.createElement(_StyledH$5, _extends_1({}, props, {
+  return React__default.createElement(_StyledH$5, _extends_1({}, props, {
     _css8: theme.content,
     _css9: textStyle(fullWidth ? 'title3' : 'title2')
   }), children);
@@ -21900,7 +21734,7 @@ Header.Title.propTypes = {
   children: propTypes.node
 };
 
-var _StyledDiscButton = _styled(DiscButton).withConfig({
+var _StyledDiscButton = _styled__default(DiscButton).withConfig({
   displayName: "Help___StyledDiscButton",
   componentId: "sc-11d74sh-0"
 })(["margin-top:", "px;margin-left:", "px;"], function (p) {
@@ -21909,14 +21743,14 @@ var _StyledDiscButton = _styled(DiscButton).withConfig({
   return p._css2;
 });
 
-var _StyledPopover$1 = _styled(Popover).withConfig({
+var _StyledPopover$1 = _styled__default(Popover).withConfig({
   displayName: "Help___StyledPopover",
   componentId: "sc-11d74sh-1"
 })(["border:0;overflow:hidden;", ";"], function (p) {
   return p._css3;
 });
 
-var _StyledDiv$s = _styled.div.withConfig({
+var _StyledDiv$s = _styled__default.div.withConfig({
   displayName: "Help___StyledDiv",
   componentId: "sc-11d74sh-2"
 })(["position:relative;max-width:", "px;min-width:", "px;padding:", "px;&:before{content:'';position:absolute;top:0;left:0;bottom:0;width:", "px;background:", ";}"], function (p) {
@@ -21935,17 +21769,17 @@ function Help(_ref) {
   var hint = _ref.hint,
       children = _ref.children;
   var theme = useTheme();
-  var buttonElement = useRef();
+  var buttonElement = React.useRef();
 
-  var _useState = useState$1(false),
+  var _useState = React.useState(false),
       _useState2 = slicedToArray(_useState, 2),
       visible = _useState2[0],
       setVisible = _useState2[1];
 
-  var open = useCallback(function () {
+  var open = React.useCallback(function () {
     return setVisible(true);
   }, []);
-  var close = useCallback(function () {
+  var close = React.useCallback(function () {
     return setVisible(false);
   }, []);
 
@@ -21957,21 +21791,21 @@ function Help(_ref) {
       _useInside4 = slicedToArray(_useInside3, 1),
       insideFieldLabel = _useInside4[0];
 
-  return React.createElement(React.Fragment, null, React.createElement(_StyledDiscButton, {
+  return React__default.createElement(React__default.Fragment, null, React__default.createElement(_StyledDiscButton, {
     ref: buttonElement,
     description: hint,
     onClick: open,
     size: 2 * GU,
     _css: insideFieldLabel ? -3 : 0,
     _css2: insideBoxHeading || insideFieldLabel ? 1 * GU : 0
-  }, React.createElement(IconQuestion, {
+  }, React__default.createElement(IconQuestion, {
     size: "tiny"
-  })), React.createElement(_StyledPopover$1, {
+  })), React__default.createElement(_StyledPopover$1, {
     opener: buttonElement.current,
     visible: visible,
     onClose: close,
     _css3: textStyle('body3')
-  }, React.createElement(_StyledDiv$s, {
+  }, React__default.createElement(_StyledDiv$s, {
     _css4: 48 * GU,
     _css5: 20 * GU,
     _css6: 3 * GU,
@@ -21985,14 +21819,14 @@ Help.propTypes = {
   children: propTypes.node.isRequired
 };
 
-var _StyledTag$1 = _styled(Tag).withConfig({
+var _StyledTag$1 = _styled__default(Tag).withConfig({
   displayName: "IdentityBadgePopover___StyledTag",
   componentId: "sc-1yeyfty-0"
 })(["margin-left:", "px;"], function (p) {
   return p._css;
 });
 
-var IdentityBadgePopover = React.memo(function IdentityBadgePopover(_ref) {
+var IdentityBadgePopover = React__default.memo(function IdentityBadgePopover(_ref) {
   var address = _ref.address,
       connectedAccount = _ref.connectedAccount,
       networkType = _ref.networkType,
@@ -22004,18 +21838,18 @@ var IdentityBadgePopover = React.memo(function IdentityBadgePopover(_ref) {
   var etherscanUrl = blockExplorerUrl('address', address, {
     networkType: networkType
   });
-  return React.createElement(BadgePopoverBase, {
-    addressField: React.createElement(AddressField, {
+  return React__default.createElement(BadgePopoverBase, {
+    addressField: React__default.createElement(AddressField, {
       address: address
     }),
-    link: etherscanUrl && React.createElement(Link, {
+    link: etherscanUrl && React__default.createElement(Link, {
       href: etherscanUrl
     }, "See on Etherscan"),
     onClose: onClose,
     opener: opener,
     popoverAction: popoverAction,
     title: title,
-    titleTag: connectedAccount && React.createElement(_StyledTag$1, {
+    titleTag: connectedAccount && React__default.createElement(_StyledTag$1, {
       title: "This is your Ethereum address",
       _css: 1 * GU
     }, "you"),
@@ -22036,7 +21870,7 @@ IdentityBadgePopover.defaultProps = {
   title: 'Address'
 };
 
-var _StyledDiv$t = _styled.div.withConfig({
+var _StyledDiv$t = _styled__default.div.withConfig({
   displayName: "IdentityBadge___StyledDiv",
   componentId: "q71pax-0"
 })(["display:block;margin-right:", "px;", ";"], function (p) {
@@ -22045,7 +21879,7 @@ var _StyledDiv$t = _styled.div.withConfig({
   return p._css2;
 });
 
-var IdentityBadge = React.memo(function IdentityBadge(_ref) {
+var IdentityBadge = React__default.memo(function IdentityBadge(_ref) {
   var badgeOnly = _ref.badgeOnly,
       compact = _ref.compact,
       connectedAccount = _ref.connectedAccount,
@@ -22069,29 +21903,29 @@ var IdentityBadge = React.memo(function IdentityBadge(_ref) {
     warnOnce('IdentityBadge:fontSize', 'The “fontSize” prop is deprecated. Please use “labelStyle” to style the label instead.');
   }
 
-  var badgeRef = useRef(null);
+  var badgeRef = React.useRef(null);
 
-  var _useState = useState$1(false),
+  var _useState = React.useState(false),
       _useState2 = slicedToArray(_useState, 2),
       opened = _useState2[0],
       setOpened = _useState2[1];
 
-  var handleClose = useCallback(function () {
+  var handleClose = React.useCallback(function () {
     return setOpened(false);
   }, []);
-  var handleOpen = useCallback(function () {
+  var handleOpen = React.useCallback(function () {
     return setOpened(true);
   }, []);
   var address = isAddress(entity) ? entity : null;
   var displayLabel = label || (address && shorten ? shortenAddress(address) : entity);
-  return React.createElement(BadgeBase, _extends_1({
+  return React__default.createElement(BadgeBase, _extends_1({
     badgeRef: badgeRef,
     compact: compact,
     disabled: badgeOnly,
-    icon: address && React.createElement(_StyledDiv$t, {
+    icon: address && React__default.createElement(_StyledDiv$t, {
       _css: 1 * GU,
       _css2: compact ? "\n                  position: relative;\n                  top: -1px;\n                " : ''
-    }, React.createElement(EthIdenticon, {
+    }, React__default.createElement(EthIdenticon, {
       scale: compact ? 0.75 : 1,
       radius: compact ? 2 : 0,
       address: address
@@ -22101,7 +21935,7 @@ var IdentityBadge = React.memo(function IdentityBadge(_ref) {
     onClick: address ? handleOpen : undefined,
     title: address
   }, props), function (popoverDisabled) {
-    return !popoverDisabled && address && React.createElement(IdentityBadgePopover, {
+    return !popoverDisabled && address && React__default.createElement(IdentityBadgePopover, {
       address: address,
       connectedAccount: connectedAccount,
       networkType: networkType,
@@ -22181,12 +22015,12 @@ var ExtendedPropTypes = _objectSpread$d({}, propTypes, {
 
 var LABELS_HEIGHT = 30;
 
-var _StyledSvg = _styled.svg.withConfig({
+var _StyledSvg = _styled__default.svg.withConfig({
   displayName: "LineChart___StyledSvg",
   componentId: "sc-8kiakb-0"
 })(["display:block"]);
 
-var _StyledText = _styled.text.withConfig({
+var _StyledText = _styled__default.text.withConfig({
   displayName: "LineChart___StyledText",
   componentId: "sc-8kiakb-1"
 })(["alignment-baseline:middle;font-size:12px;font-weight:300;", ";"], unselectable);
@@ -22273,7 +22107,7 @@ function (_React$Component) {
       var totalCount = this.getTotalCount();
       var labels = label && totalCount > 0 ? toConsumableArray(Array(totalCount).keys()).map(label) : null;
       var chartHeight = height - (labels ? LABELS_HEIGHT : 0);
-      var rectangle = React.createElement("rect", {
+      var rectangle = React__default.createElement("rect", {
         width: width,
         height: chartHeight,
         rx: "3",
@@ -22282,7 +22116,7 @@ function (_React$Component) {
         strokeWidth: "1",
         stroke: borderColor
       });
-      return React.createElement(Spring, {
+      return React__default.createElement(Spring, {
         from: {
           progress: 0
         },
@@ -22294,24 +22128,24 @@ function (_React$Component) {
         reset: reset
       }, function (_ref) {
         var progress = _ref.progress;
-        return React.createElement(_StyledSvg, _extends_1({
+        return React__default.createElement(_StyledSvg, _extends_1({
           viewBox: "0 0 ".concat(width, " ").concat(height),
           width: width,
           height: height
-        }, props), React.createElement("mask", {
+        }, props), React__default.createElement("mask", {
           id: "chart-mask"
-        }, rectangle), rectangle, React.createElement("g", {
+        }, rectangle), rectangle, React__default.createElement("g", {
           mask: "url(#chart-mask)"
-        }, totalCount > 0 && React.createElement("path", {
+        }, totalCount > 0 && React__default.createElement("path", {
           d: "\n                    ".concat(toConsumableArray(new Array(totalCount - 1)).reduce(function (path, _, index) {
             return "".concat(path, " M ").concat(_this.getX(index), ",").concat(chartHeight, " l 0,-8");
           }, ''), "\n                  "),
           stroke: borderColor,
           strokeWidth: "1"
         }), lines.map(function (line, lineIndex) {
-          return React.createElement("g", {
+          return React__default.createElement("g", {
             key: "line-plot-".concat(line.id || lineIndex)
-          }, React.createElement("path", {
+          }, React__default.createElement("path", {
             d: "\n                            M\n                            ".concat(_this.getX(0), ",\n                            ").concat(_this.getY(line.values[0], progress, chartHeight), "\n\n                            ").concat(line.values.slice(1).map(function (val, index) {
               return "L\n                                   ".concat(_this.getX((index + 1) * progress), ",\n                                   ").concat(_this.getY(val, progress, chartHeight), "\n                                  ");
             }).join(''), "\n                          "),
@@ -22321,7 +22155,7 @@ function (_React$Component) {
             }),
             strokeWidth: "2"
           }), line.values.slice(1, -1).map(function (val, index) {
-            return React.createElement("circle", {
+            return React__default.createElement("circle", {
               key: index,
               cx: _this.getX(index + 1) * progress,
               cy: _this.getY(val, progress, chartHeight),
@@ -22333,17 +22167,17 @@ function (_React$Component) {
               strokeWidth: "1"
             });
           }));
-        }), React.createElement("line", {
+        }), React__default.createElement("line", {
           x1: _this.getX(valuesCount - 1) * progress,
           y1: "0",
           x2: _this.getX(valuesCount - 1) * progress,
           y2: chartHeight,
           stroke: "#DAEAEF",
           strokeWidth: "3"
-        })), labels && React.createElement("g", {
+        })), labels && React__default.createElement("g", {
           transform: "translate(0,".concat(chartHeight, ")")
         }, labels.map(function (label, index) {
-          return React.createElement(_StyledText, {
+          return React__default.createElement(_StyledText, {
             key: index,
             x: _this.getX(index),
             y: LABELS_HEIGHT / 2,
@@ -22356,7 +22190,7 @@ function (_React$Component) {
   }]);
 
   return LineChart;
-}(React.Component);
+}(React__default.Component);
 
 defineProperty(LineChart, "propTypes", {
   springConfig: ExtendedPropTypes._spring,
@@ -22400,7 +22234,7 @@ defineProperty(LineChart, "defaultProps", {
   }
 });
 
-var _StyledDiv$u = _styled.div.withConfig({
+var _StyledDiv$u = _styled__default.div.withConfig({
   displayName: "ScrollView___StyledDiv",
   componentId: "sc-1hhoqwn-0"
 })(["position:relative;z-index:0;height:100%;overflow-x:", ";overflow-y:", ";"], function (p) {
@@ -22415,7 +22249,7 @@ function ScrollView(_ref) {
       vertical = _ref.vertical,
       props = objectWithoutProperties(_ref, ["children", "horizontal", "vertical"]);
 
-  return React.createElement(_StyledDiv$u, _extends_1({}, props, {
+  return React__default.createElement(_StyledDiv$u, _extends_1({}, props, {
     _css: horizontal ? 'auto' : 'hidden',
     _css2: vertical ? 'auto' : 'hidden'
   }), children);
@@ -22431,21 +22265,33 @@ ScrollView.defaultProps = {
   horizontal: true
 };
 
+var ConnectedAccountContext = React__default.createContext();
+function ConnectedAccountProvider(_ref) {
+  var useConnectedAccount = _ref.useConnectedAccount,
+      props = objectWithoutProperties(_ref, ["useConnectedAccount"]);
+
+  var connectedAccount = useConnectedAccount();
+  return React__default.createElement(ConnectedAccount.Provider, _extends_1({
+    value: connectedAccount || null
+  }, props));
+}
+
 var _initContainsComponen = initContainsComponent(),
     ContainsAppViewProvider = _initContainsComponen.Provider,
     useContainsAppView = _initContainsComponen.useContains,
     useRegisterAppView = _initContainsComponen.useRegister;
 
-var _StyledScrollView = _styled(ScrollView).withConfig({
+var _StyledScrollView = _styled__default(ScrollView).withConfig({
   displayName: "Main___StyledScrollView",
   componentId: "sc-1n64cjc-0"
 })(["height:100vh"]);
 
 function Main$3(_ref) {
-  var children = _ref.children,
-      assetsUrl = _ref.assetsUrl,
+  var assetsUrl = _ref.assetsUrl,
+      children = _ref.children,
       layout = _ref.layout,
-      scrollView = _ref.scrollView;
+      scrollView = _ref.scrollView,
+      services = _ref.services;
   var containsAppView = useContainsAppView();
 
   if (layout === undefined) {
@@ -22457,13 +22303,15 @@ function Main$3(_ref) {
   } // Optionally wrap `children` with Layout and/or ScrollView
 
 
-  var content = layout ? React.createElement(Layout, null, children) : children;
+  var content = layout ? React__default.createElement(Layout, null, children) : children;
   content = scrollView ? // The main ScrollView is set to 100vh by default (best for Aragon apps)
   // Disable `scrollView` and insert your own if needed.
-  React.createElement(_StyledScrollView, null, content) : content;
-  return React.createElement(MainTheme, null, React.createElement(Root.Provider, null, React.createElement(Viewport.Provider, null, React.createElement(PublicUrl.Provider, {
+  React__default.createElement(_StyledScrollView, null, content) : content;
+  return React__default.createElement(MainTheme, null, React__default.createElement(ConnectedAccountProvider, {
+    useConnectedAccount: services.useConnectedAccount || noop
+  }, React__default.createElement(Root.Provider, null, React__default.createElement(Viewport.Provider, null, React__default.createElement(PublicUrl.Provider, {
     url: ensureTrailingSlash(assetsUrl)
-  }, React.createElement(BaseStyles$1, null), React.createElement(ToastHubProvider, null, content)))));
+  }, React__default.createElement(BaseStyles$1, null), React__default.createElement(ToastHubProvider, null, content))))));
 }
 
 Main$3.propTypes = {
@@ -22473,10 +22321,11 @@ Main$3.propTypes = {
   scrollView: propTypes.bool
 };
 Main$3.defaultProps = {
-  assetsUrl: './aragon-ui/'
+  assetsUrl: './aragon-ui/',
+  services: {}
 };
 var Main$4 = (function (props) {
-  return React.createElement(ContainsAppViewProvider, null, React.createElement(Main$3, props));
+  return React__default.createElement(ContainsAppViewProvider, null, React__default.createElement(Main$3, props));
 });
 
 function ownKeys$e(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
@@ -22484,24 +22333,24 @@ function ownKeys$e(object, enumerableOnly) { var keys = Object.keys(object); if 
 function _objectSpread$e(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$e(source, true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$e(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 var SPACE_AROUND = 4 * GU;
 
-var _StyledAnimatedDiv$5 = _styled(extendedAnimated.div).withConfig({
+var _StyledAnimatedDiv$5 = _styled__default(extendedAnimated.div).withConfig({
   displayName: "Modal___StyledAnimatedDiv",
   componentId: "sc-1ofisn3-0"
 })(["position:fixed;top:0;left:0;right:0;bottom:0;background:", ";"], function (p) {
   return p._css;
 });
 
-var _StyledAnimatedDiv2$2 = _styled(extendedAnimated.div).withConfig({
+var _StyledAnimatedDiv2$2 = _styled__default(extendedAnimated.div).withConfig({
   displayName: "Modal___StyledAnimatedDiv2",
   componentId: "sc-1ofisn3-1"
 })(["position:absolute;z-index:1;top:0;left:0;right:0;bottom:0;display:grid;align-items:center;justify-content:center;overflow:auto;"]);
 
-var _StyledDiv$v = _styled.div.withConfig({
+var _StyledDiv$v = _styled__default.div.withConfig({
   displayName: "Modal___StyledDiv",
   componentId: "sc-1ofisn3-2"
 })(["padding:", "px 0;"], SPACE_AROUND);
 
-var _StyledEscapeOutside = _styled(EscapeOutside).withConfig({
+var _StyledEscapeOutside = _styled__default(EscapeOutside).withConfig({
   displayName: "Modal___StyledEscapeOutside",
   componentId: "sc-1ofisn3-3"
 })(["position:relative;overflow:hidden;min-width:", "px;background:", ";box-shadow:0 10px 28px rgba(0,0,0,0.15);"], function (p) {
@@ -22510,7 +22359,7 @@ var _StyledEscapeOutside = _styled(EscapeOutside).withConfig({
   return p._css3;
 });
 
-var _StyledButtonIcon$4 = _styled(ButtonIcon).withConfig({
+var _StyledButtonIcon$4 = _styled__default(ButtonIcon).withConfig({
   displayName: "Modal___StyledButtonIcon",
   componentId: "sc-1ofisn3-4"
 })(["position:absolute;top:", "px;right:", "px;"], function (p) {
@@ -22530,7 +22379,7 @@ function Modal(_ref) {
 
   var theme = useTheme();
   var viewport = useViewport();
-  return React.createElement(RootPortal, null, React.createElement(Transition, {
+  return React__default.createElement(RootPortal, null, React__default.createElement(Transition, {
     native: true,
     items: visible,
     from: {
@@ -22554,20 +22403,20 @@ function Modal(_ref) {
     function (_ref2) {
       var opacity = _ref2.opacity,
           scale = _ref2.scale;
-      return React.createElement(_StyledAnimatedDiv$5, _extends_1({
+      return React__default.createElement(_StyledAnimatedDiv$5, _extends_1({
         style: {
           opacity: opacity
         }
       }, props, {
         _css: theme.overlay.alpha(0.9)
-      }), React.createElement(_StyledAnimatedDiv2$2, {
+      }), React__default.createElement(_StyledAnimatedDiv2$2, {
         style: {
           pointerEvents: visible ? 'auto' : 'none',
           transform: scale.interpolate(function (v) {
             return "scale3d(".concat(v, ", ").concat(v, ", 1)");
           })
         }
-      }, React.createElement(_StyledDiv$v, null, React.createElement(_StyledEscapeOutside, {
+      }, React__default.createElement(_StyledDiv$v, null, React__default.createElement(_StyledEscapeOutside, {
         role: "alertdialog",
         background: theme.surface,
         onEscapeOutside: onClose,
@@ -22578,12 +22427,12 @@ function Modal(_ref) {
         },
         _css2: 360 - SPACE_AROUND * 2,
         _css3: theme.surface
-      }, closeButton && React.createElement(_StyledButtonIcon$4, {
+      }, closeButton && React__default.createElement(_StyledButtonIcon$4, {
         label: "Close",
         onClick: onClose,
         _css4: 2 * GU,
         _css5: 2 * GU
-      }, React.createElement(IconCross, null)), React.createElement("div", null, children)))));
+      }, React__default.createElement(IconCross, null)), React__default.createElement("div", null, children)))));
     };
   }
   /* eslint-enable react/prop-types */
@@ -22608,11 +22457,11 @@ Modal.defaultProps = {
 };
 
 var LeftIcon = function LeftIcon() {
-  return React.createElement("svg", {
+  return React__default.createElement("svg", {
     width: "24",
     height: "19",
     viewBox: "0 0 24 19"
-  }, React.createElement("path", {
+  }, React__default.createElement("path", {
     d: "M21 10H4l6-6-6 6 6 6",
     stroke: "currentColor",
     strokeWidth: "1.5",
@@ -22706,7 +22555,7 @@ function (_React$Component) {
           index: index
         };
       }).slice(-1);
-      return React.createElement(Container$1, null, React.createElement(Transition, {
+      return React__default.createElement(Container$1, null, React__default.createElement(Transition, {
         items: displayedItems,
         keys: displayedItems.map( // Use a different key than 0 when there is only one item, so that
         // the “leave” transition of the first item can be executed when a
@@ -22731,7 +22580,7 @@ function (_React$Component) {
         native: true
       }, function (item) {
         return function (styles) {
-          return React.createElement(Item$1, _extends_1({
+          return React__default.createElement(Item$1, _extends_1({
             label: item.node,
             onBack: onBack,
             displayBack: item.index > 0,
@@ -22758,7 +22607,7 @@ function (_React$Component) {
   }]);
 
   return NavigationBar;
-}(React.Component);
+}(React__default.Component);
 
 defineProperty(NavigationBar, "propTypes", {
   onBack: propTypes.func,
@@ -22779,7 +22628,7 @@ var Item$1 = function Item(_ref) {
       onBack = _ref.onBack,
       label = _ref.label,
       compact = _ref.compact;
-  return React.createElement(extendedAnimated.span, {
+  return React__default.createElement(extendedAnimated.span, {
     style: {
       display: 'flex',
       alignItems: 'center',
@@ -22788,10 +22637,10 @@ var Item$1 = function Item(_ref) {
         return "translate(".concat(p * 20, "px, 0)");
       })
     }
-  }, React.createElement(Title, null, displayBack && React.createElement(BackButton$1, {
+  }, React__default.createElement(Title, null, displayBack && React__default.createElement(BackButton$1, {
     onClick: onBack,
     compact: compact
-  }, React.createElement(LeftIcon, null)), React.createElement(Label$1, null, label)));
+  }, React__default.createElement(LeftIcon, null)), React__default.createElement(Label$1, null, label)));
 };
 
 Item$1.propTypes = {
@@ -22802,10 +22651,10 @@ Item$1.propTypes = {
   opacity: propTypes.object,
   position: propTypes.object
 };
-var Container$1 = _styled.span(_templateObject$4());
-var Title = _styled.span(_templateObject2$3());
-var Label$1 = _styled.span(_templateObject3$3());
-var BackButton$1 = _styled.span(_templateObject4$2(), function (p) {
+var Container$1 = _styled__default.span(_templateObject$4());
+var Title = _styled__default.span(_templateObject2$3());
+var Label$1 = _styled__default.span(_templateObject3$3());
+var BackButton$1 = _styled__default.span(_templateObject4$2(), function (p) {
   return p.compact ? '0 16px' : '0 20px 0 30px';
 }, Label$1);
 
@@ -22836,7 +22685,7 @@ function PartitionBar(_ref) {
       percentage: percentage
     };
   });
-  return React.createElement(Distribution, {
+  return React__default.createElement(Distribution, {
     items: items,
     renderFullLegendItem: renderFullLegendItem,
     colors: colors
@@ -22868,20 +22717,15 @@ function _createClass$2(Constructor, protoProps, staticProps) {
   return Constructor;
 }
 
-var bugfixes$1 = undefined;
 var applyAnimatedValues$1 = undefined;
 var colorNames$1 = [];
 var requestFrame$1 = function requestFrame(cb) {
   return typeof window !== 'undefined' && window.requestAnimationFrame(cb);
 };
-var cancelFrame$1 = function cancelFrame(cb) {
-  return typeof window !== 'undefined' && window.cancelAnimationFrame(cb);
-};
 var interpolation$1 = undefined;
 var now$2 = function now() {
   return Date.now();
 };
-var defaultElement$1 = undefined;
 var createAnimatedStyle$1 = undefined;
 var injectApplyAnimatedValues$1 = function injectApplyAnimatedValues(fn, transform) {
   return applyAnimatedValues$1 = {
@@ -22892,46 +22736,12 @@ var injectApplyAnimatedValues$1 = function injectApplyAnimatedValues(fn, transfo
 var injectColorNames$1 = function injectColorNames(names) {
   return colorNames$1 = names;
 };
-var injectBugfixes$1 = function injectBugfixes(fn) {
-  return bugfixes$1 = fn;
-};
 var injectInterpolation$1 = function injectInterpolation(cls) {
   return interpolation$1 = cls;
-};
-var injectFrame$1 = function injectFrame(raf, caf) {
-  var _ref;
-
-  return _ref = [raf, caf], requestFrame$1 = _ref[0], cancelFrame$1 = _ref[1], _ref;
-};
-var injectNow$1 = function injectNow(nowFn) {
-  return now$2 = nowFn;
-};
-var injectDefaultElement$1 = function injectDefaultElement(el) {
-  return defaultElement$1 = el;
 };
 var injectCreateAnimatedStyle$1 = function injectCreateAnimatedStyle(factory) {
   return createAnimatedStyle$1 = factory;
 };
-
-var Globals$1 = /*#__PURE__*/Object.freeze({
-  get bugfixes () { return bugfixes$1; },
-  get applyAnimatedValues () { return applyAnimatedValues$1; },
-  get colorNames () { return colorNames$1; },
-  get requestFrame () { return requestFrame$1; },
-  get cancelFrame () { return cancelFrame$1; },
-  get interpolation () { return interpolation$1; },
-  get now () { return now$2; },
-  get defaultElement () { return defaultElement$1; },
-  get createAnimatedStyle () { return createAnimatedStyle$1; },
-  injectApplyAnimatedValues: injectApplyAnimatedValues$1,
-  injectColorNames: injectColorNames$1,
-  injectBugfixes: injectBugfixes$1,
-  injectInterpolation: injectInterpolation$1,
-  injectFrame: injectFrame$1,
-  injectNow: injectNow$1,
-  injectDefaultElement: injectDefaultElement$1,
-  injectCreateAnimatedStyle: injectCreateAnimatedStyle$1
-});
 
 var Animated$1 =
 /*#__PURE__*/
@@ -23302,14 +23112,14 @@ function () {
     if (config.extrapolateRight !== undefined) extrapolateRight = config.extrapolateRight;else if (config.extrapolate !== undefined) extrapolateRight = config.extrapolate;
     return function (input) {
       var range = findRange$1(input, inputRange);
-      return interpolate$2(input, inputRange[range], inputRange[range + 1], outputRange[range], outputRange[range + 1], easing, extrapolateLeft, extrapolateRight, map);
+      return interpolate$1(input, inputRange[range], inputRange[range + 1], outputRange[range], outputRange[range + 1], easing, extrapolateLeft, extrapolateRight, map);
     };
   };
 
   return Interpolation;
 }();
 
-function interpolate$2(input, inputMin, inputMax, outputMin, outputMax, easing, extrapolateLeft, extrapolateRight, map) {
+function interpolate$1(input, inputMin, inputMax, outputMin, outputMax, easing, extrapolateLeft, extrapolateRight, map) {
   var result = map ? map(input) : input; // Extrapolate
 
   if (result < inputMin) {
@@ -23829,20 +23639,6 @@ function interpolateTo$1(props) {
     to: forward
   }, rest);
 }
-function convertToAnimatedValue$1(acc, _ref) {
-  var _extends3;
-
-  var name = _ref[0],
-      value = _ref[1];
-  return _extends({}, acc, (_extends3 = {}, _extends3[name] = new (Array.isArray(value) ? AnimatedArray$1 : AnimatedValue$1)(value), _extends3));
-}
-function convertValues$1(props) {
-  var from = props.from,
-      to = props.to,
-      native = props.native;
-  var allProps = Object.entries(_extends({}, from, to));
-  return native ? allProps.reduce(convertToAnimatedValue$1, {}) : _extends({}, from, to);
-}
 function handleRef$1(ref, forward) {
   if (forward) {
     // If it's a function, assume it's a ref callback
@@ -23853,77 +23649,6 @@ function handleRef$1(ref, forward) {
   }
 
   return ref;
-}
-
-var check$1 = function check(value) {
-  return value === 'auto';
-};
-
-var overwrite$1 = function overwrite(width, height) {
-  return function (acc, _ref) {
-    var _extends2;
-
-    var name = _ref[0],
-        value = _ref[1];
-    return _extends({}, acc, (_extends2 = {}, _extends2[name] = value === 'auto' ? ~name.indexOf('height') ? height : width : value, _extends2));
-  };
-};
-
-function fixAuto$1(props, callback) {
-  var from = props.from,
-      to = props.to,
-      children = props.children; // Dry-route props back if nothing's using 'auto' in there
-  // TODO: deal with "null"
-
-  if (!(getValues$1$1(to).some(check$1) || getValues$1$1(from).some(check$1))) return; // Fetch render v-dom
-
-  var element = children(convertValues$1(props)); // A spring can return undefined/null, check against that (#153)
-
-  if (!element) return; // Or it could be an array (#346) ...
-
-  if (Array.isArray(element)) element = {
-    type: 'div',
-    props: {
-      children: element
-    } // Extract styles
-
-  };
-  var elementStyles = element.props.style; // Return v.dom with injected ref
-
-  return React.createElement(element.type, _extends({
-    key: element.key ? element.key : undefined
-  }, element.props, {
-    style: _extends({}, elementStyles, {
-      position: 'absolute',
-      visibility: 'hidden'
-    }),
-    ref: function ref(_ref2) {
-      if (_ref2) {
-        // Once it's rendered out, fetch bounds (minus padding/margin/borders)
-        var node = ReactDOM.findDOMNode(_ref2);
-        var width, height;
-        var cs = getComputedStyle(node);
-
-        if (cs.boxSizing === 'border-box') {
-          width = node.offsetWidth;
-          height = node.offsetHeight;
-        } else {
-          var paddingX = parseFloat(cs.paddingLeft || 0) + parseFloat(cs.paddingRight || 0);
-          var paddingY = parseFloat(cs.paddingTop || 0) + parseFloat(cs.paddingBottom || 0);
-          var borderX = parseFloat(cs.borderLeftWidth || 0) + parseFloat(cs.borderRightWidth || 0);
-          var borderY = parseFloat(cs.borderTopWidth || 0) + parseFloat(cs.borderBottomWidth || 0);
-          width = node.offsetWidth - paddingX - borderX;
-          height = node.offsetHeight - paddingY - borderY;
-        }
-
-        var convert = overwrite$1(width, height);
-        callback(_extends({}, props, {
-          from: Object.entries(from).reduce(convert, from),
-          to: Object.entries(to).reduce(convert, to)
-        }));
-      }
-    }
-  }));
 }
 
 var isUnitlessNumber$1 = {
@@ -23994,10 +23719,8 @@ var attributeCache$1 = {};
 injectCreateAnimatedStyle$1(function (style) {
   return new AnimatedStyle$1(style);
 });
-injectDefaultElement$1('div');
 injectInterpolation$1(createInterpolation$1);
 injectColorNames$1(colors$2);
-injectBugfixes$1(fixAuto$1);
 injectApplyAnimatedValues$1(function (instance, props) {
   if (instance.nodeType && instance.setAttribute !== undefined) {
     var style = props.style,
@@ -24136,7 +23859,7 @@ function createAnimatedComponent$1(Component) {
           scrollLeft = _this$propsAnimated$g.scrollLeft,
           animatedProps = _objectWithoutPropertiesLoose$1(_this$propsAnimated$g, ["scrollTop", "scrollLeft"]);
 
-      return React.createElement(Component, _extends({}, animatedProps, {
+      return React__default.createElement(Component, _extends({}, animatedProps, {
         ref: function ref(node) {
           return _this2.node = handleRef$1(node, _this2.props.forwardRef);
         }
@@ -24144,41 +23867,14 @@ function createAnimatedComponent$1(Component) {
     };
 
     return AnimatedComponent;
-  }(React.Component);
+  }(React__default.Component);
 
-  return React.forwardRef(function (props, ref) {
-    return React.createElement(AnimatedComponent, _extends({}, props, {
+  return React__default.forwardRef(function (props, ref) {
+    return React__default.createElement(AnimatedComponent, _extends({}, props, {
       forwardRef: ref
     }));
   });
 }
-
-var config$1 = {
-  default: {
-    tension: 170,
-    friction: 26
-  },
-  gentle: {
-    tension: 120,
-    friction: 14
-  },
-  wobbly: {
-    tension: 180,
-    friction: 12
-  },
-  stiff: {
-    tension: 210,
-    friction: 20
-  },
-  slow: {
-    tension: 280,
-    friction: 60
-  },
-  molasses: {
-    tension: 280,
-    friction: 120
-  }
-};
 
 var active$1 = false;
 var controllers$1 = new Set();
@@ -24762,7 +24458,7 @@ var useSpringImpl = function useSpringImpl(type) {
   }
 
   return function (args) {
-    var _useState = useState$1(),
+    var _useState = React.useState(),
         f = _useState[1];
 
     var forceUpdate = function forceUpdate() {
@@ -24780,13 +24476,13 @@ var useSpringImpl = function useSpringImpl(type) {
         props = _objectWithoutPropertiesLoose$1(_callProp, ["onRest", "onKeyframesHalt"]); // The controller maintains the animation values, starts and tops animations
 
 
-    var _useState2 = useState$1(function () {
+    var _useState2 = React.useState(function () {
       return type === 'keyframe' ? new KeyframeController(props) : new Controller$1(props);
     }),
         ctrl = _useState2[0]; // Destroy controller on unmount
 
 
-    useEffect(function () {
+    React.useEffect(function () {
       return function () {
         return ctrl.destroy();
       };
@@ -24798,7 +24494,7 @@ var useSpringImpl = function useSpringImpl(type) {
     }; // The hooks explcit API gets defined here ...
 
 
-    useImperativeHandle(props.ref, function () {
+    React.useImperativeHandle(props.ref, function () {
       return {
         start: function start() {
           return ctrl.start(onHalt);
@@ -24818,13 +24514,13 @@ var useSpringImpl = function useSpringImpl(type) {
       };
     }); // Defines the hooks setter, which updates the controller
 
-    var updateCtrl = useCallback(function (updateProps) {
+    var updateCtrl = React.useCallback(function (updateProps) {
       type === 'keyframe' ? ctrl.updateWithForceUpdate(forceUpdate, updateProps) : ctrl.update(updateProps);
       if (!ctrl.props.ref) ctrl.start(onHalt);
       if (ctrl.props.reset && type === 'default') requestFrame$1(forceUpdate);
     }, [onRest, ctrl.props.ref]); // Update next frame is props aren't functional
 
-    useEffect(function () {
+    React.useEffect(function () {
       return void (!isFn && updateCtrl(props));
     }); // Return animated props, or, anim-props + the update-setter above
 
@@ -24840,603 +24536,6 @@ var useSpringImpl = function useSpringImpl(type) {
 };
 var useSpring = useSpringImpl();
 
-var useSpringsImpl = function useSpringsImpl(type, trail) {
-  if (type === void 0) {
-    type = 'default';
-  }
-
-  if (trail === void 0) {
-    trail = false;
-  }
-
-  return function (length, props, initialProps) {
-    if (initialProps === void 0) {
-      initialProps = {};
-    }
-
-    var isFn = typeof props === 'function';
-
-    var _useState = useState$1(),
-        f = _useState[1];
-
-    var forceUpdate = function forceUpdate() {
-      return f(function (v) {
-        return !v;
-      });
-    };
-
-    var args = trail ? callProp$1(props) : initialProps;
-
-    var reverse = args.reverse,
-        onKeyframesHalt = args.onKeyframesHalt,
-        onRest = args.onRest,
-        rest = _objectWithoutPropertiesLoose$1(args, ["reverse", "onKeyframesHalt", "onRest"]); // The controller maintains the animation values, starts and tops animations
-
-
-    var instances = useMemo(function () {
-      var instances = [];
-
-      var _loop = function _loop(i) {
-        var initProps = trail ? _extends({}, rest, {
-          config: callProp$1(rest.config, i),
-          attach: i > 0 && function () {
-            return instances[i - 1];
-          }
-        }) : _extends({}, rest, isFn ? callProp$1(props, i) : props[i]);
-        instances.push(type === 'keyframe' ? new KeyframeController(initProps) : new Controller$1(initProps));
-      };
-
-      for (var i = 0; i < length; i++) {
-        _loop(i);
-      }
-
-      return instances;
-    }, [length]); // Destroy controllers on unmount
-
-    var instancesRef = useRef();
-    instancesRef.current = instances;
-    useEffect(function () {
-      return function () {
-        return instancesRef.current.forEach(function (i) {
-          return i.destroy();
-        });
-      };
-    }, []); // Define onEnd callbacks and resolvers
-
-    var onHalt = onKeyframesHalt ? function (ctrl) {
-      return function (_ref) {
-        var finished = _ref.finished;
-        return finished && onRest && onRest(ctrl.merged);
-      };
-    } : onKeyframesHalt || function () {
-      return null;
-    }; // The hooks explcit API gets defined here ...
-
-    useImperativeHandle(rest.ref, function () {
-      return {
-        start: function start() {
-          return Promise.all(Array.from(instancesRef.current).map(function (_ref2, i) {
-            var ctrl = _ref2[1];
-            return (reverse ? i === 0 : instancesRef.current.size - 1) && onHalt(ctrl);
-          }));
-        },
-
-        get isActive() {
-          Array.from(instancesRef.current).some(function (_ref3) {
-            var ctrl = _ref3[1];
-            return ctrl.isActive;
-          });
-        },
-
-        stop: function stop(finished) {
-          if (finished === void 0) {
-            finished = false;
-          }
-
-          return instancesRef.current.forEach(function (_ref4) {
-            var ctrl = _ref4[1];
-            return ctrl.stop(finished);
-          });
-        }
-      };
-    }); // Defines the hooks setter, which updates the controller
-
-    var updateCtrl = useCallback(function (props) {
-      instances.forEach(function (ctrl, i) {
-        var last = reverse ? i === 0 : instances.length - 1 === i;
-        var attachIdx = reverse ? i + 1 : i - 1;
-        var attachController = instances[attachIdx];
-        var updateProps = trail ? _extends({}, props, {
-          config: callProp$1(props.config || rest.config, i),
-          attach: attachController && function () {
-            return attachController;
-          }
-        }) : _extends({}, isFn ? callProp$1(props, i) : props[i]);
-        type === 'keyframe' && last ? ctrl.updateWithForceUpdate(forceUpdate, updateProps) : ctrl.update(updateProps);
-        if (!ctrl.props.ref) ctrl.start(last && onHalt(ctrl));
-        if (last && ctrl.props.reset) requestFrame$1(forceUpdate);
-      });
-    }, [instances, onRest, onKeyframesHalt, rest.ref, reverse]); // Update next frame is props aren't functional
-
-    useEffect(function () {
-      return void (!isFn && updateCtrl(props));
-    }); // Return animated props, or, anim-props + the update-setter above
-
-    var propValues = instances.map(function (v) {
-      return v.getValues();
-    });
-    return isFn ? [propValues, updateCtrl, function (finished) {
-      if (finished === void 0) {
-        finished = false;
-      }
-
-      return instances.forEach(function (ctrl) {
-        return ctrl.stop(finished);
-      });
-    }] : propValues;
-  };
-};
-var useSprings = useSpringsImpl();
-
-var useTrail = useSpringsImpl('default', true);
-
-var guid$1 = 0;
-
-var mapKeys = function mapKeys(items, keys) {
-  return (typeof keys === 'function' ? items.map(keys) : toArray$1(keys)).map(String);
-};
-
-var get$1 = function get(props) {
-  var items = props.items,
-      _props$keys = props.keys,
-      keys = _props$keys === void 0 ? function (states) {
-    return states;
-  } : _props$keys,
-      rest = _objectWithoutPropertiesLoose$1(props, ["items", "keys"]);
-
-  items = toArray$1(items !== void 0 ? items : null);
-  return _extends({
-    items: items,
-    keys: mapKeys(items, keys)
-  }, rest);
-};
-
-function calculateDiffInItems(_ref, props) {
-  var prevProps = _ref.prevProps,
-      state = _objectWithoutPropertiesLoose$1(_ref, ["prevProps"]);
-
-  var _get = get$1(prevProps || {}),
-      _keys = _get.keys;
-
-  var _get2 = get$1(props),
-      keys = _get2.keys,
-      items = _get2.items,
-      unique = _get2.unique,
-      _get2$trail = _get2.trail,
-      trail = _get2$trail === void 0 ? 0 : _get2$trail,
-      update = _get2.update,
-      enter = _get2.enter,
-      leave = _get2.leave,
-      config = _get2.config;
-
-  var currSet = new Set(keys);
-  var prevSet = new Set(_keys);
-  var deleted = [].concat(state.deleted);
-
-  var current = _extends({}, state.current);
-
-  var removed = state.transitions.filter(function (_ref2) {
-    var destroyed = _ref2.destroyed,
-        originalKey = _ref2.originalKey;
-    return !destroyed && !currSet.has(originalKey);
-  });
-  var added = keys.filter(function (key) {
-    return !prevSet.has(key);
-  });
-
-  var updated = _keys.filter(function (key) {
-    return currSet.has(key);
-  }); // if n
-
-
-  var delay = !trail && props.delay || 0; // Make sure trailed transitions start at 0
-
-  if (trail) delay -= trail;
-  added.forEach(function (key) {
-    var keyIndex = keys.indexOf(key);
-    var item = items[keyIndex];
-    var state = 'enter';
-
-    if (unique && deleted.find(function (d) {
-      return d.originalKey === key;
-    })) {
-      deleted = deleted.filter(function (t) {
-        return t.originalKey !== key;
-      });
-    }
-
-    current[key] = {
-      item: item,
-      state: state,
-      trail: delay = delay + trail,
-      key: unique ? String(key) : guid$1++,
-      originalKey: key,
-      destroyed: false,
-      config: callProp$1(config, item, state),
-      to: callProp$1(enter, item)
-    };
-  });
-  removed.forEach(function (_ref3) {
-    var item = _ref3.item,
-        originalKey = _ref3.originalKey,
-        rest = _objectWithoutPropertiesLoose$1(_ref3, ["item", "originalKey"]);
-
-    var keyIndex = _keys.indexOf(originalKey);
-
-    var state = 'leave';
-    deleted.unshift(_extends({}, rest, {
-      originalKey: originalKey,
-      item: item,
-      state: state,
-      left: _keys[Math.max(0, keyIndex - 1)],
-      destroyed: true,
-      trail: delay = delay + trail,
-      config: callProp$1(config, item, state),
-      to: callProp$1(leave, item)
-    }));
-    delete current[item.originalKey];
-  });
-  updated.forEach(function (key) {
-    var keyIndex = keys.indexOf(key);
-    var item = items[keyIndex];
-    var state = 'update';
-    current[key] = _extends({}, current[key], {
-      item: item,
-      state: state,
-      destroyed: false,
-      trail: delay = delay + trail,
-      config: callProp$1(config, item, state),
-      to: callProp$1(update, item)
-    });
-  });
-  var out = keys.map(function (key) {
-    return current[key];
-  }); // This tries to restore order for deleted items by finding their last known siblings
-  // only using the left sibling to keep order placement consistent for all deleted items
-
-  deleted.forEach(function (_ref4) {
-    var left = _ref4.left,
-        right = _ref4.right,
-        item = _objectWithoutPropertiesLoose$1(_ref4, ["left", "right"]);
-
-    var pos; // Was it the element on the left, if yes, move there ...
-
-    if ((pos = out.findIndex(function (t) {
-      return t.originalKey === left;
-    })) !== -1) pos += 1; // And if nothing else helps, move it to the start ¯\_(ツ)_/¯
-
-    pos = Math.max(0, pos);
-    out = [].concat(out.slice(0, pos), [item], out.slice(pos));
-  });
-  return {
-    deleted: deleted,
-    updated: updated,
-    current: current,
-    transitions: out
-  };
-}
-/**
- * @param {TransitionProps} props
- */
-
-
-function useTransition(props) {
-  var _get3 = get$1(props),
-      items = _get3.items,
-      _currentKeys = _get3.keys,
-      from = _get3.from,
-      initial = _get3.initial,
-      onRest = _get3.onRest,
-      onDestroyed = _get3.onDestroyed,
-      ref = _get3.ref;
-
-  var mounted = useRef(false);
-  useEffect(function () {
-    return mounted.current = true, function () {
-      return mounted.current = false;
-    };
-  }, []);
-  var instances = useRef(!mounted.current && new Map([]));
-  useEffect(function () {
-    return function () {
-      return Array.from(instances.current).map(function (_ref5) {
-        var key = _ref5[0],
-            ctrl = _ref5[1].ctrl;
-        ctrl.destroy();
-        instances.current.delete(key);
-      });
-    };
-  }, []);
-
-  var _useState = useState$1(),
-      f = _useState[1];
-
-  var forceUpdate = function forceUpdate() {
-    return f(function (v) {
-      return !v;
-    });
-  };
-
-  var state = useRef({
-    first: false,
-    activeSlots: {},
-    deleted: [],
-    current: {},
-    transitions: [],
-    prevProps: null
-  }); // only to be used internally, must be bound to the instance obj to work
-
-  function onEnd(_ref6) {
-    var finished = _ref6.finished;
-    var item = this.item,
-        key = this.key,
-        destroyed = this.destroyed,
-        slot = this.slot,
-        ctrl = this.ctrl;
-
-    if (mounted.current && finished) {
-      if (destroyed && onDestroyed) onDestroyed(item); // onRest needs to be called everytime each item
-      // has finished, it is needed for notif hub to work.
-      // we could have two seperate callback, one for each
-      // and one for a sort of global on rest and peritem onrest?
-
-      if (onRest) onRest(item, slot, ctrl.merged); // Clean up internal state when items unmount, this doesn't necessrily trigger a forceUpdate
-
-      if (destroyed) {
-        state.current = _extends({}, state.current, {
-          deleted: state.current.deleted.filter(function (t) {
-            return t.key !== key;
-          }),
-          transitions: state.current.transitions.filter(function (t) {
-            return t.key !== key;
-          })
-        });
-      } // Only when everything's come to rest we enforce a complete dom clean-up
-
-
-      var currentInstances = Array.from(instances.current);
-      if (!currentInstances.some(function (_ref7) {
-        var ctrl = _ref7[1].ctrl;
-        return ctrl.isActive;
-      })) requestFrame$1(function () {
-        return forceUpdate();
-      });
-    }
-  } // Prop changes effect
-
-
-  useMemo(function () {
-    var _calculateDiffInItems = calculateDiffInItems(state.current, props),
-        transitions = _calculateDiffInItems.transitions,
-        rest = _objectWithoutPropertiesLoose$1(_calculateDiffInItems, ["transitions"]);
-
-    transitions.forEach(function (_ref8) {
-      var slot = _ref8.state,
-          to = _ref8.to,
-          config = _ref8.config,
-          trail = _ref8.trail,
-          key = _ref8.key,
-          item = _ref8.item,
-          destroyed = _ref8.destroyed;
-      !instances.current.has(key) && instances.current.set(key, {
-        ctrl: new KeyframeController(_extends({}, callProp$1(state.current.first ? initial !== void 0 ? initial || {} : from : from, item), {
-          config: config,
-          delay: trail,
-          native: true,
-          ref: ref
-        })),
-        item: item,
-        destroyed: destroyed,
-        slot: slot,
-        key: key
-      }); // update the map object
-
-      var instance = instances.current.get(key);
-      instance.item = item;
-      instance.destroyed = destroyed;
-      instance.slot = slot;
-      var ctrl = instance.ctrl;
-
-      if (slot === 'update' || slot !== state.current.activeSlots[key]) {
-        state.current.activeSlots[key] = slot; // Set the controller if config has changed
-
-        if (config) ctrl.config = config; // update props that are not animated values
-
-        ctrl.globals = {
-          delay: trail
-        };
-        ctrl.update(to, onEnd.bind(instance));
-      }
-    });
-    state.current = _extends({}, state.current, {
-      transitions: transitions,
-      prevProps: props,
-      first: true
-    }, rest);
-  }, [items, mapKeys(items, _currentKeys).join('')]);
-  useImperativeHandle(ref, function () {
-    return {
-      start: function start() {
-        return Promise.all(Array.from(instances.current).map(function (_ref9) {
-          var obj = _ref9[1];
-          return obj.ctrl.start(onEnd.bind(obj));
-        }));
-      },
-      stop: function stop(finished) {
-        if (finished === void 0) {
-          finished = false;
-        }
-
-        Array.from(instances.current).forEach(function (_ref10) {
-          var ctrl = _ref10[1].ctrl;
-          return ctrl.isActive && ctrl.stop(finished);
-        });
-      }
-    };
-  });
-  return state.current.transitions.map(function (_ref11) {
-    var item = _ref11.item,
-        state = _ref11.state,
-        key = _ref11.key;
-    return {
-      item: item,
-      key: key,
-      state: state,
-      props: instances.current.get(key).ctrl.getValues()
-    };
-  });
-}
-
-/**
- *
- * @param {(useSpring | useTrail)} useImpl
- * @param {Object} props
- * @param {Array=} props.items // only needed when using Trail primitive
- * @param {Object} props.states
- * @param {SpringProps} ...props
- * @param {String} state
- * @param {SpringProps} initialProps
- */
-
-var useKeyframesImpl = function useKeyframesImpl(useImpl) {
-  return function (props, initialProps) {
-    if (initialProps === void 0) {
-      initialProps = null;
-    }
-
-    return function () {
-      var mounted = React.useRef(false);
-
-      for (var _len = arguments.length, params = new Array(_len), _key = 0; _key < _len; _key++) {
-        params[_key] = arguments[_key];
-      }
-
-      var _ref = params.length === 2 ? params.reduceRight(function (a, b) {
-        return [a, b];
-      }) : params,
-          _ref$ = _ref[0],
-          state = _ref$ === void 0 ? 'default' : _ref$,
-          count = _ref[1]; // need to force a rerender for when the animated controller has finally accepted props
-
-
-      var _useState = useState(),
-          f = _useState[1];
-
-      var forceUpdate = function forceUpdate() {
-        return f(function (v) {
-          return !v;
-        });
-      };
-
-      var shouldForceUpdateRef = React.useRef(!initialProps);
-
-      var _ref2 = function () {
-        if (Array.isArray(props) || typeof props === 'function') {
-          var _states;
-
-          return {
-            states: (_states = {}, _states[state] = props, _states)
-          };
-        } else {
-          var _onRest = props.onRest,
-              _config = props.config,
-              rest = _objectWithoutPropertiesLoose$1(props, ["onRest", "config"]);
-
-          return {
-            states: rest,
-            config: _config,
-            onRest: _onRest
-          };
-        }
-      }(),
-          states = _ref2.states,
-          config = _ref2.config,
-          onRest = _ref2.onRest;
-
-      var calculatedProps = function calculatedProps() {
-        return _extends({}, initialProps, {
-          native: true,
-          onRest: onRest,
-          config: config
-        });
-      };
-
-      var args = typeof count === 'number' ? [count, calculatedProps] : [calculatedProps];
-
-      var _useImpl = useImpl.apply(void 0, args),
-          animProps = _useImpl[0],
-          setAnimation = _useImpl[1],
-          cancel = _useImpl[2];
-
-      React.useEffect(function () {
-        mounted.current = true;
-        return function () {
-          return mounted.current = false;
-        };
-      }, []);
-      React.useEffect(function () {
-        shouldForceUpdateRef.current && forceUpdate();
-        shouldForceUpdateRef.current = false;
-        setAnimation(states[state]);
-      }, [state]);
-      return shouldForceUpdateRef.current && Array.isArray(animProps) ? [] : animProps;
-    };
-  };
-};
-
-var useKeyframes = {
-  spring: function spring() {
-    return useKeyframesImpl(useSpringImpl('keyframe')).apply(void 0, arguments);
-  },
-  springs: function springs() {
-    return useKeyframesImpl(useSpringsImpl('keyframe')).apply(void 0, arguments);
-  },
-  trail: function trail() {
-    return useKeyframesImpl(useSpringsImpl('keyframe', true)).apply(void 0, arguments);
-  }
-};
-
-var guid$1$1 = 0;
-function useChain(refs, timeSteps, timeFrame) {
-  if (timeFrame === void 0) {
-    timeFrame = 1000;
-  }
-
-  var frames = useRef([]);
-  var local = ++guid$1$1;
-  useEffect(function () {
-    refs.forEach(function (_ref) {
-      var current = _ref.current;
-      return current && current.stop();
-    });
-
-    if (timeSteps) {
-      frames.current.forEach(clearTimeout);
-      frames.current = [];
-      refs.forEach(function (ref, index) {
-        return frames.current.push(setTimeout(function () {
-          return ref.current.start();
-        }, timeFrame * timeSteps[index]));
-      });
-    } else refs.reduce(function (q, _ref2) {
-      var current = _ref2.current;
-      return q = q.then(function () {
-        return guid$1$1 === local && current && current.start();
-      });
-    }, Promise.resolve());
-  }, refs);
-}
-
 var domElements$1 = ['a', 'abbr', 'address', 'area', 'article', 'aside', 'audio', 'b', 'base', 'bdi', 'bdo', 'big', 'blockquote', 'body', 'br', 'button', 'canvas', 'caption', 'cite', 'code', 'col', 'colgroup', 'data', 'datalist', 'dd', 'del', 'details', 'dfn', 'dialog', 'div', 'dl', 'dt', 'em', 'embed', 'fieldset', 'figcaption', 'figure', 'footer', 'form', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'head', 'header', 'hgroup', 'hr', 'html', 'i', 'iframe', 'img', 'input', 'ins', 'kbd', 'keygen', 'label', 'legend', 'li', 'link', 'main', 'map', 'mark', 'marquee', 'menu', 'menuitem', 'meta', 'meter', 'nav', 'noscript', 'object', 'ol', 'optgroup', 'option', 'output', 'p', 'param', 'picture', 'pre', 'progress', 'q', 'rp', 'rt', 'ruby', 's', 'samp', 'script', 'section', 'select', 'small', 'source', 'span', 'strong', 'style', 'sub', 'summary', 'sup', 'table', 'tbody', 'td', 'textarea', 'tfoot', 'th', 'thead', 'time', 'title', 'tr', 'track', 'u', 'ul', 'var', 'video', 'wbr', // SVG
 'circle', 'clipPath', 'defs', 'ellipse', 'foreignObject', 'g', 'image', 'line', 'linearGradient', 'mask', 'path', 'pattern', 'polygon', 'polyline', 'radialGradient', 'rect', 'stop', 'svg', 'text', 'tspan'];
 var extendedAnimated$1 = domElements$1.reduce(function (acc, element) {
@@ -25451,16 +24550,16 @@ var RADIUS$1 = 2;
 var BAR_HEIGHT = 6;
 var INDETERMINATE_WIDTH = 1 / 4;
 var INDETERMINATE_DURATION = 1600;
-var indeterminateAnim = keyframes(["0%{transform:translate3d(calc(-100% - 1px),0,0);}70%,100%{transform:translate3d(calc(", "% + 1px),0,0);}"], 100 / INDETERMINATE_WIDTH);
+var indeterminateAnim = _styled.keyframes(["0%{transform:translate3d(calc(-100% - 1px),0,0);}70%,100%{transform:translate3d(calc(", "% + 1px),0,0);}"], 100 / INDETERMINATE_WIDTH);
 
-var _StyledDiv$w = _styled.div.withConfig({
+var _StyledDiv$w = _styled__default.div.withConfig({
   displayName: "ProgressBar___StyledDiv",
   componentId: "sc-1gly9sn-0"
 })(["width:100%;height:", "px;background:", ";border-radius:", "px;overflow:hidden;"], BAR_HEIGHT, function (p) {
   return p._css;
 }, RADIUS$1);
 
-var ProgressBar = React.memo(function (_ref) {
+var ProgressBar = React__default.memo(function (_ref) {
   var animate = _ref.animate,
       color = _ref.color,
       progress = _ref.progress,
@@ -25492,9 +24591,9 @@ var ProgressBar = React.memo(function (_ref) {
     },
     immediate: !animate
   });
-  return React.createElement(_StyledDiv$w, {
+  return React__default.createElement(_StyledDiv$w, {
     _css: theme.surfaceUnder
-  }, React.createElement(Bar$1, {
+  }, React__default.createElement(Bar$1, {
     style: {
       width: "".concat((indeterminate ? INDETERMINATE_WIDTH : 1) * 100, "%"),
       background: currentColor,
@@ -25506,7 +24605,7 @@ var ProgressBar = React.memo(function (_ref) {
     }
   }));
 });
-var Bar$1 = _styled(extendedAnimated$1.div).withConfig({
+var Bar$1 = _styled__default(extendedAnimated$1.div).withConfig({
   displayName: "ProgressBar__Bar",
   componentId: "sc-1gly9sn-1"
 })(["width:100%;height:", "px;transform-origin:0 0;animation:", " ", "ms ease-in-out infinite;animation-name:none;"], BAR_HEIGHT, indeterminateAnim, INDETERMINATE_DURATION);
@@ -25521,7 +24620,7 @@ ProgressBar.propTypes = {
   value: ExtendedPropTypes.oneOfType([ExtendedPropTypes._0to1, ExtendedPropTypes.oneOf([-1])])
 };
 
-var _React$createContext = React.createContext({}),
+var _React$createContext = React__default.createContext({}),
     Provider$2 = _React$createContext.Provider,
     Consumer$1 = _React$createContext.Consumer;
 
@@ -25631,7 +24730,7 @@ function (_React$PureComponent) {
           children = _this$props.children,
           selected = _this$props.selected;
       var focusableId = radios.has(selected) ? selected : toConsumableArray(radios)[0];
-      return React.createElement(Provider$2, {
+      return React__default.createElement(Provider$2, {
         value: {
           selected: selected,
           focusableId: focusableId,
@@ -25641,14 +24740,14 @@ function (_React$PureComponent) {
           selectPrev: this.selectPrev,
           selectNext: this.selectNext
         }
-      }, React.createElement("div", _extends_1({
+      }, React__default.createElement("div", _extends_1({
         role: "radiogroup"
       }, stylingProps(this)), children));
     }
   }]);
 
   return RadioGroup;
-}(React.PureComponent);
+}(React__default.PureComponent);
 
 defineProperty(RadioGroup, "propTypes", {
   children: propTypes.node,
@@ -25683,7 +24782,7 @@ function (_React$PureComponent) {
 
     _this = possibleConstructorReturn(this, (_getPrototypeOf2 = getPrototypeOf(RadioButton)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
-    defineProperty(assertThisInitialized(_this), "_element", React.createRef());
+    defineProperty(assertThisInitialized(_this), "_element", React__default.createRef());
 
     defineProperty(assertThisInitialized(_this), "handleKeyDown", function (event) {
       var _this$props = _this.props,
@@ -25756,7 +24855,7 @@ function (_React$PureComponent) {
           tabIndex = _this$props5.tabIndex,
           props = objectWithoutProperties(_this$props5, ["checked", "disabled", "id", "onChange", "tabIndex"]);
 
-      return React.createElement(CheckBoxWithTheme, _extends_1({
+      return React__default.createElement(CheckBoxWithTheme, _extends_1({
         ref: this._element,
         checked: checked,
         disabled: disabled,
@@ -25769,7 +24868,7 @@ function (_React$PureComponent) {
   }]);
 
   return RadioButton;
-}(React.PureComponent);
+}(React__default.PureComponent);
 
 defineProperty(RadioButton, "propTypes", {
   addRadio: propTypes.func,
@@ -25810,7 +24909,7 @@ function (_React$PureComponent2) {
     key: "render",
     value: function render() {
       var props = this.props;
-      return React.createElement(Consumer$1, null, function (_ref) {
+      return React__default.createElement(Consumer$1, null, function (_ref) {
         var onChange = _ref.onChange,
             selected = _ref.selected,
             focusableId = _ref.focusableId,
@@ -25818,7 +24917,7 @@ function (_React$PureComponent2) {
             removeRadio = _ref.removeRadio,
             selectNext = _ref.selectNext,
             selectPrev = _ref.selectPrev;
-        return React.createElement(RadioButton, _extends_1({}, props, {
+        return React__default.createElement(RadioButton, _extends_1({}, props, {
           onChange: props.onChange || onChange,
           checked: props.checked || props.id === selected && selected !== null,
           tabIndex: props.tabIndex || (focusableId === undefined || props.id === focusableId ? '0' : '-1'),
@@ -25832,13 +24931,13 @@ function (_React$PureComponent2) {
   }]);
 
   return Radio;
-}(React.PureComponent);
+}(React__default.PureComponent);
 
 defineProperty(Radio, "propTypes", RadioButton.propTypes);
 
 defineProperty(Radio, "defaultProps", RadioButton.defaultProps);
 
-var _StyledLabel = _styled.label.withConfig({
+var _StyledLabel = _styled__default.label.withConfig({
   displayName: "RadioListItem___StyledLabel",
   componentId: "sc-1utxw89-0"
 })(["display:flex;", ";& + &{margin-top:", "px;}"], function (p) {
@@ -25847,14 +24946,14 @@ var _StyledLabel = _styled.label.withConfig({
   return p._css2;
 });
 
-var _StyledRadio = _styled(Radio).withConfig({
+var _StyledRadio = _styled__default(Radio).withConfig({
   displayName: "RadioListItem___StyledRadio",
   componentId: "sc-1utxw89-1"
 })(["flex-shrink:0;margin-top:", "px;"], function (p) {
   return p._css3;
 });
 
-var _StyledDiv$x = _styled.div.withConfig({
+var _StyledDiv$x = _styled__default.div.withConfig({
   displayName: "RadioListItem___StyledDiv",
   componentId: "sc-1utxw89-2"
 })(["flex-grow:1;margin-left:12px;padding:12px 12px;border-radius:3px;transition:border 100ms ease-in-out;cursor:pointer;border:1px ", " solid;&:hover{border-color:", ";}"], function (p) {
@@ -25863,28 +24962,28 @@ var _StyledDiv$x = _styled.div.withConfig({
   return p._css5;
 });
 
-var _StyledDiv2$i = _styled.div.withConfig({
+var _StyledDiv2$i = _styled__default.div.withConfig({
   displayName: "RadioListItem___StyledDiv2",
   componentId: "sc-1utxw89-3"
 })(["margin-top:", "px;"], function (p) {
   return p._css6;
 });
 
-var RadioListItem = React.memo(function RadioListItem(_ref) {
+var RadioListItem = React__default.memo(function RadioListItem(_ref) {
   var description = _ref.description,
       index = _ref.index,
       title = _ref.title;
   var theme = useTheme();
-  return React.createElement(_StyledLabel, {
+  return React__default.createElement(_StyledLabel, {
     _css: unselectable(),
     _css2: 1 * GU
-  }, React.createElement(_StyledRadio, {
+  }, React__default.createElement(_StyledRadio, {
     id: index,
     _css3: 2 * GU
-  }), React.createElement(_StyledDiv$x, {
+  }), React__default.createElement(_StyledDiv$x, {
     _css4: theme.border,
     _css5: theme.accent.alpha(0.35)
-  }, React.createElement("strong", null, title), React.createElement(_StyledDiv2$i, {
+  }, React__default.createElement("strong", null, title), React__default.createElement(_StyledDiv2$i, {
     _css6: 0.5 * GU
   }, description)));
 });
@@ -25894,21 +24993,21 @@ RadioListItem.propTypes = {
   title: propTypes.node.isRequired
 };
 
-var _StyledH$6 = _styled.h2.withConfig({
+var _StyledH$6 = _styled__default.h2.withConfig({
   displayName: "RadioList___StyledH",
   componentId: "sc-1hkg1b7-0"
 })(["margin-bottom:", "px;font-weight:600;"], function (p) {
   return p._css;
 });
 
-var _StyledDiv$y = _styled.div.withConfig({
+var _StyledDiv$y = _styled__default.div.withConfig({
   displayName: "RadioList___StyledDiv",
   componentId: "sc-1hkg1b7-1"
 })(["margin-bottom:", "px;"], function (p) {
   return p._css2;
 });
 
-var _StyledRadioGroup = _styled(RadioGroup).withConfig({
+var _StyledRadioGroup = _styled__default(RadioGroup).withConfig({
   displayName: "RadioList___StyledRadioGroup",
   componentId: "sc-1hkg1b7-2"
 })(["display:flex;flex-direction:column;"]);
@@ -25921,17 +25020,17 @@ function RadioList(_ref) {
       title = _ref.title,
       props = objectWithoutProperties(_ref, ["description", "items", "onChange", "selected", "title"]);
 
-  return React.createElement("div", props, title && React.createElement(_StyledH$6, {
+  return React__default.createElement("div", props, title && React__default.createElement(_StyledH$6, {
     _css: 0.5 * GU
-  }, title), description && React.createElement(_StyledDiv$y, {
+  }, title), description && React__default.createElement(_StyledDiv$y, {
     _css2: 2.5 * GU
-  }, description), React.createElement(_StyledRadioGroup, {
+  }, description), React__default.createElement(_StyledRadioGroup, {
     onChange: onChange,
     selected: selected
   }, items.map(function (_ref2, i) {
     var description = _ref2.description,
         title = _ref2.title;
-    return React.createElement(RadioListItem, {
+    return React__default.createElement(RadioListItem, {
       key: i,
       description: description,
       index: i,
@@ -25970,23 +25069,23 @@ var CONTENT_PADDING = 3 * GU; // The closing position of the panel, on the right
 // It takes into consideration the shadow of the panel.
 
 var CLOSING_POSITION = 5 * GU;
-var SidePanelContext = React.createContext(null);
+var SidePanelContext = React__default.createContext(null);
 
-var _StyledDiv$z = _styled.div.withConfig({
+var _StyledDiv$z = _styled__default.div.withConfig({
   displayName: "SidePanel___StyledDiv",
   componentId: "sc-1kjx6mk-0"
 })(["position:absolute;z-index:1;top:0;left:0;right:0;bottom:0;pointer-events:", ";overflow:hidden;"], function (p) {
   return p._css;
 });
 
-var _StyledAnimatedDiv$6 = _styled(extendedAnimated.div).withConfig({
+var _StyledAnimatedDiv$6 = _styled__default(extendedAnimated.div).withConfig({
   displayName: "SidePanel___StyledAnimatedDiv",
   componentId: "sc-1kjx6mk-1"
 })(["position:absolute;top:0;left:0;right:0;bottom:0;background:", ";"], function (p) {
   return p._css2;
 });
 
-var _StyledHeader$1 = _styled.header.withConfig({
+var _StyledHeader$1 = _styled__default.header.withConfig({
   displayName: "SidePanel___StyledHeader",
   componentId: "sc-1kjx6mk-2"
 })(["display:flex;flex-direction:column;justify-content:center;flex-shrink:0;position:relative;height:", "px;padding-left:", "px;border-bottom:1px solid ", ";", ";"], function (p) {
@@ -25997,7 +25096,7 @@ var _StyledHeader$1 = _styled.header.withConfig({
   return p._css5;
 });
 
-var _StyledH$7 = _styled.h1.withConfig({
+var _StyledH$7 = _styled__default.h1.withConfig({
   displayName: "SidePanel___StyledH",
   componentId: "sc-1kjx6mk-3"
 })(["color:", ";", ";"], function (p) {
@@ -26006,19 +25105,19 @@ var _StyledH$7 = _styled.h1.withConfig({
   return p._css7;
 });
 
-var _StyledButtonIcon$5 = _styled(ButtonIcon).withConfig({
+var _StyledButtonIcon$5 = _styled__default(ButtonIcon).withConfig({
   displayName: "SidePanel___StyledButtonIcon",
   componentId: "sc-1kjx6mk-4"
 })(["position:absolute;", ""], function (p) {
   return p._css8;
 });
 
-var _StyledDiv2$j = _styled.div.withConfig({
+var _StyledDiv2$j = _styled__default.div.withConfig({
   displayName: "SidePanel___StyledDiv2",
   componentId: "sc-1kjx6mk-5"
 })(["overflow-y:auto;height:100%;display:flex;flex-direction:column;"]);
 
-var _StyledDiv3$a = _styled.div.withConfig({
+var _StyledDiv3$a = _styled__default.div.withConfig({
   displayName: "SidePanel___StyledDiv3",
   componentId: "sc-1kjx6mk-6"
 })(["min-height:0;flex-grow:1;flex-shrink:0;display:flex;flex-direction:column;width:100%;padding-right:", "px;padding-left:", "px;padding-bottom:", "px;"], CONTENT_PADDING, CONTENT_PADDING, CONTENT_PADDING);
@@ -26036,35 +25135,35 @@ function SidePanel(_ref2) {
       below = _useViewport.below;
 
   var compact = below('medium');
-  var close = useCallback(function () {
+  var close = React.useCallback(function () {
     if (!blocking) {
       onClose();
     }
   }, [blocking, onClose]);
-  var handleEscape = useCallback(function (event) {
+  var handleEscape = React.useCallback(function (event) {
     if (event.keyCode === KEY_ESC && opened) {
       close();
     }
   }, [opened, close]);
 
-  var _useState = useState$1(opened ? 'opened' : 'closed'),
+  var _useState = React.useState(opened ? 'opened' : 'closed'),
       _useState2 = slicedToArray(_useState, 2),
       status = _useState2[0],
       setStatus = _useState2[1];
 
-  var _useState3 = useState$1(false),
+  var _useState3 = React.useState(false),
       _useState4 = slicedToArray(_useState3, 2),
       readyToFocus = _useState4[0],
       setReadyToFocus = _useState4[1];
 
-  var handleTransitionRest = useCallback(function () {
+  var handleTransitionRest = React.useCallback(function () {
     onTransitionEnd(opened);
     setStatus(opened ? 'opened' : 'closed');
   }, [opened, onTransitionEnd]);
-  var handleTransitionStart = useCallback(function () {
+  var handleTransitionStart = React.useCallback(function () {
     setStatus(opened ? 'opening' : 'closing');
   }, [opened]);
-  var handleTransitionFrame = useCallback(function (item, _, _ref3) {
+  var handleTransitionFrame = React.useCallback(function (item, _, _ref3) {
     var progress = _ref3.progress;
 
     if (progress > 0.5 && !readyToFocus) {
@@ -26073,18 +25172,18 @@ function SidePanel(_ref2) {
       setReadyToFocus(false);
     }
   }, [readyToFocus]);
-  var handleTransitionDestroyed = useCallback(function () {
+  var handleTransitionDestroyed = React.useCallback(function () {
     setReadyToFocus(false);
   }, []);
-  useEffect(function () {
+  React.useEffect(function () {
     document.addEventListener('keydown', handleEscape);
     return function () {
       document.removeEventListener('keydown', handleEscape);
     };
   }, [handleEscape]);
-  return React.createElement(RootPortal, null, React.createElement(Inside, {
+  return React__default.createElement(RootPortal, null, React__default.createElement(Inside, {
     name: "SidePanel"
-  }, React.createElement(Transition, {
+  }, React__default.createElement(Transition, {
     items: opened,
     config: _objectSpread$i({}, springs.lazy, {
       precision: 0.001
@@ -26107,36 +25206,36 @@ function SidePanel(_ref2) {
   }, function (opened) {
     return opened && function (_ref4) {
       var progress = _ref4.progress;
-      return React.createElement(_StyledDiv$z, {
+      return React__default.createElement(_StyledDiv$z, {
         _css: status !== 'closing' ? 'auto' : 'none'
-      }, React.createElement(_StyledAnimatedDiv$6, {
+      }, React__default.createElement(_StyledAnimatedDiv$6, {
         onClick: close,
         style: {
           opacity: progress,
           pointerEvents: status !== 'closing' ? 'auto' : 'none'
         },
         _css2: theme.overlay.alpha(0.9)
-      }), React.createElement(Panel, {
+      }), React__default.createElement(Panel, {
         compact: compact,
         style: {
           transform: progress.interpolate(function (v) {
             return "\n                          translate3d(\n                            calc(\n                              ".concat(100 * (1 - v), "% +\n                              ").concat(CLOSING_POSITION * (1 - v), "px\n                            ), 0, 0\n                          )\n                        ");
           })
         }
-      }, React.createElement(_StyledHeader$1, {
+      }, React__default.createElement(_StyledHeader$1, {
         _css3: 8 * GU,
         _css4: theme.border,
         _css5: unselectable()
-      }, React.createElement(_StyledH$7, {
+      }, React__default.createElement(_StyledH$7, {
         _css6: theme.surfaceContent,
         _css7: textStyle('body1')
-      }, title), !blocking && React.createElement(_StyledButtonIcon$5, {
+      }, title), !blocking && React__default.createElement(_StyledButtonIcon$5, {
         label: "Close",
         onClick: close,
         _css8: !compact ? "\n                              top: ".concat(2 * GU, "px;\n                              right: ").concat(2 * GU, "px;\n                            ") : "\n                              top: 0;\n                              right: 0;\n                              height: ".concat(8 * GU, "px;\n                              width: ").concat(8 * GU, "px;\n                            ")
-      }, React.createElement(IconCross, {
+      }, React__default.createElement(IconCross, {
         color: theme.surfaceIcon
-      }))), React.createElement(_StyledDiv2$j, null, React.createElement(_StyledDiv3$a, null, React.createElement(SidePanelContext.Provider, {
+      }))), React__default.createElement(_StyledDiv2$j, null, React__default.createElement(_StyledDiv3$a, null, React__default.createElement(SidePanelContext.Provider, {
         value: {
           status: status,
           readyToFocus: readyToFocus
@@ -26161,7 +25260,7 @@ SidePanel.defaultProps = {
   onTransitionEnd: function onTransitionEnd() {}
 };
 
-var _StyledAnimatedAside = _styled(extendedAnimated.aside).withConfig({
+var _StyledAnimatedAside = _styled__default(extendedAnimated.aside).withConfig({
   displayName: "SidePanel___StyledAnimatedAside",
   componentId: "sc-1kjx6mk-7"
 })(["position:absolute;top:0;right:0;display:flex;flex-direction:column;width:100%;height:100%;background:", ";box-shadow:-2px 0px 4px rgba(0,0,0,0.1);", ""], function (p) {
@@ -26170,12 +25269,12 @@ var _StyledAnimatedAside = _styled(extendedAnimated.aside).withConfig({
   return p._css10;
 });
 
-var Panel = React.memo(function Panel(_ref5) {
+var Panel = React__default.memo(function Panel(_ref5) {
   var compact = _ref5.compact,
       props = objectWithoutProperties(_ref5, ["compact"]);
 
   var theme = useTheme();
-  return React.createElement(_StyledAnimatedAside, _extends_1({}, props, {
+  return React__default.createElement(_StyledAnimatedAside, _extends_1({}, props, {
     _css9: theme.surface,
     _css10: !compact ? 'max-width: 450px;' : ''
   }));
@@ -26185,7 +25284,7 @@ Panel.propTypes = {
 };
 
 function useSidePanel() {
-  var value = useContext(SidePanelContext);
+  var value = React.useContext(SidePanelContext);
 
   if (value === null) {
     throw new Error('useSidePanel() was used outside of the SidePanel render tree, ' + 'which has to be declared at an upper level!');
@@ -26198,11 +25297,11 @@ function useSidePanelFocusOnReady(ref) {
   var _useSidePanel = useSidePanel(),
       readyToFocus = _useSidePanel.readyToFocus;
 
-  var fallbackRef = useRef();
+  var fallbackRef = React.useRef();
 
   var _ref = ref || fallbackRef;
 
-  useEffect(function () {
+  React.useEffect(function () {
     if (readyToFocus && _ref.current) {
       if (_ref.current.focus) {
         _ref.current.focus();
@@ -26217,7 +25316,7 @@ function useSidePanelFocusOnReady(ref) {
 
 SidePanel.HORIZONTAL_PADDING = CONTENT_PADDING;
 
-var _StyledDiv$A = _styled.div.withConfig({
+var _StyledDiv$A = _styled__default.div.withConfig({
   displayName: "SidePanelSeparator___StyledDiv",
   componentId: "sc-75c7uf-0"
 })(["width:calc(100% + ", "px);margin:0 -", "px;height:1px;background:", ";"], function (p) {
@@ -26230,14 +25329,14 @@ var _StyledDiv$A = _styled.div.withConfig({
 
 function SidePanelSeparator(props) {
   var theme = useTheme();
-  return React.createElement(_StyledDiv$A, _extends_1({}, props, {
+  return React__default.createElement(_StyledDiv$A, _extends_1({}, props, {
     _css: SidePanel.HORIZONTAL_PADDING * 2,
     _css2: SidePanel.HORIZONTAL_PADDING,
     _css3: theme.border
   }));
 }
 
-var _StyledDiv$B = _styled.div.withConfig({
+var _StyledDiv$B = _styled__default.div.withConfig({
   displayName: "SidePanelSplit___StyledDiv",
   componentId: "d0csv3-0"
 })(["display:flex;width:calc(100% + ", "px);margin:0 -", "px;padding:", "px;"], function (p) {
@@ -26248,7 +25347,7 @@ var _StyledDiv$B = _styled.div.withConfig({
   return p._css3;
 });
 
-var _StyledDiv2$k = _styled.div.withConfig({
+var _StyledDiv2$k = _styled__default.div.withConfig({
   displayName: "SidePanelSplit___StyledDiv2",
   componentId: "d0csv3-1"
 })(["display:inline-block;border-right:1px solid ", ";margin:-", "px ", "px;"], function (p) {
@@ -26264,21 +25363,21 @@ function SidePanelSplit(_ref) {
       props = objectWithoutProperties(_ref, ["children"]);
 
   var theme = useTheme();
-  return React.createElement(_StyledDiv$B, _extends_1({}, props, {
+  return React__default.createElement(_StyledDiv$B, _extends_1({}, props, {
     _css: SidePanel.HORIZONTAL_PADDING * 2,
     _css2: SidePanel.HORIZONTAL_PADDING,
     _css3: SidePanel.HORIZONTAL_PADDING
-  }), React.createElement(Part, null, children[0]), React.createElement(_StyledDiv2$k, {
+  }), React__default.createElement(Part, null, children[0]), React__default.createElement(_StyledDiv2$k, {
     _css4: theme.border,
     _css5: SidePanel.HORIZONTAL_PADDING,
     _css6: SidePanel.HORIZONTAL_PADDING
-  }), React.createElement(Part, null, children[1]));
+  }), React__default.createElement(Part, null, children[1]));
 }
 
 SidePanelSplit.propTypes = {
   children: propTypes.node
 };
-var Part = _styled.div.withConfig({
+var Part = _styled__default.div.withConfig({
   displayName: "SidePanelSplit__Part",
   componentId: "d0csv3-2"
 })(["width:50%;"]);
@@ -26290,19 +25389,19 @@ var PADDING = 5;
 var MIN_WIDTH$1 = HANDLE_SIZE * 10;
 var HEIGHT$2 = Math.max(HANDLE_SIZE, BAR_HEIGHT$1) + PADDING * 2;
 
-var _StyledDiv$C = _styled.div.withConfig({
+var _StyledDiv$C = _styled__default.div.withConfig({
   displayName: "Slider___StyledDiv",
   componentId: "sc-94djfe-0"
 })(["min-width:", "px;padding:0 ", "px;", ";"], MIN_WIDTH$1, function (p) {
   return p._css;
 }, unselectable);
 
-var _StyledDiv2$l = _styled.div.withConfig({
+var _StyledDiv2$l = _styled__default.div.withConfig({
   displayName: "Slider___StyledDiv2",
   componentId: "sc-94djfe-1"
 })(["position:relative;height:", "px;cursor:pointer;"], HEIGHT$2);
 
-var _StyledAnimatedDiv$7 = _styled(extendedAnimated.div).withConfig({
+var _StyledAnimatedDiv$7 = _styled__default(extendedAnimated.div).withConfig({
   displayName: "Slider___StyledAnimatedDiv",
   componentId: "sc-94djfe-2"
 })(["position:absolute;top:50%;left:0;width:", "px;height:", "px;border:1px solid ", ";border-radius:50%;"], HANDLE_SIZE, HANDLE_SIZE, function (p) {
@@ -26456,7 +25555,7 @@ function (_React$Component) {
           theme = _this$props.theme,
           props = objectWithoutProperties(_this$props, ["onUpdate", "value", "theme"]);
 
-      return React.createElement(Spring, {
+      return React__default.createElement(Spring, {
         native: true,
         config: springs.swift,
         to: {
@@ -26466,20 +25565,20 @@ function (_React$Component) {
       }, function (_ref) {
         var value = _ref.value,
             pressProgress = _ref.pressProgress;
-        return React.createElement(_StyledDiv$C, _extends_1({}, props, {
+        return React__default.createElement(_StyledDiv$C, _extends_1({}, props, {
           _css: HANDLE_SIZE / 2 + PADDING
-        }), React.createElement(_StyledDiv2$l, {
+        }), React__default.createElement(_StyledDiv2$l, {
           ref: _this2.handleRef,
           onMouseDown: _this2.dragStart,
           onTouchStart: _this2.dragStart
-        }, React.createElement(Bars, null, React.createElement(_StyledBar, {
+        }, React__default.createElement(Bars, null, React__default.createElement(_StyledBar, {
           _css2: theme.surfaceUnder
-        }), React.createElement(_StyledBar2, {
+        }), React__default.createElement(_StyledBar2, {
           style: _this2.getActiveBarStyles(value, pressProgress),
           _css3: theme.selected
-        })), React.createElement(HandleClip, null, React.createElement(HandlePosition, {
+        })), React__default.createElement(HandleClip, null, React__default.createElement(HandlePosition, {
           style: _this2.getHandlePositionStyles(value, pressProgress)
-        }, React.createElement(_StyledAnimatedDiv$7, {
+        }, React__default.createElement(_StyledAnimatedDiv$7, {
           style: _this2.getHandleStyles(pressProgress),
           _css4: theme.border
         })))));
@@ -26488,7 +25587,7 @@ function (_React$Component) {
   }]);
 
   return Slider;
-}(React.Component);
+}(React__default.Component);
 
 defineProperty(Slider, "propTypes", {
   value: propTypes.number,
@@ -26501,45 +25600,45 @@ defineProperty(Slider, "defaultProps", {
   onUpdate: function onUpdate() {}
 });
 
-var Bars = _styled(extendedAnimated.div).withConfig({
+var Bars = _styled__default(extendedAnimated.div).withConfig({
   displayName: "Slider__Bars",
   componentId: "sc-94djfe-3"
 })(["position:absolute;left:0;right:0;top:50%;transform:translateY(-50%);overflow:hidden;border-radius:2px;height:", "px;"], BAR_HEIGHT$1);
-var Bar$2 = _styled(extendedAnimated.div).withConfig({
+var Bar$2 = _styled__default(extendedAnimated.div).withConfig({
   displayName: "Slider__Bar",
   componentId: "sc-94djfe-4"
 })(["position:absolute;top:0;left:0;right:0;bottom:0;"]);
 
-var _StyledBar2 = _styled(Bar$2).withConfig({
+var _StyledBar2 = _styled__default(Bar$2).withConfig({
   displayName: "Slider___StyledBar2",
   componentId: "sc-94djfe-5"
 })(["transform-origin:0 0;background:", ";"], function (p) {
   return p._css3;
 });
 
-var _StyledBar = _styled(Bar$2).withConfig({
+var _StyledBar = _styled__default(Bar$2).withConfig({
   displayName: "Slider___StyledBar",
   componentId: "sc-94djfe-6"
 })(["background:", ";"], function (p) {
   return p._css2;
 });
 
-var HandleClip = _styled.div.withConfig({
+var HandleClip = _styled__default.div.withConfig({
   displayName: "Slider__HandleClip",
   componentId: "sc-94djfe-7"
 })(["pointer-events:none;overflow:hidden;width:calc(100% + ", "px);height:calc(100% + ", "px);transform-origin:50% 50%;transform:translate( -", "px,-", "px );"], HANDLE_SIZE + HANDLE_SHADOW_MARGIN * 2, HANDLE_SHADOW_MARGIN * 2, HANDLE_SIZE / 2 + HANDLE_SHADOW_MARGIN, HANDLE_SHADOW_MARGIN);
-var HandlePosition = _styled(extendedAnimated.div).withConfig({
+var HandlePosition = _styled__default(extendedAnimated.div).withConfig({
   displayName: "Slider__HandlePosition",
   componentId: "sc-94djfe-8"
 })(["width:calc(100% - ", "px);height:100%;transform-origin:50% 50%;"], HANDLE_SIZE + HANDLE_SHADOW_MARGIN * 2);
 var Slider$1 = (function (props) {
   var theme = useTheme();
-  return React.createElement(Slider, _extends_1({
+  return React__default.createElement(Slider, _extends_1({
     theme: theme
   }, props));
 });
 
-var _StyledDiv$D = _styled.div.withConfig({
+var _StyledDiv$D = _styled__default.div.withConfig({
   displayName: "Split___StyledDiv",
   componentId: "sc-19nz0vo-0"
 })(["flex-grow:1;margin-left:", "px;padding-top:", "px;"], function (p) {
@@ -26548,7 +25647,7 @@ var _StyledDiv$D = _styled.div.withConfig({
   return p._css2;
 });
 
-var _StyledDiv2$m = _styled.div.withConfig({
+var _StyledDiv2$m = _styled__default.div.withConfig({
   displayName: "Split___StyledDiv2",
   componentId: "sc-19nz0vo-1"
 })(["flex-shrink:0;flex-grow:0;width:", ";margin-left:", "px;padding-top:", "px;"], function (p) {
@@ -26559,7 +25658,7 @@ var _StyledDiv2$m = _styled.div.withConfig({
   return p._css5;
 });
 
-var _StyledDiv3$b = _styled.div.withConfig({
+var _StyledDiv3$b = _styled__default.div.withConfig({
   displayName: "Split___StyledDiv3",
   componentId: "sc-19nz0vo-2"
 })(["display:", ";padding-bottom:", "px;width:100%;"], function (p) {
@@ -26578,22 +25677,22 @@ function Split(_ref) {
 
   var oneColumn = layout === 'small' || layout === 'medium';
   var inverted = !oneColumn && invert === 'horizontal' || oneColumn && invert === 'vertical';
-  var primaryContent = React.createElement(Inside, {
+  var primaryContent = React__default.createElement(Inside, {
     name: "Split:primary"
-  }, React.createElement(_StyledDiv$D, {
+  }, React__default.createElement(_StyledDiv$D, {
     _css: !oneColumn && inverted ? 2 * GU : 0,
     _css2: oneColumn && inverted ? 2 * GU : 0
   }, primary));
-  var secondaryContent = React.createElement(Inside, {
+  var secondaryContent = React__default.createElement(Inside, {
     name: "Split:secondary"
-  }, React.createElement(_StyledDiv2$m, {
+  }, React__default.createElement(_StyledDiv2$m, {
     _css3: oneColumn ? '100%' : "".concat(33 * GU, "px"),
     _css4: !oneColumn && !inverted ? 2 * GU : 0,
     _css5: oneColumn && !inverted ? 2 * GU : 0
   }, secondary));
-  return React.createElement(Inside, {
+  return React__default.createElement(Inside, {
     name: "Split"
-  }, React.createElement(_StyledDiv3$b, {
+  }, React__default.createElement(_StyledDiv3$b, {
     _css6: oneColumn ? 'block' : 'flex',
     _css7: 3 * GU
   }, inverted ? secondaryContent : primaryContent, inverted ? primaryContent : secondaryContent));
@@ -26612,7 +25711,7 @@ var BORDER = 1;
 var WRAPPER_WIDTH = 5 * GU;
 var WRAPPER_HEIGHT = 2.25 * GU;
 
-var _StyledSpan$b = _styled.span.withConfig({
+var _StyledSpan$b = _styled__default.span.withConfig({
   displayName: "Switch___StyledSpan",
   componentId: "sc-1f0jw9z-0"
 })(["position:relative;display:inline-block;width:", "px;height:", "px;border:", "px solid ", ";border-radius:", "px;background-color:", ";cursor:", ";", " ", ";"], WRAPPER_WIDTH, WRAPPER_HEIGHT, BORDER, function (p) {
@@ -26627,12 +25726,12 @@ var _StyledSpan$b = _styled.span.withConfig({
   return p._css5;
 });
 
-var _StyledInput$1 = _styled.input.withConfig({
+var _StyledInput$1 = _styled__default.input.withConfig({
   displayName: "Switch___StyledInput",
   componentId: "sc-1f0jw9z-1"
 })(["opacity:0;pointer-events:none;"]);
 
-var _StyledAnimatedSpan$1 = _styled(extendedAnimated.span).withConfig({
+var _StyledAnimatedSpan$1 = _styled__default(extendedAnimated.span).withConfig({
   displayName: "Switch___StyledAnimatedSpan",
   componentId: "sc-1f0jw9z-2"
 })(["position:absolute;left:0;z-index:1;top:", "px;width:", "px;height:", "px;border-radius:", "px;background-color:", ";box-shadow:", ";"], BORDER, function (p) {
@@ -26653,7 +25752,7 @@ function Switch(_ref) {
       onChange = _ref.onChange;
   var theme = useTheme();
 
-  var _useState = useState$1(false),
+  var _useState = React.useState(false),
       _useState2 = slicedToArray(_useState, 2),
       isFocused = _useState2[0],
       setIsFocused = _useState2[1];
@@ -26661,10 +25760,10 @@ function Switch(_ref) {
   var handleChange = disabled ? noop : function () {
     return onChange(!checked);
   };
-  return React.createElement(FocusVisible, null, function (_ref2) {
+  return React__default.createElement(FocusVisible, null, function (_ref2) {
     var focusVisible = _ref2.focusVisible,
         _onFocus = _ref2.onFocus;
-    return React.createElement(_StyledSpan$b, {
+    return React__default.createElement(_StyledSpan$b, {
       onClick: function onClick(e) {
         e.preventDefault();
         handleChange();
@@ -26674,7 +25773,7 @@ function Switch(_ref) {
       _css3: disabled ? 'default' : 'pointer',
       _css4: disabled ? '' : "\n                  &:active {\n                    border-color: ".concat(theme.controlBorderPressed, ";\n                  }\n                "),
       _css5: isFocused && focusVisible ? "\n                  &:after {\n                    content: '';\n                    position: absolute;\n                    left: ".concat(-BORDER * 2, "px;\n                    top: ").concat(-BORDER * 2, "px;\n                    width: ").concat(WRAPPER_WIDTH + BORDER * 2, "px;\n                    height: ").concat(WRAPPER_HEIGHT + BORDER * 2, "px;\n                    border-radius: ").concat(WRAPPER_HEIGHT, "px;\n                    border: 2px solid ").concat(theme.focus, ";\n                  }\n                ") : ''
-    }, React.createElement(_StyledInput$1, {
+    }, React__default.createElement(_StyledInput$1, {
       type: "checkbox",
       onFocus: function onFocus() {
         setIsFocused(true);
@@ -26687,7 +25786,7 @@ function Switch(_ref) {
       checked: checked,
       disabled: disabled,
       onChange: handleChange
-    }), React.createElement(Spring, {
+    }), React__default.createElement(Spring, {
       to: {
         progress: checked ? WRAPPER_WIDTH - WRAPPER_HEIGHT + BORDER : BORDER
       },
@@ -26695,7 +25794,7 @@ function Switch(_ref) {
       native: true
     }, function (_ref3) {
       var progress = _ref3.progress;
-      return React.createElement(_StyledAnimatedSpan$1, {
+      return React__default.createElement(_StyledAnimatedSpan$1, {
         style: {
           transform: progress.interpolate(function (v) {
             return "translate3d(".concat(v, "px, 0, 0)");
@@ -26722,7 +25821,7 @@ Switch.defaultProps = {
   onChange: noop
 };
 
-var _StyledSpan$c = _styled.span.withConfig({
+var _StyledSpan$c = _styled__default.span.withConfig({
   displayName: "SyncIndicator___StyledSpan",
   componentId: "sc-19m50aw-0"
 })(["margin-left:5px"]);
@@ -26730,11 +25829,11 @@ var _StyledSpan$c = _styled.span.withConfig({
 function SyncIndicator(_ref) {
   var visible = _ref.visible,
       label = _ref.label;
-  return React.createElement(FloatIndicator, {
+  return React__default.createElement(FloatIndicator, {
     visible: visible
-  }, React.createElement(LoadingRing, {
+  }, React__default.createElement(LoadingRing, {
     animated: true
-  }), React.createElement(_StyledSpan$c, null, label));
+  }), React__default.createElement(_StyledSpan$c, null, label));
 }
 
 SyncIndicator.propTypes = {
@@ -26745,7 +25844,7 @@ SyncIndicator.defaultProps = {
   label: 'Syncing data…'
 };
 
-var _StyledTable$1 = _styled.table.withConfig({
+var _StyledTable$1 = _styled__default.table.withConfig({
   displayName: "Table___StyledTable",
   componentId: "uvcan9-0"
 })(["width:100%;border-spacing:0;td{border-bottom:1px solid ", ";}tr:first-child td{border-top:1px solid ", ";}td:first-child{border-left:", ";}td:last-child{border-right:", ";}tr:first-child td:first-child{border-top-left-radius:", ";}tr:first-child td:last-child{border-top-right-radius:", ";}tr:last-child td:first-child{border-bottom-left-radius:", ";}tr:last-child td:last-child{border-bottom-right-radius:", ";}"], function (p) {
@@ -26773,7 +25872,7 @@ function Table(_ref) {
       props = objectWithoutProperties(_ref, ["header", "children", "noSideBorders"]);
 
   var theme = useTheme();
-  return React.createElement(_StyledTable$1, _extends_1({}, props, {
+  return React__default.createElement(_StyledTable$1, _extends_1({}, props, {
     _css: theme.border,
     _css2: theme.border,
     _css3: noSideBorders ? '0' : "1px solid ".concat(theme.border),
@@ -26782,7 +25881,7 @@ function Table(_ref) {
     _css6: noSideBorders ? '0' : '3px',
     _css7: noSideBorders ? '0' : '3px',
     _css8: noSideBorders ? '0' : '3px'
-  }), header && React.createElement("thead", null, header), React.createElement("tbody", null, children));
+  }), header && React__default.createElement("thead", null, header), React__default.createElement("tbody", null, children));
 }
 
 Table.propTypes = {
@@ -26794,7 +25893,7 @@ Table.defaultProps = {
   noSideBorders: false
 };
 
-var _StyledDiv$E = _styled.div.withConfig({
+var _StyledDiv$E = _styled__default.div.withConfig({
   displayName: "TableCell___StyledDiv",
   componentId: "sc-110j155-0"
 })(["display:flex;align-items:center;justify-content:", ";"], function (p) {
@@ -26805,7 +25904,7 @@ function ContentContainerDefault(_ref) {
   var align = _ref.align,
       props = objectWithoutProperties(_ref, ["align"]);
 
-  return React.createElement(_StyledDiv$E, _extends_1({}, props, {
+  return React__default.createElement(_StyledDiv$E, _extends_1({}, props, {
     _css: align === 'right' ? 'flex-end' : 'space-between'
   }));
 }
@@ -26814,7 +25913,7 @@ ContentContainerDefault.propTypes = {
   align: ExtendedPropTypes.string
 };
 
-var _StyledTd$1 = _styled.td.withConfig({
+var _StyledTd$1 = _styled__default.td.withConfig({
   displayName: "TableCell___StyledTd",
   componentId: "sc-110j155-1"
 })(["padding:", "px;background:", ";text-align:", ";"], function (p) {
@@ -26832,11 +25931,11 @@ function TableCell(_ref2) {
       props = objectWithoutProperties(_ref2, ["children", "contentContainer", "align"]);
 
   var theme = useTheme();
-  return React.createElement(_StyledTd$1, _extends_1({}, props, {
+  return React__default.createElement(_StyledTd$1, _extends_1({}, props, {
     _css2: 2.5 * GU,
     _css3: theme.surface,
     _css4: align
-  }), React.createElement(Container, {
+  }), React__default.createElement(Container, {
     align: align
   }, children));
 }
@@ -26851,7 +25950,7 @@ TableCell.defaultProps = {
   contentContainer: ContentContainerDefault
 }; // Compatibility (not sure this is used at all?)
 
-var _StyledTh$1 = _styled.th.withConfig({
+var _StyledTh$1 = _styled__default.th.withConfig({
   displayName: "TableHeader___StyledTh",
   componentId: "sc-1qxm8cp-0"
 })(["padding:0;padding-left:", "px;padding-right:", "px;text-align:", ";white-space:nowrap;color:", ";", ";line-height:", "px;"], function (p) {
@@ -26874,7 +25973,7 @@ function TableHeader(_ref) {
       props = objectWithoutProperties(_ref, ["title", "align"]);
 
   var theme = useTheme();
-  return React.createElement(_StyledTh$1, _extends_1({}, props, {
+  return React__default.createElement(_StyledTh$1, _extends_1({}, props, {
     _css: align === 'left' ? 2.5 * GU + 1 : 0,
     _css2: align === 'right' ? 2.5 * GU + 1 : 0,
     _css3: align,
@@ -26901,7 +26000,7 @@ function _templateObject$5() {
 
   return data;
 }
-var StyledTableRow = _styled.tr(_templateObject$5());
+var StyledTableRow = _styled__default.tr(_templateObject$5());
 
 var aragon = {
   "Grey": {
@@ -27191,7 +26290,7 @@ function (_React$Component) {
       displayFocusRing: false
     });
 
-    defineProperty(assertThisInitialized(_this), "_barRef", React.createRef());
+    defineProperty(assertThisInitialized(_this), "_barRef", React__default.createRef());
 
     defineProperty(assertThisInitialized(_this), "handleMouseDown", function () {
       _this.disableFocusRing();
@@ -27277,27 +26376,27 @@ function (_React$Component) {
           items = _this$props.items,
           selected = _this$props.selected,
           inAppBar = _this$props.inAppBar;
-      return React.createElement("nav", {
+      return React__default.createElement("nav", {
         onMouseDown: this.handleMouseDown
-      }, React.createElement(Bar$3, {
+      }, React__default.createElement(Bar$3, {
         ref: this._barRef,
         border: !inAppBar
       }, items.map(function (item, i) {
-        return React.createElement(Tab, {
+        return React__default.createElement(Tab, {
           key: i,
           tabIndex: "0",
           selected: i === selected,
           focusRing: displayFocusRing,
           onMouseDown: _this2.handleTabMouseDown
-        }, React.createElement(Label$2, {
+        }, React__default.createElement(Label$2, {
           selected: i === selected
-        }, item), displayFocusRing && React.createElement(FocusRing, null));
+        }, item), displayFocusRing && React__default.createElement(FocusRing, null));
       })));
     }
   }]);
 
   return TabBar;
-}(React.Component);
+}(React__default.Component);
 
 defineProperty(TabBar, "propTypes", {
   items: propTypes.arrayOf(propTypes.node).isRequired,
@@ -27311,37 +26410,37 @@ defineProperty(TabBar, "defaultProps", {
   onChange: noop
 });
 
-var Bar$3 = _styled.ul(_templateObject$6(), function (p) {
+var Bar$3 = _styled__default.ul(_templateObject$6(), function (p) {
   return p.border ? "1px solid ".concat(theme.contentBorder) : '0';
 });
-var FocusRing = _styled.span(_templateObject2$4(), theme.accent);
-var Tab = _styled.li(_templateObject3$4(), function (p) {
+var FocusRing = _styled__default.span(_templateObject2$4(), theme.accent);
+var Tab = _styled__default.li(_templateObject3$4(), function (p) {
   return font({
     weight: p.selected ? 'bold' : 'normal',
     deprecationNotice: false
   });
 }, unselectable(), FocusRing);
-var Label$2 = _styled.span(_templateObject4$3(), function (p) {
+var Label$2 = _styled__default.span(_templateObject4$3(), function (p) {
   return p.selected ? theme.accent : 'transparent';
 });
 
 /* eslint-disable react/prop-types */
 
-var _StyledDiv$F = _styled.div.withConfig({
+var _StyledDiv$F = _styled__default.div.withConfig({
   displayName: "TabsFullWidth___StyledDiv",
   componentId: "sc-1sqpfuf-0"
 })(["padding-bottom:", "px;"], function (p) {
   return p._css;
 });
 
-var _StyledDiv2$n = _styled.div.withConfig({
+var _StyledDiv2$n = _styled__default.div.withConfig({
   displayName: "TabsFullWidth___StyledDiv2",
   componentId: "sc-1sqpfuf-1"
 })(["position:relative;display:flex;align-items:center;justify-content:space-between;width:100%;height:", "px;"], function (p) {
   return p._css2;
 });
 
-var _StyledButtonBase$c = _styled(ButtonBaseWithFocus).withConfig({
+var _StyledButtonBase$c = _styled__default(ButtonBaseWithFocus).withConfig({
   displayName: "TabsFullWidth___StyledButtonBase",
   componentId: "sc-1sqpfuf-2"
 })(["display:flex;align-items:center;justify-content:space-between;width:100%;height:100%;background:", ";border-style:solid;border-color:", ";border-top-width:", ";border-bottom-width:1px;border-radius:0;", ";&:active{background:", ";}"], function (p) {
@@ -27356,14 +26455,14 @@ var _StyledButtonBase$c = _styled(ButtonBaseWithFocus).withConfig({
   return p._css7;
 });
 
-var _StyledDiv3$c = _styled.div.withConfig({
+var _StyledDiv3$c = _styled__default.div.withConfig({
   displayName: "TabsFullWidth___StyledDiv3",
   componentId: "sc-1sqpfuf-3"
 })(["padding-left:", "px;"], function (p) {
   return p._css8;
 });
 
-var _StyledDiv4$8 = _styled.div.withConfig({
+var _StyledDiv4$8 = _styled__default.div.withConfig({
   displayName: "TabsFullWidth___StyledDiv4",
   componentId: "sc-1sqpfuf-4"
 })(["display:flex;align-items:center;justify-content:center;width:", "px;height:100%;color:", ";"], function (p) {
@@ -27372,14 +26471,14 @@ var _StyledDiv4$8 = _styled.div.withConfig({
   return p._css10;
 });
 
-var _StyledIconDown$2 = _styled(IconDown).withConfig({
+var _StyledIconDown$2 = _styled__default(IconDown).withConfig({
   displayName: "TabsFullWidth___StyledIconDown",
   componentId: "sc-1sqpfuf-5"
 })(["transition:transform 150ms ease-in-out;transform:rotate3d(0,0,1,", "deg);"], function (p) {
   return p._css11;
 });
 
-var _StyledAnimatedDiv$8 = _styled(extendedAnimated.div).withConfig({
+var _StyledAnimatedDiv$8 = _styled__default(extendedAnimated.div).withConfig({
   displayName: "TabsFullWidth___StyledAnimatedDiv",
   componentId: "sc-1sqpfuf-6"
 })(["position:absolute;z-index:9;top:", "px;left:0;right:0;border-bottom:1px solid ", ";box-shadow:0px 2px 3px rgba(0,0,0,0.05);background:", ";"], function (p) {
@@ -27395,32 +26494,32 @@ function TabsFullWidth(_ref) {
       selected = _ref.selected,
       onChange = _ref.onChange;
   var theme = useTheme();
-  var buttonRef = useRef(null);
+  var buttonRef = React.useRef(null);
 
   var _useInside = useInside('SidePanel'),
       _useInside2 = slicedToArray(_useInside, 1),
       insideSidePanel = _useInside2[0];
 
-  var _useState = useState$1(false),
+  var _useState = React.useState(false),
       _useState2 = slicedToArray(_useState, 2),
       opened = _useState2[0],
       setOpened = _useState2[1];
 
   var selectedItem = items[selected];
-  var close = useCallback(function () {
+  var close = React.useCallback(function () {
     return setOpened(false);
   }, []);
-  var focusButton = useCallback(function () {
+  var focusButton = React.useCallback(function () {
     if (buttonRef.current) {
       buttonRef.current.focus();
     }
   }, []);
-  var toggle = useCallback(function () {
+  var toggle = React.useCallback(function () {
     setOpened(function (opened) {
       return !opened;
     });
   }, []);
-  var change = useCallback(function (index) {
+  var change = React.useCallback(function (index) {
     if (index !== selected) {
       onChange(index);
       close();
@@ -27433,19 +26532,19 @@ function TabsFullWidth(_ref) {
       ref = _useOnBlur.ref; // close on escape
 
 
-  var handleMenuKeyDown = useCallback(function (event) {
+  var handleMenuKeyDown = React.useCallback(function (event) {
     if (event.keyCode === KEY_ESC) {
       close();
       focusButton();
     }
   }, [close, focusButton]);
-  return React.createElement(_StyledDiv$F, {
+  return React__default.createElement(_StyledDiv$F, {
     ref: ref,
     onBlur: handleBlur,
     _css: 2 * GU
-  }, React.createElement(_StyledDiv2$n, {
+  }, React__default.createElement(_StyledDiv2$n, {
     _css2: 8 * GU
-  }, React.createElement(_StyledButtonBase$c, {
+  }, React__default.createElement(_StyledButtonBase$c, {
     ref: buttonRef,
     onClick: toggle,
     _css3: theme.surface,
@@ -27453,14 +26552,14 @@ function TabsFullWidth(_ref) {
     _css5: insideSidePanel ? '0' : '1px',
     _css6: textStyle('body2'),
     _css7: theme.surfacePressed
-  }, React.createElement(_StyledDiv3$c, {
+  }, React__default.createElement(_StyledDiv3$c, {
     _css8: 2 * GU
-  }, selectedItem), React.createElement(_StyledDiv4$8, {
+  }, selectedItem), React__default.createElement(_StyledDiv4$8, {
     _css9: 7 * GU,
     _css10: theme.surfaceIcon
-  }, React.createElement(_StyledIconDown$2, {
+  }, React__default.createElement(_StyledIconDown$2, {
     _css11: opened ? 180 : 0
-  }))), React.createElement(Transition, {
+  }))), React__default.createElement(Transition, {
     items: opened,
     config: springs.swift,
     from: {
@@ -27480,7 +26579,7 @@ function TabsFullWidth(_ref) {
     return opened && function (_ref2) {
       var opacity = _ref2.opacity,
           y = _ref2.y;
-      return React.createElement(_StyledAnimatedDiv$8, {
+      return React__default.createElement(_StyledAnimatedDiv$8, {
         style: {
           opacity: opacity,
           transform: y.interpolate(function (v) {
@@ -27490,7 +26589,7 @@ function TabsFullWidth(_ref) {
         _css12: 8 * GU,
         _css13: theme.border,
         _css14: theme.surface
-      }, React.createElement(Menu, {
+      }, React__default.createElement(Menu, {
         items: items,
         onChange: change,
         onKeyDown: handleMenuKeyDown
@@ -27499,7 +26598,7 @@ function TabsFullWidth(_ref) {
   })));
 }
 
-var _StyledDiv5$3 = _styled.div.withConfig({
+var _StyledDiv5$3 = _styled__default.div.withConfig({
   displayName: "TabsFullWidth___StyledDiv5",
   componentId: "sc-1sqpfuf-7"
 })(["display:flex;flex-direction:column;outline:0;"]);
@@ -27509,16 +26608,16 @@ function Menu(_ref3) {
       onChange = _ref3.onChange,
       props = objectWithoutProperties(_ref3, ["items", "onChange"]);
 
-  var handleRef = useCallback(function (element) {
+  var handleRef = React.useCallback(function (element) {
     if (element) {
       element.focus();
     }
   }, []);
-  return React.createElement(_StyledDiv5$3, _extends_1({
+  return React__default.createElement(_StyledDiv5$3, _extends_1({
     ref: handleRef,
     tabIndex: "0"
   }, props), items.map(function (item, index) {
-    return React.createElement(MenuItem, {
+    return React__default.createElement(MenuItem, {
       key: index,
       item: item,
       index: index,
@@ -27527,7 +26626,7 @@ function Menu(_ref3) {
   }));
 }
 
-var _StyledButtonBase2$1 = _styled(ButtonBaseWithFocus).withConfig({
+var _StyledButtonBase2$1 = _styled__default(ButtonBaseWithFocus).withConfig({
   displayName: "TabsFullWidth___StyledButtonBase2",
   componentId: "sc-1sqpfuf-8"
 })(["height:", "px;padding-left:", "px;text-align:left;", ";&:active{background:", ";}"], function (p) {
@@ -27545,10 +26644,10 @@ function MenuItem(_ref4) {
       index = _ref4.index,
       onChange = _ref4.onChange;
   var theme = useTheme();
-  var change = useCallback(function () {
+  var change = React.useCallback(function () {
     onChange(index);
   }, [onChange, index]);
-  return React.createElement(_StyledButtonBase2$1, {
+  return React__default.createElement(_StyledButtonBase2$1, {
     onClick: change,
     _css15: 8 * GU,
     _css16: 2 * GU,
@@ -27557,12 +26656,12 @@ function MenuItem(_ref4) {
   }, item);
 }
 
-var _StyledLi$1 = _styled.li.withConfig({
+var _StyledLi$1 = _styled__default.li.withConfig({
   displayName: "Tab___StyledLi",
   componentId: "sc-1cgzd3b-0"
 })(["list-style:none"]);
 
-var _StyledButtonBase$d = _styled(ButtonBaseWithFocus).withConfig({
+var _StyledButtonBase$d = _styled__default(ButtonBaseWithFocus).withConfig({
   displayName: "Tab___StyledButtonBase",
   componentId: "sc-1cgzd3b-1"
 })(["", ";border-radius:0;transition:background 50ms ease-in-out;&:active{background:", ";}"], function (p) {
@@ -27571,7 +26670,7 @@ var _StyledButtonBase$d = _styled(ButtonBaseWithFocus).withConfig({
   return p._css2;
 });
 
-var _StyledSpan$d = _styled.span.withConfig({
+var _StyledSpan$d = _styled__default.span.withConfig({
   displayName: "Tab___StyledSpan",
   componentId: "sc-1cgzd3b-2"
 })(["display:flex;position:relative;align-items:center;height:", "px;padding:0 ", "px;white-space:nowrap;color:", ";"], function (p) {
@@ -27582,7 +26681,7 @@ var _StyledSpan$d = _styled.span.withConfig({
   return p._css5;
 });
 
-var _StyledSpan2$6 = _styled.span.withConfig({
+var _StyledSpan2$6 = _styled__default.span.withConfig({
   displayName: "Tab___StyledSpan2",
   componentId: "sc-1cgzd3b-3"
 })(["position:absolute;left:0;right:0;bottom:0;background:", ";height:2px;opacity:", ";transition-property:transform,opacity;transition-duration:150ms;transition-timing-function:ease-in-out;transform:scale3d(1,", ",1);transform-origin:0 100%;"], function (p) {
@@ -27604,19 +26703,19 @@ function Tab$1(_ref) {
       _useInside2 = slicedToArray(_useInside, 1),
       insideSidePanel = _useInside2[0];
 
-  var handleClick = useCallback(function () {
+  var handleClick = React.useCallback(function () {
     onChange(index);
   }, [index, onChange]);
-  return React.createElement(_StyledLi$1, null, React.createElement(_StyledButtonBase$d, {
+  return React__default.createElement(_StyledLi$1, null, React__default.createElement(_StyledButtonBase$d, {
     focusRingRadius: RADIUS,
     onClick: handleClick,
     _css: textStyle('body2'),
     _css2: theme.surfacePressed
-  }, React.createElement(_StyledSpan$d, {
+  }, React__default.createElement(_StyledSpan$d, {
     _css3: 8 * GU - (insideSidePanel ? 1 : 2),
     _css4: 3 * GU,
     _css5: selected ? theme.surfaceContent : theme.surfaceContentSecondary
-  }, item, React.createElement(_StyledSpan2$6, {
+  }, item, React__default.createElement(_StyledSpan2$6, {
     _css6: theme.selected,
     _css7: Number(selected),
     _css8: Number(selected)
@@ -27630,7 +26729,7 @@ Tab$1.propTypes = {
   selected: propTypes.bool.isRequired
 };
 
-var _StyledUl$2 = _styled.ul.withConfig({
+var _StyledUl$2 = _styled__default.ul.withConfig({
   displayName: "Tabs___StyledUl",
   componentId: "sc-1eu39ev-0"
 })(["display:flex"]);
@@ -27639,8 +26738,8 @@ function TabBar$1(_ref) {
   var items = _ref.items,
       selected = _ref.selected,
       onChange = _ref.onChange;
-  return React.createElement("nav", null, React.createElement(_StyledUl$2, null, items.map(function (item, i) {
-    return React.createElement(Tab$1, {
+  return React__default.createElement("nav", null, React__default.createElement(_StyledUl$2, null, items.map(function (item, i) {
+    return React__default.createElement(Tab$1, {
       key: i,
       index: i,
       item: item,
@@ -27660,7 +26759,7 @@ TabBar$1.defaultProps = {
   onChange: noop
 };
 
-var _StyledBar$1 = _styled(Bar).withConfig({
+var _StyledBar$1 = _styled__default(Bar).withConfig({
   displayName: "Tabs___StyledBar",
   componentId: "sc-1eu39ev-1"
 })(["overflow:hidden;", ""], function (p) {
@@ -27684,12 +26783,12 @@ function Tabs(props) {
   }
 
   if (layoutName === 'small') {
-    return React.createElement(TabsFullWidth, props);
+    return React__default.createElement(TabsFullWidth, props);
   }
 
-  return React.createElement(_StyledBar$1, {
+  return React__default.createElement(_StyledBar$1, {
     _css: insideSidePanel ? "\n            border-width: 0 0 1px 0;\n            border-radius: 0;\n          " : ''
-  }, React.createElement(TabBar$1, props));
+  }, React__default.createElement(TabBar$1, props));
 } // TabBar legacy compatibility
 
 
@@ -27700,16 +26799,16 @@ function TabBarLegacyCompatibility(props) {
 
 
   if (insideAppBar) {
-    return React.createElement(TabBar, _extends_1({}, props, {
+    return React__default.createElement(TabBar, _extends_1({}, props, {
       inAppBar: true
     }));
   }
 
   warnOnce('TabBarLegacyCompatibility', 'TabBar is deprecated and was used outside of an AppBar. Please use the Tabs component instead.');
-  return React.createElement(Tabs, props);
+  return React__default.createElement(Tabs, props);
 }
 
-var TokenBadgePopover = React.memo(function TokenBadgePopover(_ref) {
+var TokenBadgePopover = React__default.memo(function TokenBadgePopover(_ref) {
   var address = _ref.address,
       iconSrc = _ref.iconSrc,
       networkType = _ref.networkType,
@@ -27720,21 +26819,21 @@ var TokenBadgePopover = React.memo(function TokenBadgePopover(_ref) {
   var etherscanUrl = blockExplorerUrl('token', address, {
     networkType: networkType
   });
-  return React.createElement(BadgePopoverBase, {
-    addressField: iconSrc ? React.createElement(ImageExists, {
+  return React__default.createElement(BadgePopoverBase, {
+    addressField: iconSrc ? React__default.createElement(ImageExists, {
       src: iconSrc
     }, function (_ref2) {
       var exists = _ref2.exists;
-      return React.createElement(AddressField, {
+      return React__default.createElement(AddressField, {
         address: address,
-        icon: exists ? React.createElement(Icon$2, {
+        icon: exists ? React__default.createElement(Icon$2, {
           src: iconSrc
         }) : null
       });
-    }) : React.createElement(AddressField, {
+    }) : React__default.createElement(AddressField, {
       address: address
     }),
-    link: etherscanUrl && React.createElement(Link, {
+    link: etherscanUrl && React__default.createElement(Link, {
       href: etherscanUrl
     }, "See on Etherscan"),
     onClose: onClose,
@@ -27753,7 +26852,7 @@ TokenBadgePopover.propTypes = {
   visible: propTypes.bool
 };
 
-var _StyledDiv$G = _styled.div.withConfig({
+var _StyledDiv$G = _styled__default.div.withConfig({
   displayName: "TokenBadgePopover___StyledDiv",
   componentId: "sc-8b2bwa-0"
 })(["width:calc(100% - ", "px);height:calc(100% - ", "px);background-size:contain;background-position:50% 50%;background-repeat:no-repeat;background-image:url(", ");"], function (p) {
@@ -27766,7 +26865,7 @@ var _StyledDiv$G = _styled.div.withConfig({
 
 function Icon$2(_ref3) {
   var src = _ref3.src;
-  return React.createElement(_StyledDiv$G, {
+  return React__default.createElement(_StyledDiv$G, {
     _css: 0.5 * GU,
     _css2: 0.5 * GU,
     _css3: src
@@ -27777,14 +26876,14 @@ Icon$2.propTypes = {
   src: propTypes.string.isRequired
 };
 
-var _StyledSpan$e = _styled.span.withConfig({
+var _StyledSpan$e = _styled__default.span.withConfig({
   displayName: "TokenBadge___StyledSpan",
   componentId: "sc-7bvdqo-0"
 })(["position:relative;top:1px;display:flex;flex-shrink:1;min-width:0;margin-left:", ";"], function (p) {
   return p._css;
 });
 
-var TokenBadge = React.memo(function TokenBadge(_ref) {
+var TokenBadge = React__default.memo(function TokenBadge(_ref) {
   var address = _ref.address,
       badgeOnly = _ref.badgeOnly,
       className = _ref.className,
@@ -27793,17 +26892,17 @@ var TokenBadge = React.memo(function TokenBadge(_ref) {
       networkType = _ref.networkType,
       style = _ref.style,
       symbol = _ref.symbol;
-  var badgeRef = useRef(null);
+  var badgeRef = React.useRef(null);
 
-  var _useState = useState$1(false),
+  var _useState = React.useState(false),
       _useState2 = slicedToArray(_useState, 2),
       opened = _useState2[0],
       setOpened = _useState2[1];
 
-  var handleClose = useCallback(function () {
+  var handleClose = React.useCallback(function () {
     return setOpened(false);
   }, []);
-  var handleOpen = useCallback(function () {
+  var handleOpen = React.useCallback(function () {
     return setOpened(true);
   }, []);
   var isValidAddress = isAddress(address);
@@ -27814,28 +26913,28 @@ var TokenBadge = React.memo(function TokenBadge(_ref) {
     warn("TokenBadge: provided invalid address (".concat(address, ")"));
   }
 
-  return React.createElement(BadgeBase, {
+  return React__default.createElement(BadgeBase, {
     badgeRef: badgeRef,
     className: className,
     compact: compact,
     disabled: badgeOnly,
-    icon: React.createElement(ImageExists, {
+    icon: React__default.createElement(ImageExists, {
       src: iconSrc
     }, function (_ref2) {
       var exists = _ref2.exists;
-      return exists && React.createElement(Icon$3, {
+      return exists && React__default.createElement(Icon$3, {
         compact: compact,
         src: iconSrc
       });
     }),
-    label: React.createElement(_StyledSpan$e, {
+    label: React__default.createElement(_StyledSpan$e, {
       _css: compact ? 0 : "".concat(1 * GU, "px")
-    }, name && React.createElement(Name, null, name), React.createElement(_Symbol, null, name ? "(".concat(symbol, ")") : symbol)),
+    }, name && React__default.createElement(Name, null, name), React__default.createElement(_Symbol, null, name ? "(".concat(symbol, ")") : symbol)),
     onClick: isValidAddress ? handleOpen : undefined,
     style: style,
     title: "".concat(title, " \u2212 ").concat(address || 'No address')
   }, function (popoverDisabled) {
-    return !popoverDisabled && address && React.createElement(TokenBadgePopover, {
+    return !popoverDisabled && address && React__default.createElement(TokenBadgePopover, {
       address: address,
       iconSrc: iconSrc,
       networkType: networkType,
@@ -27862,7 +26961,7 @@ TokenBadge.defaultProps = {
   networkType: 'main'
 };
 
-var _StyledSpan2$7 = _styled.span.withConfig({
+var _StyledSpan2$7 = _styled__default.span.withConfig({
   displayName: "TokenBadge___StyledSpan2",
   componentId: "sc-7bvdqo-1"
 })(["flex-shrink:0;display:block;width:18px;height:18px;margin:0 ", "px 0 ", "px;background-size:contain;background-position:50% 50%;background-repeat:no-repeat;background-image:url(", ");"], function (p) {
@@ -27879,7 +26978,7 @@ function Icon$3(_ref3) {
       props = objectWithoutProperties(_ref3, ["compact", "src"]);
 
   var margin = 1 * GU;
-  return React.createElement(_StyledSpan2$7, _extends_1({}, props, {
+  return React__default.createElement(_StyledSpan2$7, _extends_1({}, props, {
     _css2: compact ? margin : 0,
     _css3: compact ? 0 : margin,
     _css4: src
@@ -27890,17 +26989,17 @@ Icon$3.propTypes = {
   compact: propTypes.bool,
   src: propTypes.string.isRequired
 };
-var Name = _styled.span.withConfig({
+var Name = _styled__default.span.withConfig({
   displayName: "TokenBadge__Name",
   componentId: "sc-7bvdqo-2"
 })(["flex-shrink:1;overflow:hidden;text-overflow:ellipsis;min-width:20%;margin-right:", "px;"], 0.5 * GU);
 
-var _Symbol = _styled.span.withConfig({
+var _Symbol = _styled__default.span.withConfig({
   displayName: "TokenBadge___Symbol",
   componentId: "sc-7bvdqo-3"
 })(["flex-shrink:0;"]);
 
-var TransactionBadge = React.memo(function TransactionBadge(_ref) {
+var TransactionBadge = React__default.memo(function TransactionBadge(_ref) {
   var className = _ref.className,
       disabled = _ref.disabled,
       labelStyle = _ref.labelStyle,
@@ -27924,7 +27023,7 @@ var TransactionBadge = React.memo(function TransactionBadge(_ref) {
     networkType: networkType
   }) : '';
   var label = !isTx ? 'Invalid transaction' : shorten ? shortenTransaction(transaction) : transaction;
-  return React.createElement(BadgeBase, {
+  return React__default.createElement(BadgeBase, {
     badgeOnly: true,
     disabled: disabled || !transactionUrl,
     href: transactionUrl,
@@ -27950,14 +27049,14 @@ TransactionBadge.defaultProps = {
   shorten: true
 };
 
-var _StyledSection$2 = _styled.section.withConfig({
+var _StyledSection$2 = _styled__default.section.withConfig({
   displayName: "TransactionProgress___StyledSection",
   componentId: "vvbhu5-0"
 })(["padding:", "px;"], function (p) {
   return p._css;
 });
 
-var _StyledButtonIcon$6 = _styled(ButtonIcon).withConfig({
+var _StyledButtonIcon$6 = _styled__default(ButtonIcon).withConfig({
   displayName: "TransactionProgress___StyledButtonIcon",
   componentId: "vvbhu5-1"
 })(["position:absolute;top:", "px;right:", "px;"], function (p) {
@@ -27966,12 +27065,12 @@ var _StyledButtonIcon$6 = _styled(ButtonIcon).withConfig({
   return p._css3;
 });
 
-var _StyledH$8 = _styled.h1.withConfig({
+var _StyledH$8 = _styled__default.h1.withConfig({
   displayName: "TransactionProgress___StyledH",
   componentId: "vvbhu5-2"
 })(["font-weight:600"]);
 
-var _StyledDiv$H = _styled.div.withConfig({
+var _StyledDiv$H = _styled__default.div.withConfig({
   displayName: "TransactionProgress___StyledDiv",
   componentId: "vvbhu5-3"
 })(["display:flex;justify-content:space-between;align-items:flex-end;margin:", "px 0 ", "px;"], function (p) {
@@ -27980,7 +27079,7 @@ var _StyledDiv$H = _styled.div.withConfig({
   return p._css5;
 });
 
-var _StyledSpan$f = _styled.span.withConfig({
+var _StyledSpan$f = _styled__default.span.withConfig({
   displayName: "TransactionProgress___StyledSpan",
   componentId: "vvbhu5-4"
 })(["", ";color:", ";"], function (p) {
@@ -27989,14 +27088,14 @@ var _StyledSpan$f = _styled.span.withConfig({
   return p._css7;
 });
 
-var _StyledProgressBar = _styled(ProgressBar).withConfig({
+var _StyledProgressBar = _styled__default(ProgressBar).withConfig({
   displayName: "TransactionProgress___StyledProgressBar",
   componentId: "vvbhu5-5"
 })(["color:", ";"], function (p) {
   return p._css8;
 });
 
-var _StyledDiv2$o = _styled.div.withConfig({
+var _StyledDiv2$o = _styled__default.div.withConfig({
   displayName: "TransactionProgress___StyledDiv2",
   componentId: "vvbhu5-6"
 })(["display:flex;justify-content:", ";align-items:center;padding-top:", "px;"], function (p) {
@@ -28005,19 +27104,19 @@ var _StyledDiv2$o = _styled.div.withConfig({
   return p._css10;
 });
 
-var _StyledDiv3$d = _styled.div.withConfig({
+var _StyledDiv3$d = _styled__default.div.withConfig({
   displayName: "TransactionProgress___StyledDiv3",
   componentId: "vvbhu5-7"
 })(["margin-right:", "px;"], function (p) {
   return p._css11;
 });
 
-var _StyledLink = _styled(Link).withConfig({
+var _StyledLink = _styled__default(Link).withConfig({
   displayName: "TransactionProgress___StyledLink",
   componentId: "vvbhu5-8"
 })(["text-decoration:none"]);
 
-var TransactionProgress = React.memo(function TransactionProgress(_ref) {
+var TransactionProgress = React__default.memo(function TransactionProgress(_ref) {
   var visible = _ref.visible,
       slow = _ref.slow,
       progress = _ref.progress,
@@ -28026,34 +27125,34 @@ var TransactionProgress = React.memo(function TransactionProgress(_ref) {
       onClose = _ref.onClose,
       opener = _ref.opener;
   var theme = useTheme();
-  return React.createElement(Popover, {
+  return React__default.createElement(Popover, {
     visible: visible,
     opener: opener,
     onClose: onClose
-  }, React.createElement(_StyledSection$2, {
+  }, React__default.createElement(_StyledSection$2, {
     _css: 2 * GU
-  }, React.createElement(_StyledButtonIcon$6, {
+  }, React__default.createElement(_StyledButtonIcon$6, {
     onClick: onClose,
     _css2: 1 * GU,
     _css3: 1 * GU
-  }, React.createElement(IconCross, null)), React.createElement(_StyledH$8, null, "Pending transaction"), React.createElement(_StyledDiv$H, {
+  }, React__default.createElement(IconCross, null)), React__default.createElement(_StyledH$8, null, "Pending transaction"), React__default.createElement(_StyledDiv$H, {
     _css4: 2 * GU,
     _css5: 1 * GU
-  }, React.createElement(_StyledSpan$f, {
+  }, React__default.createElement(_StyledSpan$f, {
     _css6: textStyle('label2'),
     _css7: theme.contentSecondary
-  }, "Estimated time:"), React.createElement(Countdown, {
+  }, "Estimated time:"), React__default.createElement(Countdown, {
     removeDaysAndHours: true,
     end: endTime
-  })), React.createElement(_StyledProgressBar, {
+  })), React__default.createElement(_StyledProgressBar, {
     value: progress,
     _css8: theme.accent
-  }), React.createElement(_StyledDiv2$o, {
+  }), React__default.createElement(_StyledDiv2$o, {
     _css9: slow ? 'space-between' : 'end',
     _css10: 2 * GU
-  }, slow && React.createElement(_StyledDiv3$d, {
+  }, slow && React__default.createElement(_StyledDiv3$d, {
     _css11: 2 * GU
-  }, React.createElement(Info.Alert, null, "Slow transaction. Retry with more gas")), React.createElement(_StyledLink, {
+  }, React__default.createElement(Info.Alert, null, "Slow transaction. Retry with more gas")), React__default.createElement(_StyledLink, {
     href: transactionHashUrl
   }, "See on Etherscan"))));
 });
@@ -28071,7 +27170,7 @@ TransactionProgress.defaultProps = {
   visible: false
 };
 
-var _StyledSpan$g = _styled.span.withConfig({
+var _StyledSpan$g = _styled__default.span.withConfig({
   displayName: "Text___StyledSpan",
   componentId: "yxw4o9-0"
 })(["", ";", ";"], function (p) {
@@ -28094,7 +27193,7 @@ function Text(_ref) {
     warnOnce('Text', 'Text, Text.Block and Text.Paragraph are deprecated. ' + 'Please use the textStyle() utility function instead.');
   }
 
-  return React.createElement(_StyledSpan$g, _extends_1({}, props, {
+  return React__default.createElement(_StyledSpan$g, _extends_1({}, props, {
     _css: font({
       deprecationNotice: false,
       monospace: monospace,
@@ -28107,13 +27206,13 @@ function Text(_ref) {
 }
 
 var Block = function Block(props) {
-  return React.createElement(Text, _extends_1({
+  return React__default.createElement(Text, _extends_1({
     as: "div"
   }, props));
 };
 
 var Paragraph = function Paragraph(props) {
-  return React.createElement(Text, _extends_1({
+  return React__default.createElement(Text, _extends_1({
     as: "p"
   }, props));
 };
@@ -28137,7 +27236,7 @@ var chevronSvg = "data:image/svg+xml,%3Csvg%20width%3D%227%22%20height%3D%2212%2
 
 var BAR_HEIGHT$2 = 64;
 
-var _StyledDiv$I = _styled.div.withConfig({
+var _StyledDiv$I = _styled__default.div.withConfig({
   displayName: "AppBar___StyledDiv",
   componentId: "sc-11q0awo-0"
 })(["overflow:hidden;display:flex;flex-direction:column;width:100%;min-height:", "px;background:", ";", ";padding-bottom:1px;&:after{content:'';position:absolute;left:0;right:0;bottom:0;border-bottom:1px solid ", ";}"], BAR_HEIGHT$2, function (p) {
@@ -28148,21 +27247,21 @@ var _StyledDiv$I = _styled.div.withConfig({
   return p._css3;
 });
 
-var _StyledDiv2$p = _styled.div.withConfig({
+var _StyledDiv2$p = _styled__default.div.withConfig({
   displayName: "AppBar___StyledDiv2",
   componentId: "sc-11q0awo-1"
 })(["display:flex;align-items:center;justify-content:flex-start;width:100%;height:", "px;"], function (p) {
   return p._css4;
 });
 
-var _StyledDiv3$e = _styled.div.withConfig({
+var _StyledDiv3$e = _styled__default.div.withConfig({
   displayName: "AppBar___StyledDiv3",
   componentId: "sc-11q0awo-2"
 })(["display:flex;align-items:center;height:100%;padding-left:", "px;"], function (p) {
   return p._css5;
 });
 
-var _StyledDiv4$9 = _styled.div.withConfig({
+var _StyledDiv4$9 = _styled__default.div.withConfig({
   displayName: "AppBar___StyledDiv4",
   componentId: "sc-11q0awo-3"
 })(["display:flex;align-items:center;height:100%;margin-left:auto;padding-right:", "px;"], function (p) {
@@ -28191,7 +27290,7 @@ function (_React$Component) {
       tabsHeight: 0
     });
 
-    defineProperty(assertThisInitialized(_this), "_tabsRef", React.createRef());
+    defineProperty(assertThisInitialized(_this), "_tabsRef", React__default.createRef());
 
     return _this;
   }
@@ -28236,26 +27335,26 @@ function (_React$Component) {
           theme = _this$props.theme,
           props = objectWithoutProperties(_this$props, ["children", "endContent", "onTitleClick", "padding", "tabs", "title", "theme"]);
 
-      return React.createElement(Inside, {
+      return React__default.createElement(Inside, {
         name: "AppBar"
-      }, React.createElement(_StyledDiv$I, {
+      }, React__default.createElement(_StyledDiv$I, {
         _css: theme.surface,
         _css2: unselectable(),
         _css3: theme.border
-      }, React.createElement(_StyledDiv2$p, _extends_1({}, props, {
+      }, React__default.createElement(_StyledDiv2$p, _extends_1({}, props, {
         _css4: BAR_HEIGHT$2 - 1
-      }), title && React.createElement(_StyledDiv3$e, {
+      }), title && React__default.createElement(_StyledDiv3$e, {
         _css5: padding
-      }, React.createElement(AppBarTitle, {
+      }, React__default.createElement(AppBarTitle, {
         chevron: Boolean(children),
         clickable: Boolean(onTitleClick),
         onClick: onTitleClick
-      }, typeof title === 'string' ? React.createElement(Text, {
+      }, typeof title === 'string' ? React__default.createElement(Text, {
         size: "xxlarge",
         deprecationNotice: false
-      }, title) : title)), children, endContent && React.createElement(_StyledDiv4$9, {
+      }, title) : title)), children, endContent && React__default.createElement(_StyledDiv4$9, {
         _css6: padding
-      }, endContent)), React.createElement(Transition, {
+      }, endContent)), React__default.createElement(Transition, {
         items: tabs,
         from: {
           opacity: 0,
@@ -28274,9 +27373,9 @@ function (_React$Component) {
         native: true
       }, function (tabs) {
         return tabs && function (styles) {
-          return React.createElement(TabsWrapper, {
+          return React__default.createElement(TabsWrapper, {
             style: styles
-          }, React.createElement("div", {
+          }, React__default.createElement("div", {
             ref: _this2._tabsRef
           }, tabs));
         };
@@ -28285,7 +27384,7 @@ function (_React$Component) {
   }]);
 
   return AppBar;
-}(React.Component);
+}(React__default.Component);
 
 defineProperty(AppBar, "propTypes", {
   children: propTypes.node,
@@ -28303,45 +27402,45 @@ defineProperty(AppBar, "defaultProps", {
   title: ''
 });
 
-var AppBarTitle = PublicUrl.hocWrap(_styled.h1.withConfig({
+var AppBarTitle = PublicUrl.hocWrap(_styled__default.h1.withConfig({
   displayName: "AppBar__AppBarTitle",
   componentId: "sc-11q0awo-4"
 })(["padding-right:20px;margin-right:calc(20px - 7px);white-space:nowrap;background-image:", ";background-position:100% 50%;background-repeat:no-repeat;cursor:", ";"], function (_ref) {
   var chevron = _ref.chevron;
-  return chevron ? css(["url(", ")"], PublicUrl.styledUrl(chevronSvg)) : 'none';
+  return chevron ? _styled.css(["url(", ")"], PublicUrl.styledUrl(chevronSvg)) : 'none';
 }, function (_ref2) {
   var clickable = _ref2.clickable;
   return clickable ? 'pointer' : 'default';
 }));
-var TabsWrapper = _styled(extendedAnimated.div).withConfig({
+var TabsWrapper = _styled__default(extendedAnimated.div).withConfig({
   displayName: "AppBar__TabsWrapper",
   componentId: "sc-11q0awo-5"
 })(["position:relative;z-index:1;"]);
 function AppBar$1 (props) {
   var theme = useTheme();
-  return React.createElement(AppBar, _extends_1({}, props, {
+  return React__default.createElement(AppBar, _extends_1({}, props, {
     theme: theme
   }));
 }
 
-var _StyledDiv$J = _styled.div.withConfig({
+var _StyledDiv$J = _styled__default.div.withConfig({
   displayName: "AppView___StyledDiv",
   componentId: "sm6g80-0"
 })(["display:flex;height:", ";flex-direction:column;align-items:stretch;justify-content:stretch;"], function (p) {
   return p.height;
 });
 
-var _StyledDiv2$q = _styled.div.withConfig({
+var _StyledDiv2$q = _styled__default.div.withConfig({
   displayName: "AppView___StyledDiv2",
   componentId: "sm6g80-1"
 })(["position:relative;z-index:2;flex-shrink:0;"]);
 
-var _StyledDiv3$f = _styled.div.withConfig({
+var _StyledDiv3$f = _styled__default.div.withConfig({
   displayName: "AppView___StyledDiv3",
   componentId: "sm6g80-2"
 })(["position:relative;z-index:1;height:100%;overflow:auto;"]);
 
-var _StyledDiv4$a = _styled.div.withConfig({
+var _StyledDiv4$a = _styled__default.div.withConfig({
   displayName: "AppView___StyledDiv4",
   componentId: "sm6g80-3"
 })(["display:flex;flex-direction:column;min-height:100%;padding:", ";"], function (_ref) {
@@ -28360,12 +27459,12 @@ function AppView(_ref2) {
 
   // Notify Main that it contains this AppView
   useRegisterAppView();
-  return React.createElement(_StyledDiv$J, _extends_1({
+  return React__default.createElement(_StyledDiv$J, _extends_1({
     height: height
-  }, props), React.createElement(_StyledDiv2$q, null, appBar || React.createElement(AppBar$1, {
+  }, props), React__default.createElement(_StyledDiv2$q, null, appBar || React__default.createElement(AppBar$1, {
     title: title,
     tabs: tabs
-  })), React.createElement(_StyledDiv3$f, null, React.createElement(_StyledDiv4$a, {
+  })), React__default.createElement(_StyledDiv3$f, null, React__default.createElement(_StyledDiv4$a, {
     padding: padding
   }, children)));
 }
@@ -28398,7 +27497,7 @@ function Badge(_ref) {
       props = objectWithoutProperties(_ref, ["background", "foreground", "shape", "children"]);
 
   deprecationWarning();
-  return React.createElement(Tag, _extends_1({
+  return React__default.createElement(Tag, _extends_1({
     background: background,
     color: foreground,
     size: shape === 'smalldisc' || shape === 'compact' ? 'small' : 'normal'
@@ -28417,7 +27516,7 @@ function BadgeNumber(_ref2) {
   deprecationWarning();
 
   if (!children && typeof label === 'number') {
-    return React.createElement(Badge, _extends_1({
+    return React__default.createElement(Badge, _extends_1({
       limitDigits: true,
       background: background,
       color: foreground,
@@ -28426,7 +27525,7 @@ function BadgeNumber(_ref2) {
     }, props));
   }
 
-  return React.createElement(Tag, _extends_1({
+  return React__default.createElement(Tag, _extends_1({
     count: true,
     background: background,
     color: foreground
@@ -28434,24 +27533,24 @@ function BadgeNumber(_ref2) {
 }
 
 function BadgeInfo(props) {
-  return React.createElement(BadgeNumber, props);
+  return React__default.createElement(BadgeNumber, props);
 }
 
 function BadgeIdentity(props) {
-  return React.createElement(Badge, _extends_1({}, props, {
+  return React__default.createElement(Badge, _extends_1({}, props, {
     uppercase: false
   }));
 }
 
 function BadgeApp(props) {
-  return React.createElement(Badge, _extends_1({}, props, {
+  return React__default.createElement(Badge, _extends_1({}, props, {
     mode: "identifier"
   }));
 }
 
 function BadgeNotification(props) {
   var theme = useTheme();
-  return React.createElement(BadgeNumber, _extends_1({
+  return React__default.createElement(BadgeNumber, _extends_1({
     background: String(theme.positive),
     foreground: String(theme.positiveContent)
   }, props));
@@ -28464,7 +27563,7 @@ Badge.Notification = BadgeNotification;
 Badge.Identity = BadgeIdentity;
 Badge.App = BadgeApp;
 
-var _StyledDiv$K = _styled.div.withConfig({
+var _StyledDiv$K = _styled__default.div.withConfig({
   displayName: "AutoComplete___StyledDiv",
   componentId: "bpnxyo-0"
 })(["position:relative"]);
@@ -28488,24 +27587,24 @@ function AutoComplete(_ref) {
   var ref = forwardedRef;
   var uniqueItems = new Set(items);
 
-  var _useState = useState$1(true),
+  var _useState = React.useState(true),
       _useState2 = slicedToArray(_useState, 2),
       opened = _useState2[0],
       setOpened = _useState2[1];
 
-  var wrapRef = useRef();
-  var refs = useRef([]);
-  var handleClose = useCallback(function () {
+  var wrapRef = React.useRef();
+  var refs = React.useRef([]);
+  var handleClose = React.useCallback(function () {
     return setOpened(false);
   }, []);
-  var handleFocus = useCallback(function () {
+  var handleFocus = React.useCallback(function () {
     return setOpened(true);
   }, []);
-  var handleSelect = useCallback(function (item) {
+  var handleSelect = React.useCallback(function (item) {
     onSelect(item);
     setOpened(false);
   }, [onSelect]);
-  var handleInputChange = useCallback(function () {
+  var handleInputChange = React.useCallback(function () {
     setOpened(true);
     onChange.apply(void 0, arguments);
   }, [onChange]);
@@ -28519,13 +27618,13 @@ function AutoComplete(_ref) {
 
   useClickOutside(handleClose, wrapRef);
   useKeyDown(KEY_ESC, handleClose);
-  useEffect(function () {
+  React.useEffect(function () {
     setHighlightedIndex(-1);
   }, [opened, items, value, setHighlightedIndex]);
-  return React.createElement(_StyledDiv$K, {
+  return React__default.createElement(_StyledDiv$K, {
     ref: wrapRef,
     onBlur: handleBlur
-  }, React.createElement(SearchInput, {
+  }, React__default.createElement(SearchInput, {
     ref: ref,
     wide: wide,
     placeholder: placeholder,
@@ -28533,7 +27632,7 @@ function AutoComplete(_ref) {
     onChange: handleInputChange,
     onFocus: handleFocus,
     value: value
-  }), React.createElement(Transition, {
+  }), React__default.createElement(Transition, {
     config: springs.swift,
     items: opened && items.length > 0,
     from: {
@@ -28555,7 +27654,7 @@ function AutoComplete(_ref) {
     function (_ref2) {
       var scale = _ref2.scale,
           opacity = _ref2.opacity;
-      return React.createElement(Items, {
+      return React__default.createElement(Items, {
         style: {
           opacity: opacity,
           transform: scale.interpolate(function (t) {
@@ -28563,7 +27662,7 @@ function AutoComplete(_ref) {
           })
         }
       }, Array.from(uniqueItems).map(function (item, index) {
-        return React.createElement(Item$2, {
+        return React__default.createElement(Item$2, {
           key: item.key || item,
           ref: function ref(node) {
             return refs.current[index] = node;
@@ -28596,14 +27695,14 @@ AutoComplete.propTypes = {
 };
 /* eslint-disable react/prop-types */
 
-var _StyledLi$2 = _styled.li.withConfig({
+var _StyledLi$2 = _styled__default.li.withConfig({
   displayName: "AutoComplete___StyledLi",
   componentId: "bpnxyo-1"
 })(["overflow:hidden;cursor:pointer;", ";"], function (p) {
   return p._css;
 });
 
-var _StyledButtonBase$e = _styled(ButtonBaseWithFocus).withConfig({
+var _StyledButtonBase$e = _styled__default(ButtonBaseWithFocus).withConfig({
   displayName: "AutoComplete___StyledButtonBase",
   componentId: "bpnxyo-2"
 })(["text-align:left;padding:4px 8px;width:100%;border-radius:0;border-left:3px solid transparent;cursor:pointer;", ";", ";"], function (p) {
@@ -28612,7 +27711,7 @@ var _StyledButtonBase$e = _styled(ButtonBaseWithFocus).withConfig({
   return p._css3;
 });
 
-var Item$2 = React.forwardRef(function Item(_ref3, ref) {
+var Item$2 = React__default.forwardRef(function Item(_ref3, ref) {
   var children = _ref3.children,
       index = _ref3.index,
       item = _ref3.item,
@@ -28621,17 +27720,17 @@ var Item$2 = React.forwardRef(function Item(_ref3, ref) {
       onSelect = _ref3.onSelect,
       selected = _ref3.selected;
   var theme = useTheme();
-  var handleClick = useCallback(function (event) {
+  var handleClick = React.useCallback(function (event) {
     event.preventDefault();
     onSelect(item);
   }, [item, onSelect]);
-  var handleFocusOrMouseOver = useCallback(function () {
+  var handleFocusOrMouseOver = React.useCallback(function () {
     onHighlight(index);
   }, [index, onHighlight]);
-  return React.createElement(_StyledLi$2, {
+  return React__default.createElement(_StyledLi$2, {
     role: "option",
     _css: unselectable()
-  }, React.createElement(_StyledButtonBase$e, {
+  }, React__default.createElement(_StyledButtonBase$e, {
     ref: ref,
     onClick: handleClick,
     onFocus: handleFocusOrMouseOver,
@@ -28644,7 +27743,7 @@ var Item$2 = React.forwardRef(function Item(_ref3, ref) {
 
 /* eslint-disable react/prop-types */
 
-var _StyledAnimatedUl = _styled(extendedAnimated.ul).withConfig({
+var _StyledAnimatedUl = _styled__default(extendedAnimated.ul).withConfig({
   displayName: "AutoComplete___StyledAnimatedUl",
   componentId: "bpnxyo-3"
 })(["position:absolute;z-index:2;top:100%;width:100%;padding:8px 0;color:", ";background:", ";border:1px solid ", ";box-shadow:0 4px 4px 0 rgba(0,0,0,0.06);border-radius:3px;padding:0;margin:0;list-style:none;& > li:first-child{border-top-left-radius:3px;border-top-right-radius:3px;}& > li:last-child{border-bottom-left-radius:3px;border-bottom-right-radius:3px;}"], function (p) {
@@ -28657,7 +27756,7 @@ var _StyledAnimatedUl = _styled(extendedAnimated.ul).withConfig({
 
 var Items = function Items(props) {
   var theme = useTheme();
-  return React.createElement(_StyledAnimatedUl, _extends_1({
+  return React__default.createElement(_StyledAnimatedUl, _extends_1({
     role: "listbox"
   }, props, {
     _css4: theme.surfaceContent,
@@ -28668,14 +27767,14 @@ var Items = function Items(props) {
 /* eslint-enable react/prop-types */
 
 
-var AutoCompleteMemo = React.memo(AutoComplete);
-var AutoComplete$1 = React.forwardRef(function (props, ref) {
-  return React.createElement(AutoCompleteMemo, _extends_1({}, props, {
+var AutoCompleteMemo = React__default.memo(AutoComplete);
+var AutoComplete$1 = React__default.forwardRef(function (props, ref) {
+  return React__default.createElement(AutoCompleteMemo, _extends_1({}, props, {
     forwardedRef: ref
   }));
 });
 
-var _StyledButtonBase$f = _styled(ButtonBaseWithFocus).withConfig({
+var _StyledButtonBase$f = _styled__default(ButtonBaseWithFocus).withConfig({
   displayName: "AutoCompleteSelected___StyledButtonBase",
   componentId: "sc-15vq9oz-0"
 })(["height:40px;width:100%;text-align:left;background:", ";cursor:pointer;border:1px solid ", ";padding:4px 8px;", ";"], function (p) {
@@ -28706,14 +27805,14 @@ function AutoCompleteSelected(_ref) {
       wide = _ref.wide;
   var theme = useTheme();
   var ref = forwardedRef;
-  var selectedRef = useRef();
-  var handleSelect = useCallback(function (selected) {
+  var selectedRef = React.useRef();
+  var handleSelect = React.useCallback(function (selected) {
     onSelect(selected);
     setTimeout(function () {
       selectedRef.current.focus();
     }, 0);
   }, [onSelect]);
-  var handleSelectedClick = useCallback(function () {
+  var handleSelectedClick = React.useCallback(function () {
     onSelectedClick();
     setTimeout(function () {
       if (ref && ref.current) {
@@ -28724,7 +27823,7 @@ function AutoCompleteSelected(_ref) {
   }, [ref, onSelectedClick]);
 
   if (selected) {
-    return React.createElement(_StyledButtonBase$f, {
+    return React__default.createElement(_StyledButtonBase$f, {
       onClick: handleSelectedClick,
       ref: selectedRef,
       focusRingRadius: RADIUS,
@@ -28735,7 +27834,7 @@ function AutoCompleteSelected(_ref) {
     }, renderSelected(selected));
   }
 
-  return React.createElement(AutoComplete$1, {
+  return React__default.createElement(AutoComplete$1, {
     items: items,
     onChange: onChange,
     onSelect: handleSelect,
@@ -28764,12 +27863,276 @@ AutoCompleteSelected.propTypes = {
   value: propTypes.string,
   wide: propTypes.bool
 };
-var AutoCompleteSelectedMemo = React.memo(AutoCompleteSelected);
-var AutoCompleteSelected$1 = React.forwardRef(function (props, ref) {
-  return React.createElement(AutoCompleteSelectedMemo, _extends_1({}, props, {
+var AutoCompleteSelectedMemo = React__default.memo(AutoCompleteSelected);
+var AutoCompleteSelected$1 = React__default.forwardRef(function (props, ref) {
+  return React__default.createElement(AutoCompleteSelectedMemo, _extends_1({}, props, {
     forwardedRef: ref
   }));
 });
 
-export { Accordion, AddressField, AppBadge, AppBar$1 as AppBar, AppView, BREAKPOINTS, BackButton, Badge, BadgeNumber, Bar, BaseStyles$1 as BaseStyles, Box, ButtonWithRef as Button, ButtonBaseWithFocus as ButtonBase, ButtonIcon, ButtonText, Card, CardLayout, CheckBoxWithTheme as Checkbox, CircleGraph, ContextMenu, ContextMenuItem, Countdown, DEFAULT_FONT_FAMILY, DataView, DateRangePicker, DiscButton, Distribution, DropDown, EmptyStateCard, EscapeOutside, EthIdenticon, ExternalLink, Field, FloatIndicator, FocusVisible, GU, Header, Help, IconCirclePlus as IconAdd, IconAddUser, IconAlert, IconAlignCenter, IconAlignJustify, IconAlignLeft, IconAlignRight, IconGrid as IconApps, IconAragon, IconArrowDown, IconArrowLeft, IconArrowRight, IconArrowUp, IconAtSign, IconCaution as IconAttention, IconFile as IconBlank, IconBlock, IconBookmark, IconInfo as IconBylaw, IconCalendar, IconCanvas, IconCaution, IconCenter, IconChart, IconChat, IconCheck, IconChip, IconCircleCheck, IconCircleMinus, IconCirclePlus, IconClock, IconCross as IconClose, IconCloudDownload, IconCloudUpload, IconCoin, IconConfiguration, IconConnect, IconConnection, IconCopy, IconCross, IconDashedSquare, IconDown, IconDownload, IconEdit, IconEllipsis, IconWarning as IconError, IconEthereum, IconExternal, IconFile, IconFilter, IconFlag, IconFolder, IconCoin as IconFundraising, IconGraph, IconGraph2, IconGrid, IconGroup, IconHash, IconHeart, IconHide, IconHome, IconAddUser as IconIdentity, IconImage, IconInfo, IconLabel, IconLayers, IconLeft, IconLink, IconLocation, IconLock, IconMail, IconMaximize, IconMenu, IconMinimize, IconMinus, IconMove, IconNoPicture, IconAlert as IconNotifications, IconInfo as IconPermissions, IconPicture, IconPlus, IconPower, IconPrint, IconProhibited, IconQuestion, IconRefresh, IconCircleMinus as IconRemove, IconRemoveUser, IconRight, IconRotateLeft, IconRotateRight, IconSearch, IconSettings, IconShare, IconSquare, IconSquareMinus, IconSquarePlus, IconStar, IconStarFilled, IconTarget, IconClock as IconTime, IconToken, IconTrash, IconUnlock, IconUp, IconUpload, IconUser, IconView, IconVote, IconWallet, IconWarning, IconWorld, IconWrite, IconZoomIn, IconZoomOut, IdentityBadge, ImageExists, Info, Inside, KEY_DOWN, KEY_ENTER, KEY_ESC, KEY_UP, Layout, LineChart, Link, LinkBase, LoadingRing, MONOSPACE_FONT_FAMILY, Main$4 as Main, MainTheme, Modal, NavigationBar, Pagination, PartitionBar, Popover, ProgressBar, PublicUrl, RADIUS, Radio, Radio as RadioButton, RadioGroup, RadioList, Redraw, RedrawFromDate, Root, RootPortal, SafeLink, ScrollView, SearchInput, SidePanel, SidePanelSeparator, SidePanelSplit, Slider$1 as Slider, Split, Switch, SyncIndicator, TEXT_STYLES, TabBarLegacyCompatibility as TabBar, Table, TableCell, TableHeader, StyledTableRow as TableRow, Tabs, Tag, Text, TextCopy, WrapperTextInput as TextInput, Theme, Timer$1 as Timer, Toast, ToastHubProvider as ToastHub, TokenBadge, TransactionBadge, TransactionProgress, Viewport, AutoComplete$1 as _AutoComplete, AutoCompleteSelected$1 as _AutoCompleteSelected, addressesEqual, blockExplorerUrl, brand, breakpoint, colors$3 as colors, cssPx, devOnly, difference, eachDayOfInterval, font, formatHtmlDatetime, formatIntegerRange, forwardProps, identity, initContainsComponent, isAddress, isTransaction, log, monospace, noop, observe, pick, shortenAddress, shortenTransaction, springs, stylingProps, textStyle, theme, themeDark, tokenIconUrl, unselectable, useArrowKeysFocus, useClickOutside, useContainsAppView, useImageExists, useInside, useKeyDown, useLayout, useOnBlur, useRoot, useSidePanel, useSidePanelFocusOnReady, useTheme, useThemeMode, useToast, useViewport, warn, warnOnce };
-//# sourceMappingURL=index.esm.js.map
+exports.Accordion = Accordion;
+exports.AddressField = AddressField;
+exports.AppBadge = AppBadge;
+exports.AppBar = AppBar$1;
+exports.AppView = AppView;
+exports.BREAKPOINTS = BREAKPOINTS;
+exports.BackButton = BackButton;
+exports.Badge = Badge;
+exports.BadgeNumber = BadgeNumber;
+exports.Bar = Bar;
+exports.BaseStyles = BaseStyles$1;
+exports.Box = Box;
+exports.Button = ButtonWithRef;
+exports.ButtonBase = ButtonBaseWithFocus;
+exports.ButtonIcon = ButtonIcon;
+exports.ButtonText = ButtonText;
+exports.Card = Card;
+exports.CardLayout = CardLayout;
+exports.Checkbox = CheckBoxWithTheme;
+exports.CircleGraph = CircleGraph;
+exports.ContextMenu = ContextMenu;
+exports.ContextMenuItem = ContextMenuItem;
+exports.Countdown = Countdown;
+exports.DEFAULT_FONT_FAMILY = DEFAULT_FONT_FAMILY;
+exports.DataView = DataView;
+exports.DateRangePicker = DateRangePicker;
+exports.DiscButton = DiscButton;
+exports.Distribution = Distribution;
+exports.DropDown = DropDown;
+exports.EmptyStateCard = EmptyStateCard;
+exports.EscapeOutside = EscapeOutside;
+exports.EthIdenticon = EthIdenticon;
+exports.ExternalLink = ExternalLink;
+exports.Field = Field;
+exports.FloatIndicator = FloatIndicator;
+exports.FocusVisible = FocusVisible;
+exports.GU = GU;
+exports.Header = Header;
+exports.Help = Help;
+exports.IconAdd = IconCirclePlus;
+exports.IconAddUser = IconAddUser;
+exports.IconAlert = IconAlert;
+exports.IconAlignCenter = IconAlignCenter;
+exports.IconAlignJustify = IconAlignJustify;
+exports.IconAlignLeft = IconAlignLeft;
+exports.IconAlignRight = IconAlignRight;
+exports.IconApps = IconGrid;
+exports.IconAragon = IconAragon;
+exports.IconArrowDown = IconArrowDown;
+exports.IconArrowLeft = IconArrowLeft;
+exports.IconArrowRight = IconArrowRight;
+exports.IconArrowUp = IconArrowUp;
+exports.IconAtSign = IconAtSign;
+exports.IconAttention = IconCaution;
+exports.IconBlank = IconFile;
+exports.IconBlock = IconBlock;
+exports.IconBookmark = IconBookmark;
+exports.IconBylaw = IconInfo;
+exports.IconCalendar = IconCalendar;
+exports.IconCanvas = IconCanvas;
+exports.IconCaution = IconCaution;
+exports.IconCenter = IconCenter;
+exports.IconChart = IconChart;
+exports.IconChat = IconChat;
+exports.IconCheck = IconCheck;
+exports.IconChip = IconChip;
+exports.IconCircleCheck = IconCircleCheck;
+exports.IconCircleMinus = IconCircleMinus;
+exports.IconCirclePlus = IconCirclePlus;
+exports.IconClock = IconClock;
+exports.IconClose = IconCross;
+exports.IconCloudDownload = IconCloudDownload;
+exports.IconCloudUpload = IconCloudUpload;
+exports.IconCoin = IconCoin;
+exports.IconConfiguration = IconConfiguration;
+exports.IconConnect = IconConnect;
+exports.IconConnection = IconConnection;
+exports.IconCopy = IconCopy;
+exports.IconCross = IconCross;
+exports.IconDashedSquare = IconDashedSquare;
+exports.IconDown = IconDown;
+exports.IconDownload = IconDownload;
+exports.IconEdit = IconEdit;
+exports.IconEllipsis = IconEllipsis;
+exports.IconError = IconWarning;
+exports.IconEthereum = IconEthereum;
+exports.IconExternal = IconExternal;
+exports.IconFile = IconFile;
+exports.IconFilter = IconFilter;
+exports.IconFlag = IconFlag;
+exports.IconFolder = IconFolder;
+exports.IconFundraising = IconCoin;
+exports.IconGraph = IconGraph;
+exports.IconGraph2 = IconGraph2;
+exports.IconGrid = IconGrid;
+exports.IconGroup = IconGroup;
+exports.IconHash = IconHash;
+exports.IconHeart = IconHeart;
+exports.IconHide = IconHide;
+exports.IconHome = IconHome;
+exports.IconIdentity = IconAddUser;
+exports.IconImage = IconImage;
+exports.IconInfo = IconInfo;
+exports.IconLabel = IconLabel;
+exports.IconLayers = IconLayers;
+exports.IconLeft = IconLeft;
+exports.IconLink = IconLink;
+exports.IconLocation = IconLocation;
+exports.IconLock = IconLock;
+exports.IconMail = IconMail;
+exports.IconMaximize = IconMaximize;
+exports.IconMenu = IconMenu;
+exports.IconMinimize = IconMinimize;
+exports.IconMinus = IconMinus;
+exports.IconMove = IconMove;
+exports.IconNoPicture = IconNoPicture;
+exports.IconNotifications = IconAlert;
+exports.IconPermissions = IconInfo;
+exports.IconPicture = IconPicture;
+exports.IconPlus = IconPlus;
+exports.IconPower = IconPower;
+exports.IconPrint = IconPrint;
+exports.IconProhibited = IconProhibited;
+exports.IconQuestion = IconQuestion;
+exports.IconRefresh = IconRefresh;
+exports.IconRemove = IconCircleMinus;
+exports.IconRemoveUser = IconRemoveUser;
+exports.IconRight = IconRight;
+exports.IconRotateLeft = IconRotateLeft;
+exports.IconRotateRight = IconRotateRight;
+exports.IconSearch = IconSearch;
+exports.IconSettings = IconSettings;
+exports.IconShare = IconShare;
+exports.IconSquare = IconSquare;
+exports.IconSquareMinus = IconSquareMinus;
+exports.IconSquarePlus = IconSquarePlus;
+exports.IconStar = IconStar;
+exports.IconStarFilled = IconStarFilled;
+exports.IconTarget = IconTarget;
+exports.IconTime = IconClock;
+exports.IconToken = IconToken;
+exports.IconTrash = IconTrash;
+exports.IconUnlock = IconUnlock;
+exports.IconUp = IconUp;
+exports.IconUpload = IconUpload;
+exports.IconUser = IconUser;
+exports.IconView = IconView;
+exports.IconVote = IconVote;
+exports.IconWallet = IconWallet;
+exports.IconWarning = IconWarning;
+exports.IconWorld = IconWorld;
+exports.IconWrite = IconWrite;
+exports.IconZoomIn = IconZoomIn;
+exports.IconZoomOut = IconZoomOut;
+exports.IdentityBadge = IdentityBadge;
+exports.ImageExists = ImageExists;
+exports.Info = Info;
+exports.Inside = Inside;
+exports.KEY_DOWN = KEY_DOWN;
+exports.KEY_ENTER = KEY_ENTER;
+exports.KEY_ESC = KEY_ESC;
+exports.KEY_UP = KEY_UP;
+exports.Layout = Layout;
+exports.LineChart = LineChart;
+exports.Link = Link;
+exports.LinkBase = LinkBase;
+exports.LoadingRing = LoadingRing;
+exports.MONOSPACE_FONT_FAMILY = MONOSPACE_FONT_FAMILY;
+exports.Main = Main$4;
+exports.MainTheme = MainTheme;
+exports.Modal = Modal;
+exports.NavigationBar = NavigationBar;
+exports.Pagination = Pagination;
+exports.PartitionBar = PartitionBar;
+exports.Popover = Popover;
+exports.ProgressBar = ProgressBar;
+exports.PublicUrl = PublicUrl;
+exports.RADIUS = RADIUS;
+exports.Radio = Radio;
+exports.RadioButton = Radio;
+exports.RadioGroup = RadioGroup;
+exports.RadioList = RadioList;
+exports.Redraw = Redraw;
+exports.RedrawFromDate = RedrawFromDate;
+exports.Root = Root;
+exports.RootPortal = RootPortal;
+exports.SafeLink = SafeLink;
+exports.ScrollView = ScrollView;
+exports.SearchInput = SearchInput;
+exports.SidePanel = SidePanel;
+exports.SidePanelSeparator = SidePanelSeparator;
+exports.SidePanelSplit = SidePanelSplit;
+exports.Slider = Slider$1;
+exports.Split = Split;
+exports.Switch = Switch;
+exports.SyncIndicator = SyncIndicator;
+exports.TEXT_STYLES = TEXT_STYLES;
+exports.TabBar = TabBarLegacyCompatibility;
+exports.Table = Table;
+exports.TableCell = TableCell;
+exports.TableHeader = TableHeader;
+exports.TableRow = StyledTableRow;
+exports.Tabs = Tabs;
+exports.Tag = Tag;
+exports.Text = Text;
+exports.TextCopy = TextCopy;
+exports.TextInput = WrapperTextInput;
+exports.Theme = Theme;
+exports.Timer = Timer$1;
+exports.Toast = Toast;
+exports.ToastHub = ToastHubProvider;
+exports.TokenBadge = TokenBadge;
+exports.TransactionBadge = TransactionBadge;
+exports.TransactionProgress = TransactionProgress;
+exports.Viewport = Viewport;
+exports._AutoComplete = AutoComplete$1;
+exports._AutoCompleteSelected = AutoCompleteSelected$1;
+exports.addressesEqual = addressesEqual;
+exports.blockExplorerUrl = blockExplorerUrl;
+exports.brand = brand;
+exports.breakpoint = breakpoint;
+exports.colors = colors$3;
+exports.cssPx = cssPx;
+exports.devOnly = devOnly;
+exports.difference = difference;
+exports.eachDayOfInterval = eachDayOfInterval;
+exports.font = font;
+exports.formatHtmlDatetime = formatHtmlDatetime;
+exports.formatIntegerRange = formatIntegerRange;
+exports.forwardProps = forwardProps;
+exports.identity = identity;
+exports.initContainsComponent = initContainsComponent;
+exports.isAddress = isAddress;
+exports.isTransaction = isTransaction;
+exports.log = log;
+exports.monospace = monospace;
+exports.noop = noop;
+exports.observe = observe;
+exports.pick = pick;
+exports.shortenAddress = shortenAddress;
+exports.shortenTransaction = shortenTransaction;
+exports.springs = springs;
+exports.stylingProps = stylingProps;
+exports.textStyle = textStyle;
+exports.theme = theme;
+exports.themeDark = themeDark;
+exports.tokenIconUrl = tokenIconUrl;
+exports.unselectable = unselectable;
+exports.useArrowKeysFocus = useArrowKeysFocus;
+exports.useClickOutside = useClickOutside;
+exports.useContainsAppView = useContainsAppView;
+exports.useImageExists = useImageExists;
+exports.useInside = useInside;
+exports.useKeyDown = useKeyDown;
+exports.useLayout = useLayout;
+exports.useOnBlur = useOnBlur;
+exports.useRoot = useRoot;
+exports.useSidePanel = useSidePanel;
+exports.useSidePanelFocusOnReady = useSidePanelFocusOnReady;
+exports.useTheme = useTheme;
+exports.useThemeMode = useThemeMode;
+exports.useToast = useToast;
+exports.useViewport = useViewport;
+exports.warn = warn;
+exports.warnOnce = warnOnce;
+//# sourceMappingURL=index.js.map
