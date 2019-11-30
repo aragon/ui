@@ -97,9 +97,9 @@ function modeStyles(theme, mode, disabled) {
     return {
       background: `
         linear-gradient(
-          130deg,
-          ${theme.accentStart},
-          ${theme.accentEnd}
+          190deg,
+          ${theme.accentStart} -100%,
+          ${theme.accentEnd} 80%
         )
       `,
       color: theme.accentContent,

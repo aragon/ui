@@ -5,7 +5,7 @@ export default {
 
   background: '#28334c',
   border: '#2c3a58',
-  overlay: '#35425e',
+  overlay: '#28334c',
   content: colors.White,
   contentSecondary: '#7c99d6',
 
@@ -69,7 +69,7 @@ export default {
   hint: '#6683c3',
   link: '#0ca5ff',
   focus: '#0ca5ff',
-  selected: '#00d2ff',
+  selected: colors.AragonBlue,
   selectedContent: colors.White,
   selectedDisabled: colors.GreyDark,
 
@@ -84,9 +84,9 @@ export default {
   controlSurface: colors.ArcticBlueLight,
   controlUnder: colors.ArcticBlue,
 
-  accent: '#00d2ff',
-  accentStart: '#00d2ff',
-  accentEnd: '#0aece2',
+  accent: colors.AragonBlue,
+  accentStart: '#32fff5',
+  accentEnd: colors.AragonBlue,
   accentContent: colors.White,
 
   floating: '#1c2539',
