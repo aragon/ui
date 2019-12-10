@@ -31,14 +31,15 @@ const FloatIndicator = React.memo(function FloatIndicator({
                 z-index: 1;
                 width: 100%;
                 display: flex;
-                justify-content: center;
+                justify-content: flex-end;
                 bottom: 25px;
+                padding-right: ${2 * GU}px;
               `}
             >
               <Box
                 css={`
-                  background: ${theme.background};
-                  color: ${theme.contentSecondary};
+                  background: ${theme.floating};
+                  color: ${theme.floatingContent};
                   border: 1px solid ${theme.border};
                 `}
                 style={{
