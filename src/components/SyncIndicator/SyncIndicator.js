@@ -5,7 +5,6 @@ import LoadingRing from '../LoadingRing/LoadingRing'
 import { Inside } from '../../utils/inside'
 
 function SyncIndicator({ visible, label, estimate }) {
-  estimate = '12min'
   return (
     <FloatIndicator visible={visible}>
       <Inside name="SyncIndicator">
