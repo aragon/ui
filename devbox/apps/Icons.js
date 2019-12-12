@@ -8,7 +8,7 @@ import {
   useLayout,
 } from '@aragon/ui'
 import * as icons from '../all-icons'
-import { ToggleThemeButton } from '../components/toggle-theme'
+import { ToggleThemeButton } from '../components/current-theme'
 
 function useCols() {
   const { layoutName } = useLayout()

@@ -7,32 +7,39 @@ Provides the base needed by the other components (styles and context providers) 
 ```jsx
 import { Main } from '@aragon/ui'
 
-const App = () => (
-  <Main>
-    {/* Your app here */}
-  </Main>
-)
+const App = () => <Main>{/* Your app here */}</Main>
 ```
 
 ## Props
 
 ### `assetsUrl`
 
-- Type: `String`
-- Default: `./aragon-ui/`
+| Type     | Default value  |
+| -------- | -------------- |
+| `String` | `./aragon-ui/` |
 
 Set this to configure the URL of the directory containing your aragonUI assets.
 
 ### `layout`
 
-- Type: `Boolean`
-- Default: `true`
+| Type      | Default value |
+| --------- | ------------- |
+| `Boolean` | `true`        |
 
 Enable `<Layout />`.
 
 ### `scrollView`
 
-- Type: `Boolean`
-- Default: `true`
+| Type      | Default value |
+| --------- | ------------- |
+| `Boolean` | `true`        |
 
 Enable `<ScrollView />`.
+
+### `theme`
+
+| Type                 | Default value |
+| -------------------- | ------------- |
+| `String` or `Object` | `light`       |
+
+The main theme used by aragonUI.

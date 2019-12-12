@@ -7,7 +7,7 @@ import { Viewport } from '../../providers/Viewport'
 import BaseStyles from '../BaseStyles/BaseStyles'
 import { ToastHub } from '../ToastHub/ToastHub'
 import { Layout } from '../Layout/Layout'
-import { MainTheme } from '../../theme'
+import { Theme } from '../../theme'
 import ScrollView from '../ScrollView/ScrollView'
 import { initContainsComponent } from '../../utils/contains-component'
 
@@ -17,7 +17,7 @@ const {
   useRegister: useRegisterAppView,
 } = initContainsComponent()
 
-function Main({ children, assetsUrl, layout, scrollView }) {
+function Main({ assetsUrl, children, layout, scrollView, theme }) {
   const containsAppView = useContainsAppView()
 
   if (layout === undefined) {
@@ -39,16 +39,16 @@ function Main({ children, assetsUrl, layout, scrollView }) {
   )
 
   return (
-    <MainTheme>
-      <Root.Provider>
-        <Viewport.Provider>
-          <PublicUrl.Provider url={ensureTrailingSlash(assetsUrl)}>
+    <Root.Provider>
+      <Viewport.Provider>
+        <PublicUrl.Provider url={ensureTrailingSlash(assetsUrl)}>
+          <Theme theme={theme}>
             <BaseStyles />
             <ToastHub>{content}</ToastHub>
-          </PublicUrl.Provider>
-        </Viewport.Provider>
-      </Root.Provider>
-    </MainTheme>
+          </Theme>
+        </PublicUrl.Provider>
+      </Viewport.Provider>
+    </Root.Provider>
   )
 }
 
@@ -57,7 +57,9 @@ Main.propTypes = {
   children: PropTypes.node,
   layout: PropTypes.bool,
   scrollView: PropTypes.bool,
+  theme: Theme.propTypes.theme,
 }
+
 Main.defaultProps = {
   assetsUrl: './aragon-ui/',
 }

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import ReactDOM from 'react-dom'
 import { Layout, Main, useContainsAppView } from '@aragon/ui'
+import { CurrentTheme, useCurrentTheme } from './components/current-theme'
 
 import * as APPS from './apps'
 
@@ -14,6 +15,7 @@ function appNameFromHash() {
 }
 
 function Devbox() {
+  const { theme } = useCurrentTheme()
   const [appName, setAppName] = useState(appNameFromHash())
 
   useEffect(() => {
@@ -31,8 +33,10 @@ function Devbox() {
 
   // Selected app
   if (CurrentApp) {
-    return (
-      <Main layout={false}>
+    return CurrentApp._bare ? (
+      <CurrentApp />
+    ) : (
+      <Main layout={false} theme={theme}>
         <AppWrapper>
           <CurrentApp />
         </AppWrapper>
@@ -140,6 +144,8 @@ li a:active {
 `
 
 ReactDOM.render(
-  <Devbox />,
+  <CurrentTheme>
+    <Devbox />
+  </CurrentTheme>,
   document.body.appendChild(document.createElement('div'))
 )

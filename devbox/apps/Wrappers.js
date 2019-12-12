@@ -14,7 +14,7 @@ import {
   useLayout,
   IconPlus,
 } from '@aragon/ui'
-import { ToggleThemeButton } from '../components/toggle-theme'
+import { ToggleThemeButton } from '../components/current-theme'
 
 function Header1() {
   return (
