@@ -1562,7 +1562,7 @@ function textStyle(name) {
 }
 
 var dayjs_min = createCommonjsModule(function (module, exports) {
-!function(t,n){module.exports=n();}(commonjsGlobal,function(){var t="millisecond",n="second",e="minute",r="hour",i="day",s="week",u="month",o="quarter",a="year",h=/^(\d{4})-?(\d{1,2})-?(\d{0,2})[^0-9]*(\d{1,2})?:?(\d{1,2})?:?(\d{1,2})?.?(\d{1,3})?$/,f=/\[([^\]]+)]|Y{2,4}|M{1,4}|D{1,2}|d{1,4}|H{1,2}|h{1,2}|a|A|m{1,2}|s{1,2}|Z{1,2}|SSS/g,c=function(t,n,e){var r=String(t);return !r||r.length>=n?t:""+Array(n+1-r.length).join(e)+t},d={s:c,z:function(t){var n=-t.utcOffset(),e=Math.abs(n),r=Math.floor(e/60),i=e%60;return (n<=0?"+":"-")+c(r,2,"0")+":"+c(i,2,"0")},m:function(t,n){var e=12*(n.year()-t.year())+(n.month()-t.month()),r=t.clone().add(e,u),i=n-r<0,s=t.clone().add(e+(i?-1:1),u);return Number(-(e+(n-r)/(i?r-s:s-r))||0)},a:function(t){return t<0?Math.ceil(t)||0:Math.floor(t)},p:function(h){return {M:u,y:a,w:s,d:i,h:r,m:e,s:n,ms:t,Q:o}[h]||String(h||"").toLowerCase().replace(/s$/,"")},u:function(t){return void 0===t}},$={name:"en",weekdays:"Sunday_Monday_Tuesday_Wednesday_Thursday_Friday_Saturday".split("_"),months:"January_February_March_April_May_June_July_August_September_October_November_December".split("_")},l="en",m={};m[l]=$;var y=function(t){return t instanceof v},M=function(t,n,e){var r;if(!t)return l;if("string"==typeof t)m[t]&&(r=t),n&&(m[t]=n,r=t);else{var i=t.name;m[i]=t,r=i;}return e||(l=r),r},g=function(t,n,e){if(y(t))return t.clone();var r=n?"string"==typeof n?{format:n,pl:e}:n:{};return r.date=t,new v(r)},D=d;D.l=M,D.i=y,D.w=function(t,n){return g(t,{locale:n.$L,utc:n.$u,$offset:n.$offset})};var v=function(){function c(t){this.$L=this.$L||M(t.locale,null,!0),this.parse(t);}var d=c.prototype;return d.parse=function(t){this.$d=function(t){var n=t.date,e=t.utc;if(null===n)return new Date(NaN);if(D.u(n))return new Date;if(n instanceof Date)return new Date(n);if("string"==typeof n&&!/Z$/i.test(n)){var r=n.match(h);if(r)return e?new Date(Date.UTC(r[1],r[2]-1,r[3]||1,r[4]||0,r[5]||0,r[6]||0,r[7]||0)):new Date(r[1],r[2]-1,r[3]||1,r[4]||0,r[5]||0,r[6]||0,r[7]||0)}return new Date(n)}(t),this.init();},d.init=function(){var t=this.$d;this.$y=t.getFullYear(),this.$M=t.getMonth(),this.$D=t.getDate(),this.$W=t.getDay(),this.$H=t.getHours(),this.$m=t.getMinutes(),this.$s=t.getSeconds(),this.$ms=t.getMilliseconds();},d.$utils=function(){return D},d.isValid=function(){return !("Invalid Date"===this.$d.toString())},d.isSame=function(t,n){var e=g(t);return this.startOf(n)<=e&&e<=this.endOf(n)},d.isAfter=function(t,n){return g(t)<this.startOf(n)},d.isBefore=function(t,n){return this.endOf(n)<g(t)},d.$g=function(t,n,e){return D.u(t)?this[n]:this.set(e,t)},d.year=function(t){return this.$g(t,"$y",a)},d.month=function(t){return this.$g(t,"$M",u)},d.day=function(t){return this.$g(t,"$W",i)},d.date=function(t){return this.$g(t,"$D","date")},d.hour=function(t){return this.$g(t,"$H",r)},d.minute=function(t){return this.$g(t,"$m",e)},d.second=function(t){return this.$g(t,"$s",n)},d.millisecond=function(n){return this.$g(n,"$ms",t)},d.unix=function(){return Math.floor(this.valueOf()/1e3)},d.valueOf=function(){return this.$d.getTime()},d.startOf=function(t,o){var h=this,f=!!D.u(o)||o,c=D.p(t),d=function(t,n){var e=D.w(h.$u?Date.UTC(h.$y,n,t):new Date(h.$y,n,t),h);return f?e:e.endOf(i)},$=function(t,n){return D.w(h.toDate()[t].apply(h.toDate(),(f?[0,0,0,0]:[23,59,59,999]).slice(n)),h)},l=this.$W,m=this.$M,y=this.$D,M="set"+(this.$u?"UTC":"");switch(c){case a:return f?d(1,0):d(31,11);case u:return f?d(1,m):d(0,m+1);case s:var g=this.$locale().weekStart||0,v=(l<g?l+7:l)-g;return d(f?y-v:y+(6-v),m);case i:case"date":return $(M+"Hours",0);case r:return $(M+"Minutes",1);case e:return $(M+"Seconds",2);case n:return $(M+"Milliseconds",3);default:return this.clone()}},d.endOf=function(t){return this.startOf(t,!1)},d.$set=function(s,o){var h,f=D.p(s),c="set"+(this.$u?"UTC":""),d=(h={},h[i]=c+"Date",h.date=c+"Date",h[u]=c+"Month",h[a]=c+"FullYear",h[r]=c+"Hours",h[e]=c+"Minutes",h[n]=c+"Seconds",h[t]=c+"Milliseconds",h)[f],$=f===i?this.$D+(o-this.$W):o;if(f===u||f===a){var l=this.clone().set("date",1);l.$d[d]($),l.init(),this.$d=l.set("date",Math.min(this.$D,l.daysInMonth())).toDate();}else d&&this.$d[d]($);return this.init(),this},d.set=function(t,n){return this.clone().$set(t,n)},d.get=function(t){return this[D.p(t)]()},d.add=function(t,o){var h,f=this;t=Number(t);var c=D.p(o),d=function(n){var e=g(f);return D.w(e.date(e.date()+Math.round(n*t)),f)};if(c===u)return this.set(u,this.$M+t);if(c===a)return this.set(a,this.$y+t);if(c===i)return d(1);if(c===s)return d(7);var $=(h={},h[e]=6e4,h[r]=36e5,h[n]=1e3,h)[c]||1,l=this.$d.getTime()+t*$;return D.w(l,this)},d.subtract=function(t,n){return this.add(-1*t,n)},d.format=function(t){var n=this;if(!this.isValid())return "Invalid Date";var e=t||"YYYY-MM-DDTHH:mm:ssZ",r=D.z(this),i=this.$locale(),s=this.$H,u=this.$m,o=this.$M,a=i.weekdays,h=i.months,c=function(t,r,i,s){return t&&(t[r]||t(n,e))||i[r].substr(0,s)},d=function(t){return D.s(s%12||12,t,"0")},$=i.meridiem||function(t,n,e){var r=t<12?"AM":"PM";return e?r.toLowerCase():r},l={YY:String(this.$y).slice(-2),YYYY:this.$y,M:o+1,MM:D.s(o+1,2,"0"),MMM:c(i.monthsShort,o,h,3),MMMM:h[o]||h(this,e),D:this.$D,DD:D.s(this.$D,2,"0"),d:String(this.$W),dd:c(i.weekdaysMin,this.$W,a,2),ddd:c(i.weekdaysShort,this.$W,a,3),dddd:a[this.$W],H:String(s),HH:D.s(s,2,"0"),h:d(1),hh:d(2),a:$(s,u,!0),A:$(s,u,!1),m:String(u),mm:D.s(u,2,"0"),s:String(this.$s),ss:D.s(this.$s,2,"0"),SSS:D.s(this.$ms,3,"0"),Z:r};return e.replace(f,function(t,n){return n||l[t]||r.replace(":","")})},d.utcOffset=function(){return 15*-Math.round(this.$d.getTimezoneOffset()/15)},d.diff=function(t,h,f){var c,d=D.p(h),$=g(t),l=6e4*($.utcOffset()-this.utcOffset()),m=this-$,y=D.m(this,$);return y=(c={},c[a]=y/12,c[u]=y,c[o]=y/3,c[s]=(m-l)/6048e5,c[i]=(m-l)/864e5,c[r]=m/36e5,c[e]=m/6e4,c[n]=m/1e3,c)[d]||m,f?y:D.a(y)},d.daysInMonth=function(){return this.endOf(u).$D},d.$locale=function(){return m[this.$L]},d.locale=function(t,n){if(!t)return this.$L;var e=this.clone();return e.$L=M(t,n,!0),e},d.clone=function(){return D.w(this.$d,this)},d.toDate=function(){return new Date(this.valueOf())},d.toJSON=function(){return this.isValid()?this.toISOString():null},d.toISOString=function(){return this.$d.toISOString()},d.toString=function(){return this.$d.toUTCString()},c}();return g.prototype=v.prototype,g.extend=function(t,n){return t(n,v,g),g},g.locale=M,g.isDayjs=y,g.unix=function(t){return g(1e3*t)},g.en=m[l],g.Ls=m,g});
+!function(t,n){module.exports=n();}(commonjsGlobal,function(){var t="millisecond",n="second",e="minute",r="hour",i="day",s="week",u="month",a="quarter",o="year",h=/^(\d{4})-?(\d{1,2})-?(\d{0,2})[^0-9]*(\d{1,2})?:?(\d{1,2})?:?(\d{1,2})?.?(\d{1,3})?$/,f=/\[([^\]]+)]|Y{2,4}|M{1,4}|D{1,2}|d{1,4}|H{1,2}|h{1,2}|a|A|m{1,2}|s{1,2}|Z{1,2}|SSS/g,c=function(t,n,e){var r=String(t);return !r||r.length>=n?t:""+Array(n+1-r.length).join(e)+t},d={s:c,z:function(t){var n=-t.utcOffset(),e=Math.abs(n),r=Math.floor(e/60),i=e%60;return (n<=0?"+":"-")+c(r,2,"0")+":"+c(i,2,"0")},m:function(t,n){var e=12*(n.year()-t.year())+(n.month()-t.month()),r=t.clone().add(e,u),i=n-r<0,s=t.clone().add(e+(i?-1:1),u);return Number(-(e+(n-r)/(i?r-s:s-r))||0)},a:function(t){return t<0?Math.ceil(t)||0:Math.floor(t)},p:function(h){return {M:u,y:o,w:s,d:i,h:r,m:e,s:n,ms:t,Q:a}[h]||String(h||"").toLowerCase().replace(/s$/,"")},u:function(t){return void 0===t}},$={name:"en",weekdays:"Sunday_Monday_Tuesday_Wednesday_Thursday_Friday_Saturday".split("_"),months:"January_February_March_April_May_June_July_August_September_October_November_December".split("_")},l="en",m={};m[l]=$;var y=function(t){return t instanceof v},M=function(t,n,e){var r;if(!t)return l;if("string"==typeof t)m[t]&&(r=t),n&&(m[t]=n,r=t);else{var i=t.name;m[i]=t,r=i;}return e||(l=r),r},g=function(t,n,e){if(y(t))return t.clone();var r=n?"string"==typeof n?{format:n,pl:e}:n:{};return r.date=t,new v(r)},D=d;D.l=M,D.i=y,D.w=function(t,n){return g(t,{locale:n.$L,utc:n.$u})};var v=function(){function c(t){this.$L=this.$L||M(t.locale,null,!0),this.parse(t);}var d=c.prototype;return d.parse=function(t){this.$d=function(t){var n=t.date,e=t.utc;if(null===n)return new Date(NaN);if(D.u(n))return new Date;if(n instanceof Date)return new Date(n);if("string"==typeof n&&!/Z$/i.test(n)){var r=n.match(h);if(r)return e?new Date(Date.UTC(r[1],r[2]-1,r[3]||1,r[4]||0,r[5]||0,r[6]||0,r[7]||0)):new Date(r[1],r[2]-1,r[3]||1,r[4]||0,r[5]||0,r[6]||0,r[7]||0)}return new Date(n)}(t),this.init();},d.init=function(){var t=this.$d;this.$y=t.getFullYear(),this.$M=t.getMonth(),this.$D=t.getDate(),this.$W=t.getDay(),this.$H=t.getHours(),this.$m=t.getMinutes(),this.$s=t.getSeconds(),this.$ms=t.getMilliseconds();},d.$utils=function(){return D},d.isValid=function(){return !("Invalid Date"===this.$d.toString())},d.isSame=function(t,n){var e=g(t);return this.startOf(n)<=e&&e<=this.endOf(n)},d.isAfter=function(t,n){return g(t)<this.startOf(n)},d.isBefore=function(t,n){return this.endOf(n)<g(t)},d.$g=function(t,n,e){return D.u(t)?this[n]:this.set(e,t)},d.year=function(t){return this.$g(t,"$y",o)},d.month=function(t){return this.$g(t,"$M",u)},d.day=function(t){return this.$g(t,"$W",i)},d.date=function(t){return this.$g(t,"$D","date")},d.hour=function(t){return this.$g(t,"$H",r)},d.minute=function(t){return this.$g(t,"$m",e)},d.second=function(t){return this.$g(t,"$s",n)},d.millisecond=function(n){return this.$g(n,"$ms",t)},d.unix=function(){return Math.floor(this.valueOf()/1e3)},d.valueOf=function(){return this.$d.getTime()},d.startOf=function(t,a){var h=this,f=!!D.u(a)||a,c=D.p(t),d=function(t,n){var e=D.w(h.$u?Date.UTC(h.$y,n,t):new Date(h.$y,n,t),h);return f?e:e.endOf(i)},$=function(t,n){return D.w(h.toDate()[t].apply(h.toDate(),(f?[0,0,0,0]:[23,59,59,999]).slice(n)),h)},l=this.$W,m=this.$M,y=this.$D,M="set"+(this.$u?"UTC":"");switch(c){case o:return f?d(1,0):d(31,11);case u:return f?d(1,m):d(0,m+1);case s:var g=this.$locale().weekStart||0,v=(l<g?l+7:l)-g;return d(f?y-v:y+(6-v),m);case i:case"date":return $(M+"Hours",0);case r:return $(M+"Minutes",1);case e:return $(M+"Seconds",2);case n:return $(M+"Milliseconds",3);default:return this.clone()}},d.endOf=function(t){return this.startOf(t,!1)},d.$set=function(s,a){var h,f=D.p(s),c="set"+(this.$u?"UTC":""),d=(h={},h[i]=c+"Date",h.date=c+"Date",h[u]=c+"Month",h[o]=c+"FullYear",h[r]=c+"Hours",h[e]=c+"Minutes",h[n]=c+"Seconds",h[t]=c+"Milliseconds",h)[f],$=f===i?this.$D+(a-this.$W):a;if(f===u||f===o){var l=this.clone().set("date",1);l.$d[d]($),l.init(),this.$d=l.set("date",Math.min(this.$D,l.daysInMonth())).toDate();}else d&&this.$d[d]($);return this.init(),this},d.set=function(t,n){return this.clone().$set(t,n)},d.get=function(t){return this[D.p(t)]()},d.add=function(t,a){var h,f=this;t=Number(t);var c=D.p(a),d=function(n){var e=g(f);return D.w(e.date(e.date()+Math.round(n*t)),f)};if(c===u)return this.set(u,this.$M+t);if(c===o)return this.set(o,this.$y+t);if(c===i)return d(1);if(c===s)return d(7);var $=(h={},h[e]=6e4,h[r]=36e5,h[n]=1e3,h)[c]||1,l=this.valueOf()+t*$;return D.w(l,this)},d.subtract=function(t,n){return this.add(-1*t,n)},d.format=function(t){var n=this;if(!this.isValid())return "Invalid Date";var e=t||"YYYY-MM-DDTHH:mm:ssZ",r=D.z(this),i=this.$locale(),s=this.$H,u=this.$m,a=this.$M,o=i.weekdays,h=i.months,c=function(t,r,i,s){return t&&(t[r]||t(n,e))||i[r].substr(0,s)},d=function(t){return D.s(s%12||12,t,"0")},$=i.meridiem||function(t,n,e){var r=t<12?"AM":"PM";return e?r.toLowerCase():r},l={YY:String(this.$y).slice(-2),YYYY:this.$y,M:a+1,MM:D.s(a+1,2,"0"),MMM:c(i.monthsShort,a,h,3),MMMM:h[a]||h(this,e),D:this.$D,DD:D.s(this.$D,2,"0"),d:String(this.$W),dd:c(i.weekdaysMin,this.$W,o,2),ddd:c(i.weekdaysShort,this.$W,o,3),dddd:o[this.$W],H:String(s),HH:D.s(s,2,"0"),h:d(1),hh:d(2),a:$(s,u,!0),A:$(s,u,!1),m:String(u),mm:D.s(u,2,"0"),s:String(this.$s),ss:D.s(this.$s,2,"0"),SSS:D.s(this.$ms,3,"0"),Z:r};return e.replace(f,function(t,n){return n||l[t]||r.replace(":","")})},d.utcOffset=function(){return 15*-Math.round(this.$d.getTimezoneOffset()/15)},d.diff=function(t,h,f){var c,d=D.p(h),$=g(t),l=6e4*($.utcOffset()-this.utcOffset()),m=this-$,y=D.m(this,$);return y=(c={},c[o]=y/12,c[u]=y,c[a]=y/3,c[s]=(m-l)/6048e5,c[i]=(m-l)/864e5,c[r]=m/36e5,c[e]=m/6e4,c[n]=m/1e3,c)[d]||m,f?y:D.a(y)},d.daysInMonth=function(){return this.endOf(u).$D},d.$locale=function(){return m[this.$L]},d.locale=function(t,n){if(!t)return this.$L;var e=this.clone();return e.$L=M(t,n,!0),e},d.clone=function(){return D.w(this.toDate(),this)},d.toDate=function(){return new Date(this.$d)},d.toJSON=function(){return this.isValid()?this.toISOString():null},d.toISOString=function(){return this.$d.toISOString()},d.toString=function(){return this.$d.toUTCString()},c}();return g.prototype=v.prototype,g.extend=function(t,n){return t(n,v,g),g},g.locale=M,g.isDayjs=y,g.unix=function(t){return g(1e3*t)},g.en=m[l],g.Ls=m,g});
 });
 
 var UNITS = [['years', 'year'], ['months', 'month'], ['days', 'day'], ['hours', 'hour'], ['minutes', 'minute'], ['seconds', 'second']];
@@ -5354,6 +5354,31 @@ function IconConnection(_ref) {
 
 IconConnection.propTypes = IconPropTypes;
 
+function IconConsole(_ref) {
+  var size = _ref.size,
+      props = objectWithoutProperties(_ref, ["size"]);
+
+  var sizeValue = useIconSize(size);
+  return React.createElement("svg", _extends_1({
+    width: sizeValue,
+    height: sizeValue,
+    fill: "none",
+    viewBox: "0 0 24 24"
+  }, props), React.createElement("rect", {
+    width: 24,
+    height: 24,
+    fill: "currentColor",
+    rx: 4
+  }), React.createElement("path", {
+    fill: "#fff",
+    stroke: "#fff",
+    strokeWidth: 0.8,
+    d: "M4.884 4.819h0a.777.777 0 000 1.201L8.373 9l-3.489 2.98h0a.777.777 0 000 1.201.952.952 0 001.214 0l4.193-3.58s0 0 0 0A.79.79 0 0010.575 9a.79.79 0 00-.284-.6s0 0 0 0L6.098 4.818h0a.952.952 0 00-1.214 0zm13.801 8.887h-7.16a.676.676 0 00-.55.3.953.953 0 00-.165.547c0 .196.055.39.165.546a.675.675 0 00.55.301h7.16c.253 0 .44-.146.55-.3a.952.952 0 00.165-.547.953.953 0 00-.165-.546.676.676 0 00-.55-.301z"
+  }));
+}
+
+IconConsole.propTypes = IconPropTypes;
+
 function IconCopy(_ref) {
   var size = _ref.size,
       props = objectWithoutProperties(_ref, ["size"]);
@@ -5516,6 +5541,34 @@ function IconEllipsis(_ref) {
 }
 
 IconEllipsis.propTypes = IconPropTypes;
+
+function IconEnter(_ref) {
+  var size = _ref.size,
+      props = objectWithoutProperties(_ref, ["size"]);
+
+  var sizeValue = useIconSize(size);
+  return React.createElement("svg", _extends_1({
+    width: sizeValue,
+    height: sizeValue,
+    fill: "none",
+    viewBox: "0 0 22 18"
+  }, props), React.createElement("path", {
+    fill: "currentColor",
+    stroke: "currentColor",
+    strokeWidth: 0.2,
+    d: "M20.935 8.16H1.839a.84.84 0 000 1.68h19.096a.84.84 0 100-1.68z"
+  }), React.createElement("path", {
+    fill: "currentColor",
+    stroke: "currentColor",
+    strokeWidth: 0.2,
+    d: "M3.026 9l6.568-6.567a.84.84 0 10-1.187-1.187l-7.16 7.16a.84.84 0 000 1.187l7.16 7.161a.836.836 0 001.187 0 .84.84 0 000-1.187L3.026 9z"
+  }), React.createElement("path", {
+    fill: "currentColor",
+    d: "M21.128 2.064a.835.835 0 00-.838.832v6.162c0 .46.376.832.838.832a.835.835 0 00.839-.832V2.896a.835.835 0 00-.838-.832z"
+  }));
+}
+
+IconEnter.propTypes = IconPropTypes;
 
 function IconEthereum(_ref) {
   var size = _ref.size,
@@ -12743,6 +12796,44 @@ try {
 
 var regenerator = runtime_1;
 
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
+  try {
+    var info = gen[key](arg);
+    var value = info.value;
+  } catch (error) {
+    reject(error);
+    return;
+  }
+
+  if (info.done) {
+    resolve(value);
+  } else {
+    Promise.resolve(value).then(_next, _throw);
+  }
+}
+
+function _asyncToGenerator(fn) {
+  return function () {
+    var self = this,
+        args = arguments;
+    return new Promise(function (resolve, reject) {
+      var gen = fn.apply(self, args);
+
+      function _next(value) {
+        asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);
+      }
+
+      function _throw(err) {
+        asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);
+      }
+
+      _next(undefined);
+    });
+  };
+}
+
+var asyncToGenerator = _asyncToGenerator;
+
 var RootContext = React.createContext(null);
 
 function RootProvider(_ref) {
@@ -12939,54 +13030,65 @@ function (_React$PureComponent) {
     });
 
     defineProperty(assertThisInitialized(_this), "leave", function (item) {
-      return function _callee(next, cancel) {
-        return regenerator.async(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                // Save cancel so that it can be used interactively
-                _this.cancelMap.set(item, cancel); // Lifeline first
+      return (
+        /*#__PURE__*/
+        function () {
+          var _ref = asyncToGenerator(
+          /*#__PURE__*/
+          regenerator.mark(function _callee(next, cancel) {
+            return regenerator.wrap(function _callee$(_context) {
+              while (1) {
+                switch (_context.prev = _context.next) {
+                  case 0:
+                    // Save cancel so that it can be used interactively
+                    _this.cancelMap.set(item, cancel); // Lifeline first
 
 
-                _context.next = 3;
-                return regenerator.awrap(next({
-                  to: {
-                    life: '0%'
-                  }
-                }));
+                    _context.next = 3;
+                    return next({
+                      to: {
+                        life: '0%'
+                      }
+                    });
 
-              case 3:
-                _context.next = 5;
-                return regenerator.awrap(next({
-                  to: {
-                    opacity: 0
-                  }
-                }));
+                  case 3:
+                    _context.next = 5;
+                    return next({
+                      to: {
+                        opacity: 0
+                      }
+                    });
 
-              case 5:
-                _context.next = 7;
-                return regenerator.awrap(next({
-                  to: {
-                    height: 0
-                  }
-                }, true));
+                  case 5:
+                    _context.next = 7;
+                    return next({
+                      to: {
+                        height: 0
+                      }
+                    }, true);
 
-              case 7:
-                _this.setState(function (state) {
-                  return {
-                    leaving: state.leaving.filter(function (i) {
-                      return i.key !== item.key;
-                    })
-                  };
-                });
+                  case 7:
+                    _this.setState(function (state) {
+                      return {
+                        leaving: state.leaving.filter(function (i) {
+                          return i.key !== item.key;
+                        })
+                      };
+                    });
 
-              case 8:
-              case "end":
-                return _context.stop();
-            }
-          }
-        });
-      };
+                  case 8:
+                  case "end":
+                    return _context.stop();
+                }
+              }
+            }, _callee);
+          }));
+
+          return function (_x, _x2) {
+            return _ref.apply(this, arguments);
+          };
+        }()
+      );
     });
 
     return _this;
@@ -13043,16 +13145,16 @@ defineProperty(ToastHubProvider, "defaultProps", {
   top: false
 });
 
-var ToastList = React.memo(function (_ref) {
-  var config = _ref.config,
-      items = _ref.items,
-      leave = _ref.leave,
-      position = _ref.position,
-      remove = _ref.remove,
-      showIndicator = _ref.showIndicator,
-      top = _ref.top,
-      shift = _ref.shift,
-      props = objectWithoutProperties(_ref, ["config", "items", "leave", "position", "remove", "showIndicator", "top", "shift"]);
+var ToastList = React.memo(function (_ref2) {
+  var config = _ref2.config,
+      items = _ref2.items,
+      leave = _ref2.leave,
+      position = _ref2.position,
+      remove = _ref2.remove,
+      showIndicator = _ref2.showIndicator,
+      top = _ref2.top,
+      shift = _ref2.shift,
+      props = objectWithoutProperties(_ref2, ["config", "items", "leave", "position", "remove", "showIndicator", "top", "shift"]);
 
   var theme = useTheme();
   return React.createElement(Container, _extends_1({
@@ -13082,9 +13184,9 @@ var ToastList = React.memo(function (_ref) {
   }, function (item) {
     return (
       /* eslint-disable react/prop-types */
-      function (_ref2) {
-        var life = _ref2.life,
-            props = objectWithoutProperties(_ref2, ["life"]);
+      function (_ref3) {
+        var life = _ref3.life,
+            props = objectWithoutProperties(_ref3, ["life"]);
 
         return React.createElement(Message, {
           style: props
@@ -13117,11 +13219,11 @@ var Container = _styled.div(_templateObject(), function (props) {
   return props.top ? "".concat(3 * GU, "px") : 'unset';
 }, function (props) {
   return props.top ? 'unset' : "".concat(3 * GU, "px");
-}, function (_ref3) {
-  var shift = _ref3.shift;
-  return "calc(".concat(3 * GU, "px + ").concat(shift ? "".concat(shift, "px") : '0px', ")");
 }, function (_ref4) {
   var shift = _ref4.shift;
+  return "calc(".concat(3 * GU, "px + ").concat(shift ? "".concat(shift, "px") : '0px', ")");
+}, function (_ref5) {
+  var shift = _ref5.shift;
   return "calc(".concat(3 * GU, "px + ").concat(shift ? "".concat(shift, "px") : '0px', ")");
 }, function (props) {
   return props.top ? 'column-reverse' : 'column';
@@ -13138,11 +13240,11 @@ var Container = _styled.div(_templateObject(), function (props) {
   }
 });
 var Message = _styled(extendedAnimated.div)(_templateObject2());
-var Content = _styled.div(_templateObject3(), textStyle('body3'), function (_ref5) {
-  var theme = _ref5.theme;
-  return theme.floatingContent;
-}, function (_ref6) {
+var Content = _styled.div(_templateObject3(), textStyle('body3'), function (_ref6) {
   var theme = _ref6.theme;
+  return theme.floatingContent;
+}, function (_ref7) {
+  var theme = _ref7.theme;
   return theme.floating.alpha(0.95);
 }, function (props) {
   return props.top ? '0' : "".concat(1.25 * GU, "px");
@@ -13333,863 +13435,15 @@ TextCopy.defaultProps = {
   monospace: true
 };
 
-/*
-object-assign
-(c) Sindre Sorhus
-@license MIT
-*/
-/* eslint-disable no-unused-vars */
-
-var getOwnPropertySymbols$1 = Object.getOwnPropertySymbols;
-var hasOwnProperty$2 = Object.prototype.hasOwnProperty;
-var propIsEnumerable$1 = Object.prototype.propertyIsEnumerable;
-
-function toObject$1(val) {
-  if (val === null || val === undefined) {
-    throw new TypeError('Object.assign cannot be called with null or undefined');
-  }
-
-  return Object(val);
-}
-
-function shouldUseNative$1() {
-  try {
-    if (!Object.assign) {
-      return false;
-    } // Detect buggy property enumeration order in older V8 versions.
-    // https://bugs.chromium.org/p/v8/issues/detail?id=4118
-
-
-    var test1 = new String('abc'); // eslint-disable-line no-new-wrappers
-
-    test1[5] = 'de';
-
-    if (Object.getOwnPropertyNames(test1)[0] === '5') {
-      return false;
-    } // https://bugs.chromium.org/p/v8/issues/detail?id=3056
-
-
-    var test2 = {};
-
-    for (var i = 0; i < 10; i++) {
-      test2['_' + String.fromCharCode(i)] = i;
-    }
-
-    var order2 = Object.getOwnPropertyNames(test2).map(function (n) {
-      return test2[n];
-    });
-
-    if (order2.join('') !== '0123456789') {
-      return false;
-    } // https://bugs.chromium.org/p/v8/issues/detail?id=3056
-
-
-    var test3 = {};
-    'abcdefghijklmnopqrst'.split('').forEach(function (letter) {
-      test3[letter] = letter;
-    });
-
-    if (Object.keys(Object.assign({}, test3)).join('') !== 'abcdefghijklmnopqrst') {
-      return false;
-    }
-
-    return true;
-  } catch (err) {
-    // We don't expect any of the above to throw, but better to be safe.
-    return false;
-  }
-}
-
-var objectAssign$1 = shouldUseNative$1() ? Object.assign : function (target, source) {
-  var from;
-  var to = toObject$1(target);
-  var symbols;
-
-  for (var s = 1; s < arguments.length; s++) {
-    from = Object(arguments[s]);
-
-    for (var key in from) {
-      if (hasOwnProperty$2.call(from, key)) {
-        to[key] = from[key];
-      }
-    }
-
-    if (getOwnPropertySymbols$1) {
-      symbols = getOwnPropertySymbols$1(from);
-
-      for (var i = 0; i < symbols.length; i++) {
-        if (propIsEnumerable$1.call(from, symbols[i])) {
-          to[symbols[i]] = from[symbols[i]];
-        }
-      }
-    }
-  }
-
-  return to;
-};
-
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
-var ReactPropTypesSecret$2 = 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED';
-var ReactPropTypesSecret_1$1 = ReactPropTypesSecret$2;
-
-var printWarning$2 = function () {};
-
-if (process.env.NODE_ENV !== 'production') {
-  var ReactPropTypesSecret$3 = ReactPropTypesSecret_1$1;
-
-  var loggedTypeFailures$1 = {};
-
-  printWarning$2 = function (text) {
-    var message = 'Warning: ' + text;
-
-    if (typeof console !== 'undefined') {
-      console.error(message);
-    }
-
-    try {
-      // --- Welcome to debugging React ---
-      // This error was thrown as a convenience so that you can use this stack
-      // to find the callsite that caused this warning to fire.
-      throw new Error(message);
-    } catch (x) {}
-  };
-}
-/**
- * Assert that the values match with the type specs.
- * Error messages are memorized and will only be shown once.
- *
- * @param {object} typeSpecs Map of name to a ReactPropType
- * @param {object} values Runtime values that need to be type-checked
- * @param {string} location e.g. "prop", "context", "child context"
- * @param {string} componentName Name of the component for error messages.
- * @param {?Function} getStack Returns the component stack.
- * @private
- */
-
-
-function checkPropTypes$1(typeSpecs, values, location, componentName, getStack) {
-  if (process.env.NODE_ENV !== 'production') {
-    for (var typeSpecName in typeSpecs) {
-      if (typeSpecs.hasOwnProperty(typeSpecName)) {
-        var error; // Prop type validation may throw. In case they do, we don't want to
-        // fail the render phase where it didn't fail before. So we log it.
-        // After these have been cleaned up, we'll let them throw.
-
-        try {
-          // This is intentionally an invariant that gets caught. It's the same
-          // behavior as without this statement except with a better message.
-          if (typeof typeSpecs[typeSpecName] !== 'function') {
-            var err = Error((componentName || 'React class') + ': ' + location + ' type `' + typeSpecName + '` is invalid; ' + 'it must be a function, usually from the `prop-types` package, but received `' + typeof typeSpecs[typeSpecName] + '`.');
-            err.name = 'Invariant Violation';
-            throw err;
-          }
-
-          error = typeSpecs[typeSpecName](values, typeSpecName, componentName, location, null, ReactPropTypesSecret$3);
-        } catch (ex) {
-          error = ex;
-        }
-
-        if (error && !(error instanceof Error)) {
-          printWarning$2((componentName || 'React class') + ': type specification of ' + location + ' `' + typeSpecName + '` is invalid; the type checker ' + 'function must return `null` or an `Error` but returned a ' + typeof error + '. ' + 'You may have forgotten to pass an argument to the type checker ' + 'creator (arrayOf, instanceOf, objectOf, oneOf, oneOfType, and ' + 'shape all require an argument).');
-        }
-
-        if (error instanceof Error && !(error.message in loggedTypeFailures$1)) {
-          // Only monitor this failure once because there tends to be a lot of the
-          // same error.
-          loggedTypeFailures$1[error.message] = true;
-          var stack = getStack ? getStack() : '';
-          printWarning$2('Failed ' + location + ' type: ' + error.message + (stack != null ? stack : ''));
-        }
-      }
-    }
-  }
-}
-
-var checkPropTypes_1$1 = checkPropTypes$1;
-
-var printWarning$3 = function () {};
-
-if (process.env.NODE_ENV !== 'production') {
-  printWarning$3 = function (text) {
-    var message = 'Warning: ' + text;
-
-    if (typeof console !== 'undefined') {
-      console.error(message);
-    }
-
-    try {
-      // --- Welcome to debugging React ---
-      // This error was thrown as a convenience so that you can use this stack
-      // to find the callsite that caused this warning to fire.
-      throw new Error(message);
-    } catch (x) {}
-  };
-}
-
-function emptyFunctionThatReturnsNull$1() {
-  return null;
-}
-
-var factoryWithTypeCheckers$1 = function (isValidElement, throwOnDirectAccess) {
-  /* global Symbol */
-  var ITERATOR_SYMBOL = typeof Symbol === 'function' && Symbol.iterator;
-  var FAUX_ITERATOR_SYMBOL = '@@iterator'; // Before Symbol spec.
-
-  /**
-   * Returns the iterator method function contained on the iterable object.
-   *
-   * Be sure to invoke the function with the iterable as context:
-   *
-   *     var iteratorFn = getIteratorFn(myIterable);
-   *     if (iteratorFn) {
-   *       var iterator = iteratorFn.call(myIterable);
-   *       ...
-   *     }
-   *
-   * @param {?object} maybeIterable
-   * @return {?function}
-   */
-
-  function getIteratorFn(maybeIterable) {
-    var iteratorFn = maybeIterable && (ITERATOR_SYMBOL && maybeIterable[ITERATOR_SYMBOL] || maybeIterable[FAUX_ITERATOR_SYMBOL]);
-
-    if (typeof iteratorFn === 'function') {
-      return iteratorFn;
-    }
-  }
-  /**
-   * Collection of methods that allow declaration and validation of props that are
-   * supplied to React components. Example usage:
-   *
-   *   var Props = require('ReactPropTypes');
-   *   var MyArticle = React.createClass({
-   *     propTypes: {
-   *       // An optional string prop named "description".
-   *       description: Props.string,
-   *
-   *       // A required enum prop named "category".
-   *       category: Props.oneOf(['News','Photos']).isRequired,
-   *
-   *       // A prop named "dialog" that requires an instance of Dialog.
-   *       dialog: Props.instanceOf(Dialog).isRequired
-   *     },
-   *     render: function() { ... }
-   *   });
-   *
-   * A more formal specification of how these methods are used:
-   *
-   *   type := array|bool|func|object|number|string|oneOf([...])|instanceOf(...)
-   *   decl := ReactPropTypes.{type}(.isRequired)?
-   *
-   * Each and every declaration produces a function with the same signature. This
-   * allows the creation of custom validation functions. For example:
-   *
-   *  var MyLink = React.createClass({
-   *    propTypes: {
-   *      // An optional string or URI prop named "href".
-   *      href: function(props, propName, componentName) {
-   *        var propValue = props[propName];
-   *        if (propValue != null && typeof propValue !== 'string' &&
-   *            !(propValue instanceof URI)) {
-   *          return new Error(
-   *            'Expected a string or an URI for ' + propName + ' in ' +
-   *            componentName
-   *          );
-   *        }
-   *      }
-   *    },
-   *    render: function() {...}
-   *  });
-   *
-   * @internal
-   */
-
-
-  var ANONYMOUS = '<<anonymous>>'; // Important!
-  // Keep this list in sync with production version in `./factoryWithThrowingShims.js`.
-
-  var ReactPropTypes = {
-    array: createPrimitiveTypeChecker('array'),
-    bool: createPrimitiveTypeChecker('boolean'),
-    func: createPrimitiveTypeChecker('function'),
-    number: createPrimitiveTypeChecker('number'),
-    object: createPrimitiveTypeChecker('object'),
-    string: createPrimitiveTypeChecker('string'),
-    symbol: createPrimitiveTypeChecker('symbol'),
-    any: createAnyTypeChecker(),
-    arrayOf: createArrayOfTypeChecker,
-    element: createElementTypeChecker(),
-    instanceOf: createInstanceTypeChecker,
-    node: createNodeChecker(),
-    objectOf: createObjectOfTypeChecker,
-    oneOf: createEnumTypeChecker,
-    oneOfType: createUnionTypeChecker,
-    shape: createShapeTypeChecker,
-    exact: createStrictShapeTypeChecker
-  };
-  /**
-   * inlined Object.is polyfill to avoid requiring consumers ship their own
-   * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is
-   */
-
-  /*eslint-disable no-self-compare*/
-
-  function is(x, y) {
-    // SameValue algorithm
-    if (x === y) {
-      // Steps 1-5, 7-10
-      // Steps 6.b-6.e: +0 != -0
-      return x !== 0 || 1 / x === 1 / y;
-    } else {
-      // Step 6.a: NaN == NaN
-      return x !== x && y !== y;
-    }
-  }
-  /*eslint-enable no-self-compare*/
-
-  /**
-   * We use an Error-like object for backward compatibility as people may call
-   * PropTypes directly and inspect their output. However, we don't use real
-   * Errors anymore. We don't inspect their stack anyway, and creating them
-   * is prohibitively expensive if they are created too often, such as what
-   * happens in oneOfType() for any type before the one that matched.
-   */
-
-
-  function PropTypeError(message) {
-    this.message = message;
-    this.stack = '';
-  } // Make `instanceof Error` still work for returned errors.
-
-
-  PropTypeError.prototype = Error.prototype;
-
-  function createChainableTypeChecker(validate) {
-    if (process.env.NODE_ENV !== 'production') {
-      var manualPropTypeCallCache = {};
-      var manualPropTypeWarningCount = 0;
-    }
-
-    function checkType(isRequired, props, propName, componentName, location, propFullName, secret) {
-      componentName = componentName || ANONYMOUS;
-      propFullName = propFullName || propName;
-
-      if (secret !== ReactPropTypesSecret_1$1) {
-        if (throwOnDirectAccess) {
-          // New behavior only for users of `prop-types` package
-          var err = new Error('Calling PropTypes validators directly is not supported by the `prop-types` package. ' + 'Use `PropTypes.checkPropTypes()` to call them. ' + 'Read more at http://fb.me/use-check-prop-types');
-          err.name = 'Invariant Violation';
-          throw err;
-        } else if (process.env.NODE_ENV !== 'production' && typeof console !== 'undefined') {
-          // Old behavior for people using React.PropTypes
-          var cacheKey = componentName + ':' + propName;
-
-          if (!manualPropTypeCallCache[cacheKey] && // Avoid spamming the console because they are often not actionable except for lib authors
-          manualPropTypeWarningCount < 3) {
-            printWarning$3('You are manually calling a React.PropTypes validation ' + 'function for the `' + propFullName + '` prop on `' + componentName + '`. This is deprecated ' + 'and will throw in the standalone `prop-types` package. ' + 'You may be seeing this warning due to a third-party PropTypes ' + 'library. See https://fb.me/react-warning-dont-call-proptypes ' + 'for details.');
-            manualPropTypeCallCache[cacheKey] = true;
-            manualPropTypeWarningCount++;
-          }
-        }
-      }
-
-      if (props[propName] == null) {
-        if (isRequired) {
-          if (props[propName] === null) {
-            return new PropTypeError('The ' + location + ' `' + propFullName + '` is marked as required ' + ('in `' + componentName + '`, but its value is `null`.'));
-          }
-
-          return new PropTypeError('The ' + location + ' `' + propFullName + '` is marked as required in ' + ('`' + componentName + '`, but its value is `undefined`.'));
-        }
-
-        return null;
-      } else {
-        return validate(props, propName, componentName, location, propFullName);
-      }
-    }
-
-    var chainedCheckType = checkType.bind(null, false);
-    chainedCheckType.isRequired = checkType.bind(null, true);
-    return chainedCheckType;
-  }
-
-  function createPrimitiveTypeChecker(expectedType) {
-    function validate(props, propName, componentName, location, propFullName, secret) {
-      var propValue = props[propName];
-      var propType = getPropType(propValue);
-
-      if (propType !== expectedType) {
-        // `propValue` being instance of, say, date/regexp, pass the 'object'
-        // check, but we can offer a more precise error message here rather than
-        // 'of type `object`'.
-        var preciseType = getPreciseType(propValue);
-        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + preciseType + '` supplied to `' + componentName + '`, expected ') + ('`' + expectedType + '`.'));
-      }
-
-      return null;
-    }
-
-    return createChainableTypeChecker(validate);
-  }
-
-  function createAnyTypeChecker() {
-    return createChainableTypeChecker(emptyFunctionThatReturnsNull$1);
-  }
-
-  function createArrayOfTypeChecker(typeChecker) {
-    function validate(props, propName, componentName, location, propFullName) {
-      if (typeof typeChecker !== 'function') {
-        return new PropTypeError('Property `' + propFullName + '` of component `' + componentName + '` has invalid PropType notation inside arrayOf.');
-      }
-
-      var propValue = props[propName];
-
-      if (!Array.isArray(propValue)) {
-        var propType = getPropType(propValue);
-        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + propType + '` supplied to `' + componentName + '`, expected an array.'));
-      }
-
-      for (var i = 0; i < propValue.length; i++) {
-        var error = typeChecker(propValue, i, componentName, location, propFullName + '[' + i + ']', ReactPropTypesSecret_1$1);
-
-        if (error instanceof Error) {
-          return error;
-        }
-      }
-
-      return null;
-    }
-
-    return createChainableTypeChecker(validate);
-  }
-
-  function createElementTypeChecker() {
-    function validate(props, propName, componentName, location, propFullName) {
-      var propValue = props[propName];
-
-      if (!isValidElement(propValue)) {
-        var propType = getPropType(propValue);
-        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + propType + '` supplied to `' + componentName + '`, expected a single ReactElement.'));
-      }
-
-      return null;
-    }
-
-    return createChainableTypeChecker(validate);
-  }
-
-  function createInstanceTypeChecker(expectedClass) {
-    function validate(props, propName, componentName, location, propFullName) {
-      if (!(props[propName] instanceof expectedClass)) {
-        var expectedClassName = expectedClass.name || ANONYMOUS;
-        var actualClassName = getClassName(props[propName]);
-        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + actualClassName + '` supplied to `' + componentName + '`, expected ') + ('instance of `' + expectedClassName + '`.'));
-      }
-
-      return null;
-    }
-
-    return createChainableTypeChecker(validate);
-  }
-
-  function createEnumTypeChecker(expectedValues) {
-    if (!Array.isArray(expectedValues)) {
-      process.env.NODE_ENV !== 'production' ? printWarning$3('Invalid argument supplied to oneOf, expected an instance of array.') : void 0;
-      return emptyFunctionThatReturnsNull$1;
-    }
-
-    function validate(props, propName, componentName, location, propFullName) {
-      var propValue = props[propName];
-
-      for (var i = 0; i < expectedValues.length; i++) {
-        if (is(propValue, expectedValues[i])) {
-          return null;
-        }
-      }
-
-      var valuesString = JSON.stringify(expectedValues);
-      return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of value `' + propValue + '` ' + ('supplied to `' + componentName + '`, expected one of ' + valuesString + '.'));
-    }
-
-    return createChainableTypeChecker(validate);
-  }
-
-  function createObjectOfTypeChecker(typeChecker) {
-    function validate(props, propName, componentName, location, propFullName) {
-      if (typeof typeChecker !== 'function') {
-        return new PropTypeError('Property `' + propFullName + '` of component `' + componentName + '` has invalid PropType notation inside objectOf.');
-      }
-
-      var propValue = props[propName];
-      var propType = getPropType(propValue);
-
-      if (propType !== 'object') {
-        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + propType + '` supplied to `' + componentName + '`, expected an object.'));
-      }
-
-      for (var key in propValue) {
-        if (propValue.hasOwnProperty(key)) {
-          var error = typeChecker(propValue, key, componentName, location, propFullName + '.' + key, ReactPropTypesSecret_1$1);
-
-          if (error instanceof Error) {
-            return error;
-          }
-        }
-      }
-
-      return null;
-    }
-
-    return createChainableTypeChecker(validate);
-  }
-
-  function createUnionTypeChecker(arrayOfTypeCheckers) {
-    if (!Array.isArray(arrayOfTypeCheckers)) {
-      process.env.NODE_ENV !== 'production' ? printWarning$3('Invalid argument supplied to oneOfType, expected an instance of array.') : void 0;
-      return emptyFunctionThatReturnsNull$1;
-    }
-
-    for (var i = 0; i < arrayOfTypeCheckers.length; i++) {
-      var checker = arrayOfTypeCheckers[i];
-
-      if (typeof checker !== 'function') {
-        printWarning$3('Invalid argument supplied to oneOfType. Expected an array of check functions, but ' + 'received ' + getPostfixForTypeWarning(checker) + ' at index ' + i + '.');
-        return emptyFunctionThatReturnsNull$1;
-      }
-    }
-
-    function validate(props, propName, componentName, location, propFullName) {
-      for (var i = 0; i < arrayOfTypeCheckers.length; i++) {
-        var checker = arrayOfTypeCheckers[i];
-
-        if (checker(props, propName, componentName, location, propFullName, ReactPropTypesSecret_1$1) == null) {
-          return null;
-        }
-      }
-
-      return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` supplied to ' + ('`' + componentName + '`.'));
-    }
-
-    return createChainableTypeChecker(validate);
-  }
-
-  function createNodeChecker() {
-    function validate(props, propName, componentName, location, propFullName) {
-      if (!isNode(props[propName])) {
-        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` supplied to ' + ('`' + componentName + '`, expected a ReactNode.'));
-      }
-
-      return null;
-    }
-
-    return createChainableTypeChecker(validate);
-  }
-
-  function createShapeTypeChecker(shapeTypes) {
-    function validate(props, propName, componentName, location, propFullName) {
-      var propValue = props[propName];
-      var propType = getPropType(propValue);
-
-      if (propType !== 'object') {
-        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type `' + propType + '` ' + ('supplied to `' + componentName + '`, expected `object`.'));
-      }
-
-      for (var key in shapeTypes) {
-        var checker = shapeTypes[key];
-
-        if (!checker) {
-          continue;
-        }
-
-        var error = checker(propValue, key, componentName, location, propFullName + '.' + key, ReactPropTypesSecret_1$1);
-
-        if (error) {
-          return error;
-        }
-      }
-
-      return null;
-    }
-
-    return createChainableTypeChecker(validate);
-  }
-
-  function createStrictShapeTypeChecker(shapeTypes) {
-    function validate(props, propName, componentName, location, propFullName) {
-      var propValue = props[propName];
-      var propType = getPropType(propValue);
-
-      if (propType !== 'object') {
-        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type `' + propType + '` ' + ('supplied to `' + componentName + '`, expected `object`.'));
-      } // We need to check all keys in case some are required but missing from
-      // props.
-
-
-      var allKeys = objectAssign$1({}, props[propName], shapeTypes);
-
-      for (var key in allKeys) {
-        var checker = shapeTypes[key];
-
-        if (!checker) {
-          return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` key `' + key + '` supplied to `' + componentName + '`.' + '\nBad object: ' + JSON.stringify(props[propName], null, '  ') + '\nValid keys: ' + JSON.stringify(Object.keys(shapeTypes), null, '  '));
-        }
-
-        var error = checker(propValue, key, componentName, location, propFullName + '.' + key, ReactPropTypesSecret_1$1);
-
-        if (error) {
-          return error;
-        }
-      }
-
-      return null;
-    }
-
-    return createChainableTypeChecker(validate);
-  }
-
-  function isNode(propValue) {
-    switch (typeof propValue) {
-      case 'number':
-      case 'string':
-      case 'undefined':
-        return true;
-
-      case 'boolean':
-        return !propValue;
-
-      case 'object':
-        if (Array.isArray(propValue)) {
-          return propValue.every(isNode);
-        }
-
-        if (propValue === null || isValidElement(propValue)) {
-          return true;
-        }
-
-        var iteratorFn = getIteratorFn(propValue);
-
-        if (iteratorFn) {
-          var iterator = iteratorFn.call(propValue);
-          var step;
-
-          if (iteratorFn !== propValue.entries) {
-            while (!(step = iterator.next()).done) {
-              if (!isNode(step.value)) {
-                return false;
-              }
-            }
-          } else {
-            // Iterator will provide entry [k,v] tuples rather than values.
-            while (!(step = iterator.next()).done) {
-              var entry = step.value;
-
-              if (entry) {
-                if (!isNode(entry[1])) {
-                  return false;
-                }
-              }
-            }
-          }
-        } else {
-          return false;
-        }
-
-        return true;
-
-      default:
-        return false;
-    }
-  }
-
-  function isSymbol(propType, propValue) {
-    // Native Symbol.
-    if (propType === 'symbol') {
-      return true;
-    } // 19.4.3.5 Symbol.prototype[@@toStringTag] === 'Symbol'
-
-
-    if (propValue['@@toStringTag'] === 'Symbol') {
-      return true;
-    } // Fallback for non-spec compliant Symbols which are polyfilled.
-
-
-    if (typeof Symbol === 'function' && propValue instanceof Symbol) {
-      return true;
-    }
-
-    return false;
-  } // Equivalent of `typeof` but with special handling for array and regexp.
-
-
-  function getPropType(propValue) {
-    var propType = typeof propValue;
-
-    if (Array.isArray(propValue)) {
-      return 'array';
-    }
-
-    if (propValue instanceof RegExp) {
-      // Old webkits (at least until Android 4.0) return 'function' rather than
-      // 'object' for typeof a RegExp. We'll normalize this here so that /bla/
-      // passes PropTypes.object.
-      return 'object';
-    }
-
-    if (isSymbol(propType, propValue)) {
-      return 'symbol';
-    }
-
-    return propType;
-  } // This handles more types than `getPropType`. Only used for error messages.
-  // See `createPrimitiveTypeChecker`.
-
-
-  function getPreciseType(propValue) {
-    if (typeof propValue === 'undefined' || propValue === null) {
-      return '' + propValue;
-    }
-
-    var propType = getPropType(propValue);
-
-    if (propType === 'object') {
-      if (propValue instanceof Date) {
-        return 'date';
-      } else if (propValue instanceof RegExp) {
-        return 'regexp';
-      }
-    }
-
-    return propType;
-  } // Returns a string that is postfixed to a warning about an invalid type.
-  // For example, "undefined" or "of type array"
-
-
-  function getPostfixForTypeWarning(value) {
-    var type = getPreciseType(value);
-
-    switch (type) {
-      case 'array':
-      case 'object':
-        return 'an ' + type;
-
-      case 'boolean':
-      case 'date':
-      case 'regexp':
-        return 'a ' + type;
-
-      default:
-        return type;
-    }
-  } // Returns class name of the object, if any.
-
-
-  function getClassName(propValue) {
-    if (!propValue.constructor || !propValue.constructor.name) {
-      return ANONYMOUS;
-    }
-
-    return propValue.constructor.name;
-  }
-
-  ReactPropTypes.checkPropTypes = checkPropTypes_1$1;
-  ReactPropTypes.PropTypes = ReactPropTypes;
-  return ReactPropTypes;
-};
-
-function emptyFunction$1() {}
-
-var factoryWithThrowingShims$1 = function () {
-  function shim(props, propName, componentName, location, propFullName, secret) {
-    if (secret === ReactPropTypesSecret_1$1) {
-      // It is still safe when called from React.
-      return;
-    }
-
-    var err = new Error('Calling PropTypes validators directly is not supported by the `prop-types` package. ' + 'Use PropTypes.checkPropTypes() to call them. ' + 'Read more at http://fb.me/use-check-prop-types');
-    err.name = 'Invariant Violation';
-    throw err;
-  }
-  shim.isRequired = shim;
-
-  function getShim() {
-    return shim;
-  }
-  // Keep this list in sync with production version in `./factoryWithTypeCheckers.js`.
-
-  var ReactPropTypes = {
-    array: shim,
-    bool: shim,
-    func: shim,
-    number: shim,
-    object: shim,
-    string: shim,
-    symbol: shim,
-    any: shim,
-    arrayOf: getShim,
-    element: shim,
-    instanceOf: getShim,
-    node: shim,
-    objectOf: getShim,
-    oneOf: getShim,
-    oneOfType: getShim,
-    shape: getShim,
-    exact: getShim
-  };
-  ReactPropTypes.checkPropTypes = emptyFunction$1;
-  ReactPropTypes.PropTypes = ReactPropTypes;
-  return ReactPropTypes;
-};
-
-var propTypes$1 = createCommonjsModule(function (module) {
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-if (process.env.NODE_ENV !== 'production') {
-  var REACT_ELEMENT_TYPE = typeof Symbol === 'function' && Symbol.for && Symbol.for('react.element') || 0xeac7;
-
-  var isValidElement = function (object) {
-    return typeof object === 'object' && object !== null && object.$$typeof === REACT_ELEMENT_TYPE;
-  }; // By explicitly using `prop-types` you are opting into new development behavior.
-  // http://fb.me/prop-types-in-prod
-
-
-  var throwOnDirectAccess = true;
-  module.exports = factoryWithTypeCheckers$1(isValidElement, throwOnDirectAccess);
-} else {
-  // By explicitly using `prop-types` you are opting into new production behavior.
-  // http://fb.me/prop-types-in-prod
-  module.exports = factoryWithThrowingShims$1();
-}
-});
-
 var main = createCommonjsModule(function (module, exports) {
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _extends = Object.assign || function (target) {
-  for (var i = 1; i < arguments.length; i++) {
-    var source = arguments[i];
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-    for (var key in source) {
-      if (Object.prototype.hasOwnProperty.call(source, key)) {
-        target[key] = source[key];
-      }
-    }
-  }
-
-  return target;
-};
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 
 
@@ -14197,193 +13451,203 @@ var _react2 = _interopRequireDefault(React);
 
 
 
-var _propTypes2 = _interopRequireDefault(propTypes$1);
+var _propTypes2 = _interopRequireDefault(propTypes);
 
-function _interopRequireDefault(obj) {
-  return obj && obj.__esModule ? obj : {
-    default: obj
-  };
-}
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _objectWithoutProperties(obj, keys) {
-  var target = {};
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-  for (var i in obj) {
-    if (keys.indexOf(i) >= 0) continue;
-    if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
-    target[i] = obj[i];
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Identicon = function (_Component) {
+  _inherits(Identicon, _Component);
+
+  function Identicon(props) {
+    _classCallCheck(this, Identicon);
+
+    var _this = _possibleConstructorReturn(this, (Identicon.__proto__ || Object.getPrototypeOf(Identicon)).call(this, props));
+
+    _this.generateIdenticon = _this.generateIdenticon.bind(_this);
+    return _this;
   }
 
-  return target;
-} // NOTE --  Majority of this code is referenced from: https://github.com/alexvandesande/blockies
-//          Mostly to ensure congruence to Ethereum Mist's Identicons
-// The random number is a js implementation of the Xorshift PRNG
-
-
-function seedrand(seed) {
-  var randseed = new Array(4); // Xorshift: [x, y, z, w] 32 bit values
-
-  for (var i = 0; i < randseed.length; i++) {
-    randseed[i] = 0;
-  }
-
-  for (var _i = 0; _i < seed.length; _i++) {
-    randseed[_i % 4] = (randseed[_i % 4] << 5) - randseed[_i % 4] + seed.charCodeAt(_i);
-  } // based on Java's String.hashCode(), expanded to 4 32bit values
-
-
-  return function random() {
-    var t = randseed[0] ^ randseed[0] << 11;
-    randseed[0] = randseed[1];
-    randseed[1] = randseed[2];
-    randseed[2] = randseed[3];
-    randseed[3] = randseed[3] ^ randseed[3] >> 19 ^ t ^ t >> 8;
-    return (randseed[3] >>> 0) / (1 << 31 >>> 0);
-  };
-}
-
-function createColor(random) {
-  // saturation is the whole color spectrum
-  var h = Math.floor(random() * 360); // saturation goes from 40 to 100, it avoids greyish colors
-
-  var s = random() * 60 + 40 + '%'; // lightness can be anything from 0 to 100, but probabilities are a bell curve around 50%
-
-  var l = (random() + random() + random() + random()) * 25 + '%';
-  var color = 'hsl(' + h + ',' + s + ',' + l + ')';
-  return color;
-}
-
-function createImageData(size, random) {
-  var width = size; // Only support square icons for now
-
-  var height = size;
-  var dataWidth = Math.ceil(width / 2);
-  var mirrorWidth = width - dataWidth;
-  var data = [];
-
-  for (var y = 0; y < height; y++) {
-    var row = [];
-
-    for (var x = 0; x < dataWidth; x++) {
-      // this makes foreground and background color to have a 43% (1/2.3) probability
-      // spot color has 13% chance
-      row[x] = Math.floor(random() * 2.3);
+  _createClass(Identicon, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      this.generateIdenticon(_extends({}, this.props));
     }
-
-    var r = row.slice(0, mirrorWidth);
-    r.reverse();
-    row = row.concat(r);
-
-    for (var i = 0; i < row.length; i++) {
-      data.push(row[i]);
+  }, {
+    key: 'componentWillUpdate',
+    value: function componentWillUpdate(nextProps) {
+      if (!this.isEquivalent(this.props, nextProps)) this.generateIdenticon(_extends({}, nextProps));
     }
-  }
+  }, {
+    key: 'isEquivalent',
+    value: function isEquivalent(prevProps, nextProps) {
+      var aProps = Object.getOwnPropertyNames(prevProps);
+      var bProps = Object.getOwnPropertyNames(nextProps);
 
-  return data;
-}
-
-function drawCanvas(canvas, scale, _ref) {
-  var imageData = _ref.imageData,
-      color = _ref.color,
-      bgColor = _ref.bgColor,
-      spotColor = _ref.spotColor;
-  var width = Math.sqrt(imageData.length);
-  var size = width * scale;
-  canvas.width = size;
-  canvas.style.width = size + 'px';
-  canvas.height = size;
-  canvas.style.height = size + 'px';
-  var cc = canvas.getContext('2d');
-  cc.fillStyle = bgColor;
-  cc.fillRect(0, 0, canvas.width, canvas.height);
-  cc.fillStyle = color;
-
-  for (var i = 0; i < imageData.length; i++) {
-    // if data is 2, choose spot color, if 1 choose foreground
-    cc.fillStyle = imageData[i] === 1 ? color : spotColor; // if data is 0, leave the background
-
-    if (imageData[i]) {
-      var row = Math.floor(i / width);
-      var col = i % width;
-      cc.fillRect(col * scale, row * scale, scale, scale);
-    }
-  }
-}
-
-function generateIdenticon(_ref2) {
-  var bgColor = _ref2.bgColor,
-      color = _ref2.color,
-      seed = _ref2.seed,
-      size = _ref2.size,
-      spotColor = _ref2.spotColor;
-  var random = seedrand(seed); // order matters since we are using random()
-
-  if (!color) color = createColor(random);
-  if (!bgColor) bgColor = createColor(random);
-  if (!spotColor) spotColor = createColor(random);
-  return {
-    bgColor: bgColor,
-    color: color,
-    imageData: createImageData(size, random),
-    spotColor: spotColor
-  };
-}
-
-var Identicon = _react2.default.memo(function Identicon(_ref3) {
-  var bgColor = _ref3.bgColor,
-      className = _ref3.className,
-      color = _ref3.color,
-      scale = _ref3.scale,
-      seed = _ref3.seed,
-      size = _ref3.size,
-      spotColor = _ref3.spotColor,
-      props = _objectWithoutProperties(_ref3, ['bgColor', 'className', 'color', 'scale', 'seed', 'size', 'spotColor']);
-
-  var canvasRef = (0, React.useRef)(); // Cache identiconData so we can use it to trigger a redraw.
-
-  var identiconData = (0, React.useMemo)(function () {
-    return generateIdenticon({
-      bgColor: bgColor,
-      color: color,
-      seed: seed,
-      size: size,
-      spotColor: spotColor
-    });
-  }, [bgColor, color, seed, size, spotColor]); // Redraw when scale or identiconData updates.
-
-  (0, React.useEffect)(function () {
-    if (canvasRef.current) {
-      drawCanvas(canvasRef.current, scale, identiconData);
-    }
-  }, [identiconData, scale]);
-  return _react2.default.createElement('canvas', _extends({
-    ref: function ref(canvas) {
-      canvasRef.current = canvas; // Redraw when the ref updates.
-
-      if (canvas) {
-        drawCanvas(canvas, scale, identiconData);
+      if (aProps.length != bProps.length) {
+        return false;
       }
-    },
-    className: className
-  }, props));
-});
+
+      for (var i = 0; i < aProps.length; i++) {
+        var propName = aProps[i];
+
+        if (prevProps[propName] !== nextProps[propName]) {
+          return false;
+        }
+      }
+
+      return true;
+    }
+  }, {
+    key: 'generateIdenticon',
+    value: function generateIdenticon(options) {
+      // NOTE --  Majority of this code is referenced from: https://github.com/alexvandesande/blockies
+      //          Mostly to ensure congruence to Ethereum Mist's Identicons
+
+      // The random number is a js implementation of the Xorshift PRNG
+      var randseed = new Array(4); // Xorshift: [x, y, z, w] 32 bit values
+
+      function seedrand(seed) {
+        for (var i = 0; i < randseed.length; i++) {
+          randseed[i] = 0;
+        }
+        for (var _i = 0; _i < seed.length; _i++) {
+          randseed[_i % 4] = (randseed[_i % 4] << 5) - randseed[_i % 4] + seed.charCodeAt(_i);
+        }
+      }
+
+      function rand() {
+        // based on Java's String.hashCode(), expanded to 4 32bit values
+        var t = randseed[0] ^ randseed[0] << 11;
+
+        randseed[0] = randseed[1];
+        randseed[1] = randseed[2];
+        randseed[2] = randseed[3];
+        randseed[3] = randseed[3] ^ randseed[3] >> 19 ^ t ^ t >> 8;
+
+        return (randseed[3] >>> 0) / (1 << 31 >>> 0);
+      }
+
+      function createColor() {
+        // saturation is the whole color spectrum
+        var h = Math.floor(rand() * 360);
+        // saturation goes from 40 to 100, it avoids greyish colors
+        var s = rand() * 60 + 40 + '%';
+        // lightness can be anything from 0 to 100, but probabilities are a bell curve around 50%
+        var l = (rand() + rand() + rand() + rand()) * 25 + '%';
+
+        var color = 'hsl(' + h + ',' + s + ',' + l + ')';
+        return color;
+      }
+
+      function createImageData(size) {
+        var width = size; // Only support square icons for now
+        var height = size;
+
+        var dataWidth = Math.ceil(width / 2);
+        var mirrorWidth = width - dataWidth;
+
+        var data = [];
+        for (var y = 0; y < height; y++) {
+          var row = [];
+          for (var x = 0; x < dataWidth; x++) {
+            // this makes foreground and background color to have a 43% (1/2.3) probability
+            // spot color has 13% chance
+            row[x] = Math.floor(rand() * 2.3);
+          }
+          var r = row.slice(0, mirrorWidth);
+          r.reverse();
+          row = row.concat(r);
+
+          for (var i = 0; i < row.length; i++) {
+            data.push(row[i]);
+          }
+        }
+
+        return data;
+      }
+
+      function setCanvas(identicon, imageData, color, scale, bgcolor, spotcolor) {
+        var width = Math.sqrt(imageData.length);
+        var size = width * scale;
+
+        identicon.width = size;
+        identicon.style.width = size + 'px';
+
+        identicon.height = size;
+        identicon.style.height = size + 'px';
+
+        var cc = identicon.getContext('2d');
+        cc.fillStyle = bgcolor;
+        cc.fillRect(0, 0, identicon.width, identicon.height);
+        cc.fillStyle = color;
+
+        for (var i = 0; i < imageData.length; i++) {
+          // if data is 2, choose spot color, if 1 choose foreground
+          cc.fillStyle = imageData[i] === 1 ? color : spotcolor;
+
+          // if data is 0, leave the background
+          if (imageData[i]) {
+            var row = Math.floor(i / width);
+            var col = i % width;
+
+            cc.fillRect(col * scale, row * scale, scale, scale);
+          }
+        }
+      }
+
+      var opts = options || {};
+      var size = opts.size || 8;
+      var scale = opts.scale || 4;
+      var seed = opts.seed || Math.floor(Math.random() * Math.pow(10, 16)).toString(16);
+
+      seedrand(seed);
+
+      var color = opts.color || createColor();
+      var bgcolor = opts.bgColor || createColor();
+      var spotcolor = opts.spotColor || createColor();
+      var imageData = createImageData(size);
+      var canvas = setCanvas(this.identicon, imageData, color, scale, bgcolor, spotcolor);
+
+      return canvas;
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
+
+      return _react2.default.createElement('canvas', {
+        ref: function ref(identicon) {
+          _this2.identicon = identicon;
+        },
+        className: this.props.className
+      });
+    }
+  }]);
+
+  return Identicon;
+}(React.Component);
+
+exports.default = Identicon;
+
 
 Identicon.defaultProps = {
-  className: 'identicon',
-  scale: 4,
-  seed: Math.floor(Math.random() * Math.pow(10, 16)).toString(16),
-  size: 8
+  className: 'identicon'
 };
+
 Identicon.propTypes = {
-  bgColor: _propTypes2.default.string,
-  className: _propTypes2.default.string,
-  color: _propTypes2.default.string,
-  scale: _propTypes2.default.number,
-  seed: _propTypes2.default.string,
+  seed: _propTypes2.default.string.isRequired,
   size: _propTypes2.default.number,
+  scale: _propTypes2.default.number,
+  color: _propTypes2.default.string,
+  bgColor: _propTypes2.default.string,
   spotColor: _propTypes2.default.string
 };
-exports.default = Identicon;
 });
 
 var Blockies = unwrapExports(main);
@@ -14888,7 +14152,7 @@ var BadgePopoverActionType = propTypes.shape({
 
 /**!
  * @fileOverview Kickass library to create and place poppers near their reference elements.
- * @version 1.16.0
+ * @version 1.15.0
  * @license
  * Copyright (c) 2016 Federico Zivolo and contributors
  *
@@ -14910,17 +14174,16 @@ var BadgePopoverActionType = propTypes.shape({
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-var isBrowser = typeof window !== 'undefined' && typeof document !== 'undefined' && typeof navigator !== 'undefined';
+var isBrowser = typeof window !== 'undefined' && typeof document !== 'undefined';
 
-var timeoutDuration = function () {
-  var longerTimeoutBrowsers = ['Edge', 'Trident', 'Firefox'];
-  for (var i = 0; i < longerTimeoutBrowsers.length; i += 1) {
-    if (isBrowser && navigator.userAgent.indexOf(longerTimeoutBrowsers[i]) >= 0) {
-      return 1;
-    }
+var longerTimeoutBrowsers = ['Edge', 'Trident', 'Firefox'];
+var timeoutDuration = 0;
+for (var i = 0; i < longerTimeoutBrowsers.length; i += 1) {
+  if (isBrowser && navigator.userAgent.indexOf(longerTimeoutBrowsers[i]) >= 0) {
+    timeoutDuration = 1;
+    break;
   }
-  return 0;
-}();
+}
 
 function microtaskDebounce(fn) {
   var called = false;
@@ -15038,17 +14301,6 @@ function getScrollParent(element) {
   }
 
   return getScrollParent(getParentNode(element));
-}
-
-/**
- * Returns the reference node of the reference object, or the reference object itself.
- * @method
- * @memberof Popper.Utils
- * @param {Element|Object} reference - the reference element (the popper will be relative to this)
- * @returns {Element} parent
- */
-function getReferenceNode(reference) {
-  return reference && reference.referenceNode ? reference.referenceNode : reference;
 }
 
 var isIE11 = isBrowser && !!(window.MSInputMethodContext && document.documentMode);
@@ -15359,8 +14611,8 @@ function getBoundingClientRect(element) {
 
   // subtract scrollbar size from sizes
   var sizes = element.nodeName === 'HTML' ? getWindowSizes(element.ownerDocument) : {};
-  var width = sizes.width || element.clientWidth || result.width;
-  var height = sizes.height || element.clientHeight || result.height;
+  var width = sizes.width || element.clientWidth || result.right - result.left;
+  var height = sizes.height || element.clientHeight || result.bottom - result.top;
 
   var horizScrollbar = element.offsetWidth - width;
   var vertScrollbar = element.offsetHeight - height;
@@ -15512,7 +14764,7 @@ function getBoundaries(popper, reference, padding, boundariesElement) {
   // NOTE: 1 DOM access here
 
   var boundaries = { top: 0, left: 0 };
-  var offsetParent = fixedPosition ? getFixedPositionOffsetParent(popper) : findCommonOffsetParent(popper, getReferenceNode(reference));
+  var offsetParent = fixedPosition ? getFixedPositionOffsetParent(popper) : findCommonOffsetParent(popper, reference);
 
   // Handle viewport case
   if (boundariesElement === 'viewport') {
@@ -15640,7 +14892,7 @@ function computeAutoPlacement(placement, refRect, popper, reference, boundariesE
 function getReferenceOffsets(state, popper, reference) {
   var fixedPosition = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : null;
 
-  var commonOffsetParent = fixedPosition ? getFixedPositionOffsetParent(popper) : findCommonOffsetParent(popper, getReferenceNode(reference));
+  var commonOffsetParent = fixedPosition ? getFixedPositionOffsetParent(popper) : findCommonOffsetParent(popper, reference);
   return getOffsetRectRelativeToArbitraryNode(reference, commonOffsetParent, fixedPosition);
 }
 
@@ -15902,7 +15154,7 @@ function destroy() {
 
   this.disableEventListeners();
 
-  // remove the popper if user explicitly asked for the deletion on destroy
+  // remove the popper if user explicity asked for the deletion on destroy
   // do not use `remove` because IE11 doesn't support it
   if (this.options.removeOnDestroy) {
     this.popper.parentNode.removeChild(this.popper);
@@ -19254,11 +18506,11 @@ var funcProto$1 = Function.prototype,
 var funcToString$1 = funcProto$1.toString;
 
 /** Used to check objects for own properties. */
-var hasOwnProperty$3 = objectProto$2.hasOwnProperty;
+var hasOwnProperty$2 = objectProto$2.hasOwnProperty;
 
 /** Used to detect if a method is native. */
 var reIsNative = RegExp('^' +
-  funcToString$1.call(hasOwnProperty$3).replace(reRegExpChar, '\\$&')
+  funcToString$1.call(hasOwnProperty$2).replace(reRegExpChar, '\\$&')
   .replace(/hasOwnProperty|(function).*?(?=\\\()| for .+?(?=\\\])/g, '$1.*?') + '$'
 );
 
@@ -19341,7 +18593,7 @@ var HASH_UNDEFINED = '__lodash_hash_undefined__';
 var objectProto$3 = Object.prototype;
 
 /** Used to check objects for own properties. */
-var hasOwnProperty$4 = objectProto$3.hasOwnProperty;
+var hasOwnProperty$3 = objectProto$3.hasOwnProperty;
 
 /**
  * Gets the hash value for `key`.
@@ -19358,14 +18610,14 @@ function hashGet(key) {
     var result = data[key];
     return result === HASH_UNDEFINED ? undefined : result;
   }
-  return hasOwnProperty$4.call(data, key) ? data[key] : undefined;
+  return hasOwnProperty$3.call(data, key) ? data[key] : undefined;
 }
 
 /** Used for built-in method references. */
 var objectProto$4 = Object.prototype;
 
 /** Used to check objects for own properties. */
-var hasOwnProperty$5 = objectProto$4.hasOwnProperty;
+var hasOwnProperty$4 = objectProto$4.hasOwnProperty;
 
 /**
  * Checks if a hash value for `key` exists.
@@ -19378,7 +18630,7 @@ var hasOwnProperty$5 = objectProto$4.hasOwnProperty;
  */
 function hashHas(key) {
   var data = this.__data__;
-  return nativeCreate ? (data[key] !== undefined) : hasOwnProperty$5.call(data, key);
+  return nativeCreate ? (data[key] !== undefined) : hasOwnProperty$4.call(data, key);
 }
 
 /** Used to stand-in for `undefined` hash values. */
@@ -27857,5 +27109,5 @@ var AutoCompleteSelected$1 = React.forwardRef(function (props, ref) {
   }));
 });
 
-export { Accordion, AddressField, AppBadge, AppBar$1 as AppBar, AppView, BREAKPOINTS, BackButton, Badge, BadgeNumber, Bar, BaseStyles$1 as BaseStyles, Box, ButtonWithRef as Button, ButtonBaseWithFocus as ButtonBase, ButtonIcon, ButtonText, Card, CardLayout, CheckBoxWithTheme as Checkbox, CircleGraph, ContextMenu, ContextMenuItem, Countdown, DEFAULT_FONT_FAMILY, DataView, DateRangePicker, DiscButton, Distribution, DropDown, EmptyStateCard, EscapeOutside, EthIdenticon, ExternalLink, Field, FloatIndicator, FocusVisible, GU, Header, Help, IconCirclePlus as IconAdd, IconAddUser, IconAlert, IconAlignCenter, IconAlignJustify, IconAlignLeft, IconAlignRight, IconGrid as IconApps, IconAragon, IconArrowDown, IconArrowLeft, IconArrowRight, IconArrowUp, IconAtSign, IconCaution as IconAttention, IconFile as IconBlank, IconBlock, IconBookmark, IconInfo as IconBylaw, IconCalendar, IconCanvas, IconCaution, IconCenter, IconChart, IconChat, IconCheck, IconChip, IconCircleCheck, IconCircleMinus, IconCirclePlus, IconClock, IconCross as IconClose, IconCloudDownload, IconCloudUpload, IconCoin, IconConfiguration, IconConnect, IconConnection, IconCopy, IconCross, IconDashedSquare, IconDown, IconDownload, IconEdit, IconEllipsis, IconWarning as IconError, IconEthereum, IconExternal, IconFile, IconFilter, IconFlag, IconFolder, IconCoin as IconFundraising, IconGraph, IconGraph2, IconGrid, IconGroup, IconHash, IconHeart, IconHide, IconHome, IconAddUser as IconIdentity, IconImage, IconInfo, IconLabel, IconLayers, IconLeft, IconLink, IconLocation, IconLock, IconMail, IconMaximize, IconMenu, IconMinimize, IconMinus, IconMove, IconNoPicture, IconAlert as IconNotifications, IconInfo as IconPermissions, IconPicture, IconPlus, IconPower, IconPrint, IconProhibited, IconQuestion, IconRefresh, IconCircleMinus as IconRemove, IconRemoveUser, IconRight, IconRotateLeft, IconRotateRight, IconSearch, IconSettings, IconShare, IconSquare, IconSquareMinus, IconSquarePlus, IconStar, IconStarFilled, IconTarget, IconClock as IconTime, IconToken, IconTrash, IconUnlock, IconUp, IconUpload, IconUser, IconView, IconVote, IconWallet, IconWarning, IconWorld, IconWrite, IconZoomIn, IconZoomOut, IdentityBadge, ImageExists, Info, Inside, KEY_DOWN, KEY_ENTER, KEY_ESC, KEY_UP, Layout, LineChart, Link, LinkBase, LoadingRing, MONOSPACE_FONT_FAMILY, Main$4 as Main, MainTheme, Modal, NavigationBar, Pagination, PartitionBar, Popover, ProgressBar, PublicUrl, RADIUS, Radio, Radio as RadioButton, RadioGroup, RadioList, Redraw, RedrawFromDate, Root, RootPortal, SafeLink, ScrollView, SearchInput, SidePanel, SidePanelSeparator, SidePanelSplit, Slider$1 as Slider, Split, Switch, SyncIndicator, TEXT_STYLES, TabBarLegacyCompatibility as TabBar, Table, TableCell, TableHeader, StyledTableRow as TableRow, Tabs, Tag, Text, TextCopy, WrapperTextInput as TextInput, Theme, Timer$1 as Timer, Toast, ToastHubProvider as ToastHub, TokenBadge, TransactionBadge, TransactionProgress, Viewport, AutoComplete$1 as _AutoComplete, AutoCompleteSelected$1 as _AutoCompleteSelected, addressesEqual, blockExplorerUrl, brand, breakpoint, colors$3 as colors, cssPx, devOnly, difference, eachDayOfInterval, font, formatHtmlDatetime, formatIntegerRange, forwardProps, identity, initContainsComponent, isAddress, isTransaction, log, monospace, noop, observe, pick, shortenAddress, shortenTransaction, springs, stylingProps, textStyle, theme, themeDark, tokenIconUrl, unselectable, useArrowKeysFocus, useClickOutside, useContainsAppView, useImageExists, useInside, useKeyDown, useLayout, useOnBlur, useRoot, useSidePanel, useSidePanelFocusOnReady, useTheme, useThemeMode, useToast, useViewport, warn, warnOnce };
+export { Accordion, AddressField, AppBadge, AppBar$1 as AppBar, AppView, BREAKPOINTS, BackButton, Badge, BadgeNumber, Bar, BaseStyles$1 as BaseStyles, Box, ButtonWithRef as Button, ButtonBaseWithFocus as ButtonBase, ButtonIcon, ButtonText, Card, CardLayout, CheckBoxWithTheme as Checkbox, CircleGraph, ContextMenu, ContextMenuItem, Countdown, DEFAULT_FONT_FAMILY, DataView, DateRangePicker, DiscButton, Distribution, DropDown, EmptyStateCard, EscapeOutside, EthIdenticon, ExternalLink, Field, FloatIndicator, FocusVisible, GU, Header, Help, IconCirclePlus as IconAdd, IconAddUser, IconAlert, IconAlignCenter, IconAlignJustify, IconAlignLeft, IconAlignRight, IconGrid as IconApps, IconAragon, IconArrowDown, IconArrowLeft, IconArrowRight, IconArrowUp, IconAtSign, IconCaution as IconAttention, IconFile as IconBlank, IconBlock, IconBookmark, IconInfo as IconBylaw, IconCalendar, IconCanvas, IconCaution, IconCenter, IconChart, IconChat, IconCheck, IconChip, IconCircleCheck, IconCircleMinus, IconCirclePlus, IconClock, IconCross as IconClose, IconCloudDownload, IconCloudUpload, IconCoin, IconConfiguration, IconConnect, IconConnection, IconConsole, IconCopy, IconCross, IconDashedSquare, IconDown, IconDownload, IconEdit, IconEllipsis, IconEnter, IconWarning as IconError, IconEthereum, IconExternal, IconFile, IconFilter, IconFlag, IconFolder, IconCoin as IconFundraising, IconGraph, IconGraph2, IconGrid, IconGroup, IconHash, IconHeart, IconHide, IconHome, IconAddUser as IconIdentity, IconImage, IconInfo, IconLabel, IconLayers, IconLeft, IconLink, IconLocation, IconLock, IconMail, IconMaximize, IconMenu, IconMinimize, IconMinus, IconMove, IconNoPicture, IconAlert as IconNotifications, IconInfo as IconPermissions, IconPicture, IconPlus, IconPower, IconPrint, IconProhibited, IconQuestion, IconRefresh, IconCircleMinus as IconRemove, IconRemoveUser, IconRight, IconRotateLeft, IconRotateRight, IconSearch, IconSettings, IconShare, IconSquare, IconSquareMinus, IconSquarePlus, IconStar, IconStarFilled, IconTarget, IconClock as IconTime, IconToken, IconTrash, IconUnlock, IconUp, IconUpload, IconUser, IconView, IconVote, IconWallet, IconWarning, IconWorld, IconWrite, IconZoomIn, IconZoomOut, IdentityBadge, ImageExists, Info, Inside, KEY_DOWN, KEY_ENTER, KEY_ESC, KEY_UP, Layout, LineChart, Link, LinkBase, LoadingRing, MONOSPACE_FONT_FAMILY, Main$4 as Main, MainTheme, Modal, NavigationBar, Pagination, PartitionBar, Popover, ProgressBar, PublicUrl, RADIUS, Radio, Radio as RadioButton, RadioGroup, RadioList, Redraw, RedrawFromDate, Root, RootPortal, SafeLink, ScrollView, SearchInput, SidePanel, SidePanelSeparator, SidePanelSplit, Slider$1 as Slider, Split, Switch, SyncIndicator, TEXT_STYLES, TabBarLegacyCompatibility as TabBar, Table, TableCell, TableHeader, StyledTableRow as TableRow, Tabs, Tag, Text, TextCopy, WrapperTextInput as TextInput, Theme, Timer$1 as Timer, Toast, ToastHubProvider as ToastHub, TokenBadge, TransactionBadge, TransactionProgress, Viewport, AutoComplete$1 as _AutoComplete, AutoCompleteSelected$1 as _AutoCompleteSelected, addressesEqual, blockExplorerUrl, brand, breakpoint, colors$3 as colors, cssPx, devOnly, difference, eachDayOfInterval, font, formatHtmlDatetime, formatIntegerRange, forwardProps, identity, initContainsComponent, isAddress, isTransaction, log, monospace, noop, observe, pick, shortenAddress, shortenTransaction, springs, stylingProps, textStyle, theme, themeDark, tokenIconUrl, unselectable, useArrowKeysFocus, useClickOutside, useContainsAppView, useImageExists, useInside, useKeyDown, useLayout, useOnBlur, useRoot, useSidePanel, useSidePanelFocusOnReady, useTheme, useThemeMode, useToast, useViewport, warn, warnOnce };
 //# sourceMappingURL=index.esm.js.map
