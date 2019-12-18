@@ -85,8 +85,8 @@ export default {
   controlUnder: colors.GreyBasic,
 
   accent: colors.AragonBlue,
-  accentStart: colors.AragonBlue,
-  accentEnd: colors.AragonTurquoise,
+  accentStart: '#32fff5',
+  accentEnd: colors.AragonBlue,
   accentContent: colors.White,
 
   floating: '#30404F',
