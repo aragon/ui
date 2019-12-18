@@ -2,7 +2,8 @@ dist/
 lib/
 node_modules/
 npm-debug.log
-yarn.lock
+package-lock.json
+yarn-error.log
 /stats.html
 
 # testing
