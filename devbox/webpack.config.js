@@ -1,6 +1,6 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const CleanWebpackPlugin = require('clean-webpack-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
 const TerserPlugin = require('terser-webpack-plugin')
 const webpack = require('webpack')
@@ -54,7 +54,7 @@ function production(env) {
     devtool: 'source-map',
     plugins: [
       ...config.plugins,
-      new CleanWebpackPlugin(['dist']),
+      new CleanWebpackPlugin(),
       new BundleAnalyzerPlugin({
         analyzerMode: 'static',
         reportFilename: 'bundle-report.html',
