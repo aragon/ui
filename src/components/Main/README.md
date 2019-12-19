@@ -7,7 +7,13 @@ Provides the base needed by the other components (styles and context providers) 
 ```jsx
 import { Main } from '@aragon/ui'
 
-const App = () => <Main>{/* Your app here */}</Main>
+function App () {
+  return (
+    <Main>
+      {/* Your app goes here */}
+    </Main>
+  )
+}
 ```
 
 ## Props
