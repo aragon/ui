@@ -1,11 +1,11 @@
+import url from '@rollup/plugin-url'
+import resolve from '@rollup/plugin-node-resolve'
 import babel from 'rollup-plugin-babel'
 import commonjs from 'rollup-plugin-commonjs'
 import filesize from 'rollup-plugin-filesize'
 import pkg from './package.json'
 import progress from 'rollup-plugin-progress'
-import resolve from 'rollup-plugin-node-resolve'
 import sizes from 'rollup-plugin-sizes'
-import url from 'rollup-plugin-url'
 import visualizer from 'rollup-plugin-visualizer'
 
 const production = !process.env.ROLLUP_WATCH

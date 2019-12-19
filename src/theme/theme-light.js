@@ -81,8 +81,8 @@ export default {
   controlUnder: '#DDE4E9',
 
   accent: '#08BEE5',
-  accentStart: '#08BEE5',
-  accentEnd: '#3FE8E0',
+  accentStart: '#32fff5',
+  accentEnd: '#08BEE5',
   accentContent: '#FFFFFF',
 
   floating: '#30404F',

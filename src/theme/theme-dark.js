@@ -4,7 +4,7 @@ export default {
 
   background: '#28334c',
   border: '#2c3a58',
-  overlay: '#35425e',
+  overlay: '#28334c',
   content: '#FFFFFF',
   contentSecondary: '#7c99d6',
 
@@ -65,7 +65,7 @@ export default {
   hint: '#6683c3',
   link: '#0ca5ff',
   focus: '#0ca5ff',
-  selected: '#00d2ff',
+  selected: '#08BEE5',
   selectedContent: '#FFFFFF',
   selectedDisabled: '#212B36',
 
@@ -80,9 +80,9 @@ export default {
   controlSurface: '#F9FAFC',
   controlUnder: '#F1F3F7',
 
-  accent: '#00d2ff',
-  accentStart: '#00d2ff',
-  accentEnd: '#0aece2',
+  accent: '#08BEE5',
+  accentStart: '#32fff5',
+  accentEnd: '#08BEE5',
   accentContent: '#FFFFFF',
 
   floating: '#1c2539',
