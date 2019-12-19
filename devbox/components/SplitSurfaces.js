@@ -1,6 +1,6 @@
 import React from 'react'
 import { useTheme } from '@aragon/ui'
-import { ToggleThemeButton } from '../components/toggle-theme'
+import { ToggleThemeButton } from '../components/current-theme'
 
 function SplitSurfaces({ primary, secondary, themeToggle = true, ...props }) {
   const theme = useTheme()

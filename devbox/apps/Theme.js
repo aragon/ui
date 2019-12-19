@@ -1,140 +1,48 @@
-import React from 'react'
-import { useTheme, useLayout, GU } from '@aragon/ui'
-import themeDark from '../../src/theme/theme-dark'
-import themeLight from '../../src/theme/theme-light'
-import colors from '../../src/theme/aragon-colors'
+import React, { useCallback, useMemo, useState } from 'react'
+import styled from 'styled-components'
+import {
+  BackButton,
+  Bar,
+  Button,
+  Header,
+  Main,
+  TextInput,
+  Theme,
+} from '@aragon/ui'
 
-const colorsByValue = Object.entries(colors).reduce(
-  (colorsByValue, [key, value]) => ({
-    ...colorsByValue,
-    [value]: key,
-  }),
-  {}
-)
+function App() {
+  const [theme, setTheme] = useState(Theme.EMBEDDED_THEMES.light)
+  const [themeValue, setThemeValue] = useState(JSON.stringify(theme, null, 2))
 
-const groups = [
-  ['Base', 'background'],
-  ['Surface', 'surface'],
-  ['Feedback', 'feedbackSurface'],
-  ['Warning', 'warning'],
-  ['Info', 'info'],
-  ['Help', 'help'],
-  ['Tones', 'negative'],
-  ['Tag', 'tagIdentifier'],
-  ['Special', 'link'],
-  ['Controls', 'control'],
-  ['Accent', 'accent'],
-  ['Colors', 'green'],
-  ['Deprecated', 'error'],
-]
+  const handleChange = useCallback(event => {
+    setThemeValue(event.target.value)
+    try {
+      setTheme(JSON.parse(event.target.value))
+    } catch (err) {
+      console.warn('Theme syntax error:', err.message)
+    }
+  }, [])
 
-function ThemeList({ colorCodes, name, theme, ...props }) {
-  const _theme = useTheme()
-  const { layoutName } = useLayout()
   return (
-    <div
-      css={`
-        width: ${layoutName === 'small' ? '100%' : '50%'};
-        padding: ${8 * GU}px 0;
-      `}
-      {...props}
-    >
-      <h1
+    <Main theme={theme}>
+      <Header primary="Theme" />
+      <Bar primary={<BackButton />} secondary={<Button label="Share" />} />
+
+      <TextInput
+        multiline
+        wide
+        value={themeValue}
+        onChange={handleChange}
         css={`
-          font-size: 40px;
-          margin-bottom: ${4 * GU}px;
+          display: flex;
+          height: 100vh;
+          font-family: monospace;
         `}
-      >
-        {name}
-      </h1>
-      {Object.entries(theme)
-        .filter(([key]) => key !== '_name')
-        .map(([key, value]) => {
-          const group = groups.find(g => g[1] === key)
-          return (
-            <div>
-              {group && (
-                <h2
-                  css={`
-                    margin-top: ${6 * GU}px;
-                    line-height: ${6 * GU}px;
-                  `}
-                >
-                  {group[0]}
-                </h2>
-              )}
-              <div
-                key={key}
-                css={`
-                  display: flex;
-                  align-items: center;
-                  height: ${6 * GU}px;
-                  border: 1px solid ${_theme.border};
-                  border-radius: 4px;
-                  margin-bottom: ${3 * GU}px;
-                  overflow: hidden;
-                  background: ${_theme.surface};
-                `}
-              >
-                <div
-                  css={`
-                    flex-shrink: 0;
-                    width: ${6 * GU}px;
-                    height: 100%;
-                    background: ${value};
-                    border-right: 1px solid ${_theme.border};
-                    margin-right: ${2 * GU}px;
-                  `}
-                />
-                <div
-                  css={`
-                    flex-grow: 1;
-                    display: flex;
-                    justify-content: space-between;
-                  `}
-                >
-                  <div>{key}</div>
-                  <div
-                    css={`
-                      color: ${_theme.surfaceContentSecondary};
-                      margin-right: ${3 * GU}px;
-                    `}
-                  >
-                    {colorCodes
-                      ? value
-                      : colorsByValue[value]
-                      ? colorsByValue[value]
-                      : '−'}
-                  </div>
-                </div>
-              </div>
-            </div>
-          )
-        })}
-    </div>
+      />
+    </Main>
   )
 }
 
-export default function() {
-  const { layoutName } = useLayout()
-  return (
-    <>
-      <div
-        css={`
-          display: ${layoutName === 'small' ? 'block' : 'flex'};
-          justify-content: space-between;
-        `}
-      >
-        <ThemeList
-          name="Light theme"
-          theme={themeLight}
-          css={`
-            margin-right: ${3 * GU}px;
-          `}
-        />
-        <ThemeList name="Dark theme" theme={themeDark} />
-      </div>
-      <ThemeList name="Base colors" theme={colors} colorCodes />
-    </>
-  )
-}
+App._bare = true
+
+export default App

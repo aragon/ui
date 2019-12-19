@@ -1,31 +1,27 @@
-import colors from './aragon-colors'
-
 export default {
   _name: 'dark',
+  _appearance: 'dark',
 
   background: '#28334c',
   border: '#2c3a58',
   overlay: '#28334c',
-  content: colors.White,
+  content: '#FFFFFF',
   contentSecondary: '#7c99d6',
 
   surface: '#35425e',
-  surfaceContent: colors.White,
+  surfaceContent: '#FFFFFF',
   surfaceContentSecondary: '#7c99d6',
   surfaceIcon: '#6683c3',
-
   surfaceUnder: '#2d3954',
   surfaceOpened: '#7c99d6',
-
   surfaceSelected: '#405071',
   surfaceHighlight: '#405071',
   surfacePressed: '#3f4e6d',
-
   surfaceInteractive: '#405071',
 
   feedbackSurface: '#4c5d82',
-  feedbackSurfaceContent: colors.GreyDark,
-  feedbackSurfaceContentSecondary: colors.GreyMedium,
+  feedbackSurfaceContent: '#212B36',
+  feedbackSurfaceContentSecondary: '#637381',
 
   warning: '#ffa410',
   warningSurface: '#656569',
@@ -35,20 +31,20 @@ export default {
   infoSurface: '#415279',
   infoSurfaceContent: '#18d4fb',
 
-  help: colors.Purple,
-  helpContent: colors.White,
-  helpSurface: colors.White,
-  helpSurfaceContent: colors.GreyDark,
+  help: '#7C80F2',
+  helpContent: '#FFFFFF',
+  helpSurface: '#FFFFFF',
+  helpSurfaceContent: '#212B36',
 
-  negative: colors.Red,
-  negativeContent: colors.White,
+  negative: '#FF6969',
+  negativeContent: '#FFFFFF',
   negativeSurface: '#655c72',
   negativeSurfaceContent: '#ff5454',
 
   positive: '#2cc68f',
-  positiveContent: colors.White,
+  positiveContent: '#FFFFFF',
   positiveSurface: '#35585e',
-  positiveSurfaceContent: colors.MintGreenDark,
+  positiveSurfaceContent: '#1B8962',
 
   badge: '#415279',
   badgeContent: '#ffffff',
@@ -64,14 +60,14 @@ export default {
   tagIndicatorContent: '#00d3ff',
 
   tagActivity: '#00d2ff',
-  tagActivityContent: colors.White,
+  tagActivityContent: '#FFFFFF',
 
   hint: '#6683c3',
   link: '#0ca5ff',
   focus: '#0ca5ff',
-  selected: colors.AragonBlue,
-  selectedContent: colors.White,
-  selectedDisabled: colors.GreyDark,
+  selected: '#08BEE5',
+  selectedContent: '#FFFFFF',
+  selectedDisabled: '#212B36',
 
   disabled: '#3f4e6f',
   disabledContent: '#8497bf',
@@ -81,25 +77,25 @@ export default {
   controlBorder: '#2c3a58',
   controlBorderPressed: '#65779a',
   controlDisabled: '#3f4e6f',
-  controlSurface: colors.ArcticBlueLight,
-  controlUnder: colors.ArcticBlue,
+  controlSurface: '#F9FAFC',
+  controlUnder: '#F1F3F7',
 
-  accent: colors.AragonBlue,
+  accent: '#08BEE5',
   accentStart: '#32fff5',
-  accentEnd: colors.AragonBlue,
-  accentContent: colors.White,
+  accentEnd: '#08BEE5',
+  accentContent: '#FFFFFF',
 
   floating: '#1c2539',
-  floatingContent: colors.White,
+  floatingContent: '#FFFFFF',
 
-  green: colors.GrassGreen,
-  yellow: colors.Yellow,
-  red: colors.Coral,
-  blue: colors.Blue,
-  brown: colors.Brown,
-  purple: colors.Purple,
+  green: '#9BC75A',
+  yellow: '#F7D858',
+  red: '#F08658',
+  blue: '#3E7BF6',
+  brown: '#876559',
+  purple: '#7C80F2',
 
-  // Deprecated
-  error: colors.Red,
+  // deprecated
+  error: '#FF6969',
   success: '#2cc68f',
 }
