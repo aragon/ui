@@ -21,12 +21,9 @@ function getTheme(theme) {
     warn(`Using the theme “${THEME_DEFAULT}”.`)
     return EMBEDDED_THEMES[THEME_DEFAULT]
   }
+
   if (typeof theme === 'string' && EMBEDDED_THEMES[theme]) {
     return EMBEDDED_THEMES[theme]
-  }
-
-  if (theme === EMBEDDED_THEMES[theme._name]) {
-    return theme
   }
 
   const baseTheme =
