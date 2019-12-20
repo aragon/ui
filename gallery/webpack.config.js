@@ -17,6 +17,7 @@ const MARKDOWN_ONLY_PAGES = [
   'help',
   'how-to-upgrade',
   'loading-ring',
+  'main',
   'search-input',
   'spacing',
   'sync-indicator',
