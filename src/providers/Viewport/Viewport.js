@@ -3,10 +3,15 @@ import PropTypes from 'prop-types'
 import { BREAKPOINTS } from '../../style'
 import throttle from 'lodash-es/throttle'
 
-const getCurrentWindowSize = () => ({
-  width: window.innerWidth,
-  height: window.innerHeight,
-})
+const SERVER_WINDOW_SIZE = { width: 0, height: 0 }
+
+const getCurrentWindowSize = () =>
+  typeof window === 'undefined'
+    ? SERVER_WINDOW_SIZE
+    : {
+        width: window.innerWidth,
+        height: window.innerHeight,
+      }
 
 const WINDOW_SIZE_BASE = { breakpoints: BREAKPOINTS, ...getCurrentWindowSize() }
 
