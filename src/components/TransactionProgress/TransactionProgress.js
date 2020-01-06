@@ -4,12 +4,12 @@ import { noop } from '../../utils'
 import { useTheme } from '../../theme'
 import { GU, textStyle } from '../../style'
 import { ButtonIcon } from '../Button/ButtonIcon'
-import Countdown from '../Countdown/Countdown'
 import { IconClose } from '../../icons'
 import { Info } from '../Info'
 import Link from '../Link/Link'
 import Popover from '../Popover/Popover'
 import ProgressBar from '../ProgressBar/ProgressBar'
+import Timer from '../Timer/Timer'
 
 const TransactionProgress = React.memo(function TransactionProgress({
   visible,
@@ -56,7 +56,7 @@ const TransactionProgress = React.memo(function TransactionProgress({
           >
             Estimated time:
           </span>
-          <Countdown removeDaysAndHours end={endTime} />
+          <Timer format="ms" end={endTime} />
         </div>
         <ProgressBar
           css={`
