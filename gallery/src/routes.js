@@ -12,7 +12,6 @@ import PageCard from './pages/PageCard'
 import PageCheckBox from './pages/PageCheckBox'
 import PageCircleGraph from './pages/PageCircleGraph'
 import PageContextMenu from './pages/PageContextMenu'
-import PageCountdown from './pages/PageCountdown'
 import PageDataView from './pages/PageDataView'
 import PageDateRangePicker from './pages/PageDateRangePicker'
 import PageDistribution from './pages/PageDistribution'
@@ -137,7 +136,6 @@ export const PAGE_GROUPS = [
       [readmePage(tagMd), 'Tag'],
       [readmePage(accordionMd), 'Accordion'],
       [PageTimer, 'Timer'],
-      [PageCountdown, 'Countdown'],
       [PageEthIdenticon, 'EthIdenticon'],
       [PageTransactionProgress, 'TransactionProgress'],
     ],
