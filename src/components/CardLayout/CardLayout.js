@@ -36,7 +36,7 @@ function CardLayout({ children, columnWidthMin, rowHeight, ...props }) {
 CardLayout.propTypes = {
   children: PropTypes.node,
   columnWidthMin: PropTypes.number,
-  rowHeight: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  rowHeight: PropTypes.oneOfType([PropTypes.oneOf(['auto']), PropTypes.number]),
 }
 
 CardLayout.defaultProps = {
