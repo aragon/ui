@@ -7,7 +7,7 @@ class Countdown extends React.Component {
   deprecationWarning() {
     warnOnce(
       'Countdown',
-      '"Countdown" and its variants have been deprecated. Please use "Timer" instead.'
+      '"Countdown" has been deprecated. Please use "Timer" instead.'
     )
   }
 
