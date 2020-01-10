@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react'
-import PropTypes from 'prop-types'
+import PropTypes from '../../proptypes'
 import { IconClose } from '../../icons'
 import { GU, textStyle } from '../../style'
 import { useTheme } from '../../theme'
@@ -118,7 +118,7 @@ BadgePopoverBase.propTypes = {
   addressField: PropTypes.node.isRequired,
   link: PropTypes.node,
   onClose: PropTypes.func,
-  opener: PropTypes.instanceOf(Element),
+  opener: PropTypes._element,
   popoverAction: BadgePopoverActionType,
   title: PropTypes.node.isRequired,
   titleTag: PropTypes.node,

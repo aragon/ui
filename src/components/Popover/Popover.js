@@ -1,5 +1,5 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+import PropTypes from '../../proptypes'
 import Popper from 'popper.js'
 import { Transition, animated } from 'react-spring'
 import { useRoot } from '../../providers'
@@ -13,7 +13,7 @@ class PopoverBase extends React.Component {
     children: PropTypes.node,
     closeOnOpenerFocus: PropTypes.bool,
     onClose: PropTypes.func,
-    opener: PropTypes.instanceOf(Element),
+    opener: PropTypes._element,
     placement: PropTypes.oneOf(
       // "center" is a value that doesn’t exist in Popper, but we are using it
       // to define custom Popper settings (see getPopperSettings() below).
@@ -25,7 +25,7 @@ class PopoverBase extends React.Component {
         ])
       )
     ),
-    rootBoundary: PropTypes.instanceOf(Element),
+    rootBoundary: PropTypes._element,
     theme: PropTypes.object,
     transitionStyles: PropTypes.object,
     zIndex: PropTypes.number,
@@ -164,9 +164,10 @@ class PopoverBase extends React.Component {
 
   boundaryDimensions() {
     const { rootBoundary } = this.props
+    const hasWindow = typeof window !== 'undefined'
     return rootBoundary
       ? [rootBoundary.clientWidth, rootBoundary.clientHeight]
-      : [window.innerWidth, window.innerHeight]
+      : [hasWindow ? window.innerWidth : 0, hasWindow ? window.innerHeight : 0]
   }
 
   render() {

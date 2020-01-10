@@ -1,5 +1,5 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+import PropTypes from '../../proptypes'
 import { noop } from '../../utils'
 import { useTheme } from '../../theme'
 import { GU, textStyle } from '../../style'
@@ -93,7 +93,7 @@ const TransactionProgress = React.memo(function TransactionProgress({
 TransactionProgress.propTypes = {
   endTime: PropTypes.instanceOf(Date),
   onClose: PropTypes.func,
-  opener: PropTypes.instanceOf(Element),
+  opener: PropTypes._element,
   progress: PropTypes.number,
   slow: PropTypes.bool,
   transactionHashUrl: PropTypes.string,

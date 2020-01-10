@@ -1,5 +1,5 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+import PropTypes from '../../proptypes'
 import { ImageExists } from '../../hooks'
 import { GU } from '../../style'
 import { blockExplorerUrl } from '../../utils'
@@ -48,7 +48,7 @@ TokenBadgePopover.propTypes = {
   iconSrc: PropTypes.string,
   networkType: PropTypes.string,
   onClose: PropTypes.func,
-  opener: PropTypes.instanceOf(Element),
+  opener: PropTypes._element,
   title: PropTypes.string.isRequired,
   visible: PropTypes.bool,
 }
