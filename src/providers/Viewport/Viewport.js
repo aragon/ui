@@ -3,19 +3,17 @@ import PropTypes from 'prop-types'
 import { BREAKPOINTS } from '../../style'
 import throttle from 'lodash-es/throttle'
 
-const SERVER_WINDOW_SIZE = { width: 0, height: 0 }
-
-const getCurrentWindowSize = () =>
-  typeof window === 'undefined'
-    ? SERVER_WINDOW_SIZE
-    : {
-        width: window.innerWidth,
-        height: window.innerHeight,
-      }
+const NO_DOM_WINDOW_SIZE = { width: 0, height: 0 }
 
 const WINDOW_SIZE_BASE = { breakpoints: BREAKPOINTS, ...getCurrentWindowSize() }
 
 const ViewportContext = React.createContext(WINDOW_SIZE_BASE)
+
+function getCurrentWindowSize() {
+  return typeof window === 'undefined'
+    ? NO_DOM_WINDOW_SIZE
+    : { width: window.innerWidth, height: window.innerHeight }
+}
 
 class ViewportProvider extends React.Component {
   static propTypes = {
@@ -48,14 +46,19 @@ class ViewportProvider extends React.Component {
   resizeStart() {
     this._handleResize = throttle(this.updateWindowSize, this.props.throttle)
     this.updateWindowSize()
-    window.addEventListener('resize', this._handleResize)
+
+    if (typeof window !== 'undefined') {
+      window.addEventListener('resize', this._handleResize)
+    }
   }
 
   resizeStop() {
     if (!this._handleResize) {
       return
     }
-    window.removeEventListener('resize', this._handleResize)
+    if (typeof window !== 'undefined') {
+      window.removeEventListener('resize', this._handleResize)
+    }
     this._handleResize.cancel()
     delete this._handleResize
   }

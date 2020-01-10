@@ -1,5 +1,5 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+import PropTypes from '../../proptypes'
 import { ImageExists } from '../../hooks'
 import { blockExplorerUrl } from '../../utils'
 import AddressField from '../AddressField/AddressField'
@@ -47,7 +47,7 @@ AppBadgePopover.propTypes = {
   iconSrc: PropTypes.string,
   networkType: PropTypes.string,
   onClose: PropTypes.func,
-  opener: PropTypes.instanceOf(Element),
+  opener: PropTypes._element,
   popoverAction: BadgePopoverActionType,
   title: PropTypes.node.isRequired,
   visible: PropTypes.bool,

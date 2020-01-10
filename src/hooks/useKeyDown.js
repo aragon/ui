@@ -13,6 +13,9 @@ export function useKeyDown(key, callback) {
   )
 
   useEffect(() => {
+    if (typeof window === 'undefined') {
+      return
+    }
     window.addEventListener('keydown', handlekeyDown)
     return () => {
       window.removeEventListener('keydown', handlekeyDown)
