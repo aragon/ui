@@ -224,7 +224,4 @@ LineChart.defaultProps = {
     `hsl(${(index * (360 / lines.length) + 40) % 360}, 60%, 70%)`,
 }
 
-export default props => {
-  const { width } = useViewport()
-  return <LineChart vw={width} {...props} />
-}
+export default LineChart
