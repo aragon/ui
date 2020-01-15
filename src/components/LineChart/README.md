@@ -55,16 +55,16 @@ The expected total (x axis of the chart). When not provided, the length of `valu
 ### `width`
 
 - Type: `Number`
-- Default: `300`
+- Default: None
 
-The width at which the chart renders, before expanding to fit its parent.
+The width of the chart. When not set, the SVG takes the width of its parent.
 
 ### `height`
 
 - Type: `Number`
 - Default: `200`
 
-The height at which the chart renders, before expanding to fit its parent.
+The height of the chart.
 
 ### `dotRadius`
 

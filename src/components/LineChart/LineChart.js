@@ -1,11 +1,37 @@
-import React, { useMemo, useCallback } from 'react'
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { Spring } from 'react-spring'
 import PropTypes from '../../proptypes'
-import { useViewport } from '../../providers/Viewport'
 import { springs } from '../../style'
 import { unselectable } from '../../utils'
 
 const LABELS_HEIGHT = 30
+const WIDTH_DEFAULT = 300
+
+function useMeasuredWidth() {
+  const ref = useRef()
+  const [measuredWidth, setMeasuredWidth] = useState(WIDTH_DEFAULT)
+
+  const onResize = useCallback(() => {
+    if (ref.current) {
+      setMeasuredWidth(ref.current.clientWidth)
+    }
+  }, [])
+
+  const onRef = useCallback(
+    element => {
+      ref.current = element
+      onResize()
+    },
+    [onResize]
+  )
+
+  useEffect(() => {
+    window.addEventListener('resize', onResize)
+    return () => window.removeEventListener('resize', onResize)
+  }, [onResize])
+
+  return [measuredWidth, onRef]
+}
 
 function LineChart({
   animDelay,
@@ -19,9 +45,11 @@ function LineChart({
   reset,
   springConfig,
   total,
-  width,
+  width: widthProps,
   ...props
 }) {
+  const [width, onSvgRef] = useMeasuredWidth()
+
   const lines = useMemo(() => {
     return linesProps.map(lineOrValues =>
       Array.isArray(lineOrValues) ? { values: lineOrValues } : lineOrValues
@@ -88,8 +116,9 @@ function LineChart({
     >
       {({ progress }) => (
         <svg
+          ref={onSvgRef}
           viewBox={`0 0 ${width} ${height}`}
-          width="auto"
+          width={widthProps || 'auto'}
           height="auto"
           css="display: block"
           {...props}
@@ -186,8 +215,8 @@ function LineChart({
 LineChart.propTypes = {
   springConfig: PropTypes._spring,
   total: PropTypes.number,
-  width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  width: PropTypes.number,
+  height: PropTypes.number,
   dotRadius: PropTypes.number,
   animDelay: PropTypes.number,
   borderColor: PropTypes.string,
@@ -211,7 +240,6 @@ LineChart.propTypes = {
 LineChart.defaultProps = {
   springConfig: springs.lazy,
   total: -1,
-  width: 300,
   height: 200,
   dotRadius: 7 / 2,
   animDelay: 500,
