@@ -27,12 +27,13 @@ function App() {
 This prop will define the motion of the chart.
 
 - Type: `Spring`
-- Default: `{ mass: 1, tension: 120, friction: 20 }`
+- Default: `springs.lazy`
 
 `spring Presets`
+
 There are presets to use for springConfig with different combinations of mass, tension and friction. More information can be found [here](https://www.react-spring.io/docs/hooks/api). See the following example to see how to use them.
 
-- Presets: `default`, `gentle`, `wobbly`, `stiff`, `slow`, `molasses`
+- Presets: `springs.lazy`, `springs.smooth`, `springs.swift`, `springs.instant`
 
 Example:
 
@@ -49,40 +50,56 @@ function App() {
 - Type: `Number`
 - Default: `-1`
 
+The expected total (x axis of the chart). When not provided, the length of `values` is used instead.
+
 ### `width`
 
 - Type: `Number`
-- Default: `300`
+- Default: None
+
+The width of the chart. When not set, the SVG takes the width of its parent.
 
 ### `height`
 
 - Type: `Number`
 - Default: `200`
 
+The height of the chart.
+
 ### `dotRadius`
 
 - Type: `Number`
 - Default: `7 / 2`
+
+The radius of every dot in the chart.
 
 ### `animDelay`
 
 - Type: `Number`
 - Default: `500`
 
+The delay before displaying the chart the first time it gets rendered.
+
 ### `borderColor`
 
 - Type: `String`
 - Default: `rgba(209, 209, 209, 0.5)`
+
+The border color.
 
 ### `labelColor`
 
 - Type: `String`
 - Default: `#6d777b`
 
+The label color.
+
 ### `reset`
 
 - Type: `Boolean`
 - Default: `false`
+
+Can be used to restart the transition. Set to `true`, then to `false` again.
 
 ### `lines`
 
@@ -94,10 +111,28 @@ Pass the values that will be used to draw the lines. The color atribute in Subty
 
 ### `label`
 
-- Type: `Function` or `Null`
-- Default: `idex => index + 1`
+- Type: `Function` or `null`
+
+Example:
+
+```jsx
+<LineChart label={index => ((index % 26) + 10).toString(36)} />
+```
+
+This function gets called to render a label on the x axis.
 
 ### `color`
 
 - Type: `Function`
-- Default: `hsl(${(index * (360 / lines.length) + 40) % 360}, 60%, 70%)`
+
+Example:
+
+```jsx
+<LineChart
+  color={(index, { lines }) => {
+    return `hsl(${(index * (360 / lines.length) + 40) % 360}, 60%, 70%)`
+  }}
+/>
+```
+
+This function gets called to render the color of a line.
