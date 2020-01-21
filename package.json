@@ -6,6 +6,7 @@
   "repository": "github:aragon/aragon-ui",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
+  "sideEffects": false,
   "files": [
     "LICENSE",
     "README.md",
