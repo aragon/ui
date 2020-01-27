@@ -39,10 +39,17 @@ _0to1.isRequired = createIsRequired(_0to1)
 
 // Accept DOM Element, in DOM environments
 function _element(props, propName, componentName) {
+  if (!props[propName]) {
+    return null
+  }
   if (typeof Element !== 'undefined') {
     return props[propName] instanceof Element
+      ? null
+      : new Error(
+          `Invalid prop \`${propName}\` supplied to \`${componentName}\`. Please provide a DOM Element.`
+        )
   }
-  return true
+  return null
 }
 _element.isRequired = createIsRequired(_element)
 
