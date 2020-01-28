@@ -4,13 +4,13 @@ import ReactMarkdown from 'react-markdown'
 import NormalizedHtml, {
   TASK_LIST_CLASSNAME,
 } from '../NormalizedHtml/NormalizedHtml'
-import SafeLink from '../Link/SafeLink'
+import Link from '../Link/Link'
 import Checkbox from '../Input/Checkbox'
 
-const Link = ({ children, ...props }) => (
-  <SafeLink {...props} target="_blank">
+const SafeLink = ({ children, ...props }) => (
+  <Link {...props} target="_blank">
     {children}
-  </SafeLink>
+  </Link>
 )
 
 const ListItem = ({ checked, children, ...props }) => {
@@ -23,7 +23,7 @@ const ListItem = ({ checked, children, ...props }) => {
   )
 }
 
-Link.propTypes = {
+SafeLink.propTypes = {
   children: PropTypes.node,
 }
 
@@ -44,7 +44,7 @@ class Markdown extends React.Component {
   static defaultProps = {
     reactMarkdownProps: {
       renderers: {
-        link: Link,
+        link: SafeLink,
         listItem: ListItem,
       },
     },
