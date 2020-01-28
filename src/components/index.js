@@ -41,6 +41,7 @@ export { default as LoadingRing } from './LoadingRing/LoadingRing'
 export { default as Main, useContainsAppView } from './Main/Main'
 export { default as Modal } from './Modal/Modal'
 export { default as NavigationBar } from './NavigationBar/NavigationBar'
+export { default as NormalizedHtml } from './NormalizedHtml/NormalizedHtml'
 export { default as PartitionBar } from './PartitionBar/PartitionBar'
 export { default as Popover } from './Popover/Popover'
 export { default as ProgressBar } from './ProgressBar/ProgressBar'
@@ -48,6 +49,9 @@ export { default as Radio } from './Input/Radio'
 export { default as RadioButton } from './Input/Radio'
 export { default as RadioGroup } from './Radio/RadioGroup'
 export { default as RadioList } from './Radio/RadioList'
+export {
+  default as RenderedMarkdown,
+} from './RenderedMarkdown/RenderedMarkdown'
 export { default as RootPortal } from './RootPortal/RootPortal'
 export { default as ScrollView } from './ScrollView/ScrollView'
 export {
