@@ -13,6 +13,11 @@ const PADDING = 5
 const MIN_WIDTH = HANDLE_SIZE * 10
 const HEIGHT = Math.max(HANDLE_SIZE, BAR_HEIGHT) + PADDING * 2
 
+const DEFAULT_RECT =
+  typeof window === 'undefined'
+    ? { x: 0, y: 0, width: 0, height: 0, top: 0, right: 0, bottom: 0, left: 0 }
+    : new window.DOMRect()
+
 class Slider extends React.Component {
   static propTypes = {
     value: PropTypes.number,
@@ -44,7 +49,7 @@ class Slider extends React.Component {
     this._lastRectTime = now
     this._lastRect = this._mainElement
       ? this._mainElement.getBoundingClientRect()
-      : new window.DOMRect()
+      : DEFAULT_RECT
 
     return this._lastRect
   }

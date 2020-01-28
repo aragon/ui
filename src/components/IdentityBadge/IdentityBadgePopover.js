@@ -1,5 +1,5 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+import PropTypes from '../../proptypes'
 import { GU } from '../../style'
 import { blockExplorerUrl } from '../../utils'
 import AddressField from '../AddressField/AddressField'
@@ -49,7 +49,7 @@ IdentityBadgePopover.propTypes = {
   connectedAccount: PropTypes.bool,
   networkType: PropTypes.string,
   onClose: PropTypes.func,
-  opener: PropTypes.instanceOf(Element),
+  opener: PropTypes._element,
   popoverAction: BadgePopoverActionType,
   title: PropTypes.node,
   visible: PropTypes.bool,

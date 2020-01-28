@@ -12,7 +12,6 @@ import PageCard from './pages/PageCard'
 import PageCheckBox from './pages/PageCheckBox'
 import PageCircleGraph from './pages/PageCircleGraph'
 import PageContextMenu from './pages/PageContextMenu'
-import PageCountdown from './pages/PageCountdown'
 import PageDataView from './pages/PageDataView'
 import PageDateRangePicker from './pages/PageDateRangePicker'
 import PageDistribution from './pages/PageDistribution'
@@ -28,7 +27,6 @@ import PageIdentityBadge from './pages/PageIdentityBadge'
 import PageInfo from './pages/PageInfo'
 import PageLineChart from './pages/PageLineChart'
 import PageLink from './pages/PageLink'
-import PageMain from './pages/PageMain'
 import PageModal from './pages/PageModal'
 import PagePagination from './pages/PagePagination'
 import PagePopover from './pages/PagePopover'
@@ -62,6 +60,7 @@ import floatIndicatorMd from 'ui-src/components/FloatIndicator/README.md'
 import gettingstartedMd from 'ui-docs/GettingStarted.md'
 import helpMd from 'ui-src/components/Help/README.md'
 import loadingRingMd from 'ui-src/components/LoadingRing/README.md'
+import mainMd from 'ui-src/components/Main/README.md'
 import searchInputMd from 'ui-src/components/Input/SearchInput.md'
 import spacingMd from 'ui-docs/Spacing.md'
 import syncIndicatorMd from 'ui-src/components/SyncIndicator/README.md'
@@ -102,7 +101,7 @@ export const PAGE_GROUPS = [
       [readmePage(colorsMd), 'Colors', 'colors'],
       [PageTextStyles, 'Text styles', 'text-styles'],
       [PageIcons, 'Icons'],
-      [PageMain, 'Main'],
+      [readmePage(mainMd), 'Main'],
     ],
   },
   {
@@ -137,7 +136,6 @@ export const PAGE_GROUPS = [
       [readmePage(tagMd), 'Tag'],
       [readmePage(accordionMd), 'Accordion'],
       [PageTimer, 'Timer'],
-      [PageCountdown, 'Countdown'],
       [PageEthIdenticon, 'EthIdenticon'],
       [PageTransactionProgress, 'TransactionProgress'],
     ],

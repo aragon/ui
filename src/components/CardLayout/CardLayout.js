@@ -7,6 +7,7 @@ import { Inside } from '../../utils/inside'
 function CardLayout({ children, columnWidthMin, rowHeight, ...props }) {
   const { layoutName } = useLayout()
   const fullWidth = layoutName === 'small'
+  const gridAutoRowValue = rowHeight === 'auto' ? rowHeight : `${rowHeight}px`
 
   return (
     <Inside name="CardLayout">
@@ -19,7 +20,7 @@ function CardLayout({ children, columnWidthMin, rowHeight, ...props }) {
             ${fullWidth ? 'auto-fit' : 'auto-fill'},
             minmax(${columnWidthMin}px, 1fr)
           );
-          grid-auto-rows: ${rowHeight}px;
+          grid-auto-rows: ${gridAutoRowValue};
           align-items: start;
           padding: 0 ${fullWidth ? 2 * GU : 0}px ${3 * GU}px;
           margin: 0 auto;
@@ -35,7 +36,7 @@ function CardLayout({ children, columnWidthMin, rowHeight, ...props }) {
 CardLayout.propTypes = {
   children: PropTypes.node,
   columnWidthMin: PropTypes.number,
-  rowHeight: PropTypes.number,
+  rowHeight: PropTypes.oneOfType([PropTypes.oneOf(['auto']), PropTypes.number]),
 }
 
 CardLayout.defaultProps = {

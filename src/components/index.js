@@ -24,7 +24,6 @@ export { default as Checkbox } from './Input/Checkbox'
 export { default as CircleGraph } from './CircleGraph/CircleGraph'
 export { default as ContextMenu } from './ContextMenu/ContextMenu'
 export { default as ContextMenuItem } from './ContextMenu/ContextMenuItem'
-export { default as Countdown } from './Countdown/Countdown'
 export { default as DateRangePicker } from './DateRangePicker/DateRangePicker'
 export { default as Distribution } from './Distribution/Distribution'
 export { default as DropDown } from './DropDown/DropDown'
@@ -71,22 +70,17 @@ export { default as TextCopy } from './TextCopy/TextCopy'
 export { default as TextInput } from './Input/TextInput'
 export { default as Timer } from './Timer/Timer'
 export { default as TokenBadge } from './TokenBadge/TokenBadge'
-export {
-  default as TransactionBadge,
-} from './TransactionBadge/TransactionBadge'
-export {
-  default as TransactionProgress,
-} from './TransactionProgress/TransactionProgress'
+export { default as TransactionBadge } from './TransactionBadge/TransactionBadge'
+export { default as TransactionProgress } from './TransactionProgress/TransactionProgress'
 
 // Deprecated / to be deprecated components
 export { default as AppBar } from './AppView/AppBar'
 export { default as AppView } from './AppView/AppView'
 export { default as Badge, BadgeNumber } from './Badge/Badge'
+export { default as Countdown } from './Countdown/Countdown'
 export { TabBarLegacyCompatibility as TabBar } from './Tabs/Tabs'
 export { default as Text } from './Text/Text'
 
 // Experimental components
 export { default as _AutoComplete } from './AutoComplete/AutoComplete'
-export {
-  default as _AutoCompleteSelected,
-} from './AutoComplete/AutoCompleteSelected'
+export { default as _AutoCompleteSelected } from './AutoComplete/AutoCompleteSelected'

@@ -1,11 +1,10 @@
 const webpack = require('webpack')
 const fs = require('fs')
 const path = require('path')
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+const TerserPlugin = require('terser-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const CompressionPlugin = require('compression-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const WebpackMonitor = require('webpack-monitor')
 
 const aragonUiVersion = require('../package.json').version
 
@@ -18,6 +17,7 @@ const MARKDOWN_ONLY_PAGES = [
   'help',
   'how-to-upgrade',
   'loading-ring',
+  'main',
   'search-input',
   'spacing',
   'sync-indicator',
@@ -79,6 +79,10 @@ module.exports = (env, argv) => {
         path.join(__dirname, '../node_modules'),
       ],
     },
+    optimization: {
+      minimize: production,
+      minimizer: [new TerserPlugin()],
+    },
     module: {
       rules: [
         {
@@ -132,12 +136,7 @@ module.exports = (env, argv) => {
       ]
 
       if (production) {
-        plugins = plugins
-          .concat([
-            new CompressionPlugin(),
-            new WebpackMonitor({ launch: !!process.env.INSPECT_BUNDLE }),
-          ])
-          .concat(htmlPages())
+        plugins = plugins.concat([new CompressionPlugin()]).concat(htmlPages())
       }
       return plugins
     })(),

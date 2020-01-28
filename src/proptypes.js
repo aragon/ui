@@ -14,6 +14,11 @@ function requireProp(props, propName, componentName) {
     : null
 }
 
+// Create the `isRequired` version of a prop type
+function createIsRequired(propTypeFn) {
+  return (...params) => requireProp(...params) || propTypeFn(...params)
+}
+
 // Accept any number in the 0 => 1 range
 function _0to1(props, propName, componentName) {
   if (isEmpty(props[propName])) {
@@ -30,9 +35,23 @@ function _0to1(props, propName, componentName) {
     `Invalid prop \`${propName}\` supplied to \`${componentName}\`. Please provide a number in the 0-1 range.`
   )
 }
+_0to1.isRequired = createIsRequired(_0to1)
 
-// Required version
-_0to1.isRequired = (...params) => requireProp(...params) || _0to1(...params)
+// Accept DOM Element, in DOM environments
+function _element(props, propName, componentName) {
+  if (!props[propName]) {
+    return null
+  }
+  if (typeof Element !== 'undefined') {
+    return props[propName] instanceof Element
+      ? null
+      : new Error(
+          `Invalid prop \`${propName}\` supplied to \`${componentName}\`. Please provide a DOM Element.`
+        )
+  }
+  return null
+}
+_element.isRequired = createIsRequired(_element)
 
 const ExtendedPropTypes = {
   ...PropTypes,
@@ -49,6 +68,7 @@ const ExtendedPropTypes = {
   }),
   _null: PropTypes.oneOf([null]),
   _0to1,
+  _element,
 }
 
 export default ExtendedPropTypes

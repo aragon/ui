@@ -51,7 +51,7 @@ import {
   useTheme,
   useToast,
 } from '@aragon/ui'
-import { ToggleThemeButton } from '../components/toggle-theme'
+import { ToggleThemeButton } from '../components/current-theme'
 import { createAddress } from '../create-address'
 import { multiplyArray, seedShuffleArray } from '../utils'
 
