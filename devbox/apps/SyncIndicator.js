@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import styled from 'styled-components'
-import { SyncIndicator } from '@aragon/ui'
+import { SyncIndicator, useToast } from '@aragon/ui'
 
 function App() {
-  const [enabled, setEnabled] = useState(true)
+  const [show, setShow] = useState(true)
+  const toast = useToast()
   return (
     <div
       css={`
@@ -15,14 +15,17 @@ function App() {
         margin: 0 auto;
       `}
     >
-      <SyncIndicator visible={enabled} />
+      <SyncIndicator visible={show} estimate="3 hours" />
 
-      <button onClick={() => setEnabled(v => !v)} css="margin-top: 20px">
-        {enabled ? 'hide' : 'show'}
+      <button onClick={() => setShow(v => !v)} css="margin-top: 20px">
+        {show ? 'hide' : 'show'}
+      </button>
+
+      <button onClick={() => toast('Test')} css="margin-top: 20px">
+        Show toast
       </button>
     </div>
   )
 }
 
 export default App
-
