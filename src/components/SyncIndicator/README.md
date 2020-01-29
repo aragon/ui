@@ -33,3 +33,10 @@ Set to `true` to display the indicator.
 | `String` | `"Syncing data…"` |
 
 The label displayed by the indicator.
+
+### `shift`
+
+- Type: `Number`
+- Default value: `0`
+
+Use this property to shift the position of the sync indicator from its “end position” (right on left to right languages).

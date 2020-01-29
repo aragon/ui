@@ -1,25 +1,36 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { GU } from '../../style'
 import FloatIndicator from '../FloatIndicator/FloatIndicator'
 import LoadingRing from '../LoadingRing/LoadingRing'
-import { Inside } from '../../utils/inside'
 
-function SyncIndicator({ visible, label, estimate }) {
+function SyncIndicator({
+  children,
+  estimate,
+  label,
+  shift,
+  visible,
+  ...props
+}) {
   return (
-    <FloatIndicator visible={visible}>
-      <Inside name="SyncIndicator">
-        <LoadingRing animated />
-      </Inside>
-      <span css="margin-left: 5px; line-height: 30px;">
-        {label}&nbsp;{estimate && `Estimate: ${estimate} `}🙏
-      </span>
+    <FloatIndicator visible={visible} shift={shift} {...props}>
+      <LoadingRing />
+      <div
+        css={`
+          margin-left: ${1.5 * GU}px;
+        `}
+      >
+        {children || `${label} ${estimate ? `Estimate: ${estimate}` : ''} 🙏`}
+      </div>
     </FloatIndicator>
   )
 }
 
 SyncIndicator.propTypes = {
-  label: PropTypes.string,
+  children: PropTypes.node,
   estimate: PropTypes.string,
+  label: PropTypes.string,
+  shift: PropTypes.number,
   visible: PropTypes.bool,
 }
 
