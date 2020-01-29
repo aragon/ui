@@ -21,3 +21,11 @@ function App() {
 | `Boolean` | `false`       |
 
 Set to `true` to pause the animation. Can be useful to optimize performances if the component is rendered but hidden.
+
+### `mode`
+
+| Type                             | Default value |
+| -------------------------------- | ------------- |
+| `"two-parts"` or `"half-circle"` | `"two-parts"` |
+
+One of the predefined styles for the loading ring. The default is “two-parts”, which is smaller than “half-circle”.
