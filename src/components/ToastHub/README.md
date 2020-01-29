@@ -60,7 +60,7 @@ Set this property to `true` to make toasts appear from the top.
 - Type: `Number`
 - Default value: `0`
 
-Use this property to shift the position of the toast from the selected position.
+Use this property to shift the position of the toast from its “end position” (right on left to right languages).
 
 ## Compound components
 
