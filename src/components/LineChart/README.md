@@ -121,10 +121,6 @@ Pass the values that will be used to draw the lines. The color atribute in Subty
 | ------------------- | --------------------------------------------------------------------------------------------------------------------------------- | ------------- |
 | `Array of Subtypes` | `id(Number), values(Array of Numbers from 0 to 1 - Required), color(String)` or `values(Array of Numbers from 0 to 1 - Required)` | `[]`          |
 
-- Type: `Array of Subtypes`
-- Subtypes: `id(Number), values(Array of Numbers from 0 to 1 - Required), color(String)` or `values(Array of Numbers from 0 to 1 - Required)`
-- Default: `[]`
-
 ### `label`
 
 | Type                 |
