@@ -22,43 +22,49 @@ const App = () => (
 
 ### `timeout`
 
-- Type: `Number`
-- Default value: `4000`
+| Type     | Default value |
+| -------- | ------------- |
+| `Number` | `4000`        |
 
 Set this property to change how long toasts will stick around.
 
 ### `showIndicator`
 
-- Type: `Boolean`
-- Default value: `false`
+| Type      | Default value |
+| --------- | ------------- |
+| `Boolean` | `false`       |
 
 Set this property to `true` to add a small timout-indicator to toast messages.
 
 ### `threshold`
 
-- Type: `Number`
-- Default value: `Infinity`
+| Type     | Default value |
+| -------- | ------------- |
+| `Number` | `Infinity`    |
 
 Set this property to change the threshold of toasts being presented at the same time. This will be used as an aproximation or a guideline, but it will still allow bursts to at least show.
 
 ### `position`
 
-- Type: one of `'left'`, `'center'`, `'right'`
-- Default value: `end`
+| Type                              | Default value |
+| --------------------------------- | ------------- |
+| `"left"`, `"center"` or `"right"` | `"end"`       |
 
 Set this property to change the position where toasts will appear.
 
 ### `top`
 
-- Type: `Boolean`
-- Default value: `false`
+| Type      | Default value |
+| --------- | ------------- |
+| `Boolean` | `false`       |
 
 Set this property to `true` to make toasts appear from the top.
 
 ### `shift`
 
-- Type: `Number`
-- Default value: `0`
+| Type     | Default value |
+| -------- | ------------- |
+| `Number` | `0`           |
 
 Use this property to shift the position of the toast from its “end position” (right on left to right languages).
 

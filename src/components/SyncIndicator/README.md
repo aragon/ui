@@ -36,7 +36,8 @@ The label displayed by the indicator.
 
 ### `shift`
 
-- Type: `Number`
-- Default value: `0`
+| Type     | Default value |
+| -------- | ------------- |
+| `Number` | `0`           |
 
 Use this property to shift the position of the sync indicator from its “end position” (right on left to right languages).
