@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useMemo, useState } from 'react'
 import PropTypes from 'prop-types'
 import { keyframes } from 'styled-components'
 import { useTheme } from '../../theme'
@@ -35,10 +35,17 @@ const LoadingRing = React.memo(function LoadingRing({
   const borderWidth =
     mode === 'half-circle' ? BORDER_WIDTH_SINGLE : BORDER_WIDTH_DOUBLE
   const size = (mode === 'half-circle' ? SIZE_MEDIUM : SIZE_SMALL) - borderWidth
-  const length = Math.PI * size
 
-  const gapLength = mode === 'two-parts' ? (length / 2) * 0.5 : length / 2
-  const dashLength = mode === 'two-parts' ? length / 2 - gapLength : length / 2
+  const [gapLength, dashLength] = useMemo(() => {
+    const length = Math.PI * size
+
+    if (mode === 'two-parts') {
+      return [length / 4, length / 4]
+    }
+
+    // half-circle
+    return [length / 2, length / 2]
+  }, [mode, size])
 
   return (
     <span
