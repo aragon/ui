@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { RADIUS, GU } from '../../style'
 import { useTheme } from '../../theme'
 import { useInside } from '../../utils'
-import { Bar } from '../Bar/Bar'
+import Bar from '../Bar/Bar'
 import ButtonBase from '../ButtonBase/ButtonBase'
 import { useLayout } from '../Layout/Layout'
 import { IconArrowLeft } from '../../icons'
@@ -67,5 +67,4 @@ BackButton.defaultProps = {
   label: 'Back',
 }
 
-export { BackButton }
 export default BackButton

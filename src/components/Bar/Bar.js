@@ -73,5 +73,4 @@ Bar.propTypes = {
 
 Bar.PADDING = BAR_PADDING
 
-export { Bar }
 export default Bar

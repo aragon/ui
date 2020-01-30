@@ -6,7 +6,7 @@ import AddressField from '../AddressField/AddressField'
 import BadgePopoverBase from '../BadgeBase/BadgePopoverBase'
 import BadgePopoverActionType from '../BadgeBase/BadgePopoverActionType'
 import Link from '../Link/Link'
-import { Tag } from '../Tag/Tag'
+import Tag from '../Tag/Tag'
 
 const IdentityBadgePopover = React.memo(function IdentityBadgePopover({
   address,

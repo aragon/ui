@@ -345,5 +345,4 @@ ButtonWithRef.Anchor = React.forwardRef((props, ref) => {
   return <ButtonWithRef ref={ref} {...props} />
 })
 
-export { ButtonWithRef as Button }
 export default ButtonWithRef

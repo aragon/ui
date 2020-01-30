@@ -4,7 +4,7 @@ import { GU, textStyle } from '../../style'
 import { useTheme } from '../../theme'
 import { useInside } from '../../utils'
 import { IconQuestion } from '../../icons'
-import { DiscButton } from '../DiscButton/DiscButton'
+import DiscButton from '../DiscButton/DiscButton'
 import Popover from '../Popover/Popover'
 
 function Help({ hint, children }) {

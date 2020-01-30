@@ -1,5 +1,5 @@
 import React, { useRef, useCallback } from 'react'
-import { ButtonIcon } from '../Button/ButtonIcon'
+import ButtonIcon from '../Button/ButtonIcon'
 import TextInput from './TextInput'
 import { IconSearch, IconCross } from '../../icons'
 import { useTheme } from '../../theme'
@@ -62,4 +62,4 @@ SearchInput.propTypes = {
   ...TextInput.propTypes,
 }
 
-export { SearchInput }
+export default SearchInput

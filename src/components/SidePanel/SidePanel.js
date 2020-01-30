@@ -7,7 +7,7 @@ import React, {
 } from 'react'
 import PropTypes from 'prop-types'
 import { Transition, animated } from 'react-spring'
-import { ButtonIcon } from '../Button/ButtonIcon'
+import ButtonIcon from '../Button/ButtonIcon'
 import { IconClose } from '../../icons'
 import { useViewport } from '../../providers/Viewport/Viewport'
 import { GU, springs, textStyle } from '../../style'
