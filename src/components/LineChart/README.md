@@ -26,8 +26,9 @@ function App() {
 
 This prop will define the motion of the chart.
 
-- Type: `Spring`
-- Default: `springs.lazy`
+| Type     | Default value  |
+| -------- | -------------- |
+| `Spring` | `springs.lazy` |
 
 `spring Presets`
 
@@ -47,19 +48,25 @@ function App() {
 
 ### `total`
 
-- Type: `Number`
-- Default: `-1`
+| Type     | Default value |
+| -------- | ------------- |
+| `Number` | `-1`          |
 
 The expected total (x axis of the chart). When not provided, the length of `values` is used instead.
 
 ### `width`
 
-- Type: `Number`
-- Default: None
+| Type     | Default value |
+| -------- | ------------- |
+| `Number` | None          |
 
 The width of the chart. When not set, the SVG takes the width of its parent.
 
 ### `height`
+
+| Type     | Default value |
+| -------- | ------------- |
+| `Number` | 200           |
 
 - Type: `Number`
 - Default: `200`
@@ -68,36 +75,41 @@ The height of the chart.
 
 ### `dotRadius`
 
-- Type: `Number`
-- Default: `7 / 2`
+| Type     | Default value |
+| -------- | ------------- |
+| `Number` | `7 / 2`       |
 
 The radius of every dot in the chart.
 
 ### `animDelay`
 
-- Type: `Number`
-- Default: `500`
+| Type     | Default value |
+| -------- | ------------- |
+| `Number` | `500`         |
 
 The delay before displaying the chart the first time it gets rendered.
 
 ### `borderColor`
 
-- Type: `String`
-- Default: `rgba(209, 209, 209, 0.5)`
+| Type     | Default value              |
+| -------- | -------------------------- |
+| `String` | `rgba(209, 209, 209, 0.5)` |
 
 The border color.
 
 ### `labelColor`
 
-- Type: `String`
-- Default: `#6d777b`
+| Type     | Default value |
+| -------- | ------------- |
+| `String` | `#6d777b`     |
 
 The label color.
 
 ### `reset`
 
-- Type: `Boolean`
-- Default: `false`
+| Type      | Default value |
+| --------- | ------------- |
+| `Boolean` | `false`       |
 
 Can be used to restart the transition. Set to `true`, then to `false` again.
 
@@ -105,13 +117,19 @@ Can be used to restart the transition. Set to `true`, then to `false` again.
 
 Pass the values that will be used to draw the lines. The color atribute in Subtypes overrides the `color` prop.
 
+| Type                | Subtypes                                                                                                                          | Default value |
+| ------------------- | --------------------------------------------------------------------------------------------------------------------------------- | ------------- |
+| `Array of Subtypes` | `id(Number), values(Array of Numbers from 0 to 1 - Required), color(String)` or `values(Array of Numbers from 0 to 1 - Required)` | `[]`          |
+
 - Type: `Array of Subtypes`
 - Subtypes: `id(Number), values(Array of Numbers from 0 to 1 - Required), color(String)` or `values(Array of Numbers from 0 to 1 - Required)`
 - Default: `[]`
 
 ### `label`
 
-- Type: `Function` or `null`
+| Type                 |
+| -------------------- |
+| `Function` or `null` |
 
 Example:
 
@@ -123,7 +141,9 @@ This function gets called to render a label on the x axis.
 
 ### `color`
 
-- Type: `Function`
+| Type       |
+| ---------- |
+| `Function` |
 
 Example:
 
