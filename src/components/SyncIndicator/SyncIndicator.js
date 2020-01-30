@@ -4,14 +4,7 @@ import { GU } from '../../style'
 import FloatIndicator from '../FloatIndicator/FloatIndicator'
 import LoadingRing from '../LoadingRing/LoadingRing'
 
-function SyncIndicator({
-  children,
-  estimate,
-  label,
-  shift,
-  visible,
-  ...props
-}) {
+function SyncIndicator({ children, label, shift, visible, ...props }) {
   return (
     <FloatIndicator visible={visible} shift={shift} {...props}>
       <LoadingRing />
@@ -20,7 +13,7 @@ function SyncIndicator({
           margin-left: ${1.5 * GU}px;
         `}
       >
-        {children || `${label} ${estimate ? `Estimate: ${estimate}` : ''} 🙏`}
+        {children}
       </div>
     </FloatIndicator>
   )
@@ -28,14 +21,13 @@ function SyncIndicator({
 
 SyncIndicator.propTypes = {
   children: PropTypes.node,
-  estimate: PropTypes.string,
   label: PropTypes.string,
   shift: PropTypes.number,
   visible: PropTypes.bool,
 }
 
 SyncIndicator.defaultProps = {
-  label: 'Syncing data…',
+  children: 'Syncing data… 🙏',
 }
 
 export default SyncIndicator
