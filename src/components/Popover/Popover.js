@@ -47,7 +47,7 @@ class PopoverBase extends React.Component {
   componentDidMount() {
     this._document = this._popperElement.current.ownerDocument
     this._document.addEventListener('keydown', this.handleEscape)
-    this._cardElement.current.focus()
+    this.focus()
     this.initPopper()
   }
 
@@ -67,6 +67,12 @@ class PopoverBase extends React.Component {
     ) {
       this.destroyPopper()
       this.initPopper()
+    }
+  }
+
+  focus() {
+    if (this._cardElement.current) {
+      this._cardElement.current.focus()
     }
   }
 
@@ -120,16 +126,15 @@ class PopoverBase extends React.Component {
   }
 
   handleEscape = ({ keyCode }) => {
-    const { opener, onClose } = this.props
     if (keyCode === KEY_ESC) {
       // On escape, we always move the focus back to the opener.
-      opener.focus()
-      onClose()
+      this.props.opener.focus()
+      this.attemptClose()
     }
   }
 
   handleBlur = event => {
-    const { closeOnOpenerFocus, opener, onClose } = this.props
+    const { closeOnOpenerFocus, opener } = this.props
     const focusedElement = event.relatedTarget
 
     // Do not close if:
@@ -159,7 +164,17 @@ class PopoverBase extends React.Component {
     if (!focusedElement) {
       opener.focus()
     }
-    onClose()
+    this.attemptClose()
+  }
+
+  attemptClose() {
+    const accepted = this.props.onClose()
+
+    // If closing the popover is not accepted, we need to focus it again so
+    // that it can react to onBlur events.
+    if (accepted === false) {
+      this.focus()
+    }
   }
 
   boundaryDimensions() {
