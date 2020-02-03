@@ -117,9 +117,9 @@ Can be used to restart the transition. Set to `true`, then to `false` again.
 
 Pass the values that will be used to draw the lines. The color atribute in Subtypes overrides the `color` prop.
 
-| Type                | Subtypes                                                                                                                          | Default value |
-| ------------------- | --------------------------------------------------------------------------------------------------------------------------------- | ------------- |
-| `Array of Subtypes` | `id(Number), values(Array of Numbers from 0 to 1 - Required), color(String)` or `values(Array of Numbers from 0 to 1 - Required)` | `[]`          |
+| Type                | Subtypes                                                                                                                                       | Default value |
+| ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- | ------------- |
+| `Array of Subtypes` | `id(Number)`,<br>`values(Array of Numbers from 0 to 1 - Required)`,<br>`color(String)` or<br>`values(Array of Numbers from 0 to 1 - Required)` | `[]`          |
 
 ### `label`
 
