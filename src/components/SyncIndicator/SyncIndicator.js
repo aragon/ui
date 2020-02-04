@@ -13,7 +13,7 @@ function SyncIndicator({ children, label, shift, visible, ...props }) {
           margin-left: ${1.5 * GU}px;
         `}
       >
-        {children || `${label} 🙏`}
+        {children || <span css="white-space: nowrap">{label} 🙏</span>}
       </div>
     </FloatIndicator>
   )
