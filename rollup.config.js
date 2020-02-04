@@ -1,4 +1,4 @@
-import { basename } from 'path'
+import { basename, dirname } from 'path'
 import url from '@rollup/plugin-url'
 import resolve from '@rollup/plugin-node-resolve'
 import babel from 'rollup-plugin-babel'
@@ -9,32 +9,42 @@ import glob from 'fast-glob'
 
 const production = !process.env.ROLLUP_WATCH
 
+// Get all the JS modules inside of a directory, excluding index.js and test
+// files, and with a configurable depth.
 async function getModules(dir, deep = 1) {
-  const files = await glob(
+  const paths = await glob(
     [`${dir}/**/*.js`, `!${dir}/**/index.js`, `!${dir}/**/*.test.js`],
     { onlyFiles: true, deep }
   )
-  return files.reduce(
-    (inputs, file) => ({ ...inputs, [basename(file, '.js')]: file }),
+  return paths.reduce(
+    (inputs, path) => ({ ...inputs, [basename(path, '.js')]: path }),
+    {}
+  )
+}
+
+// Only get the index.js files of a directory.
+async function getModulesIndexes(dir) {
+  return (await glob(`${dir}/*/index.js`)).reduce(
+    (inputs, path) => ({ ...inputs, [basename(dirname(path))]: path }),
     {}
   )
 }
 
 export default (async () => {
+  console.log('\n  Bundling modules with Rollup…')
   return {
     input: {
       index: 'src/index.js',
-      components: 'src/components/index.js',
-      hooks: 'src/hooks/index.js',
-      providers: 'src/providers/index.js',
-      icons: 'src/icons/index.js',
-      themeLegacy: 'src/theme-legacy/index.js',
-      theme: 'src/theme/index.js',
-      utils: 'src/utils/index.js',
-      style: 'src/style/index.js',
+      ...(await getModulesIndexes('src')),
       ...(await getModules('src/components', 2)),
+      ...(await getModules('src/hooks')),
       ...(await getModules('src/icons/components')),
+      ...(await getModules('src/style')),
+      ...(await getModules('src/theme')),
+      ...(await getModules('src/theme-legacy')),
       ...(await getModules('src/utils')),
+      ...(await getModules('src/providers')),
+      observe: 'src/providers/observe/index.js',
     },
     output: [
       {
@@ -50,10 +60,26 @@ export default (async () => {
         format: 'cjs',
         preserveModules: false,
         sourcemap: true,
+        // Lets us mix default and named exports in components without emitting
+        // a warning. This is not an issue for us because components are not
+        // imported directly but through src/index.js, which doesn’t have a
+        // default export.
+        exports: 'named',
       },
     ],
     external: ['react', 'react-dom', 'styled-components'],
-    treeshake: true,
+    treeshake: production
+      ? {
+          moduleSideEffects: false,
+
+          // Reminder: getters are going to be used to deprecate theme-legacy, so
+          // we should set this to false when adding the deprecation notice.
+          propertyReadSideEffects: true,
+
+          unknownGlobalSideEffects: false,
+        }
+      : false,
+
     plugins: [
       process.env.ANALYZE && analyze(),
       progress(),
