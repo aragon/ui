@@ -1,4 +1,3 @@
-export { ExternalLink, SafeLink } from './Link/LinkDeprecated'
 export { default as Accordion } from './Accordion/Accordion'
 export { default as AddressField } from './AddressField/AddressField'
 export { default as AppBadge } from './AppBadge/AppBadge'
@@ -75,11 +74,12 @@ export { default as TransactionBadge } from './TransactionBadge/TransactionBadge
 export { default as TransactionProgress } from './TransactionProgress/TransactionProgress'
 
 // Deprecated / to be deprecated components
+export { ExternalLink, SafeLink } from './Link/LinkDeprecated'
+export { TabBarLegacyCompatibility as TabBar } from './Tabs/Tabs'
 export { default as AppBar } from './AppView/AppBar'
 export { default as AppView } from './AppView/AppView'
 export { default as Badge, BadgeNumber } from './Badge/Badge'
 export { default as Countdown } from './Countdown/Countdown'
-export { TabBarLegacyCompatibility as TabBar } from './Tabs/Tabs'
 export { default as Text } from './Text/Text'
 
 // Experimental components
