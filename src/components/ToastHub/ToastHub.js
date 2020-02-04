@@ -229,4 +229,5 @@ const Life = styled(animated.div)`
   height: 5px;
 `
 
-export { ToastHubProvider as ToastHub, Toast, useToast }
+export default ToastHubProvider
+export { Toast, useToast }
