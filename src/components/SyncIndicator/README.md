@@ -28,11 +28,21 @@ Set to `true` to display the indicator.
 
 ### `label`
 
-| Type     | Default value     |
-| -------- | ----------------- |
-| `String` | `"Syncing data…"` |
+| Type   | Default value     |
+| ------ | ----------------- |
+| `Node` | `"Syncing data…"` |
 
 The label displayed by the indicator.
+
+Note: the “folded hands” emoji 🙏 will be appended to the label. Use `children` if you wish to override this behavior.
+
+### `children`
+
+| Type   | Default value |
+| ------ | ------------- |
+| `Node` | None          |
+
+Use `children` to override `label` and its emoji decoration.
 
 ### `shift`
 
