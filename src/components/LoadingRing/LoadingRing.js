@@ -13,11 +13,14 @@ const spin = keyframes`
   }
 `
 
-const SIZE_SMALL = 18
+const SIZE_SMALL = 14
 const SIZE_MEDIUM = 24
 
-const BORDER_WIDTH_SINGLE = 2.5
-const BORDER_WIDTH_DOUBLE = 1
+const CONTAINER_SIZE_SMALL = 22
+const CONTAINER_SIZE_MEDIUM = 24
+
+const BORDER_WIDTH_STRONG = 2.5
+const BORDER_WIDTH_MEDIUM = 1
 
 let lastInstanceId = 1
 
@@ -32,12 +35,19 @@ const LoadingRing = React.memo(function LoadingRing({
 
   const mode = modeProp || (insideFloatIndicator ? 'half-circle' : 'two-parts')
 
+  const containerSize =
+    mode === 'half-circle' ? CONTAINER_SIZE_MEDIUM : CONTAINER_SIZE_SMALL
   const borderWidth =
-    mode === 'half-circle' ? BORDER_WIDTH_SINGLE : BORDER_WIDTH_DOUBLE
+    mode === 'half-circle' ? BORDER_WIDTH_STRONG : BORDER_WIDTH_MEDIUM
   const size = (mode === 'half-circle' ? SIZE_MEDIUM : SIZE_SMALL) - borderWidth
 
   const [gapLength, dashLength] = useMemo(() => {
     const length = Math.PI * size
+
+    // Both modes display a full circle when paused.
+    if (paused) {
+      return [0, length]
+    }
 
     if (mode === 'two-parts') {
       return [length / 4, length / 4]
@@ -45,7 +55,7 @@ const LoadingRing = React.memo(function LoadingRing({
 
     // half-circle
     return [length / 2, length / 2]
-  }, [mode, size])
+  }, [mode, size, paused])
 
   return (
     <span
@@ -54,8 +64,8 @@ const LoadingRing = React.memo(function LoadingRing({
         display: flex;
         align-items: center;
         justify-content: center;
-        width: ${size + borderWidth}px;
-        height: ${size + borderWidth}px;
+        width: ${containerSize}px;
+        height: ${containerSize}px;
       `}
       {...props}
     >
