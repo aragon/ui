@@ -13,7 +13,7 @@ function SyncIndicator({ children, label, shift, visible, ...props }) {
           margin-left: ${1.5 * GU}px;
         `}
       >
-        {children}
+        {children || `${label} 🙏`}
       </div>
     </FloatIndicator>
   )
@@ -21,13 +21,13 @@ function SyncIndicator({ children, label, shift, visible, ...props }) {
 
 SyncIndicator.propTypes = {
   children: PropTypes.node,
-  label: PropTypes.string,
+  label: PropTypes.node,
   shift: PropTypes.number,
   visible: PropTypes.bool,
 }
 
 SyncIndicator.defaultProps = {
-  children: 'Syncing data… 🙏',
+  label: 'Syncing data…',
 }
 
 export default SyncIndicator
