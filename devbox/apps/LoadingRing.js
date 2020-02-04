@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import { LoadingRing } from '@aragon/ui'
+import { Button, LoadingRing } from '@aragon/ui'
+import { ToggleThemeButton } from '../components/current-theme'
 
 function App() {
   const [paused, setPaused] = useState(false)
@@ -14,16 +15,17 @@ function App() {
         margin: 0 auto;
       `}
     >
+      <ToggleThemeButton />
       <LoadingRing paused={paused} />
 
-      <button
+      <Button
         onClick={() => setPaused(v => !v)}
         css={`
           margin-top: 20px;
         `}
       >
         {paused ? 'start' : 'stop'}
-      </button>
+      </Button>
     </div>
   )
 }
