@@ -71,6 +71,7 @@ function AutoCompleteSelected({
 
   return (
     <AutoComplete
+      itemButtonStyles={itemButtonStyles}
       items={items}
       onChange={onChange}
       onSelect={handleSelect}
