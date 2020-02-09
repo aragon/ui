@@ -349,6 +349,7 @@ const DataView = React.memo(function DataView({
             `}
           >
             {(() => {
+              // Empty state: illustration part
               if (status === 'default' || status === 'loading') {
                 return (
                   <img
@@ -375,6 +376,11 @@ const DataView = React.memo(function DataView({
                 )
               }
 
+              return null
+            })()}
+
+            {(() => {
+              // Empty state: content part
               if (status === 'default') {
                 return (
                   statusEmpty || (
