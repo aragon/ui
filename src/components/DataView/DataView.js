@@ -348,102 +348,128 @@ const DataView = React.memo(function DataView({
               padding: ${8 * GU}px 0;
             `}
           >
-            {(status === 'default' || status === 'loading') && (
-              <img
-                src={publicUrl + illustrationBlueImage}
-                alt=""
-                height={20 * GU}
-                css={`
-                  margin-bottom: ${2 * GU}px;
-                `}
-              />
-            )}
-
-            {(status === 'empty-filters' || status === 'empty-search') && (
-              <img
-                src={publicUrl + illustrationRedImage}
-                alt=""
-                height={20 * GU}
-                css={`
-                  margin-bottom: ${2 * GU}px;
-                `}
-              />
-            )}
-
-            {status === 'default' &&
-              (statusEmpty || (
-                <p
-                  css={`
-                    ${textStyle('title2')};
-                  `}
-                >
-                  No data available.
-                </p>
-              ))}
-
-            {status === 'loading' &&
-              (statusLoading || (
-                <p
-                  css={`
-                    ${textStyle('title2')};
-                    display: flex;
-                    align-items: center;
-                  `}
-                >
-                  <LoadingRing
+            {(() => {
+              // Empty state: illustration part
+              if (status === 'default' || status === 'loading') {
+                return (
+                  <img
+                    src={publicUrl + illustrationBlueImage}
+                    alt=""
+                    height={20 * GU}
                     css={`
-                      margin-right: ${2 * GU}px;
+                      margin-bottom: ${2 * GU}px;
                     `}
-                  />{' '}
-                  Loading data…
-                </p>
-              ))}
+                  />
+                )
+              }
 
-            {status === 'empty-filters' && (
-              <>
-                <p
-                  css={`
-                    ${textStyle('title2')};
-                    margin-top: ${2 * GU}px;
-                  `}
-                >
-                  No results found.
-                </p>
-                {statusEmptyFilters || (
-                  <p
+              if (status === 'empty-filters' || status === 'empty-search') {
+                return (
+                  <img
+                    src={publicUrl + illustrationRedImage}
+                    alt=""
+                    height={20 * GU}
                     css={`
-                      color: ${theme.surfaceContentSecondary};
+                      margin-bottom: ${2 * GU}px;
                     `}
-                  >
-                    {'We can’t find any item matching your filter selection. '}
-                    <Link onClick={onStatusEmptyClear}>Clear filters</Link>
-                  </p>
-                )}
-              </>
-            )}
+                  />
+                )
+              }
 
-            {status === 'empty-search' && (
-              <>
-                <p
-                  css={`
-                    ${textStyle('title2')};
-                    margin-top: ${2 * GU}px;
-                  `}
-                >
-                  No results found.
-                </p>
-                {statusEmptySearch || (
-                  <p
-                    css={`
-                      color: ${theme.surfaceContentSecondary};
-                    `}
-                  >
-                    {'We can’t find any item matching your search query. '}
-                    <Link onClick={onStatusEmptyClear}>Clear search</Link>
-                  </p>
-                )}
-              </>
-            )}
+              return null
+            })()}
+
+            {(() => {
+              // Empty state: content part
+              if (status === 'default') {
+                return (
+                  statusEmpty || (
+                    <p
+                      css={`
+                        ${textStyle('title2')};
+                      `}
+                    >
+                      No data available.
+                    </p>
+                  )
+                )
+              }
+
+              if (status === 'loading') {
+                return (
+                  statusLoading || (
+                    <p
+                      css={`
+                        ${textStyle('title2')};
+                        display: flex;
+                        align-items: center;
+                      `}
+                    >
+                      <LoadingRing
+                        css={`
+                          margin-right: ${2 * GU}px;
+                        `}
+                      />{' '}
+                      Loading data…
+                    </p>
+                  )
+                )
+              }
+
+              if (status === 'empty-filters') {
+                return (
+                  <>
+                    <p
+                      css={`
+                        ${textStyle('title2')};
+                        margin-top: ${2 * GU}px;
+                      `}
+                    >
+                      No results found.
+                    </p>
+                    {statusEmptyFilters || (
+                      <p
+                        css={`
+                          color: ${theme.surfaceContentSecondary};
+                        `}
+                      >
+                        {
+                          'We can’t find any item matching your filter selection. '
+                        }
+                        <Link onClick={onStatusEmptyClear}>Clear filters</Link>
+                      </p>
+                    )}
+                  </>
+                )
+              }
+
+              if (status === 'empty-search') {
+                return (
+                  <>
+                    <p
+                      css={`
+                        ${textStyle('title2')};
+                        margin-top: ${2 * GU}px;
+                      `}
+                    >
+                      No results found.
+                    </p>
+                    {statusEmptySearch || (
+                      <p
+                        css={`
+                          color: ${theme.surfaceContentSecondary};
+                        `}
+                      >
+                        {'We can’t find any item matching your search query. '}
+                        <Link onClick={onStatusEmptyClear}>Clear search</Link>
+                      </p>
+                    )}
+                  </>
+                )
+              }
+
+              return null
+            })()}
           </div>
         </div>
       )}
