@@ -52,7 +52,7 @@ jobs:
           node-version: 12.x
       - name: Install, build & prepare
         run: |
-          mv ./aragon-ui/aragon-ui-build ./dist
+          mv ./aragon-ui/aragon-ui/aragon-ui-build ./dist
           cd gallery
           yarn --frozen-lockfile
           yarn build
