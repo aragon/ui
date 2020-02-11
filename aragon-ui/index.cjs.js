@@ -3767,12 +3767,9 @@ function throttle(func, wait, options) {
 function ownKeys$2(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread$2(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$2(source, true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$2(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-var getCurrentWindowSize = function getCurrentWindowSize() {
-  return {
-    width: window.innerWidth,
-    height: window.innerHeight
-  };
+var NO_DOM_WINDOW_SIZE = {
+  width: 0,
+  height: 0
 };
 
 var WINDOW_SIZE_BASE = _objectSpread$2({
@@ -3780,6 +3777,13 @@ var WINDOW_SIZE_BASE = _objectSpread$2({
 }, getCurrentWindowSize());
 
 var ViewportContext = React__default.createContext(WINDOW_SIZE_BASE);
+
+function getCurrentWindowSize() {
+  return typeof window === 'undefined' ? NO_DOM_WINDOW_SIZE : {
+    width: window.innerWidth,
+    height: window.innerHeight
+  };
+}
 
 var ViewportProvider =
 /*#__PURE__*/
@@ -3865,7 +3869,10 @@ function (_React$Component) {
     value: function resizeStart() {
       this._handleResize = throttle(this.updateWindowSize, this.props.throttle);
       this.updateWindowSize();
-      window.addEventListener('resize', this._handleResize);
+
+      if (typeof window !== 'undefined') {
+        window.addEventListener('resize', this._handleResize);
+      }
     }
   }, {
     key: "resizeStop",
@@ -3874,7 +3881,9 @@ function (_React$Component) {
         return;
       }
 
-      window.removeEventListener('resize', this._handleResize);
+      if (typeof window !== 'undefined') {
+        window.removeEventListener('resize', this._handleResize);
+      }
 
       this._handleResize.cancel();
 
@@ -5306,14 +5315,9 @@ function IconConsole(_ref) {
     height: sizeValue,
     fill: "none",
     viewBox: "0 0 24 24"
-  }, props), React__default.createElement("rect", {
-    width: 24,
-    height: 24,
+  }, props), React__default.createElement("path", {
     fill: "currentColor",
-    rx: 4
-  }), React__default.createElement("path", {
-    fill: "#fff",
-    stroke: "#fff",
+    stroke: "currentColor",
     strokeWidth: 0.8,
     d: "M4.884 4.819h0a.777.777 0 000 1.201L8.373 9l-3.489 2.98h0a.777.777 0 000 1.201.952.952 0 001.214 0l4.193-3.58s0 0 0 0A.79.79 0 0010.575 9a.79.79 0 00-.284-.6s0 0 0 0L6.098 4.818h0a.952.952 0 00-1.214 0zm13.801 8.887h-7.16a.676.676 0 00-.55.3.953.953 0 00-.165.547c0 .196.055.39.165.546a.675.675 0 00.55.301h7.16c.253 0 .44-.146.55-.3a.952.952 0 00.165-.547.953.953 0 00-.165-.546.676.676 0 00-.55-.301z"
   }));
@@ -7103,42 +7107,114 @@ function usePublicUrl() {
 }
 
 var spin = _styled.keyframes(["from{transform:rotate(0deg);}to{transform:rotate(360deg);}"]);
+var SIZE_SMALL = 14;
+var SIZE_MEDIUM = 24;
+var CONTAINER_SIZE_SMALL = 22;
+var CONTAINER_SIZE_MEDIUM = 24;
+var BORDER_WIDTH_STRONG = 2.5;
+var BORDER_WIDTH_MEDIUM = 1;
+var lastInstanceId = 1;
 
 var _StyledSpan$1 = _styled__default.span.withConfig({
   displayName: "LoadingRing___StyledSpan",
   componentId: "iauf6f-0"
-})(["position:relative;display:flex;align-items:center;justify-content:center;width:22px;height:22px;animation-duration:1s;animation-iteration-count:infinite;animation-timing-function:linear;animation-name:", ";"], function (p) {
+})(["position:relative;display:flex;align-items:center;justify-content:center;width:", "px;height:", "px;"], function (p) {
   return p._css;
+}, function (p) {
+  return p._css2;
 });
 
-var _StyledSpan2 = _styled__default.span.withConfig({
-  displayName: "LoadingRing___StyledSpan2",
+var _StyledCircle = _styled__default.circle.withConfig({
+  displayName: "LoadingRing___StyledCircle",
   componentId: "iauf6f-1"
-})(["position:relative;width:10px;height:100%;"]);
-
-var _StyledSpan3 = _styled__default.span.withConfig({
-  displayName: "LoadingRing___StyledSpan3",
-  componentId: "iauf6f-2"
-})(["position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:14px;height:14px;border-radius:50%;border:1px solid ", ";"], function (p) {
-  return p._css2;
+})(["animation-duration:1s;animation-iteration-count:infinite;animation-timing-function:linear;animation-name:", ";transform-origin:50% 50%;"], function (p) {
+  return p._css3;
 });
 
 var LoadingRing = React__default.memo(function LoadingRing(_ref) {
   var paused = _ref.paused,
-      props = objectWithoutProperties(_ref, ["paused"]);
+      modeProp = _ref.mode,
+      props = objectWithoutProperties(_ref, ["paused", "mode"]);
 
   var theme = useTheme();
-  return React__default.createElement(_StyledSpan$1, _extends_1({}, props, {
-    _css: paused ? 'none' : spin
-  }), React__default.createElement(_StyledSpan2, {
-    style: {
-      overflow: paused ? 'visible' : 'hidden'
+
+  var _useState = React.useState(function () {
+    return "sync-indicator-".concat(lastInstanceId++);
+  }),
+      _useState2 = slicedToArray(_useState, 1),
+      instanceId = _useState2[0];
+
+  var _useInside = useInside('FloatIndicator'),
+      _useInside2 = slicedToArray(_useInside, 1),
+      insideFloatIndicator = _useInside2[0];
+
+  var mode = modeProp || (insideFloatIndicator ? 'half-circle' : 'two-parts');
+  var containerSize = mode === 'half-circle' ? CONTAINER_SIZE_MEDIUM : CONTAINER_SIZE_SMALL;
+  var borderWidth = mode === 'half-circle' ? BORDER_WIDTH_STRONG : BORDER_WIDTH_MEDIUM;
+  var size = (mode === 'half-circle' ? SIZE_MEDIUM : SIZE_SMALL) - borderWidth;
+
+  var _useMemo = React.useMemo(function () {
+    var length = Math.PI * size; // Both modes display a full circle when paused.
+
+    if (paused) {
+      return [0, length];
     }
-  }, React__default.createElement(_StyledSpan3, {
-    _css2: theme.accent
+
+    if (mode === 'two-parts') {
+      return [length / 4, length / 4];
+    } // half-circle
+
+
+    return [length / 2, length / 2];
+  }, [mode, size, paused]),
+      _useMemo2 = slicedToArray(_useMemo, 2),
+      gapLength = _useMemo2[0],
+      dashLength = _useMemo2[1];
+
+  return React__default.createElement(_StyledSpan$1, _extends_1({}, props, {
+    _css: containerSize,
+    _css2: containerSize
+  }), React__default.createElement("svg", {
+    width: size + borderWidth,
+    height: size + borderWidth,
+    viewBox: "0 0 ".concat(size + borderWidth, " ").concat(size + borderWidth)
+  }, React__default.createElement("linearGradient", {
+    id: "".concat(instanceId, "-gradient"),
+    gradientTransform: "rotate(90)"
+  }, React__default.createElement("stop", {
+    offset: "0%",
+    stopColor: theme.accentEnd
+  }), React__default.createElement("stop", {
+    offset: "100%",
+    stopColor: theme.accentStart
+  })), insideFloatIndicator && React__default.createElement("circle", {
+    cx: "50%",
+    cy: "50%",
+    r: size / 2,
+    fill: "transparent",
+    stroke: theme.floatingContent.alpha(0.3),
+    strokeWidth: borderWidth
+  }), React__default.createElement("mask", {
+    id: "".concat(instanceId, "-mask")
+  }, React__default.createElement(_StyledCircle, {
+    cx: "50%",
+    cy: "50%",
+    r: size / 2,
+    fill: "transparent",
+    stroke: "url(#".concat(instanceId, "-gradient)"),
+    strokeWidth: borderWidth,
+    strokeDasharray: "".concat(dashLength, " ").concat(gapLength),
+    _css3: paused ? 'none' : spin
+  })), React__default.createElement("circle", {
+    cx: "50%",
+    cy: "50%",
+    r: size / 2 + borderWidth / 2,
+    fill: "url(#".concat(instanceId, "-gradient)"),
+    mask: "url(#".concat(instanceId, "-mask)")
   })));
 });
 LoadingRing.propTypes = {
+  mode: propTypes.oneOf(['two-parts', 'half-circle']),
   paused: propTypes.bool
 };
 LoadingRing.defaultProps = {
@@ -9805,7 +9881,7 @@ var Check = function Check(_ref4) {
   }));
 };
 
-var _StyledSpan2$1 = _styled__default.span.withConfig({
+var _StyledSpan2 = _styled__default.span.withConfig({
   displayName: "Checkbox___StyledSpan2",
   componentId: "sc-1avgrx5-3"
 })(["display:block;width:", "px;height:", "px;border-radius:50%;background:", ";"], RADIO_BULLET_SIZE, RADIO_BULLET_SIZE, function (p) {
@@ -9814,7 +9890,7 @@ var _StyledSpan2$1 = _styled__default.span.withConfig({
 
 var Bullet = function Bullet(_ref5) {
   var color = _ref5.color;
-  return React__default.createElement(_StyledSpan2$1, {
+  return React__default.createElement(_StyledSpan2, {
     _css8: color
   });
 };
@@ -11354,37 +11430,67 @@ var DataView = React__default.memo(function DataView(_ref2) {
   })), emptyEntries && React__default.createElement(_StyledDiv2$5, null, React__default.createElement(_StyledDiv3$3, {
     _css5: 31 * GU,
     _css6: 8 * GU
-  }, (status === 'default' || status === 'loading') && React__default.createElement(_StyledImg, {
-    src: publicUrl + illustrationBlueImage,
-    alt: "",
-    height: 20 * GU,
-    _css7: 2 * GU
-  }), (status === 'empty-filters' || status === 'empty-search') && React__default.createElement(_StyledImg2, {
-    src: publicUrl + illustrationRedImage,
-    alt: "",
-    height: 20 * GU,
-    _css8: 2 * GU
-  }), status === 'default' && (statusEmpty || React__default.createElement(_StyledP, {
-    _css9: textStyle('title2')
-  }, "No data available.")), status === 'loading' && (statusLoading || React__default.createElement(_StyledP2, {
-    _css10: textStyle('title2')
-  }, React__default.createElement(_StyledLoadingRing, {
-    _css11: 2 * GU
-  }), ' ', "Loading data\u2026")), status === 'empty-filters' && React__default.createElement(React__default.Fragment, null, React__default.createElement(_StyledP3, {
-    _css12: textStyle('title2'),
-    _css13: 2 * GU
-  }, "No results found."), statusEmptyFilters || React__default.createElement(_StyledP4, {
-    _css14: theme.surfaceContentSecondary
-  }, 'We can’t find any item matching your filter selection. ', React__default.createElement(Link, {
-    onClick: onStatusEmptyClear
-  }, "Clear filters"))), status === 'empty-search' && React__default.createElement(React__default.Fragment, null, React__default.createElement(_StyledP5, {
-    _css15: textStyle('title2'),
-    _css16: 2 * GU
-  }, "No results found."), statusEmptySearch || React__default.createElement(_StyledP6, {
-    _css17: theme.surfaceContentSecondary
-  }, 'We can’t find any item matching your search query. ', React__default.createElement(Link, {
-    onClick: onStatusEmptyClear
-  }, "Clear search"))))), pages > 1 && React__default.createElement(_StyledDiv4$3, {
+  }, function () {
+    // Empty state: illustration part
+    if (status === 'default' || status === 'loading') {
+      return React__default.createElement(_StyledImg, {
+        src: publicUrl + illustrationBlueImage,
+        alt: "",
+        height: 20 * GU,
+        _css7: 2 * GU
+      });
+    }
+
+    if (status === 'empty-filters' || status === 'empty-search') {
+      return React__default.createElement(_StyledImg2, {
+        src: publicUrl + illustrationRedImage,
+        alt: "",
+        height: 20 * GU,
+        _css8: 2 * GU
+      });
+    }
+
+    return null;
+  }(), function () {
+    // Empty state: content part
+    if (status === 'default') {
+      return statusEmpty || React__default.createElement(_StyledP, {
+        _css9: textStyle('title2')
+      }, "No data available.");
+    }
+
+    if (status === 'loading') {
+      return statusLoading || React__default.createElement(_StyledP2, {
+        _css10: textStyle('title2')
+      }, React__default.createElement(_StyledLoadingRing, {
+        _css11: 2 * GU
+      }), ' ', "Loading data\u2026");
+    }
+
+    if (status === 'empty-filters') {
+      return React__default.createElement(React__default.Fragment, null, React__default.createElement(_StyledP3, {
+        _css12: textStyle('title2'),
+        _css13: 2 * GU
+      }, "No results found."), statusEmptyFilters || React__default.createElement(_StyledP4, {
+        _css14: theme.surfaceContentSecondary
+      }, 'We can’t find any item matching your filter selection. ', React__default.createElement(Link, {
+        onClick: onStatusEmptyClear
+      }, "Clear filters")));
+    }
+
+    if (status === 'empty-search') {
+      return React__default.createElement(React__default.Fragment, null, React__default.createElement(_StyledP5, {
+        _css15: textStyle('title2'),
+        _css16: 2 * GU
+      }, "No results found."), statusEmptySearch || React__default.createElement(_StyledP6, {
+        _css17: theme.surfaceContentSecondary
+      }, 'We can’t find any item matching your search query. ', React__default.createElement(Link, {
+        onClick: onStatusEmptyClear
+      }, "Clear search")));
+    }
+
+    return null;
+  }())), pages > 1 && React__default.createElement(_StyledDiv4$3, {
     _css18: theme.border
   }, React__default.createElement(Pagination, {
     pages: pages,
@@ -11569,17 +11675,6 @@ Info.propTypes = {
   background: propTypes.string,
   borderColor: propTypes.string
 };
-
-function Warning(props) {
-  return React__default.createElement(Info, _extends_1({
-    mode: "warning"
-  }, props));
-} // Backward compatibility
-
-
-Info.Action = Info;
-Info.Permissions = Warning;
-Info.Alert = Warning;
 
 function ExternalLink(props) {
   warnOnce('ExternalLink', 'ExternalLink is deprecated. Please use Link instead.');
@@ -11833,7 +11928,7 @@ var MODE_IDENTIFIER = 'identifier';
 var MODE_NEW = 'new';
 var MODE_ACTIVITY = 'activity';
 var SIZE_NORMAL = 'normal';
-var SIZE_SMALL = 'small';
+var SIZE_SMALL$1 = 'small';
 var COUNT_DEFAULT = 2;
 
 function useMode(mode) {
@@ -11859,7 +11954,7 @@ function useMode(mode) {
     return {
       background: theme.tagActivity,
       color: theme.tagActivityContent,
-      size: SIZE_SMALL
+      size: SIZE_SMALL$1
     };
   } // mode === MODE_INDICATOR (default)
 
@@ -11876,7 +11971,7 @@ function getSize(size, _ref) {
       discMode = _ref.discMode,
       iconAndLabel = _ref.iconAndLabel;
 
-  if (size === SIZE_SMALL) {
+  if (size === SIZE_SMALL$1) {
     return "\n      min-width: ".concat(2 * GU, "px;\n      width: ").concat(discMode ? "".concat(2 * GU, "px") : 'auto', ";\n      height: ").concat(2 * GU, "px;\n      padding: ").concat(discMode ? '0' : "0 ".concat(0.5 * GU, "px"), ";\n      padding-top: ").concat(uppercase ? '0.5px' : 0, ";\n      border-radius: ").concat(2 * GU, "px;\n      ").concat(textStyle('label3'), ";\n      font-weight: 600;\n    ");
   } // normal
 
@@ -11920,14 +12015,14 @@ var _StyledSpan$4 = _styled__default.span.withConfig({
   return p._css4;
 }, unselectable);
 
-var _StyledSpan2$2 = _styled__default.span.withConfig({
+var _StyledSpan2$1 = _styled__default.span.withConfig({
   displayName: "Tag___StyledSpan2",
   componentId: "sc-875dmt-1"
 })(["display:flex;align-items:center;margin-right:", "px;"], function (p) {
   return p._css5;
 });
 
-var _StyledSpan3$1 = _styled__default.span.withConfig({
+var _StyledSpan3 = _styled__default.span.withConfig({
   displayName: "Tag___StyledSpan3",
   componentId: "sc-875dmt-2"
 })(["overflow:hidden;text-overflow:ellipsis;margin-top:", ";"], function (p) {
@@ -11971,9 +12066,9 @@ function Tag(_ref3) {
     _css2: !uppercase ? 'text-transform: unset' : '',
     _css3: color || modeProps.color,
     _css4: background || modeProps.background
-  }), icon && React__default.createElement(_StyledSpan2$2, {
+  }), icon && React__default.createElement(_StyledSpan2$1, {
     _css5: finalLabel ? 0.25 * GU : 0
-  }, icon), React__default.createElement(_StyledSpan3$1, {
+  }, icon), React__default.createElement(_StyledSpan3, {
     _css6: alignmentCorrection ? '1px' : '0'
   }, finalLabel));
 }
@@ -11986,27 +12081,13 @@ Tag.propTypes = {
   icon: propTypes.node,
   label: propTypes.oneOfType([propTypes.node, propTypes.number]),
   mode: propTypes.oneOf([MODE_IDENTIFIER, MODE_NEW, MODE_INDICATOR, MODE_ACTIVITY]),
-  size: propTypes.oneOf([SIZE_NORMAL, SIZE_SMALL]),
+  size: propTypes.oneOf([SIZE_NORMAL, SIZE_SMALL$1]),
   uppercase: propTypes.bool
 };
 Tag.defaultProps = {
   uppercase: true,
   limitDigits: false
 };
-
-function _taggedTemplateLiteral(strings, raw) {
-  if (!raw) {
-    raw = strings.slice(0);
-  }
-
-  return Object.freeze(Object.defineProperties(strings, {
-    raw: {
-      value: Object.freeze(raw)
-    }
-  }));
-}
-
-var taggedTemplateLiteral = _taggedTemplateLiteral;
 
 var runtime_1 = createCommonjsModule(function (module) {
 /**
@@ -12801,45 +12882,6 @@ RootPortal.propTypes = {
   children: propTypes.node.isRequired
 };
 
-function _templateObject4() {
-  var data = taggedTemplateLiteral(["\n  position: absolute;\n  bottom: ", ";\n  left: 0px;\n  width: auto;\n  background-image: linear-gradient(130deg, #00b4e6, #00f0e0);\n  height: 5px;\n"]);
-
-  _templateObject4 = function _templateObject4() {
-    return data;
-  };
-
-  return data;
-}
-
-function _templateObject3() {
-  var data = taggedTemplateLiteral(["\n  ", "\n  color: ", ";\n  background: ", ";\n  margin-top: ", ";\n  margin-bottom: ", ";\n  padding: ", "px ", "px;\n  display: grid;\n  grid-template-columns: 1fr;\n  grid-gap: 10px;\n  border-radius: ", "px;\n  overflow: hidden;\n"]);
-
-  _templateObject3 = function _templateObject3() {
-    return data;
-  };
-
-  return data;
-}
-
-function _templateObject2() {
-  var data = taggedTemplateLiteral(["\n  box-sizing: border-box;\n  position: relative;\n  width: 100%;\n  @media (min-width: 700px) {\n    width: 42ch;\n  }\n"]);
-
-  _templateObject2 = function _templateObject2() {
-    return data;
-  };
-
-  return data;
-}
-
-function _templateObject() {
-  var data = taggedTemplateLiteral(["\n  position: fixed;\n  z-index: 1000;\n  top: ", ";\n  bottom: ", ";\n  margin: 0 auto;\n  left: ", ";\n  right: ", ";\n  display: flex;\n  flex-direction: ", ";\n  pointer-events: none;\n  align-items: center;\n  @media (min-width: 700px) {\n    align-items: ", ";\n  }\n"]);
-
-  _templateObject = function _templateObject() {
-    return data;
-  };
-
-  return data;
-}
 var id = 0;
 
 var move = function move(pixel) {
@@ -12849,13 +12891,6 @@ var move = function move(pixel) {
 var ToastContext = React__default.createContext(function () {
   throw new Error("For Toast to work it needs to be part of a ToastHub's tree, which has to be declared at an upper level!");
 });
-
-var useToast = function useToast() {
-  return React.useContext(ToastContext);
-};
-
-var Provider$1 = ToastContext.Provider,
-    Toast = ToastContext.Consumer;
 
 var ToastHubProvider =
 /*#__PURE__*/
@@ -12877,7 +12912,8 @@ function (_React$PureComponent) {
 
     defineProperty(assertThisInitialized(_this), "state", {
       items: [],
-      leaving: []
+      leaving: [],
+      preLeaving: []
     });
 
     defineProperty(assertThisInitialized(_this), "cancelMap", new WeakMap());
@@ -12897,18 +12933,19 @@ function (_React$PureComponent) {
           items: [].concat(toConsumableArray(state.items), [{
             key: id++,
             msg: msg
-          }])
+          }]),
+          preLeaving: []
         };
       });
     });
 
     defineProperty(assertThisInitialized(_this), "remove", function (item) {
-      return _this.setState(function (state) {
+      _this.setState(function (state) {
         return {
           items: state.items.filter(function (i) {
             return i.key !== item.key;
           }),
-          leaving: [item].concat(toConsumableArray(state.leaving))
+          leaving: state.leaving.includes(item) ? state.leaving : [item].concat(toConsumableArray(state.leaving))
         };
       });
     });
@@ -12951,31 +12988,43 @@ function (_React$PureComponent) {
                 }));
 
               case 3:
-                _context.next = 5;
+                // Add to the pre-leaving list, to know when there are no more toasts
+                // displayed even though they are still finishing their leaving transition.
+                _this.setState(function (state) {
+                  return {
+                    preLeaving: [].concat(toConsumableArray(state.preLeaving), [item])
+                  };
+                }); // Then fade out
+
+
+                _context.next = 6;
                 return regenerator.awrap(next({
                   to: {
                     opacity: 0
                   }
                 }));
 
-              case 5:
-                _context.next = 7;
+              case 6:
+                _context.next = 8;
                 return regenerator.awrap(next({
                   to: {
                     height: 0
                   }
                 }, true));
 
-              case 7:
+              case 8:
                 _this.setState(function (state) {
                   return {
                     leaving: state.leaving.filter(function (i) {
+                      return i.key !== item.key;
+                    }),
+                    preLeaving: state.preLeaving.filter(function (i) {
                       return i.key !== item.key;
                     })
                   };
                 });
 
-              case 8:
+              case 9:
               case "end":
                 return _context.stop();
             }
@@ -12998,13 +13047,18 @@ function (_React$PureComponent) {
           shift = _this$props.shift;
       var _this$state = this.state,
           items = _this$state.items,
-          leaving = _this$state.leaving;
-      var showList = items.length > 0 || leaving.length > 0;
-      return React__default.createElement(React__default.Fragment, null, React__default.createElement(Provider$1, {
-        value: this.add
-      }, children), showList && React__default.createElement(RootPortal, null, React__default.createElement(ToastList, _extends_1({
+          leaving = _this$state.leaving,
+          preLeaving = _this$state.preLeaving;
+      var renderList = items.length > 0 || leaving.length > 0;
+      var itemsVisible = leaving.length === preLeaving.length && leaving.length > 0 ? false : renderList;
+      return React__default.createElement(React__default.Fragment, null, React__default.createElement(ToastContext.Provider, {
+        value: {
+          itemsVisible: itemsVisible,
+          add: this.add
+        }
+      }, children), renderList && React__default.createElement(RootPortal, null, React__default.createElement(ToastList, _extends_1({
         config: this.config,
-        items: this.state.items,
+        items: items,
         leave: this.leave,
         position: position,
         remove: this.remove,
@@ -13038,7 +13092,59 @@ defineProperty(ToastHubProvider, "defaultProps", {
   top: false
 });
 
-var ToastList = React__default.memo(function (_ref) {
+var _StyledDiv$a = _styled__default.div.withConfig({
+  displayName: "ToastHub___StyledDiv",
+  componentId: "sc-1y0i8xl-0"
+})(["position:fixed;z-index:1000;top:", ";bottom:", ";left:", "px;right:", "px;display:flex;margin:0 auto;flex-direction:", ";pointer-events:none;align-items:", ";"], function (p) {
+  return p._css;
+}, function (p) {
+  return p._css2;
+}, function (p) {
+  return p._css3;
+}, function (p) {
+  return p._css4;
+}, function (p) {
+  return p._css5;
+}, function (p) {
+  return p._css6;
+});
+
+var _StyledAnimatedDiv$3 = _styled__default(extendedAnimated.div).withConfig({
+  displayName: "ToastHub___StyledAnimatedDiv",
+  componentId: "sc-1y0i8xl-1"
+})(["box-sizing:border-box;position:relative;width:", ";"], function (p) {
+  return p._css7;
+});
+
+var _StyledDiv2$7 = _styled__default.div.withConfig({
+  displayName: "ToastHub___StyledDiv2",
+  componentId: "sc-1y0i8xl-2"
+})(["display:grid;grid-template-columns:1fr;grid-gap:10px;height:", "px;padding:", "px ", "px;overflow:hidden;margin-top:", ";margin-bottom:", ";", ";color:", ";background:", ";border-radius:", "px;"], function (p) {
+  return p._css8;
+}, function (p) {
+  return p._css9;
+}, function (p) {
+  return p._css10;
+}, function (p) {
+  return p._css11;
+}, function (p) {
+  return p._css12;
+}, function (p) {
+  return p._css13;
+}, function (p) {
+  return p._css14;
+}, function (p) {
+  return p._css15;
+}, RADIUS);
+
+var _StyledAnimatedDiv2$1 = _styled__default(extendedAnimated.div).withConfig({
+  displayName: "ToastHub___StyledAnimatedDiv2",
+  componentId: "sc-1y0i8xl-3"
+})(["position:absolute;bottom:", ";left:0;width:auto;height:5px;background-image:linear-gradient( 130deg,#00b4e6,#00f0e0 );"], function (p) {
+  return p._css16;
+});
+
+var ToastList = React__default.memo(function ToastList(_ref) {
   var config = _ref.config,
       items = _ref.items,
       leave = _ref.leave,
@@ -13050,11 +13156,24 @@ var ToastList = React__default.memo(function (_ref) {
       props = objectWithoutProperties(_ref, ["config", "items", "leave", "position", "remove", "showIndicator", "top", "shift"]);
 
   var theme = useTheme();
-  return React__default.createElement(Container, _extends_1({
-    position: position,
-    top: top,
-    shift: shift
-  }, props), React__default.createElement(Transition, {
+
+  var _useViewport = useViewport(),
+      below = _useViewport.below;
+
+  var spacing = below('medium') ? 2 * GU : 3 * GU;
+  return React__default.createElement(_StyledDiv$a, _extends_1({}, props, {
+    _css: top ? "".concat(spacing, "px") : 'unset',
+    _css2: top ? 'unset' : "".concat(spacing, "px"),
+    _css3: spacing + (shift || 0),
+    _css4: spacing + (shift || 0),
+    _css5: top ? 'column-reverse' : 'column',
+    _css6: function () {
+      if (below('medium')) return 'center';
+      if (position === 'left') return 'flex-start';
+      if (position === 'right') return 'flex-end';
+      return 'center';
+    }()
+  }), React__default.createElement(Transition, {
     native: true,
     items: items,
     keys: function keys(item) {
@@ -13081,16 +13200,23 @@ var ToastList = React__default.memo(function (_ref) {
         var life = _ref2.life,
             props = objectWithoutProperties(_ref2, ["life"]);
 
-        return React__default.createElement(Message, {
-          style: props
-        }, React__default.createElement(Content, {
-          top: top,
-          theme: theme
-        }, showIndicator && React__default.createElement(Life, {
-          top: top,
+        return React__default.createElement(_StyledAnimatedDiv$3, {
+          style: props,
+          _css7: below('medium') ? '100%' : '42ch'
+        }, React__default.createElement(_StyledDiv2$7, {
+          _css8: 6 * GU,
+          _css9: 2 * GU,
+          _css10: 2.5 * GU,
+          _css11: top ? '0' : "".concat(1.25 * GU, "px"),
+          _css12: top ? "".concat(1.25 * GU, "px") : '0',
+          _css13: textStyle('body3'),
+          _css14: theme.floatingContent,
+          _css15: theme.floating.alpha(0.95)
+        }, showIndicator && React__default.createElement(_StyledAnimatedDiv2$1, {
           style: {
             right: life
-          }
+          },
+          _css16: top ? "".concat(1.25 * GU, "px") : '0'
         }), React__default.createElement("p", null, item.msg)));
       }
     );
@@ -13108,45 +13234,14 @@ ToastList.propTypes = {
   showIndicator: propTypes.bool,
   top: propTypes.bool
 };
-var Container = _styled__default.div(_templateObject(), function (props) {
-  return props.top ? "".concat(3 * GU, "px") : 'unset';
-}, function (props) {
-  return props.top ? 'unset' : "".concat(3 * GU, "px");
-}, function (_ref3) {
-  var shift = _ref3.shift;
-  return "calc(".concat(3 * GU, "px + ").concat(shift ? "".concat(shift, "px") : '0px', ")");
-}, function (_ref4) {
-  var shift = _ref4.shift;
-  return "calc(".concat(3 * GU, "px + ").concat(shift ? "".concat(shift, "px") : '0px', ")");
-}, function (props) {
-  return props.top ? 'column-reverse' : 'column';
-}, function (props) {
-  switch (props.position) {
-    case 'left':
-      return 'flex-start';
 
-    case 'right':
-      return 'flex-end';
+var useToast = function useToast() {
+  return React.useContext(ToastContext).add;
+};
 
-    default:
-      return 'center';
-  }
-});
-var Message = _styled__default(extendedAnimated.div)(_templateObject2());
-var Content = _styled__default.div(_templateObject3(), textStyle('body3'), function (_ref5) {
-  var theme = _ref5.theme;
-  return theme.floatingContent;
-}, function (_ref6) {
-  var theme = _ref6.theme;
-  return theme.floating.alpha(0.95);
-}, function (props) {
-  return props.top ? '0' : "".concat(1.25 * GU, "px");
-}, function (props) {
-  return props.top ? "".concat(1.25 * GU, "px") : '0';
-}, 2 * GU, 2.5 * GU, RADIUS);
-var Life = _styled__default(extendedAnimated.div)(_templateObject4(), function (props) {
-  return props.top ? "".concat(1.25 * GU, "px") : '0';
-});
+var Toast = function Toast(props) {
+  return props.children(useToast());
+};
 
 var Accordion = React__default.memo(function Accordion(_ref) {
   var items = _ref.items,
@@ -13190,7 +13285,7 @@ Accordion.propTypes = {
 
 var HEIGHT = 5 * GU;
 
-var _StyledDiv$a = _styled__default.div.withConfig({
+var _StyledDiv$b = _styled__default.div.withConfig({
   displayName: "TextCopy___StyledDiv",
   componentId: "sc-1dg1uit-0"
 })(["position:relative;display:inline-flex;width:", "px;max-width:100%;height:", "px;padding-left:", ";"], function (p) {
@@ -13199,7 +13294,7 @@ var _StyledDiv$a = _styled__default.div.withConfig({
   return p._css2;
 });
 
-var _StyledDiv2$7 = _styled__default.div.withConfig({
+var _StyledDiv2$8 = _styled__default.div.withConfig({
   displayName: "TextCopy___StyledDiv2",
   componentId: "sc-1dg1uit-1"
 })(["position:absolute;top:0;left:0;overflow:hidden;width:", "px;height:", "px;background:", ";border:1px solid ", ";border-right:0;border-radius:", "px 0.0001px 0.0001px ", "px;"], HEIGHT, HEIGHT, function (p) {
@@ -13279,10 +13374,10 @@ var TextCopy = React__default.memo(React__default.forwardRef(function TextCopy(_
       }
     }
   }, [message, onCopyOrToast]);
-  return React__default.createElement(_StyledDiv$a, _extends_1({}, props, {
+  return React__default.createElement(_StyledDiv$b, _extends_1({}, props, {
     _css: 52.5 * GU,
     _css2: adornment ? "".concat(HEIGHT, "px") : '0'
-  }), adornment && React__default.createElement(_StyledDiv2$7, {
+  }), adornment && React__default.createElement(_StyledDiv2$8, {
     _css3: theme.surface,
     _css4: theme.border
   }, React__default.createElement(_StyledDiv3$4, {
@@ -13328,843 +13423,19 @@ TextCopy.defaultProps = {
   monospace: true
 };
 
-/*
-object-assign
-(c) Sindre Sorhus
-@license MIT
-*/
-/* eslint-disable no-unused-vars */
-
-var getOwnPropertySymbols$1 = Object.getOwnPropertySymbols;
-var hasOwnProperty$2 = Object.prototype.hasOwnProperty;
-var propIsEnumerable$1 = Object.prototype.propertyIsEnumerable;
-
-function toObject$1(val) {
-  if (val === null || val === undefined) {
-    throw new TypeError('Object.assign cannot be called with null or undefined');
+function _taggedTemplateLiteral(strings, raw) {
+  if (!raw) {
+    raw = strings.slice(0);
   }
 
-  return Object(val);
+  return Object.freeze(Object.defineProperties(strings, {
+    raw: {
+      value: Object.freeze(raw)
+    }
+  }));
 }
 
-function shouldUseNative$1() {
-  try {
-    if (!Object.assign) {
-      return false;
-    } // Detect buggy property enumeration order in older V8 versions.
-    // https://bugs.chromium.org/p/v8/issues/detail?id=4118
-
-
-    var test1 = new String('abc'); // eslint-disable-line no-new-wrappers
-
-    test1[5] = 'de';
-
-    if (Object.getOwnPropertyNames(test1)[0] === '5') {
-      return false;
-    } // https://bugs.chromium.org/p/v8/issues/detail?id=3056
-
-
-    var test2 = {};
-
-    for (var i = 0; i < 10; i++) {
-      test2['_' + String.fromCharCode(i)] = i;
-    }
-
-    var order2 = Object.getOwnPropertyNames(test2).map(function (n) {
-      return test2[n];
-    });
-
-    if (order2.join('') !== '0123456789') {
-      return false;
-    } // https://bugs.chromium.org/p/v8/issues/detail?id=3056
-
-
-    var test3 = {};
-    'abcdefghijklmnopqrst'.split('').forEach(function (letter) {
-      test3[letter] = letter;
-    });
-
-    if (Object.keys(Object.assign({}, test3)).join('') !== 'abcdefghijklmnopqrst') {
-      return false;
-    }
-
-    return true;
-  } catch (err) {
-    // We don't expect any of the above to throw, but better to be safe.
-    return false;
-  }
-}
-
-var objectAssign$1 = shouldUseNative$1() ? Object.assign : function (target, source) {
-  var from;
-  var to = toObject$1(target);
-  var symbols;
-
-  for (var s = 1; s < arguments.length; s++) {
-    from = Object(arguments[s]);
-
-    for (var key in from) {
-      if (hasOwnProperty$2.call(from, key)) {
-        to[key] = from[key];
-      }
-    }
-
-    if (getOwnPropertySymbols$1) {
-      symbols = getOwnPropertySymbols$1(from);
-
-      for (var i = 0; i < symbols.length; i++) {
-        if (propIsEnumerable$1.call(from, symbols[i])) {
-          to[symbols[i]] = from[symbols[i]];
-        }
-      }
-    }
-  }
-
-  return to;
-};
-
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
-var ReactPropTypesSecret$2 = 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED';
-var ReactPropTypesSecret_1$1 = ReactPropTypesSecret$2;
-
-var printWarning$2 = function () {};
-
-if (process.env.NODE_ENV !== 'production') {
-  var ReactPropTypesSecret$3 = ReactPropTypesSecret_1$1;
-
-  var loggedTypeFailures$1 = {};
-
-  printWarning$2 = function (text) {
-    var message = 'Warning: ' + text;
-
-    if (typeof console !== 'undefined') {
-      console.error(message);
-    }
-
-    try {
-      // --- Welcome to debugging React ---
-      // This error was thrown as a convenience so that you can use this stack
-      // to find the callsite that caused this warning to fire.
-      throw new Error(message);
-    } catch (x) {}
-  };
-}
-/**
- * Assert that the values match with the type specs.
- * Error messages are memorized and will only be shown once.
- *
- * @param {object} typeSpecs Map of name to a ReactPropType
- * @param {object} values Runtime values that need to be type-checked
- * @param {string} location e.g. "prop", "context", "child context"
- * @param {string} componentName Name of the component for error messages.
- * @param {?Function} getStack Returns the component stack.
- * @private
- */
-
-
-function checkPropTypes$1(typeSpecs, values, location, componentName, getStack) {
-  if (process.env.NODE_ENV !== 'production') {
-    for (var typeSpecName in typeSpecs) {
-      if (typeSpecs.hasOwnProperty(typeSpecName)) {
-        var error; // Prop type validation may throw. In case they do, we don't want to
-        // fail the render phase where it didn't fail before. So we log it.
-        // After these have been cleaned up, we'll let them throw.
-
-        try {
-          // This is intentionally an invariant that gets caught. It's the same
-          // behavior as without this statement except with a better message.
-          if (typeof typeSpecs[typeSpecName] !== 'function') {
-            var err = Error((componentName || 'React class') + ': ' + location + ' type `' + typeSpecName + '` is invalid; ' + 'it must be a function, usually from the `prop-types` package, but received `' + typeof typeSpecs[typeSpecName] + '`.');
-            err.name = 'Invariant Violation';
-            throw err;
-          }
-
-          error = typeSpecs[typeSpecName](values, typeSpecName, componentName, location, null, ReactPropTypesSecret$3);
-        } catch (ex) {
-          error = ex;
-        }
-
-        if (error && !(error instanceof Error)) {
-          printWarning$2((componentName || 'React class') + ': type specification of ' + location + ' `' + typeSpecName + '` is invalid; the type checker ' + 'function must return `null` or an `Error` but returned a ' + typeof error + '. ' + 'You may have forgotten to pass an argument to the type checker ' + 'creator (arrayOf, instanceOf, objectOf, oneOf, oneOfType, and ' + 'shape all require an argument).');
-        }
-
-        if (error instanceof Error && !(error.message in loggedTypeFailures$1)) {
-          // Only monitor this failure once because there tends to be a lot of the
-          // same error.
-          loggedTypeFailures$1[error.message] = true;
-          var stack = getStack ? getStack() : '';
-          printWarning$2('Failed ' + location + ' type: ' + error.message + (stack != null ? stack : ''));
-        }
-      }
-    }
-  }
-}
-
-var checkPropTypes_1$1 = checkPropTypes$1;
-
-var printWarning$3 = function () {};
-
-if (process.env.NODE_ENV !== 'production') {
-  printWarning$3 = function (text) {
-    var message = 'Warning: ' + text;
-
-    if (typeof console !== 'undefined') {
-      console.error(message);
-    }
-
-    try {
-      // --- Welcome to debugging React ---
-      // This error was thrown as a convenience so that you can use this stack
-      // to find the callsite that caused this warning to fire.
-      throw new Error(message);
-    } catch (x) {}
-  };
-}
-
-function emptyFunctionThatReturnsNull$1() {
-  return null;
-}
-
-var factoryWithTypeCheckers$1 = function (isValidElement, throwOnDirectAccess) {
-  /* global Symbol */
-  var ITERATOR_SYMBOL = typeof Symbol === 'function' && Symbol.iterator;
-  var FAUX_ITERATOR_SYMBOL = '@@iterator'; // Before Symbol spec.
-
-  /**
-   * Returns the iterator method function contained on the iterable object.
-   *
-   * Be sure to invoke the function with the iterable as context:
-   *
-   *     var iteratorFn = getIteratorFn(myIterable);
-   *     if (iteratorFn) {
-   *       var iterator = iteratorFn.call(myIterable);
-   *       ...
-   *     }
-   *
-   * @param {?object} maybeIterable
-   * @return {?function}
-   */
-
-  function getIteratorFn(maybeIterable) {
-    var iteratorFn = maybeIterable && (ITERATOR_SYMBOL && maybeIterable[ITERATOR_SYMBOL] || maybeIterable[FAUX_ITERATOR_SYMBOL]);
-
-    if (typeof iteratorFn === 'function') {
-      return iteratorFn;
-    }
-  }
-  /**
-   * Collection of methods that allow declaration and validation of props that are
-   * supplied to React components. Example usage:
-   *
-   *   var Props = require('ReactPropTypes');
-   *   var MyArticle = React.createClass({
-   *     propTypes: {
-   *       // An optional string prop named "description".
-   *       description: Props.string,
-   *
-   *       // A required enum prop named "category".
-   *       category: Props.oneOf(['News','Photos']).isRequired,
-   *
-   *       // A prop named "dialog" that requires an instance of Dialog.
-   *       dialog: Props.instanceOf(Dialog).isRequired
-   *     },
-   *     render: function() { ... }
-   *   });
-   *
-   * A more formal specification of how these methods are used:
-   *
-   *   type := array|bool|func|object|number|string|oneOf([...])|instanceOf(...)
-   *   decl := ReactPropTypes.{type}(.isRequired)?
-   *
-   * Each and every declaration produces a function with the same signature. This
-   * allows the creation of custom validation functions. For example:
-   *
-   *  var MyLink = React.createClass({
-   *    propTypes: {
-   *      // An optional string or URI prop named "href".
-   *      href: function(props, propName, componentName) {
-   *        var propValue = props[propName];
-   *        if (propValue != null && typeof propValue !== 'string' &&
-   *            !(propValue instanceof URI)) {
-   *          return new Error(
-   *            'Expected a string or an URI for ' + propName + ' in ' +
-   *            componentName
-   *          );
-   *        }
-   *      }
-   *    },
-   *    render: function() {...}
-   *  });
-   *
-   * @internal
-   */
-
-
-  var ANONYMOUS = '<<anonymous>>'; // Important!
-  // Keep this list in sync with production version in `./factoryWithThrowingShims.js`.
-
-  var ReactPropTypes = {
-    array: createPrimitiveTypeChecker('array'),
-    bool: createPrimitiveTypeChecker('boolean'),
-    func: createPrimitiveTypeChecker('function'),
-    number: createPrimitiveTypeChecker('number'),
-    object: createPrimitiveTypeChecker('object'),
-    string: createPrimitiveTypeChecker('string'),
-    symbol: createPrimitiveTypeChecker('symbol'),
-    any: createAnyTypeChecker(),
-    arrayOf: createArrayOfTypeChecker,
-    element: createElementTypeChecker(),
-    instanceOf: createInstanceTypeChecker,
-    node: createNodeChecker(),
-    objectOf: createObjectOfTypeChecker,
-    oneOf: createEnumTypeChecker,
-    oneOfType: createUnionTypeChecker,
-    shape: createShapeTypeChecker,
-    exact: createStrictShapeTypeChecker
-  };
-  /**
-   * inlined Object.is polyfill to avoid requiring consumers ship their own
-   * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is
-   */
-
-  /*eslint-disable no-self-compare*/
-
-  function is(x, y) {
-    // SameValue algorithm
-    if (x === y) {
-      // Steps 1-5, 7-10
-      // Steps 6.b-6.e: +0 != -0
-      return x !== 0 || 1 / x === 1 / y;
-    } else {
-      // Step 6.a: NaN == NaN
-      return x !== x && y !== y;
-    }
-  }
-  /*eslint-enable no-self-compare*/
-
-  /**
-   * We use an Error-like object for backward compatibility as people may call
-   * PropTypes directly and inspect their output. However, we don't use real
-   * Errors anymore. We don't inspect their stack anyway, and creating them
-   * is prohibitively expensive if they are created too often, such as what
-   * happens in oneOfType() for any type before the one that matched.
-   */
-
-
-  function PropTypeError(message) {
-    this.message = message;
-    this.stack = '';
-  } // Make `instanceof Error` still work for returned errors.
-
-
-  PropTypeError.prototype = Error.prototype;
-
-  function createChainableTypeChecker(validate) {
-    if (process.env.NODE_ENV !== 'production') {
-      var manualPropTypeCallCache = {};
-      var manualPropTypeWarningCount = 0;
-    }
-
-    function checkType(isRequired, props, propName, componentName, location, propFullName, secret) {
-      componentName = componentName || ANONYMOUS;
-      propFullName = propFullName || propName;
-
-      if (secret !== ReactPropTypesSecret_1$1) {
-        if (throwOnDirectAccess) {
-          // New behavior only for users of `prop-types` package
-          var err = new Error('Calling PropTypes validators directly is not supported by the `prop-types` package. ' + 'Use `PropTypes.checkPropTypes()` to call them. ' + 'Read more at http://fb.me/use-check-prop-types');
-          err.name = 'Invariant Violation';
-          throw err;
-        } else if (process.env.NODE_ENV !== 'production' && typeof console !== 'undefined') {
-          // Old behavior for people using React.PropTypes
-          var cacheKey = componentName + ':' + propName;
-
-          if (!manualPropTypeCallCache[cacheKey] && // Avoid spamming the console because they are often not actionable except for lib authors
-          manualPropTypeWarningCount < 3) {
-            printWarning$3('You are manually calling a React.PropTypes validation ' + 'function for the `' + propFullName + '` prop on `' + componentName + '`. This is deprecated ' + 'and will throw in the standalone `prop-types` package. ' + 'You may be seeing this warning due to a third-party PropTypes ' + 'library. See https://fb.me/react-warning-dont-call-proptypes ' + 'for details.');
-            manualPropTypeCallCache[cacheKey] = true;
-            manualPropTypeWarningCount++;
-          }
-        }
-      }
-
-      if (props[propName] == null) {
-        if (isRequired) {
-          if (props[propName] === null) {
-            return new PropTypeError('The ' + location + ' `' + propFullName + '` is marked as required ' + ('in `' + componentName + '`, but its value is `null`.'));
-          }
-
-          return new PropTypeError('The ' + location + ' `' + propFullName + '` is marked as required in ' + ('`' + componentName + '`, but its value is `undefined`.'));
-        }
-
-        return null;
-      } else {
-        return validate(props, propName, componentName, location, propFullName);
-      }
-    }
-
-    var chainedCheckType = checkType.bind(null, false);
-    chainedCheckType.isRequired = checkType.bind(null, true);
-    return chainedCheckType;
-  }
-
-  function createPrimitiveTypeChecker(expectedType) {
-    function validate(props, propName, componentName, location, propFullName, secret) {
-      var propValue = props[propName];
-      var propType = getPropType(propValue);
-
-      if (propType !== expectedType) {
-        // `propValue` being instance of, say, date/regexp, pass the 'object'
-        // check, but we can offer a more precise error message here rather than
-        // 'of type `object`'.
-        var preciseType = getPreciseType(propValue);
-        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + preciseType + '` supplied to `' + componentName + '`, expected ') + ('`' + expectedType + '`.'));
-      }
-
-      return null;
-    }
-
-    return createChainableTypeChecker(validate);
-  }
-
-  function createAnyTypeChecker() {
-    return createChainableTypeChecker(emptyFunctionThatReturnsNull$1);
-  }
-
-  function createArrayOfTypeChecker(typeChecker) {
-    function validate(props, propName, componentName, location, propFullName) {
-      if (typeof typeChecker !== 'function') {
-        return new PropTypeError('Property `' + propFullName + '` of component `' + componentName + '` has invalid PropType notation inside arrayOf.');
-      }
-
-      var propValue = props[propName];
-
-      if (!Array.isArray(propValue)) {
-        var propType = getPropType(propValue);
-        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + propType + '` supplied to `' + componentName + '`, expected an array.'));
-      }
-
-      for (var i = 0; i < propValue.length; i++) {
-        var error = typeChecker(propValue, i, componentName, location, propFullName + '[' + i + ']', ReactPropTypesSecret_1$1);
-
-        if (error instanceof Error) {
-          return error;
-        }
-      }
-
-      return null;
-    }
-
-    return createChainableTypeChecker(validate);
-  }
-
-  function createElementTypeChecker() {
-    function validate(props, propName, componentName, location, propFullName) {
-      var propValue = props[propName];
-
-      if (!isValidElement(propValue)) {
-        var propType = getPropType(propValue);
-        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + propType + '` supplied to `' + componentName + '`, expected a single ReactElement.'));
-      }
-
-      return null;
-    }
-
-    return createChainableTypeChecker(validate);
-  }
-
-  function createInstanceTypeChecker(expectedClass) {
-    function validate(props, propName, componentName, location, propFullName) {
-      if (!(props[propName] instanceof expectedClass)) {
-        var expectedClassName = expectedClass.name || ANONYMOUS;
-        var actualClassName = getClassName(props[propName]);
-        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + actualClassName + '` supplied to `' + componentName + '`, expected ') + ('instance of `' + expectedClassName + '`.'));
-      }
-
-      return null;
-    }
-
-    return createChainableTypeChecker(validate);
-  }
-
-  function createEnumTypeChecker(expectedValues) {
-    if (!Array.isArray(expectedValues)) {
-      process.env.NODE_ENV !== 'production' ? printWarning$3('Invalid argument supplied to oneOf, expected an instance of array.') : void 0;
-      return emptyFunctionThatReturnsNull$1;
-    }
-
-    function validate(props, propName, componentName, location, propFullName) {
-      var propValue = props[propName];
-
-      for (var i = 0; i < expectedValues.length; i++) {
-        if (is(propValue, expectedValues[i])) {
-          return null;
-        }
-      }
-
-      var valuesString = JSON.stringify(expectedValues);
-      return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of value `' + propValue + '` ' + ('supplied to `' + componentName + '`, expected one of ' + valuesString + '.'));
-    }
-
-    return createChainableTypeChecker(validate);
-  }
-
-  function createObjectOfTypeChecker(typeChecker) {
-    function validate(props, propName, componentName, location, propFullName) {
-      if (typeof typeChecker !== 'function') {
-        return new PropTypeError('Property `' + propFullName + '` of component `' + componentName + '` has invalid PropType notation inside objectOf.');
-      }
-
-      var propValue = props[propName];
-      var propType = getPropType(propValue);
-
-      if (propType !== 'object') {
-        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + propType + '` supplied to `' + componentName + '`, expected an object.'));
-      }
-
-      for (var key in propValue) {
-        if (propValue.hasOwnProperty(key)) {
-          var error = typeChecker(propValue, key, componentName, location, propFullName + '.' + key, ReactPropTypesSecret_1$1);
-
-          if (error instanceof Error) {
-            return error;
-          }
-        }
-      }
-
-      return null;
-    }
-
-    return createChainableTypeChecker(validate);
-  }
-
-  function createUnionTypeChecker(arrayOfTypeCheckers) {
-    if (!Array.isArray(arrayOfTypeCheckers)) {
-      process.env.NODE_ENV !== 'production' ? printWarning$3('Invalid argument supplied to oneOfType, expected an instance of array.') : void 0;
-      return emptyFunctionThatReturnsNull$1;
-    }
-
-    for (var i = 0; i < arrayOfTypeCheckers.length; i++) {
-      var checker = arrayOfTypeCheckers[i];
-
-      if (typeof checker !== 'function') {
-        printWarning$3('Invalid argument supplied to oneOfType. Expected an array of check functions, but ' + 'received ' + getPostfixForTypeWarning(checker) + ' at index ' + i + '.');
-        return emptyFunctionThatReturnsNull$1;
-      }
-    }
-
-    function validate(props, propName, componentName, location, propFullName) {
-      for (var i = 0; i < arrayOfTypeCheckers.length; i++) {
-        var checker = arrayOfTypeCheckers[i];
-
-        if (checker(props, propName, componentName, location, propFullName, ReactPropTypesSecret_1$1) == null) {
-          return null;
-        }
-      }
-
-      return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` supplied to ' + ('`' + componentName + '`.'));
-    }
-
-    return createChainableTypeChecker(validate);
-  }
-
-  function createNodeChecker() {
-    function validate(props, propName, componentName, location, propFullName) {
-      if (!isNode(props[propName])) {
-        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` supplied to ' + ('`' + componentName + '`, expected a ReactNode.'));
-      }
-
-      return null;
-    }
-
-    return createChainableTypeChecker(validate);
-  }
-
-  function createShapeTypeChecker(shapeTypes) {
-    function validate(props, propName, componentName, location, propFullName) {
-      var propValue = props[propName];
-      var propType = getPropType(propValue);
-
-      if (propType !== 'object') {
-        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type `' + propType + '` ' + ('supplied to `' + componentName + '`, expected `object`.'));
-      }
-
-      for (var key in shapeTypes) {
-        var checker = shapeTypes[key];
-
-        if (!checker) {
-          continue;
-        }
-
-        var error = checker(propValue, key, componentName, location, propFullName + '.' + key, ReactPropTypesSecret_1$1);
-
-        if (error) {
-          return error;
-        }
-      }
-
-      return null;
-    }
-
-    return createChainableTypeChecker(validate);
-  }
-
-  function createStrictShapeTypeChecker(shapeTypes) {
-    function validate(props, propName, componentName, location, propFullName) {
-      var propValue = props[propName];
-      var propType = getPropType(propValue);
-
-      if (propType !== 'object') {
-        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type `' + propType + '` ' + ('supplied to `' + componentName + '`, expected `object`.'));
-      } // We need to check all keys in case some are required but missing from
-      // props.
-
-
-      var allKeys = objectAssign$1({}, props[propName], shapeTypes);
-
-      for (var key in allKeys) {
-        var checker = shapeTypes[key];
-
-        if (!checker) {
-          return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` key `' + key + '` supplied to `' + componentName + '`.' + '\nBad object: ' + JSON.stringify(props[propName], null, '  ') + '\nValid keys: ' + JSON.stringify(Object.keys(shapeTypes), null, '  '));
-        }
-
-        var error = checker(propValue, key, componentName, location, propFullName + '.' + key, ReactPropTypesSecret_1$1);
-
-        if (error) {
-          return error;
-        }
-      }
-
-      return null;
-    }
-
-    return createChainableTypeChecker(validate);
-  }
-
-  function isNode(propValue) {
-    switch (typeof propValue) {
-      case 'number':
-      case 'string':
-      case 'undefined':
-        return true;
-
-      case 'boolean':
-        return !propValue;
-
-      case 'object':
-        if (Array.isArray(propValue)) {
-          return propValue.every(isNode);
-        }
-
-        if (propValue === null || isValidElement(propValue)) {
-          return true;
-        }
-
-        var iteratorFn = getIteratorFn(propValue);
-
-        if (iteratorFn) {
-          var iterator = iteratorFn.call(propValue);
-          var step;
-
-          if (iteratorFn !== propValue.entries) {
-            while (!(step = iterator.next()).done) {
-              if (!isNode(step.value)) {
-                return false;
-              }
-            }
-          } else {
-            // Iterator will provide entry [k,v] tuples rather than values.
-            while (!(step = iterator.next()).done) {
-              var entry = step.value;
-
-              if (entry) {
-                if (!isNode(entry[1])) {
-                  return false;
-                }
-              }
-            }
-          }
-        } else {
-          return false;
-        }
-
-        return true;
-
-      default:
-        return false;
-    }
-  }
-
-  function isSymbol(propType, propValue) {
-    // Native Symbol.
-    if (propType === 'symbol') {
-      return true;
-    } // 19.4.3.5 Symbol.prototype[@@toStringTag] === 'Symbol'
-
-
-    if (propValue['@@toStringTag'] === 'Symbol') {
-      return true;
-    } // Fallback for non-spec compliant Symbols which are polyfilled.
-
-
-    if (typeof Symbol === 'function' && propValue instanceof Symbol) {
-      return true;
-    }
-
-    return false;
-  } // Equivalent of `typeof` but with special handling for array and regexp.
-
-
-  function getPropType(propValue) {
-    var propType = typeof propValue;
-
-    if (Array.isArray(propValue)) {
-      return 'array';
-    }
-
-    if (propValue instanceof RegExp) {
-      // Old webkits (at least until Android 4.0) return 'function' rather than
-      // 'object' for typeof a RegExp. We'll normalize this here so that /bla/
-      // passes PropTypes.object.
-      return 'object';
-    }
-
-    if (isSymbol(propType, propValue)) {
-      return 'symbol';
-    }
-
-    return propType;
-  } // This handles more types than `getPropType`. Only used for error messages.
-  // See `createPrimitiveTypeChecker`.
-
-
-  function getPreciseType(propValue) {
-    if (typeof propValue === 'undefined' || propValue === null) {
-      return '' + propValue;
-    }
-
-    var propType = getPropType(propValue);
-
-    if (propType === 'object') {
-      if (propValue instanceof Date) {
-        return 'date';
-      } else if (propValue instanceof RegExp) {
-        return 'regexp';
-      }
-    }
-
-    return propType;
-  } // Returns a string that is postfixed to a warning about an invalid type.
-  // For example, "undefined" or "of type array"
-
-
-  function getPostfixForTypeWarning(value) {
-    var type = getPreciseType(value);
-
-    switch (type) {
-      case 'array':
-      case 'object':
-        return 'an ' + type;
-
-      case 'boolean':
-      case 'date':
-      case 'regexp':
-        return 'a ' + type;
-
-      default:
-        return type;
-    }
-  } // Returns class name of the object, if any.
-
-
-  function getClassName(propValue) {
-    if (!propValue.constructor || !propValue.constructor.name) {
-      return ANONYMOUS;
-    }
-
-    return propValue.constructor.name;
-  }
-
-  ReactPropTypes.checkPropTypes = checkPropTypes_1$1;
-  ReactPropTypes.PropTypes = ReactPropTypes;
-  return ReactPropTypes;
-};
-
-function emptyFunction$1() {}
-
-var factoryWithThrowingShims$1 = function () {
-  function shim(props, propName, componentName, location, propFullName, secret) {
-    if (secret === ReactPropTypesSecret_1$1) {
-      // It is still safe when called from React.
-      return;
-    }
-
-    var err = new Error('Calling PropTypes validators directly is not supported by the `prop-types` package. ' + 'Use PropTypes.checkPropTypes() to call them. ' + 'Read more at http://fb.me/use-check-prop-types');
-    err.name = 'Invariant Violation';
-    throw err;
-  }
-  shim.isRequired = shim;
-
-  function getShim() {
-    return shim;
-  }
-  // Keep this list in sync with production version in `./factoryWithTypeCheckers.js`.
-
-  var ReactPropTypes = {
-    array: shim,
-    bool: shim,
-    func: shim,
-    number: shim,
-    object: shim,
-    string: shim,
-    symbol: shim,
-    any: shim,
-    arrayOf: getShim,
-    element: shim,
-    instanceOf: getShim,
-    node: shim,
-    objectOf: getShim,
-    oneOf: getShim,
-    oneOfType: getShim,
-    shape: getShim,
-    exact: getShim
-  };
-  ReactPropTypes.checkPropTypes = emptyFunction$1;
-  ReactPropTypes.PropTypes = ReactPropTypes;
-  return ReactPropTypes;
-};
-
-var propTypes$1 = createCommonjsModule(function (module) {
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-if (process.env.NODE_ENV !== 'production') {
-  var REACT_ELEMENT_TYPE = typeof Symbol === 'function' && Symbol.for && Symbol.for('react.element') || 0xeac7;
-
-  var isValidElement = function (object) {
-    return typeof object === 'object' && object !== null && object.$$typeof === REACT_ELEMENT_TYPE;
-  }; // By explicitly using `prop-types` you are opting into new development behavior.
-  // http://fb.me/prop-types-in-prod
-
-
-  var throwOnDirectAccess = true;
-  module.exports = factoryWithTypeCheckers$1(isValidElement, throwOnDirectAccess);
-} else {
-  // By explicitly using `prop-types` you are opting into new production behavior.
-  // http://fb.me/prop-types-in-prod
-  module.exports = factoryWithThrowingShims$1();
-}
-});
+var taggedTemplateLiteral = _taggedTemplateLiteral;
 
 var main = createCommonjsModule(function (module, exports) {
 
@@ -14172,19 +13443,9 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _extends = Object.assign || function (target) {
-  for (var i = 1; i < arguments.length; i++) {
-    var source = arguments[i];
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-    for (var key in source) {
-      if (Object.prototype.hasOwnProperty.call(source, key)) {
-        target[key] = source[key];
-      }
-    }
-  }
-
-  return target;
-};
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 
 
@@ -14192,221 +13453,231 @@ var _react2 = _interopRequireDefault(React__default);
 
 
 
-var _propTypes2 = _interopRequireDefault(propTypes$1);
+var _propTypes2 = _interopRequireDefault(propTypes);
 
-function _interopRequireDefault(obj) {
-  return obj && obj.__esModule ? obj : {
-    default: obj
-  };
-}
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _objectWithoutProperties(obj, keys) {
-  var target = {};
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-  for (var i in obj) {
-    if (keys.indexOf(i) >= 0) continue;
-    if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
-    target[i] = obj[i];
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Identicon = function (_Component) {
+  _inherits(Identicon, _Component);
+
+  function Identicon(props) {
+    _classCallCheck(this, Identicon);
+
+    var _this = _possibleConstructorReturn(this, (Identicon.__proto__ || Object.getPrototypeOf(Identicon)).call(this, props));
+
+    _this.generateIdenticon = _this.generateIdenticon.bind(_this);
+    return _this;
   }
 
-  return target;
-} // NOTE --  Majority of this code is referenced from: https://github.com/alexvandesande/blockies
-//          Mostly to ensure congruence to Ethereum Mist's Identicons
-// The random number is a js implementation of the Xorshift PRNG
-
-
-function seedrand(seed) {
-  var randseed = new Array(4); // Xorshift: [x, y, z, w] 32 bit values
-
-  for (var i = 0; i < randseed.length; i++) {
-    randseed[i] = 0;
-  }
-
-  for (var _i = 0; _i < seed.length; _i++) {
-    randseed[_i % 4] = (randseed[_i % 4] << 5) - randseed[_i % 4] + seed.charCodeAt(_i);
-  } // based on Java's String.hashCode(), expanded to 4 32bit values
-
-
-  return function random() {
-    var t = randseed[0] ^ randseed[0] << 11;
-    randseed[0] = randseed[1];
-    randseed[1] = randseed[2];
-    randseed[2] = randseed[3];
-    randseed[3] = randseed[3] ^ randseed[3] >> 19 ^ t ^ t >> 8;
-    return (randseed[3] >>> 0) / (1 << 31 >>> 0);
-  };
-}
-
-function createColor(random) {
-  // saturation is the whole color spectrum
-  var h = Math.floor(random() * 360); // saturation goes from 40 to 100, it avoids greyish colors
-
-  var s = random() * 60 + 40 + '%'; // lightness can be anything from 0 to 100, but probabilities are a bell curve around 50%
-
-  var l = (random() + random() + random() + random()) * 25 + '%';
-  var color = 'hsl(' + h + ',' + s + ',' + l + ')';
-  return color;
-}
-
-function createImageData(size, random) {
-  var width = size; // Only support square icons for now
-
-  var height = size;
-  var dataWidth = Math.ceil(width / 2);
-  var mirrorWidth = width - dataWidth;
-  var data = [];
-
-  for (var y = 0; y < height; y++) {
-    var row = [];
-
-    for (var x = 0; x < dataWidth; x++) {
-      // this makes foreground and background color to have a 43% (1/2.3) probability
-      // spot color has 13% chance
-      row[x] = Math.floor(random() * 2.3);
+  _createClass(Identicon, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      this.generateIdenticon(_extends({}, this.props));
     }
-
-    var r = row.slice(0, mirrorWidth);
-    r.reverse();
-    row = row.concat(r);
-
-    for (var i = 0; i < row.length; i++) {
-      data.push(row[i]);
+  }, {
+    key: 'componentWillUpdate',
+    value: function componentWillUpdate(nextProps) {
+      if (!this.isEquivalent(this.props, nextProps)) this.generateIdenticon(_extends({}, nextProps));
     }
-  }
+  }, {
+    key: 'isEquivalent',
+    value: function isEquivalent(prevProps, nextProps) {
+      var aProps = Object.getOwnPropertyNames(prevProps);
+      var bProps = Object.getOwnPropertyNames(nextProps);
 
-  return data;
-}
-
-function drawCanvas(canvas, scale, _ref) {
-  var imageData = _ref.imageData,
-      color = _ref.color,
-      bgColor = _ref.bgColor,
-      spotColor = _ref.spotColor;
-  var width = Math.sqrt(imageData.length);
-  var size = width * scale;
-  canvas.width = size;
-  canvas.style.width = size + 'px';
-  canvas.height = size;
-  canvas.style.height = size + 'px';
-  var cc = canvas.getContext('2d');
-  cc.fillStyle = bgColor;
-  cc.fillRect(0, 0, canvas.width, canvas.height);
-  cc.fillStyle = color;
-
-  for (var i = 0; i < imageData.length; i++) {
-    // if data is 2, choose spot color, if 1 choose foreground
-    cc.fillStyle = imageData[i] === 1 ? color : spotColor; // if data is 0, leave the background
-
-    if (imageData[i]) {
-      var row = Math.floor(i / width);
-      var col = i % width;
-      cc.fillRect(col * scale, row * scale, scale, scale);
-    }
-  }
-}
-
-function generateIdenticon(_ref2) {
-  var bgColor = _ref2.bgColor,
-      color = _ref2.color,
-      seed = _ref2.seed,
-      size = _ref2.size,
-      spotColor = _ref2.spotColor;
-  var random = seedrand(seed); // order matters since we are using random()
-
-  if (!color) color = createColor(random);
-  if (!bgColor) bgColor = createColor(random);
-  if (!spotColor) spotColor = createColor(random);
-  return {
-    bgColor: bgColor,
-    color: color,
-    imageData: createImageData(size, random),
-    spotColor: spotColor
-  };
-}
-
-var Identicon = _react2.default.memo(function Identicon(_ref3) {
-  var bgColor = _ref3.bgColor,
-      className = _ref3.className,
-      color = _ref3.color,
-      scale = _ref3.scale,
-      seed = _ref3.seed,
-      size = _ref3.size,
-      spotColor = _ref3.spotColor,
-      props = _objectWithoutProperties(_ref3, ['bgColor', 'className', 'color', 'scale', 'seed', 'size', 'spotColor']);
-
-  var canvasRef = (0, React__default.useRef)(); // Cache identiconData so we can use it to trigger a redraw.
-
-  var identiconData = (0, React__default.useMemo)(function () {
-    return generateIdenticon({
-      bgColor: bgColor,
-      color: color,
-      seed: seed,
-      size: size,
-      spotColor: spotColor
-    });
-  }, [bgColor, color, seed, size, spotColor]); // Redraw when scale or identiconData updates.
-
-  (0, React__default.useEffect)(function () {
-    if (canvasRef.current) {
-      drawCanvas(canvasRef.current, scale, identiconData);
-    }
-  }, [identiconData, scale]);
-  return _react2.default.createElement('canvas', _extends({
-    ref: function ref(canvas) {
-      canvasRef.current = canvas; // Redraw when the ref updates.
-
-      if (canvas) {
-        drawCanvas(canvas, scale, identiconData);
+      if (aProps.length != bProps.length) {
+        return false;
       }
-    },
-    className: className
-  }, props));
-});
+
+      for (var i = 0; i < aProps.length; i++) {
+        var propName = aProps[i];
+
+        if (prevProps[propName] !== nextProps[propName]) {
+          return false;
+        }
+      }
+
+      return true;
+    }
+  }, {
+    key: 'generateIdenticon',
+    value: function generateIdenticon(options) {
+      // NOTE --  Majority of this code is referenced from: https://github.com/alexvandesande/blockies
+      //          Mostly to ensure congruence to Ethereum Mist's Identicons
+
+      // The random number is a js implementation of the Xorshift PRNG
+      var randseed = new Array(4); // Xorshift: [x, y, z, w] 32 bit values
+
+      function seedrand(seed) {
+        for (var i = 0; i < randseed.length; i++) {
+          randseed[i] = 0;
+        }
+        for (var _i = 0; _i < seed.length; _i++) {
+          randseed[_i % 4] = (randseed[_i % 4] << 5) - randseed[_i % 4] + seed.charCodeAt(_i);
+        }
+      }
+
+      function rand() {
+        // based on Java's String.hashCode(), expanded to 4 32bit values
+        var t = randseed[0] ^ randseed[0] << 11;
+
+        randseed[0] = randseed[1];
+        randseed[1] = randseed[2];
+        randseed[2] = randseed[3];
+        randseed[3] = randseed[3] ^ randseed[3] >> 19 ^ t ^ t >> 8;
+
+        return (randseed[3] >>> 0) / (1 << 31 >>> 0);
+      }
+
+      function createColor() {
+        // saturation is the whole color spectrum
+        var h = Math.floor(rand() * 360);
+        // saturation goes from 40 to 100, it avoids greyish colors
+        var s = rand() * 60 + 40 + '%';
+        // lightness can be anything from 0 to 100, but probabilities are a bell curve around 50%
+        var l = (rand() + rand() + rand() + rand()) * 25 + '%';
+
+        var color = 'hsl(' + h + ',' + s + ',' + l + ')';
+        return color;
+      }
+
+      function createImageData(size) {
+        var width = size; // Only support square icons for now
+        var height = size;
+
+        var dataWidth = Math.ceil(width / 2);
+        var mirrorWidth = width - dataWidth;
+
+        var data = [];
+        for (var y = 0; y < height; y++) {
+          var row = [];
+          for (var x = 0; x < dataWidth; x++) {
+            // this makes foreground and background color to have a 43% (1/2.3) probability
+            // spot color has 13% chance
+            row[x] = Math.floor(rand() * 2.3);
+          }
+          var r = row.slice(0, mirrorWidth);
+          r.reverse();
+          row = row.concat(r);
+
+          for (var i = 0; i < row.length; i++) {
+            data.push(row[i]);
+          }
+        }
+
+        return data;
+      }
+
+      function setCanvas(identicon, imageData, color, scale, bgcolor, spotcolor) {
+        var width = Math.sqrt(imageData.length);
+        var size = width * scale;
+
+        identicon.width = size;
+        identicon.style.width = size + 'px';
+
+        identicon.height = size;
+        identicon.style.height = size + 'px';
+
+        var cc = identicon.getContext('2d');
+        cc.fillStyle = bgcolor;
+        cc.fillRect(0, 0, identicon.width, identicon.height);
+        cc.fillStyle = color;
+
+        for (var i = 0; i < imageData.length; i++) {
+          // if data is 2, choose spot color, if 1 choose foreground
+          cc.fillStyle = imageData[i] === 1 ? color : spotcolor;
+
+          // if data is 0, leave the background
+          if (imageData[i]) {
+            var row = Math.floor(i / width);
+            var col = i % width;
+
+            cc.fillRect(col * scale, row * scale, scale, scale);
+          }
+        }
+      }
+
+      var opts = options || {};
+      var size = opts.size || 8;
+      var scale = opts.scale || 4;
+      var seed = opts.seed || Math.floor(Math.random() * Math.pow(10, 16)).toString(16);
+
+      seedrand(seed);
+
+      var color = opts.color || createColor();
+      var bgcolor = opts.bgColor || createColor();
+      var spotcolor = opts.spotColor || createColor();
+      var imageData = createImageData(size);
+      var canvas = setCanvas(this.identicon, imageData, color, scale, bgcolor, spotcolor);
+
+      return canvas;
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
+
+      return _react2.default.createElement('canvas', {
+        ref: function ref(identicon) {
+          _this2.identicon = identicon;
+        },
+        className: this.props.className
+      });
+    }
+  }]);
+
+  return Identicon;
+}(React__default.Component);
+
+exports.default = Identicon;
+
 
 Identicon.defaultProps = {
-  className: 'identicon',
-  scale: 4,
-  seed: Math.floor(Math.random() * Math.pow(10, 16)).toString(16),
-  size: 8
+  className: 'identicon'
 };
+
 Identicon.propTypes = {
-  bgColor: _propTypes2.default.string,
-  className: _propTypes2.default.string,
-  color: _propTypes2.default.string,
-  scale: _propTypes2.default.number,
-  seed: _propTypes2.default.string,
+  seed: _propTypes2.default.string.isRequired,
   size: _propTypes2.default.number,
+  scale: _propTypes2.default.number,
+  color: _propTypes2.default.string,
+  bgColor: _propTypes2.default.string,
   spotColor: _propTypes2.default.string
 };
-exports.default = Identicon;
 });
 
 var Blockies = unwrapExports(main);
 
-function _templateObject3$1() {
+function _templateObject3() {
   var data = taggedTemplateLiteral(["\n  /* display:flex to remove the display:inline on the child without using a\n  * selector (Blockies doesn\u2019t allow the style prop to be passed). */\n  display: flex;\n  width: ", "px;\n  height: ", "px;\n  background: #fff;\n\n  /* add high-res screens support to Blockies */\n  transform: scale(", ", ", ");\n  transform-origin: 0 0;\n"]);
 
-  _templateObject3$1 = function _templateObject3() {
+  _templateObject3 = function _templateObject3() {
     return data;
   };
 
   return data;
 }
 
-function _templateObject2$1() {
+function _templateObject2() {
   var data = taggedTemplateLiteral(["\n  opacity: ", ";\n"]);
 
-  _templateObject2$1 = function _templateObject2() {
+  _templateObject2 = function _templateObject2() {
     return data;
   };
 
   return data;
 }
 
-function _templateObject$1() {
+function _templateObject() {
   var data = taggedTemplateLiteral(["\n  display: inline-flex;\n  vertical-align: middle;\n  overflow: hidden;\n  width: ", "px;\n  height: ", "px;\n  border-radius: ", "px;\n\n  // Fix an issue where the border-radius wasn\u2019t visible on Blink browsers.\n  // See https://gist.github.com/ayamflow/b602ab436ac9f05660d9c15190f4fd7b\n  mask-image: linear-gradient(red, red);\n"]);
 
-  _templateObject$1 = function _templateObject() {
+  _templateObject = function _templateObject() {
     return data;
   };
 
@@ -14476,17 +13747,17 @@ defineProperty(EthIdenticon, "defaultProps", {
   soften: 0.3
 });
 
-var Main = _styled__default.div(_templateObject$1(), function (p) {
+var Main = _styled__default.div(_templateObject(), function (p) {
   return p.size;
 }, function (p) {
   return p.size;
 }, function (p) {
   return p.radius;
 });
-var BlockiesOpacity = _styled__default.div(_templateObject2$1(), function (p) {
+var BlockiesOpacity = _styled__default.div(_templateObject2(), function (p) {
   return 1 - p.soften;
 });
-var BlockiesScaling = _styled__default.div(_templateObject3$1(), function (p) {
+var BlockiesScaling = _styled__default.div(_templateObject3(), function (p) {
   return p.size;
 }, function (p) {
   return p.size;
@@ -14758,6 +14029,10 @@ function useKeyDown(key, callback) {
     }
   }, [callback, keys]);
   React.useEffect(function () {
+    if (typeof window === 'undefined') {
+      return;
+    }
+
     window.addEventListener('keydown', handlekeyDown);
     return function () {
       window.removeEventListener('keydown', handlekeyDown);
@@ -14797,7 +14072,7 @@ var _StyledButtonBase$5 = _styled__default(ButtonBaseWithFocus).withConfig({
   return p._css5;
 });
 
-var _StyledDiv$b = _styled__default.div.withConfig({
+var _StyledDiv$c = _styled__default.div.withConfig({
   displayName: "BadgeBase___StyledDiv",
   componentId: "sc-4zaahn-1"
 })(["overflow:hidden;display:flex;align-items:center;text-decoration:none;", ";"], function (p) {
@@ -14851,7 +14126,7 @@ var BadgeBase = React__default.memo(function BadgeBase(_ref) {
     _css3: compact ? 'transparent' : theme.badge,
     _css4: insideDropDownMenu ? 'cursor: pointer' : '',
     _css5: !disabled && compact ? "background: ".concat(theme.badgePressed) : ''
-  }, React__default.createElement(_StyledDiv$b, {
+  }, React__default.createElement(_StyledDiv$c, {
     className: className,
     style: style,
     _css6: compact ? "\n                  padding: 0 ".concat(1 * GU, "px;\n                  border-radius: 2px;\n                ") : "\n                  padding-left: ".concat((icon ? 0 : 1.5) * GU, "px;\n                  padding-right: ").concat((icon ? 1 : 1.5) * GU, "px;\n                  border-radius: ").concat(RADIUS, "px;\n                ")
@@ -14879,6 +14154,70 @@ BadgeBase.propTypes = {
 var BadgePopoverActionType = propTypes.shape({
   label: propTypes.node.isRequired,
   onClick: propTypes.func.isRequired
+});
+
+function ownKeys$b(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread$b(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$b(source, true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$b(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function isEmpty(value) {
+  return value === undefined || value === null;
+} // Require a prop to not be empty
+
+
+function requireProp(props, propName, componentName) {
+  return isEmpty(props[propName]) ? new Error("The prop `".concat(propName, "` is required for `").concat(componentName, "`.")) : null;
+} // Create the `isRequired` version of a prop type
+
+
+function createIsRequired(propTypeFn) {
+  return function () {
+    return requireProp.apply(void 0, arguments) || propTypeFn.apply(void 0, arguments);
+  };
+} // Accept any number in the 0 => 1 range
+
+
+function _0to1(props, propName, componentName) {
+  if (isEmpty(props[propName])) {
+    return null;
+  }
+
+  if (typeof props[propName] === 'number' && props[propName] >= 0 && props[propName] <= 1) {
+    return null;
+  }
+
+  return new Error("Invalid prop `".concat(propName, "` supplied to `").concat(componentName, "`. Please provide a number in the 0-1 range."));
+}
+
+_0to1.isRequired = createIsRequired(_0to1); // Accept DOM Element, in DOM environments
+
+function _element(props, propName, componentName) {
+  if (!props[propName]) {
+    return null;
+  }
+
+  if (typeof Element !== 'undefined') {
+    return props[propName] instanceof Element ? null : new Error("Invalid prop `".concat(propName, "` supplied to `").concat(componentName, "`. Please provide a DOM Element."));
+  }
+
+  return null;
+}
+
+_element.isRequired = createIsRequired(_element);
+
+var ExtendedPropTypes = _objectSpread$b({}, propTypes, {
+  _component: propTypes.oneOfType([propTypes.func, propTypes.string, propTypes.shape({
+    render: propTypes.func.isRequired
+  })]),
+  _spring: propTypes.shape({
+    mass: propTypes.number,
+    tension: propTypes.number,
+    friction: propTypes.number,
+    precision: propTypes.number
+  }),
+  _null: propTypes.oneOf([null]),
+  _0to1: _0to1,
+  _element: _element
 });
 
 /**!
@@ -17795,16 +17134,16 @@ RedrawFromDate.hocWrap = hocWrap$2;
 
 var _ref3;
 
-function ownKeys$b(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+function ownKeys$c(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread$b(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$b(source, true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$b(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread$c(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$c(source, true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$c(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
-var _StyledAnimatedDiv$3 = _styled__default(extendedAnimated.div).withConfig({
+var _StyledAnimatedDiv$4 = _styled__default(extendedAnimated.div).withConfig({
   displayName: "Popover___StyledAnimatedDiv",
   componentId: "sc-1hohxqp-0"
 })(["position:absolute;top:0;left:0;"]);
 
-var _StyledAnimatedDiv2$1 = _styled__default(extendedAnimated.div).withConfig({
+var _StyledAnimatedDiv2$2 = _styled__default(extendedAnimated.div).withConfig({
   displayName: "Popover___StyledAnimatedDiv2",
   componentId: "sc-1hohxqp-1"
 })(["background:", ";border:1px solid ", ";border-radius:", "px;filter:drop-shadow(0 4px 4px rgba(0,0,0,0.15));&:focus{outline:0;}overflow-y:auto;"], function (p) {
@@ -17937,9 +17276,9 @@ function (_React$Component) {
         return settings;
       }
 
-      return _objectSpread$b({}, settings, {
+      return _objectSpread$c({}, settings, {
         placement: 'top-start',
-        modifiers: _objectSpread$b({}, settings.modifiers, {
+        modifiers: _objectSpread$c({}, settings.modifiers, {
           arrow: {
             enabled: false
           },
@@ -17975,7 +17314,8 @@ function (_React$Component) {
     key: "boundaryDimensions",
     value: function boundaryDimensions() {
       var rootBoundary = this.props.rootBoundary;
-      return rootBoundary ? [rootBoundary.clientWidth, rootBoundary.clientHeight] : [window.innerWidth, window.innerHeight];
+      var hasWindow = typeof window !== 'undefined';
+      return rootBoundary ? [rootBoundary.clientWidth, rootBoundary.clientHeight] : [hasWindow ? window.innerWidth : 0, hasWindow ? window.innerHeight : 0];
     }
   }, {
     key: "render",
@@ -17993,12 +17333,12 @@ function (_React$Component) {
           maxWidth = _this$boundaryDimensi2[0],
           maxHeight = _this$boundaryDimensi2[1];
 
-      return React__default.createElement(_StyledAnimatedDiv$3, {
+      return React__default.createElement(_StyledAnimatedDiv$4, {
         ref: this._popperElement,
         style: {
           zIndex: zIndex
         }
-      }, React__default.createElement(_StyledAnimatedDiv2$1, _extends_1({
+      }, React__default.createElement(_StyledAnimatedDiv2$2, _extends_1({
         tabIndex: "0",
         onBlur: this.handleBlur,
         ref: this._cardElement,
@@ -18021,19 +17361,19 @@ function (_React$Component) {
 }(React__default.Component);
 
 defineProperty(PopoverBase, "propTypes", {
-  children: propTypes.node,
-  closeOnOpenerFocus: propTypes.bool,
-  onClose: propTypes.func,
-  opener: propTypes.instanceOf(Element),
-  placement: propTypes.oneOf( // "center" is a value that doesn’t exist in Popper, but we are using it
+  children: ExtendedPropTypes.node,
+  closeOnOpenerFocus: ExtendedPropTypes.bool,
+  onClose: ExtendedPropTypes.func,
+  opener: ExtendedPropTypes._element,
+  placement: ExtendedPropTypes.oneOf( // "center" is a value that doesn’t exist in Popper, but we are using it
   // to define custom Popper settings (see getPopperSettings() below).
   (_ref3 = ['center']).concat.apply(_ref3, toConsumableArray(['auto', 'top', 'right', 'bottom', 'left'].map(function (position) {
     return [position, "".concat(position, "-start"), "".concat(position, "-end")];
   })))),
-  rootBoundary: propTypes.instanceOf(Element),
-  theme: propTypes.object,
-  transitionStyles: propTypes.object,
-  zIndex: propTypes.number
+  rootBoundary: ExtendedPropTypes._element,
+  theme: ExtendedPropTypes.object,
+  transitionStyles: ExtendedPropTypes.object,
+  zIndex: ExtendedPropTypes.number
 });
 
 defineProperty(PopoverBase, "defaultProps", {
@@ -18078,11 +17418,11 @@ function Popover(_ref2) {
   }));
 }
 
-Popover.propTypes = _objectSpread$b({}, PopoverBase.propTypes, {
-  scaleEffect: propTypes.bool,
-  visible: propTypes.bool
+Popover.propTypes = _objectSpread$c({}, PopoverBase.propTypes, {
+  scaleEffect: ExtendedPropTypes.bool,
+  visible: ExtendedPropTypes.bool
 });
-Popover.defaultProps = _objectSpread$b({}, PopoverBase.defaultProps, {
+Popover.defaultProps = _objectSpread$c({}, PopoverBase.defaultProps, {
   scaleEffect: true,
   visible: true
 });
@@ -18119,14 +17459,14 @@ var _StyledH$3 = _styled__default.h1.withConfig({
   return p._css6;
 });
 
-var _StyledDiv$c = _styled__default.div.withConfig({
+var _StyledDiv$d = _styled__default.div.withConfig({
   displayName: "BadgePopoverBase___StyledDiv",
   componentId: "xfkga1-4"
 })(["padding:", "px;"], function (p) {
   return p._css7;
 });
 
-var _StyledDiv2$8 = _styled__default.div.withConfig({
+var _StyledDiv2$9 = _styled__default.div.withConfig({
   displayName: "BadgePopoverBase___StyledDiv2",
   componentId: "xfkga1-5"
 })(["display:flex;margin-top:", "px;", ""], function (p) {
@@ -18185,9 +17525,9 @@ var BadgePopoverBase = React__default.memo(function BadgePopoverBase(_ref) {
   }, React__default.createElement(_StyledH$3, {
     _css5: textStyle('label2'),
     _css6: theme.surfaceContentSecondary
-  }, title), titleTag), React__default.createElement(_StyledDiv$c, {
+  }, title), titleTag), React__default.createElement(_StyledDiv$d, {
     _css7: 2 * GU
-  }, addressField, React__default.createElement(_StyledDiv2$8, {
+  }, addressField, React__default.createElement(_StyledDiv2$9, {
     _css8: 2 * GU,
     _css9: link ? "\n                  flex-direction: row-reverse;\n                  justify-content: space-between;\n                " : ''
   }, link && React__default.createElement(_StyledP$1, {
@@ -18200,14 +17540,14 @@ var BadgePopoverBase = React__default.memo(function BadgePopoverBase(_ref) {
   }, popoverAction.label)))));
 });
 BadgePopoverBase.propTypes = {
-  addressField: propTypes.node.isRequired,
-  link: propTypes.node,
-  onClose: propTypes.func,
-  opener: propTypes.instanceOf(Element),
+  addressField: ExtendedPropTypes.node.isRequired,
+  link: ExtendedPropTypes.node,
+  onClose: ExtendedPropTypes.func,
+  opener: ExtendedPropTypes._element,
   popoverAction: BadgePopoverActionType,
-  title: propTypes.node.isRequired,
-  titleTag: propTypes.node,
-  visible: propTypes.bool
+  title: ExtendedPropTypes.node.isRequired,
+  titleTag: ExtendedPropTypes.node,
+  visible: ExtendedPropTypes.bool
 };
 BadgePopoverBase.defaultProps = {
   onClose: noop
@@ -18250,18 +17590,18 @@ var AppBadgePopover = React__default.memo(function AppBadgePopover(_ref) {
   });
 });
 AppBadgePopover.propTypes = {
-  appAddress: propTypes.string.isRequired,
-  iconFallbackSrc: propTypes.string,
-  iconSrc: propTypes.string,
-  networkType: propTypes.string,
-  onClose: propTypes.func,
-  opener: propTypes.instanceOf(Element),
+  appAddress: ExtendedPropTypes.string.isRequired,
+  iconFallbackSrc: ExtendedPropTypes.string,
+  iconSrc: ExtendedPropTypes.string,
+  networkType: ExtendedPropTypes.string,
+  onClose: ExtendedPropTypes.func,
+  opener: ExtendedPropTypes._element,
   popoverAction: BadgePopoverActionType,
-  title: propTypes.node.isRequired,
-  visible: propTypes.bool
+  title: ExtendedPropTypes.node.isRequired,
+  visible: ExtendedPropTypes.bool
 };
 
-var _StyledDiv$d = _styled__default.div.withConfig({
+var _StyledDiv$e = _styled__default.div.withConfig({
   displayName: "AppBadgePopover___StyledDiv",
   componentId: "cornse-0"
 })(["width:100%;height:100%;background-size:contain;background-position:50% 50%;background-repeat:no-repeat;background-image:url(", ");"], function (p) {
@@ -18272,18 +17612,18 @@ function Icon(_ref3) {
   var src = _ref3.src,
       props = objectWithoutProperties(_ref3, ["src"]);
 
-  return React__default.createElement(_StyledDiv$d, _extends_1({}, props, {
+  return React__default.createElement(_StyledDiv$e, _extends_1({}, props, {
     _css: src
   }));
 }
 
 Icon.propTypes = {
-  src: propTypes.string.isRequired
+  src: ExtendedPropTypes.string.isRequired
 };
 
 var iconDefaultSvg = "data:image/svg+xml,%3Csvg%20width%3D%2256%22%20height%3D%2256%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M56%200H0v56h56V0z%22%20fill%3D%22url%28%23paint0_linear%29%22%2F%3E%3Cpath%20fill-rule%3D%22evenodd%22%20clip-rule%3D%22evenodd%22%20d%3D%22M28.363%2010.74L13.04%2019.56v17.645l15.322%208.821%2015.323-8.821V19.56l-15.322-8.82z%22%20fill%3D%22url%28%23paint1_linear%29%22%2F%3E%3Cpath%20fill-rule%3D%22evenodd%22%20clip-rule%3D%22evenodd%22%20d%3D%22M28.363%2046.027V10.74l15.323%208.821v17.645l-15.323%208.821z%22%20fill%3D%22%2373F0F8%22%2F%3E%3Cpath%20fill-rule%3D%22evenodd%22%20clip-rule%3D%22evenodd%22%20d%3D%22M13.041%2019.561l15.322-8.822%2015.323%208.822-15.323%208.426-15.322-8.425z%22%20fill%3D%22url%28%23paint2_linear%29%22%2F%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22paint0_linear%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%2256%22%20y2%3D%2253.105%22%20gradientUnits%3D%22userSpaceOnUse%22%3E%3Cstop%20stop-color%3D%22%2333BCE6%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%2348E2E5%22%2F%3E%3C%2FlinearGradient%3E%3ClinearGradient%20id%3D%22paint1_linear%22%20x1%3D%2214.618%22%20y1%3D%2219.282%22%20x2%3D%2231.423%22%20y2%3D%2243.942%22%20gradientUnits%3D%22userSpaceOnUse%22%3E%3Cstop%20stop-color%3D%22%232597B7%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%2339C5E1%22%2F%3E%3C%2FlinearGradient%3E%3ClinearGradient%20id%3D%22paint2_linear%22%20x1%3D%2214.799%22%20y1%3D%2219.363%22%20x2%3D%2243.686%22%20y2%3D%2219.363%22%20gradientUnits%3D%22userSpaceOnUse%22%3E%3Cstop%20stop-color%3D%22%233DCEE5%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%2348E2E6%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3C%2Fsvg%3E";
 
-var _StyledDiv$e = _styled__default.div.withConfig({
+var _StyledDiv$f = _styled__default.div.withConfig({
   displayName: "AppBadge___StyledDiv",
   componentId: "sc-5gkmrm-0"
 })(["display:grid;align-items:center;grid-template-columns:auto 1fr;"]);
@@ -18332,7 +17672,7 @@ var AppBadge = React__default.memo(function AppBadge(_ref) {
     warn("AppBadge: provided invalid app address (".concat(appAddress, ")"));
   }
 
-  popoverTitle = popoverTitle || React__default.createElement(_StyledDiv$e, null, React__default.createElement(_StyledSpan$6, null, label), identifier && React__default.createElement(_StyledTag, {
+  popoverTitle = popoverTitle || React__default.createElement(_StyledDiv$f, null, React__default.createElement(_StyledSpan$6, null, label), identifier && React__default.createElement(_StyledTag, {
     mode: "identifier",
     _css: 1 * GU
   }, identifier));
@@ -18381,7 +17721,7 @@ AppBadge.propTypes = {
   popoverTitle: propTypes.node
 };
 
-var _StyledSpan2$3 = _styled__default.span.withConfig({
+var _StyledSpan2$2 = _styled__default.span.withConfig({
   displayName: "AppBadge___StyledSpan2",
   componentId: "sc-5gkmrm-3"
 })(["flex-shrink:0;width:", "px;height:", "px;margin-right:", "px;border-radius:", ";background-size:contain;background-position:50% 50%;background-repeat:no-repeat;background-image:url(", ");"], function (p) {
@@ -18402,7 +17742,7 @@ var Icon$1 = function Icon(_ref3) {
       props = objectWithoutProperties(_ref3, ["compact", "src"]);
 
   var size = (compact ? 2.25 : 3) * GU;
-  return React__default.createElement(_StyledSpan2$3, _extends_1({}, props, {
+  return React__default.createElement(_StyledSpan2$2, _extends_1({}, props, {
     _css2: size,
     _css3: size,
     _css4: 1 * GU,
@@ -18442,7 +17782,7 @@ var _StyledSpan$7 = _styled__default.span.withConfig({
   return p._css8;
 });
 
-var _StyledSpan2$4 = _styled__default.span.withConfig({
+var _StyledSpan2$3 = _styled__default.span.withConfig({
   displayName: "BackButton___StyledSpan2",
   componentId: "ebowg7-2"
 })(["padding-left:", "px;font-size:16px;font-weight:600;"], function (p) {
@@ -18477,7 +17817,7 @@ function BackButton(_ref) {
     _css7: theme.surfaceHighlight
   }), React__default.createElement(_StyledSpan$7, {
     _css8: theme.accent
-  }, React__default.createElement(IconArrowLeft, null)), React__default.createElement(_StyledSpan2$4, {
+  }, React__default.createElement(IconArrowLeft, null)), React__default.createElement(_StyledSpan2$3, {
     _css9: 1 * GU
   }, label));
 }
@@ -18497,10 +17837,10 @@ var overpassSemiBoldWoff2 = "5cfe62515c2f9b42.woff2";
 
 var overpassMonoLightWoff2 = "3dd21d4f0d28fecb.woff2";
 
-function _templateObject$2() {
+function _templateObject$1() {
   var data = taggedTemplateLiteral(["\n\n  // @font-face declarations\n  ", "\n\n  *, *:before, *:after {\n    box-sizing: border-box;\n  }\n  html {\n    -webkit-overflow-scrolling: touch;\n  }\n  body {\n    height: 0;\n    min-height: 100vh;\n    color: ", ";\n    background: ", ";\n    font-family: ", ";\n    ", ";\n  }\n  html, body {\n    overflow: hidden;\n  }\n  body, ul, p, h1, h2, h3, h4, h5, h6 {\n    margin: 0;\n    padding: 0;\n  }\n  button, select, input, textarea, h1, h2, h3, h4, h5, h6 {\n    font-size: inherit;\n    font-family: inherit;\n    font-weight: inherit;\n    line-height: inherit;\n  }\n  a, button, select, input, textarea {\n    color: inherit;\n  }\n  strong, b {\n    font-weight: 600;\n  }\n  ::selection {\n    background: ", ";\n    color: ", ";\n  }\n"]);
 
-  _templateObject$2 = function _templateObject() {
+  _templateObject$1 = function _templateObject() {
     return data;
   };
 
@@ -18561,7 +17901,7 @@ BaseStyles.defaultProps = {
   publicUrl: '/',
   fontFamily: "".concat(DEFAULT_FONT_FAMILY, ", sans-serif")
 };
-var GlobalStyle = _styled.createGlobalStyle(_templateObject$2(), function (p) {
+var GlobalStyle = _styled.createGlobalStyle(_templateObject$1(), function (p) {
   return p.fontFaces ? p.fontFaces : '';
 }, function (p) {
   return p.theme.content;
@@ -18578,9 +17918,9 @@ var GlobalStyle = _styled.createGlobalStyle(_templateObject$2(), function (p) {
 });
 var BaseStyles$1 = PublicUrl.hocWrap(BaseStyles);
 
-function ownKeys$c(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+function ownKeys$d(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread$c(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$c(source, true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$c(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread$d(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$d(source, true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$d(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 var _StyledButtonBase$7 = _styled__default(ButtonBaseWithFocus).withConfig({
   displayName: "ButtonText___StyledButtonBase",
@@ -18613,7 +17953,7 @@ function ButtonText(_ref) {
   }));
 }
 
-ButtonText.propTypes = _objectSpread$c({}, ButtonBaseWithFocus.propTypes, {
+ButtonText.propTypes = _objectSpread$d({}, ButtonBaseWithFocus.propTypes, {
   horizontalPadding: propTypes.oneOf(['both', 'left', 'right', 'none'])
 });
 ButtonText.defaultProps = {
@@ -18635,7 +17975,7 @@ function dimension(insideCardLayout, value, defaultValue) {
   return value === undefined ? defaultValue : value;
 }
 
-var _StyledDiv$f = _styled__default.div.withConfig({
+var _StyledDiv$g = _styled__default.div.withConfig({
   displayName: "Card___StyledDiv",
   componentId: "sc-13r75gj-0"
 })(["position:relative;width:", ";height:", ";background:", ";border:1px solid ", ";border-radius:", "px;cursor:", ";display:flex;flex-direction:column;align-items:center;justify-content:center;", ""], function (p) {
@@ -18674,7 +18014,7 @@ function Card(_ref) {
   } : {};
   var cssWidth = dimension(insideCardLayout, width, "".concat(DEFAULT_WIDTH, "px"));
   var cssHeight = dimension(insideCardLayout, height, "".concat(DEFAULT_HEIGHT, "px"));
-  return React__default.createElement(_StyledDiv$f, _extends_1({}, interactiveProps, props, {
+  return React__default.createElement(_StyledDiv$g, _extends_1({}, interactiveProps, props, {
     _css: cssWidth,
     _css2: cssHeight,
     _css3: theme.surface,
@@ -18691,10 +18031,10 @@ Card.propTypes = {
   onClick: propTypes.func
 };
 
-var _StyledDiv$g = _styled__default.div.withConfig({
+var _StyledDiv$h = _styled__default.div.withConfig({
   displayName: "CardLayout___StyledDiv",
   componentId: "p97qvl-0"
-})(["display:grid;grid-gap:", "px;grid-auto-flow:row;grid-template-columns:repeat( ", ",minmax(", "px,1fr) );grid-auto-rows:", "px;align-items:start;padding:0 ", "px ", "px;margin:0 auto;"], function (p) {
+})(["display:grid;grid-gap:", "px;grid-auto-flow:row;grid-template-columns:repeat( ", ",minmax(", "px,1fr) );grid-auto-rows:", ";align-items:start;padding:0 ", "px ", "px;margin:0 auto;"], function (p) {
   return p._css;
 }, function (p) {
   return p._css2;
@@ -18718,13 +18058,14 @@ function CardLayout(_ref) {
       layoutName = _useLayout.layoutName;
 
   var fullWidth = layoutName === 'small';
+  var gridAutoRowValue = rowHeight === 'auto' ? rowHeight : "".concat(rowHeight, "px");
   return React__default.createElement(Inside, {
     name: "CardLayout"
-  }, React__default.createElement(_StyledDiv$g, _extends_1({}, props, {
+  }, React__default.createElement(_StyledDiv$h, _extends_1({}, props, {
     _css: 2 * GU,
     _css2: fullWidth ? 'auto-fit' : 'auto-fill',
     _css3: columnWidthMin,
-    _css4: rowHeight,
+    _css4: gridAutoRowValue,
     _css5: fullWidth ? 2 * GU : 0,
     _css6: 3 * GU
   }), children));
@@ -18733,7 +18074,7 @@ function CardLayout(_ref) {
 CardLayout.propTypes = {
   children: propTypes.node,
   columnWidthMin: propTypes.number,
-  rowHeight: propTypes.number
+  rowHeight: propTypes.oneOfType([propTypes.oneOf(['auto']), propTypes.number])
 };
 CardLayout.defaultProps = {
   columnWidthMin: 21 * GU,
@@ -18750,40 +18091,40 @@ function _templateObject5() {
   return data;
 }
 
-function _templateObject4$1() {
+function _templateObject4() {
   var data = taggedTemplateLiteral(["\n  fill: none;\n  transform: rotate(270deg);\n  transform-origin: 50% 50%;\n  stroke: #21c1e7;\n"]);
 
-  _templateObject4$1 = function _templateObject4() {
+  _templateObject4 = function _templateObject4() {
     return data;
   };
 
   return data;
 }
 
-function _templateObject3$2() {
+function _templateObject3$1() {
   var data = taggedTemplateLiteral(["\n  fill: none;\n  stroke: #6d777b;\n  opacity: 0.3;\n"]);
 
-  _templateObject3$2 = function _templateObject3() {
+  _templateObject3$1 = function _templateObject3() {
     return data;
   };
 
   return data;
 }
 
-function _templateObject2$2() {
+function _templateObject2$1() {
   var data = taggedTemplateLiteral(["\n  position: absolute;\n  top: 0;\n  left: 0;\n"]);
 
-  _templateObject2$2 = function _templateObject2() {
+  _templateObject2$1 = function _templateObject2() {
     return data;
   };
 
   return data;
 }
 
-function _templateObject$3() {
+function _templateObject$2() {
   var data = taggedTemplateLiteral(["\n  position: relative;\n"]);
 
-  _templateObject$3 = function _templateObject() {
+  _templateObject$2 = function _templateObject() {
     return data;
   };
 
@@ -18853,10 +18194,10 @@ CircleGraph.defaultProps = {
   size: SIZE_DEFAULT,
   label: LABEL_DEFAULT
 };
-var Main$1 = _styled__default.div(_templateObject$3());
-var CircleSvg = _styled__default.svg(_templateObject2$2());
-var CircleBase = _styled__default.circle(_templateObject3$2());
-var CircleValue = _styled__default(extendedAnimated.circle)(_templateObject4$1());
+var Main$1 = _styled__default.div(_templateObject$2());
+var CircleSvg = _styled__default.svg(_templateObject2$1());
+var CircleBase = _styled__default.circle(_templateObject3$1());
+var CircleValue = _styled__default(extendedAnimated.circle)(_templateObject4());
 var Label = _styled__default(extendedAnimated.div)(_templateObject5());
 
 var _createClass$1 = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -18982,7 +18323,7 @@ var _StyledIconDown = _styled__default(IconDown).withConfig({
   return p._css7;
 });
 
-var _StyledAnimatedDiv$4 = _styled__default(extendedAnimated.div).withConfig({
+var _StyledAnimatedDiv$5 = _styled__default(extendedAnimated.div).withConfig({
   displayName: "ContextMenu___StyledAnimatedDiv",
   componentId: "ris724-2"
 })(["z-index:", ";overflow:hidden;position:absolute;top:", "px;right:0;background:", ";border:1px solid ", ";border-radius:3px 0 3px 3px;"], function (p) {
@@ -18995,7 +18336,7 @@ var _StyledAnimatedDiv$4 = _styled__default(extendedAnimated.div).withConfig({
   return p._css11;
 });
 
-var _StyledDiv$h = _styled__default.div.withConfig({
+var _StyledDiv$i = _styled__default.div.withConfig({
   displayName: "ContextMenu___StyledDiv",
   componentId: "ris724-3"
 })(["z-index:", ";position:absolute;bottom:0;right:1px;height:1px;width:", "px;background:", ";"], function (p) {
@@ -19067,7 +18408,7 @@ function ContextMenu(_ref) {
     }, React__default.createElement(_StyledIconDown, {
       size: "tiny",
       _css7: disabled ? theme.disabledIcon : theme.surfaceIcon
-    }))), opened && React__default.createElement(React__default.Fragment, null, React__default.createElement(_StyledAnimatedDiv$4, {
+    }))), opened && React__default.createElement(React__default.Fragment, null, React__default.createElement(_StyledAnimatedDiv$5, {
       onClick: handleClose,
       style: {
         opacity: openProgress,
@@ -19079,7 +18420,7 @@ function ContextMenu(_ref) {
       _css9: BASE_HEIGHT - 1,
       _css10: theme.surface,
       _css11: theme.border
-    }, children), React__default.createElement(_StyledDiv$h, {
+    }, children), React__default.createElement(_StyledDiv$i, {
       _css12: appliedZIndex + 1,
       _css13: BASE_WIDTH - 2,
       _css14: theme.surface
@@ -19154,920 +18495,6 @@ var ContextMenuItem = React__default.memo(function ContextMenuItem(props) {
   }));
 });
 
-/** `Object#toString` result references. */
-var asyncTag = '[object AsyncFunction]',
-    funcTag = '[object Function]',
-    genTag = '[object GeneratorFunction]',
-    proxyTag = '[object Proxy]';
-
-/**
- * Checks if `value` is classified as a `Function` object.
- *
- * @static
- * @memberOf _
- * @since 0.1.0
- * @category Lang
- * @param {*} value The value to check.
- * @returns {boolean} Returns `true` if `value` is a function, else `false`.
- * @example
- *
- * _.isFunction(_);
- * // => true
- *
- * _.isFunction(/abc/);
- * // => false
- */
-function isFunction$1(value) {
-  if (!isObject(value)) {
-    return false;
-  }
-  // The use of `Object#toString` avoids issues with the `typeof` operator
-  // in Safari 9 which returns 'object' for typed arrays and other constructors.
-  var tag = baseGetTag(value);
-  return tag == funcTag || tag == genTag || tag == asyncTag || tag == proxyTag;
-}
-
-/** Used to detect overreaching core-js shims. */
-var coreJsData = root['__core-js_shared__'];
-
-/** Used to detect methods masquerading as native. */
-var maskSrcKey = (function() {
-  var uid = /[^.]+$/.exec(coreJsData && coreJsData.keys && coreJsData.keys.IE_PROTO || '');
-  return uid ? ('Symbol(src)_1.' + uid) : '';
-}());
-
-/**
- * Checks if `func` has its source masked.
- *
- * @private
- * @param {Function} func The function to check.
- * @returns {boolean} Returns `true` if `func` is masked, else `false`.
- */
-function isMasked(func) {
-  return !!maskSrcKey && (maskSrcKey in func);
-}
-
-/** Used for built-in method references. */
-var funcProto = Function.prototype;
-
-/** Used to resolve the decompiled source of functions. */
-var funcToString = funcProto.toString;
-
-/**
- * Converts `func` to its source code.
- *
- * @private
- * @param {Function} func The function to convert.
- * @returns {string} Returns the source code.
- */
-function toSource(func) {
-  if (func != null) {
-    try {
-      return funcToString.call(func);
-    } catch (e) {}
-    try {
-      return (func + '');
-    } catch (e) {}
-  }
-  return '';
-}
-
-/**
- * Used to match `RegExp`
- * [syntax characters](http://ecma-international.org/ecma-262/7.0/#sec-patterns).
- */
-var reRegExpChar = /[\\^$.*+?()[\]{}|]/g;
-
-/** Used to detect host constructors (Safari). */
-var reIsHostCtor = /^\[object .+?Constructor\]$/;
-
-/** Used for built-in method references. */
-var funcProto$1 = Function.prototype,
-    objectProto$2 = Object.prototype;
-
-/** Used to resolve the decompiled source of functions. */
-var funcToString$1 = funcProto$1.toString;
-
-/** Used to check objects for own properties. */
-var hasOwnProperty$3 = objectProto$2.hasOwnProperty;
-
-/** Used to detect if a method is native. */
-var reIsNative = RegExp('^' +
-  funcToString$1.call(hasOwnProperty$3).replace(reRegExpChar, '\\$&')
-  .replace(/hasOwnProperty|(function).*?(?=\\\()| for .+?(?=\\\])/g, '$1.*?') + '$'
-);
-
-/**
- * The base implementation of `_.isNative` without bad shim checks.
- *
- * @private
- * @param {*} value The value to check.
- * @returns {boolean} Returns `true` if `value` is a native function,
- *  else `false`.
- */
-function baseIsNative(value) {
-  if (!isObject(value) || isMasked(value)) {
-    return false;
-  }
-  var pattern = isFunction$1(value) ? reIsNative : reIsHostCtor;
-  return pattern.test(toSource(value));
-}
-
-/**
- * Gets the value at `key` of `object`.
- *
- * @private
- * @param {Object} [object] The object to query.
- * @param {string} key The key of the property to get.
- * @returns {*} Returns the property value.
- */
-function getValue(object, key) {
-  return object == null ? undefined : object[key];
-}
-
-/**
- * Gets the native function at `key` of `object`.
- *
- * @private
- * @param {Object} object The object to query.
- * @param {string} key The key of the method to get.
- * @returns {*} Returns the function if it's native, else `undefined`.
- */
-function getNative(object, key) {
-  var value = getValue(object, key);
-  return baseIsNative(value) ? value : undefined;
-}
-
-/* Built-in method references that are verified to be native. */
-var nativeCreate = getNative(Object, 'create');
-
-/**
- * Removes all key-value entries from the hash.
- *
- * @private
- * @name clear
- * @memberOf Hash
- */
-function hashClear() {
-  this.__data__ = nativeCreate ? nativeCreate(null) : {};
-  this.size = 0;
-}
-
-/**
- * Removes `key` and its value from the hash.
- *
- * @private
- * @name delete
- * @memberOf Hash
- * @param {Object} hash The hash to modify.
- * @param {string} key The key of the value to remove.
- * @returns {boolean} Returns `true` if the entry was removed, else `false`.
- */
-function hashDelete(key) {
-  var result = this.has(key) && delete this.__data__[key];
-  this.size -= result ? 1 : 0;
-  return result;
-}
-
-/** Used to stand-in for `undefined` hash values. */
-var HASH_UNDEFINED = '__lodash_hash_undefined__';
-
-/** Used for built-in method references. */
-var objectProto$3 = Object.prototype;
-
-/** Used to check objects for own properties. */
-var hasOwnProperty$4 = objectProto$3.hasOwnProperty;
-
-/**
- * Gets the hash value for `key`.
- *
- * @private
- * @name get
- * @memberOf Hash
- * @param {string} key The key of the value to get.
- * @returns {*} Returns the entry value.
- */
-function hashGet(key) {
-  var data = this.__data__;
-  if (nativeCreate) {
-    var result = data[key];
-    return result === HASH_UNDEFINED ? undefined : result;
-  }
-  return hasOwnProperty$4.call(data, key) ? data[key] : undefined;
-}
-
-/** Used for built-in method references. */
-var objectProto$4 = Object.prototype;
-
-/** Used to check objects for own properties. */
-var hasOwnProperty$5 = objectProto$4.hasOwnProperty;
-
-/**
- * Checks if a hash value for `key` exists.
- *
- * @private
- * @name has
- * @memberOf Hash
- * @param {string} key The key of the entry to check.
- * @returns {boolean} Returns `true` if an entry for `key` exists, else `false`.
- */
-function hashHas(key) {
-  var data = this.__data__;
-  return nativeCreate ? (data[key] !== undefined) : hasOwnProperty$5.call(data, key);
-}
-
-/** Used to stand-in for `undefined` hash values. */
-var HASH_UNDEFINED$1 = '__lodash_hash_undefined__';
-
-/**
- * Sets the hash `key` to `value`.
- *
- * @private
- * @name set
- * @memberOf Hash
- * @param {string} key The key of the value to set.
- * @param {*} value The value to set.
- * @returns {Object} Returns the hash instance.
- */
-function hashSet(key, value) {
-  var data = this.__data__;
-  this.size += this.has(key) ? 0 : 1;
-  data[key] = (nativeCreate && value === undefined) ? HASH_UNDEFINED$1 : value;
-  return this;
-}
-
-/**
- * Creates a hash object.
- *
- * @private
- * @constructor
- * @param {Array} [entries] The key-value pairs to cache.
- */
-function Hash(entries) {
-  var index = -1,
-      length = entries == null ? 0 : entries.length;
-
-  this.clear();
-  while (++index < length) {
-    var entry = entries[index];
-    this.set(entry[0], entry[1]);
-  }
-}
-
-// Add methods to `Hash`.
-Hash.prototype.clear = hashClear;
-Hash.prototype['delete'] = hashDelete;
-Hash.prototype.get = hashGet;
-Hash.prototype.has = hashHas;
-Hash.prototype.set = hashSet;
-
-/**
- * Removes all key-value entries from the list cache.
- *
- * @private
- * @name clear
- * @memberOf ListCache
- */
-function listCacheClear() {
-  this.__data__ = [];
-  this.size = 0;
-}
-
-/**
- * Performs a
- * [`SameValueZero`](http://ecma-international.org/ecma-262/7.0/#sec-samevaluezero)
- * comparison between two values to determine if they are equivalent.
- *
- * @static
- * @memberOf _
- * @since 4.0.0
- * @category Lang
- * @param {*} value The value to compare.
- * @param {*} other The other value to compare.
- * @returns {boolean} Returns `true` if the values are equivalent, else `false`.
- * @example
- *
- * var object = { 'a': 1 };
- * var other = { 'a': 1 };
- *
- * _.eq(object, object);
- * // => true
- *
- * _.eq(object, other);
- * // => false
- *
- * _.eq('a', 'a');
- * // => true
- *
- * _.eq('a', Object('a'));
- * // => false
- *
- * _.eq(NaN, NaN);
- * // => true
- */
-function eq(value, other) {
-  return value === other || (value !== value && other !== other);
-}
-
-/**
- * Gets the index at which the `key` is found in `array` of key-value pairs.
- *
- * @private
- * @param {Array} array The array to inspect.
- * @param {*} key The key to search for.
- * @returns {number} Returns the index of the matched value, else `-1`.
- */
-function assocIndexOf(array, key) {
-  var length = array.length;
-  while (length--) {
-    if (eq(array[length][0], key)) {
-      return length;
-    }
-  }
-  return -1;
-}
-
-/** Used for built-in method references. */
-var arrayProto = Array.prototype;
-
-/** Built-in value references. */
-var splice = arrayProto.splice;
-
-/**
- * Removes `key` and its value from the list cache.
- *
- * @private
- * @name delete
- * @memberOf ListCache
- * @param {string} key The key of the value to remove.
- * @returns {boolean} Returns `true` if the entry was removed, else `false`.
- */
-function listCacheDelete(key) {
-  var data = this.__data__,
-      index = assocIndexOf(data, key);
-
-  if (index < 0) {
-    return false;
-  }
-  var lastIndex = data.length - 1;
-  if (index == lastIndex) {
-    data.pop();
-  } else {
-    splice.call(data, index, 1);
-  }
-  --this.size;
-  return true;
-}
-
-/**
- * Gets the list cache value for `key`.
- *
- * @private
- * @name get
- * @memberOf ListCache
- * @param {string} key The key of the value to get.
- * @returns {*} Returns the entry value.
- */
-function listCacheGet(key) {
-  var data = this.__data__,
-      index = assocIndexOf(data, key);
-
-  return index < 0 ? undefined : data[index][1];
-}
-
-/**
- * Checks if a list cache value for `key` exists.
- *
- * @private
- * @name has
- * @memberOf ListCache
- * @param {string} key The key of the entry to check.
- * @returns {boolean} Returns `true` if an entry for `key` exists, else `false`.
- */
-function listCacheHas(key) {
-  return assocIndexOf(this.__data__, key) > -1;
-}
-
-/**
- * Sets the list cache `key` to `value`.
- *
- * @private
- * @name set
- * @memberOf ListCache
- * @param {string} key The key of the value to set.
- * @param {*} value The value to set.
- * @returns {Object} Returns the list cache instance.
- */
-function listCacheSet(key, value) {
-  var data = this.__data__,
-      index = assocIndexOf(data, key);
-
-  if (index < 0) {
-    ++this.size;
-    data.push([key, value]);
-  } else {
-    data[index][1] = value;
-  }
-  return this;
-}
-
-/**
- * Creates an list cache object.
- *
- * @private
- * @constructor
- * @param {Array} [entries] The key-value pairs to cache.
- */
-function ListCache(entries) {
-  var index = -1,
-      length = entries == null ? 0 : entries.length;
-
-  this.clear();
-  while (++index < length) {
-    var entry = entries[index];
-    this.set(entry[0], entry[1]);
-  }
-}
-
-// Add methods to `ListCache`.
-ListCache.prototype.clear = listCacheClear;
-ListCache.prototype['delete'] = listCacheDelete;
-ListCache.prototype.get = listCacheGet;
-ListCache.prototype.has = listCacheHas;
-ListCache.prototype.set = listCacheSet;
-
-/* Built-in method references that are verified to be native. */
-var Map$1 = getNative(root, 'Map');
-
-/**
- * Removes all key-value entries from the map.
- *
- * @private
- * @name clear
- * @memberOf MapCache
- */
-function mapCacheClear() {
-  this.size = 0;
-  this.__data__ = {
-    'hash': new Hash,
-    'map': new (Map$1 || ListCache),
-    'string': new Hash
-  };
-}
-
-/**
- * Checks if `value` is suitable for use as unique object key.
- *
- * @private
- * @param {*} value The value to check.
- * @returns {boolean} Returns `true` if `value` is suitable, else `false`.
- */
-function isKeyable(value) {
-  var type = typeof value;
-  return (type == 'string' || type == 'number' || type == 'symbol' || type == 'boolean')
-    ? (value !== '__proto__')
-    : (value === null);
-}
-
-/**
- * Gets the data for `map`.
- *
- * @private
- * @param {Object} map The map to query.
- * @param {string} key The reference key.
- * @returns {*} Returns the map data.
- */
-function getMapData(map, key) {
-  var data = map.__data__;
-  return isKeyable(key)
-    ? data[typeof key == 'string' ? 'string' : 'hash']
-    : data.map;
-}
-
-/**
- * Removes `key` and its value from the map.
- *
- * @private
- * @name delete
- * @memberOf MapCache
- * @param {string} key The key of the value to remove.
- * @returns {boolean} Returns `true` if the entry was removed, else `false`.
- */
-function mapCacheDelete(key) {
-  var result = getMapData(this, key)['delete'](key);
-  this.size -= result ? 1 : 0;
-  return result;
-}
-
-/**
- * Gets the map value for `key`.
- *
- * @private
- * @name get
- * @memberOf MapCache
- * @param {string} key The key of the value to get.
- * @returns {*} Returns the entry value.
- */
-function mapCacheGet(key) {
-  return getMapData(this, key).get(key);
-}
-
-/**
- * Checks if a map value for `key` exists.
- *
- * @private
- * @name has
- * @memberOf MapCache
- * @param {string} key The key of the entry to check.
- * @returns {boolean} Returns `true` if an entry for `key` exists, else `false`.
- */
-function mapCacheHas(key) {
-  return getMapData(this, key).has(key);
-}
-
-/**
- * Sets the map `key` to `value`.
- *
- * @private
- * @name set
- * @memberOf MapCache
- * @param {string} key The key of the value to set.
- * @param {*} value The value to set.
- * @returns {Object} Returns the map cache instance.
- */
-function mapCacheSet(key, value) {
-  var data = getMapData(this, key),
-      size = data.size;
-
-  data.set(key, value);
-  this.size += data.size == size ? 0 : 1;
-  return this;
-}
-
-/**
- * Creates a map cache object to store key-value pairs.
- *
- * @private
- * @constructor
- * @param {Array} [entries] The key-value pairs to cache.
- */
-function MapCache(entries) {
-  var index = -1,
-      length = entries == null ? 0 : entries.length;
-
-  this.clear();
-  while (++index < length) {
-    var entry = entries[index];
-    this.set(entry[0], entry[1]);
-  }
-}
-
-// Add methods to `MapCache`.
-MapCache.prototype.clear = mapCacheClear;
-MapCache.prototype['delete'] = mapCacheDelete;
-MapCache.prototype.get = mapCacheGet;
-MapCache.prototype.has = mapCacheHas;
-MapCache.prototype.set = mapCacheSet;
-
-/** Error message constants. */
-var FUNC_ERROR_TEXT$2 = 'Expected a function';
-
-/**
- * Creates a function that memoizes the result of `func`. If `resolver` is
- * provided, it determines the cache key for storing the result based on the
- * arguments provided to the memoized function. By default, the first argument
- * provided to the memoized function is used as the map cache key. The `func`
- * is invoked with the `this` binding of the memoized function.
- *
- * **Note:** The cache is exposed as the `cache` property on the memoized
- * function. Its creation may be customized by replacing the `_.memoize.Cache`
- * constructor with one whose instances implement the
- * [`Map`](http://ecma-international.org/ecma-262/7.0/#sec-properties-of-the-map-prototype-object)
- * method interface of `clear`, `delete`, `get`, `has`, and `set`.
- *
- * @static
- * @memberOf _
- * @since 0.1.0
- * @category Function
- * @param {Function} func The function to have its output memoized.
- * @param {Function} [resolver] The function to resolve the cache key.
- * @returns {Function} Returns the new memoized function.
- * @example
- *
- * var object = { 'a': 1, 'b': 2 };
- * var other = { 'c': 3, 'd': 4 };
- *
- * var values = _.memoize(_.values);
- * values(object);
- * // => [1, 2]
- *
- * values(other);
- * // => [3, 4]
- *
- * object.a = 2;
- * values(object);
- * // => [1, 2]
- *
- * // Modify the result cache.
- * values.cache.set(object, ['a', 'b']);
- * values(object);
- * // => ['a', 'b']
- *
- * // Replace `_.memoize.Cache`.
- * _.memoize.Cache = WeakMap;
- */
-function memoize(func, resolver) {
-  if (typeof func != 'function' || (resolver != null && typeof resolver != 'function')) {
-    throw new TypeError(FUNC_ERROR_TEXT$2);
-  }
-  var memoized = function() {
-    var args = arguments,
-        key = resolver ? resolver.apply(this, args) : args[0],
-        cache = memoized.cache;
-
-    if (cache.has(key)) {
-      return cache.get(key);
-    }
-    var result = func.apply(this, args);
-    memoized.cache = cache.set(key, result) || cache;
-    return result;
-  };
-  memoized.cache = new (memoize.Cache || MapCache);
-  return memoized;
-}
-
-// Expose `MapCache`.
-memoize.Cache = MapCache;
-
-var RENDER_EVERY = 1000;
-
-var formatUnit = function formatUnit(v) {
-  return String(v).padStart(2, '0');
-};
-
-var formats = {
-  yMdhms: 'yMdhms',
-  yMdhm: 'yMdhm',
-  yMdh: 'yMdh',
-  yMd: 'yMd',
-  yM: 'yM',
-  Mdhms: 'Mdhms',
-  Mdhm: 'Mdhm',
-  Mdh: 'Mdh',
-  Md: 'Md',
-  dhms: 'dhms',
-  dhm: 'dhm',
-  hms: 'hms',
-  hm: 'hm',
-  ms: 'ms',
-  m: 'm',
-  s: 's'
-};
-var unitNames = {
-  y: 'years',
-  M: 'months',
-  d: 'days',
-  h: 'hours',
-  m: 'minutes',
-  s: 'seconds'
-};
-var getFormat = memoize(function (format) {
-  return ['y', 'M', 'd', 'h', 'm', 's'].reduce(function (units, symbol) {
-    return formats[format].includes(symbol) ? [].concat(toConsumableArray(units), [unitNames[symbol]]) : units;
-  }, []);
-});
-
-function getTime(start, end, format, showEmpty, maxUnits) {
-  var date1 = end || new Date();
-  var date2 = end ? new Date() : start;
-  var totalInSeconds = dayjs_min(date1).diff(date2, 'seconds');
-
-  var _difference = difference(date1, date2, {
-    keepLeadingZeros: showEmpty,
-    maxUnits: maxUnits,
-    units: getFormat(format)
-  }),
-      years = _difference.years,
-      months = _difference.months,
-      days = _difference.days,
-      hours = _difference.hours,
-      minutes = _difference.minutes,
-      seconds = _difference.seconds;
-
-  return {
-    units: [['Y', years], ['M', months], ['D', days], ['H', hours], ['M', minutes], ['S', seconds]],
-    totalInSeconds: totalInSeconds
-  };
-}
-
-var _StyledTime = _styled__default.time.withConfig({
-  displayName: "Timer___StyledTime",
-  componentId: "sc-58hkwl-0"
-})(["display:flex;align-items:center;white-space:nowrap;", ";", ";"], function (p) {
-  return p._css;
-}, function (p) {
-  return p._css2;
-});
-
-var _StyledSpan$8 = _styled__default.span.withConfig({
-  displayName: "Timer___StyledSpan",
-  componentId: "sc-58hkwl-1"
-})(["display:flex;align-items:center;margin-right:", "px;margin-top:-3px;"], function (p) {
-  return p._css3;
-});
-
-var _StyledIconTime = _styled__default(IconClock).withConfig({
-  displayName: "Timer___StyledIconTime",
-  componentId: "sc-58hkwl-2"
-})(["color:", ";"], function (p) {
-  return p._css4;
-});
-
-var _StyledSpan2$5 = _styled__default.span.withConfig({
-  displayName: "Timer___StyledSpan2",
-  componentId: "sc-58hkwl-3"
-})(["", ";color:", ";"], function (p) {
-  return p._css5;
-}, function (p) {
-  return p._css6;
-});
-
-var _StyledSpan3$2 = _styled__default.span.withConfig({
-  displayName: "Timer___StyledSpan3",
-  componentId: "sc-58hkwl-4"
-})(["color:", ";", ";"], function (p) {
-  return p._css7;
-}, function (p) {
-  return p._css8;
-});
-
-var _StyledSpan4 = _styled__default.span.withConfig({
-  displayName: "Timer___StyledSpan4",
-  componentId: "sc-58hkwl-5"
-})(["margin-left:2px;color:", ";"], function (p) {
-  return p._css9;
-});
-
-var _StyledSpan5 = _styled__default.span.withConfig({
-  displayName: "Timer___StyledSpan5",
-  componentId: "sc-58hkwl-6"
-})(["margin:0 4px;color:", ";font-weight:400;"], function (p) {
-  return p._css10;
-});
-
-var Timer =
-/*#__PURE__*/
-function (_React$Component) {
-  inherits(Timer, _React$Component);
-
-  function Timer() {
-    var _getPrototypeOf2;
-
-    var _this;
-
-    classCallCheck(this, Timer);
-
-    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    _this = possibleConstructorReturn(this, (_getPrototypeOf2 = getPrototypeOf(Timer)).call.apply(_getPrototypeOf2, [this].concat(args)));
-
-    defineProperty(assertThisInitialized(_this), "renderTime", function () {
-      var _this$props = _this.props,
-          start = _this$props.start,
-          end = _this$props.end,
-          theme = _this$props.theme,
-          format = _this$props.format,
-          showEmpty = _this$props.showEmpty,
-          maxUnits = _this$props.maxUnits;
-
-      var _getTime = getTime(start, end, format, showEmpty, maxUnits),
-          totalInSeconds = _getTime.totalInSeconds,
-          units = _getTime.units;
-
-      if (totalInSeconds < 0 || Object.is(totalInSeconds, -0)) {
-        return React__default.createElement(_StyledSpan2$5, {
-          _css5: textStyle('body2'),
-          _css6: theme.surfaceContentSecondary
-        }, end ? 'Time out' : '−');
-      }
-
-      var lastUnitIndex = units.reduce(function (lastIndex, unit, index) {
-        return unit[1] === null ? lastIndex : index;
-      }, 0);
-      return React__default.createElement("span", null, units.map(function (unit, index) {
-        var isLast = index === lastUnitIndex;
-        var isSeconds = index === units.length - 1; // Only time units (hours, minutes and seconds).
-        // Remember to update if ms gets added one day!
-
-        var isTimeUnit = index >= units.length - 3;
-
-        if (unit[1] === null) {
-          return null;
-        }
-
-        return React__default.createElement(React__default.Fragment, {
-          key: index
-        }, React__default.createElement(_StyledSpan3$2, {
-          _css7: theme.surfaceContent,
-          _css8: isSeconds && // Fix the width of the seconds unit so that
-          // it doesn’t jump too much.
-          "\n                      display: inline-flex;\n                      align-items: baseline;\n                      justify-content: space-between;\n                      min-width: 31px;\n                    "
-        }, formatUnit(unit[1]), React__default.createElement(_StyledSpan4, {
-          _css9: theme.surfaceContentSecondary
-        }, unit[0])), !isLast && // Separator
-        React__default.createElement(_StyledSpan5, {
-          _css10: theme.surfaceContentSecondary
-        }, isTimeUnit && ':'));
-      }));
-    });
-
-    return _this;
-  }
-
-  createClass(Timer, [{
-    key: "render",
-    value: function render() {
-      var _this$props2 = this.props,
-          end = _this$props2.end,
-          start = _this$props2.start,
-          theme = _this$props2.theme;
-      return React__default.createElement(_StyledTime, {
-        dateTime: formatHtmlDatetime(end || start),
-        _css: unselectable(),
-        _css2: textStyle('body2')
-      }, React__default.createElement(_StyledSpan$8, {
-        _css3: 0.5 * GU
-      }, React__default.createElement(_StyledIconTime, {
-        _css4: theme.surfaceIcon
-      })), React__default.createElement(Redraw, {
-        interval: RENDER_EVERY
-      }, this.renderTime));
-    }
-  }]);
-
-  return Timer;
-}(React__default.Component);
-
-defineProperty(Timer, "propTypes", {
-  end: propTypes.instanceOf(Date),
-  format: propTypes.oneOf(Object.keys(formats)),
-  maxUnits: propTypes.number,
-  showEmpty: propTypes.bool,
-  start: propTypes.instanceOf(Date),
-  theme: propTypes.object
-});
-
-defineProperty(Timer, "defaultProps", {
-  format: formats.yMdhms,
-  maxUnits: -1,
-  showEmpty: false
-});
-
-var Timer$1 = (function (props) {
-  var theme = useTheme();
-  return React__default.createElement(Timer, _extends_1({}, props, {
-    theme: theme
-  }));
-});
-
-var Countdown =
-/*#__PURE__*/
-function (_React$Component) {
-  inherits(Countdown, _React$Component);
-
-  function Countdown() {
-    classCallCheck(this, Countdown);
-
-    return possibleConstructorReturn(this, getPrototypeOf(Countdown).apply(this, arguments));
-  }
-
-  createClass(Countdown, [{
-    key: "render",
-    value: function render() {
-      var _this$props = this.props,
-          end = _this$props.end,
-          removeDaysAndHours = _this$props.removeDaysAndHours;
-      var format = removeDaysAndHours ? 'ms' : 'dhms';
-      return React__default.createElement(Timer$1, {
-        end: end,
-        format: format
-      });
-    }
-  }]);
-
-  return Countdown;
-}(React__default.Component);
-
-Countdown.propTypes = {
-  end: propTypes.instanceOf(Date).isRequired,
-  removeDaysAndHours: propTypes.bool
-};
-Countdown.defaultProps = {
-  removeDaysAndHours: false
-};
-
 var HoverIndicator = _styled__default.span.withConfig({
   displayName: "components__HoverIndicator",
   componentId: "lxakqh-0"
@@ -20122,7 +18549,7 @@ function Selector(_ref3) {
   })));
 }
 
-var _StyledDiv$i = _styled__default.div.withConfig({
+var _StyledDiv$j = _styled__default.div.withConfig({
   displayName: "MonthDay___StyledDiv",
   componentId: "ngrxyo-0"
 })(["position:relative;display:flex;align-items:center;justify-content:center;width:", "px;height:", "px;border-radius:50%;cursor:pointer;user-select:none;margin-bottom:1px;", ";", " ", " ", " ", " ", " ", " &:after{display:block;content:'';margin-top:100%;}"], function (p) {
@@ -20145,14 +18572,14 @@ var _StyledDiv$i = _styled__default.div.withConfig({
   return p._css9;
 });
 
-var _StyledSpan$9 = _styled__default.span.withConfig({
+var _StyledSpan$8 = _styled__default.span.withConfig({
   displayName: "MonthDay___StyledSpan",
   componentId: "ngrxyo-1"
 })(["", ";"], function (p) {
   return p._css10;
 });
 
-var _StyledDiv2$9 = _styled__default.div.withConfig({
+var _StyledDiv2$a = _styled__default.div.withConfig({
   displayName: "MonthDay___StyledDiv2",
   componentId: "ngrxyo-2"
 })(["position:absolute;bottom:1px;font-size:9px;color:", ";"], function (p) {
@@ -20178,7 +18605,7 @@ function MonthDay(_ref) {
       isHovered = _useState2[0],
       setIsHovered = _useState2[1];
 
-  return React__default.createElement(_StyledDiv$i, _extends_1({
+  return React__default.createElement(_StyledDiv$j, _extends_1({
     onMouseEnter: function onMouseEnter() {
       return setIsHovered(true);
     },
@@ -20198,9 +18625,9 @@ function MonthDay(_ref) {
   }), isHovered ? React__default.createElement(HoverIndicator, {
     theme: theme,
     selected: selected
-  }) : null, React__default.createElement(_StyledSpan$9, {
+  }) : null, React__default.createElement(_StyledSpan$8, {
     _css10: textStyle(weekDay ? 'body4' : 'body3')
-  }, children), today ? React__default.createElement(_StyledDiv2$9, {
+  }, children), today ? React__default.createElement(_StyledDiv2$a, {
     _css11: selected ? theme.surface : theme.selected
   }, "\u25CF") : null);
 }
@@ -20240,12 +18667,12 @@ function WrappedMonthDay(_ref2) {
   }
 }
 
-var _StyledDiv$j = _styled__default.div.withConfig({
+var _StyledDiv$k = _styled__default.div.withConfig({
   displayName: "DatePicker___StyledDiv",
   componentId: "sc-6xp23y-0"
 })(["display:grid;"]);
 
-var _StyledDiv2$a = _styled__default.div.withConfig({
+var _StyledDiv2$b = _styled__default.div.withConfig({
   displayName: "DatePicker___StyledDiv2",
   componentId: "sc-6xp23y-1"
 })(["display:grid;grid-template:auto / repeat(7,1fr);width:", "px;"], function (p) {
@@ -20296,7 +18723,7 @@ function DatePicker(_ref) {
     }
   };
 
-  return React__default.createElement(_StyledDiv$j, props, !hideYearSelector && React__default.createElement(Selector, {
+  return React__default.createElement(_StyledDiv$k, props, !hideYearSelector && React__default.createElement(Selector, {
     prev: setDate({
       year: true,
       add: false
@@ -20315,7 +18742,7 @@ function DatePicker(_ref) {
       year: false,
       add: true
     })
-  }, selectedDayjs.format(!hideYearSelector ? monthFormat : monthYearFormat)), React__default.createElement(_StyledDiv2$a, {
+  }, selectedDayjs.format(!hideYearSelector ? monthFormat : monthYearFormat)), React__default.createElement(_StyledDiv2$b, {
     _css: 31.5 * GU
   }, !hideWeekDays && eachDayOfInterval({
     start: selectedDayjs.startOf('week'),
@@ -20387,7 +18814,7 @@ var INPUT_BORDER = 1;
 var START_DATE = 'Start day';
 var END_DATE = 'End day';
 
-var _StyledDiv$k = _styled__default.div.withConfig({
+var _StyledDiv$l = _styled__default.div.withConfig({
   displayName: "Labels___StyledDiv",
   componentId: "sc-1is9uv6-0"
 })(["position:relative;width:", "px;display:flex;justify-content:space-between;align-items:center;padding:7px 6px;border:", "px solid ", ";border-radius:", "px;background:", ";overflow:hidden;cursor:pointer;&:active{border-color:", ";}&:focus{outline:none;}"], function (p) {
@@ -20400,7 +18827,7 @@ var _StyledDiv$k = _styled__default.div.withConfig({
   return p._css4;
 });
 
-var _StyledDiv2$b = _styled__default.div.withConfig({
+var _StyledDiv2$c = _styled__default.div.withConfig({
   displayName: "Labels___StyledDiv2",
   componentId: "sc-1is9uv6-1"
 })(["display:flex;flex:1;justify-content:space-around;align-items:center;"]);
@@ -20457,12 +18884,12 @@ var Labels = React.forwardRef(function Labels(_ref, ref) {
     focusRingRadius: RADIUS,
     ref: ref,
     onClick: onClick
-  }, React__default.createElement(_StyledDiv$k, _extends_1({}, props, {
+  }, React__default.createElement(_StyledDiv$l, _extends_1({}, props, {
     _css: 27.5 * GU,
     _css2: hasSetDates ? theme.accent : theme.border,
     _css3: theme.surface,
     _css4: theme.controlBorderPressed
-  }), React__default.createElement(_StyledDiv2$b, null, React__default.createElement(_StyledDiv3$5, {
+  }), React__default.createElement(_StyledDiv2$c, null, React__default.createElement(_StyledDiv3$5, {
     _css5: hasNoStart ? theme.hint : 'inherit',
     _css6: textStyle(hasNoStart ? 'body2' : 'body3')
   }, startText), React__default.createElement(_StyledDiv4$4, {
@@ -20546,7 +18973,7 @@ var _StyledPopover = _styled__default(Popover).withConfig({
   return p._css;
 });
 
-var _StyledDiv$l = _styled__default.div.withConfig({
+var _StyledDiv$m = _styled__default.div.withConfig({
   displayName: "DateRangePicker___StyledDiv",
   componentId: "s3s5m9-1"
 })(["padding:", "px ", "px ", "px;border:1px solid ", ";border-radius:", "px;background:", ";"], function (p) {
@@ -20561,7 +18988,7 @@ var _StyledDiv$l = _styled__default.div.withConfig({
   return p._css6;
 });
 
-var _StyledDiv2$c = _styled__default.div.withConfig({
+var _StyledDiv2$d = _styled__default.div.withConfig({
   displayName: "DateRangePicker___StyledDiv2",
   componentId: "s3s5m9-2"
 })(["display:flex;flex-direction:row;align-items:baseline;"]);
@@ -20684,13 +19111,13 @@ function DateRangePicker(_ref) {
     placement: "bottom-start",
     visible: showPicker,
     _css: 37.5 * GU + 2
-  }, React__default.createElement(_StyledDiv$l, {
+  }, React__default.createElement(_StyledDiv$m, {
     _css2: 2.5 * GU,
     _css3: 3 * GU,
     _css4: 3 * GU,
     _css5: theme.border,
     _css6: theme.surface
-  }, React__default.createElement(_StyledDiv2$c, null, React__default.createElement(DatePicker, {
+  }, React__default.createElement(_StyledDiv2$d, null, React__default.createElement(DatePicker, {
     datesRangeEnd: endDate,
     datesRangeStart: startDate,
     initialDate: dayjs_min(startDateProp || undefined).subtract(displayMonthBeforeOnLeft ? 1 : 0, 'month').toDate(),
@@ -20729,7 +19156,7 @@ DateRangePicker.defaultProps = {
   onChange: function onChange() {}
 };
 
-var _StyledDiv$m = _styled__default.div.withConfig({
+var _StyledDiv$n = _styled__default.div.withConfig({
   displayName: "Distribution___StyledDiv",
   componentId: "r4l1i4-0"
 })(["margin-bottom:", "px;"], function (p) {
@@ -20743,7 +19170,7 @@ var _StyledH$4 = _styled__default.h1.withConfig({
   return p._css2;
 });
 
-var _StyledDiv2$d = _styled__default.div.withConfig({
+var _StyledDiv2$e = _styled__default.div.withConfig({
   displayName: "Distribution___StyledDiv2",
   componentId: "r4l1i4-2"
 })(["display:flex;width:100%;overflow:hidden;margin:0 0 ", "px;border-radius:3px;div{height:6px;}"], function (p) {
@@ -20801,11 +19228,11 @@ function Distribution(_ref) {
   items = items.sort(function (a, b) {
     return b.percentage - a.percentage;
   });
-  return React__default.createElement("section", null, heading && React__default.createElement(_StyledDiv$m, {
+  return React__default.createElement("section", null, heading && React__default.createElement(_StyledDiv$n, {
     _css: 1 * GU
   }, typeof heading === 'string' ? React__default.createElement(_StyledH$4, {
     _css2: textStyle('body2')
-  }, heading) : heading), React__default.createElement(_StyledDiv2$d, {
+  }, heading) : heading), React__default.createElement(_StyledDiv2$e, {
     _css3: 1 * GU
   }, items.map(function (_ref3, index) {
     var item = _ref3.item,
@@ -21004,7 +19431,7 @@ var _StyledButtonBase$b = _styled__default(ButtonBaseWithFocus).withConfig({
   return p._css12;
 });
 
-var _StyledDiv$n = _styled__default.div.withConfig({
+var _StyledDiv$o = _styled__default.div.withConfig({
   displayName: "DropDown___StyledDiv",
   componentId: "sc-17zpefi-1"
 })(["overflow:hidden;"]);
@@ -21018,7 +19445,7 @@ var _StyledIconDown$1 = _styled__default(IconDown).withConfig({
   return p._css14;
 });
 
-var _StyledDiv2$e = _styled__default.div.withConfig({
+var _StyledDiv2$f = _styled__default.div.withConfig({
   displayName: "DropDown___StyledDiv2",
   componentId: "sc-17zpefi-3"
 })(["position:absolute;top:-100vh;left:-100vw;opacity:0;visibility:hidden;"]);
@@ -21145,14 +19572,14 @@ var DropDown = React__default.memo(function DropDown(_ref2) {
     _css10: closedWithChanges ? theme.selected : theme.border,
     _css11: textStyle('body2'),
     _css12: disabled ? 'font-weight: 600;' : "\n              &:active {\n                background: ".concat(theme.surfacePressed, ";\n              }\n            ")
-  }), React__default.createElement(_StyledDiv$n, null, React__default.createElement(Label, {
+  }), React__default.createElement(_StyledDiv$o, null, React__default.createElement(Label, {
     selectedIndex: selectedIndex,
     selectedLabel: selectedLabel
   })), React__default.createElement(_StyledIconDown$1, {
     size: "tiny",
     _css13: 1.5 * GU,
     _css14: disabled ? theme.disabledIcon : closedWithChanges ? theme.accent : theme.surfaceIcon
-  })), measureWidth && React__default.createElement(_StyledDiv2$e, null, React__default.createElement(PopoverContent, {
+  })), measureWidth && React__default.createElement(_StyledDiv2$f, null, React__default.createElement(PopoverContent, {
     refCallback: popoverRefCallback,
     buttonWidth: buttonWidth,
     header: header,
@@ -21337,12 +19764,12 @@ var _StyledCard = _styled__default(Card).withConfig({
   return p._css3;
 });
 
-var _StyledDiv$o = _styled__default.div.withConfig({
+var _StyledDiv$p = _styled__default.div.withConfig({
   displayName: "EmptyStateCard___StyledDiv",
   componentId: "ov2yly-1"
 })(["display:flex;justify-content:center;overflow:hidden;"]);
 
-var _StyledDiv2$f = _styled__default.div.withConfig({
+var _StyledDiv2$g = _styled__default.div.withConfig({
   displayName: "EmptyStateCard___StyledDiv2",
   componentId: "ov2yly-2"
 })(["color:", ";", ";"], function (p) {
@@ -21384,7 +19811,7 @@ var EmptyStateCard = React__default.memo(function EmptyStateCard(_ref) {
     _css: 20 * GU,
     _css2: 42 * GU,
     _css3: 2 * GU
-  }), React__default.createElement(_StyledDiv$o, null, illustration), React__default.createElement(_StyledDiv2$f, {
+  }), React__default.createElement(_StyledDiv$p, null, illustration), React__default.createElement(_StyledDiv2$g, {
     _css4: theme.surfaceContent,
     _css5: textStyle('title4')
   }, text), React__default.createElement("div", null, action)));
@@ -21493,14 +19920,14 @@ defineProperty(EscapeOutside, "defaultProps", {
 
 var fieldId = 1;
 
-var _StyledDiv$p = _styled__default.div.withConfig({
+var _StyledDiv$q = _styled__default.div.withConfig({
   displayName: "Field___StyledDiv",
   componentId: "uqte4v-0"
 })(["margin-bottom:", "px;"], function (p) {
   return p._css;
 });
 
-var _StyledDiv2$g = _styled__default.div.withConfig({
+var _StyledDiv2$h = _styled__default.div.withConfig({
   displayName: "Field___StyledDiv2",
   componentId: "uqte4v-1"
 })(["display:flex;align-items:center;height:", "px;margin-bottom:", "px;color:", ";white-space:nowrap;", ";", ";"], function (p) {
@@ -21513,7 +19940,7 @@ var _StyledDiv2$g = _styled__default.div.withConfig({
   return p._css5;
 }, unselectable);
 
-var _StyledSpan$a = _styled__default.span.withConfig({
+var _StyledSpan$9 = _styled__default.span.withConfig({
   displayName: "Field___StyledSpan",
   componentId: "uqte4v-2"
 })(["color:", ";"], function (p) {
@@ -21539,16 +19966,16 @@ function Field(_ref) {
   };
   return React__default.createElement(Inside, {
     name: "Field"
-  }, React__default.createElement(_StyledDiv$p, _extends_1({}, props, {
+  }, React__default.createElement(_StyledDiv$q, _extends_1({}, props, {
     _css: 3 * GU
-  }), React__default.createElement("label", labelProps, React__default.createElement(_StyledDiv2$g, {
+  }), React__default.createElement("label", labelProps, React__default.createElement(_StyledDiv2$h, {
     _css2: 2 * GU,
     _css3: 0.5 * GU,
     _css4: theme.surfaceContentSecondary,
     _css5: textStyle('label2')
   }, React__default.createElement(Inside, {
     name: "Field:label"
-  }, label, isRequired && React__default.createElement(_StyledSpan$a, {
+  }, label, isRequired && React__default.createElement(_StyledSpan$9, {
     title: "Required",
     _css6: theme.accent
   }, "\xA0*"))), React__default.createElement(Inside, {
@@ -21564,18 +19991,58 @@ Field.propTypes = {
   required: propTypes.bool
 };
 
-var _StyledDiv$q = _styled__default.div.withConfig({
+var _StyledDiv$r = _styled__default.div.withConfig({
   displayName: "FloatIndicator___StyledDiv",
   componentId: "sc-1mhu8xn-0"
-})(["position:absolute;z-index:1;width:100%;display:flex;justify-content:center;bottom:25px;"]);
+})(["position:absolute;z-index:1;bottom:", "px;display:flex;justify-content:flex-end;width:100%;padding:0 ", "px 0 ", "px;"], function (p) {
+  return p._css;
+}, function (p) {
+  return p._css2;
+}, function (p) {
+  return p._css3;
+});
+
+var _StyledAnimatedDiv$6 = _styled__default(extendedAnimated.div).withConfig({
+  displayName: "FloatIndicator___StyledAnimatedDiv",
+  componentId: "sc-1mhu8xn-1"
+})(["flex-grow:", ";display:flex;align-items:center;height:", "px;padding:", "px ", "px;", ";white-space:nowrap;color:", ";background:", ";border:1px solid ", ";border-radius:", "px;cursor:default;justify-content:center;"], function (p) {
+  return p._css4;
+}, function (p) {
+  return p._css5;
+}, function (p) {
+  return p._css6;
+}, function (p) {
+  return p._css7;
+}, function (p) {
+  return p._css8;
+}, function (p) {
+  return p._css9;
+}, function (p) {
+  return p._css10;
+}, function (p) {
+  return p._css11;
+}, RADIUS);
 
 var FloatIndicator = React__default.memo(function FloatIndicator(_ref) {
   var children = _ref.children,
-      visible = _ref.visible;
+      visible = _ref.visible,
+      shift = _ref.shift,
+      props = objectWithoutProperties(_ref, ["children", "visible", "shift"]);
+
   var theme = useTheme();
+
+  var _useViewport = useViewport(),
+      below = _useViewport.below;
+
+  var _useContext = React.useContext(ToastContext),
+      toastItemsVisible = _useContext.itemsVisible;
+
+  var wide = below('medium');
+  var horizontalSpacing = wide ? 2 * GU : 3 * GU;
+  var horizontalSpacingEnd = horizontalSpacing + (shift || 0);
   return React__default.createElement(RootPortal, null, React__default.createElement(Transition, {
     native: true,
-    items: visible,
+    items: toastItemsVisible ? false : visible,
     from: {
       progress: 0
     },
@@ -21591,47 +20058,46 @@ var FloatIndicator = React__default.memo(function FloatIndicator(_ref) {
     /* eslint-disable react/prop-types */
     function (_ref2) {
       var progress = _ref2.progress;
-      return React__default.createElement(_StyledDiv$q, null, React__default.createElement(_StyledBox, {
+      return React__default.createElement(_StyledDiv$r, {
+        _css: wide ? 2 * GU : 3 * GU,
+        _css2: horizontalSpacingEnd,
+        _css3: horizontalSpacing
+      }, React__default.createElement(_StyledAnimatedDiv$6, _extends_1({
         style: {
           pointerEvents: visible ? 'auto' : 'none',
           opacity: progress,
           transform: progress.interpolate(function (v) {
             return "translate3d(0, calc(10px * ".concat(1 - v, "), 0)");
           })
-        },
-        _css: theme.background,
-        _css2: theme.contentSecondary,
-        _css3: theme.border
-      }, children));
+        }
+      }, props, {
+        _css4: Number(wide),
+        _css5: 6 * GU,
+        _css6: 1 * GU,
+        _css7: 2 * GU,
+        _css8: textStyle('body3'),
+        _css9: theme.floatingContent,
+        _css10: theme.floating,
+        _css11: theme.border
+      }), React__default.createElement(Inside, {
+        name: "FloatIndicator"
+      }, children)));
     };
   }
   /* eslint-enable react/prop-types */
   ));
 });
 FloatIndicator.propTypes = {
-  visible: propTypes.bool,
-  children: propTypes.node.isRequired
+  children: propTypes.node.isRequired,
+  shift: propTypes.number,
+  visible: propTypes.bool
 };
 FloatIndicator.defaultProps = {
+  shift: 0,
   visible: true
 };
-var Box$1 = _styled__default(extendedAnimated.div).withConfig({
-  displayName: "FloatIndicator__Box",
-  componentId: "sc-1mhu8xn-1"
-})(["display:flex;padding:", "px ", "px;border-radius:", "px;", ";cursor:default;"], GU, 3 * GU, RADIUS, textStyle('body3'));
 
-var _StyledBox = _styled__default(Box$1).withConfig({
-  displayName: "FloatIndicator___StyledBox",
-  componentId: "sc-1mhu8xn-2"
-})(["background:", ";color:", ";border:1px solid ", ";"], function (p) {
-  return p._css;
-}, function (p) {
-  return p._css2;
-}, function (p) {
-  return p._css3;
-});
-
-var _StyledDiv$r = _styled__default.div.withConfig({
+var _StyledDiv$s = _styled__default.div.withConfig({
   displayName: "Header___StyledDiv",
   componentId: "euryjq-0"
 })(["padding:", "px 0;background:", ";margin-bottom:", "px;box-shadow:", ";"], function (p) {
@@ -21644,7 +20110,7 @@ var _StyledDiv$r = _styled__default.div.withConfig({
   return p._css4;
 });
 
-var _StyledDiv2$h = _styled__default.div.withConfig({
+var _StyledDiv2$i = _styled__default.div.withConfig({
   displayName: "Header___StyledDiv2",
   componentId: "euryjq-1"
 })(["display:flex;align-items:center;justify-content:space-between;height:", "px;padding:0 ", "px;"], function (p) {
@@ -21679,12 +20145,12 @@ function Header(_ref) {
   var fullWidth = layoutName === 'small';
   return React__default.createElement(Inside, {
     name: "Header"
-  }, React__default.createElement(_StyledDiv$r, _extends_1({}, props, {
+  }, React__default.createElement(_StyledDiv$s, _extends_1({}, props, {
     _css: fullWidth ? 0 : 3 * GU,
     _css2: fullWidth ? theme.surface : 'none',
     _css3: fullWidth ? 2 * GU : 0,
     _css4: fullWidth ? '0px 2px 3px rgba(0, 0, 0, 0.05)' : 'none'
-  }), React__default.createElement(_StyledDiv2$h, {
+  }), React__default.createElement(_StyledDiv2$i, {
     _css5: fullWidth ? 8 * GU : 5 * GU,
     _css6: fullWidth && !children ? 2 * GU : 0
   }, children || React__default.createElement(React__default.Fragment, null, React__default.createElement(Inside, {
@@ -21747,7 +20213,7 @@ var _StyledPopover$1 = _styled__default(Popover).withConfig({
   return p._css3;
 });
 
-var _StyledDiv$s = _styled__default.div.withConfig({
+var _StyledDiv$t = _styled__default.div.withConfig({
   displayName: "Help___StyledDiv",
   componentId: "sc-11d74sh-2"
 })(["position:relative;max-width:", "px;min-width:", "px;padding:", "px;&:before{content:'';position:absolute;top:0;left:0;bottom:0;width:", "px;background:", ";}"], function (p) {
@@ -21802,7 +20268,7 @@ function Help(_ref) {
     visible: visible,
     onClose: close,
     _css3: textStyle('body3')
-  }, React__default.createElement(_StyledDiv$s, {
+  }, React__default.createElement(_StyledDiv$t, {
     _css4: 48 * GU,
     _css5: 20 * GU,
     _css6: 3 * GU,
@@ -21854,20 +20320,20 @@ var IdentityBadgePopover = React__default.memo(function IdentityBadgePopover(_re
   });
 });
 IdentityBadgePopover.propTypes = {
-  address: propTypes.string,
-  connectedAccount: propTypes.bool,
-  networkType: propTypes.string,
-  onClose: propTypes.func,
-  opener: propTypes.instanceOf(Element),
+  address: ExtendedPropTypes.string,
+  connectedAccount: ExtendedPropTypes.bool,
+  networkType: ExtendedPropTypes.string,
+  onClose: ExtendedPropTypes.func,
+  opener: ExtendedPropTypes._element,
   popoverAction: BadgePopoverActionType,
-  title: propTypes.node,
-  visible: propTypes.bool
+  title: ExtendedPropTypes.node,
+  visible: ExtendedPropTypes.bool
 };
 IdentityBadgePopover.defaultProps = {
   title: 'Address'
 };
 
-var _StyledDiv$t = _styled__default.div.withConfig({
+var _StyledDiv$u = _styled__default.div.withConfig({
   displayName: "IdentityBadge___StyledDiv",
   componentId: "q71pax-0"
 })(["display:block;margin-right:", "px;", ";"], function (p) {
@@ -21919,7 +20385,7 @@ var IdentityBadge = React__default.memo(function IdentityBadge(_ref) {
     badgeRef: badgeRef,
     compact: compact,
     disabled: badgeOnly,
-    icon: address && React__default.createElement(_StyledDiv$t, {
+    icon: address && React__default.createElement(_StyledDiv$u, {
       _css: 1 * GU,
       _css2: compact ? "\n                  position: relative;\n                  top: -1px;\n                " : ''
     }, React__default.createElement(EthIdenticon, {
@@ -21965,52 +20431,34 @@ IdentityBadge.defaultProps = {
   shorten: true
 };
 
-function ownKeys$d(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread$d(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$d(source, true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$d(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function isEmpty(value) {
-  return value === undefined || value === null;
-} // Require a prop to not be empty
-
-
-function requireProp(props, propName, componentName) {
-  return isEmpty(props[propName]) ? new Error("The prop `".concat(propName, "` is required for `").concat(componentName, "`.")) : null;
-} // Accept any number in the 0 => 1 range
-
-
-function _0to1(props, propName, componentName) {
-  if (isEmpty(props[propName])) {
-    return null;
-  }
-
-  if (typeof props[propName] === 'number' && props[propName] >= 0 && props[propName] <= 1) {
-    return null;
-  }
-
-  return new Error("Invalid prop `".concat(propName, "` supplied to `").concat(componentName, "`. Please provide a number in the 0-1 range."));
-} // Required version
-
-
-_0to1.isRequired = function () {
-  return requireProp.apply(void 0, arguments) || _0to1.apply(void 0, arguments);
-};
-
-var ExtendedPropTypes = _objectSpread$d({}, propTypes, {
-  _component: propTypes.oneOfType([propTypes.func, propTypes.string, propTypes.shape({
-    render: propTypes.func.isRequired
-  })]),
-  _spring: propTypes.shape({
-    mass: propTypes.number,
-    tension: propTypes.number,
-    friction: propTypes.number,
-    precision: propTypes.number
-  }),
-  _null: propTypes.oneOf([null]),
-  _0to1: _0to1
-});
-
 var LABELS_HEIGHT = 30;
+var WIDTH_DEFAULT = 300;
+
+function useMeasuredWidth() {
+  var ref = React.useRef();
+
+  var _useState = React.useState(WIDTH_DEFAULT),
+      _useState2 = slicedToArray(_useState, 2),
+      measuredWidth = _useState2[0],
+      setMeasuredWidth = _useState2[1];
+
+  var onResize = React.useCallback(function () {
+    if (ref.current) {
+      setMeasuredWidth(ref.current.clientWidth);
+    }
+  }, []);
+  var onRef = React.useCallback(function (element) {
+    ref.current = element;
+    onResize();
+  }, [onResize]);
+  React.useEffect(function () {
+    window.addEventListener('resize', onResize);
+    return function () {
+      return window.removeEventListener('resize', onResize);
+    };
+  }, [onResize]);
+  return [measuredWidth, onRef];
+}
 
 var _StyledSvg = _styled__default.svg.withConfig({
   displayName: "LineChart___StyledSvg",
@@ -22022,174 +20470,140 @@ var _StyledText = _styled__default.text.withConfig({
   componentId: "sc-8kiakb-1"
 })(["alignment-baseline:middle;font-size:12px;font-weight:300;", ";"], unselectable);
 
-var LineChart =
-/*#__PURE__*/
-function (_React$Component) {
-  inherits(LineChart, _React$Component);
+function LineChart(_ref) {
+  var animDelay = _ref.animDelay,
+      borderColor = _ref.borderColor,
+      color = _ref.color,
+      dotRadius = _ref.dotRadius,
+      height = _ref.height,
+      label = _ref.label,
+      labelColor = _ref.labelColor,
+      linesProps = _ref.lines,
+      reset = _ref.reset,
+      springConfig = _ref.springConfig,
+      total = _ref.total,
+      widthProps = _ref.width,
+      props = objectWithoutProperties(_ref, ["animDelay", "borderColor", "color", "dotRadius", "height", "label", "labelColor", "lines", "reset", "springConfig", "total", "width"]);
 
-  function LineChart() {
-    classCallCheck(this, LineChart);
+  var _useMeasuredWidth = useMeasuredWidth(),
+      _useMeasuredWidth2 = slicedToArray(_useMeasuredWidth, 2),
+      width = _useMeasuredWidth2[0],
+      onSvgRef = _useMeasuredWidth2[1];
 
-    return possibleConstructorReturn(this, getPrototypeOf(LineChart).apply(this, arguments));
-  }
+  var lines = React.useMemo(function () {
+    return linesProps.map(function (lineOrValues) {
+      return Array.isArray(lineOrValues) ? {
+        values: lineOrValues
+      } : lineOrValues;
+    });
+  }, [linesProps]); // the count of provided values
 
-  createClass(LineChart, [{
-    key: "getX",
-    value: function getX(index) {
-      var width = this.props.width;
-      var slice = width / Math.max(1, this.getTotalCount() - 1);
-      return slice * index;
-    }
-  }, {
-    key: "getY",
-    value: function getY(percentage, progress, height) {
-      var dotRadius = this.props.dotRadius;
-      var padding = dotRadius + 2;
-      return height - padding - (height - padding * 2) * percentage * progress;
-    }
-  }, {
-    key: "getLines",
-    value: function getLines() {
-      var lines = this.props.lines;
-      return lines.map(function (lineOrValues) {
-        return Array.isArray(lineOrValues) ? {
-          values: lineOrValues
-        } : lineOrValues;
-      });
-    }
-  }, {
-    key: "getValuesCount",
-    value: function getValuesCount() {
-      var lines = this.getLines(); // All the values have the same length, so we can use the first one.
+  var valuesCount = React.useMemo(function () {
+    // All the values have the same length, so we can use the first one.
+    return lines[0] ? lines[0].values.length : 0;
+  }, [lines]); // the total amount of values
 
-      return lines[0] ? lines[0].values.length : 0;
-    }
-  }, {
-    key: "getTotalCount",
-    value: function getTotalCount() {
-      var total = this.props.total;
-      var valuesCount = this.getValuesCount(); // If no total is provided, the total is the number of provided values.
-
-      return total > 0 && total > valuesCount ? total : valuesCount;
-    }
-  }, {
-    key: "getLabelPosition",
-    value: function getLabelPosition(index, length) {
-      if (index === 0) return 'start';
-      if (index === length - 1) return 'end';
-      return 'middle';
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      var _this = this;
-
-      var _this$props = this.props,
-          width = _this$props.width,
-          height = _this$props.height,
-          borderColor = _this$props.borderColor,
-          dotRadius = _this$props.dotRadius,
-          springConfig = _this$props.springConfig,
-          label = _this$props.label,
-          reset = _this$props.reset,
-          animDelay = _this$props.animDelay,
-          color = _this$props.color,
-          labelColor = _this$props.labelColor,
-          props = objectWithoutProperties(_this$props, ["width", "height", "borderColor", "dotRadius", "springConfig", "label", "reset", "animDelay", "color", "labelColor"]);
-
-      var lines = this.getLines(); // the provided values, up to this point
-
-      var valuesCount = this.getValuesCount(); // the total amount of values
-
-      var totalCount = this.getTotalCount();
-      var labels = label && totalCount > 0 ? toConsumableArray(Array(totalCount).keys()).map(label) : null;
-      var chartHeight = height - (labels ? LABELS_HEIGHT : 0);
-      var rectangle = React__default.createElement("rect", {
-        width: width,
-        height: chartHeight,
-        rx: "3",
-        ry: "3",
-        fill: "#ffffff",
-        strokeWidth: "1",
-        stroke: borderColor
-      });
-      return React__default.createElement(Spring, {
-        from: {
-          progress: 0
-        },
-        to: {
-          progress: 1
-        },
-        config: springConfig,
-        delay: animDelay,
-        reset: reset
-      }, function (_ref) {
-        var progress = _ref.progress;
-        return React__default.createElement(_StyledSvg, _extends_1({
-          viewBox: "0 0 ".concat(width, " ").concat(height),
-          width: width,
-          height: height
-        }, props), React__default.createElement("mask", {
-          id: "chart-mask"
-        }, rectangle), rectangle, React__default.createElement("g", {
-          mask: "url(#chart-mask)"
-        }, totalCount > 0 && React__default.createElement("path", {
-          d: "\n                    ".concat(toConsumableArray(new Array(totalCount - 1)).reduce(function (path, _, index) {
-            return "".concat(path, " M ").concat(_this.getX(index), ",").concat(chartHeight, " l 0,-8");
-          }, ''), "\n                  "),
-          stroke: borderColor,
+  var totalCount = React.useMemo(function () {
+    // If no total is provided, the total is the number of provided values.
+    return total > 0 && total > valuesCount ? total : valuesCount;
+  }, [valuesCount, total]);
+  var getX = React.useCallback(function (index) {
+    return width / Math.max(1, totalCount - 1) * index;
+  }, [width, totalCount]);
+  var getY = React.useCallback(function (percentage, progress, height) {
+    var padding = dotRadius + 2;
+    return height - padding - (height - padding * 2) * percentage * progress;
+  }, [dotRadius]);
+  var getLabelPosition = React.useCallback(function (index, length) {
+    if (index === 0) return 'start';
+    if (index === length - 1) return 'end';
+    return 'middle';
+  }, []);
+  var labels = label && totalCount > 0 ? toConsumableArray(Array(totalCount).keys()).map(label) : null;
+  var chartHeight = height - (labels ? LABELS_HEIGHT : 0);
+  var rectangle = React__default.createElement("rect", {
+    width: width,
+    height: chartHeight,
+    rx: "3",
+    ry: "3",
+    fill: "#ffffff",
+    strokeWidth: "1",
+    stroke: borderColor
+  });
+  return React__default.createElement(Spring, {
+    from: {
+      progress: 0
+    },
+    to: {
+      progress: 1
+    },
+    config: springConfig,
+    delay: animDelay,
+    reset: reset
+  }, function (_ref2) {
+    var progress = _ref2.progress;
+    return React__default.createElement(_StyledSvg, _extends_1({
+      ref: onSvgRef,
+      viewBox: "0 0 ".concat(width, " ").concat(height),
+      width: widthProps || 'auto',
+      height: "auto"
+    }, props), React__default.createElement("mask", {
+      id: "chart-mask"
+    }, rectangle), rectangle, React__default.createElement("g", {
+      mask: "url(#chart-mask)"
+    }, totalCount > 0 && React__default.createElement("path", {
+      d: "\n                  ".concat(toConsumableArray(new Array(totalCount - 1)).reduce(function (path, _, index) {
+        return "".concat(path, " M ").concat(getX(index), ",").concat(chartHeight, " l 0,-8");
+      }, ''), "\n                "),
+      stroke: borderColor,
+      strokeWidth: "1"
+    }), lines.map(function (line, lineIndex) {
+      return React__default.createElement("g", {
+        key: "line-plot-".concat(line.id || lineIndex)
+      }, React__default.createElement("path", {
+        d: "\n                    M\n                    ".concat(getX(0), ",\n                    ").concat(getY(line.values[0], progress, chartHeight), "\n\n                    ").concat(line.values.slice(1).map(function (val, index) {
+          return "L\n                           ".concat(getX((index + 1) * progress), ",\n                           ").concat(getY(val, progress, chartHeight), "\n                          ");
+        }).join(''), "\n                  "),
+        fill: "transparent",
+        stroke: line.color || color(lineIndex, {
+          lines: lines
+        }),
+        strokeWidth: "2"
+      }), line.values.slice(1, -1).map(function (val, index) {
+        return React__default.createElement("circle", {
+          key: index,
+          cx: getX(index + 1) * progress,
+          cy: getY(val, progress, chartHeight),
+          r: dotRadius,
+          fill: "white",
+          stroke: line.color || color(lineIndex, {
+            lines: lines
+          }),
           strokeWidth: "1"
-        }), lines.map(function (line, lineIndex) {
-          return React__default.createElement("g", {
-            key: "line-plot-".concat(line.id || lineIndex)
-          }, React__default.createElement("path", {
-            d: "\n                            M\n                            ".concat(_this.getX(0), ",\n                            ").concat(_this.getY(line.values[0], progress, chartHeight), "\n\n                            ").concat(line.values.slice(1).map(function (val, index) {
-              return "L\n                                   ".concat(_this.getX((index + 1) * progress), ",\n                                   ").concat(_this.getY(val, progress, chartHeight), "\n                                  ");
-            }).join(''), "\n                          "),
-            fill: "transparent",
-            stroke: line.color || color(lineIndex, {
-              lines: lines
-            }),
-            strokeWidth: "2"
-          }), line.values.slice(1, -1).map(function (val, index) {
-            return React__default.createElement("circle", {
-              key: index,
-              cx: _this.getX(index + 1) * progress,
-              cy: _this.getY(val, progress, chartHeight),
-              r: dotRadius,
-              fill: "white",
-              stroke: line.color || color(lineIndex, {
-                lines: lines
-              }),
-              strokeWidth: "1"
-            });
-          }));
-        }), React__default.createElement("line", {
-          x1: _this.getX(valuesCount - 1) * progress,
-          y1: "0",
-          x2: _this.getX(valuesCount - 1) * progress,
-          y2: chartHeight,
-          stroke: "#DAEAEF",
-          strokeWidth: "3"
-        })), labels && React__default.createElement("g", {
-          transform: "translate(0,".concat(chartHeight, ")")
-        }, labels.map(function (label, index) {
-          return React__default.createElement(_StyledText, {
-            key: index,
-            x: _this.getX(index),
-            y: LABELS_HEIGHT / 2,
-            textAnchor: _this.getLabelPosition(index, labels.length),
-            fill: labelColor
-          }, label);
-        })));
-      });
-    }
-  }]);
+        });
+      }));
+    }), React__default.createElement("line", {
+      x1: getX(valuesCount - 1) * progress,
+      y1: "0",
+      x2: getX(valuesCount - 1) * progress,
+      y2: chartHeight,
+      stroke: "#DAEAEF",
+      strokeWidth: "3"
+    })), labels && React__default.createElement("g", {
+      transform: "translate(0,".concat(chartHeight, ")")
+    }, labels.map(function (label, index) {
+      return React__default.createElement(_StyledText, {
+        key: index,
+        x: getX(index),
+        y: LABELS_HEIGHT / 2,
+        textAnchor: getLabelPosition(index, labels.length),
+        fill: labelColor
+      }, label);
+    })));
+  });
+}
 
-  return LineChart;
-}(React__default.Component);
-
-defineProperty(LineChart, "propTypes", {
+LineChart.propTypes = {
   springConfig: ExtendedPropTypes._spring,
   total: ExtendedPropTypes.number,
   width: ExtendedPropTypes.number,
@@ -22209,12 +20623,10 @@ defineProperty(LineChart, "propTypes", {
   ExtendedPropTypes.arrayOf(ExtendedPropTypes.number)])),
   label: ExtendedPropTypes.oneOfType([ExtendedPropTypes.func, ExtendedPropTypes._null]),
   color: ExtendedPropTypes.func
-});
-
-defineProperty(LineChart, "defaultProps", {
+};
+LineChart.defaultProps = {
   springConfig: springs.lazy,
   total: -1,
-  width: 300,
   height: 200,
   dotRadius: 7 / 2,
   animDelay: 500,
@@ -22225,13 +20637,13 @@ defineProperty(LineChart, "defaultProps", {
   label: function label(index) {
     return index + 1;
   },
-  color: function color(index, _ref2) {
-    var lines = _ref2.lines;
+  color: function color(index, _ref3) {
+    var lines = _ref3.lines;
     return "hsl(".concat((index * (360 / lines.length) + 40) % 360, ", 60%, 70%)");
   }
-});
+};
 
-var _StyledDiv$u = _styled__default.div.withConfig({
+var _StyledDiv$v = _styled__default.div.withConfig({
   displayName: "ScrollView___StyledDiv",
   componentId: "sc-1hhoqwn-0"
 })(["position:relative;z-index:0;height:100%;overflow-x:", ";overflow-y:", ";"], function (p) {
@@ -22246,7 +20658,7 @@ function ScrollView(_ref) {
       vertical = _ref.vertical,
       props = objectWithoutProperties(_ref, ["children", "horizontal", "vertical"]);
 
-  return React__default.createElement(_StyledDiv$u, _extends_1({}, props, {
+  return React__default.createElement(_StyledDiv$v, _extends_1({}, props, {
     _css: horizontal ? 'auto' : 'hidden',
     _css2: vertical ? 'auto' : 'hidden'
   }), children);
@@ -22319,19 +20731,19 @@ function ownKeys$e(object, enumerableOnly) { var keys = Object.keys(object); if 
 function _objectSpread$e(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$e(source, true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$e(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 var SPACE_AROUND = 4 * GU;
 
-var _StyledAnimatedDiv$5 = _styled__default(extendedAnimated.div).withConfig({
+var _StyledAnimatedDiv$7 = _styled__default(extendedAnimated.div).withConfig({
   displayName: "Modal___StyledAnimatedDiv",
   componentId: "sc-1ofisn3-0"
 })(["position:fixed;top:0;left:0;right:0;bottom:0;background:", ";"], function (p) {
   return p._css;
 });
 
-var _StyledAnimatedDiv2$2 = _styled__default(extendedAnimated.div).withConfig({
+var _StyledAnimatedDiv2$3 = _styled__default(extendedAnimated.div).withConfig({
   displayName: "Modal___StyledAnimatedDiv2",
   componentId: "sc-1ofisn3-1"
 })(["position:absolute;z-index:1;top:0;left:0;right:0;bottom:0;display:grid;align-items:center;justify-content:center;overflow:auto;"]);
 
-var _StyledDiv$v = _styled__default.div.withConfig({
+var _StyledDiv$w = _styled__default.div.withConfig({
   displayName: "Modal___StyledDiv",
   componentId: "sc-1ofisn3-2"
 })(["padding:", "px 0;"], SPACE_AROUND);
@@ -22389,20 +20801,20 @@ function Modal(_ref) {
     function (_ref2) {
       var opacity = _ref2.opacity,
           scale = _ref2.scale;
-      return React__default.createElement(_StyledAnimatedDiv$5, _extends_1({
+      return React__default.createElement(_StyledAnimatedDiv$7, _extends_1({
         style: {
           opacity: opacity
         }
       }, props, {
         _css: theme.overlay.alpha(0.9)
-      }), React__default.createElement(_StyledAnimatedDiv2$2, {
+      }), React__default.createElement(_StyledAnimatedDiv2$3, {
         style: {
           pointerEvents: visible ? 'auto' : 'none',
           transform: scale.interpolate(function (v) {
             return "scale3d(".concat(v, ", ").concat(v, ", 1)");
           })
         }
-      }, React__default.createElement(_StyledDiv$v, null, React__default.createElement(_StyledEscapeOutside, {
+      }, React__default.createElement(_StyledDiv$w, null, React__default.createElement(_StyledEscapeOutside, {
         role: "alertdialog",
         background: theme.surface,
         onEscapeOutside: onClose,
@@ -22458,40 +20870,40 @@ var LeftIcon = function LeftIcon() {
   }));
 };
 
-function _templateObject4$2() {
+function _templateObject4$1() {
   var data = taggedTemplateLiteral(["\n  display: flex;\n  align-items: center;\n  height: 63px;\n  padding: ", ";\n  cursor: pointer;\n  svg {\n    color: hsl(179, 76%, 48%);\n  }\n  :active svg {\n    color: hsl(179, 76%, 63%);\n  }\n  & + ", " {\n    padding-left: 0;\n  }\n"]);
 
-  _templateObject4$2 = function _templateObject4() {
+  _templateObject4$1 = function _templateObject4() {
     return data;
   };
 
   return data;
 }
 
-function _templateObject3$3() {
+function _templateObject3$2() {
   var data = taggedTemplateLiteral(["\n  display: flex;\n  height: 100%;\n  align-items: center;\n  padding-left: 30px;\n  white-space: nowrap;\n  font-size: 22px;\n"]);
 
-  _templateObject3$3 = function _templateObject3() {
+  _templateObject3$2 = function _templateObject3() {
     return data;
   };
 
   return data;
 }
 
-function _templateObject2$3() {
+function _templateObject2$2() {
   var data = taggedTemplateLiteral(["\n  display: flex;\n  align-items: center;\n  position: absolute;\n  left: 0;\n  top: 0;\n  bottom: 0;\n"]);
 
-  _templateObject2$3 = function _templateObject2() {
+  _templateObject2$2 = function _templateObject2() {
     return data;
   };
 
   return data;
 }
 
-function _templateObject$4() {
+function _templateObject$3() {
   var data = taggedTemplateLiteral(["\n  display: flex;\n  position: relative;\n  height: 100%;\n"]);
 
-  _templateObject$4 = function _templateObject() {
+  _templateObject$3 = function _templateObject() {
     return data;
   };
 
@@ -22541,7 +20953,7 @@ function (_React$Component) {
           index: index
         };
       }).slice(-1);
-      return React__default.createElement(Container$1, null, React__default.createElement(Transition, {
+      return React__default.createElement(Container, null, React__default.createElement(Transition, {
         items: displayedItems,
         keys: displayedItems.map( // Use a different key than 0 when there is only one item, so that
         // the “leave” transition of the first item can be executed when a
@@ -22637,10 +21049,10 @@ Item$1.propTypes = {
   opacity: propTypes.object,
   position: propTypes.object
 };
-var Container$1 = _styled__default.span(_templateObject$4());
-var Title = _styled__default.span(_templateObject2$3());
-var Label$1 = _styled__default.span(_templateObject3$3());
-var BackButton$1 = _styled__default.span(_templateObject4$2(), function (p) {
+var Container = _styled__default.span(_templateObject$3());
+var Title = _styled__default.span(_templateObject2$2());
+var Label$1 = _styled__default.span(_templateObject3$2());
+var BackButton$1 = _styled__default.span(_templateObject4$1(), function (p) {
   return p.compact ? '0 16px' : '0 20px 0 30px';
 }, Label$1);
 
@@ -24538,7 +22950,7 @@ var INDETERMINATE_WIDTH = 1 / 4;
 var INDETERMINATE_DURATION = 1600;
 var indeterminateAnim = _styled.keyframes(["0%{transform:translate3d(calc(-100% - 1px),0,0);}70%,100%{transform:translate3d(calc(", "% + 1px),0,0);}"], 100 / INDETERMINATE_WIDTH);
 
-var _StyledDiv$w = _styled__default.div.withConfig({
+var _StyledDiv$x = _styled__default.div.withConfig({
   displayName: "ProgressBar___StyledDiv",
   componentId: "sc-1gly9sn-0"
 })(["width:100%;height:", "px;background:", ";border-radius:", "px;overflow:hidden;"], BAR_HEIGHT, function (p) {
@@ -24577,7 +22989,7 @@ var ProgressBar = React__default.memo(function (_ref) {
     },
     immediate: !animate
   });
-  return React__default.createElement(_StyledDiv$w, {
+  return React__default.createElement(_StyledDiv$x, {
     _css: theme.surfaceUnder
   }, React__default.createElement(Bar$1, {
     style: {
@@ -24607,7 +23019,7 @@ ProgressBar.propTypes = {
 };
 
 var _React$createContext = React__default.createContext({}),
-    Provider$2 = _React$createContext.Provider,
+    Provider$1 = _React$createContext.Provider,
     Consumer$1 = _React$createContext.Consumer;
 
 var RadioGroup =
@@ -24716,7 +23128,7 @@ function (_React$PureComponent) {
           children = _this$props.children,
           selected = _this$props.selected;
       var focusableId = radios.has(selected) ? selected : toConsumableArray(radios)[0];
-      return React__default.createElement(Provider$2, {
+      return React__default.createElement(Provider$1, {
         value: {
           selected: selected,
           focusableId: focusableId,
@@ -24939,7 +23351,7 @@ var _StyledRadio = _styled__default(Radio).withConfig({
   return p._css3;
 });
 
-var _StyledDiv$x = _styled__default.div.withConfig({
+var _StyledDiv$y = _styled__default.div.withConfig({
   displayName: "RadioListItem___StyledDiv",
   componentId: "sc-1utxw89-2"
 })(["flex-grow:1;margin-left:12px;padding:12px 12px;border-radius:3px;transition:border 100ms ease-in-out;cursor:pointer;border:1px ", " solid;&:hover{border-color:", ";}"], function (p) {
@@ -24948,7 +23360,7 @@ var _StyledDiv$x = _styled__default.div.withConfig({
   return p._css5;
 });
 
-var _StyledDiv2$i = _styled__default.div.withConfig({
+var _StyledDiv2$j = _styled__default.div.withConfig({
   displayName: "RadioListItem___StyledDiv2",
   componentId: "sc-1utxw89-3"
 })(["margin-top:", "px;"], function (p) {
@@ -24966,10 +23378,10 @@ var RadioListItem = React__default.memo(function RadioListItem(_ref) {
   }, React__default.createElement(_StyledRadio, {
     id: index,
     _css3: 2 * GU
-  }), React__default.createElement(_StyledDiv$x, {
+  }), React__default.createElement(_StyledDiv$y, {
     _css4: theme.border,
     _css5: theme.accent.alpha(0.35)
-  }, React__default.createElement("strong", null, title), React__default.createElement(_StyledDiv2$i, {
+  }, React__default.createElement("strong", null, title), React__default.createElement(_StyledDiv2$j, {
     _css6: 0.5 * GU
   }, description)));
 });
@@ -24986,7 +23398,7 @@ var _StyledH$6 = _styled__default.h2.withConfig({
   return p._css;
 });
 
-var _StyledDiv$y = _styled__default.div.withConfig({
+var _StyledDiv$z = _styled__default.div.withConfig({
   displayName: "RadioList___StyledDiv",
   componentId: "sc-1hkg1b7-1"
 })(["margin-bottom:", "px;"], function (p) {
@@ -25008,7 +23420,7 @@ function RadioList(_ref) {
 
   return React__default.createElement("div", props, title && React__default.createElement(_StyledH$6, {
     _css: 0.5 * GU
-  }, title), description && React__default.createElement(_StyledDiv$y, {
+  }, title), description && React__default.createElement(_StyledDiv$z, {
     _css2: 2.5 * GU
   }, description), React__default.createElement(_StyledRadioGroup, {
     onChange: onChange,
@@ -25057,14 +23469,14 @@ var CONTENT_PADDING = 3 * GU; // The closing position of the panel, on the right
 var CLOSING_POSITION = 5 * GU;
 var SidePanelContext = React__default.createContext(null);
 
-var _StyledDiv$z = _styled__default.div.withConfig({
+var _StyledDiv$A = _styled__default.div.withConfig({
   displayName: "SidePanel___StyledDiv",
   componentId: "sc-1kjx6mk-0"
 })(["position:absolute;z-index:1;top:0;left:0;right:0;bottom:0;pointer-events:", ";overflow:hidden;"], function (p) {
   return p._css;
 });
 
-var _StyledAnimatedDiv$6 = _styled__default(extendedAnimated.div).withConfig({
+var _StyledAnimatedDiv$8 = _styled__default(extendedAnimated.div).withConfig({
   displayName: "SidePanel___StyledAnimatedDiv",
   componentId: "sc-1kjx6mk-1"
 })(["position:absolute;top:0;left:0;right:0;bottom:0;background:", ";"], function (p) {
@@ -25098,7 +23510,7 @@ var _StyledButtonIcon$5 = _styled__default(ButtonIcon).withConfig({
   return p._css8;
 });
 
-var _StyledDiv2$j = _styled__default.div.withConfig({
+var _StyledDiv2$k = _styled__default.div.withConfig({
   displayName: "SidePanel___StyledDiv2",
   componentId: "sc-1kjx6mk-5"
 })(["overflow-y:auto;height:100%;display:flex;flex-direction:column;"]);
@@ -25192,9 +23604,9 @@ function SidePanel(_ref2) {
   }, function (opened) {
     return opened && function (_ref4) {
       var progress = _ref4.progress;
-      return React__default.createElement(_StyledDiv$z, {
+      return React__default.createElement(_StyledDiv$A, {
         _css: status !== 'closing' ? 'auto' : 'none'
-      }, React__default.createElement(_StyledAnimatedDiv$6, {
+      }, React__default.createElement(_StyledAnimatedDiv$8, {
         onClick: close,
         style: {
           opacity: progress,
@@ -25221,7 +23633,7 @@ function SidePanel(_ref2) {
         _css8: !compact ? "\n                              top: ".concat(2 * GU, "px;\n                              right: ").concat(2 * GU, "px;\n                            ") : "\n                              top: 0;\n                              right: 0;\n                              height: ".concat(8 * GU, "px;\n                              width: ").concat(8 * GU, "px;\n                            ")
       }, React__default.createElement(IconCross, {
         color: theme.surfaceIcon
-      }))), React__default.createElement(_StyledDiv2$j, null, React__default.createElement(_StyledDiv3$a, null, React__default.createElement(SidePanelContext.Provider, {
+      }))), React__default.createElement(_StyledDiv2$k, null, React__default.createElement(_StyledDiv3$a, null, React__default.createElement(SidePanelContext.Provider, {
         value: {
           status: status,
           readyToFocus: readyToFocus
@@ -25302,7 +23714,7 @@ function useSidePanelFocusOnReady(ref) {
 
 SidePanel.HORIZONTAL_PADDING = CONTENT_PADDING;
 
-var _StyledDiv$A = _styled__default.div.withConfig({
+var _StyledDiv$B = _styled__default.div.withConfig({
   displayName: "SidePanelSeparator___StyledDiv",
   componentId: "sc-75c7uf-0"
 })(["width:calc(100% + ", "px);margin:0 -", "px;height:1px;background:", ";"], function (p) {
@@ -25315,14 +23727,14 @@ var _StyledDiv$A = _styled__default.div.withConfig({
 
 function SidePanelSeparator(props) {
   var theme = useTheme();
-  return React__default.createElement(_StyledDiv$A, _extends_1({}, props, {
+  return React__default.createElement(_StyledDiv$B, _extends_1({}, props, {
     _css: SidePanel.HORIZONTAL_PADDING * 2,
     _css2: SidePanel.HORIZONTAL_PADDING,
     _css3: theme.border
   }));
 }
 
-var _StyledDiv$B = _styled__default.div.withConfig({
+var _StyledDiv$C = _styled__default.div.withConfig({
   displayName: "SidePanelSplit___StyledDiv",
   componentId: "d0csv3-0"
 })(["display:flex;width:calc(100% + ", "px);margin:0 -", "px;padding:", "px;"], function (p) {
@@ -25333,7 +23745,7 @@ var _StyledDiv$B = _styled__default.div.withConfig({
   return p._css3;
 });
 
-var _StyledDiv2$k = _styled__default.div.withConfig({
+var _StyledDiv2$l = _styled__default.div.withConfig({
   displayName: "SidePanelSplit___StyledDiv2",
   componentId: "d0csv3-1"
 })(["display:inline-block;border-right:1px solid ", ";margin:-", "px ", "px;"], function (p) {
@@ -25349,11 +23761,11 @@ function SidePanelSplit(_ref) {
       props = objectWithoutProperties(_ref, ["children"]);
 
   var theme = useTheme();
-  return React__default.createElement(_StyledDiv$B, _extends_1({}, props, {
+  return React__default.createElement(_StyledDiv$C, _extends_1({}, props, {
     _css: SidePanel.HORIZONTAL_PADDING * 2,
     _css2: SidePanel.HORIZONTAL_PADDING,
     _css3: SidePanel.HORIZONTAL_PADDING
-  }), React__default.createElement(Part, null, children[0]), React__default.createElement(_StyledDiv2$k, {
+  }), React__default.createElement(Part, null, children[0]), React__default.createElement(_StyledDiv2$l, {
     _css4: theme.border,
     _css5: SidePanel.HORIZONTAL_PADDING,
     _css6: SidePanel.HORIZONTAL_PADDING
@@ -25374,20 +23786,30 @@ var HANDLE_SHADOW_MARGIN = 15;
 var PADDING = 5;
 var MIN_WIDTH$1 = HANDLE_SIZE * 10;
 var HEIGHT$2 = Math.max(HANDLE_SIZE, BAR_HEIGHT$1) + PADDING * 2;
+var DEFAULT_RECT = typeof window === 'undefined' ? {
+  x: 0,
+  y: 0,
+  width: 0,
+  height: 0,
+  top: 0,
+  right: 0,
+  bottom: 0,
+  left: 0
+} : new window.DOMRect();
 
-var _StyledDiv$C = _styled__default.div.withConfig({
+var _StyledDiv$D = _styled__default.div.withConfig({
   displayName: "Slider___StyledDiv",
   componentId: "sc-94djfe-0"
 })(["min-width:", "px;padding:0 ", "px;", ";"], MIN_WIDTH$1, function (p) {
   return p._css;
 }, unselectable);
 
-var _StyledDiv2$l = _styled__default.div.withConfig({
+var _StyledDiv2$m = _styled__default.div.withConfig({
   displayName: "Slider___StyledDiv2",
   componentId: "sc-94djfe-1"
 })(["position:relative;height:", "px;cursor:pointer;"], HEIGHT$2);
 
-var _StyledAnimatedDiv$7 = _styled__default(extendedAnimated.div).withConfig({
+var _StyledAnimatedDiv$9 = _styled__default(extendedAnimated.div).withConfig({
   displayName: "Slider___StyledAnimatedDiv",
   componentId: "sc-94djfe-2"
 })(["position:absolute;top:50%;left:0;width:", "px;height:", "px;border:1px solid ", ";border-radius:50%;"], HANDLE_SIZE, HANDLE_SIZE, function (p) {
@@ -25429,7 +23851,7 @@ function (_React$Component) {
       }
 
       _this._lastRectTime = now;
-      _this._lastRect = _this._mainElement ? _this._mainElement.getBoundingClientRect() : new window.DOMRect();
+      _this._lastRect = _this._mainElement ? _this._mainElement.getBoundingClientRect() : DEFAULT_RECT;
       return _this._lastRect;
     });
 
@@ -25551,9 +23973,9 @@ function (_React$Component) {
       }, function (_ref) {
         var value = _ref.value,
             pressProgress = _ref.pressProgress;
-        return React__default.createElement(_StyledDiv$C, _extends_1({}, props, {
+        return React__default.createElement(_StyledDiv$D, _extends_1({}, props, {
           _css: HANDLE_SIZE / 2 + PADDING
-        }), React__default.createElement(_StyledDiv2$l, {
+        }), React__default.createElement(_StyledDiv2$m, {
           ref: _this2.handleRef,
           onMouseDown: _this2.dragStart,
           onTouchStart: _this2.dragStart
@@ -25564,7 +23986,7 @@ function (_React$Component) {
           _css3: theme.selected
         })), React__default.createElement(HandleClip, null, React__default.createElement(HandlePosition, {
           style: _this2.getHandlePositionStyles(value, pressProgress)
-        }, React__default.createElement(_StyledAnimatedDiv$7, {
+        }, React__default.createElement(_StyledAnimatedDiv$9, {
           style: _this2.getHandleStyles(pressProgress),
           _css4: theme.border
         })))));
@@ -25624,7 +24046,7 @@ var Slider$1 = (function (props) {
   }, props));
 });
 
-var _StyledDiv$D = _styled__default.div.withConfig({
+var _StyledDiv$E = _styled__default.div.withConfig({
   displayName: "Split___StyledDiv",
   componentId: "sc-19nz0vo-0"
 })(["flex-grow:1;margin-left:", "px;padding-top:", "px;"], function (p) {
@@ -25633,7 +24055,7 @@ var _StyledDiv$D = _styled__default.div.withConfig({
   return p._css2;
 });
 
-var _StyledDiv2$m = _styled__default.div.withConfig({
+var _StyledDiv2$n = _styled__default.div.withConfig({
   displayName: "Split___StyledDiv2",
   componentId: "sc-19nz0vo-1"
 })(["flex-shrink:0;flex-grow:0;width:", ";margin-left:", "px;padding-top:", "px;"], function (p) {
@@ -25665,13 +24087,13 @@ function Split(_ref) {
   var inverted = !oneColumn && invert === 'horizontal' || oneColumn && invert === 'vertical';
   var primaryContent = React__default.createElement(Inside, {
     name: "Split:primary"
-  }, React__default.createElement(_StyledDiv$D, {
+  }, React__default.createElement(_StyledDiv$E, {
     _css: !oneColumn && inverted ? 2 * GU : 0,
     _css2: oneColumn && inverted ? 2 * GU : 0
   }, primary));
   var secondaryContent = React__default.createElement(Inside, {
     name: "Split:secondary"
-  }, React__default.createElement(_StyledDiv2$m, {
+  }, React__default.createElement(_StyledDiv2$n, {
     _css3: oneColumn ? '100%' : "".concat(33 * GU, "px"),
     _css4: !oneColumn && !inverted ? 2 * GU : 0,
     _css5: oneColumn && !inverted ? 2 * GU : 0
@@ -25697,7 +24119,7 @@ var BORDER = 1;
 var WRAPPER_WIDTH = 5 * GU;
 var WRAPPER_HEIGHT = 2.25 * GU;
 
-var _StyledSpan$b = _styled__default.span.withConfig({
+var _StyledSpan$a = _styled__default.span.withConfig({
   displayName: "Switch___StyledSpan",
   componentId: "sc-1f0jw9z-0"
 })(["position:relative;display:inline-block;width:", "px;height:", "px;border:", "px solid ", ";border-radius:", "px;background-color:", ";cursor:", ";", " ", ";"], WRAPPER_WIDTH, WRAPPER_HEIGHT, BORDER, function (p) {
@@ -25749,7 +24171,7 @@ function Switch(_ref) {
   return React__default.createElement(FocusVisible, null, function (_ref2) {
     var focusVisible = _ref2.focusVisible,
         _onFocus = _ref2.onFocus;
-    return React__default.createElement(_StyledSpan$b, {
+    return React__default.createElement(_StyledSpan$a, {
       onClick: function onClick(e) {
         e.preventDefault();
         handleChange();
@@ -25807,23 +24229,37 @@ Switch.defaultProps = {
   onChange: noop
 };
 
-var _StyledSpan$c = _styled__default.span.withConfig({
-  displayName: "SyncIndicator___StyledSpan",
+var _StyledDiv$F = _styled__default.div.withConfig({
+  displayName: "SyncIndicator___StyledDiv",
   componentId: "sc-19m50aw-0"
-})(["margin-left:5px"]);
+})(["margin-left:", "px;"], function (p) {
+  return p._css;
+});
+
+var _StyledSpan$b = _styled__default.span.withConfig({
+  displayName: "SyncIndicator___StyledSpan",
+  componentId: "sc-19m50aw-1"
+})(["white-space:nowrap"]);
 
 function SyncIndicator(_ref) {
-  var visible = _ref.visible,
-      label = _ref.label;
-  return React__default.createElement(FloatIndicator, {
-    visible: visible
-  }, React__default.createElement(LoadingRing, {
-    animated: true
-  }), React__default.createElement(_StyledSpan$c, null, label));
+  var children = _ref.children,
+      label = _ref.label,
+      shift = _ref.shift,
+      visible = _ref.visible,
+      props = objectWithoutProperties(_ref, ["children", "label", "shift", "visible"]);
+
+  return React__default.createElement(FloatIndicator, _extends_1({
+    visible: visible,
+    shift: shift
+  }, props), React__default.createElement(LoadingRing, null), React__default.createElement(_StyledDiv$F, {
+    _css: 1.5 * GU
+  }, children || React__default.createElement(_StyledSpan$b, null, label, " \uD83D\uDE4F")));
 }
 
 SyncIndicator.propTypes = {
-  label: propTypes.string,
+  children: propTypes.node,
+  label: propTypes.node,
+  shift: propTypes.number,
   visible: propTypes.bool
 };
 SyncIndicator.defaultProps = {
@@ -25879,7 +24315,7 @@ Table.defaultProps = {
   noSideBorders: false
 };
 
-var _StyledDiv$E = _styled__default.div.withConfig({
+var _StyledDiv$G = _styled__default.div.withConfig({
   displayName: "TableCell___StyledDiv",
   componentId: "sc-110j155-0"
 })(["display:flex;align-items:center;justify-content:", ";"], function (p) {
@@ -25890,7 +24326,7 @@ function ContentContainerDefault(_ref) {
   var align = _ref.align,
       props = objectWithoutProperties(_ref, ["align"]);
 
-  return React__default.createElement(_StyledDiv$E, _extends_1({}, props, {
+  return React__default.createElement(_StyledDiv$G, _extends_1({}, props, {
     _css: align === 'right' ? 'flex-end' : 'space-between'
   }));
 }
@@ -25977,16 +24413,16 @@ TableHeader.defaultProps = {
   align: 'left'
 };
 
-function _templateObject$5() {
+function _templateObject$4() {
   var data = taggedTemplateLiteral([""]);
 
-  _templateObject$5 = function _templateObject() {
+  _templateObject$4 = function _templateObject() {
     return data;
   };
 
   return data;
 }
-var StyledTableRow = _styled__default.tr(_templateObject$5());
+var StyledTableRow = _styled__default.tr(_templateObject$4());
 
 var aragon = {
   "Grey": {
@@ -26214,40 +24650,40 @@ var _groups = groups(aragon),
     brand = _groups.brand,
     colors$2 = _groups.colors;
 
-function _templateObject4$3() {
+function _templateObject4$2() {
   var data = taggedTemplateLiteral(["\n  display: flex;\n  margin-bottom: -1px;\n  padding: 5px 0 3px;\n  border-bottom: 4px solid ", ";\n"]);
 
-  _templateObject4$3 = function _templateObject4() {
+  _templateObject4$2 = function _templateObject4() {
     return data;
   };
 
   return data;
 }
 
-function _templateObject3$4() {
+function _templateObject3$3() {
   var data = taggedTemplateLiteral(["\n  position: relative;\n  list-style: none;\n  padding: 0 30px;\n  cursor: pointer;\n  ", ";\n  ", ";\n  &:focus {\n    outline: 0;\n    ", " {\n      display: block;\n    }\n  }\n"]);
 
-  _templateObject3$4 = function _templateObject3() {
+  _templateObject3$3 = function _templateObject3() {
     return data;
   };
 
   return data;
 }
 
-function _templateObject2$4() {
+function _templateObject2$3() {
   var data = taggedTemplateLiteral(["\n  display: none;\n  position: absolute;\n  top: -5px;\n  left: -5px;\n  right: -5px;\n  bottom: -5px;\n  border: 2px solid ", ";\n  border-radius: 2px;\n"]);
 
-  _templateObject2$4 = function _templateObject2() {
+  _templateObject2$3 = function _templateObject2() {
     return data;
   };
 
   return data;
 }
 
-function _templateObject$6() {
+function _templateObject$5() {
   var data = taggedTemplateLiteral(["\n  display: flex;\n  border-bottom: ", ";\n"]);
 
-  _templateObject$6 = function _templateObject() {
+  _templateObject$5 = function _templateObject() {
     return data;
   };
 
@@ -26396,30 +24832,30 @@ defineProperty(TabBar, "defaultProps", {
   onChange: noop
 });
 
-var Bar$3 = _styled__default.ul(_templateObject$6(), function (p) {
+var Bar$3 = _styled__default.ul(_templateObject$5(), function (p) {
   return p.border ? "1px solid ".concat(theme.contentBorder) : '0';
 });
-var FocusRing = _styled__default.span(_templateObject2$4(), theme.accent);
-var Tab = _styled__default.li(_templateObject3$4(), function (p) {
+var FocusRing = _styled__default.span(_templateObject2$3(), theme.accent);
+var Tab = _styled__default.li(_templateObject3$3(), function (p) {
   return font({
     weight: p.selected ? 'bold' : 'normal',
     deprecationNotice: false
   });
 }, unselectable(), FocusRing);
-var Label$2 = _styled__default.span(_templateObject4$3(), function (p) {
+var Label$2 = _styled__default.span(_templateObject4$2(), function (p) {
   return p.selected ? theme.accent : 'transparent';
 });
 
 /* eslint-disable react/prop-types */
 
-var _StyledDiv$F = _styled__default.div.withConfig({
+var _StyledDiv$H = _styled__default.div.withConfig({
   displayName: "TabsFullWidth___StyledDiv",
   componentId: "sc-1sqpfuf-0"
 })(["padding-bottom:", "px;"], function (p) {
   return p._css;
 });
 
-var _StyledDiv2$n = _styled__default.div.withConfig({
+var _StyledDiv2$o = _styled__default.div.withConfig({
   displayName: "TabsFullWidth___StyledDiv2",
   componentId: "sc-1sqpfuf-1"
 })(["position:relative;display:flex;align-items:center;justify-content:space-between;width:100%;height:", "px;"], function (p) {
@@ -26464,7 +24900,7 @@ var _StyledIconDown$2 = _styled__default(IconDown).withConfig({
   return p._css11;
 });
 
-var _StyledAnimatedDiv$8 = _styled__default(extendedAnimated.div).withConfig({
+var _StyledAnimatedDiv$a = _styled__default(extendedAnimated.div).withConfig({
   displayName: "TabsFullWidth___StyledAnimatedDiv",
   componentId: "sc-1sqpfuf-6"
 })(["position:absolute;z-index:9;top:", "px;left:0;right:0;border-bottom:1px solid ", ";box-shadow:0px 2px 3px rgba(0,0,0,0.05);background:", ";"], function (p) {
@@ -26524,11 +24960,11 @@ function TabsFullWidth(_ref) {
       focusButton();
     }
   }, [close, focusButton]);
-  return React__default.createElement(_StyledDiv$F, {
+  return React__default.createElement(_StyledDiv$H, {
     ref: ref,
     onBlur: handleBlur,
     _css: 2 * GU
-  }, React__default.createElement(_StyledDiv2$n, {
+  }, React__default.createElement(_StyledDiv2$o, {
     _css2: 8 * GU
   }, React__default.createElement(_StyledButtonBase$c, {
     ref: buttonRef,
@@ -26565,7 +25001,7 @@ function TabsFullWidth(_ref) {
     return opened && function (_ref2) {
       var opacity = _ref2.opacity,
           y = _ref2.y;
-      return React__default.createElement(_StyledAnimatedDiv$8, {
+      return React__default.createElement(_StyledAnimatedDiv$a, {
         style: {
           opacity: opacity,
           transform: y.interpolate(function (v) {
@@ -26656,7 +25092,7 @@ var _StyledButtonBase$d = _styled__default(ButtonBaseWithFocus).withConfig({
   return p._css2;
 });
 
-var _StyledSpan$d = _styled__default.span.withConfig({
+var _StyledSpan$c = _styled__default.span.withConfig({
   displayName: "Tab___StyledSpan",
   componentId: "sc-1cgzd3b-2"
 })(["display:flex;position:relative;align-items:center;height:", "px;padding:0 ", "px;white-space:nowrap;color:", ";"], function (p) {
@@ -26667,7 +25103,7 @@ var _StyledSpan$d = _styled__default.span.withConfig({
   return p._css5;
 });
 
-var _StyledSpan2$6 = _styled__default.span.withConfig({
+var _StyledSpan2$4 = _styled__default.span.withConfig({
   displayName: "Tab___StyledSpan2",
   componentId: "sc-1cgzd3b-3"
 })(["position:absolute;left:0;right:0;bottom:0;background:", ";height:2px;opacity:", ";transition-property:transform,opacity;transition-duration:150ms;transition-timing-function:ease-in-out;transform:scale3d(1,", ",1);transform-origin:0 100%;"], function (p) {
@@ -26697,11 +25133,11 @@ function Tab$1(_ref) {
     onClick: handleClick,
     _css: textStyle('body2'),
     _css2: theme.surfacePressed
-  }, React__default.createElement(_StyledSpan$d, {
+  }, React__default.createElement(_StyledSpan$c, {
     _css3: 8 * GU - (insideSidePanel ? 1 : 2),
     _css4: 3 * GU,
     _css5: selected ? theme.surfaceContent : theme.surfaceContentSecondary
-  }, item, React__default.createElement(_StyledSpan2$6, {
+  }, item, React__default.createElement(_StyledSpan2$4, {
     _css6: theme.selected,
     _css7: Number(selected),
     _css8: Number(selected)
@@ -26794,6 +25230,884 @@ function TabBarLegacyCompatibility(props) {
   return React__default.createElement(Tabs, props);
 }
 
+/** `Object#toString` result references. */
+var asyncTag = '[object AsyncFunction]',
+    funcTag = '[object Function]',
+    genTag = '[object GeneratorFunction]',
+    proxyTag = '[object Proxy]';
+
+/**
+ * Checks if `value` is classified as a `Function` object.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a function, else `false`.
+ * @example
+ *
+ * _.isFunction(_);
+ * // => true
+ *
+ * _.isFunction(/abc/);
+ * // => false
+ */
+function isFunction$1(value) {
+  if (!isObject(value)) {
+    return false;
+  }
+  // The use of `Object#toString` avoids issues with the `typeof` operator
+  // in Safari 9 which returns 'object' for typed arrays and other constructors.
+  var tag = baseGetTag(value);
+  return tag == funcTag || tag == genTag || tag == asyncTag || tag == proxyTag;
+}
+
+/** Used to detect overreaching core-js shims. */
+var coreJsData = root['__core-js_shared__'];
+
+/** Used to detect methods masquerading as native. */
+var maskSrcKey = (function() {
+  var uid = /[^.]+$/.exec(coreJsData && coreJsData.keys && coreJsData.keys.IE_PROTO || '');
+  return uid ? ('Symbol(src)_1.' + uid) : '';
+}());
+
+/**
+ * Checks if `func` has its source masked.
+ *
+ * @private
+ * @param {Function} func The function to check.
+ * @returns {boolean} Returns `true` if `func` is masked, else `false`.
+ */
+function isMasked(func) {
+  return !!maskSrcKey && (maskSrcKey in func);
+}
+
+/** Used for built-in method references. */
+var funcProto = Function.prototype;
+
+/** Used to resolve the decompiled source of functions. */
+var funcToString = funcProto.toString;
+
+/**
+ * Converts `func` to its source code.
+ *
+ * @private
+ * @param {Function} func The function to convert.
+ * @returns {string} Returns the source code.
+ */
+function toSource(func) {
+  if (func != null) {
+    try {
+      return funcToString.call(func);
+    } catch (e) {}
+    try {
+      return (func + '');
+    } catch (e) {}
+  }
+  return '';
+}
+
+/**
+ * Used to match `RegExp`
+ * [syntax characters](http://ecma-international.org/ecma-262/7.0/#sec-patterns).
+ */
+var reRegExpChar = /[\\^$.*+?()[\]{}|]/g;
+
+/** Used to detect host constructors (Safari). */
+var reIsHostCtor = /^\[object .+?Constructor\]$/;
+
+/** Used for built-in method references. */
+var funcProto$1 = Function.prototype,
+    objectProto$2 = Object.prototype;
+
+/** Used to resolve the decompiled source of functions. */
+var funcToString$1 = funcProto$1.toString;
+
+/** Used to check objects for own properties. */
+var hasOwnProperty$2 = objectProto$2.hasOwnProperty;
+
+/** Used to detect if a method is native. */
+var reIsNative = RegExp('^' +
+  funcToString$1.call(hasOwnProperty$2).replace(reRegExpChar, '\\$&')
+  .replace(/hasOwnProperty|(function).*?(?=\\\()| for .+?(?=\\\])/g, '$1.*?') + '$'
+);
+
+/**
+ * The base implementation of `_.isNative` without bad shim checks.
+ *
+ * @private
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a native function,
+ *  else `false`.
+ */
+function baseIsNative(value) {
+  if (!isObject(value) || isMasked(value)) {
+    return false;
+  }
+  var pattern = isFunction$1(value) ? reIsNative : reIsHostCtor;
+  return pattern.test(toSource(value));
+}
+
+/**
+ * Gets the value at `key` of `object`.
+ *
+ * @private
+ * @param {Object} [object] The object to query.
+ * @param {string} key The key of the property to get.
+ * @returns {*} Returns the property value.
+ */
+function getValue(object, key) {
+  return object == null ? undefined : object[key];
+}
+
+/**
+ * Gets the native function at `key` of `object`.
+ *
+ * @private
+ * @param {Object} object The object to query.
+ * @param {string} key The key of the method to get.
+ * @returns {*} Returns the function if it's native, else `undefined`.
+ */
+function getNative(object, key) {
+  var value = getValue(object, key);
+  return baseIsNative(value) ? value : undefined;
+}
+
+/* Built-in method references that are verified to be native. */
+var nativeCreate = getNative(Object, 'create');
+
+/**
+ * Removes all key-value entries from the hash.
+ *
+ * @private
+ * @name clear
+ * @memberOf Hash
+ */
+function hashClear() {
+  this.__data__ = nativeCreate ? nativeCreate(null) : {};
+  this.size = 0;
+}
+
+/**
+ * Removes `key` and its value from the hash.
+ *
+ * @private
+ * @name delete
+ * @memberOf Hash
+ * @param {Object} hash The hash to modify.
+ * @param {string} key The key of the value to remove.
+ * @returns {boolean} Returns `true` if the entry was removed, else `false`.
+ */
+function hashDelete(key) {
+  var result = this.has(key) && delete this.__data__[key];
+  this.size -= result ? 1 : 0;
+  return result;
+}
+
+/** Used to stand-in for `undefined` hash values. */
+var HASH_UNDEFINED = '__lodash_hash_undefined__';
+
+/** Used for built-in method references. */
+var objectProto$3 = Object.prototype;
+
+/** Used to check objects for own properties. */
+var hasOwnProperty$3 = objectProto$3.hasOwnProperty;
+
+/**
+ * Gets the hash value for `key`.
+ *
+ * @private
+ * @name get
+ * @memberOf Hash
+ * @param {string} key The key of the value to get.
+ * @returns {*} Returns the entry value.
+ */
+function hashGet(key) {
+  var data = this.__data__;
+  if (nativeCreate) {
+    var result = data[key];
+    return result === HASH_UNDEFINED ? undefined : result;
+  }
+  return hasOwnProperty$3.call(data, key) ? data[key] : undefined;
+}
+
+/** Used for built-in method references. */
+var objectProto$4 = Object.prototype;
+
+/** Used to check objects for own properties. */
+var hasOwnProperty$4 = objectProto$4.hasOwnProperty;
+
+/**
+ * Checks if a hash value for `key` exists.
+ *
+ * @private
+ * @name has
+ * @memberOf Hash
+ * @param {string} key The key of the entry to check.
+ * @returns {boolean} Returns `true` if an entry for `key` exists, else `false`.
+ */
+function hashHas(key) {
+  var data = this.__data__;
+  return nativeCreate ? (data[key] !== undefined) : hasOwnProperty$4.call(data, key);
+}
+
+/** Used to stand-in for `undefined` hash values. */
+var HASH_UNDEFINED$1 = '__lodash_hash_undefined__';
+
+/**
+ * Sets the hash `key` to `value`.
+ *
+ * @private
+ * @name set
+ * @memberOf Hash
+ * @param {string} key The key of the value to set.
+ * @param {*} value The value to set.
+ * @returns {Object} Returns the hash instance.
+ */
+function hashSet(key, value) {
+  var data = this.__data__;
+  this.size += this.has(key) ? 0 : 1;
+  data[key] = (nativeCreate && value === undefined) ? HASH_UNDEFINED$1 : value;
+  return this;
+}
+
+/**
+ * Creates a hash object.
+ *
+ * @private
+ * @constructor
+ * @param {Array} [entries] The key-value pairs to cache.
+ */
+function Hash(entries) {
+  var index = -1,
+      length = entries == null ? 0 : entries.length;
+
+  this.clear();
+  while (++index < length) {
+    var entry = entries[index];
+    this.set(entry[0], entry[1]);
+  }
+}
+
+// Add methods to `Hash`.
+Hash.prototype.clear = hashClear;
+Hash.prototype['delete'] = hashDelete;
+Hash.prototype.get = hashGet;
+Hash.prototype.has = hashHas;
+Hash.prototype.set = hashSet;
+
+/**
+ * Removes all key-value entries from the list cache.
+ *
+ * @private
+ * @name clear
+ * @memberOf ListCache
+ */
+function listCacheClear() {
+  this.__data__ = [];
+  this.size = 0;
+}
+
+/**
+ * Performs a
+ * [`SameValueZero`](http://ecma-international.org/ecma-262/7.0/#sec-samevaluezero)
+ * comparison between two values to determine if they are equivalent.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to compare.
+ * @param {*} other The other value to compare.
+ * @returns {boolean} Returns `true` if the values are equivalent, else `false`.
+ * @example
+ *
+ * var object = { 'a': 1 };
+ * var other = { 'a': 1 };
+ *
+ * _.eq(object, object);
+ * // => true
+ *
+ * _.eq(object, other);
+ * // => false
+ *
+ * _.eq('a', 'a');
+ * // => true
+ *
+ * _.eq('a', Object('a'));
+ * // => false
+ *
+ * _.eq(NaN, NaN);
+ * // => true
+ */
+function eq(value, other) {
+  return value === other || (value !== value && other !== other);
+}
+
+/**
+ * Gets the index at which the `key` is found in `array` of key-value pairs.
+ *
+ * @private
+ * @param {Array} array The array to inspect.
+ * @param {*} key The key to search for.
+ * @returns {number} Returns the index of the matched value, else `-1`.
+ */
+function assocIndexOf(array, key) {
+  var length = array.length;
+  while (length--) {
+    if (eq(array[length][0], key)) {
+      return length;
+    }
+  }
+  return -1;
+}
+
+/** Used for built-in method references. */
+var arrayProto = Array.prototype;
+
+/** Built-in value references. */
+var splice = arrayProto.splice;
+
+/**
+ * Removes `key` and its value from the list cache.
+ *
+ * @private
+ * @name delete
+ * @memberOf ListCache
+ * @param {string} key The key of the value to remove.
+ * @returns {boolean} Returns `true` if the entry was removed, else `false`.
+ */
+function listCacheDelete(key) {
+  var data = this.__data__,
+      index = assocIndexOf(data, key);
+
+  if (index < 0) {
+    return false;
+  }
+  var lastIndex = data.length - 1;
+  if (index == lastIndex) {
+    data.pop();
+  } else {
+    splice.call(data, index, 1);
+  }
+  --this.size;
+  return true;
+}
+
+/**
+ * Gets the list cache value for `key`.
+ *
+ * @private
+ * @name get
+ * @memberOf ListCache
+ * @param {string} key The key of the value to get.
+ * @returns {*} Returns the entry value.
+ */
+function listCacheGet(key) {
+  var data = this.__data__,
+      index = assocIndexOf(data, key);
+
+  return index < 0 ? undefined : data[index][1];
+}
+
+/**
+ * Checks if a list cache value for `key` exists.
+ *
+ * @private
+ * @name has
+ * @memberOf ListCache
+ * @param {string} key The key of the entry to check.
+ * @returns {boolean} Returns `true` if an entry for `key` exists, else `false`.
+ */
+function listCacheHas(key) {
+  return assocIndexOf(this.__data__, key) > -1;
+}
+
+/**
+ * Sets the list cache `key` to `value`.
+ *
+ * @private
+ * @name set
+ * @memberOf ListCache
+ * @param {string} key The key of the value to set.
+ * @param {*} value The value to set.
+ * @returns {Object} Returns the list cache instance.
+ */
+function listCacheSet(key, value) {
+  var data = this.__data__,
+      index = assocIndexOf(data, key);
+
+  if (index < 0) {
+    ++this.size;
+    data.push([key, value]);
+  } else {
+    data[index][1] = value;
+  }
+  return this;
+}
+
+/**
+ * Creates an list cache object.
+ *
+ * @private
+ * @constructor
+ * @param {Array} [entries] The key-value pairs to cache.
+ */
+function ListCache(entries) {
+  var index = -1,
+      length = entries == null ? 0 : entries.length;
+
+  this.clear();
+  while (++index < length) {
+    var entry = entries[index];
+    this.set(entry[0], entry[1]);
+  }
+}
+
+// Add methods to `ListCache`.
+ListCache.prototype.clear = listCacheClear;
+ListCache.prototype['delete'] = listCacheDelete;
+ListCache.prototype.get = listCacheGet;
+ListCache.prototype.has = listCacheHas;
+ListCache.prototype.set = listCacheSet;
+
+/* Built-in method references that are verified to be native. */
+var Map$1 = getNative(root, 'Map');
+
+/**
+ * Removes all key-value entries from the map.
+ *
+ * @private
+ * @name clear
+ * @memberOf MapCache
+ */
+function mapCacheClear() {
+  this.size = 0;
+  this.__data__ = {
+    'hash': new Hash,
+    'map': new (Map$1 || ListCache),
+    'string': new Hash
+  };
+}
+
+/**
+ * Checks if `value` is suitable for use as unique object key.
+ *
+ * @private
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is suitable, else `false`.
+ */
+function isKeyable(value) {
+  var type = typeof value;
+  return (type == 'string' || type == 'number' || type == 'symbol' || type == 'boolean')
+    ? (value !== '__proto__')
+    : (value === null);
+}
+
+/**
+ * Gets the data for `map`.
+ *
+ * @private
+ * @param {Object} map The map to query.
+ * @param {string} key The reference key.
+ * @returns {*} Returns the map data.
+ */
+function getMapData(map, key) {
+  var data = map.__data__;
+  return isKeyable(key)
+    ? data[typeof key == 'string' ? 'string' : 'hash']
+    : data.map;
+}
+
+/**
+ * Removes `key` and its value from the map.
+ *
+ * @private
+ * @name delete
+ * @memberOf MapCache
+ * @param {string} key The key of the value to remove.
+ * @returns {boolean} Returns `true` if the entry was removed, else `false`.
+ */
+function mapCacheDelete(key) {
+  var result = getMapData(this, key)['delete'](key);
+  this.size -= result ? 1 : 0;
+  return result;
+}
+
+/**
+ * Gets the map value for `key`.
+ *
+ * @private
+ * @name get
+ * @memberOf MapCache
+ * @param {string} key The key of the value to get.
+ * @returns {*} Returns the entry value.
+ */
+function mapCacheGet(key) {
+  return getMapData(this, key).get(key);
+}
+
+/**
+ * Checks if a map value for `key` exists.
+ *
+ * @private
+ * @name has
+ * @memberOf MapCache
+ * @param {string} key The key of the entry to check.
+ * @returns {boolean} Returns `true` if an entry for `key` exists, else `false`.
+ */
+function mapCacheHas(key) {
+  return getMapData(this, key).has(key);
+}
+
+/**
+ * Sets the map `key` to `value`.
+ *
+ * @private
+ * @name set
+ * @memberOf MapCache
+ * @param {string} key The key of the value to set.
+ * @param {*} value The value to set.
+ * @returns {Object} Returns the map cache instance.
+ */
+function mapCacheSet(key, value) {
+  var data = getMapData(this, key),
+      size = data.size;
+
+  data.set(key, value);
+  this.size += data.size == size ? 0 : 1;
+  return this;
+}
+
+/**
+ * Creates a map cache object to store key-value pairs.
+ *
+ * @private
+ * @constructor
+ * @param {Array} [entries] The key-value pairs to cache.
+ */
+function MapCache(entries) {
+  var index = -1,
+      length = entries == null ? 0 : entries.length;
+
+  this.clear();
+  while (++index < length) {
+    var entry = entries[index];
+    this.set(entry[0], entry[1]);
+  }
+}
+
+// Add methods to `MapCache`.
+MapCache.prototype.clear = mapCacheClear;
+MapCache.prototype['delete'] = mapCacheDelete;
+MapCache.prototype.get = mapCacheGet;
+MapCache.prototype.has = mapCacheHas;
+MapCache.prototype.set = mapCacheSet;
+
+/** Error message constants. */
+var FUNC_ERROR_TEXT$2 = 'Expected a function';
+
+/**
+ * Creates a function that memoizes the result of `func`. If `resolver` is
+ * provided, it determines the cache key for storing the result based on the
+ * arguments provided to the memoized function. By default, the first argument
+ * provided to the memoized function is used as the map cache key. The `func`
+ * is invoked with the `this` binding of the memoized function.
+ *
+ * **Note:** The cache is exposed as the `cache` property on the memoized
+ * function. Its creation may be customized by replacing the `_.memoize.Cache`
+ * constructor with one whose instances implement the
+ * [`Map`](http://ecma-international.org/ecma-262/7.0/#sec-properties-of-the-map-prototype-object)
+ * method interface of `clear`, `delete`, `get`, `has`, and `set`.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Function
+ * @param {Function} func The function to have its output memoized.
+ * @param {Function} [resolver] The function to resolve the cache key.
+ * @returns {Function} Returns the new memoized function.
+ * @example
+ *
+ * var object = { 'a': 1, 'b': 2 };
+ * var other = { 'c': 3, 'd': 4 };
+ *
+ * var values = _.memoize(_.values);
+ * values(object);
+ * // => [1, 2]
+ *
+ * values(other);
+ * // => [3, 4]
+ *
+ * object.a = 2;
+ * values(object);
+ * // => [1, 2]
+ *
+ * // Modify the result cache.
+ * values.cache.set(object, ['a', 'b']);
+ * values(object);
+ * // => ['a', 'b']
+ *
+ * // Replace `_.memoize.Cache`.
+ * _.memoize.Cache = WeakMap;
+ */
+function memoize(func, resolver) {
+  if (typeof func != 'function' || (resolver != null && typeof resolver != 'function')) {
+    throw new TypeError(FUNC_ERROR_TEXT$2);
+  }
+  var memoized = function() {
+    var args = arguments,
+        key = resolver ? resolver.apply(this, args) : args[0],
+        cache = memoized.cache;
+
+    if (cache.has(key)) {
+      return cache.get(key);
+    }
+    var result = func.apply(this, args);
+    memoized.cache = cache.set(key, result) || cache;
+    return result;
+  };
+  memoized.cache = new (memoize.Cache || MapCache);
+  return memoized;
+}
+
+// Expose `MapCache`.
+memoize.Cache = MapCache;
+
+var RENDER_EVERY = 1000;
+
+var formatUnit = function formatUnit(v) {
+  return String(v).padStart(2, '0');
+};
+
+var formats = {
+  yMdhms: 'yMdhms',
+  yMdhm: 'yMdhm',
+  yMdh: 'yMdh',
+  yMd: 'yMd',
+  yM: 'yM',
+  Mdhms: 'Mdhms',
+  Mdhm: 'Mdhm',
+  Mdh: 'Mdh',
+  Md: 'Md',
+  dhms: 'dhms',
+  dhm: 'dhm',
+  hms: 'hms',
+  hm: 'hm',
+  ms: 'ms',
+  m: 'm',
+  s: 's'
+};
+var unitNames = {
+  y: 'years',
+  M: 'months',
+  d: 'days',
+  h: 'hours',
+  m: 'minutes',
+  s: 'seconds'
+};
+var getFormat = memoize(function (format) {
+  return ['y', 'M', 'd', 'h', 'm', 's'].reduce(function (units, symbol) {
+    return formats[format].includes(symbol) ? [].concat(toConsumableArray(units), [unitNames[symbol]]) : units;
+  }, []);
+});
+
+function getTime(start, end, format, showEmpty, maxUnits) {
+  var date1 = end || new Date();
+  var date2 = end ? new Date() : start;
+  var totalInSeconds = dayjs_min(date1).diff(date2, 'seconds');
+
+  var _difference = difference(date1, date2, {
+    keepLeadingZeros: showEmpty,
+    maxUnits: maxUnits,
+    units: getFormat(format)
+  }),
+      years = _difference.years,
+      months = _difference.months,
+      days = _difference.days,
+      hours = _difference.hours,
+      minutes = _difference.minutes,
+      seconds = _difference.seconds;
+
+  return {
+    units: [['Y', years], ['M', months], ['D', days], ['H', hours], ['M', minutes], ['S', seconds]],
+    totalInSeconds: totalInSeconds
+  };
+}
+
+var _StyledTime = _styled__default.time.withConfig({
+  displayName: "Timer___StyledTime",
+  componentId: "sc-58hkwl-0"
+})(["display:flex;align-items:center;white-space:nowrap;", ";", ";"], function (p) {
+  return p._css;
+}, function (p) {
+  return p._css2;
+});
+
+var _StyledSpan$d = _styled__default.span.withConfig({
+  displayName: "Timer___StyledSpan",
+  componentId: "sc-58hkwl-1"
+})(["display:flex;align-items:center;margin-right:", "px;margin-top:-3px;"], function (p) {
+  return p._css3;
+});
+
+var _StyledIconTime = _styled__default(IconClock).withConfig({
+  displayName: "Timer___StyledIconTime",
+  componentId: "sc-58hkwl-2"
+})(["color:", ";"], function (p) {
+  return p._css4;
+});
+
+var _StyledSpan2$5 = _styled__default.span.withConfig({
+  displayName: "Timer___StyledSpan2",
+  componentId: "sc-58hkwl-3"
+})(["", ";color:", ";"], function (p) {
+  return p._css5;
+}, function (p) {
+  return p._css6;
+});
+
+var _StyledSpan3$1 = _styled__default.span.withConfig({
+  displayName: "Timer___StyledSpan3",
+  componentId: "sc-58hkwl-4"
+})(["color:", ";", ";"], function (p) {
+  return p._css7;
+}, function (p) {
+  return p._css8;
+});
+
+var _StyledSpan4 = _styled__default.span.withConfig({
+  displayName: "Timer___StyledSpan4",
+  componentId: "sc-58hkwl-5"
+})(["margin-left:2px;color:", ";"], function (p) {
+  return p._css9;
+});
+
+var _StyledSpan5 = _styled__default.span.withConfig({
+  displayName: "Timer___StyledSpan5",
+  componentId: "sc-58hkwl-6"
+})(["margin:0 4px;color:", ";font-weight:400;"], function (p) {
+  return p._css10;
+});
+
+var Timer =
+/*#__PURE__*/
+function (_React$Component) {
+  inherits(Timer, _React$Component);
+
+  function Timer() {
+    var _getPrototypeOf2;
+
+    var _this;
+
+    classCallCheck(this, Timer);
+
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    _this = possibleConstructorReturn(this, (_getPrototypeOf2 = getPrototypeOf(Timer)).call.apply(_getPrototypeOf2, [this].concat(args)));
+
+    defineProperty(assertThisInitialized(_this), "renderTime", function () {
+      var _this$props = _this.props,
+          start = _this$props.start,
+          end = _this$props.end,
+          theme = _this$props.theme,
+          format = _this$props.format,
+          showEmpty = _this$props.showEmpty,
+          maxUnits = _this$props.maxUnits;
+
+      var _getTime = getTime(start, end, format, showEmpty, maxUnits),
+          totalInSeconds = _getTime.totalInSeconds,
+          units = _getTime.units;
+
+      if (totalInSeconds < 0 || Object.is(totalInSeconds, -0)) {
+        return React__default.createElement(_StyledSpan2$5, {
+          _css5: textStyle('body2'),
+          _css6: theme.surfaceContentSecondary
+        }, end ? 'Time out' : '−');
+      }
+
+      var lastUnitIndex = units.reduce(function (lastIndex, unit, index) {
+        return unit[1] === null ? lastIndex : index;
+      }, 0);
+      return React__default.createElement("span", null, units.map(function (unit, index) {
+        var isLast = index === lastUnitIndex;
+        var isSeconds = index === units.length - 1; // Only time units (hours, minutes and seconds).
+        // Remember to update if ms gets added one day!
+
+        var isTimeUnit = index >= units.length - 3;
+
+        if (unit[1] === null) {
+          return null;
+        }
+
+        return React__default.createElement(React__default.Fragment, {
+          key: index
+        }, React__default.createElement(_StyledSpan3$1, {
+          _css7: theme.surfaceContent,
+          _css8: isSeconds && // Fix the width of the seconds unit so that
+          // it doesn’t jump too much.
+          "\n                      display: inline-flex;\n                      align-items: baseline;\n                      justify-content: space-between;\n                      min-width: 31px;\n                    "
+        }, formatUnit(unit[1]), React__default.createElement(_StyledSpan4, {
+          _css9: theme.surfaceContentSecondary
+        }, unit[0])), !isLast && // Separator
+        React__default.createElement(_StyledSpan5, {
+          _css10: theme.surfaceContentSecondary
+        }, isTimeUnit && ':'));
+      }));
+    });
+
+    return _this;
+  }
+
+  createClass(Timer, [{
+    key: "render",
+    value: function render() {
+      var _this$props2 = this.props,
+          end = _this$props2.end,
+          start = _this$props2.start,
+          theme = _this$props2.theme;
+      return React__default.createElement(_StyledTime, {
+        dateTime: formatHtmlDatetime(end || start),
+        _css: unselectable(),
+        _css2: textStyle('body2')
+      }, React__default.createElement(_StyledSpan$d, {
+        _css3: 0.5 * GU
+      }, React__default.createElement(_StyledIconTime, {
+        _css4: theme.surfaceIcon
+      })), React__default.createElement(Redraw, {
+        interval: RENDER_EVERY
+      }, this.renderTime));
+    }
+  }]);
+
+  return Timer;
+}(React__default.Component);
+
+defineProperty(Timer, "propTypes", {
+  end: propTypes.instanceOf(Date),
+  format: propTypes.oneOf(Object.keys(formats)),
+  maxUnits: propTypes.number,
+  showEmpty: propTypes.bool,
+  start: propTypes.instanceOf(Date),
+  theme: propTypes.object
+});
+
+defineProperty(Timer, "defaultProps", {
+  format: formats.yMdhms,
+  maxUnits: -1,
+  showEmpty: false
+});
+
+var Timer$1 = (function (props) {
+  var theme = useTheme();
+  return React__default.createElement(Timer, _extends_1({}, props, {
+    theme: theme
+  }));
+});
+
 var TokenBadgePopover = React__default.memo(function TokenBadgePopover(_ref) {
   var address = _ref.address,
       iconSrc = _ref.iconSrc,
@@ -26829,16 +26143,16 @@ var TokenBadgePopover = React__default.memo(function TokenBadgePopover(_ref) {
   });
 });
 TokenBadgePopover.propTypes = {
-  address: propTypes.string.isRequired,
-  iconSrc: propTypes.string,
-  networkType: propTypes.string,
-  onClose: propTypes.func,
-  opener: propTypes.instanceOf(Element),
-  title: propTypes.string.isRequired,
-  visible: propTypes.bool
+  address: ExtendedPropTypes.string.isRequired,
+  iconSrc: ExtendedPropTypes.string,
+  networkType: ExtendedPropTypes.string,
+  onClose: ExtendedPropTypes.func,
+  opener: ExtendedPropTypes._element,
+  title: ExtendedPropTypes.string.isRequired,
+  visible: ExtendedPropTypes.bool
 };
 
-var _StyledDiv$G = _styled__default.div.withConfig({
+var _StyledDiv$I = _styled__default.div.withConfig({
   displayName: "TokenBadgePopover___StyledDiv",
   componentId: "sc-8b2bwa-0"
 })(["width:calc(100% - ", "px);height:calc(100% - ", "px);background-size:contain;background-position:50% 50%;background-repeat:no-repeat;background-image:url(", ");"], function (p) {
@@ -26851,7 +26165,7 @@ var _StyledDiv$G = _styled__default.div.withConfig({
 
 function Icon$2(_ref3) {
   var src = _ref3.src;
-  return React__default.createElement(_StyledDiv$G, {
+  return React__default.createElement(_StyledDiv$I, {
     _css: 0.5 * GU,
     _css2: 0.5 * GU,
     _css3: src
@@ -26859,7 +26173,7 @@ function Icon$2(_ref3) {
 }
 
 Icon$2.propTypes = {
-  src: propTypes.string.isRequired
+  src: ExtendedPropTypes.string.isRequired
 };
 
 var _StyledSpan$e = _styled__default.span.withConfig({
@@ -26947,7 +26261,7 @@ TokenBadge.defaultProps = {
   networkType: 'main'
 };
 
-var _StyledSpan2$7 = _styled__default.span.withConfig({
+var _StyledSpan2$6 = _styled__default.span.withConfig({
   displayName: "TokenBadge___StyledSpan2",
   componentId: "sc-7bvdqo-1"
 })(["flex-shrink:0;display:block;width:18px;height:18px;margin:0 ", "px 0 ", "px;background-size:contain;background-position:50% 50%;background-repeat:no-repeat;background-image:url(", ");"], function (p) {
@@ -26964,7 +26278,7 @@ function Icon$3(_ref3) {
       props = objectWithoutProperties(_ref3, ["compact", "src"]);
 
   var margin = 1 * GU;
-  return React__default.createElement(_StyledSpan2$7, _extends_1({}, props, {
+  return React__default.createElement(_StyledSpan2$6, _extends_1({}, props, {
     _css2: compact ? margin : 0,
     _css3: compact ? 0 : margin,
     _css4: src
@@ -27056,7 +26370,7 @@ var _StyledH$8 = _styled__default.h1.withConfig({
   componentId: "vvbhu5-2"
 })(["font-weight:600"]);
 
-var _StyledDiv$H = _styled__default.div.withConfig({
+var _StyledDiv$J = _styled__default.div.withConfig({
   displayName: "TransactionProgress___StyledDiv",
   componentId: "vvbhu5-3"
 })(["display:flex;justify-content:space-between;align-items:flex-end;margin:", "px 0 ", "px;"], function (p) {
@@ -27081,7 +26395,7 @@ var _StyledProgressBar = _styled__default(ProgressBar).withConfig({
   return p._css8;
 });
 
-var _StyledDiv2$o = _styled__default.div.withConfig({
+var _StyledDiv2$p = _styled__default.div.withConfig({
   displayName: "TransactionProgress___StyledDiv2",
   componentId: "vvbhu5-6"
 })(["display:flex;justify-content:", ";align-items:center;padding-top:", "px;"], function (p) {
@@ -27121,19 +26435,19 @@ var TransactionProgress = React__default.memo(function TransactionProgress(_ref)
     onClick: onClose,
     _css2: 1 * GU,
     _css3: 1 * GU
-  }, React__default.createElement(IconCross, null)), React__default.createElement(_StyledH$8, null, "Pending transaction"), React__default.createElement(_StyledDiv$H, {
+  }, React__default.createElement(IconCross, null)), React__default.createElement(_StyledH$8, null, "Pending transaction"), React__default.createElement(_StyledDiv$J, {
     _css4: 2 * GU,
     _css5: 1 * GU
   }, React__default.createElement(_StyledSpan$f, {
     _css6: textStyle('label2'),
     _css7: theme.contentSecondary
-  }, "Estimated time:"), React__default.createElement(Countdown, {
-    removeDaysAndHours: true,
+  }, "Estimated time:"), React__default.createElement(Timer$1, {
+    format: "ms",
     end: endTime
   })), React__default.createElement(_StyledProgressBar, {
     value: progress,
     _css8: theme.accent
-  }), React__default.createElement(_StyledDiv2$o, {
+  }), React__default.createElement(_StyledDiv2$p, {
     _css9: slow ? 'space-between' : 'end',
     _css10: 2 * GU
   }, slow && React__default.createElement(_StyledDiv3$d, {
@@ -27143,13 +26457,13 @@ var TransactionProgress = React__default.memo(function TransactionProgress(_ref)
   }, "See on Etherscan"))));
 });
 TransactionProgress.propTypes = {
-  endTime: propTypes.instanceOf(Date),
-  onClose: propTypes.func,
-  opener: propTypes.instanceOf(Element),
-  progress: propTypes.number,
-  slow: propTypes.bool,
-  transactionHashUrl: propTypes.string,
-  visible: propTypes.bool
+  endTime: ExtendedPropTypes.instanceOf(Date),
+  onClose: ExtendedPropTypes.func,
+  opener: ExtendedPropTypes._element,
+  progress: ExtendedPropTypes.number,
+  slow: ExtendedPropTypes.bool,
+  transactionHashUrl: ExtendedPropTypes.string,
+  visible: ExtendedPropTypes.bool
 };
 TransactionProgress.defaultProps = {
   onClose: noop,
@@ -27222,7 +26536,7 @@ var chevronSvg = "data:image/svg+xml,%3Csvg%20width%3D%227%22%20height%3D%2212%2
 
 var BAR_HEIGHT$2 = 64;
 
-var _StyledDiv$I = _styled__default.div.withConfig({
+var _StyledDiv$K = _styled__default.div.withConfig({
   displayName: "AppBar___StyledDiv",
   componentId: "sc-11q0awo-0"
 })(["overflow:hidden;display:flex;flex-direction:column;width:100%;min-height:", "px;background:", ";", ";padding-bottom:1px;&:after{content:'';position:absolute;left:0;right:0;bottom:0;border-bottom:1px solid ", ";}"], BAR_HEIGHT$2, function (p) {
@@ -27233,7 +26547,7 @@ var _StyledDiv$I = _styled__default.div.withConfig({
   return p._css3;
 });
 
-var _StyledDiv2$p = _styled__default.div.withConfig({
+var _StyledDiv2$q = _styled__default.div.withConfig({
   displayName: "AppBar___StyledDiv2",
   componentId: "sc-11q0awo-1"
 })(["display:flex;align-items:center;justify-content:flex-start;width:100%;height:", "px;"], function (p) {
@@ -27323,11 +26637,11 @@ function (_React$Component) {
 
       return React__default.createElement(Inside, {
         name: "AppBar"
-      }, React__default.createElement(_StyledDiv$I, {
+      }, React__default.createElement(_StyledDiv$K, {
         _css: theme.surface,
         _css2: unselectable(),
         _css3: theme.border
-      }, React__default.createElement(_StyledDiv2$p, _extends_1({}, props, {
+      }, React__default.createElement(_StyledDiv2$q, _extends_1({}, props, {
         _css4: BAR_HEIGHT$2 - 1
       }), title && React__default.createElement(_StyledDiv3$e, {
         _css5: padding
@@ -27409,14 +26723,14 @@ function AppBar$1 (props) {
   }));
 }
 
-var _StyledDiv$J = _styled__default.div.withConfig({
+var _StyledDiv$L = _styled__default.div.withConfig({
   displayName: "AppView___StyledDiv",
   componentId: "sm6g80-0"
 })(["display:flex;height:", ";flex-direction:column;align-items:stretch;justify-content:stretch;"], function (p) {
   return p.height;
 });
 
-var _StyledDiv2$q = _styled__default.div.withConfig({
+var _StyledDiv2$r = _styled__default.div.withConfig({
   displayName: "AppView___StyledDiv2",
   componentId: "sm6g80-1"
 })(["position:relative;z-index:2;flex-shrink:0;"]);
@@ -27445,9 +26759,9 @@ function AppView(_ref2) {
 
   // Notify Main that it contains this AppView
   useRegisterAppView();
-  return React__default.createElement(_StyledDiv$J, _extends_1({
+  return React__default.createElement(_StyledDiv$L, _extends_1({
     height: height
-  }, props), React__default.createElement(_StyledDiv2$q, null, appBar || React__default.createElement(AppBar$1, {
+  }, props), React__default.createElement(_StyledDiv2$r, null, appBar || React__default.createElement(AppBar$1, {
     title: title,
     tabs: tabs
   })), React__default.createElement(_StyledDiv3$f, null, React__default.createElement(_StyledDiv4$a, {
@@ -27549,7 +26863,49 @@ Badge.Notification = BadgeNotification;
 Badge.Identity = BadgeIdentity;
 Badge.App = BadgeApp;
 
-var _StyledDiv$K = _styled__default.div.withConfig({
+var Countdown =
+/*#__PURE__*/
+function (_React$Component) {
+  inherits(Countdown, _React$Component);
+
+  function Countdown() {
+    classCallCheck(this, Countdown);
+
+    return possibleConstructorReturn(this, getPrototypeOf(Countdown).apply(this, arguments));
+  }
+
+  createClass(Countdown, [{
+    key: "deprecationWarning",
+    value: function deprecationWarning() {
+      warnOnce('Countdown', '"Countdown" has been deprecated. Please use "Timer" instead.');
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      this.deprecationWarning();
+      var _this$props = this.props,
+          end = _this$props.end,
+          removeDaysAndHours = _this$props.removeDaysAndHours;
+      var format = removeDaysAndHours ? 'ms' : 'dhms';
+      return React__default.createElement(Timer$1, {
+        end: end,
+        format: format
+      });
+    }
+  }]);
+
+  return Countdown;
+}(React__default.Component);
+
+Countdown.propTypes = {
+  end: propTypes.instanceOf(Date).isRequired,
+  removeDaysAndHours: propTypes.bool
+};
+Countdown.defaultProps = {
+  removeDaysAndHours: false
+};
+
+var _StyledDiv$M = _styled__default.div.withConfig({
   displayName: "AutoComplete___StyledDiv",
   componentId: "bpnxyo-0"
 })(["position:relative"]);
@@ -27607,7 +26963,7 @@ function AutoComplete(_ref) {
   React.useEffect(function () {
     setHighlightedIndex(-1);
   }, [opened, items, value, setHighlightedIndex]);
-  return React__default.createElement(_StyledDiv$K, {
+  return React__default.createElement(_StyledDiv$M, {
     ref: wrapRef,
     onBlur: handleBlur
   }, React__default.createElement(SearchInput, {
@@ -27721,7 +27077,7 @@ var Item$2 = React__default.forwardRef(function Item(_ref3, ref) {
     onClick: handleClick,
     onFocus: handleFocusOrMouseOver,
     onMouseOver: handleFocusOrMouseOver,
-    _css2: selected ? "\n                outline: 2px solid ".concat(theme.accent, ";\n                background: #f9fafc;\n                border-left: 3px solid ").concat(theme.accent, ";\n              ") : '',
+    _css2: selected ? "\n                outline: 2px solid ".concat(theme.accent, ";\n                background: ").concat(theme.surfaceHighlight, ";\n                border-left: 3px solid ").concat(theme.accent, ";\n              ") : '',
     _css3: itemButtonStyles
   }, children));
 });
@@ -27821,6 +27177,7 @@ function AutoCompleteSelected(_ref) {
   }
 
   return React__default.createElement(AutoComplete$1, {
+    itemButtonStyles: itemButtonStyles,
     items: items,
     onChange: onChange,
     onSelect: handleSelect,

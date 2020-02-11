@@ -33,3 +33,10 @@ Set to `true` to display the indicator.
 | `React node` | None          |
 
 The content of the indicator.
+
+### `shift`
+
+- Type: `Number`
+- Default value: `0`
+
+Use this property to shift the position of the float indicator from its “end position” (right on left to right languages).
