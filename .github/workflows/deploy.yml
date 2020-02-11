@@ -42,6 +42,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v1
+      - name: Download build
+        uses: actions/download-artifact@v1
+        with:
+          name: aragon-ui-build
       - name: Use Node.js 12
         uses: actions/setup-node@v1
         with:
@@ -49,10 +53,6 @@ jobs:
       - name: Install, build & prepare
         run: |
           ls -la .
-      - name: Download build
-        uses: actions/download-artifact@v1
-        with:
-          name: aragon-ui-build
           # mv ./aragon-ui/aragon-ui/aragon-ui-build ./dist
           # cd gallery
           # yarn --frozen-lockfile
