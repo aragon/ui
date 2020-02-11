@@ -17,7 +17,7 @@
   "scripts": {
     "start": "webpack-dev-server --mode development",
     "build": "webpack --mode production && npm run copy-assets",
-    "copy-assets": "../bin/copy-aragon-ui-assets -n aragon-ui ./dist"
+    "copy-assets": "mkdir -p ./dist/aragon-ui && rsync --recursive --update --times ../dist/ ./dist/aragon-ui"
   },
   "devDependencies": {
     "@babel/core": "^7.7.2",
