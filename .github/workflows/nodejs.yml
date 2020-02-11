@@ -1,0 +1,52 @@
+name: Build and publish
+
+on:
+  push:
+    branches: [master]
+
+jobs:
+
+  build:
+    runs-on: ubuntu-latest
+    env:
+      CI: true
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v1
+    - name: Use Node.js 12
+      uses: actions/setup-node@v1
+      with:
+        node-version: 12.x
+    - name: Install, build & test
+      run: |
+        yarn install --frozen-lockfile
+        yarn build
+        yarn test
+
+  release:
+    needs: [build]
+    runs-on: ubuntu-latest
+    steps:
+    - name: Release
+      env:
+        GITHUB_TOKEN: ${{ secrets.MERGE_RELEASE_GITHUB_TOKEN }}
+        NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+      uses: mikeal/merge-release@master
+
+  deploy-website:
+    needs: [build]
+    runs-on: ubuntu-latest
+    steps:
+    - name: Install, build & prepare
+      run: |
+        cd gallery
+        yarn --frozen-lockfile
+        yarn build
+        echo 'ui.aragon.org' > dist/CNAME
+        cp public/favicon.svg dist
+    - name: Push to gh-pages
+      env:
+        ACTIONS_DEPLOY_KEY: ${{ secrets.GH_PAGES_ACTIONS_DEPLOY_KEY }}
+        PUBLISH_BRANCH: gh-pages
+        PUBLISH_DIR: ./gallery/dist
+      uses: peaceiris/actions-gh-pages@v2
