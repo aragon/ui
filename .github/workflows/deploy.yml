@@ -52,12 +52,13 @@ jobs:
           node-version: 12.x
       - name: Install, build & prepare
         run: |
-          mv ./aragon-ui/aragon-ui/aragon-ui-build ./dist
-          cd gallery
-          yarn --frozen-lockfile
-          yarn build
-          echo 'ui.aragon.org' > dist/CNAME
-          cp public/favicon.svg dist
+          ls -la .
+          # mv ./aragon-ui/aragon-ui/aragon-ui-build ./dist
+          # cd gallery
+          # yarn --frozen-lockfile
+          # yarn build
+          # echo 'ui.aragon.org' > dist/CNAME
+          # cp public/favicon.svg dist
       # - name: Push to gh-pages
       #   env:
       #     ACTIONS_DEPLOY_KEY: ${{ secrets.GH_PAGES_ACTIONS_DEPLOY_KEY }}
