@@ -21,18 +21,25 @@ jobs:
       - name: Upload build for other jobs
         uses: actions/upload-artifact@v1
         with:
-          name: aragon-ui-build
+          name: dist
           path: dist
 
-  # release:
-  #   needs: [build]
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Release
-  #       env:
-  #         GITHUB_TOKEN: ${{ secrets.MERGE_RELEASE_GITHUB_TOKEN }}
-  #         NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
-  #       uses: mikeal/merge-release@master
+  release:
+    needs: [build]
+    runs-on: ubuntu-latest
+    steps:
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+      - name: Download build
+        uses: actions/download-artifact@v1
+        with:
+          name: dist
+      - name: Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.MERGE_RELEASE_GITHUB_TOKEN }}
+          NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+        uses: mikeal/merge-release@master
 
   deploy-website:
     needs: [build]
@@ -45,14 +52,13 @@ jobs:
       - name: Download build
         uses: actions/download-artifact@v1
         with:
-          name: aragon-ui-build
+          name: dist
       - name: Use Node.js 12
         uses: actions/setup-node@v1
         with:
           node-version: 12.x
       - name: Install, build & prepare
         run: |
-          mv ./aragon-ui-build ./dist
           cd gallery
           yarn --frozen-lockfile
           yarn build
