@@ -1,6 +1,6 @@
 name: build & gh-pages deployment & npm publish
 
-# trigger rebuild: 2
+# trigger rebuild: 3
 on: push
 
 jobs:
