@@ -16,7 +16,7 @@ const HEIGHT = Math.max(HANDLE_SIZE, BAR_HEIGHT) + PADDING * 2
 // The check on window.DOMRect is needed for the JSDOM environment, which has
 // window but not window.DOMRect. JSDOM is used by default in Jest.
 const DEFAULT_RECT =
-  typeof window === 'undefined' || typeof window.DOMRect === 'undefined'
+  typeof window === 'undefined' || typeof window.DOMRect !== 'function'
     ? { x: 0, y: 0, width: 0, height: 0, top: 0, right: 0, bottom: 0, left: 0 }
     : new window.DOMRect()
 
