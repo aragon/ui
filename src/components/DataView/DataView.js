@@ -14,6 +14,84 @@ import { ListView } from './ListView'
 import illustrationRedImage from './assets/empty-state-illustration-red.png'
 import illustrationBlueImage from './assets/empty-state-illustration-blue.png'
 
+function prepareDefaultStates(
+  theme,
+  publicUrl,
+  statusEmpty,
+  statusLoading,
+  statusEmptyFilters,
+  onStatusEmptyClear,
+  statusEmptySearch
+) {
+  return {
+    default: {
+      illustration: publicUrl + illustrationBlueImage,
+      text: statusEmpty || (
+        <p
+          css={`
+            ${textStyle('title2')};
+          `}
+        >
+          No data available.
+        </p>
+      ),
+    },
+    loading: {
+      illustration: publicUrl + illustrationBlueImage,
+      text: statusLoading || (
+        <p
+          css={`
+            ${textStyle('title2')};
+            display: flex;
+            align-items: center;
+          `}
+        >
+          <LoadingRing
+            css={`
+              margin-right: ${2 * GU}px;
+            `}
+          />{' '}
+          Loading data…
+        </p>
+      ),
+    },
+    'empty-filters': {
+      illustration: publicUrl + illustrationRedImage,
+      text: (
+        <>
+          {statusEmptyFilters || (
+            <p
+              css={`
+                color: ${theme.surfaceContentSecondary};
+              `}
+            >
+              {'We can’t find any item matching your filter selection. '}
+              <Link onClick={onStatusEmptyClear}>Clear filters</Link>
+            </p>
+          )}
+        </>
+      ),
+    },
+    'empty-search': {
+      illustration: publicUrl + illustrationRedImage,
+      text: (
+        <>
+          {statusEmptySearch || (
+            <p
+              css={`
+                color: ${theme.surfaceContentSecondary};
+              `}
+            >
+              {'We can’t find any item matching your search query. '}
+              <Link onClick={onStatusEmptyClear}>Clear search</Link>
+            </p>
+          )}
+        </>
+      ),
+    },
+  }
+}
+
 function prepareEntries(entries, from, to, selectedIndexes) {
   return entries.slice(from, to).map((entry, index) => {
     const entryIndex = from + index
@@ -185,7 +263,7 @@ const DataView = React.memo(function DataView({
   statusEmptyFilters,
   statusEmptySearch,
   onStatusEmptyClear,
-  emptyStates,
+  emptyStateConfigurator,
 }) {
   if (renderEntryChild && !renderEntryExpansion) {
     warnOnce(
@@ -236,23 +314,49 @@ const DataView = React.memo(function DataView({
   const { layoutName } = useLayout()
   const publicUrl = usePublicUrl()
 
-  const defaultEmptyState = (
-    <DefaultEmptyStateNode
-      status={status}
-      publicUrl={publicUrl}
-      statusEmpty={statusEmpty}
-      statusLoading={statusLoading}
-      statusEmptyFilters={statusEmptyFilters}
-      statusEmptySearch={statusEmptySearch}
-      onStatusEmptyClear={onStatusEmptyClear}
-    />
-  )
-
   const emptyStateNode = useCallback(
-    (status, defaultEmptyState) => {
-      return emptyStates(status) || defaultEmptyState
+    status => {
+      let dataviewStates = prepareDefaultStates(
+        theme,
+        publicUrl,
+        statusEmpty,
+        statusLoading,
+        statusEmptyFilters,
+        onStatusEmptyClear,
+        statusEmptySearch
+      )
+      if (emptyStateConfigurator) {
+        const customEmptyState = emptyStateConfigurator(status)
+
+        if (React.isValidElement(customEmptyState)) {
+          dataviewStates[status] = customEmptyState
+        } else {
+          dataviewStates[status] = {
+            ...dataviewStates[status],
+            ...customEmptyState,
+          }
+        }
+      }
+
+      return (
+        <DefaultEmptyStateNode
+          status={status}
+          publicUrl={publicUrl}
+          states={dataviewStates}
+          onStatusEmptyClear={onStatusEmptyClear}
+        />
+      )
     },
-    [emptyStates]
+    [
+      emptyStateConfigurator,
+      onStatusEmptyClear,
+      publicUrl,
+      statusEmpty,
+      statusEmptyFilters,
+      statusEmptySearch,
+      statusLoading,
+      theme,
+    ]
   )
 
   const listMode =
@@ -369,7 +473,7 @@ const DataView = React.memo(function DataView({
               padding: ${8 * GU}px 0;
             `}
           >
-            {emptyStateNode(status, defaultEmptyState)}
+            {emptyStateNode(status)}
           </div>
         </div>
       )}
@@ -392,87 +496,34 @@ const DataView = React.memo(function DataView({
   )
 })
 
-function DefaultEmptyStateNode({
-  status,
-  publicUrl,
-  statusEmpty,
-  statusLoading,
-  statusEmptyFilters,
-  statusEmptySearch,
-  onStatusEmptyClear,
-}) {
-  const theme = useTheme()
+function DefaultEmptyStateNode({ status, publicUrl, states }) {
+  // const theme = useTheme()
+  if (React.isValidElement(states[status])) {
+    return states[status]
+  }
+
   return (
     <>
       {(() => {
         // Empty state: illustration part
-        if (status === 'default' || status === 'loading') {
-          return (
-            <img
-              src={publicUrl + illustrationBlueImage}
-              alt=""
-              height={20 * GU}
-              css={`
-                margin-bottom: ${2 * GU}px;
-              `}
-            />
-          )
+        if (React.isValidElement(states[status].illustration)) {
+          return states[status].illustration
         }
-
-        if (status === 'empty-filters' || status === 'empty-search') {
-          return (
-            <img
-              src={publicUrl + illustrationRedImage}
-              alt=""
-              height={20 * GU}
-              css={`
-                margin-bottom: ${2 * GU}px;
-              `}
-            />
-          )
-        }
-
-        return null
+        return (
+          <img
+            src={states[status].illustration}
+            alt=""
+            height={20 * GU}
+            css={`
+              margin-bottom: ${2 * GU}px;
+            `}
+          />
+        )
       })()}
 
       {(() => {
         // Empty state: content part
-        if (status === 'default') {
-          return (
-            statusEmpty || (
-              <p
-                css={`
-                  ${textStyle('title2')};
-                `}
-              >
-                No data available.
-              </p>
-            )
-          )
-        }
-
-        if (status === 'loading') {
-          return (
-            statusLoading || (
-              <p
-                css={`
-                  ${textStyle('title2')};
-                  display: flex;
-                  align-items: center;
-                `}
-              >
-                <LoadingRing
-                  css={`
-                    margin-right: ${2 * GU}px;
-                  `}
-                />{' '}
-                Loading data…
-              </p>
-            )
-          )
-        }
-
-        if (status === 'empty-filters') {
+        if (status === 'empty-filters' || status === 'empty-search') {
           return (
             <>
               <p
@@ -483,46 +534,11 @@ function DefaultEmptyStateNode({
               >
                 No results found.
               </p>
-              {statusEmptyFilters || (
-                <p
-                  css={`
-                    color: ${theme.surfaceContentSecondary};
-                  `}
-                >
-                  {'We can’t find any item matching your filter selection. '}
-                  <Link onClick={onStatusEmptyClear}>Clear filters</Link>
-                </p>
-              )}
+              {states[status].text}
             </>
           )
         }
-
-        if (status === 'empty-search') {
-          return (
-            <>
-              <p
-                css={`
-                  ${textStyle('title2')};
-                  margin-top: ${2 * GU}px;
-                `}
-              >
-                No results found.
-              </p>
-              {statusEmptySearch || (
-                <p
-                  css={`
-                    color: ${theme.surfaceContentSecondary};
-                  `}
-                >
-                  {'We can’t find any item matching your search query. '}
-                  <Link onClick={onStatusEmptyClear}>Clear search</Link>
-                </p>
-              )}
-            </>
-          )
-        }
-
-        return null
+        return states[status].text
       })()}
     </>
   )
@@ -557,7 +573,7 @@ DataView.propTypes = {
 
   // deprecated
   renderEntryChild: PropTypes.func,
-  emptyStates: PropTypes.func,
+  emptyStateConfigurator: PropTypes.func,
 }
 
 DataView.defaultProps = {
@@ -577,11 +593,7 @@ DefaultEmptyStateNode.propTypes = {
     'empty-search',
   ]),
   publicUrl: PropTypes.string,
-  statusEmpty: PropTypes.node,
-  statusLoading: PropTypes.node,
-  statusEmptyFilters: PropTypes.node,
-  statusEmptySearch: PropTypes.node,
-  onStatusEmptyClear: PropTypes.func,
+  states: PropTypes.object,
 }
 
 export { DataView }
