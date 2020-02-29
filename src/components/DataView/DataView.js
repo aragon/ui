@@ -241,6 +241,36 @@ function useSelection(entries, selection, onSelectEntries) {
   }
 }
 
+function useEmptyStateValue(
+  status,
+  defaultEmptyStates,
+  emptyStateConfigurator
+) {
+  if (!emptyStateConfigurator) {
+    return defaultEmptyStates[status]
+  }
+
+  const functionMode = typeof emptyStateConfigurator === 'function'
+  const customEmptyState = functionMode
+    ? emptyStateConfigurator(status)
+    : emptyStateConfigurator[status]
+
+  // text shortcut for object mode
+  if (!functionMode && React.isValidElement(customEmptyState)) {
+    return { ...defaultEmptyStates[status], text: customEmptyState }
+  }
+
+  // override all (illustration and text) with function mode
+  if (React.isValidElement(customEmptyState)) {
+    return customEmptyState
+  }
+
+  return {
+    ...defaultEmptyStates[status],
+    ...customEmptyState,
+  }
+}
+
 const DataView = React.memo(function DataView({
   page,
   entries,
@@ -314,49 +344,30 @@ const DataView = React.memo(function DataView({
   const { layoutName } = useLayout()
   const publicUrl = usePublicUrl()
 
-  const emptyStateNode = useCallback(
-    status => {
-      let dataviewStates = prepareDefaultStates(
-        theme,
-        publicUrl,
-        statusEmpty,
-        statusLoading,
-        statusEmptyFilters,
-        onStatusEmptyClear,
-        statusEmptySearch
-      )
-      if (emptyStateConfigurator) {
-        const customEmptyState = emptyStateConfigurator(status)
-
-        if (React.isValidElement(customEmptyState)) {
-          dataviewStates[status] = customEmptyState
-        } else {
-          dataviewStates[status] = {
-            ...dataviewStates[status],
-            ...customEmptyState,
-          }
-        }
-      }
-
-      return (
-        <DefaultEmptyStateNode
-          status={status}
-          publicUrl={publicUrl}
-          states={dataviewStates}
-          onStatusEmptyClear={onStatusEmptyClear}
-        />
-      )
-    },
-    [
-      emptyStateConfigurator,
-      onStatusEmptyClear,
+  const defaultEmptyStates = useMemo(() => {
+    return prepareDefaultStates(
+      theme,
       publicUrl,
       statusEmpty,
-      statusEmptyFilters,
-      statusEmptySearch,
       statusLoading,
-      theme,
-    ]
+      statusEmptyFilters,
+      onStatusEmptyClear,
+      statusEmptySearch
+    )
+  }, [
+    onStatusEmptyClear,
+    publicUrl,
+    statusEmpty,
+    statusEmptyFilters,
+    statusEmptySearch,
+    statusLoading,
+    theme,
+  ])
+
+  const emptyStateValue = useEmptyStateValue(
+    status,
+    defaultEmptyStates,
+    emptyStateConfigurator
   )
 
   const listMode =
@@ -473,7 +484,7 @@ const DataView = React.memo(function DataView({
               padding: ${8 * GU}px 0;
             `}
           >
-            {emptyStateNode(status)}
+            <EmptyStateNode status={status} emptyState={emptyStateValue} />
           </div>
         </div>
       )}
@@ -496,22 +507,21 @@ const DataView = React.memo(function DataView({
   )
 })
 
-function DefaultEmptyStateNode({ status, publicUrl, states }) {
-  // const theme = useTheme()
-  if (React.isValidElement(states[status])) {
-    return states[status]
+function EmptyStateNode({ status, emptyState }) {
+  if (React.isValidElement(emptyState)) {
+    return emptyState
   }
 
   return (
     <>
       {(() => {
         // Empty state: illustration part
-        if (React.isValidElement(states[status].illustration)) {
-          return states[status].illustration
+        if (React.isValidElement(emptyState.illustration)) {
+          return emptyState.illustration
         }
         return (
           <img
-            src={states[status].illustration}
+            src={emptyState.illustration}
             alt=""
             height={20 * GU}
             css={`
@@ -534,11 +544,11 @@ function DefaultEmptyStateNode({ status, publicUrl, states }) {
               >
                 No results found.
               </p>
-              {states[status].text}
+              {emptyState.text}
             </>
           )
         }
-        return states[status].text
+        return emptyState.text
       })()}
     </>
   )
@@ -585,15 +595,14 @@ DataView.defaultProps = {
   status: 'default',
 }
 
-DefaultEmptyStateNode.propTypes = {
+EmptyStateNode.propTypes = {
   status: PropTypes.oneOf([
     'default',
     'loading',
     'empty-filters',
     'empty-search',
   ]),
-  publicUrl: PropTypes.string,
-  states: PropTypes.object,
+  emptyState: PropTypes.object,
 }
 
 export { DataView }
