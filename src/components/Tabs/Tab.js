@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react'
 import PropTypes from 'prop-types'
-import { useInside } from '../../utils'
+import { useInside } from 'use-inside'
 import { GU, RADIUS, textStyle } from '../../style'
 import { useTheme } from '../../theme'
 import ButtonBase from '../ButtonBase/ButtonBase'

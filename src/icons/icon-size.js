@@ -1,5 +1,5 @@
 import { GU } from '../style'
-import { useInside } from '../utils/inside'
+import { useInside } from 'use-inside'
 
 const ICON_SIZES = new Map([
   ['large', 6 * GU],

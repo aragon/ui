@@ -1,8 +1,8 @@
 import React, { useMemo, useState } from 'react'
 import PropTypes from 'prop-types'
 import { keyframes } from 'styled-components'
+import { useInside } from 'use-inside'
 import { useTheme } from '../../theme'
-import { useInside } from '../../utils'
 
 const spin = keyframes`
   from {
