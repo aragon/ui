@@ -94,7 +94,8 @@
     "react-display-name": "^0.2.3",
     "react-onclickout": "^2.0.8",
     "react-spring": "^7.2.11",
-    "recursive-copy": "^2.0.9"
+    "recursive-copy": "^2.0.9",
+    "use-inside": "^0.1.0"
   },
   "browserslist": {
     "development": "> 1%",

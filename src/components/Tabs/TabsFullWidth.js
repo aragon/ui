@@ -1,10 +1,11 @@
 import React, { useCallback, useRef, useState } from 'react'
 import { Transition, animated } from 'react-spring'
+import { useInside } from 'use-inside'
 import { GU, textStyle, springs } from '../../style'
 import { useOnBlur } from '../../hooks'
 import { IconDown } from '../../icons'
 import { useTheme } from '../../theme'
-import { useInside, KEY_ESC } from '../../utils'
+import { KEY_ESC } from '../../utils'
 import ButtonBase from '../ButtonBase/ButtonBase'
 
 // TabsFullWidth is an internal component

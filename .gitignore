@@ -5,6 +5,8 @@ npm-debug.log
 package-lock.json
 yarn-error.log
 /stats.html
-
+src/icons/.DS_Store
+.DS_Store
+src/.DS_Store
 # testing
 coverage
