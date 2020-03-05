@@ -16,10 +16,27 @@ export const formatIntegerRange = (
   return count.toString()
 }
 
+/**
+ * Formats number to a more readable string
+ *
+ * @param {number} number Number to convert
+ * @returns {string} Formatted number
+ */
 export function formatNumber(number) {
   return new Intl.NumberFormat('en-US', {minimumFractionDigits: 0,}).format(number)
 }
 
+/**
+ * Builds on top on formatNumber(), and extends it with options for formatting tokens
+ *
+ * @param {number} amount Number to round
+ * @param {string} symbol Symbol for the token amount
+ * @param {number} decimals Decimal placement for amount
+ * @param {number} returnToDecimals Rounds the number to a given decimal place
+ * @param {boolean} isIncoming Decides if a plus or negative should be used
+ * @param {boolean} signDisplay Decides if the sign should be displayed
+ * @returns {string} Formatted token
+ */
 export function formatTokenAmount(
   amount,
   symbol,
