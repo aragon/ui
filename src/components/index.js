@@ -71,7 +71,7 @@ export { default as TextInput } from './Input/TextInput'
 export { default as Timer } from './Timer/Timer'
 export { default as TokenBadge } from './TokenBadge/TokenBadge'
 export { default as TransactionBadge } from './TransactionBadge/TransactionBadge'
-export { default as ToggleComponent } from './ToggleComponent/ToggleComponent'
+export { default as ToggleComponent } from './ToggleComponents/ToggleComponents'
 export { default as TransactionProgress } from './TransactionProgress/TransactionProgress'
 
 // Deprecated / to be deprecated components
