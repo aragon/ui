@@ -43,14 +43,15 @@
     "@babel/plugin-proposal-class-properties": "^7.1.0",
     "@babel/plugin-transform-react-jsx": "^7.0.0",
     "@babel/plugin-transform-runtime": "^7.2.0",
-    "@babel/preset-env": "^7.1.5",
+    "@babel/preset-env": "^7.8.7",
     "@babel/preset-react": "^7.0.0",
     "@rollup/plugin-node-resolve": "^6.0.0",
     "@rollup/plugin-url": "^4.0.0",
     "@svgr/core": "^4.1.0",
     "@svgr/plugin-prettier": "^4.0.3",
+    "@testing-library/jest-dom": "^5.1.1",
+    "@testing-library/react": "^9.5.0",
     "babel-eslint": "^10.0.1",
-    "babel-jest": "^24.8.0",
     "babel-plugin-styled-components": "^1.10.6",
     "eslint": "^5.9.0",
     "eslint-config-prettier": "^4.3.0",
@@ -71,6 +72,8 @@
     "lint-staged": "^8.1.0",
     "listr": "^0.14.3",
     "prettier": "^1.17.1",
+    "react": "^16.3.1",
+    "react-dom": "^16.3.1",
     "rollup": "^1.27.13",
     "rollup-plugin-babel": "^4.0.3",
     "rollup-plugin-commonjs": "^10.0.0",
@@ -78,6 +81,7 @@
     "rollup-plugin-progress": "^1.1.1",
     "rollup-plugin-sizes": "^1.0.1",
     "rollup-plugin-visualizer": "^3.3.1",
+    "styled-components": ">=4.0.0",
     "svgo": "^1.2.2"
   },
   "dependencies": {
@@ -111,11 +115,6 @@
     "src/*.js": [
       "eslint --fix",
       "git add"
-    ]
-  },
-  "jest": {
-    "modulePaths": [
-      "<rootDir>"
     ]
   }
 }
