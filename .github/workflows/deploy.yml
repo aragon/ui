@@ -5,7 +5,6 @@ on: push
 
 jobs:
   release:
-    needs: [build]
     runs-on: ubuntu-latest
     env:
       CI: true
@@ -26,7 +25,6 @@ jobs:
           npm publish --tag=workflow-debug
 
   deploy-website:
-    needs: [build]
     runs-on: ubuntu-latest
     env:
       CI: true
