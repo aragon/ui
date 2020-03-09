@@ -1,9 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { useInside } from 'use-inside'
 import { css } from 'styled-components'
 import { GU, RADIUS } from '../../style'
 import { useTheme } from '../../theme'
-import { useInside } from '../../utils'
 import ButtonBase from '../ButtonBase/ButtonBase'
 
 const DEFAULT_WIDTH = 35 * GU

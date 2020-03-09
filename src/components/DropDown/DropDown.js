@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect, useCallback, useMemo } from 'react'
 import PropTypes from 'prop-types'
-import { warnOnce, unselectable, Inside } from '../../utils'
+import { Inside } from 'use-inside'
+import { warnOnce, unselectable } from '../../utils'
 import { GU, RADIUS, textStyle } from '../../style'
 import { useTheme } from '../../theme'
 import { IconDown } from '../../icons'

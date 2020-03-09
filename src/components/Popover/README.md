@@ -69,7 +69,7 @@ zIndex of Popover.
 | ---------- | ------------- |
 | `Function` | None          |
 
-The callback that is called when the popover request to be closed.
+The callback that is called when the popover request to be closed. If this callback returns `false`, the popover will get focused again. This is useful to ensure that the `blur` event still gets triggered after a close request got rejected.
 
 ### `visible`
 

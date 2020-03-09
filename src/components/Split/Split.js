@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { Inside } from 'use-inside'
 import { useLayout } from '../Layout/Layout'
 import { GU } from '../../style'
-import { Inside } from '../../utils'
 
 function Split({ primary, secondary, invert }) {
   const { name: layout } = useLayout()
