@@ -11,7 +11,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v1
-      - name: Use Node.js 12
+      - name: Use Node.js
         uses: actions/setup-node@v1
         with:
           node-version: 12.x
@@ -31,15 +31,18 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v1
+      - name: Use Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
       - name: Download build
         uses: actions/download-artifact@v1
         with:
           name: dist
       - name: Release
-        env:
-          GITHUB_TOKEN: ${{ secrets.MERGE_RELEASE_GITHUB_TOKEN }}
-          NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
-        uses: mikeal/merge-release@master
+        run: |
+          PACKAGE_VERSION=$(node -e "console.log(require('./package.json').version)")
+          npm publish --tag=workflow-debug
 
   deploy-website:
     needs: [build]
