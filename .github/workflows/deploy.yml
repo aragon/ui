@@ -20,8 +20,13 @@ jobs:
           yarn install --frozen-lockfile
           yarn test
       - name: Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.MERGE_RELEASE_GITHUB_TOKEN }}
+          NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
         run: |
-          PACKAGE_VERSION=$(node -e "console.log(require('./package.json').version)")
+          # PACKAGE_VERSION=$(node -e "console.log(require('./package.json').version)")
+          echo "registry=https://registry.npmjs.org/" > ~/.npmrc
+          echo "//registry.npmjs.org/:_authToken=${NPM_AUTH_TOKEN}" >> ~/.npmrc
           npm publish --tag=workflow-debug
 
   deploy-website:
