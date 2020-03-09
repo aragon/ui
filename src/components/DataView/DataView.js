@@ -11,6 +11,7 @@ import LoadingRing from '../LoadingRing/LoadingRing'
 import Link from '../Link/Link'
 import { TableView } from './TableView'
 import { ListView } from './ListView'
+import EmptyState from './EmptyState'
 import illustrationRedImage from './assets/empty-state-illustration-red.png'
 import illustrationBlueImage from './assets/empty-state-illustration-blue.png'
 
@@ -26,7 +27,7 @@ function prepareDefaultStates(
   return {
     default: {
       illustration: publicUrl + illustrationBlueImage,
-      text: statusEmpty || (
+      description: statusEmpty || (
         <p
           css={`
             ${textStyle('title2')};
@@ -38,7 +39,7 @@ function prepareDefaultStates(
     },
     loading: {
       illustration: publicUrl + illustrationBlueImage,
-      text: statusLoading || (
+      description: statusLoading || (
         <p
           css={`
             ${textStyle('title2')};
@@ -57,7 +58,7 @@ function prepareDefaultStates(
     },
     'empty-filters': {
       illustration: publicUrl + illustrationRedImage,
-      text: (
+      description: (
         <>
           {statusEmptyFilters || (
             <p
@@ -74,7 +75,7 @@ function prepareDefaultStates(
     },
     'empty-search': {
       illustration: publicUrl + illustrationRedImage,
-      text: (
+      description: (
         <>
           {statusEmptySearch || (
             <p
@@ -255,9 +256,14 @@ function useEmptyStateValue(
     ? emptyStateConfigurator(status)
     : emptyStateConfigurator[status]
 
-  // text shortcut for object mode
+  // description shortcut for object mode with a node
   if (!functionMode && React.isValidElement(customEmptyState)) {
-    return { ...defaultEmptyStates[status], text: customEmptyState }
+    return { ...defaultEmptyStates[status], description: customEmptyState }
+  }
+
+  // description shortcut for object mode with a string
+  if (!functionMode && typeof customEmptyState === 'string') {
+    return { ...defaultEmptyStates[status], description: customEmptyState }
   }
 
   // override all (illustration and text) with function mode
@@ -293,7 +299,7 @@ const DataView = React.memo(function DataView({
   statusEmptyFilters,
   statusEmptySearch,
   onStatusEmptyClear,
-  emptyStateConfigurator,
+  emptyState,
 }) {
   if (renderEntryChild && !renderEntryExpansion) {
     warnOnce(
@@ -367,7 +373,7 @@ const DataView = React.memo(function DataView({
   const emptyStateValue = useEmptyStateValue(
     status,
     defaultEmptyStates,
-    emptyStateConfigurator
+    emptyState
   )
 
   const listMode =
@@ -470,23 +476,7 @@ const DataView = React.memo(function DataView({
         ))}
 
       {emptyEntries && (
-        <div
-          css={`
-            display: flex;
-            justify-content: center;
-            align-items: center;
-          `}
-        >
-          <div
-            css={`
-              width: ${31 * GU}px;
-              text-align: center;
-              padding: ${8 * GU}px 0;
-            `}
-          >
-            <EmptyStateNode status={status} emptyState={emptyStateValue} />
-          </div>
-        </div>
+        <EmptyState status={status} emptyState={emptyStateValue} />
       )}
 
       {pages > 1 && (
@@ -506,53 +496,6 @@ const DataView = React.memo(function DataView({
     </Box>
   )
 })
-
-function EmptyStateNode({ status, emptyState }) {
-  if (React.isValidElement(emptyState)) {
-    return emptyState
-  }
-
-  return (
-    <>
-      {(() => {
-        // Empty state: illustration part
-        if (React.isValidElement(emptyState.illustration)) {
-          return emptyState.illustration
-        }
-        return (
-          <img
-            src={emptyState.illustration}
-            alt=""
-            height={20 * GU}
-            css={`
-              margin-bottom: ${2 * GU}px;
-            `}
-          />
-        )
-      })()}
-
-      {(() => {
-        // Empty state: content part
-        if (status === 'empty-filters' || status === 'empty-search') {
-          return (
-            <>
-              <p
-                css={`
-                  ${textStyle('title2')};
-                  margin-top: ${2 * GU}px;
-                `}
-              >
-                No results found.
-              </p>
-              {emptyState.text}
-            </>
-          )
-        }
-        return emptyState.text
-      })()}
-    </>
-  )
-}
 
 DataView.propTypes = {
   page: PropTypes.number,
@@ -580,10 +523,10 @@ DataView.propTypes = {
   statusEmptyFilters: PropTypes.node,
   statusEmptySearch: PropTypes.node,
   onStatusEmptyClear: PropTypes.func,
+  emptyState: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
 
   // deprecated
   renderEntryChild: PropTypes.func,
-  emptyStateConfigurator: PropTypes.func,
 }
 
 DataView.defaultProps = {
@@ -594,15 +537,4 @@ DataView.defaultProps = {
   tableRowHeight: 8 * GU,
   status: 'default',
 }
-
-EmptyStateNode.propTypes = {
-  status: PropTypes.oneOf([
-    'default',
-    'loading',
-    'empty-filters',
-    'empty-search',
-  ]),
-  emptyState: PropTypes.object,
-}
-
 export { DataView }
