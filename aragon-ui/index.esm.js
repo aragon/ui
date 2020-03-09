@@ -1,5 +1,5 @@
 import _styled, { css, keyframes, createGlobalStyle } from 'styled-components';
-import React, { useState, useMemo, useContext, useEffect, useCallback, useRef, useImperativeHandle, forwardRef } from 'react';
+import React, { useContext, useState, useMemo, useEffect, useCallback, useRef, useImperativeHandle, forwardRef } from 'react';
 import ReactDOM from 'react-dom';
 
 var commonjsGlobal = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
@@ -1223,6 +1223,16 @@ if (process.env.NODE_ENV !== 'production') {
 }
 });
 
+function n(e,r){return e(r={exports:{}},r.exports),r.exports
+/** @license React v16.13.0
+ * react-is.production.min.js
+ *
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */}var t="function"==typeof Symbol&&Symbol.for,o=t?Symbol.for("react.element"):60103,a=t?Symbol.for("react.portal"):60106,i=t?Symbol.for("react.fragment"):60107,c=t?Symbol.for("react.strict_mode"):60108,u=t?Symbol.for("react.profiler"):60114,s=t?Symbol.for("react.provider"):60109,f=t?Symbol.for("react.context"):60110,l=t?Symbol.for("react.async_mode"):60111,p=t?Symbol.for("react.concurrent_mode"):60111,y=t?Symbol.for("react.forward_ref"):60112,d=t?Symbol.for("react.suspense"):60113,m=t?Symbol.for("react.suspense_list"):60120,b=t?Symbol.for("react.memo"):60115,v=t?Symbol.for("react.lazy"):60116,h=t?Symbol.for("react.block"):60121,g=t?Symbol.for("react.fundamental"):60117,S=t?Symbol.for("react.responder"):60118,O=t?Symbol.for("react.scope"):60119;function w(e){if("object"==typeof e&&null!==e){var r=e.$$typeof;switch(r){case o:switch(e=e.type){case l:case p:case i:case u:case c:case d:return e;default:switch(e=e&&e.$$typeof){case f:case y:case v:case b:case s:return e;default:return r}}case a:return r}}}function E(e){return w(e)===p}var x={AsyncMode:l,ConcurrentMode:p,ContextConsumer:f,ContextProvider:s,Element:o,ForwardRef:y,Fragment:i,Lazy:v,Memo:b,Portal:a,Profiler:u,StrictMode:c,Suspense:d,isAsyncMode:function(e){return E(e)||w(e)===l},isConcurrentMode:E,isContextConsumer:function(e){return w(e)===f},isContextProvider:function(e){return w(e)===s},isElement:function(e){return "object"==typeof e&&null!==e&&e.$$typeof===o},isForwardRef:function(e){return w(e)===y},isFragment:function(e){return w(e)===i},isLazy:function(e){return w(e)===v},isMemo:function(e){return w(e)===b},isPortal:function(e){return w(e)===a},isProfiler:function(e){return w(e)===u},isStrictMode:function(e){return w(e)===c},isSuspense:function(e){return w(e)===d},isValidElementType:function(e){return "string"==typeof e||"function"==typeof e||e===i||e===p||e===u||e===c||e===d||e===m||"object"==typeof e&&null!==e&&(e.$$typeof===v||e.$$typeof===b||e.$$typeof===s||e.$$typeof===f||e.$$typeof===y||e.$$typeof===g||e.$$typeof===S||e.$$typeof===O||e.$$typeof===h)},typeOf:w},$=n((function(e,r){"production"!==process.env.NODE_ENV&&function(){var e="function"==typeof Symbol&&Symbol.for,n=e?Symbol.for("react.element"):60103,t=e?Symbol.for("react.portal"):60106,o=e?Symbol.for("react.fragment"):60107,a=e?Symbol.for("react.strict_mode"):60108,i=e?Symbol.for("react.profiler"):60114,c=e?Symbol.for("react.provider"):60109,u=e?Symbol.for("react.context"):60110,s=e?Symbol.for("react.async_mode"):60111,f=e?Symbol.for("react.concurrent_mode"):60111,l=e?Symbol.for("react.forward_ref"):60112,p=e?Symbol.for("react.suspense"):60113,y=e?Symbol.for("react.suspense_list"):60120,d=e?Symbol.for("react.memo"):60115,m=e?Symbol.for("react.lazy"):60116,b=e?Symbol.for("react.block"):60121,v=e?Symbol.for("react.fundamental"):60117,h=e?Symbol.for("react.responder"):60118,g=e?Symbol.for("react.scope"):60119;function S(e){if("object"==typeof e&&null!==e){var r=e.$$typeof;switch(r){case n:var y=e.type;switch(y){case s:case f:case o:case i:case a:case p:return y;default:var b=y&&y.$$typeof;switch(b){case u:case l:case m:case d:case c:return b;default:return r}}case t:return r}}}var O=s,w=f,E=u,x=c,$=n,j=l,P=o,C=m,T=d,_=t,N=i,I=a,M=p,k=!1;function R(e){return S(e)===f}r.AsyncMode=O,r.ConcurrentMode=w,r.ContextConsumer=E,r.ContextProvider=x,r.Element=$,r.ForwardRef=j,r.Fragment=P,r.Lazy=C,r.Memo=T,r.Portal=_,r.Profiler=N,r.StrictMode=I,r.Suspense=M,r.isAsyncMode=function(e){return k||(k=!0,console.warn("The ReactIs.isAsyncMode() alias has been deprecated, and will be removed in React 17+. Update your code to use ReactIs.isConcurrentMode() instead. It has the exact same API.")),R(e)||S(e)===s},r.isConcurrentMode=R,r.isContextConsumer=function(e){return S(e)===u},r.isContextProvider=function(e){return S(e)===c},r.isElement=function(e){return "object"==typeof e&&null!==e&&e.$$typeof===n},r.isForwardRef=function(e){return S(e)===l},r.isFragment=function(e){return S(e)===o},r.isLazy=function(e){return S(e)===m},r.isMemo=function(e){return S(e)===d},r.isPortal=function(e){return S(e)===t},r.isProfiler=function(e){return S(e)===i},r.isStrictMode=function(e){return S(e)===a},r.isSuspense=function(e){return S(e)===p},r.isValidElementType=function(e){return "string"==typeof e||"function"==typeof e||e===o||e===f||e===i||e===a||e===p||e===y||"object"==typeof e&&null!==e&&(e.$$typeof===m||e.$$typeof===d||e.$$typeof===c||e.$$typeof===u||e.$$typeof===l||e.$$typeof===v||e.$$typeof===h||e.$$typeof===g||e.$$typeof===b)},r.typeOf=S;}();})),j=($.AsyncMode,$.ConcurrentMode,$.ContextConsumer,$.ContextProvider,$.Element,$.ForwardRef,$.Fragment,$.Lazy,$.Memo,$.Portal,$.Profiler,$.StrictMode,$.Suspense,$.isAsyncMode,$.isConcurrentMode,$.isContextConsumer,$.isContextProvider,$.isElement,$.isForwardRef,$.isFragment,$.isLazy,$.isMemo,$.isPortal,$.isProfiler,$.isStrictMode,$.isSuspense,$.isValidElementType,$.typeOf,n((function(e){"production"===process.env.NODE_ENV?e.exports=x:e.exports=$;}))),P=Object.getOwnPropertySymbols,C=Object.prototype.hasOwnProperty,T=Object.prototype.propertyIsEnumerable;function _(e){if(null==e)throw new TypeError("Object.assign cannot be called with null or undefined");return Object(e)}var N=function(){try{if(!Object.assign)return !1;var e=new String("abc");if(e[5]="de","5"===Object.getOwnPropertyNames(e)[0])return !1;for(var r={},n=0;n<10;n++)r["_"+String.fromCharCode(n)]=n;if("0123456789"!==Object.getOwnPropertyNames(r).map((function(e){return r[e]})).join(""))return !1;var t={};return "abcdefghijklmnopqrst".split("").forEach((function(e){t[e]=e;})),"abcdefghijklmnopqrst"===Object.keys(Object.assign({},t)).join("")}catch(e){return !1}}()?Object.assign:function(e,r){for(var n,t,o=_(e),a=1;a<arguments.length;a++){for(var i in n=Object(arguments[a]))C.call(n,i)&&(o[i]=n[i]);if(P){t=P(n);for(var c=0;c<t.length;c++)T.call(n,t[c])&&(o[t[c]]=n[t[c]]);}}return o},I="SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED",M=function(){};if("production"!==process.env.NODE_ENV){var k=I,R={},A=Function.call.bind(Object.prototype.hasOwnProperty);M=function(e){var r="Warning: "+e;"undefined"!=typeof console&&console.error(r);try{throw new Error(r)}catch(e){}};}function V(e,r,n,t,o){if("production"!==process.env.NODE_ENV)for(var a in e)if(A(e,a)){var i;try{if("function"!=typeof e[a]){var c=Error((t||"React class")+": "+n+" type `"+a+"` is invalid; it must be a function, usually from the `prop-types` package, but received `"+typeof e[a]+"`.");throw c.name="Invariant Violation",c}i=e[a](r,a,t,n,null,k);}catch(e){i=e;}if(!i||i instanceof Error||M((t||"React class")+": type specification of "+n+" `"+a+"` is invalid; the type checker function must return `null` or an `Error` but returned a "+typeof i+". You may have forgotten to pass an argument to the type checker creator (arrayOf, instanceOf, objectOf, oneOf, oneOfType, and shape all require an argument)."),i instanceof Error&&!(i.message in R)){R[i.message]=!0;var u=o?o():"";M("Failed "+n+" type: "+i.message+(null!=u?u:""));}}}V.resetWarningCache=function(){"production"!==process.env.NODE_ENV&&(R={});};var F=V,D=Function.call.bind(Object.prototype.hasOwnProperty),z=function(){};function q(){return null}"production"!==process.env.NODE_ENV&&(z=function(e){var r="Warning: "+e;"undefined"!=typeof console&&console.error(r);try{throw new Error(r)}catch(e){}});var L=function(e,r){var n="function"==typeof Symbol&&Symbol.iterator;var t={array:c("array"),bool:c("boolean"),func:c("function"),number:c("number"),object:c("object"),string:c("string"),symbol:c("symbol"),any:i(q),arrayOf:function(e){return i((function(r,n,t,o,i){if("function"!=typeof e)return new a("Property `"+i+"` of component `"+t+"` has invalid PropType notation inside arrayOf.");var c=r[n];if(!Array.isArray(c))return new a("Invalid "+o+" `"+i+"` of type `"+s(c)+"` supplied to `"+t+"`, expected an array.");for(var u=0;u<c.length;u++){var f=e(c,u,t,o,i+"["+u+"]",I);if(f instanceof Error)return f}return null}))},element:i((function(r,n,t,o,i){var c=r[n];return e(c)?null:new a("Invalid "+o+" `"+i+"` of type `"+s(c)+"` supplied to `"+t+"`, expected a single ReactElement.")})),elementType:i((function(e,r,n,t,o){var i=e[r];return j.isValidElementType(i)?null:new a("Invalid "+t+" `"+o+"` of type `"+s(i)+"` supplied to `"+n+"`, expected a single ReactElement type.")})),instanceOf:function(e){return i((function(r,n,t,o,i){if(!(r[n]instanceof e)){var c=e.name||"<<anonymous>>";return new a("Invalid "+o+" `"+i+"` of type `"+function(e){if(!e.constructor||!e.constructor.name)return "<<anonymous>>";return e.constructor.name}(r[n])+"` supplied to `"+t+"`, expected instance of `"+c+"`.")}return null}))},node:i((function(e,r,n,t,o){return u(e[r])?null:new a("Invalid "+t+" `"+o+"` supplied to `"+n+"`, expected a ReactNode.")})),objectOf:function(e){return i((function(r,n,t,o,i){if("function"!=typeof e)return new a("Property `"+i+"` of component `"+t+"` has invalid PropType notation inside objectOf.");var c=r[n],u=s(c);if("object"!==u)return new a("Invalid "+o+" `"+i+"` of type `"+u+"` supplied to `"+t+"`, expected an object.");for(var f in c)if(D(c,f)){var l=e(c,f,t,o,i+"."+f,I);if(l instanceof Error)return l}return null}))},oneOf:function(e){if(!Array.isArray(e))return "production"!==process.env.NODE_ENV&&(arguments.length>1?z("Invalid arguments supplied to oneOf, expected an array, got "+arguments.length+" arguments. A common mistake is to write oneOf(x, y, z) instead of oneOf([x, y, z])."):z("Invalid argument supplied to oneOf, expected an array.")),q;function r(r,n,t,i,c){for(var u=r[n],s=0;s<e.length;s++)if(o(u,e[s]))return null;var l=JSON.stringify(e,(function(e,r){return "symbol"===f(r)?String(r):r}));return new a("Invalid "+i+" `"+c+"` of value `"+String(u)+"` supplied to `"+t+"`, expected one of "+l+".")}return i(r)},oneOfType:function(e){if(!Array.isArray(e))return "production"!==process.env.NODE_ENV&&z("Invalid argument supplied to oneOfType, expected an instance of array."),q;for(var r=0;r<e.length;r++){var n=e[r];if("function"!=typeof n)return z("Invalid argument supplied to oneOfType. Expected an array of check functions, but received "+l(n)+" at index "+r+"."),q}return i((function(r,n,t,o,i){for(var c=0;c<e.length;c++){if(null==(0, e[c])(r,n,t,o,i,I))return null}return new a("Invalid "+o+" `"+i+"` supplied to `"+t+"`.")}))},shape:function(e){return i((function(r,n,t,o,i){var c=r[n],u=s(c);if("object"!==u)return new a("Invalid "+o+" `"+i+"` of type `"+u+"` supplied to `"+t+"`, expected `object`.");for(var f in e){var l=e[f];if(l){var p=l(c,f,t,o,i+"."+f,I);if(p)return p}}return null}))},exact:function(e){return i((function(r,n,t,o,i){var c=r[n],u=s(c);if("object"!==u)return new a("Invalid "+o+" `"+i+"` of type `"+u+"` supplied to `"+t+"`, expected `object`.");var f=N({},r[n],e);for(var l in f){var p=e[l];if(!p)return new a("Invalid "+o+" `"+i+"` key `"+l+"` supplied to `"+t+"`.\nBad object: "+JSON.stringify(r[n],null,"  ")+"\nValid keys: "+JSON.stringify(Object.keys(e),null,"  "));var y=p(c,l,t,o,i+"."+l,I);if(y)return y}return null}))}};function o(e,r){return e===r?0!==e||1/e==1/r:e!=e&&r!=r}function a(e){this.message=e,this.stack="";}function i(e){if("production"!==process.env.NODE_ENV)var n={},t=0;function o(o,i,c,u,s,f,l){if(u=u||"<<anonymous>>",f=f||c,l!==I){if(r){var p=new Error("Calling PropTypes validators directly is not supported by the `prop-types` package. Use `PropTypes.checkPropTypes()` to call them. Read more at http://fb.me/use-check-prop-types");throw p.name="Invariant Violation",p}if("production"!==process.env.NODE_ENV&&"undefined"!=typeof console){var y=u+":"+c;!n[y]&&t<3&&(z("You are manually calling a React.PropTypes validation function for the `"+f+"` prop on `"+u+"`. This is deprecated and will throw in the standalone `prop-types` package. You may be seeing this warning due to a third-party PropTypes library. See https://fb.me/react-warning-dont-call-proptypes for details."),n[y]=!0,t++);}}return null==i[c]?o?null===i[c]?new a("The "+s+" `"+f+"` is marked as required in `"+u+"`, but its value is `null`."):new a("The "+s+" `"+f+"` is marked as required in `"+u+"`, but its value is `undefined`."):null:e(i,c,u,s,f)}var i=o.bind(null,!1);return i.isRequired=o.bind(null,!0),i}function c(e){return i((function(r,n,t,o,i,c){var u=r[n];return s(u)!==e?new a("Invalid "+o+" `"+i+"` of type `"+f(u)+"` supplied to `"+t+"`, expected `"+e+"`."):null}))}function u(r){switch(typeof r){case"number":case"string":case"undefined":return !0;case"boolean":return !r;case"object":if(Array.isArray(r))return r.every(u);if(null===r||e(r))return !0;var t=function(e){var r=e&&(n&&e[n]||e["@@iterator"]);if("function"==typeof r)return r}(r);if(!t)return !1;var o,a=t.call(r);if(t!==r.entries){for(;!(o=a.next()).done;)if(!u(o.value))return !1}else for(;!(o=a.next()).done;){var i=o.value;if(i&&!u(i[1]))return !1}return !0;default:return !1}}function s(e){var r=typeof e;return Array.isArray(e)?"array":e instanceof RegExp?"object":function(e,r){return "symbol"===e||!!r&&("Symbol"===r["@@toStringTag"]||"function"==typeof Symbol&&r instanceof Symbol)}(r,e)?"symbol":r}function f(e){if(null==e)return ""+e;var r=s(e);if("object"===r){if(e instanceof Date)return "date";if(e instanceof RegExp)return "regexp"}return r}function l(e){var r=f(e);switch(r){case"array":case"object":return "an "+r;case"boolean":case"date":case"regexp":return "a "+r;default:return r}}return a.prototype=Error.prototype,t.checkPropTypes=F,t.resetWarningCache=F.resetWarningCache,t.PropTypes=t,t};function W(){}function U(){}U.resetWarningCache=W;var Y=n((function(e){if("production"!==process.env.NODE_ENV){var r=j;e.exports=L(r.isElement,!0);}else e.exports=function(){function e(e,r,n,t,o,a){if(a!==I){var i=new Error("Calling PropTypes validators directly is not supported by the `prop-types` package. Use PropTypes.checkPropTypes() to call them. Read more at http://fb.me/use-check-prop-types");throw i.name="Invariant Violation",i}}function r(){return e}e.isRequired=e;var n={array:e,bool:e,func:e,number:e,object:e,string:e,symbol:e,any:e,arrayOf:r,element:e,elementType:e,instanceOf:r,node:e,objectOf:r,oneOf:r,oneOfType:r,shape:r,exact:r,checkPropTypes:U,resetWarningCache:W};return n.PropTypes=n,n}();}));const J=new Map;function B(r){return J.has(r)||J.set(r,React.createContext({inside:!1,data:null})),J.get(r)}function H({children:r,data:n,name:t}){const o=B(t);return React.createElement(o.Provider,{value:{inside:!0,data:n}},r)}function G(e){const{inside:n,data:t}=useContext(B(e));return [n,t]}H.propTypes={children:Y.node,data:Y.any,name:Y.string.isRequired};
+
 var GU = 8;
 var RADIUS = 4;
 
@@ -2097,50 +2107,6 @@ var formatIntegerRange = function formatIntegerRange() {
 
   return count.toString();
 };
-
-// This pair of component + hook can be used to know that a component is in the
-
-var insideContexts = new Map(); // Creates the required context if it doesn’t exist.
-
-function getContext(name) {
-  if (!insideContexts.has(name)) {
-    insideContexts.set(name, React.createContext({
-      inside: false,
-      data: null
-    }));
-  }
-
-  return insideContexts.get(name);
-} // Use this component to declare a new “inside context”, by name.
-
-
-function Inside(_ref) {
-  var children = _ref.children,
-      data = _ref.data,
-      name = _ref.name;
-  var Context = getContext(name);
-  return React.createElement(Context.Provider, {
-    value: {
-      inside: true,
-      data: data
-    }
-  }, children);
-}
-
-Inside.propTypes = {
-  children: propTypes.node,
-  data: propTypes.any,
-  name: propTypes.string.isRequired
-}; // Use this hook to know if a given component is somewhere
-// in the tree of an <Inside> declared with the same name.
-
-function useInside(name) {
-  var _useContext = useContext(getContext(name)),
-      inside = _useContext.inside,
-      data = _useContext.data;
-
-  return [inside, data];
-}
 
 var KEY_ESC = 27;
 var KEY_UP = 38;
@@ -4085,12 +4051,12 @@ function Bar(_ref) {
       layoutName = _useLayout.layoutName;
 
   var fullScreen = layoutName === 'small';
-  var content = children || React.createElement(_StyledDiv$1, null, React.createElement(_StyledDiv2, null, React.createElement(Inside, {
+  var content = children || React.createElement(_StyledDiv$1, null, React.createElement(_StyledDiv2, null, React.createElement(H, {
     name: "Bar:primary"
-  }, primary)), React.createElement(_StyledDiv3, null, React.createElement(Inside, {
+  }, primary)), React.createElement(_StyledDiv3, null, React.createElement(H, {
     name: "Bar:secondary"
   }, secondary)));
-  return React.createElement(Inside, {
+  return React.createElement(H, {
     name: "Bar"
   }, React.createElement(_StyledDiv4, _extends_1({}, props, {
     _css: fullScreen ? 0 : RADIUS,
@@ -4156,7 +4122,7 @@ function Box(_ref) {
 
   var theme = useTheme();
 
-  var _useInside = useInside('Split:primary'),
+  var _useInside = G('Split:primary'),
       _useInside2 = slicedToArray(_useInside, 1),
       insideSplitPrimary = _useInside2[0];
 
@@ -4177,7 +4143,7 @@ function Box(_ref) {
   }
 
   var contentPadding = padding === undefined ? defaultPadding : padding;
-  return React.createElement(Inside, {
+  return React.createElement(H, {
     name: "Box"
   }, React.createElement(_StyledDiv$2, _extends_1({
     as: heading ? 'section' : 'div'
@@ -4194,11 +4160,11 @@ function Box(_ref) {
     _css9: theme.border,
     _css10: theme.surfaceContentSecondary,
     _css11: textStyle('label2')
-  }, React.createElement(Inside, {
+  }, React.createElement(H, {
     name: "Box:heading"
   }, heading)), React.createElement(_StyledDiv2$1, {
     _css12: contentPadding
-  }, React.createElement("div", null, React.createElement(Inside, {
+  }, React.createElement("div", null, React.createElement(H, {
     name: "Box:content"
   }, children)))));
 }
@@ -4567,7 +4533,7 @@ var ICON_SIZES = new Map([['large', 6 * GU], ['medium', 3 * GU], ['small', 2 * G
 var BUTTON_ICON_SIZES = new Map([['medium', 'medium'], ['small', 'medium'], ['mini', 'small']]);
 
 function useIconSize(size) {
-  var _useInside = useInside('Button:icon'),
+  var _useInside = G('Button:icon'),
       _useInside2 = slicedToArray(_useInside, 2),
       insideButtonIcon = _useInside2[0],
       buttonData = _useInside2[1]; // If no size is set on the icon, and it is inside
@@ -7136,7 +7102,7 @@ var LoadingRing = React.memo(function LoadingRing(_ref) {
       _useState2 = slicedToArray(_useState, 1),
       instanceId = _useState2[0];
 
-  var _useInside = useInside('FloatIndicator'),
+  var _useInside = G('FloatIndicator'),
       _useInside2 = slicedToArray(_useInside, 1),
       insideFloatIndicator = _useInside2[0];
 
@@ -10102,11 +10068,11 @@ function Button(_ref) {
   var _useLayout = useLayout(),
       layoutName = _useLayout.layoutName;
 
-  var _useInside = useInside('EmptyStateCard'),
+  var _useInside = G('EmptyStateCard'),
       _useInside2 = slicedToArray(_useInside, 1),
       insideEmptyStateCard = _useInside2[0];
 
-  var _useInside3 = useInside('Header:secondary'),
+  var _useInside3 = G('Header:secondary'),
       _useInside4 = slicedToArray(_useInside3, 1),
       insideHeaderSecondary = _useInside4[0]; // Always wide + strong when used as an empty state card action
 
@@ -10174,16 +10140,16 @@ function Button(_ref) {
     _css10: disabled ? 'none' : '0 1px 3px rgba(0, 0, 0, 0.1)',
     _css11: disabled ? 'none' : 'translateY(1px)',
     _css12: disabled ? 'none' : '0px 1px 2px rgba(0, 0, 0, 0.08)'
-  }), React.createElement(Inside, {
+  }), React.createElement(H, {
     name: "Button",
     data: insideData
-  }, children || React.createElement(React.Fragment, null, displayIcon && React.createElement(Inside, {
+  }, children || React.createElement(React.Fragment, null, displayIcon && React.createElement(H, {
     name: "Button:icon",
     data: insideData
   }, React.createElement(_StyledSpan$3, {
     _css13: iconColor,
     _css14: middleSpace
-  }, icon)), displayLabel && React.createElement(Inside, {
+  }, icon)), displayLabel && React.createElement(H, {
     name: "Button:label",
     data: insideData
   }, label))));
@@ -14097,7 +14063,7 @@ var BadgeBase = React.memo(function BadgeBase(_ref) {
 
   var theme = useTheme();
 
-  var _useInside = useInside('DropDown'),
+  var _useInside = G('DropDown'),
       _useInside2 = slicedToArray(_useInside, 1),
       insideDropDownMenu = _useInside2[0];
 
@@ -17172,22 +17138,19 @@ function (_React$Component) {
 
     defineProperty(assertThisInitialized(_this), "handleEscape", function (_ref) {
       var keyCode = _ref.keyCode;
-      var _this$props = _this.props,
-          opener = _this$props.opener,
-          onClose = _this$props.onClose;
 
       if (keyCode === KEY_ESC) {
         // On escape, we always move the focus back to the opener.
-        opener.focus();
-        onClose();
+        _this.props.opener.focus();
+
+        _this.attemptClose();
       }
     });
 
     defineProperty(assertThisInitialized(_this), "handleBlur", function (event) {
-      var _this$props2 = _this.props,
-          closeOnOpenerFocus = _this$props2.closeOnOpenerFocus,
-          opener = _this$props2.opener,
-          onClose = _this$props2.onClose;
+      var _this$props = _this.props,
+          closeOnOpenerFocus = _this$props.closeOnOpenerFocus,
+          opener = _this$props.opener;
       var focusedElement = event.relatedTarget; // Do not close if:
       // - The blur event is emitted from an element inside of the popover.
       // - The focused target is the opener and closeOnOpenerFocus is true.
@@ -17206,7 +17169,7 @@ function (_React$Component) {
         opener.focus();
       }
 
-      onClose();
+      _this.attemptClose();
     });
 
     return _this;
@@ -17219,8 +17182,7 @@ function (_React$Component) {
 
       this._document.addEventListener('keydown', this.handleEscape);
 
-      this._cardElement.current.focus();
-
+      this.focus();
       this.initPopper();
     }
   }, {
@@ -17236,10 +17198,10 @@ function (_React$Component) {
   }, {
     key: "componentDidUpdate",
     value: function componentDidUpdate(prevProps, prevState) {
-      var _this$props3 = this.props,
-          placement = _this$props3.placement,
-          children = _this$props3.children,
-          opener = _this$props3.opener;
+      var _this$props2 = this.props,
+          placement = _this$props2.placement,
+          children = _this$props2.children,
+          opener = _this$props2.opener;
 
       if (prevProps.placement !== placement || prevProps.children !== children || prevProps.opener !== opener) {
         this.destroyPopper();
@@ -17247,11 +17209,18 @@ function (_React$Component) {
       }
     }
   }, {
+    key: "focus",
+    value: function focus() {
+      if (this._cardElement.current) {
+        this._cardElement.current.focus();
+      }
+    }
+  }, {
     key: "getPopperSettings",
     value: function getPopperSettings() {
-      var _this$props4 = this.props,
-          placement = _this$props4.placement,
-          rootBoundary = _this$props4.rootBoundary;
+      var _this$props3 = this.props,
+          placement = _this$props3.placement,
+          rootBoundary = _this$props3.rootBoundary;
       var settings = {
         placement: placement,
         modifiers: {
@@ -17303,6 +17272,16 @@ function (_React$Component) {
       }
     }
   }, {
+    key: "attemptClose",
+    value: function attemptClose() {
+      var accepted = this.props.onClose(); // If closing the popover is not accepted, we need to focus it again so
+      // that it can react to onBlur events.
+
+      if (accepted === false) {
+        this.focus();
+      }
+    }
+  }, {
     key: "boundaryDimensions",
     value: function boundaryDimensions() {
       var rootBoundary = this.props.rootBoundary;
@@ -17312,11 +17291,11 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this$props5 = this.props,
-          children = _this$props5.children,
-          theme = _this$props5.theme,
-          transitionStyles = _this$props5.transitionStyles,
-          zIndex = _this$props5.zIndex;
+      var _this$props4 = this.props,
+          children = _this$props4.children,
+          theme = _this$props4.theme,
+          transitionStyles = _this$props4.transitionStyles,
+          zIndex = _this$props4.zIndex;
       var scale = transitionStyles.scale,
           opacity = transitionStyles.opacity;
 
@@ -17787,7 +17766,7 @@ function BackButton(_ref) {
 
   var theme = useTheme();
 
-  var _useInside = useInside('Bar:primary'),
+  var _useInside = G('Bar:primary'),
       _useInside2 = slicedToArray(_useInside, 1),
       insideBarPrimary = _useInside2[0];
 
@@ -17993,7 +17972,7 @@ function Card(_ref) {
 
   var theme = useTheme();
 
-  var _useInside = useInside('CardLayout'),
+  var _useInside = G('CardLayout'),
       _useInside2 = slicedToArray(_useInside, 1),
       insideCardLayout = _useInside2[0];
 
@@ -18051,7 +18030,7 @@ function CardLayout(_ref) {
 
   var fullWidth = layoutName === 'small';
   var gridAutoRowValue = rowHeight === 'auto' ? rowHeight : "".concat(rowHeight, "px");
-  return React.createElement(Inside, {
+  return React.createElement(H, {
     name: "CardLayout"
   }, React.createElement(_StyledDiv$h, _extends_1({}, props, {
     _css: 2 * GU,
@@ -19543,7 +19522,7 @@ var DropDown = React.memo(function DropDown(_ref2) {
 
   var closedWithChanges = !opened && selectedIndex !== -1;
   var Label = renderLabel;
-  return React.createElement(Inside, {
+  return React.createElement(H, {
     name: "DropDown"
   }, React.createElement(_StyledButtonBase$b, _extends_1({
     ref: refCallback,
@@ -19656,7 +19635,7 @@ var PopoverContent = React.memo(function PopoverContent(_ref4) {
     _css20: textStyle('label2')
   }, header), React.createElement(_StyledUl$1, {
     ref: refCallback
-  }, React.createElement(Inside, {
+  }, React.createElement(H, {
     name: "DropDown:menu"
   }, items.map(function (item, index) {
     return React.createElement(Item, {
@@ -19797,7 +19776,7 @@ var EmptyStateCard = React.memo(function EmptyStateCard(_ref) {
     });
   }
 
-  return React.createElement(Inside, {
+  return React.createElement(H, {
     name: "EmptyStateCard"
   }, React.createElement(_StyledCard, _extends_1({}, props, {
     _css: 20 * GU,
@@ -19900,7 +19879,7 @@ function (_React$Component) {
 
 defineProperty(EscapeOutside, "propTypes", {
   children: propTypes.node.isRequired,
-  onEscapeOutside: propTypes.func
+  onEscapeOutside: propTypes.func.isRequired
 });
 
 defineProperty(EscapeOutside, "defaultProps", {
@@ -19956,7 +19935,7 @@ function Field(_ref) {
   var labelProps = id === null ? {} : {
     htmlFor: id
   };
-  return React.createElement(Inside, {
+  return React.createElement(H, {
     name: "Field"
   }, React.createElement(_StyledDiv$q, _extends_1({}, props, {
     _css: 3 * GU
@@ -19965,12 +19944,12 @@ function Field(_ref) {
     _css3: 0.5 * GU,
     _css4: theme.surfaceContentSecondary,
     _css5: textStyle('label2')
-  }, React.createElement(Inside, {
+  }, React.createElement(H, {
     name: "Field:label"
   }, label, isRequired && React.createElement(_StyledSpan$9, {
     title: "Required",
     _css6: theme.accent
-  }, "\xA0*"))), React.createElement(Inside, {
+  }, "\xA0*"))), React.createElement(H, {
     name: "Field:content"
   }, typeof children === 'function' ? children({
     id: id
@@ -20071,7 +20050,7 @@ var FloatIndicator = React.memo(function FloatIndicator(_ref) {
         _css9: theme.floatingContent,
         _css10: theme.floating,
         _css11: theme.border
-      }), React.createElement(Inside, {
+      }), React.createElement(H, {
         name: "FloatIndicator"
       }, children)));
     };
@@ -20135,7 +20114,7 @@ function Header(_ref) {
       layoutName = _useLayout.layoutName;
 
   var fullWidth = layoutName === 'small';
-  return React.createElement(Inside, {
+  return React.createElement(H, {
     name: "Header"
   }, React.createElement(_StyledDiv$s, _extends_1({}, props, {
     _css: fullWidth ? 0 : 3 * GU,
@@ -20145,11 +20124,11 @@ function Header(_ref) {
   }), React.createElement(_StyledDiv2$i, {
     _css5: fullWidth ? 8 * GU : 5 * GU,
     _css6: fullWidth && !children ? 2 * GU : 0
-  }, children || React.createElement(React.Fragment, null, React.createElement(Inside, {
+  }, children || React.createElement(React.Fragment, null, React.createElement(H, {
     name: "Header:primary"
   }, React.createElement(_StyledDiv3$9, {
     _css7: secondary ? 2 * GU : 0
-  }, typeof primary === 'string' && primary ? React.createElement(Header.Title, null, primary) : primary)), React.createElement(Inside, {
+  }, typeof primary === 'string' && primary ? React.createElement(Header.Title, null, primary) : primary)), React.createElement(H, {
     name: "Header:secondary"
   }, React.createElement(_StyledDiv4$7, null, secondary))))));
 }
@@ -20238,11 +20217,11 @@ function Help(_ref) {
     return setVisible(false);
   }, []);
 
-  var _useInside = useInside('Box:heading'),
+  var _useInside = G('Box:heading'),
       _useInside2 = slicedToArray(_useInside, 1),
       insideBoxHeading = _useInside2[0];
 
-  var _useInside3 = useInside('Field:label'),
+  var _useInside3 = G('Field:label'),
       _useInside4 = slicedToArray(_useInside3, 1),
       insideFieldLabel = _useInside4[0];
 
@@ -23571,7 +23550,7 @@ function SidePanel(_ref2) {
       document.removeEventListener('keydown', handleEscape);
     };
   }, [handleEscape]);
-  return React.createElement(RootPortal, null, React.createElement(Inside, {
+  return React.createElement(RootPortal, null, React.createElement(H, {
     name: "SidePanel"
   }, React.createElement(Transition, {
     items: opened,
@@ -23777,8 +23756,10 @@ var HANDLE_SIZE = 24;
 var HANDLE_SHADOW_MARGIN = 15;
 var PADDING = 5;
 var MIN_WIDTH$1 = HANDLE_SIZE * 10;
-var HEIGHT$2 = Math.max(HANDLE_SIZE, BAR_HEIGHT$1) + PADDING * 2;
-var DEFAULT_RECT = typeof window === 'undefined' ? {
+var HEIGHT$2 = Math.max(HANDLE_SIZE, BAR_HEIGHT$1) + PADDING * 2; // The check on window.DOMRect is needed for the JSDOM environment, which has
+// window but not window.DOMRect. JSDOM is used by default in Jest.
+
+var DEFAULT_RECT = typeof window === 'undefined' || typeof window.DOMRect !== 'function' ? {
   x: 0,
   y: 0,
   width: 0,
@@ -24077,20 +24058,20 @@ function Split(_ref) {
 
   var oneColumn = layout === 'small' || layout === 'medium';
   var inverted = !oneColumn && invert === 'horizontal' || oneColumn && invert === 'vertical';
-  var primaryContent = React.createElement(Inside, {
+  var primaryContent = React.createElement(H, {
     name: "Split:primary"
   }, React.createElement(_StyledDiv$E, {
     _css: !oneColumn && inverted ? 2 * GU : 0,
     _css2: oneColumn && inverted ? 2 * GU : 0
   }, primary));
-  var secondaryContent = React.createElement(Inside, {
+  var secondaryContent = React.createElement(H, {
     name: "Split:secondary"
   }, React.createElement(_StyledDiv2$n, {
     _css3: oneColumn ? '100%' : "".concat(33 * GU, "px"),
     _css4: !oneColumn && !inverted ? 2 * GU : 0,
     _css5: oneColumn && !inverted ? 2 * GU : 0
   }, secondary));
-  return React.createElement(Inside, {
+  return React.createElement(H, {
     name: "Split"
   }, React.createElement(_StyledDiv3$b, {
     _css6: oneColumn ? 'block' : 'flex',
@@ -24910,7 +24891,7 @@ function TabsFullWidth(_ref) {
   var theme = useTheme();
   var buttonRef = useRef(null);
 
-  var _useInside = useInside('SidePanel'),
+  var _useInside = G('SidePanel'),
       _useInside2 = slicedToArray(_useInside, 1),
       insideSidePanel = _useInside2[0];
 
@@ -25113,7 +25094,7 @@ function Tab$1(_ref) {
       onChange = _ref.onChange;
   var theme = useTheme();
 
-  var _useInside = useInside('SidePanel'),
+  var _useInside = G('SidePanel'),
       _useInside2 = slicedToArray(_useInside, 1),
       insideSidePanel = _useInside2[0];
 
@@ -25184,11 +25165,11 @@ function Tabs(props) {
   var _useLayout = useLayout(),
       layoutName = _useLayout.layoutName;
 
-  var _useInside = useInside('Bar'),
+  var _useInside = G('Bar'),
       _useInside2 = slicedToArray(_useInside, 1),
       insideBar = _useInside2[0];
 
-  var _useInside3 = useInside('SidePanel'),
+  var _useInside3 = G('SidePanel'),
       _useInside4 = slicedToArray(_useInside3, 1),
       insideSidePanel = _useInside4[0];
 
@@ -25207,7 +25188,7 @@ function Tabs(props) {
 
 
 function TabBarLegacyCompatibility(props) {
-  var _useInside5 = useInside('AppBar'),
+  var _useInside5 = G('AppBar'),
       _useInside6 = slicedToArray(_useInside5, 1),
       insideAppBar = _useInside6[0]; // Use a separate component for Tabs in AppBar, to prevent breaking anything.
 
@@ -26627,7 +26608,7 @@ function (_React$Component) {
           theme = _this$props.theme,
           props = objectWithoutProperties(_this$props, ["children", "endContent", "onTitleClick", "padding", "tabs", "title", "theme"]);
 
-      return React.createElement(Inside, {
+      return React.createElement(H, {
         name: "AppBar"
       }, React.createElement(_StyledDiv$K, {
         _css: theme.surface,
@@ -27205,5 +27186,5 @@ var AutoCompleteSelected$1 = React.forwardRef(function (props, ref) {
   }));
 });
 
-export { Accordion, AddressField, AppBadge, AppBar$1 as AppBar, AppView, BREAKPOINTS, BackButton, Badge, BadgeNumber, Bar, BaseStyles$1 as BaseStyles, Box, ButtonWithRef as Button, ButtonBaseWithFocus as ButtonBase, ButtonIcon, ButtonText, Card, CardLayout, CheckBoxWithTheme as Checkbox, CircleGraph, ContextMenu, ContextMenuItem, Countdown, DEFAULT_FONT_FAMILY, DataView, DateRangePicker, DiscButton, Distribution, DropDown, EmptyStateCard, EscapeOutside, EthIdenticon, ExternalLink, Field, FloatIndicator, FocusVisible, GU, Header, Help, IconCirclePlus as IconAdd, IconAddUser, IconAlert, IconAlignCenter, IconAlignJustify, IconAlignLeft, IconAlignRight, IconGrid as IconApps, IconAragon, IconArrowDown, IconArrowLeft, IconArrowRight, IconArrowUp, IconAtSign, IconCaution as IconAttention, IconFile as IconBlank, IconBlock, IconBookmark, IconInfo as IconBylaw, IconCalendar, IconCanvas, IconCaution, IconCenter, IconChart, IconChat, IconCheck, IconChip, IconCircleCheck, IconCircleMinus, IconCirclePlus, IconClock, IconCross as IconClose, IconCloudDownload, IconCloudUpload, IconCoin, IconConfiguration, IconConnect, IconConnection, IconConsole, IconCopy, IconCross, IconDashedSquare, IconDown, IconDownload, IconEdit, IconEllipsis, IconEnter, IconWarning as IconError, IconEthereum, IconExternal, IconFile, IconFilter, IconFlag, IconFolder, IconCoin as IconFundraising, IconGraph, IconGraph2, IconGrid, IconGroup, IconHash, IconHeart, IconHide, IconHome, IconAddUser as IconIdentity, IconImage, IconInfo, IconLabel, IconLayers, IconLeft, IconLink, IconLocation, IconLock, IconMail, IconMaximize, IconMenu, IconMinimize, IconMinus, IconMove, IconNoPicture, IconAlert as IconNotifications, IconInfo as IconPermissions, IconPicture, IconPlus, IconPower, IconPrint, IconProhibited, IconQuestion, IconRefresh, IconCircleMinus as IconRemove, IconRemoveUser, IconRight, IconRotateLeft, IconRotateRight, IconSearch, IconSettings, IconShare, IconSquare, IconSquareMinus, IconSquarePlus, IconStar, IconStarFilled, IconTarget, IconClock as IconTime, IconToken, IconTrash, IconUnlock, IconUp, IconUpload, IconUser, IconView, IconVote, IconWallet, IconWarning, IconWorld, IconWrite, IconZoomIn, IconZoomOut, IdentityBadge, ImageExists, Info, Inside, KEY_DOWN, KEY_ENTER, KEY_ESC, KEY_UP, Layout, LineChart, Link, LinkBase, LoadingRing, MONOSPACE_FONT_FAMILY, Main$4 as Main, Modal, NavigationBar, Pagination, PartitionBar, Popover, ProgressBar, PublicUrl, RADIUS, Radio, Radio as RadioButton, RadioGroup, RadioList, Redraw, RedrawFromDate, Root, RootPortal, SafeLink, ScrollView, SearchInput, SidePanel, SidePanelSeparator, SidePanelSplit, Slider$1 as Slider, Split, Switch, SyncIndicator, TEXT_STYLES, TabBarLegacyCompatibility as TabBar, Table, TableCell, TableHeader, StyledTableRow as TableRow, Tabs, Tag, Text, TextCopy, WrapperTextInput as TextInput, Theme, Timer$1 as Timer, Toast, ToastHubProvider as ToastHub, TokenBadge, TransactionBadge, TransactionProgress, Viewport, AutoComplete$1 as _AutoComplete, AutoCompleteSelected$1 as _AutoCompleteSelected, addressesEqual, blockExplorerUrl, brand, breakpoint, color, colors$2 as colors, cssPx, devOnly, difference, eachDayOfInterval, font, formatHtmlDatetime, formatIntegerRange, forwardProps, identity, initContainsComponent, isAddress, isTransaction, log, monospace, noop, observe, pick, shortenAddress, shortenTransaction, springs, stylingProps, textStyle, theme, themeDark, tokenIconUrl, unselectable, useArrowKeysFocus, useClickOutside, useContainsAppView, useImageExists, useInside, useKeyDown, useLayout, useOnBlur, useRoot, useSidePanel, useSidePanelFocusOnReady, useTheme, useToast, useViewport, warn, warnOnce };
+export { Accordion, AddressField, AppBadge, AppBar$1 as AppBar, AppView, BREAKPOINTS, BackButton, Badge, BadgeNumber, Bar, BaseStyles$1 as BaseStyles, Box, ButtonWithRef as Button, ButtonBaseWithFocus as ButtonBase, ButtonIcon, ButtonText, Card, CardLayout, CheckBoxWithTheme as Checkbox, CircleGraph, ContextMenu, ContextMenuItem, Countdown, DEFAULT_FONT_FAMILY, DataView, DateRangePicker, DiscButton, Distribution, DropDown, EmptyStateCard, EscapeOutside, EthIdenticon, ExternalLink, Field, FloatIndicator, FocusVisible, GU, Header, Help, IconCirclePlus as IconAdd, IconAddUser, IconAlert, IconAlignCenter, IconAlignJustify, IconAlignLeft, IconAlignRight, IconGrid as IconApps, IconAragon, IconArrowDown, IconArrowLeft, IconArrowRight, IconArrowUp, IconAtSign, IconCaution as IconAttention, IconFile as IconBlank, IconBlock, IconBookmark, IconInfo as IconBylaw, IconCalendar, IconCanvas, IconCaution, IconCenter, IconChart, IconChat, IconCheck, IconChip, IconCircleCheck, IconCircleMinus, IconCirclePlus, IconClock, IconCross as IconClose, IconCloudDownload, IconCloudUpload, IconCoin, IconConfiguration, IconConnect, IconConnection, IconConsole, IconCopy, IconCross, IconDashedSquare, IconDown, IconDownload, IconEdit, IconEllipsis, IconEnter, IconWarning as IconError, IconEthereum, IconExternal, IconFile, IconFilter, IconFlag, IconFolder, IconCoin as IconFundraising, IconGraph, IconGraph2, IconGrid, IconGroup, IconHash, IconHeart, IconHide, IconHome, IconAddUser as IconIdentity, IconImage, IconInfo, IconLabel, IconLayers, IconLeft, IconLink, IconLocation, IconLock, IconMail, IconMaximize, IconMenu, IconMinimize, IconMinus, IconMove, IconNoPicture, IconAlert as IconNotifications, IconInfo as IconPermissions, IconPicture, IconPlus, IconPower, IconPrint, IconProhibited, IconQuestion, IconRefresh, IconCircleMinus as IconRemove, IconRemoveUser, IconRight, IconRotateLeft, IconRotateRight, IconSearch, IconSettings, IconShare, IconSquare, IconSquareMinus, IconSquarePlus, IconStar, IconStarFilled, IconTarget, IconClock as IconTime, IconToken, IconTrash, IconUnlock, IconUp, IconUpload, IconUser, IconView, IconVote, IconWallet, IconWarning, IconWorld, IconWrite, IconZoomIn, IconZoomOut, IdentityBadge, ImageExists, Info, KEY_DOWN, KEY_ENTER, KEY_ESC, KEY_UP, Layout, LineChart, Link, LinkBase, LoadingRing, MONOSPACE_FONT_FAMILY, Main$4 as Main, Modal, NavigationBar, Pagination, PartitionBar, Popover, ProgressBar, PublicUrl, RADIUS, Radio, Radio as RadioButton, RadioGroup, RadioList, Redraw, RedrawFromDate, Root, RootPortal, SafeLink, ScrollView, SearchInput, SidePanel, SidePanelSeparator, SidePanelSplit, Slider$1 as Slider, Split, Switch, SyncIndicator, TEXT_STYLES, TabBarLegacyCompatibility as TabBar, Table, TableCell, TableHeader, StyledTableRow as TableRow, Tabs, Tag, Text, TextCopy, WrapperTextInput as TextInput, Theme, Timer$1 as Timer, Toast, ToastHubProvider as ToastHub, TokenBadge, TransactionBadge, TransactionProgress, Viewport, AutoComplete$1 as _AutoComplete, AutoCompleteSelected$1 as _AutoCompleteSelected, addressesEqual, blockExplorerUrl, brand, breakpoint, color, colors$2 as colors, cssPx, devOnly, difference, eachDayOfInterval, font, formatHtmlDatetime, formatIntegerRange, forwardProps, identity, initContainsComponent, isAddress, isTransaction, log, monospace, noop, observe, pick, shortenAddress, shortenTransaction, springs, stylingProps, textStyle, theme, themeDark, tokenIconUrl, unselectable, useArrowKeysFocus, useClickOutside, useContainsAppView, useImageExists, useKeyDown, useLayout, useOnBlur, useRoot, useSidePanel, useSidePanelFocusOnReady, useTheme, useToast, useViewport, warn, warnOnce };
 //# sourceMappingURL=index.esm.js.map
