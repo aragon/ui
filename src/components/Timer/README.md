@@ -26,33 +26,42 @@ const App = () => (
 
 ### `end`
 
-- Type: `Date`
+| Type      | Default value |
+| --------- | ------------- |
+| `Date`    | None          |
 
 The end of the countdown, as a `Date` instance.
 
 ### `start`
 
-- Type: `Date`
+| Type      | Default value |
+| --------- | ------------- |
+| `Date`    | None          |
 
 The start of a timer, as a `Date` instance.
 
 ### `format`
 
-- Type `Enum: [ 'yMdhms', 'yMdhm', 'yMdh','yMd', 'yM', 'Mdhms', 'Mdhm', 'Mdh', 'Md', 'dhms', 'dhm', 'hms', 'hm', 'ms', 'm', 's' ]`
-- Default: `'dhms'`
+| Type      | Default value |
+| --------- | ------------- |
+| `Enum`    | `'dhms'`      |
+
+- Options: `[ 'yMdhms', 'yMdhm', 'yMdh','yMd', 'yM', 'Mdhms', 'Mdhm', 'Mdh', 'Md', 'dhms', 'dhm', 'hms', 'hm', 'ms', 'm', 's' ]`
 
 Format output in years 'y', months 'M', days 'd', hours 'h', minutes 'm', seconds 's'
 
 ### `showEmpty`
 
-- Type `Boolean`
-- Default: `false`
+| Type         | Default value |
+| ------------ | ------------- |
+| `Boolean`    | `False`       |
 
 Display the units on the left side of the timer when they are equal to zero.
 
 ### `showIcon`
 
-- Type `Boolean`
-- Default: `true`
+| Type         | Default value |
+| ------------ | ------------- |
+| `Boolean`    | `True`        |
 
 Display the clock icon on the left side of the timer.
