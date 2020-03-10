@@ -49,3 +49,10 @@ Format output in years 'y', months 'M', days 'd', hours 'h', minutes 'm', second
 - Default: `false`
 
 Display the units on the left side of the timer when they are equal to zero.
+
+### `showIcon`
+
+- Type `Boolean`
+- Default: `true`
+
+Display the clock icon on the left side of the timer.
