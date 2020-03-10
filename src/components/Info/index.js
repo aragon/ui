@@ -10,4 +10,4 @@ Info.Action = Info
 Info.Permissions = Warning
 Info.Alert = Warning
 
-export { Info }
+export { Info, Warning as Alert }
