@@ -6,92 +6,9 @@ import { useTheme } from '../../theme'
 import { Box } from '../../components/Box/Box'
 import { Pagination } from '../../components/Pagination/Pagination'
 import { useLayout } from '../../components/Layout/Layout'
-import { usePublicUrl } from '../../providers/PublicUrl'
-import LoadingRing from '../LoadingRing/LoadingRing'
-import Link from '../Link/Link'
 import { TableView } from './TableView'
 import { ListView } from './ListView'
 import EmptyState from './EmptyState'
-import illustrationRedImage from './assets/empty-state-illustration-red.png'
-import illustrationBlueImage from './assets/empty-state-illustration-blue.png'
-
-function prepareDefaultStates(
-  theme,
-  publicUrl,
-  statusEmpty,
-  statusLoading,
-  statusEmptyFilters,
-  onStatusEmptyClear,
-  statusEmptySearch
-) {
-  return {
-    default: {
-      illustration: publicUrl + illustrationBlueImage,
-      description: statusEmpty || (
-        <p
-          css={`
-            ${textStyle('title2')};
-          `}
-        >
-          No data available.
-        </p>
-      ),
-    },
-    loading: {
-      illustration: publicUrl + illustrationBlueImage,
-      description: statusLoading || (
-        <p
-          css={`
-            ${textStyle('title2')};
-            display: flex;
-            align-items: center;
-          `}
-        >
-          <LoadingRing
-            css={`
-              margin-right: ${2 * GU}px;
-            `}
-          />{' '}
-          Loading data…
-        </p>
-      ),
-    },
-    'empty-filters': {
-      illustration: publicUrl + illustrationRedImage,
-      description: (
-        <>
-          {statusEmptyFilters || (
-            <p
-              css={`
-                color: ${theme.surfaceContentSecondary};
-              `}
-            >
-              {'We can’t find any item matching your filter selection. '}
-              <Link onClick={onStatusEmptyClear}>Clear filters</Link>
-            </p>
-          )}
-        </>
-      ),
-    },
-    'empty-search': {
-      illustration: publicUrl + illustrationRedImage,
-      description: (
-        <>
-          {statusEmptySearch || (
-            <p
-              css={`
-                color: ${theme.surfaceContentSecondary};
-              `}
-            >
-              {'We can’t find any item matching your search query. '}
-              <Link onClick={onStatusEmptyClear}>Clear search</Link>
-            </p>
-          )}
-        </>
-      ),
-    },
-  }
-}
 
 function prepareEntries(entries, from, to, selectedIndexes) {
   return entries.slice(from, to).map((entry, index) => {
@@ -242,41 +159,6 @@ function useSelection(entries, selection, onSelectEntries) {
   }
 }
 
-function useEmptyStateValue(
-  status,
-  defaultEmptyStates,
-  emptyStateConfigurator
-) {
-  if (!emptyStateConfigurator) {
-    return defaultEmptyStates[status]
-  }
-
-  const functionMode = typeof emptyStateConfigurator === 'function'
-  const customEmptyState = functionMode
-    ? emptyStateConfigurator(status)
-    : emptyStateConfigurator[status]
-
-  // description shortcut for object mode with a node
-  if (!functionMode && React.isValidElement(customEmptyState)) {
-    return { ...defaultEmptyStates[status], description: customEmptyState }
-  }
-
-  // description shortcut for object mode with a string
-  if (!functionMode && typeof customEmptyState === 'string') {
-    return { ...defaultEmptyStates[status], description: customEmptyState }
-  }
-
-  // override all (illustration and text) with function mode
-  if (React.isValidElement(customEmptyState)) {
-    return customEmptyState
-  }
-
-  return {
-    ...defaultEmptyStates[status],
-    ...customEmptyState,
-  }
-}
-
 const DataView = React.memo(function DataView({
   page,
   entries,
@@ -348,33 +230,6 @@ const DataView = React.memo(function DataView({
 
   const theme = useTheme()
   const { layoutName } = useLayout()
-  const publicUrl = usePublicUrl()
-
-  const defaultEmptyStates = useMemo(() => {
-    return prepareDefaultStates(
-      theme,
-      publicUrl,
-      statusEmpty,
-      statusLoading,
-      statusEmptyFilters,
-      onStatusEmptyClear,
-      statusEmptySearch
-    )
-  }, [
-    onStatusEmptyClear,
-    publicUrl,
-    statusEmpty,
-    statusEmptyFilters,
-    statusEmptySearch,
-    statusLoading,
-    theme,
-  ])
-
-  const emptyStateValue = useEmptyStateValue(
-    status,
-    defaultEmptyStates,
-    emptyState
-  )
 
   const listMode =
     mode === 'list' || (mode !== 'table' && layoutName === 'small')
@@ -476,7 +331,15 @@ const DataView = React.memo(function DataView({
         ))}
 
       {emptyEntries && (
-        <EmptyState status={status} emptyState={emptyStateValue} />
+        <EmptyState
+          status={status}
+          emptyStateConfigurator={emptyState}
+          statusEmpty={statusEmpty}
+          statusLoading={statusLoading}
+          statusEmptyFilters={statusEmptyFilters}
+          statusEmptySearch={statusEmptySearch}
+          onStatusEmptyClear={onStatusEmptyClear}
+        />
       )}
 
       {pages > 1 && (
