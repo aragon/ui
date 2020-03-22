@@ -17,24 +17,36 @@ function prepareDefaultStates(
 ) {
   return {
     default: {
+      displayLoader: false,
+      title: statusEmpty || 'No data available.',
+      subtitle: null,
       illustration: publicUrl + illustrationBlueImage,
-      description: statusEmpty || 'No data available.',
+      clearLabel: null,
     },
     loading: {
+      displayLoader: true,
+      title: statusLoading || 'Loading data…',
+      subtitle: null,
       illustration: publicUrl + illustrationBlueImage,
-      description: statusLoading || 'Loading data…',
+      clearLabel: null,
     },
     'empty-filters': {
-      illustration: publicUrl + illustrationRedImage,
-      description:
+      displayLoader: false,
+      title: 'No results found.',
+      subtitle:
         statusEmptyFilters ||
         'We can’t find any item matching your filter selection. ',
+      illustration: publicUrl + illustrationRedImage,
+      clearLabel: 'Clear filters',
     },
     'empty-search': {
-      illustration: publicUrl + illustrationRedImage,
-      description:
+      displayLoader: false,
+      title: 'No results found.',
+      subtitle:
         statusEmptySearch ||
         'We can’t find any item matching your search query. ',
+      illustration: publicUrl + illustrationRedImage,
+      clearLabel: 'Clear filters',
     },
   }
 }
@@ -53,18 +65,11 @@ function useEmptyStateValue(
     ? emptyStateConfigurator(status)
     : emptyStateConfigurator[status]
 
-  // description shortcut for object mode with a node
-  if (!functionMode && React.isValidElement(customEmptyState)) {
-    return { ...defaultEmptyStates[status], description: customEmptyState }
-  }
-
-  // description shortcut for object mode with a string
-  if (!functionMode && typeof customEmptyState === 'string') {
-    return { ...defaultEmptyStates[status], description: customEmptyState }
-  }
-
   // override all (illustration and text) with function mode
-  if (React.isValidElement(customEmptyState)) {
+  if (
+    React.isValidElement(customEmptyState) ||
+    typeof customEmptyState === 'string'
+  ) {
     return customEmptyState
   }
 
@@ -107,7 +112,7 @@ function EmptyState({
     emptyStateConfigurator
   )
 
-  if (React.isValidElement(emptyState)) {
+  if (React.isValidElement(emptyState) || typeof emptyState === 'string') {
     return emptyState
   }
 
@@ -145,17 +150,6 @@ function EmptyState({
 
         {(() => {
           // Empty state: content part
-          if (status === 'default') {
-            return (
-              <p
-                css={`
-                  ${textStyle('title2')};
-                `}
-              >
-                {emptyState.description}
-              </p>
-            )
-          }
           if (status === 'loading') {
             return (
               <p
@@ -165,39 +159,43 @@ function EmptyState({
                   align-items: center;
                 `}
               >
-                <LoadingRing
-                  css={`
-                    margin-right: ${2 * GU}px;
-                  `}
-                />
-                {emptyState.description}
+                {emptyState.displayLoader && (
+                  <LoadingRing
+                    css={`
+                      margin-right: ${2 * GU}px;
+                    `}
+                  />
+                )}
+                {emptyState.title}
               </p>
             )
           }
-          if (status === 'empty-filters' || status === 'empty-search') {
-            return (
-              <>
-                <p
-                  css={`
-                    ${textStyle('title2')};
-                    margin-top: ${2 * GU}px;
-                  `}
-                >
-                  No results found.
-                </p>
 
-                <p
-                  css={`
-                    color: ${theme.surfaceContentSecondary};
-                  `}
-                >
-                  {emptyState.description}
-                  <Link onClick={onStatusEmptyClear}>Clear filters</Link>
-                </p>
-              </>
-            )
-          }
-          return emptyState.description
+          return (
+            <>
+              <p
+                css={`
+                  ${textStyle('title2')};
+                  margin-top: ${status === 'default' ? 0 : 2 * GU}px;
+                `}
+              >
+                {emptyState.title}
+              </p>
+
+              <p
+                css={`
+                  color: ${theme.surfaceContentSecondary};
+                `}
+              >
+                {emptyState.subtitle}
+                {emptyState.clearLabel && (
+                  <Link onClick={onStatusEmptyClear}>
+                    {emptyState.clearLabel}
+                  </Link>
+                )}
+              </p>
+            </>
+          )
         })()}
       </div>
     </div>
