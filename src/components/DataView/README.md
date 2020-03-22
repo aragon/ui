@@ -301,42 +301,124 @@ The height of a row, in `px`.
 
 Can be `default`, `loading`, `empty-filters` and `empty-search`. The correct illustration and text styles are used depending on the status.
 
-### statusEmpty
+### emptyState
 
-| Type     | Default value |
-| -------- | ------------- |
-| `Node`   | None          |
+Use this prop to customize the empty state of `DataView`. The type of empty state currently active is determined by the `status` prop.
 
-If you want to customize the `default` status content.
+This prop accepts two types: a configuration object or a function.
 
-### statusLoading
+#### Configuration object
 
-| Type     | Default value |
-| -------- | ------------- |
-| `Node`   | None          |
+The object can define one of the possible values of `status` as keys, and an object.
 
-If you want to customize the `loading` status content.
+This object can contain the following values:
 
-### statusEmptyFilters
+- `title`, `subtitle` and `illustration` are React nodes that can override any of these parts. Set to `null` to disable.
+- `displayLoader` is a boolean that can be used to display a loader before the title.
+- `clearLabel` is the content of the clearing link, and can contain any React node. Set to `null` to disable. See also `onStatusEmptyClear`.
 
-| Type     | Default value |
-| -------- | ------------- |
-| `Node`   | None          |
+Any undefined `status`, or undefined key on that object will use the default. `null` can be passed to disable a specific part of the empty state.
 
-If you want to customize the `empty-filters` status content.
+The default values are the following:
 
-### statusEmptySearch
+```jsx
+<DataView
+  emptyState={{
+    default: {
+      displayLoader: false,
+      title: 'No data available.',
+      subtitle: null,
+      illustration: <img src="empty-state-illustration-blue.png" alt="" />,
+      clearLabel: null,
+    },
+    loading: {
+      displayLoader: true,
+      title: 'No data available.',
+      subtitle: null,
+      illustration: <img src="empty-state-illustration-blue.png" alt="" />,
+      clearLabel: null,
+    },
+    'empty-filters': {
+      displayLoader: false,
+      title: 'No results found.',
+      subtitle: 'We can’t find any item matching your filter selection.',
+      illustration: <img src="empty-state-illustration-red.png" alt="" />,
+      clearLabel: 'Clear filters',
+    },
+    'empty-search': {
+      displayLoader: false,
+      title: 'No results found.',
+      subtitle: 'We can’t find any item matching your search query.',
+      illustration: <img src="empty-state-illustration-red.png" alt="" />,
+      clearLabel: 'Clear filters',
+    },
+  }}
+/>
+```
 
-| Type     | Default value |
-| -------- | ------------- |
-| `Node`   | None          |
+#### Function mode
 
-If you want to customize the `empty-search` status content.
+The function allows to completely override the empty state content. It takes the current `status` as a unique parameter, and is expected to return a React node, or `null` to let DataView display the default.
+
+Use it this way:
+
+```jsx
+<DataView
+  emptyState={status => {
+    if (status === 'loading') {
+      return <div>Loading!</div>
+    }
+
+    // Use the default for other `status` values.
+    return null
+  }}
+/>
+```
 
 ### onStatusEmptyClear
 
-| Type         | Default value |
-| ------------ | ------------- |
-| `Function`   | None          |
+| Type       | Default value |
+| ---------- | ------------- |
+| `Function` | None          |
 
 Called when one of the default clearing links gets clicked. This is happening in `empty-filters` or `empty-search` depending on the status.
+
+### statusEmpty
+
+| Type   | Default value |
+| ------ | ------------- |
+| `Node` | None          |
+
+If you want to customize the `default` status content.
+
+**Note: this prop is deprecated and will be removed in a future version. Please use `emptyState` instead.**
+
+### statusLoading
+
+| Type   | Default value |
+| ------ | ------------- |
+| `Node` | None          |
+
+If you want to customize the `loading` status content.
+
+**Note: this prop is deprecated and will be removed in a future version. Please use `emptyState` instead.**
+
+### statusEmptyFilters
+
+| Type   | Default value |
+| ------ | ------------- |
+| `Node` | None          |
+
+If you want to customize the `empty-filters` status content.
+
+**Note: this prop is deprecated and will be removed in a future version. Please use `emptyState` instead.**
+
+### statusEmptySearch
+
+| Type   | Default value |
+| ------ | ------------- |
+| `Node` | None          |
+
+If you want to customize the `empty-search` status content.
+
+**Note: this prop is deprecated and will be removed in a future version. Please use `emptyState` instead.**
