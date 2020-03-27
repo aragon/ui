@@ -9,7 +9,7 @@ import { useTheme } from '../../theme'
 const interpolateToggleElevation = (value, fn = v => v) =>
   value.interpolate(v => fn(1 - Math.abs(v * 2 - 1)))
 
-function Toggle({ children, itemBaseHeight, label, ...props }) {
+function Toggle({ children, label, ...props }) {
   const [open, setOpen] = useState(false)
   const [showAnimation, setShowAnimation] = useState(false)
 
@@ -62,21 +62,17 @@ function Toggle({ children, itemBaseHeight, label, ...props }) {
             </Heading>
           </ToggleButton>
           <div css="overflow: hidden">
-            <animated.div>
-              css=
-              {`
+            <animated.div
+              css={`
                 display: flex;
                 flex-direction: column;
                 justify-content: flex-end;
               `}
-              style=
-              {{
+              style={{
                 opacity: openProgress,
-                height: openProgress.interpolate(
-                  v => v * children.length * itemBaseHeight
-                ),
               }}
-              >{children}
+            >
+              {children}
             </animated.div>
           </div>
         </div>
@@ -90,12 +86,10 @@ Toggle.propTypes = {
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
   ]).isRequired,
-  itemBaseHeight: PropTypes.number,
   label: PropTypes.string.isRequired,
 }
 
 Toggle.defaultProps = {
-  itemBaseHeight: 5 * GU,
   label: '',
 }
 

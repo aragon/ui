@@ -1,6 +1,5 @@
 import React from 'react'
 import {
-  GU,
   IconAlert,
   IconAragon,
   IconAttention,
@@ -16,7 +15,7 @@ const testApps = [
 function App() {
   return (
     <div>
-      <Toggle label="Random Items" itemBaseHeight={4 * GU}>
+      <Toggle label="Random Items">
         {testApps.map(({ id, name, icon: Icon }) => (
           <div
             css={`
