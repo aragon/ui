@@ -71,7 +71,6 @@ export { default as TextInput } from './Input/TextInput'
 export { default as Timer } from './Timer/Timer'
 export { default as TokenBadge } from './TokenBadge/TokenBadge'
 export { default as TransactionBadge } from './TransactionBadge/TransactionBadge'
-export { default as Toggle } from './Toggle/Toggle'
 export { default as TransactionProgress } from './TransactionProgress/TransactionProgress'
 
 // Deprecated / to be deprecated components
@@ -85,3 +84,4 @@ export { default as Text } from './Text/Text'
 // Experimental components
 export { default as _AutoComplete } from './AutoComplete/AutoComplete'
 export { default as _AutoCompleteSelected } from './AutoComplete/AutoCompleteSelected'
+export { default as _Toggle } from './Toggle/Toggle'

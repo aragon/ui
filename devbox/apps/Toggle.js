@@ -1,5 +1,11 @@
 import React from 'react'
-import { GU, IconAlert, IconAragon, IconAttention, Toggle } from '@aragon/ui'
+import {
+  GU,
+  IconAlert,
+  IconAragon,
+  IconAttention,
+  _Toggle as Toggle,
+} from '@aragon/ui'
 
 const testApps = [
   { id: '1', name: 'foo', icon: IconAlert },
