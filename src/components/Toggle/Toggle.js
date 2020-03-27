@@ -1,36 +1,20 @@
 import React, { useCallback, useState } from 'react'
 import PropTypes from 'prop-types'
 import { Spring, animated } from 'react-spring'
-import { ButtonBase } from '..'
+import ButtonBase from '../ButtonBase/ButtonBase'
 import { IconDown } from '../../icons'
 import { GU, springs, textStyle } from '../../style'
 import { useTheme } from '../../theme'
 
-const { div: AnimDiv } = animated
-
 const interpolateToggleElevation = (value, fn = v => v) =>
   value.interpolate(v => fn(1 - Math.abs(v * 2 - 1)))
 
-const openedState = {
-  key: 'APPS_OPENED_STATE',
-  isOpen: function() {
-    return localStorage.getItem(this.key) === '1'
-  },
-  set: function(opened) {
-    localStorage.setItem(this.key, opened ? '1' : '0')
-  },
-}
-
-function ToggleComponents({ children, itemBaseHeight, label, ...props }) {
-  const [open, setOpen] = useState(openedState.isOpen())
+function Toggle({ children, itemBaseHeight, label, ...props }) {
+  const [open, setOpen] = useState(false)
   const [showAnimation, setShowAnimation] = useState(false)
 
   const handleToggle = useCallback(() => {
-    setOpen(opened => {
-      const newOpenedState = !opened
-      openedState.set(newOpenedState)
-      return newOpenedState
-    })
+    setOpen(opened => !opened)
     setShowAnimation(true)
   }, [])
 
@@ -50,8 +34,8 @@ function ToggleComponents({ children, itemBaseHeight, label, ...props }) {
           `}
           {...props}
         >
-          <AppsToggle onClick={handleToggle}>
-            <AppsToggleShadow
+          <ToggleButton onClick={handleToggle}>
+            <ToggleButtonShadow
               style={{
                 transform: interpolateToggleElevation(
                   openProgress,
@@ -66,7 +50,7 @@ function ToggleComponents({ children, itemBaseHeight, label, ...props }) {
                 height: ${5 * GU}px;
               `}
             >
-              <AppsToggleArrow
+              <ToggleButtonArrow
                 style={{
                   marginLeft: `${1 * GU}px`,
                   transform: openProgress.interpolate(
@@ -76,23 +60,24 @@ function ToggleComponents({ children, itemBaseHeight, label, ...props }) {
                 }}
               />
             </Heading>
-          </AppsToggle>
+          </ToggleButton>
           <div css="overflow: hidden">
-            <AnimDiv
-              css={`
+            <animated.div>
+              css=
+              {`
                 display: flex;
                 flex-direction: column;
                 justify-content: flex-end;
               `}
-              style={{
+              style=
+              {{
                 opacity: openProgress,
                 height: openProgress.interpolate(
                   v => v * children.length * itemBaseHeight
                 ),
               }}
-            >
-              {children}
-            </AnimDiv>
+              >{children}
+            </animated.div>
           </div>
         </div>
       )}
@@ -100,7 +85,7 @@ function ToggleComponents({ children, itemBaseHeight, label, ...props }) {
   )
 }
 
-ToggleComponents.propTypes = {
+Toggle.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
@@ -109,12 +94,12 @@ ToggleComponents.propTypes = {
   label: PropTypes.string.isRequired,
 }
 
-ToggleComponents.defaultProps = {
+Toggle.defaultProps = {
   itemBaseHeight: 5 * GU,
   label: '',
 }
 
-function AppsToggle(props) {
+function ToggleButton(props) {
   const theme = useTheme()
   return (
     <ButtonBase
@@ -163,7 +148,7 @@ Heading.propTypes = {
   label: PropTypes.node,
 }
 
-const AppsToggleArrow = props => (
+const ToggleButtonArrow = props => (
   <animated.div {...props}>
     <div
       css={`
@@ -177,7 +162,7 @@ const AppsToggleArrow = props => (
   </animated.div>
 )
 
-const AppsToggleShadow = props => (
+const ToggleButtonShadow = props => (
   <div
     css={`
       position: absolute;
@@ -197,4 +182,4 @@ const AppsToggleShadow = props => (
   </div>
 )
 
-export default ToggleComponents
+export default Toggle
