@@ -5,119 +5,73 @@ import { GU, textStyle } from '../../style'
 import { usePublicUrl } from '../../providers/PublicUrl'
 import LoadingRing from '../LoadingRing/LoadingRing'
 import Link from '../Link/Link'
+
 import illustrationRedImage from './assets/empty-state-illustration-red.png'
 import illustrationBlueImage from './assets/empty-state-illustration-blue.png'
 
-function prepareDefaultStates(
-  publicUrl,
-  statusEmpty,
-  statusLoading,
-  statusEmptyFilters,
-  statusEmptySearch
-) {
-  return {
-    default: {
-      displayLoader: false,
-      title: statusEmpty || 'No data available.',
-      subtitle: null,
-      illustration: publicUrl + illustrationBlueImage,
-      clearLabel: null,
-    },
-    loading: {
-      displayLoader: true,
-      title: statusLoading || 'Loading data…',
-      subtitle: null,
-      illustration: publicUrl + illustrationBlueImage,
-      clearLabel: null,
-    },
-    'empty-filters': {
-      displayLoader: false,
-      title: 'No results found.',
-      subtitle:
-        statusEmptyFilters ||
-        'We can’t find any item matching your filter selection. ',
-      illustration: publicUrl + illustrationRedImage,
-      clearLabel: 'Clear filters',
-    },
-    'empty-search': {
-      displayLoader: false,
-      title: 'No results found.',
-      subtitle:
-        statusEmptySearch ||
-        'We can’t find any item matching your search query. ',
-      illustration: publicUrl + illustrationRedImage,
-      clearLabel: 'Clear filters',
-    },
-  }
-}
-
-function useEmptyStateValue(
-  status,
-  defaultEmptyStates,
-  emptyStateConfigurator
-) {
-  if (!emptyStateConfigurator) {
-    return defaultEmptyStates[status]
-  }
-
-  const functionMode = typeof emptyStateConfigurator === 'function'
-  const customEmptyState = functionMode
-    ? emptyStateConfigurator(status)
-    : emptyStateConfigurator[status]
-
-  // override all (illustration and text) with function mode
-  if (
-    React.isValidElement(customEmptyState) ||
-    typeof customEmptyState === 'string'
-  ) {
-    return customEmptyState
-  }
-
-  return {
-    ...defaultEmptyStates[status],
-    ...customEmptyState,
-  }
-}
-
-function EmptyState({
-  status,
-  emptyStateConfigurator,
-  statusEmpty,
-  statusLoading,
-  statusEmptyFilters,
-  statusEmptySearch,
-  onStatusEmptyClear,
-}) {
+function useEmptyStateParts(status, configurator, functionMode) {
   const publicUrl = usePublicUrl()
-  const theme = useTheme()
-  const defaultEmptyStates = useMemo(() => {
-    return prepareDefaultStates(
-      publicUrl,
-      statusEmpty,
-      statusLoading,
-      statusEmptyFilters,
-      statusEmptySearch
+
+  const defaultConfigurator = useMemo(() => {
+    // eslint-disable-next-line react/prop-types
+    const Illustration = ({ path }) => (
+      <img src={publicUrl + path} alt="" height={20 * GU} />
     )
-  }, [
-    publicUrl,
-    statusEmpty,
-    statusEmptyFilters,
-    statusEmptySearch,
-    statusLoading,
-  ])
+    return {
+      default: {
+        displayLoader: false,
+        title: 'No data available.',
+        subtitle: null,
+        illustration: <Illustration path={illustrationBlueImage} />,
+        clearLabel: null,
+      },
+      loading: {
+        displayLoader: true,
+        title: 'Loading data…',
+        subtitle: null,
+        illustration: <Illustration path={illustrationBlueImage} />,
+        clearLabel: null,
+      },
+      'empty-filters': {
+        displayLoader: false,
+        title: 'No results found.',
+        subtitle: 'We can’t find any item matching your filter selection.',
+        illustration: <Illustration path={illustrationRedImage} />,
+        clearLabel: 'Clear filters',
+      },
+      'empty-search': {
+        displayLoader: false,
+        title: 'No results found.',
+        subtitle: 'We can’t find any item matching your search query.',
+        illustration: <Illustration path={illustrationRedImage} />,
+        clearLabel: 'Clear filters',
+      },
+    }
+  }, [publicUrl])
 
-  const emptyState = useEmptyStateValue(
-    status,
-    defaultEmptyStates,
-    emptyStateConfigurator
-  )
+  const parts = functionMode ? {} : configurator[status]
 
-  if (React.isValidElement(emptyState) || typeof emptyState === 'string') {
-    return emptyState
+  return {
+    ...defaultConfigurator[status],
+    ...parts,
+  }
+}
+
+function EmptyState({ status, configurator, onStatusEmptyClear }) {
+  const theme = useTheme()
+
+  const functionMode = typeof configurator === 'function'
+  const emptyState = useEmptyStateParts(status, configurator, functionMode)
+  const emptyStateOverride = functionMode ? configurator(status) : null
+
+  // Returning an element from the function mode overrides everything.
+  // If `null` or a non-element is returned, the default state is used instead.
+  if (React.isValidElement(emptyStateOverride)) {
+    return emptyStateOverride
   }
 
   return (
-    <div
+    <section
       css={`
         display: flex;
         justify-content: center;
@@ -127,93 +81,65 @@ function EmptyState({
       <div
         css={`
           width: ${31 * GU}px;
-          text-align: center;
           padding: ${8 * GU}px 0;
+          text-align: center;
         `}
       >
-        {(() => {
-          // Empty state: illustration part
-          if (React.isValidElement(emptyState.illustration)) {
-            return emptyState.illustration
-          }
-          return (
-            <img
-              src={emptyState.illustration}
-              alt=""
-              height={20 * GU}
-              css={`
-                margin-bottom: ${2 * GU}px;
-              `}
-            />
-          )
-        })()}
+        {emptyState.illustration && (
+          <div
+            css={`
+              padding-bottom: ${2 * GU}px;
+            `}
+          >
+            {emptyState.illustration}
+          </div>
+        )}
 
-        {(() => {
-          // Empty state: content part
-          if (status === 'loading') {
-            return (
-              <p
+        {emptyState.title && (
+          <h1
+            css={`
+              ${textStyle('title2')};
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            `}
+          >
+            {emptyState.displayLoader && (
+              <LoadingRing
                 css={`
-                  ${textStyle('title2')};
-                  display: flex;
-                  align-items: center;
+                  margin-right: ${1 * GU}px;
                 `}
-              >
-                {emptyState.displayLoader && (
-                  <LoadingRing
-                    css={`
-                      margin-right: ${2 * GU}px;
-                    `}
-                  />
-                )}
-                {emptyState.title}
-              </p>
-            )
-          }
+              />
+            )}
+            {emptyState.title}
+          </h1>
+        )}
 
-          return (
-            <>
-              <p
-                css={`
-                  ${textStyle('title2')};
-                  margin-top: ${status === 'default' ? 0 : 2 * GU}px;
-                `}
-              >
-                {emptyState.title}
-              </p>
-
-              <p
-                css={`
-                  color: ${theme.surfaceContentSecondary};
-                `}
-              >
-                {emptyState.subtitle}
-                {emptyState.clearLabel && (
-                  <Link onClick={onStatusEmptyClear}>
-                    {emptyState.clearLabel}
-                  </Link>
-                )}
-              </p>
-            </>
-          )
-        })()}
+        {emptyState.subtitle && (
+          <div
+            css={`
+              color: ${theme.surfaceContentSecondary};
+            `}
+          >
+            {emptyState.subtitle}{' '}
+            {emptyState.clearLabel && (
+              <Link onClick={onStatusEmptyClear}>{emptyState.clearLabel}</Link>
+            )}
+          </div>
+        )}
       </div>
-    </div>
+    </section>
   )
 }
 
 EmptyState.propTypes = {
   status: PropTypes.oneOf([
     'default',
-    'loading',
     'empty-filters',
     'empty-search',
+    'loading',
   ]),
-  emptyStateConfigurator: PropTypes.object,
-  statusEmpty: PropTypes.node,
-  statusLoading: PropTypes.node,
-  statusEmptyFilters: PropTypes.node,
-  statusEmptySearch: PropTypes.node,
+  configurator: PropTypes.object,
   onStatusEmptyClear: PropTypes.func,
 }
 

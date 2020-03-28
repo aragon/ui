@@ -159,29 +159,65 @@ function useSelection(entries, selection, onSelectEntries) {
   }
 }
 
-const DataView = React.memo(function DataView({
-  page,
-  entries,
-  entriesPerPage,
-  fields,
-  heading,
-  onPageChange,
-  onSelectEntries,
-  renderEntry,
-  renderEntryActions,
-  renderEntryChild,
-  renderEntryExpansion,
-  renderSelectionCount,
-  mode,
-  selection,
-  tableRowHeight,
-  status,
+function deprecatedEmptyStatePropsCompat({
+  emptyState,
   statusEmpty,
   statusLoading,
   statusEmptyFilters,
   statusEmptySearch,
-  onStatusEmptyClear,
+}) {
+  for (const [propName, propValue, emptyStateName, partName] of [
+    ['statusEmpty', statusEmpty, 'default', 'title'],
+    ['statusEmptyFilters', statusEmptyFilters, 'empty-filters', 'subtitle'],
+    ['statusEmptySearch', statusEmptySearch, 'empty-search', 'subtitle'],
+    ['statusLoading', statusLoading, 'loading', 'title'],
+  ]) {
+    if (!propValue) {
+      continue
+    }
+
+    warnOnce(
+      `DataView:${propName}`,
+      `DataView: the ${propName} prop is now deprecated, please use emptyState instead.`
+    )
+
+    // Only set the default state title if not set already
+    if (!emptyState[emptyStateName] || !emptyState[emptyStateName][partName]) {
+      emptyState[emptyStateName] = {
+        ...emptyState[emptyStateName],
+        [partName]: propValue,
+      }
+    }
+  }
+
+  return emptyState
+}
+
+const DataView = React.memo(function DataView({
   emptyState,
+  entries,
+  entriesPerPage,
+  fields,
+  heading,
+  mode,
+  onPageChange,
+  onSelectEntries,
+  onStatusEmptyClear,
+  page,
+  renderEntry,
+  renderEntryActions,
+  renderEntryExpansion,
+  renderSelectionCount,
+  selection,
+  status,
+  tableRowHeight,
+
+  // deprecated
+  renderEntryChild,
+  statusEmpty,
+  statusEmptyFilters,
+  statusEmptySearch,
+  statusLoading,
 }) {
   if (renderEntryChild && !renderEntryExpansion) {
     warnOnce(
@@ -202,6 +238,14 @@ const DataView = React.memo(function DataView({
     )
     renderEntryExpansion = undefined
   }
+
+  emptyState = deprecatedEmptyStatePropsCompat({
+    emptyState,
+    statusEmpty,
+    statusEmptyFilters,
+    statusEmptySearch,
+    statusLoading,
+  })
 
   // Only used if `page` is not passed. The pagination supports both a
   // managed and a controlled mode, to provide a better developer experience
@@ -333,11 +377,7 @@ const DataView = React.memo(function DataView({
       {emptyEntries && (
         <EmptyState
           status={status}
-          emptyStateConfigurator={emptyState}
-          statusEmpty={statusEmpty}
-          statusLoading={statusLoading}
-          statusEmptyFilters={statusEmptyFilters}
-          statusEmptySearch={statusEmptySearch}
+          configurator={emptyState}
           onStatusEmptyClear={onStatusEmptyClear}
         />
       )}
@@ -377,27 +417,28 @@ DataView.propTypes = {
   tableRowHeight: PropTypes.number,
   status: PropTypes.oneOf([
     'default',
-    'loading',
     'empty-filters',
     'empty-search',
+    'loading',
   ]),
-  statusEmpty: PropTypes.node,
-  statusLoading: PropTypes.node,
-  statusEmptyFilters: PropTypes.node,
-  statusEmptySearch: PropTypes.node,
   onStatusEmptyClear: PropTypes.func,
   emptyState: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
 
   // deprecated
   renderEntryChild: PropTypes.func,
+  statusEmpty: PropTypes.node,
+  statusLoading: PropTypes.node,
+  statusEmptyFilters: PropTypes.node,
+  statusEmptySearch: PropTypes.node,
 }
 
 DataView.defaultProps = {
+  emptyState: {},
   entriesPerPage: 10,
   mode: 'adaptive',
   onPageChange: noop,
   renderSelectionCount: count => `${count} items selected`,
-  tableRowHeight: 8 * GU,
   status: 'default',
+  tableRowHeight: 8 * GU,
 }
 export { DataView }

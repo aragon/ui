@@ -117,56 +117,30 @@ function SortingDemo(props) {
 }
 
 const DEMOS = new Map([
-  [
-    'Default empty state',
-    props => (
-      <DataView {...props} fields={[]} entries={[]} renderEntry={noop} />
-    ),
-  ],
-  [
-    'Loading empty state',
-    props => (
-      <DataView
-        {...props}
-        fields={[]}
-        entries={[]}
-        renderEntry={noop}
-        status="loading"
-      />
-    ),
-  ],
+  ['Default empty state', props => <DataView {...props} />],
+  ['Loading empty state', props => <DataView {...props} status="loading" />],
   [
     'Filters empty state',
-    props => (
-      <DataView
-        {...props}
-        fields={[]}
-        entries={[]}
-        renderEntry={noop}
-        status="empty-filters"
-      />
-    ),
+    props => <DataView {...props} status="empty-filters" />,
   ],
   [
     'Search empty state',
-    props => (
-      <DataView
-        {...props}
-        fields={[]}
-        entries={[]}
-        renderEntry={noop}
-        status="empty-search"
-      />
-    ),
+    props => <DataView {...props} status="empty-search" />,
   ],
   [
     'Custom empty state',
     props => (
       <DataView
         {...props}
-        fields={[]}
-        entries={[]}
-        statusEmpty={<p>Custom stuff here...</p>}
+        status="default"
+        emptyState={{
+          default: {
+            displayLoader: true,
+            title: 'Custom title',
+            subtitle: 'Custom subtitle.',
+            clearLabel: 'Custom clear',
+          },
+        }}
       />
     ),
   ],
@@ -538,7 +512,13 @@ function App() {
           </label>
         }
       />
-      <DataViewDemo page={page} onPageChange={setPage} />
+      <DataViewDemo
+        entries={[]}
+        fields={[]}
+        onPageChange={setPage}
+        page={page}
+        renderEntry={noop}
+      />
     </div>
   )
 }
