@@ -381,7 +381,7 @@ Use it this way:
 | ---------- | ------------- |
 | `Function` | None          |
 
-Called when one of the default clearing links gets clicked. This is happening in `empty-filters` or `empty-search` depending on the status.
+Called when one of the default clearing links gets clicked. This is happening in `empty-filters` or `empty-search` by default, or if a custom status has a non-empty `clearLabel`.
 
 ### statusEmpty
 
