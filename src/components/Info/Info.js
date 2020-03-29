@@ -96,4 +96,4 @@ Info.propTypes = {
   borderColor: PropTypes.string,
 }
 
-export { Info }
+export default Info

@@ -30,6 +30,7 @@ const TransactionProgress = React.memo(function TransactionProgress({
         `}
       >
         <ButtonIcon
+          label="Close"
           onClick={onClose}
           css={`
             position: absolute;
