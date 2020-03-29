@@ -325,32 +325,32 @@ The default values are the following:
 <DataView
   emptyState={{
     default: {
+      clearLabel: 'Clear filters',
       displayLoader: false,
-      title: 'No data available.',
+      illustration: <Illustration path={illustrationBlueImage} />,
       subtitle: null,
-      illustration: <img src="empty-state-illustration-blue.png" alt="" />,
-      clearLabel: null,
+      title: 'No data available.',
     },
     loading: {
+      clearLabel: 'Clear filters',
       displayLoader: true,
-      title: 'No data available.',
+      illustration: <Illustration path={illustrationBlueImage} />,
       subtitle: null,
-      illustration: <img src="empty-state-illustration-blue.png" alt="" />,
-      clearLabel: null,
+      title: 'Loading data…',
     },
     'empty-filters': {
-      displayLoader: false,
-      title: 'No results found.',
-      subtitle: 'We can’t find any item matching your filter selection.',
-      illustration: <img src="empty-state-illustration-red.png" alt="" />,
       clearLabel: 'Clear filters',
+      displayLoader: false,
+      illustration: <Illustration path={illustrationRedImage} />,
+      subtitle: 'We can’t find any item matching your filter selection.',
+      title: 'No results found.',
     },
     'empty-search': {
-      displayLoader: false,
-      title: 'No results found.',
-      subtitle: 'We can’t find any item matching your search query.',
-      illustration: <img src="empty-state-illustration-red.png" alt="" />,
       clearLabel: 'Clear filters',
+      displayLoader: false,
+      illustration: <Illustration path={illustrationRedImage} />,
+      subtitle: 'We can’t find any item matching your search query.',
+      title: 'No results found.',
     },
   }}
 />
