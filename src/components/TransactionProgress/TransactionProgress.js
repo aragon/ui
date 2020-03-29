@@ -5,7 +5,7 @@ import { useTheme } from '../../theme'
 import { GU, textStyle } from '../../style'
 import { ButtonIcon } from '../Button/ButtonIcon'
 import { IconClose } from '../../icons'
-import { Alert } from '../Info'
+import { Info } from '../Info'
 import Link from '../Link/Link'
 import Popover from '../Popover/Popover'
 import ProgressBar from '../ProgressBar/ProgressBar'
@@ -78,7 +78,7 @@ const TransactionProgress = React.memo(function TransactionProgress({
                 margin-right: ${2 * GU}px;
               `}
             >
-              <Alert>Slow transaction. Retry with more gas</Alert>
+              <Info.Alert>Slow transaction. Retry with more gas</Info.Alert>
             </div>
           )}
           <Link href={transactionHashUrl} css="text-decoration: none">
