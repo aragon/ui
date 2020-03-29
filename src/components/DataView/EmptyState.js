@@ -19,32 +19,32 @@ function useEmptyStateParts(status, configurator, functionMode) {
     )
     return {
       default: {
+        clearLabel: 'Clear filters',
         displayLoader: false,
-        title: 'No data available.',
-        subtitle: null,
         illustration: <Illustration path={illustrationBlueImage} />,
-        clearLabel: null,
+        subtitle: null,
+        title: 'No data available.',
       },
       loading: {
+        clearLabel: 'Clear filters',
         displayLoader: true,
-        title: 'Loading data…',
-        subtitle: null,
         illustration: <Illustration path={illustrationBlueImage} />,
-        clearLabel: null,
+        subtitle: null,
+        title: 'Loading data…',
       },
       'empty-filters': {
-        displayLoader: false,
-        title: 'No results found.',
-        subtitle: 'We can’t find any item matching your filter selection.',
-        illustration: <Illustration path={illustrationRedImage} />,
         clearLabel: 'Clear filters',
+        displayLoader: false,
+        illustration: <Illustration path={illustrationRedImage} />,
+        subtitle: 'We can’t find any item matching your filter selection.',
+        title: 'No results found.',
       },
       'empty-search': {
-        displayLoader: false,
-        title: 'No results found.',
-        subtitle: 'We can’t find any item matching your search query.',
-        illustration: <Illustration path={illustrationRedImage} />,
         clearLabel: 'Clear filters',
+        displayLoader: false,
+        illustration: <Illustration path={illustrationRedImage} />,
+        subtitle: 'We can’t find any item matching your search query.',
+        title: 'No results found.',
       },
     }
   }, [publicUrl])
