@@ -1,9 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { Inside } from 'use-inside'
 import { GU, textStyle } from '../../style'
 import { useTheme } from '../../theme'
 import { useLayout } from '../Layout/Layout'
-import { Inside } from '../../utils'
 
 function Header({ primary, secondary, children, ...props }) {
   const theme = useTheme()

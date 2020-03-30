@@ -80,6 +80,7 @@ class Timer extends React.Component {
     format: PropTypes.oneOf(Object.keys(formats)),
     maxUnits: PropTypes.number,
     showEmpty: PropTypes.bool,
+    showIcon: PropTypes.bool,
     start: PropTypes.instanceOf(Date),
     theme: PropTypes.object,
   }
@@ -87,10 +88,11 @@ class Timer extends React.Component {
     format: formats.yMdhms,
     maxUnits: -1,
     showEmpty: false,
+    showIcon: true,
   }
 
   render() {
-    const { end, start, theme } = this.props
+    const { end, start, showIcon, theme } = this.props
     return (
       <time
         dateTime={formatHtmlDatetime(end || start)}
@@ -102,20 +104,22 @@ class Timer extends React.Component {
           ${textStyle('body2')};
         `}
       >
-        <span
-          css={`
-            display: flex;
-            align-items: center;
-            margin-right: ${0.5 * GU}px;
-            margin-top: -3px;
-          `}
-        >
-          <IconTime
+        {showIcon && (
+          <span
             css={`
-              color: ${theme.surfaceIcon};
+              display: flex;
+              align-items: center;
+              margin-right: ${0.5 * GU}px;
+              margin-top: -3px;
             `}
-          />
-        </span>
+          >
+            <IconTime
+              css={`
+                color: ${theme.surfaceIcon};
+              `}
+            />
+          </span>
+        )}
         <Redraw interval={RENDER_EVERY}>{this.renderTime}</Redraw>
       </time>
     )

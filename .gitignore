@@ -5,6 +5,5 @@ npm-debug.log
 package-lock.json
 yarn-error.log
 /stats.html
-
 # testing
 coverage

@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { noop, useInside, warnOnce } from '../../utils'
+import { useInside } from 'use-inside'
+import { noop, warnOnce } from '../../utils'
 import { useLayout } from '../Layout/Layout'
 import Bar from '../Bar/Bar'
 import TabBarLegacy from './TabBarLegacy'

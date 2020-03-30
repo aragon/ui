@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { useInside } from 'use-inside'
 import { GU, RADIUS, textStyle } from '../../style'
 import { useTheme } from '../../theme'
-import { useInside } from '../../utils'
 import ButtonBase from '../ButtonBase/ButtonBase'
 
 const BadgeBase = React.memo(function BadgeBase({

@@ -7,12 +7,13 @@ import React, {
 } from 'react'
 import PropTypes from 'prop-types'
 import { Transition, animated } from 'react-spring'
+import { Inside } from 'use-inside'
 import ButtonIcon from '../Button/ButtonIcon'
 import { IconClose } from '../../icons'
 import { useViewport } from '../../providers/Viewport/Viewport'
 import { GU, springs, textStyle } from '../../style'
 import { useTheme } from '../../theme'
-import { Inside, unselectable, KEY_ESC, warn } from '../../utils'
+import { unselectable, KEY_ESC, warn } from '../../utils'
 import RootPortal from '../RootPortal/RootPortal'
 
 const CONTENT_PADDING = 3 * GU
