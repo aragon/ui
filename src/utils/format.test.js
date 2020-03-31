@@ -1,7 +1,19 @@
 /* global BigInt */
 
-import { formatNumber, formatTokenAmount } from './format'
+import { formatIntegerRange, formatNumber, formatTokenAmount } from './format'
 import { NO_BREAK_SPACE } from './characters'
+
+describe('formatIntegerRange()', () => {
+  test('should constrain the result in a range', () => {
+    expect(formatIntegerRange(111)).toEqual('99')
+    expect(formatIntegerRange(111, 0, 9)).toEqual('9')
+    expect(formatIntegerRange(-234)).toEqual('0')
+  })
+  test('should add the suffix as needed', () => {
+    expect(formatIntegerRange(9, 0, 9, '+')).toEqual('9')
+    expect(formatIntegerRange(10, 0, 9, '+')).toEqual('9+')
+  })
+})
 
 describe('formatNumber()', () => {
   test('should add commas', () => {

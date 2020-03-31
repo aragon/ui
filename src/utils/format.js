@@ -1,20 +1,31 @@
 import JSBI from 'jsbi'
 import { NO_BREAK_SPACE } from './characters'
 
+/**
+ * Formats an integer based on a limited range.
+ *
+ * Example:
+ *   formatIntegerRange(234, 0, 99, '+') === "99+"
+ *
+ * @param {number} value     The number to format.
+ * @param {number} min       Range minimum.
+ * @param {number} max       Range maximum.
+ * @param {number} maxSuffix Suffix to add if the value exceeds the max.
+ */
 export function formatIntegerRange(
-  count = -1,
+  value = -1,
   min = 0,
   max = 99,
   maxSuffix = ''
 ) {
-  count = parseInt(count, 10)
-  if (count <= min) {
+  value = parseInt(value, 10)
+  if (value <= min) {
     return `${parseInt(min, 10)}`
   }
-  if (count > max) {
+  if (value > max) {
     return `${parseInt(max, 10)}${maxSuffix}`
   }
-  return count.toString()
+  return String(value)
 }
 
 /**
