@@ -62,4 +62,5 @@ const groups = palettes =>
 
 const { themeDark, theme, brand, colors } = groups(aragon)
 
+// TODO: show a deprecating warning when any of these colors get accessed once.
 export { themeDark, theme, brand, colors }
