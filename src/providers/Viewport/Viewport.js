@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { BREAKPOINTS } from '../../style'
-import throttle from 'lodash-es/throttle'
+import throttle from 'lodash/throttle'
 
 const NO_DOM_WINDOW_SIZE = { width: 0, height: 0 }
 

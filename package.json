@@ -91,7 +91,7 @@
     "command-exists": "^1.2.6",
     "dayjs": "^1.8.14",
     "js-sha3": "^0.8.0",
-    "lodash-es": "^4.17.15",
+    "lodash": "^4.17.15",
     "popper.js": "^1.14.4",
     "prop-types": "^15.6.0",
     "react-blockies": "^1.4.0",
@@ -99,7 +99,7 @@
     "react-onclickout": "^2.0.8",
     "react-spring": "^7.2.11",
     "recursive-copy": "^2.0.9",
-    "use-inside": "^0.1.0"
+    "use-inside": "^0.2.0"
   },
   "browserslist": {
     "development": "> 1%",
