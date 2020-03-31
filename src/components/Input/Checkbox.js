@@ -199,5 +199,4 @@ const CheckBoxWithTheme = React.forwardRef((props, ref) => {
 
 /* eslint-enable react/prop-types */
 
-export { CheckBoxWithTheme as Checkbox }
 export default CheckBoxWithTheme

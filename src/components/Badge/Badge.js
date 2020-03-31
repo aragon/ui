@@ -1,5 +1,5 @@
 import React from 'react'
-import { Tag } from '../Tag/Tag'
+import Tag from '../Tag/Tag'
 import { warnOnce } from '../../utils/environment'
 import { useTheme } from '../../theme'
 

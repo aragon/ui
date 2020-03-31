@@ -11,7 +11,7 @@ import { springs } from '../../style'
 import { useTheme } from '../../theme'
 import { unselectable, noop, identity, KEY_ESC } from '../../utils'
 import ButtonBase from '../ButtonBase/ButtonBase'
-import { SearchInput } from '../Input/SearchInput'
+import SearchInput from '../Input/SearchInput'
 
 function AutoComplete({
   forwardedRef,

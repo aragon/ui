@@ -3,8 +3,8 @@ import PropTypes from 'prop-types'
 import { noop, warnOnce } from '../../utils'
 import { textStyle, GU } from '../../style'
 import { useTheme } from '../../theme'
-import { Box } from '../../components/Box/Box'
-import { Pagination } from '../../components/Pagination/Pagination'
+import Box from '../../components/Box/Box'
+import Pagination from '../../components/Pagination/Pagination'
 import { useLayout } from '../../components/Layout/Layout'
 import { TableView } from './TableView'
 import { ListView } from './ListView'
@@ -441,4 +441,5 @@ DataView.defaultProps = {
   status: 'default',
   tableRowHeight: 8 * GU,
 }
-export { DataView }
+
+export default DataView
