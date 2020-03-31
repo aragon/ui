@@ -1,11 +1,12 @@
-import { round } from './math';
+import JSBI from 'jsbi'
+import { NO_BREAK_SPACE } from './characters'
 
-export const formatIntegerRange = (
+export function formatIntegerRange(
   count = -1,
   min = 0,
   max = 99,
   maxSuffix = ''
-) => {
+) {
   count = parseInt(count, 10)
   if (count <= min) {
     return `${parseInt(min, 10)}`
@@ -17,39 +18,94 @@ export const formatIntegerRange = (
 }
 
 /**
- * Formats number to a more readable string
+ * Formats an integer for display purposes.
  *
- * @param {number} number Number to convert
- * @returns {string} Formatted number
+ * This function is not using Intl.NumberFormat() to be compatible with big
+ * integers expressed as string, or BigInt-like objects.
+ *
+ * @param {BigInt|string|number} number Number to convert
+ * @returns {string}
  */
 export function formatNumber(number) {
-  return new Intl.NumberFormat('en-US', {minimumFractionDigits: 0,}).format(number)
+  const numAsString = String(number)
+  const [integer, decimals] = numAsString.split('.')
+  let result = ''
+  for (let i = 0, len = integer.length; i < len; i++) {
+    if (i > 0 && i % 3 === 0) {
+      result = ',' + result
+    }
+    result = integer[len - i - 1] + result
+  }
+  return result + (decimals ? `.${decimals}` : '')
 }
 
 /**
- * Builds on top on formatNumber(), and extends it with options for formatting tokens
+ * Divide and round two big integers.
  *
- * @param {number} amount Number to round
- * @param {string} symbol Symbol for the token amount
- * @param {number} decimals Decimal placement for amount
- * @param {number} returnToDecimals Rounds the number to a given decimal place
- * @param {boolean} isIncoming Decides if a plus or negative should be used
- * @param {boolean} signDisplay Decides if the sign should be displayed
- * @returns {string} Formatted token
+ * @param {BigInt|string|number} dividend Integer to be divided + rounded
+ * @param {BigInt|string|number} diviser  Diviser
+ * @returns {string}
+ */
+function divideRoundBigInt(dividend, diviser) {
+  dividend = JSBI.BigInt(dividend)
+  diviser = JSBI.BigInt(diviser)
+  return JSBI.divide(
+    JSBI.add(dividend, JSBI.divide(diviser, JSBI.BigInt(2))),
+    diviser
+  )
+}
+
+/**
+ * Formats a token amount for display purposes.
+ *
+ * @param {BigInt|string|number} amount              Number to round
+ * @param {BigInt|string|number} decimals            Decimal placement for amount
+ * @param {BigInt|string|number} roundToDecimals     Rounds the number to a given decimal place
+ * @param {string}               options.symbol      Symbol for the token amount
+ * @param {boolean}              options.displaySign Decides if the sign should be displayed
+ * @returns {string}
  */
 export function formatTokenAmount(
   amount,
-  symbol,
   decimals = 18,
-  rountToDecimals = 2,
-  isIncoming = true,
-  signDisplay = false
+  roundToDecimals = 2,
+  { symbol = '', displaySign = false } = {}
 ) {
-  const number = round(
-    (amount / Math.pow(10, decimals)),
-    rountToDecimals
+  amount = JSBI.BigInt(String(amount))
+  decimals = JSBI.BigInt(String(decimals))
+  roundToDecimals = JSBI.BigInt(String(roundToDecimals))
+
+  const _0 = JSBI.BigInt(0)
+  const _10 = JSBI.BigInt(10)
+  const negative = JSBI.lessThan(amount, _0)
+
+  if (negative) {
+    amount = JSBI.subtract(_0, amount)
+  }
+
+  const amountConverted = divideRoundBigInt(
+    amount,
+    JSBI.exponentiate(_10, JSBI.subtract(decimals, roundToDecimals))
   )
-  const formattedNumber = formatNumber(number)
-  const sign = signDisplay ? (isIncoming ? '+' : '-') : ''
-  return `${sign}${formattedNumber} ${symbol}`
+
+  const leftPart = formatNumber(
+    JSBI.divide(amountConverted, JSBI.exponentiate(_10, roundToDecimals))
+  )
+
+  const rightPart = String(
+    JSBI.remainder(amountConverted, JSBI.exponentiate(_10, roundToDecimals))
+  )
+
+  let result =
+    leftPart + (rightPart && rightPart !== '0' ? `.${rightPart}` : '')
+
+  if (displaySign) {
+    result = `${negative ? '-' : '+'}${result}`
+  }
+
+  if (symbol) {
+    result = `${result}${NO_BREAK_SPACE}${symbol}`
+  }
+
+  return result
 }
