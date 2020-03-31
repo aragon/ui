@@ -3,9 +3,9 @@ import PropTypes from '../../proptypes'
 import { noop } from '../../utils'
 import { useTheme } from '../../theme'
 import { GU, textStyle } from '../../style'
-import { ButtonIcon } from '../Button/ButtonIcon'
+import ButtonIcon from '../Button/ButtonIcon'
 import { IconClose } from '../../icons'
-import { Info } from '../Info'
+import Info from '../Info/Info'
 import Link from '../Link/Link'
 import Popover from '../Popover/Popover'
 import ProgressBar from '../ProgressBar/ProgressBar'
@@ -30,6 +30,7 @@ const TransactionProgress = React.memo(function TransactionProgress({
         `}
       >
         <ButtonIcon
+          label="Close"
           onClick={onClose}
           css={`
             position: absolute;

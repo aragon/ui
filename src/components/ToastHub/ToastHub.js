@@ -260,4 +260,5 @@ ToastList.propTypes = {
 const useToast = () => useContext(ToastContext).add
 const Toast = props => props.children(useToast())
 
-export { ToastHubProvider as ToastHub, Toast, useToast }
+export default ToastHubProvider
+export { Toast, useToast }

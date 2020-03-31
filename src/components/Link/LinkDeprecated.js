@@ -15,4 +15,4 @@ function SafeLink(props) {
   return <Link {...props} />
 }
 
-export { ExternalLink, Link, SafeLink }
+export { ExternalLink, SafeLink }

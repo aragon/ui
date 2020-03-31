@@ -4,7 +4,7 @@ import { Transition, animated } from 'react-spring'
 import { GU, springs, textStyle } from '../../style'
 import { useTheme } from '../../theme'
 import { useLayout } from '../Layout/Layout'
-import { Checkbox } from '../Input/Checkbox'
+import Checkbox from '../Input/Checkbox'
 import { ToggleButton } from './ToggleButton'
 import { OpenedSurfaceBorder } from './OpenedSurfaceBorder'
 
