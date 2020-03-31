@@ -1,5 +1,5 @@
 {
   "packages": ["./"],
-  "sandboxes": ["/devbox"]
+  "sandboxes": ["/devbox"],
+  "packages": ["./"]
 }
-
