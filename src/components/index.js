@@ -70,8 +70,12 @@ export { default as TextInput } from './Input/TextInput'
 export { default as Timer } from './Timer/Timer'
 export { default as ToastHub, useToast, Toast } from './ToastHub/ToastHub'
 export { default as TokenBadge } from './TokenBadge/TokenBadge'
-export { default as TransactionBadge } from './TransactionBadge/TransactionBadge'
-export { default as TransactionProgress } from './TransactionProgress/TransactionProgress'
+export {
+  default as TransactionBadge,
+} from './TransactionBadge/TransactionBadge'
+export {
+  default as TransactionProgress,
+} from './TransactionProgress/TransactionProgress'
 
 // Deprecated / to be deprecated components
 export { ExternalLink, SafeLink } from './Link/LinkDeprecated'
@@ -84,4 +88,6 @@ export { default as Text } from './Text/Text'
 
 // Experimental components
 export { default as _AutoComplete } from './AutoComplete/AutoComplete'
-export { default as _AutoCompleteSelected } from './AutoComplete/AutoCompleteSelected'
+export {
+  default as _AutoCompleteSelected,
+} from './AutoComplete/AutoCompleteSelected'
