@@ -165,7 +165,6 @@ const DEMOS = new Map([
       />
     ),
   ],
-
   [
     'Simple',
     props => (
@@ -186,7 +185,6 @@ const DEMOS = new Map([
       />
     ),
   ],
-
   [
     'Actions',
     props => (
@@ -240,7 +238,6 @@ const DEMOS = new Map([
       />
     ),
   ],
-
   [
     'Expansion',
     props => (
@@ -248,10 +245,9 @@ const DEMOS = new Map([
         {...props}
         fields={[
           { label: 'Action', priority: 1 },
-          { label: 'Assigned to entity', priority: 4 },
+          { label: 'Assigned to entity', priority: 4, childStart: true },
           { label: 'Managed by', priority: 2 },
         ]}
-        alignChildOnField={1}
         entries={seedShuffleArray(
           multiplyArray(
             [
@@ -325,7 +321,6 @@ const DEMOS = new Map([
           { label: 'Assigned to entity', priority: 4 },
           { label: 'Managed by', priority: 2 },
         ]}
-        alignChildOnField={1}
         entries={seedShuffleArray(
           multiplyArray(
             [
