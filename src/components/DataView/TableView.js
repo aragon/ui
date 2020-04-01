@@ -399,7 +399,9 @@ function EntryExpansion({
                   : cellsCount - alignChildOnCell
               }
             >
-              <OpenedSurfaceBorder opened={opened} />
+              {alignChildOnCell === 0 && (
+                <OpenedSurfaceBorder opened={opened} />
+              )}
               <animated.div css="overflow: hidden" style={{ height }}>
                 {expansion.content.map((child, i) => (
                   <div
