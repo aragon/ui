@@ -380,7 +380,7 @@ function EntryExpansion({
                 <animated.div css="overflow: hidden" style={{ height }}>
                   {expansion.content.map((child, i) => (
                     <div
-                      key={i}
+                      key={'hello' + i}
                       css={`
                         height: ${expansion.freeLayout
                           ? 'auto'
@@ -399,6 +399,7 @@ function EntryExpansion({
                   : cellsCount - alignChildOnCell
               }
             >
+              <OpenedSurfaceBorder opened={opened} />
               <animated.div css="overflow: hidden" style={{ height }}>
                 {expansion.content.map((child, i) => (
                   <div
