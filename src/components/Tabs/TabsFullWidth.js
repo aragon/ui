@@ -18,6 +18,7 @@ function TabsFullWidth({ items, selected, onChange }) {
   const [opened, setOpened] = useState(false)
 
   const selectedItem = items[selected]
+  const dropdownDisabled = items.length === 1
 
   const close = useCallback(() => setOpened(false), [])
 
@@ -75,6 +76,7 @@ function TabsFullWidth({ items, selected, onChange }) {
       >
         <ButtonBase
           ref={buttonRef}
+          disabled={dropdownDisabled}
           css={`
             display: flex;
             align-items: center;
@@ -115,6 +117,7 @@ function TabsFullWidth({ items, selected, onChange }) {
               css={`
                 transition: transform 150ms ease-in-out;
                 transform: rotate3d(0, 0, 1, ${opened ? 180 : 0}deg);
+                color: ${dropdownDisabled ? theme.disabled : theme.surfaceIcon};
               `}
             />
           </div>
