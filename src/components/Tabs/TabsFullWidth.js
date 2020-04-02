@@ -2,7 +2,7 @@ import React, { useCallback, useRef, useState } from 'react'
 import { Transition, animated } from 'react-spring'
 import { useInside } from 'use-inside'
 import { GU, textStyle, springs } from '../../style'
-import { useOnBlur } from '../../hooks'
+import { useFocusLeave } from '../../hooks'
 import { IconDown } from '../../icons'
 import { useTheme } from '../../theme'
 import { KEY_ESC } from '../../utils'
@@ -43,7 +43,7 @@ function TabsFullWidth({ items, selected, onChange }) {
     [selected, onChange, close, focusButton]
   )
 
-  const { handleBlur, ref } = useOnBlur(close)
+  const { handleFocusLeave, ref } = useFocusLeave(close)
 
   // close on escape
   const handleMenuKeyDown = useCallback(
@@ -59,7 +59,7 @@ function TabsFullWidth({ items, selected, onChange }) {
   return (
     <div
       ref={ref}
-      onBlur={handleBlur}
+      onBlur={handleFocusLeave}
       css={`
         padding-bottom: ${2 * GU}px;
       `}

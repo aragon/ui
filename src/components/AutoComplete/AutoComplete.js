@@ -5,7 +5,7 @@ import {
   useArrowKeysFocus,
   useClickOutside,
   useKeyDown,
-  useOnBlur,
+  useFocusLeave,
 } from '../../hooks'
 import { springs } from '../../style'
 import { useTheme } from '../../theme'
@@ -50,7 +50,7 @@ function AutoComplete({
     [onChange]
   )
 
-  const { handleBlur } = useOnBlur(handleClose, wrapRef)
+  const { handleFocusLeave } = useFocusLeave(handleClose, wrapRef)
   const { highlightedIndex, setHighlightedIndex } = useArrowKeysFocus(refs)
 
   useClickOutside(handleClose, wrapRef)
@@ -61,7 +61,7 @@ function AutoComplete({
   }, [opened, items, value, setHighlightedIndex])
 
   return (
-    <div css="position: relative" ref={wrapRef} onBlur={handleBlur}>
+    <div css="position: relative" ref={wrapRef} onBlur={handleFocusLeave}>
       <SearchInput
         ref={ref}
         wide={wide}
