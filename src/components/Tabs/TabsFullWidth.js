@@ -91,7 +91,7 @@ function TabsFullWidth({ items, selected, onChange }) {
             border-radius: 0;
             ${textStyle('body2')};
             &:active {
-              background: ${theme.surfacePressed};
+              ${dropdownDisabled ? '' : `background: ${theme.surfacePressed};`}
             }
           `}
           onClick={toggle}
