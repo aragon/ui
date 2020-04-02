@@ -34,10 +34,10 @@ function TabsFullWidth({ items, selected, onChange }) {
 
   const change = useCallback(
     index => {
+      close()
+      focusButton()
       if (index !== selected) {
         onChange(index)
-        close()
-        focusButton()
       }
     },
     [selected, onChange, close, focusButton]
