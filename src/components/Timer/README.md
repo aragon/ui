@@ -50,6 +50,15 @@ The start of a timer, as a `Date` instance.
 
 Format output in years 'y', months 'M', days 'd', hours 'h', minutes 'm', seconds 's'
 
+### `maxUnits`
+
+| Type         | Default value |
+| ------------ | ------------- |
+| `Number`    |       -1       |
+
+Is the number of units to be displayed regardless of the `format`.
+By default is set to -1 which will dispay all the available untis, but if you set `format={'yMdhms'}` and `maxUnits={1}` it will ony display the number of years.
+
 ### `showEmpty`
 
 | Type         | Default value |
