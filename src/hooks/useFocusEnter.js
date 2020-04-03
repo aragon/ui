@@ -1,11 +1,12 @@
 import { useCallback, useRef } from 'react'
 
-/* eslint-disable react-hooks/rules-of-hooks */
-export function useFocusEnter(cb, ref = useRef()) {
-  /* eslint-enable react-hooks/rules-of-hooks */
+export function useFocusEnter(cb, _ref) {
+  const fallbackRef = useRef()
+  const ref = _ref || fallbackRef
+
   const handleFocusEnter = useCallback(
     event => {
-      if (ref.current.contains(event.target)) {
+      if (ref?.current?.contains(event.target)) {
         cb(event)
       }
     },
