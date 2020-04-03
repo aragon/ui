@@ -7,43 +7,35 @@ A circular graph component.
 ```jsx
 import { CircleGraph } from '@aragon/ui'
 
-const App = () => <CircleGraph value={1/3} />
+const App = () => <CircleGraph value={1 / 3} />
 ```
 
 ## Props
 
-### `size`
+### `color`
 
-* Type: `Number`
-* Default: `80`
+| Type                   | Default value |
+| ---------------------- | ------------- |
+| `Function` or `String` | None          |
 
-The size (width and height) of the graph.
-
-#### Example:
-
-```jsx
-<CircleGraph size={40} />
-```
-
-### `value`
-
-* Type: `Number`
-* Default: `1`
-
-The value represented by the graph, between 0 and 1.
-
-#### Example:
-
-```jsx
-<CircleGraph value={0.5} />
-```
+The color representing the active part in the circle. When a function is passed, it takes the interpolated `value` as a unique parameter, and is expected to return a color. Avoid doing anything slow in this function as it gets called 60 times per second.
 
 ### `label`
 
-* Type: `Function`
-* Default: `value => Math.round(value * 100) + '%'`
+| Type                 | Default value |
+| -------------------- | ------------- |
+| `Function` or `Node` | None          |
 
-A function to generate the label displayed on the graph.
+When a React node is passed, it gets rendered directly.
+
+A function that gets called to generate the label displayed on the graph. It takes the current value as a parameter and should return an object containing the following nodes:
+
+- `value`: the main number (defaults to `Math.round(value * 100)`).
+- `suffix`: the suffix displayed after (defaults to `%`).
+- `prefix`: the optional prefix to display (defaults to `<` below 1%).
+- `secondary`: a secondary label to display below the main one.
+
+Avoid doing anything slow in this function as it gets called 60 times per second.
 
 #### Example:
 
@@ -51,28 +43,26 @@ A function to generate the label displayed on the graph.
 <CircleGraph label={value => Math.round(value)} />
 ```
 
-### `color`
+### `size`
 
-* Type: `String`
-* Default: `#21c1e7`
+| Type     | Default value |
+| -------- | ------------- |
+| `Number` | `80`          |
 
-The border color of the circle.
+The size (width and height) of the graph.
 
-#### Example:
+### `strokeWidth`
 
-```jsx
-<CircleGraph color="#FF6969" />
-```
+| Type     | Default value |
+| -------- | ------------- |
+| `Number` | `4`           |
 
-### `width`
+Width of the circle stroke, in `px`.
 
-* Type: `Number`
-* Default: `4`
+### `value`
 
-Width of the circle.
+| Type     | Default value   |
+| -------- | --------------- |
+| `Number` | None (required) |
 
-#### Example:
-
-```jsx
-<CircleGraph width={8} />
-```
+The value represented by the graph, between 0 and 1.
