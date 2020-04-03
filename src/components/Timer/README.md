@@ -57,7 +57,7 @@ Format output in years 'y', months 'M', days 'd', hours 'h', minutes 'm', second
 | `Number`     |       `-1`       |
 
 Is the number of units to be displayed regardless of the `format`.
-By default, it's set to -1 which will display all the available units. If it's set to a number n, which can be from 1 to all the units used in the `format` prop, it will display only the first n units, left to right.
+By default, it’s set to -1 which will display all the available units. If it’s set to a number `n`, which can be from `1` to all the units used in the `format` prop, it will display only the first `n` units, left to right.
 
 ### `showEmpty`
 
