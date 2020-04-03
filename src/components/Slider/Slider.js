@@ -165,8 +165,6 @@ class Slider extends React.Component {
                 >
                   <animated.div
                     style={this.getHandleStyles(pressProgress)}
-                    onMouseDown={this.dragStart}
-                    onTouchStart={this.dragStart}
                     css={`
                       position: absolute;
                       top: 50%;
@@ -176,6 +174,7 @@ class Slider extends React.Component {
                       border: 1px solid ${theme.border};
                       border-radius: 50%;
                       cursor: pointer;
+                      pointer-events: auto;
                     `}
                   />
                 </HandlePosition>
@@ -208,6 +207,7 @@ const Bar = styled(animated.div)`
 `
 
 const HandleClip = styled.div`
+  pointer-events: none;
   overflow: hidden;
   width: calc(100% + ${HANDLE_SIZE + HANDLE_SHADOW_MARGIN * 2}px);
   height: calc(100% + ${HANDLE_SHADOW_MARGIN * 2}px);
