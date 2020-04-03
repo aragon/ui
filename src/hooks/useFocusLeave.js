@@ -13,5 +13,5 @@ export function useFocusLeave(cb, _ref) {
     [ref, cb]
   )
 
-  return {ref, handleFocusLeave }
+  return {ref, handleFocusLeave}
 }
