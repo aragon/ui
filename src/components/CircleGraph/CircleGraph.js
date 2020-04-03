@@ -19,18 +19,20 @@ function labelDefault(value) {
   }
 }
 
-function CircleGraph({ color, label, secondary, size, strokeWidth, value }) {
+function CircleGraph({ color, label, size, strokeWidth, value }) {
   const theme = useTheme()
   const length = Math.PI * 2 * (size - strokeWidth)
   const radius = (size - strokeWidth) / 2
 
-  if (label === true) {
+  if (label === undefined) {
     label = labelDefault
   }
 
-  const nodeLabel = React.isValidElement(label)
+  // We assume label is a node if not a function.
+  const isLabelNode = typeof label !== 'function'
 
-  const { prefix, suffix } = label && !nodeLabel ? label(value) : {}
+  const { prefix, suffix, secondary } =
+    label && !isLabelNode ? label(value) : {}
 
   let colorFn = color || (() => theme.accent)
   if (typeof colorFn !== 'function') {
@@ -97,7 +99,7 @@ function CircleGraph({ color, label, secondary, size, strokeWidth, value }) {
               line-height: 1.2;
             `}
           >
-            {nodeLabel
+            {isLabelNode
               ? label
               : label && (
                   <div
@@ -136,20 +138,22 @@ function CircleGraph({ color, label, secondary, size, strokeWidth, value }) {
                         {suffix}
                       </div>
                     </div>
-                    <div
-                      css={`
-                        position: absolute;
-                        top: 100%;
-                        left: 0;
-                        right: 0;
-                        display: flex;
-                        justify-content: center;
-                        color: ${theme.surfaceContentSecondary};
-                      `}
-                      style={{ fontSize: `${size * 0.1}px` }}
-                    >
-                      {secondary}
-                    </div>
+                    {secondary && (
+                      <div
+                        css={`
+                          position: absolute;
+                          top: 100%;
+                          left: 0;
+                          right: 0;
+                          display: flex;
+                          justify-content: center;
+                          color: ${theme.surfaceContentSecondary};
+                        `}
+                        style={{ fontSize: `${size * 0.1}px` }}
+                      >
+                        {secondary}
+                      </div>
+                    )}
                   </div>
                 )}
           </div>
@@ -160,16 +164,14 @@ function CircleGraph({ color, label, secondary, size, strokeWidth, value }) {
 }
 
 CircleGraph.propTypes = {
-  color: PropTypes.func,
-  label: PropTypes.oneOfType([PropTypes.node, PropTypes.bool, PropTypes.func]),
-  secondary: PropTypes.node,
+  color: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+  label: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
   size: PropTypes.number,
   strokeWidth: PropTypes.number,
   value: PropTypes.number.isRequired,
 }
 
 CircleGraph.defaultProps = {
-  label: true,
   size: SIZE_DEFAULT,
   strokeWidth: STROKE_WIDTH,
 }
