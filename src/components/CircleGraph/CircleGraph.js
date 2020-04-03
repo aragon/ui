@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Spring, animated } from 'react-spring'
-import { GU, useTheme } from '@aragon/ui'
+import { useTheme } from '@aragon/ui'
 
 const STROKE_WIDTH = 4
 const SIZE_DEFAULT = 80
