@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { Inside } from 'use-inside'
 import { GU } from '../../style'
 import { useLayout } from '../Layout/Layout'
-import { Inside } from '../../utils/inside'
 
 function CardLayout({ children, columnWidthMin, rowHeight, ...props }) {
   const { layoutName } = useLayout()

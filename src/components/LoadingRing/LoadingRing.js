@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useMemo, useState } from 'react'
 import PropTypes from 'prop-types'
 import { keyframes } from 'styled-components'
+import { useInside } from 'use-inside'
 import { useTheme } from '../../theme'
 
 const spin = keyframes`
@@ -12,8 +13,50 @@ const spin = keyframes`
   }
 `
 
-const LoadingRing = React.memo(function LoadingRing({ paused, ...props }) {
+const SIZE_SMALL = 14
+const SIZE_MEDIUM = 24
+
+const CONTAINER_SIZE_SMALL = 22
+const CONTAINER_SIZE_MEDIUM = 24
+
+const BORDER_WIDTH_STRONG = 2.5
+const BORDER_WIDTH_MEDIUM = 1
+
+let lastInstanceId = 1
+
+const LoadingRing = React.memo(function LoadingRing({
+  paused,
+  mode: modeProp,
+  ...props
+}) {
   const theme = useTheme()
+  const [instanceId] = useState(() => `sync-indicator-${lastInstanceId++}`)
+  const [insideFloatIndicator] = useInside('FloatIndicator')
+
+  const mode = modeProp || (insideFloatIndicator ? 'half-circle' : 'two-parts')
+
+  const containerSize =
+    mode === 'half-circle' ? CONTAINER_SIZE_MEDIUM : CONTAINER_SIZE_SMALL
+  const borderWidth =
+    mode === 'half-circle' ? BORDER_WIDTH_STRONG : BORDER_WIDTH_MEDIUM
+  const size = (mode === 'half-circle' ? SIZE_MEDIUM : SIZE_SMALL) - borderWidth
+
+  const [gapLength, dashLength] = useMemo(() => {
+    const length = Math.PI * size
+
+    // Both modes display a full circle when paused.
+    if (paused) {
+      return [0, length]
+    }
+
+    if (mode === 'two-parts') {
+      return [length / 4, length / 4]
+    }
+
+    // half-circle
+    return [length / 2, length / 2]
+  }, [mode, size, paused])
+
   return (
     <span
       css={`
@@ -21,43 +64,65 @@ const LoadingRing = React.memo(function LoadingRing({ paused, ...props }) {
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 22px;
-        height: 22px;
-        animation-duration: 1s;
-        animation-iteration-count: infinite;
-        animation-timing-function: linear;
-        animation-name: ${paused ? 'none' : spin};
+        width: ${containerSize}px;
+        height: ${containerSize}px;
       `}
       {...props}
     >
-      <span
-        css={`
-          position: relative;
-          width: 10px;
-          height: 100%;
-        `}
-        style={{
-          overflow: paused ? 'visible' : 'hidden',
-        }}
+      <svg
+        width={size + borderWidth}
+        height={size + borderWidth}
+        viewBox={`0 0 ${size + borderWidth} ${size + borderWidth}`}
       >
-        <span
-          css={`
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 14px;
-            height: 14px;
-            border-radius: 50%;
-            border: 1px solid ${theme.accent};
-          `}
+        <linearGradient
+          id={`${instanceId}-gradient`}
+          gradientTransform="rotate(90)"
+        >
+          <stop offset="0%" stopColor={theme.accentEnd} />
+          <stop offset="100%" stopColor={theme.accentStart} />
+        </linearGradient>
+        {insideFloatIndicator && (
+          <circle
+            cx="50%"
+            cy="50%"
+            r={size / 2}
+            fill="transparent"
+            stroke={theme.floatingContent.alpha(0.3)}
+            strokeWidth={borderWidth}
+          />
+        )}
+        <mask id={`${instanceId}-mask`}>
+          <circle
+            cx="50%"
+            cy="50%"
+            r={size / 2}
+            fill="transparent"
+            stroke={`url(#${instanceId}-gradient)`}
+            strokeWidth={borderWidth}
+            strokeDasharray={`${dashLength} ${gapLength}`}
+            css={`
+              animation-duration: 1s;
+              animation-iteration-count: infinite;
+              animation-timing-function: linear;
+              animation-name: ${paused ? 'none' : spin};
+              transform-origin: 50% 50%;
+            `}
+          />
+        </mask>
+        <circle
+          cx="50%"
+          cy="50%"
+          r={size / 2 + borderWidth / 2}
+          fill={`url(#${instanceId}-gradient)`}
+          mask={`url(#${instanceId}-mask)`}
         />
-      </span>
+      </svg>
     </span>
   )
 })
 
 LoadingRing.propTypes = {
+  mode: PropTypes.oneOf(['two-parts', 'half-circle']),
   paused: PropTypes.bool,
 }
 

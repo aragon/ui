@@ -1,9 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { Inside, useInside } from 'use-inside'
 import { GU, RADIUS, textStyle } from '../../style'
 import { useTheme } from '../../theme/Theme'
 import { useLayout } from '../Layout/Layout'
-import { Inside, useInside, warnOnce } from '../../utils'
+import { warnOnce } from '../../utils'
 
 function Box({ heading, children, padding, ...props }) {
   const theme = useTheme()
@@ -92,5 +93,4 @@ Box.propTypes = {
   ]),
 }
 
-export { Box }
 export default Box

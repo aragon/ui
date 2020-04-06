@@ -5,13 +5,13 @@ import {
   useArrowKeysFocus,
   useClickOutside,
   useKeyDown,
-  useOnBlur,
+  useFocusLeave,
 } from '../../hooks'
 import { springs } from '../../style'
 import { useTheme } from '../../theme'
 import { unselectable, noop, identity, KEY_ESC } from '../../utils'
 import ButtonBase from '../ButtonBase/ButtonBase'
-import { SearchInput } from '../Input/SearchInput'
+import SearchInput from '../Input/SearchInput'
 
 function AutoComplete({
   forwardedRef,
@@ -50,7 +50,7 @@ function AutoComplete({
     [onChange]
   )
 
-  const { handleBlur } = useOnBlur(handleClose, wrapRef)
+  const { handleFocusLeave } = useFocusLeave(handleClose, wrapRef)
   const { highlightedIndex, setHighlightedIndex } = useArrowKeysFocus(refs)
 
   useClickOutside(handleClose, wrapRef)
@@ -61,7 +61,7 @@ function AutoComplete({
   }, [opened, items, value, setHighlightedIndex])
 
   return (
-    <div css="position: relative" ref={wrapRef} onBlur={handleBlur}>
+    <div css="position: relative" ref={wrapRef} onBlur={handleFocusLeave}>
       <SearchInput
         ref={ref}
         wide={wide}
@@ -169,7 +169,7 @@ const Item = React.forwardRef(function Item(
           ${selected
             ? `
                 outline: 2px solid ${theme.accent};
-                background: #f9fafc;
+                background: ${theme.surfaceHighlight};
                 border-left: 3px solid ${theme.accent};
               `
             : ''};

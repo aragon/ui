@@ -1,9 +1,9 @@
 import React, { useMemo } from 'react'
 import PropTypes from 'prop-types'
+import { Inside, useInside } from 'use-inside'
 import { textStyle, GU, RADIUS } from '../../style'
 import { useTheme } from '../../theme'
-import { warn, warnOnce, useInside, unselectable } from '../../utils'
-import { Inside } from '../../utils/inside'
+import { warn, warnOnce, unselectable } from '../../utils'
 import { useLayout } from '../Layout/Layout'
 import ButtonBase from '../ButtonBase/ButtonBase'
 
@@ -345,5 +345,4 @@ ButtonWithRef.Anchor = React.forwardRef((props, ref) => {
   return <ButtonWithRef ref={ref} {...props} />
 })
 
-export { ButtonWithRef as Button }
 export default ButtonWithRef

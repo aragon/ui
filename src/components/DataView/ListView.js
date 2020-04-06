@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { Transition, animated } from 'react-spring'
 import { GU, springs, textStyle } from '../../style'
 import { useTheme } from '../../theme'
-import { Checkbox } from '../Input/Checkbox'
+import Checkbox from '../Input/Checkbox'
 import { ToggleButton } from './ToggleButton'
 import { OpenedSurfaceBorder } from './OpenedSurfaceBorder'
 

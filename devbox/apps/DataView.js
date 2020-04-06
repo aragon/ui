@@ -117,56 +117,30 @@ function SortingDemo(props) {
 }
 
 const DEMOS = new Map([
-  [
-    'Default empty state',
-    props => (
-      <DataView {...props} fields={[]} entries={[]} renderEntry={noop} />
-    ),
-  ],
-  [
-    'Loading empty state',
-    props => (
-      <DataView
-        {...props}
-        fields={[]}
-        entries={[]}
-        renderEntry={noop}
-        status="loading"
-      />
-    ),
-  ],
+  ['Default empty state', props => <DataView {...props} />],
+  ['Loading empty state', props => <DataView {...props} status="loading" />],
   [
     'Filters empty state',
-    props => (
-      <DataView
-        {...props}
-        fields={[]}
-        entries={[]}
-        renderEntry={noop}
-        status="empty-filters"
-      />
-    ),
+    props => <DataView {...props} status="empty-filters" />,
   ],
   [
     'Search empty state',
-    props => (
-      <DataView
-        {...props}
-        fields={[]}
-        entries={[]}
-        renderEntry={noop}
-        status="empty-search"
-      />
-    ),
+    props => <DataView {...props} status="empty-search" />,
   ],
   [
     'Custom empty state',
     props => (
       <DataView
         {...props}
-        fields={[]}
-        entries={[]}
-        statusEmpty={<p>Custom stuff here...</p>}
+        status="default"
+        emptyState={{
+          default: {
+            displayLoader: true,
+            title: 'Custom title',
+            subtitle: 'Custom subtitle.',
+            clearLabel: 'Custom clear',
+          },
+        }}
       />
     ),
   ],
@@ -191,7 +165,6 @@ const DEMOS = new Map([
       />
     ),
   ],
-
   [
     'Simple',
     props => (
@@ -212,7 +185,6 @@ const DEMOS = new Map([
       />
     ),
   ],
-
   [
     'Actions',
     props => (
@@ -266,7 +238,6 @@ const DEMOS = new Map([
       />
     ),
   ],
-
   [
     'Expansion',
     props => (
@@ -274,10 +245,9 @@ const DEMOS = new Map([
         {...props}
         fields={[
           { label: 'Action', priority: 1 },
-          { label: 'Assigned to entity', priority: 4 },
+          { label: 'Assigned to entity', priority: 4, childStart: true },
           { label: 'Managed by', priority: 2 },
         ]}
-        alignChildOnField={1}
         entries={seedShuffleArray(
           multiplyArray(
             [
@@ -351,7 +321,6 @@ const DEMOS = new Map([
           { label: 'Assigned to entity', priority: 4 },
           { label: 'Managed by', priority: 2 },
         ]}
-        alignChildOnField={1}
         entries={seedShuffleArray(
           multiplyArray(
             [
@@ -538,7 +507,13 @@ function App() {
           </label>
         }
       />
-      <DataViewDemo page={page} onPageChange={setPage} />
+      <DataViewDemo
+        entries={[]}
+        fields={[]}
+        onPageChange={setPage}
+        page={page}
+        renderEntry={noop}
+      />
     </div>
   )
 }

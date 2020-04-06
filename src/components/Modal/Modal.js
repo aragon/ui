@@ -6,7 +6,7 @@ import { springs, GU, RADIUS } from '../../style'
 import { useTheme } from '../../theme'
 import { useViewport } from '../../providers/Viewport'
 import { IconCross } from '../../icons'
-import { ButtonIcon } from '../Button/ButtonIcon'
+import ButtonIcon from '../Button/ButtonIcon'
 import EscapeOutside from '../EscapeOutside/EscapeOutside'
 import RootPortal from '../RootPortal/RootPortal'
 

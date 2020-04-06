@@ -3,16 +3,12 @@ import PropTypes from 'prop-types'
 import { noop, warnOnce } from '../../utils'
 import { textStyle, GU } from '../../style'
 import { useTheme } from '../../theme'
-import { Box } from '../../components/Box/Box'
-import { Pagination } from '../../components/Pagination/Pagination'
+import Box from '../../components/Box/Box'
+import Pagination from '../../components/Pagination/Pagination'
 import { useLayout } from '../../components/Layout/Layout'
-import { usePublicUrl } from '../../providers/PublicUrl'
-import LoadingRing from '../LoadingRing/LoadingRing'
-import Link from '../Link/Link'
 import { TableView } from './TableView'
 import { ListView } from './ListView'
-import illustrationRedImage from './assets/empty-state-illustration-red.png'
-import illustrationBlueImage from './assets/empty-state-illustration-blue.png'
+import EmptyState from './EmptyState'
 
 function prepareEntries(entries, from, to, selectedIndexes) {
   return entries.slice(from, to).map((entry, index) => {
@@ -163,28 +159,65 @@ function useSelection(entries, selection, onSelectEntries) {
   }
 }
 
-const DataView = React.memo(function DataView({
-  page,
-  entries,
-  entriesPerPage,
-  fields,
-  heading,
-  onPageChange,
-  onSelectEntries,
-  renderEntry,
-  renderEntryActions,
-  renderEntryChild,
-  renderEntryExpansion,
-  renderSelectionCount,
-  mode,
-  selection,
-  tableRowHeight,
-  status,
+function deprecatedEmptyStatePropsCompat({
+  emptyState,
   statusEmpty,
   statusLoading,
   statusEmptyFilters,
   statusEmptySearch,
+}) {
+  for (const [propName, propValue, emptyStateName, partName] of [
+    ['statusEmpty', statusEmpty, 'default', 'title'],
+    ['statusEmptyFilters', statusEmptyFilters, 'empty-filters', 'subtitle'],
+    ['statusEmptySearch', statusEmptySearch, 'empty-search', 'subtitle'],
+    ['statusLoading', statusLoading, 'loading', 'title'],
+  ]) {
+    if (!propValue) {
+      continue
+    }
+
+    warnOnce(
+      `DataView:${propName}`,
+      `DataView: the ${propName} prop is now deprecated, please use emptyState instead.`
+    )
+
+    // Only set the default state title if not set already
+    if (!emptyState[emptyStateName] || !emptyState[emptyStateName][partName]) {
+      emptyState[emptyStateName] = {
+        ...emptyState[emptyStateName],
+        [partName]: propValue,
+      }
+    }
+  }
+
+  return emptyState
+}
+
+const DataView = React.memo(function DataView({
+  emptyState,
+  entries,
+  entriesPerPage,
+  fields,
+  heading,
+  mode,
+  onPageChange,
+  onSelectEntries,
   onStatusEmptyClear,
+  page,
+  renderEntry,
+  renderEntryActions,
+  renderEntryExpansion,
+  renderSelectionCount,
+  selection,
+  status,
+  tableRowHeight,
+
+  // deprecated
+  renderEntryChild,
+  statusEmpty,
+  statusEmptyFilters,
+  statusEmptySearch,
+  statusLoading,
 }) {
   if (renderEntryChild && !renderEntryExpansion) {
     warnOnce(
@@ -206,6 +239,14 @@ const DataView = React.memo(function DataView({
     renderEntryExpansion = undefined
   }
 
+  emptyState = deprecatedEmptyStatePropsCompat({
+    emptyState,
+    statusEmpty,
+    statusEmptyFilters,
+    statusEmptySearch,
+    statusLoading,
+  })
+
   // Only used if `page` is not passed. The pagination supports both a
   // managed and a controlled mode, to provide a better developer experience
   // out of the box.
@@ -223,6 +264,7 @@ const DataView = React.memo(function DataView({
     },
     [onPageChange, page]
   )
+
   // Reset managed pagination if the entries or the pagination changes.
   useEffect(() => {
     setPageManaged(0)
@@ -232,7 +274,6 @@ const DataView = React.memo(function DataView({
 
   const theme = useTheme()
   const { layoutName } = useLayout()
-  const publicUrl = usePublicUrl()
 
   const listMode =
     mode === 'list' || (mode !== 'table' && layoutName === 'small')
@@ -334,118 +375,11 @@ const DataView = React.memo(function DataView({
         ))}
 
       {emptyEntries && (
-        <div
-          css={`
-            display: flex;
-            justify-content: center;
-            align-items: center;
-          `}
-        >
-          <div
-            css={`
-              width: ${31 * GU}px;
-              text-align: center;
-              padding: ${8 * GU}px 0;
-            `}
-          >
-            {(status === 'default' || status === 'loading') && (
-              <img
-                src={publicUrl + illustrationBlueImage}
-                alt=""
-                height={20 * GU}
-                css={`
-                  margin-bottom: ${2 * GU}px;
-                `}
-              />
-            )}
-
-            {(status === 'empty-filters' || status === 'empty-search') && (
-              <img
-                src={publicUrl + illustrationRedImage}
-                alt=""
-                height={20 * GU}
-                css={`
-                  margin-bottom: ${2 * GU}px;
-                `}
-              />
-            )}
-
-            {status === 'default' &&
-              (statusEmpty || (
-                <p
-                  css={`
-                    ${textStyle('title2')};
-                  `}
-                >
-                  No data available.
-                </p>
-              ))}
-
-            {status === 'loading' &&
-              (statusLoading || (
-                <p
-                  css={`
-                    ${textStyle('title2')};
-                    display: flex;
-                    align-items: center;
-                  `}
-                >
-                  <LoadingRing
-                    css={`
-                      margin-right: ${2 * GU}px;
-                    `}
-                  />{' '}
-                  Loading data…
-                </p>
-              ))}
-
-            {status === 'empty-filters' && (
-              <>
-                <p
-                  css={`
-                    ${textStyle('title2')};
-                    margin-top: ${2 * GU}px;
-                  `}
-                >
-                  No results found.
-                </p>
-                {statusEmptyFilters || (
-                  <p
-                    css={`
-                      color: ${theme.surfaceContentSecondary};
-                    `}
-                  >
-                    {'We can’t find any item matching your filter selection. '}
-                    <Link onClick={onStatusEmptyClear}>Clear filters</Link>
-                  </p>
-                )}
-              </>
-            )}
-
-            {status === 'empty-search' && (
-              <>
-                <p
-                  css={`
-                    ${textStyle('title2')};
-                    margin-top: ${2 * GU}px;
-                  `}
-                >
-                  No results found.
-                </p>
-                {statusEmptySearch || (
-                  <p
-                    css={`
-                      color: ${theme.surfaceContentSecondary};
-                    `}
-                  >
-                    {'We can’t find any item matching your search query. '}
-                    <Link onClick={onStatusEmptyClear}>Clear search</Link>
-                  </p>
-                )}
-              </>
-            )}
-          </div>
-        </div>
+        <EmptyState
+          status={status}
+          configurator={emptyState}
+          onStatusEmptyClear={onStatusEmptyClear}
+        />
       )}
 
       {pages > 1 && (
@@ -483,27 +417,29 @@ DataView.propTypes = {
   tableRowHeight: PropTypes.number,
   status: PropTypes.oneOf([
     'default',
-    'loading',
     'empty-filters',
     'empty-search',
+    'loading',
   ]),
+  onStatusEmptyClear: PropTypes.func,
+  emptyState: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+
+  // deprecated
+  renderEntryChild: PropTypes.func,
   statusEmpty: PropTypes.node,
   statusLoading: PropTypes.node,
   statusEmptyFilters: PropTypes.node,
   statusEmptySearch: PropTypes.node,
-  onStatusEmptyClear: PropTypes.func,
-
-  // deprecated
-  renderEntryChild: PropTypes.func,
 }
 
 DataView.defaultProps = {
+  emptyState: {},
   entriesPerPage: 10,
   mode: 'adaptive',
   onPageChange: noop,
   renderSelectionCount: count => `${count} items selected`,
-  tableRowHeight: 8 * GU,
   status: 'default',
+  tableRowHeight: 8 * GU,
 }
 
-export { DataView }
+export default DataView

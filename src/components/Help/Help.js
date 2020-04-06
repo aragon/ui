@@ -1,10 +1,10 @@
 import React, { useCallback, useRef, useState } from 'react'
 import PropTypes from 'prop-types'
+import { useInside } from 'use-inside'
 import { GU, textStyle } from '../../style'
 import { useTheme } from '../../theme'
-import { useInside } from '../../utils'
 import { IconQuestion } from '../../icons'
-import { DiscButton } from '../DiscButton/DiscButton'
+import DiscButton from '../DiscButton/DiscButton'
 import Popover from '../Popover/Popover'
 
 function Help({ hint, children }) {

@@ -52,4 +52,3 @@ DiscButton.defaultProps = {
 }
 
 export default DiscButton
-export { DiscButton }

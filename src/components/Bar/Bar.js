@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { Inside } from 'use-inside'
 import { GU, RADIUS } from '../../style'
-import { Inside } from '../../utils'
 import { useTheme } from '../../theme/Theme'
 import { useLayout } from '../Layout/Layout'
 
@@ -73,5 +73,4 @@ Bar.propTypes = {
 
 Bar.PADDING = BAR_PADDING
 
-export { Bar }
 export default Bar

@@ -1,10 +1,11 @@
 import React, { useCallback, useRef, useState } from 'react'
 import { Transition, animated } from 'react-spring'
+import { useInside } from 'use-inside'
 import { GU, textStyle, springs } from '../../style'
-import { useOnBlur } from '../../hooks'
+import { useFocusLeave } from '../../hooks'
 import { IconDown } from '../../icons'
 import { useTheme } from '../../theme'
-import { useInside, KEY_ESC } from '../../utils'
+import { KEY_ESC } from '../../utils'
 import ButtonBase from '../ButtonBase/ButtonBase'
 
 // TabsFullWidth is an internal component
@@ -17,6 +18,7 @@ function TabsFullWidth({ items, selected, onChange }) {
   const [opened, setOpened] = useState(false)
 
   const selectedItem = items[selected]
+  const dropdownDisabled = items.length === 1
 
   const close = useCallback(() => setOpened(false), [])
 
@@ -32,16 +34,16 @@ function TabsFullWidth({ items, selected, onChange }) {
 
   const change = useCallback(
     index => {
+      close()
+      focusButton()
       if (index !== selected) {
         onChange(index)
-        close()
-        focusButton()
       }
     },
     [selected, onChange, close, focusButton]
   )
 
-  const { handleBlur, ref } = useOnBlur(close)
+  const { handleFocusLeave, ref } = useFocusLeave(close)
 
   // close on escape
   const handleMenuKeyDown = useCallback(
@@ -57,7 +59,7 @@ function TabsFullWidth({ items, selected, onChange }) {
   return (
     <div
       ref={ref}
-      onBlur={handleBlur}
+      onBlur={handleFocusLeave}
       css={`
         padding-bottom: ${2 * GU}px;
       `}
@@ -74,6 +76,7 @@ function TabsFullWidth({ items, selected, onChange }) {
       >
         <ButtonBase
           ref={buttonRef}
+          disabled={dropdownDisabled}
           css={`
             display: flex;
             align-items: center;
@@ -88,7 +91,7 @@ function TabsFullWidth({ items, selected, onChange }) {
             border-radius: 0;
             ${textStyle('body2')};
             &:active {
-              background: ${theme.surfacePressed};
+              ${dropdownDisabled ? '' : `background: ${theme.surfacePressed};`}
             }
           `}
           onClick={toggle}
@@ -114,6 +117,7 @@ function TabsFullWidth({ items, selected, onChange }) {
               css={`
                 transition: transform 150ms ease-in-out;
                 transform: rotate3d(0, 0, 1, ${opened ? 180 : 0}deg);
+                color: ${dropdownDisabled ? theme.disabled : theme.surfaceIcon};
               `}
             />
           </div>
