@@ -1,29 +1,30 @@
 import React from 'react'
 import {
+  Details,
   IconAlert,
   IconAragon,
   IconAttention,
-  _Toggle as Toggle,
+  SidePanel,
 } from '@aragon/ui'
 
-const testApps = [
-  { id: '1', name: 'foo', icon: IconAlert },
-  { id: '2', name: 'bar', icon: IconAragon },
-  { id: '3', name: 'zeu', icon: IconAttention },
+const apps = [
+  { name: 'Tokens', icon: IconAlert },
+  { name: 'Voting', icon: IconAragon },
+  { name: 'Finance', icon: IconAttention },
 ]
 
 function App() {
   return (
-    <div>
-      <Toggle label="Random Items">
-        {testApps.map(({ id, name, icon: Icon }) => (
+    <SidePanel title="Details demo">
+      <Details label="More details">
+        {apps.map(({ name, icon: Icon }) => (
           <div
+            key={name}
             css={`
               display: flex;
               align-items: center;
               cursor: pointer;
             `}
-            key={id}
           >
             <Icon />
             <span
@@ -35,8 +36,8 @@ function App() {
             </span>
           </div>
         ))}
-      </Toggle>
-    </div>
+      </Details>
+    </SidePanel>
   )
 }
 
