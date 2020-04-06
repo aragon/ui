@@ -2,9 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { useTheme } from '../../theme'
-import { GU, textStyle } from '../../style'
-
-export const TASK_LIST_CLASSNAME = 'task-list-item'
+import { RADIUS, GU, textStyle } from '../../style'
 
 function NormalizedHtml({ children }) {
   const theme = useTheme()
@@ -16,83 +14,86 @@ function NormalizedHtml({ children }) {
     h4,
     h5,
     h6 {
-      ${textStyle({ weight: 'normal' })}
       margin-bottom: ${2 * GU}px;
       margin-top: ${3 * GU}px;
     }
     h1,
     h2 {
-      padding-bottom: 4px;
-      border-bottom: 1px solid ${theme.contentBorder};
+      padding-bottom: ${0.5 * GU}px;
     }
     h1 {
-      ${textStyle({ size: 'great' })}
+      ${textStyle('title1')};
     }
     h2 {
-      ${textStyle({ size: 'xxlarge' })}
+      ${textStyle('title2')};
     }
     h3 {
-      ${textStyle({ size: 'xlarge' })}
+      ${textStyle('title3')};
     }
     h4 {
-      ${textStyle({ size: 'large' })}
+      ${textStyle('title4')};
     }
     h5 {
-      ${textStyle({ size: 'normal' })}
+      ${textStyle('body1')};
     }
     h6 {
-      color: ${theme.textSecondary};
-      ${textStyle({ size: 'small' })}
+      ${textStyle('body1')};
     }
     p,
-    blockquote,
+    pre,
     table,
-    pre {
-      margin: 16px 0;
+    blockquote {
+      margin: ${2 * GU}px 0;
       &:last-child {
         margin-bottom: 0;
       }
     }
+    li p {
+      margin: 0;
+    }
+    hr {
+      height: ${0.5 * GU}px;
+      margin: ${1 * GU}px 0;
+      background: ${theme.border};
+      border: 0;
+    }
     blockquote {
-      padding: 0 16px;
-      border-left: 4px solid ${theme.textTertiary};
+      padding: 0 ${2 * GU}px;
+      border-left: ${0.5 * GU}px solid ${theme.border};
       color: ${theme.textTertiary};
     }
     a {
       color: ${theme.gradientStart};
-      text-decoration: none;
-    }
-    a:hover {
       text-decoration: underline;
     }
+    pre,
     a > code,
     p > code {
-      background-color: rgba(27, 31, 35, 0.05);
-      border-radius: 3px;
-      padding: 3px 6px;
+      padding: ${0.5 * GU}px ${0.75 * GU}px;
+      background: ${theme.surfaceHighlight};
+      border-radius: ${RADIUS}px;
+    }
+    pre {
+      overflow: auto;
+      padding: ${2 * GU}px;
+      border-radius: ${RADIUS}px;
     }
     table {
       border-collapse: collapse;
     }
     tr {
-      border-top: 1px solid ${theme.contentBorder};
+      border-top: 1px solid ${theme.border};
     }
     tr:nth-child(2n) {
       background-color: #f8f8f8;
     }
     th,
     td {
-      border: 1px solid ${theme.contentBorder};
-      padding: 8px 16px;
+      border: 1px solid ${theme.border};
+      padding: ${1 * GU}px ${2 * GU}px;
     }
     img {
-      max-width: 95%;
-    }
-    pre {
-      background-color: ${theme.mainBackground};
-      border-radius: 3px;
-      overflow: auto;
-      padding: ${2 * GU}px;
+      max-width: calc(100% - ${2 * GU}px);
     }
     ul,
     ol {
@@ -108,15 +109,9 @@ function NormalizedHtml({ children }) {
     ul ul ol {
       list-style-type: lower-alpha;
     }
-    li.${TASK_LIST_CLASSNAME} {
-      list-style-type: none;
+    button[role='checkbox'] {
       position: relative;
-      & > button:first-child {
-        position: absolute;
-        margin-left: 0;
-        margin-top: 5px;
-        right: 100%;
-      }
+      top: 2px;
     }
   `
   return <HtmlWrapper>{children}</HtmlWrapper>
