@@ -101,4 +101,4 @@ Pagination.defaultProps = {
   touchMode: false,
 }
 
-export { Pagination }
+export default Pagination

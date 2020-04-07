@@ -1,5 +1,7 @@
 export * from './useArrowKeysFocus'
 export * from './useClickOutside'
+export * from './useFocusEnter'
+export * from './useFocusLeave'
 export * from './useImageExists'
 export * from './useKeyDown'
 export * from './useOnBlur'

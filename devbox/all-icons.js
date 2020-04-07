@@ -91,6 +91,7 @@ export {
   IconSquare,
   IconStarFilled,
   IconStar,
+  IconSwap,
   IconTarget,
   IconToken,
   IconTrash,

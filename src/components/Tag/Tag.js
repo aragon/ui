@@ -200,4 +200,4 @@ Tag.defaultProps = {
   limitDigits: false,
 }
 
-export { Tag }
+export default Tag

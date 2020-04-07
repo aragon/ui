@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import PropTypes from 'prop-types'
 import dayjs from 'dayjs'
-import { Button } from '../Button/Button'
+import Button from '../Button/Button'
 import { useViewport } from '../../providers/Viewport/Viewport'
 import { GU, RADIUS } from '../../style'
 import { useTheme } from '../../theme'

@@ -5,7 +5,7 @@ import { GU, RADIUS, textStyle } from '../../style'
 import { useTheme } from '../../theme'
 import { noop, warn } from '../../utils'
 import TextInput from '../Input/TextInput'
-import { ButtonIcon } from '../Button/ButtonIcon'
+import ButtonIcon from '../Button/ButtonIcon'
 import { useToast } from '../ToastHub/ToastHub'
 
 const HEIGHT = 5 * GU
