@@ -1,41 +1,29 @@
-import React from 'react'
-import {
-  Details,
-  IconAlert,
-  IconAragon,
-  IconAttention,
-  SidePanel,
-} from '@aragon/ui'
-
-const apps = [
-  { name: 'Tokens', icon: IconAlert },
-  { name: 'Voting', icon: IconAragon },
-  { name: 'Finance', icon: IconAttention },
-]
+import React, { useState } from 'react'
+import { Details, GU, Info, SidePanel } from '@aragon/ui'
 
 function App() {
   return (
     <SidePanel title="Details demo">
+      <div
+        css={`
+          height: ${3 * GU}px;
+        `}
+      />
+      <Info>
+        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
+        eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
+        voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
+        clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit
+        amet.
+      </Info>
       <Details label="More details">
-        {apps.map(({ name, icon: Icon }) => (
-          <div
-            key={name}
-            css={`
-              display: flex;
-              align-items: center;
-              cursor: pointer;
-            `}
-          >
-            <Icon />
-            <span
-              css={`
-                margin-left: 10px;
-              `}
-            >
-              {name}
-            </span>
-          </div>
-        ))}
+        <Info mode="warning">
+          Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
+          nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
+          sed diam voluptua. At vero eos et accusam et justo duo dolores et ea
+          rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem
+          ipsum dolor sit amet.
+        </Info>
       </Details>
     </SidePanel>
   )

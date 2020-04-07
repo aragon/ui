@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import PropTypes from 'prop-types'
 import { Spring, animated } from 'react-spring'
+import { useInside } from 'use-inside'
 import { GU, springs, textStyle } from '../../style'
 import { useTheme } from '../../theme'
 import { IconDown } from '../../icons'
@@ -10,21 +11,46 @@ function interpolateToggleElevation(value, fn) {
   return value.interpolate(v => fn(1 - Math.abs(v * 2 - 1)))
 }
 
-function Details({ children, label, ...props }) {
+function Details({ children, label, onToggle, opened: openedProp, ...props }) {
   const theme = useTheme()
-  const [open, setOpen] = useState(false)
-  const animate = useRef(false)
+  const [insideSidePanel] = useInside('SidePanel')
 
   const contentRef = useRef(null)
   const contentHeight = useRef(0)
+
+  // Details supports two modes: managed (internal state),
+  // or controlled (external state).
+  const [openedManaged, setOpenedManaged] = useState(false)
+  const opened = openedProp === undefined ? openedManaged : openedProp
+
+  const handleContentRef = useCallback(element => {
+    contentRef.current = element
+
+    if (element) {
+      contentHeight.current = contentRef.current.clientHeight
+    }
+  }, [])
 
   const handleToggle = useCallback(() => {
     if (contentRef.current) {
       contentHeight.current = contentRef.current.clientHeight
     }
-    setOpen(opened => !opened)
-  }, [])
 
+    const newOpened = !opened
+
+    // Managed state
+    if (openedProp === undefined) {
+      setOpenedManaged(newOpened)
+    }
+
+    // Useful to notify even in managed mode
+    if (onToggle) {
+      onToggle(newOpened)
+    }
+  }, [onToggle, opened, openedProp])
+
+  // Animate after the initial render
+  const animate = useRef(false)
   useEffect(() => {
     animate.current = true
   }, [])
@@ -33,14 +59,14 @@ function Details({ children, label, ...props }) {
     <Spring
       config={springs.smooth}
       from={{ openProgress: 0 }}
-      to={{ openProgress: Number(open) }}
+      to={{ openProgress: Number(opened) }}
       immediate={!animate}
       native
     >
       {({ openProgress }) => (
-        <div
+        <section
           css={`
-            margin-top: ${1 * GU}px;
+            margin: ${insideSidePanel ? `${2 * GU}px ${-3 * GU}px 0` : '0'};
             padding-bottom: ${3 * GU}px;
           `}
           {...props}
@@ -86,7 +112,7 @@ function Details({ children, label, ...props }) {
                 display: flex;
                 justify-content: flex-start;
                 align-items: center;
-                height: ${3 * GU}px;
+                height: ${5 * GU}px;
                 margin-left: ${3 * GU}px;
                 color: ${theme.surfaceContentSecondary};
                 ${textStyle('label2')}
@@ -138,10 +164,19 @@ function Details({ children, label, ...props }) {
                 ),
               }}
             >
-              <div ref={contentRef}>{children}</div>
+              <div
+                ref={handleContentRef}
+                css={`
+                  padding: ${insideSidePanel
+                    ? `${2 * GU}px ${3 * GU}px 0`
+                    : '0'};
+                `}
+              >
+                <div>{children}</div>
+              </div>
             </animated.div>
           </div>
-        </div>
+        </section>
       )}
     </Spring>
   )
@@ -150,6 +185,8 @@ function Details({ children, label, ...props }) {
 Details.propTypes = {
   children: PropTypes.node.isRequired,
   label: PropTypes.string.isRequired,
+  onToggle: PropTypes.func,
+  opened: PropTypes.bool,
 }
 
 export default Details
