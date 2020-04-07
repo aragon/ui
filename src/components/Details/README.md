@@ -1,34 +1,17 @@
-# TransactionBadge
+# Details
 
-A component to hide/show components in a list
+A component to let users reveal content.
 
 ## Usage
 
 ```jsx
-import { ToggleComponent } from '@aragon/ui'
-
-const testApps = [
-  { id: '1', name: 'foo' },
-  { id: '2', name: 'bar' },
-  { id: '3', name: 'zeu' },
-]
+import { Details } from '@aragon/ui'
 
 function App() {
   return (
-    <ToggleComponent label="Random Items" itemBaseHeight={4 * GU}>
-      {testApps.map(({ id, name, icon: Icon }) => (
-        <div
-          css={`
-            display: flex;
-            align-items: center;
-            cursor: pointer;
-          `}
-          key={id}
-        >
-          <span>{name}</span>
-        </div>
-      ))}
-    </ToggleComponent>
+    <Details label="More details">
+      <p>Content to be revealed</p>
+    </Details>
   )
 }
 ```
@@ -37,16 +20,32 @@ function App() {
 
 ### `label`
 
-| Type     | Default value |
-| -------- | ------------- |
-| `String` | '' (required) |
+| Type   | Default value   |
+| ------ | --------------- |
+| `Node` | None (required) |
 
-Text to display in heading.
+The heading, which is also the button users click to toggle the opened state.
 
-### `itemBaseHeight`
+### `children`
 
-| Type     | Default value |
-| -------- | ------------- |
-| `number` | `35`          |
+| Type   | Default value   |
+| ------ | --------------- |
+| `Node` | None (required) |
 
-Base height of the items in the list.
+The content to reveal. Note that it this node is always mounted even when hidden, but this might change in the future.
+
+### `opened`
+
+| Type      | Default value |
+| --------- | ------------- |
+| `Boolean` | None          |
+
+When set, allows to control the state of `Details` from the outside ([controlled component](https://reactjs.org/docs/forms.html#controlled-components)). Leave unset to let `Details` handle its own opened / close state.
+
+### `onToggle`
+
+| Type       | Default value |
+| ---------- | ------------- |
+| `Function` | None          |
+
+Gets called when the opened states changes, or is requested to change if `opened` is set. Takes the new opened state as a single parameter (`Boolean`).
