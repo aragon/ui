@@ -7,6 +7,8 @@ import { useTheme } from '../../theme'
 import { IconDown } from '../../icons'
 import ButtonBase from '../ButtonBase/ButtonBase'
 
+// Interpolate the elevation of the toggle from which the drawer slides down.
+// In / out example: [0, 0.25, 0.5, 0.75, 1] => [0, 0.5, 1, 0.5, 0]
 function interpolateToggleElevation(value, fn) {
   return value.interpolate(v => fn(1 - Math.abs(v * 2 - 1)))
 }
@@ -23,19 +25,21 @@ function Details({ children, label, onToggle, opened: openedProp, ...props }) {
   const [openedManaged, setOpenedManaged] = useState(false)
   const opened = openedProp === undefined ? openedManaged : openedProp
 
-  const handleContentRef = useCallback(element => {
-    contentRef.current = element
-
-    if (element) {
+  const updateHeight = useCallback(() => {
+    if (contentRef.current) {
       contentHeight.current = contentRef.current.clientHeight
     }
   }, [])
 
-  const handleToggle = useCallback(() => {
-    if (contentRef.current) {
-      contentHeight.current = contentRef.current.clientHeight
-    }
+  const handleContentRef = useCallback(
+    element => {
+      contentRef.current = element
+      updateHeight()
+    },
+    [updateHeight]
+  )
 
+  const handleToggle = useCallback(() => {
     const newOpened = !opened
 
     // Managed state
@@ -55,12 +59,22 @@ function Details({ children, label, onToggle, opened: openedProp, ...props }) {
     animate.current = true
   }, [])
 
+  // Use height: 'auto' when opened
+  const [forceHeight, setForceHeight] = useState(false)
+  const handleRest = useCallback(() => setForceHeight(!opened), [opened])
+  const handleStart = useCallback(() => setForceHeight(true), [])
+
+  // Update the height
+  useEffect(updateHeight, [opened, updateHeight])
+
   return (
     <Spring
       config={springs.smooth}
       from={{ openProgress: 0 }}
       to={{ openProgress: Number(opened) }}
       immediate={!animate}
+      onRest={handleRest}
+      onStart={handleStart}
       native
     >
       {({ openProgress }) => (
@@ -159,9 +173,11 @@ function Details({ children, label, onToggle, opened: openedProp, ...props }) {
               `}
               style={{
                 opacity: openProgress,
-                height: openProgress.interpolate(
-                  v => `${v * contentHeight.current}px`
-                ),
+                height: forceHeight
+                  ? openProgress.interpolate(
+                      v => `${v * contentHeight.current}px`
+                    )
+                  : 'auto',
               }}
             >
               <div
