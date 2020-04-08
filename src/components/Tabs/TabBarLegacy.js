@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import styled from 'styled-components'
+import { useTheme } from '../../theme'
 import { font, unselectable, noop } from '../../utils'
 
 class TabBar extends React.Component {
@@ -91,6 +91,8 @@ class TabBar extends React.Component {
   }
 }
 
+/* eslint-disable react/prop-types */
+
 function Bar({ children, border }) {
   const theme = useTheme()
   return (
@@ -152,7 +154,7 @@ function Tab({ children, selected }) {
   )
 }
 
-function Label({ children }) {
+function Label({ children, selected }) {
   const theme = useTheme()
   return (
     <span
