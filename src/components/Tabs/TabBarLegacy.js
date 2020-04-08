@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { theme } from '../../theme-legacy'
 import { font, unselectable, noop } from '../../utils'
 
 class TabBar extends React.Component {
@@ -92,43 +91,81 @@ class TabBar extends React.Component {
   }
 }
 
-const Bar = styled.ul`
-  display: flex;
-  border-bottom: ${p => (p.border ? `1px solid ${theme.contentBorder}` : '0')};
-`
+function Bar({ children, border }) {
+  const theme = useTheme()
+  return (
+    <ul
+      css={`
+        display: flex;
+        border-bottom: ${border ? `1px solid ${theme.border}` : '0'};
+      `}
+    >
+      {children}
+    </ul>
+  )
+}
 
-const FocusRing = styled.span`
-  display: none;
-  position: absolute;
-  top: -5px;
-  left: -5px;
-  right: -5px;
-  bottom: -5px;
-  border: 2px solid ${theme.accent};
-  border-radius: 2px;
-`
+function FocusRing({ children }) {
+  const theme = useTheme()
+  return (
+    <span
+      className="TabBarLegacy-FocusRing"
+      css={`
+        display: none;
+        position: absolute;
+        top: -5px;
+        left: -5px;
+        right: -5px;
+        bottom: -5px;
+        border: 2px solid ${theme.accent};
+        border-radius: 2px;
+      `}
+    >
+      {children}
+    </span>
+  )
+}
 
-const Tab = styled.li`
-  position: relative;
-  list-style: none;
-  padding: 0 30px;
-  cursor: pointer;
-  ${p =>
-    font({ weight: p.selected ? 'bold' : 'normal', deprecationNotice: false })};
-  ${unselectable()};
-  &:focus {
-    outline: 0;
-    ${FocusRing} {
-      display: block;
-    }
-  }
-`
+function Tab({ children, selected }) {
+  return (
+    <li
+      css={`
+        position: relative;
+        list-style: none;
+        padding: 0 30px;
+        cursor: pointer;
+        ${font({
+          weight: selected ? 'bold' : 'normal',
+          deprecationNotice: false,
+        })};
+        ${unselectable()};
+        &:focus {
+          outline: 0;
+          .TabBarLegacy-FocusRing {
+            display: block;
+          }
+        }
+      `}
+    >
+      {children}
+    </li>
+  )
+}
 
-const Label = styled.span`
-  display: flex;
-  margin-bottom: -1px;
-  padding: 5px 0 3px;
-  border-bottom: 4px solid ${p => (p.selected ? theme.accent : 'transparent')};
-`
+function Label({ children }) {
+  const theme = useTheme()
+  return (
+    <span
+      css={`
+        display: flex;
+        margin-bottom: -1px;
+        padding: 5px 0 3px;
+        border-bottom: 4px solid ${selected ? theme.accent : 'transparent'};
+      `}
+    >
+      {children}
+    </span>
+  )
+}
 
 export default TabBar
