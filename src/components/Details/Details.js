@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import PropTypes from 'prop-types'
 import { Spring, animated } from 'react-spring'
 import { useInside } from 'use-inside'
@@ -15,6 +15,7 @@ function interpolateToggleElevation(value, fn) {
 
 function Details({ children, label, onToggle, opened: openedProp, ...props }) {
   const theme = useTheme()
+  const [insideBox] = useInside('Box')
   const [insideSidePanel] = useInside('SidePanel')
 
   const contentRef = useRef(null)
@@ -67,6 +68,39 @@ function Details({ children, label, onToggle, opened: openedProp, ...props }) {
   // Update the height
   useEffect(updateHeight, [opened, updateHeight])
 
+  const spacingCss = useMemo(() => {
+    if (insideSidePanel) {
+      return {
+        section: `
+          margin: ${2 * GU}px ${-3 * GU}px 0;
+          padding-bottom: ${3 * GU}px;
+        `,
+        content: `
+          padding: ${2 * GU}px ${3 * GU}px 0;
+        `,
+      }
+    }
+    if (insideBox) {
+      return {
+        section: `
+          margin: 0 ${-3 * GU}px;
+        `,
+        content: `
+          padding: ${1 * GU}px ${3 * GU}px 0;
+        `,
+      }
+    }
+    return {
+      section: `
+        margin: 0;
+        padding-bottom: ${3 * GU}px;
+      `,
+      content: `
+        padding: 0;
+      `,
+    }
+  }, [insideSidePanel, insideBox])
+
   return (
     <Spring
       config={springs.smooth}
@@ -78,13 +112,7 @@ function Details({ children, label, onToggle, opened: openedProp, ...props }) {
       native
     >
       {({ openProgress }) => (
-        <section
-          css={`
-            margin: ${insideSidePanel ? `${2 * GU}px ${-3 * GU}px 0` : '0'};
-            padding-bottom: ${3 * GU}px;
-          `}
-          {...props}
-        >
+        <section css={spacingCss.section} {...props}>
           <ButtonBase
             onClick={handleToggle}
             css={`
@@ -180,14 +208,7 @@ function Details({ children, label, onToggle, opened: openedProp, ...props }) {
                   : 'auto',
               }}
             >
-              <div
-                ref={handleContentRef}
-                css={`
-                  padding: ${insideSidePanel
-                    ? `${2 * GU}px ${3 * GU}px 0`
-                    : '0'};
-                `}
-              >
+              <div ref={handleContentRef} css={spacingCss.content}>
                 <div>{children}</div>
               </div>
             </animated.div>
