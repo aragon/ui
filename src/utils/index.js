@@ -1,4 +1,3 @@
-export { default as cachedMap } from './cached-map'
 export { default as color } from './color'
 export * from './components'
 export * from './contains-component'
