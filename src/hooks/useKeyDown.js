@@ -6,7 +6,7 @@ export function useKeyDown(key, callback) {
   const handlekeyDown = useCallback(
     event => {
       if (keys.includes(event.keyCode)) {
-        callback()
+        callback(event.keyCode)
       }
     },
     [callback, keys]
