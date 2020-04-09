@@ -40,7 +40,7 @@ The content to reveal. Note that it this node is always mounted even when hidden
 | --------- | ------------- |
 | `Boolean` | None          |
 
-When set, allows to control the state of `Details` from the outside ([controlled component](https://reactjs.org/docs/forms.html#controlled-components)). Leave unset to let `Details` handle its own opened / close state.
+When set, allows to control the state of `Details` from the outside (as a [controlled component](https://reactjs.org/docs/forms.html#controlled-components)). Leave unset to let `Details` manage its own opened / closed state.
 
 ### `onToggle`
 
