@@ -94,8 +94,4 @@ export default {
   blue: '#3E7BF6',
   brown: '#876559',
   purple: '#7C80F2',
-
-  // deprecated
-  error: '#FF6969',
-  success: '#2CC68F',
 }
