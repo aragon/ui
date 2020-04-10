@@ -40,7 +40,8 @@ function getTheme(theme) {
   return { ...baseTheme, ...theme }
 }
 
-const ThemeContext = React.createContext(null)
+// Setting the default is needed for cases when components are used without being wrapped in `<Theme />`, e.g. for tests.
+const ThemeContext = React.createContext(prepareTheme(getTheme(THEME_DEFAULT)))
 
 function convertThemeColor(name, value) {
   if (RESERVED_KEYS.includes(name)) {
