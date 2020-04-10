@@ -75,8 +75,8 @@ function divideRoundBigInt(dividend, diviser) {
  * @param {BigInt|string|number} amount              Number to round
  * @param {BigInt|string|number} decimals            Decimal placement for amount
  * @param {BigInt|string|number} roundToDecimals     Rounds the number to a given decimal place
- * @param {string}               options.symbol      Symbol for the token amount
  * @param {boolean}              options.displaySign Decides if the sign should be displayed
+ * @param {string}               options.symbol      Symbol for the token amount
  * @returns {string}
  */
 export function formatTokenAmount(
