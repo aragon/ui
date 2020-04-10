@@ -32,7 +32,7 @@ If a function is passed, it gets called to generate the label displayed on the g
 
 - `value`: the main number (defaults to `Math.round(value * 100)`).
 - `suffix`: the suffix to display (defaults to `%`).
-- `prefix`: the optional prefix to display (defaults to `<` below 1%).
+- `prefix`: the optional prefix to display (defaults to `<` when `value` is below 1).
 - `secondary`: a secondary label to display below the main one.
 
 Avoid doing anything slow in this function as it gets called 60 times per second.
