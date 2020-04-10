@@ -173,6 +173,8 @@ class Slider extends React.Component {
                       height: ${HANDLE_SIZE}px;
                       border: 1px solid ${theme.border};
                       border-radius: 50%;
+                      cursor: pointer;
+                      pointer-events: auto;
                     `}
                   />
                 </HandlePosition>
