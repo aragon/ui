@@ -9,9 +9,10 @@ function Center({ children, ...props }) {
         left: 0;
         right: 0;
         bottom: 0;
-        display: flex;
+        display: grid;
         align-items: center;
         justify-content: center;
+        overflow-y: auto;
       `}
       {...props}
     >
