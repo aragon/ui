@@ -107,16 +107,10 @@ export function formatTokenAmount(
     JSBI.remainder(amountConverted, JSBI.exponentiate(_10, roundToDecimals))
   )
 
-  let result =
-    leftPart + (rightPart && rightPart !== '0' ? `.${rightPart}` : '')
-
-  if (displaySign) {
-    result = `${negative ? '-' : '+'}${result}`
-  }
-
-  if (symbol) {
-    result = `${result}${NO_BREAK_SPACE}${symbol}`
-  }
-
-  return result
+  return [
+    displaySign ? (negative ? '-' : '+') : '',
+    leftPart,
+    rightPart && rightPart !== '0' ? `.${rightPart}` : '',
+    symbol ? `${NO_BREAK_SPACE}${symbol}` : '',
+  ].join('')
 }
