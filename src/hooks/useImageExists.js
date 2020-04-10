@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
-import cachedMap from '../utils/cached-map'
+import cachedMap from '../lib/cached-map'
 
 const srcCache = cachedMap()
 

@@ -65,8 +65,8 @@ export function lerp(progress, value1, value2) {
  * @param {Number} value   maximum limit
  * @returns {Number}
  */
-export function clamp(aNumber, aMin, aMax) {
-  return aNumber > aMax ? aMax : aNumber < aMin ? aMin : aNumber
+export function clamp(value, min = 0, max = 1) {
+  return Math.min(max, Math.max(min, value))
 }
 
 /**

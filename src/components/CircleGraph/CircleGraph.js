@@ -1,92 +1,206 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import PropTypes from 'prop-types'
-import styled from 'styled-components'
 import { Spring, animated } from 'react-spring'
+import { useTheme } from '../../theme'
+import { clamp, warnOnce } from '../../utils'
 
-const BORDER_WIDTH = 4
-
-const VALUE_DEFAULT = 1
+const STROKE_WIDTH = 4
 const SIZE_DEFAULT = 80
-const LABEL_DEFAULT = value => `${Math.round(value * 100)}%`
 
-const CircleGraph = ({ value, label, size }) => {
-  const length = Math.PI * 2 * (size - BORDER_WIDTH)
-  const radius = (size - BORDER_WIDTH) / 2
+function labelDefault(animValue, value) {
+  const parts = {
+    suffix: '%',
+    value: String(Math.floor(animValue * 100)),
+  }
+
+  const animPercentage = animValue * 100
+  const percentage = value * 100
+
+  return animPercentage === 0 || animPercentage >= 1
+    ? parts
+    : {
+        ...parts,
+
+        // Do not display the prefix when we are only animating between 0 and 1.
+        prefix: percentage < 1 && percentage > 0 ? '<' : '',
+      }
+}
+
+function labelCompat(parts) {
+  if (
+    typeof parts === 'string' ||
+    typeof parts === 'number' ||
+    React.isValidElement(parts)
+  ) {
+    warnOnce(
+      'CircleGraph:label:string',
+      'CircleGraph: the function passed to the label should not ' +
+        'return a React node anymore: please check the CircleGraph documentation.'
+    )
+    return { value: String(parts) }
+  }
+  return parts
+}
+
+function CircleGraph({ color, label, size, strokeWidth, value }) {
+  const theme = useTheme()
+  const length = Math.PI * 2 * (size - strokeWidth)
+  const radius = (size - strokeWidth) / 2
+
+  if (label === undefined) {
+    label = labelDefault
+  }
+
+  const labelPart = useCallback(
+    name => animValue => {
+      if (typeof label !== 'function') {
+        return null
+      }
+
+      const cValue = clamp(animValue)
+      const parts = labelCompat(label(cValue, value))
+
+      return (
+        (parts[name] === undefined
+          ? labelDefault(cValue, value)[name]
+          : parts[name]) || ''
+      )
+    },
+    [label, value]
+  )
+
+  const colorFn =
+    typeof color === 'function' ? color : () => color || theme.accent
+
   return (
     <Spring to={{ progressValue: value }} native>
       {({ progressValue }) => (
-        <Main
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            width: `${size}px`,
-            height: `${size}px`,
-          }}
+        <div
+          css={`
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content center;
+            width: ${size}px;
+            height: ${size}px;
+          `}
         >
-          <CircleSvg width={size} height={size} viewBox={`0 0 ${size} ${size}`}>
-            <CircleBase cx={size / 2} cy={size / 2} r={radius} />
-            <CircleValue
+          <svg
+            css={`
+              position: absolute;
+              top: 0;
+              left: 0;
+            `}
+            width={size}
+            height={size}
+            viewBox={`0 0 ${size} ${size}`}
+          >
+            <circle
               cx={size / 2}
               cy={size / 2}
               r={radius}
+              style={{ strokeWidth }}
+              fill="none"
+              stroke={theme.border}
+            />
+            <animated.circle
+              cx={size / 2}
+              cy={size / 2}
+              r={radius}
+              fill="none"
+              strokeLinecap="round"
+              strokeDasharray={length}
+              strokeWidth={strokeWidth}
               style={{
-                strokeDasharray: length,
+                stroke: progressValue.interpolate(colorFn),
                 strokeDashoffset: progressValue.interpolate(
                   t => length - (length * t) / 2
                 ),
-                strokeWidth: BORDER_WIDTH,
               }}
+              css={`
+                transform: rotate(270deg);
+                transform-origin: 50% 50%;
+              `}
             />
-          </CircleSvg>
-          <Label>
-            {progressValue.interpolate(t => label(Math.min(1, Math.max(0, t))))}
-          </Label>
-        </Main>
+          </svg>
+          <div
+            css={`
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              align-items: center;
+              line-height: 1.2;
+            `}
+          >
+            {typeof label !== 'function'
+              ? label
+              : label && (
+                  <div
+                    css={`
+                      position: absolute;
+                      top: 50%;
+                      left: 0;
+                      right: 0;
+                      transform: translateY(-50%);
+                    `}
+                  >
+                    <div
+                      css={`
+                        display: flex;
+                        align-items: baseline;
+                        justify-content: center;
+                      `}
+                    >
+                      <animated.div style={{ fontSize: `${size * 0.2}px` }}>
+                        {progressValue.interpolate(labelPart('prefix'))}
+                      </animated.div>
+                      <animated.div style={{ fontSize: `${size * 0.25}px` }}>
+                        {progressValue.interpolate(labelPart('value'))}
+                      </animated.div>
+                      <animated.div
+                        css={`
+                          display: flex;
+                          color: ${theme.surfaceContentSecondary};
+                        `}
+                        style={{ fontSize: `${size * 0.13}px` }}
+                      >
+                        {progressValue.interpolate(labelPart('suffix'))}
+                      </animated.div>
+                    </div>
+                    <animated.div
+                      css={`
+                        position: absolute;
+                        top: 100%;
+                        left: 0;
+                        right: 0;
+                        display: flex;
+                        justify-content: center;
+                        color: ${theme.surfaceContentSecondary};
+                      `}
+                      style={{ fontSize: `${size * 0.1}px` }}
+                    >
+                      {progressValue.interpolate(labelPart('secondary'))}
+                    </animated.div>
+                  </div>
+                )}
+          </div>
+        </div>
       )}
     </Spring>
   )
 }
 
 CircleGraph.propTypes = {
-  value: PropTypes.number,
+  color: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+  label: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
   size: PropTypes.number,
-  label: PropTypes.func,
+  strokeWidth: PropTypes.number,
+  value: PropTypes.number.isRequired,
 }
 
 CircleGraph.defaultProps = {
-  value: VALUE_DEFAULT,
   size: SIZE_DEFAULT,
-  label: LABEL_DEFAULT,
+  strokeWidth: STROKE_WIDTH,
 }
-
-const Main = styled.div`
-  position: relative;
-`
-
-const CircleSvg = styled.svg`
-  position: absolute;
-  top: 0;
-  left: 0;
-`
-
-const CircleBase = styled.circle`
-  fill: none;
-  stroke: #6d777b;
-  opacity: 0.3;
-`
-
-const CircleValue = styled(animated.circle)`
-  fill: none;
-  transform: rotate(270deg);
-  transform-origin: 50% 50%;
-  stroke: #21c1e7;
-`
-
-const Label = styled(animated.div)`
-  font-size: 16px;
-  font-weight: 400;
-  color: #000;
-`
 
 export default CircleGraph

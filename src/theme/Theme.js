@@ -1,6 +1,6 @@
 import React, { useContext, useMemo } from 'react'
 import PropTypes from 'prop-types'
-import { color, warn } from '../utils'
+import { color, warnOnce } from '../utils'
 import dark from './theme-dark'
 import light from './theme-light'
 
@@ -12,13 +12,21 @@ const EMBEDDED_THEMES = { dark, light }
 const THEME_DEFAULT = 'light'
 
 const RESERVED_KEYS = ['_appearance', '_name']
+const DEPRECATED_COLORS = new Map([
+  ['error', 'negative'],
+  ['success', 'positive'],
+])
 
 const COLOR_FALLBACK = '#FF00FF'
 
 function getTheme(theme) {
-  if (!validateTheme(theme)) {
-    warn('Theme invalid:', theme)
-    warn(`Using the theme “${THEME_DEFAULT}”.`)
+  const validationError = validateTheme(theme)
+  if (validationError !== null) {
+    warnOnce(
+      `theme:theme-invalid:${validationError}`,
+      `Theme invalid: ${validationError}. ` +
+        `Using the theme “${THEME_DEFAULT}” instead.`
+    )
     return EMBEDDED_THEMES[THEME_DEFAULT]
   }
 
@@ -32,9 +40,8 @@ function getTheme(theme) {
   return { ...baseTheme, ...theme }
 }
 
-const ThemeContext = React.createContext(
-  convertThemeColors(getTheme(THEME_DEFAULT))
-)
+// Setting the default is needed for cases when components are used without being wrapped in `<Theme />`, e.g. for tests.
+const ThemeContext = React.createContext(prepareTheme(getTheme(THEME_DEFAULT)))
 
 function convertThemeColor(name, value) {
   if (RESERVED_KEYS.includes(name)) {
@@ -48,22 +55,60 @@ function convertThemeColor(name, value) {
   }
 }
 
-function convertThemeColors(theme) {
-  return Object.entries(theme).reduce((theme, [name, value]) => {
-    let convertedValue = convertThemeColor(name, value)
-
-    return {
-      ...theme,
-      [name]: convertedValue,
-    }
-  }, {})
+// prepareTheme() does a few things:
+// - Wrap every color in a color() object (see utils/color.js).
+// - Filter out invalid colors added in custom themes.
+// - Wraps the theme in a proxy that warns about deprecated colors.
+function prepareTheme(theme) {
+  const themeConverted = Object.fromEntries(
+    Object.entries(theme)
+      .filter(([name]) => {
+        if (!EMBEDDED_THEMES[THEME_DEFAULT][name]) {
+          warnOnce(
+            `theme:invalid:${name}`,
+            `Theme: the color “${name}” is invalid and will be ignored. ` +
+              `Please check src/theme/theme-light.js in the aragonUI ` +
+              `repository for a list of valid colors.`
+          )
+          return false
+        }
+        return true
+      })
+      .map(([name, value]) => [name, convertThemeColor(name, value)])
+  )
+  return new Proxy(themeConverted, {
+    get(theme, name) {
+      if (DEPRECATED_COLORS.has(name)) {
+        warnOnce(
+          `theme:deprecated:${name}`,
+          `useTheme(): the color “${name}” has been deprecated and will be removed soon. ` +
+            `Please use “${DEPRECATED_COLORS.get(name)}” instead.`
+        )
+        return theme[DEPRECATED_COLORS.get(name)]
+      }
+      if (!theme[name]) {
+        warnOnce(
+          `theme:unknown:${name}`,
+          `useTheme(): the color “${name}” doesn’t exist in the theme.`
+        )
+        return COLOR_FALLBACK
+      }
+      return theme[name]
+    },
+  })
 }
 
 function validateTheme(theme) {
-  return (
-    (typeof theme === 'string' && EMBEDDED_THEMES[theme]) ||
-    (theme && theme._name && APPEARANCES.includes(theme._appearance))
-  )
+  if (typeof theme === 'string') {
+    return EMBEDDED_THEMES[theme] ? null : `the theme “${theme}” doesn’t exist`
+  }
+  if (theme && !theme._name) {
+    return `the “_name” key of the theme is missing`
+  }
+  if (theme && !APPEARANCES.includes(theme._appearance)) {
+    return `the “_appearance” key of the theme is missing`
+  }
+  return null
 }
 
 function Theme({ theme, children }) {
@@ -71,9 +116,7 @@ function Theme({ theme, children }) {
     theme = THEME_DEFAULT
   }
 
-  const themeConverted = useMemo(() => convertThemeColors(getTheme(theme)), [
-    theme,
-  ])
+  const themeConverted = useMemo(() => prepareTheme(getTheme(theme)), [theme])
 
   return (
     <ThemeContext.Provider value={themeConverted}>

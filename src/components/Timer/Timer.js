@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import memoize from 'lodash-es/memoize'
+import memoize from 'lodash/memoize'
 import dayjs from 'dayjs'
 import { Redraw } from '../../providers/Redraw'
 import { IconTime } from '../../icons'

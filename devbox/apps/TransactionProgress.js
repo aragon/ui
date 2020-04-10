@@ -12,7 +12,15 @@ class App extends React.Component {
     const { title } = this.props
     return (
       <Root.Provider>
-        <Wrapper>
+        <div
+          css={`
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100vh;
+          `}
+        >
           <div ref={this.handleRef}>
             <Button
               ref={this._opener}
@@ -32,30 +40,10 @@ class App extends React.Component {
               slow
             />
           </div>
-        </Wrapper>
+        </div>
       </Root.Provider>
     )
   }
 }
-
-const Wrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100vh;
-`
-
-const Box = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 200px;
-  height: 100px;
-  background: ${theme.contentBackground};
-  border: 1px solid ${theme.contentBorder};
-  border-radius: 3px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-`
 
 export default App
