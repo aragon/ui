@@ -29,7 +29,7 @@ export function formatIntegerRange(
 }
 
 /**
- * Formats an integer for display purposes.
+ * Formats a number for display purposes.
  *
  * This function is not using Intl.NumberFormat() to be compatible with big
  * integers expressed as string, or BigInt-like objects.
