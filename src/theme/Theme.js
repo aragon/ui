@@ -40,7 +40,7 @@ function getTheme(theme) {
   return { ...baseTheme, ...theme }
 }
 
-const ThemeContext = React.createContext(null)
+const ThemeContext = React.createContext(prepareTheme(getTheme(THEME_DEFAULT)))
 
 function convertThemeColor(name, value) {
   if (RESERVED_KEYS.includes(name)) {
