@@ -2,7 +2,7 @@ import React, { useCallback } from 'react'
 import PropTypes from 'prop-types'
 import { Spring, animated } from 'react-spring'
 import { useTheme } from '../../theme'
-import { clamp } from '../../utils'
+import { clamp, warnOnce } from '../../utils'
 
 const STROKE_WIDTH = 4
 const SIZE_DEFAULT = 80
@@ -26,10 +26,20 @@ function labelDefault(animValue, value) {
     }
   }
 
-  return {
-    value: String(Math.round(animValue * 100)),
-    suffix,
+function labelCompat(parts) {
+  if (
+    typeof parts === 'string' ||
+    typeof parts === 'number' ||
+    React.isValidElement(parts)
+  ) {
+    warnOnce(
+      'CircleGraph:label:string',
+      'CircleGraph: the function passed to the label should not ' +
+        'return a React node anymore: please check the CircleGraph documentation.'
+    )
+    return { value: String(parts) }
   }
+  return parts
 }
 
 function CircleGraph({ color, label, size, strokeWidth, value }) {
@@ -48,7 +58,7 @@ function CircleGraph({ color, label, size, strokeWidth, value }) {
       }
 
       const cValue = clamp(animValue)
-      const parts = label(cValue, value)
+      const parts = labelCompat(label(cValue, value))
 
       return (
         (parts[name] === undefined
