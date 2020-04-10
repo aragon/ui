@@ -8,23 +8,23 @@ const STROKE_WIDTH = 4
 const SIZE_DEFAULT = 80
 
 function labelDefault(animValue, value) {
-  const suffix = '%'
-
-  if (animValue === 0) {
-    return { value: '0', suffix }
+  const parts = {
+    suffix: '%',
+    value: String(Math.floor(animValue * 100)),
   }
 
-  const percentage = value * 100
   const animPercentage = animValue * 100
+  const percentage = value * 100
 
-  if (animPercentage < 1) {
-    return {
-      // Do not display the prefix when we are only animating between 0 and 1.
-      prefix: percentage < 1 && percentage > 0 ? '<' : '',
-      value: '1',
-      suffix,
-    }
-  }
+  return animPercentage === 0 || animPercentage >= 1
+    ? parts
+    : {
+        ...parts,
+
+        // Do not display the prefix when we are only animating between 0 and 1.
+        prefix: percentage < 1 && percentage > 0 ? '<' : '',
+      }
+}
 
 function labelCompat(parts) {
   if (
