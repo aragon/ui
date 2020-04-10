@@ -71,7 +71,7 @@ describe('formatTokenAmount()', () => {
     )
   })
 
-  test('should handle non-decimal numbers', () => {
+  test('should handle large numbers without decimals', () => {
     expect(formatTokenAmount(BigInt('2839000000000000000000'), 18, 8)).toEqual(
       '2,839'
     )
