@@ -57,7 +57,7 @@ export function formatNumber(number) {
  * Divide and round two big integers.
  *
  * @param {BigInt|string|number} dividend Integer to be divided + rounded
- * @param {BigInt|string|number} diviser  Diviser
+ * @param {BigInt|string|number} divisor  Divisor
  * @returns {string}
  */
 function divideRoundBigInt(dividend, diviser) {
