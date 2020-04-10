@@ -104,4 +104,5 @@ Layout.defaultProps = {
 // Can be used to build an alternative Layout component
 Layout.__Context = LayoutContext
 
-export { useLayout, Layout }
+export default Layout
+export { useLayout }

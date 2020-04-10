@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { ButtonIcon } from '../Button/ButtonIcon'
+import ButtonIcon from '../Button/ButtonIcon'
 import { IconDown, IconUp } from '../../icons'
 import { useTheme } from '../../theme'
 import { RADIUS } from '../../style'

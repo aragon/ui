@@ -3,7 +3,7 @@
 
 
 "@aragon/ui@file:..":
-  version "1.2.1"
+  version "1.3.1"
   dependencies:
     "@babel/runtime" "^7.3.1"
     airbnb-prop-types "^2.9.0"
@@ -19,6 +19,7 @@
     react-onclickout "^2.0.8"
     react-spring "^7.2.11"
     recursive-copy "^2.0.9"
+    use-inside "^0.1.0"
 
 "@babel/code-frame@^7.0.0", "@babel/code-frame@^7.5.5":
   version "7.5.5"
@@ -1015,9 +1016,9 @@ accepts@~1.3.4, accepts@~1.3.5, accepts@~1.3.7:
     negotiator "0.6.2"
 
 acorn@^6.2.1:
-  version "6.3.0"
-  resolved "https://registry.yarnpkg.com/acorn/-/acorn-6.3.0.tgz#0087509119ffa4fc0a0041d1e93a417e68cb856e"
-  integrity sha512-/czfa8BwS88b9gWQVhc8eknunSA2DoJpJyTQkhheIf5E48u1N0R4q/YxxsAeqRrmK9TQ/uYfgLDfZo91UlANIA==
+  version "6.4.1"
+  resolved "https://registry.yarnpkg.com/acorn/-/acorn-6.4.1.tgz#531e58ba3f51b9dacb9a6646ca4debf5b14ca474"
+  integrity sha512-ZVA9k326Nwrj3Cj9jlh3wGFutC2ZornPNARZwsNYqQYgN0EsV2d53w5RN/co65Ohn4sUAUtb1rSUAOD6XN9idA==
 
 aggregate-error@^3.0.0:
   version "3.0.1"
@@ -5727,6 +5728,13 @@ url@^0.11.0:
   dependencies:
     punycode "1.3.2"
     querystring "0.2.0"
+
+use-inside@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/use-inside/-/use-inside-0.1.0.tgz#f37e47b1b2819cee382df79d990060b8c222d8ed"
+  integrity sha512-+WFohaTyoXN8Aq60OaFYHuNxejbnVplHZuUVpsjo095kjgykbeqHEl9HcM06V8cbYyMPyGjKdm67H0cCSt7nyQ==
+  dependencies:
+    prop-types "^15.7.2"
 
 use@^3.1.0:
   version "3.1.1"

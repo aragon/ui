@@ -1,16 +1,10 @@
-import { useCallback, useRef } from 'react'
+import { useFocusLeave } from './useFocusLeave'
+import { warnOnce } from '../utils/environment'
 
-/* eslint-disable react-hooks/rules-of-hooks */
-export function useOnBlur(cb, ref = useRef()) {
-  /* eslint-enable react-hooks/rules-of-hooks */
-  const handleBlur = useCallback(
-    event => {
-      if (!ref.current.contains(event.relatedTarget)) {
-        cb(event)
-      }
-    },
-    [cb, ref]
+export function useOnBlur(...params) {
+  warnOnce(
+    'useOnBlur',
+    'useOnBlur() is deprecated, please use useFocusLeave() instead.'
   )
-
-  return { ref, handleBlur }
+  return useFocusLeave(...params)
 }

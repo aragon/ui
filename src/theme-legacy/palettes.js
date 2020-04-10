@@ -1,3 +1,4 @@
+import { warn, warnOnce } from '../utils'
 import aragon from './aragon'
 
 // These need to match the names in the Open Color palettes
@@ -44,7 +45,7 @@ const resolveColors = (palette, palettes) =>
   }, {})
 
 // Prepare groups from the palettes: theme, themeDark, brand and colors.
-const groups = palettes =>
+const generateGroups = palettes =>
   Object.entries(palettes).reduce(
     (groups, [paletteName, palette]) => {
       const groupName = getGroupName(paletteName)
@@ -60,6 +61,29 @@ const groups = palettes =>
     { colors: {} }
   )
 
-const { themeDark, theme, brand, colors } = groups(aragon)
+// Deprecate any access to the palettes
+const { themeDark, theme, brand, colors } = Object.fromEntries(
+  Object.entries(generateGroups(aragon)).map(([name, group]) => [
+    name,
+    new Proxy(group, {
+      get(group, colorName) {
+        if (group[colorName]) {
+          warnOnce(
+            `theme-legacy:${name}.${colorName}`,
+            `${name}.${colorName} was accessed but ${name} will be removed soon, ` +
+              `please use useTheme() instead.`
+          )
+        } else {
+          warn(
+            `${name}.${colorName} doesn’t exist. ${name} will be removed soon, ` +
+              `please use useTheme() instead.`
+          )
+        }
+        return group[colorName]
+      },
+    }),
+  ])
+)
 
+// TODO: show a deprecating warning when any of these colors get accessed once.
 export { themeDark, theme, brand, colors }

@@ -5,7 +5,7 @@ import { GU, RADIUS } from '../../style'
 import { isAddress, warn } from '../../utils'
 import BadgeBase from '../BadgeBase/BadgeBase'
 import BadgePopoverActionType from '../BadgeBase/BadgePopoverActionType'
-import { Tag } from '../Tag/Tag'
+import Tag from '../Tag/Tag'
 import AppBadgePopover from './AppBadgePopover'
 import iconDefaultSvg from './assets/app-default.svg'
 

@@ -1,6 +1,6 @@
 import React, { useCallback, useMemo } from 'react'
 import PropTypes from 'prop-types'
-import { DataView } from '../DataView/DataView'
+import DataView from '../DataView/DataView'
 
 const Accordion = React.memo(function Accordion({ items, className, style }) {
   const fields = useMemo(() => [null], [])
