@@ -26,7 +26,7 @@ The color representing the active part in the circle. When a function is passed,
 | -------------------- | ------------- |
 | `Function` or `Node` | None          |
 
-When a React node is passed, it gets rendered directly.
+If a React node is passed, it gets rendered directly.
 
 A function that gets called to generate the label displayed on the graph. It takes the current value as a parameter and should return an object containing the following nodes:
 
