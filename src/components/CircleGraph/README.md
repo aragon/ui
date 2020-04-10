@@ -26,13 +26,13 @@ The color representing the active part in the circle. When a function is passed,
 | -------------------- | ------------- |
 | `Function` or `Node` | None          |
 
-When a React node is passed, it gets rendered directly.
+If a React node is passed, it gets rendered directly.
 
-A function that gets called to generate the label displayed on the graph. It takes two parameters: the animated value and the static value. The animated value should be enough in most cases, but the second parameter can be helpful in certain cases. This function should return an object containing the following nodes:
+If a function is passed, it gets called to generate the label displayed on the graph. It takes two parameters: the animated value and the static value. The animated value should be enough in most cases, but the second parameter can be helpful in certain cases. This function should return an object containing the following nodes:
 
 - `value`: the main number (defaults to `Math.round(value * 100)`).
-- `suffix`: the suffix displayed after (defaults to `%`).
-- `prefix`: the optional prefix to display (defaults to `<` below 1%).
+- `suffix`: the suffix to display (defaults to `%`).
+- `prefix`: the optional prefix to display (defaults to `<` when `value` is below 1).
 - `secondary`: a secondary label to display below the main one.
 
 Avoid doing anything slow in this function as it gets called 60 times per second.
