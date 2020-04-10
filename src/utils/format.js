@@ -40,14 +40,17 @@ export function formatIntegerRange(
 export function formatNumber(number) {
   const numAsString = String(number)
   const [integer, decimals] = numAsString.split('.')
-  let result = ''
-  for (let i = 0, len = integer.length; i < len; i++) {
-    if (i > 0 && i % 3 === 0) {
-      result = ',' + result
-    }
-    result = integer[len - i - 1] + result
-  }
-  return result + (decimals ? `.${decimals}` : '')
+
+  return [...integer].reduceRight(
+    (result, digit, index, { length }) => {
+      const position = length - index - 1
+      if (position > 0 && position % 3 === 0) {
+        result = ',' + result
+      }
+      return digit + result
+    },
+    decimals ? `.${decimals}` : ''
+  )
 }
 
 /**
