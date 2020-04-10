@@ -94,7 +94,7 @@ export function formatTokenAmount(
   const negative = JSBI.lessThan(amount, _0)
 
   if (negative) {
-    amount = JSBI.subtract(_0, amount)
+    amount = JSBI.unaryMinus(amount)
   }
 
   const amountConverted = divideRoundBigInt(
