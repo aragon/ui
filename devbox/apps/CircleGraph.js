@@ -5,6 +5,7 @@ import {
   Checkbox,
   CircleGraph,
   Field,
+  GU,
   Slider,
   lerp,
 } from '@aragon/ui'
@@ -52,9 +53,11 @@ export default function App() {
                   ${lerp(value, COLOR_START[2], COLOR_END[2])}
                 )`
               }
-              secondary={
-                displaySecondary ? `${Math.floor(value / 10)}/10` : null
-              }
+              label={(animValue, value) => ({
+                secondary: displaySecondary
+                  ? `${Math.floor(value * 10)}/10`
+                  : null,
+              })}
             />
           </Card>
         </div>
@@ -66,21 +69,23 @@ export default function App() {
         />
 
         <Field label="Size">
-          <Slider value={size} onUpdate={setSize} />
+          {() => <Slider value={size} onUpdate={setSize} />}
         </Field>
 
         <Field label="Value">
-          <div
-            css={`
-              display: grid;
-              grid-template-columns: repeat(3, 1fr);
-              grid-gap: 10px;
-            `}
-          >
-            {VALUES.map(v => (
-              <Button key={v} label={`${v}%`} onClick={() => setValue(v)} />
-            ))}
-          </div>
+          {() => (
+            <div
+              css={`
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                grid-gap: 10px;
+              `}
+            >
+              {VALUES.map(v => (
+                <Button key={v} label={`${v}%`} onClick={() => setValue(v)} />
+              ))}
+            </div>
+          )}
         </Field>
 
         <Field label="Secondary label">
@@ -97,7 +102,7 @@ export default function App() {
               />
               <div
                 css={`
-                  width: 10px;
+                  width: ${1 * GU}px;
                 `}
               />
               <div>Display secondary label</div>
