@@ -31,7 +31,7 @@ If a React node is passed, it gets rendered directly.
 If a function is passed, it gets called to generate the label displayed on the graph. It takes the current value as a parameter and should return an object containing the following nodes:
 
 - `value`: the main number (defaults to `Math.round(value * 100)`).
-- `suffix`: the suffix displayed after (defaults to `%`).
+- `suffix`: the suffix to display (defaults to `%`).
 - `prefix`: the optional prefix to display (defaults to `<` below 1%).
 - `secondary`: a secondary label to display below the main one.
 
