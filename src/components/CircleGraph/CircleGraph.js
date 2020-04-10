@@ -1,21 +1,34 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import PropTypes from 'prop-types'
 import { Spring, animated } from 'react-spring'
 import { useTheme } from '../../theme'
+import { clamp } from '../../utils'
 
 const STROKE_WIDTH = 4
 const SIZE_DEFAULT = 80
 
-function labelDefault(value) {
-  if (value === 0) {
-    return { value: '0', suffix: '%' }
+function labelDefault(animValue, value) {
+  const suffix = '%'
+
+  if (animValue === 0) {
+    return { value: '0', suffix }
   }
-  if (Math.floor(value * 100) < 1) {
-    return { prefix: '<', value: '1', suffix: '%' }
+
+  const percentage = value * 100
+  const animPercentage = animValue * 100
+
+  if (animPercentage < 1) {
+    return {
+      // Do not display the prefix when we are only animating between 0 and 1.
+      prefix: percentage < 1 && percentage > 0 ? '<' : '',
+      value: '1',
+      suffix,
+    }
   }
+
   return {
-    value: String(Math.round(value * 100)),
-    suffix: '%',
+    value: String(Math.round(animValue * 100)),
+    suffix,
   }
 }
 
@@ -28,16 +41,26 @@ function CircleGraph({ color, label, size, strokeWidth, value }) {
     label = labelDefault
   }
 
-  // We assume label is a node if not a function.
-  const isLabelNode = typeof label !== 'function'
+  const labelPart = useCallback(
+    name => animValue => {
+      if (typeof label !== 'function') {
+        return null
+      }
 
-  const { prefix, suffix, secondary } =
-    label && !isLabelNode ? label(value) : {}
+      const cValue = clamp(animValue)
+      const parts = label(cValue, value)
 
-  let colorFn = color || (() => theme.accent)
-  if (typeof colorFn !== 'function') {
-    colorFn = () => color
-  }
+      return (
+        (parts[name] === undefined
+          ? labelDefault(cValue, value)[name]
+          : parts[name]) || ''
+      )
+    },
+    [label, value]
+  )
+
+  const colorFn =
+    typeof color === 'function' ? color : () => color || theme.accent
 
   return (
     <Spring to={{ progressValue: value }} native>
@@ -99,7 +122,7 @@ function CircleGraph({ color, label, size, strokeWidth, value }) {
               line-height: 1.2;
             `}
           >
-            {isLabelNode
+            {typeof label !== 'function'
               ? label
               : label && (
                   <div
@@ -118,42 +141,36 @@ function CircleGraph({ color, label, size, strokeWidth, value }) {
                         justify-content: center;
                       `}
                     >
-                      {prefix && (
-                        <div style={{ fontSize: `${size * 0.2}px` }}>
-                          {prefix}
-                        </div>
-                      )}
-                      <animated.div style={{ fontSize: `${size * 0.25}px` }}>
-                        {progressValue.interpolate(
-                          v => label(Math.min(1, Math.max(0, v))).value
-                        )}
+                      <animated.div style={{ fontSize: `${size * 0.2}px` }}>
+                        {progressValue.interpolate(labelPart('prefix'))}
                       </animated.div>
-                      <div
+                      <animated.div style={{ fontSize: `${size * 0.25}px` }}>
+                        {progressValue.interpolate(labelPart('value'))}
+                      </animated.div>
+                      <animated.div
                         css={`
                           display: flex;
                           color: ${theme.surfaceContentSecondary};
                         `}
                         style={{ fontSize: `${size * 0.13}px` }}
                       >
-                        {suffix}
-                      </div>
+                        {progressValue.interpolate(labelPart('suffix'))}
+                      </animated.div>
                     </div>
-                    {secondary && (
-                      <div
-                        css={`
-                          position: absolute;
-                          top: 100%;
-                          left: 0;
-                          right: 0;
-                          display: flex;
-                          justify-content: center;
-                          color: ${theme.surfaceContentSecondary};
-                        `}
-                        style={{ fontSize: `${size * 0.1}px` }}
-                      >
-                        {secondary}
-                      </div>
-                    )}
+                    <animated.div
+                      css={`
+                        position: absolute;
+                        top: 100%;
+                        left: 0;
+                        right: 0;
+                        display: flex;
+                        justify-content: center;
+                        color: ${theme.surfaceContentSecondary};
+                      `}
+                      style={{ fontSize: `${size * 0.1}px` }}
+                    >
+                      {progressValue.interpolate(labelPart('secondary'))}
+                    </animated.div>
                   </div>
                 )}
           </div>
