@@ -62,8 +62,13 @@ function Details({ children, label, onToggle, opened: openedProp, ...props }) {
 
   // Use height: 'auto' when opened
   const [forceHeight, setForceHeight] = useState(false)
-  const handleRest = useCallback(() => setForceHeight(!opened), [opened])
+
   const handleStart = useCallback(() => setForceHeight(true), [])
+  const handleRest = useCallback(() => {
+    // Note: we need to use the opened from the previous
+    // render cycle here, which is why we don’t use a callback.
+    setForceHeight(!opened)
+  }, [opened])
 
   // Update the height
   useEffect(updateHeight, [opened, updateHeight])
