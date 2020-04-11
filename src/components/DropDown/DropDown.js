@@ -9,8 +9,6 @@ import { useViewport } from '../../providers/Viewport/Viewport'
 import ButtonBase from '../ButtonBase/ButtonBase'
 import Popover from '../Popover/Popover'
 
-const MIN_WIDTH = 128
-
 function useDropDown({
   buttonRef,
   items,
@@ -111,26 +109,20 @@ const DropDown = React.memo(function DropDown({
 
   const theme = useTheme()
   const { width: vw } = useViewport()
-
-  const [widthNoPx = MIN_WIDTH] = (width || '').split('px')
   const [buttonWidth, setButtonWidth] = useState(0)
   const [measureWidth, setMeasureWidth] = useState(true)
 
-  // Adjust the button width if the item widths are larger than declared width
-  const [placeholderMinWidth, setPlaceholderMinWidth] = useState(
-    Math.min(widthNoPx, MIN_WIDTH)
-  )
   const popoverRefCallback = useCallback(el => {
     if (!el) {
       return
     }
-    setPlaceholderMinWidth(el.clientWidth)
     setMeasureWidth(false)
   }, [])
   useEffect(() => {
     setMeasureWidth(true)
   }, [vw, items])
 
+  console.log('measured width ', measureWidth)
   // Update the button width every time the reference updates
   const { refCallback, buttonRef } = useButtonRef(el => {
     setButtonWidth(el.clientWidth)
@@ -186,7 +178,7 @@ const DropDown = React.memo(function DropDown({
           padding-left: ${2 * GU}px;
           padding-right: ${1.5 * GU}px;
           width: ${width || (wide ? '100%' : 'auto')};
-          min-width: ${wide ? 'auto' : `${placeholderMinWidth}px`};
+          min-width: auto;
           background: ${disabled ? theme.disabled : theme.surface};
           color: ${disabled ? theme.disabledContent : theme.surfaceContent};
           border: ${disabled ? 0 : 1}px solid
