@@ -1,6 +1,6 @@
 # Markdown
 
-Render markdown content.
+Render markdown content. Use the `normalized` prop to enable the default styling of the HTML elements. You can also extend the styles by setting the `className` and the `style` props.
 
 ## Usage
 
@@ -34,12 +34,12 @@ The markdown content to render.
 | ---------- | ------------- |
 | `Function` | None          |
 
-Use this function to extend the [markdow-to-jsx](https://github.com/probablyup/markdown-to-jsx) options. It takes the base options as a parameter, and expects a new options object to be returned.
+Use this function to extend the [markdown-to-jsx](https://github.com/probablyup/markdown-to-jsx) options. It takes the base options as a parameter, and expects a new options object to be returned.
 
-### `unstyled`
+### `normalized`
 
 | Type      | Default value |
 | --------- | ------------- |
 | `Boolean` | `false`       |
 
-Set to `true` to disable the default styling. See also NormalizedHtml.
+Set to `true` to enable the default styling of the HTML elements.

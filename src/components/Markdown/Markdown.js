@@ -1,9 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import MarkdownToJsx from 'markdown-to-jsx'
-import NormalizedHtml from '../NormalizedHtml/NormalizedHtml'
-import Link from '../Link/Link'
 import Checkbox from '../Input/Checkbox'
+import Link from '../Link/Link'
+import NormalizedHtml from './NormalizedHtml'
 
 function CustomInput(props) {
   props = { ...props }
@@ -17,9 +17,11 @@ CustomInput.propTypes = { type: PropTypes.string }
 
 function Markdown({
   allowHtml,
+  className,
   content,
   markdownToJsxOptions,
-  unstyled,
+  normalized,
+  style,
   ...props
 }) {
   const markdownToJsxOptionsBase = {
@@ -28,33 +30,33 @@ function Markdown({
   }
 
   const markdown = (
-    <MarkdownToJsx
-      options={
-        markdownToJsxOptions
-          ? markdownToJsxOptions(markdownToJsxOptionsBase)
-          : markdownToJsxOptionsBase
-      }
-    >
-      {content}
-    </MarkdownToJsx>
-  )
-
-  return (
-    <div {...props}>
-      {unstyled ? markdown : <NormalizedHtml>{markdown}</NormalizedHtml>}
+    <div className={className} style={style}>
+      <MarkdownToJsx
+        options={
+          markdownToJsxOptions
+            ? markdownToJsxOptions(markdownToJsxOptionsBase)
+            : markdownToJsxOptionsBase
+        }
+      >
+        {content}
+      </MarkdownToJsx>
     </div>
   )
+
+  return normalized ? <NormalizedHtml>{markdown}</NormalizedHtml> : markdown
 }
 
 Markdown.propTypes = {
   allowHtml: PropTypes.bool,
+  className: PropTypes.string,
   content: PropTypes.string.isRequired,
   markdownToJsxOptions: PropTypes.func,
-  unstyled: PropTypes.bool,
+  normalized: PropTypes.bool,
+  style: PropTypes.object,
 }
 
 Markdown.defaultProps = {
-  unstyled: false,
+  normalized: false,
 }
 
 export default Markdown

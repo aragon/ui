@@ -60,10 +60,10 @@ function NormalizedHtml({ children, ...props }) {
         blockquote {
           padding: 0 ${2 * GU}px;
           border-left: ${0.5 * GU}px solid ${theme.border};
-          color: ${theme.textTertiary};
+          color: ${theme.contentSecondary};
         }
         a {
-          color: ${theme.gradientStart};
+          color: ${theme.link};
           text-decoration: underline;
         }
         pre,
