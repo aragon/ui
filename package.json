@@ -88,6 +88,7 @@
     "js-sha3": "^0.8.0",
     "jsbi": "^3.1.2",
     "lodash": "^4.17.15",
+    "markdown-to-jsx": "^6.11.0",
     "popper.js": "^1.14.4",
     "prop-types": "^15.6.0",
     "react-blockies": "^1.4.0",
