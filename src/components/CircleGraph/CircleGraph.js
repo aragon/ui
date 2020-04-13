@@ -18,10 +18,10 @@ function labelDefault(animValue, value) {
 
   const lessThanOne =
     percentage > 0 &&
-    percentage <= 1 &&
+    percentage < 1 &&
     animPercentage > 0 &&
     // We know that the actual percentage is less than 1,
-    // so this is to avoid a jump without the prefix.
+    // so this is to avoid a jump with “1%” without prefix.
     animPercentage < 2
 
   return lessThanOne ? { ...parts, prefix: '<', value: '1' } : parts
