@@ -16,14 +16,15 @@ function labelDefault(animValue, value) {
   const animPercentage = animValue * 100
   const percentage = value * 100
 
-  return animPercentage === 0 || animPercentage >= 1
-    ? parts
-    : {
-        ...parts,
+  const lessThanOne =
+    percentage > 0 &&
+    percentage <= 1 &&
+    animPercentage > 0 &&
+    // We know that the actual percentage is less than 1,
+    // so this is to avoid a jump without the prefix.
+    animPercentage < 2
 
-        // Do not display the prefix when we are only animating between 0 and 1.
-        prefix: percentage < 1 && percentage > 0 ? '<' : '',
-      }
+  return lessThanOne ? { ...parts, prefix: '<', value: '1' } : parts
 }
 
 function labelCompat(parts) {
