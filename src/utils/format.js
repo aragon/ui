@@ -99,11 +99,13 @@ export function formatTokenAmount(
   const rightPart = String(
     JSBI.remainder(amountConverted, JSBI.exponentiate(_10, digits))
   )
+    .padStart(digits, '0')
+    .replace(/0+$/, '')
 
   return [
     displaySign ? (negative ? '-' : '+') : '',
     leftPart,
-    rightPart && rightPart !== '0' ? `.${rightPart}` : '',
+    rightPart ? `.${rightPart}` : '',
     symbol ? `${NO_BREAK_SPACE}${symbol}` : '',
   ].join('')
 }

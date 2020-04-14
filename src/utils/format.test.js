@@ -104,6 +104,24 @@ describe('formatTokenAmount()', () => {
     ).toEqual(`4,442,839.38129587970788395${NO_BREAK_SPACE}ANT`)
   })
 
+  test('should remove trailing zeros', () => {
+    expect(
+      formatTokenAmount(BigInt('283938129587970000000'), 18, { digits: 18 })
+    ).toEqual(`283.93812958797`)
+  })
+
+  test('should truncate decimals after the last significant digit', () => {
+    expect(
+      formatTokenAmount(BigInt('2839000000010000000000'), 18, { digits: 8 })
+    ).toEqual('2,839.00000001')
+    expect(
+      formatTokenAmount(BigInt('2839000000010000000000'), 18, { digits: 9 })
+    ).toEqual('2,839.00000001')
+    expect(
+      formatTokenAmount(BigInt('2839000000010000000000'), 18, { digits: 7 })
+    ).toEqual('2,839')
+  })
+
   test('should throw when a negative number is used for decimals', () => {
     expect(() => {
       formatTokenAmount(BigInt('2839000000010000000000'), -1)
