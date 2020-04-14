@@ -4,7 +4,14 @@ describe('TokenAmount', () => {
   test('should instanciate from an amount expressed as a Number', () => {
     expect(new TokenAmount(91234, 4).format()).toEqual('9.12')
   })
+
+  test('should throw if decimals are negative', () => {
+    expect(() => {
+      return new TokenAmount(91234, -1)
+    }).toThrow()
+  })
 })
+
 describe('TokenAmount#amount()', () => {
   test('should export the amount as a BigInt', () => {
     expect(new TokenAmount('9381295879707883945', 18).amount()).toEqual(

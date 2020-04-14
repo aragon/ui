@@ -1,6 +1,6 @@
 import JSBI from 'jsbi'
 import { NO_BREAK_SPACE } from './characters'
-import { divideRoundBigInt } from './math'
+import { divideRoundBigInt, toJsbi } from './math'
 
 /**
  * Formats an integer based on a limited range.
@@ -65,9 +65,9 @@ export function formatTokenAmount(
   decimals,
   { digits = 2, symbol = '', displaySign = false } = {}
 ) {
-  amount = JSBI.BigInt(String(amount))
-  decimals = JSBI.BigInt(String(decimals))
-  digits = JSBI.BigInt(String(digits))
+  amount = toJsbi(amount)
+  decimals = toJsbi(decimals)
+  digits = toJsbi(digits)
 
   if (JSBI.lessThan(decimals, 0)) {
     throw new Error('formatTokenAmount(): decimals cannot be negative')

@@ -1,6 +1,7 @@
 /* global BigInt */
 
 import JSBI from 'jsbi'
+import { toJsbi } from './math'
 import { formatTokenAmount } from './format'
 
 class TokenAmount {
@@ -15,8 +16,15 @@ class TokenAmount {
    * @param {string} options.symbol         The token symbol (e.g. ETH for Ethers).
    */
   constructor(amount, decimals, { symbol = '' } = {}) {
-    this.#amount = JSBI.BigInt(amount)
-    this.#decimals = JSBI.BigInt(decimals)
+    amount = toJsbi(amount)
+    decimals = toJsbi(decimals)
+
+    if (JSBI.lessThan(decimals, 0)) {
+      throw new Error('TokenAmount: decimals cannot be negative')
+    }
+
+    this.#amount = amount
+    this.#decimals = decimals
     this.#symbol = symbol
   }
 

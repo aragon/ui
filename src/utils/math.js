@@ -1,6 +1,16 @@
 import JSBI from 'jsbi'
 
 /**
+ * Converts BigInt-like values into JSBI objects.
+ *
+ * @param {JSBI.BigInt|BigInt|string|number} value The value to convert.
+ * @returns {JSBI.BigInt}
+ */
+export function toJsbi(value) {
+  return JSBI.BigInt(String(value))
+}
+
+/**
  * Re-maps a number from one range to another.
  *
  * In the example above, the number '25' is converted from a value in the range
