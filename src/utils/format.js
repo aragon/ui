@@ -42,13 +42,9 @@ export function formatNumber(number) {
   const numAsString = String(number)
   const [integer, decimals] = numAsString.split('.')
 
-  return [...integer].reduceRight(
-    (result, digit, index, { length }) => {
-      const position = length - index - 1
-      if (position > 0 && position % 3 === 0) {
-        result = ',' + result
-      }
-      return digit + result
+  return [...integer].reverse().reduce(
+    (result, digit, index) => {
+      return digit + (index > 0 && index % 3 === 0 ? ',' : '') + result
     },
     decimals ? `.${decimals}` : ''
   )
