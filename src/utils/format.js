@@ -85,9 +85,11 @@ export function formatTokenAmount(
     amount = JSBI.unaryMinus(amount)
   }
 
-  const amountConverted = divideRoundBigInt(
-    amount,
-    JSBI.exponentiate(_10, JSBI.subtract(decimals, digits))
+  const amountConverted = JSBI.BigInt(
+    divideRoundBigInt(
+      amount,
+      JSBI.exponentiate(_10, JSBI.subtract(decimals, digits))
+    )
   )
 
   const leftPart = formatNumber(
