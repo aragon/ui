@@ -1,5 +1,3 @@
-/* global BigInt */
-
 import JSBI from 'jsbi'
 import { toJsbi } from './math'
 import { formatTokenAmount } from './format'
@@ -29,18 +27,11 @@ class TokenAmount {
   }
 
   /**
-   * Get the amount as an integer (e.g. in Wei for Ether).
-   * @returns {BigInt}
-   */
-  amount() {
-    return BigInt(this.#amount.toString())
-  }
-
-  /**
-   * Get the amount as an integer (e.g. in Wei for Ether).
+   * Get the amount of the token without the decimals (e.g. in Wei for Ether),
+   * as a string integer.
    * @returns {string}
    */
-  amountString() {
+  amount() {
     return this.#amount.toString()
   }
 

@@ -13,16 +13,8 @@ describe('TokenAmount', () => {
 })
 
 describe('TokenAmount#amount()', () => {
-  test('should export the amount as a BigInt', () => {
+  test('should export the amount as a string integer', () => {
     expect(new TokenAmount('9381295879707883945', 18).amount()).toEqual(
-      9381295879707883945n
-    )
-  })
-})
-
-describe('TokenAmount#amountString()', () => {
-  test('should export the amount as a String', () => {
-    expect(new TokenAmount('9381295879707883945', 18).amountString()).toEqual(
       '9381295879707883945'
     )
   })
