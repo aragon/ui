@@ -1,5 +1,6 @@
 import JSBI from 'jsbi'
 import { NO_BREAK_SPACE } from './characters'
+import { divideRoundBigInt } from './math'
 
 /**
  * Formats an integer based on a limited range.
@@ -50,22 +51,6 @@ export function formatNumber(number) {
       return digit + result
     },
     decimals ? `.${decimals}` : ''
-  )
-}
-
-/**
- * Divide and round two big integers.
- *
- * @param {BigInt|string|number} dividend Integer to be divided + rounded
- * @param {BigInt|string|number} divisor  Divisor
- * @returns {string}
- */
-function divideRoundBigInt(dividend, diviser) {
-  dividend = JSBI.BigInt(dividend)
-  diviser = JSBI.BigInt(diviser)
-  return JSBI.divide(
-    JSBI.add(dividend, JSBI.divide(diviser, JSBI.BigInt(2))),
-    diviser
   )
 }
 
