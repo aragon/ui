@@ -1,3 +1,5 @@
+import JSBI from 'jsbi'
+
 /**
  * Re-maps a number from one range to another.
  *
@@ -96,4 +98,20 @@ export function randomInt(min, max) {
  */
 export function random(min = 0, max = 1) {
   return Math.floor(Math.random() * (max - min)) + min
+}
+
+/**
+ * Divide and round two big integers.
+ *
+ * @param {BigInt|string|number} dividend Integer to be divided + rounded
+ * @param {BigInt|string|number} divisor  Divisor
+ * @returns {string}
+ */
+export function divideRoundBigInt(dividend, divisor) {
+  dividend = JSBI.BigInt(String(dividend))
+  divisor = JSBI.BigInt(String(divisor))
+  return JSBI.divide(
+    JSBI.add(dividend, JSBI.divide(divisor, JSBI.BigInt(2))),
+    divisor
+  ).toString()
 }

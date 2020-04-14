@@ -1,5 +1,6 @@
 import JSBI from 'jsbi'
 import { NO_BREAK_SPACE } from './characters'
+import { divideRoundBigInt } from './math'
 
 /**
  * Formats an integer based on a limited range.
@@ -41,31 +42,11 @@ export function formatNumber(number) {
   const numAsString = String(number)
   const [integer, decimals] = numAsString.split('.')
 
-  return [...integer].reduceRight(
-    (result, digit, index, { length }) => {
-      const position = length - index - 1
-      if (position > 0 && position % 3 === 0) {
-        result = ',' + result
-      }
-      return digit + result
+  return [...integer].reverse().reduce(
+    (result, digit, index) => {
+      return digit + (index > 0 && index % 3 === 0 ? ',' : '') + result
     },
     decimals ? `.${decimals}` : ''
-  )
-}
-
-/**
- * Divide and round two big integers.
- *
- * @param {BigInt|string|number} dividend Integer to be divided + rounded
- * @param {BigInt|string|number} divisor  Divisor
- * @returns {string}
- */
-function divideRoundBigInt(dividend, diviser) {
-  dividend = JSBI.BigInt(dividend)
-  diviser = JSBI.BigInt(diviser)
-  return JSBI.divide(
-    JSBI.add(dividend, JSBI.divide(diviser, JSBI.BigInt(2))),
-    diviser
   )
 }
 
@@ -74,20 +55,27 @@ function divideRoundBigInt(dividend, diviser) {
  *
  * @param {BigInt|string|number} amount              Number to round
  * @param {BigInt|string|number} decimals            Decimal placement for amount
- * @param {BigInt|string|number} roundToDecimals     Rounds the number to a given decimal place
+ * @param {BigInt|string|number} digits              Rounds the number to a given decimal place
  * @param {boolean}              options.displaySign Decides if the sign should be displayed
  * @param {string}               options.symbol      Symbol for the token amount
  * @returns {string}
  */
 export function formatTokenAmount(
   amount,
-  decimals = 18,
-  roundToDecimals = 2,
-  { symbol = '', displaySign = false } = {}
+  decimals,
+  { digits = 2, symbol = '', displaySign = false } = {}
 ) {
   amount = JSBI.BigInt(String(amount))
   decimals = JSBI.BigInt(String(decimals))
-  roundToDecimals = JSBI.BigInt(String(roundToDecimals))
+  digits = JSBI.BigInt(String(digits))
+
+  if (JSBI.lessThan(decimals, 0)) {
+    throw new Error('formatTokenAmount(): decimals cannot be negative')
+  }
+
+  if (JSBI.lessThan(digits, 0)) {
+    throw new Error('formatTokenAmount(): digits cannot be negative')
+  }
 
   const _0 = JSBI.BigInt(0)
   const _10 = JSBI.BigInt(10)
@@ -97,23 +85,27 @@ export function formatTokenAmount(
     amount = JSBI.unaryMinus(amount)
   }
 
-  const amountConverted = divideRoundBigInt(
-    amount,
-    JSBI.exponentiate(_10, JSBI.subtract(decimals, roundToDecimals))
+  const amountConverted = JSBI.BigInt(
+    divideRoundBigInt(
+      amount,
+      JSBI.exponentiate(_10, JSBI.subtract(decimals, digits))
+    )
   )
 
   const leftPart = formatNumber(
-    JSBI.divide(amountConverted, JSBI.exponentiate(_10, roundToDecimals))
+    JSBI.divide(amountConverted, JSBI.exponentiate(_10, digits))
   )
 
   const rightPart = String(
-    JSBI.remainder(amountConverted, JSBI.exponentiate(_10, roundToDecimals))
+    JSBI.remainder(amountConverted, JSBI.exponentiate(_10, digits))
   )
+    .padStart(digits, '0')
+    .replace(/0+$/, '')
 
   return [
     displaySign ? (negative ? '-' : '+') : '',
     leftPart,
-    rightPart && rightPart !== '0' ? `.${rightPart}` : '',
+    rightPart ? `.${rightPart}` : '',
     symbol ? `${NO_BREAK_SPACE}${symbol}` : '',
   ].join('')
 }
