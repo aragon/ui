@@ -118,8 +118,8 @@ export function random(min = 0, max = 1) {
  * @returns {string}
  */
 export function divideRoundBigInt(dividend, divisor) {
-  dividend = JSBI.BigInt(String(dividend))
-  divisor = JSBI.BigInt(String(divisor))
+  dividend = toJsbi(dividend)
+  divisor = toJsbi(divisor)
   return JSBI.divide(
     JSBI.add(dividend, JSBI.divide(divisor, JSBI.BigInt(2))),
     divisor
