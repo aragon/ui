@@ -52,7 +52,8 @@ class TokenAmount {
    * @returns {string}
    */
   format({ sign = false, symbol = false, digits = 2 } = {}) {
-    return formatTokenAmount(this.#amount, this.#decimals, digits, {
+    return formatTokenAmount(this.#amount, this.#decimals, {
+      digits,
       sign,
       symbol: symbol ? this.#symbol : '',
     })
