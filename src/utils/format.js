@@ -55,20 +55,19 @@ export function formatNumber(number) {
  *
  * @param {BigInt|string|number} amount              Number to round
  * @param {BigInt|string|number} decimals            Decimal placement for amount
- * @param {BigInt|string|number} roundToDecimals     Rounds the number to a given decimal place
+ * @param {BigInt|string|number} digits              Rounds the number to a given decimal place
  * @param {boolean}              options.displaySign Decides if the sign should be displayed
  * @param {string}               options.symbol      Symbol for the token amount
  * @returns {string}
  */
 export function formatTokenAmount(
   amount,
-  decimals = 18,
-  roundToDecimals = 2,
-  { symbol = '', displaySign = false } = {}
+  decimals,
+  { digits = 2, symbol = '', displaySign = false } = {}
 ) {
   amount = JSBI.BigInt(String(amount))
   decimals = JSBI.BigInt(String(decimals))
-  roundToDecimals = JSBI.BigInt(String(roundToDecimals))
+  digits = JSBI.BigInt(String(digits))
 
   const _0 = JSBI.BigInt(0)
   const _10 = JSBI.BigInt(10)
@@ -80,15 +79,15 @@ export function formatTokenAmount(
 
   const amountConverted = divideRoundBigInt(
     amount,
-    JSBI.exponentiate(_10, JSBI.subtract(decimals, roundToDecimals))
+    JSBI.exponentiate(_10, JSBI.subtract(decimals, digits))
   )
 
   const leftPart = formatNumber(
-    JSBI.divide(amountConverted, JSBI.exponentiate(_10, roundToDecimals))
+    JSBI.divide(amountConverted, JSBI.exponentiate(_10, digits))
   )
 
   const rightPart = String(
-    JSBI.remainder(amountConverted, JSBI.exponentiate(_10, roundToDecimals))
+    JSBI.remainder(amountConverted, JSBI.exponentiate(_10, digits))
   )
 
   return [

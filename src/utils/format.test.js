@@ -50,31 +50,33 @@ describe('formatNumber()', () => {
 
 describe('formatTokenAmount()', () => {
   test('should handle native numbers', () => {
-    expect(formatTokenAmount(9381295879707883945, 18, 1)).toEqual('9.4')
+    expect(formatTokenAmount(9381295879707883945, 18, { digits: 1 })).toEqual(
+      '9.4'
+    )
   })
 
   test('should format numbers properly', () => {
-    expect(formatTokenAmount('32989381295879707883945', 18, 4)).toEqual(
-      '32,989.3813'
-    )
+    expect(
+      formatTokenAmount('32989381295879707883945', 18, { digits: 4 })
+    ).toEqual('32,989.3813')
   })
 
   test('should handle string numbers', () => {
-    expect(formatTokenAmount('2839381295879707883945', 18, 18)).toEqual(
-      '2,839.381295879707883945'
-    )
+    expect(
+      formatTokenAmount('2839381295879707883945', 18, { digits: 18 })
+    ).toEqual('2,839.381295879707883945')
   })
 
   test('should handle BigInt-like numbers', () => {
-    expect(formatTokenAmount(BigInt('2839381295879707883945'), 18, 8)).toEqual(
-      '2,839.38129588'
-    )
+    expect(
+      formatTokenAmount(BigInt('2839381295879707883945'), 18, { digits: 8 })
+    ).toEqual('2,839.38129588')
   })
 
   test('should handle large numbers without decimals', () => {
-    expect(formatTokenAmount(BigInt('2839000000000000000000'), 18, 8)).toEqual(
-      '2,839'
-    )
+    expect(
+      formatTokenAmount(BigInt('2839000000000000000000'), 18, { digits: 8 })
+    ).toEqual('2,839')
   })
 
   test('should handle really big numbers', () => {
@@ -82,20 +84,21 @@ describe('formatTokenAmount()', () => {
       formatTokenAmount(
         BigInt('9873298739827329832792839381295879707883945'),
         18,
-        8
+        { digits: 8 }
       )
     ).toEqual('9,873,298,739,827,329,832,792,839.38129588')
   })
 
   test('should round properly', () => {
     expect(
-      formatTokenAmount(BigInt('4442839381295879707883948'), 18, 17)
+      formatTokenAmount(BigInt('4442839381295879707883948'), 18, { digits: 17 })
     ).toEqual('4,442,839.38129587970788395')
   })
 
   test('should add add symbol', () => {
     expect(
-      formatTokenAmount(BigInt('4442839381295879707883948'), 18, 17, {
+      formatTokenAmount(BigInt('4442839381295879707883948'), 18, {
+        digits: 17,
         symbol: 'ANT',
       })
     ).toEqual(`4,442,839.38129587970788395${NO_BREAK_SPACE}ANT`)
@@ -103,19 +106,25 @@ describe('formatTokenAmount()', () => {
 
   test('should display the sign', () => {
     expect(
-      formatTokenAmount(BigInt('4442839381295879707883948'), 18, 17, {
+      formatTokenAmount(BigInt('4442839381295879707883948'), 18, {
+        digits: 17,
         displaySign: true,
       })
     ).toEqual(`+4,442,839.38129587970788395`)
 
     expect(
-      formatTokenAmount(BigInt('-4442839381295879707883948'), 18, 17, {
+      formatTokenAmount(BigInt('-4442839381295879707883948'), 18, {
+        digits: 17,
         displaySign: true,
       })
     ).toEqual(`-4,442,839.38129587970788395`)
 
-    expect(formatTokenAmount(0, 18, 17, { displaySign: true })).toEqual('+0')
+    expect(formatTokenAmount(0, 18, { digits: 17, displaySign: true })).toEqual(
+      '+0'
+    )
     // Todo: support negative 0s
-    expect(formatTokenAmount(-0, 18, 17, { displaySign: true })).toEqual('+0')
+    expect(
+      formatTokenAmount(-0, 18, { digits: 17, displaySign: true })
+    ).toEqual('+0')
   })
 })
