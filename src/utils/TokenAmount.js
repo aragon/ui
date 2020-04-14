@@ -11,9 +11,9 @@ class TokenAmount {
 
   /**
    * Create a TokenAmount.
-   * @param {BigInt|string|number} amount   The amount as an integer (e.g. in Wei for Ethers).
-   * @param {BigInt|string|number} decimals The token decimals (e.g. 18 for Ethers).
-   * @param {string} options.symbol         The token symbol (e.g. ETH for Ethers).
+   * @param {BigInt|string|number} amount   The amount as an integer (e.g. in Wei for Ether).
+   * @param {BigInt|string|number} decimals The token decimals (e.g. 18 for Ether).
+   * @param {string} options.symbol         The token symbol (e.g. ETH for Ether).
    */
   constructor(amount, decimals, { symbol = '' } = {}) {
     amount = toJsbi(amount)
@@ -29,7 +29,7 @@ class TokenAmount {
   }
 
   /**
-   * Get the amount as an integer (e.g. in Wei for Ethers).
+   * Get the amount as an integer (e.g. in Wei for Ether).
    * @returns {BigInt}
    */
   amount() {
@@ -37,7 +37,7 @@ class TokenAmount {
   }
 
   /**
-   * Get the amount as an integer (e.g. in Wei for Ethers).
+   * Get the amount as an integer (e.g. in Wei for Ether).
    * @returns {string}
    */
   amountString() {
