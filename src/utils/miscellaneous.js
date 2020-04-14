@@ -6,7 +6,7 @@ export function noop() {}
 /**
  * A function that only returns the first parameter passed to it.
  * @param {any} x The first parameter
- * @retruns {any}
+ * @returns {any}
  */
 export function identity(x) {
   return x
@@ -16,7 +16,7 @@ export function identity(x) {
  * Creates a new object from obj that only contains specific keys.
  * @param {object} obj The source object.
  * @param {array}  keys The keys to pick in the source object.
- * @return {object}
+ * @returns {object}
  */
 export function pick(obj, keys) {
   return keys.reduce((filtered, key) => {
