@@ -104,6 +104,18 @@ describe('formatTokenAmount()', () => {
     ).toEqual(`4,442,839.38129587970788395${NO_BREAK_SPACE}ANT`)
   })
 
+  test('should throw when a negative number is used for decimals', () => {
+    expect(() => {
+      formatTokenAmount(BigInt('2839000000010000000000'), -1)
+    }).toThrow()
+  })
+
+  test('should throw when a negative number is being used for digits', () => {
+    expect(() => {
+      formatTokenAmount(BigInt('2839000000010000000000'), 18, { digits: -2 })
+    }).toThrow()
+  })
+
   test('should display the sign', () => {
     expect(
       formatTokenAmount(BigInt('4442839381295879707883948'), 18, {

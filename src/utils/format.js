@@ -69,6 +69,14 @@ export function formatTokenAmount(
   decimals = JSBI.BigInt(String(decimals))
   digits = JSBI.BigInt(String(digits))
 
+  if (JSBI.lessThan(decimals, 0)) {
+    throw new Error('formatTokenAmount(): decimals cannot be negative')
+  }
+
+  if (JSBI.lessThan(digits, 0)) {
+    throw new Error('formatTokenAmount(): digits cannot be negative')
+  }
+
   const _0 = JSBI.BigInt(0)
   const _10 = JSBI.BigInt(10)
   const negative = JSBI.lessThan(amount, _0)
