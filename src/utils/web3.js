@@ -53,7 +53,7 @@ const BLOCK_EXPLORERS = {
  *
  * @method toChecksumAddress
  * @param {String} address the given HEX address
- * @return {String}
+ * @returns {String}
  */
 function toChecksumAddress(address) {
   if (!/^(0x)?[0-9a-f]{40}$/i.test(address)) {
@@ -130,7 +130,7 @@ export const shortenTransaction = shortenAddress
  *
  * @method isAddress
  * @param {string} address the given HEX address
- * @return {boolean}
+ * @returns {boolean}
  */
 export function isAddress(address) {
   return ADDRESS_REGEX.test(address)
@@ -142,7 +142,7 @@ export function isAddress(address) {
  *
  * @method isTransaction
  * @param {string} address the given HEX address
- * @return {boolean}
+ * @returns {boolean}
  */
 export function isTransaction(transaction) {
   return TRANSACTION_REGEX.test(transaction)
@@ -156,7 +156,7 @@ export function isTransaction(transaction) {
  * @param {object} options The optional parameters.
  * @param {string} options.networkType The Ethereum network type (main, kovan, rinkeby, ropsten, goerli, or private).
  * @param {string} options.provider The explorer provider (e.g. etherscan).
- * @return {string} The generated URL, or an empty string if the parameters are invalid.
+ * @returns {string} The generated URL, or an empty string if the parameters are invalid.
  */
 export function blockExplorerUrl(
   type,
@@ -182,7 +182,7 @@ export function blockExplorerUrl(
  * Get the address of a token icon
  *
  * @param {string} address The contract address of the token, or the zero address (0x000…) to get the Ethereum icon.
- * @return {string} The generated URL, or an empty string if the parameters are invalid.
+ * @returns {string} The generated URL, or an empty string if the parameters are invalid.
  */
 export function tokenIconUrl(address = '') {
   try {
