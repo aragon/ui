@@ -104,9 +104,16 @@ npm run dev
 Run the devbox (to develop a component in isolation):
 
 ```sh
-cd devbox
-npm install
-npm start
+# Assuming you are in the root aragon-ui directory (i.e. cd aragon-ui/)
+
+# Link @aragon/ui locally and into the devbox package
+yarn link
+cd devbox/
+yarn link @aragon/ui
+cd ../
+
+# Run devbox
+yarn devbox
 ```
 
 ## Projects using aragonUI
