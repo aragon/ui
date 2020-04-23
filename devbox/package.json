@@ -6,11 +6,12 @@
   "scripts": {
     "build": "npm run prebuild && webpack --mode production && npm run postbuild",
     "build:dev": "npm run prebuild && webpack --mode development && npm run postbuild",
+    "check:link": "node scripts/check-link",
     "postbuild": "copy-aragon-ui-assets dist",
     "prebuild": "copy-aragon-ui-assets dist && npm run update-apps-index",
-    "start": "npm run prebuild && webpack-dev-server --mode development --port 1234",
-    "start:a11y-check": "npm run prebuild && webpack-dev-server --mode development --port 1234 --env.A11Y_CHECK=on",
-    "update-apps-index": "node scripts/update-apps-index.js"
+    "start": "npm run check:link && npm run prebuild && webpack-dev-server --mode development --port 1234",
+    "start:a11y-check": "npm run check:link && npm run prebuild && webpack-dev-server --mode development --port 1234 --env.A11Y_CHECK=on",
+    "update-apps-index": "node scripts/update-apps-index"
   },
   "dependencies": {
     "@aragon/ui": "file:..",
@@ -30,6 +31,7 @@
     "file-loader": "^5.0.2",
     "html-webpack-plugin": "^3.2.0",
     "react-axe": "^3.3.0",
+    "symlinked": "^0.5.0",
     "terser-webpack-plugin": "^2.3.2",
     "webpack": "^4.41.5",
     "webpack-bundle-analyzer": "^3.6.0",
