@@ -102,6 +102,7 @@ function Modal({
                         onClick={onClose}
                         css={`
                           position: absolute;
+                          z-index: 1;
                           top: ${2 * GU}px;
                           right: ${2 * GU}px;
                         `}
