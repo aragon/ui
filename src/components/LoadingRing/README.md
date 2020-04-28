@@ -5,7 +5,7 @@ An animated loading indicator.
 ## Usage
 
 ```jsx
-imoprt { Main, LoadingRing } from '@aragon/ui'
+import { Main, LoadingRing } from '@aragon/ui'
 
 function App() {
   return <Main><LoadingRing /></Main>
