@@ -88,11 +88,6 @@ function Modal({
                       width: cssPx(
                         typeof width === 'function' ? width(viewport) : width
                       ),
-                      padding: cssPx(
-                        typeof padding === 'function'
-                          ? padding(viewport)
-                          : padding
-                      ),
                       borderRadius: `${RADIUS}px`,
                     }}
                   >
@@ -102,7 +97,7 @@ function Modal({
                         onClick={onClose}
                         css={`
                           position: absolute;
-                          z-index: 1;
+                          z-index: 2;
                           top: ${2 * GU}px;
                           right: ${2 * GU}px;
                         `}
@@ -110,7 +105,21 @@ function Modal({
                         <IconCross />
                       </ButtonIcon>
                     )}
-                    <div>{children}</div>
+                    <div
+                      style={{
+                        padding: cssPx(
+                          typeof padding === 'function'
+                            ? padding(viewport)
+                            : padding
+                        ),
+                      }}
+                      css={`
+                        position: relative;
+                        z-index: 1;
+                      `}
+                    >
+                      {children}
+                    </div>
                   </EscapeOutside>
                 </div>
               </animated.div>
