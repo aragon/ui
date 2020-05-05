@@ -81,7 +81,7 @@ This is how **Header** can be used inside an app.
 ```jsx
 // App.js
 import React from 'react'
-import { Main, Header, Button, IconPlus } from '@aragon/ui'
+import { Main, Header, Button, IconPlus, Tag } from '@aragon/ui'
 
 function App() {
   return (
