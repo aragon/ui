@@ -113,7 +113,7 @@ To make things a bit more interesting, we are going to add a [SidePanel](https:/
 ```jsx
 // App.js
 import React, { useState } from 'react'
-import { Main, Header, Button, IconPlus, SidePanel } from '@aragon/ui'
+import { Main, Header, Button, IconPlus, Tag, SidePanel } from '@aragon/ui'
 
 function App() {
   const [sidePanelOpened, setSidePanelOpened] = useState(false)
