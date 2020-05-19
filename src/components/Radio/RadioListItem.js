@@ -25,7 +25,7 @@ const RadioListItem = React.memo(function RadioListItem({
         id={index}
         css={`
           flex-shrink: 0;
-          margin-top: ${2 * GU}px;
+          margin-top: 1px;
         `}
       />
       <div
