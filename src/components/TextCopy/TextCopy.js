@@ -111,20 +111,6 @@ const TextCopy = React.memo(
             endWidth: HEIGHT - 2,
             endPadding: 0,
           }}
-          adornment={
-            <ButtonIcon
-              onClick={handleCopy}
-              label="Copy"
-              css={`
-                width: ${HEIGHT - 2}px;
-                height: ${HEIGHT - 2}px;
-                border-radius: 0;
-                color: ${theme.surfaceIcon};
-              `}
-            >
-              <IconCopy />
-            </ButtonIcon>
-          }
           autofocus={autofocus}
           onFocus={handleFocus}
           readOnly

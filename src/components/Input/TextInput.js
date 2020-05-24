@@ -84,7 +84,7 @@ TextInput.defaultProps = {
   type: 'text',
 }
 
-const Adornment = ({ adornment, position, padding }) => {
+const Adornment = React.memo(({ adornment, position, padding }) => {
   const theme = useTheme()
   return (
     <div
@@ -103,8 +103,8 @@ const Adornment = ({ adornment, position, padding }) => {
       {adornment}
     </div>
   )
-}
-Adornment.PropTypes = {
+})
+Adornment.propTypes = {
   adornment: PropTypes.node,
   position: PropTypes.oneOf(['start', 'end']),
   padding: PropTypes.number,
