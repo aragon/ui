@@ -84,78 +84,98 @@ TextInput.defaultProps = {
   type: 'text',
 }
 
+const Adornment = ({ adornment, position, padding }) => {
+  const theme = useTheme()
+  return (
+    <div
+      css={`
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        height: 100%;
+        ${position === 'end' ? 'right' : 'left'}: ${padding}px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: ${theme.surfaceContentSecondary};
+      `}
+    >
+      {adornment}
+    </div>
+  )
+}
+Adornment.PropTypes = {
+  adornment: PropTypes.node,
+  position: PropTypes.oneOf(['start', 'end']),
+  padding: PropTypes.number,
+}
+
+Adornment.defaultProps = {
+  padding: 4,
+  position: 'start',
+}
+
 // Text input wrapped to allow adornments
-const WrapperTextInput = React.forwardRef(
-  (
-    {
-      adornment,
-      adornmentPosition,
-      adornmentSettings: {
-        width: adornmentWidth = 36,
-        padding: adornmentPadding = 4,
-      },
-      ...props
-    },
-    ref
-  ) => {
-    const theme = useTheme()
-    if (!adornment) {
-      return <TextInput ref={ref} {...props} />
-    }
-    return (
-      <div
-        css={`
-          display: inline-flex;
-          position: relative;
-          width: ${props.wide ? '100%' : 'max-content'};
-        `}
-      >
-        <TextInput
-          ref={ref}
-          css={`
-            ${adornmentPosition === 'end'
-              ? 'padding-right'
-              : 'padding-left'}: ${adornmentWidth - adornmentPadding * 2}px;
-          `}
-          {...props}
-        />
-        <div
-          css={`
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            height: 100%;
-            ${adornmentPosition === 'end'
-              ? 'right'
-              : 'left'}: ${adornmentPadding}px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: ${theme.surfaceContentSecondary};
-          `}
-        >
-          {adornment}
-        </div>
-      </div>
-    )
+const WrapperTextInput = React.forwardRef(({ adornment, ...props }, ref) => {
+  if (!adornment) {
+    return <TextInput ref={ref} {...props} />
   }
-)
+
+  const hasAdornmentConfig =
+    typeof adornment === 'object' &&
+    adornment.constructor === Object &&
+    !React.isValidElement(adornment)
+  const {
+    start,
+    startPadding,
+    startWidth = 36,
+    end,
+    endPadding,
+    endWidth = 36,
+  } = hasAdornmentConfig ? adornment : { start: adornment }
+
+  return (
+    <div
+      css={`
+        display: inline-flex;
+        position: relative;
+        width: ${props.wide ? '100%' : 'max-content'};
+      `}
+    >
+      <TextInput
+        ref={ref}
+        css={`
+          ${start && `padding-left: ${startWidth}`}
+          ${end && `padding-right: ${endWidth}`}
+        `}
+        {...props}
+      />
+      {start && (
+        <Adornment adornment={start} padding={startPadding} position="start" />
+      )}
+      {end && <Adornment adornment={end} padding={endPadding} position="end" />}
+    </div>
+  )
+})
 
 WrapperTextInput.propTypes = {
   ...TextInput.propTypes,
-  adornment: PropTypes.node,
-  adornmentPosition: PropTypes.oneOf(['start', 'end']),
-  adornmentSettings: PropTypes.shape({
-    width: PropTypes.number,
-    padding: PropTypes.number,
-  }),
+  adornment: PropTypes.oneOf([
+    PropTypes.node,
+    PropTypes.shape({
+      start: PropTypes.node,
+      startWidth: PropTypes.number,
+      startPadding: PropTypes.number,
+      end: PropTypes.node,
+      endWidth: PropTypes.number,
+      endPadding: PropTypes.number,
+    }),
+  ]),
 }
 
 WrapperTextInput.defaultProps = {
   ...TextInput.defaultProps,
   adornment: null,
-  adornmentPosition: 'start',
-  adornmentSettings: {},
 }
 
 // <input type=number> (only for compat)

@@ -32,26 +32,26 @@ const SearchInput = React.forwardRef(({ onChange, ...props }, ref) => {
   return (
     <TextInput
       ref={_ref}
-      adornment={
-        (props.value || '') === EMPTY ? (
-          <IconSearch
-            css={`
-              color: ${theme.surfaceIcon};
-            `}
-          />
-        ) : (
-          <ButtonIcon
-            onClick={handleClearClick}
-            label="Clear search input"
-            css={`
-              color: ${theme.surfaceIcon};
-            `}
-          >
-            <IconCross />
-          </ButtonIcon>
-        )
-      }
-      adornmentPosition="end"
+      adornment={{
+        end:
+          (props.value || '') === EMPTY ? (
+            <IconSearch
+              css={`
+                color: ${theme.surfaceIcon};
+              `}
+            />
+          ) : (
+            <ButtonIcon
+              onClick={handleClearClick}
+              label="Clear search input"
+              css={`
+                color: ${theme.surfaceIcon};
+              `}
+            >
+              <IconCross />
+            </ButtonIcon>
+          ),
+      }}
       onChange={handleChange}
       {...props}
     />
