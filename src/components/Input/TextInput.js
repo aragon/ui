@@ -121,10 +121,6 @@ const WrapperTextInput = React.forwardRef(({ adornment, ...props }, ref) => {
     return <TextInput ref={ref} {...props} />
   }
 
-  const hasAdornmentConfig =
-    typeof adornment === 'object' &&
-    adornment.constructor === Object &&
-    !React.isValidElement(adornment)
   const {
     start,
     startPadding,
@@ -132,7 +128,7 @@ const WrapperTextInput = React.forwardRef(({ adornment, ...props }, ref) => {
     end,
     endPadding,
     endWidth = 36,
-  } = hasAdornmentConfig ? adornment : { start: adornment }
+  } = React.isValidElement(adornment) ? { start: adornment } : adornment
 
   return (
     <div
