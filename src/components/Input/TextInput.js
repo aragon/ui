@@ -131,9 +131,9 @@ const WrapperTextInput = React.forwardRef(
       endWidth = 36,
     } = React.isValidElement(adornment)
       ? {
-          start: adornment,
-          startPadding: adornmentSettings.padding,
-          startWidth: adornmentSettings.width,
+          [adornmentPosition]: adornment,
+          [`${adornmentPosition}Padding`]: adornmentSettings.padding,
+          [`${adornmentPosition}Width`]: adornmentSettings.width,
         }
       : adornment
 
@@ -191,6 +191,7 @@ WrapperTextInput.propTypes = {
 WrapperTextInput.defaultProps = {
   ...TextInput.defaultProps,
   adornment: null,
+  adornmentPosition: 'start',
   adornmentSettings: {},
 }
 
