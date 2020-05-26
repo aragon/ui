@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react'
 import PropTypes from 'prop-types'
 import { useTheme } from '../../theme'
-import { warn } from '../../utils'
+import { warn, warnOnce } from '../../utils'
 import { textStyle, GU, RADIUS } from '../../style'
 
 // Simple text input
@@ -116,7 +116,6 @@ Adornment.defaultProps = {
 }
 
 const deprecationWarning = (adornmentPosition, adornmentSettings) => {
-  const warnings = []
   if (adornmentPosition) {
     warn(
       'TextInput: The "adornmentPosition" prop is deprecated. Please use the "adornment" prop instead.'
