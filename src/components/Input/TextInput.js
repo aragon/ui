@@ -104,6 +104,7 @@ const Adornment = React.memo(({ adornment, position, padding }) => {
     </div>
   )
 })
+
 Adornment.propTypes = {
   adornment: PropTypes.node,
   position: PropTypes.oneOf(['start', 'end']),
@@ -112,47 +113,60 @@ Adornment.propTypes = {
 
 Adornment.defaultProps = {
   padding: 4,
-  position: 'start',
 }
 
 // Text input wrapped to allow adornments
-const WrapperTextInput = React.forwardRef(({ adornment, ...props }, ref) => {
-  if (!adornment) {
-    return <TextInput ref={ref} {...props} />
-  }
+const WrapperTextInput = React.forwardRef(
+  ({ adornment, adornmentPosition, adornmentSettings, ...props }, ref) => {
+    if (!adornment) {
+      return <TextInput ref={ref} {...props} />
+    }
 
-  const {
-    start,
-    startPadding,
-    startWidth = 36,
-    end,
-    endPadding,
-    endWidth = 36,
-  } = React.isValidElement(adornment) ? { start: adornment } : adornment
+    const {
+      start,
+      startPadding,
+      startWidth = 36,
+      end,
+      endPadding,
+      endWidth = 36,
+    } = React.isValidElement(adornment)
+      ? {
+          start: adornment,
+          startPadding: adornmentSettings.padding,
+          startWidth: adornmentSettings.width,
+        }
+      : adornment
 
-  return (
-    <div
-      css={`
-        display: inline-flex;
-        position: relative;
-        width: ${props.wide ? '100%' : 'max-content'};
-      `}
-    >
-      <TextInput
-        ref={ref}
+    return (
+      <div
         css={`
-          ${start && `padding-left: ${startWidth}`}
-          ${end && `padding-right: ${endWidth}`}
+          display: inline-flex;
+          position: relative;
+          width: ${props.wide ? '100%' : 'max-content'};
         `}
-        {...props}
-      />
-      {start && (
-        <Adornment adornment={start} padding={startPadding} position="start" />
-      )}
-      {end && <Adornment adornment={end} padding={endPadding} position="end" />}
-    </div>
-  )
-})
+      >
+        <TextInput
+          ref={ref}
+          css={`
+            ${start && `padding-left: ${startWidth}`}
+            ${end && `padding-right: ${endWidth}`}
+          `}
+          {...props}
+        />
+        {start && (
+          <Adornment
+            adornment={start}
+            padding={startPadding}
+            position="start"
+          />
+        )}
+        {end && (
+          <Adornment adornment={end} padding={endPadding} position="end" />
+        )}
+      </div>
+    )
+  }
+)
 
 WrapperTextInput.propTypes = {
   ...TextInput.propTypes,
@@ -167,11 +181,17 @@ WrapperTextInput.propTypes = {
       endPadding: PropTypes.number,
     }),
   ]),
+  adornmentPosition: PropTypes.oneOf(['start', 'end']),
+  adornmentSettings: PropTypes.shape({
+    width: PropTypes.number,
+    padding: PropTypes.number,
+  }),
 }
 
 WrapperTextInput.defaultProps = {
   ...TextInput.defaultProps,
   adornment: null,
+  adornmentSettings: {},
 }
 
 // <input type=number> (only for compat)
