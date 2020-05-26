@@ -2,7 +2,6 @@ import { noop } from './miscellaneous'
 
 // Return a function that executes `cb` when on the dev environment
 export function devOnly(cb) {
-  return cb
   return process.env.NODE_ENV === 'development' ? cb : noop
 }
 
