@@ -16,23 +16,21 @@ const Container = styled(DemoContainer)`
 `
 
 const PageToastHub = ({ title }) => (
-  <ToastHub>
-    <Page title={title} readme={readme}>
-      <Page.Demo opaque>
-        <Container>
-          <div>
-            <Toast>
-              {toast => (
-                <Button mode="strong" compact onClick={() => toast('hello')}>
-                  Add toast
-                </Button>
-              )}
-            </Toast>
-          </div>
-        </Container>
-      </Page.Demo>
-    </Page>
-  </ToastHub>
+  <Page title={title} readme={readme}>
+    <Page.Demo opaque>
+      <Container>
+        <div>
+          <Toast>
+            {toast => (
+              <Button mode="strong" compact onClick={() => toast('hello')}>
+                Add toast
+              </Button>
+            )}
+          </Toast>
+        </div>
+      </Container>
+    </Page.Demo>
+  </Page>
 )
 
 export default PageToastHub
