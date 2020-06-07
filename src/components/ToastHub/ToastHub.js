@@ -204,14 +204,13 @@ const ToastList = React.memo(function ToastList({
             >
               <div
                 css={`
-                  display: grid;
-                  grid-template-columns: 1fr;
-                  grid-gap: 10px;
-                  height: ${6 * GU}px;
-                  padding: ${2 * GU}px ${2.5 * GU}px;
+                  display: flex;
+                  align-items: center;
                   overflow: hidden;
+                  height: ${6 * GU}px;
                   margin-top: ${top ? '0' : `${1.25 * GU}px`};
                   margin-bottom: ${top ? `${1.25 * GU}px` : '0'};
+                  padding: 0 ${2.5 * GU}px;
                   ${textStyle('body3')};
                   color: ${theme.floatingContent};
                   background: ${theme.floating.alpha(0.95)};

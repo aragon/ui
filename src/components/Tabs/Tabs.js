@@ -48,8 +48,20 @@ function Tabs(props) {
     )
   }
 
+  const selected = Math.min(props.items.length - 1, Math.max(0, props.selected))
+
+  if (selected !== props.selected) {
+    warnOnce(
+      'Tabs:outOfRangeSelected',
+      `Tabs: the selected item doesn’t exist (selected index: ${
+        props.selected
+      }, selection range: 0 to ${props.items.length -
+        1}). Selecting ${selected} instead.`
+    )
+  }
+
   if (layoutName === 'small') {
-    return <TabsFullWidth {...props} />
+    return <TabsFullWidth {...props} selected={selected} />
   }
 
   return (
@@ -64,10 +76,12 @@ function Tabs(props) {
           : ''}
       `}
     >
-      <TabBar {...props} />
+      <TabBar {...props} selected={selected} />
     </Bar>
   )
 }
+
+Tabs.propTypes = TabBar.propTypes
 
 // TabBar legacy compatibility
 function TabBarLegacyCompatibility(props) {
