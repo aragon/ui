@@ -134,6 +134,18 @@ describe('formatTokenAmount()', () => {
     ).toEqual('28.39')
   })
 
+  test('should handle decimals units smaller than digits', () => {
+    expect(formatTokenAmount(BigInt('283999'), 4, { digits: 8 })).toEqual(
+      '28.3999'
+    )
+  })
+
+  test('should handle decimals units greater than digits', () => {
+    expect(
+      formatTokenAmount(BigInt('2839000000010000000009'), 6, { digits: 10 })
+    ).toEqual('2,839,000,000,010,000.000009')
+  })
+
   test('should handle zero decimals units', () => {
     expect(formatTokenAmount(BigInt('2839'), 0)).toEqual('2,839')
   })
@@ -160,12 +172,6 @@ describe('formatTokenAmount()', () => {
     expect(
       formatTokenAmount(-0, 18, { digits: 17, displaySign: true })
     ).toEqual('+0')
-  })
-
-  test('should throw when digits is greater than decimal units', () => {
-    expect(() => {
-      formatTokenAmount(BigInt('2839000000010000000000'), 6, { digits: 10 })
-    }).toThrow()
   })
 
   test('should throw when a negative number is used for decimals', () => {
