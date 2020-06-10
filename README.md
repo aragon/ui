@@ -83,7 +83,7 @@ See `copy-aragon-ui-assets -h` for more information.
 
 ## Build and Develop
 
-Please have a look at <CONTRIBUTING.md>.
+Please have a look at [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Projects using aragonUI
 
