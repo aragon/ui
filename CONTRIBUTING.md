@@ -22,7 +22,7 @@ npm run dev
 
 ## Develop
 
-The `devbox/` directory contains an app that can get used to develop components.
+The `devbox/` directory contains an app that can be used to develop components.
 
 To develop using it, you have to link aragonUI first:
 
