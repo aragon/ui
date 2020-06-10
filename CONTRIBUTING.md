@@ -1,26 +1,45 @@
 # Contribute to aragonUI
 
-## How to develop
+## Build
+
+Clone this repository and install the dependencies:
+
+```sh
+npm install
+```
+
+Build:
+
+```sh
+npm run build
+```
+
+Auto rebuild:
+
+```sh
+npm run dev
+```
+
+## Develop
 
 The `devbox/` directory contains an app that can get used to develop components.
 
 To develop using it, you have to link aragonUI first:
 
 ```console
-cd aragon-ui/
+# Assuming you are in the root aragon-ui directory (i.e. cd aragon-ui/)
+
+# Link @aragon/ui locally and into the devbox package
 yarn link
 cd devbox/
 yarn link @aragon/ui
-```
+cd ../
 
-Then rebuild aragonUI on changes:
-
-```console
-# shell session 1
+# Rebuild on change
 yarn dev
 ```
 
-And finally launch the development server:
+And launch the devbox development server:
 
 ```console
 # shell session 2

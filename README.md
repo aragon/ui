@@ -83,38 +83,7 @@ See `copy-aragon-ui-assets -h` for more information.
 
 ## Build and Develop
 
-Clone this repository, install the dependencies:
-
-```sh
-npm install
-```
-
-Build:
-
-```sh
-npm run build
-```
-
-Auto rebuild:
-
-```sh
-npm run dev
-```
-
-Run the devbox (to develop a component in isolation):
-
-```sh
-# Assuming you are in the root aragon-ui directory (i.e. cd aragon-ui/)
-
-# Link @aragon/ui locally and into the devbox package
-yarn link
-cd devbox/
-yarn link @aragon/ui
-cd ../
-
-# Run devbox
-yarn devbox
-```
+Please have a look at <CONTRIBUTING.md>.
 
 ## Projects using aragonUI
 
