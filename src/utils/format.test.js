@@ -95,7 +95,7 @@ describe('formatTokenAmount()', () => {
     ).toEqual('4,442,839.38129587970788395')
   })
 
-  test('should add add symbol', () => {
+  test('should add symbol', () => {
     expect(
       formatTokenAmount(BigInt('4442839381295879707883948'), 18, {
         digits: 17,
@@ -122,6 +122,22 @@ describe('formatTokenAmount()', () => {
     ).toEqual('2,839')
   })
 
+  test('should handle non-18 decimal units', () => {
+    expect(
+      formatTokenAmount(BigInt('2839000000010000000000'), 10, { digits: 8 })
+    ).toEqual('283,900,000,001')
+    expect(formatTokenAmount(BigInt('283900010000'), 6, { digits: 3 })).toEqual(
+      '283,900.01'
+    )
+    expect(
+      formatTokenAmount(BigInt('28390000000100000000000000'), 24, { digits: 7 })
+    ).toEqual('28.39')
+  })
+
+  test('should handle zero decimals units', () => {
+    expect(formatTokenAmount(BigInt('2839'), 0)).toEqual('2,839')
+  })
+
   test('should display the sign', () => {
     expect(
       formatTokenAmount(BigInt('4442839381295879707883948'), 18, {
@@ -144,6 +160,12 @@ describe('formatTokenAmount()', () => {
     expect(
       formatTokenAmount(-0, 18, { digits: 17, displaySign: true })
     ).toEqual('+0')
+  })
+
+  test('should throw when digits is greater than decimal units', () => {
+    expect(() => {
+      formatTokenAmount(BigInt('2839000000010000000000'), 6, { digits: 10 })
+    }).toThrow()
   })
 
   test('should throw when a negative number is used for decimals', () => {
