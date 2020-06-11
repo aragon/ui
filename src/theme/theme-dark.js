@@ -44,7 +44,7 @@ export default {
   positive: '#2cc68f',
   positiveContent: '#FFFFFF',
   positiveSurface: '#35585e',
-  positiveSurfaceContent: '#1B8962',
+  positiveSurfaceContent: '#27a779',
 
   badge: '#415279',
   badgeContent: '#ffffff',
