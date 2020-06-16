@@ -89,7 +89,7 @@ Please have a look at [CONTRIBUTING.md](CONTRIBUTING.md).
 
 - [Aragon client](https://github.com/aragon/aragon) and [core apps](https://github.com/aragon/aragon-apps)
 - [Autark’s Open Enterprise](https://www.autark.xyz/apps)
-- [1Hive’s Dandelion apps](https://1hive.org/projects/dandelion-orgs/dandelion-overview)
+- [1Hive’s Dandelion apps](https://github.com/1Hive/dandelion-template)
 - [Aragon Black’s Fundraising](https://fundraising.aragon.black/)
 - [pando](https://github.com/pandonetwork/pando)
 - [P2P Models Wiki](https://github.com/P2PModels/wiki)
