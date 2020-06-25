@@ -3,7 +3,7 @@ import PropTypes from '../../proptypes'
 import Popper from 'popper.js'
 import { Transition, animated } from 'react-spring'
 import { useRoot } from '../../providers'
-import { springs, GU, RADIUS } from '../../style'
+import { springs, GU, BIG_RADIUS } from '../../style'
 import { useTheme } from '../../theme'
 import { noop, stylingProps, warn, KEY_ESC } from '../../utils'
 import RootPortal from '../RootPortal/RootPortal'
@@ -213,7 +213,7 @@ class PopoverBase extends React.Component {
           css={`
             background: ${theme.surface};
             border: 1px solid ${theme.border};
-            border-radius: ${RADIUS}px;
+            border-radius: ${BIG_RADIUS}px;
             filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.15));
             &:focus {
               /* Having the popover visible already means that it focused. */

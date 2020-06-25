@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import dayjs from 'dayjs'
 import Button from '../Button/Button'
 import { useViewport } from '../../providers/Viewport/Viewport'
-import { GU, RADIUS } from '../../style'
+import { GU, BIG_RADIUS } from '../../style'
 import { useTheme } from '../../theme'
 import DatePicker from './DatePicker'
 import Labels from './Labels'
@@ -117,7 +117,7 @@ function DateRangePicker({
           css={`
             padding: ${2.5 * GU}px ${3 * GU}px ${3 * GU}px;
             border: 1px solid ${theme.border};
-            border-radius: ${RADIUS}px;
+            border-radius: ${BIG_RADIUS}px;
             background: ${theme.surface};
           `}
         >

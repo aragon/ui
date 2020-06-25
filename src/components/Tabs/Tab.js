@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react'
 import PropTypes from 'prop-types'
 import { useInside } from 'use-inside'
-import { GU, RADIUS, textStyle } from '../../style'
+import { BIG_RADIUS, GU, textStyle } from '../../style'
 import { useTheme } from '../../theme'
 import ButtonBase from '../ButtonBase/ButtonBase'
 
@@ -16,7 +16,7 @@ function Tab({ index, item, selected, onChange }) {
   return (
     <li css="list-style: none">
       <ButtonBase
-        focusRingRadius={RADIUS}
+        focusRingRadius={BIG_RADIUS}
         onClick={handleClick}
         css={`
           ${textStyle('body2')};

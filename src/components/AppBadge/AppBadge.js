@@ -1,7 +1,7 @@
 import React, { useCallback, useRef, useState } from 'react'
 import PropTypes from 'prop-types'
 import { ImageExists } from '../../hooks'
-import { GU, RADIUS } from '../../style'
+import { GU, BIG_RADIUS } from '../../style'
 import { isAddress, warn } from '../../utils'
 import BadgeBase from '../BadgeBase/BadgeBase'
 import BadgePopoverActionType from '../BadgeBase/BadgePopoverActionType'
@@ -121,7 +121,7 @@ const Icon = ({ compact, src, ...props }) => {
         width: ${size}px;
         height: ${size}px;
         margin-right: ${1 * GU}px;
-        border-radius: ${compact ? `${RADIUS}px` : 0};
+        border-radius: ${compact ? `${BIG_RADIUS}px` : 0};
         background-size: contain;
         background-position: 50% 50%;
         background-repeat: no-repeat;

@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect, useCallback, useMemo } from 'react'
 import PropTypes from 'prop-types'
 import { Inside } from 'use-inside'
 import { warnOnce, unselectable } from '../../utils'
-import { GU, RADIUS, textStyle } from '../../style'
+import { BIG_RADIUS, GU, RADIUS, textStyle } from '../../style'
 import { useTheme } from '../../theme'
 import { IconDown } from '../../icons'
 import { useViewport } from '../../providers/Viewport/Viewport'
@@ -176,7 +176,7 @@ const DropDown = React.memo(function DropDown({
         ref={refCallback}
         disabled={disabled}
         onClick={toggle}
-        focusRingRadius={RADIUS}
+        focusRingRadius={BIG_RADIUS}
         focusRingSpacing={1}
         css={`
           display: ${wide ? 'flex' : 'inline-flex'};

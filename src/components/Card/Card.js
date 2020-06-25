@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { useInside } from 'use-inside'
 import { css } from 'styled-components'
-import { GU, RADIUS } from '../../style'
+import { GU, BIG_RADIUS } from '../../style'
 import { useTheme } from '../../theme'
 import ButtonBase from '../ButtonBase/ButtonBase'
 
@@ -25,7 +25,7 @@ function Card({ children, width, height, onClick, ...props }) {
   const interactive = Boolean(onClick)
 
   const interactiveProps = interactive
-    ? { as: ButtonBase, element: 'div', focusRingRadius: RADIUS, onClick }
+    ? { as: ButtonBase, element: 'div', focusRingRadius: BIG_RADIUS, onClick }
     : {}
 
   const cssWidth = dimension(insideCardLayout, width, `${DEFAULT_WIDTH}px`)
@@ -40,7 +40,7 @@ function Card({ children, width, height, onClick, ...props }) {
         height: ${cssHeight};
         background: ${theme.surface};
         border: 1px solid ${theme.border};
-        border-radius: ${RADIUS}px;
+        border-radius: ${BIG_RADIUS}px;
         cursor: ${interactive ? 'pointer' : 'default'};
 
         // Default layout

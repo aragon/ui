@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react'
 import PropTypes from 'prop-types'
 import { useTheme } from '../../theme'
-import { GU, RADIUS, textStyle } from '../../style'
+import { GU, BIG_RADIUS, textStyle } from '../../style'
 
 function getModeStyles(theme, mode) {
   if (mode === 'warning') {
@@ -62,7 +62,7 @@ function Info({
         background: ${background || modeStyles.background};
         border-left: 2px solid ${borderColor || modeStyles.borderColor};
         padding: ${2 * GU}px;
-        border-radius: ${RADIUS}px;
+        border-radius: ${BIG_RADIUS}px;
         word-wrap: break-word;
         ${textStyle('body3')};
       `}
