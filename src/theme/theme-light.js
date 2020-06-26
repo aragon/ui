@@ -83,7 +83,7 @@ export default {
   accent: '#7CE0D6',
   accentStart: '#7CE0D6',
   accentEnd: '#AAF5D4',
-  accentContent: '#FFFFFF',
+  accentContent: '#2C3437',
 
   floating: '#30404F',
   floatingContent: '#FFFFFF',
