@@ -48,6 +48,7 @@ const BadgeBase = React.memo(function BadgeBase({
           &:active {
             ${!disabled && compact ? `background: ${theme.badgePressed}` : ''};
           }
+          border-radius: ${RADIUS}px;
         `}
       >
         <div

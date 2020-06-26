@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react'
 import PropTypes from 'prop-types'
 import { Inside, useInside } from 'use-inside'
-import { textStyle, GU, RADIUS } from '../../style'
+import { textStyle, GU, BIG_RADIUS } from '../../style'
 import { useTheme } from '../../theme'
 import { warn, warnOnce, unselectable } from '../../utils'
 import { useLayout } from '../Layout/Layout'
@@ -97,9 +97,9 @@ function modeStyles(theme, mode, disabled) {
     return {
       background: `
         linear-gradient(
-          190deg,
-          ${theme.accentStart} -100%,
-          ${theme.accentEnd} 80%
+          45deg,
+          ${theme.accentStart} 0%,
+          ${theme.accentEnd} 100%
         )
       `,
       color: theme.accentContent,
@@ -235,7 +235,7 @@ function Button({
     <ButtonBase
       ref={innerRef}
       focusRingSpacing={border === '0' ? 0 : 1}
-      focusRingRadius={RADIUS}
+      focusRingRadius={BIG_RADIUS}
       disabled={disabled}
       {...props}
       css={`
@@ -270,7 +270,6 @@ function Button({
                 <span
                   css={`
                     position: relative;
-                    top: -1px;
                     display: flex;
                     color: ${iconColor};
                     margin-right: ${middleSpace};

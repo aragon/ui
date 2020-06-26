@@ -3,14 +3,14 @@ import PropTypes from 'prop-types'
 import ButtonIcon from '../Button/ButtonIcon'
 import { IconDown, IconUp } from '../../icons'
 import { useTheme } from '../../theme'
-import { RADIUS } from '../../style'
+import { BIG_RADIUS } from '../../style'
 
 function ToggleButton({ onClick, opened }) {
   const theme = useTheme()
   return (
     <ButtonIcon
       label={opened ? 'Close' : 'Open'}
-      focusRingRadius={RADIUS}
+      focusRingRadius={BIG_RADIUS}
       onClick={onClick}
       css={`
         display: flex;

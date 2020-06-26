@@ -4,7 +4,7 @@ import { Transition, animated } from 'react-spring'
 import { Inside } from 'use-inside'
 import RootPortal from '../RootPortal/RootPortal'
 import { useTheme } from '../../theme'
-import { GU, RADIUS, textStyle, springs } from '../../style'
+import { BIG_RADIUS, GU, textStyle, springs } from '../../style'
 import { useViewport } from '../../providers/Viewport/Viewport'
 import { ToastContext } from '../ToastHub/ToastHub'
 
@@ -66,7 +66,7 @@ const FloatIndicator = React.memo(function FloatIndicator({
                   color: ${theme.floatingContent};
                   background: ${theme.floating};
                   border: 1px solid ${theme.border};
-                  border-radius: ${RADIUS}px;
+                  border-radius: ${BIG_RADIUS}px;
                   cursor: default;
                   justify-content: center;
                 `}

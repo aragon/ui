@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Transition, animated } from 'react-spring'
 import { cssPx, noop } from '../../utils'
-import { springs, GU, RADIUS } from '../../style'
+import { springs, GU, BIG_RADIUS } from '../../style'
 import { useTheme } from '../../theme'
 import { useViewport } from '../../providers/Viewport'
 import { IconCross } from '../../icons'
@@ -88,7 +88,7 @@ function Modal({
                       width: cssPx(
                         typeof width === 'function' ? width(viewport) : width
                       ),
-                      borderRadius: `${RADIUS}px`,
+                      borderRadius: `${BIG_RADIUS}px`,
                     }}
                   >
                     {closeButton && (

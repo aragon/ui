@@ -2,7 +2,7 @@ import React, { useCallback } from 'react'
 import PropTypes from 'prop-types'
 import FocusVisible from '../FocusVisible/FocusVisible'
 import { useTheme } from '../../theme'
-import { RADIUS, textStyle } from '../../style'
+import { BIG_RADIUS, textStyle } from '../../style'
 import { warnOnce, KEY_ENTER, unselectable } from '../../utils'
 
 function getElementProps({ element, href, disabled, external }) {
@@ -109,7 +109,7 @@ function ButtonBase({
         text-decoration: none;
         text-align: center;
         background: none;
-        border-radius: ${RADIUS}px;
+        border-radius: ${BIG_RADIUS}px;
         border: 0;
         outline: 0;
         cursor: ${disabled ? 'default' : 'pointer'};

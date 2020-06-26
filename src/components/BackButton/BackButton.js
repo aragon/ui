@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { useInside } from 'use-inside'
-import { RADIUS, GU } from '../../style'
+import { BIG_RADIUS, RADIUS, GU } from '../../style'
 import { useTheme } from '../../theme'
 import Bar from '../Bar/Bar'
 import ButtonBase from '../ButtonBase/ButtonBase'
@@ -23,7 +23,7 @@ function BackButton({ label, ...props }) {
       css={`
         display: inline-flex;
         align-items: center;
-        border-radius: ${RADIUS}px 0 0 ${RADIUS}px;
+        border-radius: ${BIG_RADIUS}px 0 0 ${BIG_RADIUS}px;
         height: 100%;
         margin-left: ${insideBarPrimary ? -Bar.PADDING : 0}px;
         /* Adjust for icon's padding on the left */

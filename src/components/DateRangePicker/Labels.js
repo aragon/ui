@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react'
 import PropTypes from 'prop-types'
 import { IconCalendar } from '../../icons/components'
-import { GU, RADIUS, textStyle } from '../../style'
+import { GU, BIG_RADIUS, textStyle } from '../../style'
 import { useTheme } from '../../theme'
 import { START_DATE, END_DATE, INPUT_BORDER } from './consts'
 import ButtonBase from '../ButtonBase/ButtonBase'
@@ -16,7 +16,7 @@ const Labels = forwardRef(function Labels(
   const hasNoEnd = endText === END_DATE
 
   return (
-    <ButtonBase focusRingRadius={RADIUS} ref={ref} onClick={onClick}>
+    <ButtonBase focusRingRadius={BIG_RADIUS} ref={ref} onClick={onClick}>
       <div
         css={`
           position: relative;
@@ -27,7 +27,7 @@ const Labels = forwardRef(function Labels(
           padding: 7px 6px;
           border: ${INPUT_BORDER}px solid
             ${hasSetDates ? theme.accent : theme.border};
-          border-radius: ${RADIUS}px;
+          border-radius: ${BIG_RADIUS}px;
           background: ${theme.surface};
           overflow: hidden;
           cursor: pointer;

@@ -122,6 +122,7 @@ const TextCopy = React.memo(
             height: ${HEIGHT}px;
             max-width: 100%;
             border: 1px solid ${theme.border};
+            border-radius: ${RADIUS}px;
             ${adornment
               ? `
                   border-top-left-radius: 0;
