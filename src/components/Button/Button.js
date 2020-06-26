@@ -270,7 +270,6 @@ function Button({
                 <span
                   css={`
                     position: relative;
-                    top: -1px;
                     display: flex;
                     color: ${iconColor};
                     margin-right: ${middleSpace};
