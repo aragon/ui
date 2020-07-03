@@ -57,15 +57,15 @@ export default {
   tagNewContent: '#30DB9E',
 
   tagIndicator: '#EBFAFD',
-  tagIndicatorContent: '#08BEE5',
+  tagIndicatorContent: '#7CE0D6',
 
-  tagActivity: '#08BEE5',
+  tagActivity: '#7CE0D6',
   tagActivityContent: '#FFFFFF',
 
   hint: '#8FA4B5',
   link: '#3E7BF6',
   focus: '#3E7BF6',
-  selected: '#08BEE5',
+  selected: '#7CE0D6',
   selectedContent: '#FFFFFF',
   selectedDisabled: '#C4CDD5',
 
@@ -88,10 +88,10 @@ export default {
   floating: '#30404F',
   floatingContent: '#FFFFFF',
 
-  green: '#9BC75A',
-  yellow: '#F7D858',
-  red: '#F08658',
+  green: '#71EEB8',
+  yellow: '#FFDD0F',
+  red: '#FFDD0F',
   blue: '#3E7BF6',
   brown: '#876559',
-  purple: '#7C80F2',
+  purple: '#88A8E4',
 }
