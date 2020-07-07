@@ -2,7 +2,7 @@ import React, { useCallback } from 'react'
 import PropTypes from 'prop-types'
 import { useTheme } from '../../theme'
 import { warnOnce } from '../../utils'
-import { textStyle, GU, BIG_RADIUS } from '../../style'
+import { textStyle, GU, MEDIUM_RADIUS } from '../../style'
 
 // Simple text input
 const TextInput = React.forwardRef(
@@ -34,7 +34,7 @@ const TextInput = React.forwardRef(
           background: ${theme.surface};
           border: 1px solid ${theme.border};
           color: ${theme.surfaceContent};
-          border-radius: ${BIG_RADIUS}px;
+          border-radius: ${MEDIUM_RADIUS}px;
           appearance: none;
           ${textStyle('body3')};
 
