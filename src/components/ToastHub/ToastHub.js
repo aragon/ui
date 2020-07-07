@@ -5,7 +5,7 @@ import RootPortal from '../RootPortal/RootPortal'
 import { useViewport } from '../../providers/Viewport/Viewport'
 import { stylingProps } from '../../utils'
 import { useTheme } from '../../theme'
-import { BIG_RADIUS, springs, textStyle, GU } from '../../style'
+import { MEDIUM_RADIUS, springs, textStyle, GU } from '../../style'
 
 let id = 0
 
@@ -214,7 +214,7 @@ const ToastList = React.memo(function ToastList({
                   ${textStyle('body3')};
                   color: ${theme.floatingContent};
                   background: ${theme.floating.alpha(0.95)};
-                  border-radius: ${BIG_RADIUS}px;
+                  border-radius: ${MEDIUM_RADIUS}px;
                 `}
               >
                 {showIndicator && (
