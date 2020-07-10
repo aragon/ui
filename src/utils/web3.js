@@ -8,7 +8,13 @@ const TRANSACTION_REGEX = /^0x[A-Fa-f0-9]{64}$/
 const ADDRESS_REGEX = /^0x[0-9a-fA-F]{40}$/
 
 const TRUST_WALLET_BASE_URL =
-  'https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum'
+  'https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/'
+
+const TRUST_WALLET_NETWORKS = new Map([
+  // [chainId, path]
+  [1, 'ethereum'],
+  [100, 'xdai'],
+])
 
 const BLOCKSCOUT_NETWORKS = new Map([
   // [chainId, path]
@@ -237,9 +243,19 @@ export function blockExplorerUrl(type, value, options = {}) {
  * Get the address of a token icon
  *
  * @param {string} address The contract address of the token, or the zero address (0x000…) to get the Ethereum icon.
+ * @param {object} options The optional parameters.
+ * @param {string} options.chainId The EVM chain ID (https://chainid.network/).
  * @returns {string} The generated URL, or an empty string if the parameters are invalid.
  */
-export function tokenIconUrl(address = '') {
+export function tokenIconUrl(address = '', { chainId = 1 } = {}) {
+  if (!TRUST_WALLET_NETWORKS.has(chainId)) {
+    warn(`tokenIconUrl(): invalid chainId '${chainId}'`)
+    return ''
+  }
+  const baseUrl = `${TRUST_WALLET_BASE_URL}/${TRUST_WALLET_NETWORKS.get(
+    chainId
+  )}`
+
   try {
     address = toChecksumAddress(address.trim())
   } catch (err) {
@@ -247,8 +263,8 @@ export function tokenIconUrl(address = '') {
   }
 
   if (address === EMPTY_ADDRESS) {
-    return `${TRUST_WALLET_BASE_URL}/info/logo.png`
+    return `${baseUrl}/info/logo.png`
   }
 
-  return `${TRUST_WALLET_BASE_URL}/assets/${address}/logo.png`
+  return `${baseUrl}/assets/${address}/logo.png`
 }
