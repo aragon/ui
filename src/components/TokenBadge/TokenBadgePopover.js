@@ -2,22 +2,18 @@ import React from 'react'
 import PropTypes from '../../proptypes'
 import { ImageExists } from '../../hooks'
 import { GU } from '../../style'
-import { blockExplorerUrl } from '../../utils'
 import AddressField from '../AddressField/AddressField'
 import BadgePopoverBase from '../BadgeBase/BadgePopoverBase'
-import Link from '../Link/Link'
 
 const TokenBadgePopover = React.memo(function TokenBadgePopover({
   address,
   iconSrc,
-  networkType,
+  link,
   onClose,
   opener,
   title,
   visible,
 }) {
-  const etherscanUrl = blockExplorerUrl('token', address, { networkType })
-
   return (
     <BadgePopoverBase
       addressField={
@@ -34,7 +30,7 @@ const TokenBadgePopover = React.memo(function TokenBadgePopover({
           <AddressField address={address} />
         )
       }
-      link={etherscanUrl && <Link href={etherscanUrl}>See on Etherscan</Link>}
+      link={link}
       onClose={onClose}
       opener={opener}
       title={title}
@@ -46,7 +42,7 @@ const TokenBadgePopover = React.memo(function TokenBadgePopover({
 TokenBadgePopover.propTypes = {
   address: PropTypes.string.isRequired,
   iconSrc: PropTypes.string,
-  networkType: PropTypes.string,
+  link: PropTypes.node,
   onClose: PropTypes.func,
   opener: PropTypes._element,
   title: PropTypes.string.isRequired,

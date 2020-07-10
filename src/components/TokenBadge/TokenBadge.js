@@ -3,8 +3,9 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { ImageExists } from '../../hooks'
 import { GU } from '../../style'
-import { isAddress, tokenIconUrl, warn } from '../../utils'
+import { isAddress, warn } from '../../utils'
 import BadgeBase from '../BadgeBase/BadgeBase'
+import Link from '../Link/Link'
 import TokenBadgePopover from './TokenBadgePopover'
 
 const TokenBadge = React.memo(function TokenBadge({
@@ -13,7 +14,6 @@ const TokenBadge = React.memo(function TokenBadge({
   className,
   compact,
   name,
-  networkType,
   style,
   symbol,
 }) {
@@ -23,14 +23,21 @@ const TokenBadge = React.memo(function TokenBadge({
   const handleClose = useCallback(() => setOpened(false), [])
   const handleOpen = useCallback(() => setOpened(true), [])
 
-  const isValidAddress = isAddress(address)
-  const iconSrc =
-    isValidAddress && networkType === 'main' ? tokenIconUrl(address) : null
-  const title = name && symbol ? `${name} (${symbol})` : symbol
+  const {
+    blockExplorerUrl,
+    blockExplorerName,
+    tokenIconUrl,
+  } = useChainConfiguration()
 
+  const isValidAddress = isAddress(address)
   if (!isValidAddress) {
     warn(`TokenBadge: provided invalid address (${address})`)
   }
+
+  const iconSrc = isValidAddress ? tokenIconUrl(address) : null
+  const explorerUrl = isValidAddress ? blockExplorerUrl('token', address) : null
+  const explorerName = blockExplorerName()
+  const title = name && symbol ? `${name} (${symbol})` : symbol
 
   return (
     <BadgeBase
@@ -68,7 +75,13 @@ const TokenBadge = React.memo(function TokenBadge({
           <TokenBadgePopover
             address={address}
             iconSrc={iconSrc}
-            networkType={networkType}
+            link={
+              explorerUrl && (
+                <Link href={explorerUrl}>
+                  See on ${explorerName || 'explorer'}
+                </Link>
+              )
+            }
             onClose={handleClose}
             opener={badgeRef.current}
             title={title}
@@ -85,14 +98,12 @@ TokenBadge.propTypes = {
   className: PropTypes.string,
   compact: PropTypes.bool,
   name: PropTypes.string,
-  networkType: PropTypes.string,
   style: PropTypes.object,
   symbol: PropTypes.string.isRequired,
 }
 TokenBadge.defaultProps = {
   address: '',
   name: '',
-  networkType: 'main',
 }
 
 function Icon({ compact, src, ...props }) {

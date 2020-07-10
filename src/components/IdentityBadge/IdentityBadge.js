@@ -5,6 +5,7 @@ import { isAddress, shortenAddress, warnOnce } from '../../utils'
 import BadgeBase from '../BadgeBase/BadgeBase'
 import BadgePopoverActionType from '../BadgeBase/BadgePopoverActionType'
 import EthIdenticon from '../EthIdenticon/EthIdenticon'
+import Link from '../Link/Link'
 import IdentityBadgePopover from './IdentityBadgePopover'
 
 const IdentityBadge = React.memo(function IdentityBadge({
@@ -14,7 +15,6 @@ const IdentityBadge = React.memo(function IdentityBadge({
   entity,
   label,
   labelStyle,
-  networkType,
   popoverAction,
   popoverTitle,
   shorten,
@@ -44,9 +44,17 @@ const IdentityBadge = React.memo(function IdentityBadge({
   const handleClose = useCallback(() => setOpened(false), [])
   const handleOpen = useCallback(() => setOpened(true), [])
 
-  const address = isAddress(entity) ? entity : null
+  const { blockExplorerUrl, blockExplorerName } = useChainConfiguration()
+
+  const isValidAddress = isAddress(entity)
+  const address = isValidAddress ? entity : null
   const displayLabel =
     label || (address && shorten ? shortenAddress(address) : entity)
+
+  const explorerUrl = isValidAddress
+    ? blockExplorerUrl('address', address)
+    : null
+  const explorerName = blockExplorerName()
 
   return (
     <BadgeBase
@@ -90,7 +98,13 @@ const IdentityBadge = React.memo(function IdentityBadge({
           <IdentityBadgePopover
             address={address}
             connectedAccount={connectedAccount}
-            networkType={networkType}
+            link={
+              explorerUrl && (
+                <Link href={explorerUrl}>
+                  See on ${explorerName || 'explorer'}
+                </Link>
+              )
+            }
             onClose={handleClose}
             opener={badgeRef.current}
             popoverAction={popoverAction}
@@ -110,7 +124,6 @@ IdentityBadge.propTypes = {
   entity: PropTypes.string,
   label: PropTypes.string,
   labelStyle: PropTypes.string,
-  networkType: PropTypes.string,
   popoverAction: BadgePopoverActionType,
   popoverTitle: PropTypes.node,
   shorten: PropTypes.bool,
@@ -123,7 +136,6 @@ IdentityBadge.propTypes = {
 IdentityBadge.defaultProps = {
   entity: '',
   labelStyle: '',
-  networkType: 'main',
   shorten: true,
 }
 

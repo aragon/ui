@@ -1,18 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {
-  blockExplorerUrl,
-  isTransaction,
-  shortenTransaction,
-  warnOnce,
-} from '../../utils'
+import { isTransaction, shortenTransaction, warnOnce } from '../../utils'
 import BadgeBase from '../BadgeBase/BadgeBase'
 
 const TransactionBadge = React.memo(function TransactionBadge({
   className,
   disabled,
   labelStyle,
-  networkType,
   shorten,
   style,
   transaction,
@@ -34,10 +28,10 @@ const TransactionBadge = React.memo(function TransactionBadge({
     )
   }
 
+  const { blockExplorerUrl } = useChainConfiguration()
+
   const isTx = isTransaction(transaction)
-  const transactionUrl = isTx
-    ? blockExplorerUrl('transaction', transaction, { networkType })
-    : ''
+  const explorerUrl = isTx ? blockExplorerUrl('transaction', transaction) : ''
   const label = !isTx
     ? 'Invalid transaction'
     : shorten
@@ -47,8 +41,8 @@ const TransactionBadge = React.memo(function TransactionBadge({
   return (
     <BadgeBase
       badgeOnly={true}
-      disabled={disabled || !transactionUrl}
-      href={transactionUrl}
+      disabled={disabled || !explorerUrl}
+      href={explorerUrl}
       label={label}
       labelStyle={labelStyle}
       title={transaction}
@@ -59,7 +53,6 @@ TransactionBadge.propTypes = {
   className: PropTypes.string,
   disabled: PropTypes.bool,
   labelStyle: PropTypes.string,
-  networkType: PropTypes.string,
   shorten: PropTypes.bool,
   style: PropTypes.object,
   transaction: PropTypes.string.isRequired,
@@ -69,7 +62,6 @@ TransactionBadge.propTypes = {
   fontSize: PropTypes.string,
 }
 TransactionBadge.defaultProps = {
-  networkType: 'main',
   shorten: true,
 }
 

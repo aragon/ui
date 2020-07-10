@@ -5,6 +5,7 @@ import { GU, RADIUS } from '../../style'
 import { isAddress, warn } from '../../utils'
 import BadgeBase from '../BadgeBase/BadgeBase'
 import BadgePopoverActionType from '../BadgeBase/BadgePopoverActionType'
+import Link from '../Link/Link'
 import Tag from '../Tag/Tag'
 import AppBadgePopover from './AppBadgePopover'
 import iconDefaultSvg from './assets/app-default.svg'
@@ -17,7 +18,6 @@ const AppBadge = React.memo(function AppBadge({
   identifier,
   label,
   labelStyle,
-  networkType,
   popoverAction,
   popoverTitle,
   ...props
@@ -27,10 +27,17 @@ const AppBadge = React.memo(function AppBadge({
   const handleClose = useCallback(() => setOpened(false), [])
   const handleOpen = useCallback(() => setOpened(true), [])
 
+  const { blockExplorerUrl, blockExplorerName } = useChainConfiguration()
+
   const isValidAddress = isAddress(appAddress)
   if (!badgeOnly && !isValidAddress) {
     warn(`AppBadge: provided invalid app address (${appAddress})`)
   }
+
+  const explorerUrl = isValidAddress
+    ? blockExplorerUrl('token', appAddress)
+    : null
+  const explorerName = blockExplorerName()
 
   popoverTitle = popoverTitle || (
     <div
@@ -87,7 +94,13 @@ const AppBadge = React.memo(function AppBadge({
             appAddress={appAddress}
             iconFallbackSrc={iconDefaultSvg}
             iconSrc={iconSrc}
-            networkType={networkType}
+            link={
+              explorerUrl && (
+                <Link href={explorerUrl}>
+                  See on ${explorerName || 'explorer'}
+                </Link>
+              )
+            }
             onClose={handleClose}
             opener={badgeRef.current}
             popoverAction={popoverAction}
@@ -107,7 +120,6 @@ AppBadge.propTypes = {
   identifier: PropTypes.string,
   label: PropTypes.string.isRequired,
   labelStyle: PropTypes.string,
-  networkType: PropTypes.string,
   popoverAction: BadgePopoverActionType,
   popoverTitle: PropTypes.node,
 }
