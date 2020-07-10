@@ -68,18 +68,19 @@ const BLOCK_EXPLORERS = {
 /**
  * Get the name of a block explorer
  *
- * @param {string} provider the explorer provider (e.g. etherscan).
+ * @param {string} provider the explorer's identifier (e.g. etherscan).
+ * @param {object} options.providerConfig Configuration mapping of available block explorers
  * @returns {string} The explorer's name, if any.
  */
-export function blockExplorerName(provider) {
-  const explorer = BLOCK_EXPLORERS[provider]
-
-  if (!explorer) {
-    warn(`blockExplorerUrl(): provider '${provider}' not supported.`)
+export function blockExplorerName(provider, providerConfig = BLOCK_EXPLORERS) {
+  if (!providerConfig || !providerConfig[provider]) {
+    warn(
+      `blockExplorerName(): provider '${provider}' not supported in provided configuration.`
+    )
     return ''
   }
 
-  return explorer.name
+  return providerConfig[provider].name
 }
 
 /**
@@ -89,18 +90,20 @@ export function blockExplorerName(provider) {
  * @param {string} value Identifier of the object, depending on the type (block number, transaction hash, …).
  * @param {object} options The optional parameters.
  * @param {string} options.chainId The EVM chain ID (https://chainid.network/).
- * @param {string} options.provider The explorer provider (e.g. etherscan).
+ * @param {string} options.provider The explorer's identifier (e.g. etherscan).
+ * @param {object} options.providerConfig Configuration mapping of available block explorers
  * @returns {string} The generated URL, or an empty string if the parameters are invalid.
  */
 export function blockExplorerUrl(type, value, options = {}) {
-  const { provider = 'etherscan' } = options
+  const { provider = 'etherscan', providerConfig = BLOCK_EXPLORERS } = options
 
-  const explorer = BLOCK_EXPLORERS[provider]
-
-  if (!explorer) {
-    warn(`blockExplorerUrl(): provider '${provider}' not supported.`)
+  if (!providerConfig || !providerConfig[provider]) {
+    warn(
+      `blockExplorerUrl(): provider '${provider}' not supported in provided configuration.`
+    )
     return ''
   }
+  const explorer = providerConfig[provider]
 
   let { chainId = 1 } = options
   if (!options.chainId && options.networkType) {

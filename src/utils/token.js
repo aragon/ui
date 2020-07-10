@@ -17,9 +17,11 @@ const TRUST_WALLET_NETWORKS = new Map([
  * @param {string} address The contract address of the token, or the zero address (0x000…) to get the Ethereum icon.
  * @param {object} options The optional parameters.
  * @param {string} options.chainId The EVM chain ID (https://chainid.network/).
+ * @param {object} options.providerConfig Configuration mapping of available token icon providers
  * @returns {string} The generated URL, or an empty string if the parameters are invalid.
  */
-export function tokenIconUrl(address = '', { chainId = 1 } = {}) {
+export function tokenIconUrl(address = '', { chainId = 1, providerConfig } = {}) {
+  // FIXME: use providerConfig
   if (!TRUST_WALLET_NETWORKS.has(chainId)) {
     warn(`tokenIconUrl(): invalid chainId '${chainId}'`)
     return ''
