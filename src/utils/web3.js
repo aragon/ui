@@ -1,5 +1,5 @@
 import sha3 from 'js-sha3'
-import { warn } from './environment'
+import { warn, warnOnce } from './environment'
 
 const { keccak_256: keccak256 } = sha3
 
@@ -10,12 +10,29 @@ const ADDRESS_REGEX = /^0x[0-9a-fA-F]{40}$/
 const TRUST_WALLET_BASE_URL =
   'https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum'
 
-const ETHERSCAN_NETWORK_TYPES = new Map([
-  ['main', ''],
-  ['kovan', 'kovan.'],
-  ['rinkeby', 'rinkeby.'],
-  ['ropsten', 'ropsten.'],
-  ['goerli', 'goerli.'],
+const BLOCKSCOUT_NETWORKS = new Map([
+  // [chainId, path]
+  [6, 'etc/kotti'],
+  [61, 'etc/mainnet'],
+  [63, 'etc/mordor'],
+  [77, 'poa/sokol'],
+  [99, 'poa/core'],
+  [100, 'poa/xdai'],
+])
+const BLOCKSCOUT_TYPES = new Map([
+  ['block', 'blocks'],
+  ['transaction', 'tx'],
+  ['address', 'address'],
+  ['token', 'tokens'],
+])
+
+const ETHERSCAN_NETWORKS = new Map([
+  // [chainId, subdomain]
+  [1, ''],
+  [3, 'ropsten.'],
+  [4, 'rinkeby.'],
+  [42, 'kovan.'],
+  [5, 'goerli.'],
 ])
 const ETHERSCAN_TYPES = new Map([
   ['block', 'block'],
@@ -25,23 +42,46 @@ const ETHERSCAN_TYPES = new Map([
 ])
 
 const BLOCK_EXPLORERS = {
-  etherscan: ({ type, value, networkType }) => {
-    if (networkType === 'private') {
-      return ''
+  blockscout: ({ chainId, type, value }) => {
+    if (!BLOCKSCOUT_NETWORKS.has(chainId)) {
+      throw new Error(`BlockscoutUrl chainId '${chainId}' not supported.`)
+    }
+    if (!BLOCKSCOUT_TYPES.has(type)) {
+      throw new Error(`BlockscoutUrl type '${type}' not supported.`)
     }
 
-    if (!ETHERSCAN_NETWORK_TYPES.has(networkType)) {
-      throw new Error('provider not supported.')
+    const path = BLOCKSCOUT_NETWORKS.get(chainId)
+    const typePart = BLOCKSCOUT_TYPES.get(type)
+    return `https://blockscout.com/${path}/${typePart}/${value}`
+  },
+  etherscan: ({ chainId, type, value }) => {
+    if (!ETHERSCAN_NETWORKS.has(chainId)) {
+      throw new Error(`EtherscanUrl chainId '${chainId}' not supported.`)
     }
     if (!ETHERSCAN_TYPES.has(type)) {
-      throw new Error('type not supported.')
+      throw new Error(`EtherscanUrl type '${type}' not supported.`)
     }
 
-    const subdomain = ETHERSCAN_NETWORK_TYPES.get(networkType)
+    const subdomain = ETHERSCAN_NETWORKS.get(chainId)
     const typePart = ETHERSCAN_TYPES.get(type)
     return `https://${subdomain}etherscan.io/${typePart}/${value}`
   },
 }
+
+// Shim mapping of web3.js' network type to chain ID.
+// This is mostly a convenience fallback for old users who may still be
+// specifying their desired network through a network type
+const NETWORK_TYPES_TO_CHAIN_ID = new Map([
+  ['main', 1],
+  ['ropsten', 3],
+  ['rinkeby', 4],
+  ['kovan', 42],
+  ['goerli', 5],
+
+  // Note that xDai is technically considered a "private" chain for web3.js,
+  // but we use "xdai" here to provide network detection
+  ['xdai', 100],
+])
 
 /**
  * Converts to a checksum address
@@ -154,24 +194,39 @@ export function isTransaction(transaction) {
  * @param {string} type The type of URL (block, transaction, address or token).
  * @param {string} value Identifier of the object, depending on the type (block number, transaction hash, …).
  * @param {object} options The optional parameters.
- * @param {string} options.networkType The Ethereum network type (main, kovan, rinkeby, ropsten, goerli, or private).
+ * @param {string} options.chainId The EVM chain ID (https://chainid.network/).
  * @param {string} options.provider The explorer provider (e.g. etherscan).
  * @returns {string} The generated URL, or an empty string if the parameters are invalid.
  */
-export function blockExplorerUrl(
-  type,
-  value,
-  { networkType = 'main', provider = 'etherscan' } = {}
-) {
+export function blockExplorerUrl(type, value, options = {}) {
+  const { provider = 'etherscan' } = options
+
   const explorer = BLOCK_EXPLORERS[provider]
 
   if (!explorer) {
-    warn('blockExplorerUrl(): provider not supported.')
+    warn(`blockExplorerUrl(): provider '${provider}' not supported.`)
     return ''
   }
 
+  let { chainId = 1 } = options
+  if (!options.chainId && options.networkType) {
+    if (!NETWORK_TYPES_TO_CHAIN_ID.has(options.networkType)) {
+      warnOnce(
+        'blockExplorerUrl():validNetworkType',
+        'blockExplorerUrl() was used with a network type. It is recommended to use chainId instead.'
+      )
+      chainId = NETWORK_TYPES_TO_CHAIN_ID.get(options.networkType)
+    } else {
+      warn(
+        'blockExplorerUrl() was used with an invalid network type. It is recommended to use chainId instead.'
+      )
+
+      return ''
+    }
+  }
+
   try {
-    return explorer({ type, value, networkType })
+    return explorer({ chainId, type, value })
   } catch (err) {
     warn(`blockExplorerUrl(): ${err.message}`)
     return ''
