@@ -48,29 +48,35 @@ const ETHERSCAN_TYPES = new Map([
 ])
 
 const BLOCK_EXPLORERS = {
-  blockscout: ({ chainId, type, value }) => {
-    if (!BLOCKSCOUT_NETWORKS.has(chainId)) {
-      throw new Error(`BlockscoutUrl chainId '${chainId}' not supported.`)
-    }
-    if (!BLOCKSCOUT_TYPES.has(type)) {
-      throw new Error(`BlockscoutUrl type '${type}' not supported.`)
-    }
+  blockscout: {
+    name: 'Blockscout',
+    url: ({ chainId, type, value }) => {
+      if (!BLOCKSCOUT_NETWORKS.has(chainId)) {
+        throw new Error(`BlockscoutUrl chainId '${chainId}' not supported.`)
+      }
+      if (!BLOCKSCOUT_TYPES.has(type)) {
+        throw new Error(`BlockscoutUrl type '${type}' not supported.`)
+      }
 
-    const path = BLOCKSCOUT_NETWORKS.get(chainId)
-    const typePart = BLOCKSCOUT_TYPES.get(type)
-    return `https://blockscout.com/${path}/${typePart}/${value}`
+      const path = BLOCKSCOUT_NETWORKS.get(chainId)
+      const typePart = BLOCKSCOUT_TYPES.get(type)
+      return `https://blockscout.com/${path}/${typePart}/${value}`
+    },
   },
-  etherscan: ({ chainId, type, value }) => {
-    if (!ETHERSCAN_NETWORKS.has(chainId)) {
-      throw new Error(`EtherscanUrl chainId '${chainId}' not supported.`)
-    }
-    if (!ETHERSCAN_TYPES.has(type)) {
-      throw new Error(`EtherscanUrl type '${type}' not supported.`)
-    }
+  etherscan: {
+    name: 'Etherscan',
+    url: ({ chainId, type, value }) => {
+      if (!ETHERSCAN_NETWORKS.has(chainId)) {
+        throw new Error(`EtherscanUrl chainId '${chainId}' not supported.`)
+      }
+      if (!ETHERSCAN_TYPES.has(type)) {
+        throw new Error(`EtherscanUrl type '${type}' not supported.`)
+      }
 
-    const subdomain = ETHERSCAN_NETWORKS.get(chainId)
-    const typePart = ETHERSCAN_TYPES.get(type)
-    return `https://${subdomain}etherscan.io/${typePart}/${value}`
+      const subdomain = ETHERSCAN_NETWORKS.get(chainId)
+      const typePart = ETHERSCAN_TYPES.get(type)
+      return `https://${subdomain}etherscan.io/${typePart}/${value}`
+    },
   },
 }
 
@@ -195,6 +201,23 @@ export function isTransaction(transaction) {
 }
 
 /**
+ * Get the name of a block explorer
+ *
+ * @param {string} provider the explorer provider (e.g. etherscan).
+ * @returns {string} The explorer's name, if any.
+ */
+export function blockExplorerName(provider) {
+  const explorer = BLOCK_EXPLORERS[provider]
+
+  if (!explorer) {
+    warn(`blockExplorerUrl(): provider '${provider}' not supported.`)
+    return ''
+  }
+
+  return explorer.name
+}
+
+/**
  * Generates an etherscan URL
  *
  * @param {string} type The type of URL (block, transaction, address or token).
@@ -232,7 +255,7 @@ export function blockExplorerUrl(type, value, options = {}) {
   }
 
   try {
-    return explorer({ chainId, type, value })
+    return explorer.url({ chainId, type, value })
   } catch (err) {
     warn(`blockExplorerUrl(): ${err.message}`)
     return ''
