@@ -200,6 +200,7 @@ WrapperTextInput.propTypes = {
       endWidth: PropTypes.number,
       endPadding: PropTypes.number,
     }),
+    PropTypes.oneOf([null]),
 
     // deprecated
     PropTypes.node,
