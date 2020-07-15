@@ -188,7 +188,6 @@ const WrapperTextInput = React.forwardRef(({ adornment, ...props }, ref) => {
 WrapperTextInput.propTypes = {
   ...TextInput.propTypes,
   adornment: PropTypes.oneOf([
-    PropTypes.node,
     PropTypes.shape({
       start: PropTypes.node,
       startWidth: PropTypes.number,
@@ -197,7 +196,12 @@ WrapperTextInput.propTypes = {
       endWidth: PropTypes.number,
       endPadding: PropTypes.number,
     }),
+    
+    // deprecated
+    PropTypes.node,
   ]),
+
+  // deprecated
   adornmentPosition: PropTypes.oneOf(['start', 'end']),
   adornmentSettings: PropTypes.shape({
     width: PropTypes.number,
