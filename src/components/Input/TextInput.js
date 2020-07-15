@@ -115,75 +115,79 @@ Adornment.defaultProps = {
   padding: 4,
 }
 
-const deprecationWarning = (adornmentPosition, adornmentSettings) => {
-  if (adornmentPosition) {
-    warn(
-      'TextInput: The "adornmentPosition" prop is deprecated. Please use the "adornment" prop instead.'
-    )
-  }
-  if (adornmentSettings) {
-    warn(
-      'TextInput: The "adornmentSettings" props is deprecated. Please use the "adornment" prop instead.'
-    )
-  }
-}
-
 // Text input wrapped to allow adornments
-const WrapperTextInput = React.forwardRef(({ adornment, ...props }, ref) => {
-  deprecationWarning(props.adornmentPosition, props.adornmentSettings)
-
-  if (!adornment) {
-    return <TextInput ref={ref} {...props} />
-  }
-
-  let adornmentConfig = adornment
-
-  const usingDeprecatedAPI =
-    React.isValidElement(adornment) ||
-    typeof adornment === 'string' ||
-    (typeof adornment === 'object' && adornment.constructor === Array)
-
-  if (usingDeprecatedAPI) {
-    const { adornmentPosition = 'start', adornmentSettings = {} } = props
-    adornmentConfig = {
-      [adornmentPosition]: adornment,
-      [`${adornmentPosition}Padding`]: adornmentSettings.padding,
-      [`${adornmentPosition}Width`]: adornmentSettings.width,
+const WrapperTextInput = React.forwardRef(
+  ({ adornment, adornmentPosition, adornmentSettings, ...props }, ref) => {
+    if (adornmentPosition) {
+      warn(
+        'TextInput: The "adornmentPosition" prop is deprecated. Please use the "adornment" prop instead.'
+      )
     }
-  }
+    if (adornmentSettings) {
+      warn(
+        'TextInput: The "adornmentSettings" props is deprecated. Please use the "adornment" prop instead.'
+      )
+    }
 
-  const {
-    start,
-    startPadding,
-    startWidth = 36,
-    end,
-    endPadding,
-    endWidth = 36,
-  } = adornmentConfig
+    if (!adornment) {
+      return <TextInput ref={ref} {...props} />
+    }
 
-  return (
-    <div
-      css={`
-        display: inline-flex;
-        position: relative;
-        width: ${props.wide ? '100%' : 'max-content'};
-      `}
-    >
-      <TextInput
-        ref={ref}
+    let adornmentConfig = adornment
+
+    const usingDeprecatedAPI =
+      React.isValidElement(adornment) ||
+      typeof adornment === 'string' ||
+      (typeof adornment === 'object' && adornment.constructor === Array)
+
+    if (usingDeprecatedAPI) {
+      const { adornmentPosition = 'start', adornmentSettings = {} } = props
+      adornmentConfig = {
+        [adornmentPosition]: adornment,
+        [`${adornmentPosition}Padding`]: adornmentSettings.padding,
+        [`${adornmentPosition}Width`]: adornmentSettings.width,
+      }
+    }
+
+    const {
+      start,
+      startPadding,
+      startWidth = 36,
+      end,
+      endPadding,
+      endWidth = 36,
+    } = adornmentConfig
+
+    return (
+      <div
         css={`
-          ${start && `padding-left: ${startWidth}`}
-          ${end && `padding-right: ${endWidth}`}
+          display: inline-flex;
+          position: relative;
+          width: ${props.wide ? '100%' : 'max-content'};
         `}
-        {...props}
-      />
-      {start && (
-        <Adornment adornment={start} padding={startPadding} position="start" />
-      )}
-      {end && <Adornment adornment={end} padding={endPadding} position="end" />}
-    </div>
-  )
-})
+      >
+        <TextInput
+          ref={ref}
+          css={`
+            ${start && `padding-left: ${startWidth}`}
+            ${end && `padding-right: ${endWidth}`}
+          `}
+          {...props}
+        />
+        {start && (
+          <Adornment
+            adornment={start}
+            padding={startPadding}
+            position="start"
+          />
+        )}
+        {end && (
+          <Adornment adornment={end} padding={endPadding} position="end" />
+        )}
+      </div>
+    )
+  }
+)
 
 WrapperTextInput.propTypes = {
   ...TextInput.propTypes,
@@ -196,7 +200,7 @@ WrapperTextInput.propTypes = {
       endWidth: PropTypes.number,
       endPadding: PropTypes.number,
     }),
-    
+
     // deprecated
     PropTypes.node,
   ]),
