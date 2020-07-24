@@ -64,7 +64,15 @@ If a number is set or returned from the function, `px` will automatically be add
 | ---------- | ------------- |
 | `Function` | None          |
 
-The callback that is called when the `ESC` i pressed or the user clicks outside of the modal container.
+This callback is called when the `ESC` key is pressed or the user clicks outside of the modal container.
+
+### `onClosed`
+
+| Type       | Default value |
+| ---------- | ------------- |
+| `Function` | None          |
+
+This callback is called after the closing transition has completed and the content has been unmounted.
 
 ### `closeButton`
 
