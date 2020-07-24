@@ -6,20 +6,23 @@ class EscapeOutside extends React.Component {
   static propTypes = {
     children: PropTypes.node.isRequired,
     onEscapeOutside: PropTypes.func.isRequired,
+    useCapture: PropTypes.node,
   }
 
   static defaultProps = {
     onEscapeOutside: noop,
+    useCapture: false,
   }
 
   _element = React.createRef()
   _document = null
 
   componentDidMount() {
+    const { useCapture } = this.props
     this._document = this._element.ownerDocument
     this._document.addEventListener('keydown', this.handleEscape)
-    this._document.addEventListener('click', this.handleClick)
-    this._document.addEventListener('touchend', this.handleClick)
+    this._document.addEventListener('click', this.handleClick, useCapture)
+    this._document.addEventListener('touchend', this.handleClick, useCapture)
   }
 
   componentWillUnmount() {
