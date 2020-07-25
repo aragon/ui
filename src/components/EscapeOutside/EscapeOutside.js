@@ -6,7 +6,7 @@ class EscapeOutside extends React.Component {
   static propTypes = {
     children: PropTypes.node.isRequired,
     onEscapeOutside: PropTypes.func.isRequired,
-    useCapture: PropTypes.node,
+    useCapture: PropTypes.bool,
   }
 
   static defaultProps = {
