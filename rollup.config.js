@@ -1,8 +1,8 @@
 import { basename, dirname } from 'path'
 import url from '@rollup/plugin-url'
 import resolve from '@rollup/plugin-node-resolve'
-import babel from 'rollup-plugin-babel'
-import commonjs from 'rollup-plugin-commonjs'
+import babel from '@rollup/plugin-babel'
+import commonjs from '@rollup/plugin-commonjs'
 import progress from 'rollup-plugin-progress'
 import analyze from 'rollup-plugin-analyzer'
 import glob from 'fast-glob'
@@ -97,7 +97,7 @@ export default (async () => {
         emitFiles: true,
       }),
       babel({
-        runtimeHelpers: true,
+        babelHelpers: 'runtime',
         exclude: 'node_modules/**',
       }),
       resolve(),
