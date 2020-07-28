@@ -20,15 +20,16 @@ class EscapeOutside extends React.Component {
   componentDidMount() {
     const { useCapture } = this.props
     this._document = this._element.ownerDocument
-    this._document.addEventListener('keydown', this.handleEscape)
+    this._document.addEventListener('keydown', this.handleEscape, useCapture)
     this._document.addEventListener('click', this.handleClick, useCapture)
     this._document.addEventListener('touchend', this.handleClick, useCapture)
   }
 
   componentWillUnmount() {
-    this._document.removeEventListener('keydown', this.handleEscape)
-    this._document.removeEventListener('click', this.handleClick)
-    this._document.removeEventListener('touchend', this.handleClick)
+    const { useCapture } = this.props
+    this._document.removeEventListener('keydown', this.handleEscape, useCapture)
+    this._document.removeEventListener('click', this.handleClick, useCapture)
+    this._document.removeEventListener('touchend', this.handleClick, useCapture)
   }
 
   handleClick = e => {
@@ -46,7 +47,7 @@ class EscapeOutside extends React.Component {
   }
 
   render() {
-    const { children, onEscapeOutside, ...rest } = this.props
+    const { children, onEscapeOutside, useCapture, ...rest } = this.props
 
     return (
       <div {...rest} ref={n => (this._element = n)}>
