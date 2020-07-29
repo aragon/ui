@@ -79,6 +79,7 @@ function Modal({
                 >
                   <EscapeOutside
                     role="alertdialog"
+                    useCapture
                     background={theme.surface}
                     onEscapeOutside={onClose}
                     css={`
