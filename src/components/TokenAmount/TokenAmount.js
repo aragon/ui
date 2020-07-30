@@ -20,7 +20,7 @@ const TokenAmountComponent = React.memo(function TokenAmountComponent({
 }) {
   const isValidAddress = isAddress(address)
   if (!isValidAddress) {
-    warn(`TokenAmount: provided invalid address (${address})`)
+    warn(`TokenAmount: provided address is invalid (${address})`)
   }
 
   return (
@@ -33,16 +33,16 @@ const TokenAmountComponent = React.memo(function TokenAmountComponent({
         `}
         style={style}
       >
-        <Logo address={address} size={size} />
+        <Icon address={address} size={size} />
         {amount && (
           <span
             css={`
               padding-right: ${size === 'large' ? 0.5 * GU : 0.25 * GU}px;
-              ${size === 'large' ? textStyle('title2') : textStyle('body2')};
+              ${textStyle(size === 'large' ? 'title2' : 'body2')};
               line-height: 1;
             `}
           >
-            {new TokenAmount(amount, decimals).format({ digits: digits })}
+            {TokenAmount.format(amount, decimals, { digits: digits })}
           </span>
         )}
         <Symbol address={address} size={size} symbol={symbol} />
@@ -51,7 +51,7 @@ const TokenAmountComponent = React.memo(function TokenAmountComponent({
   )
 })
 
-const Logo = React.memo(function Logo({ address, size }) {
+const Icon = function Icon({ address, size }) {
   const token = useToken(address)
   return (
     <ImageExists src={token.iconUrl}>
@@ -69,9 +69,9 @@ const Logo = React.memo(function Logo({ address, size }) {
       }
     </ImageExists>
   )
-})
+}
 
-const Symbol = React.memo(function Symbol({ address, size, symbol }) {
+const Symbol = function Symbol({ address, size, symbol }) {
   const token = useToken(address)
   const theme = useTheme()
 
@@ -81,15 +81,15 @@ const Symbol = React.memo(function Symbol({ address, size, symbol }) {
         color: ${theme.surfaceContentSecondary};
         ${textStyle('body2')};
         line-height: 1;
-        ${size === 'large' && `align-self: flex-end;`}
+        ${size === 'large' ? `align-self: flex-end;` : ''}
       `}
     >
       {symbol || token.symbol}
     </span>
   )
-})
+}
 
-Logo.propTypes = {
+Icon.propTypes = {
   address: PropTypes.string.isRequired,
   size: PropTypes.string,
 }
