@@ -1,13 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { useToken, UseTokenProvider } from 'use-token'
-import TokenAmount from 'token-amount'
+import { TokenAmount as TokenAmountLib } from 'token-amount'
 import { ImageExists } from '../../hooks'
 import { GU, textStyle } from '../../style'
 import { isAddress, warn } from '../../utils'
 import { useTheme } from '../../theme'
 
-const TokenAmountComponent = React.memo(function TokenAmountComponent({
+const TokenAmount = React.memo(function TokenAmount({
   address,
   amount,
   className,
@@ -42,7 +42,7 @@ const TokenAmountComponent = React.memo(function TokenAmountComponent({
               line-height: 1;
             `}
           >
-            {TokenAmount.format(amount, decimals, { digits: digits })}
+            {TokenAmountLib.format(amount, decimals, { digits: digits })}
           </span>
         )}
         <Symbol address={address} size={size} symbol={symbol} />
@@ -100,7 +100,7 @@ Symbol.propTypes = {
   symbol: PropTypes.string,
 }
 
-TokenAmountComponent.propTypes = {
+TokenAmount.propTypes = {
   address: PropTypes.string.isRequired,
   amount: PropTypes.any,
   className: PropTypes.string,
@@ -112,7 +112,7 @@ TokenAmountComponent.propTypes = {
   symbol: PropTypes.string,
 }
 
-TokenAmountComponent.defaultProps = {
+TokenAmount.defaultProps = {
   address: '',
   decimals: 18,
   digits: 2,
@@ -120,4 +120,4 @@ TokenAmountComponent.defaultProps = {
   size: 'medium',
 }
 
-export default TokenAmountComponent
+export default TokenAmount
