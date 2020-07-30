@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { useToken, UseTokenProvider } from 'use-token'
-import { TokenAmount as TokenAmountLib } from 'token-amount'
+import TokenAmountLib from 'token-amount'
 import { useImageExists } from '../../hooks'
 import { GU, textStyle } from '../../style'
 import { isAddress, warn } from '../../utils'
@@ -88,12 +88,12 @@ const Symbol = function Symbol({ address, size, symbol }) {
 
 Icon.propTypes = {
   address: PropTypes.string.isRequired,
-  size: PropTypes.string,
+  size: PropTypes.oneOf(['large', 'medium', 'small', 'mini']),
 }
 
 Symbol.propTypes = {
   address: PropTypes.string.isRequired,
-  size: PropTypes.string,
+  size: PropTypes.oneOf(['large', 'medium', 'small', 'mini']),
   symbol: PropTypes.string,
 }
 
@@ -103,7 +103,7 @@ TokenAmount.propTypes = {
   decimals: PropTypes.number,
   digits: PropTypes.number,
   networkType: PropTypes.string,
-  size: PropTypes.string,
+  size: PropTypes.oneOf(['large', 'medium', 'small', 'mini']),
   style: PropTypes.object,
   symbol: PropTypes.string,
 }
