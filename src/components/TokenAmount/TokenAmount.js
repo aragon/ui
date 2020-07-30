@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { useToken, UseTokenProvider } from 'use-token'
 import { TokenAmount as TokenAmountLib } from 'token-amount'
-import { ImageExists } from '../../hooks'
+import { useImageExists } from '../../hooks'
 import { GU, textStyle } from '../../style'
 import { isAddress, warn } from '../../utils'
 import { useTheme } from '../../theme'
@@ -10,13 +10,13 @@ import { useTheme } from '../../theme'
 const TokenAmount = React.memo(function TokenAmount({
   address,
   amount,
-  className,
   decimals,
   digits,
   networkType,
   size,
   style,
   symbol,
+  ...props
 }) {
   const isValidAddress = isAddress(address)
   if (!isValidAddress) {
@@ -26,12 +26,12 @@ const TokenAmount = React.memo(function TokenAmount({
   return (
     <UseTokenProvider>
       <div
-        className={className}
+        style={style}
         css={`
           display: flex;
           align-items: center;
         `}
-        style={style}
+        {...props}
       >
         <Icon address={address} size={size} />
         {amount && (
@@ -53,21 +53,18 @@ const TokenAmount = React.memo(function TokenAmount({
 
 const Icon = function Icon({ address, size }) {
   const token = useToken(address)
+  const { exists } = useImageExists(token.iconUrl)
   return (
-    <ImageExists src={token.iconUrl}>
-      {({ exists }) =>
-        exists && (
-          <img
-            alt={token.symbol}
-            css={`
-              height: ${3 * GU}px;
-              padding-right: ${size === 'large' ? 1 * GU : 0.5 * GU}px;
-            `}
-            src={token.iconUrl}
-          />
-        )
-      }
-    </ImageExists>
+    exists && (
+      <img
+        alt=""
+        height={3 * GU}
+        src={token.iconUrl}
+        css={`
+          padding-right: ${size === 'large' ? 1 * GU : 0.5 * GU}px;
+        `}
+      />
+    )
   )
 }
 
@@ -103,7 +100,6 @@ Symbol.propTypes = {
 TokenAmount.propTypes = {
   address: PropTypes.string.isRequired,
   amount: PropTypes.any,
-  className: PropTypes.string,
   decimals: PropTypes.number,
   digits: PropTypes.number,
   networkType: PropTypes.string,
