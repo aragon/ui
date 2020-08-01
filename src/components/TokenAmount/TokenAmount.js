@@ -1,45 +1,53 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+import PropTypes from '../../proptypes'
 import { useToken, UseTokenProvider } from 'use-token'
 import TokenAmountLib from 'token-amount'
 import { useImageExists } from '../../hooks'
 import { GU, textStyle } from '../../style'
-import { isAddress, warn } from '../../utils'
+import { isAddress } from '../../utils'
 import { useTheme } from '../../theme'
 
 const TokenAmount = React.memo(function TokenAmount({
   address,
   amount,
+  chainId,
   decimals,
   digits,
-  networkType,
+  iconUrl,
   size,
-  style,
   symbol,
   ...props
 }) {
   const isValidAddress = isAddress(address)
-  if (!isValidAddress) {
-    warn(`TokenAmount: provided address is invalid (${address})`)
+
+  if (!isValidAddress && !symbol) {
+    throw new Error(
+      'TokenAmount: you need to provide a valid address or a symbol'
+    )
   }
 
   return (
     <UseTokenProvider>
       <div
-        style={style}
         css={`
           display: flex;
           align-items: center;
         `}
         {...props}
       >
-        <Icon address={address} size={size} />
+        <Icon
+          address={address}
+          chainId={chainId}
+          iconUrl={iconUrl}
+          size={size}
+        />
         {amount && (
           <span
             css={`
               padding-right: ${size === 'large' ? 0.5 * GU : 0.25 * GU}px;
               ${textStyle(size === 'large' ? 'title2' : 'body2')};
               line-height: 1;
+              margin-bottom: -2px;
             `}
           >
             {TokenAmountLib.format(amount, decimals, { digits: digits })}
@@ -51,15 +59,15 @@ const TokenAmount = React.memo(function TokenAmount({
   )
 })
 
-const Icon = function Icon({ address, size }) {
-  const token = useToken(address)
-  const { exists } = useImageExists(token.iconUrl)
+const Icon = function Icon({ address, chainId, iconUrl, size }) {
+  const token = useToken(chainId === 1 ? address : '')
+  const { exists } = useImageExists(iconUrl || token.iconUrl)
   return (
     exists && (
       <img
         alt=""
         height={3 * GU}
-        src={token.iconUrl}
+        src={iconUrl || token.iconUrl}
         css={`
           padding-right: ${size === 'large' ? 1 * GU : 0.5 * GU}px;
         `}
@@ -87,32 +95,33 @@ const Symbol = function Symbol({ address, size, symbol }) {
 }
 
 Icon.propTypes = {
-  address: PropTypes.string.isRequired,
+  address: PropTypes.string,
+  chainId: PropTypes.number,
+  iconUrl: PropTypes.string,
   size: PropTypes.oneOf(['large', 'medium', 'small', 'mini']),
 }
 
 Symbol.propTypes = {
-  address: PropTypes.string.isRequired,
-  size: PropTypes.oneOf(['large', 'medium', 'small', 'mini']),
+  address: PropTypes.string,
+  size: PropTypes.oneOf(['large', 'medium']),
   symbol: PropTypes.string,
 }
 
 TokenAmount.propTypes = {
-  address: PropTypes.string.isRequired,
-  amount: PropTypes.any,
+  address: PropTypes.string,
+  amount: PropTypes._bigIntish,
+  chainId: PropTypes.number,
   decimals: PropTypes.number,
   digits: PropTypes.number,
-  networkType: PropTypes.string,
-  size: PropTypes.oneOf(['large', 'medium', 'small', 'mini']),
-  style: PropTypes.object,
+  iconUrl: PropTypes.string,
+  size: PropTypes.oneOf(['large', 'medium']),
   symbol: PropTypes.string,
 }
 
 TokenAmount.defaultProps = {
-  address: '',
+  chainId: 1,
   decimals: 18,
   digits: 2,
-  networkType: 'main',
   size: 'medium',
 }
 

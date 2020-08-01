@@ -1,5 +1,7 @@
 import PropTypes from 'prop-types'
 
+const VALID_INTEGER_REGEX = /^[-+]?[0-9]+$/
+
 // Check if a value is “empty”, in the prop-types sense (null or undefined)
 function isEmpty(value) {
   return value === undefined || value === null
@@ -53,8 +55,32 @@ function _element(props, propName, componentName) {
 }
 _element.isRequired = createIsRequired(_element)
 
+function _bigIntish(props, propName, componentName) {
+  if (isEmpty(props[propName])) {
+    return null
+  }
+
+  if (typeof props[propName] === 'number') {
+    return null
+  }
+
+  if (typeof props[propName] === 'bigint') {
+    return null
+  }
+
+  if (VALID_INTEGER_REGEX.test(String(props[propName]))) {
+    return null
+  }
+
+  return new Error(
+    `Invalid prop \`${propName}\` supplied to \`${componentName}\`. Please provide a BigInt, Number or a value that can convert into a BigInt-like string.`
+  )
+}
+_bigIntish.isRequired = createIsRequired(_bigIntish)
+
 const ExtendedPropTypes = {
   ...PropTypes,
+  _bigIntish,
   _component: PropTypes.oneOfType([
     PropTypes.func,
     PropTypes.string,
