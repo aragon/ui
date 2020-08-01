@@ -47,7 +47,6 @@ const TokenAmount = React.memo(function TokenAmount({
               padding-right: ${size === 'large' ? 0.5 * GU : 0.25 * GU}px;
               ${textStyle(size === 'large' ? 'title2' : 'body2')};
               line-height: 1;
-              margin-bottom: -2px;
             `}
           >
             {TokenAmountLib.format(amount, decimals, { digits: digits })}
