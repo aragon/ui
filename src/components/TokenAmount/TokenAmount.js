@@ -97,7 +97,7 @@ Icon.propTypes = {
   address: PropTypes.string,
   chainId: PropTypes.number,
   iconUrl: PropTypes.string,
-  size: PropTypes.oneOf(['large', 'medium', 'small', 'mini']),
+  size: PropTypes.oneOf(['large', 'medium']),
 }
 
 Symbol.propTypes = {
@@ -108,9 +108,9 @@ Symbol.propTypes = {
 
 TokenAmount.propTypes = {
   address: PropTypes.string,
-  amount: PropTypes._bigIntish,
+  amount: PropTypes._bigIntish.isRequired,
   chainId: PropTypes.number,
-  decimals: PropTypes.number,
+  decimals: PropTypes.number.isRequired,
   digits: PropTypes.number,
   iconUrl: PropTypes.string,
   size: PropTypes.oneOf(['large', 'medium']),
@@ -119,7 +119,6 @@ TokenAmount.propTypes = {
 
 TokenAmount.defaultProps = {
   chainId: 1,
-  decimals: 18,
   digits: 2,
   size: 'medium',
 }
