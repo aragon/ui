@@ -12,6 +12,7 @@ const PageTokenAmount = ({ title }) => (
         <TokenAmount
           address="0x6B175474E89094C44Da98b954EedeAC495271d0F"
           amount="1049228954700000000000"
+          decimals={18}
           symbol="DAI"
         />
       </DemoContainer>
