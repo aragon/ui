@@ -25,6 +25,7 @@ function App() {
         <TokenAmount
           address="0x960b236A07cf122663c4303350609A66A7B288C0"
           amount="100490000000000000000"
+          decimals={18}
         />
         <TokenAmount
           address="0x6B175474E89094C44Da98b954EedeAC495271d0F"
