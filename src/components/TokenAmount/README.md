@@ -39,13 +39,13 @@ function App() {
 | -------- | ------------- |
 | `string` | None          |
 
-The mainnet token address.
+The address of the token contract, on the specified `chainId` (only Ethereum Mainnet is supported at the moment).
 
 ### `amount`
 
 | Type                     | Default value |
 | ------------------------ | ------------- |
-| `bigInt, number, string` | None          |
+| `BigInt`, `Number`, `String` | None (required)          |
 
 The token amount.
 
@@ -53,23 +53,23 @@ The token amount.
 
 | Type     | Default value |
 | -------- | ------------- |
-| `number` | 1             |
+| `Number` | `1`             |
 
-Ethereum chain ID. We only support mainnet for now.
+The [chain ID](https://chainid.network/) for the token. Only Ethereum Mainnet (`1`) is supported at the moment.
 
 ### `decimals`
 
 | Type     | Default value |
 | -------- | ------------- |
-| `number` | 18            |
+| `BigInt`, `Number`, `String` | None (required)            |
 
-Decimal placement for amount.
+The number of decimals for the token amount, [as specified by the token contract](https://eips.ethereum.org/EIPS/eip-20#decimals).
 
 ### `digits`
 
 | Type     | Default value |
 | -------- | ------------- |
-| `number` | 2             |
+| `BigInt`, `Number`, `String` | `2`             |
 
 Rounds the number to a given decimal place.
 
@@ -77,22 +77,22 @@ Rounds the number to a given decimal place.
 
 | Type     | Default value |
 | -------- | ------------- |
-| `string` | none          |
+| `String` | None          |
 
-Overrides the iconUrl given by the token address.
+Overrides the icon URL given by the token address.
 
 ### `size`
 
 | Type     | Default value |
 | -------- | ------------- |
-| `string` | medium        |
+| `"large"` or `"medium"` | `"medium"`        |
 
-Size of the amount text.
+Size of the component.
 
 ### `symbol`
 
 | Type     | Default value |
 | -------- | ------------- |
-| `string` | none          |
+| `String` | None          |
 
 Overrides the symbol given by the token address.
