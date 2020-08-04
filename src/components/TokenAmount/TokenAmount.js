@@ -47,7 +47,7 @@ const TokenAmount = React.memo(function TokenAmount({
               padding-right: ${size === 'large' ? 0.5 * GU : 0.25 * GU}px;
               ${textStyle(size === 'large' ? 'title2' : 'body2')};
               line-height: 1;
-              ${size === 'large' ? `margin-bottom: -2px;` : ''}
+              ${size === 'large' ? `transform: translateY(2px);` : ''}
             `}
           >
             {TokenAmountLib.format(amount, decimals, { digits: digits })}
@@ -87,7 +87,7 @@ const Symbol = function Symbol({ address, size, symbol }) {
         ${textStyle('body2')};
         line-height: 1;
         ${size === 'large' ? `align-self: flex-end;` : ''}
-        ${size === 'large' ? `margin-bottom: 1px;` : ''}
+        ${size === 'large' ? `transform: translateY(-1px);` : ''}
       `}
     >
       {symbol || token.symbol}
