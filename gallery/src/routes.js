@@ -50,6 +50,7 @@ import PageTextInput from './pages/PageTextInput'
 import PageTextStyles from './pages/PageTextStyles'
 import PageTimer from './pages/PageTimer'
 import PageToastHub from './pages/PageToastHub'
+import PageTokenAmount from './pages/PageTokenAmount'
 import PageTransactionBadge from './pages/PageTransactionBadge'
 import PageTransactionProgress from './pages/PageTransactionProgress'
 import PageViewport from './pages/PageViewport'
@@ -136,6 +137,7 @@ export const PAGE_GROUPS = [
       [readmePage(tagMd), 'Tag'],
       [readmePage(accordionMd), 'Accordion'],
       [PageTimer, 'Timer'],
+      [PageTokenAmount, 'TokenAmount'],
       [PageEthIdenticon, 'EthIdenticon'],
       [PageTransactionProgress, 'TransactionProgress'],
     ],
