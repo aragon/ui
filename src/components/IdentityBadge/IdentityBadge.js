@@ -122,6 +122,7 @@ IdentityBadge.propTypes = {
 
 IdentityBadge.defaultProps = {
   entity: '',
+  labelStyle: '',
   networkType: 'main',
   shorten: true,
 }

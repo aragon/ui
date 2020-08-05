@@ -15,6 +15,7 @@ const SPACE_AROUND = 4 * GU
 function Modal({
   children,
   onClose,
+  onClosed,
   padding,
   visible,
   width,
@@ -33,6 +34,9 @@ function Modal({
         enter={{ opacity: 1, scale: 1 }}
         leave={{ opacity: 0, scale: 0.98 }}
         config={{ ...springs.smooth, precision: 0.001 }}
+        onDestroyed={destroyed => {
+          destroyed && onClosed()
+        }}
       >
         {show =>
           show &&
@@ -75,6 +79,7 @@ function Modal({
                 >
                   <EscapeOutside
                     role="alertdialog"
+                    useCapture
                     background={theme.surface}
                     onEscapeOutside={onClose}
                     css={`
@@ -136,6 +141,7 @@ Modal.propTypes = {
   children: PropTypes.node.isRequired,
   closeButton: PropTypes.bool,
   onClose: PropTypes.func,
+  onClosed: PropTypes.func,
   padding: PropTypes.oneOfType([
     PropTypes.func,
     PropTypes.number,
@@ -152,6 +158,7 @@ Modal.propTypes = {
 Modal.defaultProps = {
   closeButton: true,
   onClose: noop,
+  onClosed: noop,
   padding: 3 * GU,
   width: viewport => Math.min(viewport.width - SPACE_AROUND * 2, 600),
 }

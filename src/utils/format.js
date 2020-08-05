@@ -69,28 +69,35 @@ export function formatTokenAmount(
   decimals = JSBI.BigInt(String(decimals))
   digits = JSBI.BigInt(String(digits))
 
-  if (JSBI.lessThan(decimals, 0)) {
+  const _0 = JSBI.BigInt(0)
+  const _10 = JSBI.BigInt(10)
+
+  if (JSBI.lessThan(decimals, _0)) {
     throw new Error('formatTokenAmount(): decimals cannot be negative')
   }
 
-  if (JSBI.lessThan(digits, 0)) {
+  if (JSBI.lessThan(digits, _0)) {
     throw new Error('formatTokenAmount(): digits cannot be negative')
   }
 
-  const _0 = JSBI.BigInt(0)
-  const _10 = JSBI.BigInt(10)
+  if (JSBI.lessThan(decimals, digits)) {
+    digits = decimals
+  }
+
   const negative = JSBI.lessThan(amount, _0)
 
   if (negative) {
     amount = JSBI.unaryMinus(amount)
   }
 
-  const amountConverted = JSBI.BigInt(
-    divideRoundBigInt(
-      amount,
-      JSBI.exponentiate(_10, JSBI.subtract(decimals, digits))
-    )
-  )
+  const amountConverted = JSBI.equal(decimals, _0)
+    ? amount
+    : JSBI.BigInt(
+        divideRoundBigInt(
+          amount,
+          JSBI.exponentiate(_10, JSBI.subtract(decimals, digits))
+        )
+      )
 
   const leftPart = formatNumber(
     JSBI.divide(amountConverted, JSBI.exponentiate(_10, digits))
