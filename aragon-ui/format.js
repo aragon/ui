@@ -2,10 +2,10 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-var slicedToArray = require('./slicedToArray-0711941d.js');
-require('./unsupportedIterableToArray-68db1d3b.js');
-var toConsumableArray = require('./toConsumableArray-d8a4a2c3.js');
-var math = require('./math-f4029164.js');
+var slicedToArray = require('./slicedToArray-a8a77f0e.js');
+require('./unsupportedIterableToArray-f175acfa.js');
+var toConsumableArray = require('./toConsumableArray-cc0d28a9.js');
+var math = require('./math-ecfd5d91.js');
 var characters = require('./characters.js');
 
 /**
@@ -51,11 +51,11 @@ function formatNumber(number) {
   var numAsString = String(number);
 
   var _numAsString$split = numAsString.split('.'),
-      _numAsString$split2 = slicedToArray._slicedToArray(_numAsString$split, 2),
+      _numAsString$split2 = slicedToArray.slicedToArray(_numAsString$split, 2),
       integer = _numAsString$split2[0],
       decimals = _numAsString$split2[1];
 
-  return toConsumableArray._toConsumableArray(integer).reverse().reduce(function (result, digit, index) {
+  return toConsumableArray.toConsumableArray(integer).reverse().reduce(function (result, digit, index) {
     return digit + (index > 0 && index % 3 === 0 ? ',' : '') + result;
   }, decimals ? ".".concat(decimals) : '');
 }

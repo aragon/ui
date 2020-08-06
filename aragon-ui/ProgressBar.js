@@ -4,42 +4,26 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
-require('./slicedToArray-0711941d.js');
-require('./unsupportedIterableToArray-68db1d3b.js');
+require('./slicedToArray-a8a77f0e.js');
+require('./unsupportedIterableToArray-f175acfa.js');
 var React = require('react');
 var React__default = _interopDefault(React);
-require('./_commonjsHelpers-72d386ba.js');
-require('./index-b0606964.js');
-var defineProperty$1 = require('./defineProperty-0921a47c.js');
-require('./toConsumableArray-d8a4a2c3.js');
+require('./_commonjsHelpers-1b94f6bc.js');
+require('./index-46d0e707.js');
+var defineProperty$1 = require('./defineProperty-3cad0327.js');
+require('./toConsumableArray-cc0d28a9.js');
 var _styled = require('styled-components');
 var _styled__default = _interopDefault(_styled);
-require('./getPrototypeOf-2a661a20.js');
+require('./getPrototypeOf-55c9e80c.js');
 require('./color.js');
-require('./components.js');
-require('./contains-component.js');
-require('./css.js');
-require('./dayjs.min-e07657bf.js');
-require('./date.js');
 require('./miscellaneous.js');
 var environment = require('./environment.js');
-require('./font.js');
-require('./math-f4029164.js');
-require('./characters.js');
-require('./format.js');
-require('./keycodes.js');
-require('./url.js');
-require('./web3.js');
-require('./constants.js');
-require('./breakpoints.js');
 var springs = require('./springs.js');
-require('./text-styles.js');
 require('./theme-dark.js');
 require('./theme-light.js');
 var Theme = require('./Theme.js');
 var objectWithoutPropertiesLoose = require('./objectWithoutPropertiesLoose-1af20ad0.js');
-require('react-dom');
-var proptypes = require('./proptypes-5b34673d.js');
+var proptypes = require('./proptypes-b2a781f4.js');
 
 function _defineProperties(target, props) {
   for (var i = 0; i < props.length; i++) {
@@ -1885,7 +1869,7 @@ var extendedAnimated = domElements.reduce(function (acc, element) {
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { defineProperty$1._defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { defineProperty$1.defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 var RADIUS = 2;
 var BAR_HEIGHT = 6;
 var INDETERMINATE_WIDTH = 1 / 4;
@@ -1899,7 +1883,7 @@ var _StyledDiv = _styled__default("div").withConfig({
   return p._css;
 }, RADIUS);
 
-var ProgressBar = React__default.memo(function (_ref) {
+var ProgressBar = /*#__PURE__*/React__default.memo(function (_ref) {
   var animate = _ref.animate,
       color = _ref.color,
       progress = _ref.progress,
@@ -1918,7 +1902,7 @@ var ProgressBar = React__default.memo(function (_ref) {
   var theme = Theme.useTheme();
   var currentColor = color === undefined ? theme.accent : color;
   var transition = useSpring({
-    config: _objectSpread({}, springs.springs.smooth, {
+    config: _objectSpread(_objectSpread({}, springs.springs.smooth), {}, {
       precision: 0.001
     }),
     from: {
@@ -1954,10 +1938,10 @@ ProgressBar.defaultProps = {
   value: -1
 };
 ProgressBar.propTypes = {
-  animate: proptypes.PropTypes.bool,
-  color: proptypes.PropTypes.string,
-  progress: proptypes.PropTypes._0to1,
-  value: proptypes.PropTypes.oneOfType([proptypes.PropTypes._0to1, proptypes.PropTypes.oneOf([-1])])
+  animate: proptypes.ExtendedPropTypes.bool,
+  color: proptypes.ExtendedPropTypes.string,
+  progress: proptypes.ExtendedPropTypes._0to1,
+  value: proptypes.ExtendedPropTypes.oneOfType([proptypes.ExtendedPropTypes._0to1, proptypes.ExtendedPropTypes.oneOf([-1])])
 };
 
 exports.default = ProgressBar;

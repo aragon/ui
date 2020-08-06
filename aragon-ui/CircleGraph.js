@@ -4,32 +4,21 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
-require('./slicedToArray-0711941d.js');
-require('./unsupportedIterableToArray-68db1d3b.js');
+require('./slicedToArray-a8a77f0e.js');
+require('./unsupportedIterableToArray-f175acfa.js');
 var React = require('react');
 var React__default = _interopDefault(React);
-require('./_commonjsHelpers-72d386ba.js');
-var index = require('./index-b0606964.js');
-var defineProperty$1 = require('./defineProperty-0921a47c.js');
-require('./toConsumableArray-d8a4a2c3.js');
+require('./_commonjsHelpers-1b94f6bc.js');
+var index = require('./index-46d0e707.js');
+var defineProperty = require('./defineProperty-3cad0327.js');
+require('./toConsumableArray-cc0d28a9.js');
 var _styled = require('styled-components');
 var _styled__default = _interopDefault(_styled);
-require('./getPrototypeOf-2a661a20.js');
+require('./getPrototypeOf-55c9e80c.js');
 require('./color.js');
-require('./components.js');
-require('./contains-component.js');
-require('./css.js');
-require('./dayjs.min-e07657bf.js');
-require('./date.js');
 require('./miscellaneous.js');
 var environment = require('./environment.js');
-require('./font.js');
-var math = require('./math-f4029164.js');
-require('./characters.js');
-require('./format.js');
-require('./keycodes.js');
-require('./url.js');
-require('./web3.js');
+var math = require('./math-ecfd5d91.js');
 require('./theme-dark.js');
 require('./theme-light.js');
 var Theme = require('./Theme.js');
@@ -39,7 +28,7 @@ var web = require('./web-d0294535.js');
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { defineProperty$1._defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { defineProperty.defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 var STROKE_WIDTH = 4;
 var SIZE_DEFAULT = 80;
 
@@ -53,14 +42,14 @@ function labelDefault(animValue, value) {
   var lessThanOne = percentage > 0 && percentage < 1 && animPercentage > 0 && // We know that the actual percentage is less than 1,
   // so this is to avoid a jump with “1%” without prefix.
   animPercentage < 2;
-  return lessThanOne ? _objectSpread({}, parts, {
+  return lessThanOne ? _objectSpread(_objectSpread({}, parts), {}, {
     prefix: '<',
     value: '1'
   }) : parts;
 }
 
 function labelCompat(parts) {
-  if (typeof parts === 'string' || typeof parts === 'number' || React__default.isValidElement(parts)) {
+  if (typeof parts === 'string' || typeof parts === 'number' || /*#__PURE__*/React__default.isValidElement(parts)) {
     environment.warnOnce('CircleGraph:label:string', 'CircleGraph: the function passed to the label should not ' + 'return a React node anymore: please check the CircleGraph documentation.');
     return {
       value: String(parts)
@@ -206,11 +195,11 @@ function CircleGraph(_ref) {
 }
 
 CircleGraph.propTypes = {
-  color: index.PropTypes.oneOfType([index.PropTypes.func, index.PropTypes.string]),
-  label: index.PropTypes.oneOfType([index.PropTypes.node, index.PropTypes.func]),
-  size: index.PropTypes.number,
-  strokeWidth: index.PropTypes.number,
-  value: index.PropTypes.number.isRequired
+  color: index.propTypes.oneOfType([index.propTypes.func, index.propTypes.string]),
+  label: index.propTypes.oneOfType([index.propTypes.node, index.propTypes.func]),
+  size: index.propTypes.number,
+  strokeWidth: index.propTypes.number,
+  value: index.propTypes.number.isRequired
 };
 CircleGraph.defaultProps = {
   size: SIZE_DEFAULT,

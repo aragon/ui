@@ -4,32 +4,24 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
-var slicedToArray = require('./slicedToArray-0711941d.js');
-require('./unsupportedIterableToArray-68db1d3b.js');
+var slicedToArray = require('./slicedToArray-a8a77f0e.js');
+require('./unsupportedIterableToArray-f175acfa.js');
 var React = require('react');
 var React__default = _interopDefault(React);
-require('./_commonjsHelpers-72d386ba.js');
-var index = require('./index-b0606964.js');
-var defineProperty = require('./defineProperty-0921a47c.js');
-var toConsumableArray = require('./toConsumableArray-d8a4a2c3.js');
+require('./_commonjsHelpers-1b94f6bc.js');
+var index = require('./index-46d0e707.js');
+var defineProperty = require('./defineProperty-3cad0327.js');
+var toConsumableArray = require('./toConsumableArray-cc0d28a9.js');
 var _styled = require('styled-components');
 var _styled__default = _interopDefault(_styled);
-require('./getPrototypeOf-2a661a20.js');
+require('./getPrototypeOf-55c9e80c.js');
 require('./color.js');
-require('./components.js');
-require('./contains-component.js');
 require('./css.js');
-require('./dayjs.min-e07657bf.js');
-require('./date.js');
 var miscellaneous = require('./miscellaneous.js');
 var environment = require('./environment.js');
 require('./font.js');
-require('./math-f4029164.js');
-require('./characters.js');
-require('./format.js');
 require('./keycodes.js');
 require('./url.js');
-require('./web3.js');
 var constants = require('./constants.js');
 require('./breakpoints.js');
 require('./springs.js');
@@ -37,122 +29,20 @@ var textStyles = require('./text-styles.js');
 require('./theme-dark.js');
 require('./theme-light.js');
 var Theme = require('./Theme.js');
-require('./extends-40571110.js');
-require('./objectWithoutProperties-35db8ab0.js');
-require('./index-ecc57c9f.js');
-require('./isObject-ec755c87.js');
-require('./Viewport-15101437.js');
+require('./extends-023d783e.js');
+require('./objectWithoutProperties-c6d3675c.js');
+require('./index-f5a9917e.js');
+require('./_baseGetTag-42b4dd3e.js');
+require('./Viewport-abbde113.js');
 var Layout = require('./Layout.js');
 var Box = require('./Box.js');
 require('./FocusVisible.js');
 require('./ButtonBase.js');
 require('./PaginationItem.js');
-require('./IconPropTypes-56de5759.js');
-require('./IconAddUser.js');
-require('./IconAlert.js');
-require('./IconAlignCenter.js');
-require('./IconAlignJustify.js');
-require('./IconAlignLeft.js');
-require('./IconAlignRight.js');
-require('./IconAragon.js');
-require('./IconArrowDown.js');
-require('./IconArrowLeft.js');
-require('./IconArrowRight.js');
-require('./IconArrowUp.js');
-require('./IconAtSign.js');
-require('./IconBlock.js');
-require('./IconBookmark.js');
-require('./IconCalendar.js');
-require('./IconCanvas.js');
-require('./IconCaution.js');
-require('./IconCenter.js');
-require('./IconChart.js');
-require('./IconChat.js');
-require('./IconCheck.js');
-require('./IconChip.js');
-require('./IconCircleCheck.js');
-require('./IconCircleMinus.js');
-require('./IconCirclePlus.js');
-require('./IconClock.js');
-require('./IconCloudDownload.js');
-require('./IconCloudUpload.js');
-require('./IconCoin.js');
-require('./IconConfiguration.js');
-require('./IconConnect.js');
-require('./IconConnection.js');
-require('./IconConsole.js');
-require('./IconCopy.js');
-require('./IconCross.js');
-require('./IconDashedSquare.js');
+require('./IconPropTypes-dd9d2cb1.js');
 require('./IconDown.js');
-require('./IconDownload.js');
-require('./IconEdit.js');
 require('./IconEllipsis.js');
-require('./IconEnter.js');
-require('./IconEthereum.js');
-require('./IconExternal.js');
-require('./IconFile.js');
-require('./IconFilter.js');
-require('./IconFlag.js');
-require('./IconFolder.js');
-require('./IconGraph2.js');
-require('./IconGraph.js');
-require('./IconGrid.js');
-require('./IconGroup.js');
-require('./IconHash.js');
-require('./IconHeart.js');
-require('./IconHide.js');
-require('./IconHome.js');
-require('./IconImage.js');
-require('./IconInfo.js');
-require('./IconLabel.js');
-require('./IconLayers.js');
-require('./IconLeft.js');
-require('./IconLink.js');
-require('./IconLocation.js');
-require('./IconLock.js');
-require('./IconMail.js');
-require('./IconMaximize.js');
-require('./IconMenu.js');
-require('./IconMinimize.js');
-require('./IconMinus.js');
-require('./IconMove.js');
-require('./IconNoPicture.js');
-require('./IconPicture.js');
-require('./IconPlus.js');
-require('./IconPower.js');
-require('./IconPrint.js');
-require('./IconProhibited.js');
-require('./IconQuestion.js');
-require('./IconRefresh.js');
-require('./IconRemoveUser.js');
-require('./IconRight.js');
-require('./IconRotateLeft.js');
-require('./IconRotateRight.js');
-require('./IconSearch.js');
-require('./IconSettings.js');
-require('./IconShare.js');
-require('./IconSquareMinus.js');
-require('./IconSquarePlus.js');
-require('./IconSquare.js');
-require('./IconStarFilled.js');
-require('./IconStar.js');
-require('./IconSwap.js');
-require('./IconTarget.js');
-require('./IconToken.js');
-require('./IconTrash.js');
-require('./IconUnlock.js');
 require('./IconUp.js');
-require('./IconUpload.js');
-require('./IconUser.js');
-require('./IconView.js');
-require('./IconVote.js');
-require('./IconWallet.js');
-require('./IconWarning.js');
-require('./IconWorld.js');
-require('./IconWrite.js');
-require('./IconZoomIn.js');
-require('./IconZoomOut.js');
 require('./PaginationSeparator.js');
 var Pagination = require('./Pagination.js');
 require('./objectWithoutPropertiesLoose-1af20ad0.js');
@@ -165,15 +55,15 @@ require('./ToggleButton.js');
 require('./OpenedSurfaceBorder.js');
 var TableView = require('./TableView.js');
 var ListView = require('./ListView.js');
-require('./getDisplayName-7ab6d318.js');
-require('./index-bc84a358.js');
+require('./getDisplayName-7f913e84.js');
+require('./PublicUrl-ef64ac3b.js');
 require('./LoadingRing.js');
 require('./Link.js');
 var EmptyState = require('./EmptyState.js');
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { defineProperty._defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { defineProperty.defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function prepareEntries(entries, from, to, selectedIndexes) {
   return entries.slice(from, to).map(function (entry, index) {
@@ -273,7 +163,7 @@ function useSelection(entries, selection, onSelectEntries) {
   // both a managed and a controlled mode, to provide a better developer
   // experience out of the box.
   var _useState = React.useState([]),
-      _useState2 = slicedToArray._slicedToArray(_useState, 2),
+      _useState2 = slicedToArray.slicedToArray(_useState, 2),
       selectionManaged = _useState2[0],
       setSelectionManaged = _useState2[1];
 
@@ -285,7 +175,7 @@ function useSelection(entries, selection, onSelectEntries) {
     } // Useful to notify, even in managed mode
 
 
-    onSelectEntries(toConsumableArray._toConsumableArray(newSelection).sort().map(function (index) {
+    onSelectEntries(toConsumableArray.toConsumableArray(newSelection).sort().map(function (index) {
       return entries[index];
     }), newSelection);
   }, [selection, onSelectEntries, entries]);
@@ -306,7 +196,7 @@ function useSelection(entries, selection, onSelectEntries) {
   var toggleEntrySelect = React.useCallback(function (entryIndex) {
     updateSelection(currentSelection.includes(entryIndex) ? currentSelection.filter(function (index) {
       return index !== entryIndex;
-    }) : [].concat(toConsumableArray._toConsumableArray(currentSelection), [entryIndex]));
+    }) : [].concat(toConsumableArray.toConsumableArray(currentSelection), [entryIndex]));
   }, [updateSelection, currentSelection]);
   var selectAll = React.useCallback(function () {
     updateSelection(currentSelection.length === 0 ? entries.map(function (_, index) {
@@ -329,7 +219,7 @@ function deprecatedEmptyStatePropsCompat(_ref2) {
       statusEmptySearch = _ref2.statusEmptySearch;
 
   for (var _i = 0, _arr = [['statusEmpty', statusEmpty, 'default', 'title'], ['statusEmptyFilters', statusEmptyFilters, 'empty-filters', 'subtitle'], ['statusEmptySearch', statusEmptySearch, 'empty-search', 'subtitle'], ['statusLoading', statusLoading, 'loading', 'title']]; _i < _arr.length; _i++) {
-    var _arr$_i = slicedToArray._slicedToArray(_arr[_i], 4),
+    var _arr$_i = slicedToArray.slicedToArray(_arr[_i], 4),
         propName = _arr$_i[0],
         propValue = _arr$_i[1],
         emptyStateName = _arr$_i[2],
@@ -342,7 +232,7 @@ function deprecatedEmptyStatePropsCompat(_ref2) {
     environment.warnOnce("DataView:".concat(propName), "DataView: the ".concat(propName, " prop is now deprecated, please use emptyState instead.")); // Only set the default state title if not set already
 
     if (!emptyState[emptyStateName] || !emptyState[emptyStateName][partName]) {
-      emptyState[emptyStateName] = _objectSpread({}, emptyState[emptyStateName], defineProperty._defineProperty({}, partName, propValue));
+      emptyState[emptyStateName] = _objectSpread(_objectSpread({}, emptyState[emptyStateName]), {}, defineProperty.defineProperty({}, partName, propValue));
     }
   }
 
@@ -374,7 +264,7 @@ var _StyledDiv2 = _styled__default("div").withConfig({
   return p._css5;
 });
 
-var DataView = React__default.memo(function DataView(_ref3) {
+var DataView = /*#__PURE__*/React__default.memo(function DataView(_ref3) {
   var emptyState = _ref3.emptyState,
       entries = _ref3.entries,
       entriesPerPage = _ref3.entriesPerPage,
@@ -419,7 +309,7 @@ var DataView = React__default.memo(function DataView(_ref3) {
   // out of the box.
 
   var _useState3 = React.useState(0),
-      _useState4 = slicedToArray._slicedToArray(_useState3, 2),
+      _useState4 = slicedToArray.slicedToArray(_useState3, 2),
       pageManaged = _useState4[0],
       setPageManaged = _useState4[1];
 
@@ -519,29 +409,29 @@ var DataView = React__default.memo(function DataView(_ref3) {
   })));
 });
 DataView.propTypes = {
-  page: index.PropTypes.number,
-  entries: index.PropTypes.array.isRequired,
-  entriesPerPage: index.PropTypes.number,
-  fields: index.PropTypes.array.isRequired,
-  heading: index.PropTypes.node,
-  mode: index.PropTypes.oneOf(['adaptive', 'table', 'list']),
-  onPageChange: index.PropTypes.func,
-  onSelectEntries: index.PropTypes.func,
-  renderEntry: index.PropTypes.func.isRequired,
-  renderEntryActions: index.PropTypes.func,
-  renderEntryExpansion: index.PropTypes.func,
-  renderSelectionCount: index.PropTypes.func,
-  selection: index.PropTypes.array,
-  tableRowHeight: index.PropTypes.number,
-  status: index.PropTypes.oneOf(['default', 'empty-filters', 'empty-search', 'loading']),
-  onStatusEmptyClear: index.PropTypes.func,
-  emptyState: index.PropTypes.oneOfType([index.PropTypes.func, index.PropTypes.object]),
+  page: index.propTypes.number,
+  entries: index.propTypes.array.isRequired,
+  entriesPerPage: index.propTypes.number,
+  fields: index.propTypes.array.isRequired,
+  heading: index.propTypes.node,
+  mode: index.propTypes.oneOf(['adaptive', 'table', 'list']),
+  onPageChange: index.propTypes.func,
+  onSelectEntries: index.propTypes.func,
+  renderEntry: index.propTypes.func.isRequired,
+  renderEntryActions: index.propTypes.func,
+  renderEntryExpansion: index.propTypes.func,
+  renderSelectionCount: index.propTypes.func,
+  selection: index.propTypes.array,
+  tableRowHeight: index.propTypes.number,
+  status: index.propTypes.oneOf(['default', 'empty-filters', 'empty-search', 'loading']),
+  onStatusEmptyClear: index.propTypes.func,
+  emptyState: index.propTypes.oneOfType([index.propTypes.func, index.propTypes.object]),
   // deprecated
-  renderEntryChild: index.PropTypes.func,
-  statusEmpty: index.PropTypes.node,
-  statusLoading: index.PropTypes.node,
-  statusEmptyFilters: index.PropTypes.node,
-  statusEmptySearch: index.PropTypes.node
+  renderEntryChild: index.propTypes.func,
+  statusEmpty: index.propTypes.node,
+  statusLoading: index.propTypes.node,
+  statusEmptyFilters: index.propTypes.node,
+  statusEmptySearch: index.propTypes.node
 };
 DataView.defaultProps = {
   emptyState: {},

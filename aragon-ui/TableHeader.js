@@ -4,41 +4,28 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
-require('./slicedToArray-0711941d.js');
-require('./unsupportedIterableToArray-68db1d3b.js');
+require('./slicedToArray-a8a77f0e.js');
+require('./unsupportedIterableToArray-f175acfa.js');
 var React = require('react');
 var React__default = _interopDefault(React);
-require('./_commonjsHelpers-72d386ba.js');
-var index = require('./index-b0606964.js');
-require('./defineProperty-0921a47c.js');
-require('./toConsumableArray-d8a4a2c3.js');
+require('./_commonjsHelpers-1b94f6bc.js');
+var index = require('./index-46d0e707.js');
+require('./defineProperty-3cad0327.js');
+require('./toConsumableArray-cc0d28a9.js');
 var _styled = require('styled-components');
 var _styled__default = _interopDefault(_styled);
-require('./getPrototypeOf-2a661a20.js');
+require('./getPrototypeOf-55c9e80c.js');
 require('./color.js');
-require('./components.js');
-require('./contains-component.js');
-require('./css.js');
-require('./dayjs.min-e07657bf.js');
-require('./date.js');
 require('./miscellaneous.js');
 require('./environment.js');
 require('./font.js');
-require('./math-f4029164.js');
-require('./characters.js');
-require('./format.js');
-require('./keycodes.js');
-require('./url.js');
-require('./web3.js');
 var constants = require('./constants.js');
-require('./breakpoints.js');
-require('./springs.js');
 var textStyles = require('./text-styles.js');
 require('./theme-dark.js');
 require('./theme-light.js');
 var Theme = require('./Theme.js');
-var _extends$1 = require('./extends-40571110.js');
-var objectWithoutProperties = require('./objectWithoutProperties-35db8ab0.js');
+var _extends$1 = require('./extends-023d783e.js');
+var objectWithoutProperties = require('./objectWithoutProperties-c6d3675c.js');
 
 var _StyledTh = _styled__default("th").withConfig({
   displayName: "TableHeader___StyledTh",
@@ -60,10 +47,10 @@ var _StyledTh = _styled__default("th").withConfig({
 function TableHeader(_ref) {
   var title = _ref.title,
       align = _ref.align,
-      props = objectWithoutProperties._objectWithoutProperties(_ref, ["title", "align"]);
+      props = objectWithoutProperties.objectWithoutProperties(_ref, ["title", "align"]);
 
   var theme = Theme.useTheme();
-  return /*#__PURE__*/React__default.createElement(_StyledTh, _extends$1._extends({}, props, {
+  return /*#__PURE__*/React__default.createElement(_StyledTh, _extends$1._extends_1({}, props, {
     _css: align === 'left' ? 2.5 * constants.GU + 1 : 0,
     _css2: align === 'right' ? 2.5 * constants.GU + 1 : 0,
     _css3: align,
@@ -74,8 +61,8 @@ function TableHeader(_ref) {
 }
 
 TableHeader.propTypes = {
-  title: index.PropTypes.string,
-  align: index.PropTypes.string
+  title: index.propTypes.string,
+  align: index.propTypes.string
 };
 TableHeader.defaultProps = {
   align: 'left'

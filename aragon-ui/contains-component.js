@@ -4,13 +4,13 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
-var slicedToArray = require('./slicedToArray-0711941d.js');
-require('./unsupportedIterableToArray-68db1d3b.js');
+var slicedToArray = require('./slicedToArray-a8a77f0e.js');
+require('./unsupportedIterableToArray-f175acfa.js');
 var React = require('react');
 var React__default = _interopDefault(React);
 
 function initContainsComponent() {
-  var ContainsContext = React__default.createContext({
+  var ContainsContext = /*#__PURE__*/React__default.createContext({
     contains: false
   });
   return {
@@ -21,7 +21,7 @@ function initContainsComponent() {
       var children = _ref.children;
 
       var _useState = React.useState(0),
-          _useState2 = slicedToArray._slicedToArray(_useState, 2),
+          _useState2 = slicedToArray.slicedToArray(_useState, 2),
           count = _useState2[0],
           setCount = _useState2[1];
 

@@ -2,10 +2,10 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-var slicedToArray = require('./slicedToArray-0711941d.js');
-require('./unsupportedIterableToArray-68db1d3b.js');
-require('./_commonjsHelpers-72d386ba.js');
-var dayjs_min = require('./dayjs.min-e07657bf.js');
+var slicedToArray = require('./slicedToArray-a8a77f0e.js');
+require('./unsupportedIterableToArray-f175acfa.js');
+require('./_commonjsHelpers-1b94f6bc.js');
+var dayjs_min = require('./dayjs.min-ac79806e.js');
 
 var UNITS = [['years', 'year'], ['months', 'month'], ['days', 'day'], ['hours', 'hour'], ['minutes', 'minute'], ['seconds', 'second']];
 var DEFAULT_UNITS = ['years', 'months', 'days', 'hours', 'minutes', 'seconds']; // Return the difference between two dates, per unit.
@@ -21,7 +21,7 @@ var difference = function difference(date1, date2) {
 
   var getRightMostUnitIndex = function getRightMostUnitIndex() {
     return [].concat(UNITS).reverse().find(function (_ref) {
-      var _ref2 = slicedToArray._slicedToArray(_ref, 1),
+      var _ref2 = slicedToArray.slicedToArray(_ref, 1),
           unit = _ref2[0];
 
       return units.includes(unit);
@@ -29,7 +29,7 @@ var difference = function difference(date1, date2) {
   };
 
   return UNITS.reduce(function (result, _ref3, index) {
-    var _ref4 = slicedToArray._slicedToArray(_ref3, 2),
+    var _ref4 = slicedToArray.slicedToArray(_ref3, 2),
         name = _ref4[0],
         unitName = _ref4[1];
 
@@ -69,7 +69,7 @@ var difference = function difference(date1, date2) {
 
     return result;
   }, {
-    remaining: dayjs_min.dayjs(start === date1 ? date2 : date1),
+    remaining: dayjs_min.dayjs_min(start === date1 ? date2 : date1),
     remainingUnits: maxUnits,
     seenNonZero: false
   });
@@ -79,8 +79,8 @@ var eachDayOfInterval = function eachDayOfInterval() {
       start = _ref5.start,
       end = _ref5.end;
 
-  var startDate = dayjs_min.dayjs(start);
-  var endDate = dayjs_min.dayjs(end);
+  var startDate = dayjs_min.dayjs_min(start);
+  var endDate = dayjs_min.dayjs_min(end);
 
   if (!startDate.isValid()) {
     throw new Error('Start date of interval is invalid');
@@ -107,7 +107,7 @@ var eachDayOfInterval = function eachDayOfInterval() {
   return interval;
 };
 var formatHtmlDatetime = function formatHtmlDatetime(date) {
-  return dayjs_min.dayjs(date).toISOString();
+  return dayjs_min.dayjs_min(date).toISOString();
 };
 
 exports.difference = difference;

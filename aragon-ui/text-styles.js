@@ -2,16 +2,16 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-var slicedToArray = require('./slicedToArray-0711941d.js');
-require('./unsupportedIterableToArray-68db1d3b.js');
-var defineProperty = require('./defineProperty-0921a47c.js');
+var slicedToArray = require('./slicedToArray-a8a77f0e.js');
+require('./unsupportedIterableToArray-f175acfa.js');
+var defineProperty$1 = require('./defineProperty-3cad0327.js');
 require('./miscellaneous.js');
 require('./environment.js');
 var font = require('./font.js');
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { defineProperty._defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { defineProperty$1.defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 var TEXT_STYLES = {
   title1: {
     size: 32,
@@ -104,7 +104,7 @@ var STYLES_CSS = {
 
 function textStyleToCss(textStyle) {
   return Object.entries(textStyle).map(function (_ref) {
-    var _ref2 = slicedToArray._slicedToArray(_ref, 2),
+    var _ref2 = slicedToArray.slicedToArray(_ref, 2),
         name = _ref2[0],
         value = _ref2[1];
 

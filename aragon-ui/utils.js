@@ -2,9 +2,9 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-require('./_commonjsHelpers-72d386ba.js');
-var defineProperty$1 = require('./defineProperty-0921a47c.js');
-var dayjs_min = require('./dayjs.min-e07657bf.js');
+require('./_commonjsHelpers-1b94f6bc.js');
+var defineProperty$1 = require('./defineProperty-3cad0327.js');
+var dayjs_min = require('./dayjs.min-ac79806e.js');
 
 function handleDateSelect(_ref) {
   var date = _ref.date,
@@ -12,21 +12,21 @@ function handleDateSelect(_ref) {
       endDate = _ref.endDate;
 
   // clicking on start date resets it, so it can be re-picked
-  if (startDate && dayjs_min.dayjs(date).isSame(startDate, 'day')) {
+  if (startDate && dayjs_min.dayjs_min(date).isSame(startDate, 'day')) {
     return {
       startDate: null
     };
   } // clicking on end date resets it, so it can be re-picked
 
 
-  if (endDate && dayjs_min.dayjs(date).isSame(endDate, 'day')) {
+  if (endDate && dayjs_min.dayjs_min(date).isSame(endDate, 'day')) {
     return {
       endDate: null
     };
   }
 
-  var isValidStartDate = !endDate || !dayjs_min.dayjs(date).isAfter(endDate);
-  var isValidEndDate = !startDate || !dayjs_min.dayjs(date).isBefore(startDate); // if we have startDate, then `date` is the end date
+  var isValidStartDate = !endDate || !dayjs_min.dayjs_min(date).isAfter(endDate);
+  var isValidEndDate = !startDate || !dayjs_min.dayjs_min(date).isBefore(startDate); // if we have startDate, then `date` is the end date
 
   var isValidDate = startDate ? isValidEndDate : isValidStartDate; // both dates are selected - if a date is clicked and it's before
   // start date, it should be the new start date
@@ -35,7 +35,7 @@ function handleDateSelect(_ref) {
   // after both dates are selected, any selected date will be candidate for
   // new end date)
 
-  if (startDate && endDate && isValidStartDate && dayjs_min.dayjs(date).isBefore(startDate, 'day')) {
+  if (startDate && endDate && isValidStartDate && dayjs_min.dayjs_min(date).isBefore(startDate, 'day')) {
     return {
       startDate: date
     };
@@ -44,14 +44,14 @@ function handleDateSelect(_ref) {
   // in this case, reverse the range
 
 
-  if (!startDate && endDate && dayjs_min.dayjs(date).isAfter(endDate)) {
+  if (!startDate && endDate && dayjs_min.dayjs_min(date).isAfter(endDate)) {
     return {
       startDate: endDate,
       endDate: date
     };
   }
 
-  if (!endDate && startDate && dayjs_min.dayjs(date).isBefore(startDate)) {
+  if (!endDate && startDate && dayjs_min.dayjs_min(date).isBefore(startDate)) {
     return {
       startDate: date,
       endDate: startDate
@@ -59,7 +59,7 @@ function handleDateSelect(_ref) {
   }
 
   if (isValidDate) {
-    return defineProperty$1._defineProperty({}, startDate ? 'endDate' : 'startDate', date);
+    return defineProperty$1.defineProperty({}, startDate ? 'endDate' : 'startDate', date);
   }
 }
 

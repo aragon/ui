@@ -1,0 +1,3 @@
+import _baseGetTag$1 from '../node_modules/lodash/_baseGetTag.js';
+export { default } from '../node_modules/lodash/_baseGetTag.js';
+//# sourceMappingURL=_baseGetTag.js_commonjs-proxy.map

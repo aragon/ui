@@ -1,0 +1,3 @@
+import setPrototypeOf$1 from '../node_modules/@babel/runtime/helpers/setPrototypeOf.js';
+export { default } from '../node_modules/@babel/runtime/helpers/setPrototypeOf.js';
+//# sourceMappingURL=setPrototypeOf.js_commonjs-proxy.map

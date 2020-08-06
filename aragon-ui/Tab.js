@@ -4,42 +4,31 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
-var slicedToArray = require('./slicedToArray-0711941d.js');
-require('./unsupportedIterableToArray-68db1d3b.js');
+var slicedToArray = require('./slicedToArray-a8a77f0e.js');
+require('./unsupportedIterableToArray-f175acfa.js');
 var React = require('react');
 var React__default = _interopDefault(React);
-require('./_commonjsHelpers-72d386ba.js');
-var index = require('./index-b0606964.js');
-require('./defineProperty-0921a47c.js');
-require('./toConsumableArray-d8a4a2c3.js');
+require('./_commonjsHelpers-1b94f6bc.js');
+var index = require('./index-46d0e707.js');
+require('./defineProperty-3cad0327.js');
+require('./toConsumableArray-cc0d28a9.js');
 var _styled = require('styled-components');
 var _styled__default = _interopDefault(_styled);
-require('./getPrototypeOf-2a661a20.js');
+require('./getPrototypeOf-55c9e80c.js');
 require('./color.js');
-require('./components.js');
-require('./contains-component.js');
 require('./css.js');
-require('./dayjs.min-e07657bf.js');
-require('./date.js');
 require('./miscellaneous.js');
 require('./environment.js');
 require('./font.js');
-require('./math-f4029164.js');
-require('./characters.js');
-require('./format.js');
 require('./keycodes.js');
-require('./url.js');
-require('./web3.js');
 var constants = require('./constants.js');
-require('./breakpoints.js');
-require('./springs.js');
 var textStyles = require('./text-styles.js');
 require('./theme-dark.js');
 require('./theme-light.js');
 var Theme = require('./Theme.js');
-require('./extends-40571110.js');
-require('./objectWithoutProperties-35db8ab0.js');
-var index$1 = require('./index-ecc57c9f.js');
+require('./extends-023d783e.js');
+require('./objectWithoutProperties-c6d3675c.js');
+var index$1 = require('./index-f5a9917e.js');
 require('./FocusVisible.js');
 var ButtonBase = require('./ButtonBase.js');
 
@@ -87,7 +76,7 @@ function Tab(_ref) {
   var theme = Theme.useTheme();
 
   var _useInside = index$1.o('SidePanel'),
-      _useInside2 = slicedToArray._slicedToArray(_useInside, 1),
+      _useInside2 = slicedToArray.slicedToArray(_useInside, 1),
       insideSidePanel = _useInside2[0];
 
   var handleClick = React.useCallback(function () {
@@ -110,10 +99,10 @@ function Tab(_ref) {
 }
 
 Tab.propTypes = {
-  index: index.PropTypes.number.isRequired,
-  item: index.PropTypes.node.isRequired,
-  onChange: index.PropTypes.func.isRequired,
-  selected: index.PropTypes.bool.isRequired
+  index: index.propTypes.number.isRequired,
+  item: index.propTypes.node.isRequired,
+  onChange: index.propTypes.func.isRequired,
+  selected: index.propTypes.bool.isRequired
 };
 
 exports.default = Tab;

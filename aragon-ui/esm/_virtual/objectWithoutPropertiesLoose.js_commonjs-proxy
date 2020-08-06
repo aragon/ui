@@ -1,0 +1,3 @@
+import objectWithoutPropertiesLoose$1 from '../node_modules/@babel/runtime/helpers/objectWithoutPropertiesLoose.js';
+export { default } from '../node_modules/@babel/runtime/helpers/objectWithoutPropertiesLoose.js';
+//# sourceMappingURL=objectWithoutPropertiesLoose.js_commonjs-proxy.map

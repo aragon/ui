@@ -4,54 +4,35 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
-var slicedToArray = require('./slicedToArray-0711941d.js');
-require('./unsupportedIterableToArray-68db1d3b.js');
+var slicedToArray = require('./slicedToArray-a8a77f0e.js');
+require('./unsupportedIterableToArray-f175acfa.js');
 var React = require('react');
 var React__default = _interopDefault(React);
-require('./_commonjsHelpers-72d386ba.js');
-require('./index-b0606964.js');
-var defineProperty$1 = require('./defineProperty-0921a47c.js');
-var toConsumableArray = require('./toConsumableArray-d8a4a2c3.js');
+require('./_commonjsHelpers-1b94f6bc.js');
+require('./index-46d0e707.js');
+var defineProperty$1 = require('./defineProperty-3cad0327.js');
+var toConsumableArray = require('./toConsumableArray-cc0d28a9.js');
 var _styled = require('styled-components');
 var _styled__default = _interopDefault(_styled);
-var getPrototypeOf = require('./getPrototypeOf-2a661a20.js');
+var getPrototypeOf = require('./getPrototypeOf-55c9e80c.js');
 require('./color.js');
 var components = require('./components.js');
-require('./contains-component.js');
-require('./css.js');
-require('./dayjs.min-e07657bf.js');
-require('./date.js');
 var miscellaneous = require('./miscellaneous.js');
 var environment = require('./environment.js');
-require('./font.js');
-require('./math-f4029164.js');
-require('./characters.js');
-require('./format.js');
 var keycodes = require('./keycodes.js');
-require('./url.js');
-require('./web3.js');
 var constants = require('./constants.js');
-require('./breakpoints.js');
 var springs = require('./springs.js');
-require('./text-styles.js');
 require('./theme-dark.js');
 require('./theme-light.js');
 var Theme = require('./Theme.js');
-var _extends$1 = require('./extends-40571110.js');
-var objectWithoutProperties = require('./objectWithoutProperties-35db8ab0.js');
-require('./isObject-ec755c87.js');
-require('./Viewport-15101437.js');
+var _extends$1 = require('./extends-023d783e.js');
+var objectWithoutProperties = require('./objectWithoutProperties-c6d3675c.js');
 require('./objectWithoutPropertiesLoose-1af20ad0.js');
 require('react-dom');
 var web = require('./web-d0294535.js');
-require('./getDisplayName-7ab6d318.js');
-require('./index-bc84a358.js');
-var index$1$1 = require('./index-0db71dc1.js');
+var Root = require('./Root-fd39454b.js');
 var RootPortal = require('./RootPortal.js');
-var proptypes = require('./proptypes-5b34673d.js');
-require('./observe.js');
-require('./index-030bfca8.js');
-require('./providers.js');
+var proptypes = require('./proptypes-b2a781f4.js');
 
 /**!
  * @fileOverview Kickass library to create and place poppers near their reference elements.
@@ -2671,9 +2652,9 @@ var _ref3;
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { defineProperty$1._defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { defineProperty$1.defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
-function _createSuper(Derived) { return function () { var Super = getPrototypeOf._getPrototypeOf(Derived), result; if (_isNativeReflectConstruct()) { var NewTarget = getPrototypeOf._getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return getPrototypeOf._possibleConstructorReturn(this, result); }; }
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = getPrototypeOf.getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = getPrototypeOf.getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return getPrototypeOf.possibleConstructorReturn(this, result); }; }
 
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
 
@@ -2692,14 +2673,14 @@ var _StyledAnimatedDiv2 = _styled__default(web.extendedAnimated.div).withConfig(
 }, constants.RADIUS);
 
 var PopoverBase = /*#__PURE__*/function (_React$Component) {
-  getPrototypeOf._inherits(PopoverBase, _React$Component);
+  getPrototypeOf.inherits(PopoverBase, _React$Component);
 
   var _super = _createSuper(PopoverBase);
 
   function PopoverBase() {
     var _this;
 
-    getPrototypeOf._classCallCheck(this, PopoverBase);
+    getPrototypeOf.classCallCheck(this, PopoverBase);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
@@ -2707,15 +2688,15 @@ var PopoverBase = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call.apply(_super, [this].concat(args));
 
-    defineProperty$1._defineProperty(getPrototypeOf._assertThisInitialized(_this), "_cardElement", React__default.createRef());
+    defineProperty$1.defineProperty(getPrototypeOf.assertThisInitialized(_this), "_cardElement", /*#__PURE__*/React__default.createRef());
 
-    defineProperty$1._defineProperty(getPrototypeOf._assertThisInitialized(_this), "_popperElement", React__default.createRef());
+    defineProperty$1.defineProperty(getPrototypeOf.assertThisInitialized(_this), "_popperElement", /*#__PURE__*/React__default.createRef());
 
-    defineProperty$1._defineProperty(getPrototypeOf._assertThisInitialized(_this), "_document", null);
+    defineProperty$1.defineProperty(getPrototypeOf.assertThisInitialized(_this), "_document", null);
 
-    defineProperty$1._defineProperty(getPrototypeOf._assertThisInitialized(_this), "_popper", null);
+    defineProperty$1.defineProperty(getPrototypeOf.assertThisInitialized(_this), "_popper", null);
 
-    defineProperty$1._defineProperty(getPrototypeOf._assertThisInitialized(_this), "handleEscape", function (_ref) {
+    defineProperty$1.defineProperty(getPrototypeOf.assertThisInitialized(_this), "handleEscape", function (_ref) {
       var keyCode = _ref.keyCode;
 
       if (keyCode === keycodes.KEY_ESC) {
@@ -2726,7 +2707,7 @@ var PopoverBase = /*#__PURE__*/function (_React$Component) {
       }
     });
 
-    defineProperty$1._defineProperty(getPrototypeOf._assertThisInitialized(_this), "handleBlur", function (event) {
+    defineProperty$1.defineProperty(getPrototypeOf.assertThisInitialized(_this), "handleBlur", function (event) {
       var _this$props = _this.props,
           closeOnOpenerFocus = _this$props.closeOnOpenerFocus,
           opener = _this$props.opener;
@@ -2754,7 +2735,7 @@ var PopoverBase = /*#__PURE__*/function (_React$Component) {
     return _this;
   }
 
-  getPrototypeOf._createClass(PopoverBase, [{
+  getPrototypeOf.createClass(PopoverBase, [{
     key: "componentDidMount",
     value: function componentDidMount() {
       this._document = this._popperElement.current.ownerDocument;
@@ -2816,9 +2797,9 @@ var PopoverBase = /*#__PURE__*/function (_React$Component) {
         return settings;
       }
 
-      return _objectSpread({}, settings, {
+      return _objectSpread(_objectSpread({}, settings), {}, {
         placement: 'top-start',
-        modifiers: _objectSpread({}, settings.modifiers, {
+        modifiers: _objectSpread(_objectSpread({}, settings.modifiers), {}, {
           arrow: {
             enabled: false
           },
@@ -2879,7 +2860,7 @@ var PopoverBase = /*#__PURE__*/function (_React$Component) {
           opacity = transitionStyles.opacity;
 
       var _this$boundaryDimensi = this.boundaryDimensions(),
-          _this$boundaryDimensi2 = slicedToArray._slicedToArray(_this$boundaryDimensi, 2),
+          _this$boundaryDimensi2 = slicedToArray.slicedToArray(_this$boundaryDimensi, 2),
           maxWidth = _this$boundaryDimensi2[0],
           maxHeight = _this$boundaryDimensi2[1];
 
@@ -2888,7 +2869,7 @@ var PopoverBase = /*#__PURE__*/function (_React$Component) {
         style: {
           zIndex: zIndex
         }
-      }, /*#__PURE__*/React__default.createElement(_StyledAnimatedDiv2, _extends$1._extends({
+      }, /*#__PURE__*/React__default.createElement(_StyledAnimatedDiv2, _extends$1._extends_1({
         tabIndex: "0",
         onBlur: this.handleBlur,
         ref: this._cardElement,
@@ -2910,23 +2891,23 @@ var PopoverBase = /*#__PURE__*/function (_React$Component) {
   return PopoverBase;
 }(React__default.Component);
 
-defineProperty$1._defineProperty(PopoverBase, "propTypes", {
-  children: proptypes.PropTypes.node,
-  closeOnOpenerFocus: proptypes.PropTypes.bool,
-  onClose: proptypes.PropTypes.func,
-  opener: proptypes.PropTypes._element,
-  placement: proptypes.PropTypes.oneOf( // "center" is a value that doesn’t exist in Popper, but we are using it
+defineProperty$1.defineProperty(PopoverBase, "propTypes", {
+  children: proptypes.ExtendedPropTypes.node,
+  closeOnOpenerFocus: proptypes.ExtendedPropTypes.bool,
+  onClose: proptypes.ExtendedPropTypes.func,
+  opener: proptypes.ExtendedPropTypes._element,
+  placement: proptypes.ExtendedPropTypes.oneOf( // "center" is a value that doesn’t exist in Popper, but we are using it
   // to define custom Popper settings (see getPopperSettings() below).
-  (_ref3 = ['center']).concat.apply(_ref3, toConsumableArray._toConsumableArray(['auto', 'top', 'right', 'bottom', 'left'].map(function (position) {
+  (_ref3 = ['center']).concat.apply(_ref3, toConsumableArray.toConsumableArray(['auto', 'top', 'right', 'bottom', 'left'].map(function (position) {
     return [position, "".concat(position, "-start"), "".concat(position, "-end")];
   })))),
-  rootBoundary: proptypes.PropTypes._element,
-  theme: proptypes.PropTypes.object,
-  transitionStyles: proptypes.PropTypes.object,
-  zIndex: proptypes.PropTypes.number
+  rootBoundary: proptypes.ExtendedPropTypes._element,
+  theme: proptypes.ExtendedPropTypes.object,
+  transitionStyles: proptypes.ExtendedPropTypes.object,
+  zIndex: proptypes.ExtendedPropTypes.number
 });
 
-defineProperty$1._defineProperty(PopoverBase, "defaultProps", {
+defineProperty$1.defineProperty(PopoverBase, "defaultProps", {
   closeOnOpenerFocus: false,
   opener: null,
   placement: 'center',
@@ -2937,10 +2918,10 @@ defineProperty$1._defineProperty(PopoverBase, "defaultProps", {
 function Popover(_ref2) {
   var scaleEffect = _ref2.scaleEffect,
       visible = _ref2.visible,
-      props = objectWithoutProperties._objectWithoutProperties(_ref2, ["scaleEffect", "visible"]);
+      props = objectWithoutProperties.objectWithoutProperties(_ref2, ["scaleEffect", "visible"]);
 
   var theme = Theme.useTheme();
-  var root = index$1$1.useRoot();
+  var root = Root.useRoot();
   return /*#__PURE__*/React__default.createElement(RootPortal.default, null, /*#__PURE__*/React__default.createElement(web.Transition, {
     items: visible,
     config: springs.springs.swift,
@@ -2959,7 +2940,7 @@ function Popover(_ref2) {
     native: true
   }, function (visible) {
     return visible && function (transitionStyles) {
-      return /*#__PURE__*/React__default.createElement(PopoverBase, _extends$1._extends({}, props, {
+      return /*#__PURE__*/React__default.createElement(PopoverBase, _extends$1._extends_1({}, props, {
         rootBoundary: root,
         theme: theme,
         transitionStyles: transitionStyles
@@ -2968,11 +2949,11 @@ function Popover(_ref2) {
   }));
 }
 
-Popover.propTypes = _objectSpread({}, PopoverBase.propTypes, {
-  scaleEffect: proptypes.PropTypes.bool,
-  visible: proptypes.PropTypes.bool
+Popover.propTypes = _objectSpread(_objectSpread({}, PopoverBase.propTypes), {}, {
+  scaleEffect: proptypes.ExtendedPropTypes.bool,
+  visible: proptypes.ExtendedPropTypes.bool
 });
-Popover.defaultProps = _objectSpread({}, PopoverBase.defaultProps, {
+Popover.defaultProps = _objectSpread(_objectSpread({}, PopoverBase.defaultProps), {}, {
   scaleEffect: true,
   visible: true
 });

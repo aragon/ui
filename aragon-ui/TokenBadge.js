@@ -4,32 +4,25 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
-var slicedToArray = require('./slicedToArray-0711941d.js');
-require('./unsupportedIterableToArray-68db1d3b.js');
+var slicedToArray = require('./slicedToArray-a8a77f0e.js');
+require('./unsupportedIterableToArray-f175acfa.js');
 var React = require('react');
 var React__default = _interopDefault(React);
-require('./_commonjsHelpers-72d386ba.js');
-var index = require('./index-b0606964.js');
-require('./defineProperty-0921a47c.js');
-require('./toConsumableArray-d8a4a2c3.js');
+require('./_commonjsHelpers-1b94f6bc.js');
+var index = require('./index-46d0e707.js');
+require('./defineProperty-3cad0327.js');
+require('./toConsumableArray-cc0d28a9.js');
 var _styled = require('styled-components');
 var _styled__default = _interopDefault(_styled);
-require('./getPrototypeOf-2a661a20.js');
+require('./getPrototypeOf-55c9e80c.js');
 require('./color.js');
 require('./components.js');
-require('./contains-component.js');
 require('./css.js');
-require('./dayjs.min-e07657bf.js');
-require('./date.js');
 require('./miscellaneous.js');
 var environment = require('./environment.js');
 require('./font.js');
-require('./math-f4029164.js');
-require('./characters.js');
-require('./format.js');
 require('./keycodes.js');
-require('./url.js');
-var web3 = require('./web3.js');
+var web3 = require('./web3-4e58c255.js');
 var constants = require('./constants.js');
 require('./breakpoints.js');
 require('./springs.js');
@@ -37,151 +30,35 @@ require('./text-styles.js');
 require('./theme-dark.js');
 require('./theme-light.js');
 require('./Theme.js');
-var _extends$1 = require('./extends-40571110.js');
-var objectWithoutProperties = require('./objectWithoutProperties-35db8ab0.js');
-require('./index-ecc57c9f.js');
-require('./isObject-ec755c87.js');
-require('./Viewport-15101437.js');
+var _extends$1 = require('./extends-023d783e.js');
+var objectWithoutProperties = require('./objectWithoutProperties-c6d3675c.js');
+require('./index-f5a9917e.js');
+require('./_baseGetTag-42b4dd3e.js');
+require('./Viewport-abbde113.js');
 require('./Layout.js');
 require('./FocusVisible.js');
 require('./ButtonBase.js');
-require('./IconPropTypes-56de5759.js');
-require('./IconAddUser.js');
-require('./IconAlert.js');
-require('./IconAlignCenter.js');
-require('./IconAlignJustify.js');
-require('./IconAlignLeft.js');
-require('./IconAlignRight.js');
-require('./IconAragon.js');
-require('./IconArrowDown.js');
-require('./IconArrowLeft.js');
-require('./IconArrowRight.js');
-require('./IconArrowUp.js');
-require('./IconAtSign.js');
-require('./IconBlock.js');
-require('./IconBookmark.js');
-require('./IconCalendar.js');
-require('./IconCanvas.js');
-require('./IconCaution.js');
-require('./IconCenter.js');
-require('./IconChart.js');
-require('./IconChat.js');
-require('./IconCheck.js');
-require('./IconChip.js');
-require('./IconCircleCheck.js');
-require('./IconCircleMinus.js');
-require('./IconCirclePlus.js');
-require('./IconClock.js');
-require('./IconCloudDownload.js');
-require('./IconCloudUpload.js');
-require('./IconCoin.js');
-require('./IconConfiguration.js');
-require('./IconConnect.js');
-require('./IconConnection.js');
-require('./IconConsole.js');
+require('./IconPropTypes-dd9d2cb1.js');
 require('./IconCopy.js');
 require('./IconCross.js');
-require('./IconDashedSquare.js');
-require('./IconDown.js');
-require('./IconDownload.js');
-require('./IconEdit.js');
-require('./IconEllipsis.js');
-require('./IconEnter.js');
-require('./IconEthereum.js');
-require('./IconExternal.js');
-require('./IconFile.js');
-require('./IconFilter.js');
-require('./IconFlag.js');
-require('./IconFolder.js');
-require('./IconGraph2.js');
-require('./IconGraph.js');
-require('./IconGrid.js');
-require('./IconGroup.js');
-require('./IconHash.js');
-require('./IconHeart.js');
-require('./IconHide.js');
-require('./IconHome.js');
-require('./IconImage.js');
-require('./IconInfo.js');
-require('./IconLabel.js');
-require('./IconLayers.js');
-require('./IconLeft.js');
-require('./IconLink.js');
-require('./IconLocation.js');
-require('./IconLock.js');
-require('./IconMail.js');
-require('./IconMaximize.js');
-require('./IconMenu.js');
-require('./IconMinimize.js');
-require('./IconMinus.js');
-require('./IconMove.js');
-require('./IconNoPicture.js');
-require('./IconPicture.js');
-require('./IconPlus.js');
-require('./IconPower.js');
-require('./IconPrint.js');
-require('./IconProhibited.js');
-require('./IconQuestion.js');
-require('./IconRefresh.js');
-require('./IconRemoveUser.js');
-require('./IconRight.js');
-require('./IconRotateLeft.js');
-require('./IconRotateRight.js');
-require('./IconSearch.js');
-require('./IconSettings.js');
-require('./IconShare.js');
-require('./IconSquareMinus.js');
-require('./IconSquarePlus.js');
-require('./IconSquare.js');
-require('./IconStarFilled.js');
-require('./IconStar.js');
-require('./IconSwap.js');
-require('./IconTarget.js');
-require('./IconToken.js');
-require('./IconTrash.js');
-require('./IconUnlock.js');
-require('./IconUp.js');
-require('./IconUpload.js');
-require('./IconUser.js');
-require('./IconView.js');
-require('./IconVote.js');
-require('./IconWallet.js');
-require('./IconWarning.js');
-require('./IconWorld.js');
-require('./IconWrite.js');
-require('./IconZoomIn.js');
-require('./IconZoomOut.js');
 require('./objectWithoutPropertiesLoose-1af20ad0.js');
 require('react-dom');
 require('./web-d0294535.js');
 require('./Button.js');
 require('./ButtonIcon.js');
-require('./getDisplayName-7ab6d318.js');
-require('./index-bc84a358.js');
 require('./Link.js');
 require('./TextInput.js');
 require('./ToastHub.js');
-require('./index-0db71dc1.js');
+require('./Root-fd39454b.js');
 require('./RootPortal.js');
 require('./TextCopy.js');
-require('./taggedTemplateLiteral-227ed122.js');
-require('./_react_commonjs-external-bf8fc71c.js');
 require('./EthIdenticon.js');
 require('./AddressField.js');
-require('./useArrowKeysFocus.js');
-require('./useClickOutside.js');
-require('./useFocusEnter.js');
-require('./useFocusLeave.js');
 var useImageExists = require('./useImageExists.js');
-require('./useKeyDown.js');
-require('./useOnBlur.js');
 var BadgeBase = require('./BadgeBase.js');
 require('./BadgePopoverActionType.js');
-require('./proptypes-5b34673d.js');
+require('./proptypes-b2a781f4.js');
 require('./Popover.js');
-require('./observe.js');
-require('./index-030bfca8.js');
-require('./providers.js');
 require('./BadgePopoverBase.js');
 var TokenBadgePopover = require('./TokenBadgePopover.js');
 
@@ -192,7 +69,7 @@ var _StyledSpan = _styled__default("span").withConfig({
   return p._css;
 });
 
-var TokenBadge = React__default.memo(function TokenBadge(_ref) {
+var TokenBadge = /*#__PURE__*/React__default.memo(function TokenBadge(_ref) {
   var address = _ref.address,
       badgeOnly = _ref.badgeOnly,
       className = _ref.className,
@@ -204,7 +81,7 @@ var TokenBadge = React__default.memo(function TokenBadge(_ref) {
   var badgeRef = React.useRef(null);
 
   var _useState = React.useState(false),
-      _useState2 = slicedToArray._slicedToArray(_useState, 2),
+      _useState2 = slicedToArray.slicedToArray(_useState, 2),
       opened = _useState2[0],
       setOpened = _useState2[1];
 
@@ -255,14 +132,14 @@ var TokenBadge = React__default.memo(function TokenBadge(_ref) {
   });
 });
 TokenBadge.propTypes = {
-  address: index.PropTypes.string,
-  badgeOnly: index.PropTypes.bool,
-  className: index.PropTypes.string,
-  compact: index.PropTypes.bool,
-  name: index.PropTypes.string,
-  networkType: index.PropTypes.string,
-  style: index.PropTypes.object,
-  symbol: index.PropTypes.string.isRequired
+  address: index.propTypes.string,
+  badgeOnly: index.propTypes.bool,
+  className: index.propTypes.string,
+  compact: index.propTypes.bool,
+  name: index.propTypes.string,
+  networkType: index.propTypes.string,
+  style: index.propTypes.object,
+  symbol: index.propTypes.string.isRequired
 };
 TokenBadge.defaultProps = {
   address: '',
@@ -284,10 +161,10 @@ var _StyledSpan2 = _styled__default("span").withConfig({
 function Icon(_ref3) {
   var compact = _ref3.compact,
       src = _ref3.src,
-      props = objectWithoutProperties._objectWithoutProperties(_ref3, ["compact", "src"]);
+      props = objectWithoutProperties.objectWithoutProperties(_ref3, ["compact", "src"]);
 
   var margin = 1 * constants.GU;
-  return /*#__PURE__*/React__default.createElement(_StyledSpan2, _extends$1._extends({}, props, {
+  return /*#__PURE__*/React__default.createElement(_StyledSpan2, _extends$1._extends_1({}, props, {
     _css2: compact ? margin : 0,
     _css3: compact ? 0 : margin,
     _css4: src
@@ -295,8 +172,8 @@ function Icon(_ref3) {
 }
 
 Icon.propTypes = {
-  compact: index.PropTypes.bool,
-  src: index.PropTypes.string.isRequired
+  compact: index.propTypes.bool,
+  src: index.propTypes.string.isRequired
 };
 var Name = _styled__default.span.withConfig({
   displayName: "TokenBadge__Name",

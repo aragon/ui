@@ -4,32 +4,23 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
-var slicedToArray = require('./slicedToArray-0711941d.js');
-require('./unsupportedIterableToArray-68db1d3b.js');
+var slicedToArray = require('./slicedToArray-a8a77f0e.js');
+require('./unsupportedIterableToArray-f175acfa.js');
 var React = require('react');
 var React__default = _interopDefault(React);
-require('./_commonjsHelpers-72d386ba.js');
-var index = require('./index-b0606964.js');
-var defineProperty = require('./defineProperty-0921a47c.js');
-require('./toConsumableArray-d8a4a2c3.js');
+require('./_commonjsHelpers-1b94f6bc.js');
+var index = require('./index-46d0e707.js');
+var defineProperty$1 = require('./defineProperty-3cad0327.js');
+require('./toConsumableArray-cc0d28a9.js');
 var _styled = require('styled-components');
 var _styled__default = _interopDefault(_styled);
-require('./getPrototypeOf-2a661a20.js');
+require('./getPrototypeOf-55c9e80c.js');
 require('./color.js');
-require('./components.js');
-require('./contains-component.js');
 require('./css.js');
-require('./dayjs.min-e07657bf.js');
-require('./date.js');
 require('./miscellaneous.js');
 require('./environment.js');
 require('./font.js');
-require('./math-f4029164.js');
-require('./characters.js');
-require('./format.js');
 require('./keycodes.js');
-require('./url.js');
-require('./web3.js');
 var constants = require('./constants.js');
 require('./breakpoints.js');
 var springs = require('./springs.js');
@@ -37,120 +28,17 @@ var textStyles = require('./text-styles.js');
 require('./theme-dark.js');
 require('./theme-light.js');
 var Theme = require('./Theme.js');
-require('./extends-40571110.js');
-require('./objectWithoutProperties-35db8ab0.js');
-require('./index-ecc57c9f.js');
-require('./isObject-ec755c87.js');
-require('./Viewport-15101437.js');
+require('./extends-023d783e.js');
+require('./objectWithoutProperties-c6d3675c.js');
+require('./index-f5a9917e.js');
+require('./_baseGetTag-42b4dd3e.js');
+require('./Viewport-abbde113.js');
 require('./Layout.js');
 require('./FocusVisible.js');
 require('./ButtonBase.js');
-require('./IconPropTypes-56de5759.js');
-require('./IconAddUser.js');
-require('./IconAlert.js');
-require('./IconAlignCenter.js');
-require('./IconAlignJustify.js');
-require('./IconAlignLeft.js');
-require('./IconAlignRight.js');
-require('./IconAragon.js');
-require('./IconArrowDown.js');
-require('./IconArrowLeft.js');
-require('./IconArrowRight.js');
-require('./IconArrowUp.js');
-require('./IconAtSign.js');
-require('./IconBlock.js');
-require('./IconBookmark.js');
-require('./IconCalendar.js');
-require('./IconCanvas.js');
-require('./IconCaution.js');
-require('./IconCenter.js');
-require('./IconChart.js');
-require('./IconChat.js');
-require('./IconCheck.js');
-require('./IconChip.js');
-require('./IconCircleCheck.js');
-require('./IconCircleMinus.js');
-require('./IconCirclePlus.js');
-require('./IconClock.js');
-require('./IconCloudDownload.js');
-require('./IconCloudUpload.js');
-require('./IconCoin.js');
-require('./IconConfiguration.js');
-require('./IconConnect.js');
-require('./IconConnection.js');
-require('./IconConsole.js');
-require('./IconCopy.js');
-require('./IconCross.js');
-require('./IconDashedSquare.js');
+require('./IconPropTypes-dd9d2cb1.js');
 require('./IconDown.js');
-require('./IconDownload.js');
-require('./IconEdit.js');
-require('./IconEllipsis.js');
-require('./IconEnter.js');
-require('./IconEthereum.js');
-require('./IconExternal.js');
-require('./IconFile.js');
-require('./IconFilter.js');
-require('./IconFlag.js');
-require('./IconFolder.js');
-require('./IconGraph2.js');
-require('./IconGraph.js');
-require('./IconGrid.js');
-require('./IconGroup.js');
-require('./IconHash.js');
-require('./IconHeart.js');
-require('./IconHide.js');
-require('./IconHome.js');
-require('./IconImage.js');
-require('./IconInfo.js');
-require('./IconLabel.js');
-require('./IconLayers.js');
-require('./IconLeft.js');
-require('./IconLink.js');
-require('./IconLocation.js');
-require('./IconLock.js');
-require('./IconMail.js');
-require('./IconMaximize.js');
-require('./IconMenu.js');
-require('./IconMinimize.js');
-require('./IconMinus.js');
-require('./IconMove.js');
-require('./IconNoPicture.js');
-require('./IconPicture.js');
-require('./IconPlus.js');
-require('./IconPower.js');
-require('./IconPrint.js');
-require('./IconProhibited.js');
-require('./IconQuestion.js');
-require('./IconRefresh.js');
-require('./IconRemoveUser.js');
-require('./IconRight.js');
-require('./IconRotateLeft.js');
-require('./IconRotateRight.js');
-require('./IconSearch.js');
-require('./IconSettings.js');
-require('./IconShare.js');
-require('./IconSquareMinus.js');
-require('./IconSquarePlus.js');
-require('./IconSquare.js');
-require('./IconStarFilled.js');
-require('./IconStar.js');
-require('./IconSwap.js');
-require('./IconTarget.js');
-require('./IconToken.js');
-require('./IconTrash.js');
-require('./IconUnlock.js');
 require('./IconUp.js');
-require('./IconUpload.js');
-require('./IconUser.js');
-require('./IconView.js');
-require('./IconVote.js');
-require('./IconWallet.js');
-require('./IconWarning.js');
-require('./IconWorld.js');
-require('./IconWrite.js');
-require('./IconZoomIn.js');
-require('./IconZoomOut.js');
 require('./objectWithoutPropertiesLoose-1af20ad0.js');
 require('react-dom');
 var web = require('./web-d0294535.js');
@@ -162,7 +50,7 @@ var OpenedSurfaceBorder = require('./OpenedSurfaceBorder.js');
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { defineProperty._defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { defineProperty$1.defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 var _StyledDiv = _styled__default("div").withConfig({
   displayName: "ListView___StyledDiv",
@@ -230,7 +118,7 @@ function ListView(_ref) {
   var theme = Theme.useTheme();
 
   var _useState = React.useState(-1),
-      _useState2 = slicedToArray._slicedToArray(_useState, 2),
+      _useState2 = slicedToArray.slicedToArray(_useState, 2),
       opened = _useState2[0],
       setOpened = _useState2[1];
 
@@ -275,7 +163,7 @@ function ListView(_ref) {
     .sort(function (a, b) {
       return b[2] - a[2];
     }).map(function (_ref2, index, entryNodes) {
-      var _ref3 = slicedToArray._slicedToArray(_ref2, 2),
+      var _ref3 = slicedToArray.slicedToArray(_ref2, 2),
           content = _ref3[0],
           label = _ref3[1];
 
@@ -297,15 +185,15 @@ function ListView(_ref) {
 }
 
 ListView.propTypes = {
-  allSelected: index.PropTypes.oneOf([-1, 0, 1]).isRequired,
-  entries: index.PropTypes.array.isRequired,
-  fields: index.PropTypes.array.isRequired,
-  hasAnyExpansion: index.PropTypes.bool.isRequired,
-  onSelect: index.PropTypes.func.isRequired,
-  onSelectAll: index.PropTypes.func.isRequired,
-  renderSelectionCount: index.PropTypes.func.isRequired,
-  rowHeight: index.PropTypes.number.isRequired,
-  selectable: index.PropTypes.bool.isRequired
+  allSelected: index.propTypes.oneOf([-1, 0, 1]).isRequired,
+  entries: index.propTypes.array.isRequired,
+  fields: index.propTypes.array.isRequired,
+  hasAnyExpansion: index.propTypes.bool.isRequired,
+  onSelect: index.propTypes.func.isRequired,
+  onSelectAll: index.propTypes.func.isRequired,
+  renderSelectionCount: index.propTypes.func.isRequired,
+  rowHeight: index.propTypes.number.isRequired,
+  selectable: index.propTypes.bool.isRequired
 }; // Disable prop types check for internal components
 
 /* eslint-disable react/prop-types */
@@ -339,7 +227,7 @@ function EntryExpansion(_ref4) {
   var theme = Theme.useTheme(); // Handles the height of the expansion in free layout mode
 
   var _useState3 = React.useState(0),
-      _useState4 = slicedToArray._slicedToArray(_useState3, 2),
+      _useState4 = slicedToArray.slicedToArray(_useState3, 2),
       freeLayoutContentHeight = _useState4[0],
       setFreeLayoutContentHeight = _useState4[1];
 
@@ -364,7 +252,7 @@ function EntryExpansion(_ref4) {
     leave: {
       height: 0
     },
-    config: _objectSpread({}, springs.springs.smooth, {
+    config: _objectSpread(_objectSpread({}, springs.springs.smooth), {}, {
       precision: 0.1
     })
   }, function (show) {

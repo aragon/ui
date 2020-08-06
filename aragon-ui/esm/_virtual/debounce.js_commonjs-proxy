@@ -1,0 +1,3 @@
+import debounce_1 from '../node_modules/lodash/debounce.js';
+export { default } from '../node_modules/lodash/debounce.js';
+//# sourceMappingURL=debounce.js_commonjs-proxy.map

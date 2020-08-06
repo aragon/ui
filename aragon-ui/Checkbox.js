@@ -4,47 +4,33 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
-require('./slicedToArray-0711941d.js');
-require('./unsupportedIterableToArray-68db1d3b.js');
+require('./slicedToArray-a8a77f0e.js');
+require('./unsupportedIterableToArray-f175acfa.js');
 var React = require('react');
 var React__default = _interopDefault(React);
-require('./_commonjsHelpers-72d386ba.js');
-var index = require('./index-b0606964.js');
-var defineProperty = require('./defineProperty-0921a47c.js');
-require('./toConsumableArray-d8a4a2c3.js');
+require('./_commonjsHelpers-1b94f6bc.js');
+var index = require('./index-46d0e707.js');
+var defineProperty = require('./defineProperty-3cad0327.js');
+require('./toConsumableArray-cc0d28a9.js');
 var _styled = require('styled-components');
 var _styled__default = _interopDefault(_styled);
-var getPrototypeOf = require('./getPrototypeOf-2a661a20.js');
+var getPrototypeOf = require('./getPrototypeOf-55c9e80c.js');
 require('./color.js');
-require('./components.js');
-require('./contains-component.js');
-require('./css.js');
-require('./dayjs.min-e07657bf.js');
-require('./date.js');
 var miscellaneous = require('./miscellaneous.js');
 require('./environment.js');
-require('./font.js');
-require('./math-f4029164.js');
-require('./characters.js');
-require('./format.js');
-require('./keycodes.js');
-require('./url.js');
-require('./web3.js');
 var constants = require('./constants.js');
-require('./breakpoints.js');
 var springs = require('./springs.js');
-require('./text-styles.js');
 require('./theme-dark.js');
 require('./theme-light.js');
 var Theme = require('./Theme.js');
-var _extends = require('./extends-40571110.js');
-var objectWithoutProperties = require('./objectWithoutProperties-35db8ab0.js');
+var _extends = require('./extends-023d783e.js');
+var objectWithoutProperties = require('./objectWithoutProperties-c6d3675c.js');
 var FocusVisible = require('./FocusVisible.js');
 require('./objectWithoutPropertiesLoose-1af20ad0.js');
 require('react-dom');
 var web = require('./web-d0294535.js');
 
-function _createSuper(Derived) { return function () { var Super = getPrototypeOf._getPrototypeOf(Derived), result; if (_isNativeReflectConstruct()) { var NewTarget = getPrototypeOf._getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return getPrototypeOf._possibleConstructorReturn(this, result); }; }
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = getPrototypeOf.getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = getPrototypeOf.getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return getPrototypeOf.possibleConstructorReturn(this, result); }; }
 
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
 var SIZE = 18;
@@ -81,14 +67,14 @@ var _StyledSpan = _styled__default("span").withConfig({
 });
 
 var Checkbox = /*#__PURE__*/function (_React$PureComponent) {
-  getPrototypeOf._inherits(Checkbox, _React$PureComponent);
+  getPrototypeOf.inherits(Checkbox, _React$PureComponent);
 
   var _super = _createSuper(Checkbox);
 
   function Checkbox() {
     var _this;
 
-    getPrototypeOf._classCallCheck(this, Checkbox);
+    getPrototypeOf.classCallCheck(this, Checkbox);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
@@ -96,9 +82,9 @@ var Checkbox = /*#__PURE__*/function (_React$PureComponent) {
 
     _this = _super.call.apply(_super, [this].concat(args));
 
-    defineProperty._defineProperty(getPrototypeOf._assertThisInitialized(_this), "_element", React__default.createRef());
+    defineProperty.defineProperty(getPrototypeOf.assertThisInitialized(_this), "_element", /*#__PURE__*/React__default.createRef());
 
-    defineProperty._defineProperty(getPrototypeOf._assertThisInitialized(_this), "handleClick", function () {
+    defineProperty.defineProperty(getPrototypeOf.assertThisInitialized(_this), "handleClick", function () {
       var _this$props = _this.props,
           onChange = _this$props.onChange,
           checked = _this$props.checked,
@@ -106,14 +92,14 @@ var Checkbox = /*#__PURE__*/function (_React$PureComponent) {
       onChange(indeterminate ? false : !checked);
     });
 
-    defineProperty._defineProperty(getPrototypeOf._assertThisInitialized(_this), "focus", function () {
+    defineProperty.defineProperty(getPrototypeOf.assertThisInitialized(_this), "focus", function () {
       _this._element.current.focus();
     });
 
     return _this;
   }
 
-  getPrototypeOf._createClass(Checkbox, [{
+  getPrototypeOf.createClass(Checkbox, [{
     key: "getAriaChecked",
     value: function getAriaChecked() {
       var _this$props2 = this.props,
@@ -164,12 +150,12 @@ var Checkbox = /*#__PURE__*/function (_React$PureComponent) {
           tabIndex = _this$props4.tabIndex,
           theme = _this$props4.theme,
           variant = _this$props4.variant,
-          props = objectWithoutProperties._objectWithoutProperties(_this$props4, ["checked", "disabled", "indeterminate", "tabIndex", "theme", "variant"]);
+          props = objectWithoutProperties.objectWithoutProperties(_this$props4, ["checked", "disabled", "indeterminate", "tabIndex", "theme", "variant"]);
 
       return /*#__PURE__*/React__default.createElement(FocusVisible.default, null, function (_ref2) {
         var focusVisible = _ref2.focusVisible,
             onFocus = _ref2.onFocus;
-        return /*#__PURE__*/React__default.createElement(_StyledButton, _extends._extends({
+        return /*#__PURE__*/React__default.createElement(_StyledButton, _extends._extends_1({
           type: "button",
           ref: _this2._element,
           role: variant,
@@ -198,17 +184,17 @@ var Checkbox = /*#__PURE__*/function (_React$PureComponent) {
 /* eslint-disable react/prop-types */
 
 
-defineProperty._defineProperty(Checkbox, "propTypes", {
-  checked: index.PropTypes.bool,
-  disabled: index.PropTypes.bool,
-  indeterminate: index.PropTypes.bool,
-  onChange: index.PropTypes.func,
-  tabIndex: index.PropTypes.string,
-  theme: index.PropTypes.object,
-  variant: index.PropTypes.oneOf(['checkbox', 'radio'])
+defineProperty.defineProperty(Checkbox, "propTypes", {
+  checked: index.propTypes.bool,
+  disabled: index.propTypes.bool,
+  indeterminate: index.propTypes.bool,
+  onChange: index.propTypes.func,
+  tabIndex: index.propTypes.string,
+  theme: index.propTypes.object,
+  variant: index.propTypes.oneOf(['checkbox', 'radio'])
 });
 
-defineProperty._defineProperty(Checkbox, "defaultProps", {
+defineProperty.defineProperty(Checkbox, "defaultProps", {
   checked: false,
   disabled: false,
   indeterminate: false,
@@ -264,9 +250,9 @@ var Bullet = function Bullet(_ref5) {
   });
 };
 
-var CheckBoxWithTheme = React__default.forwardRef(function (props, ref) {
+var CheckBoxWithTheme = /*#__PURE__*/React__default.forwardRef(function (props, ref) {
   var theme = Theme.useTheme();
-  return /*#__PURE__*/React__default.createElement(Checkbox, _extends._extends({
+  return /*#__PURE__*/React__default.createElement(Checkbox, _extends._extends_1({
     theme: theme,
     ref: ref
   }, props));

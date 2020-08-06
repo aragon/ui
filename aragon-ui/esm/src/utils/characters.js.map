@@ -1,0 +1,1 @@
+{"version":3,"file":"characters.js","sources":["../../../../src/utils/characters.js"],"sourcesContent":["export const NO_BREAK_SPACE = '\\u00a0'\n"],"names":["NO_BREAK_SPACE"],"mappings":"IAAaA,cAAc,GAAG;;;;"}

@@ -4,35 +4,21 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
-require('./slicedToArray-0711941d.js');
-require('./unsupportedIterableToArray-68db1d3b.js');
+require('./unsupportedIterableToArray-f175acfa.js');
 var React = require('react');
 var React__default = _interopDefault(React);
-var _commonjsHelpers = require('./_commonjsHelpers-72d386ba.js');
-var index = require('./index-b0606964.js');
-var defineProperty = require('./defineProperty-0921a47c.js');
-require('./toConsumableArray-d8a4a2c3.js');
+var _commonjsHelpers = require('./_commonjsHelpers-1b94f6bc.js');
+var index = require('./index-46d0e707.js');
+var defineProperty = require('./defineProperty-3cad0327.js');
+require('./toConsumableArray-cc0d28a9.js');
 var _styled = require('styled-components');
 var _styled__default = _interopDefault(_styled);
-var getPrototypeOf = require('./getPrototypeOf-2a661a20.js');
-require('./color.js');
+var getPrototypeOf = require('./getPrototypeOf-55c9e80c.js');
 var components = require('./components.js');
-require('./contains-component.js');
-require('./css.js');
-require('./dayjs.min-e07657bf.js');
-require('./date.js');
 require('./miscellaneous.js');
 require('./environment.js');
-require('./font.js');
-require('./math-f4029164.js');
-require('./characters.js');
-require('./format.js');
-require('./keycodes.js');
-require('./url.js');
-var web3 = require('./web3.js');
-var _extends = require('./extends-40571110.js');
-var taggedTemplateLiteral = require('./taggedTemplateLiteral-227ed122.js');
-require('./_react_commonjs-external-bf8fc71c.js');
+var web3 = require('./web3-4e58c255.js');
+var _extends = require('./extends-023d783e.js');
 
 var main = _commonjsHelpers.createCommonjsModule(function (module, exports) {
 
@@ -50,7 +36,7 @@ var _react2 = _interopRequireDefault(React__default);
 
 
 
-var _propTypes2 = _interopRequireDefault(index.PropTypes);
+var _propTypes2 = _interopRequireDefault(index.propTypes);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -249,39 +235,9 @@ Identicon.propTypes = {
 };
 });
 
-var Blockies = _commonjsHelpers.unwrapExports(main);
+var Blockies = /*@__PURE__*/_commonjsHelpers.unwrapExports(main);
 
-function _templateObject3() {
-  var data = taggedTemplateLiteral._taggedTemplateLiteral(["\n  /* display:flex to remove the display:inline on the child without using a\n  * selector (Blockies doesn\u2019t allow the style prop to be passed). */\n  display: flex;\n  width: ", "px;\n  height: ", "px;\n  background: #fff;\n\n  /* add high-res screens support to Blockies */\n  transform: scale(", ", ", ");\n  transform-origin: 0 0;\n"]);
-
-  _templateObject3 = function _templateObject3() {
-    return data;
-  };
-
-  return data;
-}
-
-function _templateObject2() {
-  var data = taggedTemplateLiteral._taggedTemplateLiteral(["\n  opacity: ", ";\n"]);
-
-  _templateObject2 = function _templateObject2() {
-    return data;
-  };
-
-  return data;
-}
-
-function _templateObject() {
-  var data = taggedTemplateLiteral._taggedTemplateLiteral(["\n  display: inline-flex;\n  vertical-align: middle;\n  overflow: hidden;\n  width: ", "px;\n  height: ", "px;\n  border-radius: ", "px;\n\n  // Fix an issue where the border-radius wasn\u2019t visible on Blink browsers.\n  // See https://gist.github.com/ayamflow/b602ab436ac9f05660d9c15190f4fd7b\n  mask-image: linear-gradient(red, red);\n"]);
-
-  _templateObject = function _templateObject() {
-    return data;
-  };
-
-  return data;
-}
-
-function _createSuper(Derived) { return function () { var Super = getPrototypeOf._getPrototypeOf(Derived), result; if (_isNativeReflectConstruct()) { var NewTarget = getPrototypeOf._getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return getPrototypeOf._possibleConstructorReturn(this, result); }; }
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = getPrototypeOf.getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = getPrototypeOf.getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return getPrototypeOf.possibleConstructorReturn(this, result); }; }
 
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
 var PX_RATIO = typeof devicePixelRatio === 'undefined' ? 2 : devicePixelRatio;
@@ -290,17 +246,17 @@ var BLOCKIES_SQUARES = 8; // commonly used to represent Ethereum addresses
 var BASE_SCALE = 3;
 
 var EthIdenticon = /*#__PURE__*/function (_React$Component) {
-  getPrototypeOf._inherits(EthIdenticon, _React$Component);
+  getPrototypeOf.inherits(EthIdenticon, _React$Component);
 
   var _super = _createSuper(EthIdenticon);
 
   function EthIdenticon() {
-    getPrototypeOf._classCallCheck(this, EthIdenticon);
+    getPrototypeOf.classCallCheck(this, EthIdenticon);
 
     return _super.apply(this, arguments);
   }
 
-  getPrototypeOf._createClass(EthIdenticon, [{
+  getPrototypeOf.createClass(EthIdenticon, [{
     key: "render",
     value: function render() {
       var _this$props = this.props,
@@ -309,7 +265,7 @@ var EthIdenticon = /*#__PURE__*/function (_React$Component) {
           radius = _this$props.radius,
           soften = _this$props.soften;
       var blockiesScale = scale * BASE_SCALE;
-      return web3.isAddress(address) ? /*#__PURE__*/React__default.createElement(Main, _extends._extends({
+      return web3.isAddress(address) ? /*#__PURE__*/React__default.createElement(Main, _extends._extends_1({
         size: BLOCKIES_SQUARES * blockiesScale,
         radius: radius
       }, components.stylingProps(this)), /*#__PURE__*/React__default.createElement(BlockiesScaling, {
@@ -335,30 +291,39 @@ var EthIdenticon = /*#__PURE__*/function (_React$Component) {
  */
 
 
-defineProperty._defineProperty(EthIdenticon, "propTypes", {
-  address: index.PropTypes.string.isRequired,
-  scale: index.PropTypes.number,
-  radius: index.PropTypes.number,
-  soften: index.PropTypes.number
+defineProperty.defineProperty(EthIdenticon, "propTypes", {
+  address: index.propTypes.string.isRequired,
+  scale: index.propTypes.number,
+  radius: index.propTypes.number,
+  soften: index.propTypes.number
 });
 
-defineProperty._defineProperty(EthIdenticon, "defaultProps", {
+defineProperty.defineProperty(EthIdenticon, "defaultProps", {
   scale: 1,
   radius: 0,
   soften: 0.3
 });
 
-var Main = _styled__default.div(_templateObject(), function (p) {
+var Main = _styled__default.div.withConfig({
+  displayName: "EthIdenticon__Main",
+  componentId: "sc-1h8gagr-0"
+})(["display:inline-flex;vertical-align:middle;overflow:hidden;width:", "px;height:", "px;border-radius:", "px;mask-image:linear-gradient(red,red);"], function (p) {
   return p.size;
 }, function (p) {
   return p.size;
 }, function (p) {
   return p.radius;
 });
-var BlockiesOpacity = _styled__default.div(_templateObject2(), function (p) {
+var BlockiesOpacity = _styled__default.div.withConfig({
+  displayName: "EthIdenticon__BlockiesOpacity",
+  componentId: "sc-1h8gagr-1"
+})(["opacity:", ";"], function (p) {
   return 1 - p.soften;
 });
-var BlockiesScaling = _styled__default.div(_templateObject3(), function (p) {
+var BlockiesScaling = _styled__default.div.withConfig({
+  displayName: "EthIdenticon__BlockiesScaling",
+  componentId: "sc-1h8gagr-2"
+})(["display:flex;width:", "px;height:", "px;background:#fff;transform:scale(", ",", ");transform-origin:0 0;"], function (p) {
   return p.size;
 }, function (p) {
   return p.size;

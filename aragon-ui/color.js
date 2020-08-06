@@ -2,10 +2,10 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-require('./unsupportedIterableToArray-68db1d3b.js');
-var _commonjsHelpers = require('./_commonjsHelpers-72d386ba.js');
-var toConsumableArray = require('./toConsumableArray-d8a4a2c3.js');
-var getPrototypeOf = require('./getPrototypeOf-2a661a20.js');
+require('./unsupportedIterableToArray-f175acfa.js');
+var _commonjsHelpers = require('./_commonjsHelpers-1b94f6bc.js');
+var toConsumableArray = require('./toConsumableArray-cc0d28a9.js');
+var getPrototypeOf = require('./getPrototypeOf-55c9e80c.js');
 
 function _isNativeFunction(fn) {
   return Function.toString.call(fn).indexOf("[native code]") !== -1;
@@ -67,7 +67,7 @@ function _wrapNativeSuper(Class) {
     }
 
     function Wrapper() {
-      return construct(Class, arguments, getPrototypeOf._getPrototypeOf(this).constructor);
+      return construct(Class, arguments, getPrototypeOf.getPrototypeOf(this).constructor);
     }
 
     Wrapper.prototype = Object.create(Class.prototype, {
@@ -87,7 +87,7 @@ function _wrapNativeSuper(Class) {
 module.exports = _wrapNativeSuper;
 });
 
-function _createSuper(Derived) { return function () { var Super = getPrototypeOf._getPrototypeOf(Derived), result; if (_isNativeReflectConstruct$1()) { var NewTarget = getPrototypeOf._getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return getPrototypeOf._possibleConstructorReturn(this, result); }; }
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$1(); return function _createSuperInternal() { var Super = getPrototypeOf.getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = getPrototypeOf.getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return getPrototypeOf.possibleConstructorReturn(this, result); }; }
 
 function _isNativeReflectConstruct$1() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
 
@@ -111,7 +111,7 @@ function normalizeHexColor(value) {
   var hexColor = matches[1].toUpperCase();
 
   if (hexColor.length === 3) {
-    return toConsumableArray._toConsumableArray(hexColor).map(function (c) {
+    return toConsumableArray.toConsumableArray(hexColor).map(function (c) {
       return c + c;
     }).join('');
   }
@@ -120,14 +120,14 @@ function normalizeHexColor(value) {
 }
 
 var Color = /*#__PURE__*/function (_String) {
-  getPrototypeOf._inherits(Color, _String);
+  getPrototypeOf.inherits(Color, _String);
 
   var _super = _createSuper(Color);
 
   function Color(value) {
     var _this;
 
-    getPrototypeOf._classCallCheck(this, Color);
+    getPrototypeOf.classCallCheck(this, Color);
 
     _this = _super.call(this, value);
     var hexColor = normalizeHexColor(value);
@@ -144,7 +144,7 @@ var Color = /*#__PURE__*/function (_String) {
     return _this;
   }
 
-  getPrototypeOf._createClass(Color, [{
+  getPrototypeOf.createClass(Color, [{
     key: "toString",
     value: function toString() {
       return this.toCssRgb();

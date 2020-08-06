@@ -1,0 +1,3 @@
+import isFunction_1 from '../node_modules/lodash/isFunction.js';
+export { default } from '../node_modules/lodash/isFunction.js';
+//# sourceMappingURL=isFunction.js_commonjs-proxy.map

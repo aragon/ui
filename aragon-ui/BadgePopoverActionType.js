@@ -2,12 +2,12 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-require('./_commonjsHelpers-72d386ba.js');
-var index = require('./index-b0606964.js');
+require('./_commonjsHelpers-1b94f6bc.js');
+var index = require('./index-46d0e707.js');
 
-var BadgePopoverActionType = index.PropTypes.shape({
-  label: index.PropTypes.node.isRequired,
-  onClick: index.PropTypes.func.isRequired
+var BadgePopoverActionType = index.propTypes.shape({
+  label: index.propTypes.node.isRequired,
+  onClick: index.propTypes.func.isRequired
 });
 
 exports.default = BadgePopoverActionType;

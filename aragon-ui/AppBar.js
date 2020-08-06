@@ -4,52 +4,40 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
-require('./slicedToArray-0711941d.js');
-require('./unsupportedIterableToArray-68db1d3b.js');
+require('./slicedToArray-a8a77f0e.js');
+require('./unsupportedIterableToArray-f175acfa.js');
 var React = require('react');
 var React__default = _interopDefault(React);
-require('./_commonjsHelpers-72d386ba.js');
-var index = require('./index-b0606964.js');
-var defineProperty$1 = require('./defineProperty-0921a47c.js');
-require('./toConsumableArray-d8a4a2c3.js');
+require('./_commonjsHelpers-1b94f6bc.js');
+var index = require('./index-46d0e707.js');
+var defineProperty$1 = require('./defineProperty-3cad0327.js');
+require('./toConsumableArray-cc0d28a9.js');
 var _styled = require('styled-components');
 var _styled__default = _interopDefault(_styled);
-var getPrototypeOf = require('./getPrototypeOf-2a661a20.js');
+var getPrototypeOf = require('./getPrototypeOf-55c9e80c.js');
 require('./color.js');
-require('./components.js');
-require('./contains-component.js');
 var css = require('./css.js');
-require('./dayjs.min-e07657bf.js');
-require('./date.js');
 var miscellaneous = require('./miscellaneous.js');
 require('./environment.js');
 require('./font.js');
-require('./math-f4029164.js');
-require('./characters.js');
-require('./format.js');
-require('./keycodes.js');
 require('./url.js');
-require('./web3.js');
-require('./constants.js');
-require('./breakpoints.js');
 var springs = require('./springs.js');
-require('./text-styles.js');
 require('./theme-dark.js');
 require('./theme-light.js');
 var Theme = require('./Theme.js');
-var _extends$1 = require('./extends-40571110.js');
-var objectWithoutProperties = require('./objectWithoutProperties-35db8ab0.js');
-var index$1 = require('./index-ecc57c9f.js');
+var _extends$1 = require('./extends-023d783e.js');
+var objectWithoutProperties = require('./objectWithoutProperties-c6d3675c.js');
+var index$1 = require('./index-f5a9917e.js');
 require('./objectWithoutPropertiesLoose-1af20ad0.js');
 require('react-dom');
 var web = require('./web-d0294535.js');
-require('./getDisplayName-7ab6d318.js');
-var index$2 = require('./index-bc84a358.js');
+require('./getDisplayName-7f913e84.js');
+var PublicUrl = require('./PublicUrl-ef64ac3b.js');
 var Text = require('./Text.js');
 
 var chevronSvg = "data:image/svg+xml,%3Csvg%20width%3D%227%22%20height%3D%2212%22%20viewBox%3D%220%200%207%2012%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M.446%2012a.512.512%200%2001-.172-.03.422.422%200%2001-.146-.087A.37.37%200%20010%2011.6a.37.37%200%2001.128-.281l5.826-5.361L.217.692A.376.376%200%2001.089.405.378.378%200%2001.217.117.444.444%200%2001.529%200c.123%200%20.228.04.313.117l6.03%205.56A.37.37%200%20017%205.96a.37.37%200%2001-.128.281l-6.12%205.643A.477.477%200%2001.446%2012z%22%20fill%3D%22%2300CBE6%22%20fill-rule%3D%22evenodd%22%2F%3E%3C%2Fsvg%3E";
 
-function _createSuper(Derived) { return function () { var Super = getPrototypeOf._getPrototypeOf(Derived), result; if (_isNativeReflectConstruct()) { var NewTarget = getPrototypeOf._getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return getPrototypeOf._possibleConstructorReturn(this, result); }; }
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = getPrototypeOf.getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = getPrototypeOf.getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return getPrototypeOf.possibleConstructorReturn(this, result); }; }
 
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
 
@@ -88,14 +76,14 @@ var _StyledDiv4 = _styled__default("div").withConfig({
 });
 
 var AppBar = /*#__PURE__*/function (_React$Component) {
-  getPrototypeOf._inherits(AppBar, _React$Component);
+  getPrototypeOf.inherits(AppBar, _React$Component);
 
   var _super = _createSuper(AppBar);
 
   function AppBar() {
     var _this;
 
-    getPrototypeOf._classCallCheck(this, AppBar);
+    getPrototypeOf.classCallCheck(this, AppBar);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
@@ -103,16 +91,16 @@ var AppBar = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call.apply(_super, [this].concat(args));
 
-    defineProperty$1._defineProperty(getPrototypeOf._assertThisInitialized(_this), "state", {
+    defineProperty$1.defineProperty(getPrototypeOf.assertThisInitialized(_this), "state", {
       tabsHeight: 0
     });
 
-    defineProperty$1._defineProperty(getPrototypeOf._assertThisInitialized(_this), "_tabsRef", React__default.createRef());
+    defineProperty$1.defineProperty(getPrototypeOf.assertThisInitialized(_this), "_tabsRef", /*#__PURE__*/React__default.createRef());
 
     return _this;
   }
 
-  getPrototypeOf._createClass(AppBar, [{
+  getPrototypeOf.createClass(AppBar, [{
     key: "componentDidMount",
     value: function componentDidMount() {
       this.updateTabsHeight();
@@ -150,7 +138,7 @@ var AppBar = /*#__PURE__*/function (_React$Component) {
           tabs = _this$props.tabs,
           title = _this$props.title,
           theme = _this$props.theme,
-          props = objectWithoutProperties._objectWithoutProperties(_this$props, ["children", "endContent", "onTitleClick", "padding", "tabs", "title", "theme"]);
+          props = objectWithoutProperties.objectWithoutProperties(_this$props, ["children", "endContent", "onTitleClick", "padding", "tabs", "title", "theme"]);
 
       return /*#__PURE__*/React__default.createElement(index$1.i, {
         name: "AppBar"
@@ -158,7 +146,7 @@ var AppBar = /*#__PURE__*/function (_React$Component) {
         _css: theme.surface,
         _css2: css.unselectable(),
         _css3: theme.border
-      }, /*#__PURE__*/React__default.createElement(_StyledDiv2, _extends$1._extends({}, props, {
+      }, /*#__PURE__*/React__default.createElement(_StyledDiv2, _extends$1._extends_1({}, props, {
         _css4: BAR_HEIGHT - 1
       }), title && /*#__PURE__*/React__default.createElement(_StyledDiv3, {
         _css5: padding
@@ -203,28 +191,28 @@ var AppBar = /*#__PURE__*/function (_React$Component) {
   return AppBar;
 }(React__default.Component);
 
-defineProperty$1._defineProperty(AppBar, "propTypes", {
-  children: index.PropTypes.node,
-  endContent: index.PropTypes.node,
-  onTitleClick: index.PropTypes.func,
-  padding: index.PropTypes.number,
-  tabs: index.PropTypes.element,
-  theme: index.PropTypes.object,
-  title: index.PropTypes.node
+defineProperty$1.defineProperty(AppBar, "propTypes", {
+  children: index.propTypes.node,
+  endContent: index.propTypes.node,
+  onTitleClick: index.propTypes.func,
+  padding: index.propTypes.number,
+  tabs: index.propTypes.element,
+  theme: index.propTypes.object,
+  title: index.propTypes.node
 });
 
-defineProperty$1._defineProperty(AppBar, "defaultProps", {
+defineProperty$1.defineProperty(AppBar, "defaultProps", {
   onTitleClick: miscellaneous.noop,
   padding: 30,
   title: ''
 });
 
-var AppBarTitle = index$2.PublicUrl.hocWrap(_styled__default.h1.withConfig({
+var AppBarTitle = PublicUrl.PublicUrl.hocWrap(_styled__default.h1.withConfig({
   displayName: "AppBar__AppBarTitle",
   componentId: "sc-11q0awo-4"
 })(["padding-right:20px;margin-right:calc(20px - 7px);white-space:nowrap;background-image:", ";background-position:100% 50%;background-repeat:no-repeat;cursor:", ";"], function (_ref) {
   var chevron = _ref.chevron;
-  return chevron ? _styled.css(["url(", ")"], index$2.PublicUrl.styledUrl(chevronSvg)) : 'none';
+  return chevron ? _styled.css(["url(", ")"], PublicUrl.PublicUrl.styledUrl(chevronSvg)) : 'none';
 }, function (_ref2) {
   var clickable = _ref2.clickable;
   return clickable ? 'pointer' : 'default';
@@ -235,7 +223,7 @@ var TabsWrapper = _styled__default(web.extendedAnimated.div).withConfig({
 })(["position:relative;z-index:1;"]);
 function AppBar$1 (props) {
   var theme = Theme.useTheme();
-  return /*#__PURE__*/React__default.createElement(AppBar, _extends$1._extends({}, props, {
+  return /*#__PURE__*/React__default.createElement(AppBar, _extends$1._extends_1({}, props, {
     theme: theme
   }));
 }

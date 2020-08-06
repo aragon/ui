@@ -4,36 +4,22 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
-var slicedToArray = require('./slicedToArray-0711941d.js');
-require('./unsupportedIterableToArray-68db1d3b.js');
+var slicedToArray = require('./slicedToArray-a8a77f0e.js');
+require('./unsupportedIterableToArray-f175acfa.js');
 var React = require('react');
 var React__default = _interopDefault(React);
-require('./_commonjsHelpers-72d386ba.js');
-var index = require('./index-b0606964.js');
-require('./defineProperty-0921a47c.js');
-require('./toConsumableArray-d8a4a2c3.js');
+require('./_commonjsHelpers-1b94f6bc.js');
+var index = require('./index-46d0e707.js');
+require('./defineProperty-3cad0327.js');
+require('./toConsumableArray-cc0d28a9.js');
 var _styled = require('styled-components');
 var _styled__default = _interopDefault(_styled);
-require('./getPrototypeOf-2a661a20.js');
+require('./getPrototypeOf-55c9e80c.js');
 require('./color.js');
-require('./components.js');
-require('./contains-component.js');
-require('./css.js');
-require('./dayjs.min-e07657bf.js');
-require('./date.js');
 var miscellaneous = require('./miscellaneous.js');
 require('./environment.js');
-require('./font.js');
-require('./math-f4029164.js');
-require('./characters.js');
-require('./format.js');
-require('./keycodes.js');
-require('./url.js');
-require('./web3.js');
 var constants = require('./constants.js');
-require('./breakpoints.js');
 var springs = require('./springs.js');
-require('./text-styles.js');
 require('./theme-dark.js');
 require('./theme-light.js');
 var Theme = require('./Theme.js');
@@ -88,7 +74,7 @@ function Switch(_ref) {
   var theme = Theme.useTheme();
 
   var _useState = React.useState(false),
-      _useState2 = slicedToArray._slicedToArray(_useState, 2),
+      _useState2 = slicedToArray.slicedToArray(_useState, 2),
       isFocused = _useState2[0],
       setIsFocused = _useState2[1];
 
@@ -146,9 +132,9 @@ function Switch(_ref) {
 }
 
 Switch.propTypes = {
-  checked: index.PropTypes.bool,
-  disabled: index.PropTypes.bool,
-  onChange: index.PropTypes.func
+  checked: index.propTypes.bool,
+  disabled: index.propTypes.bool,
+  onChange: index.propTypes.func
 };
 Switch.defaultProps = {
   checked: false,

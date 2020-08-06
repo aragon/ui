@@ -4,49 +4,39 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
-require('./slicedToArray-0711941d.js');
-require('./unsupportedIterableToArray-68db1d3b.js');
+require('./slicedToArray-a8a77f0e.js');
+require('./unsupportedIterableToArray-f175acfa.js');
 var React = require('react');
 var React__default = _interopDefault(React);
-require('./_commonjsHelpers-72d386ba.js');
-var index = require('./index-b0606964.js');
-var defineProperty$1 = require('./defineProperty-0921a47c.js');
-var toConsumableArray = require('./toConsumableArray-d8a4a2c3.js');
+require('./_commonjsHelpers-1b94f6bc.js');
+var index = require('./index-46d0e707.js');
+var defineProperty$1 = require('./defineProperty-3cad0327.js');
+var toConsumableArray = require('./toConsumableArray-cc0d28a9.js');
 var _styled = require('styled-components');
 var _styled__default = _interopDefault(_styled);
-var getPrototypeOf = require('./getPrototypeOf-2a661a20.js');
+var getPrototypeOf = require('./getPrototypeOf-55c9e80c.js');
 require('./color.js');
-require('./components.js');
-require('./contains-component.js');
 var css = require('./css.js');
-require('./dayjs.min-e07657bf.js');
-require('./date.js');
 var miscellaneous = require('./miscellaneous.js');
 require('./environment.js');
 var font = require('./font.js');
-require('./math-f4029164.js');
-require('./characters.js');
-require('./format.js');
-require('./keycodes.js');
-require('./url.js');
-require('./web3.js');
 require('./theme-dark.js');
 require('./theme-light.js');
 var Theme = require('./Theme.js');
 
-function _createSuper(Derived) { return function () { var Super = getPrototypeOf._getPrototypeOf(Derived), result; if (_isNativeReflectConstruct()) { var NewTarget = getPrototypeOf._getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return getPrototypeOf._possibleConstructorReturn(this, result); }; }
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = getPrototypeOf.getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = getPrototypeOf.getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return getPrototypeOf.possibleConstructorReturn(this, result); }; }
 
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
 
 var TabBar = /*#__PURE__*/function (_React$Component) {
-  getPrototypeOf._inherits(TabBar, _React$Component);
+  getPrototypeOf.inherits(TabBar, _React$Component);
 
   var _super = _createSuper(TabBar);
 
   function TabBar() {
     var _this;
 
-    getPrototypeOf._classCallCheck(this, TabBar);
+    getPrototypeOf.classCallCheck(this, TabBar);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
@@ -54,17 +44,17 @@ var TabBar = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call.apply(_super, [this].concat(args));
 
-    defineProperty$1._defineProperty(getPrototypeOf._assertThisInitialized(_this), "state", {
+    defineProperty$1.defineProperty(getPrototypeOf.assertThisInitialized(_this), "state", {
       displayFocusRing: false
     });
 
-    defineProperty$1._defineProperty(getPrototypeOf._assertThisInitialized(_this), "_barRef", React__default.createRef());
+    defineProperty$1.defineProperty(getPrototypeOf.assertThisInitialized(_this), "_barRef", /*#__PURE__*/React__default.createRef());
 
-    defineProperty$1._defineProperty(getPrototypeOf._assertThisInitialized(_this), "handleMouseDown", function () {
+    defineProperty$1.defineProperty(getPrototypeOf.assertThisInitialized(_this), "handleMouseDown", function () {
       _this.disableFocusRing();
     });
 
-    defineProperty$1._defineProperty(getPrototypeOf._assertThisInitialized(_this), "handleKeydown", function (_ref) {
+    defineProperty$1.defineProperty(getPrototypeOf.assertThisInitialized(_this), "handleKeydown", function (_ref) {
       var key = _ref.key;
 
       if (key === 'Enter') {
@@ -78,7 +68,7 @@ var TabBar = /*#__PURE__*/function (_React$Component) {
       }
     });
 
-    defineProperty$1._defineProperty(getPrototypeOf._assertThisInitialized(_this), "handleTabMouseDown", function (_ref2) {
+    defineProperty$1.defineProperty(getPrototypeOf.assertThisInitialized(_this), "handleTabMouseDown", function (_ref2) {
       var currentTarget = _ref2.currentTarget;
 
       // We would usually avoid using the DOM when possible, and prefer using a
@@ -93,7 +83,7 @@ var TabBar = /*#__PURE__*/function (_React$Component) {
     return _this;
   }
 
-  getPrototypeOf._createClass(TabBar, [{
+  getPrototypeOf.createClass(TabBar, [{
     key: "componentDidMount",
     value: function componentDidMount() {
       document.addEventListener('keydown', this.handleKeydown);
@@ -126,7 +116,7 @@ var TabBar = /*#__PURE__*/function (_React$Component) {
         return;
       }
 
-      var index = toConsumableArray._toConsumableArray(this._barRef.current.childNodes).indexOf(element);
+      var index = toConsumableArray.toConsumableArray(this._barRef.current.childNodes).indexOf(element);
 
       if (index === -1) {
         return;
@@ -168,14 +158,14 @@ var TabBar = /*#__PURE__*/function (_React$Component) {
 /* eslint-disable react/prop-types */
 
 
-defineProperty$1._defineProperty(TabBar, "propTypes", {
-  items: index.PropTypes.arrayOf(index.PropTypes.node).isRequired,
-  selected: index.PropTypes.number,
-  onChange: index.PropTypes.func,
-  inAppBar: index.PropTypes.bool
+defineProperty$1.defineProperty(TabBar, "propTypes", {
+  items: index.propTypes.arrayOf(index.propTypes.node).isRequired,
+  selected: index.propTypes.number,
+  onChange: index.propTypes.func,
+  inAppBar: index.propTypes.bool
 });
 
-defineProperty$1._defineProperty(TabBar, "defaultProps", {
+defineProperty$1.defineProperty(TabBar, "defaultProps", {
   selected: 0,
   onChange: miscellaneous.noop
 });

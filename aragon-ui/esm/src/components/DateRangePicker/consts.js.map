@@ -1,0 +1,1 @@
+{"version":3,"file":"consts.js","sources":["../../../../../src/components/DateRangePicker/consts.js"],"sourcesContent":["export const INPUT_BORDER = 1\n\nexport const START_DATE = 'Start day'\nexport const END_DATE = 'End day'\n"],"names":["INPUT_BORDER","START_DATE","END_DATE"],"mappings":"IAAaA,YAAY,GAAG;IAEfC,UAAU,GAAG;IACbC,QAAQ,GAAG;;;;"}

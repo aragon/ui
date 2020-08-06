@@ -4,151 +4,37 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
-require('./slicedToArray-0711941d.js');
-require('./unsupportedIterableToArray-68db1d3b.js');
+require('./slicedToArray-a8a77f0e.js');
+require('./unsupportedIterableToArray-f175acfa.js');
 var React = require('react');
 var React__default = _interopDefault(React);
-require('./_commonjsHelpers-72d386ba.js');
-var index = require('./index-b0606964.js');
-var defineProperty$1 = require('./defineProperty-0921a47c.js');
-var toConsumableArray = require('./toConsumableArray-d8a4a2c3.js');
+require('./_commonjsHelpers-1b94f6bc.js');
+var index = require('./index-46d0e707.js');
+var defineProperty$1 = require('./defineProperty-3cad0327.js');
+var toConsumableArray = require('./toConsumableArray-cc0d28a9.js');
 var _styled = require('styled-components');
 var _styled__default = _interopDefault(_styled);
-var getPrototypeOf = require('./getPrototypeOf-2a661a20.js');
+var getPrototypeOf = require('./getPrototypeOf-55c9e80c.js');
 require('./color.js');
-require('./components.js');
-require('./contains-component.js');
 var css = require('./css.js');
-var dayjs_min = require('./dayjs.min-e07657bf.js');
+var dayjs_min = require('./dayjs.min-ac79806e.js');
 var date = require('./date.js');
 require('./miscellaneous.js');
 require('./environment.js');
 require('./font.js');
-require('./math-f4029164.js');
-require('./characters.js');
-require('./format.js');
-require('./keycodes.js');
-require('./url.js');
-require('./web3.js');
 var constants = require('./constants.js');
-require('./breakpoints.js');
-require('./springs.js');
 var textStyles = require('./text-styles.js');
 require('./theme-dark.js');
 require('./theme-light.js');
 var Theme = require('./Theme.js');
-var _extends$1 = require('./extends-40571110.js');
-require('./objectWithoutProperties-35db8ab0.js');
-require('./index-ecc57c9f.js');
-var isObject = require('./isObject-ec755c87.js');
-require('./IconPropTypes-56de5759.js');
-require('./IconAddUser.js');
-require('./IconAlert.js');
-require('./IconAlignCenter.js');
-require('./IconAlignJustify.js');
-require('./IconAlignLeft.js');
-require('./IconAlignRight.js');
-require('./IconAragon.js');
-require('./IconArrowDown.js');
-require('./IconArrowLeft.js');
-require('./IconArrowRight.js');
-require('./IconArrowUp.js');
-require('./IconAtSign.js');
-require('./IconBlock.js');
-require('./IconBookmark.js');
-require('./IconCalendar.js');
-require('./IconCanvas.js');
-require('./IconCaution.js');
-require('./IconCenter.js');
-require('./IconChart.js');
-require('./IconChat.js');
-require('./IconCheck.js');
-require('./IconChip.js');
-require('./IconCircleCheck.js');
-require('./IconCircleMinus.js');
-require('./IconCirclePlus.js');
+var _extends$1 = require('./extends-023d783e.js');
+require('./objectWithoutProperties-c6d3675c.js');
+require('./index-f5a9917e.js');
+var _baseGetTag = require('./_baseGetTag-42b4dd3e.js');
+require('./IconPropTypes-dd9d2cb1.js');
 var IconClock = require('./IconClock.js');
-require('./IconCloudDownload.js');
-require('./IconCloudUpload.js');
-require('./IconCoin.js');
-require('./IconConfiguration.js');
-require('./IconConnect.js');
-require('./IconConnection.js');
-require('./IconConsole.js');
-require('./IconCopy.js');
-require('./IconCross.js');
-require('./IconDashedSquare.js');
-require('./IconDown.js');
-require('./IconDownload.js');
-require('./IconEdit.js');
-require('./IconEllipsis.js');
-require('./IconEnter.js');
-require('./IconEthereum.js');
-require('./IconExternal.js');
-require('./IconFile.js');
-require('./IconFilter.js');
-require('./IconFlag.js');
-require('./IconFolder.js');
-require('./IconGraph2.js');
-require('./IconGraph.js');
-require('./IconGrid.js');
-require('./IconGroup.js');
-require('./IconHash.js');
-require('./IconHeart.js');
-require('./IconHide.js');
-require('./IconHome.js');
-require('./IconImage.js');
-require('./IconInfo.js');
-require('./IconLabel.js');
-require('./IconLayers.js');
-require('./IconLeft.js');
-require('./IconLink.js');
-require('./IconLocation.js');
-require('./IconLock.js');
-require('./IconMail.js');
-require('./IconMaximize.js');
-require('./IconMenu.js');
-require('./IconMinimize.js');
-require('./IconMinus.js');
-require('./IconMove.js');
-require('./IconNoPicture.js');
-require('./IconPicture.js');
-require('./IconPlus.js');
-require('./IconPower.js');
-require('./IconPrint.js');
-require('./IconProhibited.js');
-require('./IconQuestion.js');
-require('./IconRefresh.js');
-require('./IconRemoveUser.js');
-require('./IconRight.js');
-require('./IconRotateLeft.js');
-require('./IconRotateRight.js');
-require('./IconSearch.js');
-require('./IconSettings.js');
-require('./IconShare.js');
-require('./IconSquareMinus.js');
-require('./IconSquarePlus.js');
-require('./IconSquare.js');
-require('./IconStarFilled.js');
-require('./IconStar.js');
-require('./IconSwap.js');
-require('./IconTarget.js');
-require('./IconToken.js');
-require('./IconTrash.js');
-require('./IconUnlock.js');
-require('./IconUp.js');
-require('./IconUpload.js');
-require('./IconUser.js');
-require('./IconView.js');
-require('./IconVote.js');
-require('./IconWallet.js');
-require('./IconWarning.js');
-require('./IconWorld.js');
-require('./IconWrite.js');
-require('./IconZoomIn.js');
-require('./IconZoomOut.js');
-require('./getDisplayName-7ab6d318.js');
-var index$1$2 = require('./index-030bfca8.js');
+require('./getDisplayName-7f913e84.js');
+var Redraw = require('./Redraw-595f0d61.js');
 
 /** `Object#toString` result references. */
 var asyncTag = '[object AsyncFunction]',
@@ -174,19 +60,19 @@ var asyncTag = '[object AsyncFunction]',
  * // => false
  */
 function isFunction(value) {
-  if (!isObject.isObject(value)) {
+  if (!_baseGetTag.isObject_1(value)) {
     return false;
   }
   // The use of `Object#toString` avoids issues with the `typeof` operator
   // in Safari 9 which returns 'object' for typed arrays and other constructors.
-  var tag = isObject.baseGetTag(value);
+  var tag = _baseGetTag._baseGetTag(value);
   return tag == funcTag || tag == genTag || tag == asyncTag || tag == proxyTag;
 }
 
 var isFunction_1 = isFunction;
 
 /** Used to detect overreaching core-js shims. */
-var coreJsData = isObject.root['__core-js_shared__'];
+var coreJsData = _baseGetTag._root['__core-js_shared__'];
 
 var _coreJsData = coreJsData;
 
@@ -270,7 +156,7 @@ var reIsNative = RegExp('^' +
  *  else `false`.
  */
 function baseIsNative(value) {
-  if (!isObject.isObject(value) || _isMasked(value)) {
+  if (!_baseGetTag.isObject_1(value) || _isMasked(value)) {
     return false;
   }
   var pattern = isFunction_1(value) ? reIsNative : reIsHostCtor;
@@ -637,7 +523,7 @@ ListCache.prototype.set = _listCacheSet;
 var _ListCache = ListCache;
 
 /* Built-in method references that are verified to be native. */
-var Map = _getNative(isObject.root, 'Map');
+var Map = _getNative(_baseGetTag._root, 'Map');
 
 var _Map = Map;
 
@@ -859,7 +745,7 @@ memoize.Cache = _MapCache;
 
 var memoize_1 = memoize;
 
-function _createSuper(Derived) { return function () { var Super = getPrototypeOf._getPrototypeOf(Derived), result; if (_isNativeReflectConstruct()) { var NewTarget = getPrototypeOf._getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return getPrototypeOf._possibleConstructorReturn(this, result); }; }
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = getPrototypeOf.getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = getPrototypeOf.getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return getPrototypeOf.possibleConstructorReturn(this, result); }; }
 
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
 var RENDER_EVERY = 1000;
@@ -896,14 +782,14 @@ var unitNames = {
 };
 var getFormat = memoize_1(function (format) {
   return ['y', 'M', 'd', 'h', 'm', 's'].reduce(function (units, symbol) {
-    return formats[format].includes(symbol) ? [].concat(toConsumableArray._toConsumableArray(units), [unitNames[symbol]]) : units;
+    return formats[format].includes(symbol) ? [].concat(toConsumableArray.toConsumableArray(units), [unitNames[symbol]]) : units;
   }, []);
 });
 
 function getTime(start, end, format, showEmpty, maxUnits) {
   var date1 = end || new Date();
   var date2 = end ? new Date() : start;
-  var totalInSeconds = dayjs_min.dayjs(date1).diff(date2, 'seconds');
+  var totalInSeconds = dayjs_min.dayjs_min(date1).diff(date2, 'seconds');
 
   var _difference = date.difference(date1, date2, {
     keepLeadingZeros: showEmpty,
@@ -979,14 +865,14 @@ var _StyledSpan5 = _styled__default("span").withConfig({
 });
 
 var Timer = /*#__PURE__*/function (_React$Component) {
-  getPrototypeOf._inherits(Timer, _React$Component);
+  getPrototypeOf.inherits(Timer, _React$Component);
 
   var _super = _createSuper(Timer);
 
   function Timer() {
     var _this;
 
-    getPrototypeOf._classCallCheck(this, Timer);
+    getPrototypeOf.classCallCheck(this, Timer);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
@@ -994,7 +880,7 @@ var Timer = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call.apply(_super, [this].concat(args));
 
-    defineProperty$1._defineProperty(getPrototypeOf._assertThisInitialized(_this), "renderTime", function () {
+    defineProperty$1.defineProperty(getPrototypeOf.assertThisInitialized(_this), "renderTime", function () {
       var _this$props = _this.props,
           start = _this$props.start,
           end = _this$props.end,
@@ -1049,7 +935,7 @@ var Timer = /*#__PURE__*/function (_React$Component) {
     return _this;
   }
 
-  getPrototypeOf._createClass(Timer, [{
+  getPrototypeOf.createClass(Timer, [{
     key: "render",
     value: function render() {
       var _this$props2 = this.props,
@@ -1065,7 +951,7 @@ var Timer = /*#__PURE__*/function (_React$Component) {
         _css3: 0.5 * constants.GU
       }, /*#__PURE__*/React__default.createElement(_StyledIconTime, {
         _css4: theme.surfaceIcon
-      })), /*#__PURE__*/React__default.createElement(index$1$2.Redraw, {
+      })), /*#__PURE__*/React__default.createElement(Redraw.Redraw, {
         interval: RENDER_EVERY
       }, this.renderTime));
     }
@@ -1074,17 +960,17 @@ var Timer = /*#__PURE__*/function (_React$Component) {
   return Timer;
 }(React__default.Component);
 
-defineProperty$1._defineProperty(Timer, "propTypes", {
-  end: index.PropTypes.instanceOf(Date),
-  format: index.PropTypes.oneOf(Object.keys(formats)),
-  maxUnits: index.PropTypes.number,
-  showEmpty: index.PropTypes.bool,
-  showIcon: index.PropTypes.bool,
-  start: index.PropTypes.instanceOf(Date),
-  theme: index.PropTypes.object
+defineProperty$1.defineProperty(Timer, "propTypes", {
+  end: index.propTypes.instanceOf(Date),
+  format: index.propTypes.oneOf(Object.keys(formats)),
+  maxUnits: index.propTypes.number,
+  showEmpty: index.propTypes.bool,
+  showIcon: index.propTypes.bool,
+  start: index.propTypes.instanceOf(Date),
+  theme: index.propTypes.object
 });
 
-defineProperty$1._defineProperty(Timer, "defaultProps", {
+defineProperty$1.defineProperty(Timer, "defaultProps", {
   format: formats.yMdhms,
   maxUnits: -1,
   showEmpty: false,
@@ -1093,7 +979,7 @@ defineProperty$1._defineProperty(Timer, "defaultProps", {
 
 var Timer$1 = (function (props) {
   var theme = Theme.useTheme();
-  return /*#__PURE__*/React__default.createElement(Timer, _extends$1._extends({}, props, {
+  return /*#__PURE__*/React__default.createElement(Timer, _extends$1._extends_1({}, props, {
     theme: theme
   }));
 });

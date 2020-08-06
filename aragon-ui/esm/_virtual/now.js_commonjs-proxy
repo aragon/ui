@@ -1,0 +1,3 @@
+import now_1 from '../node_modules/lodash/now.js';
+export { default } from '../node_modules/lodash/now.js';
+//# sourceMappingURL=now.js_commonjs-proxy.map

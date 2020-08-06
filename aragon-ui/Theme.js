@@ -4,36 +4,24 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
-var slicedToArray = require('./slicedToArray-0711941d.js');
-require('./unsupportedIterableToArray-68db1d3b.js');
+var slicedToArray = require('./slicedToArray-a8a77f0e.js');
+require('./unsupportedIterableToArray-f175acfa.js');
 var React = require('react');
 var React__default = _interopDefault(React);
-require('./_commonjsHelpers-72d386ba.js');
-var index = require('./index-b0606964.js');
-var defineProperty = require('./defineProperty-0921a47c.js');
-require('./toConsumableArray-d8a4a2c3.js');
-require('./getPrototypeOf-2a661a20.js');
+require('./_commonjsHelpers-1b94f6bc.js');
+var index = require('./index-46d0e707.js');
+var defineProperty$1 = require('./defineProperty-3cad0327.js');
+require('./toConsumableArray-cc0d28a9.js');
+require('./getPrototypeOf-55c9e80c.js');
 var color = require('./color.js');
-require('./components.js');
-require('./contains-component.js');
-require('./css.js');
-require('./dayjs.min-e07657bf.js');
-require('./date.js');
 require('./miscellaneous.js');
 var environment = require('./environment.js');
-require('./font.js');
-require('./math-f4029164.js');
-require('./characters.js');
-require('./format.js');
-require('./keycodes.js');
-require('./url.js');
-require('./web3.js');
 var themeDark = require('./theme-dark.js');
 var themeLight = require('./theme-light.js');
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { defineProperty._defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { defineProperty$1.defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 // The appearance can be either “dark” or “light”.
 
 var APPEARANCES = ['dark', 'light'];
@@ -59,11 +47,11 @@ function getTheme(theme) {
   }
 
   var baseTheme = EMBEDDED_THEMES[theme._appearance === 'dark' ? 'dark' : 'light'];
-  return _objectSpread({}, baseTheme, {}, theme);
+  return _objectSpread(_objectSpread({}, baseTheme), theme);
 } // Setting the default is needed for cases when components are used without being wrapped in `<Theme />`, e.g. for tests.
 
 
-var ThemeContext = React__default.createContext(prepareTheme(getTheme(THEME_DEFAULT)));
+var ThemeContext = /*#__PURE__*/React__default.createContext(prepareTheme(getTheme(THEME_DEFAULT)));
 
 function convertThemeColor(name, value) {
   if (RESERVED_KEYS.includes(name)) {
@@ -83,7 +71,7 @@ function convertThemeColor(name, value) {
 
 function prepareTheme(theme) {
   var themeConverted = Object.fromEntries(Object.entries(theme).filter(function (_ref) {
-    var _ref2 = slicedToArray._slicedToArray(_ref, 1),
+    var _ref2 = slicedToArray.slicedToArray(_ref, 1),
         name = _ref2[0];
 
     if (!EMBEDDED_THEMES[THEME_DEFAULT][name]) {
@@ -93,7 +81,7 @@ function prepareTheme(theme) {
 
     return true;
   }).map(function (_ref3) {
-    var _ref4 = slicedToArray._slicedToArray(_ref3, 2),
+    var _ref4 = slicedToArray.slicedToArray(_ref3, 2),
         name = _ref4[0],
         value = _ref4[1];
 
@@ -149,8 +137,8 @@ function Theme(_ref5) {
 }
 
 Theme.propTypes = {
-  children: index.PropTypes.node,
-  theme: index.PropTypes.oneOfType([index.PropTypes.object, index.PropTypes.string])
+  children: index.propTypes.node,
+  theme: index.propTypes.oneOfType([index.propTypes.object, index.propTypes.string])
 };
 
 function useTheme() {

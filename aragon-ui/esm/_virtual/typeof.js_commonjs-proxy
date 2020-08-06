@@ -1,0 +1,3 @@
+import _typeof_1 from '../node_modules/@babel/runtime/helpers/typeof.js';
+export { default } from '../node_modules/@babel/runtime/helpers/typeof.js';
+//# sourceMappingURL=typeof.js_commonjs-proxy.map
