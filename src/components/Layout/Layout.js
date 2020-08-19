@@ -37,7 +37,13 @@ function getLayoutSize(parentWidth, breakpoints) {
 }
 
 function useMergeBreakpoints(breakpoints) {
-  return useMemo(() => ({ ...BREAKPOINTS, ...breakpoints }), [breakpoints])
+  const breakpointsAsString = JSON.stringify(breakpoints)
+
+  // Only compute once by comparing values rather than object references in dependency array
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  return useMemo(() => ({ ...BREAKPOINTS, ...breakpoints }), [
+    breakpointsAsString,
+  ])
 }
 
 const LayoutContext = React.createContext({})
