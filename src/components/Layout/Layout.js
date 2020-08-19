@@ -10,7 +10,14 @@ function getSizes(breakpoints) {
     .sort((a, b) => a[1] - b[1])
 }
 
-// Minimum margin around a layouts
+const breakpointsType = PropTypes.shape({
+  min: PropTypes.number,
+  small: PropTypes.number,
+  medium: PropTypes.number,
+  large: PropTypes.number,
+})
+
+// Minimum margin around a layout
 const MIN_MARGIN = 3 * GU
 
 function getLayoutSize(parentWidth, breakpoints) {
@@ -27,6 +34,16 @@ function getLayoutSize(parentWidth, breakpoints) {
   }
 
   return sizes[0]
+}
+
+function useMergeBreakpoints(breakpoints) {
+  const breakpointsAsString = JSON.stringify(breakpoints)
+
+  // Only compute once by comparing values rather than object references in dependency array
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  return useMemo(() => ({ ...BREAKPOINTS, ...breakpoints }), [
+    breakpointsAsString,
+  ])
 }
 
 const LayoutContext = React.createContext({})
@@ -50,12 +67,36 @@ function Layout({
   parentWidth,
   ...props
 }) {
-  const { width: viewportWidth } = useViewport()
+  const mergedBreakpoints = useMergeBreakpoints(breakpoints)
 
-  const mergedBreakpoints = useMemo(
-    () => ({ ...BREAKPOINTS, ...breakpoints }),
-    [breakpoints]
+  return (
+    <LayoutProvider parentWidth={parentWidth} breakpoints={breakpoints}>
+      <LayoutWidthLimiter
+        minWidth={mergedBreakpoints.min}
+        paddingBottom={paddingBottom}
+        {...props}
+      >
+        {children}
+      </LayoutWidthLimiter>
+    </LayoutProvider>
   )
+}
+
+Layout.propTypes = {
+  breakpoints: breakpointsType,
+  children: PropTypes.node,
+  paddingBottom: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  parentWidth: PropTypes.number,
+}
+
+Layout.defaultProps = {
+  breakpoints: {},
+  paddingBottom: 3 * GU,
+}
+
+function LayoutProvider({ breakpoints, children, parentWidth }) {
+  const { width: viewportWidth } = useViewport()
+  const mergedBreakpoints = useMergeBreakpoints(breakpoints)
 
   // If the parent width is not passed, use the viewport width.
   const [layoutName, layoutWidth] = useMemo(
@@ -69,40 +110,40 @@ function Layout({
 
   return (
     <LayoutContext.Provider value={{ layoutWidth, layoutName }}>
-      <div
-        {...props}
-        css={`
-          width: ${layoutName === 'small' ? 'auto' : `${layoutWidth}px`};
-          min-width: ${mergedBreakpoints.min}px;
-          margin: 0 auto;
-          padding-bottom: ${cssPx(paddingBottom)};
-        `}
-      >
-        {children}
-      </div>
+      {children}
     </LayoutContext.Provider>
   )
 }
 
-Layout.propTypes = {
-  breakpoints: PropTypes.shape({
-    min: PropTypes.number,
-    small: PropTypes.number,
-    medium: PropTypes.number,
-    large: PropTypes.number,
-  }),
+LayoutProvider.propTypes = {
+  breakpoints: breakpointsType,
   children: PropTypes.node,
-  paddingBottom: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   parentWidth: PropTypes.number,
 }
 
-Layout.defaultProps = {
+LayoutProvider.defaultProps = {
   breakpoints: {},
-  paddingBottom: 3 * GU,
 }
 
-// Can be used to build an alternative Layout component
-Layout.__Context = LayoutContext
+/* eslint-disable react/prop-types */
+function LayoutWidthLimiter({ children, minWidth, paddingBottom, ...props }) {
+  const { layoutName, layoutWidth } = useLayout()
+
+  return (
+    <div
+      {...props}
+      css={`
+        width: ${layoutName === 'small' ? 'auto' : `${layoutWidth}px`};
+        min-width: ${minWidth}px;
+        margin: 0 auto;
+        padding-bottom: ${cssPx(paddingBottom)};
+      `}
+    >
+      {children}
+    </div>
+  )
+}
+/* eslint-enable react/prop-types */
 
 export default Layout
-export { useLayout }
+export { useLayout, LayoutProvider }
