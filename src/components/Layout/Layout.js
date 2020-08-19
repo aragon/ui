@@ -94,9 +94,6 @@ Layout.defaultProps = {
   paddingBottom: 3 * GU,
 }
 
-// Can be used to build an alternative Layout component
-Layout.__Context = LayoutContext
-
 function LayoutProvider({ breakpoints, children, parentWidth }) {
   const { width: viewportWidth } = useViewport()
   const mergedBreakpoints = useMergeBreakpoints(breakpoints)
