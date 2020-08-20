@@ -44,10 +44,9 @@ const TokenAmount = React.memo(function TokenAmount({
         {amount && (
           <span
             css={`
-              padding-right: ${size === 'large' ? 0.5 * GU : 0.25 * GU}px;
+              margin-right: ${size === 'large' ? 0.5 * GU : 0.25 * GU}px;
               ${textStyle(size === 'large' ? 'title2' : 'body2')};
               line-height: 1;
-              ${size === 'large' ? `transform: translateY(2px);` : ''}
             `}
           >
             {TokenAmountLib.format(amount, decimals, { digits: digits })}
@@ -60,19 +59,30 @@ const TokenAmount = React.memo(function TokenAmount({
 })
 
 const Icon = function Icon({ address, chainId, iconUrl, size }) {
+  const theme = useTheme()
   const token = useToken(chainId === 1 ? address : '')
   const { exists } = useImageExists(iconUrl || token.iconUrl)
   return (
-    exists && (
-      <img
-        alt=""
-        height={3 * GU}
-        src={iconUrl || token.iconUrl}
-        css={`
-          padding-right: ${size === 'large' ? 1 * GU : 0.5 * GU}px;
-        `}
-      />
-    )
+    <div
+      css={`
+        display: flex;
+        width: ${3 * GU}px;
+        height: ${3 * GU}px;
+        margin-right: ${size === 'large' ? 1 * GU : 0.75 * GU}px;
+      `}
+    >
+      {exists ? (
+        <img alt="" width="100%" src={iconUrl || token.iconUrl} />
+      ) : (
+        <div
+          css={`
+            flex: 1;
+            border-radius: 100%;
+            border: 2px solid ${theme.border};
+          `}
+        />
+      )}
+    </div>
   )
 }
 
