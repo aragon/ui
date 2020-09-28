@@ -333,8 +333,19 @@ function EntryExpansion({
 }) {
   const theme = useTheme()
 
-  const height = expansion.freeLayout
-    ? 'auto'
+  // Handles the height of the expansion in free layout mode
+  const [freeLayoutContentHeight, setFreeLayoutContentHeight] = useState(0)
+
+  // We don't want to memoize this callback because we need to query for a new height
+  // and cover updates when entries get re-ordered
+  const handleFreeLayoutContentRef = element => {
+    if (element) {
+      setFreeLayoutContentHeight(element.getBoundingClientRect().height)
+    }
+  }
+
+  const contentHeight = expansion.freeLayout
+    ? freeLayoutContentHeight
     : rowHeight * expansion.content.length
 
   return (
@@ -343,8 +354,8 @@ function EntryExpansion({
       unique
       items={opened}
       from={{ height: 0 }}
-      enter={{ height }}
-      update={{ height }}
+      enter={{ height: contentHeight }}
+      update={{ height: contentHeight }}
       leave={{ height: 0 }}
       config={{ ...springs.smooth, precision: 0.1 }}
     >
@@ -364,7 +375,14 @@ function EntryExpansion({
             {alignChildOnCell > 0 && (
               <td colSpan={alignChildOnCell}>
                 <OpenedSurfaceBorder opened={opened} />
-                <animated.div css="overflow: hidden" style={{ height }}>
+                <animated.div
+                  css="overflow: hidden"
+                  style={{
+                    height: height.interpolate(h =>
+                      h !== contentHeight ? `${h}px` : 'auto'
+                    ),
+                  }}
+                >
                   {expansion.content.map((child, i) => (
                     <div
                       key={i}
@@ -389,10 +407,20 @@ function EntryExpansion({
               {alignChildOnCell === 0 && (
                 <OpenedSurfaceBorder opened={opened} />
               )}
-              <animated.div css="overflow: hidden" style={{ height }}>
+              <animated.div
+                css="overflow: hidden"
+                style={{
+                  height: height.interpolate(h =>
+                    h !== contentHeight ? `${h}px` : 'auto'
+                  ),
+                }}
+              >
                 {expansion.content.map((child, i) => (
                   <div
                     key={i}
+                    ref={
+                      expansion.freeLayout ? handleFreeLayoutContentRef : null
+                    }
                     css={`
                       display: flex;
                       align-items: center;
