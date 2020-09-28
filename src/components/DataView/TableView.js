@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react'
+import React, { useCallback, useMemo, useState } from 'react'
 import PropTypes from 'prop-types'
 import { Transition, animated } from 'react-spring'
 import { GU, springs, textStyle } from '../../style'
@@ -113,10 +113,6 @@ function TableView({
       selectable,
     ]
   )
-
-  useEffect(() => {
-    setOpened(-1)
-  }, [entries, fields])
 
   return (
     <table
@@ -337,17 +333,8 @@ function EntryExpansion({
 }) {
   const theme = useTheme()
 
-  // Handles the height of the expansion in free layout mode
-  const [freeLayoutContentHeight, setFreeLayoutContentHeight] = useState(0)
-
-  const handleFreeLayoutContentRef = useCallback(element => {
-    if (element) {
-      setFreeLayoutContentHeight(element.getBoundingClientRect().height)
-    }
-  }, [])
-
   const height = expansion.freeLayout
-    ? freeLayoutContentHeight
+    ? 'auto'
     : rowHeight * expansion.content.length
 
   return (
@@ -406,9 +393,6 @@ function EntryExpansion({
                 {expansion.content.map((child, i) => (
                   <div
                     key={i}
-                    ref={
-                      expansion.freeLayout ? handleFreeLayoutContentRef : null
-                    }
                     css={`
                       display: flex;
                       align-items: center;
