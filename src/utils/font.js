@@ -4,6 +4,8 @@ import { warnOnce } from './environment'
 // generic names in our components.
 export const DEFAULT_FONT_FAMILY = 'aragon-ui'
 export const MONOSPACE_FONT_FAMILY = 'aragon-ui-monospace'
+export const INTER_FONT_FAMILY = 'Inter'
+export const BAIJAMJUREE_FONT_FAMILY = 'Bai Jamjuree'
 
 export const monospace = () => `
   font-family: ${MONOSPACE_FONT_FAMILY}, monospace;
