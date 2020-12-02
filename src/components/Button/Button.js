@@ -11,7 +11,7 @@ import ButtonBase from '../ButtonBase/ButtonBase'
 // See src/icons/icon-size.js for the corresponding icon sizes.
 const SIZE_STYLES = {
   medium: {
-    textStyleName: 'body2',
+    textStyleName: 'button1',
     height: 5 * GU,
     padding: 3 * GU,
     iconPadding: 2 * GU,
@@ -19,7 +19,7 @@ const SIZE_STYLES = {
     middleSpace: 1 * GU,
   },
   small: {
-    textStyleName: 'body2',
+    textStyleName: 'button2',
     height: 4 * GU,
     padding: 2 * GU,
     iconPadding: 1.5 * GU,
@@ -27,7 +27,7 @@ const SIZE_STYLES = {
     middleSpace: 1 * GU,
   },
   mini: {
-    textStyleName: 'body4',
+    textStyleName: 'button4',
     height: 3 * GU,
     padding: 1.5 * GU,
     iconPadding: 1 * GU,
@@ -128,7 +128,7 @@ function modeStyles(theme, mode, disabled) {
 
   return {
     background: theme.surfaceInteractive,
-    color: theme.surfaceContent,
+    color: theme.surfaceContentAuxiliar,
     iconColor: theme.surfaceIcon,
     border: `1px solid ${theme.border}`,
   }
@@ -235,7 +235,6 @@ function Button({
     <ButtonBase
       ref={innerRef}
       focusRingSpacing={border === '0' ? 0 : 1}
-      focusRingRadius={RADIUS}
       disabled={disabled}
       {...props}
       css={`
