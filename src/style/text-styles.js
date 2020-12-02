@@ -111,7 +111,7 @@ function textStyle(name, includeLineHeight = true) {
   if (!TEXT_STYLES[name]) {
     throw new Error('textStyle(): the text style doesn’t exist: ' + name)
   }
-  
+
   const style = { ...TEXT_STYLES[name] }
 
   if (!includeLineHeight) {
