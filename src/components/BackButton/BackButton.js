@@ -18,18 +18,17 @@ function BackButton({ label, ...props }) {
 
   return (
     <ButtonBase
-      focusRingRadius={RADIUS}
       focusRingSpacing={1}
       css={`
         display: inline-flex;
         align-items: center;
-        border-radius: ${RADIUS}px 0 0 ${RADIUS}px;
+        border-radius: 0 0 0 0;
         height: 100%;
         margin-left: ${insideBarPrimary ? -Bar.PADDING : 0}px;
         /* Adjust for icon's padding on the left */
         padding: 0 ${horizontalPadding}px 0 ${horizontalPadding - 4}px;
         border-right: 1px solid ${theme.border};
-        color: ${theme.surfaceContent};
+        color: ${theme.surfaceContentAuxiliar};
         background: ${theme.surfaceInteractive};
         &:active {
           background: ${theme.surfaceHighlight};
@@ -41,7 +40,7 @@ function BackButton({ label, ...props }) {
         css={`
           position: relative;
           top: 2px;
-          color: ${theme.accent};
+          color: ${theme.surfaceContentAuxiliar};
         `}
       >
         <IconArrowLeft />
