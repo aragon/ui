@@ -109,7 +109,6 @@ function ButtonBase({
         text-decoration: none;
         text-align: center;
         background: none;
-        border-radius: ${RADIUS}px;
         border: 0;
         outline: 0;
         cursor: ${disabled ? 'default' : 'pointer'};
