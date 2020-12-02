@@ -14,33 +14,19 @@ import interLightWoff2 from './assets/inter/Inter-Light.woff2'
 import interRegularWoff2 from './assets/inter/Inter-Regular.woff2'
 import interSemiBoldWoff2 from './assets/inter/Inter-SemiBold.woff2'
 import interBoldWoff2 from './assets/inter/Inter-Bold.woff2'
-import overpassLightWoff2 from './assets/overpass/overpass-light.woff2'
-import overpassRegularWoff2 from './assets/overpass/overpass-regular.woff2'
-import overpassSemiBoldWoff2 from './assets/overpass/overpass-semibold.woff2'
-import overpassMonoLightWoff2 from './assets/overpass-mono/overpass-mono-light.woff2'
-
-const DEFAULT_FONTS = {
-  '400': { url: overpassLightWoff2, format: 'woff2' },
-  '600': { url: overpassRegularWoff2, format: 'woff2' },
-  '800': { url: overpassSemiBoldWoff2, format: 'woff2' },
-}
-
-const MONOSPACE_FONTS = {
-  '400': { url: overpassMonoLightWoff2, format: 'woff2' },
-}
 
 const INTER_FONTS = {
   '400': { url: interLightWoff2, format: 'woff2' },
   '600': { url: interRegularWoff2, format: 'woff2' },
   '800': { url: interSemiBoldWoff2, format: 'woff2' },
-  '900' : { url: interBoldWoff2, format: 'woff2' },
+  '900': { url: interBoldWoff2, format: 'woff2' },
 }
 
 const BAI_JAMJUREE_FONTS = {
   '400': { url: baiJamjureeLightWoff2, format: 'woff2' },
   '600': { url: baiJamjureeRegularWoff2, format: 'woff2' },
   '800': { url: baiJamjureeSemiBoldWoff2, format: 'woff2' },
-  '900' : { url: baiJamjureeBoldWoff2, format: 'woff2' },
+  '900': { url: baiJamjureeBoldWoff2, format: 'woff2' },
 }
 
 function fontSrc(publicUrl, { url, format }) {
