@@ -47,8 +47,8 @@ export default {
   positiveSurface: '#35585e',
   positiveSurfaceContent: '#2cc68f',
 
-  badge: '#415279',
-  badgeContent: '#ffffff',
+  badge: '#595959',
+  badgeContent: '#F5F5F5',
   badgePressed: '#4c5d82',
 
   tagIdentifier: '#564090',
