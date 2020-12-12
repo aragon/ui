@@ -1,9 +1,12 @@
 {
-  "name": "@aragon/ui",
-  "version": "1.7.0",
+  "name": "@tecommons/ui",
+  "version": "1.0.0",
   "author": "Aragon Association <legal@aragon.org>",
   "license": "MIT",
-  "repository": "github:aragon/aragon-ui",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aragon/aragon-ui.git"
+  },
   "main": "dist/index.js",
   "module": "dist/esm/index.js",
   "sideEffects": false,
@@ -123,5 +126,18 @@
       "eslint --fix",
       "git add"
     ]
-  }
+  },
+  "description": "<p align=center>   <img src=\"https://user-images.githubusercontent.com/36158/53582039-04dd2d00-3b7f-11e9-8460-803ed3b84cc6.png\" alt=\"aragonUI\"> </p>",
+  "bugs": {
+    "url": "https://github.com/aragon/aragon-ui/issues"
+  },
+  "homepage": "https://github.com/aragon/aragon-ui#readme",
+  "directories": {
+    "doc": "docs"
+  },
+  "keywords": [
+    "javascript",
+    "ui",
+    "reactjs"
+  ]
 }
