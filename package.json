@@ -127,11 +127,11 @@
       "git add"
     ]
   },
-  "description": "<p align=center>   <img src=\"https://user-images.githubusercontent.com/36158/53582039-04dd2d00-3b7f-11e9-8460-803ed3b84cc6.png\" alt=\"aragonUI\"> </p>",
+  "description": "<p> TEC UI it's a fork from AragonUI </p>",
   "bugs": {
-    "url": "https://github.com/aragon/aragon-ui/issues"
+    "url": "https://github.com/TECommons/tec-ui/issues"
   },
-  "homepage": "https://github.com/aragon/aragon-ui#readme",
+  "homepage": "https://github.com/TECommons/tec-ui/#readme",
   "directories": {
     "doc": "docs"
   },
