@@ -122,5 +122,18 @@
       "eslint --fix",
       "git add"
     ]
-  }
+  },
+  "description": "<p> TEC UI it's a fork from AragonUI </p>",
+  "bugs": {
+    "url": "https://github.com/TECommons/tec-ui/issues"
+  },
+  "homepage": "https://github.com/TECommons/tec-ui/#readme",
+  "directories": {
+    "doc": "docs"
+  },
+  "keywords": [
+    "javascript",
+    "ui",
+    "reactjs"
+  ]
 }
