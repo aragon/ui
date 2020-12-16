@@ -10,7 +10,7 @@ The complete documentation can be found on the [aragonUI website](https://ui.ara
 
 If you are unfamiliar with aragonUI, we recommend you to start with the [getting started page](https://ui.aragon.org/getting-started/). If you only want to know how to add aragonUI to your project, have a look at the quick setup:
 
-### Quick setup (test)
+### Quick setup
 
 Install tecUI alongside styled-components from npm::
 
