@@ -1,5 +1,5 @@
 import React from 'react'
-import { AppBadge, IconLabel, GU } from '@aragon/ui'
+import { AppBadge, IconLabel, GU } from '@tecommons/ui'
 import votingAppIconSvg from '../assets/app-voting-icon.svg'
 
 function App({ layout = true }) {

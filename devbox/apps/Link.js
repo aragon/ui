@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link } from '@aragon/ui'
+import { Link } from '@tecommons/ui'
 import { Center } from '../components/Center'
 
 export default () => {

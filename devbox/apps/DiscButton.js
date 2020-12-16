@@ -1,5 +1,5 @@
 import React from 'react'
-import { DiscButton } from '@aragon/ui'
+import { DiscButton } from '@tecommons/ui'
 import { Center } from '../components/Center'
 
 export default () => (

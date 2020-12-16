@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { LineChart, unselectable } from '@aragon/ui'
+import { LineChart, unselectable } from '@tecommons/ui'
 
 class App extends React.Component {
   _cachedLines = [[], [], []]

@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Main, Viewport } from '@aragon/ui'
+import { Main, Viewport } from '@tecommons/ui'
 
 const CodeItem = ({ label, ok }) => (
   <div

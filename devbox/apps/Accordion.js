@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Header, Accordion, GU } from '@aragon/ui'
+import { Header, Accordion, GU } from '@tecommons/ui'
 import { Center } from '../components/Center'
 import { createRandomInt } from '../utils'
 

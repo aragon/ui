@@ -1,6 +1,6 @@
 import React, { useCallback, useRef, useState } from 'react'
 import styled from 'styled-components'
-import { Button, ProgressBar, theme } from '@aragon/ui'
+import { Button, ProgressBar, theme } from '@tecommons/ui'
 
 function App() {
   const [value, setValue] = useState(-1)

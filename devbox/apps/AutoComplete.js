@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import {
   _AutoComplete as AutoComplete,
   _AutoCompleteSelected as AutoCompleteSelected,
-} from '@aragon/ui'
+} from '@tecommons/ui'
 import { Center } from '../components/Center'
 
 const items = [

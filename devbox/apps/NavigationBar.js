@@ -11,7 +11,7 @@ import {
   SidePanel,
   Tag,
   unselectable,
-} from '@aragon/ui'
+} from '@tecommons/ui'
 
 const useItems = () => {
   const [items, setItems] = useState([1])

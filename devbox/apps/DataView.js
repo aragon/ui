@@ -16,7 +16,7 @@ import {
   IdentityBadge,
   useTheme,
   noop,
-} from '@aragon/ui'
+} from '@tecommons/ui'
 import { createAddress } from '../create-address'
 import { createRandomInt, multiplyArray, seedShuffleArray } from '../utils'
 

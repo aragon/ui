@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Button, Modal, IconPlus, IconMinus } from '@aragon/ui'
+import { Button, Modal, IconPlus, IconMinus } from '@tecommons/ui'
 import Lorem from '../components/Lorem'
 
 function App() {

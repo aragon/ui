@@ -6,7 +6,7 @@ import {
   ButtonBase,
   useTheme,
   useLayout,
-} from '@aragon/ui'
+} from '@tecommons/ui'
 import * as icons from '../all-icons'
 import { ToggleThemeButton } from '../components/current-theme'
 
