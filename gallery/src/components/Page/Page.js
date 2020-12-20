@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import { useTheme, RADIUS, GU, textStyle } from '@aragon/ui'
+import { useTheme, GU, textStyle } from '@aragon/ui'
 import color from 'ui-src/utils/color'
 import renderReadme from 'src/render-readme'
 import MarkdownContent from './MarkdownContent'
@@ -74,7 +74,6 @@ function Page({ title, readme, children }) {
         }
         .deprecated {
           color: ${theme.negativeContent};
-          border-radius: ${RADIUS}px;
           padding: ${0.5 * GU}px ${1 * GU}px;
           background: ${color(theme.negative).alpha(0.8)};
         }
