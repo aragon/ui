@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import { DateRangePicker, unselectable } from '@aragon/ui'
+import { DateRangePicker, unselectable } from '@tecommons/ui'
 
 export default function() {
   const [selectedDateRange, setSelectedDateRange] = useState({

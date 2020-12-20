@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import { Switch, GU, useTheme } from '@aragon/ui'
+import { Switch, GU, useTheme } from '@tecommons/ui'
 import SplitSurfaces from '../components/SplitSurfaces'
 
 function App() {

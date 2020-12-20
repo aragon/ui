@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { TransactionBadge } from '@aragon/ui'
+import { TransactionBadge } from '@tecommons/ui'
 
 const txHash =
   '0x96e31e4f272600413ec39b5ed4094e5b7b3e0da2c8780ef63267e894fc2c9f16'

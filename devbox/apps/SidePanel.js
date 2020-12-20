@@ -12,7 +12,7 @@ import {
   Split,
   TextInput,
   useSidePanel,
-} from '@aragon/ui'
+} from '@tecommons/ui'
 import Lorem from '../components/Lorem'
 
 function App() {

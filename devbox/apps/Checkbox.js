@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import { Checkbox, unselectable, useTheme, GU, textStyle } from '@aragon/ui'
+import { Checkbox, unselectable, useTheme, GU, textStyle } from '@tecommons/ui'
 import SplitSurfaces from '../components/SplitSurfaces'
 
 const ITEMS = [

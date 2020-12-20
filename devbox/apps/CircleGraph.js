@@ -8,7 +8,7 @@ import {
   GU,
   Slider,
   lerp,
-} from '@aragon/ui'
+} from '@tecommons/ui'
 import { Center } from '../components/Center'
 
 const VALUES = [0, 0.5, 10, 20, 30, 40, 50, 60, 70, 98, 99, 100]

@@ -9,7 +9,7 @@ import {
   GU,
   textStyle,
   useTheme,
-} from '@aragon/ui'
+} from '@tecommons/ui'
 
 const logAction = action => () => console.log(action)
 const actions = [

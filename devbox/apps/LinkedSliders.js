@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Slider, Button, unselectable } from '@aragon/ui'
+import { Slider, Button, unselectable } from '@tecommons/ui'
 
 const ROWS_MIN = 2
 const ROWS_MAX = 7

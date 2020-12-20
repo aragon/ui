@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Button } from '@aragon/ui'
+import { Button } from '@tecommons/ui'
 
 class App extends React.Component {
   render() {

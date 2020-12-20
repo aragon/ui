@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, textStyle, useLayout, GU, TEXT_STYLES } from '@aragon/ui'
+import { Box, textStyle, useLayout, GU, TEXT_STYLES } from '@tecommons/ui'
 
 function App({ theme, ...props }) {
   const { name } = useLayout()

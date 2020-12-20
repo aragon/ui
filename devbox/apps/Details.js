@@ -9,7 +9,7 @@ import {
   SidePanel,
   Split,
   textStyle,
-} from '@aragon/ui'
+} from '@tecommons/ui'
 
 function App() {
   const [panelOpened, setPanelOpened] = useState(false)
