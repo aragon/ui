@@ -169,7 +169,7 @@ async function updateDevboxIndex(svgFilenames, devboxDir) {
           return `  ${componentName},`
         })
       )
-      .concat(['} from "@aragon/ui"'])
+      .concat(['} from "@tecommons/ui"'])
       .join('\n')
   )
   return true
