@@ -39,7 +39,7 @@ function Box({ heading, headingColor, children, padding, ...props }) {
           position: relative;
           border-style: solid;
           border-color: ${theme.border};
-          border-width: ${fullWidth ? '1px 0' : '1px'};
+          border-width: ${headingColor ? '0px;' : fullWidth ? '1px 0' : '1px'};
           background: ${headingColor ? headingColor : theme.surface};
           color: ${theme.surfaceContent};
           & + & {
@@ -70,6 +70,7 @@ function Box({ heading, headingColor, children, padding, ...props }) {
         <div
           css={`
             padding: ${contentPadding}px;
+            background: ${headingColor ? headingColor : theme.surface};
           `}
         >
           <div>
