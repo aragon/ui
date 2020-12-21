@@ -6,7 +6,7 @@ import { useTheme } from '../../theme/Theme'
 import { useLayout } from '../Layout/Layout'
 import { warnOnce } from '../../utils'
 
-function Box({ heading, children, padding, ...props }) {
+function Box({ heading, headingColor, children, padding, ...props }) {
   const theme = useTheme()
   const [insideSplitPrimary] = useInside('Split:primary')
   const { layoutName } = useLayout()
@@ -40,7 +40,7 @@ function Box({ heading, children, padding, ...props }) {
           border-style: solid;
           border-color: ${theme.border};
           border-width: ${fullWidth ? '1px 0' : '1px'};
-          background: ${theme.surface};
+          background: ${headingColor ? headingColor : theme.surface};
           color: ${theme.surfaceContent};
           & + & {
             margin-top: ${2 * GU}px;
@@ -83,6 +83,7 @@ function Box({ heading, children, padding, ...props }) {
 
 Box.propTypes = {
   heading: PropTypes.node,
+  headingColor: PropTypes.node,
   children: PropTypes.node,
   padding: PropTypes.oneOfType([
     PropTypes.number,
