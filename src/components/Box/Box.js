@@ -30,8 +30,9 @@ function Box({ heading, headingColor, children, padding, ...props }) {
   }
 
   const contentPadding = padding === undefined ? defaultPadding : padding
-  const borderWidth = headingColor ? '0px;' : fullWidth ? '1px 0' : '1px'
-  const background = headingColor ? headingColor : theme.surface
+  const borderWidth =
+    headingColor != undefined ? '0px;' : fullWidth ? '1px 0' : '1px'
+  const background = headingColor != undefined ? headingColor : theme.surface
   return (
     <Inside name="Box">
       <div
@@ -71,7 +72,7 @@ function Box({ heading, headingColor, children, padding, ...props }) {
         <div
           css={`
             padding: ${contentPadding}px;
-            background: ${headingColor ? headingColor : theme.surface};
+            background: ${background};
           `}
         >
           <div>
