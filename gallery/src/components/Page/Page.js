@@ -74,7 +74,6 @@ function Page({ title, readme, children }) {
         }
         .deprecated {
           color: ${theme.negativeContent};
-          border-radius: ${RADIUS}px;
           padding: ${0.5 * GU}px ${1 * GU}px;
           background: ${color(theme.negative).alpha(0.8)};
         }
