@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Info } from '@aragon/ui'
+import { Info } from '@tecommons/ui'
 
 import Page from 'comps/Page/Page'
 import Container from '../components/Page/DemoContainer'

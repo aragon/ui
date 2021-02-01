@@ -11,7 +11,7 @@ The grid unit is a base value we use for dimensions, including element geometry 
 This is how it is generally used:
 
 ```jsx
-import { Main, GU } from '@aragon/ui'
+import { Main, GU } from '@tecommons/ui'
 
 function App() {
   return (

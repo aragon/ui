@@ -6,7 +6,7 @@ A radio button component.
 
 ```jsx
 import React from 'react'
-import { Radio } from '@aragon/ui'
+import { Radio } from '@tecommons/ui'
 
 class App extends React.Component {
   state = { checked: false }

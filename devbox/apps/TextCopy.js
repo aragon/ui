@@ -1,12 +1,6 @@
 import React, { useEffect, useRef } from 'react'
 import styled from 'styled-components'
-import {
-  EthIdenticon,
-  IconBlank,
-  SearchCopy,
-  TextCopy,
-  GU,
-} from '@tecommons/ui'
+import { EthIdenticon, IconBlank, SearchCopy, TextCopy, GU } from '@tecommons/ui'
 
 const ADDRESS = '0x2c9341a52cfa3f2c2554ca1803134137b9366b3c'
 const HEIGHT = 5 * GU

@@ -85,7 +85,7 @@ function DataViewExpansion(props) {
                 height: 32px;
                 min-width: 0;
                 padding: 0;
-                color: ${theme.surfaceContentAuxiliar};
+                color: ${theme.red};
               `}
             >
               <IconTrash />

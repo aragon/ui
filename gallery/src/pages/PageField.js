@@ -1,5 +1,5 @@
 import React from 'react'
-import { Field, TextInput } from '@aragon/ui'
+import { Field, TextInput } from '@tecommons/ui'
 
 import Page from 'comps/Page/Page'
 import Container from '../components/Page/DemoContainer'

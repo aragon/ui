@@ -28,7 +28,7 @@ Wrap your app with the `Main` component:
 
 ```jsx
 import React from 'react'
-import { Main } from '@aragon/ui'
+import { Main } from '@tecommons/ui'
 
 function App() {
   return (
@@ -58,7 +58,7 @@ By default, it will create a directory named `aragon-ui` in the specified direct
 This emplacement is communicated to the library through the `<Main>` component. The default path is `./aragon-ui/`, but you can change it using the `assetsUrl` prop:
 
 ```jsx
-import { Main } from '@aragon/ui'
+import { Main } from '@tecommons/ui'
 
 const App = () => (
   <Main assetsUrl="http://example.com/aragon-ui-assets/">

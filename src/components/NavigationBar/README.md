@@ -5,7 +5,7 @@ Handles the navigation state in the header. This component can work independentl
 ## Usage
 
 ```jsx
-import { AppView, AppBar, NavigationBar } from '@aragon/ui'
+import { AppView, AppBar, NavigationBar } from '@tecommons/ui'
 
 const App = () => {
   const [navigationItems, setNavigationItems] = useState(['Level 1'])

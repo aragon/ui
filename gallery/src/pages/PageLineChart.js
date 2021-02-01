@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import Page from 'comps/Page/Page'
 import readme from 'ui-src/components/LineChart/README.md'
-import { LineChart, springs } from '@aragon/ui'
+import { LineChart, springs } from '@tecommons/ui'
 import { config } from 'react-spring'
 import Container from '../components/Page/DemoContainer'
 

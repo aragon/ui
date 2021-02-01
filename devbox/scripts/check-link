@@ -2,20 +2,20 @@
 
 const symlinked = require('symlinked')
 
-const hasLinkedAragonUI = symlinked.names().includes('@aragon/ui')
+const hasLinkedAragonUI = symlinked.names().includes('@tecommons/ui')
 
 if (!hasLinkedAragonUI) {
   console.log(
-    `⚠️  You are starting the aragonUI devbox without having linked '@aragon/ui'`
+    `⚠️  You are starting the aragonUI devbox without having linked '@tecommons/ui'`
   )
   console.log(
-    `    If you do not understand this warning or did not intend this, you most likely want to have '@aragon/ui' linked.`
+    `    If you do not understand this warning or did not intend this, you most likely want to have '@tecommons/ui' linked.`
   )
   console.log('    You may do so by:')
   console.log(`      - Navigating to aragon-ui's root directory`)
   console.log('      - yarn link')
   console.log('      - cd devbox')
-  console.log('      - yarn link @aragon/ui')
+  console.log('      - yarn link @tecommons/ui')
   console.log()
   console.log('    And then restarting the devbox')
   console.log()

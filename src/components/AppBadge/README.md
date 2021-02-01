@@ -5,7 +5,7 @@ A component to get a badge for an app.
 ## Usage
 
 ```jsx
-import { AppBadge } from '@aragon/ui'
+import { AppBadge } from '@tecommons/ui'
 
 function App() {
   return (

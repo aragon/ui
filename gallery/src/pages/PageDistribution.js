@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Distribution } from '@aragon/ui'
+import { Box, Distribution } from '@tecommons/ui'
 
 import Page from 'comps/Page/Page'
 import Container from '../components/Page/DemoContainer'

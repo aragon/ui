@@ -237,7 +237,7 @@ export default () => {
       <ToggleThemeButton />
       <Header
         primary="Everything"
-        secondary={<Button mode="positive" label="Strong button" />}
+        secondary={<Button mode="strong" label="Strong button" />}
       />
       <DemoTabs />
       <Cards interactive />

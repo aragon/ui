@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { ButtonBase, GU, Link, textStyle, useTheme } from '@aragon/ui'
+import { ButtonBase, GU, Link, textStyle, useTheme } from '@tecommons/ui'
 import Page from 'comps/Page/Page'
 import env from '../environment'
 
@@ -91,7 +91,7 @@ function Badges() {
         </Link>
         −
         <ButtonBase
-          href="https://www.npmjs.com/package/@aragon/ui"
+          href="https://www.npmjs.com/package/@tecommons/ui"
           css="display: flex; align-items: center"
         >
           <img

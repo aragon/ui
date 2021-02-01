@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import Page from 'comps/Page/Page'
-import { Button, SidePanel } from '@aragon/ui'
+import { Button, SidePanel } from '@tecommons/ui'
 
 import Container from '../components/Page/DemoContainer'
 import readme from 'ui-src/components/SidePanel/README.md'

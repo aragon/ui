@@ -14,8 +14,8 @@ import { Center } from '../components/Center'
 const VALUES = [0, 0.5, 10, 20, 30, 40, 50, 60, 70, 98, 99, 100]
 const SIZES = [10, 200]
 
-const COLOR_START = [178, 201, 59]
-const COLOR_END = [178, 201, 59]
+const COLOR_START = [8, 190, 229]
+const COLOR_END = [44, 198, 143]
 
 export default function App() {
   const [value, setValue] = useState(VALUES[6])

@@ -107,4 +107,4 @@ export {
   IconWrite,
   IconZoomIn,
   IconZoomOut,
-} from '@tecommons/ui'
+} from "@tecommons/ui"

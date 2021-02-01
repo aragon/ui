@@ -5,7 +5,7 @@
 ## Usage
 
 ```jsx
-import { Main, Header, Button } from '@aragon/ui'
+import { Main, Header, Button } from '@tecommons/ui'
 
 function App() {
   return (

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Pagination, Header, Box, Layout, GU } from '@tecommons/ui'
+import { Pagination, Header, Box, Layout, GU } from '../../'
 import { Center } from '../components/Center'
 
 function PaginationDemo({ title, initial = 0, pages, ...props }) {

@@ -29,8 +29,8 @@ export default {
   warningSurfaceContent: '#ffa410',
 
   info: '#00d2ff',
-  infoSurface: '#415279',
-  infoSurfaceContent: '#18d4fb',
+  infoSurface: '#6F82F5',
+  infoSurfaceContent: '#B7C0FA',
 
   help: '#7C80F2',
   helpContent: '#FFFFFF',

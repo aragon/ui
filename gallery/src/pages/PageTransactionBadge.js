@@ -1,7 +1,7 @@
 import React from 'react'
 import Page from 'comps/Page/Page'
 import readme from 'ui-src/components/TransactionBadge/README.md'
-import { TransactionBadge } from '@aragon/ui'
+import { TransactionBadge } from '@tecommons/ui'
 
 const PageTransactionBadge = ({ title }) => (
   <Page title={title} readme={readme}>

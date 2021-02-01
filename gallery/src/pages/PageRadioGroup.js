@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import Page from 'comps/Page/Page'
 
 import readme from 'ui-src/components/Radio/RadioGroup.md'
-import { Radio, RadioGroup } from '@aragon/ui'
+import { Radio, RadioGroup } from '@tecommons/ui'
 import Container from '../components/Page/DemoContainer'
 
 class PageRadioGroup extends React.Component {

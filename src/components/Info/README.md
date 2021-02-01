@@ -5,7 +5,7 @@ An info component, which can be used to display normal messages, warnings or err
 ## Usage
 
 ```jsx
-import { Info } from '@aragon/ui'
+import { Info } from '@tecommons/ui'
 
 function MyApp = () => {
   return <Info title="Title">Some info</Info>

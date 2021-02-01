@@ -8,7 +8,7 @@ import {
   TableCell,
   TableHeader,
   TableRow,
-} from '@aragon/ui'
+} from '@tecommons/ui'
 import Page from 'comps/Page/Page'
 import readme from 'ui-src/components/ContextMenu/README.md'
 import Container from '../components/Page/DemoContainer'

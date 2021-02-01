@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { IdentityBadge, GU } from '@aragon/ui'
+import { IdentityBadge, GU } from '@tecommons/ui'
 import Page from 'comps/Page/Page'
 import Container from 'comps/Page/DemoContainer'
 import readme from 'ui-src/components/IdentityBadge/README.md'

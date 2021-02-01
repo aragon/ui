@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Slider } from '@aragon/ui'
+import { Slider } from '@tecommons/ui'
 
 import Page from 'comps/Page/Page'
 import Container from 'comps/Page/DemoContainer'

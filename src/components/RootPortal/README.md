@@ -5,7 +5,7 @@ Render a component at the root level of the aragonUI app. This is useful for too
 ## Usage
 
 ```jsx
-import { Main, RootPortal } from '@aragon/ui'
+import { Main, RootPortal } from '@tecommons/ui'
 
 const App = () => (
   <Main>

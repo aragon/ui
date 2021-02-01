@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Radio, RadioGroup } from '@aragon/ui'
+import { Radio, RadioGroup } from '@tecommons/ui'
 import Page from 'comps/Page/Page'
 import Container from 'comps/Page/DemoContainer'
 import readme from 'ui-src/components/Input/Radio.md'
