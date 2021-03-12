@@ -35,7 +35,10 @@ class Checkbox extends React.PureComponent {
     if (checked) return 'true'
     return 'false'
   }
-  handleClick = () => {
+  handleKeyPress = e => {
+    e.preventDefault()
+  }
+  handleClick = e => {
     const { onChange, checked, indeterminate } = this.props
     onChange(indeterminate ? false : !checked)
   }
@@ -95,6 +98,7 @@ class Checkbox extends React.PureComponent {
             tabIndex={tabIndex}
             aria-checked={this.getAriaChecked()}
             onClick={this.handleClick}
+            onKeyPress={this.handleKeyPress}
             onFocus={onFocus}
             disabled={disabled}
             css={`
