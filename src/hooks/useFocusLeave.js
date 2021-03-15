@@ -6,7 +6,7 @@ export function useFocusLeave(cb, _ref) {
 
   const handleFocusLeave = useCallback(
     event => {
-      if (!ref?.current?.contains(event.relatedTarget)) {
+      if (ref && ref.current && !ref.current.contains(event.relatedTarget)) {
         cb(event)
       }
     },

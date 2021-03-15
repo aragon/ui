@@ -6,7 +6,7 @@ export function useFocusEnter(cb, _ref) {
 
   const handleFocusEnter = useCallback(
     event => {
-      if (ref?.current?.contains(event.target)) {
+      if (ref && ref.current && ref.current.contains(event.target)) {
         cb(event)
       }
     },
