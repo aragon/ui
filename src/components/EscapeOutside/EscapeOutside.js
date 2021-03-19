@@ -21,14 +21,18 @@ class EscapeOutside extends React.Component {
     const { useCapture } = this.props
     this._document = this._element.ownerDocument
     this._document.addEventListener('keydown', this.handleEscape, useCapture)
-    this._document.addEventListener('click', this.handleClick, useCapture)
+    this._document.addEventListener('mousedown', this.handleClick, useCapture)
     this._document.addEventListener('touchend', this.handleClick, useCapture)
   }
 
   componentWillUnmount() {
     const { useCapture } = this.props
     this._document.removeEventListener('keydown', this.handleEscape, useCapture)
-    this._document.removeEventListener('click', this.handleClick, useCapture)
+    this._document.removeEventListener(
+      'mousedown',
+      this.handleClick,
+      useCapture
+    )
     this._document.removeEventListener('touchend', this.handleClick, useCapture)
   }
 
