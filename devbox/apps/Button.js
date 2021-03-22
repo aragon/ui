@@ -10,7 +10,7 @@ import {
   Text,
   theme,
   GU,
-} from '@aragon/ui'
+} from '@tecommons/ui'
 
 const MODES = ['normal', 'strong', 'positive', 'negative']
 const SIZES = ['medium', 'small', 'mini']

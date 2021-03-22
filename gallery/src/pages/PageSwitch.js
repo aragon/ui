@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import { Switch } from '@aragon/ui'
+import { Switch } from '@tecommons/ui'
 
 import Page from 'comps/Page/Page'
 import readme from 'ui-src/components/Switch/README.md'

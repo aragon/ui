@@ -5,7 +5,7 @@ A component to navigate through paginated content.
 ## Usage
 
 ```jsx
-import { Box, Main, Pagination } from '@aragon/ui'
+import { Box, Main, Pagination } from '@tecommons/ui'
 
 function App() {
   const [selected, setSelected] = useState(0)

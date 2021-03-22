@@ -1,5 +1,5 @@
 import React from 'react'
-import { TokenAmount, GU } from '@aragon/ui'
+import { TokenAmount, GU } from '@tecommons/ui'
 
 function App() {
   return (

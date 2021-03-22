@@ -28,6 +28,7 @@ function getModeStyles(theme, mode) {
       titleColor: theme.surfaceContentSecondary,
     }
   }
+  console.log('DEFAULT', theme.infoSurface)
   return {
     background: theme.infoSurface,
     borderColor: theme.info,

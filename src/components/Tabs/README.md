@@ -6,7 +6,7 @@ A simple tabs component.
 
 ```jsx
 import { useState } from 'react'
-import { Tabs } from '@aragon/ui'
+import { Tabs } from '@tecommons/ui'
 
 const App = () => {
   const [selected, setSelected] = useState(0)

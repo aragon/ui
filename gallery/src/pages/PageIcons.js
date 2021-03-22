@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import * as UI from '@aragon/ui'
+import * as UI from '@tecommons/ui'
 
 import Page from 'comps/Page/Page'
 import readme from 'ui-src/icons/README.md'

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Button, SyncIndicator, useToast } from '@aragon/ui'
+import { Button, SyncIndicator, useToast } from '@tecommons/ui'
 import { ToggleThemeButton } from '../components/current-theme'
 
 function App() {

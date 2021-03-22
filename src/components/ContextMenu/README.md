@@ -5,7 +5,7 @@ A contextual menu.
 ## Usage
 
 ```jsx
-import { ContextMenu, ContextMenuItem } from '@aragon/ui'
+import { ContextMenu, ContextMenuItem } from '@tecommons/ui'
 
 const App = () => (
   <ContextMenu>

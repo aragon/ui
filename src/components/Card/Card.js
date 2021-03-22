@@ -40,7 +40,6 @@ function Card({ children, width, height, onClick, ...props }) {
         height: ${cssHeight};
         background: ${theme.surface};
         border: 1px solid ${theme.border};
-        border-radius: ${RADIUS}px;
         cursor: ${interactive ? 'pointer' : 'default'};
 
         // Default layout

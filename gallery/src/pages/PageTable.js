@@ -1,5 +1,5 @@
 import React from 'react'
-import { Table, TableCell, TableHeader, TableRow } from '@aragon/ui'
+import { Table, TableCell, TableHeader, TableRow } from '@tecommons/ui'
 
 import Page from 'comps/Page/Page'
 import Container from 'comps/Page/DemoContainer'

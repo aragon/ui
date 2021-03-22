@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@aragon/ui": "file:..",
+    "@tecommons/ui": "file:..",
     "history": "^4.10.1",
     "markdown-it": "^10.0.0",
     "markdown-it-anchor": "^5.2.5",

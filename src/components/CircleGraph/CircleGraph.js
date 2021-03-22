@@ -102,7 +102,7 @@ function CircleGraph({ color, label, size, strokeWidth, value }) {
               r={radius}
               style={{ strokeWidth }}
               fill="none"
-              stroke={theme.border}
+              stroke={theme.surfaceContentSecondary}
             />
             <animated.circle
               cx={size / 2}

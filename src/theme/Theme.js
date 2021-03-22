@@ -9,7 +9,7 @@ import light from './theme-light'
 const APPEARANCES = ['dark', 'light']
 
 const EMBEDDED_THEMES = { dark, light }
-const THEME_DEFAULT = 'light'
+const THEME_DEFAULT = 'dark'
 
 const RESERVED_KEYS = ['_appearance', '_name']
 const DEPRECATED_COLORS = new Map([

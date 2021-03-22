@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react'
 import styled from 'styled-components'
-import { Link, useTheme, textStyle, GU } from '@aragon/ui'
+import { Link, useTheme, textStyle, GU } from '@tecommons/ui'
 
 function MenuItem({ active, path, name, onOpen }) {
   const theme = useTheme()

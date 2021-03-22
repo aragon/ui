@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Box, GU, Markdown } from '@aragon/ui'
+import { Box, GU, Markdown } from '@tecommons/ui'
 
 const EXAMPLE = `
 # Heading 1

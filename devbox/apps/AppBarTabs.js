@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import { AppBar, AppView, TabBar, NavigationBar } from '@aragon/ui'
+import { AppBar, AppView, TabBar, NavigationBar } from '@tecommons/ui'
 
 const TABS = ['Home', 'Another screen']
 const ITEMS = ['My App', 'Details']

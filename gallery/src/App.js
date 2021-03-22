@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { createBrowserHistory } from 'history'
 import styled from 'styled-components'
-import { Link, Main, textStyle, useTheme, GU } from '@aragon/ui'
+import { Link, Main, textStyle, useTheme, GU } from '@tecommons/ui'
 import GlobalStyles from './global-styles'
 import { PAGE_GROUPS, PAGES } from './routes'
 import Sidebar from './components/Sidebar/Sidebar'

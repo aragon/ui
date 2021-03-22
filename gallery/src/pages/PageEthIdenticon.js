@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import Page from 'comps/Page/Page'
 
 import readme from 'ui-src/components/EthIdenticon/README.md'
-import { EthIdenticon } from '@aragon/ui'
+import { EthIdenticon } from '@tecommons/ui'
 import Container from '../components/Page/DemoContainer'
 
 const ADDRESS = '0xcafE1A77e83698c83CA8931F54A755176eF75f2d'

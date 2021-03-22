@@ -1,12 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Inside, useInside } from 'use-inside'
-import { GU, RADIUS, textStyle } from '../../style'
+import { GU, textStyle } from '../../style'
 import { useTheme } from '../../theme/Theme'
 import { useLayout } from '../Layout/Layout'
 import { warnOnce } from '../../utils'
 
-function Box({ heading, children, padding, ...props }) {
+function Box({ heading, headingColor, children, padding, ...props }) {
   const theme = useTheme()
   const [insideSplitPrimary] = useInside('Split:primary')
   const { layoutName } = useLayout()
@@ -30,18 +30,19 @@ function Box({ heading, children, padding, ...props }) {
   }
 
   const contentPadding = padding === undefined ? defaultPadding : padding
-
+  const borderWidth =
+    headingColor !== undefined ? '0px;' : fullWidth ? '1px 0' : '1px'
+  const background = headingColor !== undefined ? headingColor : theme.surface
   return (
     <Inside name="Box">
       <div
         as={heading ? 'section' : 'div'}
         css={`
           position: relative;
-          border-radius: ${fullWidth ? 0 : RADIUS}px;
           border-style: solid;
           border-color: ${theme.border};
-          border-width: ${fullWidth ? '1px 0' : '1px'};
-          background: ${theme.surface};
+          border-width: ${borderWidth};
+          background: ${background};
           color: ${theme.surfaceContent};
           & + & {
             margin-top: ${2 * GU}px;
@@ -71,6 +72,7 @@ function Box({ heading, children, padding, ...props }) {
         <div
           css={`
             padding: ${contentPadding}px;
+            background: ${background};
           `}
         >
           <div>
@@ -84,6 +86,7 @@ function Box({ heading, children, padding, ...props }) {
 
 Box.propTypes = {
   heading: PropTypes.node,
+  headingColor: PropTypes.node,
   children: PropTypes.node,
   padding: PropTypes.oneOfType([
     PropTypes.number,

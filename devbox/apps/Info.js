@@ -1,5 +1,5 @@
 import React from 'react'
-import { Split, Box, Info, GU } from '@aragon/ui'
+import { Split, Box, Info, GU } from '@tecommons/ui'
 
 const MODES = ['info', 'warning', 'error', 'description']
 

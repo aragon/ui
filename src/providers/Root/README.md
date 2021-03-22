@@ -5,7 +5,7 @@
 ## Usage
 
 ```jsx
-import { Root } from '@aragon/ui'
+import { Root } from '@tecommons/ui'
 
 function App() {
   return (

@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { GU, textStyle, useTheme } from '@aragon/ui'
+import { GU, textStyle, useTheme } from '@tecommons/ui'
 import MenuItem from './MenuItem'
 
 function Sidebar({ title, root, pages, activePage, groups, onOpen }) {

@@ -5,7 +5,7 @@ PublicURL is used to access your local path to aragonUI’s assets (e.g. fonts, 
 ## Usage
 
 ```jsx
-import { PublicUrl } from '@aragon/ui'
+import { PublicUrl } from '@tecommons/ui'
 
 function App() {
   return (

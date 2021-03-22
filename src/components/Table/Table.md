@@ -5,7 +5,7 @@ A table component.
 ## Usage
 
 ```jsx
-import { Table, TableHeader, TableRow, TableCell, Text } from '@aragon/ui'
+import { Table, TableHeader, TableRow, TableCell, Text } from '@tecommons/ui'
 
 const App = () => (
   <Table

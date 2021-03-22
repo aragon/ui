@@ -5,7 +5,7 @@ A component to draw line charts.
 ## Usage
 
 ```jsx
-import { LineChart } from '@aragon/ui'
+import { LineChart } from '@tecommons/ui'
 
 function App() {
   return (
@@ -39,7 +39,7 @@ There are presets to use for springConfig with different combinations of mass, t
 Example:
 
 ```jsx
-import { LineChart, springs } from '@aragon/ui'
+import { LineChart, springs } from '@tecommons/ui'
 
 function App() {
   return <LineChart values={[0.2, 0.3, 0.2]} springConfig={spring.slow} />

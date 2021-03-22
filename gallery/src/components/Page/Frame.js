@@ -1,6 +1,6 @@
 import React from 'react'
 import { createPortal } from 'react-dom'
-import { theme } from '@aragon/ui'
+import { theme } from '@tecommons/ui'
 import styled, {
   __DO_NOT_USE_OR_YOU_WILL_BE_HAUNTED_BY_SPOOKY_GHOSTS as styledSecrets,
 } from 'styled-components'

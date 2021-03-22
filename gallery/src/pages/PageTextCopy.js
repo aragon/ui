@@ -1,5 +1,5 @@
 import React from 'react'
-import { TextCopy, Tag, GU } from '@aragon/ui'
+import { TextCopy, Tag, GU } from '@tecommons/ui'
 
 import Page from 'comps/Page/Page'
 import Container from '../components/Page/DemoContainer'

@@ -3,7 +3,7 @@
 ## Usage
 
 ```jsx
-import { ProgressBar } from '@aragon/ui'
+import { ProgressBar } from '@tecommons/ui'
 
 const App = () => (
   <ProgressBar value={0.3} />

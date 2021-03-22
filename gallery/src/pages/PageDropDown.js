@@ -2,7 +2,7 @@ import React from 'react'
 import Page from 'comps/Page/Page'
 
 import readme from 'ui-src/components/DropDown/README.md'
-import { DropDown } from '@aragon/ui'
+import { DropDown } from '@tecommons/ui'
 import Container from '../components/Page/DemoContainer'
 
 class PageDropDown extends React.Component {

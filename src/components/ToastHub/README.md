@@ -5,7 +5,7 @@ The ToastHub component is used to display text message toasts.
 ## Usage
 
 ```jsx
-import { ToastHub, Toast, Button } from '@aragon/ui'
+import { ToastHub, Toast, Button } from '@tecommons/ui'
 
 const App = () => (
   <ToastHub>

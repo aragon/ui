@@ -5,7 +5,7 @@ This component gives the base layout of a typical Aragon app, with a header and 
 ## Usage
 
 ```jsx
-import { AppView } from '@aragon/ui'
+import { AppView } from '@tecommons/ui'
 
 const App = () => (
   <AppView title="My App">

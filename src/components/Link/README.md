@@ -5,7 +5,7 @@ A textual interactive element that can be used as an anchor (`<a>`) or as a butt
 ## Usage
 
 ```jsx
-import { Link } from '@aragon/ui'
+import { Link } from '@tecommons/ui'
 
 function App() {
   return <Link href="https://example.com/">Example</Link>

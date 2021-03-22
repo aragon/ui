@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import Page from 'comps/Page/Page'
 
 import readme from 'ui-src/components/PreFooter/README.md'
-import { PreFooter } from '@aragon/ui'
+import { PreFooter } from '@tecommons/ui'
 
 const PagePreFooter = ({ title }) => (
   <Page title={title} readme={readme}>

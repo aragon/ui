@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Root, Modal, Button } from '@aragon/ui'
+import { Root, Modal, Button } from '@tecommons/ui'
 import Page from 'comps/Page/Page'
 import Container from 'comps/Page/DemoContainer'
 import readme from 'ui-src/providers/Root/README.md'

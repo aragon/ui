@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import { TextInput, IconBlank, SearchInput } from '@aragon/ui'
+import { TextInput, IconBlank, SearchInput } from '@tecommons/ui'
 
 function App() {
   const [searchTerm, setSearchTerm] = useState('')

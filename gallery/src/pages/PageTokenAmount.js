@@ -1,5 +1,5 @@
 import React from 'react'
-import { TokenAmount } from '@aragon/ui'
+import { TokenAmount } from '@tecommons/ui'
 
 import Page from 'comps/Page/Page'
 import DemoContainer from 'comps/Page/DemoContainer'

@@ -5,7 +5,7 @@ A DropDown component.
 ## Usage
 
 ```jsx
-import { DropDown } from '@aragon/ui'
+import { DropDown } from '@tecommons/ui'
 
 function App() {
   const [selected, setSelected] = useState(0)

@@ -7,7 +7,7 @@ import {
   IconTrash,
   DataView,
   useTheme,
-} from '@aragon/ui'
+} from '@tecommons/ui'
 import { createAddress } from '../../create-address'
 import { multiplyArray, seedShuffleArray } from '../../utils'
 

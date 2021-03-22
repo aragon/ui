@@ -9,7 +9,7 @@ This tutorial doesn’t cover the creation of your React app nor the way you bun
 Install aragonUI alongside styled-components in your project:
 
 ```sh
-npm install --save @aragon/ui styled-components
+npm install --save @tecommons/ui styled-components
 ```
 
 <div class="info">
@@ -30,7 +30,7 @@ The only mandatory component that you need to define is [Main](https://ui.aragon
 
 ```jsx
 import React from 'react'
-import { Main } from '@aragon/ui'
+import { Main } from '@tecommons/ui'
 
 function App() {
   return (
@@ -81,7 +81,7 @@ This is how **Header** can be used inside an app.
 ```jsx
 // App.js
 import React from 'react'
-import { Main, Header, Button, IconPlus, Tag } from '@aragon/ui'
+import { Main, Header, Button, IconPlus, Tag } from '@tecommons/ui'
 
 function App() {
   return (
@@ -113,7 +113,7 @@ To make things a bit more interesting, we are going to add a [SidePanel](https:/
 ```jsx
 // App.js
 import React, { useState } from 'react'
-import { Main, Header, Button, IconPlus, Tag, SidePanel } from '@aragon/ui'
+import { Main, Header, Button, IconPlus, Tag, SidePanel } from '@tecommons/ui'
 
 function App() {
   const [sidePanelOpened, setSidePanelOpened] = useState(false)
@@ -161,7 +161,7 @@ Let’s define the [Split](https://ui.aragon.org/split/) layout, right after the
 ```jsx
 // App.js
 import React, { useState } from 'react'
-import { Main, Header, Split, DataView, Box } from '@aragon/ui'
+import { Main, Header, Split, DataView, Box } from '@tecommons/ui'
 
 function App() {
   const [sidePanelOpened, setSidePanelOpened] = useState(false)
@@ -201,7 +201,7 @@ import {
   IdentityBadge,
   ContextMenu,
   ContextMenuItem,
-} from '@aragon/ui'
+} from '@tecommons/ui'
 
 // The token holders represented as a DataView.
 function TokenHoldersView({ tokenHolders }) {
@@ -256,7 +256,7 @@ To implement the “Token info” component, we are going to define some custom 
 ```jsx
 // TokenInfoBox.js
 import React from 'react'
-import { Box, TokenBadge, useTheme } from '@aragon/ui'
+import { Box, TokenBadge, useTheme } from '@tecommons/ui'
 
 // TokenInfoBox is making use of the Box with some custom content.
 function TokenInfoBox({ supply, transferable, token }) {
@@ -313,7 +313,7 @@ Now that TokenInfoBox is done, there is one last bit remaining, which is the “
 ```jsx
 // OwnershipDistributionBox.js
 import React from 'react'
-import { Box, Distribution } from '@aragon/ui'
+import { Box, Distribution } from '@tecommons/ui'
 
 // OwnershipDistributionBox combines Box
 // and Distribution into a single component.
@@ -340,7 +340,7 @@ Now that we implemented the different parts of the app, this is how the main com
 ```jsx
 // App.js
 import React, { useState } from 'react'
-import { Main, Header, Button, SidePanel } from '@aragon/ui'
+import { Main, Header, Button, SidePanel } from '@tecommons/ui'
 
 import TokenHoldersView from './TokenHoldersView'
 import TokenInfoBox from './TokenInfoBox'

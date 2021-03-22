@@ -41,6 +41,26 @@ const TEXT_STYLES = {
     weight: 400,
     lineHeight: 1.5,
   },
+  button1: {
+    size: 16,
+    weight: 900,
+    lineHeight: 1.5,
+  },
+  button2: {
+    size: 15,
+    weight: 800,
+    lineHeight: 1.5,
+  },
+  button3: {
+    size: 14,
+    weight: 600,
+    lineHeight: 1.5,
+  },
+  button4: {
+    size: 12,
+    weight: 400,
+    lineHeight: 1.5,
+  },
   label1: {
     size: 14,
     weight: 400,
