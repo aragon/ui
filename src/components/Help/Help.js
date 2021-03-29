@@ -45,6 +45,7 @@ function Help({ hint, children }) {
             max-width: ${48 * GU}px;
             min-width: ${20 * GU}px;
             padding: ${3 * GU}px;
+            background: ${theme.helpSurface};
             &:before {
               content: '';
               position: absolute;

@@ -1,11 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { useTheme } from '../../theme'
 import { warnOnce } from '../../utils'
 import { GU } from '../../style'
 import Button from './Button'
 import ButtonBase from '../ButtonBase/ButtonBase'
 
 function ButtonIcon({ label, children, mode, ...props }) {
+  const theme = useTheme()
   if (mode !== undefined) {
     warnOnce(
       'ButtonIcon:mode',
@@ -27,7 +29,7 @@ function ButtonIcon({ label, children, mode, ...props }) {
         width: ${4 * GU}px;
         height: ${4 * GU}px;
         &:active {
-          background: rgba(220, 234, 239, 0.3);
+          background: ${theme.surfacePressed};
         }
       `}
       {...props}
