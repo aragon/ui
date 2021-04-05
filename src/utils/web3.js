@@ -24,6 +24,13 @@ const ETHERSCAN_TYPES = new Map([
   ['token', 'token'],
 ])
 
+const BLOCKSCOUT_TYPES = new Map([
+  ['block', 'block'],
+  ['transaction', 'txs'],
+  ['address', 'address'],
+  ['token', 'token'],
+])
+
 const BLOCK_EXPLORERS = {
   etherscan: ({ type, value, networkType }) => {
     if (networkType === 'private') {
@@ -40,6 +47,14 @@ const BLOCK_EXPLORERS = {
     const subdomain = ETHERSCAN_NETWORK_TYPES.get(networkType)
     const typePart = ETHERSCAN_TYPES.get(type)
     return `https://${subdomain}etherscan.io/${typePart}/${value}`
+  },
+  blockscout: ({ type, value }) => {
+    if (!BLOCKSCOUT_TYPES.has(type)) {
+      throw new Error('type not supported.')
+    }
+
+    const typePart = ETHERSCAN_TYPES.get(type)
+    return `https://blockscout.com/xdai/mainnet/${typePart}/${value}`
   },
 }
 
