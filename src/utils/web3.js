@@ -65,7 +65,7 @@ const BLOCK_EXPLORERS = {
       throw new Error('type not supported.')
     }
 
-    const networkName = ETHERSCAN_NETWORK_TYPES.get(networkType)
+    const networkName = BLOCKSCOUT_NETWORK_TYPES.get(networkType)
     const typePart = BLOCKSCOUT_TYPES.get(type)
     return `https://blockscout.com/poa/${networkName}/${typePart}/${value}`
   },
