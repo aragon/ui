@@ -38,7 +38,9 @@ const AppBadgePopover = React.memo(function AppBadgePopover({
       }
       link={
         explorerUrl && (
-          <Link href={explorerUrl}>See on {capitalize(networkProvider)}</Link>
+          <Link href={explorerUrl}>
+            See on {capitalize(networkProvider ?? 'blockscout')}
+          </Link>
         )
       }
       onClose={onClose}
