@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from 'react'
-import { Button, Popover, Root, useTheme } from '@aragon/ui'
+import { Button, Popover, Root, useTheme } from '@1hive/1hive-ui'
 
 const POSITIONS = [
   ['flex-start', 'flex-start'],

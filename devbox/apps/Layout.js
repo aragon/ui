@@ -1,5 +1,5 @@
 import React from 'react'
-import { Layout, useLayout } from '@aragon/ui'
+import { Layout, useLayout } from '@1hive/1hive-ui'
 
 function App() {
   const { layoutName, layoutWidth } = useLayout()

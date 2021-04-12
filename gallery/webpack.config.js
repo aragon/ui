@@ -68,12 +68,12 @@ module.exports = (env, argv) => {
         pages: path.resolve(__dirname, 'src/pages'),
         comps: path.resolve(__dirname, 'src/components'),
         src: path.resolve(__dirname, 'src'),
-        '@aragon/ui': path.resolve(__dirname, '..'),
+        '@1hive/1hive-ui': path.resolve(__dirname, '..'),
         'ui-src': path.resolve(__dirname, '../src'),
         'ui-docs': path.resolve(__dirname, '../docs'),
       },
 
-      // Only needed because @aragon/ui is linked
+      // Only needed because @1hive/1hive-ui is linked
       modules: [
         path.join(__dirname, 'node_modules'),
         path.join(__dirname, '../node_modules'),

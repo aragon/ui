@@ -5,7 +5,7 @@ A field component to display Ethereum Adresses.
 ## Usage
 
 ```jsx
-import { AddressField } from '@aragon/ui'
+import { AddressField } from '@1hive/1hive-ui'
 
 function App() {
   return <AddressField address="0xcafE1A77e84698c83CA8931F54A755176eF75f2C" />

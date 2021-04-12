@@ -13,7 +13,7 @@ import {
   Theme,
   useLayout,
   IconPlus,
-} from '@aragon/ui'
+} from '@1hive/1hive-ui'
 import { ToggleThemeButton } from '../components/current-theme'
 
 function Cards({ count = 10, interactive }) {

@@ -7,7 +7,7 @@ A simple Popover component with basic styles. It gets rendered at the root level
 ### Positioning relative to the "opener"
 
 ```jsx
-import { Popover } from '@aragon/ui'
+import { Popover } from '@1hive/1hive-ui'
 
 function App() {
   const [visible, setVisible] = useState(false)

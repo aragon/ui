@@ -1,5 +1,5 @@
 import React from 'react'
-import { useTheme, useLayout, GU } from '@aragon/ui'
+import { useTheme, useLayout, GU } from '@1hive/1hive-ui'
 import themeDark from '../../src/theme/theme-dark'
 import themeLight from '../../src/theme/theme-light'
 

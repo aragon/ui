@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import { useTheme, RADIUS, GU, textStyle } from '@aragon/ui'
+import { useTheme, RADIUS, GU, textStyle } from '@1hive/1hive-ui'
 import color from 'ui-src/utils/color'
 import renderReadme from 'src/render-readme'
 import MarkdownContent from './MarkdownContent'

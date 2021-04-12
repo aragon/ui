@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react'
-import { IdentityBadge, DataView, useTheme } from '@aragon/ui'
+import { IdentityBadge, DataView, useTheme } from '@1hive/1hive-ui'
 import { createAddress } from '../../create-address'
 import { multiplyArray } from '../../utils'
 

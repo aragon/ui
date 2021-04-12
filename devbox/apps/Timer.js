@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Timer } from '@aragon/ui'
+import { Timer } from '@1hive/1hive-ui'
 
 const SECONDS = 1000
 const MINUTES = 60 * SECONDS

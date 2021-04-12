@@ -10,7 +10,7 @@ import {
   Text,
   theme,
   GU,
-} from '@aragon/ui'
+} from '@1hive/1hive-ui'
 
 const MODES = ['normal', 'strong', 'positive', 'negative']
 const SIZES = ['medium', 'small', 'mini']

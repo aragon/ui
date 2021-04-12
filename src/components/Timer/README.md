@@ -5,7 +5,7 @@ Displays a countdown or stopwatch.
 ## Usage
 
 ```jsx
-import { Timer } from '@aragon/ui'
+import { Timer } from '@1hive/1hive-ui'
 
 const NOW = Date.now()
 const DAY = 1000 * 60 * 60 * 24

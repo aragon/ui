@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import Page from 'comps/Page/Page'
 
-import { Redraw } from '@aragon/ui'
+import { Redraw } from '@1hive/1hive-ui'
 import Container from '../components/Page/DemoContainer'
 
 const redrawDemo = interval => {

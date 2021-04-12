@@ -11,7 +11,7 @@ import {
   SidePanel,
   Tag,
   unselectable,
-} from '@aragon/ui'
+} from '@1hive/1hive-ui'
 
 const useItems = () => {
   const [items, setItems] = useState([1])

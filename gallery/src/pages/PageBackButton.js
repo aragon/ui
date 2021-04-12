@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Bar, BackButton, GU } from '@aragon/ui'
+import { Bar, BackButton, GU } from '@1hive/1hive-ui'
 
 import Page from 'comps/Page/Page'
 import Container from '../components/Page/DemoContainer'

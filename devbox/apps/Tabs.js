@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Tabs, GU } from '@aragon/ui'
+import { Tabs, GU } from '@1hive/1hive-ui'
 
 const ITEMS = ['One', 'Two', 'Three', 'Four', 'Five']
 

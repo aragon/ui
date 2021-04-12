@@ -6,7 +6,7 @@ A checkbox component.
 
 ```jsx
 import React from 'react'
-import { Checkbox } from '@aragon/ui'
+import { Checkbox } from '@1hive/1hive-ui'
 
 class App extends React.Component {
   state = { checked: false }

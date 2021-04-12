@@ -6,7 +6,7 @@ A list of radios with associated descriptions.
 
 ```jsx
 import { Component } from 'react'
-import { RadioList } from '@aragon/ui'
+import { RadioList } from '@1hive/1hive-ui'
 
 const items = [
   {

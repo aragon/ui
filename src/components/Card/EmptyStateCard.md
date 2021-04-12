@@ -5,7 +5,7 @@ EmptyStateCard extends the Card component to represent an empty state in your ap
 ## Usage
 
 ```jsx
-import { Main, Button, EmptyStateCard } from '@aragon/ui'
+import { Main, Button, EmptyStateCard } from '@1hive/1hive-ui'
 
 function App() {
   return (

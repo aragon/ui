@@ -50,7 +50,7 @@ import {
   useLayout,
   useTheme,
   useToast,
-} from '@aragon/ui'
+} from '@1hive/1hive-ui'
 import { ToggleThemeButton } from '../components/current-theme'
 import { createAddress } from '../create-address'
 import { multiplyArray, seedShuffleArray } from '../utils'

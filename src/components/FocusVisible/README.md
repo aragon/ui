@@ -7,7 +7,7 @@ checking for a pointer device rather than a keyboard event.
 ## Usage
 
 ```jsx
-import { FocusVisible } from '@aragon/ui'
+import { FocusVisible } from '@1hive/1hive-ui'
 
 function App() {
   return (

@@ -5,7 +5,7 @@ A simple accordion component.
 ## Usage
 
 ```jsx
-import { Main, Accordion } from '@aragon/ui'
+import { Main, Accordion } from '@1hive/1hive-ui'
 
 function App() {
   return (

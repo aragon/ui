@@ -5,7 +5,7 @@ An AppBar component.
 ## Usage
 
 ```jsx
-import { AppBar } from '@aragon/ui'
+import { AppBar } from '@1hive/1hive-ui'
 
 const App = () => (
   <AppBar title="Your Aragon App">

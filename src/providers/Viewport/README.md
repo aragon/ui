@@ -7,7 +7,7 @@ to help building responsive apps.
 ## Usage
 
 ```jsx
-import { useViewport } from '@aragon/ui'
+import { useViewport } from '@1hive/1hive-ui'
 
 const MyComponent = () => {
   const { within, below, above } = useViewport()

@@ -13,7 +13,7 @@ The CSS properties can include any of the following, depending on the requested 
 ## Usage
 
 ```jsx
-import { Main, textStyle } from '@aragon/ui'
+import { Main, textStyle } from '@1hive/1hive-ui'
 
 function App() {
   return (

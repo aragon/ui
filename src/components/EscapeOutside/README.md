@@ -5,7 +5,7 @@ A component for handling outside clicks.
 ## Usage
 
 ```jsx
-import { EscapeOutside } from '@aragon/ui'
+import { EscapeOutside } from '@1hive/1hive-ui'
 const App = () => (
   <EscapeOutside useCapture onEscapeOutside={handleOutsideInteraction}>
     {/* content */}

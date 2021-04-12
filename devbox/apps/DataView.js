@@ -16,7 +16,7 @@ import {
   IdentityBadge,
   useTheme,
   noop,
-} from '@aragon/ui'
+} from '@1hive/1hive-ui'
 import { createAddress } from '../create-address'
 import { createRandomInt, multiplyArray, seedShuffleArray } from '../utils'
 

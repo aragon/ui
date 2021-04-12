@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from 'react'
 import styled from 'styled-components'
-import { Root, TransactionProgress, Button } from '@aragon/ui'
+import { Root, TransactionProgress, Button } from '@1hive/1hive-ui'
 import Page from 'comps/Page/Page'
 import Container from 'comps/Page/DemoContainer'
 import readme from 'ui-src/components/TransactionProgress/README.md'

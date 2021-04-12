@@ -5,7 +5,7 @@
 ## Usage
 
 ```jsx
-import { Box, DataView, Main, Split } from '@aragon/ui'
+import { Box, DataView, Main, Split } from '@1hive/1hive-ui'
 
 function App() {
   return (
