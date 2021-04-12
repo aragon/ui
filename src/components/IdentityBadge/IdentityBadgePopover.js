@@ -11,6 +11,7 @@ import Tag from '../Tag/Tag'
 const IdentityBadgePopover = React.memo(function IdentityBadgePopover({
   address,
   connectedAccount,
+  networkProvider,
   networkType,
   onClose,
   opener,
@@ -18,7 +19,10 @@ const IdentityBadgePopover = React.memo(function IdentityBadgePopover({
   title,
   visible,
 }) {
-  const etherscanUrl = blockExplorerUrl('address', address, { networkType })
+  const etherscanUrl = blockExplorerUrl('address', address, {
+    networkType,
+    provider: networkProvider,
+  })
 
   return (
     <BadgePopoverBase
@@ -47,6 +51,7 @@ const IdentityBadgePopover = React.memo(function IdentityBadgePopover({
 IdentityBadgePopover.propTypes = {
   address: PropTypes.string,
   connectedAccount: PropTypes.bool,
+  networkProvider: PropTypes.string,
   networkType: PropTypes.string,
   onClose: PropTypes.func,
   opener: PropTypes._element,

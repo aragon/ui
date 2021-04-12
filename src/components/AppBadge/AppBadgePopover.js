@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from '../../proptypes'
 import { ImageExists } from '../../hooks'
 import { blockExplorerUrl } from '../../utils'
+import { capitalize } from '../../utils/characters'
 import AddressField from '../AddressField/AddressField'
 import BadgePopoverBase from '../BadgeBase/BadgePopoverBase'
 import BadgePopoverActionType from '../BadgeBase/BadgePopoverActionType'
@@ -11,6 +12,7 @@ const AppBadgePopover = React.memo(function AppBadgePopover({
   appAddress,
   iconFallbackSrc,
   iconSrc,
+  networkProvider,
   networkType,
   onClose,
   opener,
@@ -18,7 +20,10 @@ const AppBadgePopover = React.memo(function AppBadgePopover({
   title,
   visible,
 }) {
-  const etherscanUrl = blockExplorerUrl('address', appAddress, { networkType })
+  const explorerUrl = blockExplorerUrl('address', appAddress, {
+    networkType,
+    provider: networkProvider,
+  })
   return (
     <BadgePopoverBase
       addressField={
@@ -31,7 +36,11 @@ const AppBadgePopover = React.memo(function AppBadgePopover({
           )}
         </ImageExists>
       }
-      link={etherscanUrl && <Link href={etherscanUrl}>See on Etherscan</Link>}
+      link={
+        explorerUrl && (
+          <Link href={explorerUrl}>See on {capitalize(networkProvider)}</Link>
+        )
+      }
       onClose={onClose}
       opener={opener}
       popoverAction={popoverAction}
@@ -45,6 +54,7 @@ AppBadgePopover.propTypes = {
   appAddress: PropTypes.string.isRequired,
   iconFallbackSrc: PropTypes.string,
   iconSrc: PropTypes.string,
+  networkProvider: PropTypes.string,
   networkType: PropTypes.string,
   onClose: PropTypes.func,
   opener: PropTypes._element,

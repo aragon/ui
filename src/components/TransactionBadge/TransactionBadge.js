@@ -12,6 +12,7 @@ const TransactionBadge = React.memo(function TransactionBadge({
   className,
   disabled,
   labelStyle,
+  networkProvider,
   networkType,
   shorten,
   style,
@@ -36,7 +37,10 @@ const TransactionBadge = React.memo(function TransactionBadge({
 
   const isTx = isTransaction(transaction)
   const transactionUrl = isTx
-    ? blockExplorerUrl('transaction', transaction, { networkType })
+    ? blockExplorerUrl('transaction', transaction, {
+        networkType,
+        provider: networkProvider,
+      })
     : ''
   const label = !isTx
     ? 'Invalid transaction'
@@ -59,6 +63,7 @@ TransactionBadge.propTypes = {
   className: PropTypes.string,
   disabled: PropTypes.bool,
   labelStyle: PropTypes.string,
+  networkProvider: PropTypes.string,
   networkType: PropTypes.string,
   shorten: PropTypes.bool,
   style: PropTypes.object,
