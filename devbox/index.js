@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import ReactDOM from 'react-dom'
-import { Layout, Main, useContainsAppView } from '@aragon/ui'
+import { Layout, Main, useContainsAppView } from '@1hive/1hive-ui'
 import { CurrentTheme, useCurrentTheme } from './components/current-theme'
 
 import * as APPS from './apps'

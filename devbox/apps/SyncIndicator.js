@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Button, SyncIndicator, useToast } from '@aragon/ui'
+import { Button, SyncIndicator, useToast } from '@1hive/1hive-ui'
 import { ToggleThemeButton } from '../components/current-theme'
 
 function App() {

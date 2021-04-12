@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { RadioList, unselectable } from '@aragon/ui'
+import { RadioList, unselectable } from '@1hive/1hive-ui'
 
 const items = ['Strawberry', 'Banana', 'Apple', 'Cherry']
 

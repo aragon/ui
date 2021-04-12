@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { ToastHub, Toast, Button } from '@aragon/ui'
+import { ToastHub, Toast, Button } from '@1hive/1hive-ui'
 
 import Page from 'comps/Page/Page'
 import DemoContainer from 'comps/Page/DemoContainer'

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Bar, BackButton, Button } from '@aragon/ui'
+import { Bar, BackButton, Button } from '@1hive/1hive-ui'
 
 export default () => (
   <div

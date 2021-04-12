@@ -5,7 +5,7 @@
 ## Usage
 
 ```jsx
-import { Main, Header, Button } from '@aragon/ui'
+import { Main, Header, Button } from '@1hive/1hive-ui'
 
 function App() {
   return (

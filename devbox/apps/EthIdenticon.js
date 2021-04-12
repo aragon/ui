@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { EthIdenticon, blockExplorerUrl } from '@aragon/ui'
+import { EthIdenticon, blockExplorerUrl } from '@1hive/1hive-ui'
 import { createAddress } from '../create-address'
 
 class App extends React.Component {

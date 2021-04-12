@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { IconLabel, IdentityBadge, GU } from '@aragon/ui'
+import { IconLabel, IdentityBadge, GU } from '@1hive/1hive-ui'
 
 function App({ layout = true }) {
   return (

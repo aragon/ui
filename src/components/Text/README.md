@@ -8,7 +8,7 @@ It is generally not necessary to use `<Text>` with the default properties:
 ## Usage
 
 ```jsx
-import { Text } from '@aragon/ui'
+import { Text } from '@1hive/1hive-ui'
 
 const App = () => (
   <Text>Some Text</Text>

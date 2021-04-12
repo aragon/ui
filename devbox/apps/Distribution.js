@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Box, Distribution } from '@aragon/ui'
+import { Box, Distribution } from '@1hive/1hive-ui'
 
 class App extends React.Component {
   render() {

@@ -29,10 +29,10 @@ To develop using it, you have to link aragonUI first:
 ```console
 # Assuming you are in the root aragon-ui directory (i.e. cd aragon-ui/)
 
-# Link @aragon/ui locally and into the devbox package
+# Link @1hive/1hive-ui locally and into the devbox package
 yarn link
 cd devbox/
-yarn link @aragon/ui
+yarn link @1hive/1hive-ui
 cd ../
 
 # Rebuild on change

@@ -6,7 +6,7 @@ A simple switch component.
 
 ```jsx
 import React, { useState } from 'react'
-import { Switch } from '@aragon/ui'
+import { Switch } from '@1hive/1hive-ui'
 
 const App = () => {
   const [checked, setChecked] = useState(false)

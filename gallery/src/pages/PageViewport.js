@@ -1,5 +1,5 @@
 import React from 'react'
-import { Viewport } from '@aragon/ui'
+import { Viewport } from '@1hive/1hive-ui'
 import Page from 'comps/Page/Page'
 import readme from 'ui-src/providers/Viewport/README.md'
 

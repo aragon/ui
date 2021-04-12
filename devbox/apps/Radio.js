@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import { RadioGroup, Radio, unselectable, useKeyDown } from '@aragon/ui'
+import { RadioGroup, Radio, unselectable, useKeyDown } from '@1hive/1hive-ui'
 import CheckboxDemo from './Checkbox'
 
 const items = [

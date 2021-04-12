@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { IdentityBadge, DropDown, GU, unselectable } from '@aragon/ui'
+import { IdentityBadge, DropDown, GU, unselectable } from '@1hive/1hive-ui'
 
 const items = [
   'Strawberry',

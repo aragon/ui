@@ -5,7 +5,7 @@
 ## Usage
 
 ```jsx
-import { Root } from '@aragon/ui'
+import { Root } from '@1hive/1hive-ui'
 
 function App() {
   return (

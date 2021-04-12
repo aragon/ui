@@ -7,7 +7,7 @@ You can see [the full list of icons](https://ui.aragon.org/icons/) on the websit
 ## Usage
 
 ```jsx
-import { Main, IconEdit } from '@aragon/ui'
+import { Main, IconEdit } from '@1hive/1hive-ui'
 
 function App() {
   return (

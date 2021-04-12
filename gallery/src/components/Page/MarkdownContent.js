@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { useTheme, textStyle, GU, RADIUS } from '@aragon/ui'
+import { useTheme, textStyle, GU, RADIUS } from '@1hive/1hive-ui'
 
 function StyledMarkdown(props) {
   const theme = useTheme()

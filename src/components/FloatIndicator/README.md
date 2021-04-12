@@ -5,7 +5,7 @@ A component displayed over the rest of the interface, to indicate a temporary st
 ## Usage
 
 ```jsx
-import { Main, FloatIndicator } from '@aragon/ui'
+import { Main, FloatIndicator } from '@1hive/1hive-ui'
 
 function App() {
   return (

@@ -5,7 +5,7 @@ The `Modal` component is used to render a structured container for modal windows
 ## Usage
 
 ```jsx
-import { Modal, Button } from '@aragon/ui'
+import { Modal, Button } from '@1hive/1hive-ui'
 
 const App = () => {
   const [opened, setOpened] = useState(false)

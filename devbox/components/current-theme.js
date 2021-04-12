@@ -1,5 +1,5 @@
 import React, { useCallback, useContext, useEffect, useState } from 'react'
-import { Theme, ButtonBase, useTheme } from '@aragon/ui'
+import { Theme, ButtonBase, useTheme } from '@1hive/1hive-ui'
 
 const CurrentThemeContext = React.createContext({})
 

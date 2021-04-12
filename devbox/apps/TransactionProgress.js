@@ -1,6 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
-import { TransactionProgress, Popover, Root, Button, theme } from '@aragon/ui'
+import {
+  TransactionProgress,
+  Popover,
+  Root,
+  Button,
+  theme,
+} from '@1hive/1hive-ui'
 
 class App extends React.Component {
   state = {

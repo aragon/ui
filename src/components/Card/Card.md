@@ -5,7 +5,7 @@ A Card component.
 ## Usage
 
 ```jsx
-import { Main, Card } from '@aragon/ui'
+import { Main, Card } from '@1hive/1hive-ui'
 
 function App() {
   return (

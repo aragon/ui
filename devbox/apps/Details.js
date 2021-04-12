@@ -9,7 +9,7 @@ import {
   SidePanel,
   Split,
   textStyle,
-} from '@aragon/ui'
+} from '@1hive/1hive-ui'
 
 function App() {
   const [panelOpened, setPanelOpened] = useState(false)

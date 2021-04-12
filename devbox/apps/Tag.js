@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Box, IconCheck, Badge, Tag, GU } from '@aragon/ui'
+import { Box, IconCheck, Badge, Tag, GU } from '@1hive/1hive-ui'
 
 const ITEMS = new Map([
   [

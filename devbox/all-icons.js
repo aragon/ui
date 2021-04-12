@@ -107,4 +107,4 @@ export {
   IconWrite,
   IconZoomIn,
   IconZoomOut,
-} from "@aragon/ui"
+} from "@1hive/1hive-ui"

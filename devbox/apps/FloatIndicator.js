@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import { FloatIndicator } from '@aragon/ui'
+import { FloatIndicator } from '@1hive/1hive-ui'
 
 function App() {
   const [enabled, setEnabled] = useState(true)

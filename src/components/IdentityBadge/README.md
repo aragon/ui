@@ -5,7 +5,7 @@ A component to get the Ethereum Identicon, an image that identifies Ethereum Acc
 ## Usage
 
 ```jsx
-import { IdentityBadge } from '@aragon/ui'
+import { IdentityBadge } from '@1hive/1hive-ui'
 
 function App() {
   return (
