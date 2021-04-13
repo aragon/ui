@@ -90,7 +90,7 @@ function modeStyles(theme, mode, disabled) {
       background: theme.disabled,
       color: theme.disabledContent,
       iconColor: theme.disabledContent,
-      border: '0',
+      border: `1px solid ${theme.disabledBorder}`,
     }
   }
   if (mode === 'strong') {
