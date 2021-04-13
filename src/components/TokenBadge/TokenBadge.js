@@ -12,6 +12,7 @@ const TokenBadge = React.memo(function TokenBadge({
   badgeOnly,
   className,
   compact,
+  explorerProvider,
   name,
   networkType,
   style,
@@ -67,6 +68,7 @@ const TokenBadge = React.memo(function TokenBadge({
         address && (
           <TokenBadgePopover
             address={address}
+            explorerProvider={explorerProvider}
             iconSrc={iconSrc}
             networkType={networkType}
             onClose={handleClose}
@@ -84,6 +86,7 @@ TokenBadge.propTypes = {
   badgeOnly: PropTypes.bool,
   className: PropTypes.string,
   compact: PropTypes.bool,
+  explorerProvider: PropTypes.string,
   name: PropTypes.string,
   networkType: PropTypes.string,
   style: PropTypes.object,

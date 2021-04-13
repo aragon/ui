@@ -7,6 +7,7 @@ import BadgePopoverBase from '../BadgeBase/BadgePopoverBase'
 import BadgePopoverActionType from '../BadgeBase/BadgePopoverActionType'
 import Link from '../Link/Link'
 import Tag from '../Tag/Tag'
+import { capitalize } from '../../utils/characters'
 
 const IdentityBadgePopover = React.memo(function IdentityBadgePopover({
   address,
@@ -27,7 +28,13 @@ const IdentityBadgePopover = React.memo(function IdentityBadgePopover({
   return (
     <BadgePopoverBase
       addressField={<AddressField address={address} />}
-      link={etherscanUrl && <Link href={etherscanUrl}>See on Etherscan</Link>}
+      link={
+        etherscanUrl && (
+          <Link href={etherscanUrl}>
+            See on {capitalize(explorerProvider ?? 'blockscout')}
+          </Link>
+        )
+      }
       onClose={onClose}
       opener={opener}
       popoverAction={popoverAction}
