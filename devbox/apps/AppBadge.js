@@ -63,11 +63,11 @@ function App({ layout = true }) {
         },
         {
           appAddress: '0x960b236a07cf122663c4303350609a66a7b288c0',
+          explorerProvider: 'etherscan',
           iconSrc: votingAppIconSvg,
           identifier: '50% 50%',
           label: 'Compact app',
           compact: true,
-          networkProvider: 'etherscan',
           networkType: 'main',
         },
       ].map(({ width, ...props }, i) => (

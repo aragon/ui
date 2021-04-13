@@ -12,7 +12,7 @@ const AppBadgePopover = React.memo(function AppBadgePopover({
   appAddress,
   iconFallbackSrc,
   iconSrc,
-  networkProvider,
+  explorerProvider,
   networkType,
   onClose,
   opener,
@@ -22,7 +22,7 @@ const AppBadgePopover = React.memo(function AppBadgePopover({
 }) {
   const explorerUrl = blockExplorerUrl('address', appAddress, {
     networkType,
-    provider: networkProvider,
+    provider: explorerProvider,
   })
   return (
     <BadgePopoverBase
@@ -39,7 +39,7 @@ const AppBadgePopover = React.memo(function AppBadgePopover({
       link={
         explorerUrl && (
           <Link href={explorerUrl}>
-            See on {capitalize(networkProvider ?? 'blockscout')}
+            See on {capitalize(explorerProvider ?? 'blockscout')}
           </Link>
         )
       }
@@ -54,9 +54,9 @@ const AppBadgePopover = React.memo(function AppBadgePopover({
 
 AppBadgePopover.propTypes = {
   appAddress: PropTypes.string.isRequired,
+  explorerProvider: PropTypes.string,
   iconFallbackSrc: PropTypes.string,
   iconSrc: PropTypes.string,
-  networkProvider: PropTypes.string,
   networkType: PropTypes.string,
   onClose: PropTypes.func,
   opener: PropTypes._element,
