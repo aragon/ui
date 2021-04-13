@@ -70,6 +70,7 @@ export default {
   selectedDisabled: '#212B36',
 
   disabled: '#3f4e6f',
+  disabledBorder: '#3f4e6f',
   disabledContent: '#8497bf',
   disabledIcon: '#6683c3',
 
