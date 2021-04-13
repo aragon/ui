@@ -13,6 +13,7 @@ const AppBadge = React.memo(function AppBadge({
   appAddress,
   badgeOnly,
   compact,
+  explorerProvider,
   iconSrc,
   identifier,
   label,
@@ -85,6 +86,7 @@ const AppBadge = React.memo(function AppBadge({
         appAddress && (
           <AppBadgePopover
             appAddress={appAddress}
+            explorerProvider={explorerProvider}
             iconFallbackSrc={iconDefaultSvg}
             iconSrc={iconSrc}
             networkType={networkType}
@@ -103,6 +105,7 @@ AppBadge.propTypes = {
   appAddress: PropTypes.string,
   badgeOnly: PropTypes.bool,
   compact: PropTypes.bool,
+  explorerProvider: PropTypes.string,
   iconSrc: PropTypes.string,
   identifier: PropTypes.string,
   label: PropTypes.string.isRequired,

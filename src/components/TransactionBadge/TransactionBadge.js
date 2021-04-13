@@ -11,6 +11,7 @@ import BadgeBase from '../BadgeBase/BadgeBase'
 const TransactionBadge = React.memo(function TransactionBadge({
   className,
   disabled,
+  explorerProvider,
   labelStyle,
   networkType,
   shorten,
@@ -36,7 +37,10 @@ const TransactionBadge = React.memo(function TransactionBadge({
 
   const isTx = isTransaction(transaction)
   const transactionUrl = isTx
-    ? blockExplorerUrl('transaction', transaction, { networkType })
+    ? blockExplorerUrl('transaction', transaction, {
+        networkType,
+        provider: explorerProvider,
+      })
     : ''
   const label = !isTx
     ? 'Invalid transaction'
@@ -58,6 +62,7 @@ const TransactionBadge = React.memo(function TransactionBadge({
 TransactionBadge.propTypes = {
   className: PropTypes.string,
   disabled: PropTypes.bool,
+  explorerProvider: PropTypes.string,
   labelStyle: PropTypes.string,
   networkType: PropTypes.string,
   shorten: PropTypes.bool,

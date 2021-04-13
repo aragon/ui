@@ -9,6 +9,7 @@ import Link from '../Link/Link'
 
 const TokenBadgePopover = React.memo(function TokenBadgePopover({
   address,
+  explorerProvider,
   iconSrc,
   networkType,
   onClose,
@@ -16,7 +17,10 @@ const TokenBadgePopover = React.memo(function TokenBadgePopover({
   title,
   visible,
 }) {
-  const etherscanUrl = blockExplorerUrl('token', address, { networkType })
+  const etherscanUrl = blockExplorerUrl('token', address, {
+    networkType,
+    provider: explorerProvider,
+  })
 
   return (
     <BadgePopoverBase
@@ -45,6 +49,7 @@ const TokenBadgePopover = React.memo(function TokenBadgePopover({
 
 TokenBadgePopover.propTypes = {
   address: PropTypes.string.isRequired,
+  explorerProvider: PropTypes.string,
   iconSrc: PropTypes.string,
   networkType: PropTypes.string,
   onClose: PropTypes.func,
