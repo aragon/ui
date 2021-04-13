@@ -176,7 +176,7 @@ export function isTransaction(transaction) {
 export function blockExplorerUrl(
   type,
   value,
-  { networkType = 'main', provider = 'etherscan' } = {}
+  { networkType = 'xdai', provider = 'blockscout' } = {}
 ) {
   const explorer = BLOCK_EXPLORERS[provider]
 

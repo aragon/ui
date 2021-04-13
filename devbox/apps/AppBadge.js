@@ -52,6 +52,7 @@ function App({ layout = true }) {
           iconSrc: votingAppIconSvg,
           identifier: '50% 50%',
           label: 'App with identifier',
+          networkType: 'sokol',
         },
         {
           appAddress: '0x658A4e5B1B7F1AF79aE2bDecF4368923b4419d4e',
@@ -66,6 +67,8 @@ function App({ layout = true }) {
           identifier: '50% 50%',
           label: 'Compact app',
           compact: true,
+          networkProvider: 'etherscan',
+          networkType: 'main',
         },
       ].map(({ width, ...props }, i) => (
         <div
