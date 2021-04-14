@@ -12,6 +12,7 @@ const IdentityBadge = React.memo(function IdentityBadge({
   compact,
   connectedAccount,
   entity,
+  explorerProvider,
   label,
   labelStyle,
   networkType,
@@ -90,6 +91,7 @@ const IdentityBadge = React.memo(function IdentityBadge({
           <IdentityBadgePopover
             address={address}
             connectedAccount={connectedAccount}
+            explorerProvider={explorerProvider}
             networkType={networkType}
             onClose={handleClose}
             opener={badgeRef.current}
@@ -108,6 +110,7 @@ IdentityBadge.propTypes = {
   compact: PropTypes.bool,
   connectedAccount: PropTypes.bool,
   entity: PropTypes.string,
+  explorerProvider: PropTypes.string,
   label: PropTypes.string,
   labelStyle: PropTypes.string,
   networkType: PropTypes.string,

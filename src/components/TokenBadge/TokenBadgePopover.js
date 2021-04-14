@@ -6,6 +6,7 @@ import { blockExplorerUrl } from '../../utils'
 import AddressField from '../AddressField/AddressField'
 import BadgePopoverBase from '../BadgeBase/BadgePopoverBase'
 import Link from '../Link/Link'
+import { capitalize } from '../../utils/characters'
 
 const TokenBadgePopover = React.memo(function TokenBadgePopover({
   address,
@@ -38,7 +39,11 @@ const TokenBadgePopover = React.memo(function TokenBadgePopover({
           <AddressField address={address} />
         )
       }
-      link={etherscanUrl && <Link href={etherscanUrl}>See on Etherscan</Link>}
+      link={
+        etherscanUrl && (
+          <Link href={etherscanUrl}>See on {capitalize(explorerProvider)}</Link>
+        )
+      }
       onClose={onClose}
       opener={opener}
       title={title}
