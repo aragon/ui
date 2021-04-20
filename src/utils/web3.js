@@ -30,7 +30,7 @@ const BLOCKSCOUT_NETWORK_TYPES = new Map([
 ])
 const BLOCKSCOUT_TYPES = new Map([
   ['block', 'block'],
-  ['transaction', 'txs'],
+  ['transaction', 'tx'],
   ['address', 'address'],
   ['token', 'token'],
 ])
