@@ -1,5 +1,6 @@
-import React, { useCallback } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
+import CircleCheckIcon from './CircleCheckIcon'
 import { Spring, animated } from 'react-spring'
 import { useTheme } from '../../theme'
 import { clamp, warnOnce } from '../../utils'
@@ -43,10 +44,27 @@ function labelCompat(parts) {
   return parts
 }
 
-function CircleGraph({ color, label, size, strokeWidth, value }) {
+function CircleGraph({
+  color,
+  label,
+  size,
+  strokeWidth,
+  value,
+  checkIconSettings = { visibilityMark: 1 },
+}) {
   const theme = useTheme()
+  const [visible, setVisible] = useState(false)
+  const { visibilityMark } = checkIconSettings
   const length = Math.PI * 2 * (size - strokeWidth)
   const radius = (size - strokeWidth) / 2
+
+  useEffect(() => {
+    if (value >= visibilityMark) {
+      setVisible(true)
+    } else if (visible) {
+      setVisible(false)
+    }
+  }, [value, visibilityMark, visible])
 
   if (label === undefined) {
     label = labelDefault
@@ -74,8 +92,12 @@ function CircleGraph({ color, label, size, strokeWidth, value }) {
     typeof color === 'function' ? color : () => color || theme.accent
 
   return (
-    <Spring to={{ progressValue: value }} native>
-      {({ progressValue }) => (
+    <Spring
+      from={{ opacity: 0 }}
+      to={{ progressValue: value, opacity: visible ? 1 : 0 }}
+      native
+    >
+      {({ progressValue, opacity }) => (
         <div
           css={`
             position: relative;
@@ -102,7 +124,7 @@ function CircleGraph({ color, label, size, strokeWidth, value }) {
               r={radius}
               style={{ strokeWidth }}
               fill="none"
-              stroke={theme.surfaceContentSecondary}
+              stroke={theme.surfaceUnder}
             />
             <animated.circle
               cx={size / 2}
@@ -139,12 +161,26 @@ function CircleGraph({ color, label, size, strokeWidth, value }) {
                   <div
                     css={`
                       position: absolute;
-                      top: 50%;
+                      top: 55%;
                       left: 0;
                       right: 0;
                       transform: translateY(-50%);
                     `}
                   >
+                    <animated.div
+                      css={`
+                        position: absolute;
+                        top: -45%;
+                        left: 0;
+                        right: 0;
+                        display: flex;
+                        justify-content: center;
+                        color: ${theme.surfaceContentSecondary.alpha(0.7)};
+                      `}
+                      style={{ fontSize: `${size * 0.1}px` }}
+                    >
+                      {progressValue.interpolate(labelPart('secondary'))}
+                    </animated.div>
                     <div
                       css={`
                         display: flex;
@@ -152,10 +188,10 @@ function CircleGraph({ color, label, size, strokeWidth, value }) {
                         justify-content: center;
                       `}
                     >
-                      <animated.div style={{ fontSize: `${size * 0.2}px` }}>
+                      <animated.div style={{ fontSize: `${size * 0.25}px` }}>
                         {progressValue.interpolate(labelPart('prefix'))}
                       </animated.div>
-                      <animated.div style={{ fontSize: `${size * 0.25}px` }}>
+                      <animated.div style={{ fontSize: `${size * 0.3}px` }}>
                         {progressValue.interpolate(labelPart('value'))}
                       </animated.div>
                       <animated.div
@@ -163,28 +199,21 @@ function CircleGraph({ color, label, size, strokeWidth, value }) {
                           display: flex;
                           color: ${theme.surfaceContentSecondary};
                         `}
-                        style={{ fontSize: `${size * 0.13}px` }}
+                        style={{ fontSize: `${size * 0.15}px` }}
                       >
                         {progressValue.interpolate(labelPart('suffix'))}
                       </animated.div>
                     </div>
-                    <animated.div
-                      css={`
-                        position: absolute;
-                        top: 100%;
-                        left: 0;
-                        right: 0;
-                        display: flex;
-                        justify-content: center;
-                        color: ${theme.surfaceContentSecondary};
-                      `}
-                      style={{ fontSize: `${size * 0.1}px` }}
-                    >
-                      {progressValue.interpolate(labelPart('secondary'))}
-                    </animated.div>
                   </div>
                 )}
           </div>
+          <animated.div style={{ opacity }}>
+            <CircleCheckIcon
+              radius={radius}
+              degreesPct={0.15}
+              colorSettings={checkIconSettings}
+            />
+          </animated.div>
         </div>
       )}
     </Spring>
@@ -197,6 +226,12 @@ CircleGraph.propTypes = {
   size: PropTypes.number,
   strokeWidth: PropTypes.number,
   value: PropTypes.number.isRequired,
+  checkIconSettings: PropTypes.shape({
+    visibilityMark: PropTypes.number,
+    innerBackground: PropTypes.string,
+    outerBackground: PropTypes.string,
+    checkColor: PropTypes.string,
+  }),
 }
 
 CircleGraph.defaultProps = {

@@ -115,3 +115,12 @@ export function divideRoundBigInt(dividend, divisor) {
     divisor
   ).toString()
 }
+
+/**
+ * Converts degrees to radians
+ * @param {number} degrees degrees to be converted
+ * @returns {number}
+ */
+export function degreesToRadians(degrees) {
+  return degrees * (Math.PI / 180)
+}
