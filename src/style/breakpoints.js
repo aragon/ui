@@ -3,10 +3,12 @@ import { GU } from './constants'
 
 // These breakpoints values represent minimum screen sizes.
 const BREAKPOINTS = {
-  min: 360,
-  small: 360,
-  medium: 96 * GU,
-  large: 144 * GU,
+  // min, mini or tiny (i.e 320px) will be ignore
+  // because it was depricated and most of the component
+  // do not recognize or react to 'min'
+  small: 375, // 375
+  medium: 96 * GU, // 768
+  large: 160 * GU, // 1280
 }
 
 // CSS breakpoints

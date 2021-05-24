@@ -5,9 +5,7 @@ import { BREAKPOINTS, GU } from '../../style'
 import { cssPx } from '../../utils'
 
 function getSizes(breakpoints) {
-  return Object.entries(breakpoints)
-    .filter(([name]) => name !== 'min')
-    .sort((a, b) => a[1] - b[1])
+  return Object.entries(breakpoints).sort((a, b) => a[1] - b[1])
 }
 
 const breakpointsType = PropTypes.shape({
@@ -17,19 +15,13 @@ const breakpointsType = PropTypes.shape({
   large: PropTypes.number,
 })
 
-// Minimum margin around a layout
-const MIN_MARGIN = 3 * GU
-
 function getLayoutSize(parentWidth, breakpoints) {
   const sizes = getSizes(breakpoints)
 
   let index = sizes.length
   while (index--) {
     if (parentWidth >= sizes[index][1]) {
-      return [
-        sizes[index][0],
-        sizes[index][1] - (index === 0 ? 0 : MIN_MARGIN * 2),
-      ]
+      return [sizes[index][0], sizes[index][1]]
     }
   }
 
