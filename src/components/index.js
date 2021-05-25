@@ -1,3 +1,7 @@
+// new
+export { default as Grid } from './Grid/Grid'
+export { default as GridItem } from './Grid/GridItem'
+
 export { default as Accordion } from './Accordion/Accordion'
 export { default as AddressField } from './AddressField/AddressField'
 export { default as AppBadge } from './AppBadge/AppBadge'

@@ -5,3 +5,12 @@ export const RADIUS = {
   medium: 12,
   large: 2 * GU,
 }
+export const SPACING = {
+  small: GU,
+  medium: 2 * GU,
+  large: 3 * GU,
+  xLarge: 4 * GU,
+  uLarge: 5 * GU,
+  mLarge: 6 * GU,
+  tLarge: 7 * GU,
+}
