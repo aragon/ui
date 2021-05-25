@@ -42,7 +42,7 @@ export default {
   negativeSurface: '#FFE8E8',
   negativeSurfaceContent: '#CA4141',
 
-  //positive to be removed
+  // positive to be removed
   positive: '#2CC68F',
   positiveContent: '#FFFFFF',
   positiveSurface: '#D8FFF1',
