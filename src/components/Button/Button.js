@@ -10,7 +10,7 @@ import ButtonBase from '../ButtonBase/ButtonBase'
 // Base styles related to every size.
 // See src/icons/icon-size.js for the corresponding icon sizes.
 const SIZE_STYLES = {
-  medium: {
+  large: {
     textStyleName: 'body2',
     height: 5 * GU,
     padding: 3 * GU,
@@ -18,7 +18,7 @@ const SIZE_STYLES = {
     minWidth: 14.5 * GU,
     middleSpace: 1 * GU,
   },
-  small: {
+  medium: {
     textStyleName: 'body2',
     height: 4 * GU,
     padding: 2 * GU,
@@ -26,7 +26,7 @@ const SIZE_STYLES = {
     minWidth: 13 * GU,
     middleSpace: 1 * GU,
   },
-  mini: {
+  small: {
     textStyleName: 'body4',
     height: 3 * GU,
     padding: 1.5 * GU,
@@ -93,44 +93,50 @@ function modeStyles(theme, mode, disabled) {
       border: '0',
     }
   }
-  if (mode === 'strong') {
+
+  if (mode === 'secondary') {
     return {
-      background: `
+      background: theme.secondary,
+      color: theme.secondaryContent,
+      iconColor: `
         linear-gradient(
-          190deg,
-          ${theme.accentStart} -100%,
-          ${theme.accentEnd} 80%
+          108deg,
+          ${theme.primary} -100%,
+          ${theme.primaryEnd} 80%
         )
       `,
-      color: theme.accentContent,
-      iconColor: theme.accentContent,
-      border: '0',
+      backgroundHover: theme.secondaryHover,
+      backgroundPressed: theme.secondaryPressed,
+      border: `2px solid ${theme.border}`,
     }
   }
 
-  if (mode === 'positive') {
-    return {
-      background: theme.positive,
-      color: theme.positiveContent,
-      iconColor: theme.positiveContent,
-      border: '0',
-    }
-  }
-
-  if (mode === 'negative') {
-    return {
-      background: theme.negative,
-      color: theme.negativeContent,
-      iconColor: theme.negativeContent,
-      border: '0',
-    }
-  }
-
+  // return primary as default
   return {
-    background: theme.surfaceInteractive,
-    color: theme.surfaceContent,
-    iconColor: theme.surfaceIcon,
-    border: `1px solid ${theme.border}`,
+    background: `
+      linear-gradient(
+        108deg,
+        ${theme.primary} 1.46%,
+        ${theme.primaryEnd} 100%
+      )
+    `,
+    backgroundHover: `
+    linear-gradient(
+      108deg,
+      ${theme.primaryHover} 1.46%,
+      ${theme.primaryHoverEnd} 100%
+    )
+  `,
+    backgroundPressed: `
+    linear-gradient(
+      108deg,
+      ${theme.primaryPressed} 1.46%,
+      ${theme.primaryPressedEnd} 100%
+    )
+  `,
+    color: theme.primaryContent,
+    iconColor: theme.primaryContent,
+    border: '0',
   }
 }
 
@@ -154,20 +160,6 @@ function Button({
       'Button: "iconOnly" is deprecated, please use "display".'
     )
     display = 'icon'
-  }
-  if (mode === 'outline' || mode === 'secondary') {
-    warnOnce(
-      'Button:mode',
-      `Button: the mode "${mode}" is deprecated, please use "normal".`
-    )
-    mode = 'normal'
-  }
-  if (size === 'normal' || size === 'large') {
-    warnOnce(
-      'Button:size',
-      `Button: the size "${size}" is deprecated, please use "medium".`
-    )
-    size = 'medium'
   }
 
   // prop warnings
@@ -204,10 +196,14 @@ function Button({
   const displayLabel = label && (display === 'all' || display === 'label')
 
   // Mode styles
-  const { background, color, iconColor, border } = useMemo(
-    () => modeStyles(theme, mode, disabled),
-    [mode, theme, disabled]
-  )
+  const {
+    background,
+    backgroundHover,
+    backgroundPressed,
+    color,
+    iconColor,
+    border,
+  } = useMemo(() => modeStyles(theme, mode, disabled), [mode, theme, disabled])
 
   // Size styles
   const {
@@ -235,7 +231,7 @@ function Button({
     <ButtonBase
       ref={innerRef}
       focusRingSpacing={border === '0' ? 0 : 1}
-      focusRingRadius={RADIUS}
+      focusRingRadius={size !== 'small' ? RADIUS.small : RADIUS.tiny}
       disabled={disabled}
       {...props}
       css={`
@@ -252,13 +248,18 @@ function Button({
         color: ${color};
         white-space: nowrap;
         border: ${border};
-        box-shadow: ${disabled ? 'none' : '0 1px 3px rgba(0, 0, 0, 0.1)'};
-        transition-property: transform, box-shadow;
-        transition-duration: 50ms;
-        transition-timing-function: ease-in-out;
+        box-shadow: ${disabled
+          ? 'none'
+          : '0px 3px 3px rgba(180, 193, 228, 0.35)'};
+        &:hover {
+          background: ${disabled ? background : backgroundHover};
+          box-shadow: ${disabled
+            ? 'none'
+            : '0px 6px 6px rgba(180, 193, 228, 0.35)'};
+        }
         &:active {
-          transform: ${disabled ? 'none' : 'translateY(1px)'};
-          box-shadow: ${disabled ? 'none' : '0px 1px 2px rgba(0, 0, 0, 0.08)'};
+          background: ${disabled ? background : backgroundPressed};
+          box-shadow: none;
         }
       `}
     >
@@ -300,14 +301,11 @@ Button.propTypes = {
   innerRef: PropTypes.any,
   label: PropTypes.string,
   mode: PropTypes.oneOf([
-    'normal',
-    'strong',
-    'positive',
-    'negative',
+    'primary',
+    'secondary',
 
     // deprecated
     'outline',
-    'secondary',
     'text',
   ]),
   size: PropTypes.oneOf([
@@ -328,7 +326,7 @@ Button.propTypes = {
 Button.defaultProps = {
   disabled: false,
   display: 'auto',
-  mode: 'normal',
+  mode: 'primary',
   size: 'medium',
   wide: false,
 }

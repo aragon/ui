@@ -3,7 +3,7 @@ export default {
   _appearance: 'light',
 
   background: '#F9FAFC',
-  border: '#DDE4E9',
+  border: '#EFF1F7',
   overlay: '#FFFFFF',
   content: '#212B36',
   contentSecondary: '#637381',
@@ -36,15 +36,32 @@ export default {
   helpSurface: '#FFFFFF',
   helpSurfaceContent: '#212B36',
 
+  // negative to be removed
   negative: '#FF6969',
   negativeContent: '#FFFFFF',
   negativeSurface: '#FFE8E8',
   negativeSurfaceContent: '#CA4141',
 
+  //positive to be removed
   positive: '#2CC68F',
   positiveContent: '#FFFFFF',
   positiveSurface: '#D8FFF1',
   positiveSurfaceContent: '#1B8962',
+
+  // primary
+  primary: '#00C2FF',
+  primaryEnd: '#01E8F7',
+  primaryContent: '#FFFFFF',
+  primaryHover: '#66DAFF',
+  primaryHoverEnd: '#01E8F7',
+  primaryPressed: '#00ACE2',
+  primaryPressedEnd: '#02DFED',
+
+  // secondary
+  secondary: '#FFFFFF',
+  secondaryContent: '#00C2FF',
+  secondaryHover: '#FFFFFF',
+  secondaryPressed: '#F6F9FC',
 
   badge: '#EBFAFD',
   badgeContent: '#212B36',
@@ -69,9 +86,9 @@ export default {
   selectedContent: '#FFFFFF',
   selectedDisabled: '#C4CDD5',
 
-  disabled: '#F1F3F7',
-  disabledContent: '#637381',
-  disabledIcon: '#8FA4B5',
+  disabled: '#D2D9EE',
+  disabledContent: '#7483AB',
+  disabledIcon: '#B4C1E4',
 
   control: '#F9FAFC',
   controlBorder: '#DDE4E9',

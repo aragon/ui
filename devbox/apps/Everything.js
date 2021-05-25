@@ -85,7 +85,9 @@ function Cards({ number = 10, interactive }) {
   return (
     <CardLayout>
       {[...Array(number)].map((v, i) => (
-        <Card key={i} {...cardProps} />
+        <Card key={i} {...cardProps}>
+          {i + 1}
+        </Card>
       ))}
     </CardLayout>
   )
@@ -124,7 +126,7 @@ function ToastBox() {
   const toast = useToast()
   return (
     <Box heading="Toast">
-      <Button onClick={() => toast('This is a toast')} mode="strong" wide>
+      <Button onClick={() => toast('This is a toast')} mode="primary" wide>
         Display Toast
       </Button>
     </Box>
@@ -146,7 +148,7 @@ function SyncIndicatorBox() {
 
   return (
     <Box heading="Sync indicator">
-      <Button onClick={handleClick} mode="strong" wide>
+      <Button onClick={handleClick} mode="primary" wide>
         Display SyncIndicator
       </Button>
       <SyncIndicator visible={visible}></SyncIndicator>
@@ -237,11 +239,14 @@ export default () => {
       <ToggleThemeButton />
       <Header
         primary="Everything"
-        secondary={<Button mode="strong" label="Strong button" />}
+        secondary={<Button label="Primary button" />}
       />
       <DemoTabs />
       <Cards interactive />
-      <Bar primary={<BackButton />} secondary={<Button label="Button" />} />
+      <Bar
+        primary={<BackButton />}
+        secondary={<Button mode="secondary" label="Button" />}
+      />
       <CardLayout>
         {[...Array(3)].map((_, index) =>
           ['activity', 'indicator', 'identifier', 'new'].map(mode =>

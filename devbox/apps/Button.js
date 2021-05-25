@@ -12,15 +12,15 @@ import {
   GU,
 } from '@aragon/ui'
 
-const MODES = ['normal', 'strong', 'positive', 'negative']
-const SIZES = ['medium', 'small', 'mini']
+const MODES = ['primary', 'secondary']
+const SIZES = ['large', 'medium', 'small']
 
 function getIcon(mode) {
-  if (mode === 'negative') {
-    return <IconCross />
-  }
-  if (mode === 'positive') {
+  if (mode === 'primary') {
     return <IconCheck />
+  }
+  if (mode === 'secondary') {
+    return <IconCross />
   }
   return <IconAdd />
 }
