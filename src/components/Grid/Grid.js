@@ -2,14 +2,25 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Inside } from 'use-inside'
 import { useLayout } from '../Layout/Layout'
-import { SPACING } from '../../style/constants'
+import { GU, SPACING } from '../../style/constants'
 
-function Grid({ children, columns, rowHeight, gap, ...props }) {
+function Grid({ children, rowHeight, gap, ...props }) {
   const { layoutName } = useLayout()
   const fullWidth = layoutName === 'small'
   const gridAutoRowValue =
     typeof rowHeight !== 'number' ? 'auto' : `${rowHeight}px`
   const currentGap = typeof gap !== 'undefined' ? gap : SPACING[layoutName]
+
+  const gridPadding = {
+    large: 12,
+    medium: GU,
+    small: GU,
+  }
+
+  const columnsWidth = {
+    large: 7 * GU,
+    medium: 6 * GU,
+  }
 
   return (
     <Inside name="Grid">
@@ -17,8 +28,13 @@ function Grid({ children, columns, rowHeight, gap, ...props }) {
         css={`
           display: grid;
           grid-gap: ${currentGap}px;
-          grid-template-columns: repeat(${fullWidth ? 1 : columns}, 1fr);
+          grid-template-columns: ${fullWidth
+            ? '1fr'
+            : `repeat(${layoutName === 'medium' ? 12 : 16}, ${
+                columnsWidth[layoutName]
+              }px)`};
           grid-auto-rows: ${gridAutoRowValue};
+          padding: 0 ${gridPadding[layoutName]}px 0;
         `}
         {...props}
       >
@@ -30,7 +46,6 @@ function Grid({ children, columns, rowHeight, gap, ...props }) {
 
 Grid.propTypes = {
   children: PropTypes.node,
-  columns: PropTypes.number,
   rowHeight: PropTypes.oneOfType([PropTypes.number]),
   gap: PropTypes.oneOfType([PropTypes.oneOf([undefined]), PropTypes.number]),
 }

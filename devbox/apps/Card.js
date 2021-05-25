@@ -33,7 +33,7 @@ export default () => {
       <Header
         primary="Voting"
         secondary={
-          <Button mode="strong" label="New vote" icon={<IconPlus />} />
+          <Button mode="primary" label="New vote" icon={<IconPlus />} />
         }
       />
       <Bar />

@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react'
 import PropTypes from 'prop-types'
 import { Inside, useInside } from 'use-inside'
-import { textStyle, GU, RADIUS } from '../../style'
+import { textStyle, GU, RADIUSS } from '../../style'
 import { useTheme } from '../../theme'
 import { warn, warnOnce, unselectable } from '../../utils'
 import { useLayout } from '../Layout/Layout'
@@ -231,7 +231,7 @@ function Button({
     <ButtonBase
       ref={innerRef}
       focusRingSpacing={border === '0' ? 0 : 1}
-      focusRingRadius={size !== 'small' ? RADIUS.small : RADIUS.tiny}
+      focusRingRadius={size !== 'small' ? RADIUSS.small : RADIUSS.tiny}
       disabled={disabled}
       {...props}
       css={`

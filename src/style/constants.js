@@ -1,5 +1,6 @@
 export const GU = 8
-export const RADIUS = {
+export const RADIUS = 8
+export const RADIUSS = {
   tiny: 6,
   small: GU,
   medium: 12,
