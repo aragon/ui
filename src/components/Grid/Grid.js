@@ -4,18 +4,30 @@ import { Inside } from 'use-inside'
 import { useLayout } from '../Layout/Layout'
 import { GU, SPACING } from '../../style/constants'
 
-function Grid({ children, layout, columns, rowHeight, gap, ...props }) {
+function Grid({
+  children,
+  layout,
+  columns,
+  rowHeight,
+  columnWidth,
+  gap,
+  gridPaddings,
+  ...props
+}) {
   const { layoutName } = useLayout()
   const fullWidth = layoutName === 'small'
   const gridAutoRowValue =
-    typeof rowHeight !== 'number' ? 'auto' : `${rowHeight}px`
+    typeof rowHeight !== 'number' ? 'auto' : `${rowHeight}`
   const currentGap = typeof gap !== 'undefined' ? gap : SPACING[layoutName]
 
-  const gridPadding = {
-    large: 12,
-    medium: GU,
-    small: GU,
-  }
+  const currnetPadding =
+    typeof gridPaddings !== 'undefined'
+      ? gridPaddings
+      : {
+          large: 12,
+          medium: GU,
+          small: GU,
+        }
 
   const columnsWidth = {
     large: 7 * GU,
@@ -30,7 +42,7 @@ function Grid({ children, layout, columns, rowHeight, gap, ...props }) {
               columnsWidth[layoutName]
             }px)`
       };`
-    : `${fullWidth ? '1fr' : `repeat(${columns}, auto-fill)`};`
+    : `${fullWidth ? '1fr' : `repeat(${columns}, ${columnWidth})`};`
 
   return (
     <Inside name="Grid">
@@ -40,7 +52,7 @@ function Grid({ children, layout, columns, rowHeight, gap, ...props }) {
           grid-gap: ${currentGap}px;
           grid-template-columns: ${template};
           grid-auto-rows: ${gridAutoRowValue};
-          padding: 0 ${gridPadding[layoutName]}px 0;
+          padding: 0 ${layout ? currnetPadding[layoutName] : 0}px 0;
         `}
         {...props}
       >
@@ -53,14 +65,17 @@ function Grid({ children, layout, columns, rowHeight, gap, ...props }) {
 Grid.propTypes = {
   children: PropTypes.node,
   layout: PropTypes.bool,
-  columns: PropTypes.number,
-  rowHeight: PropTypes.oneOfType([PropTypes.number]),
+  columns: PropTypes.string,
+  rowHeight: PropTypes.string,
+  columnWidth: PropTypes.string,
   gap: PropTypes.oneOfType([PropTypes.oneOf([undefined]), PropTypes.number]),
+  gridPaddings: PropTypes.object,
 }
 
 Grid.defaultProps = {
   layout: false,
-  columns: 2,
+  columns: '2',
+  columnWidth: 'auto-fill',
 }
 
 export { Grid }
