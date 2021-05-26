@@ -4,7 +4,7 @@ import { Inside } from 'use-inside'
 import { useLayout } from '../Layout/Layout'
 import { GU, SPACING } from '../../style/constants'
 
-function Grid({ children, rowHeight, gap, ...props }) {
+function Grid({ children, layout, columns, rowHeight, gap, ...props }) {
   const { layoutName } = useLayout()
   const fullWidth = layoutName === 'small'
   const gridAutoRowValue =
@@ -22,17 +22,23 @@ function Grid({ children, rowHeight, gap, ...props }) {
     medium: 6 * GU,
   }
 
+  const template = layout
+    ? `${
+        fullWidth
+          ? '1fr'
+          : `repeat(${layoutName === 'medium' ? 12 : 16}, ${
+              columnsWidth[layoutName]
+            }px)`
+      };`
+    : `${fullWidth ? '1fr' : `repeat(${columns}, auto-fill)`};`
+
   return (
     <Inside name="Grid">
       <div
         css={`
           display: grid;
           grid-gap: ${currentGap}px;
-          grid-template-columns: ${fullWidth
-            ? '1fr'
-            : `repeat(${layoutName === 'medium' ? 12 : 16}, ${
-                columnsWidth[layoutName]
-              }px)`};
+          grid-template-columns: ${template};
           grid-auto-rows: ${gridAutoRowValue};
           padding: 0 ${gridPadding[layoutName]}px 0;
         `}
@@ -46,13 +52,15 @@ function Grid({ children, rowHeight, gap, ...props }) {
 
 Grid.propTypes = {
   children: PropTypes.node,
+  layout: PropTypes.bool,
+  columns: PropTypes.number,
   rowHeight: PropTypes.oneOfType([PropTypes.number]),
   gap: PropTypes.oneOfType([PropTypes.oneOf([undefined]), PropTypes.number]),
 }
 
 Grid.defaultProps = {
-  // use 16 column as default
-  columns: 16,
+  layout: false,
+  columns: 2,
 }
 
 export { Grid }
