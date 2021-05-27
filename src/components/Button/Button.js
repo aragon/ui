@@ -231,7 +231,7 @@ function Button({
     <ButtonBase
       ref={innerRef}
       focusRingSpacing={border === '0' ? 0 : 1}
-      focusRingRadius={size !== 'small' ? RADII.small : RADIIh.tiny}
+      focusRingRadius={size !== 'small' ? RADII.small : RADII.tiny}
       disabled={disabled}
       {...props}
       css={`

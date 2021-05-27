@@ -5,8 +5,7 @@ import { warnOnce } from '../../utils'
 import { textStyle, GU, RADII } from '../../style'
 import { useLayout } from '../Layout/Layout'
 
-const borderColor = status => {
-  const theme = useTheme()
+const borderColor = (theme, status) => {
   switch (status) {
     case 'error':
       return theme.red
@@ -45,7 +44,7 @@ const TextInput = React.forwardRef(
           height: ${5.75 * GU}px;
           padding: 0 ${1.5 * GU}px;
           background: ${theme.surface};
-          border: 2px solid ${borderColor(status)};
+          border: 2px solid ${borderColor(theme, status)};
           color: ${theme.surfaceContent};
           border-radius: ${layoutName === 'large'
             ? RADII.small
@@ -155,7 +154,7 @@ const WrapperTextInput = React.forwardRef(
             justify-content: center;
             color: ${theme.surfaceContentSecondary};
             ${adornmentPosition === 'end' ? 'border-left' : 'border-right'}: 2px
-              solid ${borderColor(props.status)};
+              solid ${borderColor(theme, props.status)};
             ${adornmentPosition === 'end'
               ? 'padding-left'
               : 'padding-right'}: ${adornmentPadding}px;
