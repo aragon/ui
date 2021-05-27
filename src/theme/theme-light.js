@@ -79,10 +79,10 @@ export default {
   tagActivity: '#08BEE5',
   tagActivityContent: '#FFFFFF',
 
-  hint: '#8FA4B5',
+  hint: '#7483AB',
   link: '#3E7BF6',
   focus: '#3E7BF6',
-  selected: '#08BEE5',
+  selected: '#00C2FF',
   selectedContent: '#FFFFFF',
   selectedDisabled: '#C4CDD5',
 
@@ -105,10 +105,14 @@ export default {
   floating: '#30404F',
   floatingContent: '#FFFFFF',
 
-  green: '#9BC75A',
-  yellow: '#F7D858',
-  red: '#F08658',
+  green: '#3CCE6E',
+  yellow: '#FFB53A',
+  red: '#FF6A60',
   blue: '#3E7BF6',
+  // new black color
+  black: '#20232C',
+
+  // we don't have next 2 in new design
   brown: '#876559',
   purple: '#7C80F2',
 }

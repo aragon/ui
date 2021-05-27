@@ -2,13 +2,26 @@ import React, { useCallback } from 'react'
 import PropTypes from 'prop-types'
 import { useTheme } from '../../theme'
 import { warnOnce } from '../../utils'
-import { textStyle, GU, RADIUS } from '../../style'
+import { textStyle, GU, RADII } from '../../style'
+import { useLayout } from '../Layout/Layout'
+
+const borderColor = status => {
+  const theme = useTheme()
+  switch (status) {
+    case 'error':
+      return theme.red
+    case 'success':
+      return theme.green
+    default:
+      return theme.border
+  }
+}
 
 // Simple text input
 const TextInput = React.forwardRef(
-  ({ autofocus, multiline, type, ...props }, ref) => {
+  ({ autofocus, multiline, type, status, ...props }, ref) => {
     const theme = useTheme()
-
+    const { layoutName } = useLayout()
     const handleRef = useCallback(
       element => {
         if (ref) {
@@ -29,12 +42,14 @@ const TextInput = React.forwardRef(
         {...props}
         css={`
           width: ${({ wide }) => (wide ? '100%' : 'auto')};
-          height: ${5 * GU}px;
+          height: ${5.75 * GU}px;
           padding: 0 ${1.5 * GU}px;
           background: ${theme.surface};
-          border: 1px solid ${theme.border};
+          border: 2px solid ${borderColor(status)};
           color: ${theme.surfaceContent};
-          border-radius: ${RADIUS}px;
+          border-radius: ${layoutName === 'large'
+            ? RADII.small
+            : RADII[layoutName]}px;
           appearance: none;
           ${textStyle('body3')};
 
@@ -75,6 +90,7 @@ TextInput.propTypes = {
   multiline: PropTypes.bool,
   required: PropTypes.bool,
   type: PropTypes.string,
+  status: PropTypes.oneOf(['normal', 'success', 'error']),
 }
 
 TextInput.defaultProps = {
@@ -82,6 +98,7 @@ TextInput.defaultProps = {
   multiline: false,
   required: false,
   type: 'text',
+  status: 'normal',
 }
 
 // Text input wrapped to allow adornments
@@ -91,8 +108,8 @@ const WrapperTextInput = React.forwardRef(
       adornment,
       adornmentPosition,
       adornmentSettings: {
-        width: adornmentWidth = 36,
-        padding: adornmentPadding = 4,
+        width: adornmentWidth = 40,
+        padding: adornmentPadding = 1 * GU,
       },
       ...props
     },
@@ -108,6 +125,7 @@ const WrapperTextInput = React.forwardRef(
           display: inline-flex;
           position: relative;
           width: ${props.wide ? '100%' : 'max-content'};
+          height: ${5.75 * GU}px;
         `}
       >
         <TextInput
@@ -115,7 +133,11 @@ const WrapperTextInput = React.forwardRef(
           css={`
             ${adornmentPosition === 'end'
               ? 'padding-right'
-              : 'padding-left'}: ${adornmentWidth - adornmentPadding * 2}px;
+              : 'padding-left'}: ${adornmentWidth + adornmentPadding}px;
+            &:focus + div {
+              outline: none;
+              border-color: ${theme.selected};
+            }
           `}
           {...props}
         />
@@ -132,6 +154,11 @@ const WrapperTextInput = React.forwardRef(
             align-items: center;
             justify-content: center;
             color: ${theme.surfaceContentSecondary};
+            ${adornmentPosition === 'end' ? 'border-left' : 'border-right'}: 2px
+              solid ${borderColor(props.status)};
+            ${adornmentPosition === 'end'
+              ? 'padding-left'
+              : 'padding-right'}: ${adornmentPadding}px;
           `}
         >
           {adornment}
