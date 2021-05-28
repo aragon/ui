@@ -6,7 +6,7 @@ import { useTheme } from '../../theme/Theme'
 import { useLayout } from '../Layout/Layout'
 import { warnOnce } from '../../utils'
 
-function Box({ heading, children, padding, ...props }) {
+function Box({ heading, children, padding, shadow, ...props }) {
   const theme = useTheme()
   const [insideSplitPrimary] = useInside('Split:primary')
   const { layoutName } = useLayout()
@@ -43,6 +43,9 @@ function Box({ heading, children, padding, ...props }) {
           border-width: ${fullWidth ? '1px 0' : '1px'};
           background: ${theme.surface};
           color: ${theme.surfaceContent};
+          box-shadow: ${!shadow
+            ? 'none'
+            : '0px 6px 6px rgba(180, 193, 228, 0.35)'};
           & + & {
             margin-top: ${2 * GU}px;
           }
@@ -91,6 +94,7 @@ Box.propTypes = {
     // deprecated
     PropTypes.bool,
   ]),
+  shadow: PropTypes.bool,
 }
 
 export default Box

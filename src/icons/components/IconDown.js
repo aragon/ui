@@ -13,7 +13,7 @@ function IconDown({ size, ...props }) {
       {...props}
     >
       <path
-        fill="currentColor"
+        fill={props.color ? props.color : 'currentColor'}
         d="M18.785 8.782a.725.725 0 00-1.038 0L12 14.632l-5.746-5.85a.725.725 0 00-1.039 0 .757.757 0 000 1.057l6.266 6.38a.726.726 0 001.038 0l6.266-6.38a.757.757 0 000-1.057z"
       />
     </svg>

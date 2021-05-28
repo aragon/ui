@@ -319,7 +319,7 @@ const DataView = React.memo(function DataView({
   const emptyEntries = renderedEntries.length === 0
 
   return (
-    <Box padding={0}>
+    <Box padding={0} shadow>
       {heading && (
         <div
           css={`

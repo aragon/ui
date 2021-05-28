@@ -6,7 +6,6 @@ import { useTheme } from '../../theme'
 import { useLayout } from '../Layout/Layout'
 import Checkbox from '../Input/Checkbox'
 import { ToggleButton } from './ToggleButton'
-import { OpenedSurfaceBorder } from './OpenedSurfaceBorder'
 
 // Table heading cells
 function headingsFromFields(
@@ -59,7 +58,7 @@ function cellsFromEntry(
 
   // Toggle child
   if (!selectable && hasAnyExpansion) {
-    cells.unshift([hasExpansion && toggleChildContent, 'start', true])
+    cells.push([hasExpansion && toggleChildContent, 'end', true])
   }
 
   // Actions
@@ -374,7 +373,6 @@ function EntryExpansion({
           >
             {alignChildOnCell > 0 && (
               <td colSpan={alignChildOnCell}>
-                <OpenedSurfaceBorder opened={opened} />
                 <animated.div
                   css="overflow: hidden"
                   style={{
@@ -404,9 +402,6 @@ function EntryExpansion({
                   : cellsCount - alignChildOnCell
               }
             >
-              {alignChildOnCell === 0 && (
-                <OpenedSurfaceBorder opened={opened} />
-              )}
               <animated.div
                 css="overflow: hidden"
                 style={{
@@ -452,7 +447,6 @@ const Toggle = React.memo(function Toggle({ opened, onToggle }) {
         height: 100%;
       `}
     >
-      <OpenedSurfaceBorder opened={opened} />
       <ToggleButton opened={opened} onClick={onToggle} />
     </div>
   )

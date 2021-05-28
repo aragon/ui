@@ -5,7 +5,6 @@ import { GU, springs, textStyle } from '../../style'
 import { useTheme } from '../../theme'
 import Checkbox from '../Input/Checkbox'
 import { ToggleButton } from './ToggleButton'
-import { OpenedSurfaceBorder } from './OpenedSurfaceBorder'
 
 function ListView({
   allSelected,
@@ -38,21 +37,20 @@ function ListView({
             css={`
               position: relative;
               padding: 0;
-              padding-right: ${3 * GU}px;
-              padding-left: ${(sideSpace ? 6.5 : 3) * GU}px;
+              padding-right: ${(sideSpace ? 6.5 : 3) * GU}px;
+              padding-left: ${3 * GU}px;
               border-bottom: ${Number(index !== entries.length - 1)}px solid
                 ${theme.border};
               transition: background 150ms ease-in-out;
               background: ${entry.selected ? theme.surfaceSelected : 'none'};
             `}
           >
-            <OpenedSurfaceBorder opened={entry.index === opened} />
             {sideSpace && (
               <div
                 css={`
                   position: absolute;
-                  top: ${1.5 * GU}px;
-                  left: 0;
+                  top: ${!entry.actions ? 1.5 * GU : 6.5 * GU}px;
+                  right: 0;
                   display: flex;
                   justify-content: center;
                   width: ${6.5 * GU}px;
@@ -78,7 +76,7 @@ function ListView({
                 css={`
                   position: absolute;
                   top: ${2 * GU}px;
-                  right: ${3 * GU}px;
+                  right: ${2 * GU}px;
                 `}
               >
                 {entry.actions}
@@ -111,7 +109,7 @@ function ListView({
                       css={`
                         display: flex;
                         align-items: center;
-                        margin: ${2 * GU}px 0 ${1 * GU}px;
+                        margin: ${1 * GU}px 0 ${1 * GU}px;
                         color: ${theme.surfaceContentSecondary};
                         ${textStyle('label2')};
                       `}
@@ -185,9 +183,8 @@ function EntryExpansion({ expansion, opened, rowHeight }) {
             css={`
               overflow: hidden;
               background: ${theme.surfaceUnder};
-              margin-left: ${-6.5 * GU}px;
-              margin-right: ${-3 * GU}px;
-              padding-left: ${6.5 * GU}px;
+              margin-right: ${-6.5 * GU}px;
+              margin-left: ${-3 * GU}px;
               box-shadow: inset 0 6px 4px -4px rgba(0, 0, 0, 0.16);
             `}
             style={{

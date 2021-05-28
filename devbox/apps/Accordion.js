@@ -29,7 +29,7 @@ function Expandable({ height }) {
   )
 }
 
-function App({ count = 20, header = <Header primary="Accordion" /> }) {
+function App({ count = 10, header = <Header primary="Accordion" /> }) {
   const items = getItems(count)
   const accordion = <Accordion items={items} />
   return header ? (
