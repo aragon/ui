@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Inside, useInside } from 'use-inside'
-import { GU, RADIUS, textStyle } from '../../style'
+import { GU, RADII, textStyle } from '../../style'
 import { useTheme } from '../../theme/Theme'
 import { useLayout } from '../Layout/Layout'
 import { warnOnce } from '../../utils'
@@ -37,7 +37,7 @@ function Box({ heading, children, padding, shadow, ...props }) {
         as={heading ? 'section' : 'div'}
         css={`
           position: relative;
-          border-radius: ${fullWidth ? 0 : RADIUS}px;
+          border-radius: ${layoutName !== 'small' ? RADII.small : RADII.tiny}px;
           border-style: solid;
           border-color: ${theme.border};
           border-width: ${fullWidth ? '1px 0' : '1px'};
