@@ -366,7 +366,7 @@ function EntryExpansion({
               td {
                 position: relative;
                 padding: 0;
-                box-shadow: inset 0 6px 4px -4px rgba(0, 0, 0, 0.16);
+                box-shadow: inset 0 8px 8px -4px rgba(180, 193, 228, 0.35);
                 background: ${theme.surfaceUnder};
               }
             `}

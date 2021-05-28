@@ -12,7 +12,7 @@ export default {
   surfaceContent: '#212B36',
   surfaceContentSecondary: '#637381',
   surfaceIcon: '#8FA4B5',
-  surfaceUnder: '#F1F3F7',
+  surfaceUnder: '#F6F9FC',
   surfaceOpened: '#ABBECF',
   surfaceSelected: '#F9FAFC',
   surfaceHighlight: '#F9FAFC',
@@ -93,7 +93,7 @@ export default {
   control: '#F9FAFC',
   controlBorder: '#DDE4E9',
   controlBorderPressed: '#ABBECF',
-  controlDisabled: '#F1F3F7',
+  controlDisabled: '#F6F9FC',
   controlSurface: '#F9FAFC',
   controlUnder: '#DDE4E9',
 

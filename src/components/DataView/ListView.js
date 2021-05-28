@@ -185,7 +185,7 @@ function EntryExpansion({ expansion, opened, rowHeight }) {
               background: ${theme.surfaceUnder};
               margin-right: ${-6.5 * GU}px;
               margin-left: ${-3 * GU}px;
-              box-shadow: inset 0 6px 4px -4px rgba(0, 0, 0, 0.16);
+              box-shadow: inset 0 8px 8px -4px rgba(180, 193, 228, 0.35);
             `}
             style={{
               height: height.interpolate(v => `${v}px`),
