@@ -2,6 +2,7 @@
 export { default as Grid } from './Grid/Grid'
 export { default as GridItem } from './Grid/GridItem'
 export { default as StyledText } from './StyledText/StyledText'
+export { default as Steps } from './Steps/Steps'
 
 export { default as Accordion } from './Accordion/Accordion'
 export { default as AddressField } from './AddressField/AddressField'

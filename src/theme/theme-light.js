@@ -97,7 +97,7 @@ export default {
   controlSurface: '#F9FAFC',
   controlUnder: '#DDE4E9',
 
-  accent: '#08BEE5',
+  accent: '#01C6FF',
   accentStart: '#32fff5',
   accentEnd: '#08BEE5',
   accentContent: '#FFFFFF',
@@ -114,5 +114,5 @@ export default {
 
   // we don't have next 2 in new design
   brown: '#876559',
-  purple: '#7C80F2',
+  purple: '#B8C2F6',
 }
