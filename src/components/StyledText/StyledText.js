@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { font, warnOnce } from '../../utils'
 import { textStyle } from '../../style/text-styles'
 
 function StyledText({ name, children, ...props }) {
