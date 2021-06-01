@@ -30,16 +30,7 @@ function App() {
         </div>
         <div>
           <TextCopy
-            adornment={
-              <EthIdenticon
-                address={ADDRESS}
-                scale={2}
-                css={`
-                  transform: scale(${(HEIGHT - 2) / IDENTICON_SIZE});
-                  transform-origin: 0 0;
-                `}
-              />
-            }
+            adornment={<EthIdenticon address={ADDRESS} />}
             value="With adornment"
           />
         </div>

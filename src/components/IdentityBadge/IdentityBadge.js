@@ -67,11 +67,7 @@ const IdentityBadge = React.memo(function IdentityBadge({
                 : ''};
             `}
           >
-            <EthIdenticon
-              scale={compact ? 0.75 : 1}
-              radius={compact ? 2 : 0}
-              address={address}
-            />
+            <EthIdenticon scale={1} radius={50} address={address} />
           </div>
         )
       }

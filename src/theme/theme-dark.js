@@ -46,6 +46,21 @@ export default {
   positiveSurface: '#35585e',
   positiveSurfaceContent: '#2cc68f',
 
+  // primary
+  primary: '#00C2FF',
+  primaryEnd: '#01E8F7',
+  primaryContent: '#FFFFFF',
+  primaryHover: '#66DAFF',
+  primaryHoverEnd: '#01E8F7',
+  primaryPressed: '#00ACE2',
+  primaryPressedEnd: '#02DFED',
+
+  // secondary
+  secondary: '#FFFFFF',
+  secondaryContent: '#00C2FF',
+  secondaryHover: '#FFFFFF',
+  secondaryPressed: '#F6F9FC',
+
   badge: '#415279',
   badgeContent: '#ffffff',
   badgePressed: '#4c5d82',

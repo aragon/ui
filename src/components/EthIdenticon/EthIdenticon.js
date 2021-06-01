@@ -5,7 +5,7 @@ import Blockies from 'react-blockies'
 import { stylingProps, isAddress } from '../../utils'
 
 const PX_RATIO = typeof devicePixelRatio === 'undefined' ? 2 : devicePixelRatio
-const BLOCKIES_SQUARES = 8 // commonly used to represent Ethereum addresses
+const BLOCKIES_SQUARES = 6
 const BASE_SCALE = 3
 
 class EthIdenticon extends React.Component {
@@ -17,7 +17,7 @@ class EthIdenticon extends React.Component {
   }
   static defaultProps = {
     scale: 1,
-    radius: 0,
+    radius: 50,
     soften: 0.3,
   }
   render() {
@@ -56,7 +56,7 @@ const Main = styled.div`
   overflow: hidden;
   width: ${p => p.size}px;
   height: ${p => p.size}px;
-  border-radius: ${p => p.radius}px;
+  border-radius: ${p => p.radius}%;
 
   // Fix an issue where the border-radius wasn’t visible on Blink browsers.
   // See https://gist.github.com/ayamflow/b602ab436ac9f05660d9c15190f4fd7b
