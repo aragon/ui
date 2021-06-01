@@ -107,7 +107,7 @@ const WrapperTextInput = React.forwardRef(
       adornment,
       adornmentPosition,
       adornmentSettings: {
-        removeBorder: removeBorder,
+        removeBorder,
         width: adornmentWidth = 40,
         padding: adornmentPadding = 1 * GU,
       },
@@ -176,7 +176,7 @@ WrapperTextInput.propTypes = {
   adornment: PropTypes.node,
   adornmentPosition: PropTypes.oneOf(['start', 'end']),
   adornmentSettings: PropTypes.shape({
-    hasBorder: PropTypes.bool,
+    removeBorder: PropTypes.bool,
     width: PropTypes.number,
     padding: PropTypes.number,
   }),
