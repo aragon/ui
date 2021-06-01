@@ -6,7 +6,7 @@ function Text({
   children,
   color,
   deprecationNotice,
-  monospace,
+  manrope,
   size,
   smallcaps,
   weight,
@@ -24,7 +24,7 @@ function Text({
       css={`
         ${font({
           deprecationNotice: false,
-          monospace,
+          manrope,
           size,
           smallcaps,
           weight,
@@ -45,7 +45,7 @@ Text.propTypes = Block.propTypes = Paragraph.propTypes = {
   children: PropTypes.node,
   color: PropTypes.string,
   deprecationNotice: PropTypes.bool,
-  monospace: PropTypes.bool,
+  manrope: PropTypes.bool,
   size: PropTypes.string,
   smallcaps: PropTypes.bool,
   weight: PropTypes.string,

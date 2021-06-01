@@ -1,4 +1,4 @@
-import { monospace } from '../utils/font'
+import { manrope } from '../utils/font'
 
 const TEXT_STYLES = {
   title1: {
@@ -63,13 +63,13 @@ const TEXT_STYLES = {
     size: 16,
     weight: 400,
     lineHeight: 1.5,
-    monospace: true,
+    manrope: true,
   },
   address2: {
     size: 14,
     weight: 400,
     lineHeight: 1.5,
-    monospace: true,
+    manrope: true,
   },
 }
 
@@ -78,7 +78,7 @@ const STYLES_CSS = {
   weight: value => `font-weight: ${value};`,
   transform: value => `text-transform: ${value};`,
   lineHeight: value => `line-height: ${value};`,
-  monospace: value => (value ? monospace() : ''),
+  manrope: value => (value ? manrope() : ''),
 }
 
 function textStyleToCss(textStyle) {

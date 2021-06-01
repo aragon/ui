@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { createGlobalStyle } from 'styled-components'
 import { PublicUrl } from '../../providers/PublicUrl'
-import { DEFAULT_FONT_FAMILY, MONOSPACE_FONT_FAMILY } from '../../utils'
+import { DEFAULT_FONT_FAMILY, MANROPE_FONT_FAMILY } from '../../utils'
 import { textStyle } from '../../style'
 import { useTheme } from '../../theme'
 
@@ -17,7 +17,7 @@ const DEFAULT_FONTS = {
   '800': { url: overpassSemiBoldWoff2, format: 'woff2' },
 }
 
-const MONOSPACE_FONTS = {
+const MANROPE_FONTS = {
   '400': { url: overpassMonoLightWoff2, format: 'woff2' },
 }
 
@@ -50,8 +50,8 @@ function fontFaceDeclarations({ fontFamily, publicUrl }) {
       font-style: normal;
     }
     @font-face {
-      font-family: ${MONOSPACE_FONT_FAMILY};
-      src: ${fontSrc(publicUrl, MONOSPACE_FONTS['400'])};
+      font-family: ${MANROPE_FONT_FAMILY};
+      src: ${fontSrc(publicUrl, MANROPE_FONTS['400'])};
       font-weight: 400;
       font-style: normal;
     }

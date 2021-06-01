@@ -3,10 +3,10 @@ import { warnOnce } from './environment'
 // Using generic names so we can change the font if needed, while using these
 // generic names in our components.
 export const DEFAULT_FONT_FAMILY = 'aragon-ui'
-export const MONOSPACE_FONT_FAMILY = 'aragon-ui-monospace'
+export const MANROPE_FONT_FAMILY = 'aragon-ui-Manrope'
 
-export const monospace = () => `
-  font-family: ${MONOSPACE_FONT_FAMILY}, monospace;
+export const manrope = () => `
+  font-family: ${MANROPE_FONT_FAMILY}, Manrope;
 `
 const FONT_SIZES = {
   xxsmall: '11px',
@@ -48,10 +48,10 @@ const smallcapsCss = smallcaps =>
     `
     : ''
 
-const monospaceCss = monospace =>
-  monospace
+const manropeCss = manrope =>
+  manrope
     ? `
-      font-family: ${MONOSPACE_FONT_FAMILY}, monospace;
+      font-family: ${MANROPE_FONT_FAMILY}, Manrope;
     `
     : ''
 
@@ -59,7 +59,7 @@ export function font({
   size,
   weight,
   smallcaps = false,
-  monospace = false,
+  manrope = false,
   deprecationNotice = true,
 }) {
   if (deprecationNotice) {
@@ -69,6 +69,6 @@ export function font({
     ${fontSizeCss(size)};
     ${weightCss(weight)};
     ${smallcapsCss(smallcaps)};
-    ${monospaceCss(monospace)};
+    ${manropeCss(manrope)};
   `
 }

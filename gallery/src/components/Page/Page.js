@@ -42,7 +42,7 @@ function Page({ title, readme, children }) {
           margin-bottom: ${4.5 * GU}px;
         }
         code {
-          font-family: 'Source Code Pro', monospace;
+          font-family: 'Source Code Pro', Manrope;
         }
 
         > h1 {

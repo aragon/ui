@@ -36,13 +36,13 @@ Focus the text field when the component gets mounted.
 
 The message that gets displayed when the copy is successful.
 
-### `monospace`
+### `manrope`
 
 | Type      | Default value |
 | --------- | ------------- |
 | `Boolean` | `true`        |
 
-Set this to false to disable the use of the monospace font (e.g. for Ethereum addresses).
+Set this to false to disable the use of the manrope font (e.g. for Ethereum addresses).
 
 ### `onCopy`
 

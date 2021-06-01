@@ -36,7 +36,7 @@ function App() {
         css={`
           display: flex;
           height: 100vh;
-          font-family: monospace;
+          font-family: Manrope;
         `}
       />
     </Main>

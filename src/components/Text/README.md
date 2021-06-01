@@ -10,9 +10,7 @@ It is generally not necessary to use `<Text>` with the default properties:
 ```jsx
 import { Text } from '@aragon/ui'
 
-const App = () => (
-  <Text>Some Text</Text>
-)
+const App = () => <Text>Some Text</Text>
 ```
 
 ## Props
@@ -25,23 +23,23 @@ const App = () => (
 Set this property to a color value to change the text color.
 
 ```jsx
-<Text color='tomato'>Text Example</Text>
+<Text color="tomato">Text Example</Text>
 ```
 
-### `monospace`
+### `manrope`
 
 - Type: `Boolean`
 - Default value: `false`
 
-Set this property to a `true` to render the text using a monospace font.
+Set this property to a `true` to render the text using a manrope font.
 
 ```jsx
-<Text monospace>0xcafe</Text>
+<Text manrope>0xcafe</Text>
 ```
 
 ### `size`
 
-- Type: one of `'xsmall'`, `'small'`, `'normal'`, `'large'`, `'xlarge'`,` 'xxlarge'`
+- Type: one of `'xsmall'`, `'small'`, `'normal'`, `'large'`, `'xlarge'`,`'xxlarge'`
 - Default value: `normal`
 
 Set this property to change the size of the text.

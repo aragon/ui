@@ -95,7 +95,7 @@ main {
   min-height: 100vh;
   align-items: center;
   padding: 0 20px 60px;
-  font: 400 24px/1.5 sans-serif;
+  font: 400 24px/1.5 Manrope;
   color: var(--text-color);
   background: var(--background);
 }
