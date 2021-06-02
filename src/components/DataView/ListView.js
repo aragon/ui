@@ -158,11 +158,11 @@ function EntryExpansion({ expansion, opened, rowHeight }) {
   // Handles the height of the expansion in free layout mode
   const [freeLayoutContentHeight, setFreeLayoutContentHeight] = useState(0)
 
-  const handleFreeLayoutContentRef = useCallback(element => {
+  const handleFreeLayoutContentRef = element => {
     if (element) {
       setFreeLayoutContentHeight(element.getBoundingClientRect().height)
     }
-  }, [])
+  }
 
   const height = expansion.freeLayout
     ? freeLayoutContentHeight
