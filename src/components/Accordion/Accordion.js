@@ -37,6 +37,7 @@ Accordion.propTypes = {
   className: PropTypes.string,
   items: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.node)).isRequired,
   style: PropTypes.object,
+  mode: PropTypes.oneOf(['adaptive', 'table', 'list']),
 }
 
 export default Accordion
