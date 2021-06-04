@@ -2,7 +2,12 @@ import React, { useCallback, useMemo } from 'react'
 import PropTypes from 'prop-types'
 import DataView from '../DataView/DataView'
 
-const Accordion = React.memo(function Accordion({ items, className, style }) {
+const Accordion = React.memo(function Accordion({
+  items,
+  className,
+  style,
+  mode,
+}) {
   const fields = useMemo(() => [null], [])
   const renderEntry = useCallback(([row]) => [row], [])
   const renderEntryExpansion = useCallback(
@@ -19,6 +24,7 @@ const Accordion = React.memo(function Accordion({ items, className, style }) {
       renderEntry={renderEntry}
       renderEntryExpansion={renderEntryExpansion}
       style={style}
+      mode={mode}
     />
   )
 })
@@ -31,6 +37,7 @@ Accordion.propTypes = {
   className: PropTypes.string,
   items: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.node)).isRequired,
   style: PropTypes.object,
+  mode: PropTypes.oneOf(['adaptive', 'table', 'list']),
 }
 
 export default Accordion
