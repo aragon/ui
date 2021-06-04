@@ -92,7 +92,7 @@
     "dayjs": "^1.8.14",
     "js-sha3": "^0.8.0",
     "jsbi": "^3.1.2",
-    "lodash": "^4.17.19",
+    "lodash": "^4.17.21",
     "markdown-to-jsx": "^6.11.0",
     "popper.js": "^1.14.4",
     "prop-types": "^15.6.0",
