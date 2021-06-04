@@ -4,6 +4,9 @@ on:
   push:
     branches: [master]
 
+env:
+  NODE_VERSION: 12.x
+
 jobs:
 
   build:
@@ -13,10 +16,10 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v1
-    - name: Use Node.js 12
+    - name: Use Node.js ${{ env.NODE_VERSION }}
       uses: actions/setup-node@v1
       with:
-        node-version: 12.x
+        node-version: ${{ env.NODE_VERSION }}
     - name: Install, build & test
       run: |
         yarn install --frozen-lockfile
@@ -27,6 +30,16 @@ jobs:
     needs: [build]
     runs-on: ubuntu-latest
     steps:
+    - name: Checkout
+      uses: actions/checkout@v1
+    - name: Use Node.js ${{ env.NODE_VERSION }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+    - name: Install, build & test
+      run: |
+        yarn install --frozen-lockfile
+        yarn build
     - name: Release
       env:
         GITHUB_TOKEN: ${{ secrets.MERGE_RELEASE_GITHUB_TOKEN }}
@@ -37,6 +50,16 @@ jobs:
     needs: [build]
     runs-on: ubuntu-latest
     steps:
+    - name: Checkout
+      uses: actions/checkout@v1
+    - name: Use Node.js ${{ env.NODE_VERSION }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+    - name: Install, build & test
+      run: |
+        yarn install --frozen-lockfile
+        yarn build
     - name: Install, build & prepare
       run: |
         cd gallery
