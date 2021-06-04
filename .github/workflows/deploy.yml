@@ -20,26 +20,31 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ env.NODE_VERSION }}
-    - name: Install, build & test
+    - name: Install, build
       run: |
         yarn install --frozen-lockfile
         yarn build
-        yarn test
+    - name: Cache build
+      uses: actions/cache@v2
+      with:
+        path: ./*
+        key: ${{ github.sha }}
+    - name: Test
+      run: yarn test
 
   release:
     needs: [build]
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout
-      uses: actions/checkout@v1
     - name: Use Node.js ${{ env.NODE_VERSION }}
       uses: actions/setup-node@v1
       with:
         node-version: ${{ env.NODE_VERSION }}
-    - name: Install, build & test
-      run: |
-        yarn install --frozen-lockfile
-        yarn build
+    - name: Restore cache
+      uses: actions/cache@v2
+      with:
+        path: ./*
+        key: ${{ github.sha }}
     - name: Release
       env:
         GITHUB_TOKEN: ${{ secrets.MERGE_RELEASE_GITHUB_TOKEN }}
@@ -50,16 +55,15 @@ jobs:
     needs: [build]
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout
-      uses: actions/checkout@v1
     - name: Use Node.js ${{ env.NODE_VERSION }}
       uses: actions/setup-node@v1
       with:
         node-version: ${{ env.NODE_VERSION }}
-    - name: Install, build & test
-      run: |
-        yarn install --frozen-lockfile
-        yarn build
+    - name: Restore build cache
+      uses: actions/cache@v2
+      with:
+        path: ./*
+        key: ${{ github.sha }}
     - name: Install, build & prepare
       run: |
         cd gallery
@@ -68,8 +72,7 @@ jobs:
         echo 'ui.aragon.org' > dist/CNAME
         cp public/favicon.svg dist
     - name: Push to gh-pages
-      env:
-        ACTIONS_DEPLOY_KEY: ${{ secrets.GH_PAGES_ACTIONS_DEPLOY_KEY }}
-        PUBLISH_BRANCH: gh-pages
-        PUBLISH_DIR: ./gallery/dist
-      uses: peaceiris/actions-gh-pages@v2
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./gallery/dist
