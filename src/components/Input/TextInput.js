@@ -2,7 +2,7 @@ import React, { useCallback } from 'react'
 import PropTypes from 'prop-types'
 import { useTheme } from '../../theme'
 import { warnOnce } from '../../utils'
-import { textStyle, GU, RADII, SPACING } from '../../style'
+import { textStyle, GU, RADII } from '../../style'
 import { useLayout } from '../Layout/Layout'
 
 const borderColor = (theme, status) => {
