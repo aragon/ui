@@ -2,7 +2,7 @@ import React, { useCallback } from 'react'
 import PropTypes from 'prop-types'
 import { useTheme } from '../../theme'
 import { warnOnce } from '../../utils'
-import { textStyle, GU, RADII } from '../../style'
+import { textStyle, GU, RADII, SPACING } from '../../style'
 import { useLayout } from '../Layout/Layout'
 
 const borderColor = (theme, status) => {
@@ -18,7 +18,10 @@ const borderColor = (theme, status) => {
 
 // Simple text input
 const TextInput = React.forwardRef(
-  ({ autofocus, multiline, type, status, ...props }, ref) => {
+  (
+    { autofocus, multiline, type, status, error, title, subtitle, ...props },
+    ref
+  ) => {
     const theme = useTheme()
     const { layoutName } = useLayout()
     const handleRef = useCallback(
@@ -40,10 +43,10 @@ const TextInput = React.forwardRef(
         type={multiline ? undefined : type}
         {...props}
         css={`
-          width: ${({ wide }) => (wide ? '100%' : 'auto')};
+          width: ${({ wide }) => (wide ? '100%' : 'max-content')};
           height: ${5.75 * GU}px;
           padding: 0 ${1.5 * GU}px;
-          background: ${theme.surface};
+          background: ${props.disabled ? theme.surfaceUnder : theme.surface};
           border: 2px solid ${borderColor(theme, status)};
           color: ${theme.surfaceContent};
           border-radius: ${layoutName === 'large'
@@ -85,19 +88,25 @@ const TextInput = React.forwardRef(
 )
 
 TextInput.propTypes = {
+  title: PropTypes.string,
+  subtitle: PropTypes.string,
   autofocus: PropTypes.bool,
   multiline: PropTypes.bool,
   required: PropTypes.bool,
   type: PropTypes.string,
   status: PropTypes.oneOf(['normal', 'success', 'error']),
+  error: PropTypes.string,
 }
 
 TextInput.defaultProps = {
+  title: '',
+  subtitle: '',
   autofocus: false,
   multiline: false,
   required: false,
   type: 'text',
   status: 'normal',
+  error: '',
 }
 
 // Text input wrapped to allow adornments
@@ -210,7 +219,58 @@ TextInputMultiline.defaultProps = {
   required: false,
 }
 
+function TextInputTitled({ title, subtitle, error, ...props }) {
+  const theme = useTheme()
+  return (
+    <div>
+      {title && (
+        <div
+          css={`
+            ${textStyle('title2')};
+          `}
+        >
+          {title}
+        </div>
+      )}
+      {subtitle && (
+        <div
+          css={`
+            ${textStyle('body2')};
+            color: ${theme.disabledContent};
+          `}
+        >
+          {subtitle}
+        </div>
+      )}
+      <WrapperTextInput {...props} />
+      {error && (
+        <div
+          css={`
+            color: ${theme.red};
+            ${textStyle('body4')};
+            margin-left: ${1 * GU}px;
+          `}
+        >
+          {error}
+        </div>
+      )}
+    </div>
+  )
+}
+
+TextInputTitled.propTypes = {
+  title: PropTypes.string,
+  subtitle: PropTypes.string,
+  error: PropTypes.string,
+}
+TextInputTitled.defaultProps = {
+  title: '',
+  subtitle: '',
+  error: '',
+}
+
 WrapperTextInput.Number = TextInputNumber
 WrapperTextInput.Multiline = TextInputMultiline
+WrapperTextInput.Titled = TextInputTitled
 
 export default WrapperTextInput

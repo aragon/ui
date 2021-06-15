@@ -14,9 +14,9 @@ function App() {
       `}
     >
       <TextInput placeholder="Enter something" />
-      <TextInput placeholder="Auto focused" autofocus />
+      <TextInput placeholder="Auto focused" autofocus wide />
       <form>
-        <TextInput placeholder="Enter something" pattern="[A-Za-z]+" />
+        <TextInput placeholder="Enter something" pattern="[A-Za-z]+" wide />
       </form>
       <TextInput
         css="width: 100px"
@@ -43,7 +43,7 @@ function App() {
         adornmentPosition="start"
       />
       <TextInput adornment={<IconBlank />} adornmentPosition="end" />
-      <TextInput.Multiline />
+      <TextInput.Multiline wide />
       <SearchInput
         value={searchTerm}
         onChange={(value, ev) => {
@@ -61,7 +61,50 @@ function App() {
       <TextInput
         adornment={<IconBlank />}
         adornmentPosition="end"
+        status={'error'} // can use 'noraml' , 'error' & 'success'
+      />
+      <TextInput.Titled
+        wide
+        placeholder="have title"
+        title={'The Title'}
+        subtitle={'The Sub Title'}
+      />
+      <TextInput.Titled
+        wide
+        title={'The Title'}
+        subtitle={'The Sub Title'}
+        disabled
+      />
+      <TextInput.Titled
+        wide
+        subtitle={'The Sub Title only'}
+        placeholder="have title and subtitle"
+      />
+      <TextInput.Titled
+        wide
+        subtitle={'The Sub Title only'}
+        placeholder="have Sub Title only"
+        adornment={<IconBlank />}
+        adornmentPosition="end"
+        disabled
+      />
+      <TextInput.Titled
+        wide
+        placeholder="have Sub Title only"
+        title={'The Title'}
+        subtitle={'The Sub Title'}
+        adornment={<IconBlank />}
+        adornmentPosition="start"
+        disabled
+      />
+      <TextInput.Titled
+        wide
+        placeholder="have Title only"
+        title={'The Title'}
+        adornment={<IconBlank />}
+        adornmentPosition="end"
         status={'error'}
+        error={'Some error here....'}
       />
     </div>
   )
