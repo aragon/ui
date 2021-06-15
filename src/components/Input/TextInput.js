@@ -1,7 +1,6 @@
 import React, { useCallback } from 'react'
 import PropTypes from 'prop-types'
 import { useTheme } from '../../theme'
-import { warnOnce } from '../../utils'
 import { textStyle, GU, RADII } from '../../style'
 import { useLayout } from '../Layout/Layout'
 
@@ -18,10 +17,7 @@ const borderColor = (theme, status) => {
 
 // Simple text input
 const TextInput = React.forwardRef(
-  (
-    { autofocus, multiline, type, status, error, title, subtitle, ...props },
-    ref
-  ) => {
+  ({ autofocus, multiline, type, status, ...props }, ref) => {
     const theme = useTheme()
     const { layoutName } = useLayout()
     const handleRef = useCallback(
@@ -110,7 +106,7 @@ TextInput.defaultProps = {
 }
 
 // Text input wrapped to allow adornments
-const WrapperTextInput = React.forwardRef(
+const AdornmentTextInput = React.forwardRef(
   (
     {
       adornment,
@@ -125,7 +121,7 @@ const WrapperTextInput = React.forwardRef(
     ref
   ) => {
     const theme = useTheme()
-    if (!adornment) {
+    if (!adornment || props.multiline) {
       return <TextInput ref={ref} {...props} />
     }
     return (
@@ -180,7 +176,7 @@ const WrapperTextInput = React.forwardRef(
   }
 )
 
-WrapperTextInput.propTypes = {
+AdornmentTextInput.propTypes = {
   ...TextInput.propTypes,
   adornment: PropTypes.node,
   adornmentPosition: PropTypes.oneOf(['start', 'end']),
@@ -191,25 +187,68 @@ WrapperTextInput.propTypes = {
   }),
 }
 
-WrapperTextInput.defaultProps = {
+AdornmentTextInput.defaultProps = {
   ...TextInput.defaultProps,
   adornment: null,
   adornmentPosition: 'start',
   adornmentSettings: {},
 }
 
-// <input type=number> (only for compat)
-function TextInputNumber(props) {
-  warnOnce(
-    'TextInputNumber',
-    'TextInputNumber is deprecated. Please use TextInput instead.'
-  )
-  return <TextInput type="number" {...props} />
+const WrapperTextInput = React.forwardRef(
+  ({ title, subtitle, error, ...props }, ref) => {
+    const theme = useTheme()
+    return (
+      <div>
+        {title && (
+          <div
+            css={`
+              ${textStyle('title2')};
+            `}
+          >
+            {title}
+          </div>
+        )}
+        {subtitle && (
+          <div
+            css={`
+              ${textStyle('body2')};
+              color: ${theme.disabledContent};
+            `}
+          >
+            {subtitle}
+          </div>
+        )}
+        <AdornmentTextInput ref={ref} {...props} />
+        {error && (
+          <div
+            css={`
+              color: ${theme.red};
+              ${textStyle('body4')};
+              margin-left: ${1 * GU}px;
+            `}
+          >
+            {error}
+          </div>
+        )}
+      </div>
+    )
+  }
+)
+
+WrapperTextInput.propTypes = {
+  title: PropTypes.string,
+  subtitle: PropTypes.string,
+  error: PropTypes.string,
+}
+WrapperTextInput.defaultProps = {
+  title: '',
+  subtitle: '',
+  error: '',
 }
 
 // Multiline input (textarea element)
 function TextInputMultiline(props) {
-  return <TextInput multiline {...props} />
+  return <WrapperTextInput multiline {...props} />
 }
 
 TextInputMultiline.propTypes = {
@@ -219,58 +258,6 @@ TextInputMultiline.defaultProps = {
   required: false,
 }
 
-function TextInputTitled({ title, subtitle, error, ...props }) {
-  const theme = useTheme()
-  return (
-    <div>
-      {title && (
-        <div
-          css={`
-            ${textStyle('title2')};
-          `}
-        >
-          {title}
-        </div>
-      )}
-      {subtitle && (
-        <div
-          css={`
-            ${textStyle('body2')};
-            color: ${theme.disabledContent};
-          `}
-        >
-          {subtitle}
-        </div>
-      )}
-      <WrapperTextInput {...props} />
-      {error && (
-        <div
-          css={`
-            color: ${theme.red};
-            ${textStyle('body4')};
-            margin-left: ${1 * GU}px;
-          `}
-        >
-          {error}
-        </div>
-      )}
-    </div>
-  )
-}
-
-TextInputTitled.propTypes = {
-  title: PropTypes.string,
-  subtitle: PropTypes.string,
-  error: PropTypes.string,
-}
-TextInputTitled.defaultProps = {
-  title: '',
-  subtitle: '',
-  error: '',
-}
-
-WrapperTextInput.Number = TextInputNumber
 WrapperTextInput.Multiline = TextInputMultiline
-WrapperTextInput.Titled = TextInputTitled
 
 export default WrapperTextInput

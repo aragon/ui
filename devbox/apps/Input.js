@@ -36,7 +36,7 @@ function App() {
           padding: 8,
         }}
       />
-      <TextInput />
+      <TextInput type="number" placeholder={'number only'} />
       <TextInput
         adornment={<IconBlank />}
         adornmentSettings={{ width: 55, padding: 25 }}
@@ -44,6 +44,12 @@ function App() {
       />
       <TextInput adornment={<IconBlank />} adornmentPosition="end" />
       <TextInput.Multiline wide />
+      <TextInput.Multiline
+        wide
+        status={'error'}
+        error={'some error also...'}
+        adornment={<IconBlank />}
+      />
       <SearchInput
         value={searchTerm}
         onChange={(value, ev) => {
@@ -63,24 +69,19 @@ function App() {
         adornmentPosition="end"
         status={'error'} // can use 'noraml' , 'error' & 'success'
       />
-      <TextInput.Titled
+      <TextInput
         wide
         placeholder="have title"
         title={'The Title'}
         subtitle={'The Sub Title'}
       />
-      <TextInput.Titled
-        wide
-        title={'The Title'}
-        subtitle={'The Sub Title'}
-        disabled
-      />
-      <TextInput.Titled
+      <TextInput wide title={'The Title'} subtitle={'The Sub Title'} disabled />
+      <TextInput
         wide
         subtitle={'The Sub Title only'}
         placeholder="have title and subtitle"
       />
-      <TextInput.Titled
+      <TextInput
         wide
         subtitle={'The Sub Title only'}
         placeholder="have Sub Title only"
@@ -88,16 +89,15 @@ function App() {
         adornmentPosition="end"
         disabled
       />
-      <TextInput.Titled
+      <TextInput
         wide
-        placeholder="have Sub Title only"
+        placeholder="have Title only"
         title={'The Title'}
-        subtitle={'The Sub Title'}
         adornment={<IconBlank />}
         adornmentPosition="start"
         disabled
       />
-      <TextInput.Titled
+      <TextInput
         wide
         placeholder="have Title only"
         title={'The Title'}
