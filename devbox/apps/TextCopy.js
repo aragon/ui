@@ -40,6 +40,22 @@ function App() {
           value="With 250px width"
           showShadow
           width={'250px'}
+          title={'some Title'}
+        />
+      </div>
+      <div>
+        <TextCopy
+          value="sub title only"
+          showShadow
+          subtitle={'some Sub Title ... .. . .. .'}
+        />
+      </div>
+      <div>
+        <TextCopy
+          value="both title and sub title ..."
+          showShadow
+          title={'some Title'}
+          subtitle={'some Sub Title ... .. . .. .'}
         />
       </div>
     </div>
