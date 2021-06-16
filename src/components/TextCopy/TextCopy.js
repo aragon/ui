@@ -52,13 +52,14 @@ const TextCopy = React.memo(
         css={`
           position: relative;
           display: inline-flex;
-          width: ${52.5 * GU}px;
+          width: ${props.width ? props.width : '100%'};
           max-width: 100%;
           height: ${HEIGHT + 2}px;
           padding-left: ${adornment ? `${HEIGHT}px` : '0'};
           border: 1px solid ${theme.border};
           border-radius: ${RADII.tiny}px;
-          box-shadow: 2.5px 3px 3px rgba(180, 193, 228, 0.35);
+          ${props.showShadow &&
+            'box-shadow: 2px 3px 3px rgba(180, 193, 228, 0.35);'}
         `}
         {...props}
       >

@@ -198,7 +198,11 @@ const WrapperTextInput = React.forwardRef(
   ({ title, subtitle, error, ...props }, ref) => {
     const theme = useTheme()
     return (
-      <div>
+      <div
+        css={`
+          width: ${props.wide ? '100%' : 'auto'};
+        `}
+      >
         {title && (
           <div
             css={`

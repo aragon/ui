@@ -10,30 +10,37 @@ function App() {
   return (
     <div
       css={`
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        height: 100vh;
+        padding: 100px;
+        display: grid;
+        grid-gap: 20px;
       `}
     >
-      <div
-        css={`
-          display: grid;
-          grid-gap: 20px;
-        `}
-      >
-        <div>
-          <TextCopy value="Copy me!" />
-        </div>
-        <div>
-          <TextCopy value="Focused on mount" autofocus />
-        </div>
-        <div>
-          <TextCopy
-            adornment={<EthIdenticon address={ADDRESS} />}
-            value="With adornment"
-          />
-        </div>
+      <div>
+        <TextCopy value="Copy me!" />
+      </div>
+      <div>
+        <TextCopy value="Focused on mount" autofocus />
+      </div>
+      <div>
+        <TextCopy
+          adornment={<EthIdenticon address={ADDRESS} />}
+          value="With adornment"
+        />
+      </div>
+      <div>
+        <TextCopy
+          adornment={<EthIdenticon address={ADDRESS} />}
+          value="With adornment and shadow"
+          showShadow
+        />
+      </div>
+      <div>
+        <TextCopy
+          adornment={<EthIdenticon address={ADDRESS} />}
+          value="With 250px width"
+          showShadow
+          width={'250px'}
+        />
       </div>
     </div>
   )
