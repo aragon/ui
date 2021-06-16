@@ -1,8 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { useInside } from 'use-inside'
 import { noop, warnOnce } from '../../utils'
-import { useLayout } from '../Layout/Layout'
 import { useTheme } from '../../theme'
 import Content from './Content'
 
