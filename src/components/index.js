@@ -1,4 +1,5 @@
 // new
+export { default as ContentSwitcher } from './ContentSwitcher/ContentSwitcher'
 export { default as Grid } from './Grid/Grid'
 export { default as GridItem } from './Grid/GridItem'
 export { default as StyledText } from './StyledText/StyledText'
