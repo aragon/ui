@@ -157,12 +157,16 @@ TextCopy.propTypes = {
   manrope: PropTypes.bool,
   onCopy: PropTypes.func,
   value: PropTypes.string,
+  showShadow: PropTypes.bool,
+  width: PropTypes.string,
 }
 
 TextCopy.defaultProps = {
   autofocus: false,
   message: 'Copied',
   manrope: true,
+  width: '100%',
+  showShadow: false,
 }
 
 export default TextCopy

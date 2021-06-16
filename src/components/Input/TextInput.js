@@ -243,11 +243,13 @@ WrapperTextInput.propTypes = {
   title: PropTypes.string,
   subtitle: PropTypes.string,
   error: PropTypes.string,
+  wide: PropTypes.bool,
 }
 WrapperTextInput.defaultProps = {
   title: '',
   subtitle: '',
   error: '',
+  wide: false,
 }
 
 // Multiline input (textarea element)
