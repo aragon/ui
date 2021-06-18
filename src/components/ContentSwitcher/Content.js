@@ -18,7 +18,7 @@ function Content({ paddingSettings, index, item, selected, onChange }) {
         css={`
           ${textStyle('title4')};
           border-radius: 10em;
-          transition: background 1000ms ease-in-out;
+          transition: background 100ms ease-in-out;
           ${selected &&
             `background: linear-gradient(
             108deg,
@@ -31,12 +31,7 @@ function Content({ paddingSettings, index, item, selected, onChange }) {
         }px ${paddingSettings.vertical}px ${paddingSettings.horizontal}px;
           margin: 2px;
           &:active {
-            color: ${theme.primaryContent};
-            background: linear-gradient(
-              108deg,
-              ${theme.primary} 1.46%,
-              ${theme.primaryEnd} 100%
-            );
+            color: ${theme.purple};
           }
         `}
       >

@@ -77,7 +77,7 @@ BaseStyles.propTypes = {
 
 BaseStyles.defaultProps = {
   publicUrl: '/',
-  fontFamily: `${DEFAULT_FONT_FAMILY}, sans-serif`,
+  fontFamily: 'Poppins', // `${DEFAULT_FONT_FAMILY}, sans-serif !important`,
 }
 
 const GlobalStyle = createGlobalStyle`

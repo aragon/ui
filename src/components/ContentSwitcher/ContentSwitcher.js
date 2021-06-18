@@ -30,7 +30,7 @@ function ContentBar({ items, selected, onChange, ...props }) {
 
 ContentBar.propTypes = {
   items: PropTypes.arrayOf(PropTypes.node).isRequired,
-  selected: PropTypes.number,
+  selected: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
   onChange: PropTypes.func,
   wide: PropTypes.bool,
 }

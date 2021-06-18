@@ -1,28 +1,76 @@
 import { manrope } from '../utils/font'
 
 const TEXT_STYLES = {
-  title1: {
-    size: 32,
+  header1: {
+    size: 74,
+    weight: 700,
+    lineHeight: 2,
+  },
+  header2: {
+    size: 64,
+    weight: 700,
+    lineHeight: 2,
+  },
+  header3: {
+    size: 54,
     weight: 600,
+    lineHeight: 2,
+  },
+  header4: {
+    size: 44,
+    weight: 500,
+    lineHeight: 2,
+  },
+  header5: {
+    size: 34,
+    weight: 500,
+    lineHeight: 2,
+  },
+  header6: {
+    size: 24,
+    weight: 500,
+    lineHeight: 2,
+  },
+
+  paragraph1: {
+    size: 28,
+    weight: 500,
+    lineHeight: 2,
+  },
+  paragraph2: {
+    size: 28,
+    weight: 500,
+    lineHeight: 2,
+  },
+  paragraph3: {
+    size: 20,
+    weight: 400,
+    lineHeight: 2,
+  },
+
+  title1: {
+    size: 24,
+    weight: 500,
     lineHeight: 1.5,
   },
   title2: {
-    size: 26,
-    weight: 400,
+    size: 18,
+    weight: 500,
     lineHeight: 1.5,
   },
   title3: {
-    size: 24,
+    size: 18,
     weight: 400,
     lineHeight: 1.5,
   },
   title4: {
-    size: 20,
+    size: 16,
     weight: 400,
     lineHeight: 1.5,
   },
+
   body1: {
-    size: 18,
+    size: 20,
     weight: 400,
     lineHeight: 1.5,
   },
