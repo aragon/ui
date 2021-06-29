@@ -57,6 +57,7 @@ export { default as Markdown } from './Markdown/Markdown'
 export { default as RootPortal } from './RootPortal/RootPortal'
 export { default as ScrollView } from './ScrollView/ScrollView'
 export { default as SearchInput } from './Input/SearchInput'
+export { default as FileInput } from './Input/FileInput'
 export {
   default as SidePanel,
   useSidePanel,

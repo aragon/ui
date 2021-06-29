@@ -1,9 +1,23 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import { TextInput, IconBlank, SearchInput } from '@aragon/ui'
+import { TextInput, IconBlank, SearchInput, FileInput } from '@aragon/ui'
 
 function App() {
   const [searchTerm, setSearchTerm] = useState('')
+  const [files, setFiles] = useState()
+  const [filesObj, setFilesObj] = useState(null)
+  useEffect(() => {
+    if (files) {
+      setFilesObj(
+        Object.keys(files).map(key => ({
+          status: 'success',
+          name: files[key].name,
+          url: `https://www.google.com`,
+        }))
+      )
+    }
+  }, [files])
+
   return (
     <div
       css={`
@@ -105,6 +119,18 @@ function App() {
         adornmentPosition="end"
         status={'error'}
         error={'Some error here....'}
+      />
+      <FileInput
+        wide
+        type="file"
+        placeholder="have Title only"
+        title={'The Title'}
+        subtitle={'The Sub Title'}
+        status={'error'}
+        error={'Some error here....'}
+        filesArgs={filesObj}
+        setFiles={setFiles}
+        multiple={true}
       />
     </div>
   )
