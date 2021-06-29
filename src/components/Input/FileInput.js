@@ -42,28 +42,32 @@ const FileInput = React.forwardRef(
     const { layoutName } = useLayout()
     const radius = layoutName === 'large' ? RADII['medium'] : RADII[layoutName]
     const [isDragOver, setIsDragOver] = useState(false)
-    const centerText = text || (
-      <div
-        css={`
-          display: flex;
-          flex-direction: row;
-          padding: ${SPACING[layoutName]}px;
-          color: ${theme.hint};
-        `}
-      >
-        <StyledText name="title3">'Drag & drop or </StyledText>
-        <StyledText
-          name="title3"
+    const centerText =
+      text ||
+      (isDragOver ? (
+        <StyledText name="title3">Drop files to upload!</StyledText>
+      ) : (
+        <div
           css={`
-            color: ${theme.primary};
-            margin: 0 ${GU}px 0 ${GU}px;
+            display: flex;
+            flex-direction: row;
+            padding: ${SPACING[layoutName]}px;
+            color: ${theme.hint};
           `}
         >
-          browse
-        </StyledText>
-        <StyledText name="title3">files to upload!</StyledText>
-      </div>
-    )
+          <StyledText name="title3">Drag & drop or </StyledText>
+          <StyledText
+            name="title3"
+            css={`
+              color: ${theme.primary};
+              margin: 0 ${GU}px 0 ${GU}px;
+            `}
+          >
+            browse
+          </StyledText>
+          <StyledText name="title3">files to upload!</StyledText>
+        </div>
+      ))
 
     const handleRef = useCallback(
       element => {
@@ -85,14 +89,17 @@ const FileInput = React.forwardRef(
     }
 
     const handleDragLeave = event => {
-      if (!event.relatedTarget) {
-        setIsDragOver(false)
-      }
+      setIsDragOver(false)
     }
 
     const handleDrop = event => {
       setIsDragOver(false)
       setFiles(event.nativeEvent.dataTransfer.files)
+    }
+
+    const handleChange = event => {
+      const eventFiles = event.target.files
+      setFiles(eventFiles)
     }
 
     return (
@@ -147,6 +154,7 @@ const FileInput = React.forwardRef(
               onDragEnter={handleDragEnter}
               onDragLeave={handleDragLeave}
               onDrop={handleDrop}
+              onChange={handleChange}
               css={`
                 position: absolute;
                 top: 0;

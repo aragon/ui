@@ -132,9 +132,7 @@ function App() {
         error={'Some error here....'}
       />
       <FileInput
-        wide
         type="file"
-        placeholder="have Title only"
         title={'The Title'}
         subtitle={'The Sub Title'}
         status={'error'}
