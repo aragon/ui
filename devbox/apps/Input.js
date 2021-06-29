@@ -135,6 +135,23 @@ function App() {
         type="file"
         title={'The Title'}
         subtitle={'The Sub Title'}
+        filesArgs={filesObj}
+        setFiles={setFiles}
+        multiple={true}
+      />
+      <TextInput
+        wide
+        placeholder="have Title only"
+        title={'The Title'}
+        adornment={<IconBlank />}
+        adornmentPosition="end"
+        status={'error'}
+        error={'Some error here....'}
+      />
+      <FileInput
+        type="file"
+        title={'The Title'}
+        subtitle={'The Sub Title'}
         status={'error'}
         error={'Some error here....'}
         filesArgs={filesObj}

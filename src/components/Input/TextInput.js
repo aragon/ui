@@ -227,7 +227,7 @@ const WrapperTextInput = React.forwardRef(
           <div
             css={`
               color: ${theme.red};
-              ${textStyle('body4')};
+              ${textStyle('body3')};
               margin-left: ${1 * GU}px;
             `}
           >

@@ -139,7 +139,8 @@ const FileInput = React.forwardRef(
               position: relative;
               width: 100%;
               height: ${props.height}px;
-              border: ${!isDragOver ? 'dashed' : 'solid'} 1px ${theme.primary};
+              border: ${!isDragOver ? 'dashed' : 'solid'} 1px
+                ${error ? theme.red : theme.primary};
               border-radius: ${radius}px;
               display: flex;
               flex-direction: column;
@@ -227,6 +228,17 @@ const FileInput = React.forwardRef(
               )}
           </div>
         </div>
+        {error && (
+          <div
+            css={`
+              color: ${theme.red};
+              ${textStyle('body3')};
+              margin-left: ${1 * GU}px;
+            `}
+          >
+            {error}
+          </div>
+        )}
       </div>
     )
   }
