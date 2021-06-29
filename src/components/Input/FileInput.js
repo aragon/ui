@@ -34,6 +34,7 @@ const FileInput = React.forwardRef(
       setFiles,
       text,
       multiple,
+      onChange,
       ...props
     },
     ref
@@ -100,6 +101,9 @@ const FileInput = React.forwardRef(
     const handleChange = event => {
       const eventFiles = event.target.files
       setFiles(eventFiles)
+      if (onChange) {
+        onChange(eventFiles)
+      }
     }
 
     return (
@@ -263,6 +267,7 @@ FileInput.propTypes = {
   text: PropTypes.any,
   multiple: PropTypes.bool,
   height: PropTypes.number,
+  onChange: PropTypes.func,
 }
 
 FileInput.defaultProps = {
@@ -277,6 +282,7 @@ FileInput.defaultProps = {
   text: null,
   multiple: false,
   height: 15 * GU,
+  onChange: () => {},
 }
 
 export default FileInput
