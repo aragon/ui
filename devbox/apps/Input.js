@@ -5,7 +5,7 @@ import { TextInput, IconBlank, SearchInput, FileInput } from '@aragon/ui'
 function App() {
   const [searchTerm, setSearchTerm] = useState('')
   const [files, setFiles] = useState()
-  const [filesObj, setFilesObj] = useState(null)
+  const [valueArr, setFilesObj] = useState(null)
   useEffect(() => {
     if (files) {
       setFilesObj(
@@ -135,8 +135,8 @@ function App() {
         type="file"
         title={'The Title'}
         subtitle={'The Sub Title'}
-        filesArgs={filesObj}
-        setFiles={setFiles}
+        value={valueArr}
+        onChange={setFiles}
         multiple={true}
       />
       <TextInput
@@ -154,8 +154,8 @@ function App() {
         subtitle={'The Sub Title'}
         status={'error'}
         error={'Some error here....'}
-        filesArgs={filesObj}
-        setFiles={setFiles}
+        value={valueArr}
+        onChange={setFiles}
         multiple={true}
       />
     </div>

@@ -20,7 +20,6 @@ const getStatusIcon = status => {
   }
 }
 
-// Simple text input
 const FileInput = React.forwardRef(
   (
     {
@@ -30,8 +29,7 @@ const FileInput = React.forwardRef(
       status,
       error,
       disabled,
-      filesArgs,
-      setFiles,
+      value,
       text,
       multiple,
       onChange,
@@ -95,12 +93,13 @@ const FileInput = React.forwardRef(
 
     const handleDrop = event => {
       setIsDragOver(false)
-      setFiles(event.nativeEvent.dataTransfer.files)
+      if (onChange) {
+        onChange(event.nativeEvent.dataTransfer.files)
+      }
     }
 
     const handleChange = event => {
       const eventFiles = event.target.files
-      setFiles(eventFiles)
       if (onChange) {
         onChange(eventFiles)
       }
@@ -197,8 +196,8 @@ const FileInput = React.forwardRef(
               flex-direction: column;
             `}
           >
-            {filesArgs &&
-              filesArgs.map((f, k) => (
+            {value &&
+              value.map((f, k) => (
                 <div
                   key={`lv-${k}`}
                   css={`
@@ -217,8 +216,8 @@ const FileInput = React.forwardRef(
               flex-direction: column;
             `}
           >
-            {filesArgs &&
-              filesArgs.map(
+            {value &&
+              value.map(
                 (f, k) =>
                   f.url && (
                     <a
@@ -262,8 +261,7 @@ FileInput.propTypes = {
   status: PropTypes.oneOf(['normal', 'success', 'error']),
   error: PropTypes.string,
   disabled: PropTypes.bool,
-  filesArgs: PropTypes.arrayOf(filesArgs),
-  setFiles: PropTypes.func,
+  value: PropTypes.arrayOf(filesArgs),
   text: PropTypes.any,
   multiple: PropTypes.bool,
   height: PropTypes.number,
@@ -278,7 +276,7 @@ FileInput.defaultProps = {
   status: 'normal',
   error: '',
   disabled: false,
-  filesArgs: null,
+  value: null,
   text: null,
   multiple: false,
   height: 15 * GU,
