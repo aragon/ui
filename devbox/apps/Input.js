@@ -10,10 +10,21 @@ function App() {
     if (files) {
       setFilesObj(
         Object.keys(files).map(key => ({
-          status: 'success',
+          status: 'loading',
           name: files[key].name,
-          url: `https://www.google.com`,
+          url: null,
         }))
+      )
+      setTimeout(
+        () =>
+          setFilesObj(
+            Object.keys(files).map(key => ({
+              status: ['success', 'fail'][Math.round(Math.random())],
+              name: files[key].name,
+              url: `https://www.google.com`,
+            }))
+          ),
+        3000
       )
     }
   }, [files])

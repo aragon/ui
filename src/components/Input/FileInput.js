@@ -5,15 +5,18 @@ import { textStyle, SPACING, RADII, GU } from '../../style'
 import { useLayout } from '../Layout/Layout'
 import { IconCheck, IconCross } from '../../icons'
 import StyledText from '../StyledText/StyledText'
+import LoadingRing from '../LoadingRing/LoadingRing'
 
 const getStatusIcon = status => {
   switch (status) {
-    case 'error':
+    case 'fail':
       return <IconCross />
     case 'success':
       return <IconCheck />
+    case 'loading':
+      return <LoadingRing />
     default:
-      return
+      return null
   }
 }
 
@@ -82,7 +85,7 @@ const FileInput = React.forwardRef(
     }
 
     const handleDragLeave = event => {
-      if (!event.relatedTarget || event.relatedTarget.id !== buttonId) {
+      if (!event.relatedTarget) {
         setIsDragOver(false)
       }
     }
@@ -95,7 +98,7 @@ const FileInput = React.forwardRef(
     return (
       <div
         css={`
-          width: ${props.wide ? '100%' : 'auto'};
+          width: 100%;
         `}
       >
         {title && (
@@ -128,7 +131,7 @@ const FileInput = React.forwardRef(
             css={`
               position: relative;
               width: 100%;
-              height: ${props.height || 15 * GU}px;
+              height: ${props.height}px;
               border: ${!isDragOver ? 'dashed' : 'solid'} 1px ${theme.primary};
               border-radius: ${radius}px;
               display: flex;
@@ -202,11 +205,18 @@ const FileInput = React.forwardRef(
             `}
           >
             {filesArgs &&
-              filesArgs.map((f, k) => (
-                <a key={`rv-${k}`} href={f.url ? f.url : '#'} target="_blank">
-                  View Document
-                </a>
-              ))}
+              filesArgs.map(
+                (f, k) =>
+                  f.url && (
+                    <a
+                      key={`rv-${k}`}
+                      href={f.url ? f.url : '#'}
+                      target="_blank"
+                    >
+                      View Document
+                    </a>
+                  )
+              )}
           </div>
         </div>
       </div>
@@ -215,7 +225,7 @@ const FileInput = React.forwardRef(
 )
 
 const filesArgs = PropTypes.shape({
-  status: PropTypes.oneOf(['none', 'success', 'fail']),
+  status: PropTypes.oneOf(['none', 'loading', 'success', 'fail']),
   name: PropTypes.string,
   url: PropTypes.string,
 })
@@ -232,6 +242,7 @@ FileInput.propTypes = {
   setFiles: PropTypes.func,
   text: PropTypes.any,
   multiple: PropTypes.bool,
+  height: PropTypes.number,
 }
 
 FileInput.defaultProps = {
@@ -245,6 +256,7 @@ FileInput.defaultProps = {
   filesArgs: null,
   text: null,
   multiple: false,
+  height: 15 * GU,
 }
 
 export default FileInput
