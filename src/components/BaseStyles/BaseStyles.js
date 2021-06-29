@@ -6,19 +6,20 @@ import { DEFAULT_FONT_FAMILY, MANROPE_FONT_FAMILY } from '../../utils'
 import { textStyle } from '../../style'
 import { useTheme } from '../../theme'
 
-import overpassLightWoff2 from './assets/overpass/overpass-light.woff2'
-import overpassRegularWoff2 from './assets/overpass/overpass-regular.woff2'
-import overpassSemiBoldWoff2 from './assets/overpass/overpass-semibold.woff2'
-import overpassMonoLightWoff2 from './assets/overpass-mono/overpass-mono-light.woff2'
+// import overpassLightWoff2 from './assets/overpass/overpass-light.woff2'
+// import overpassRegularWoff2 from './assets/overpass/overpass-regular.woff2'
+// import overpassSemiBoldWoff2 from './assets/overpass/overpass-semibold.woff2'
+// import overpassMonoLightWoff2 from './assets/overpass-mono/overpass-mono-light.woff2'
+import manropev4latinwoff2 from './assets/manrope/manrope-v4-latin-regular.woff2'
 
 const DEFAULT_FONTS = {
-  '400': { url: overpassLightWoff2, format: 'woff2' },
-  '600': { url: overpassRegularWoff2, format: 'woff2' },
-  '800': { url: overpassSemiBoldWoff2, format: 'woff2' },
+  '400': { url: manropev4latinwoff2, format: 'woff2' },
+  '600': { url: manropev4latinwoff2, format: 'woff2' },
+  '800': { url: manropev4latinwoff2, format: 'woff2' },
 }
 
 const MANROPE_FONTS = {
-  '400': { url: overpassMonoLightWoff2, format: 'woff2' },
+  '400': { url: manropev4latinwoff2, format: 'woff2' },
 }
 
 function fontSrc(publicUrl, { url, format }) {
@@ -77,7 +78,7 @@ BaseStyles.propTypes = {
 
 BaseStyles.defaultProps = {
   publicUrl: '/',
-  fontFamily: 'Poppins', // `${DEFAULT_FONT_FAMILY}, sans-serif !important`,
+  fontFamily: `${DEFAULT_FONT_FAMILY}, sans-serif`,
 }
 
 const GlobalStyle = createGlobalStyle`
