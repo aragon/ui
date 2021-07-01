@@ -158,6 +158,16 @@ function App() {
         onChange={setFiles}
         multiple={true}
       />
+      <FileInput
+        type="file"
+        title={'The Title'}
+        subtitle={'The Sub Title'}
+        status={'error'}
+        error={'Some error here....'}
+        value={valueArr}
+        onChange={setFiles}
+        multiple={true}
+      />
     </div>
   )
 }

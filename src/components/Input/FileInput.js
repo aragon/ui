@@ -46,26 +46,17 @@ const FileInput = React.forwardRef(
       (isDragOver ? (
         <StyledText name="title3">Drop files to upload!</StyledText>
       ) : (
-        <div
-          css={`
-            display: flex;
-            flex-direction: row;
-            padding: ${SPACING[layoutName]}px;
-            color: ${theme.hint};
-          `}
-        >
-          <StyledText name="title3">Drag & drop or </StyledText>
-          <StyledText
-            name="title3"
+        <p>
+          Drag & drop or{' '}
+          <span
             css={`
               color: ${theme.primary};
-              margin: 0 ${GU}px 0 ${GU}px;
             `}
           >
             browse
-          </StyledText>
-          <StyledText name="title3">files to upload!</StyledText>
-        </div>
+          </span>{' '}
+          files to upload!
+        </p>
       ))
 
     const handleRef = useCallback(
@@ -99,9 +90,8 @@ const FileInput = React.forwardRef(
     }
 
     const handleChange = event => {
-      const eventFiles = event.target.files
       if (onChange) {
-        onChange(eventFiles)
+        onChange(event.target.files)
       }
     }
 
@@ -171,7 +161,7 @@ const FileInput = React.forwardRef(
             <StyledText
               name="title3"
               css={`
-                padding: ${SPACING[layoutName]}px;
+                margin: ${SPACING[layoutName]}px;
                 color: ${theme.hint};
               `}
             >

@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { ContentSwitcher, GU } from '@aragon/ui'
 
 const ITEMS = ['One', 'Two', 'Three long', 'Four very very long', 'Five']
+const ITEMS2 = ['One', 'Two']
 
 class App extends React.Component {
   render() {
@@ -35,7 +36,7 @@ class App extends React.Component {
           selected={5}
           items={[...ITEMS, 'different padding arround words']}
           disabled
-          paddingSettings={{ horizontal: 20, vertical: 20 }}
+          // paddingSettings={{ horizontal: 20, vertical: 20 }}
         />
         <div>{'wide width passed: wide'}</div>
         <ContentSwitcher
@@ -47,6 +48,23 @@ class App extends React.Component {
           disabled
           wide
         />
+        <div
+          css={`
+            display: grid;
+            grid-template-columns: 30% 1fr;
+            grid-gap: 20px;
+            padding: 40px 0;
+          `}
+        >
+          <ContentSwitcher
+            onChange={() => {
+              console.log('item 0 selected only')
+            }}
+            selected={0}
+            items={ITEMS2}
+            disabled
+          />
+        </div>
       </div>
     )
   }

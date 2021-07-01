@@ -112,7 +112,6 @@ export default {
   // new black color
   black: '#20232C',
 
-  // we don't have next 2 in new design
   brown: '#876559',
   purple: '#B8C2F6',
 }
