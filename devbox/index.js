@@ -36,7 +36,11 @@ function Devbox() {
     return CurrentApp._bare ? (
       <CurrentApp />
     ) : (
-      <Main layout={false} theme={theme}>
+      <Main
+        layout={false}
+        theme={theme}
+        toastProps={{ top: true, position: 'center' }}
+      >
         <AppWrapper>
           <CurrentApp />
         </AppWrapper>

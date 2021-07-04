@@ -17,7 +17,7 @@ const {
   useRegister: useRegisterAppView,
 } = initContainsComponent()
 
-function Main({ assetsUrl, children, layout, scrollView, theme }) {
+function Main({ assetsUrl, children, layout, scrollView, theme, toastProps }) {
   const containsAppView = useContainsAppView()
 
   if (layout === undefined) {
@@ -44,7 +44,7 @@ function Main({ assetsUrl, children, layout, scrollView, theme }) {
         <PublicUrl.Provider url={ensureTrailingSlash(assetsUrl)}>
           <Theme theme={theme}>
             <BaseStyles />
-            <ToastHub>{content}</ToastHub>
+            <ToastHub {...toastProps}>{content}</ToastHub>
           </Theme>
         </PublicUrl.Provider>
       </Viewport.Provider>
@@ -58,6 +58,7 @@ Main.propTypes = {
   layout: PropTypes.bool,
   scrollView: PropTypes.bool,
   theme: Theme.propTypes.theme,
+  toastProps: PropTypes.any,
 }
 
 Main.defaultProps = {
