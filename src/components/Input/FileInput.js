@@ -104,7 +104,7 @@ const FileInput = React.forwardRef(
         {title && (
           <div
             css={`
-              ${textStyle('title2')};
+              ${textStyle('title3')};
             `}
           >
             {title}
@@ -113,7 +113,7 @@ const FileInput = React.forwardRef(
         {subtitle && (
           <div
             css={`
-              ${textStyle('body2')};
+              ${textStyle('title4')};
               color: ${theme.disabledContent};
             `}
           >

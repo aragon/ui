@@ -66,7 +66,7 @@ const TextCopy = React.memo(
         {title && (
           <div
             css={`
-              ${textStyle('title2')};
+              ${textStyle('title3')};
             `}
           >
             {title}
@@ -75,7 +75,7 @@ const TextCopy = React.memo(
         {subtitle && (
           <div
             css={`
-              ${textStyle('body2')};
+              ${textStyle('title4')};
               color: ${theme.disabledContent};
             `}
           >

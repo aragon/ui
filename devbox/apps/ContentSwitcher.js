@@ -57,6 +57,8 @@ class App extends React.Component {
           `}
         >
           <ContentSwitcher
+            title="Title"
+            subtitle="Subtitle"
             onChange={() => {
               console.log('item 0 selected only')
             }}

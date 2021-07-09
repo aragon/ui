@@ -206,7 +206,7 @@ const WrapperTextInput = React.forwardRef(
         {title && (
           <div
             css={`
-              ${textStyle('title2')};
+              ${textStyle('title3')};
             `}
           >
             {title}
@@ -215,7 +215,7 @@ const WrapperTextInput = React.forwardRef(
         {subtitle && (
           <div
             css={`
-              ${textStyle('body2')};
+              ${textStyle('title4')};
               color: ${theme.disabledContent};
             `}
           >
