@@ -34,7 +34,7 @@ const TEXT_STYLES = {
 
   paragraph1: {
     size: 28,
-    weight: 500,
+    weight: 600,
     lineHeight: 2,
   },
   paragraph2: {
@@ -50,17 +50,17 @@ const TEXT_STYLES = {
 
   title1: {
     size: 24,
-    weight: 500,
+    weight: 600,
     lineHeight: 1.5,
   },
   title2: {
     size: 18,
-    weight: 500,
+    weight: 600,
     lineHeight: 1.5,
   },
   title3: {
     size: 18,
-    weight: 400,
+    weight: 500,
     lineHeight: 1.5,
   },
   title4: {
@@ -71,12 +71,12 @@ const TEXT_STYLES = {
 
   body1: {
     size: 20,
-    weight: 400,
+    weight: 600,
     lineHeight: 1.5,
   },
   body2: {
     size: 16,
-    weight: 400,
+    weight: 500,
     lineHeight: 1.5,
   },
   body3: {
@@ -93,19 +93,16 @@ const TEXT_STYLES = {
     size: 14,
     weight: 400,
     lineHeight: 1.5,
-    transform: 'uppercase',
   },
   label2: {
     size: 12,
     weight: 600,
     lineHeight: 1.5,
-    transform: 'uppercase',
   },
   label3: {
     size: 10,
     weight: 400,
     lineHeight: 1.5,
-    transform: 'uppercase',
   },
   address1: {
     size: 16,

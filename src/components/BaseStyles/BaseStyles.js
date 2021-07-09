@@ -10,16 +10,18 @@ import { useTheme } from '../../theme'
 // import overpassRegularWoff2 from './assets/overpass/overpass-regular.woff2'
 // import overpassSemiBoldWoff2 from './assets/overpass/overpass-semibold.woff2'
 // import overpassMonoLightWoff2 from './assets/overpass-mono/overpass-mono-light.woff2'
-import manropev4latinwoff2 from './assets/manrope/manrope-v4-latin-regular.woff2'
+import manropelightwoff2 from './assets/manrope/manrope-light.woff2'
+import manropesemiboldwoff2 from './assets/manrope/manrope-semibold.woff2'
+import manropeboldwoff2 from './assets/manrope/manrope-bold.woff2'
 
 const DEFAULT_FONTS = {
-  '400': { url: manropev4latinwoff2, format: 'woff2' },
-  '600': { url: manropev4latinwoff2, format: 'woff2' },
-  '800': { url: manropev4latinwoff2, format: 'woff2' },
+  '400': { url: manropelightwoff2, format: 'woff2' },
+  '600': { url: manropesemiboldwoff2, format: 'woff2' },
+  '800': { url: manropeboldwoff2, format: 'woff2' },
 }
 
 const MANROPE_FONTS = {
-  '400': { url: manropev4latinwoff2, format: 'woff2' },
+  '400': { url: manropelightwoff2, format: 'woff2' },
 }
 
 function fontSrc(publicUrl, { url, format }) {
