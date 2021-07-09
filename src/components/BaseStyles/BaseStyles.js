@@ -6,16 +6,14 @@ import { DEFAULT_FONT_FAMILY, MANROPE_FONT_FAMILY } from '../../utils'
 import { textStyle } from '../../style'
 import { useTheme } from '../../theme'
 
-// import overpassLightWoff2 from './assets/overpass/overpass-light.woff2'
-// import overpassRegularWoff2 from './assets/overpass/overpass-regular.woff2'
-// import overpassSemiBoldWoff2 from './assets/overpass/overpass-semibold.woff2'
-// import overpassMonoLightWoff2 from './assets/overpass-mono/overpass-mono-light.woff2'
 import manropelightwoff2 from './assets/manrope/manrope-light.woff2'
+import manropemediumwoff2 from './assets/manrope/manrope-medium.woff2'
 import manropesemiboldwoff2 from './assets/manrope/manrope-semibold.woff2'
 import manropeboldwoff2 from './assets/manrope/manrope-bold.woff2'
 
 const DEFAULT_FONTS = {
   '400': { url: manropelightwoff2, format: 'woff2' },
+  '500': { url: manropemediumwoff2, format: 'woff2' },
   '600': { url: manropesemiboldwoff2, format: 'woff2' },
   '800': { url: manropeboldwoff2, format: 'woff2' },
 }

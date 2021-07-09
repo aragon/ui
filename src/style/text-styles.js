@@ -27,6 +27,11 @@ const TEXT_STYLES = {
     lineHeight: 2,
   },
   header6: {
+    size: 32,
+    weight: 600,
+    lineHeight: 2,
+  },
+  header7: {
     size: 24,
     weight: 500,
     lineHeight: 2,
@@ -60,7 +65,7 @@ const TEXT_STYLES = {
   },
   title3: {
     size: 18,
-    weight: 500,
+    weight: 400,
     lineHeight: 1.5,
   },
   title4: {
@@ -71,12 +76,12 @@ const TEXT_STYLES = {
 
   body1: {
     size: 20,
-    weight: 600,
+    weight: 500,
     lineHeight: 1.5,
   },
   body2: {
     size: 16,
-    weight: 500,
+    weight: 400,
     lineHeight: 1.5,
   },
   body3: {
