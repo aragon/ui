@@ -55,7 +55,7 @@ const FileInput = React.forwardRef(
           >
             browse
           </span>{' '}
-          files to upload!
+          files to upload.
         </p>
       ))
 
