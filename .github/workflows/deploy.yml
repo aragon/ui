@@ -90,12 +90,6 @@ jobs:
         yarn build
         echo 'ui.aragon.org' > dist/CNAME
         cp public/favicon.svg dist
-    - name: Install, build & prepare devbox
-      run: |
-        cd devbox
-        yarn --frozen-lockfile
-        yarn build
-        cp -rf dist ../gallery/dist/devbox
     - name: Push to gh-pages
       uses: peaceiris/actions-gh-pages@v3
       with:
