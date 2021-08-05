@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { useTheme } from '../../theme'
 import { textStyle, GU, RADII } from '../../style'
 import { useLayout } from '../Layout/Layout'
+import ComponentHeading from '../ComponentHeading/ComponentHeading'
 
 const borderColor = (theme, status) => {
   switch (status) {
@@ -84,8 +85,8 @@ const TextInput = React.forwardRef(
 )
 
 TextInput.propTypes = {
-  title: PropTypes.string,
-  subtitle: PropTypes.string,
+  title: PropTypes.node,
+  subtitle: PropTypes.node,
   autofocus: PropTypes.bool,
   multiline: PropTypes.bool,
   required: PropTypes.bool,
@@ -203,25 +204,7 @@ const WrapperTextInput = React.forwardRef(
           width: ${props.wide ? '100%' : 'auto'};
         `}
       >
-        {title && (
-          <div
-            css={`
-              ${textStyle('title3')};
-            `}
-          >
-            {title}
-          </div>
-        )}
-        {subtitle && (
-          <div
-            css={`
-              ${textStyle('title4')};
-              color: ${theme.disabledContent};
-            `}
-          >
-            {subtitle}
-          </div>
-        )}
+        <ComponentHeading title={title} subtitle={subtitle} />
         <AdornmentTextInput ref={ref} {...props} />
         {error && (
           <div
@@ -240,8 +223,8 @@ const WrapperTextInput = React.forwardRef(
 )
 
 WrapperTextInput.propTypes = {
-  title: PropTypes.string,
-  subtitle: PropTypes.string,
+  title: PropTypes.node,
+  subtitle: PropTypes.node,
   error: PropTypes.string,
   wide: PropTypes.bool,
 }

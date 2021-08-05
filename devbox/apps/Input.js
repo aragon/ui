@@ -98,7 +98,15 @@ function App() {
         wide
         placeholder="have title"
         title={'The Title'}
-        subtitle={'The Sub Title'}
+        subtitle={
+          <div
+            css={`
+              color: red;
+            `}
+          >
+            red subtitle
+          </div>
+        }
       />
       <TextInput wide title={'The Title'} subtitle={'The Sub Title'} disabled />
       <TextInput

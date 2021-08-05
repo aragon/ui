@@ -1,6 +1,6 @@
-import React, { useEffect, useRef } from 'react'
+import React from 'react'
 import styled from 'styled-components'
-import { EthIdenticon, IconBlank, SearchCopy, TextCopy, GU } from '@aragon/ui'
+import { EthIdenticon, TextCopy, GU } from '@aragon/ui'
 
 const ADDRESS = '0x2c9341a52cfa3f2c2554ca1803134137b9366b3c'
 const HEIGHT = 5 * GU
@@ -44,18 +44,22 @@ function App() {
         />
       </div>
       <div>
-        <TextCopy
-          value="sub title only"
-          showShadow
-          subtitle={'some Sub Title ... .. . .. .'}
-        />
+        <TextCopy value="sub title only" showShadow subtitle="sun title ..." />
       </div>
       <div>
         <TextCopy
           value="both title and sub title ..."
           showShadow
           title={'some Title'}
-          subtitle={'some Sub Title ... .. . .. .'}
+          subtitle={
+            <p>
+              Enter number of tokens to be minted (
+              <span style={{ fontWeight: 600 }}>IMPORTANT</span>: they will be
+              sent to the current{' '}
+              <span style={{ fontWeight: 600 }}>connected wallet address</span>
+              ).
+            </p>
+          }
         />
       </div>
     </div>

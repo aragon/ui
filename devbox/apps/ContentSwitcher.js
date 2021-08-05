@@ -66,6 +66,26 @@ class App extends React.Component {
             items={ITEMS2}
             disabled
           />
+          <ContentSwitcher
+            title="Title"
+            subtitle={
+              <p>
+                Enter number of tokens to be minted (
+                <span style={{ fontWeight: 600 }}>IMPORTANT</span>: they will be
+                sent to the current{' '}
+                <span style={{ fontWeight: 600 }}>
+                  connected wallet address
+                </span>
+                ).
+              </p>
+            }
+            onChange={() => {
+              console.log('item 0 selected only')
+            }}
+            selected={0}
+            items={ITEMS2}
+            disabled
+          />
         </div>
       </div>
     )

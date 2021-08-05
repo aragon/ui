@@ -7,6 +7,7 @@ import { noop, warn } from '../../utils'
 import TextInput from '../Input/TextInput'
 import ButtonIcon from '../Button/ButtonIcon'
 import { useToast } from '../ToastHub/ToastHub'
+import ComponentHeading from '../ComponentHeading/ComponentHeading'
 
 const HEIGHT = 5 * GU
 
@@ -63,25 +64,7 @@ const TextCopy = React.memo(
           width: ${props.width};
         `}
       >
-        {title && (
-          <div
-            css={`
-              ${textStyle('title3')};
-            `}
-          >
-            {title}
-          </div>
-        )}
-        {subtitle && (
-          <div
-            css={`
-              ${textStyle('title4')};
-              color: ${theme.disabledContent};
-            `}
-          >
-            {subtitle}
-          </div>
-        )}
+        <ComponentHeading title={title} subtitle={subtitle} />
         <div
           css={`
             position: relative;
@@ -194,8 +177,8 @@ TextCopy.propTypes = {
   value: PropTypes.string,
   showShadow: PropTypes.bool,
   width: PropTypes.string,
-  title: PropTypes.string,
-  subtitle: PropTypes.string,
+  title: PropTypes.node,
+  subtitle: PropTypes.node,
 }
 
 TextCopy.defaultProps = {

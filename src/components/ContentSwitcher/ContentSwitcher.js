@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { noop, warnOnce } from '../../utils'
 import { useTheme } from '../../theme'
 import Content from './Content'
-import { textStyle } from '../../style'
+import ComponentHeading from '../ComponentHeading/ComponentHeading'
 
 function ContentBar({ items, selected, onChange, ...props }) {
   return (
@@ -34,8 +34,8 @@ ContentBar.propTypes = {
   selected: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
   onChange: PropTypes.func,
   wide: PropTypes.bool,
-  title: PropTypes.string,
-  subtitle: PropTypes.string,
+  title: PropTypes.node,
+  subtitle: PropTypes.node,
 }
 
 ContentBar.defaultProps = {
@@ -67,25 +67,7 @@ function ContentSwitcher(props) {
         width: 100%;
       `}
     >
-      {props.title && (
-        <div
-          css={`
-            ${textStyle('title3')};
-          `}
-        >
-          {props.title}
-        </div>
-      )}
-      {props.subtitle && (
-        <div
-          css={`
-            ${textStyle('title4')};
-            color: ${theme.disabledContent};
-          `}
-        >
-          {props.subtitle}
-        </div>
-      )}
+      <ComponentHeading title={props.title} subtitle={props.subtitle} />
       <div
         css={`
           width: ${props.wide ? '100%' : 'min-content'};

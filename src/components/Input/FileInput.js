@@ -6,6 +6,7 @@ import { useLayout } from '../Layout/Layout'
 import { IconCheck, IconCross } from '../../icons'
 import StyledText from '../StyledText/StyledText'
 import LoadingRing from '../LoadingRing/LoadingRing'
+import ComponentHeading from '../ComponentHeading/ComponentHeading'
 
 const getStatusIcon = status => {
   switch (status) {
@@ -101,25 +102,7 @@ const FileInput = React.forwardRef(
           width: 100%;
         `}
       >
-        {title && (
-          <div
-            css={`
-              ${textStyle('title3')};
-            `}
-          >
-            {title}
-          </div>
-        )}
-        {subtitle && (
-          <div
-            css={`
-              ${textStyle('title4')};
-              color: ${theme.disabledContent};
-            `}
-          >
-            {subtitle}
-          </div>
-        )}
+        <ComponentHeading title={title} subtitle={subtitle} />
         <div
           css={`
             padding: ${1 * GU}px;
@@ -244,8 +227,8 @@ const filesArgs = PropTypes.shape({
 })
 
 FileInput.propTypes = {
-  title: PropTypes.string,
-  subtitle: PropTypes.string,
+  title: PropTypes.node,
+  subtitle: PropTypes.node,
   autofocus: PropTypes.bool,
   required: PropTypes.bool,
   status: PropTypes.oneOf(['normal', 'success', 'error']),
