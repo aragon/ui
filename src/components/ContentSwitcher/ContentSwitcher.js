@@ -49,15 +49,20 @@ ContentBar.defaultProps = {
 function ContentSwitcher(props) {
   const theme = useTheme()
 
-  const selected = Math.min(props.items.length - 1, Math.max(0, props.selected))
+  const selectedIndex =
+    typeof props.selected === 'number'
+      ? props.selected
+      : typeof props.selected === 'boolean' && props.selected
+      ? 1
+      : 0
 
-  if (selected !== props.selected) {
+  const selected = Math.min(props.items.length - 1, Math.max(0, selectedIndex))
+
+  if (selected !== selectedIndex) {
     warnOnce(
       'ContentSwitcher:outOfRangeSelected',
-      `ContentSwitcher: the selected item doesn’t exist (selected index: ${
-        props.selected
-      }, selection range: 0 to ${props.items.length -
-        1}). Selecting ${selected} instead.`
+      `ContentSwitcher: the selected item doesn’t exist (selected index: ${selectedIndex}, selection range: 0 to ${props
+        .items.length - 1}). Selecting ${selected} instead.`
     )
   }
 
@@ -76,7 +81,7 @@ function ContentSwitcher(props) {
           border-radius: 10em;
         `}
       >
-        <ContentBar {...props} selected={selected} />
+        <ContentBar {...props} selected={selectedIndex} />
       </div>
     </div>
   )

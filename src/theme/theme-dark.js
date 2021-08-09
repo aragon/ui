@@ -112,5 +112,6 @@ export default {
 
   // we don't have next 2 in new design
   brown: '#876559',
-  purple: '#B8C2F6',
+  purple: '#8991FF',
+  purpleLight: '#B8C2F6',
 }

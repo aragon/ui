@@ -69,12 +69,16 @@ class App extends React.Component {
           <ContentSwitcher
             title="Title"
             subtitle={
-              <p>
-                Enter number of tokens to be minted (
-                <span style={{ fontWeight: 600 }}>IMPORTANT</span>: they will be
-                sent to the current{' '}
+              <p
+                css={`
+                  color: red;
+                `}
+              >
+                Pass true as selected index for items of 2 (
+                <span style={{ fontWeight: 600 }}>IMPORTANT</span>: it will also
+                booleans{' '}
                 <span style={{ fontWeight: 600 }}>
-                  connected wallet address
+                  instead of number in case of only 2 items
                 </span>
                 ).
               </p>
@@ -82,7 +86,7 @@ class App extends React.Component {
             onChange={() => {
               console.log('item 0 selected only')
             }}
-            selected={0}
+            selected={true}
             items={ITEMS2}
             disabled
           />
