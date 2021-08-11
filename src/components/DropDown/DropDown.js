@@ -189,9 +189,10 @@ const DropDown = React.memo(function DropDown({
           min-width: ${wide ? 'auto' : `${placeholderMinWidth}px`};
           background: ${disabled ? theme.disabled : theme.surface};
           color: ${disabled ? theme.disabledContent : theme.surfaceContent};
-          border: ${disabled ? 0 : 1}px solid
+          border: ${disabled ? 0 : 2}px solid
             ${closedWithChanges ? theme.selected : theme.border};
-          ${textStyle('body2')};
+          box-shadow: 0px 3px 3px rgba(180, 193, 228, 0.35);
+          ${textStyle('title2')};
           ${disabled
             ? 'font-weight: 600;'
             : `
@@ -206,14 +207,10 @@ const DropDown = React.memo(function DropDown({
           <Label selectedIndex={selectedIndex} selectedLabel={selectedLabel} />
         </div>
         <IconDown
-          size="tiny"
+          size="small"
           css={`
             margin-left: ${1.5 * GU}px;
-            color: ${disabled
-              ? theme.disabledIcon
-              : closedWithChanges
-              ? theme.accent
-              : theme.surfaceIcon};
+            color: ${disabled ? theme.disabledIcon : theme.accentEnd};
           `}
         />
       </ButtonBase>
