@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect, useCallback, useMemo } from 'react'
 import PropTypes from 'prop-types'
 import { Inside } from 'use-inside'
 import { warnOnce, unselectable } from '../../utils'
-import { GU, RADIUS, textStyle } from '../../style'
+import { GU, RADII, textStyle } from '../../style'
 import { useTheme } from '../../theme'
 import { IconDown } from '../../icons'
 import { useViewport } from '../../providers/Viewport/Viewport'
@@ -88,6 +88,8 @@ const DropDown = React.memo(function DropDown({
   selected,
   wide,
   width,
+  placement,
+  gap,
 
   // deprecated
   active,
@@ -167,7 +169,7 @@ const DropDown = React.memo(function DropDown({
     selected,
   })
 
-  const closedWithChanges = !opened && selectedIndex !== -1
+  // const closedWithChanges = !opened && selectedIndex !== -1
   const Label = renderLabel
 
   return (
@@ -176,21 +178,20 @@ const DropDown = React.memo(function DropDown({
         ref={refCallback}
         disabled={disabled}
         onClick={toggle}
-        focusRingRadius={RADIUS}
+        focusRingRadius={RADII['small']}
         focusRingSpacing={1}
         css={`
           display: ${wide ? 'flex' : 'inline-flex'};
           justify-content: space-between;
           align-items: center;
-          height: ${5 * GU}px;
+          height: ${5.75 * GU}px;
           padding-left: ${2 * GU}px;
           padding-right: ${1.5 * GU}px;
           width: ${width || (wide ? '100%' : 'auto')};
           min-width: ${wide ? 'auto' : `${placeholderMinWidth}px`};
-          background: ${disabled ? theme.disabled : theme.surface};
+          background: ${disabled ? theme.surfaceUnder : theme.surface};
           color: ${disabled ? theme.disabledContent : theme.surfaceContent};
-          border: ${disabled ? 0 : 2}px solid
-            ${closedWithChanges ? theme.selected : theme.border};
+          border: ${disabled ? 0 : 2}px solid ${theme.border};
           box-shadow: 0px 3px 3px rgba(180, 193, 228, 0.35);
           ${textStyle('title2')};
           ${disabled
@@ -232,7 +233,13 @@ const DropDown = React.memo(function DropDown({
           />
         </div>
       )}
-      <Popover onClose={close} opener={buttonRef.current} visible={opened}>
+      <Popover
+        onClose={close}
+        opener={buttonRef.current}
+        visible={opened}
+        placement={placement}
+        gap={gap}
+      >
         <PopoverContent
           buttonWidth={buttonWidth}
           header={header}
@@ -255,6 +262,8 @@ DropDown.propTypes = {
   selected: PropTypes.number,
   wide: PropTypes.bool,
   width: PropTypes.string,
+  placement: PropTypes.oneOf(['top', 'right', 'bottom', 'left']),
+  gap: PropTypes.number,
 
   // deprecated
   active: PropTypes.number,
@@ -265,6 +274,8 @@ DropDown.defaultProps = {
   placeholder: 'Select an item',
   renderLabel: ({ selectedLabel }) => selectedLabel,
   wide: false,
+  placement: 'bottom',
+  gap: 6,
 }
 
 const PopoverContent = React.memo(function PopoverContent({
@@ -365,17 +376,18 @@ const Item = React.memo(function Item({
 
           ${textStyle('body2')};
           ${
-            !header && index === 0 ? `border-top-left-radius: ${RADIUS}px;` : ''
+            !header && index === 0
+              ? `border-top-left-radius: ${RADII['small']}px;`
+              : ''
           }
           ${
             index === length - 1
-              ? `border-bottom-left-radius: ${RADIUS}px;`
+              ? `border-bottom-left-radius: ${RADII['small']}px;`
               : ''
           }
           ${
             selected === index
               ? `
-              border-left: 2px solid ${theme.accent};
               background: ${theme.surfaceSelected};
             `
               : ''
@@ -383,6 +395,12 @@ const Item = React.memo(function Item({
 
           &:active {
             background: ${theme.surfacePressed};
+          }
+
+          &:hover {
+            background: ${theme.surfaceUnder};
+            border-top: 1px solid ${theme.disabled};
+            border-bottom: 1px solid ${theme.disabled};
           }
         `}
       >

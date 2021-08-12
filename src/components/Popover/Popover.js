@@ -29,6 +29,7 @@ class PopoverBase extends React.Component {
     theme: PropTypes.object,
     transitionStyles: PropTypes.object,
     zIndex: PropTypes.number,
+    gap: PropTypes.number,
   }
 
   static defaultProps = {
@@ -37,6 +38,7 @@ class PopoverBase extends React.Component {
     placement: 'center',
     onClose: noop,
     zIndex: 999,
+    gap: 0,
   }
 
   _cardElement = React.createRef()
@@ -186,9 +188,39 @@ class PopoverBase extends React.Component {
   }
 
   render() {
-    const { children, theme, transitionStyles, zIndex } = this.props
+    const {
+      children,
+      theme,
+      transitionStyles,
+      zIndex,
+      gap,
+      placement,
+    } = this.props
     const { scale, opacity } = transitionStyles
     const [maxWidth, maxHeight] = this.boundaryDimensions()
+
+    const reversePlacement = placement => {
+      switch (placement) {
+        case 'bottom':
+          return 'top'
+
+        case 'left':
+          return 'right'
+
+        case 'right':
+          return 'left'
+
+        default:
+          return 'bottom'
+      }
+    }
+    console.log(
+      'props',
+      gap,
+      placement,
+      'condition',
+      gap && placement !== 'auto' && placement !== 'center'
+    )
     return (
       <animated.div
         css={`
@@ -220,6 +252,9 @@ class PopoverBase extends React.Component {
               outline: 0;
             }
             overflow-y: auto;
+            ${gap && placement !== 'auto' && placement !== 'center'
+              ? `margin-${reversePlacement(placement)}: ${gap}px;`
+              : ''}
           `}
           {...stylingProps(this)}
         >

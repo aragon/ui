@@ -49,6 +49,17 @@ class App extends React.Component {
               margin-top: ${2 * GU}px;
             `}
           />
+          <DropDown
+            items={items}
+            placeholder="Which fruit?"
+            selected={active}
+            onChange={this.handleChange}
+            width="250px"
+            placement="right"
+            css={`
+              margin-top: ${2 * GU}px;
+            `}
+          />
         </Container>
       </Main>
     )
