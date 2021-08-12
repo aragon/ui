@@ -214,13 +214,7 @@ class PopoverBase extends React.Component {
           return 'bottom'
       }
     }
-    console.log(
-      'props',
-      gap,
-      placement,
-      'condition',
-      gap && placement !== 'auto' && placement !== 'center'
-    )
+
     return (
       <animated.div
         css={`
