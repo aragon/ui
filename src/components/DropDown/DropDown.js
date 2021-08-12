@@ -399,8 +399,15 @@ const Item = React.memo(function Item({
 
           &:hover {
             background: ${theme.surfaceUnder};
-            border-top: 1px solid ${theme.disabled};
-            border-bottom: 1px solid ${theme.disabled};
+            ${
+              index === 0 && header
+                ? `border-top: 1px solid ${theme.disabled};`
+                : index !== 0
+                ? `border-top: 1px solid ${theme.disabled};`
+                : ''
+            }
+            ${index !== length - 1 &&
+              `border-bottom: 1px solid ${theme.disabled};`}
           }
         `}
       >
