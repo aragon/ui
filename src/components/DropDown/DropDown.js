@@ -11,6 +11,17 @@ import Popover from '../Popover/Popover'
 
 const MIN_WIDTH = 128
 
+const borderColor = (theme, status) => {
+  switch (status) {
+    case 'error':
+      return theme.red
+    case 'success':
+      return theme.green
+    default:
+      return theme.border
+  }
+}
+
 function useDropDown({
   buttonRef,
   items,
@@ -90,6 +101,8 @@ const DropDown = React.memo(function DropDown({
   width,
   placement,
   gap,
+  status,
+  error,
 
   // deprecated
   active,
@@ -191,7 +204,7 @@ const DropDown = React.memo(function DropDown({
           min-width: ${wide ? 'auto' : `${placeholderMinWidth}px`};
           background: ${disabled ? theme.surfaceUnder : theme.surface};
           color: ${disabled ? theme.disabledContent : theme.surfaceContent};
-          border: ${disabled ? 0 : 2}px solid ${theme.border};
+          border: ${disabled ? 0 : 2}px solid ${borderColor(theme, status)};
           box-shadow: 0px 3px 3px rgba(180, 193, 228, 0.35);
           ${textStyle('title2')};
           ${disabled
@@ -215,6 +228,17 @@ const DropDown = React.memo(function DropDown({
           `}
         />
       </ButtonBase>
+      {error && (
+        <div
+          css={`
+            color: ${theme.red};
+            ${textStyle('body3')};
+            margin-left: ${1 * GU}px;
+          `}
+        >
+          {error}
+        </div>
+      )}
       {measureWidth && (
         <div
           css={`
@@ -264,6 +288,8 @@ DropDown.propTypes = {
   width: PropTypes.string,
   placement: PropTypes.oneOf(['top', 'right', 'bottom', 'left']),
   gap: PropTypes.number,
+  status: PropTypes.oneOf(['normal', 'success', 'error']),
+  error: PropTypes.string,
 
   // deprecated
   active: PropTypes.number,
@@ -276,6 +302,8 @@ DropDown.defaultProps = {
   wide: false,
   placement: 'bottom',
   gap: 6,
+  status: 'normal',
+  error: '',
 }
 
 const PopoverContent = React.memo(function PopoverContent({

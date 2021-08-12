@@ -60,6 +60,19 @@ class App extends React.Component {
               margin-top: ${2 * GU}px;
             `}
           />
+          <DropDown
+            items={items}
+            placeholder="Which fruit?"
+            selected={active}
+            onChange={this.handleChange}
+            width="250px"
+            gap={18}
+            css={`
+              margin-top: ${2 * GU}px;
+            `}
+            status={'error'}
+            error={'Some Error Message here ....'}
+          />
         </Container>
       </Main>
     )
