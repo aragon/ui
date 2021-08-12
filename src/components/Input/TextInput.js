@@ -40,7 +40,8 @@ const TextInput = React.forwardRef(
         type={multiline ? undefined : type}
         {...props}
         css={`
-          width: ${({ wide }) => (wide ? '100%' : 'max-content')};
+          width: ${({ wide, width }) =>
+            wide ? '100%' : width || 'max-content'};
           height: ${5.75 * GU}px;
           padding: 0 ${1.5 * GU}px;
           background: ${props.disabled ? theme.surfaceUnder : theme.surface};

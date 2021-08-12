@@ -176,6 +176,11 @@ function App() {
         onChange={setFiles}
         multiple={true}
       />
+      <TextInput
+        width="550px"
+        subtitle={'The Sub Title only - custom width'}
+        placeholder="have title and subtitle - custom width"
+      />
     </div>
   )
 }
