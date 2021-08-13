@@ -59,6 +59,7 @@ class App extends React.Component {
             css={`
               margin-top: ${2 * GU}px;
             `}
+            shadow
           />
           <DropDown
             items={items}

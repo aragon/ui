@@ -103,6 +103,7 @@ const DropDown = React.memo(function DropDown({
   gap,
   status,
   error,
+  shadow,
 
   // deprecated
   active,
@@ -193,6 +194,7 @@ const DropDown = React.memo(function DropDown({
         onClick={toggle}
         focusRingRadius={RADII['small']}
         focusRingSpacing={1}
+        showFocusRing={false}
         css={`
           display: ${wide ? 'flex' : 'inline-flex'};
           justify-content: space-between;
@@ -205,8 +207,9 @@ const DropDown = React.memo(function DropDown({
           background: ${disabled ? theme.surfaceUnder : theme.surface};
           color: ${disabled ? theme.disabledContent : theme.surfaceContent};
           border: ${disabled ? 0 : 2}px solid ${borderColor(theme, status)};
-          box-shadow: 0px 3px 3px rgba(180, 193, 228, 0.35);
-          ${textStyle('title2')};
+          ${shadow ? `box-shadow: 0px 3px 3px rgba(180, 193, 228, 0.35);` : ''}
+          ${textStyle('title4')};
+          font-weight: 500;
           ${disabled
             ? 'font-weight: 600;'
             : `
@@ -290,6 +293,7 @@ DropDown.propTypes = {
   gap: PropTypes.number,
   status: PropTypes.oneOf(['normal', 'success', 'error']),
   error: PropTypes.string,
+  shadow: PropTypes.bool,
 
   // deprecated
   active: PropTypes.number,
@@ -304,6 +308,7 @@ DropDown.defaultProps = {
   gap: 6,
   status: 'normal',
   error: '',
+  shadow: false,
 }
 
 const PopoverContent = React.memo(function PopoverContent({
@@ -401,6 +406,8 @@ const Item = React.memo(function Item({
           padding: ${1.25 * GU}px ${2 * GU}px;
           border-radius: 0;
           color: ${theme.content};
+          border-top: 1px solid transparent;
+          border-bottom: 1px solid transparent;
 
           ${textStyle('body2')};
           ${
