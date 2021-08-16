@@ -162,11 +162,7 @@ export function isTransaction(transaction) {
  * @param {string} options.provider The explorer provider (e.g. etherscan).
  * @returns {string} The generated URL, or an empty string if the parameters are invalid.
  */
-export function blockExplorerUrl(
-  type,
-  value,
-  { networkType = 'main' } = {}
-) {
+export function blockExplorerUrl(type, value, { networkType = 'main' } = {}) {
   try {
     return _getBlockExplorer({ type, value, networkType })
   } catch (err) {
