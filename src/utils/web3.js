@@ -165,10 +165,10 @@ export function isTransaction(transaction) {
 export function blockExplorerUrl(
   type,
   value,
-  { networkType = 'main', provider = 'etherscan' } = {}
+  { networkType = 'main' } = {}
 ) {
   try {
-    return _getBlockExplorer({ type, value, networkType, provider })
+    return _getBlockExplorer({ type, value, networkType })
   } catch (err) {
     warn(`blockExplorerUrl(): ${err.message}`)
     return ''
