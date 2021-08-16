@@ -10,37 +10,41 @@ const ADDRESS_REGEX = /^0x[0-9a-fA-F]{40}$/
 const TRUST_WALLET_BASE_URL =
   'https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum'
 
-const ETHERSCAN_NETWORK_TYPES = new Map([
-  ['main', ''],
-  ['kovan', 'kovan.'],
-  ['rinkeby', 'rinkeby.'],
-  ['ropsten', 'ropsten.'],
-  ['goerli', 'goerli.'],
+const ETHERSCAN_URL= 'etherscan.io'
+const POLYGON_URL = 'polygonscan.com'
+
+const NETWORK_TYPES_URLS = new Map([
+  ['main', ETHERSCAN_URL],
+  ['kovan', `kovan.${ETHERSCAN_URL}`],
+  ['rinkeby', `rinkeby.${ETHERSCAN_URL}`],
+  ['ropsten', `ropsten.${ETHERSCAN_URL}`],
+  ['goerli', `goerli.${ETHERSCAN_URL}`],
+  ['matic', POLYGON_URL],
+  ['mumbai', `mumbai.${POLYGON_URL}`]
 ])
-const ETHERSCAN_TYPES = new Map([
+
+const URL_TYPES = new Map([
   ['block', 'block'],
   ['transaction', 'tx'],
   ['address', 'address'],
   ['token', 'token'],
 ])
 
-const BLOCK_EXPLORERS = {
-  etherscan: ({ type, value, networkType }) => {
-    if (networkType === 'private') {
-      return ''
-    }
+function _getBlockExplorer({ type, value, networkType}) {
+  if (networkType === 'private') {
+    return ''
+  }
 
-    if (!ETHERSCAN_NETWORK_TYPES.has(networkType)) {
-      throw new Error('provider not supported.')
-    }
-    if (!ETHERSCAN_TYPES.has(type)) {
-      throw new Error('type not supported.')
-    }
+  if (!NETWORK_TYPES_URLS.has(networkType)) {
+    throw new Error('network type not supported.')
+  }
+  if (!URL_TYPES.has(type)) {
+    throw new Error('type not supported.')
+  }
 
-    const subdomain = ETHERSCAN_NETWORK_TYPES.get(networkType)
-    const typePart = ETHERSCAN_TYPES.get(type)
-    return `https://${subdomain}etherscan.io/${typePart}/${value}`
-  },
+  const subdomain = NETWORK_TYPES_URLS.get(networkType)
+  const typePart = URL_TYPES.get(type)
+  return `https://${subdomain}/${typePart}/${value}`
 }
 
 /**
@@ -163,15 +167,8 @@ export function blockExplorerUrl(
   value,
   { networkType = 'main', provider = 'etherscan' } = {}
 ) {
-  const explorer = BLOCK_EXPLORERS[provider]
-
-  if (!explorer) {
-    warn('blockExplorerUrl(): provider not supported.')
-    return ''
-  }
-
   try {
-    return explorer({ type, value, networkType })
+    return _getBlockExplorer({ type, value, networkType, provider})
   } catch (err) {
     warn(`blockExplorerUrl(): ${err.message}`)
     return ''
