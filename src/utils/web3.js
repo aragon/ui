@@ -10,7 +10,7 @@ const ADDRESS_REGEX = /^0x[0-9a-fA-F]{40}$/
 const TRUST_WALLET_BASE_URL =
   'https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum'
 
-const ETHERSCAN_URL= 'etherscan.io'
+const ETHERSCAN_URL = 'etherscan.io'
 const POLYGON_URL = 'polygonscan.com'
 
 const NETWORK_TYPES_URLS = new Map([
@@ -20,7 +20,7 @@ const NETWORK_TYPES_URLS = new Map([
   ['ropsten', `ropsten.${ETHERSCAN_URL}`],
   ['goerli', `goerli.${ETHERSCAN_URL}`],
   ['matic', POLYGON_URL],
-  ['mumbai', `mumbai.${POLYGON_URL}`]
+  ['mumbai', `mumbai.${POLYGON_URL}`],
 ])
 
 const URL_TYPES = new Map([
@@ -30,7 +30,7 @@ const URL_TYPES = new Map([
   ['token', 'token'],
 ])
 
-function _getBlockExplorer({ type, value, networkType}) {
+function _getBlockExplorer({ type, value, networkType }) {
   if (networkType === 'private') {
     return ''
   }
@@ -168,7 +168,7 @@ export function blockExplorerUrl(
   { networkType = 'main', provider = 'etherscan' } = {}
 ) {
   try {
-    return _getBlockExplorer({ type, value, networkType, provider})
+    return _getBlockExplorer({ type, value, networkType, provider })
   } catch (err) {
     warn(`blockExplorerUrl(): ${err.message}`)
     return ''
