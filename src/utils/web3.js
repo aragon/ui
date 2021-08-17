@@ -159,7 +159,6 @@ export function isTransaction(transaction) {
  * @param {string} value Identifier of the object, depending on the type (block number, transaction hash, …).
  * @param {object} options The optional parameters.
  * @param {string} options.networkType The Ethereum network type (main, kovan, rinkeby, ropsten, goerli, or private).
- * @param {string} options.provider The explorer provider (e.g. etherscan).
  * @returns {string} The generated URL, or an empty string if the parameters are invalid.
  */
 export function blockExplorerUrl(type, value, { networkType = 'main' } = {}) {
