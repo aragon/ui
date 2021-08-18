@@ -75,6 +75,25 @@ class App extends React.Component {
             error={'Some Error Message here ....'}
           />
         </Container>
+        <NavBar>
+          <Title>Some Title</Title>
+          <RigtSideContainer>
+            <DropDown
+              items={items}
+              placeholder="Which fruit?"
+              header="Fruits"
+              selected={active}
+              onChange={this.handleChange}
+            />
+            <DropDown
+              items={items}
+              placeholder="Which fruit?"
+              header="Fruits"
+              selected={active}
+              onChange={this.handleChange}
+            />
+          </RigtSideContainer>
+        </NavBar>
       </Main>
     )
   }
@@ -96,6 +115,32 @@ const Main = styled.div`
 
 const Container = styled.div`
   width: 400px;
+`
+
+const NavBar = styled.nav`
+  display: flex;
+  width: 70%;
+  flex-direction: row:
+  gap: 16px;
+  padding: 8px;
+`
+
+const Title = styled.div`
+  display: flex;
+  width: fit-content;
+  cursor: pointer;
+  align-items: center;
+  column-gap: ${GU}px;
+`
+
+const RigtSideContainer = styled.div`
+  display: flex;
+  width: 100%;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  justify-content: flex-end;
 `
 
 export default App

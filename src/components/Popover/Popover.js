@@ -70,6 +70,9 @@ class PopoverBase extends React.Component {
       this.destroyPopper()
       this.initPopper()
     }
+    if (this._popper) {
+      this._popper.scheduleUpdate()
+    }
   }
 
   focus() {
