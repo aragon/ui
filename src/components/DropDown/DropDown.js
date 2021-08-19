@@ -104,6 +104,7 @@ const DropDown = React.memo(function DropDown({
   status,
   error,
   shadow,
+  iconOnly,
 
   // deprecated
   active,
@@ -200,10 +201,9 @@ const DropDown = React.memo(function DropDown({
           justify-content: space-between;
           align-items: center;
           height: ${5.75 * GU}px;
-          padding-left: ${2 * GU}px;
+          padding-left: ${1.5 * GU}px;
           padding-right: ${1.5 * GU}px;
           width: ${width || (wide ? '100%' : 'auto')};
-          min-width: ${wide ? 'auto' : `${placeholderMinWidth}px`};
           background: ${disabled ? theme.surfaceUnder : theme.surface};
           color: ${disabled ? theme.disabledContent : theme.surfaceContent};
           border: ${disabled ? 0 : 2}px solid ${borderColor(theme, status)};
@@ -220,13 +220,20 @@ const DropDown = React.memo(function DropDown({
         `}
         {...props}
       >
-        <div css="overflow: hidden;">
-          <Label selectedIndex={selectedIndex} selectedLabel={selectedLabel} />
-        </div>
+        {!iconOnly ? (
+          <div css="overflow: hidden;">
+            <Label
+              selectedIndex={selectedIndex}
+              selectedLabel={selectedLabel}
+            />
+          </div>
+        ) : (
+          ''
+        )}
         <IconDown
           size="small"
           css={`
-            margin-left: ${1.5 * GU}px;
+            ${!iconOnly ? `margin-left: ${1.5 * GU}px;` : ''}
             color: ${disabled ? theme.disabledIcon : theme.accentEnd};
           `}
         />
@@ -294,6 +301,7 @@ DropDown.propTypes = {
   status: PropTypes.oneOf(['normal', 'success', 'error']),
   error: PropTypes.string,
   shadow: PropTypes.bool,
+  iconOnly: PropTypes.bool,
 
   // deprecated
   active: PropTypes.number,
@@ -309,6 +317,7 @@ DropDown.defaultProps = {
   status: 'normal',
   error: '',
   shadow: false,
+  iconOnly: false,
 }
 
 const PopoverContent = React.memo(function PopoverContent({

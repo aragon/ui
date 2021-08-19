@@ -84,6 +84,7 @@ class App extends React.Component {
               header="Fruits"
               selected={active}
               onChange={this.handleChange}
+              iconOnly
             />
             <DropDown
               items={items}
@@ -114,7 +115,7 @@ const Main = styled.div`
 `
 
 const Container = styled.div`
-  width: 400px;
+  width: auto;
 `
 
 const NavBar = styled.nav`
