@@ -9,7 +9,7 @@ import { useViewport } from '../../providers/Viewport/Viewport'
 import ButtonBase from '../ButtonBase/ButtonBase'
 import Popover from '../Popover/Popover'
 
-const MIN_WIDTH = 128
+// const MIN_WIDTH = 128
 
 const borderColor = (theme, status) => {
   switch (status) {
@@ -129,19 +129,19 @@ const DropDown = React.memo(function DropDown({
   const theme = useTheme()
   const { width: vw } = useViewport()
 
-  const [widthNoPx = MIN_WIDTH] = (width || '').split('px')
+  // const [widthNoPx = MIN_WIDTH] = (width || '').split('px')
   const [buttonWidth, setButtonWidth] = useState(0)
   const [measureWidth, setMeasureWidth] = useState(true)
 
   // Adjust the button width if the item widths are larger than declared width
-  const [placeholderMinWidth, setPlaceholderMinWidth] = useState(
-    Math.min(widthNoPx, MIN_WIDTH)
-  )
+  // const [placeholderMinWidth, setPlaceholderMinWidth] = useState(
+  //   Math.min(widthNoPx, MIN_WIDTH)
+  // )
   const popoverRefCallback = useCallback(el => {
     if (!el) {
       return
     }
-    setPlaceholderMinWidth(el.clientWidth)
+    // setPlaceholderMinWidth(el.clientWidth)
     setMeasureWidth(false)
   }, [])
   useEffect(() => {
