@@ -32,6 +32,7 @@ export default {
   infoSurfaceContent: '#18d4fb',
 
   help: '#7C80F2',
+  helpIcon: '#88A8E4',
   helpContent: '#FFFFFF',
   helpSurface: '#FFFFFF',
   helpSurfaceContent: '#212B36',
@@ -80,6 +81,14 @@ export default {
   controlDisabled: '#3f4e6f',
   controlSurface: '#F9FAFC',
   controlUnder: '#F1F3F7',
+
+  celeste: '#B19AFF',
+  celesteBorder: '#2B235F',
+  celesteSurface: '#FFFFFF',
+
+  challenge: '#FFA410',
+  challengeBorder: '#FFA410',
+  challengeSurface: '#FFFDFA',
 
   accent: '#08BEE5',
   accentStart: '#32fff5',

@@ -19,7 +19,7 @@ const DiscButton = React.forwardRef(
           justify-content: center;
           width: ${size}px;
           height: ${size}px;
-          background: ${theme.help};
+          background: ${theme.helpIcon};
           color: ${theme.helpContent};
           border-radius: 50%;
 
