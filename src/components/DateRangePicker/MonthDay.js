@@ -164,4 +164,10 @@ function WrappedMonthDay({ onClick, ...props }) {
   }
 }
 
+WrappedMonthDay.propTypes = {
+  disabled: PropTypes.bool,
+  weekDay: PropTypes.bool,
+  onClick: PropTypes.func,
+}
+
 export default WrappedMonthDay

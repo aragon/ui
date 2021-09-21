@@ -2,6 +2,7 @@
 // changes will be overwritten.
 
 export {
+  IconActionsFilled,
   IconAddUser,
   IconAlert,
   IconAlignCenter,
@@ -47,6 +48,7 @@ export {
   IconExternal,
   IconFile,
   IconFilter,
+  IconFinanceFilled,
   IconFlag,
   IconFolder,
   IconGraph2,
@@ -84,8 +86,10 @@ export {
   IconRotateLeft,
   IconRotateRight,
   IconSearch,
+  IconSettingsFilled,
   IconSettings,
   IconShare,
+  IconSpinner,
   IconSquareMinus,
   IconSquarePlus,
   IconSquare,
