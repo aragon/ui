@@ -51,7 +51,7 @@ const SearchInput = React.forwardRef(({ onChange, ...props }, ref) => {
           </ButtonIcon>
         )
       }
-      adornmentPosition="end"
+      adornmentPosition="start"
       onChange={handleChange}
       {...props}
     />
