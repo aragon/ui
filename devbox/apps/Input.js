@@ -77,6 +77,7 @@ function App() {
       />
       <SearchInput
         value={searchTerm}
+        adornmentPosition="start"
         onChange={(value, ev) => {
           console.log('Search term changed: ', value)
           console.log('Search change event: ', ev)
