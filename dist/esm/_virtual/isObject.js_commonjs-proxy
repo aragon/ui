@@ -1,0 +1,6 @@
+import isObject_1 from '../node_modules/lodash/isObject.js';
+
+var isObject = isObject_1;
+
+export { isObject as default };
+//# sourceMappingURL=isObject.js_commonjs-proxy.map

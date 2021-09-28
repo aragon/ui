@@ -1,0 +1,6 @@
+import _getNative from '../node_modules/lodash/_getNative.js';
+
+var getNative = _getNative;
+
+export { getNative as default };
+//# sourceMappingURL=_getNative.js_commonjs-proxy.map

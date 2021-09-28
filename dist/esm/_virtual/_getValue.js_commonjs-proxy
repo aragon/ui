@@ -1,0 +1,6 @@
+import _getValue from '../node_modules/lodash/_getValue.js';
+
+var getValue = _getValue;
+
+export { getValue as default };
+//# sourceMappingURL=_getValue.js_commonjs-proxy.map

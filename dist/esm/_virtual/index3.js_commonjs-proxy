@@ -1,0 +1,6 @@
+import objectAssign from '../node_modules/object-assign/index.js';
+
+var assign = objectAssign;
+
+export { assign as default };
+//# sourceMappingURL=index3.js_commonjs-proxy.map

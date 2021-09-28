@@ -1,0 +1,6 @@
+import _coreJsData from '../node_modules/lodash/_coreJsData.js';
+
+var coreJsData = _coreJsData;
+
+export { coreJsData as default };
+//# sourceMappingURL=_coreJsData.js_commonjs-proxy.map

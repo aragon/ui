@@ -1,0 +1,6 @@
+import isObjectLike_1 from '../node_modules/lodash/isObjectLike.js';
+
+var isObjectLike = isObjectLike_1;
+
+export { isObjectLike as default };
+//# sourceMappingURL=isObjectLike.js_commonjs-proxy.map

@@ -1,0 +1,6 @@
+import _mapCacheClear from '../node_modules/lodash/_mapCacheClear.js';
+
+var mapCacheClear = _mapCacheClear;
+
+export { mapCacheClear as default };
+//# sourceMappingURL=_mapCacheClear.js_commonjs-proxy.map

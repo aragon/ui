@@ -1,0 +1,6 @@
+import _objectToString from '../node_modules/lodash/_objectToString.js';
+
+var objectToString = _objectToString;
+
+export { objectToString as default };
+//# sourceMappingURL=_objectToString.js_commonjs-proxy.map

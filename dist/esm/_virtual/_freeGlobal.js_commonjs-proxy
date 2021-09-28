@@ -1,0 +1,6 @@
+import _freeGlobal from '../node_modules/lodash/_freeGlobal.js';
+
+var freeGlobal = _freeGlobal;
+
+export { freeGlobal as default };
+//# sourceMappingURL=_freeGlobal.js_commonjs-proxy.map

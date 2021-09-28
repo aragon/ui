@@ -1,0 +1,6 @@
+import reactIs_development from '../node_modules/react-is/cjs/react-is.development.js';
+
+var require$$1 = reactIs_development;
+
+export { require$$1 as default };
+//# sourceMappingURL=react-is.development.js_commonjs-proxy.map

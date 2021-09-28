@@ -1,0 +1,6 @@
+import _assocIndexOf from '../node_modules/lodash/_assocIndexOf.js';
+
+var assocIndexOf = _assocIndexOf;
+
+export { assocIndexOf as default };
+//# sourceMappingURL=_assocIndexOf.js_commonjs-proxy.map

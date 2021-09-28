@@ -1,0 +1,6 @@
+import _getRawTag from '../node_modules/lodash/_getRawTag.js';
+
+var getRawTag = _getRawTag;
+
+export { getRawTag as default };
+//# sourceMappingURL=_getRawTag.js_commonjs-proxy.map

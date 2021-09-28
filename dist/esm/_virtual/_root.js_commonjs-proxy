@@ -1,0 +1,6 @@
+import _root from '../node_modules/lodash/_root.js';
+
+var root = _root;
+
+export { root as default };
+//# sourceMappingURL=_root.js_commonjs-proxy.map

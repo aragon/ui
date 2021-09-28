@@ -1,0 +1,1 @@
+{"version":3,"file":"TableRow.js","sources":["../src/components/Table/TableRow.js"],"sourcesContent":["import styled from 'styled-components'\n\nconst StyledTableRow = styled.tr``\n\nexport default StyledTableRow\n"],"names":["StyledTableRow","styled","tr"],"mappings":";;;;;;;;;;MAEMA,cAAc,GAAGC,2BAAM,CAACC,EAAV;AAAA;AAAA;AAAA;;;;"}

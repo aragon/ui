@@ -1,0 +1,6 @@
+import _MapCache from '../node_modules/lodash/_MapCache.js';
+
+var MapCache = _MapCache;
+
+export { MapCache as default };
+//# sourceMappingURL=_MapCache.js_commonjs-proxy.map

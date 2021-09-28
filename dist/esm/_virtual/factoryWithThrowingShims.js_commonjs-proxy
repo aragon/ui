@@ -1,0 +1,6 @@
+import factoryWithThrowingShims from '../node_modules/prop-types/factoryWithThrowingShims.js';
+
+var require$$2 = factoryWithThrowingShims;
+
+export { require$$2 as default };
+//# sourceMappingURL=factoryWithThrowingShims.js_commonjs-proxy.map

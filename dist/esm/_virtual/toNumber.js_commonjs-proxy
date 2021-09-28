@@ -1,0 +1,6 @@
+import toNumber_1 from '../node_modules/lodash/toNumber.js';
+
+var toNumber = toNumber_1;
+
+export { toNumber as default };
+//# sourceMappingURL=toNumber.js_commonjs-proxy.map

@@ -1,0 +1,6 @@
+import _nativeCreate from '../node_modules/lodash/_nativeCreate.js';
+
+var nativeCreate = _nativeCreate;
+
+export { nativeCreate as default };
+//# sourceMappingURL=_nativeCreate.js_commonjs-proxy.map
