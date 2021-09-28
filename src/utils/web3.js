@@ -21,6 +21,8 @@ const NETWORK_TYPES_URLS = new Map([
   ['goerli', `goerli.${ETHERSCAN_URL}`],
   ['matic', POLYGON_URL],
   ['mumbai', `mumbai.${POLYGON_URL}`],
+  ['harmony', `api.harmony.one`],
+  ['harmonyTest', `api.s0.b.hmny.io`],
 ])
 
 const URL_TYPES = new Map([
