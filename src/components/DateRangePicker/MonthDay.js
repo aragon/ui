@@ -173,7 +173,7 @@ WrappedMonthDay.propTypes = {
   rangeBoundaryEnd: PropTypes.bool,
   today: PropTypes.bool,
   weekDay: PropTypes.bool,
-  onClick: PropTypes.func
+  onClick: PropTypes.func,
 }
 
 export default WrappedMonthDay
