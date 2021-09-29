@@ -1,6 +1,0 @@
-import _trimmedEndIndex from '../node_modules/lodash/_trimmedEndIndex.js';
-
-var trimmedEndIndex = _trimmedEndIndex;
-
-export { trimmedEndIndex as default };
-//# sourceMappingURL=_trimmedEndIndex.js_commonjs-proxy.map

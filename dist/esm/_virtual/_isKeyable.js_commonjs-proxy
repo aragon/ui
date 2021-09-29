@@ -1,6 +1,0 @@
-import _isKeyable from '../node_modules/lodash/_isKeyable.js';
-
-var isKeyable = _isKeyable;
-
-export { isKeyable as default };
-//# sourceMappingURL=_isKeyable.js_commonjs-proxy.map

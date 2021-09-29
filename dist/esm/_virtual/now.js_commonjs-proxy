@@ -1,6 +1,0 @@
-import now_1 from '../node_modules/lodash/now.js';
-
-var now = now_1;
-
-export { now as default };
-//# sourceMappingURL=now.js_commonjs-proxy.map

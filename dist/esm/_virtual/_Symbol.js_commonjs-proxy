@@ -1,6 +1,0 @@
-import _Symbol from '../node_modules/lodash/_Symbol.js';
-
-var Symbol = _Symbol;
-
-export { Symbol as default };
-//# sourceMappingURL=_Symbol.js_commonjs-proxy.map

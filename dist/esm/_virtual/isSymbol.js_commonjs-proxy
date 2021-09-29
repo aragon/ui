@@ -1,6 +1,0 @@
-import isSymbol_1 from '../node_modules/lodash/isSymbol.js';
-
-var isSymbol = isSymbol_1;
-
-export { isSymbol as default };
-//# sourceMappingURL=isSymbol.js_commonjs-proxy.map

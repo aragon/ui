@@ -1,6 +1,0 @@
-import _baseTrim from '../node_modules/lodash/_baseTrim.js';
-
-var baseTrim = _baseTrim;
-
-export { baseTrim as default };
-//# sourceMappingURL=_baseTrim.js_commonjs-proxy.map

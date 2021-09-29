@@ -1,6 +1,0 @@
-import _toSource from '../node_modules/lodash/_toSource.js';
-
-var toSource = _toSource;
-
-export { toSource as default };
-//# sourceMappingURL=_toSource.js_commonjs-proxy.map

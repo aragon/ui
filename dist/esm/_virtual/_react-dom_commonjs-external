@@ -1,3 +1,0 @@
-import ReactDOM from 'react-dom';
-export { default } from 'react-dom';
-//# sourceMappingURL=_react-dom_commonjs-external.map

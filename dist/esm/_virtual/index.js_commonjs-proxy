@@ -1,6 +1,0 @@
-import reactIs from '../node_modules/react-is/index.js';
-
-var require$$0 = reactIs;
-
-export { require$$0 as default };
-//# sourceMappingURL=index.js_commonjs-proxy.map

@@ -1,6 +1,0 @@
-import _baseIsNative from '../node_modules/lodash/_baseIsNative.js';
-
-var baseIsNative = _baseIsNative;
-
-export { baseIsNative as default };
-//# sourceMappingURL=_baseIsNative.js_commonjs-proxy.map

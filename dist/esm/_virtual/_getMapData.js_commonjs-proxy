@@ -1,6 +1,0 @@
-import _getMapData from '../node_modules/lodash/_getMapData.js';
-
-var getMapData = _getMapData;
-
-export { getMapData as default };
-//# sourceMappingURL=_getMapData.js_commonjs-proxy.map

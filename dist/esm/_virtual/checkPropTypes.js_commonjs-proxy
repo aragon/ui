@@ -1,6 +1,0 @@
-import checkPropTypes_1 from '../node_modules/prop-types/checkPropTypes.js';
-
-var checkPropTypes = checkPropTypes_1;
-
-export { checkPropTypes as default };
-//# sourceMappingURL=checkPropTypes.js_commonjs-proxy.map

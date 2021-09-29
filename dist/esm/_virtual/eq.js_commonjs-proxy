@@ -1,6 +1,0 @@
-import eq_1 from '../node_modules/lodash/eq.js';
-
-var eq = eq_1;
-
-export { eq as default };
-//# sourceMappingURL=eq.js_commonjs-proxy.map
