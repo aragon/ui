@@ -71,8 +71,10 @@ jobs:
       env:
         TEMP: ${{ steps.temp.outputs.temp }}
       run: |
-        cp -R $TEMP/* .
+        cp -R $TEMP/* ./pages/
     - name: commit and push
       uses: actions-js/push@master
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
+        branch: 'gh-pages'
+        directory: './pages'
