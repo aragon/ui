@@ -31,7 +31,7 @@ jobs:
       uses: actions/checkout@v1
     - name: Release
       env:
-        GITHUB_TOKEN: ${{ secrets.MERGE_RELEASE_GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
       uses: mikeal/merge-release@master
 
@@ -54,7 +54,7 @@ jobs:
         cp public/favicon.svg dist
     - name: Push to gh-pages
       env:
-        ACTIONS_DEPLOY_KEY: ${{ secrets.GH_PAGES_ACTIONS_DEPLOY_KEY }}
+        ACTIONS_DEPLOY_KEY: ${{ secrets.GITHUB_TOKEN }}
         PUBLISH_BRANCH: gh-pages
         PUBLISH_DIR: ./gallery/dist
       uses: peaceiris/actions-gh-pages@v2
