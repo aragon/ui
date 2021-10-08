@@ -2,25 +2,26 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
-
-require('./unsupportedIterableToArray-f175acfa.js');
-var React = require('react');
-var React__default = _interopDefault(React);
-require('./_commonjsHelpers-1b94f6bc.js');
-var index = require('./index-46d0e707.js');
-var defineProperty$1 = require('./defineProperty-3cad0327.js');
+var _extends = require('./extends-023d783e.js');
 var toConsumableArray = require('./toConsumableArray-cc0d28a9.js');
 var getPrototypeOf = require('./getPrototypeOf-55c9e80c.js');
+var defineProperty = require('./defineProperty-3cad0327.js');
+var React = require('react');
+var index = require('./index-37353731.js');
 var components = require('./components.js');
 var miscellaneous = require('./miscellaneous.js');
-var _extends$1 = require('./extends-023d783e.js');
+require('./_commonjsHelpers-1b94f6bc.js');
+require('./unsupportedIterableToArray-f175acfa.js');
+
+function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
+
+var React__default = /*#__PURE__*/_interopDefaultLegacy(React);
 
 function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = getPrototypeOf.getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = getPrototypeOf.getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return getPrototypeOf.possibleConstructorReturn(this, result); }; }
 
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
 
-var _React$createContext = /*#__PURE__*/React__default.createContext({}),
+var _React$createContext = /*#__PURE__*/React__default['default'].createContext({}),
     Provider = _React$createContext.Provider,
     Consumer = _React$createContext.Consumer;
 
@@ -40,16 +41,16 @@ var RadioGroup = /*#__PURE__*/function (_React$PureComponent) {
 
     _this = _super.call.apply(_super, [this].concat(args));
 
-    defineProperty$1.defineProperty(getPrototypeOf.assertThisInitialized(_this), "state", {
+    defineProperty.defineProperty(getPrototypeOf.assertThisInitialized(_this), "state", {
       // keep track of the radios buttons to handle keyboard navigation
       radios: new Set()
     });
 
-    defineProperty$1.defineProperty(getPrototypeOf.assertThisInitialized(_this), "handleChange", function (id) {
+    defineProperty.defineProperty(getPrototypeOf.assertThisInitialized(_this), "handleChange", function (id) {
       _this.props.onChange(id);
     });
 
-    defineProperty$1.defineProperty(getPrototypeOf.assertThisInitialized(_this), "addRadio", function (id) {
+    defineProperty.defineProperty(getPrototypeOf.assertThisInitialized(_this), "addRadio", function (id) {
       _this.setState(function (state) {
         var radios = new Set(state.radios);
         radios.add(id);
@@ -59,7 +60,7 @@ var RadioGroup = /*#__PURE__*/function (_React$PureComponent) {
       });
     });
 
-    defineProperty$1.defineProperty(getPrototypeOf.assertThisInitialized(_this), "removeRadio", function (id) {
+    defineProperty.defineProperty(getPrototypeOf.assertThisInitialized(_this), "removeRadio", function (id) {
       _this.setState(function (state) {
         var radios = new Set(state.radios);
         radios.delete(id);
@@ -69,7 +70,7 @@ var RadioGroup = /*#__PURE__*/function (_React$PureComponent) {
       });
     });
 
-    defineProperty$1.defineProperty(getPrototypeOf.assertThisInitialized(_this), "selectPrev", function () {
+    defineProperty.defineProperty(getPrototypeOf.assertThisInitialized(_this), "selectPrev", function () {
       var id = _this.getSiblingId(-1);
 
       if (id !== null) {
@@ -77,7 +78,7 @@ var RadioGroup = /*#__PURE__*/function (_React$PureComponent) {
       }
     });
 
-    defineProperty$1.defineProperty(getPrototypeOf.assertThisInitialized(_this), "selectNext", function () {
+    defineProperty.defineProperty(getPrototypeOf.assertThisInitialized(_this), "selectNext", function () {
       var id = _this.getSiblingId(1);
 
       if (id !== null) {
@@ -128,7 +129,7 @@ var RadioGroup = /*#__PURE__*/function (_React$PureComponent) {
           children = _this$props.children,
           selected = _this$props.selected;
       var focusableId = radios.has(selected) ? selected : toConsumableArray.toConsumableArray(radios)[0];
-      return /*#__PURE__*/React__default.createElement(Provider, {
+      return /*#__PURE__*/React__default['default'].createElement(Provider, {
         value: {
           selected: selected,
           focusableId: focusableId,
@@ -138,22 +139,22 @@ var RadioGroup = /*#__PURE__*/function (_React$PureComponent) {
           selectPrev: this.selectPrev,
           selectNext: this.selectNext
         }
-      }, /*#__PURE__*/React__default.createElement("div", _extends$1._extends_1({
+      }, /*#__PURE__*/React__default['default'].createElement("div", _extends._extends_1({
         role: "radiogroup"
       }, components.stylingProps(this)), children));
     }
   }]);
 
   return RadioGroup;
-}(React__default.PureComponent);
+}(React__default['default'].PureComponent);
 
-defineProperty$1.defineProperty(RadioGroup, "propTypes", {
+defineProperty.defineProperty(RadioGroup, "propTypes", {
   children: index.propTypes.node,
   selected: index.propTypes.oneOfType([index.propTypes.string, index.propTypes.number]),
   onChange: index.propTypes.func
 });
 
-defineProperty$1.defineProperty(RadioGroup, "defaultProps", {
+defineProperty.defineProperty(RadioGroup, "defaultProps", {
   onChange: miscellaneous.noop
 });
 

@@ -1,25 +1,25 @@
-import React$1 from 'react';
 import _extends_1 from '../../../node_modules/@babel/runtime/helpers/extends.js';
-import objectWithoutProperties$1 from '../../../node_modules/@babel/runtime/helpers/objectWithoutProperties.js';
+import objectWithoutProperties from '../../../node_modules/@babel/runtime/helpers/objectWithoutProperties.js';
+import React from 'react';
 import useIconSize from '../icon-size.js';
-import IconPropTypes$1 from '../IconPropTypes.js';
+import IconPropTypes from '../IconPropTypes.js';
 
 function IconArrowLeft(_ref) {
   var size = _ref.size,
-      props = objectWithoutProperties$1(_ref, ["size"]);
+      props = objectWithoutProperties(_ref, ["size"]);
 
   var sizeValue = useIconSize(size);
-  return /*#__PURE__*/React$1.createElement("svg", _extends_1({
+  return /*#__PURE__*/React.createElement("svg", _extends_1({
     width: sizeValue,
     height: sizeValue,
     fill: "none",
     viewBox: "0 0 24 24"
-  }, props), /*#__PURE__*/React$1.createElement("path", {
+  }, props), /*#__PURE__*/React.createElement("path", {
     fill: "currentColor",
     stroke: "currentColor",
     strokeWidth: 0.2,
     d: "M18.434 11.434H5.566a.566.566 0 000 1.132h12.869a.565.565 0 100-1.132z"
-  }), /*#__PURE__*/React$1.createElement("path", {
+  }), /*#__PURE__*/React.createElement("path", {
     fill: "currentColor",
     stroke: "currentColor",
     strokeWidth: 0.2,
@@ -27,7 +27,7 @@ function IconArrowLeft(_ref) {
   }));
 }
 
-IconArrowLeft.propTypes = IconPropTypes$1;
+IconArrowLeft.propTypes = IconPropTypes;
 
 export default IconArrowLeft;
 //# sourceMappingURL=IconArrowLeft.js.map

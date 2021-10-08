@@ -2,42 +2,44 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
-
 var slicedToArray = require('./slicedToArray-a8a77f0e.js');
-require('./unsupportedIterableToArray-f175acfa.js');
-var React = require('react');
-var React__default = _interopDefault(React);
-require('./_commonjsHelpers-1b94f6bc.js');
-var index = require('./index-46d0e707.js');
-require('./defineProperty-3cad0327.js');
-require('./toConsumableArray-cc0d28a9.js');
 var _styled = require('styled-components');
-var _styled__default = _interopDefault(_styled);
-require('./getPrototypeOf-55c9e80c.js');
-require('./color.js');
-require('./css.js');
-require('./miscellaneous.js');
-require('./environment.js');
-require('./font.js');
-require('./keycodes.js');
-var constants = require('./constants.js');
-var springs = require('./springs.js');
-require('./text-styles.js');
-require('./theme-dark.js');
-require('./theme-light.js');
+var React = require('react');
+var index = require('./index-37353731.js');
+var web = require('./web-46d746d6.js');
+var ReactDOM = require('react-dom');
+var ButtonBase = require('./ButtonBase.js');
+var IconEllipsis = require('./IconEllipsis.js');
+var IconDown = require('./IconDown.js');
 var Theme = require('./Theme.js');
+var springs = require('./springs.js');
+var constants = require('./constants.js');
+require('./unsupportedIterableToArray-f175acfa.js');
+require('./_commonjsHelpers-1b94f6bc.js');
+require('./objectWithoutPropertiesLoose-1af20ad0.js');
 require('./extends-023d783e.js');
 require('./objectWithoutProperties-c6d3675c.js');
-require('./index-f5a9917e.js');
+require('./defineProperty-3cad0327.js');
 require('./FocusVisible.js');
-var ButtonBase = require('./ButtonBase.js');
-require('./IconPropTypes-dd9d2cb1.js');
-var IconDown = require('./IconDown.js');
-var IconEllipsis = require('./IconEllipsis.js');
-require('./objectWithoutPropertiesLoose-1af20ad0.js');
-var ReactDOM = _interopDefault(require('react-dom'));
-var web = require('./web-d0294535.js');
+require('./getPrototypeOf-55c9e80c.js');
+require('./keycodes.js');
+require('./css.js');
+require('./environment.js');
+require('./miscellaneous.js');
+require('./text-styles.js');
+require('./font.js');
+require('./theme-dark.js');
+require('./theme-light.js');
+require('./color.js');
+require('./toConsumableArray-cc0d28a9.js');
+require('./IconPropTypes-b9997416.js');
+require('./index-c33eeeef.js');
+
+function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
+
+var _styled__default = /*#__PURE__*/_interopDefaultLegacy(_styled);
+var React__default = /*#__PURE__*/_interopDefaultLegacy(React);
+var ReactDOM__default = /*#__PURE__*/_interopDefaultLegacy(ReactDOM);
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -65,7 +67,7 @@ var ClickOutComponent = function (_React$Component) {
       var self = this;
       var elTouchIsClick = true;
       var documentTouchIsClick = true;
-      var el = ReactDOM.findDOMNode(this);
+      var el = ReactDOM__default['default'].findDOMNode(this);
 
       self.__documentTouchStarted = function (e) {
         el.removeEventListener('click', self.__elementClicked);
@@ -114,7 +116,7 @@ var ClickOutComponent = function (_React$Component) {
   }, {
     key: 'toggleListeners',
     value: function toggleListeners(listenerMethod) {
-      var el = ReactDOM.findDOMNode(this);
+      var el = ReactDOM__default['default'].findDOMNode(this);
 
       el[listenerMethod]('touchmove', this.__elementTouchMoved);
       el[listenerMethod]('touchend', this.__elementTouchEnded);
@@ -134,35 +136,35 @@ var ClickOutComponent = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
-      return Array.isArray(this.props.children) ? React__default.createElement(
+      return Array.isArray(this.props.children) ? React__default['default'].createElement(
         'div',
         null,
         this.props.children
-      ) : React__default.Children.only(this.props.children);
+      ) : React__default['default'].Children.only(this.props.children);
     }
   }]);
 
   return ClickOutComponent;
-}(React__default.Component);
+}(React__default['default'].Component);
 
 var reactOnclickout = ClickOutComponent;
 
 var BASE_WIDTH = 46;
 var BASE_HEIGHT = 32;
 
-var _StyledIconEllipsis = _styled__default(IconEllipsis.default).withConfig({
+var _StyledIconEllipsis = _styled__default['default'](IconEllipsis['default']).withConfig({
   displayName: "ContextMenu___StyledIconEllipsis",
   componentId: "ris724-0"
 })([""]);
 
-var _StyledIconDown = _styled__default(IconDown.default).withConfig({
+var _StyledIconDown = _styled__default['default'](IconDown['default']).withConfig({
   displayName: "ContextMenu___StyledIconDown",
   componentId: "ris724-1"
 })(["color:", ";"], function (p) {
   return p._css7;
 });
 
-var _StyledAnimatedDiv = _styled__default(web.extendedAnimated.div).withConfig({
+var _StyledAnimatedDiv = _styled__default['default'](web.extendedAnimated.div).withConfig({
   displayName: "ContextMenu___StyledAnimatedDiv",
   componentId: "ris724-2"
 })(["z-index:", ";overflow:hidden;position:absolute;top:", "px;right:0;background:", ";border:1px solid ", ";border-radius:3px 0 3px 3px;"], function (p) {
@@ -175,7 +177,7 @@ var _StyledAnimatedDiv = _styled__default(web.extendedAnimated.div).withConfig({
   return p._css11;
 });
 
-var _StyledDiv = _styled__default("div").withConfig({
+var _StyledDiv = _styled__default['default']("div").withConfig({
   displayName: "ContextMenu___StyledDiv",
   componentId: "ris724-3"
 })(["z-index:", ";position:absolute;bottom:0;right:1px;height:1px;width:", "px;background:", ";"], function (p) {
@@ -208,9 +210,9 @@ function ContextMenu(_ref) {
   // context menus below it using the same z-index (e.g. when used in a list)
 
   var appliedZIndex = opened ? zIndex + 1 : zIndex;
-  return /*#__PURE__*/React__default.createElement(reactOnclickout, {
+  return /*#__PURE__*/React__default['default'].createElement(reactOnclickout, {
     onClickOut: handleClose
-  }, /*#__PURE__*/React__default.createElement(web.Spring, {
+  }, /*#__PURE__*/React__default['default'].createElement(web.Spring, {
     config: springs.springs.smooth,
     to: {
       openProgress: Number(opened)
@@ -218,14 +220,14 @@ function ContextMenu(_ref) {
     native: true
   }, function (_ref2) {
     var openProgress = _ref2.openProgress;
-    return /*#__PURE__*/React__default.createElement(_StyledMain, {
+    return /*#__PURE__*/React__default['default'].createElement(_StyledMain, {
       style: {
         boxShadow: openProgress.interpolate(function (t) {
           return "0 4px 4px rgba(0, 0, 0, ".concat(t * 0.03, ")");
         })
       },
       _css: appliedZIndex
-    }, /*#__PURE__*/React__default.createElement(_StyledButton, {
+    }, /*#__PURE__*/React__default['default'].createElement(_StyledButton, {
       onClick: handleBaseButtonClick,
       opened: opened,
       disabled: disabled,
@@ -235,7 +237,7 @@ function ContextMenu(_ref) {
       _css4: disabled ? '0' : "1px solid ".concat(theme.border),
       _css5: opened ? theme.surface : theme.border,
       _css6: disabled ? '' : "&:active {\n                  background: ".concat(theme.surfacePressed, ";\n                  border-bottom-color: ").concat(opened ? theme.surfacePressed : theme.border, ";\n                }")
-    }, /*#__PURE__*/React__default.createElement(_StyledIconEllipsis, null), /*#__PURE__*/React__default.createElement(web.extendedAnimated.div, {
+    }, /*#__PURE__*/React__default['default'].createElement(_StyledIconEllipsis, null), /*#__PURE__*/React__default['default'].createElement(web.extendedAnimated.div, {
       style: {
         display: 'flex',
         alignItems: 'center',
@@ -244,10 +246,10 @@ function ContextMenu(_ref) {
           return "rotate(".concat(v * 180, "deg)");
         })
       }
-    }, /*#__PURE__*/React__default.createElement(_StyledIconDown, {
+    }, /*#__PURE__*/React__default['default'].createElement(_StyledIconDown, {
       size: "tiny",
       _css7: disabled ? theme.disabledIcon : theme.surfaceIcon
-    }))), opened && /*#__PURE__*/React__default.createElement(React__default.Fragment, null, /*#__PURE__*/React__default.createElement(_StyledAnimatedDiv, {
+    }))), opened && /*#__PURE__*/React__default['default'].createElement(React__default['default'].Fragment, null, /*#__PURE__*/React__default['default'].createElement(_StyledAnimatedDiv, {
       onClick: handleClose,
       style: {
         opacity: openProgress,
@@ -259,7 +261,7 @@ function ContextMenu(_ref) {
       _css9: BASE_HEIGHT - 1,
       _css10: theme.surface,
       _css11: theme.border
-    }, children), /*#__PURE__*/React__default.createElement(_StyledDiv, {
+    }, children), /*#__PURE__*/React__default['default'].createElement(_StyledDiv, {
       _css12: appliedZIndex + 1,
       _css13: BASE_WIDTH - 2,
       _css14: theme.surface
@@ -276,19 +278,19 @@ ContextMenu.defaultProps = {
   zIndex: 0,
   disabled: false
 };
-var Main = _styled__default(web.extendedAnimated.div).withConfig({
+var Main = _styled__default['default'](web.extendedAnimated.div).withConfig({
   displayName: "ContextMenu__Main",
   componentId: "ris724-4"
 })(["position:relative;width:", "px;height:", "px;"], BASE_WIDTH, BASE_HEIGHT);
 
-var _StyledMain = _styled__default(Main).withConfig({
+var _StyledMain = _styled__default['default'](Main).withConfig({
   displayName: "ContextMenu___StyledMain",
   componentId: "ris724-5"
 })(["z-index:", ";"], function (p) {
   return p._css;
 });
 
-var Button = _styled__default(ButtonBase.default).withConfig({
+var Button = _styled__default['default'](ButtonBase['default']).withConfig({
   displayName: "ContextMenu__Button",
   componentId: "ris724-6"
 })(["display:flex;justify-content:center;align-items:center;width:100%;height:", "px;border-radius:", ";box-shadow:", ";"], BASE_HEIGHT, function (_ref3) {
@@ -299,7 +301,7 @@ var Button = _styled__default(ButtonBase.default).withConfig({
   return disabled ? 'none' : "0px 1px 3px rgba(0, 0, 0, 0.1)";
 });
 
-var _StyledButton = _styled__default(Button).withConfig({
+var _StyledButton = _styled__default['default'](Button).withConfig({
   displayName: "ContextMenu___StyledButton",
   componentId: "ris724-7"
 })(["color:", ";background:", ";border:", ";border-bottom-color:", ";", ""], function (p) {

@@ -1,17 +1,17 @@
-import slicedToArray$1 from '../../../node_modules/@babel/runtime/helpers/slicedToArray.js';
-import React$1, { useRef, useState, useCallback, useEffect, useMemo } from 'react';
-import propTypes from '../../../node_modules/prop-types/index.js';
-import _styled$1 from 'styled-components';
-import { GU } from '../../style/constants.js';
-import { springs as springs$1 } from '../../style/springs.js';
-import { textStyle } from '../../style/text-styles.js';
-import { useTheme } from '../../theme/Theme2.js';
 import _extends_1 from '../../../node_modules/@babel/runtime/helpers/extends.js';
-import objectWithoutProperties$1 from '../../../node_modules/@babel/runtime/helpers/objectWithoutProperties.js';
+import slicedToArray from '../../../node_modules/@babel/runtime/helpers/slicedToArray.js';
+import objectWithoutProperties from '../../../node_modules/@babel/runtime/helpers/objectWithoutProperties.js';
+import _styled from 'styled-components';
+import React, { useRef, useState, useCallback, useEffect, useMemo } from 'react';
+import propTypes from '../../../node_modules/prop-types/index.js';
+import { animated as extendedAnimated, Spring } from '../../../node_modules/react-spring/web.js';
 import { useInside as o } from '../../../node_modules/use-inside/dist/index.js';
 import ButtonBaseWithFocus from '../ButtonBase/ButtonBase.js';
-import IconDown$1 from '../../icons/components/IconDown.js';
-import { animated as extendedAnimated, Spring } from '../../../node_modules/react-spring/web.js';
+import { useTheme } from '../../theme/Theme2.js';
+import { GU } from '../../style/constants.js';
+import { springs } from '../../style/springs.js';
+import { textStyle } from '../../style/text-styles.js';
+import IconDown from '../../icons/components/IconDown.js';
 
 // In / out example: [0, 0.25, 0.5, 0.75, 1] => [0, 0.5, 1, 0.5, 0]
 
@@ -21,21 +21,21 @@ function interpolateToggleElevation(value, fn) {
   });
 }
 
-var _StyledSection = _styled$1("section").withConfig({
+var _StyledSection = _styled("section").withConfig({
   displayName: "Details___StyledSection",
   componentId: "b3f99g-0"
 })(["", ""], function (p) {
   return p._css;
 });
 
-var _StyledButtonBase = _styled$1(ButtonBaseWithFocus).withConfig({
+var _StyledButtonBase = _styled(ButtonBaseWithFocus).withConfig({
   displayName: "Details___StyledButtonBase",
   componentId: "b3f99g-1"
 })(["position:relative;width:100%;&:active{background:", ";}"], function (p) {
   return p._css2;
 });
 
-var _StyledDiv = _styled$1("div").withConfig({
+var _StyledDiv = _styled("div").withConfig({
   displayName: "Details___StyledDiv",
   componentId: "b3f99g-2"
 })(["position:absolute;left:", "px;right:", "px;bottom:0;"], function (p) {
@@ -44,12 +44,12 @@ var _StyledDiv = _styled$1("div").withConfig({
   return p._css4;
 });
 
-var _StyledDiv2 = _styled$1("div").withConfig({
+var _StyledDiv2 = _styled("div").withConfig({
   displayName: "Details___StyledDiv2",
   componentId: "b3f99g-3"
 })(["height:1px;box-shadow:0 1px 1px rgba(0,0,0,0.1);"]);
 
-var _StyledH = _styled$1("h1").withConfig({
+var _StyledH = _styled("h1").withConfig({
   displayName: "Details___StyledH",
   componentId: "b3f99g-4"
 })(["display:flex;justify-content:flex-start;align-items:center;height:", "px;margin-left:", "px;color:", ";", " font-weight:400;"], function (p) {
@@ -62,27 +62,27 @@ var _StyledH = _styled$1("h1").withConfig({
   return p._css8;
 });
 
-var _StyledDiv3 = _styled$1("div").withConfig({
+var _StyledDiv3 = _styled("div").withConfig({
   displayName: "Details___StyledDiv3",
   componentId: "b3f99g-5"
 })(["margin-top:2px;"]);
 
-var _StyledDiv4 = _styled$1("div").withConfig({
+var _StyledDiv4 = _styled("div").withConfig({
   displayName: "Details___StyledDiv4",
   componentId: "b3f99g-6"
 })(["display:flex;align-items:center;justify-content:center;"]);
 
-var _StyledDiv5 = _styled$1("div").withConfig({
+var _StyledDiv5 = _styled("div").withConfig({
   displayName: "Details___StyledDiv5",
   componentId: "b3f99g-7"
 })(["overflow:hidden"]);
 
-var _StyledAnimatedDiv = _styled$1(extendedAnimated.div).withConfig({
+var _StyledAnimatedDiv = _styled(extendedAnimated.div).withConfig({
   displayName: "Details___StyledAnimatedDiv",
   componentId: "b3f99g-8"
 })(["display:flex;flex-direction:column;justify-content:flex-end;"]);
 
-var _StyledDiv6 = _styled$1("div").withConfig({
+var _StyledDiv6 = _styled("div").withConfig({
   displayName: "Details___StyledDiv6",
   componentId: "b3f99g-9"
 })(["", ""], function (p) {
@@ -94,16 +94,16 @@ function Details(_ref) {
       label = _ref.label,
       onToggle = _ref.onToggle,
       openedProp = _ref.opened,
-      props = objectWithoutProperties$1(_ref, ["children", "label", "onToggle", "opened"]);
+      props = objectWithoutProperties(_ref, ["children", "label", "onToggle", "opened"]);
 
   var theme = useTheme();
 
   var _useInside = o('Box'),
-      _useInside2 = slicedToArray$1(_useInside, 1),
+      _useInside2 = slicedToArray(_useInside, 1),
       insideBox = _useInside2[0];
 
   var _useInside3 = o('SidePanel'),
-      _useInside4 = slicedToArray$1(_useInside3, 1),
+      _useInside4 = slicedToArray(_useInside3, 1),
       insideSidePanel = _useInside4[0];
 
   var contentRef = useRef(null);
@@ -111,7 +111,7 @@ function Details(_ref) {
   // or controlled (external state).
 
   var _useState = useState(false),
-      _useState2 = slicedToArray$1(_useState, 2),
+      _useState2 = slicedToArray(_useState, 2),
       openedManaged = _useState2[0],
       setOpenedManaged = _useState2[1];
 
@@ -144,7 +144,7 @@ function Details(_ref) {
   }, []); // Use height: 'auto' when opened
 
   var _useState3 = useState(false),
-      _useState4 = slicedToArray$1(_useState3, 2),
+      _useState4 = slicedToArray(_useState3, 2),
       forceHeight = _useState4[0],
       setForceHeight = _useState4[1];
 
@@ -178,8 +178,8 @@ function Details(_ref) {
       content: "\n        padding: 0;\n      "
     };
   }, [insideSidePanel, insideBox]);
-  return /*#__PURE__*/React$1.createElement(Spring, {
-    config: springs$1.smooth,
+  return /*#__PURE__*/React.createElement(Spring, {
+    config: springs.smooth,
     from: {
       openProgress: 0
     },
@@ -192,15 +192,15 @@ function Details(_ref) {
     native: true
   }, function (_ref2) {
     var openProgress = _ref2.openProgress;
-    return /*#__PURE__*/React$1.createElement(_StyledSection, _extends_1({}, props, {
+    return /*#__PURE__*/React.createElement(_StyledSection, _extends_1({}, props, {
       _css: spacingCss.section
-    }), /*#__PURE__*/React$1.createElement(_StyledButtonBase, {
+    }), /*#__PURE__*/React.createElement(_StyledButtonBase, {
       onClick: handleToggle,
       _css2: theme.surfacePressed
-    }, /*#__PURE__*/React$1.createElement(_StyledDiv, {
+    }, /*#__PURE__*/React.createElement(_StyledDiv, {
       _css3: 3 * GU,
       _css4: 3 * GU
-    }, /*#__PURE__*/React$1.createElement(extendedAnimated.div, {
+    }, /*#__PURE__*/React.createElement(extendedAnimated.div, {
       style: {
         transform: interpolateToggleElevation(openProgress, function (v) {
           return "scale3d(".concat(v, ", 1, 1)");
@@ -209,12 +209,12 @@ function Details(_ref) {
           return v;
         })
       }
-    }, /*#__PURE__*/React$1.createElement(_StyledDiv2, null))), /*#__PURE__*/React$1.createElement(_StyledH, _extends_1({}, props, {
+    }, /*#__PURE__*/React.createElement(_StyledDiv2, null))), /*#__PURE__*/React.createElement(_StyledH, _extends_1({}, props, {
       _css5: 5 * GU,
       _css6: 3 * GU,
       _css7: theme.surfaceContentSecondary,
       _css8: textStyle('label2')
-    }), /*#__PURE__*/React$1.createElement(_StyledDiv3, null, label), /*#__PURE__*/React$1.createElement("div", null, /*#__PURE__*/React$1.createElement(extendedAnimated.div, {
+    }), /*#__PURE__*/React.createElement(_StyledDiv3, null, label), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(extendedAnimated.div, {
       style: {
         marginLeft: "".concat(1 * GU, "px"),
         transform: openProgress.interpolate(function (v) {
@@ -222,19 +222,19 @@ function Details(_ref) {
         }),
         transformOrigin: '50% calc(50% - 0.5px)'
       }
-    }, /*#__PURE__*/React$1.createElement(_StyledDiv4, null, /*#__PURE__*/React$1.createElement(IconDown$1, {
+    }, /*#__PURE__*/React.createElement(_StyledDiv4, null, /*#__PURE__*/React.createElement(IconDown, {
       size: "tiny"
-    })))))), /*#__PURE__*/React$1.createElement(_StyledDiv5, null, /*#__PURE__*/React$1.createElement(_StyledAnimatedDiv, {
+    })))))), /*#__PURE__*/React.createElement(_StyledDiv5, null, /*#__PURE__*/React.createElement(_StyledAnimatedDiv, {
       style: {
         opacity: openProgress,
         height: forceHeight ? openProgress.interpolate(function (v) {
           return "".concat(v * contentHeight.current, "px");
         }) : 'auto'
       }
-    }, /*#__PURE__*/React$1.createElement(_StyledDiv6, {
+    }, /*#__PURE__*/React.createElement(_StyledDiv6, {
       ref: handleContentRef,
       _css9: spacingCss.content
-    }, /*#__PURE__*/React$1.createElement("div", null, children)))));
+    }, /*#__PURE__*/React.createElement("div", null, children)))));
   });
 }
 

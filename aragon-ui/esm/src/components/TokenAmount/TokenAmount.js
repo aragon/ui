@@ -1,33 +1,30 @@
-import React$1 from 'react';
-import _styled$1 from 'styled-components';
-import '../../utils/environment.js';
-import { isAddress } from '../../utils/web3.js';
-import { GU } from '../../style/constants.js';
-import { textStyle } from '../../style/text-styles.js';
-import { useTheme } from '../../theme/Theme2.js';
-import objectWithoutProperties$1 from '../../../node_modules/@babel/runtime/helpers/objectWithoutProperties.js';
-import { useImageExists as useImageExists$1 } from '../../hooks/useImageExists.js';
+import objectWithoutProperties from '../../../node_modules/@babel/runtime/helpers/objectWithoutProperties.js';
+import _styled from 'styled-components';
+import React from 'react';
 import ExtendedPropTypes from '../../proptypes.js';
 import { UseTokenProvider, useToken } from '../../../node_modules/use-token/dist/index.js';
 import r from '../../../node_modules/token-amount/dist/index.js';
+import { useTheme } from '../../theme/Theme2.js';
+import { useImageExists } from '../../hooks/useImageExists.js';
+import { isAddress } from '../../utils/web3.js';
+import { GU } from '../../style/constants.js';
+import { textStyle } from '../../style/text-styles.js';
 
-var _StyledDiv = _styled$1("div").withConfig({
+var _StyledDiv = _styled("div").withConfig({
   displayName: "TokenAmount___StyledDiv",
   componentId: "sc-1ui2my8-0"
 })(["display:flex;align-items:center;"]);
 
-var _StyledSpan = _styled$1("span").withConfig({
+var _StyledSpan = _styled("span").withConfig({
   displayName: "TokenAmount___StyledSpan",
   componentId: "sc-1ui2my8-1"
-})(["padding-right:", "px;", ";line-height:1;", ""], function (p) {
+})(["margin-right:", "px;", ";line-height:1;"], function (p) {
   return p._css;
 }, function (p) {
   return p._css2;
-}, function (p) {
-  return p._css3;
 });
 
-var TokenAmount = /*#__PURE__*/React$1.memo(function TokenAmount(_ref) {
+var TokenAmount = /*#__PURE__*/React.memo(function TokenAmount(_ref) {
   var address = _ref.address,
       amount = _ref.amount,
       chainId = _ref.chainId,
@@ -36,7 +33,7 @@ var TokenAmount = /*#__PURE__*/React$1.memo(function TokenAmount(_ref) {
       iconUrl = _ref.iconUrl,
       size = _ref.size,
       symbol = _ref.symbol,
-      props = objectWithoutProperties$1(_ref, ["address", "amount", "chainId", "decimals", "digits", "iconUrl", "size", "symbol"]);
+      props = objectWithoutProperties(_ref, ["address", "amount", "chainId", "decimals", "digits", "iconUrl", "size", "symbol"]);
 
   var isValidAddress = isAddress(address);
 
@@ -44,29 +41,39 @@ var TokenAmount = /*#__PURE__*/React$1.memo(function TokenAmount(_ref) {
     throw new Error('TokenAmount: you need to provide a valid address or a symbol');
   }
 
-  return /*#__PURE__*/React$1.createElement(UseTokenProvider, null, /*#__PURE__*/React$1.createElement(_StyledDiv, props, /*#__PURE__*/React$1.createElement(Icon, {
+  return /*#__PURE__*/React.createElement(UseTokenProvider, null, /*#__PURE__*/React.createElement(_StyledDiv, props, /*#__PURE__*/React.createElement(Icon, {
     address: address,
     chainId: chainId,
     iconUrl: iconUrl,
     size: size
-  }), amount && /*#__PURE__*/React$1.createElement(_StyledSpan, {
+  }), amount && /*#__PURE__*/React.createElement(_StyledSpan, {
     _css: size === 'large' ? 0.5 * GU : 0.25 * GU,
-    _css2: textStyle(size === 'large' ? 'title2' : 'body2'),
-    _css3: size === 'large' ? "transform: translateY(2px);" : ''
+    _css2: textStyle(size === 'large' ? 'title2' : 'body2')
   }, r.format(amount, decimals, {
     digits: digits
-  })), /*#__PURE__*/React$1.createElement(_Symbol, {
+  })), /*#__PURE__*/React.createElement(_Symbol, {
     address: address,
     size: size,
     symbol: symbol
   })));
 });
 
-var _StyledImg = _styled$1("img").withConfig({
-  displayName: "TokenAmount___StyledImg",
+var _StyledDiv2 = _styled("div").withConfig({
+  displayName: "TokenAmount___StyledDiv2",
   componentId: "sc-1ui2my8-2"
-})(["padding-right:", "px;"], function (p) {
+})(["display:flex;width:", "px;height:", "px;margin-right:", "px;"], function (p) {
+  return p._css3;
+}, function (p) {
   return p._css4;
+}, function (p) {
+  return p._css5;
+});
+
+var _StyledDiv3 = _styled("div").withConfig({
+  displayName: "TokenAmount___StyledDiv3",
+  componentId: "sc-1ui2my8-3"
+})(["flex:1;border-radius:100%;border:2px solid ", ";"], function (p) {
+  return p._css6;
 });
 
 var Icon = function Icon(_ref2) {
@@ -74,30 +81,36 @@ var Icon = function Icon(_ref2) {
       chainId = _ref2.chainId,
       iconUrl = _ref2.iconUrl,
       size = _ref2.size;
+  var theme = useTheme();
   var token = useToken(chainId === 1 ? address : '');
 
-  var _useImageExists = useImageExists$1(iconUrl || token.iconUrl),
+  var _useImageExists = useImageExists(iconUrl || token.iconUrl),
       exists = _useImageExists.exists;
 
-  return exists && /*#__PURE__*/React$1.createElement(_StyledImg, {
+  return /*#__PURE__*/React.createElement(_StyledDiv2, {
+    _css3: 3 * GU,
+    _css4: 3 * GU,
+    _css5: size === 'large' ? 1 * GU : 0.75 * GU
+  }, exists ? /*#__PURE__*/React.createElement("img", {
     alt: "",
-    height: 3 * GU,
-    src: iconUrl || token.iconUrl,
-    _css4: size === 'large' ? 1 * GU : 0.5 * GU
-  });
+    width: "100%",
+    src: iconUrl || token.iconUrl
+  }) : /*#__PURE__*/React.createElement(_StyledDiv3, {
+    _css6: theme.border
+  }));
 };
 
-var _StyledSpan2 = _styled$1("span").withConfig({
+var _StyledSpan2 = _styled("span").withConfig({
   displayName: "TokenAmount___StyledSpan2",
-  componentId: "sc-1ui2my8-3"
+  componentId: "sc-1ui2my8-4"
 })(["color:", ";", ";line-height:1;", " ", ""], function (p) {
-  return p._css5;
-}, function (p) {
-  return p._css6;
-}, function (p) {
   return p._css7;
 }, function (p) {
   return p._css8;
+}, function (p) {
+  return p._css9;
+}, function (p) {
+  return p._css10;
 });
 
 var _Symbol = function _Symbol2(_ref3) {
@@ -106,11 +119,11 @@ var _Symbol = function _Symbol2(_ref3) {
       symbol = _ref3.symbol;
   var token = useToken(address);
   var theme = useTheme();
-  return /*#__PURE__*/React$1.createElement(_StyledSpan2, {
-    _css5: theme.surfaceContentSecondary,
-    _css6: textStyle('body2'),
-    _css7: size === 'large' ? "align-self: flex-end;" : '',
-    _css8: size === 'large' ? "transform: translateY(-1px);" : ''
+  return /*#__PURE__*/React.createElement(_StyledSpan2, {
+    _css7: theme.surfaceContentSecondary,
+    _css8: textStyle('body2'),
+    _css9: size === 'large' ? "align-self: flex-end;" : '',
+    _css10: size === 'large' ? "transform: translateY(-1px);" : ''
   }, symbol || token.symbol);
 };
 

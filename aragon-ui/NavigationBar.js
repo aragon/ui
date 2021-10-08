@@ -2,24 +2,23 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
-
-var React = require('react');
-var React__default = _interopDefault(React);
-require('./_commonjsHelpers-1b94f6bc.js');
-var index = require('./index-46d0e707.js');
-var defineProperty = require('./defineProperty-3cad0327.js');
-var _styled = require('styled-components');
-var _styled__default = _interopDefault(_styled);
-var getPrototypeOf = require('./getPrototypeOf-55c9e80c.js');
-require('./miscellaneous.js');
-require('./environment.js');
-var springs = require('./springs.js');
 var _extends = require('./extends-023d783e.js');
+var getPrototypeOf = require('./getPrototypeOf-55c9e80c.js');
+var defineProperty = require('./defineProperty-3cad0327.js');
+var React = require('react');
+var index = require('./index-37353731.js');
+var _styled = require('styled-components');
+var web = require('./web-46d746d6.js');
+var LeftIcon = require('./LeftIcon.js');
+var springs = require('./springs.js');
+require('./_commonjsHelpers-1b94f6bc.js');
 require('./objectWithoutPropertiesLoose-1af20ad0.js');
 require('react-dom');
-var web = require('./web-d0294535.js');
-var LeftIcon = require('./LeftIcon.js');
+
+function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
+
+var React__default = /*#__PURE__*/_interopDefaultLegacy(React);
+var _styled__default = /*#__PURE__*/_interopDefaultLegacy(_styled);
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
@@ -66,7 +65,7 @@ var NavigationBar = /*#__PURE__*/function (_React$Component) {
           index: index
         };
       }).slice(-1);
-      return /*#__PURE__*/React__default.createElement(Container, null, /*#__PURE__*/React__default.createElement(web.Transition, {
+      return /*#__PURE__*/React__default['default'].createElement(Container, null, /*#__PURE__*/React__default['default'].createElement(web.Transition, {
         items: displayedItems,
         keys: displayedItems.map( // Use a different key than 0 when there is only one item, so that
         // the “leave” transition of the first item can be executed when a
@@ -91,7 +90,7 @@ var NavigationBar = /*#__PURE__*/function (_React$Component) {
         native: true
       }, function (item) {
         return function (styles) {
-          return /*#__PURE__*/React__default.createElement(Item, _extends._extends_1({
+          return /*#__PURE__*/React__default['default'].createElement(Item, _extends._extends_1({
             label: item.node,
             onBack: onBack,
             displayBack: item.index > 0,
@@ -118,7 +117,7 @@ var NavigationBar = /*#__PURE__*/function (_React$Component) {
   }]);
 
   return NavigationBar;
-}(React__default.Component);
+}(React__default['default'].Component);
 
 defineProperty.defineProperty(NavigationBar, "propTypes", {
   onBack: index.propTypes.func,
@@ -139,7 +138,7 @@ var Item = function Item(_ref) {
       onBack = _ref.onBack,
       label = _ref.label,
       compact = _ref.compact;
-  return /*#__PURE__*/React__default.createElement(web.extendedAnimated.span, {
+  return /*#__PURE__*/React__default['default'].createElement(web.extendedAnimated.span, {
     style: {
       display: 'flex',
       alignItems: 'center',
@@ -148,10 +147,10 @@ var Item = function Item(_ref) {
         return "translate(".concat(p * 20, "px, 0)");
       })
     }
-  }, /*#__PURE__*/React__default.createElement(Title, null, displayBack && /*#__PURE__*/React__default.createElement(BackButton, {
+  }, /*#__PURE__*/React__default['default'].createElement(Title, null, displayBack && /*#__PURE__*/React__default['default'].createElement(BackButton, {
     onClick: onBack,
     compact: compact
-  }, /*#__PURE__*/React__default.createElement(LeftIcon.default, null)), /*#__PURE__*/React__default.createElement(Label, null, label)));
+  }, /*#__PURE__*/React__default['default'].createElement(LeftIcon['default'], null)), /*#__PURE__*/React__default['default'].createElement(Label, null, label)));
 };
 
 Item.propTypes = {
@@ -162,19 +161,19 @@ Item.propTypes = {
   opacity: index.propTypes.object,
   position: index.propTypes.object
 };
-var Container = _styled__default.span.withConfig({
+var Container = _styled__default['default'].span.withConfig({
   displayName: "NavigationBar__Container",
   componentId: "pd4tzi-0"
 })(["display:flex;position:relative;height:100%;"]);
-var Title = _styled__default.span.withConfig({
+var Title = _styled__default['default'].span.withConfig({
   displayName: "NavigationBar__Title",
   componentId: "pd4tzi-1"
 })(["display:flex;align-items:center;position:absolute;left:0;top:0;bottom:0;"]);
-var Label = _styled__default.span.withConfig({
+var Label = _styled__default['default'].span.withConfig({
   displayName: "NavigationBar__Label",
   componentId: "pd4tzi-2"
 })(["display:flex;height:100%;align-items:center;padding-left:30px;white-space:nowrap;font-size:22px;"]);
-var BackButton = _styled__default.span.withConfig({
+var BackButton = _styled__default['default'].span.withConfig({
   displayName: "NavigationBar__BackButton",
   componentId: "pd4tzi-3"
 })(["display:flex;align-items:center;height:63px;padding:", ";cursor:pointer;svg{color:hsl(179,76%,48%);}:active svg{color:hsl(179,76%,63%);}& + ", "{padding-left:0;}"], function (p) {

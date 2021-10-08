@@ -1,5 +1,5 @@
-import slicedToArray$1 from '../../node_modules/@babel/runtime/helpers/slicedToArray.js';
-import toConsumableArray$1 from '../../node_modules/@babel/runtime/helpers/toConsumableArray.js';
+import toConsumableArray from '../../node_modules/@babel/runtime/helpers/toConsumableArray.js';
+import slicedToArray from '../../node_modules/@babel/runtime/helpers/slicedToArray.js';
 import JSBI from '../../node_modules/jsbi/dist/jsbi.mjs.js';
 import { NO_BREAK_SPACE } from './characters.js';
 import { divideRoundBigInt } from './math.js';
@@ -47,11 +47,11 @@ function formatNumber(number) {
   var numAsString = String(number);
 
   var _numAsString$split = numAsString.split('.'),
-      _numAsString$split2 = slicedToArray$1(_numAsString$split, 2),
+      _numAsString$split2 = slicedToArray(_numAsString$split, 2),
       integer = _numAsString$split2[0],
       decimals = _numAsString$split2[1];
 
-  return toConsumableArray$1(integer).reverse().reduce(function (result, digit, index) {
+  return toConsumableArray(integer).reverse().reduce(function (result, digit, index) {
     return digit + (index > 0 && index % 3 === 0 ? ',' : '') + result;
   }, decimals ? ".".concat(decimals) : '');
 }

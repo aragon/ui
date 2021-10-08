@@ -2,40 +2,41 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
-
-require('./slicedToArray-a8a77f0e.js');
-require('./unsupportedIterableToArray-f175acfa.js');
-var React = require('react');
-var React__default = _interopDefault(React);
+var objectWithoutProperties = require('./objectWithoutProperties-c6d3675c.js');
+var _extends = require('./extends-023d783e.js');
 var _commonjsHelpers = require('./_commonjsHelpers-1b94f6bc.js');
-var index = require('./index-46d0e707.js');
-var defineProperty$1 = require('./defineProperty-3cad0327.js');
 var toConsumableArray = require('./toConsumableArray-cc0d28a9.js');
-var _styled = require('styled-components');
-var _styled__default = _interopDefault(_styled);
 var getPrototypeOf = require('./getPrototypeOf-55c9e80c.js');
-require('./color.js');
+var defineProperty = require('./defineProperty-3cad0327.js');
+var _styled = require('styled-components');
+var React = require('react');
+var index = require('./index-37353731.js');
+var web = require('./web-46d746d6.js');
+var RootPortal = require('./RootPortal.js');
+var Viewport = require('./Viewport-71f7efe6.js');
 var components = require('./components.js');
-require('./miscellaneous.js');
-require('./environment.js');
-require('./font.js');
+var Theme = require('./Theme.js');
 var constants = require('./constants.js');
-require('./breakpoints.js');
 var springs = require('./springs.js');
 var textStyles = require('./text-styles.js');
-require('./theme-dark.js');
-require('./theme-light.js');
-var Theme = require('./Theme.js');
-var _extends$1 = require('./extends-023d783e.js');
-var objectWithoutProperties = require('./objectWithoutProperties-c6d3675c.js');
-require('./_baseGetTag-42b4dd3e.js');
-var Viewport = require('./Viewport-abbde113.js');
+require('./unsupportedIterableToArray-f175acfa.js');
 require('./objectWithoutPropertiesLoose-1af20ad0.js');
 require('react-dom');
-var web = require('./web-d0294535.js');
-require('./Root-fd39454b.js');
-var RootPortal = require('./RootPortal.js');
+require('./Root-07f851a6.js');
+require('./slicedToArray-a8a77f0e.js');
+require('./_baseGetTag-6ec23aaa.js');
+require('./breakpoints.js');
+require('./theme-dark.js');
+require('./theme-light.js');
+require('./environment.js');
+require('./miscellaneous.js');
+require('./color.js');
+require('./font.js');
+
+function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
+
+var _styled__default = /*#__PURE__*/_interopDefaultLegacy(_styled);
+var React__default = /*#__PURE__*/_interopDefaultLegacy(React);
 
 var runtime_1 = _commonjsHelpers.createCommonjsModule(function (module) {
 /**
@@ -54,6 +55,24 @@ var runtime = (function (exports) {
   var iteratorSymbol = $Symbol.iterator || "@@iterator";
   var asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator";
   var toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag";
+
+  function define(obj, key, value) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+    return obj[key];
+  }
+  try {
+    // IE 8 has a broken Object.defineProperty that only works on DOM objects.
+    define({}, "");
+  } catch (err) {
+    define = function(obj, key, value) {
+      return obj[key] = value;
+    };
+  }
 
   function wrap(innerFn, outerFn, self, tryLocsList) {
     // If outerFn provided and outerFn.prototype is a Generator, then outerFn.prototype instanceof Generator.
@@ -121,19 +140,13 @@ var runtime = (function (exports) {
     IteratorPrototype = NativeIteratorPrototype;
   }
 
-  function ensureDefaultToStringTag(object, defaultValue) {
-    // https://bugzilla.mozilla.org/show_bug.cgi?id=1644581#c6
-    return toStringTagSymbol in object
-      ? object[toStringTagSymbol]
-      : object[toStringTagSymbol] = defaultValue;
-  }
-
   var Gp = GeneratorFunctionPrototype.prototype =
     Generator.prototype = Object.create(IteratorPrototype);
   GeneratorFunction.prototype = Gp.constructor = GeneratorFunctionPrototype;
   GeneratorFunctionPrototype.constructor = GeneratorFunction;
-  GeneratorFunction.displayName = ensureDefaultToStringTag(
+  GeneratorFunction.displayName = define(
     GeneratorFunctionPrototype,
+    toStringTagSymbol,
     "GeneratorFunction"
   );
 
@@ -141,9 +154,9 @@ var runtime = (function (exports) {
   // Iterator interface in terms of a single ._invoke method.
   function defineIteratorMethods(prototype) {
     ["next", "throw", "return"].forEach(function(method) {
-      prototype[method] = function(arg) {
+      define(prototype, method, function(arg) {
         return this._invoke(method, arg);
-      };
+      });
     });
   }
 
@@ -162,7 +175,7 @@ var runtime = (function (exports) {
       Object.setPrototypeOf(genFun, GeneratorFunctionPrototype);
     } else {
       genFun.__proto__ = GeneratorFunctionPrototype;
-      ensureDefaultToStringTag(genFun, "GeneratorFunction");
+      define(genFun, toStringTagSymbol, "GeneratorFunction");
     }
     genFun.prototype = Object.create(Gp);
     return genFun;
@@ -432,7 +445,7 @@ var runtime = (function (exports) {
   // unified ._invoke helper method.
   defineIteratorMethods(Gp);
 
-  ensureDefaultToStringTag(Gp, "Generator");
+  define(Gp, toStringTagSymbol, "Generator");
 
   // A Generator should always return itself as the iterator object when the
   // @@iterator function is called on it. Some browsers' implementations of the
@@ -756,7 +769,7 @@ var runtime = (function (exports) {
   // as the regeneratorRuntime namespace. Otherwise create a new empty
   // object. Either way, the resulting object will be used to initialize
   // the regeneratorRuntime variable at the top of this file.
-   module.exports 
+  module.exports 
 ));
 
 try {
@@ -824,7 +837,7 @@ var move = function move(pixel) {
   return "translate3d(0,".concat(pixel, "px,0)");
 };
 
-var ToastContext = /*#__PURE__*/React__default.createContext(function () {
+var ToastContext = /*#__PURE__*/React__default['default'].createContext(function () {
   throw new Error("For Toast to work it needs to be part of a ToastHub's tree, which has to be declared at an upper level!");
 });
 
@@ -844,15 +857,15 @@ var ToastHubProvider = /*#__PURE__*/function (_React$PureComponent) {
 
     _this = _super.call.apply(_super, [this].concat(args));
 
-    defineProperty$1.defineProperty(getPrototypeOf.assertThisInitialized(_this), "state", {
+    defineProperty.defineProperty(getPrototypeOf.assertThisInitialized(_this), "state", {
       items: [],
       leaving: [],
       preLeaving: []
     });
 
-    defineProperty$1.defineProperty(getPrototypeOf.assertThisInitialized(_this), "cancelMap", new WeakMap());
+    defineProperty.defineProperty(getPrototypeOf.assertThisInitialized(_this), "cancelMap", new WeakMap());
 
-    defineProperty$1.defineProperty(getPrototypeOf.assertThisInitialized(_this), "add", function (msg) {
+    defineProperty.defineProperty(getPrototypeOf.assertThisInitialized(_this), "add", function (msg) {
       var threshold = _this.props.threshold;
 
       _this.setState(function (state) {
@@ -873,7 +886,7 @@ var ToastHubProvider = /*#__PURE__*/function (_React$PureComponent) {
       });
     });
 
-    defineProperty$1.defineProperty(getPrototypeOf.assertThisInitialized(_this), "remove", function (item) {
+    defineProperty.defineProperty(getPrototypeOf.assertThisInitialized(_this), "remove", function (item) {
       _this.setState(function (state) {
         return {
           items: state.items.filter(function (i) {
@@ -884,7 +897,7 @@ var ToastHubProvider = /*#__PURE__*/function (_React$PureComponent) {
       });
     });
 
-    defineProperty$1.defineProperty(getPrototypeOf.assertThisInitialized(_this), "config", function (item, state) {
+    defineProperty.defineProperty(getPrototypeOf.assertThisInitialized(_this), "config", function (item, state) {
       var config = springs.springs.lazy; // Return custom configs on leave (includes the life-line duration)
 
       return state === 'leave' ? [{
@@ -892,7 +905,7 @@ var ToastHubProvider = /*#__PURE__*/function (_React$PureComponent) {
       }, config, config] : config;
     });
 
-    defineProperty$1.defineProperty(getPrototypeOf.assertThisInitialized(_this), "cancel", function (item) {
+    defineProperty.defineProperty(getPrototypeOf.assertThisInitialized(_this), "cancel", function (item) {
       var secondPass = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
 
       if (_this.cancelMap.has(item)) {
@@ -904,7 +917,7 @@ var ToastHubProvider = /*#__PURE__*/function (_React$PureComponent) {
       }
     });
 
-    defineProperty$1.defineProperty(getPrototypeOf.assertThisInitialized(_this), "leave", function (item) {
+    defineProperty.defineProperty(getPrototypeOf.assertThisInitialized(_this), "leave", function (item) {
       return /*#__PURE__*/function () {
         var _ref = asyncToGenerator( /*#__PURE__*/regenerator.mark(function _callee(next, cancel) {
           return regenerator.wrap(function _callee$(_context) {
@@ -991,12 +1004,12 @@ var ToastHubProvider = /*#__PURE__*/function (_React$PureComponent) {
           preLeaving = _this$state.preLeaving;
       var renderList = items.length > 0 || leaving.length > 0;
       var itemsVisible = leaving.length === preLeaving.length && leaving.length > 0 ? false : renderList;
-      return /*#__PURE__*/React__default.createElement(React__default.Fragment, null, /*#__PURE__*/React__default.createElement(ToastContext.Provider, {
+      return /*#__PURE__*/React__default['default'].createElement(React__default['default'].Fragment, null, /*#__PURE__*/React__default['default'].createElement(ToastContext.Provider, {
         value: {
           itemsVisible: itemsVisible,
           add: this.add
         }
-      }, children), renderList && /*#__PURE__*/React__default.createElement(RootPortal.default, null, /*#__PURE__*/React__default.createElement(ToastList, _extends$1._extends_1({
+      }, children), renderList && /*#__PURE__*/React__default['default'].createElement(RootPortal['default'], null, /*#__PURE__*/React__default['default'].createElement(ToastList, _extends._extends_1({
         config: this.config,
         items: items,
         leave: this.leave,
@@ -1011,10 +1024,10 @@ var ToastHubProvider = /*#__PURE__*/function (_React$PureComponent) {
   }]);
 
   return ToastHubProvider;
-}(React__default.PureComponent); // ToastList is separated from ToastHubProvider so we can skip its rendering
+}(React__default['default'].PureComponent); // ToastList is separated from ToastHubProvider so we can skip its rendering
 
 
-defineProperty$1.defineProperty(ToastHubProvider, "propTypes", {
+defineProperty.defineProperty(ToastHubProvider, "propTypes", {
   children: index.propTypes.node,
   position: index.propTypes.PropTypes.oneOf(['left', 'center', 'right']),
   shift: index.propTypes.number,
@@ -1024,7 +1037,7 @@ defineProperty$1.defineProperty(ToastHubProvider, "propTypes", {
   top: index.propTypes.bool
 });
 
-defineProperty$1.defineProperty(ToastHubProvider, "defaultProps", {
+defineProperty.defineProperty(ToastHubProvider, "defaultProps", {
   position: 'right',
   showIndicator: false,
   threshold: Infinity,
@@ -1032,7 +1045,7 @@ defineProperty$1.defineProperty(ToastHubProvider, "defaultProps", {
   top: false
 });
 
-var _StyledDiv = _styled__default("div").withConfig({
+var _StyledDiv = _styled__default['default']("div").withConfig({
   displayName: "ToastHub___StyledDiv",
   componentId: "sc-1y0i8xl-0"
 })(["position:fixed;z-index:1000;top:", ";bottom:", ";left:", "px;right:", "px;display:flex;margin:0 auto;flex-direction:", ";pointer-events:none;align-items:", ";"], function (p) {
@@ -1049,14 +1062,14 @@ var _StyledDiv = _styled__default("div").withConfig({
   return p._css6;
 });
 
-var _StyledAnimatedDiv = _styled__default(web.extendedAnimated.div).withConfig({
+var _StyledAnimatedDiv = _styled__default['default'](web.extendedAnimated.div).withConfig({
   displayName: "ToastHub___StyledAnimatedDiv",
   componentId: "sc-1y0i8xl-1"
 })(["box-sizing:border-box;position:relative;width:", ";"], function (p) {
   return p._css7;
 });
 
-var _StyledDiv2 = _styled__default("div").withConfig({
+var _StyledDiv2 = _styled__default['default']("div").withConfig({
   displayName: "ToastHub___StyledDiv2",
   componentId: "sc-1y0i8xl-2"
 })(["display:flex;align-items:center;overflow:hidden;height:", "px;margin-top:", ";margin-bottom:", ";padding:0 ", "px;", ";color:", ";background:", ";border-radius:", "px;"], function (p) {
@@ -1075,14 +1088,14 @@ var _StyledDiv2 = _styled__default("div").withConfig({
   return p._css14;
 }, constants.RADIUS);
 
-var _StyledAnimatedDiv2 = _styled__default(web.extendedAnimated.div).withConfig({
+var _StyledAnimatedDiv2 = _styled__default['default'](web.extendedAnimated.div).withConfig({
   displayName: "ToastHub___StyledAnimatedDiv2",
   componentId: "sc-1y0i8xl-3"
 })(["position:absolute;bottom:", ";left:0;width:auto;height:5px;background-image:linear-gradient( 130deg,#00b4e6,#00f0e0 );"], function (p) {
   return p._css15;
 });
 
-var ToastList = /*#__PURE__*/React__default.memo(function ToastList(_ref2) {
+var ToastList = /*#__PURE__*/React__default['default'].memo(function ToastList(_ref2) {
   var config = _ref2.config,
       items = _ref2.items,
       leave = _ref2.leave,
@@ -1099,7 +1112,7 @@ var ToastList = /*#__PURE__*/React__default.memo(function ToastList(_ref2) {
       below = _useViewport.below;
 
   var spacing = below('medium') ? 2 * constants.GU : 3 * constants.GU;
-  return /*#__PURE__*/React__default.createElement(_StyledDiv, _extends$1._extends_1({}, props, {
+  return /*#__PURE__*/React__default['default'].createElement(_StyledDiv, _extends._extends_1({}, props, {
     _css: top ? "".concat(spacing, "px") : 'unset',
     _css2: top ? 'unset' : "".concat(spacing, "px"),
     _css3: spacing + (shift || 0),
@@ -1111,7 +1124,7 @@ var ToastList = /*#__PURE__*/React__default.memo(function ToastList(_ref2) {
       if (position === 'right') return 'flex-end';
       return 'center';
     }()
-  }), /*#__PURE__*/React__default.createElement(web.Transition, {
+  }), /*#__PURE__*/React__default['default'].createElement(web.Transition, {
     native: true,
     items: items,
     keys: function keys(item) {
@@ -1138,10 +1151,10 @@ var ToastList = /*#__PURE__*/React__default.memo(function ToastList(_ref2) {
         var life = _ref3.life,
             props = objectWithoutProperties.objectWithoutProperties(_ref3, ["life"]);
 
-        return /*#__PURE__*/React__default.createElement(_StyledAnimatedDiv, {
+        return /*#__PURE__*/React__default['default'].createElement(_StyledAnimatedDiv, {
           style: props,
           _css7: below('medium') ? '100%' : '42ch'
-        }, /*#__PURE__*/React__default.createElement(_StyledDiv2, {
+        }, /*#__PURE__*/React__default['default'].createElement(_StyledDiv2, {
           _css8: 6 * constants.GU,
           _css9: top ? '0' : "".concat(1.25 * constants.GU, "px"),
           _css10: top ? "".concat(1.25 * constants.GU, "px") : '0',
@@ -1149,12 +1162,12 @@ var ToastList = /*#__PURE__*/React__default.memo(function ToastList(_ref2) {
           _css12: textStyles.textStyle('body3'),
           _css13: theme.floatingContent,
           _css14: theme.floating.alpha(0.95)
-        }, showIndicator && /*#__PURE__*/React__default.createElement(_StyledAnimatedDiv2, {
+        }, showIndicator && /*#__PURE__*/React__default['default'].createElement(_StyledAnimatedDiv2, {
           style: {
             right: life
           },
           _css15: top ? "".concat(1.25 * constants.GU, "px") : '0'
-        }), /*#__PURE__*/React__default.createElement("p", null, item.msg)));
+        }), /*#__PURE__*/React__default['default'].createElement("p", null, item.msg)));
       }
     );
   }

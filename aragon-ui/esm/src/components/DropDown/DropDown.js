@@ -1,19 +1,19 @@
-import slicedToArray$1 from '../../../node_modules/@babel/runtime/helpers/slicedToArray.js';
-import React$1, { useState, useCallback, useEffect, useMemo, useRef } from 'react';
-import propTypes from '../../../node_modules/prop-types/index.js';
-import _styled$1 from 'styled-components';
-import { unselectable } from '../../utils/css.js';
-import { warnOnce } from '../../utils/environment.js';
-import { RADIUS, GU } from '../../style/constants.js';
-import { textStyle } from '../../style/text-styles.js';
-import { useTheme } from '../../theme/Theme2.js';
 import _extends_1 from '../../../node_modules/@babel/runtime/helpers/extends.js';
-import objectWithoutProperties$1 from '../../../node_modules/@babel/runtime/helpers/objectWithoutProperties.js';
+import objectWithoutProperties from '../../../node_modules/@babel/runtime/helpers/objectWithoutProperties.js';
+import slicedToArray from '../../../node_modules/@babel/runtime/helpers/slicedToArray.js';
+import _styled from 'styled-components';
+import React, { useState, useCallback, useEffect, useMemo, useRef } from 'react';
+import propTypes from '../../../node_modules/prop-types/index.js';
 import { Inside as i } from '../../../node_modules/use-inside/dist/index.js';
 import { useViewport } from '../../providers/Viewport/Viewport.js';
 import ButtonBaseWithFocus from '../ButtonBase/ButtonBase.js';
-import IconDown$1 from '../../icons/components/IconDown.js';
-import Popover$1 from '../Popover/Popover.js';
+import Popover from '../Popover/Popover.js';
+import { useTheme } from '../../theme/Theme2.js';
+import IconDown from '../../icons/components/IconDown.js';
+import { warnOnce } from '../../utils/environment.js';
+import { RADIUS, GU } from '../../style/constants.js';
+import { textStyle } from '../../style/text-styles.js';
+import { unselectable } from '../../utils/css.js';
 
 var MIN_WIDTH = 128;
 
@@ -21,17 +21,17 @@ function useDropDown(_ref) {
   var buttonRef = _ref.buttonRef,
       items = _ref.items,
       displayedLabel = _ref.displayedLabel,
-      onChange = _ref.onChange,
-      placeholder = _ref.placeholder,
-      selected = _ref.selected;
+      onChange = _ref.onChange;
+      _ref.placeholder;
+      var selected = _ref.selected;
 
   var _useState = useState(displayedLabel),
-      _useState2 = slicedToArray$1(_useState, 2),
+      _useState2 = slicedToArray(_useState, 2),
       selectedLabel = _useState2[0],
       setSelectedLabel = _useState2[1];
 
   var _useState3 = useState(false),
-      _useState4 = slicedToArray$1(_useState3, 2),
+      _useState4 = slicedToArray(_useState3, 2),
       opened = _useState4[0],
       setOpened = _useState4[1];
 
@@ -86,7 +86,7 @@ function useButtonRef(cb) {
   };
 }
 
-var _StyledButtonBase = _styled$1(ButtonBaseWithFocus).withConfig({
+var _StyledButtonBase = _styled(ButtonBaseWithFocus).withConfig({
   displayName: "DropDown___StyledButtonBase",
   componentId: "sc-17zpefi-0"
 })(["display:", ";justify-content:space-between;align-items:center;height:", "px;padding-left:", "px;padding-right:", "px;width:", ";min-width:", ";background:", ";color:", ";border:", "px solid ", ";", ";", ""], function (p) {
@@ -115,12 +115,12 @@ var _StyledButtonBase = _styled$1(ButtonBaseWithFocus).withConfig({
   return p._css12;
 });
 
-var _StyledDiv = _styled$1("div").withConfig({
+var _StyledDiv = _styled("div").withConfig({
   displayName: "DropDown___StyledDiv",
   componentId: "sc-17zpefi-1"
 })(["overflow:hidden;"]);
 
-var _StyledIconDown = _styled$1(IconDown$1).withConfig({
+var _StyledIconDown = _styled(IconDown).withConfig({
   displayName: "DropDown___StyledIconDown",
   componentId: "sc-17zpefi-2"
 })(["margin-left:", "px;color:", ";"], function (p) {
@@ -129,12 +129,12 @@ var _StyledIconDown = _styled$1(IconDown$1).withConfig({
   return p._css14;
 });
 
-var _StyledDiv2 = _styled$1("div").withConfig({
+var _StyledDiv2 = _styled("div").withConfig({
   displayName: "DropDown___StyledDiv2",
   componentId: "sc-17zpefi-3"
 })(["position:absolute;top:-100vh;left:-100vw;opacity:0;visibility:hidden;"]);
 
-var DropDown = /*#__PURE__*/React$1.memo(function DropDown(_ref2) {
+var DropDown = /*#__PURE__*/React.memo(function DropDown(_ref2) {
   var disabled = _ref2.disabled,
       header = _ref2.header,
       items = _ref2.items,
@@ -146,7 +146,7 @@ var DropDown = /*#__PURE__*/React$1.memo(function DropDown(_ref2) {
       width = _ref2.width,
       active = _ref2.active,
       label = _ref2.label,
-      props = objectWithoutProperties$1(_ref2, ["disabled", "header", "items", "onChange", "placeholder", "renderLabel", "selected", "wide", "width", "active", "label"]);
+      props = objectWithoutProperties(_ref2, ["disabled", "header", "items", "onChange", "placeholder", "renderLabel", "selected", "wide", "width", "active", "label"]);
 
   if (active !== undefined) {
     warnOnce('DropDown:active', 'The “active” prop is deprecated. Please use “selected” to pass the selected index instead.');
@@ -162,23 +162,23 @@ var DropDown = /*#__PURE__*/React$1.memo(function DropDown(_ref2) {
       vw = _useViewport.width;
 
   var _split = (width || '').split('px'),
-      _split2 = slicedToArray$1(_split, 1),
+      _split2 = slicedToArray(_split, 1),
       _split2$ = _split2[0],
       widthNoPx = _split2$ === void 0 ? MIN_WIDTH : _split2$;
 
   var _useState5 = useState(0),
-      _useState6 = slicedToArray$1(_useState5, 2),
+      _useState6 = slicedToArray(_useState5, 2),
       buttonWidth = _useState6[0],
       setButtonWidth = _useState6[1];
 
   var _useState7 = useState(true),
-      _useState8 = slicedToArray$1(_useState7, 2),
+      _useState8 = slicedToArray(_useState7, 2),
       measureWidth = _useState8[0],
       setMeasureWidth = _useState8[1]; // Adjust the button width if the item widths are larger than declared width
 
 
   var _useState9 = useState(Math.min(widthNoPx, MIN_WIDTH)),
-      _useState10 = slicedToArray$1(_useState9, 2),
+      _useState10 = slicedToArray(_useState9, 2),
       placeholderMinWidth = _useState10[0],
       setPlaceholderMinWidth = _useState10[1];
 
@@ -235,9 +235,9 @@ var DropDown = /*#__PURE__*/React$1.memo(function DropDown(_ref2) {
 
   var closedWithChanges = !opened && selectedIndex !== -1;
   var Label = renderLabel;
-  return /*#__PURE__*/React$1.createElement(i, {
+  return /*#__PURE__*/React.createElement(i, {
     name: "DropDown"
-  }, /*#__PURE__*/React$1.createElement(_StyledButtonBase, _extends_1({
+  }, /*#__PURE__*/React.createElement(_StyledButtonBase, _extends_1({
     ref: refCallback,
     disabled: disabled,
     onClick: toggle,
@@ -256,23 +256,23 @@ var DropDown = /*#__PURE__*/React$1.memo(function DropDown(_ref2) {
     _css10: closedWithChanges ? theme.selected : theme.border,
     _css11: textStyle('body2'),
     _css12: disabled ? 'font-weight: 600;' : "\n              &:active {\n                background: ".concat(theme.surfacePressed, ";\n              }\n            ")
-  }), /*#__PURE__*/React$1.createElement(_StyledDiv, null, /*#__PURE__*/React$1.createElement(Label, {
+  }), /*#__PURE__*/React.createElement(_StyledDiv, null, /*#__PURE__*/React.createElement(Label, {
     selectedIndex: selectedIndex,
     selectedLabel: selectedLabel
-  })), /*#__PURE__*/React$1.createElement(_StyledIconDown, {
+  })), /*#__PURE__*/React.createElement(_StyledIconDown, {
     size: "tiny",
     _css13: 1.5 * GU,
     _css14: disabled ? theme.disabledIcon : closedWithChanges ? theme.accent : theme.surfaceIcon
-  })), measureWidth && /*#__PURE__*/React$1.createElement(_StyledDiv2, null, /*#__PURE__*/React$1.createElement(PopoverContent, {
+  })), measureWidth && /*#__PURE__*/React.createElement(_StyledDiv2, null, /*#__PURE__*/React.createElement(PopoverContent, {
     refCallback: popoverRefCallback,
     buttonWidth: buttonWidth,
     header: header,
     items: items
-  })), /*#__PURE__*/React$1.createElement(Popover$1, {
+  })), /*#__PURE__*/React.createElement(Popover, {
     onClose: close,
     opener: buttonRef.current,
     visible: opened
-  }, /*#__PURE__*/React$1.createElement(PopoverContent, {
+  }, /*#__PURE__*/React.createElement(PopoverContent, {
     buttonWidth: buttonWidth,
     header: header,
     items: items,
@@ -303,7 +303,7 @@ DropDown.defaultProps = {
   wide: false
 };
 
-var _StyledDiv3 = _styled$1("div").withConfig({
+var _StyledDiv3 = _styled("div").withConfig({
   displayName: "DropDown___StyledDiv3",
   componentId: "sc-17zpefi-4"
 })(["min-width:", "px;color:", ";"], function (p) {
@@ -312,7 +312,7 @@ var _StyledDiv3 = _styled$1("div").withConfig({
   return p._css16;
 });
 
-var _StyledDiv4 = _styled$1("div").withConfig({
+var _StyledDiv4 = _styled("div").withConfig({
   displayName: "DropDown___StyledDiv4",
   componentId: "sc-17zpefi-5"
 })(["padding:", "px ", "px ", "px;", ";", ";"], function (p) {
@@ -325,12 +325,12 @@ var _StyledDiv4 = _styled$1("div").withConfig({
   return p._css20;
 }, unselectable);
 
-var _StyledUl = _styled$1("ul").withConfig({
+var _StyledUl = _styled("ul").withConfig({
   displayName: "DropDown___StyledUl",
   componentId: "sc-17zpefi-6"
 })(["margin:0;padding:0;list-style:none;width:100%;"]);
 
-var PopoverContent = /*#__PURE__*/React$1.memo(function PopoverContent(_ref4) {
+var PopoverContent = /*#__PURE__*/React.memo(function PopoverContent(_ref4) {
   var refCallback = _ref4.refCallback,
       buttonWidth = _ref4.buttonWidth,
       header = _ref4.header,
@@ -338,20 +338,20 @@ var PopoverContent = /*#__PURE__*/React$1.memo(function PopoverContent(_ref4) {
       handleItemSelect = _ref4.handleItemSelect,
       selectedIndex = _ref4.selectedIndex;
   var theme = useTheme();
-  return /*#__PURE__*/React$1.createElement(_StyledDiv3, {
+  return /*#__PURE__*/React.createElement(_StyledDiv3, {
     _css15: buttonWidth,
     _css16: theme.surfaceContentSecondary
-  }, header && /*#__PURE__*/React$1.createElement(_StyledDiv4, {
+  }, header && /*#__PURE__*/React.createElement(_StyledDiv4, {
     _css17: 1.5 * GU,
     _css18: 2 * GU,
     _css19: 1.25 * GU,
     _css20: textStyle('label2')
-  }, header), /*#__PURE__*/React$1.createElement(_StyledUl, {
+  }, header), /*#__PURE__*/React.createElement(_StyledUl, {
     ref: refCallback
-  }, /*#__PURE__*/React$1.createElement(i, {
+  }, /*#__PURE__*/React.createElement(i, {
     name: "DropDown:menu"
   }, items.map(function (item, index) {
-    return /*#__PURE__*/React$1.createElement(Item, {
+    return /*#__PURE__*/React.createElement(Item, {
       key: index,
       index: index,
       onSelect: handleItemSelect,
@@ -381,7 +381,7 @@ PopoverContent.defaultProps = {
   selectedIndex: -1
 };
 
-var _StyledButtonBase2 = _styled$1(ButtonBaseWithFocus).withConfig({
+var _StyledButtonBase2 = _styled(ButtonBaseWithFocus).withConfig({
   displayName: "DropDown___StyledButtonBase2",
   componentId: "sc-17zpefi-7"
 })(["width:100%;text-align:left;padding:", "px ", "px;border-radius:0;color:", ";", ";", " ", " ", " &:active{background:", ";}"], function (p) {
@@ -402,7 +402,7 @@ var _StyledButtonBase2 = _styled$1(ButtonBaseWithFocus).withConfig({
   return p._css28;
 });
 
-var Item = /*#__PURE__*/React$1.memo(function Item(_ref5) {
+var Item = /*#__PURE__*/React.memo(function Item(_ref5) {
   var header = _ref5.header,
       index = _ref5.index,
       item = _ref5.item,
@@ -413,7 +413,7 @@ var Item = /*#__PURE__*/React$1.memo(function Item(_ref5) {
   var handleClick = useCallback(function () {
     onSelect(index);
   }, [index, onSelect]);
-  return /*#__PURE__*/React$1.createElement("li", null, /*#__PURE__*/React$1.createElement(_StyledButtonBase2, {
+  return /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement(_StyledButtonBase2, {
     onClick: handleClick,
     _css21: 1.25 * GU,
     _css22: 2 * GU,

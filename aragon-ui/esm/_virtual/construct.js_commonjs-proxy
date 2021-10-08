@@ -1,3 +1,3 @@
-import construct$1 from '../node_modules/@babel/runtime/helpers/construct.js';
+import construct from '../node_modules/@babel/runtime/helpers/construct.js';
 export { default } from '../node_modules/@babel/runtime/helpers/construct.js';
 //# sourceMappingURL=construct.js_commonjs-proxy.map

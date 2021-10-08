@@ -2,69 +2,71 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
-
 var slicedToArray = require('./slicedToArray-a8a77f0e.js');
-require('./unsupportedIterableToArray-f175acfa.js');
 var React = require('react');
-var React__default = _interopDefault(React);
+var index = require('./index-37353731.js');
+var _DataView = require('./DataView.js');
+require('./unsupportedIterableToArray-f175acfa.js');
 require('./_commonjsHelpers-1b94f6bc.js');
-var index = require('./index-46d0e707.js');
 require('./defineProperty-3cad0327.js');
 require('./toConsumableArray-cc0d28a9.js');
 require('styled-components');
-require('./getPrototypeOf-55c9e80c.js');
-require('./color.js');
-require('./css.js');
-require('./miscellaneous.js');
-require('./environment.js');
-require('./font.js');
-require('./keycodes.js');
-require('./url.js');
-require('./constants.js');
-require('./breakpoints.js');
-require('./springs.js');
-require('./text-styles.js');
-require('./theme-dark.js');
-require('./theme-light.js');
-require('./Theme.js');
+require('./Box.js');
 require('./extends-023d783e.js');
 require('./objectWithoutProperties-c6d3675c.js');
-require('./index-f5a9917e.js');
-require('./_baseGetTag-42b4dd3e.js');
-require('./Viewport-abbde113.js');
+require('./index-c33eeeef.js');
+require('./Theme.js');
+require('./theme-dark.js');
+require('./theme-light.js');
+require('./environment.js');
+require('./miscellaneous.js');
+require('./color.js');
+require('./getPrototypeOf-55c9e80c.js');
 require('./Layout.js');
-require('./Box.js');
-require('./FocusVisible.js');
-require('./ButtonBase.js');
-require('./PaginationItem.js');
-require('./IconPropTypes-dd9d2cb1.js');
-require('./IconDown.js');
-require('./IconEllipsis.js');
-require('./IconUp.js');
-require('./PaginationSeparator.js');
+require('./Viewport-71f7efe6.js');
+require('./_baseGetTag-6ec23aaa.js');
+require('./breakpoints.js');
+require('./constants.js');
+require('./css.js');
+require('./text-styles.js');
+require('./font.js');
 require('./Pagination.js');
+require('./PaginationItem.js');
+require('./ButtonBase.js');
+require('./FocusVisible.js');
+require('./keycodes.js');
+require('./PaginationSeparator.js');
+require('./IconEllipsis.js');
+require('./IconPropTypes-b9997416.js');
+require('./TableView.js');
+require('./web-46d746d6.js');
 require('./objectWithoutPropertiesLoose-1af20ad0.js');
 require('react-dom');
-require('./web-d0294535.js');
 require('./Checkbox.js');
-require('./Button.js');
-require('./ButtonIcon.js');
+require('./springs.js');
 require('./ToggleButton.js');
+require('./ButtonIcon.js');
+require('./Button.js');
+require('./IconUp.js');
+require('./IconDown.js');
 require('./OpenedSurfaceBorder.js');
-require('./TableView.js');
 require('./ListView.js');
-require('./getDisplayName-7f913e84.js');
-require('./PublicUrl-ef64ac3b.js');
+require('./EmptyState.js');
 require('./LoadingRing.js');
 require('./Link.js');
-require('./EmptyState.js');
-var _DataView = require('./DataView.js');
+require('./PublicUrl-a6067988.js');
+require('./getDisplayName-7f913e84.js');
+require('./url.js');
 
-var Accordion = /*#__PURE__*/React__default.memo(function Accordion(_ref) {
+function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
+
+var React__default = /*#__PURE__*/_interopDefaultLegacy(React);
+
+var Accordion = /*#__PURE__*/React__default['default'].memo(function Accordion(_ref) {
   var items = _ref.items,
       className = _ref.className,
-      style = _ref.style;
+      style = _ref.style,
+      mode = _ref.mode;
   var fields = React.useMemo(function () {
     return [null];
   }, []);
@@ -75,20 +77,21 @@ var Accordion = /*#__PURE__*/React__default.memo(function Accordion(_ref) {
     return [row];
   }, []);
   var renderEntryExpansion = React.useCallback(function (_ref4) {
-    var _ref5 = slicedToArray.slicedToArray(_ref4, 2),
-        _ = _ref5[0],
-        expansion = _ref5[1];
+    var _ref5 = slicedToArray.slicedToArray(_ref4, 2);
+        _ref5[0];
+        var expansion = _ref5[1];
 
-    return /*#__PURE__*/React__default.createElement(React__default.Fragment, null, expansion);
+    return /*#__PURE__*/React__default['default'].createElement(React__default['default'].Fragment, null, expansion);
   }, []);
-  return /*#__PURE__*/React__default.createElement(_DataView.default, {
+  return /*#__PURE__*/React__default['default'].createElement(_DataView['default'], {
     className: className,
     entries: items,
     entriesPerPage: -1,
     fields: fields,
     renderEntry: renderEntry,
     renderEntryExpansion: renderEntryExpansion,
-    style: style
+    style: style,
+    mode: mode
   });
 }); // className and style are passed manually to ensure users don’t rely on extra
 // props to be passed to DataView. The reason is because Accordion is going to
@@ -98,7 +101,8 @@ var Accordion = /*#__PURE__*/React__default.memo(function Accordion(_ref) {
 Accordion.propTypes = {
   className: index.propTypes.string,
   items: index.propTypes.arrayOf(index.propTypes.arrayOf(index.propTypes.node)).isRequired,
-  style: index.propTypes.object
+  style: index.propTypes.object,
+  mode: index.propTypes.oneOf(['adaptive', 'table', 'list'])
 };
 
 exports.default = Accordion;

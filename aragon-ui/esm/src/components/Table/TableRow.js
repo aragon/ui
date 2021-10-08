@@ -1,6 +1,6 @@
-import _styled$1 from 'styled-components';
+import _styled from 'styled-components';
 
-var StyledTableRow = _styled$1.tr.withConfig({
+var StyledTableRow = _styled.tr.withConfig({
   displayName: "TableRow__StyledTableRow",
   componentId: "sc-3jn6yz-0"
 })([""]);

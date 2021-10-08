@@ -1,28 +1,28 @@
-import React$1, { useContext } from 'react';
-import propTypes from '../../../node_modules/prop-types/index.js';
-import defineProperty$1 from '../../../node_modules/@babel/runtime/helpers/defineProperty.js';
-import toConsumableArray$1 from '../../../node_modules/@babel/runtime/helpers/toConsumableArray.js';
-import _styled$1 from 'styled-components';
-import classCallCheck$1 from '../../../node_modules/@babel/runtime/helpers/classCallCheck.js';
-import createClass$1 from '../../../node_modules/@babel/runtime/helpers/createClass.js';
-import inherits$1 from '../../../node_modules/@babel/runtime/helpers/inherits.js';
-import assertThisInitialized$1 from '../../../node_modules/@babel/runtime/helpers/assertThisInitialized.js';
-import possibleConstructorReturn$1 from '../../../node_modules/@babel/runtime/helpers/possibleConstructorReturn.js';
-import getPrototypeOf$1 from '../../../node_modules/@babel/runtime/helpers/getPrototypeOf.js';
-import { stylingProps } from '../../utils/components.js';
-import { RADIUS, GU } from '../../style/constants.js';
-import { springs as springs$1 } from '../../style/springs.js';
-import { textStyle } from '../../style/text-styles.js';
-import { useTheme } from '../../theme/Theme2.js';
+import objectWithoutProperties from '../../../node_modules/@babel/runtime/helpers/objectWithoutProperties.js';
 import _extends_1 from '../../../node_modules/@babel/runtime/helpers/extends.js';
-import objectWithoutProperties$1 from '../../../node_modules/@babel/runtime/helpers/objectWithoutProperties.js';
-import { useViewport } from '../../providers/Viewport/Viewport.js';
-import { animated as extendedAnimated, Transition } from '../../../node_modules/react-spring/web.js';
 import regenerator from '../../../node_modules/@babel/runtime/regenerator/index.js';
-import asyncToGenerator$1 from '../../../node_modules/@babel/runtime/helpers/asyncToGenerator.js';
-import RootPortal$1 from '../RootPortal/RootPortal.js';
+import asyncToGenerator from '../../../node_modules/@babel/runtime/helpers/asyncToGenerator.js';
+import toConsumableArray from '../../../node_modules/@babel/runtime/helpers/toConsumableArray.js';
+import classCallCheck from '../../../node_modules/@babel/runtime/helpers/classCallCheck.js';
+import createClass from '../../../node_modules/@babel/runtime/helpers/createClass.js';
+import assertThisInitialized from '../../../node_modules/@babel/runtime/helpers/assertThisInitialized.js';
+import inherits from '../../../node_modules/@babel/runtime/helpers/inherits.js';
+import possibleConstructorReturn from '../../../node_modules/@babel/runtime/helpers/possibleConstructorReturn.js';
+import getPrototypeOf from '../../../node_modules/@babel/runtime/helpers/getPrototypeOf.js';
+import defineProperty from '../../../node_modules/@babel/runtime/helpers/defineProperty.js';
+import _styled from 'styled-components';
+import React, { useContext } from 'react';
+import propTypes from '../../../node_modules/prop-types/index.js';
+import { animated as extendedAnimated, Transition } from '../../../node_modules/react-spring/web.js';
+import RootPortal from '../RootPortal/RootPortal.js';
+import { useViewport } from '../../providers/Viewport/Viewport.js';
+import { stylingProps } from '../../utils/components.js';
+import { useTheme } from '../../theme/Theme2.js';
+import { RADIUS, GU } from '../../style/constants.js';
+import { springs } from '../../style/springs.js';
+import { textStyle } from '../../style/text-styles.js';
 
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = getPrototypeOf$1(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = getPrototypeOf$1(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return possibleConstructorReturn$1(this, result); }; }
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return possibleConstructorReturn(this, result); }; }
 
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
 var id = 0;
@@ -31,19 +31,19 @@ var move = function move(pixel) {
   return "translate3d(0,".concat(pixel, "px,0)");
 };
 
-var ToastContext = /*#__PURE__*/React$1.createContext(function () {
+var ToastContext = /*#__PURE__*/React.createContext(function () {
   throw new Error("For Toast to work it needs to be part of a ToastHub's tree, which has to be declared at an upper level!");
 });
 
 var ToastHubProvider = /*#__PURE__*/function (_React$PureComponent) {
-  inherits$1(ToastHubProvider, _React$PureComponent);
+  inherits(ToastHubProvider, _React$PureComponent);
 
   var _super = _createSuper(ToastHubProvider);
 
   function ToastHubProvider() {
     var _this;
 
-    classCallCheck$1(this, ToastHubProvider);
+    classCallCheck(this, ToastHubProvider);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
@@ -51,15 +51,15 @@ var ToastHubProvider = /*#__PURE__*/function (_React$PureComponent) {
 
     _this = _super.call.apply(_super, [this].concat(args));
 
-    defineProperty$1(assertThisInitialized$1(_this), "state", {
+    defineProperty(assertThisInitialized(_this), "state", {
       items: [],
       leaving: [],
       preLeaving: []
     });
 
-    defineProperty$1(assertThisInitialized$1(_this), "cancelMap", new WeakMap());
+    defineProperty(assertThisInitialized(_this), "cancelMap", new WeakMap());
 
-    defineProperty$1(assertThisInitialized$1(_this), "add", function (msg) {
+    defineProperty(assertThisInitialized(_this), "add", function (msg) {
       var threshold = _this.props.threshold;
 
       _this.setState(function (state) {
@@ -71,7 +71,7 @@ var ToastHubProvider = /*#__PURE__*/function (_React$PureComponent) {
         }
 
         return {
-          items: [].concat(toConsumableArray$1(state.items), [{
+          items: [].concat(toConsumableArray(state.items), [{
             key: id++,
             msg: msg
           }]),
@@ -80,26 +80,26 @@ var ToastHubProvider = /*#__PURE__*/function (_React$PureComponent) {
       });
     });
 
-    defineProperty$1(assertThisInitialized$1(_this), "remove", function (item) {
+    defineProperty(assertThisInitialized(_this), "remove", function (item) {
       _this.setState(function (state) {
         return {
           items: state.items.filter(function (i) {
             return i.key !== item.key;
           }),
-          leaving: state.leaving.includes(item) ? state.leaving : [item].concat(toConsumableArray$1(state.leaving))
+          leaving: state.leaving.includes(item) ? state.leaving : [item].concat(toConsumableArray(state.leaving))
         };
       });
     });
 
-    defineProperty$1(assertThisInitialized$1(_this), "config", function (item, state) {
-      var config = springs$1.lazy; // Return custom configs on leave (includes the life-line duration)
+    defineProperty(assertThisInitialized(_this), "config", function (item, state) {
+      var config = springs.lazy; // Return custom configs on leave (includes the life-line duration)
 
       return state === 'leave' ? [{
         duration: _this.props.timeout
       }, config, config] : config;
     });
 
-    defineProperty$1(assertThisInitialized$1(_this), "cancel", function (item) {
+    defineProperty(assertThisInitialized(_this), "cancel", function (item) {
       var secondPass = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
 
       if (_this.cancelMap.has(item)) {
@@ -111,9 +111,9 @@ var ToastHubProvider = /*#__PURE__*/function (_React$PureComponent) {
       }
     });
 
-    defineProperty$1(assertThisInitialized$1(_this), "leave", function (item) {
+    defineProperty(assertThisInitialized(_this), "leave", function (item) {
       return /*#__PURE__*/function () {
-        var _ref = asyncToGenerator$1( /*#__PURE__*/regenerator.mark(function _callee(next, cancel) {
+        var _ref = asyncToGenerator( /*#__PURE__*/regenerator.mark(function _callee(next, cancel) {
           return regenerator.wrap(function _callee$(_context) {
             while (1) {
               switch (_context.prev = _context.next) {
@@ -134,7 +134,7 @@ var ToastHubProvider = /*#__PURE__*/function (_React$PureComponent) {
                   // displayed even though they are still finishing their leaving transition.
                   _this.setState(function (state) {
                     return {
-                      preLeaving: [].concat(toConsumableArray$1(state.preLeaving), [item])
+                      preLeaving: [].concat(toConsumableArray(state.preLeaving), [item])
                     };
                   }); // Then fade out
 
@@ -183,7 +183,7 @@ var ToastHubProvider = /*#__PURE__*/function (_React$PureComponent) {
     return _this;
   }
 
-  createClass$1(ToastHubProvider, [{
+  createClass(ToastHubProvider, [{
     key: "render",
     value: function render() {
       var _this$props = this.props,
@@ -198,12 +198,12 @@ var ToastHubProvider = /*#__PURE__*/function (_React$PureComponent) {
           preLeaving = _this$state.preLeaving;
       var renderList = items.length > 0 || leaving.length > 0;
       var itemsVisible = leaving.length === preLeaving.length && leaving.length > 0 ? false : renderList;
-      return /*#__PURE__*/React$1.createElement(React$1.Fragment, null, /*#__PURE__*/React$1.createElement(ToastContext.Provider, {
+      return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(ToastContext.Provider, {
         value: {
           itemsVisible: itemsVisible,
           add: this.add
         }
-      }, children), renderList && /*#__PURE__*/React$1.createElement(RootPortal$1, null, /*#__PURE__*/React$1.createElement(ToastList, _extends_1({
+      }, children), renderList && /*#__PURE__*/React.createElement(RootPortal, null, /*#__PURE__*/React.createElement(ToastList, _extends_1({
         config: this.config,
         items: items,
         leave: this.leave,
@@ -218,10 +218,10 @@ var ToastHubProvider = /*#__PURE__*/function (_React$PureComponent) {
   }]);
 
   return ToastHubProvider;
-}(React$1.PureComponent); // ToastList is separated from ToastHubProvider so we can skip its rendering
+}(React.PureComponent); // ToastList is separated from ToastHubProvider so we can skip its rendering
 
 
-defineProperty$1(ToastHubProvider, "propTypes", {
+defineProperty(ToastHubProvider, "propTypes", {
   children: propTypes.node,
   position: propTypes.PropTypes.oneOf(['left', 'center', 'right']),
   shift: propTypes.number,
@@ -231,7 +231,7 @@ defineProperty$1(ToastHubProvider, "propTypes", {
   top: propTypes.bool
 });
 
-defineProperty$1(ToastHubProvider, "defaultProps", {
+defineProperty(ToastHubProvider, "defaultProps", {
   position: 'right',
   showIndicator: false,
   threshold: Infinity,
@@ -239,7 +239,7 @@ defineProperty$1(ToastHubProvider, "defaultProps", {
   top: false
 });
 
-var _StyledDiv = _styled$1("div").withConfig({
+var _StyledDiv = _styled("div").withConfig({
   displayName: "ToastHub___StyledDiv",
   componentId: "sc-1y0i8xl-0"
 })(["position:fixed;z-index:1000;top:", ";bottom:", ";left:", "px;right:", "px;display:flex;margin:0 auto;flex-direction:", ";pointer-events:none;align-items:", ";"], function (p) {
@@ -256,14 +256,14 @@ var _StyledDiv = _styled$1("div").withConfig({
   return p._css6;
 });
 
-var _StyledAnimatedDiv = _styled$1(extendedAnimated.div).withConfig({
+var _StyledAnimatedDiv = _styled(extendedAnimated.div).withConfig({
   displayName: "ToastHub___StyledAnimatedDiv",
   componentId: "sc-1y0i8xl-1"
 })(["box-sizing:border-box;position:relative;width:", ";"], function (p) {
   return p._css7;
 });
 
-var _StyledDiv2 = _styled$1("div").withConfig({
+var _StyledDiv2 = _styled("div").withConfig({
   displayName: "ToastHub___StyledDiv2",
   componentId: "sc-1y0i8xl-2"
 })(["display:flex;align-items:center;overflow:hidden;height:", "px;margin-top:", ";margin-bottom:", ";padding:0 ", "px;", ";color:", ";background:", ";border-radius:", "px;"], function (p) {
@@ -282,14 +282,14 @@ var _StyledDiv2 = _styled$1("div").withConfig({
   return p._css14;
 }, RADIUS);
 
-var _StyledAnimatedDiv2 = _styled$1(extendedAnimated.div).withConfig({
+var _StyledAnimatedDiv2 = _styled(extendedAnimated.div).withConfig({
   displayName: "ToastHub___StyledAnimatedDiv2",
   componentId: "sc-1y0i8xl-3"
 })(["position:absolute;bottom:", ";left:0;width:auto;height:5px;background-image:linear-gradient( 130deg,#00b4e6,#00f0e0 );"], function (p) {
   return p._css15;
 });
 
-var ToastList = /*#__PURE__*/React$1.memo(function ToastList(_ref2) {
+var ToastList = /*#__PURE__*/React.memo(function ToastList(_ref2) {
   var config = _ref2.config,
       items = _ref2.items,
       leave = _ref2.leave,
@@ -298,7 +298,7 @@ var ToastList = /*#__PURE__*/React$1.memo(function ToastList(_ref2) {
       showIndicator = _ref2.showIndicator,
       top = _ref2.top,
       shift = _ref2.shift,
-      props = objectWithoutProperties$1(_ref2, ["config", "items", "leave", "position", "remove", "showIndicator", "top", "shift"]);
+      props = objectWithoutProperties(_ref2, ["config", "items", "leave", "position", "remove", "showIndicator", "top", "shift"]);
 
   var theme = useTheme();
 
@@ -306,7 +306,7 @@ var ToastList = /*#__PURE__*/React$1.memo(function ToastList(_ref2) {
       below = _useViewport.below;
 
   var spacing = below('medium') ? 2 * GU : 3 * GU;
-  return /*#__PURE__*/React$1.createElement(_StyledDiv, _extends_1({}, props, {
+  return /*#__PURE__*/React.createElement(_StyledDiv, _extends_1({}, props, {
     _css: top ? "".concat(spacing, "px") : 'unset',
     _css2: top ? 'unset' : "".concat(spacing, "px"),
     _css3: spacing + (shift || 0),
@@ -318,7 +318,7 @@ var ToastList = /*#__PURE__*/React$1.memo(function ToastList(_ref2) {
       if (position === 'right') return 'flex-end';
       return 'center';
     }()
-  }), /*#__PURE__*/React$1.createElement(Transition, {
+  }), /*#__PURE__*/React.createElement(Transition, {
     native: true,
     items: items,
     keys: function keys(item) {
@@ -343,12 +343,12 @@ var ToastList = /*#__PURE__*/React$1.memo(function ToastList(_ref2) {
       /* eslint-disable react/prop-types */
       function (_ref3) {
         var life = _ref3.life,
-            props = objectWithoutProperties$1(_ref3, ["life"]);
+            props = objectWithoutProperties(_ref3, ["life"]);
 
-        return /*#__PURE__*/React$1.createElement(_StyledAnimatedDiv, {
+        return /*#__PURE__*/React.createElement(_StyledAnimatedDiv, {
           style: props,
           _css7: below('medium') ? '100%' : '42ch'
-        }, /*#__PURE__*/React$1.createElement(_StyledDiv2, {
+        }, /*#__PURE__*/React.createElement(_StyledDiv2, {
           _css8: 6 * GU,
           _css9: top ? '0' : "".concat(1.25 * GU, "px"),
           _css10: top ? "".concat(1.25 * GU, "px") : '0',
@@ -356,12 +356,12 @@ var ToastList = /*#__PURE__*/React$1.memo(function ToastList(_ref2) {
           _css12: textStyle('body3'),
           _css13: theme.floatingContent,
           _css14: theme.floating.alpha(0.95)
-        }, showIndicator && /*#__PURE__*/React$1.createElement(_StyledAnimatedDiv2, {
+        }, showIndicator && /*#__PURE__*/React.createElement(_StyledAnimatedDiv2, {
           style: {
             right: life
           },
           _css15: top ? "".concat(1.25 * GU, "px") : '0'
-        }), /*#__PURE__*/React$1.createElement("p", null, item.msg)));
+        }), /*#__PURE__*/React.createElement("p", null, item.msg)));
       }
     );
   }

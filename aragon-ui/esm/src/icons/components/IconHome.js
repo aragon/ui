@@ -1,25 +1,25 @@
-import React$1 from 'react';
 import _extends_1 from '../../../node_modules/@babel/runtime/helpers/extends.js';
-import objectWithoutProperties$1 from '../../../node_modules/@babel/runtime/helpers/objectWithoutProperties.js';
+import objectWithoutProperties from '../../../node_modules/@babel/runtime/helpers/objectWithoutProperties.js';
+import React from 'react';
 import useIconSize from '../icon-size.js';
-import IconPropTypes$1 from '../IconPropTypes.js';
+import IconPropTypes from '../IconPropTypes.js';
 
 function IconHome(_ref) {
   var size = _ref.size,
-      props = objectWithoutProperties$1(_ref, ["size"]);
+      props = objectWithoutProperties(_ref, ["size"]);
 
   var sizeValue = useIconSize(size);
-  return /*#__PURE__*/React$1.createElement("svg", _extends_1({
+  return /*#__PURE__*/React.createElement("svg", _extends_1({
     width: sizeValue,
     height: sizeValue,
     fill: "none",
     viewBox: "0 0 24 24"
-  }, props), /*#__PURE__*/React$1.createElement("path", {
+  }, props), /*#__PURE__*/React.createElement("path", {
     fill: "currentColor",
     stroke: "currentColor",
     strokeWidth: 0.4,
     d: "M3.191 10.338l8.533-6.248a.468.468 0 01.552 0l8.533 6.248a.468.468 0 11-.553.754L12 5.047l-8.256 6.045a.465.465 0 01-.654-.1.468.468 0 01.101-.655z"
-  }), /*#__PURE__*/React$1.createElement("path", {
+  }), /*#__PURE__*/React.createElement("path", {
     fill: "currentColor",
     stroke: "currentColor",
     strokeWidth: 0.4,
@@ -27,7 +27,7 @@ function IconHome(_ref) {
   }));
 }
 
-IconHome.propTypes = IconPropTypes$1;
+IconHome.propTypes = IconPropTypes;
 
 export default IconHome;
 //# sourceMappingURL=IconHome.js.map

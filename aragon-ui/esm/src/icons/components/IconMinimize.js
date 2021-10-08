@@ -1,25 +1,25 @@
-import React$1 from 'react';
 import _extends_1 from '../../../node_modules/@babel/runtime/helpers/extends.js';
-import objectWithoutProperties$1 from '../../../node_modules/@babel/runtime/helpers/objectWithoutProperties.js';
+import objectWithoutProperties from '../../../node_modules/@babel/runtime/helpers/objectWithoutProperties.js';
+import React from 'react';
 import useIconSize from '../icon-size.js';
-import IconPropTypes$1 from '../IconPropTypes.js';
+import IconPropTypes from '../IconPropTypes.js';
 
 function IconMinimize(_ref) {
   var size = _ref.size,
-      props = objectWithoutProperties$1(_ref, ["size"]);
+      props = objectWithoutProperties(_ref, ["size"]);
 
   var sizeValue = useIconSize(size);
-  return /*#__PURE__*/React$1.createElement("svg", _extends_1({
+  return /*#__PURE__*/React.createElement("svg", _extends_1({
     width: sizeValue,
     height: sizeValue,
     fill: "none",
     viewBox: "0 0 24 24"
-  }, props), /*#__PURE__*/React$1.createElement("path", {
+  }, props), /*#__PURE__*/React.createElement("path", {
     fill: "currentColor",
     stroke: "currentColor",
     strokeWidth: 0.2,
     d: "M10.57 12.864H6.28a.566.566 0 100 1.132h3.725v3.724a.565.565 0 101.13 0v-4.29a.566.566 0 00-.565-.566zm7.15-2.859h-3.725V6.28a.566.566 0 10-1.13 0v4.29c0 .313.252.566.565.566h4.29a.566.566 0 100-1.131z"
-  }), /*#__PURE__*/React$1.createElement("path", {
+  }), /*#__PURE__*/React.createElement("path", {
     fill: "currentColor",
     stroke: "currentColor",
     strokeWidth: 0.2,
@@ -27,7 +27,7 @@ function IconMinimize(_ref) {
   }));
 }
 
-IconMinimize.propTypes = IconPropTypes$1;
+IconMinimize.propTypes = IconPropTypes;
 
 export default IconMinimize;
 //# sourceMappingURL=IconMinimize.js.map

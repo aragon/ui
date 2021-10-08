@@ -2,8 +2,8 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-require('./unsupportedIterableToArray-f175acfa.js');
 var toConsumableArray = require('./toConsumableArray-cc0d28a9.js');
+require('./unsupportedIterableToArray-f175acfa.js');
 
 // Forward some props of an instance to a child element.
 //

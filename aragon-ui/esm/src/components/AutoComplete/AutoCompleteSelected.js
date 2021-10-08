@@ -1,15 +1,14 @@
-import React$1, { useRef, useCallback } from 'react';
-import propTypes from '../../../node_modules/prop-types/index.js';
-import _styled$1 from 'styled-components';
-import { noop, identity } from '../../utils/miscellaneous.js';
-import '../../utils/environment.js';
-import { RADIUS } from '../../style/constants.js';
-import { useTheme } from '../../theme/Theme2.js';
 import _extends_1 from '../../../node_modules/@babel/runtime/helpers/extends.js';
+import _styled from 'styled-components';
+import React, { useRef, useCallback } from 'react';
+import propTypes from '../../../node_modules/prop-types/index.js';
 import ButtonBaseWithFocus from '../ButtonBase/ButtonBase.js';
-import AutoComplete$1 from './AutoComplete.js';
+import AutoComplete from './AutoComplete.js';
+import { useTheme } from '../../theme/Theme2.js';
+import { RADIUS } from '../../style/constants.js';
+import { noop, identity } from '../../utils/miscellaneous.js';
 
-var _StyledButtonBase = _styled$1(ButtonBaseWithFocus).withConfig({
+var _StyledButtonBase = _styled(ButtonBaseWithFocus).withConfig({
   displayName: "AutoCompleteSelected___StyledButtonBase",
   componentId: "sc-15vq9oz-0"
 })(["height:40px;width:100%;text-align:left;background:", ";cursor:pointer;border:1px solid ", ";padding:4px 8px;", ";"], function (p) {
@@ -58,7 +57,7 @@ function AutoCompleteSelected(_ref) {
   }, [ref, onSelectedClick]);
 
   if (selected) {
-    return /*#__PURE__*/React$1.createElement(_StyledButtonBase, {
+    return /*#__PURE__*/React.createElement(_StyledButtonBase, {
       onClick: handleSelectedClick,
       ref: selectedRef,
       focusRingRadius: RADIUS,
@@ -69,7 +68,7 @@ function AutoCompleteSelected(_ref) {
     }, renderSelected(selected));
   }
 
-  return /*#__PURE__*/React$1.createElement(AutoComplete$1, {
+  return /*#__PURE__*/React.createElement(AutoComplete, {
     itemButtonStyles: itemButtonStyles,
     items: items,
     onChange: onChange,
@@ -99,9 +98,9 @@ AutoCompleteSelected.propTypes = {
   value: propTypes.string,
   wide: propTypes.bool
 };
-var AutoCompleteSelectedMemo = /*#__PURE__*/React$1.memo(AutoCompleteSelected);
-var AutoCompleteSelected$1 = /*#__PURE__*/React$1.forwardRef(function (props, ref) {
-  return /*#__PURE__*/React$1.createElement(AutoCompleteSelectedMemo, _extends_1({}, props, {
+var AutoCompleteSelectedMemo = /*#__PURE__*/React.memo(AutoCompleteSelected);
+var AutoCompleteSelected$1 = /*#__PURE__*/React.forwardRef(function (props, ref) {
+  return /*#__PURE__*/React.createElement(AutoCompleteSelectedMemo, _extends_1({}, props, {
     forwardedRef: ref
   }));
 });

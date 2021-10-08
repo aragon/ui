@@ -1,17 +1,17 @@
-import React$1 from 'react';
+import React from 'react';
 import propTypes from '../../../node_modules/prop-types/index.js';
-import { warnOnce } from '../../utils/environment.js';
+import BadgeBase from '../BadgeBase/BadgeBase.js';
 import { isTransaction, blockExplorerUrl, shortenTransaction } from '../../utils/web3.js';
-import BadgeBase$1 from '../BadgeBase/BadgeBase.js';
+import { warnOnce } from '../../utils/environment.js';
 
-var TransactionBadge = /*#__PURE__*/React$1.memo(function TransactionBadge(_ref) {
-  var className = _ref.className,
-      disabled = _ref.disabled,
+var TransactionBadge = /*#__PURE__*/React.memo(function TransactionBadge(_ref) {
+  _ref.className;
+      var disabled = _ref.disabled,
       labelStyle = _ref.labelStyle,
       networkType = _ref.networkType,
-      shorten = _ref.shorten,
-      style = _ref.style,
-      transaction = _ref.transaction,
+      shorten = _ref.shorten;
+      _ref.style;
+      var transaction = _ref.transaction,
       background = _ref.background,
       fontSize = _ref.fontSize;
 
@@ -28,7 +28,7 @@ var TransactionBadge = /*#__PURE__*/React$1.memo(function TransactionBadge(_ref)
     networkType: networkType
   }) : '';
   var label = !isTx ? 'Invalid transaction' : shorten ? shortenTransaction(transaction) : transaction;
-  return /*#__PURE__*/React$1.createElement(BadgeBase$1, {
+  return /*#__PURE__*/React.createElement(BadgeBase, {
     badgeOnly: true,
     disabled: disabled || !transactionUrl,
     href: transactionUrl,

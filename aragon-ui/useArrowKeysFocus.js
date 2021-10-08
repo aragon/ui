@@ -2,13 +2,10 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
-
 var slicedToArray = require('./slicedToArray-a8a77f0e.js');
-require('./unsupportedIterableToArray-f175acfa.js');
 var React = require('react');
-var React__default = _interopDefault(React);
 var keycodes = require('./keycodes.js');
+require('./unsupportedIterableToArray-f175acfa.js');
 
 function useArrowKeysFocus(refs) {
   var _useState = React.useState(-1),

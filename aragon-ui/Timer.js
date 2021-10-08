@@ -2,39 +2,40 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
-
-require('./slicedToArray-a8a77f0e.js');
-require('./unsupportedIterableToArray-f175acfa.js');
-var React = require('react');
-var React__default = _interopDefault(React);
-require('./_commonjsHelpers-1b94f6bc.js');
-var index = require('./index-46d0e707.js');
-var defineProperty$1 = require('./defineProperty-3cad0327.js');
+var _extends = require('./extends-023d783e.js');
+var getPrototypeOf = require('./getPrototypeOf-55c9e80c.js');
+var defineProperty = require('./defineProperty-3cad0327.js');
 var toConsumableArray = require('./toConsumableArray-cc0d28a9.js');
 var _styled = require('styled-components');
-var _styled__default = _interopDefault(_styled);
-var getPrototypeOf = require('./getPrototypeOf-55c9e80c.js');
-require('./color.js');
-var css = require('./css.js');
+var React = require('react');
+var index = require('./index-37353731.js');
+var _baseGetTag = require('./_baseGetTag-6ec23aaa.js');
 var dayjs_min = require('./dayjs.min-ac79806e.js');
 var date = require('./date.js');
-require('./miscellaneous.js');
-require('./environment.js');
-require('./font.js');
-var constants = require('./constants.js');
+var Theme = require('./Theme.js');
+var IconClock = require('./IconClock.js');
+var Redraw = require('./Redraw-ec0ae004.js');
 var textStyles = require('./text-styles.js');
+var css = require('./css.js');
+var constants = require('./constants.js');
+require('./_commonjsHelpers-1b94f6bc.js');
+require('./unsupportedIterableToArray-f175acfa.js');
+require('./slicedToArray-a8a77f0e.js');
 require('./theme-dark.js');
 require('./theme-light.js');
-var Theme = require('./Theme.js');
-var _extends$1 = require('./extends-023d783e.js');
+require('./environment.js');
+require('./miscellaneous.js');
+require('./color.js');
 require('./objectWithoutProperties-c6d3675c.js');
-require('./index-f5a9917e.js');
-var _baseGetTag = require('./_baseGetTag-42b4dd3e.js');
-require('./IconPropTypes-dd9d2cb1.js');
-var IconClock = require('./IconClock.js');
+require('./IconPropTypes-b9997416.js');
+require('./index-c33eeeef.js');
 require('./getDisplayName-7f913e84.js');
-var Redraw = require('./Redraw-595f0d61.js');
+require('./font.js');
+
+function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
+
+var _styled__default = /*#__PURE__*/_interopDefaultLegacy(_styled);
+var React__default = /*#__PURE__*/_interopDefaultLegacy(React);
 
 /** `Object#toString` result references. */
 var asyncTag = '[object AsyncFunction]',
@@ -96,10 +97,10 @@ function isMasked(func) {
 var _isMasked = isMasked;
 
 /** Used for built-in method references. */
-var funcProto = Function.prototype;
+var funcProto$1 = Function.prototype;
 
 /** Used to resolve the decompiled source of functions. */
-var funcToString = funcProto.toString;
+var funcToString$1 = funcProto$1.toString;
 
 /**
  * Converts `func` to its source code.
@@ -111,7 +112,7 @@ var funcToString = funcProto.toString;
 function toSource(func) {
   if (func != null) {
     try {
-      return funcToString.call(func);
+      return funcToString$1.call(func);
     } catch (e) {}
     try {
       return (func + '');
@@ -132,18 +133,18 @@ var reRegExpChar = /[\\^$.*+?()[\]{}|]/g;
 var reIsHostCtor = /^\[object .+?Constructor\]$/;
 
 /** Used for built-in method references. */
-var funcProto$1 = Function.prototype,
-    objectProto = Object.prototype;
+var funcProto = Function.prototype,
+    objectProto$2 = Object.prototype;
 
 /** Used to resolve the decompiled source of functions. */
-var funcToString$1 = funcProto$1.toString;
+var funcToString = funcProto.toString;
 
 /** Used to check objects for own properties. */
-var hasOwnProperty = objectProto.hasOwnProperty;
+var hasOwnProperty$2 = objectProto$2.hasOwnProperty;
 
 /** Used to detect if a method is native. */
 var reIsNative = RegExp('^' +
-  funcToString$1.call(hasOwnProperty).replace(reRegExpChar, '\\$&')
+  funcToString.call(hasOwnProperty$2).replace(reRegExpChar, '\\$&')
   .replace(/hasOwnProperty|(function).*?(?=\\\()| for .+?(?=\\\])/g, '$1.*?') + '$'
 );
 
@@ -232,7 +233,7 @@ function hashDelete(key) {
 var _hashDelete = hashDelete;
 
 /** Used to stand-in for `undefined` hash values. */
-var HASH_UNDEFINED = '__lodash_hash_undefined__';
+var HASH_UNDEFINED$1 = '__lodash_hash_undefined__';
 
 /** Used for built-in method references. */
 var objectProto$1 = Object.prototype;
@@ -253,7 +254,7 @@ function hashGet(key) {
   var data = this.__data__;
   if (_nativeCreate) {
     var result = data[key];
-    return result === HASH_UNDEFINED ? undefined : result;
+    return result === HASH_UNDEFINED$1 ? undefined : result;
   }
   return hasOwnProperty$1.call(data, key) ? data[key] : undefined;
 }
@@ -261,10 +262,10 @@ function hashGet(key) {
 var _hashGet = hashGet;
 
 /** Used for built-in method references. */
-var objectProto$2 = Object.prototype;
+var objectProto = Object.prototype;
 
 /** Used to check objects for own properties. */
-var hasOwnProperty$2 = objectProto$2.hasOwnProperty;
+var hasOwnProperty = objectProto.hasOwnProperty;
 
 /**
  * Checks if a hash value for `key` exists.
@@ -277,13 +278,13 @@ var hasOwnProperty$2 = objectProto$2.hasOwnProperty;
  */
 function hashHas(key) {
   var data = this.__data__;
-  return _nativeCreate ? (data[key] !== undefined) : hasOwnProperty$2.call(data, key);
+  return _nativeCreate ? (data[key] !== undefined) : hasOwnProperty.call(data, key);
 }
 
 var _hashHas = hashHas;
 
 /** Used to stand-in for `undefined` hash values. */
-var HASH_UNDEFINED$1 = '__lodash_hash_undefined__';
+var HASH_UNDEFINED = '__lodash_hash_undefined__';
 
 /**
  * Sets the hash `key` to `value`.
@@ -298,7 +299,7 @@ var HASH_UNDEFINED$1 = '__lodash_hash_undefined__';
 function hashSet(key, value) {
   var data = this.__data__;
   this.size += this.has(key) ? 0 : 1;
-  data[key] = (_nativeCreate && value === undefined) ? HASH_UNDEFINED$1 : value;
+  data[key] = (_nativeCreate && value === undefined) ? HASH_UNDEFINED : value;
   return this;
 }
 
@@ -809,7 +810,7 @@ function getTime(start, end, format, showEmpty, maxUnits) {
   };
 }
 
-var _StyledTime = _styled__default("time").withConfig({
+var _StyledTime = _styled__default['default']("time").withConfig({
   displayName: "Timer___StyledTime",
   componentId: "sc-58hkwl-0"
 })(["display:flex;align-items:center;white-space:nowrap;", ";", ";"], function (p) {
@@ -818,21 +819,21 @@ var _StyledTime = _styled__default("time").withConfig({
   return p._css2;
 });
 
-var _StyledSpan = _styled__default("span").withConfig({
+var _StyledSpan = _styled__default['default']("span").withConfig({
   displayName: "Timer___StyledSpan",
   componentId: "sc-58hkwl-1"
 })(["display:flex;align-items:center;margin-right:", "px;margin-top:-3px;"], function (p) {
   return p._css3;
 });
 
-var _StyledIconTime = _styled__default(IconClock.default).withConfig({
+var _StyledIconTime = _styled__default['default'](IconClock['default']).withConfig({
   displayName: "Timer___StyledIconTime",
   componentId: "sc-58hkwl-2"
 })(["color:", ";"], function (p) {
   return p._css4;
 });
 
-var _StyledSpan2 = _styled__default("span").withConfig({
+var _StyledSpan2 = _styled__default['default']("span").withConfig({
   displayName: "Timer___StyledSpan2",
   componentId: "sc-58hkwl-3"
 })(["", ";color:", ";"], function (p) {
@@ -841,7 +842,7 @@ var _StyledSpan2 = _styled__default("span").withConfig({
   return p._css6;
 });
 
-var _StyledSpan3 = _styled__default("span").withConfig({
+var _StyledSpan3 = _styled__default['default']("span").withConfig({
   displayName: "Timer___StyledSpan3",
   componentId: "sc-58hkwl-4"
 })(["color:", ";", ";"], function (p) {
@@ -850,14 +851,14 @@ var _StyledSpan3 = _styled__default("span").withConfig({
   return p._css8;
 });
 
-var _StyledSpan4 = _styled__default("span").withConfig({
+var _StyledSpan4 = _styled__default['default']("span").withConfig({
   displayName: "Timer___StyledSpan4",
   componentId: "sc-58hkwl-5"
 })(["margin-left:2px;color:", ";"], function (p) {
   return p._css9;
 });
 
-var _StyledSpan5 = _styled__default("span").withConfig({
+var _StyledSpan5 = _styled__default['default']("span").withConfig({
   displayName: "Timer___StyledSpan5",
   componentId: "sc-58hkwl-6"
 })(["margin:0 4px;color:", ";font-weight:400;"], function (p) {
@@ -880,7 +881,7 @@ var Timer = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call.apply(_super, [this].concat(args));
 
-    defineProperty$1.defineProperty(getPrototypeOf.assertThisInitialized(_this), "renderTime", function () {
+    defineProperty.defineProperty(getPrototypeOf.assertThisInitialized(_this), "renderTime", function () {
       var _this$props = _this.props,
           start = _this$props.start,
           end = _this$props.end,
@@ -894,7 +895,7 @@ var Timer = /*#__PURE__*/function (_React$Component) {
           units = _getTime.units;
 
       if (totalInSeconds < 0 || Object.is(totalInSeconds, -0)) {
-        return /*#__PURE__*/React__default.createElement(_StyledSpan2, {
+        return /*#__PURE__*/React__default['default'].createElement(_StyledSpan2, {
           _css5: textStyles.textStyle('body2'),
           _css6: theme.surfaceContentSecondary
         }, end ? 'Time out' : '−');
@@ -903,7 +904,7 @@ var Timer = /*#__PURE__*/function (_React$Component) {
       var lastUnitIndex = units.reduce(function (lastIndex, unit, index) {
         return unit[1] === null ? lastIndex : index;
       }, 0);
-      return /*#__PURE__*/React__default.createElement("span", null, units.map(function (unit, index) {
+      return /*#__PURE__*/React__default['default'].createElement("span", null, units.map(function (unit, index) {
         var isLast = index === lastUnitIndex;
         var isSeconds = index === units.length - 1; // Only time units (hours, minutes and seconds).
         // Remember to update if ms gets added one day!
@@ -914,19 +915,19 @@ var Timer = /*#__PURE__*/function (_React$Component) {
           return null;
         }
 
-        return /*#__PURE__*/React__default.createElement(React__default.Fragment, {
+        return /*#__PURE__*/React__default['default'].createElement(React__default['default'].Fragment, {
           key: index
-        }, /*#__PURE__*/React__default.createElement(_StyledSpan3, {
+        }, /*#__PURE__*/React__default['default'].createElement(_StyledSpan3, {
           _css7: theme.surfaceContent,
           _css8: isSeconds && // Fix the width of the seconds unit so that
           // it doesn’t jump too much.
           "\n                      display: inline-flex;\n                      align-items: baseline;\n                      justify-content: space-between;\n                      min-width: 31px;\n                    "
-        }, formatUnit(unit[1]), /*#__PURE__*/React__default.createElement(_StyledSpan4, {
+        }, formatUnit(unit[1]), /*#__PURE__*/React__default['default'].createElement(_StyledSpan4, {
           _css9: theme.surfaceContentSecondary
         }, unit[0])), !isLast &&
         /*#__PURE__*/
         // Separator
-        React__default.createElement(_StyledSpan5, {
+        React__default['default'].createElement(_StyledSpan5, {
           _css10: theme.surfaceContentSecondary
         }, isTimeUnit && ':'));
       }));
@@ -943,24 +944,24 @@ var Timer = /*#__PURE__*/function (_React$Component) {
           start = _this$props2.start,
           showIcon = _this$props2.showIcon,
           theme = _this$props2.theme;
-      return /*#__PURE__*/React__default.createElement(_StyledTime, {
+      return /*#__PURE__*/React__default['default'].createElement(_StyledTime, {
         dateTime: date.formatHtmlDatetime(end || start),
         _css: css.unselectable(),
         _css2: textStyles.textStyle('body2')
-      }, showIcon && /*#__PURE__*/React__default.createElement(_StyledSpan, {
+      }, showIcon && /*#__PURE__*/React__default['default'].createElement(_StyledSpan, {
         _css3: 0.5 * constants.GU
-      }, /*#__PURE__*/React__default.createElement(_StyledIconTime, {
+      }, /*#__PURE__*/React__default['default'].createElement(_StyledIconTime, {
         _css4: theme.surfaceIcon
-      })), /*#__PURE__*/React__default.createElement(Redraw.Redraw, {
+      })), /*#__PURE__*/React__default['default'].createElement(Redraw.Redraw, {
         interval: RENDER_EVERY
       }, this.renderTime));
     }
   }]);
 
   return Timer;
-}(React__default.Component);
+}(React__default['default'].Component);
 
-defineProperty$1.defineProperty(Timer, "propTypes", {
+defineProperty.defineProperty(Timer, "propTypes", {
   end: index.propTypes.instanceOf(Date),
   format: index.propTypes.oneOf(Object.keys(formats)),
   maxUnits: index.propTypes.number,
@@ -970,7 +971,7 @@ defineProperty$1.defineProperty(Timer, "propTypes", {
   theme: index.propTypes.object
 });
 
-defineProperty$1.defineProperty(Timer, "defaultProps", {
+defineProperty.defineProperty(Timer, "defaultProps", {
   format: formats.yMdhms,
   maxUnits: -1,
   showEmpty: false,
@@ -979,7 +980,7 @@ defineProperty$1.defineProperty(Timer, "defaultProps", {
 
 var Timer$1 = (function (props) {
   var theme = Theme.useTheme();
-  return /*#__PURE__*/React__default.createElement(Timer, _extends$1._extends_1({}, props, {
+  return /*#__PURE__*/React__default['default'].createElement(Timer, _extends._extends_1({}, props, {
     theme: theme
   }));
 });

@@ -1,17 +1,17 @@
-import slicedToArray$1 from '../../../node_modules/@babel/runtime/helpers/slicedToArray.js';
-import React$1 from 'react';
+import _extends_1 from '../../../node_modules/@babel/runtime/helpers/extends.js';
+import slicedToArray from '../../../node_modules/@babel/runtime/helpers/slicedToArray.js';
+import objectWithoutProperties from '../../../node_modules/@babel/runtime/helpers/objectWithoutProperties.js';
+import _styled from 'styled-components';
+import React from 'react';
 import propTypes from '../../../node_modules/prop-types/index.js';
-import _styled$1 from 'styled-components';
-import { warnOnce } from '../../utils/environment.js';
+import { useInside as o, Inside as i } from '../../../node_modules/use-inside/dist/index.js';
+import { useTheme } from '../../theme/Theme2.js';
+import { useLayout } from '../Layout/Layout.js';
 import { RADIUS, GU } from '../../style/constants.js';
 import { textStyle } from '../../style/text-styles.js';
-import { useTheme } from '../../theme/Theme2.js';
-import _extends_1 from '../../../node_modules/@babel/runtime/helpers/extends.js';
-import objectWithoutProperties$1 from '../../../node_modules/@babel/runtime/helpers/objectWithoutProperties.js';
-import { useInside as o, Inside as i } from '../../../node_modules/use-inside/dist/index.js';
-import { useLayout } from '../Layout/Layout.js';
+import { warnOnce } from '../../utils/environment.js';
 
-var _StyledDiv = _styled$1("div").withConfig({
+var _StyledDiv = _styled("div").withConfig({
   displayName: "Box___StyledDiv",
   componentId: "sc-54p6u6-0"
 })(["position:relative;border-radius:", "px;border-style:solid;border-color:", ";border-width:", ";background:", ";color:", ";& + &{margin-top:", "px;}"], function (p) {
@@ -28,7 +28,7 @@ var _StyledDiv = _styled$1("div").withConfig({
   return p._css6;
 });
 
-var _StyledH = _styled$1("h1").withConfig({
+var _StyledH = _styled("h1").withConfig({
   displayName: "Box___StyledH",
   componentId: "sc-54p6u6-1"
 })(["display:flex;align-items:center;height:", "px;padding:0 ", "px;border-bottom:1px solid ", ";color:", ";", ";"], function (p) {
@@ -43,7 +43,7 @@ var _StyledH = _styled$1("h1").withConfig({
   return p._css11;
 });
 
-var _StyledDiv2 = _styled$1("div").withConfig({
+var _StyledDiv2 = _styled("div").withConfig({
   displayName: "Box___StyledDiv2",
   componentId: "sc-54p6u6-2"
 })(["padding:", "px;"], function (p) {
@@ -54,12 +54,12 @@ function Box(_ref) {
   var heading = _ref.heading,
       children = _ref.children,
       padding = _ref.padding,
-      props = objectWithoutProperties$1(_ref, ["heading", "children", "padding"]);
+      props = objectWithoutProperties(_ref, ["heading", "children", "padding"]);
 
   var theme = useTheme();
 
   var _useInside = o('Split:primary'),
-      _useInside2 = slicedToArray$1(_useInside, 1),
+      _useInside2 = slicedToArray(_useInside, 1),
       insideSplitPrimary = _useInside2[0];
 
   var _useLayout = useLayout(),
@@ -79,9 +79,9 @@ function Box(_ref) {
   }
 
   var contentPadding = padding === undefined ? defaultPadding : padding;
-  return /*#__PURE__*/React$1.createElement(i, {
+  return /*#__PURE__*/React.createElement(i, {
     name: "Box"
-  }, /*#__PURE__*/React$1.createElement(_StyledDiv, _extends_1({
+  }, /*#__PURE__*/React.createElement(_StyledDiv, _extends_1({
     as: heading ? 'section' : 'div'
   }, props, {
     _css: fullWidth ? 0 : RADIUS,
@@ -90,17 +90,17 @@ function Box(_ref) {
     _css4: theme.surface,
     _css5: theme.surfaceContent,
     _css6: 2 * GU
-  }), heading && /*#__PURE__*/React$1.createElement(_StyledH, {
+  }), heading && /*#__PURE__*/React.createElement(_StyledH, {
     _css7: 4 * GU,
     _css8: defaultPadding,
     _css9: theme.border,
     _css10: theme.surfaceContentSecondary,
     _css11: textStyle('label2')
-  }, /*#__PURE__*/React$1.createElement(i, {
+  }, /*#__PURE__*/React.createElement(i, {
     name: "Box:heading"
-  }, heading)), /*#__PURE__*/React$1.createElement(_StyledDiv2, {
+  }, heading)), /*#__PURE__*/React.createElement(_StyledDiv2, {
     _css12: contentPadding
-  }, /*#__PURE__*/React$1.createElement("div", null, /*#__PURE__*/React$1.createElement(i, {
+  }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(i, {
     name: "Box:content"
   }, children)))));
 }

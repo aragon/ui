@@ -2,28 +2,29 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
-
+var defineProperty = require('./defineProperty-3cad0327.js');
+var _styled = require('styled-components');
+var React = require('react');
+var proptypes = require('./proptypes-316e1def.js');
+var objectWithoutPropertiesLoose = require('./objectWithoutPropertiesLoose-1af20ad0.js');
+var environment = require('./environment.js');
+var Theme = require('./Theme.js');
+var springs = require('./springs.js');
+require('./index-37353731.js');
+require('./_commonjsHelpers-1b94f6bc.js');
+require('./miscellaneous.js');
 require('./slicedToArray-a8a77f0e.js');
 require('./unsupportedIterableToArray-f175acfa.js');
-var React = require('react');
-var React__default = _interopDefault(React);
-require('./_commonjsHelpers-1b94f6bc.js');
-require('./index-46d0e707.js');
-var defineProperty$1 = require('./defineProperty-3cad0327.js');
-require('./toConsumableArray-cc0d28a9.js');
-var _styled = require('styled-components');
-var _styled__default = _interopDefault(_styled);
-require('./getPrototypeOf-55c9e80c.js');
-require('./color.js');
-require('./miscellaneous.js');
-var environment = require('./environment.js');
-var springs = require('./springs.js');
 require('./theme-dark.js');
 require('./theme-light.js');
-var Theme = require('./Theme.js');
-var objectWithoutPropertiesLoose = require('./objectWithoutPropertiesLoose-1af20ad0.js');
-var proptypes = require('./proptypes-b2a781f4.js');
+require('./color.js');
+require('./getPrototypeOf-55c9e80c.js');
+require('./toConsumableArray-cc0d28a9.js');
+
+function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
+
+var _styled__default = /*#__PURE__*/_interopDefaultLegacy(_styled);
+var React__default = /*#__PURE__*/_interopDefaultLegacy(React);
 
 function _defineProperties(target, props) {
   for (var i = 0; i < props.length; i++) {
@@ -928,27 +929,27 @@ function getValues$1(object) {
   });
 }
 function getForwardProps(props) {
-  var to = props.to,
-      from = props.from,
-      config = props.config,
-      native = props.native,
-      onStart = props.onStart,
-      onRest = props.onRest,
-      onFrame = props.onFrame,
-      children = props.children,
-      reset = props.reset,
-      reverse = props.reverse,
-      force = props.force,
-      immediate = props.immediate,
-      impl = props.impl,
-      inject = props.inject,
-      delay = props.delay,
-      attach = props.attach,
-      destroyed = props.destroyed,
-      interpolateTo = props.interpolateTo,
-      autoStart = props.autoStart,
-      ref = props.ref,
-      forward = objectWithoutPropertiesLoose._objectWithoutPropertiesLoose(props, ["to", "from", "config", "native", "onStart", "onRest", "onFrame", "children", "reset", "reverse", "force", "immediate", "impl", "inject", "delay", "attach", "destroyed", "interpolateTo", "autoStart", "ref"]);
+  props.to;
+      props.from;
+      props.config;
+      props.native;
+      props.onStart;
+      props.onRest;
+      props.onFrame;
+      props.children;
+      props.reset;
+      props.reverse;
+      props.force;
+      props.immediate;
+      props.impl;
+      props.inject;
+      props.delay;
+      props.attach;
+      props.destroyed;
+      props.interpolateTo;
+      props.autoStart;
+      props.ref;
+      var forward = objectWithoutPropertiesLoose._objectWithoutPropertiesLoose(props, ["to", "from", "config", "native", "onStart", "onRest", "onFrame", "children", "reset", "reverse", "force", "immediate", "impl", "inject", "delay", "attach", "destroyed", "interpolateTo", "autoStart", "ref"]);
 
   return forward;
 }
@@ -1143,8 +1144,8 @@ function createAnimatedComponent(Component) {
     ;
 
     _proto.attachProps = function attachProps(_ref) {
-      var forwardRef = _ref.forwardRef,
-          nextProps = objectWithoutPropertiesLoose._objectWithoutPropertiesLoose(_ref, ["forwardRef"]);
+      _ref.forwardRef;
+          var nextProps = objectWithoutPropertiesLoose._objectWithoutPropertiesLoose(_ref, ["forwardRef"]);
 
       var oldPropsAnimated = this.propsAnimated;
       this.propsAnimated = new AnimatedProps(nextProps, this.callback); // When you call detach, it removes the element from the parent list
@@ -1178,12 +1179,12 @@ function createAnimatedComponent(Component) {
     _proto.render = function render() {
       var _this2 = this;
 
-      var _this$propsAnimated$g = this.propsAnimated.getValue(),
-          scrollTop = _this$propsAnimated$g.scrollTop,
-          scrollLeft = _this$propsAnimated$g.scrollLeft,
-          animatedProps = objectWithoutPropertiesLoose._objectWithoutPropertiesLoose(_this$propsAnimated$g, ["scrollTop", "scrollLeft"]);
+      var _this$propsAnimated$g = this.propsAnimated.getValue();
+          _this$propsAnimated$g.scrollTop;
+          _this$propsAnimated$g.scrollLeft;
+          var animatedProps = objectWithoutPropertiesLoose._objectWithoutPropertiesLoose(_this$propsAnimated$g, ["scrollTop", "scrollLeft"]);
 
-      return React__default.createElement(Component, objectWithoutPropertiesLoose._extends({}, animatedProps, {
+      return React__default['default'].createElement(Component, objectWithoutPropertiesLoose._extends({}, animatedProps, {
         ref: function ref(node) {
           return _this2.node = handleRef(node, _this2.props.forwardRef);
         }
@@ -1191,10 +1192,10 @@ function createAnimatedComponent(Component) {
     };
 
     return AnimatedComponent;
-  }(React__default.Component);
+  }(React__default['default'].Component);
 
-  return React__default.forwardRef(function (props, ref) {
-    return React__default.createElement(AnimatedComponent, objectWithoutPropertiesLoose._extends({}, props, {
+  return React__default['default'].forwardRef(function (props, ref) {
+    return React__default['default'].createElement(AnimatedComponent, objectWithoutPropertiesLoose._extends({}, props, {
       forwardRef: ref
     }));
   });
@@ -1713,9 +1714,9 @@ function () {
       return _this.instance.destroy();
     };
 
-    var _config = _props.config,
-        onRest = _props.onRest,
-        initialProps = objectWithoutPropertiesLoose._objectWithoutPropertiesLoose(_props, ["config", "onRest"]);
+    _props.config;
+        _props.onRest;
+        var initialProps = objectWithoutPropertiesLoose._objectWithoutPropertiesLoose(_props, ["config", "onRest"]);
 
     this.globalProps = function (_ref) {
       var native = _ref.native,
@@ -1795,9 +1796,9 @@ var useSpringImpl = function useSpringImpl(type) {
     var isFn = typeof args === 'function';
 
     var _callProp = callProp(args),
-        onRest = _callProp.onRest,
-        onKeyframesHalt = _callProp.onKeyframesHalt,
-        props = objectWithoutPropertiesLoose._objectWithoutPropertiesLoose(_callProp, ["onRest", "onKeyframesHalt"]); // The controller maintains the animation values, starts and tops animations
+        onRest = _callProp.onRest;
+        _callProp.onKeyframesHalt;
+        var props = objectWithoutPropertiesLoose._objectWithoutPropertiesLoose(_callProp, ["onRest", "onKeyframesHalt"]); // The controller maintains the animation values, starts and tops animations
 
 
     var _useState2 = React.useState(function () {
@@ -1869,21 +1870,21 @@ var extendedAnimated = domElements.reduce(function (acc, element) {
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { defineProperty$1.defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { defineProperty.defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 var RADIUS = 2;
 var BAR_HEIGHT = 6;
 var INDETERMINATE_WIDTH = 1 / 4;
 var INDETERMINATE_DURATION = 1600;
 var indeterminateAnim = _styled.keyframes(["0%{transform:translate3d(calc(-100% - 1px),0,0);}70%,100%{transform:translate3d(calc(", "% + 1px),0,0);}"], 100 / INDETERMINATE_WIDTH);
 
-var _StyledDiv = _styled__default("div").withConfig({
+var _StyledDiv = _styled__default['default']("div").withConfig({
   displayName: "ProgressBar___StyledDiv",
   componentId: "sc-1gly9sn-0"
 })(["width:100%;height:", "px;background:", ";border-radius:", "px;overflow:hidden;"], BAR_HEIGHT, function (p) {
   return p._css;
 }, RADIUS);
 
-var ProgressBar = /*#__PURE__*/React__default.memo(function (_ref) {
+var ProgressBar = /*#__PURE__*/React__default['default'].memo(function (_ref) {
   var animate = _ref.animate,
       color = _ref.color,
       progress = _ref.progress,
@@ -1915,9 +1916,9 @@ var ProgressBar = /*#__PURE__*/React__default.memo(function (_ref) {
     },
     immediate: !animate
   });
-  return /*#__PURE__*/React__default.createElement(_StyledDiv, {
+  return /*#__PURE__*/React__default['default'].createElement(_StyledDiv, {
     _css: theme.surfaceUnder
-  }, /*#__PURE__*/React__default.createElement(Bar, {
+  }, /*#__PURE__*/React__default['default'].createElement(Bar, {
     style: {
       width: "".concat((indeterminate ? INDETERMINATE_WIDTH : 1) * 100, "%"),
       background: currentColor,
@@ -1929,7 +1930,7 @@ var ProgressBar = /*#__PURE__*/React__default.memo(function (_ref) {
     }
   }));
 });
-var Bar = _styled__default(extendedAnimated.div).withConfig({
+var Bar = _styled__default['default'](extendedAnimated.div).withConfig({
   displayName: "ProgressBar__Bar",
   componentId: "sc-1gly9sn-1"
 })(["width:100%;height:", "px;transform-origin:0 0;animation:", " ", "ms ease-in-out infinite;animation-name:none;"], BAR_HEIGHT, indeterminateAnim, INDETERMINATE_DURATION);

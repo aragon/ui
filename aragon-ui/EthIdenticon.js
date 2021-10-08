@@ -2,23 +2,24 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
-
-require('./unsupportedIterableToArray-f175acfa.js');
-var React = require('react');
-var React__default = _interopDefault(React);
-var _commonjsHelpers = require('./_commonjsHelpers-1b94f6bc.js');
-var index = require('./index-46d0e707.js');
-var defineProperty = require('./defineProperty-3cad0327.js');
-require('./toConsumableArray-cc0d28a9.js');
-var _styled = require('styled-components');
-var _styled__default = _interopDefault(_styled);
-var getPrototypeOf = require('./getPrototypeOf-55c9e80c.js');
-var components = require('./components.js');
-require('./miscellaneous.js');
-require('./environment.js');
-var web3 = require('./web3-4e58c255.js');
 var _extends = require('./extends-023d783e.js');
+var getPrototypeOf = require('./getPrototypeOf-55c9e80c.js');
+var defineProperty = require('./defineProperty-3cad0327.js');
+var React = require('react');
+var index = require('./index-37353731.js');
+var _styled = require('styled-components');
+var _commonjsHelpers = require('./_commonjsHelpers-1b94f6bc.js');
+var web3 = require('./web3-4ef44cda.js');
+var components = require('./components.js');
+require('./environment.js');
+require('./miscellaneous.js');
+require('./toConsumableArray-cc0d28a9.js');
+require('./unsupportedIterableToArray-f175acfa.js');
+
+function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
+
+var React__default = /*#__PURE__*/_interopDefaultLegacy(React);
+var _styled__default = /*#__PURE__*/_interopDefaultLegacy(_styled);
 
 var main = _commonjsHelpers.createCommonjsModule(function (module, exports) {
 
@@ -32,7 +33,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 
 
-var _react2 = _interopRequireDefault(React__default);
+var _react2 = _interopRequireDefault(React__default['default']);
 
 
 
@@ -216,7 +217,7 @@ var Identicon = function (_Component) {
   }]);
 
   return Identicon;
-}(React__default.Component);
+}(React__default['default'].Component);
 
 exports.default = Identicon;
 
@@ -265,14 +266,14 @@ var EthIdenticon = /*#__PURE__*/function (_React$Component) {
           radius = _this$props.radius,
           soften = _this$props.soften;
       var blockiesScale = scale * BASE_SCALE;
-      return web3.isAddress(address) ? /*#__PURE__*/React__default.createElement(Main, _extends._extends_1({
+      return web3.isAddress(address) ? /*#__PURE__*/React__default['default'].createElement(Main, _extends._extends_1({
         size: BLOCKIES_SQUARES * blockiesScale,
         radius: radius
-      }, components.stylingProps(this)), /*#__PURE__*/React__default.createElement(BlockiesScaling, {
+      }, components.stylingProps(this)), /*#__PURE__*/React__default['default'].createElement(BlockiesScaling, {
         size: BLOCKIES_SQUARES * blockiesScale * PX_RATIO
-      }, /*#__PURE__*/React__default.createElement(BlockiesOpacity, {
+      }, /*#__PURE__*/React__default['default'].createElement(BlockiesOpacity, {
         soften: soften
-      }, /*#__PURE__*/React__default.createElement(Blockies, {
+      }, /*#__PURE__*/React__default['default'].createElement(Blockies, {
         seed: address.toLowerCase(),
         size: BLOCKIES_SQUARES,
         scale: blockiesScale * PX_RATIO
@@ -281,7 +282,7 @@ var EthIdenticon = /*#__PURE__*/function (_React$Component) {
   }]);
 
   return EthIdenticon;
-}(React__default.Component);
+}(React__default['default'].Component);
 /*
  * `vertical-align` prevents the inline parent to have an incorrect height.
  *
@@ -304,7 +305,7 @@ defineProperty.defineProperty(EthIdenticon, "defaultProps", {
   soften: 0.3
 });
 
-var Main = _styled__default.div.withConfig({
+var Main = _styled__default['default'].div.withConfig({
   displayName: "EthIdenticon__Main",
   componentId: "sc-1h8gagr-0"
 })(["display:inline-flex;vertical-align:middle;overflow:hidden;width:", "px;height:", "px;border-radius:", "px;mask-image:linear-gradient(red,red);"], function (p) {
@@ -314,13 +315,13 @@ var Main = _styled__default.div.withConfig({
 }, function (p) {
   return p.radius;
 });
-var BlockiesOpacity = _styled__default.div.withConfig({
+var BlockiesOpacity = _styled__default['default'].div.withConfig({
   displayName: "EthIdenticon__BlockiesOpacity",
   componentId: "sc-1h8gagr-1"
 })(["opacity:", ";"], function (p) {
   return 1 - p.soften;
 });
-var BlockiesScaling = _styled__default.div.withConfig({
+var BlockiesScaling = _styled__default['default'].div.withConfig({
   displayName: "EthIdenticon__BlockiesScaling",
   componentId: "sc-1h8gagr-2"
 })(["display:flex;width:", "px;height:", "px;background:#fff;transform:scale(", ",", ");transform-origin:0 0;"], function (p) {

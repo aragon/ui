@@ -2,10 +2,10 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
+var useFocusLeave = require('./useFocusLeave.js');
+var environment = require('./environment.js');
 require('react');
 require('./miscellaneous.js');
-var environment = require('./environment.js');
-var useFocusLeave = require('./useFocusLeave.js');
 
 function useOnBlur() {
   environment.warnOnce('useOnBlur', 'useOnBlur() is deprecated, please use useFocusLeave() instead.');

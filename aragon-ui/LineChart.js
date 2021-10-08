@@ -2,28 +2,27 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
-
-var slicedToArray = require('./slicedToArray-a8a77f0e.js');
-require('./unsupportedIterableToArray-f175acfa.js');
-var React = require('react');
-var React__default = _interopDefault(React);
-require('./_commonjsHelpers-1b94f6bc.js');
-require('./index-46d0e707.js');
-require('./defineProperty-3cad0327.js');
-var toConsumableArray = require('./toConsumableArray-cc0d28a9.js');
-var _styled = require('styled-components');
-var _styled__default = _interopDefault(_styled);
-var css = require('./css.js');
-require('./miscellaneous.js');
-require('./environment.js');
-var springs = require('./springs.js');
 var _extends = require('./extends-023d783e.js');
+var toConsumableArray = require('./toConsumableArray-cc0d28a9.js');
 var objectWithoutProperties = require('./objectWithoutProperties-c6d3675c.js');
+var slicedToArray = require('./slicedToArray-a8a77f0e.js');
+var _styled = require('styled-components');
+var React = require('react');
+var web = require('./web-46d746d6.js');
+var proptypes = require('./proptypes-316e1def.js');
+var css = require('./css.js');
+var springs = require('./springs.js');
+require('./_commonjsHelpers-1b94f6bc.js');
+require('./unsupportedIterableToArray-f175acfa.js');
 require('./objectWithoutPropertiesLoose-1af20ad0.js');
 require('react-dom');
-var web = require('./web-d0294535.js');
-var proptypes = require('./proptypes-b2a781f4.js');
+require('./defineProperty-3cad0327.js');
+require('./index-37353731.js');
+
+function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
+
+var _styled__default = /*#__PURE__*/_interopDefaultLegacy(_styled);
+var React__default = /*#__PURE__*/_interopDefaultLegacy(React);
 
 var LABELS_HEIGHT = 30;
 var WIDTH_DEFAULT = 300;
@@ -54,12 +53,12 @@ function useMeasuredWidth() {
   return [measuredWidth, onRef];
 }
 
-var _StyledSvg = _styled__default("svg").withConfig({
+var _StyledSvg = _styled__default['default']("svg").withConfig({
   displayName: "LineChart___StyledSvg",
   componentId: "sc-8kiakb-0"
 })(["display:block"]);
 
-var _StyledText = _styled__default("text").withConfig({
+var _StyledText = _styled__default['default']("text").withConfig({
   displayName: "LineChart___StyledText",
   componentId: "sc-8kiakb-1"
 })(["alignment-baseline:middle;font-size:12px;font-weight:300;", ";"], css.unselectable);
@@ -115,7 +114,7 @@ function LineChart(_ref) {
   }, []);
   var labels = label && totalCount > 0 ? toConsumableArray.toConsumableArray(Array(totalCount).keys()).map(label) : null;
   var chartHeight = height - (labels ? LABELS_HEIGHT : 0);
-  var rectangle = /*#__PURE__*/React__default.createElement("rect", {
+  var rectangle = /*#__PURE__*/React__default['default'].createElement("rect", {
     width: width,
     height: chartHeight,
     rx: "3",
@@ -124,7 +123,7 @@ function LineChart(_ref) {
     strokeWidth: "1",
     stroke: borderColor
   });
-  return /*#__PURE__*/React__default.createElement(web.Spring, {
+  return /*#__PURE__*/React__default['default'].createElement(web.Spring, {
     from: {
       progress: 0
     },
@@ -136,25 +135,25 @@ function LineChart(_ref) {
     reset: reset
   }, function (_ref2) {
     var progress = _ref2.progress;
-    return /*#__PURE__*/React__default.createElement(_StyledSvg, _extends._extends_1({
+    return /*#__PURE__*/React__default['default'].createElement(_StyledSvg, _extends._extends_1({
       ref: onSvgRef,
       viewBox: "0 0 ".concat(width, " ").concat(height),
       width: widthProps || 'auto',
       height: "auto"
-    }, props), /*#__PURE__*/React__default.createElement("mask", {
+    }, props), /*#__PURE__*/React__default['default'].createElement("mask", {
       id: "chart-mask"
-    }, rectangle), rectangle, /*#__PURE__*/React__default.createElement("g", {
+    }, rectangle), rectangle, /*#__PURE__*/React__default['default'].createElement("g", {
       mask: "url(#chart-mask)"
-    }, totalCount > 0 && /*#__PURE__*/React__default.createElement("path", {
+    }, totalCount > 0 && /*#__PURE__*/React__default['default'].createElement("path", {
       d: "\n                  ".concat(toConsumableArray.toConsumableArray(new Array(totalCount - 1)).reduce(function (path, _, index) {
         return "".concat(path, " M ").concat(getX(index), ",").concat(chartHeight, " l 0,-8");
       }, ''), "\n                "),
       stroke: borderColor,
       strokeWidth: "1"
     }), lines.map(function (line, lineIndex) {
-      return /*#__PURE__*/React__default.createElement("g", {
+      return /*#__PURE__*/React__default['default'].createElement("g", {
         key: "line-plot-".concat(line.id || lineIndex)
-      }, /*#__PURE__*/React__default.createElement("path", {
+      }, /*#__PURE__*/React__default['default'].createElement("path", {
         d: "\n                    M\n                    ".concat(getX(0), ",\n                    ").concat(getY(line.values[0], progress, chartHeight), "\n\n                    ").concat(line.values.slice(1).map(function (val, index) {
           return "L\n                           ".concat(getX((index + 1) * progress), ",\n                           ").concat(getY(val, progress, chartHeight), "\n                          ");
         }).join(''), "\n                  "),
@@ -164,7 +163,7 @@ function LineChart(_ref) {
         }),
         strokeWidth: "2"
       }), line.values.slice(1, -1).map(function (val, index) {
-        return /*#__PURE__*/React__default.createElement("circle", {
+        return /*#__PURE__*/React__default['default'].createElement("circle", {
           key: index,
           cx: getX(index + 1) * progress,
           cy: getY(val, progress, chartHeight),
@@ -176,17 +175,17 @@ function LineChart(_ref) {
           strokeWidth: "1"
         });
       }));
-    }), /*#__PURE__*/React__default.createElement("line", {
+    }), /*#__PURE__*/React__default['default'].createElement("line", {
       x1: getX(valuesCount - 1) * progress,
       y1: "0",
       x2: getX(valuesCount - 1) * progress,
       y2: chartHeight,
       stroke: "#DAEAEF",
       strokeWidth: "3"
-    })), labels && /*#__PURE__*/React__default.createElement("g", {
+    })), labels && /*#__PURE__*/React__default['default'].createElement("g", {
       transform: "translate(0,".concat(chartHeight, ")")
     }, labels.map(function (label, index) {
-      return /*#__PURE__*/React__default.createElement(_StyledText, {
+      return /*#__PURE__*/React__default['default'].createElement(_StyledText, {
         key: index,
         x: getX(index),
         y: LABELS_HEIGHT / 2,

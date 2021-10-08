@@ -1,3 +1,3 @@
-import nonIterableRest$1 from '../node_modules/@babel/runtime/helpers/nonIterableRest.js';
+import nonIterableRest from '../node_modules/@babel/runtime/helpers/nonIterableRest.js';
 export { default } from '../node_modules/@babel/runtime/helpers/nonIterableRest.js';
 //# sourceMappingURL=nonIterableRest.js_commonjs-proxy.map

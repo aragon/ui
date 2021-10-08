@@ -1,10 +1,10 @@
-import slicedToArray$1 from '../../node_modules/@babel/runtime/helpers/slicedToArray.js';
-import defineProperty$1 from '../../node_modules/@babel/runtime/helpers/defineProperty.js';
+import defineProperty from '../../node_modules/@babel/runtime/helpers/defineProperty.js';
+import slicedToArray from '../../node_modules/@babel/runtime/helpers/slicedToArray.js';
 import { monospace } from '../utils/font.js';
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { defineProperty$1(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 var TEXT_STYLES = {
   title1: {
     size: 32,
@@ -97,7 +97,7 @@ var STYLES_CSS = {
 
 function textStyleToCss(textStyle) {
   return Object.entries(textStyle).map(function (_ref) {
-    var _ref2 = slicedToArray$1(_ref, 2),
+    var _ref2 = slicedToArray(_ref, 2),
         name = _ref2[0],
         value = _ref2[1];
 

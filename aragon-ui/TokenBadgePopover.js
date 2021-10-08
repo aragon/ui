@@ -2,65 +2,66 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
-
+var _styled = require('styled-components');
+var React = require('react');
+var proptypes = require('./proptypes-316e1def.js');
+var AddressField = require('./AddressField.js');
+var BadgePopoverBase = require('./BadgePopoverBase.js');
+var Link = require('./Link.js');
+var web3 = require('./web3-4ef44cda.js');
+var useImageExists = require('./useImageExists.js');
+var constants = require('./constants.js');
+require('./defineProperty-3cad0327.js');
+require('./index-37353731.js');
+require('./_commonjsHelpers-1b94f6bc.js');
+require('./objectWithoutProperties-c6d3675c.js');
+require('./TextCopy.js');
+require('./extends-023d783e.js');
+require('./TextInput.js');
+require('./Theme.js');
 require('./slicedToArray-a8a77f0e.js');
 require('./unsupportedIterableToArray-f175acfa.js');
-var React = require('react');
-var React__default = _interopDefault(React);
-require('./_commonjsHelpers-1b94f6bc.js');
-require('./index-46d0e707.js');
-require('./defineProperty-3cad0327.js');
-require('./toConsumableArray-cc0d28a9.js');
-var _styled = require('styled-components');
-var _styled__default = _interopDefault(_styled);
-require('./getPrototypeOf-55c9e80c.js');
-require('./color.js');
-require('./components.js');
-require('./css.js');
-require('./miscellaneous.js');
-require('./environment.js');
-require('./font.js');
-require('./keycodes.js');
-var web3 = require('./web3-4e58c255.js');
-var constants = require('./constants.js');
-require('./breakpoints.js');
-require('./springs.js');
-require('./text-styles.js');
 require('./theme-dark.js');
 require('./theme-light.js');
-require('./Theme.js');
-require('./extends-023d783e.js');
-require('./objectWithoutProperties-c6d3675c.js');
-require('./index-f5a9917e.js');
-require('./_baseGetTag-42b4dd3e.js');
-require('./Viewport-abbde113.js');
+require('./environment.js');
+require('./miscellaneous.js');
+require('./color.js');
+require('./getPrototypeOf-55c9e80c.js');
+require('./toConsumableArray-cc0d28a9.js');
+require('./text-styles.js');
+require('./font.js');
+require('./ButtonIcon.js');
+require('./Button.js');
+require('./index-c33eeeef.js');
 require('./Layout.js');
-require('./FocusVisible.js');
+require('./Viewport-71f7efe6.js');
+require('./_baseGetTag-6ec23aaa.js');
+require('./breakpoints.js');
+require('./css.js');
 require('./ButtonBase.js');
-require('./IconPropTypes-dd9d2cb1.js');
-require('./IconCopy.js');
-require('./IconCross.js');
+require('./FocusVisible.js');
+require('./keycodes.js');
+require('./ToastHub.js');
+require('./web-46d746d6.js');
 require('./objectWithoutPropertiesLoose-1af20ad0.js');
 require('react-dom');
-require('./web-d0294535.js');
-require('./Button.js');
-require('./ButtonIcon.js');
-var Link = require('./Link.js');
-require('./TextInput.js');
-require('./ToastHub.js');
-require('./Root-fd39454b.js');
 require('./RootPortal.js');
-require('./TextCopy.js');
+require('./Root-07f851a6.js');
+require('./components.js');
+require('./springs.js');
+require('./IconCopy.js');
+require('./IconPropTypes-b9997416.js');
 require('./EthIdenticon.js');
-var AddressField = require('./AddressField.js');
-var useImageExists = require('./useImageExists.js');
-require('./BadgePopoverActionType.js');
-var proptypes = require('./proptypes-b2a781f4.js');
 require('./Popover.js');
-var BadgePopoverBase = require('./BadgePopoverBase.js');
+require('./BadgePopoverActionType.js');
+require('./IconCross.js');
 
-var TokenBadgePopover = /*#__PURE__*/React__default.memo(function TokenBadgePopover(_ref) {
+function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
+
+var _styled__default = /*#__PURE__*/_interopDefaultLegacy(_styled);
+var React__default = /*#__PURE__*/_interopDefaultLegacy(React);
+
+var TokenBadgePopover = /*#__PURE__*/React__default['default'].memo(function TokenBadgePopover(_ref) {
   var address = _ref.address,
       iconSrc = _ref.iconSrc,
       networkType = _ref.networkType,
@@ -71,21 +72,21 @@ var TokenBadgePopover = /*#__PURE__*/React__default.memo(function TokenBadgePopo
   var etherscanUrl = web3.blockExplorerUrl('token', address, {
     networkType: networkType
   });
-  return /*#__PURE__*/React__default.createElement(BadgePopoverBase.default, {
-    addressField: iconSrc ? /*#__PURE__*/React__default.createElement(useImageExists.ImageExists, {
+  return /*#__PURE__*/React__default['default'].createElement(BadgePopoverBase['default'], {
+    addressField: iconSrc ? /*#__PURE__*/React__default['default'].createElement(useImageExists.ImageExists, {
       src: iconSrc
     }, function (_ref2) {
       var exists = _ref2.exists;
-      return /*#__PURE__*/React__default.createElement(AddressField.default, {
+      return /*#__PURE__*/React__default['default'].createElement(AddressField['default'], {
         address: address,
-        icon: exists ? /*#__PURE__*/React__default.createElement(Icon, {
+        icon: exists ? /*#__PURE__*/React__default['default'].createElement(Icon, {
           src: iconSrc
         }) : null
       });
-    }) : /*#__PURE__*/React__default.createElement(AddressField.default, {
+    }) : /*#__PURE__*/React__default['default'].createElement(AddressField['default'], {
       address: address
     }),
-    link: etherscanUrl && /*#__PURE__*/React__default.createElement(Link.default, {
+    link: etherscanUrl && /*#__PURE__*/React__default['default'].createElement(Link['default'], {
       href: etherscanUrl
     }, "See on Etherscan"),
     onClose: onClose,
@@ -104,7 +105,7 @@ TokenBadgePopover.propTypes = {
   visible: proptypes.ExtendedPropTypes.bool
 };
 
-var _StyledDiv = _styled__default("div").withConfig({
+var _StyledDiv = _styled__default['default']("div").withConfig({
   displayName: "TokenBadgePopover___StyledDiv",
   componentId: "sc-8b2bwa-0"
 })(["width:calc(100% - ", "px);height:calc(100% - ", "px);background-size:contain;background-position:50% 50%;background-repeat:no-repeat;background-image:url(", ");"], function (p) {
@@ -117,7 +118,7 @@ var _StyledDiv = _styled__default("div").withConfig({
 
 function Icon(_ref3) {
   var src = _ref3.src;
-  return /*#__PURE__*/React__default.createElement(_StyledDiv, {
+  return /*#__PURE__*/React__default['default'].createElement(_StyledDiv, {
     _css: 0.5 * constants.GU,
     _css2: 0.5 * constants.GU,
     _css3: src

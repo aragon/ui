@@ -1,23 +1,22 @@
-import React$1 from 'react';
-import _styled$1 from 'styled-components';
-import '../../utils/environment.js';
+import _styled from 'styled-components';
+import React from 'react';
+import ExtendedPropTypes from '../../proptypes.js';
+import AddressField from '../AddressField/AddressField.js';
+import BadgePopoverBase from '../BadgeBase/BadgePopoverBase.js';
+import BadgePopoverActionType from '../BadgeBase/BadgePopoverActionType.js';
+import Link from '../Link/Link.js';
+import Tag from '../Tag/Tag.js';
 import { blockExplorerUrl } from '../../utils/web3.js';
 import { GU } from '../../style/constants.js';
-import Link$1 from '../Link/Link.js';
-import AddressField$1 from '../AddressField/AddressField.js';
-import BadgePopoverActionType$1 from '../BadgeBase/BadgePopoverActionType.js';
-import Tag$1 from '../Tag/Tag.js';
-import ExtendedPropTypes from '../../proptypes.js';
-import BadgePopoverBase$1 from '../BadgeBase/BadgePopoverBase.js';
 
-var _StyledTag = _styled$1(Tag$1).withConfig({
+var _StyledTag = _styled(Tag).withConfig({
   displayName: "IdentityBadgePopover___StyledTag",
   componentId: "sc-1yeyfty-0"
 })(["margin-left:", "px;"], function (p) {
   return p._css;
 });
 
-var IdentityBadgePopover = /*#__PURE__*/React$1.memo(function IdentityBadgePopover(_ref) {
+var IdentityBadgePopover = /*#__PURE__*/React.memo(function IdentityBadgePopover(_ref) {
   var address = _ref.address,
       connectedAccount = _ref.connectedAccount,
       networkType = _ref.networkType,
@@ -29,18 +28,18 @@ var IdentityBadgePopover = /*#__PURE__*/React$1.memo(function IdentityBadgePopov
   var etherscanUrl = blockExplorerUrl('address', address, {
     networkType: networkType
   });
-  return /*#__PURE__*/React$1.createElement(BadgePopoverBase$1, {
-    addressField: /*#__PURE__*/React$1.createElement(AddressField$1, {
+  return /*#__PURE__*/React.createElement(BadgePopoverBase, {
+    addressField: /*#__PURE__*/React.createElement(AddressField, {
       address: address
     }),
-    link: etherscanUrl && /*#__PURE__*/React$1.createElement(Link$1, {
+    link: etherscanUrl && /*#__PURE__*/React.createElement(Link, {
       href: etherscanUrl
     }, "See on Etherscan"),
     onClose: onClose,
     opener: opener,
     popoverAction: popoverAction,
     title: title,
-    titleTag: connectedAccount && /*#__PURE__*/React$1.createElement(_StyledTag, {
+    titleTag: connectedAccount && /*#__PURE__*/React.createElement(_StyledTag, {
       title: "This is your Ethereum address",
       _css: 1 * GU
     }, "you"),
@@ -53,7 +52,7 @@ IdentityBadgePopover.propTypes = {
   networkType: ExtendedPropTypes.string,
   onClose: ExtendedPropTypes.func,
   opener: ExtendedPropTypes._element,
-  popoverAction: BadgePopoverActionType$1,
+  popoverAction: BadgePopoverActionType,
   title: ExtendedPropTypes.node,
   visible: ExtendedPropTypes.bool
 };

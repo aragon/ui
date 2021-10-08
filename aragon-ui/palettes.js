@@ -3,10 +3,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 
 var slicedToArray = require('./slicedToArray-a8a77f0e.js');
+var aragon = require('./aragon.js');
+var environment = require('./environment.js');
 require('./unsupportedIterableToArray-f175acfa.js');
 require('./miscellaneous.js');
-var environment = require('./environment.js');
-var aragon = require('./aragon.js');
 
 var THEME_NAME = 'Aragon UI';
 var THEME_DARK_NAME = 'Aragon UI Dark';
@@ -82,7 +82,7 @@ var generateGroups = function generateGroups(palettes) {
 }; // Deprecate any access to the palettes
 
 
-var _Object$fromEntries = Object.fromEntries(Object.entries(generateGroups(aragon.default)).map(function (_ref5) {
+var _Object$fromEntries = Object.fromEntries(Object.entries(generateGroups(aragon['default'])).map(function (_ref5) {
   var _ref6 = slicedToArray.slicedToArray(_ref5, 2),
       name = _ref6[0],
       group = _ref6[1];

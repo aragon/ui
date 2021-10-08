@@ -2,35 +2,36 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
-
-require('./slicedToArray-a8a77f0e.js');
-require('./unsupportedIterableToArray-f175acfa.js');
-var React = require('react');
-var React__default = _interopDefault(React);
-require('./_commonjsHelpers-1b94f6bc.js');
-var index = require('./index-46d0e707.js');
-var defineProperty$1 = require('./defineProperty-3cad0327.js');
-require('./toConsumableArray-cc0d28a9.js');
-require('styled-components');
-var getPrototypeOf = require('./getPrototypeOf-55c9e80c.js');
-require('./color.js');
-require('./components.js');
-var miscellaneous = require('./miscellaneous.js');
-require('./environment.js');
-require('./constants.js');
-require('./springs.js');
-require('./theme-dark.js');
-require('./theme-light.js');
-require('./Theme.js');
-var _extends$1 = require('./extends-023d783e.js');
+var _extends = require('./extends-023d783e.js');
 var objectWithoutProperties = require('./objectWithoutProperties-c6d3675c.js');
-require('./FocusVisible.js');
-require('./objectWithoutPropertiesLoose-1af20ad0.js');
-require('react-dom');
-require('./web-d0294535.js');
+var getPrototypeOf = require('./getPrototypeOf-55c9e80c.js');
+var defineProperty = require('./defineProperty-3cad0327.js');
+var React = require('react');
+var index = require('./index-37353731.js');
 var Checkbox = require('./Checkbox.js');
 var RadioGroup = require('./RadioGroup.js');
+var miscellaneous = require('./miscellaneous.js');
+require('./_commonjsHelpers-1b94f6bc.js');
+require('styled-components');
+require('./web-46d746d6.js');
+require('./objectWithoutPropertiesLoose-1af20ad0.js');
+require('react-dom');
+require('./FocusVisible.js');
+require('./Theme.js');
+require('./slicedToArray-a8a77f0e.js');
+require('./unsupportedIterableToArray-f175acfa.js');
+require('./theme-dark.js');
+require('./theme-light.js');
+require('./environment.js');
+require('./color.js');
+require('./toConsumableArray-cc0d28a9.js');
+require('./springs.js');
+require('./constants.js');
+require('./components.js');
+
+function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
+
+var React__default = /*#__PURE__*/_interopDefaultLegacy(React);
 
 function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = getPrototypeOf.getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = getPrototypeOf.getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return getPrototypeOf.possibleConstructorReturn(this, result); }; }
 
@@ -56,9 +57,9 @@ var RadioButton = /*#__PURE__*/function (_React$PureComponent) {
 
     _this = _super.call.apply(_super, [this].concat(args));
 
-    defineProperty$1.defineProperty(getPrototypeOf.assertThisInitialized(_this), "_element", /*#__PURE__*/React__default.createRef());
+    defineProperty.defineProperty(getPrototypeOf.assertThisInitialized(_this), "_element", /*#__PURE__*/React__default['default'].createRef());
 
-    defineProperty$1.defineProperty(getPrototypeOf.assertThisInitialized(_this), "handleKeyDown", function (event) {
+    defineProperty.defineProperty(getPrototypeOf.assertThisInitialized(_this), "handleKeyDown", function (event) {
       var _this$props = _this.props,
           selectPrev = _this$props.selectPrev,
           selectNext = _this$props.selectNext;
@@ -74,7 +75,7 @@ var RadioButton = /*#__PURE__*/function (_React$PureComponent) {
       }
     });
 
-    defineProperty$1.defineProperty(getPrototypeOf.assertThisInitialized(_this), "handleChange", function () {
+    defineProperty.defineProperty(getPrototypeOf.assertThisInitialized(_this), "handleChange", function () {
       var _this$props2 = _this.props,
           onChange = _this$props2.onChange,
           id = _this$props2.id;
@@ -123,13 +124,13 @@ var RadioButton = /*#__PURE__*/function (_React$PureComponent) {
     value: function render() {
       var _this$props5 = this.props,
           checked = _this$props5.checked,
-          disabled = _this$props5.disabled,
-          id = _this$props5.id,
-          onChange = _this$props5.onChange,
-          tabIndex = _this$props5.tabIndex,
+          disabled = _this$props5.disabled;
+          _this$props5.id;
+          _this$props5.onChange;
+          var tabIndex = _this$props5.tabIndex,
           props = objectWithoutProperties.objectWithoutProperties(_this$props5, ["checked", "disabled", "id", "onChange", "tabIndex"]);
 
-      return /*#__PURE__*/React__default.createElement(Checkbox.default, _extends$1._extends_1({
+      return /*#__PURE__*/React__default['default'].createElement(Checkbox['default'], _extends._extends_1({
         ref: this._element,
         checked: checked,
         disabled: disabled,
@@ -142,9 +143,9 @@ var RadioButton = /*#__PURE__*/function (_React$PureComponent) {
   }]);
 
   return RadioButton;
-}(React__default.PureComponent);
+}(React__default['default'].PureComponent);
 
-defineProperty$1.defineProperty(RadioButton, "propTypes", {
+defineProperty.defineProperty(RadioButton, "propTypes", {
   addRadio: index.propTypes.func,
   checked: index.propTypes.bool,
   disabled: index.propTypes.bool,
@@ -156,7 +157,7 @@ defineProperty$1.defineProperty(RadioButton, "propTypes", {
   tabIndex: index.propTypes.string
 });
 
-defineProperty$1.defineProperty(RadioButton, "defaultProps", {
+defineProperty.defineProperty(RadioButton, "defaultProps", {
   addRadio: miscellaneous.noop,
   checked: false,
   disabled: false,
@@ -183,7 +184,7 @@ var Radio = /*#__PURE__*/function (_React$PureComponent2) {
     key: "render",
     value: function render() {
       var props = this.props;
-      return /*#__PURE__*/React__default.createElement(RadioGroup.RadioGroupConsumer, null, function (_ref) {
+      return /*#__PURE__*/React__default['default'].createElement(RadioGroup.RadioGroupConsumer, null, function (_ref) {
         var onChange = _ref.onChange,
             selected = _ref.selected,
             focusableId = _ref.focusableId,
@@ -191,7 +192,7 @@ var Radio = /*#__PURE__*/function (_React$PureComponent2) {
             removeRadio = _ref.removeRadio,
             selectNext = _ref.selectNext,
             selectPrev = _ref.selectPrev;
-        return /*#__PURE__*/React__default.createElement(RadioButton, _extends$1._extends_1({}, props, {
+        return /*#__PURE__*/React__default['default'].createElement(RadioButton, _extends._extends_1({}, props, {
           onChange: props.onChange || onChange,
           checked: props.checked || props.id === selected && selected !== null,
           tabIndex: props.tabIndex || (focusableId === undefined || props.id === focusableId ? '0' : '-1'),
@@ -205,11 +206,11 @@ var Radio = /*#__PURE__*/function (_React$PureComponent2) {
   }]);
 
   return Radio;
-}(React__default.PureComponent);
+}(React__default['default'].PureComponent);
 
-defineProperty$1.defineProperty(Radio, "propTypes", RadioButton.propTypes);
+defineProperty.defineProperty(Radio, "propTypes", RadioButton.propTypes);
 
-defineProperty$1.defineProperty(Radio, "defaultProps", RadioButton.defaultProps);
+defineProperty.defineProperty(Radio, "defaultProps", RadioButton.defaultProps);
 
 exports.default = Radio;
 //# sourceMappingURL=Radio.js.map

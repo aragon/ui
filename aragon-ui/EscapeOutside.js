@@ -2,18 +2,19 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
-
-var React = require('react');
-var React__default = _interopDefault(React);
-require('./_commonjsHelpers-1b94f6bc.js');
-var index = require('./index-46d0e707.js');
-var defineProperty = require('./defineProperty-3cad0327.js');
-var getPrototypeOf = require('./getPrototypeOf-55c9e80c.js');
-var miscellaneous = require('./miscellaneous.js');
-var keycodes = require('./keycodes.js');
 var _extends = require('./extends-023d783e.js');
 var objectWithoutProperties = require('./objectWithoutProperties-c6d3675c.js');
+var getPrototypeOf = require('./getPrototypeOf-55c9e80c.js');
+var defineProperty = require('./defineProperty-3cad0327.js');
+var React = require('react');
+var index = require('./index-37353731.js');
+var keycodes = require('./keycodes.js');
+var miscellaneous = require('./miscellaneous.js');
+require('./_commonjsHelpers-1b94f6bc.js');
+
+function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
+
+var React__default = /*#__PURE__*/_interopDefaultLegacy(React);
 
 function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = getPrototypeOf.getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = getPrototypeOf.getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return getPrototypeOf.possibleConstructorReturn(this, result); }; }
 
@@ -35,7 +36,7 @@ var EscapeOutside = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call.apply(_super, [this].concat(args));
 
-    defineProperty.defineProperty(getPrototypeOf.assertThisInitialized(_this), "_element", /*#__PURE__*/React__default.createRef());
+    defineProperty.defineProperty(getPrototypeOf.assertThisInitialized(_this), "_element", /*#__PURE__*/React__default['default'].createRef());
 
     defineProperty.defineProperty(getPrototypeOf.assertThisInitialized(_this), "_document", null);
 
@@ -87,12 +88,12 @@ var EscapeOutside = /*#__PURE__*/function (_React$Component) {
       var _this2 = this;
 
       var _this$props = this.props,
-          children = _this$props.children,
-          onEscapeOutside = _this$props.onEscapeOutside,
-          useCapture = _this$props.useCapture,
-          rest = objectWithoutProperties.objectWithoutProperties(_this$props, ["children", "onEscapeOutside", "useCapture"]);
+          children = _this$props.children;
+          _this$props.onEscapeOutside;
+          _this$props.useCapture;
+          var rest = objectWithoutProperties.objectWithoutProperties(_this$props, ["children", "onEscapeOutside", "useCapture"]);
 
-      return /*#__PURE__*/React__default.createElement("div", _extends._extends_1({}, rest, {
+      return /*#__PURE__*/React__default['default'].createElement("div", _extends._extends_1({}, rest, {
         ref: function ref(n) {
           return _this2._element = n;
         }
@@ -101,7 +102,7 @@ var EscapeOutside = /*#__PURE__*/function (_React$Component) {
   }]);
 
   return EscapeOutside;
-}(React__default.Component);
+}(React__default['default'].Component);
 
 defineProperty.defineProperty(EscapeOutside, "propTypes", {
   children: index.propTypes.node.isRequired,

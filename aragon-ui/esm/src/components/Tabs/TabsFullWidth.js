@@ -1,38 +1,36 @@
-import slicedToArray$1 from '../../../node_modules/@babel/runtime/helpers/slicedToArray.js';
-import React$1, { useRef, useState, useCallback } from 'react';
-import _styled$1 from 'styled-components';
-import '../../utils/environment.js';
-import { KEY_ESC } from '../../utils/keycodes.js';
-import { GU } from '../../style/constants.js';
-import { springs as springs$1 } from '../../style/springs.js';
-import { textStyle } from '../../style/text-styles.js';
-import { useTheme } from '../../theme/Theme2.js';
 import _extends_1 from '../../../node_modules/@babel/runtime/helpers/extends.js';
-import objectWithoutProperties$1 from '../../../node_modules/@babel/runtime/helpers/objectWithoutProperties.js';
+import objectWithoutProperties from '../../../node_modules/@babel/runtime/helpers/objectWithoutProperties.js';
+import slicedToArray from '../../../node_modules/@babel/runtime/helpers/slicedToArray.js';
+import _styled from 'styled-components';
+import React, { useRef, useState, useCallback } from 'react';
+import { animated as extendedAnimated, Transition } from '../../../node_modules/react-spring/web.js';
 import { useInside as o } from '../../../node_modules/use-inside/dist/index.js';
 import ButtonBaseWithFocus from '../ButtonBase/ButtonBase.js';
-import IconDown$1 from '../../icons/components/IconDown.js';
-import { animated as extendedAnimated, Transition } from '../../../node_modules/react-spring/web.js';
-import { useFocusLeave as useFocusLeave$1 } from '../../hooks/useFocusLeave.js';
-import '../../hooks/useImageExists.js';
+import { useTheme } from '../../theme/Theme2.js';
+import { useFocusLeave } from '../../hooks/useFocusLeave.js';
+import IconDown from '../../icons/components/IconDown.js';
+import { KEY_ESC } from '../../utils/keycodes.js';
+import { GU } from '../../style/constants.js';
+import { textStyle } from '../../style/text-styles.js';
+import { springs } from '../../style/springs.js';
 
 /* eslint-disable react/prop-types */
 
-var _StyledDiv = _styled$1("div").withConfig({
+var _StyledDiv = _styled("div").withConfig({
   displayName: "TabsFullWidth___StyledDiv",
   componentId: "sc-1sqpfuf-0"
 })(["padding-bottom:", "px;"], function (p) {
   return p._css;
 });
 
-var _StyledDiv2 = _styled$1("div").withConfig({
+var _StyledDiv2 = _styled("div").withConfig({
   displayName: "TabsFullWidth___StyledDiv2",
   componentId: "sc-1sqpfuf-1"
 })(["position:relative;display:flex;align-items:center;justify-content:space-between;width:100%;height:", "px;"], function (p) {
   return p._css2;
 });
 
-var _StyledButtonBase = _styled$1(ButtonBaseWithFocus).withConfig({
+var _StyledButtonBase = _styled(ButtonBaseWithFocus).withConfig({
   displayName: "TabsFullWidth___StyledButtonBase",
   componentId: "sc-1sqpfuf-2"
 })(["display:flex;align-items:center;justify-content:space-between;width:100%;height:100%;background:", ";border-style:solid;border-color:", ";border-top-width:", ";border-bottom-width:1px;border-radius:0;", ";&:active{", "}"], function (p) {
@@ -47,14 +45,14 @@ var _StyledButtonBase = _styled$1(ButtonBaseWithFocus).withConfig({
   return p._css7;
 });
 
-var _StyledDiv3 = _styled$1("div").withConfig({
+var _StyledDiv3 = _styled("div").withConfig({
   displayName: "TabsFullWidth___StyledDiv3",
   componentId: "sc-1sqpfuf-3"
 })(["padding-left:", "px;"], function (p) {
   return p._css8;
 });
 
-var _StyledDiv4 = _styled$1("div").withConfig({
+var _StyledDiv4 = _styled("div").withConfig({
   displayName: "TabsFullWidth___StyledDiv4",
   componentId: "sc-1sqpfuf-4"
 })(["display:flex;align-items:center;justify-content:center;width:", "px;height:100%;color:", ";"], function (p) {
@@ -63,7 +61,7 @@ var _StyledDiv4 = _styled$1("div").withConfig({
   return p._css10;
 });
 
-var _StyledIconDown = _styled$1(IconDown$1).withConfig({
+var _StyledIconDown = _styled(IconDown).withConfig({
   displayName: "TabsFullWidth___StyledIconDown",
   componentId: "sc-1sqpfuf-5"
 })(["transition:transform 150ms ease-in-out;transform:rotate3d(0,0,1,", "deg);color:", ";"], function (p) {
@@ -72,7 +70,7 @@ var _StyledIconDown = _styled$1(IconDown$1).withConfig({
   return p._css12;
 });
 
-var _StyledAnimatedDiv = _styled$1(extendedAnimated.div).withConfig({
+var _StyledAnimatedDiv = _styled(extendedAnimated.div).withConfig({
   displayName: "TabsFullWidth___StyledAnimatedDiv",
   componentId: "sc-1sqpfuf-6"
 })(["position:absolute;z-index:9;top:", "px;left:0;right:0;border-bottom:1px solid ", ";box-shadow:0px 2px 3px rgba(0,0,0,0.05);background:", ";"], function (p) {
@@ -91,11 +89,11 @@ function TabsFullWidth(_ref) {
   var buttonRef = useRef(null);
 
   var _useInside = o('SidePanel'),
-      _useInside2 = slicedToArray$1(_useInside, 1),
+      _useInside2 = slicedToArray(_useInside, 1),
       insideSidePanel = _useInside2[0];
 
   var _useState = useState(false),
-      _useState2 = slicedToArray$1(_useState, 2),
+      _useState2 = slicedToArray(_useState, 2),
       opened = _useState2[0],
       setOpened = _useState2[1];
 
@@ -123,7 +121,7 @@ function TabsFullWidth(_ref) {
     }
   }, [selected, onChange, close, focusButton]);
 
-  var _useFocusLeave = useFocusLeave$1(close),
+  var _useFocusLeave = useFocusLeave(close),
       handleFocusLeave = _useFocusLeave.handleFocusLeave,
       ref = _useFocusLeave.ref; // close on escape
 
@@ -134,13 +132,13 @@ function TabsFullWidth(_ref) {
       focusButton();
     }
   }, [close, focusButton]);
-  return /*#__PURE__*/React$1.createElement(_StyledDiv, {
+  return /*#__PURE__*/React.createElement(_StyledDiv, {
     ref: ref,
     onBlur: handleFocusLeave,
     _css: 2 * GU
-  }, /*#__PURE__*/React$1.createElement(_StyledDiv2, {
+  }, /*#__PURE__*/React.createElement(_StyledDiv2, {
     _css2: 8 * GU
-  }, /*#__PURE__*/React$1.createElement(_StyledButtonBase, {
+  }, /*#__PURE__*/React.createElement(_StyledButtonBase, {
     ref: buttonRef,
     disabled: dropdownDisabled,
     onClick: toggle,
@@ -149,17 +147,17 @@ function TabsFullWidth(_ref) {
     _css5: insideSidePanel ? '0' : '1px',
     _css6: textStyle('body2'),
     _css7: dropdownDisabled ? '' : "background: ".concat(theme.surfacePressed, ";")
-  }, /*#__PURE__*/React$1.createElement(_StyledDiv3, {
+  }, /*#__PURE__*/React.createElement(_StyledDiv3, {
     _css8: 2 * GU
-  }, selectedItem), /*#__PURE__*/React$1.createElement(_StyledDiv4, {
+  }, selectedItem), /*#__PURE__*/React.createElement(_StyledDiv4, {
     _css9: 7 * GU,
     _css10: theme.surfaceIcon
-  }, /*#__PURE__*/React$1.createElement(_StyledIconDown, {
+  }, /*#__PURE__*/React.createElement(_StyledIconDown, {
     _css11: opened ? 180 : 0,
     _css12: dropdownDisabled ? theme.disabled : theme.surfaceIcon
-  }))), /*#__PURE__*/React$1.createElement(Transition, {
+  }))), /*#__PURE__*/React.createElement(Transition, {
     items: opened,
-    config: springs$1.swift,
+    config: springs.swift,
     from: {
       y: -1,
       opacity: 0
@@ -177,7 +175,7 @@ function TabsFullWidth(_ref) {
     return opened && function (_ref2) {
       var opacity = _ref2.opacity,
           y = _ref2.y;
-      return /*#__PURE__*/React$1.createElement(_StyledAnimatedDiv, {
+      return /*#__PURE__*/React.createElement(_StyledAnimatedDiv, {
         style: {
           opacity: opacity,
           transform: y.interpolate(function (v) {
@@ -187,7 +185,7 @@ function TabsFullWidth(_ref) {
         _css13: 8 * GU,
         _css14: theme.border,
         _css15: theme.surface
-      }, /*#__PURE__*/React$1.createElement(Menu, {
+      }, /*#__PURE__*/React.createElement(Menu, {
         items: items,
         onChange: change,
         onKeyDown: handleMenuKeyDown
@@ -196,7 +194,7 @@ function TabsFullWidth(_ref) {
   })));
 }
 
-var _StyledDiv5 = _styled$1("div").withConfig({
+var _StyledDiv5 = _styled("div").withConfig({
   displayName: "TabsFullWidth___StyledDiv5",
   componentId: "sc-1sqpfuf-7"
 })(["display:flex;flex-direction:column;outline:0;"]);
@@ -204,18 +202,18 @@ var _StyledDiv5 = _styled$1("div").withConfig({
 function Menu(_ref3) {
   var items = _ref3.items,
       onChange = _ref3.onChange,
-      props = objectWithoutProperties$1(_ref3, ["items", "onChange"]);
+      props = objectWithoutProperties(_ref3, ["items", "onChange"]);
 
   var handleRef = useCallback(function (element) {
     if (element) {
       element.focus();
     }
   }, []);
-  return /*#__PURE__*/React$1.createElement(_StyledDiv5, _extends_1({
+  return /*#__PURE__*/React.createElement(_StyledDiv5, _extends_1({
     ref: handleRef,
     tabIndex: "0"
   }, props), items.map(function (item, index) {
-    return /*#__PURE__*/React$1.createElement(MenuItem, {
+    return /*#__PURE__*/React.createElement(MenuItem, {
       key: index,
       item: item,
       index: index,
@@ -224,7 +222,7 @@ function Menu(_ref3) {
   }));
 }
 
-var _StyledButtonBase2 = _styled$1(ButtonBaseWithFocus).withConfig({
+var _StyledButtonBase2 = _styled(ButtonBaseWithFocus).withConfig({
   displayName: "TabsFullWidth___StyledButtonBase2",
   componentId: "sc-1sqpfuf-8"
 })(["height:", "px;padding-left:", "px;text-align:left;", ";&:active{background:", ";}"], function (p) {
@@ -245,7 +243,7 @@ function MenuItem(_ref4) {
   var change = useCallback(function () {
     onChange(index);
   }, [onChange, index]);
-  return /*#__PURE__*/React$1.createElement(_StyledButtonBase2, {
+  return /*#__PURE__*/React.createElement(_StyledButtonBase2, {
     onClick: change,
     _css16: 8 * GU,
     _css17: 2 * GU,

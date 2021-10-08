@@ -1,36 +1,37 @@
+import sha3 from '../../node_modules/js-sha3/src/sha3.js';
 import { warn } from './environment.js';
-import sha3$1 from '../../node_modules/js-sha3/src/sha3.js';
 
-var keccak256 = sha3$1.keccak_256;
+var keccak256 = sha3.keccak_256;
 var EMPTY_ADDRESS = '0x0000000000000000000000000000000000000000';
 var TRANSACTION_REGEX = /^0x[A-Fa-f0-9]{64}$/;
 var ADDRESS_REGEX = /^0x[0-9a-fA-F]{40}$/;
 var TRUST_WALLET_BASE_URL = 'https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum';
-var ETHERSCAN_NETWORK_TYPES = new Map([['main', ''], ['kovan', 'kovan.'], ['rinkeby', 'rinkeby.'], ['ropsten', 'ropsten.'], ['goerli', 'goerli.']]);
-var ETHERSCAN_TYPES = new Map([['block', 'block'], ['transaction', 'tx'], ['address', 'address'], ['token', 'token']]);
-var BLOCK_EXPLORERS = {
-  etherscan: function etherscan(_ref) {
-    var type = _ref.type,
-        value = _ref.value,
-        networkType = _ref.networkType;
+var ETHERSCAN_URL = 'etherscan.io';
+var POLYGON_URL = 'polygonscan.com';
+var NETWORK_TYPES_URLS = new Map([['main', ETHERSCAN_URL], ['kovan', "kovan.".concat(ETHERSCAN_URL)], ['rinkeby', "rinkeby.".concat(ETHERSCAN_URL)], ['ropsten', "ropsten.".concat(ETHERSCAN_URL)], ['goerli', "goerli.".concat(ETHERSCAN_URL)], ['matic', POLYGON_URL], ['mumbai', "mumbai.".concat(POLYGON_URL)], ['harmony', "explorer.harmony.one"], ['harmonyTest', "explorer.pops.one"]]);
+var URL_TYPES = new Map([['block', 'block'], ['transaction', 'tx'], ['address', 'address'], ['token', 'token']]);
 
-    if (networkType === 'private') {
-      return '';
-    }
+function _getBlockExplorer(_ref) {
+  var type = _ref.type,
+      value = _ref.value,
+      networkType = _ref.networkType;
 
-    if (!ETHERSCAN_NETWORK_TYPES.has(networkType)) {
-      throw new Error('provider not supported.');
-    }
-
-    if (!ETHERSCAN_TYPES.has(type)) {
-      throw new Error('type not supported.');
-    }
-
-    var subdomain = ETHERSCAN_NETWORK_TYPES.get(networkType);
-    var typePart = ETHERSCAN_TYPES.get(type);
-    return "https://".concat(subdomain, "etherscan.io/").concat(typePart, "/").concat(value);
+  if (networkType === 'private') {
+    return '';
   }
-};
+
+  if (!NETWORK_TYPES_URLS.has(networkType)) {
+    throw new Error('network type not supported.');
+  }
+
+  if (!URL_TYPES.has(type)) {
+    throw new Error('type not supported.');
+  }
+
+  var subdomain = NETWORK_TYPES_URLS.get(networkType);
+  var typePart = URL_TYPES.get(type);
+  return "https://".concat(subdomain, "/").concat(typePart, "/").concat(value);
+}
 /**
  * Converts to a checksum address
  *
@@ -43,6 +44,7 @@ var BLOCK_EXPLORERS = {
  * @param {String} address the given HEX address
  * @returns {String}
  */
+
 
 function toChecksumAddress(address) {
   if (!/^(0x)?[0-9a-f]{40}$/i.test(address)) {
@@ -141,26 +143,16 @@ function isTransaction(transaction) {
  * @param {string} value Identifier of the object, depending on the type (block number, transaction hash, …).
  * @param {object} options The optional parameters.
  * @param {string} options.networkType The Ethereum network type (main, kovan, rinkeby, ropsten, goerli, or private).
- * @param {string} options.provider The explorer provider (e.g. etherscan).
  * @returns {string} The generated URL, or an empty string if the parameters are invalid.
  */
 
 function blockExplorerUrl(type, value) {
   var _ref2 = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {},
       _ref2$networkType = _ref2.networkType,
-      networkType = _ref2$networkType === void 0 ? 'main' : _ref2$networkType,
-      _ref2$provider = _ref2.provider,
-      provider = _ref2$provider === void 0 ? 'etherscan' : _ref2$provider;
-
-  var explorer = BLOCK_EXPLORERS[provider];
-
-  if (!explorer) {
-    warn('blockExplorerUrl(): provider not supported.');
-    return '';
-  }
+      networkType = _ref2$networkType === void 0 ? 'main' : _ref2$networkType;
 
   try {
-    return explorer({
+    return _getBlockExplorer({
       type: type,
       value: value,
       networkType: networkType

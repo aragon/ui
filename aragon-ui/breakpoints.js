@@ -2,10 +2,7 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
-
 var _styled = require('styled-components');
-var _styled__default = _interopDefault(_styled);
 var constants = require('./constants.js');
 
 var BREAKPOINTS = {

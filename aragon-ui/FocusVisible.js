@@ -2,14 +2,15 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
-
-var React = require('react');
-var React__default = _interopDefault(React);
-require('./_commonjsHelpers-1b94f6bc.js');
-var index = require('./index-46d0e707.js');
-var defineProperty = require('./defineProperty-3cad0327.js');
 var getPrototypeOf = require('./getPrototypeOf-55c9e80c.js');
+var defineProperty = require('./defineProperty-3cad0327.js');
+var React = require('react');
+var index = require('./index-37353731.js');
+require('./_commonjsHelpers-1b94f6bc.js');
+
+function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
+
+var React__default = /*#__PURE__*/_interopDefaultLegacy(React);
 
 function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = getPrototypeOf.getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = getPrototypeOf.getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return getPrototypeOf.possibleConstructorReturn(this, result); }; }
 
@@ -41,7 +42,7 @@ var FocusVisible = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call.apply(_super, [this].concat(args));
 
-    defineProperty.defineProperty(getPrototypeOf.assertThisInitialized(_this), "_element", /*#__PURE__*/React__default.createRef());
+    defineProperty.defineProperty(getPrototypeOf.assertThisInitialized(_this), "_element", /*#__PURE__*/React__default['default'].createRef());
 
     defineProperty.defineProperty(getPrototypeOf.assertThisInitialized(_this), "_document", null);
 
@@ -116,17 +117,17 @@ var FocusVisible = /*#__PURE__*/function (_React$Component) {
     key: "render",
     value: function render() {
       var focusVisible = this.state.focusVisible;
-      return /*#__PURE__*/React__default.createElement(React__default.Fragment, null, this.props.children({
+      return /*#__PURE__*/React__default['default'].createElement(React__default['default'].Fragment, null, this.props.children({
         focusVisible: focusVisible,
         onFocus: this.handleFocus
-      }), !this._document && /*#__PURE__*/React__default.createElement("span", {
+      }), !this._document && /*#__PURE__*/React__default['default'].createElement("span", {
         ref: this._element
       }));
     }
   }]);
 
   return FocusVisible;
-}(React__default.Component);
+}(React__default['default'].Component);
 
 defineProperty.defineProperty(FocusVisible, "propTypes", {
   // children is called with an object containing two entries:

@@ -1,12 +1,12 @@
-import toConsumableArray$1 from '../../node_modules/@babel/runtime/helpers/toConsumableArray.js';
-import classCallCheck$1 from '../../node_modules/@babel/runtime/helpers/classCallCheck.js';
-import createClass$1 from '../../node_modules/@babel/runtime/helpers/createClass.js';
-import inherits$1 from '../../node_modules/@babel/runtime/helpers/inherits.js';
-import possibleConstructorReturn$1 from '../../node_modules/@babel/runtime/helpers/possibleConstructorReturn.js';
-import getPrototypeOf$1 from '../../node_modules/@babel/runtime/helpers/getPrototypeOf.js';
-import wrapNativeSuper$1 from '../../node_modules/@babel/runtime/helpers/wrapNativeSuper.js';
+import classCallCheck from '../../node_modules/@babel/runtime/helpers/classCallCheck.js';
+import createClass from '../../node_modules/@babel/runtime/helpers/createClass.js';
+import inherits from '../../node_modules/@babel/runtime/helpers/inherits.js';
+import possibleConstructorReturn from '../../node_modules/@babel/runtime/helpers/possibleConstructorReturn.js';
+import getPrototypeOf from '../../node_modules/@babel/runtime/helpers/getPrototypeOf.js';
+import wrapNativeSuper from '../../node_modules/@babel/runtime/helpers/wrapNativeSuper.js';
+import toConsumableArray from '../../node_modules/@babel/runtime/helpers/toConsumableArray.js';
 
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = getPrototypeOf$1(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = getPrototypeOf$1(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return possibleConstructorReturn$1(this, result); }; }
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return possibleConstructorReturn(this, result); }; }
 
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
 
@@ -30,7 +30,7 @@ function normalizeHexColor(value) {
   var hexColor = matches[1].toUpperCase();
 
   if (hexColor.length === 3) {
-    return toConsumableArray$1(hexColor).map(function (c) {
+    return toConsumableArray(hexColor).map(function (c) {
       return c + c;
     }).join('');
   }
@@ -39,14 +39,14 @@ function normalizeHexColor(value) {
 }
 
 var Color = /*#__PURE__*/function (_String) {
-  inherits$1(Color, _String);
+  inherits(Color, _String);
 
   var _super = _createSuper(Color);
 
   function Color(value) {
     var _this;
 
-    classCallCheck$1(this, Color);
+    classCallCheck(this, Color);
 
     _this = _super.call(this, value);
     var hexColor = normalizeHexColor(value);
@@ -63,7 +63,7 @@ var Color = /*#__PURE__*/function (_String) {
     return _this;
   }
 
-  createClass$1(Color, [{
+  createClass(Color, [{
     key: "toString",
     value: function toString() {
       return this.toCssRgb();
@@ -114,7 +114,7 @@ var Color = /*#__PURE__*/function (_String) {
   }]);
 
   return Color;
-}( /*#__PURE__*/wrapNativeSuper$1(String));
+}( /*#__PURE__*/wrapNativeSuper(String));
 
 function color(value) {
   return new Color(value);

@@ -1,14 +1,13 @@
-import slicedToArray$1 from '../../../node_modules/@babel/runtime/helpers/slicedToArray.js';
-import React$1, { useMemo, useCallback, useRef, useState, useEffect } from 'react';
-import toConsumableArray$1 from '../../../node_modules/@babel/runtime/helpers/toConsumableArray.js';
-import _styled$1 from 'styled-components';
-import { unselectable } from '../../utils/css.js';
-import '../../utils/environment.js';
-import { springs as springs$1 } from '../../style/springs.js';
 import _extends_1 from '../../../node_modules/@babel/runtime/helpers/extends.js';
-import objectWithoutProperties$1 from '../../../node_modules/@babel/runtime/helpers/objectWithoutProperties.js';
+import toConsumableArray from '../../../node_modules/@babel/runtime/helpers/toConsumableArray.js';
+import objectWithoutProperties from '../../../node_modules/@babel/runtime/helpers/objectWithoutProperties.js';
+import slicedToArray from '../../../node_modules/@babel/runtime/helpers/slicedToArray.js';
+import _styled from 'styled-components';
+import React, { useMemo, useCallback, useRef, useState, useEffect } from 'react';
 import { Spring } from '../../../node_modules/react-spring/web.js';
 import ExtendedPropTypes from '../../proptypes.js';
+import { unselectable } from '../../utils/css.js';
+import { springs } from '../../style/springs.js';
 
 var LABELS_HEIGHT = 30;
 var WIDTH_DEFAULT = 300;
@@ -17,7 +16,7 @@ function useMeasuredWidth() {
   var ref = useRef();
 
   var _useState = useState(WIDTH_DEFAULT),
-      _useState2 = slicedToArray$1(_useState, 2),
+      _useState2 = slicedToArray(_useState, 2),
       measuredWidth = _useState2[0],
       setMeasuredWidth = _useState2[1];
 
@@ -39,12 +38,12 @@ function useMeasuredWidth() {
   return [measuredWidth, onRef];
 }
 
-var _StyledSvg = _styled$1("svg").withConfig({
+var _StyledSvg = _styled("svg").withConfig({
   displayName: "LineChart___StyledSvg",
   componentId: "sc-8kiakb-0"
 })(["display:block"]);
 
-var _StyledText = _styled$1("text").withConfig({
+var _StyledText = _styled("text").withConfig({
   displayName: "LineChart___StyledText",
   componentId: "sc-8kiakb-1"
 })(["alignment-baseline:middle;font-size:12px;font-weight:300;", ";"], unselectable);
@@ -62,10 +61,10 @@ function LineChart(_ref) {
       springConfig = _ref.springConfig,
       total = _ref.total,
       widthProps = _ref.width,
-      props = objectWithoutProperties$1(_ref, ["animDelay", "borderColor", "color", "dotRadius", "height", "label", "labelColor", "lines", "reset", "springConfig", "total", "width"]);
+      props = objectWithoutProperties(_ref, ["animDelay", "borderColor", "color", "dotRadius", "height", "label", "labelColor", "lines", "reset", "springConfig", "total", "width"]);
 
   var _useMeasuredWidth = useMeasuredWidth(),
-      _useMeasuredWidth2 = slicedToArray$1(_useMeasuredWidth, 2),
+      _useMeasuredWidth2 = slicedToArray(_useMeasuredWidth, 2),
       width = _useMeasuredWidth2[0],
       onSvgRef = _useMeasuredWidth2[1];
 
@@ -98,9 +97,9 @@ function LineChart(_ref) {
     if (index === length - 1) return 'end';
     return 'middle';
   }, []);
-  var labels = label && totalCount > 0 ? toConsumableArray$1(Array(totalCount).keys()).map(label) : null;
+  var labels = label && totalCount > 0 ? toConsumableArray(Array(totalCount).keys()).map(label) : null;
   var chartHeight = height - (labels ? LABELS_HEIGHT : 0);
-  var rectangle = /*#__PURE__*/React$1.createElement("rect", {
+  var rectangle = /*#__PURE__*/React.createElement("rect", {
     width: width,
     height: chartHeight,
     rx: "3",
@@ -109,7 +108,7 @@ function LineChart(_ref) {
     strokeWidth: "1",
     stroke: borderColor
   });
-  return /*#__PURE__*/React$1.createElement(Spring, {
+  return /*#__PURE__*/React.createElement(Spring, {
     from: {
       progress: 0
     },
@@ -121,25 +120,25 @@ function LineChart(_ref) {
     reset: reset
   }, function (_ref2) {
     var progress = _ref2.progress;
-    return /*#__PURE__*/React$1.createElement(_StyledSvg, _extends_1({
+    return /*#__PURE__*/React.createElement(_StyledSvg, _extends_1({
       ref: onSvgRef,
       viewBox: "0 0 ".concat(width, " ").concat(height),
       width: widthProps || 'auto',
       height: "auto"
-    }, props), /*#__PURE__*/React$1.createElement("mask", {
+    }, props), /*#__PURE__*/React.createElement("mask", {
       id: "chart-mask"
-    }, rectangle), rectangle, /*#__PURE__*/React$1.createElement("g", {
+    }, rectangle), rectangle, /*#__PURE__*/React.createElement("g", {
       mask: "url(#chart-mask)"
-    }, totalCount > 0 && /*#__PURE__*/React$1.createElement("path", {
-      d: "\n                  ".concat(toConsumableArray$1(new Array(totalCount - 1)).reduce(function (path, _, index) {
+    }, totalCount > 0 && /*#__PURE__*/React.createElement("path", {
+      d: "\n                  ".concat(toConsumableArray(new Array(totalCount - 1)).reduce(function (path, _, index) {
         return "".concat(path, " M ").concat(getX(index), ",").concat(chartHeight, " l 0,-8");
       }, ''), "\n                "),
       stroke: borderColor,
       strokeWidth: "1"
     }), lines.map(function (line, lineIndex) {
-      return /*#__PURE__*/React$1.createElement("g", {
+      return /*#__PURE__*/React.createElement("g", {
         key: "line-plot-".concat(line.id || lineIndex)
-      }, /*#__PURE__*/React$1.createElement("path", {
+      }, /*#__PURE__*/React.createElement("path", {
         d: "\n                    M\n                    ".concat(getX(0), ",\n                    ").concat(getY(line.values[0], progress, chartHeight), "\n\n                    ").concat(line.values.slice(1).map(function (val, index) {
           return "L\n                           ".concat(getX((index + 1) * progress), ",\n                           ").concat(getY(val, progress, chartHeight), "\n                          ");
         }).join(''), "\n                  "),
@@ -149,7 +148,7 @@ function LineChart(_ref) {
         }),
         strokeWidth: "2"
       }), line.values.slice(1, -1).map(function (val, index) {
-        return /*#__PURE__*/React$1.createElement("circle", {
+        return /*#__PURE__*/React.createElement("circle", {
           key: index,
           cx: getX(index + 1) * progress,
           cy: getY(val, progress, chartHeight),
@@ -161,17 +160,17 @@ function LineChart(_ref) {
           strokeWidth: "1"
         });
       }));
-    }), /*#__PURE__*/React$1.createElement("line", {
+    }), /*#__PURE__*/React.createElement("line", {
       x1: getX(valuesCount - 1) * progress,
       y1: "0",
       x2: getX(valuesCount - 1) * progress,
       y2: chartHeight,
       stroke: "#DAEAEF",
       strokeWidth: "3"
-    })), labels && /*#__PURE__*/React$1.createElement("g", {
+    })), labels && /*#__PURE__*/React.createElement("g", {
       transform: "translate(0,".concat(chartHeight, ")")
     }, labels.map(function (label, index) {
-      return /*#__PURE__*/React$1.createElement(_StyledText, {
+      return /*#__PURE__*/React.createElement(_StyledText, {
         key: index,
         x: getX(index),
         y: LABELS_HEIGHT / 2,
@@ -204,7 +203,7 @@ LineChart.propTypes = {
   color: ExtendedPropTypes.func
 };
 LineChart.defaultProps = {
-  springConfig: springs$1.lazy,
+  springConfig: springs.lazy,
   total: -1,
   height: 200,
   dotRadius: 7 / 2,

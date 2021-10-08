@@ -2,12 +2,9 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
-
 var slicedToArray = require('./slicedToArray-a8a77f0e.js');
-require('./unsupportedIterableToArray-f175acfa.js');
 var React = require('react');
-var React__default = _interopDefault(React);
+require('./unsupportedIterableToArray-f175acfa.js');
 
 var A_DAY = 1000 * 60 * 60 * 24;
 

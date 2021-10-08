@@ -2,10 +2,10 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
+var web3 = require('./web3-4ef44cda.js');
+require('./environment.js');
 require('./_commonjsHelpers-1b94f6bc.js');
 require('./miscellaneous.js');
-require('./environment.js');
-var web3 = require('./web3-4e58c255.js');
 
 
 

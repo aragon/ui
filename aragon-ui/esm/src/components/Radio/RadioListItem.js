@@ -1,13 +1,12 @@
-import React$1 from 'react';
+import _styled from 'styled-components';
+import React from 'react';
 import propTypes from '../../../node_modules/prop-types/index.js';
-import _styled$1 from 'styled-components';
-import { unselectable } from '../../utils/css.js';
-import '../../utils/environment.js';
-import { GU } from '../../style/constants.js';
+import Radio from '../Input/Radio.js';
 import { useTheme } from '../../theme/Theme2.js';
-import Radio$1 from '../Input/Radio.js';
+import { unselectable } from '../../utils/css.js';
+import { GU } from '../../style/constants.js';
 
-var _StyledLabel = _styled$1("label").withConfig({
+var _StyledLabel = _styled("label").withConfig({
   displayName: "RadioListItem___StyledLabel",
   componentId: "sc-1utxw89-0"
 })(["display:flex;", ";& + &{margin-top:", "px;}"], function (p) {
@@ -16,12 +15,12 @@ var _StyledLabel = _styled$1("label").withConfig({
   return p._css2;
 });
 
-var _StyledRadio = _styled$1(Radio$1).withConfig({
+var _StyledRadio = _styled(Radio).withConfig({
   displayName: "RadioListItem___StyledRadio",
   componentId: "sc-1utxw89-1"
 })(["flex-shrink:0;"]);
 
-var _StyledDiv = _styled$1("div").withConfig({
+var _StyledDiv = _styled("div").withConfig({
   displayName: "RadioListItem___StyledDiv",
   componentId: "sc-1utxw89-2"
 })(["flex-grow:1;margin-left:12px;padding:12px 12px;border-radius:3px;transition:border 100ms ease-in-out;cursor:pointer;border:1px ", " solid;&:hover{border-color:", ";}"], function (p) {
@@ -30,27 +29,27 @@ var _StyledDiv = _styled$1("div").withConfig({
   return p._css4;
 });
 
-var _StyledDiv2 = _styled$1("div").withConfig({
+var _StyledDiv2 = _styled("div").withConfig({
   displayName: "RadioListItem___StyledDiv2",
   componentId: "sc-1utxw89-3"
 })(["margin-top:", "px;"], function (p) {
   return p._css5;
 });
 
-var RadioListItem = /*#__PURE__*/React$1.memo(function RadioListItem(_ref) {
+var RadioListItem = /*#__PURE__*/React.memo(function RadioListItem(_ref) {
   var description = _ref.description,
       index = _ref.index,
       title = _ref.title;
   var theme = useTheme();
-  return /*#__PURE__*/React$1.createElement(_StyledLabel, {
+  return /*#__PURE__*/React.createElement(_StyledLabel, {
     _css: unselectable(),
     _css2: 1 * GU
-  }, /*#__PURE__*/React$1.createElement(_StyledRadio, {
+  }, /*#__PURE__*/React.createElement(_StyledRadio, {
     id: index
-  }), /*#__PURE__*/React$1.createElement(_StyledDiv, {
+  }), /*#__PURE__*/React.createElement(_StyledDiv, {
     _css3: theme.border,
     _css4: theme.accent.alpha(0.35)
-  }, /*#__PURE__*/React$1.createElement("strong", null, title), /*#__PURE__*/React$1.createElement(_StyledDiv2, {
+  }, /*#__PURE__*/React.createElement("strong", null, title), /*#__PURE__*/React.createElement(_StyledDiv2, {
     _css5: 0.5 * GU
   }, description)));
 });

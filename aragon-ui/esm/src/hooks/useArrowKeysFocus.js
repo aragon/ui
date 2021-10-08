@@ -1,10 +1,10 @@
-import slicedToArray$1 from '../../node_modules/@babel/runtime/helpers/slicedToArray.js';
+import slicedToArray from '../../node_modules/@babel/runtime/helpers/slicedToArray.js';
 import { useState, useCallback, useEffect } from 'react';
 import { KEY_UP, KEY_DOWN } from '../utils/keycodes.js';
 
 function useArrowKeysFocus(refs) {
   var _useState = useState(-1),
-      _useState2 = slicedToArray$1(_useState, 2),
+      _useState2 = slicedToArray(_useState, 2),
       highlightedIndex = _useState2[0],
       setHighlightedIndex = _useState2[1];
 

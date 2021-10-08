@@ -2,32 +2,33 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
-
-require('./slicedToArray-a8a77f0e.js');
-require('./unsupportedIterableToArray-f175acfa.js');
-var React = require('react');
-var React__default = _interopDefault(React);
-require('./_commonjsHelpers-1b94f6bc.js');
-var index = require('./index-46d0e707.js');
-require('./defineProperty-3cad0327.js');
-require('./toConsumableArray-cc0d28a9.js');
+var _extends = require('./extends-023d783e.js');
+var objectWithoutProperties = require('./objectWithoutProperties-c6d3675c.js');
 var _styled = require('styled-components');
-var _styled__default = _interopDefault(_styled);
-require('./getPrototypeOf-55c9e80c.js');
-require('./color.js');
-require('./miscellaneous.js');
-require('./environment.js');
-require('./font.js');
+var React = require('react');
+var index = require('./index-37353731.js');
+var Theme = require('./Theme.js');
 var constants = require('./constants.js');
 var textStyles = require('./text-styles.js');
+require('./_commonjsHelpers-1b94f6bc.js');
+require('./slicedToArray-a8a77f0e.js');
+require('./unsupportedIterableToArray-f175acfa.js');
+require('./defineProperty-3cad0327.js');
 require('./theme-dark.js');
 require('./theme-light.js');
-var Theme = require('./Theme.js');
-var _extends$1 = require('./extends-023d783e.js');
-var objectWithoutProperties = require('./objectWithoutProperties-c6d3675c.js');
+require('./environment.js');
+require('./miscellaneous.js');
+require('./color.js');
+require('./getPrototypeOf-55c9e80c.js');
+require('./toConsumableArray-cc0d28a9.js');
+require('./font.js');
 
-var _StyledDiv = _styled__default("div").withConfig({
+function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
+
+var _styled__default = /*#__PURE__*/_interopDefaultLegacy(_styled);
+var React__default = /*#__PURE__*/_interopDefaultLegacy(React);
+
+var _StyledDiv = _styled__default['default']("div").withConfig({
   displayName: "NormalizedHtml___StyledDiv",
   componentId: "sc-9jrbs0-0"
 })(["h1,h2,h3,h4,h5,h6{margin-bottom:", "px;margin-top:", "px;}h1,h2{padding-bottom:", "px;}h1{", ";}h2{", ";}h3{", ";}h4{", ";}h5{", ";}h6{", ";}p,pre,table,blockquote{margin:", "px 0;&:last-child{margin-bottom:0;}}li p{margin:0;}hr{height:", "px;margin:", "px 0;background:", ";border:0;}blockquote{padding:0 ", "px;border-left:", "px solid ", ";color:", ";}a{color:", ";text-decoration:underline;}pre,a > code,p > code{padding:", "px ", "px;background:", ";border-radius:", "px;}pre{overflow:auto;padding:", "px;border-radius:", "px;}table{border-collapse:collapse;}tr{border-top:1px solid ", ";}th,td{border:1px solid ", ";padding:", "px ", "px;}img{max-width:calc(100% - ", "px);}ul,ol{padding-left:", "px;}ol ol,ul ol{list-style-type:lower-roman;}ol ol ol,ol ul ol,ul ol ol,ul ul ol{list-style-type:lower-alpha;}button[role='checkbox']{position:relative;top:2px;}"], function (p) {
@@ -93,7 +94,7 @@ function NormalizedHtml(_ref) {
       props = objectWithoutProperties.objectWithoutProperties(_ref, ["children"]);
 
   var theme = Theme.useTheme();
-  return /*#__PURE__*/React__default.createElement(_StyledDiv, _extends$1._extends_1({}, props, {
+  return /*#__PURE__*/React__default['default'].createElement(_StyledDiv, _extends._extends_1({}, props, {
     _css: 2 * constants.GU,
     _css2: 3 * constants.GU,
     _css3: 0.5 * constants.GU,

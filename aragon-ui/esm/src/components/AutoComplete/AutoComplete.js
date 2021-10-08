@@ -1,24 +1,22 @@
-import slicedToArray$1 from '../../../node_modules/@babel/runtime/helpers/slicedToArray.js';
-import React$1, { useState, useRef, useCallback, useEffect } from 'react';
-import propTypes from '../../../node_modules/prop-types/index.js';
-import _styled$1 from 'styled-components';
-import { unselectable } from '../../utils/css.js';
-import { noop, identity } from '../../utils/miscellaneous.js';
-import '../../utils/environment.js';
-import { KEY_ESC } from '../../utils/keycodes.js';
-import { springs as springs$1 } from '../../style/springs.js';
-import { useTheme } from '../../theme/Theme2.js';
 import _extends_1 from '../../../node_modules/@babel/runtime/helpers/extends.js';
-import ButtonBaseWithFocus from '../ButtonBase/ButtonBase.js';
+import slicedToArray from '../../../node_modules/@babel/runtime/helpers/slicedToArray.js';
+import _styled from 'styled-components';
+import React, { useState, useRef, useCallback, useEffect } from 'react';
+import propTypes from '../../../node_modules/prop-types/index.js';
 import { animated as extendedAnimated, Transition } from '../../../node_modules/react-spring/web.js';
-import { useArrowKeysFocus as useArrowKeysFocus$1 } from '../../hooks/useArrowKeysFocus.js';
-import { useClickOutside as useClickOutside$1 } from '../../hooks/useClickOutside.js';
-import { useFocusLeave as useFocusLeave$1 } from '../../hooks/useFocusLeave.js';
-import '../../hooks/useImageExists.js';
-import { useKeyDown as useKeyDown$1 } from '../../hooks/useKeyDown.js';
-import SearchInput$1 from '../Input/SearchInput.js';
+import ButtonBaseWithFocus from '../ButtonBase/ButtonBase.js';
+import SearchInput from '../Input/SearchInput.js';
+import { useArrowKeysFocus } from '../../hooks/useArrowKeysFocus.js';
+import { useClickOutside } from '../../hooks/useClickOutside.js';
+import { useKeyDown } from '../../hooks/useKeyDown.js';
+import { useTheme } from '../../theme/Theme2.js';
+import { noop, identity } from '../../utils/miscellaneous.js';
+import { useFocusLeave } from '../../hooks/useFocusLeave.js';
+import { KEY_ESC } from '../../utils/keycodes.js';
+import { springs } from '../../style/springs.js';
+import { unselectable } from '../../utils/css.js';
 
-var _StyledDiv = _styled$1("div").withConfig({
+var _StyledDiv = _styled("div").withConfig({
   displayName: "AutoComplete___StyledDiv",
   componentId: "bpnxyo-0"
 })(["position:relative"]);
@@ -43,7 +41,7 @@ function AutoComplete(_ref) {
   var uniqueItems = new Set(items);
 
   var _useState = useState(true),
-      _useState2 = slicedToArray$1(_useState, 2),
+      _useState2 = slicedToArray(_useState, 2),
       opened = _useState2[0],
       setOpened = _useState2[1];
 
@@ -64,22 +62,22 @@ function AutoComplete(_ref) {
     onChange.apply(void 0, arguments);
   }, [onChange]);
 
-  var _useFocusLeave = useFocusLeave$1(handleClose, wrapRef),
+  var _useFocusLeave = useFocusLeave(handleClose, wrapRef),
       handleFocusLeave = _useFocusLeave.handleFocusLeave;
 
-  var _useArrowKeysFocus = useArrowKeysFocus$1(refs),
+  var _useArrowKeysFocus = useArrowKeysFocus(refs),
       highlightedIndex = _useArrowKeysFocus.highlightedIndex,
       setHighlightedIndex = _useArrowKeysFocus.setHighlightedIndex;
 
-  useClickOutside$1(handleClose, wrapRef);
-  useKeyDown$1(KEY_ESC, handleClose);
+  useClickOutside(handleClose, wrapRef);
+  useKeyDown(KEY_ESC, handleClose);
   useEffect(function () {
     setHighlightedIndex(-1);
   }, [opened, items, value, setHighlightedIndex]);
-  return /*#__PURE__*/React$1.createElement(_StyledDiv, {
+  return /*#__PURE__*/React.createElement(_StyledDiv, {
     ref: wrapRef,
     onBlur: handleFocusLeave
-  }, /*#__PURE__*/React$1.createElement(SearchInput$1, {
+  }, /*#__PURE__*/React.createElement(SearchInput, {
     ref: ref,
     wide: wide,
     placeholder: placeholder,
@@ -87,8 +85,8 @@ function AutoComplete(_ref) {
     onChange: handleInputChange,
     onFocus: handleFocus,
     value: value
-  }), /*#__PURE__*/React$1.createElement(Transition, {
-    config: springs$1.swift,
+  }), /*#__PURE__*/React.createElement(Transition, {
+    config: springs.swift,
     items: opened && items.length > 0,
     from: {
       scale: 0.98,
@@ -109,7 +107,7 @@ function AutoComplete(_ref) {
     function (_ref2) {
       var scale = _ref2.scale,
           opacity = _ref2.opacity;
-      return /*#__PURE__*/React$1.createElement(Items, {
+      return /*#__PURE__*/React.createElement(Items, {
         style: {
           opacity: opacity,
           transform: scale.interpolate(function (t) {
@@ -117,7 +115,7 @@ function AutoComplete(_ref) {
           })
         }
       }, Array.from(uniqueItems).map(function (item, index) {
-        return /*#__PURE__*/React$1.createElement(Item, {
+        return /*#__PURE__*/React.createElement(Item, {
           key: item.key || item,
           ref: function ref(node) {
             return refs.current[index] = node;
@@ -150,14 +148,14 @@ AutoComplete.propTypes = {
 };
 /* eslint-disable react/prop-types */
 
-var _StyledLi = _styled$1("li").withConfig({
+var _StyledLi = _styled("li").withConfig({
   displayName: "AutoComplete___StyledLi",
   componentId: "bpnxyo-1"
 })(["overflow:hidden;cursor:pointer;", ";"], function (p) {
   return p._css;
 });
 
-var _StyledButtonBase = _styled$1(ButtonBaseWithFocus).withConfig({
+var _StyledButtonBase = _styled(ButtonBaseWithFocus).withConfig({
   displayName: "AutoComplete___StyledButtonBase",
   componentId: "bpnxyo-2"
 })(["text-align:left;padding:4px 8px;width:100%;border-radius:0;border-left:3px solid transparent;cursor:pointer;", ";", ";"], function (p) {
@@ -166,7 +164,7 @@ var _StyledButtonBase = _styled$1(ButtonBaseWithFocus).withConfig({
   return p._css3;
 });
 
-var Item = /*#__PURE__*/React$1.forwardRef(function Item(_ref3, ref) {
+var Item = /*#__PURE__*/React.forwardRef(function Item(_ref3, ref) {
   var children = _ref3.children,
       index = _ref3.index,
       item = _ref3.item,
@@ -182,10 +180,10 @@ var Item = /*#__PURE__*/React$1.forwardRef(function Item(_ref3, ref) {
   var handleFocusOrMouseOver = useCallback(function () {
     onHighlight(index);
   }, [index, onHighlight]);
-  return /*#__PURE__*/React$1.createElement(_StyledLi, {
+  return /*#__PURE__*/React.createElement(_StyledLi, {
     role: "option",
     _css: unselectable()
-  }, /*#__PURE__*/React$1.createElement(_StyledButtonBase, {
+  }, /*#__PURE__*/React.createElement(_StyledButtonBase, {
     ref: ref,
     onClick: handleClick,
     onFocus: handleFocusOrMouseOver,
@@ -198,7 +196,7 @@ var Item = /*#__PURE__*/React$1.forwardRef(function Item(_ref3, ref) {
 
 /* eslint-disable react/prop-types */
 
-var _StyledAnimatedUl = _styled$1(extendedAnimated.ul).withConfig({
+var _StyledAnimatedUl = _styled(extendedAnimated.ul).withConfig({
   displayName: "AutoComplete___StyledAnimatedUl",
   componentId: "bpnxyo-3"
 })(["position:absolute;z-index:2;top:100%;width:100%;padding:8px 0;color:", ";background:", ";border:1px solid ", ";box-shadow:0 4px 4px 0 rgba(0,0,0,0.06);border-radius:3px;padding:0;margin:0;list-style:none;& > li:first-child{border-top-left-radius:3px;border-top-right-radius:3px;}& > li:last-child{border-bottom-left-radius:3px;border-bottom-right-radius:3px;}"], function (p) {
@@ -211,7 +209,7 @@ var _StyledAnimatedUl = _styled$1(extendedAnimated.ul).withConfig({
 
 var Items = function Items(props) {
   var theme = useTheme();
-  return /*#__PURE__*/React$1.createElement(_StyledAnimatedUl, _extends_1({
+  return /*#__PURE__*/React.createElement(_StyledAnimatedUl, _extends_1({
     role: "listbox"
   }, props, {
     _css4: theme.surfaceContent,
@@ -222,9 +220,9 @@ var Items = function Items(props) {
 /* eslint-enable react/prop-types */
 
 
-var AutoCompleteMemo = /*#__PURE__*/React$1.memo(AutoComplete);
-var AutoComplete$1 = /*#__PURE__*/React$1.forwardRef(function (props, ref) {
-  return /*#__PURE__*/React$1.createElement(AutoCompleteMemo, _extends_1({}, props, {
+var AutoCompleteMemo = /*#__PURE__*/React.memo(AutoComplete);
+var AutoComplete$1 = /*#__PURE__*/React.forwardRef(function (props, ref) {
+  return /*#__PURE__*/React.createElement(AutoCompleteMemo, _extends_1({}, props, {
     forwardedRef: ref
   }));
 });

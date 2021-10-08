@@ -1,15 +1,15 @@
-import slicedToArray$1 from '../../node_modules/@babel/runtime/helpers/slicedToArray.js';
-import React$1, { useContext, useMemo } from 'react';
+import slicedToArray from '../../node_modules/@babel/runtime/helpers/slicedToArray.js';
+import defineProperty from '../../node_modules/@babel/runtime/helpers/defineProperty.js';
+import React, { useContext, useMemo } from 'react';
 import propTypes from '../../node_modules/prop-types/index.js';
-import defineProperty$1 from '../../node_modules/@babel/runtime/helpers/defineProperty.js';
-import color$1 from '../utils/color.js';
-import { warnOnce } from '../utils/environment.js';
 import dark from './theme-dark.js';
 import light from './theme-light.js';
+import { warnOnce } from '../utils/environment.js';
+import color from '../utils/color.js';
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { defineProperty$1(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 // The appearance can be either “dark” or “light”.
 
 var APPEARANCES = ['dark', 'light'];
@@ -39,7 +39,7 @@ function getTheme(theme) {
 } // Setting the default is needed for cases when components are used without being wrapped in `<Theme />`, e.g. for tests.
 
 
-var ThemeContext = /*#__PURE__*/React$1.createContext(prepareTheme(getTheme(THEME_DEFAULT)));
+var ThemeContext = /*#__PURE__*/React.createContext(prepareTheme(getTheme(THEME_DEFAULT)));
 
 function convertThemeColor(name, value) {
   if (RESERVED_KEYS.includes(name)) {
@@ -47,9 +47,9 @@ function convertThemeColor(name, value) {
   }
 
   try {
-    return color$1(value);
+    return color(value);
   } catch (err) {
-    return color$1(COLOR_FALLBACK);
+    return color(COLOR_FALLBACK);
   }
 } // prepareTheme() does a few things:
 // - Wrap every color in a color() object (see utils/color.js).
@@ -59,7 +59,7 @@ function convertThemeColor(name, value) {
 
 function prepareTheme(theme) {
   var themeConverted = Object.fromEntries(Object.entries(theme).filter(function (_ref) {
-    var _ref2 = slicedToArray$1(_ref, 1),
+    var _ref2 = slicedToArray(_ref, 1),
         name = _ref2[0];
 
     if (!EMBEDDED_THEMES[THEME_DEFAULT][name]) {
@@ -69,7 +69,7 @@ function prepareTheme(theme) {
 
     return true;
   }).map(function (_ref3) {
-    var _ref4 = slicedToArray$1(_ref3, 2),
+    var _ref4 = slicedToArray(_ref3, 2),
         name = _ref4[0],
         value = _ref4[1];
 
@@ -119,7 +119,7 @@ function Theme(_ref5) {
   var themeConverted = useMemo(function () {
     return prepareTheme(getTheme(theme));
   }, [theme]);
-  return /*#__PURE__*/React$1.createElement(ThemeContext.Provider, {
+  return /*#__PURE__*/React.createElement(ThemeContext.Provider, {
     value: themeConverted
   }, children);
 }

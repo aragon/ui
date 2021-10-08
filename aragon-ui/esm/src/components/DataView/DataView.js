@@ -1,24 +1,24 @@
-import slicedToArray$1 from '../../../node_modules/@babel/runtime/helpers/slicedToArray.js';
-import React$1, { useState, useCallback, useEffect, useMemo } from 'react';
+import defineProperty from '../../../node_modules/@babel/runtime/helpers/defineProperty.js';
+import toConsumableArray from '../../../node_modules/@babel/runtime/helpers/toConsumableArray.js';
+import slicedToArray from '../../../node_modules/@babel/runtime/helpers/slicedToArray.js';
+import _styled from 'styled-components';
+import React, { useState, useCallback, useEffect, useMemo } from 'react';
 import propTypes from '../../../node_modules/prop-types/index.js';
-import defineProperty$1 from '../../../node_modules/@babel/runtime/helpers/defineProperty.js';
-import toConsumableArray$1 from '../../../node_modules/@babel/runtime/helpers/toConsumableArray.js';
-import _styled$1 from 'styled-components';
-import { noop } from '../../utils/miscellaneous.js';
+import Box from '../Box/Box.js';
+import Pagination from '../Pagination/Pagination.js';
+import { useLayout } from '../Layout/Layout.js';
+import { TableView } from './TableView.js';
+import { ListView } from './ListView.js';
+import EmptyState from './EmptyState.js';
+import { useTheme } from '../../theme/Theme2.js';
 import { warnOnce } from '../../utils/environment.js';
 import { GU } from '../../style/constants.js';
 import { textStyle } from '../../style/text-styles.js';
-import { useTheme } from '../../theme/Theme2.js';
-import { useLayout } from '../Layout/Layout.js';
-import Box$1 from '../Box/Box.js';
-import Pagination$1 from '../Pagination/Pagination.js';
-import { TableView as TableView$1 } from './TableView.js';
-import { ListView as ListView$1 } from './ListView.js';
-import EmptyState$1 from './EmptyState.js';
+import { noop } from '../../utils/miscellaneous.js';
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { defineProperty$1(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function prepareEntries(entries, from, to, selectedIndexes) {
   return entries.slice(from, to).map(function (entry, index) {
@@ -118,7 +118,7 @@ function useSelection(entries, selection, onSelectEntries) {
   // both a managed and a controlled mode, to provide a better developer
   // experience out of the box.
   var _useState = useState([]),
-      _useState2 = slicedToArray$1(_useState, 2),
+      _useState2 = slicedToArray(_useState, 2),
       selectionManaged = _useState2[0],
       setSelectionManaged = _useState2[1];
 
@@ -130,7 +130,7 @@ function useSelection(entries, selection, onSelectEntries) {
     } // Useful to notify, even in managed mode
 
 
-    onSelectEntries(toConsumableArray$1(newSelection).sort().map(function (index) {
+    onSelectEntries(toConsumableArray(newSelection).sort().map(function (index) {
       return entries[index];
     }), newSelection);
   }, [selection, onSelectEntries, entries]);
@@ -151,7 +151,7 @@ function useSelection(entries, selection, onSelectEntries) {
   var toggleEntrySelect = useCallback(function (entryIndex) {
     updateSelection(currentSelection.includes(entryIndex) ? currentSelection.filter(function (index) {
       return index !== entryIndex;
-    }) : [].concat(toConsumableArray$1(currentSelection), [entryIndex]));
+    }) : [].concat(toConsumableArray(currentSelection), [entryIndex]));
   }, [updateSelection, currentSelection]);
   var selectAll = useCallback(function () {
     updateSelection(currentSelection.length === 0 ? entries.map(function (_, index) {
@@ -174,7 +174,7 @@ function deprecatedEmptyStatePropsCompat(_ref2) {
       statusEmptySearch = _ref2.statusEmptySearch;
 
   for (var _i = 0, _arr = [['statusEmpty', statusEmpty, 'default', 'title'], ['statusEmptyFilters', statusEmptyFilters, 'empty-filters', 'subtitle'], ['statusEmptySearch', statusEmptySearch, 'empty-search', 'subtitle'], ['statusLoading', statusLoading, 'loading', 'title']]; _i < _arr.length; _i++) {
-    var _arr$_i = slicedToArray$1(_arr[_i], 4),
+    var _arr$_i = slicedToArray(_arr[_i], 4),
         propName = _arr$_i[0],
         propValue = _arr$_i[1],
         emptyStateName = _arr$_i[2],
@@ -187,14 +187,14 @@ function deprecatedEmptyStatePropsCompat(_ref2) {
     warnOnce("DataView:".concat(propName), "DataView: the ".concat(propName, " prop is now deprecated, please use emptyState instead.")); // Only set the default state title if not set already
 
     if (!emptyState[emptyStateName] || !emptyState[emptyStateName][partName]) {
-      emptyState[emptyStateName] = _objectSpread(_objectSpread({}, emptyState[emptyStateName]), {}, defineProperty$1({}, partName, propValue));
+      emptyState[emptyStateName] = _objectSpread(_objectSpread({}, emptyState[emptyStateName]), {}, defineProperty({}, partName, propValue));
     }
   }
 
   return emptyState;
 }
 
-var _StyledDiv = _styled$1("div").withConfig({
+var _StyledDiv = _styled("div").withConfig({
   displayName: "DataView___StyledDiv",
   componentId: "sc-49otbs-0"
 })(["padding:", "px ", "px;"], function (p) {
@@ -203,7 +203,7 @@ var _StyledDiv = _styled$1("div").withConfig({
   return p._css2;
 });
 
-var _StyledH = _styled$1("h1").withConfig({
+var _StyledH = _styled("h1").withConfig({
   displayName: "DataView___StyledH",
   componentId: "sc-49otbs-1"
 })(["margin-bottom:", "px;", ";"], function (p) {
@@ -212,14 +212,14 @@ var _StyledH = _styled$1("h1").withConfig({
   return p._css4;
 });
 
-var _StyledDiv2 = _styled$1("div").withConfig({
+var _StyledDiv2 = _styled("div").withConfig({
   displayName: "DataView___StyledDiv2",
   componentId: "sc-49otbs-2"
 })(["border-top:1px solid ", ";"], function (p) {
   return p._css5;
 });
 
-var DataView = /*#__PURE__*/React$1.memo(function DataView(_ref3) {
+var DataView = /*#__PURE__*/React.memo(function DataView(_ref3) {
   var emptyState = _ref3.emptyState,
       entries = _ref3.entries,
       entriesPerPage = _ref3.entriesPerPage,
@@ -264,7 +264,7 @@ var DataView = /*#__PURE__*/React$1.memo(function DataView(_ref3) {
   // out of the box.
 
   var _useState3 = useState(0),
-      _useState4 = slicedToArray$1(_useState3, 2),
+      _useState4 = slicedToArray(_useState3, 2),
       pageManaged = _useState4[0],
       setPageManaged = _useState4[1];
 
@@ -319,15 +319,15 @@ var DataView = /*#__PURE__*/React$1.memo(function DataView(_ref3) {
     return field && field.childStart;
   });
   var emptyEntries = renderedEntries.length === 0;
-  return /*#__PURE__*/React$1.createElement(Box$1, {
+  return /*#__PURE__*/React.createElement(Box, {
     padding: 0
-  }, heading && /*#__PURE__*/React$1.createElement(_StyledDiv, {
+  }, heading && /*#__PURE__*/React.createElement(_StyledDiv, {
     _css: 2 * GU,
     _css2: layoutName === 'small' ? 2 * GU : 3 * GU
-  }, typeof heading === 'string' ? /*#__PURE__*/React$1.createElement(_StyledH, {
+  }, typeof heading === 'string' ? /*#__PURE__*/React.createElement(_StyledH, {
     _css3: 2 * GU,
     _css4: textStyle('body2')
-  }, heading) : heading), !emptyEntries && (listMode ? /*#__PURE__*/React$1.createElement(ListView$1, {
+  }, heading) : heading), !emptyEntries && (listMode ? /*#__PURE__*/React.createElement(ListView, {
     allSelected: allSelected,
     entries: renderedEntries,
     fields: preparedFields,
@@ -337,7 +337,7 @@ var DataView = /*#__PURE__*/React$1.memo(function DataView(_ref3) {
     renderSelectionCount: renderSelectionCount,
     rowHeight: tableRowHeight,
     selectable: canSelect
-  }) : /*#__PURE__*/React$1.createElement(TableView$1, {
+  }) : /*#__PURE__*/React.createElement(TableView, {
     alignChildOnField: Math.min(Math.max(-1, alignChildOnField), fields.length - 1),
     allSelected: allSelected,
     entries: renderedEntries,
@@ -350,13 +350,13 @@ var DataView = /*#__PURE__*/React$1.memo(function DataView(_ref3) {
     rowHeight: tableRowHeight,
     selectable: canSelect,
     selectedCount: selectedIndexes.length
-  })), emptyEntries && /*#__PURE__*/React$1.createElement(EmptyState$1, {
+  })), emptyEntries && /*#__PURE__*/React.createElement(EmptyState, {
     status: status,
     configurator: emptyState,
     onStatusEmptyClear: onStatusEmptyClear
-  }), pages > 1 && /*#__PURE__*/React$1.createElement(_StyledDiv2, {
+  }), pages > 1 && /*#__PURE__*/React.createElement(_StyledDiv2, {
     _css5: theme.border
-  }, /*#__PURE__*/React$1.createElement(Pagination$1, {
+  }, /*#__PURE__*/React.createElement(Pagination, {
     pages: pages,
     selected: selectedPage,
     onChange: handlePageChange,

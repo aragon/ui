@@ -2,56 +2,57 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
-
+var _extends = require('./extends-023d783e.js');
+var objectWithoutProperties = require('./objectWithoutProperties-c6d3675c.js');
+var _styled = require('styled-components');
+var React = require('react');
+var index = require('./index-37353731.js');
+var TextInput = require('./TextInput.js');
+var ButtonIcon = require('./ButtonIcon.js');
+var ToastHub = require('./ToastHub.js');
+var Theme = require('./Theme.js');
+var IconCopy = require('./IconCopy.js');
+var constants = require('./constants.js');
+var environment = require('./environment.js');
+var textStyles = require('./text-styles.js');
+var miscellaneous = require('./miscellaneous.js');
+require('./_commonjsHelpers-1b94f6bc.js');
+require('./defineProperty-3cad0327.js');
+require('./Button.js');
 require('./slicedToArray-a8a77f0e.js');
 require('./unsupportedIterableToArray-f175acfa.js');
-var React = require('react');
-var React__default = _interopDefault(React);
-require('./_commonjsHelpers-1b94f6bc.js');
-var index = require('./index-46d0e707.js');
-require('./defineProperty-3cad0327.js');
-require('./toConsumableArray-cc0d28a9.js');
-var _styled = require('styled-components');
-var _styled__default = _interopDefault(_styled);
+require('./index-c33eeeef.js');
+require('./Layout.js');
+require('./Viewport-71f7efe6.js');
 require('./getPrototypeOf-55c9e80c.js');
-require('./color.js');
-require('./components.js');
-require('./css.js');
-var miscellaneous = require('./miscellaneous.js');
-var environment = require('./environment.js');
-require('./font.js');
-require('./keycodes.js');
-var constants = require('./constants.js');
+require('./_baseGetTag-6ec23aaa.js');
 require('./breakpoints.js');
-require('./springs.js');
-var textStyles = require('./text-styles.js');
+require('./css.js');
+require('./ButtonBase.js');
+require('./FocusVisible.js');
+require('./keycodes.js');
 require('./theme-dark.js');
 require('./theme-light.js');
-var Theme = require('./Theme.js');
-var _extends$1 = require('./extends-023d783e.js');
-var objectWithoutProperties = require('./objectWithoutProperties-c6d3675c.js');
-require('./index-f5a9917e.js');
-require('./_baseGetTag-42b4dd3e.js');
-require('./Viewport-abbde113.js');
-require('./Layout.js');
-require('./FocusVisible.js');
-require('./ButtonBase.js');
-require('./IconPropTypes-dd9d2cb1.js');
-var IconCopy = require('./IconCopy.js');
+require('./color.js');
+require('./toConsumableArray-cc0d28a9.js');
+require('./font.js');
+require('./web-46d746d6.js');
 require('./objectWithoutPropertiesLoose-1af20ad0.js');
 require('react-dom');
-require('./web-d0294535.js');
-require('./Button.js');
-var ButtonIcon = require('./ButtonIcon.js');
-var TextInput = require('./TextInput.js');
-var ToastHub = require('./ToastHub.js');
-require('./Root-fd39454b.js');
 require('./RootPortal.js');
+require('./Root-07f851a6.js');
+require('./components.js');
+require('./springs.js');
+require('./IconPropTypes-b9997416.js');
+
+function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
+
+var _styled__default = /*#__PURE__*/_interopDefaultLegacy(_styled);
+var React__default = /*#__PURE__*/_interopDefaultLegacy(React);
 
 var HEIGHT = 5 * constants.GU;
 
-var _StyledDiv = _styled__default("div").withConfig({
+var _StyledDiv = _styled__default['default']("div").withConfig({
   displayName: "TextCopy___StyledDiv",
   componentId: "sc-1dg1uit-0"
 })(["position:relative;display:inline-flex;width:", "px;max-width:100%;height:", "px;padding-left:", ";"], function (p) {
@@ -60,7 +61,7 @@ var _StyledDiv = _styled__default("div").withConfig({
   return p._css2;
 });
 
-var _StyledDiv2 = _styled__default("div").withConfig({
+var _StyledDiv2 = _styled__default['default']("div").withConfig({
   displayName: "TextCopy___StyledDiv2",
   componentId: "sc-1dg1uit-1"
 })(["position:absolute;top:0;left:0;overflow:hidden;width:", "px;height:", "px;background:", ";border:1px solid ", ";border-right:0;border-radius:", "px 0.0001px 0.0001px ", "px;"], HEIGHT, HEIGHT, function (p) {
@@ -69,7 +70,7 @@ var _StyledDiv2 = _styled__default("div").withConfig({
   return p._css4;
 }, constants.RADIUS, constants.RADIUS);
 
-var _StyledDiv3 = _styled__default("div").withConfig({
+var _StyledDiv3 = _styled__default['default']("div").withConfig({
   displayName: "TextCopy___StyledDiv3",
   componentId: "sc-1dg1uit-2"
 })(["display:flex;align-items:center;justify-content:center;width:", "px;height:", "px;"], function (p) {
@@ -78,7 +79,7 @@ var _StyledDiv3 = _styled__default("div").withConfig({
   return p._css6;
 });
 
-var _StyledButtonIcon = _styled__default(ButtonIcon.default).withConfig({
+var _StyledButtonIcon = _styled__default['default'](ButtonIcon['default']).withConfig({
   displayName: "TextCopy___StyledButtonIcon",
   componentId: "sc-1dg1uit-3"
 })(["width:", "px;height:", "px;border-radius:0;color:", ";"], function (p) {
@@ -89,7 +90,7 @@ var _StyledButtonIcon = _styled__default(ButtonIcon.default).withConfig({
   return p._css9;
 });
 
-var _StyledTextInput = _styled__default(TextInput.default).withConfig({
+var _StyledTextInput = _styled__default['default'](TextInput['default']).withConfig({
   displayName: "TextCopy___StyledTextInput",
   componentId: "sc-1dg1uit-4"
 })(["text-overflow:ellipsis;height:", "px;max-width:100%;border:1px solid ", ";", ";", ";&:read-only{color:", ";text-shadow:none;}"], HEIGHT, function (p) {
@@ -102,7 +103,7 @@ var _StyledTextInput = _styled__default(TextInput.default).withConfig({
   return p._css13;
 });
 
-var TextCopy = /*#__PURE__*/React__default.memo( /*#__PURE__*/React__default.forwardRef(function TextCopy(_ref, ref) {
+var TextCopy = /*#__PURE__*/React__default['default'].memo( /*#__PURE__*/React__default['default'].forwardRef(function TextCopy(_ref, ref) {
   var adornment = _ref.adornment,
       autofocus = _ref.autofocus,
       message = _ref.message,
@@ -140,24 +141,24 @@ var TextCopy = /*#__PURE__*/React__default.memo( /*#__PURE__*/React__default.for
       }
     }
   }, [message, onCopyOrToast]);
-  return /*#__PURE__*/React__default.createElement(_StyledDiv, _extends$1._extends_1({}, props, {
+  return /*#__PURE__*/React__default['default'].createElement(_StyledDiv, _extends._extends_1({}, props, {
     _css: 52.5 * constants.GU,
     _css2: adornment ? "".concat(HEIGHT, "px") : '0'
-  }), adornment && /*#__PURE__*/React__default.createElement(_StyledDiv2, {
+  }), adornment && /*#__PURE__*/React__default['default'].createElement(_StyledDiv2, {
     _css3: theme.surface,
     _css4: theme.border
-  }, /*#__PURE__*/React__default.createElement(_StyledDiv3, {
+  }, /*#__PURE__*/React__default['default'].createElement(_StyledDiv3, {
     _css5: HEIGHT - 2,
     _css6: HEIGHT - 2
-  }, adornment)), /*#__PURE__*/React__default.createElement(_StyledTextInput, {
+  }, adornment)), /*#__PURE__*/React__default['default'].createElement(_StyledTextInput, {
     ref: inputRef,
-    adornment: /*#__PURE__*/React__default.createElement(_StyledButtonIcon, {
+    adornment: /*#__PURE__*/React__default['default'].createElement(_StyledButtonIcon, {
       onClick: handleCopy,
       label: "Copy",
       _css7: HEIGHT - 2,
       _css8: HEIGHT - 2,
       _css9: theme.surfaceIcon
-    }, /*#__PURE__*/React__default.createElement(IconCopy.default, null)),
+    }, /*#__PURE__*/React__default['default'].createElement(IconCopy['default'], null)),
     adornmentPosition: "end",
     adornmentSettings: {
       // Keep the button square

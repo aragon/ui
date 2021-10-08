@@ -1,17 +1,16 @@
-import React$1 from 'react';
-import propTypes from '../../../node_modules/prop-types/index.js';
-import toConsumableArray$1 from '../../../node_modules/@babel/runtime/helpers/toConsumableArray.js';
-import _styled$1 from 'styled-components';
-import { noop } from '../../utils/miscellaneous.js';
-import '../../utils/environment.js';
-import { GU } from '../../style/constants.js';
 import _extends_1 from '../../../node_modules/@babel/runtime/helpers/extends.js';
-import objectWithoutProperties$1 from '../../../node_modules/@babel/runtime/helpers/objectWithoutProperties.js';
-import { PaginationItem as PaginationItem$1 } from './PaginationItem.js';
-import { PaginationSeparator as PaginationSeparator$1 } from './PaginationSeparator.js';
+import objectWithoutProperties from '../../../node_modules/@babel/runtime/helpers/objectWithoutProperties.js';
+import toConsumableArray from '../../../node_modules/@babel/runtime/helpers/toConsumableArray.js';
+import _styled from 'styled-components';
+import React from 'react';
+import propTypes from '../../../node_modules/prop-types/index.js';
+import { PaginationItem } from './PaginationItem.js';
+import { PaginationSeparator } from './PaginationSeparator.js';
+import { noop } from '../../utils/miscellaneous.js';
+import { GU } from '../../style/constants.js';
 
 function paginationItems(pages, selected) {
-  var all = toConsumableArray$1(Array(pages)).map(function (_, i) {
+  var all = toConsumableArray(Array(pages)).map(function (_, i) {
     return i;
   });
 
@@ -25,7 +24,7 @@ function paginationItems(pages, selected) {
   var next = Math.min(all.length, Math.max(0, selected + 1));
   var items = []; // Selected item + previous + next
 
-  items.push.apply(items, toConsumableArray$1(all.slice(prev, next + 1))); // Display three items, even if the first / last one is selected
+  items.push.apply(items, toConsumableArray(all.slice(prev, next + 1))); // Display three items, even if the first / last one is selected
 
   if (selected === last) {
     items.unshift(last - 2);
@@ -56,7 +55,7 @@ function paginationItems(pages, selected) {
   return items;
 }
 
-var _StyledDiv = _styled$1("div").withConfig({
+var _StyledDiv = _styled("div").withConfig({
   displayName: "Pagination___StyledDiv",
   componentId: "sc-10i2kzw-0"
 })(["display:flex;align-items:center;justify-content:center;padding:", "px 0;& > div + div{margin-left:", "px;}"], function (p) {
@@ -65,21 +64,21 @@ var _StyledDiv = _styled$1("div").withConfig({
   return p._css2;
 });
 
-var Pagination = /*#__PURE__*/React$1.memo(function Pagination(_ref) {
+var Pagination = /*#__PURE__*/React.memo(function Pagination(_ref) {
   var pages = _ref.pages,
       selected = _ref.selected,
       onChange = _ref.onChange,
       touchMode = _ref.touchMode,
-      props = objectWithoutProperties$1(_ref, ["pages", "selected", "onChange", "touchMode"]);
+      props = objectWithoutProperties(_ref, ["pages", "selected", "onChange", "touchMode"]);
 
   var items = paginationItems(pages, selected);
-  return /*#__PURE__*/React$1.createElement(_StyledDiv, _extends_1({}, props, {
+  return /*#__PURE__*/React.createElement(_StyledDiv, _extends_1({}, props, {
     _css: 2 * GU,
     _css2: 1 * GU
   }), items.map(function (pageIndex, i) {
-    return pageIndex === -1 ? /*#__PURE__*/React$1.createElement(PaginationSeparator$1, {
+    return pageIndex === -1 ? /*#__PURE__*/React.createElement(PaginationSeparator, {
       key: "separator-".concat(i)
-    }) : /*#__PURE__*/React$1.createElement(PaginationItem$1, {
+    }) : /*#__PURE__*/React.createElement(PaginationItem, {
       key: pageIndex,
       index: pageIndex,
       selected: selected === pageIndex,

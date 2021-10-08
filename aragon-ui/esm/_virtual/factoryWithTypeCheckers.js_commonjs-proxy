@@ -1,3 +1,3 @@
-import factoryWithTypeCheckers$1 from '../node_modules/prop-types/factoryWithTypeCheckers.js';
+import factoryWithTypeCheckers from '../node_modules/prop-types/factoryWithTypeCheckers.js';
 export { default } from '../node_modules/prop-types/factoryWithTypeCheckers.js';
 //# sourceMappingURL=factoryWithTypeCheckers.js_commonjs-proxy.map

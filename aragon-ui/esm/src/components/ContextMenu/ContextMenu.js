@@ -1,33 +1,32 @@
-import slicedToArray$1 from '../../../node_modules/@babel/runtime/helpers/slicedToArray.js';
-import React$1, { useState, useCallback } from 'react';
+import slicedToArray from '../../../node_modules/@babel/runtime/helpers/slicedToArray.js';
+import _styled from 'styled-components';
+import React, { useState, useCallback } from 'react';
 import propTypes from '../../../node_modules/prop-types/index.js';
-import _styled$1 from 'styled-components';
-import '../../utils/environment.js';
-import { RADIUS } from '../../style/constants.js';
-import { springs as springs$1 } from '../../style/springs.js';
-import { useTheme } from '../../theme/Theme2.js';
-import ButtonBaseWithFocus from '../ButtonBase/ButtonBase.js';
-import IconDown$1 from '../../icons/components/IconDown.js';
-import IconEllipsis$1 from '../../icons/components/IconEllipsis.js';
 import { animated as extendedAnimated, Spring } from '../../../node_modules/react-spring/web.js';
 import reactOnclickout from '../../../node_modules/react-onclickout/index.js';
+import ButtonBaseWithFocus from '../ButtonBase/ButtonBase.js';
+import IconEllipsis from '../../icons/components/IconEllipsis.js';
+import IconDown from '../../icons/components/IconDown.js';
+import { useTheme } from '../../theme/Theme2.js';
+import { springs } from '../../style/springs.js';
+import { RADIUS } from '../../style/constants.js';
 
 var BASE_WIDTH = 46;
 var BASE_HEIGHT = 32;
 
-var _StyledIconEllipsis = _styled$1(IconEllipsis$1).withConfig({
+var _StyledIconEllipsis = _styled(IconEllipsis).withConfig({
   displayName: "ContextMenu___StyledIconEllipsis",
   componentId: "ris724-0"
 })([""]);
 
-var _StyledIconDown = _styled$1(IconDown$1).withConfig({
+var _StyledIconDown = _styled(IconDown).withConfig({
   displayName: "ContextMenu___StyledIconDown",
   componentId: "ris724-1"
 })(["color:", ";"], function (p) {
   return p._css7;
 });
 
-var _StyledAnimatedDiv = _styled$1(extendedAnimated.div).withConfig({
+var _StyledAnimatedDiv = _styled(extendedAnimated.div).withConfig({
   displayName: "ContextMenu___StyledAnimatedDiv",
   componentId: "ris724-2"
 })(["z-index:", ";overflow:hidden;position:absolute;top:", "px;right:0;background:", ";border:1px solid ", ";border-radius:3px 0 3px 3px;"], function (p) {
@@ -40,7 +39,7 @@ var _StyledAnimatedDiv = _styled$1(extendedAnimated.div).withConfig({
   return p._css11;
 });
 
-var _StyledDiv = _styled$1("div").withConfig({
+var _StyledDiv = _styled("div").withConfig({
   displayName: "ContextMenu___StyledDiv",
   componentId: "ris724-3"
 })(["z-index:", ";position:absolute;bottom:0;right:1px;height:1px;width:", "px;background:", ";"], function (p) {
@@ -58,7 +57,7 @@ function ContextMenu(_ref) {
   var theme = useTheme();
 
   var _useState = useState(false),
-      _useState2 = slicedToArray$1(_useState, 2),
+      _useState2 = slicedToArray(_useState, 2),
       opened = _useState2[0],
       setOpened = _useState2[1];
 
@@ -73,24 +72,24 @@ function ContextMenu(_ref) {
   // context menus below it using the same z-index (e.g. when used in a list)
 
   var appliedZIndex = opened ? zIndex + 1 : zIndex;
-  return /*#__PURE__*/React$1.createElement(reactOnclickout, {
+  return /*#__PURE__*/React.createElement(reactOnclickout, {
     onClickOut: handleClose
-  }, /*#__PURE__*/React$1.createElement(Spring, {
-    config: springs$1.smooth,
+  }, /*#__PURE__*/React.createElement(Spring, {
+    config: springs.smooth,
     to: {
       openProgress: Number(opened)
     },
     native: true
   }, function (_ref2) {
     var openProgress = _ref2.openProgress;
-    return /*#__PURE__*/React$1.createElement(_StyledMain, {
+    return /*#__PURE__*/React.createElement(_StyledMain, {
       style: {
         boxShadow: openProgress.interpolate(function (t) {
           return "0 4px 4px rgba(0, 0, 0, ".concat(t * 0.03, ")");
         })
       },
       _css: appliedZIndex
-    }, /*#__PURE__*/React$1.createElement(_StyledButton, {
+    }, /*#__PURE__*/React.createElement(_StyledButton, {
       onClick: handleBaseButtonClick,
       opened: opened,
       disabled: disabled,
@@ -100,7 +99,7 @@ function ContextMenu(_ref) {
       _css4: disabled ? '0' : "1px solid ".concat(theme.border),
       _css5: opened ? theme.surface : theme.border,
       _css6: disabled ? '' : "&:active {\n                  background: ".concat(theme.surfacePressed, ";\n                  border-bottom-color: ").concat(opened ? theme.surfacePressed : theme.border, ";\n                }")
-    }, /*#__PURE__*/React$1.createElement(_StyledIconEllipsis, null), /*#__PURE__*/React$1.createElement(extendedAnimated.div, {
+    }, /*#__PURE__*/React.createElement(_StyledIconEllipsis, null), /*#__PURE__*/React.createElement(extendedAnimated.div, {
       style: {
         display: 'flex',
         alignItems: 'center',
@@ -109,10 +108,10 @@ function ContextMenu(_ref) {
           return "rotate(".concat(v * 180, "deg)");
         })
       }
-    }, /*#__PURE__*/React$1.createElement(_StyledIconDown, {
+    }, /*#__PURE__*/React.createElement(_StyledIconDown, {
       size: "tiny",
       _css7: disabled ? theme.disabledIcon : theme.surfaceIcon
-    }))), opened && /*#__PURE__*/React$1.createElement(React$1.Fragment, null, /*#__PURE__*/React$1.createElement(_StyledAnimatedDiv, {
+    }))), opened && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_StyledAnimatedDiv, {
       onClick: handleClose,
       style: {
         opacity: openProgress,
@@ -124,7 +123,7 @@ function ContextMenu(_ref) {
       _css9: BASE_HEIGHT - 1,
       _css10: theme.surface,
       _css11: theme.border
-    }, children), /*#__PURE__*/React$1.createElement(_StyledDiv, {
+    }, children), /*#__PURE__*/React.createElement(_StyledDiv, {
       _css12: appliedZIndex + 1,
       _css13: BASE_WIDTH - 2,
       _css14: theme.surface
@@ -141,19 +140,19 @@ ContextMenu.defaultProps = {
   zIndex: 0,
   disabled: false
 };
-var Main = _styled$1(extendedAnimated.div).withConfig({
+var Main = _styled(extendedAnimated.div).withConfig({
   displayName: "ContextMenu__Main",
   componentId: "ris724-4"
 })(["position:relative;width:", "px;height:", "px;"], BASE_WIDTH, BASE_HEIGHT);
 
-var _StyledMain = _styled$1(Main).withConfig({
+var _StyledMain = _styled(Main).withConfig({
   displayName: "ContextMenu___StyledMain",
   componentId: "ris724-5"
 })(["z-index:", ";"], function (p) {
   return p._css;
 });
 
-var Button = _styled$1(ButtonBaseWithFocus).withConfig({
+var Button = _styled(ButtonBaseWithFocus).withConfig({
   displayName: "ContextMenu__Button",
   componentId: "ris724-6"
 })(["display:flex;justify-content:center;align-items:center;width:100%;height:", "px;border-radius:", ";box-shadow:", ";"], BASE_HEIGHT, function (_ref3) {
@@ -164,7 +163,7 @@ var Button = _styled$1(ButtonBaseWithFocus).withConfig({
   return disabled ? 'none' : "0px 1px 3px rgba(0, 0, 0, 0.1)";
 });
 
-var _StyledButton = _styled$1(Button).withConfig({
+var _StyledButton = _styled(Button).withConfig({
   displayName: "ContextMenu___StyledButton",
   componentId: "ris724-7"
 })(["color:", ";background:", ";border:", ";border-bottom-color:", ";", ""], function (p) {

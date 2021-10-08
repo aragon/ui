@@ -1,17 +1,17 @@
-import slicedToArray$1 from '../../../node_modules/@babel/runtime/helpers/slicedToArray.js';
-import React$1, { useContext, useState, useCallback } from 'react';
-import propTypes from '../../../node_modules/prop-types/index.js';
 import _extends_1 from '../../../node_modules/@babel/runtime/helpers/extends.js';
-import objectWithoutProperties$1 from '../../../node_modules/@babel/runtime/helpers/objectWithoutProperties.js';
+import slicedToArray from '../../../node_modules/@babel/runtime/helpers/slicedToArray.js';
+import objectWithoutProperties from '../../../node_modules/@babel/runtime/helpers/objectWithoutProperties.js';
+import React, { useContext, useState, useCallback } from 'react';
+import propTypes from '../../../node_modules/prop-types/index.js';
 
-var RootContext = /*#__PURE__*/React$1.createContext(null);
+var RootContext = /*#__PURE__*/React.createContext(null);
 
 function RootProvider(_ref) {
   var children = _ref.children,
-      props = objectWithoutProperties$1(_ref, ["children"]);
+      props = objectWithoutProperties(_ref, ["children"]);
 
   var _useState = useState(null),
-      _useState2 = slicedToArray$1(_useState, 2),
+      _useState2 = slicedToArray(_useState, 2),
       element = _useState2[0],
       setElement = _useState2[1];
 
@@ -20,9 +20,9 @@ function RootProvider(_ref) {
       setElement(element);
     }
   }, []);
-  return /*#__PURE__*/React$1.createElement(RootContext.Provider, {
+  return /*#__PURE__*/React.createElement(RootContext.Provider, {
     value: element
-  }, /*#__PURE__*/React$1.createElement("div", _extends_1({
+  }, /*#__PURE__*/React.createElement("div", _extends_1({
     ref: handleRef
   }, props),
   /*
@@ -44,7 +44,7 @@ RootProvider.propTypes = {
 };
 
 function Root(props) {
-  return /*#__PURE__*/React$1.createElement(RootContext.Consumer, props);
+  return /*#__PURE__*/React.createElement(RootContext.Consumer, props);
 }
 
 Root.Provider = RootProvider;

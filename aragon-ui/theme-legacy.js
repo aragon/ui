@@ -2,12 +2,12 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
+var palettes = require('./palettes.js');
 require('./slicedToArray-a8a77f0e.js');
 require('./unsupportedIterableToArray-f175acfa.js');
-require('./miscellaneous.js');
-require('./environment.js');
 require('./aragon.js');
-var palettes = require('./palettes.js');
+require('./environment.js');
+require('./miscellaneous.js');
 
 
 

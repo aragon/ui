@@ -2,57 +2,57 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
-
+var _extends = require('./extends-023d783e.js');
 var slicedToArray = require('./slicedToArray-a8a77f0e.js');
-require('./unsupportedIterableToArray-f175acfa.js');
-var React = require('react');
-var React__default = _interopDefault(React);
-require('./_commonjsHelpers-1b94f6bc.js');
-var index = require('./index-46d0e707.js');
-require('./defineProperty-3cad0327.js');
-require('./toConsumableArray-cc0d28a9.js');
 var _styled = require('styled-components');
-var _styled__default = _interopDefault(_styled);
-require('./getPrototypeOf-55c9e80c.js');
-require('./color.js');
-var css = require('./css.js');
-var miscellaneous = require('./miscellaneous.js');
-require('./environment.js');
-require('./font.js');
-var keycodes = require('./keycodes.js');
-require('./constants.js');
-require('./breakpoints.js');
-var springs = require('./springs.js');
-require('./text-styles.js');
-require('./theme-dark.js');
-require('./theme-light.js');
-var Theme = require('./Theme.js');
-var _extends$1 = require('./extends-023d783e.js');
-require('./objectWithoutProperties-c6d3675c.js');
-require('./index-f5a9917e.js');
-require('./_baseGetTag-42b4dd3e.js');
-require('./Viewport-abbde113.js');
-require('./Layout.js');
-require('./FocusVisible.js');
+var React = require('react');
+var index = require('./index-37353731.js');
+var web = require('./web-46d746d6.js');
 var ButtonBase = require('./ButtonBase.js');
-require('./IconPropTypes-dd9d2cb1.js');
-require('./IconCross.js');
-require('./IconSearch.js');
-require('./objectWithoutPropertiesLoose-1af20ad0.js');
-require('react-dom');
-var web = require('./web-d0294535.js');
-require('./Button.js');
-require('./ButtonIcon.js');
-require('./TextInput.js');
+var SearchInput = require('./SearchInput.js');
 var useArrowKeysFocus = require('./useArrowKeysFocus.js');
 var useClickOutside = require('./useClickOutside.js');
-var useFocusLeave = require('./useFocusLeave.js');
-require('./useImageExists.js');
 var useKeyDown = require('./useKeyDown.js');
-var SearchInput = require('./SearchInput.js');
+var Theme = require('./Theme.js');
+var miscellaneous = require('./miscellaneous.js');
+var useFocusLeave = require('./useFocusLeave.js');
+var keycodes = require('./keycodes.js');
+var springs = require('./springs.js');
+var css = require('./css.js');
+require('./_commonjsHelpers-1b94f6bc.js');
+require('./unsupportedIterableToArray-f175acfa.js');
+require('./objectWithoutPropertiesLoose-1af20ad0.js');
+require('react-dom');
+require('./objectWithoutProperties-c6d3675c.js');
+require('./defineProperty-3cad0327.js');
+require('./FocusVisible.js');
+require('./getPrototypeOf-55c9e80c.js');
+require('./constants.js');
+require('./environment.js');
+require('./text-styles.js');
+require('./font.js');
+require('./theme-dark.js');
+require('./theme-light.js');
+require('./color.js');
+require('./toConsumableArray-cc0d28a9.js');
+require('./ButtonIcon.js');
+require('./Button.js');
+require('./index-c33eeeef.js');
+require('./Layout.js');
+require('./Viewport-71f7efe6.js');
+require('./_baseGetTag-6ec23aaa.js');
+require('./breakpoints.js');
+require('./TextInput.js');
+require('./IconSearch.js');
+require('./IconPropTypes-b9997416.js');
+require('./IconCross.js');
 
-var _StyledDiv = _styled__default("div").withConfig({
+function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
+
+var _styled__default = /*#__PURE__*/_interopDefaultLegacy(_styled);
+var React__default = /*#__PURE__*/_interopDefaultLegacy(React);
+
+var _StyledDiv = _styled__default['default']("div").withConfig({
   displayName: "AutoComplete___StyledDiv",
   componentId: "bpnxyo-0"
 })(["position:relative"]);
@@ -110,10 +110,10 @@ function AutoComplete(_ref) {
   React.useEffect(function () {
     setHighlightedIndex(-1);
   }, [opened, items, value, setHighlightedIndex]);
-  return /*#__PURE__*/React__default.createElement(_StyledDiv, {
+  return /*#__PURE__*/React__default['default'].createElement(_StyledDiv, {
     ref: wrapRef,
     onBlur: handleFocusLeave
-  }, /*#__PURE__*/React__default.createElement(SearchInput.default, {
+  }, /*#__PURE__*/React__default['default'].createElement(SearchInput['default'], {
     ref: ref,
     wide: wide,
     placeholder: placeholder,
@@ -121,7 +121,7 @@ function AutoComplete(_ref) {
     onChange: handleInputChange,
     onFocus: handleFocus,
     value: value
-  }), /*#__PURE__*/React__default.createElement(web.Transition, {
+  }), /*#__PURE__*/React__default['default'].createElement(web.Transition, {
     config: springs.springs.swift,
     items: opened && items.length > 0,
     from: {
@@ -143,7 +143,7 @@ function AutoComplete(_ref) {
     function (_ref2) {
       var scale = _ref2.scale,
           opacity = _ref2.opacity;
-      return /*#__PURE__*/React__default.createElement(Items, {
+      return /*#__PURE__*/React__default['default'].createElement(Items, {
         style: {
           opacity: opacity,
           transform: scale.interpolate(function (t) {
@@ -151,7 +151,7 @@ function AutoComplete(_ref) {
           })
         }
       }, Array.from(uniqueItems).map(function (item, index) {
-        return /*#__PURE__*/React__default.createElement(Item, {
+        return /*#__PURE__*/React__default['default'].createElement(Item, {
           key: item.key || item,
           ref: function ref(node) {
             return refs.current[index] = node;
@@ -184,14 +184,14 @@ AutoComplete.propTypes = {
 };
 /* eslint-disable react/prop-types */
 
-var _StyledLi = _styled__default("li").withConfig({
+var _StyledLi = _styled__default['default']("li").withConfig({
   displayName: "AutoComplete___StyledLi",
   componentId: "bpnxyo-1"
 })(["overflow:hidden;cursor:pointer;", ";"], function (p) {
   return p._css;
 });
 
-var _StyledButtonBase = _styled__default(ButtonBase.default).withConfig({
+var _StyledButtonBase = _styled__default['default'](ButtonBase['default']).withConfig({
   displayName: "AutoComplete___StyledButtonBase",
   componentId: "bpnxyo-2"
 })(["text-align:left;padding:4px 8px;width:100%;border-radius:0;border-left:3px solid transparent;cursor:pointer;", ";", ";"], function (p) {
@@ -200,7 +200,7 @@ var _StyledButtonBase = _styled__default(ButtonBase.default).withConfig({
   return p._css3;
 });
 
-var Item = /*#__PURE__*/React__default.forwardRef(function Item(_ref3, ref) {
+var Item = /*#__PURE__*/React__default['default'].forwardRef(function Item(_ref3, ref) {
   var children = _ref3.children,
       index = _ref3.index,
       item = _ref3.item,
@@ -216,10 +216,10 @@ var Item = /*#__PURE__*/React__default.forwardRef(function Item(_ref3, ref) {
   var handleFocusOrMouseOver = React.useCallback(function () {
     onHighlight(index);
   }, [index, onHighlight]);
-  return /*#__PURE__*/React__default.createElement(_StyledLi, {
+  return /*#__PURE__*/React__default['default'].createElement(_StyledLi, {
     role: "option",
     _css: css.unselectable()
-  }, /*#__PURE__*/React__default.createElement(_StyledButtonBase, {
+  }, /*#__PURE__*/React__default['default'].createElement(_StyledButtonBase, {
     ref: ref,
     onClick: handleClick,
     onFocus: handleFocusOrMouseOver,
@@ -232,7 +232,7 @@ var Item = /*#__PURE__*/React__default.forwardRef(function Item(_ref3, ref) {
 
 /* eslint-disable react/prop-types */
 
-var _StyledAnimatedUl = _styled__default(web.extendedAnimated.ul).withConfig({
+var _StyledAnimatedUl = _styled__default['default'](web.extendedAnimated.ul).withConfig({
   displayName: "AutoComplete___StyledAnimatedUl",
   componentId: "bpnxyo-3"
 })(["position:absolute;z-index:2;top:100%;width:100%;padding:8px 0;color:", ";background:", ";border:1px solid ", ";box-shadow:0 4px 4px 0 rgba(0,0,0,0.06);border-radius:3px;padding:0;margin:0;list-style:none;& > li:first-child{border-top-left-radius:3px;border-top-right-radius:3px;}& > li:last-child{border-bottom-left-radius:3px;border-bottom-right-radius:3px;}"], function (p) {
@@ -245,7 +245,7 @@ var _StyledAnimatedUl = _styled__default(web.extendedAnimated.ul).withConfig({
 
 var Items = function Items(props) {
   var theme = Theme.useTheme();
-  return /*#__PURE__*/React__default.createElement(_StyledAnimatedUl, _extends$1._extends_1({
+  return /*#__PURE__*/React__default['default'].createElement(_StyledAnimatedUl, _extends._extends_1({
     role: "listbox"
   }, props, {
     _css4: theme.surfaceContent,
@@ -256,9 +256,9 @@ var Items = function Items(props) {
 /* eslint-enable react/prop-types */
 
 
-var AutoCompleteMemo = /*#__PURE__*/React__default.memo(AutoComplete);
-var AutoComplete$1 = /*#__PURE__*/React__default.forwardRef(function (props, ref) {
-  return /*#__PURE__*/React__default.createElement(AutoCompleteMemo, _extends$1._extends_1({}, props, {
+var AutoCompleteMemo = /*#__PURE__*/React__default['default'].memo(AutoComplete);
+var AutoComplete$1 = /*#__PURE__*/React__default['default'].forwardRef(function (props, ref) {
+  return /*#__PURE__*/React__default['default'].createElement(AutoCompleteMemo, _extends._extends_1({}, props, {
     forwardedRef: ref
   }));
 });

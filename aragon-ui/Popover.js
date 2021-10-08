@@ -2,37 +2,38 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
-
-var slicedToArray = require('./slicedToArray-a8a77f0e.js');
-require('./unsupportedIterableToArray-f175acfa.js');
-var React = require('react');
-var React__default = _interopDefault(React);
-require('./_commonjsHelpers-1b94f6bc.js');
-require('./index-46d0e707.js');
-var defineProperty$1 = require('./defineProperty-3cad0327.js');
 var toConsumableArray = require('./toConsumableArray-cc0d28a9.js');
-var _styled = require('styled-components');
-var _styled__default = _interopDefault(_styled);
+var objectWithoutProperties = require('./objectWithoutProperties-c6d3675c.js');
+var _extends$1 = require('./extends-023d783e.js');
+var slicedToArray = require('./slicedToArray-a8a77f0e.js');
 var getPrototypeOf = require('./getPrototypeOf-55c9e80c.js');
-require('./color.js');
-var components = require('./components.js');
-var miscellaneous = require('./miscellaneous.js');
-var environment = require('./environment.js');
+var defineProperty$1 = require('./defineProperty-3cad0327.js');
+var _styled = require('styled-components');
+var React = require('react');
+var proptypes = require('./proptypes-316e1def.js');
+var web = require('./web-46d746d6.js');
+var RootPortal = require('./RootPortal.js');
+var Theme = require('./Theme.js');
+var Root = require('./Root-07f851a6.js');
 var keycodes = require('./keycodes.js');
 var constants = require('./constants.js');
 var springs = require('./springs.js');
-require('./theme-dark.js');
-require('./theme-light.js');
-var Theme = require('./Theme.js');
-var _extends$1 = require('./extends-023d783e.js');
-var objectWithoutProperties = require('./objectWithoutProperties-c6d3675c.js');
+var environment = require('./environment.js');
+var components = require('./components.js');
+var miscellaneous = require('./miscellaneous.js');
+require('./unsupportedIterableToArray-f175acfa.js');
+require('./_commonjsHelpers-1b94f6bc.js');
+require('./index-37353731.js');
 require('./objectWithoutPropertiesLoose-1af20ad0.js');
 require('react-dom');
-var web = require('./web-d0294535.js');
-var Root = require('./Root-fd39454b.js');
-var RootPortal = require('./RootPortal.js');
-var proptypes = require('./proptypes-b2a781f4.js');
+require('./theme-dark.js');
+require('./theme-light.js');
+require('./color.js');
+
+function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
+
+var _styled__default = /*#__PURE__*/_interopDefaultLegacy(_styled);
+var React__default = /*#__PURE__*/_interopDefaultLegacy(React);
 
 /**!
  * @fileOverview Kickass library to create and place poppers near their reference elements.
@@ -2658,12 +2659,12 @@ function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflec
 
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
 
-var _StyledAnimatedDiv = _styled__default(web.extendedAnimated.div).withConfig({
+var _StyledAnimatedDiv = _styled__default['default'](web.extendedAnimated.div).withConfig({
   displayName: "Popover___StyledAnimatedDiv",
   componentId: "sc-1hohxqp-0"
 })(["position:absolute;top:0;left:0;"]);
 
-var _StyledAnimatedDiv2 = _styled__default(web.extendedAnimated.div).withConfig({
+var _StyledAnimatedDiv2 = _styled__default['default'](web.extendedAnimated.div).withConfig({
   displayName: "Popover___StyledAnimatedDiv2",
   componentId: "sc-1hohxqp-1"
 })(["background:", ";border:1px solid ", ";border-radius:", "px;filter:drop-shadow(0 4px 4px rgba(0,0,0,0.15));&:focus{outline:0;}overflow-y:auto;"], function (p) {
@@ -2688,9 +2689,9 @@ var PopoverBase = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call.apply(_super, [this].concat(args));
 
-    defineProperty$1.defineProperty(getPrototypeOf.assertThisInitialized(_this), "_cardElement", /*#__PURE__*/React__default.createRef());
+    defineProperty$1.defineProperty(getPrototypeOf.assertThisInitialized(_this), "_cardElement", /*#__PURE__*/React__default['default'].createRef());
 
-    defineProperty$1.defineProperty(getPrototypeOf.assertThisInitialized(_this), "_popperElement", /*#__PURE__*/React__default.createRef());
+    defineProperty$1.defineProperty(getPrototypeOf.assertThisInitialized(_this), "_popperElement", /*#__PURE__*/React__default['default'].createRef());
 
     defineProperty$1.defineProperty(getPrototypeOf.assertThisInitialized(_this), "_document", null);
 
@@ -2864,12 +2865,12 @@ var PopoverBase = /*#__PURE__*/function (_React$Component) {
           maxWidth = _this$boundaryDimensi2[0],
           maxHeight = _this$boundaryDimensi2[1];
 
-      return /*#__PURE__*/React__default.createElement(_StyledAnimatedDiv, {
+      return /*#__PURE__*/React__default['default'].createElement(_StyledAnimatedDiv, {
         ref: this._popperElement,
         style: {
           zIndex: zIndex
         }
-      }, /*#__PURE__*/React__default.createElement(_StyledAnimatedDiv2, _extends$1._extends_1({
+      }, /*#__PURE__*/React__default['default'].createElement(_StyledAnimatedDiv2, _extends$1._extends_1({
         tabIndex: "0",
         onBlur: this.handleBlur,
         ref: this._cardElement,
@@ -2889,7 +2890,7 @@ var PopoverBase = /*#__PURE__*/function (_React$Component) {
   }]);
 
   return PopoverBase;
-}(React__default.Component);
+}(React__default['default'].Component);
 
 defineProperty$1.defineProperty(PopoverBase, "propTypes", {
   children: proptypes.ExtendedPropTypes.node,
@@ -2922,7 +2923,7 @@ function Popover(_ref2) {
 
   var theme = Theme.useTheme();
   var root = Root.useRoot();
-  return /*#__PURE__*/React__default.createElement(RootPortal.default, null, /*#__PURE__*/React__default.createElement(web.Transition, {
+  return /*#__PURE__*/React__default['default'].createElement(RootPortal['default'], null, /*#__PURE__*/React__default['default'].createElement(web.Transition, {
     items: visible,
     config: springs.springs.swift,
     from: {
@@ -2940,7 +2941,7 @@ function Popover(_ref2) {
     native: true
   }, function (visible) {
     return visible && function (transitionStyles) {
-      return /*#__PURE__*/React__default.createElement(PopoverBase, _extends$1._extends_1({}, props, {
+      return /*#__PURE__*/React__default['default'].createElement(PopoverBase, _extends$1._extends_1({}, props, {
         rootBoundary: root,
         theme: theme,
         transitionStyles: transitionStyles

@@ -2,8 +2,8 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-require('./miscellaneous.js');
 var environment = require('./environment.js');
+require('./miscellaneous.js');
 
 // generic names in our components.
 

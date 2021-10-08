@@ -3,9 +3,9 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 
 var slicedToArray = require('./slicedToArray-a8a77f0e.js');
+var dayjs_min = require('./dayjs.min-ac79806e.js');
 require('./unsupportedIterableToArray-f175acfa.js');
 require('./_commonjsHelpers-1b94f6bc.js');
-var dayjs_min = require('./dayjs.min-ac79806e.js');
 
 var UNITS = [['years', 'year'], ['months', 'month'], ['days', 'day'], ['hours', 'hour'], ['minutes', 'minute'], ['seconds', 'second']];
 var DEFAULT_UNITS = ['years', 'months', 'days', 'hours', 'minutes', 'seconds']; // Return the difference between two dates, per unit.

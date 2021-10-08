@@ -2,29 +2,30 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
-
+var defineProperty = require('./defineProperty-3cad0327.js');
+var objectWithoutProperties = require('./objectWithoutProperties-c6d3675c.js');
+var React = require('react');
+var index = require('./index-37353731.js');
+var Distribution = require('./Distribution.js');
+var environment = require('./environment.js');
+require('./_commonjsHelpers-1b94f6bc.js');
+require('styled-components');
+require('./Theme.js');
 require('./slicedToArray-a8a77f0e.js');
 require('./unsupportedIterableToArray-f175acfa.js');
-var React = require('react');
-var React__default = _interopDefault(React);
-require('./_commonjsHelpers-1b94f6bc.js');
-var index = require('./index-46d0e707.js');
-var defineProperty = require('./defineProperty-3cad0327.js');
-require('./toConsumableArray-cc0d28a9.js');
-require('styled-components');
-require('./getPrototypeOf-55c9e80c.js');
-require('./color.js');
-require('./miscellaneous.js');
-var environment = require('./environment.js');
-require('./font.js');
-require('./constants.js');
-require('./text-styles.js');
 require('./theme-dark.js');
 require('./theme-light.js');
-require('./Theme.js');
-var objectWithoutProperties = require('./objectWithoutProperties-c6d3675c.js');
-var Distribution = require('./Distribution.js');
+require('./color.js');
+require('./getPrototypeOf-55c9e80c.js');
+require('./toConsumableArray-cc0d28a9.js');
+require('./constants.js');
+require('./text-styles.js');
+require('./font.js');
+require('./miscellaneous.js');
+
+function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
+
+var React__default = /*#__PURE__*/_interopDefaultLegacy(React);
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
@@ -53,7 +54,7 @@ function PartitionBar(_ref) {
       percentage: percentage
     };
   });
-  return /*#__PURE__*/React__default.createElement(Distribution.default, {
+  return /*#__PURE__*/React__default['default'].createElement(Distribution['default'], {
     items: items,
     renderFullLegendItem: renderFullLegendItem,
     colors: colors

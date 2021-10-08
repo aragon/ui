@@ -1,12 +1,12 @@
-import React$1, { useMemo } from 'react';
+import _extends_1 from '../../../node_modules/@babel/runtime/helpers/extends.js';
+import objectWithoutProperties from '../../../node_modules/@babel/runtime/helpers/objectWithoutProperties.js';
+import _styled from 'styled-components';
+import React, { useMemo } from 'react';
 import propTypes from '../../../node_modules/prop-types/index.js';
-import _styled$1 from 'styled-components';
+import { useTheme } from '../../theme/Theme2.js';
 import { unselectable } from '../../utils/css.js';
 import { GU } from '../../style/constants.js';
 import { textStyle } from '../../style/text-styles.js';
-import { useTheme } from '../../theme/Theme2.js';
-import _extends_1 from '../../../node_modules/@babel/runtime/helpers/extends.js';
-import objectWithoutProperties$1 from '../../../node_modules/@babel/runtime/helpers/objectWithoutProperties.js';
 
 var MODE_INDICATOR = 'indicator';
 var MODE_IDENTIFIER = 'identifier';
@@ -87,7 +87,7 @@ function useLabel(_ref2) {
   return finalLabel;
 }
 
-var _StyledSpan = _styled$1("span").withConfig({
+var _StyledSpan = _styled("span").withConfig({
   displayName: "Tag___StyledSpan",
   componentId: "sc-875dmt-0"
 })(["display:inline-flex;align-items:center;justify-content:center;white-space:nowrap;", ";", ";color:", ";background:", ";", ";"], function (p) {
@@ -100,14 +100,14 @@ var _StyledSpan = _styled$1("span").withConfig({
   return p._css4;
 }, unselectable);
 
-var _StyledSpan2 = _styled$1("span").withConfig({
+var _StyledSpan2 = _styled("span").withConfig({
   displayName: "Tag___StyledSpan2",
   componentId: "sc-875dmt-1"
 })(["display:flex;align-items:center;margin-right:", "px;"], function (p) {
   return p._css5;
 });
 
-var _StyledSpan3 = _styled$1("span").withConfig({
+var _StyledSpan3 = _styled("span").withConfig({
   displayName: "Tag___StyledSpan3",
   componentId: "sc-875dmt-2"
 })(["overflow:hidden;text-overflow:ellipsis;margin-top:", ";"], function (p) {
@@ -124,7 +124,7 @@ function Tag(_ref3) {
       mode = _ref3.mode,
       size = _ref3.size,
       uppercase = _ref3.uppercase,
-      props = objectWithoutProperties$1(_ref3, ["background", "children", "color", "limitDigits", "icon", "label", "mode", "size", "uppercase"]);
+      props = objectWithoutProperties(_ref3, ["background", "children", "color", "limitDigits", "icon", "label", "mode", "size", "uppercase"]);
 
   if ((icon || label !== undefined) && children !== undefined) {
     throw new Error('Tag: you cannot use icon or label with children.');
@@ -146,14 +146,14 @@ function Tag(_ref3) {
   // to make the characters look more aligned.
 
   var alignmentCorrection = finalSize === SIZE_NORMAL && (uppercase || typeof label === 'number' || limitDigits !== false);
-  return /*#__PURE__*/React$1.createElement(_StyledSpan, _extends_1({}, props, {
+  return /*#__PURE__*/React.createElement(_StyledSpan, _extends_1({}, props, {
     _css: sizeStyles,
     _css2: !uppercase ? 'text-transform: unset' : '',
     _css3: color || modeProps.color,
     _css4: background || modeProps.background
-  }), icon && /*#__PURE__*/React$1.createElement(_StyledSpan2, {
+  }), icon && /*#__PURE__*/React.createElement(_StyledSpan2, {
     _css5: finalLabel ? 0.25 * GU : 0
-  }, icon), /*#__PURE__*/React$1.createElement(_StyledSpan3, {
+  }, icon), /*#__PURE__*/React.createElement(_StyledSpan3, {
     _css6: alignmentCorrection ? '1px' : '0'
   }, finalLabel));
 }

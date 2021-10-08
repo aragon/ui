@@ -2,10 +2,10 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-require('./unsupportedIterableToArray-f175acfa.js');
+var getPrototypeOf = require('./getPrototypeOf-55c9e80c.js');
 var _commonjsHelpers = require('./_commonjsHelpers-1b94f6bc.js');
 var toConsumableArray = require('./toConsumableArray-cc0d28a9.js');
-var getPrototypeOf = require('./getPrototypeOf-55c9e80c.js');
+require('./unsupportedIterableToArray-f175acfa.js');
 
 function _isNativeFunction(fn) {
   return Function.toString.call(fn).indexOf("[native code]") !== -1;
@@ -13,7 +13,7 @@ function _isNativeFunction(fn) {
 
 var isNativeFunction = _isNativeFunction;
 
-function _isNativeReflectConstruct() {
+function _isNativeReflectConstruct$1() {
   if (typeof Reflect === "undefined" || !Reflect.construct) return false;
   if (Reflect.construct.sham) return false;
   if (typeof Proxy === "function") return true;
@@ -26,7 +26,7 @@ function _isNativeReflectConstruct() {
   }
 }
 
-var isNativeReflectConstruct = _isNativeReflectConstruct;
+var isNativeReflectConstruct = _isNativeReflectConstruct$1;
 
 var construct = _commonjsHelpers.createCommonjsModule(function (module) {
 function _construct(Parent, args, Class) {
@@ -87,9 +87,9 @@ function _wrapNativeSuper(Class) {
 module.exports = _wrapNativeSuper;
 });
 
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$1(); return function _createSuperInternal() { var Super = getPrototypeOf.getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = getPrototypeOf.getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return getPrototypeOf.possibleConstructorReturn(this, result); }; }
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = getPrototypeOf.getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = getPrototypeOf.getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return getPrototypeOf.possibleConstructorReturn(this, result); }; }
 
-function _isNativeReflectConstruct$1() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
 
 var RGB_HEX_RE = /^#?([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/;
 

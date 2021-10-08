@@ -1,24 +1,24 @@
-import slicedToArray$1 from '../../node_modules/@babel/runtime/helpers/slicedToArray.js';
+import slicedToArray from '../../node_modules/@babel/runtime/helpers/slicedToArray.js';
 import { useState, useEffect, useMemo } from 'react';
-import cachedMap$1 from '../lib/cached-map.js';
+import cachedMap from '../lib/cached-map.js';
 
-var srcCache = cachedMap$1(); // Check if a remote image exists and can be loaded within a specific amount of time.
+var srcCache = cachedMap(); // Check if a remote image exists and can be loaded within a specific amount of time.
 
 function useImageExists(src) {
   var timeUntilFallback = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 50;
 
   var _useState = useState(false),
-      _useState2 = slicedToArray$1(_useState, 2),
+      _useState2 = slicedToArray(_useState, 2),
       exists = _useState2[0],
       setExists = _useState2[1];
 
   var _useState3 = useState(true),
-      _useState4 = slicedToArray$1(_useState3, 2),
+      _useState4 = slicedToArray(_useState3, 2),
       loading = _useState4[0],
       setLoading = _useState4[1];
 
   var _useState5 = useState(false),
-      _useState6 = slicedToArray$1(_useState5, 2),
+      _useState6 = slicedToArray(_useState5, 2),
       displayFallback = _useState6[0],
       setDisplayFallback = _useState6[1];
 

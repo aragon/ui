@@ -2,9 +2,9 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-require('./_commonjsHelpers-1b94f6bc.js');
-var defineProperty$1 = require('./defineProperty-3cad0327.js');
+var defineProperty = require('./defineProperty-3cad0327.js');
 var dayjs_min = require('./dayjs.min-ac79806e.js');
+require('./_commonjsHelpers-1b94f6bc.js');
 
 function handleDateSelect(_ref) {
   var date = _ref.date,
@@ -59,7 +59,7 @@ function handleDateSelect(_ref) {
   }
 
   if (isValidDate) {
-    return defineProperty$1.defineProperty({}, startDate ? 'endDate' : 'startDate', date);
+    return defineProperty.defineProperty({}, startDate ? 'endDate' : 'startDate', date);
   }
 }
 

@@ -2,48 +2,49 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
-
 var slicedToArray = require('./slicedToArray-a8a77f0e.js');
-require('./unsupportedIterableToArray-f175acfa.js');
-var React = require('react');
-var React__default = _interopDefault(React);
-require('./_commonjsHelpers-1b94f6bc.js');
-var index = require('./index-46d0e707.js');
-require('./defineProperty-3cad0327.js');
-require('./toConsumableArray-cc0d28a9.js');
+var objectWithoutProperties = require('./objectWithoutProperties-c6d3675c.js');
 var _styled = require('styled-components');
-var _styled__default = _interopDefault(_styled);
-require('./getPrototypeOf-55c9e80c.js');
-require('./color.js');
-require('./css.js');
+var React = require('react');
+var index = require('./index-37353731.js');
 var dayjs_min = require('./dayjs.min-ac79806e.js');
+var MonthDay = require('./MonthDay-fdf848ef.js');
 var date = require('./date.js');
-require('./miscellaneous.js');
-require('./environment.js');
-require('./font.js');
-require('./keycodes.js');
 var constants = require('./constants.js');
-require('./text-styles.js');
+require('./unsupportedIterableToArray-f175acfa.js');
+require('./_commonjsHelpers-1b94f6bc.js');
+require('./extends-023d783e.js');
+require('./ButtonBase.js');
+require('./defineProperty-3cad0327.js');
+require('./FocusVisible.js');
+require('./getPrototypeOf-55c9e80c.js');
+require('./Theme.js');
 require('./theme-dark.js');
 require('./theme-light.js');
-require('./Theme.js');
-require('./extends-023d783e.js');
-var objectWithoutProperties = require('./objectWithoutProperties-c6d3675c.js');
-require('./index-f5a9917e.js');
-require('./FocusVisible.js');
-require('./ButtonBase.js');
-require('./IconPropTypes-dd9d2cb1.js');
+require('./environment.js');
+require('./miscellaneous.js');
+require('./color.js');
+require('./toConsumableArray-cc0d28a9.js');
+require('./keycodes.js');
+require('./css.js');
+require('./text-styles.js');
+require('./font.js');
 require('./IconLeft.js');
+require('./IconPropTypes-b9997416.js');
+require('./index-c33eeeef.js');
 require('./IconRight.js');
-var MonthDay = require('./MonthDay-c14d1e4a.js');
 
-var _StyledDiv = _styled__default("div").withConfig({
+function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
+
+var _styled__default = /*#__PURE__*/_interopDefaultLegacy(_styled);
+var React__default = /*#__PURE__*/_interopDefaultLegacy(React);
+
+var _StyledDiv = _styled__default['default']("div").withConfig({
   displayName: "DatePicker___StyledDiv",
   componentId: "sc-6xp23y-0"
 })(["display:grid;"]);
 
-var _StyledDiv2 = _styled__default("div").withConfig({
+var _StyledDiv2 = _styled__default['default']("div").withConfig({
   displayName: "DatePicker___StyledDiv2",
   componentId: "sc-6xp23y-1"
 })(["display:grid;grid-template:auto / repeat(7,1fr);width:", "px;"], function (p) {
@@ -94,7 +95,7 @@ function DatePicker(_ref) {
     }
   };
 
-  return /*#__PURE__*/React__default.createElement(_StyledDiv, props, !hideYearSelector && /*#__PURE__*/React__default.createElement(MonthDay.Selector, {
+  return /*#__PURE__*/React__default['default'].createElement(_StyledDiv, props, !hideYearSelector && /*#__PURE__*/React__default['default'].createElement(MonthDay.Selector, {
     prev: setDate({
       year: true,
       add: false
@@ -104,7 +105,7 @@ function DatePicker(_ref) {
       add: true
     }),
     small: true
-  }, selectedDayjs.format(yearFormat)), !hideMonthSelector && /*#__PURE__*/React__default.createElement(MonthDay.Selector, {
+  }, selectedDayjs.format(yearFormat)), !hideMonthSelector && /*#__PURE__*/React__default['default'].createElement(MonthDay.Selector, {
     prev: setDate({
       year: false,
       add: false
@@ -113,14 +114,14 @@ function DatePicker(_ref) {
       year: false,
       add: true
     })
-  }, selectedDayjs.format(!hideYearSelector ? monthFormat : monthYearFormat)), /*#__PURE__*/React__default.createElement(_StyledDiv2, {
+  }, selectedDayjs.format(!hideYearSelector ? monthFormat : monthYearFormat)), /*#__PURE__*/React__default['default'].createElement(_StyledDiv2, {
     _css: 31.5 * constants.GU
   }, !hideWeekDays && date.eachDayOfInterval({
     start: selectedDayjs.startOf('week'),
     end: selectedDayjs.endOf('week')
   }).map(function (day) {
     var dayJs = dayjs_min.dayjs_min(day);
-    return /*#__PURE__*/React__default.createElement(MonthDay.WrappedMonthDay, {
+    return /*#__PURE__*/React__default['default'].createElement(MonthDay.WrappedMonthDay, {
       key: dayJs.format('dd'),
       weekDay: true
     }, dayJs.format(weekDayFormat));
@@ -129,7 +130,7 @@ function DatePicker(_ref) {
     end: selectedDayjs.endOf('month').endOf('week')
   }).map(function (day) {
     var dayJs = dayjs_min.dayjs_min(day);
-    return /*#__PURE__*/React__default.createElement(MonthDay.WrappedMonthDay, {
+    return /*#__PURE__*/React__default['default'].createElement(MonthDay.WrappedMonthDay, {
       key: dayJs.valueOf(),
       disabled: !selectedDayjs.isSame(dayJs, 'month'),
       selected: isSelected(dayJs),

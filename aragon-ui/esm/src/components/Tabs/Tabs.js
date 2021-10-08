@@ -1,18 +1,18 @@
-import slicedToArray$1 from '../../../node_modules/@babel/runtime/helpers/slicedToArray.js';
-import React$1 from 'react';
-import propTypes from '../../../node_modules/prop-types/index.js';
-import _styled$1 from 'styled-components';
-import { noop } from '../../utils/miscellaneous.js';
-import { warnOnce } from '../../utils/environment.js';
 import _extends_1 from '../../../node_modules/@babel/runtime/helpers/extends.js';
+import slicedToArray from '../../../node_modules/@babel/runtime/helpers/slicedToArray.js';
+import _styled from 'styled-components';
+import React from 'react';
+import propTypes from '../../../node_modules/prop-types/index.js';
 import { useInside as o } from '../../../node_modules/use-inside/dist/index.js';
 import { useLayout } from '../Layout/Layout.js';
-import Bar$1 from '../Bar/Bar.js';
+import Bar from '../Bar/Bar.js';
 import TabBar$1 from './TabBarLegacy.js';
-import { TabsFullWidth as TabsFullWidth$1 } from './TabsFullWidth.js';
-import Tab$1 from './Tab.js';
+import { TabsFullWidth } from './TabsFullWidth.js';
+import Tab from './Tab.js';
+import { warnOnce } from '../../utils/environment.js';
+import { noop } from '../../utils/miscellaneous.js';
 
-var _StyledUl = _styled$1("ul").withConfig({
+var _StyledUl = _styled("ul").withConfig({
   displayName: "Tabs___StyledUl",
   componentId: "sc-1eu39ev-0"
 })(["display:flex"]);
@@ -21,8 +21,8 @@ function TabBar(_ref) {
   var items = _ref.items,
       selected = _ref.selected,
       onChange = _ref.onChange;
-  return /*#__PURE__*/React$1.createElement("nav", null, /*#__PURE__*/React$1.createElement(_StyledUl, null, items.map(function (item, i) {
-    return /*#__PURE__*/React$1.createElement(Tab$1, {
+  return /*#__PURE__*/React.createElement("nav", null, /*#__PURE__*/React.createElement(_StyledUl, null, items.map(function (item, i) {
+    return /*#__PURE__*/React.createElement(Tab, {
       key: i,
       index: i,
       item: item,
@@ -42,7 +42,7 @@ TabBar.defaultProps = {
   onChange: noop
 };
 
-var _StyledBar = _styled$1(Bar$1).withConfig({
+var _StyledBar = _styled(Bar).withConfig({
   displayName: "Tabs___StyledBar",
   componentId: "sc-1eu39ev-1"
 })(["overflow:hidden;", ""], function (p) {
@@ -54,11 +54,11 @@ function Tabs(props) {
       layoutName = _useLayout.layoutName;
 
   var _useInside = o('Bar'),
-      _useInside2 = slicedToArray$1(_useInside, 1),
+      _useInside2 = slicedToArray(_useInside, 1),
       insideBar = _useInside2[0];
 
   var _useInside3 = o('SidePanel'),
-      _useInside4 = slicedToArray$1(_useInside3, 1),
+      _useInside4 = slicedToArray(_useInside3, 1),
       insideSidePanel = _useInside4[0];
 
   if (insideBar) {
@@ -72,14 +72,14 @@ function Tabs(props) {
   }
 
   if (layoutName === 'small') {
-    return /*#__PURE__*/React$1.createElement(TabsFullWidth$1, _extends_1({}, props, {
+    return /*#__PURE__*/React.createElement(TabsFullWidth, _extends_1({}, props, {
       selected: selected
     }));
   }
 
-  return /*#__PURE__*/React$1.createElement(_StyledBar, {
+  return /*#__PURE__*/React.createElement(_StyledBar, {
     _css: insideSidePanel ? "\n            border-width: 0 0 1px 0;\n            border-radius: 0;\n          " : ''
-  }, /*#__PURE__*/React$1.createElement(TabBar, _extends_1({}, props, {
+  }, /*#__PURE__*/React.createElement(TabBar, _extends_1({}, props, {
     selected: selected
   })));
 }
@@ -88,18 +88,18 @@ Tabs.propTypes = TabBar.propTypes; // TabBar legacy compatibility
 
 function TabBarLegacyCompatibility(props) {
   var _useInside5 = o('AppBar'),
-      _useInside6 = slicedToArray$1(_useInside5, 1),
+      _useInside6 = slicedToArray(_useInside5, 1),
       insideAppBar = _useInside6[0]; // Use a separate component for Tabs in AppBar, to prevent breaking anything.
 
 
   if (insideAppBar) {
-    return /*#__PURE__*/React$1.createElement(TabBar$1, _extends_1({}, props, {
+    return /*#__PURE__*/React.createElement(TabBar$1, _extends_1({}, props, {
       inAppBar: true
     }));
   }
 
   warnOnce('TabBarLegacyCompatibility', 'TabBar is deprecated and was used outside of an AppBar. Please use the Tabs component instead.');
-  return /*#__PURE__*/React$1.createElement(Tabs, props);
+  return /*#__PURE__*/React.createElement(Tabs, props);
 }
 
 export default Tabs;

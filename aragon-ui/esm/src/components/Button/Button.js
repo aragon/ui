@@ -1,17 +1,17 @@
-import slicedToArray$1 from '../../../node_modules/@babel/runtime/helpers/slicedToArray.js';
-import React$1, { useMemo } from 'react';
-import propTypes from '../../../node_modules/prop-types/index.js';
-import _styled$1 from 'styled-components';
-import { unselectable } from '../../utils/css.js';
-import { warnOnce, warn } from '../../utils/environment.js';
-import { RADIUS, GU } from '../../style/constants.js';
-import { textStyle } from '../../style/text-styles.js';
-import { useTheme } from '../../theme/Theme2.js';
 import _extends_1 from '../../../node_modules/@babel/runtime/helpers/extends.js';
-import objectWithoutProperties$1 from '../../../node_modules/@babel/runtime/helpers/objectWithoutProperties.js';
+import slicedToArray from '../../../node_modules/@babel/runtime/helpers/slicedToArray.js';
+import objectWithoutProperties from '../../../node_modules/@babel/runtime/helpers/objectWithoutProperties.js';
+import _styled from 'styled-components';
+import React, { useMemo } from 'react';
+import propTypes from '../../../node_modules/prop-types/index.js';
 import { useInside as o, Inside as i } from '../../../node_modules/use-inside/dist/index.js';
 import { useLayout } from '../Layout/Layout.js';
 import ButtonBaseWithFocus from '../ButtonBase/ButtonBase.js';
+import { warnOnce, warn } from '../../utils/environment.js';
+import { useTheme } from '../../theme/Theme2.js';
+import { unselectable } from '../../utils/css.js';
+import { textStyle } from '../../style/text-styles.js';
+import { RADIUS, GU } from '../../style/constants.js';
 
 // See src/icons/icon-size.js for the corresponding icon sizes.
 
@@ -139,7 +139,7 @@ function modeStyles(theme, mode, disabled) {
   };
 }
 
-var _StyledButtonBase = _styled$1(ButtonBaseWithFocus).withConfig({
+var _StyledButtonBase = _styled(ButtonBaseWithFocus).withConfig({
   displayName: "Button___StyledButtonBase",
   componentId: "sc-8npd5h-0"
 })(["display:", ";align-items:center;justify-content:center;width:", ";height:", ";min-width:", ";padding:", ";", ";", ";background:", ";color:", ";white-space:nowrap;border:", ";box-shadow:", ";transition-property:transform,box-shadow;transition-duration:50ms;transition-timing-function:ease-in-out;&:active{transform:", ";box-shadow:", ";}"], function (p) {
@@ -168,7 +168,7 @@ var _StyledButtonBase = _styled$1(ButtonBaseWithFocus).withConfig({
   return p._css12;
 });
 
-var _StyledSpan = _styled$1("span").withConfig({
+var _StyledSpan = _styled("span").withConfig({
   displayName: "Button___StyledSpan",
   componentId: "sc-8npd5h-1"
 })(["position:relative;top:-1px;display:flex;color:", ";margin-right:", ";"], function (p) {
@@ -188,7 +188,7 @@ function Button(_ref) {
       mode = _ref.mode,
       size = _ref.size,
       wide = _ref.wide,
-      props = objectWithoutProperties$1(_ref, ["children", "disabled", "display", "icon", "iconOnly", "innerRef", "label", "mode", "size", "wide"]);
+      props = objectWithoutProperties(_ref, ["children", "disabled", "display", "icon", "iconOnly", "innerRef", "label", "mode", "size", "wide"]);
 
   // backward compatibility and deprecated props
   if (iconOnly) {
@@ -221,11 +221,11 @@ function Button(_ref) {
       layoutName = _useLayout.layoutName;
 
   var _useInside = o('EmptyStateCard'),
-      _useInside2 = slicedToArray$1(_useInside, 1),
+      _useInside2 = slicedToArray(_useInside, 1),
       insideEmptyStateCard = _useInside2[0];
 
   var _useInside3 = o('Header:secondary'),
-      _useInside4 = slicedToArray$1(_useInside3, 1),
+      _useInside4 = slicedToArray(_useInside3, 1),
       insideHeaderSecondary = _useInside4[0]; // Always wide + strong when used as an empty state card action
 
 
@@ -274,7 +274,7 @@ function Button(_ref) {
   var insideData = {
     size: size
   };
-  return /*#__PURE__*/React$1.createElement(_StyledButtonBase, _extends_1({
+  return /*#__PURE__*/React.createElement(_StyledButtonBase, _extends_1({
     ref: innerRef,
     focusRingSpacing: border === '0' ? 0 : 1,
     focusRingRadius: RADIUS,
@@ -292,16 +292,16 @@ function Button(_ref) {
     _css10: disabled ? 'none' : '0 1px 3px rgba(0, 0, 0, 0.1)',
     _css11: disabled ? 'none' : 'translateY(1px)',
     _css12: disabled ? 'none' : '0px 1px 2px rgba(0, 0, 0, 0.08)'
-  }), /*#__PURE__*/React$1.createElement(i, {
+  }), /*#__PURE__*/React.createElement(i, {
     name: "Button",
     data: insideData
-  }, children || /*#__PURE__*/React$1.createElement(React$1.Fragment, null, displayIcon && /*#__PURE__*/React$1.createElement(i, {
+  }, children || /*#__PURE__*/React.createElement(React.Fragment, null, displayIcon && /*#__PURE__*/React.createElement(i, {
     name: "Button:icon",
     data: insideData
-  }, /*#__PURE__*/React$1.createElement(_StyledSpan, {
+  }, /*#__PURE__*/React.createElement(_StyledSpan, {
     _css13: iconColor,
     _css14: middleSpace
-  }, icon)), displayLabel && /*#__PURE__*/React$1.createElement(i, {
+  }, icon)), displayLabel && /*#__PURE__*/React.createElement(i, {
     name: "Button:label",
     data: insideData
   }, label))));
@@ -329,14 +329,14 @@ Button.defaultProps = {
   size: 'medium',
   wide: false
 };
-var ButtonWithRef = /*#__PURE__*/React$1.forwardRef(function (props, ref) {
-  return /*#__PURE__*/React$1.createElement(Button, _extends_1({
+var ButtonWithRef = /*#__PURE__*/React.forwardRef(function (props, ref) {
+  return /*#__PURE__*/React.createElement(Button, _extends_1({
     innerRef: ref
   }, props));
 });
-ButtonWithRef.Anchor = /*#__PURE__*/React$1.forwardRef(function (props, ref) {
+ButtonWithRef.Anchor = /*#__PURE__*/React.forwardRef(function (props, ref) {
   warnOnce('Button.Anchor', 'Button.Anchor is deprecated: please use Button with a href prop instead.');
-  return /*#__PURE__*/React$1.createElement(ButtonWithRef, _extends_1({
+  return /*#__PURE__*/React.createElement(ButtonWithRef, _extends_1({
     ref: ref
   }, props));
 });

@@ -1,3 +1,3 @@
-import arrayWithHoles$1 from '../node_modules/@babel/runtime/helpers/arrayWithHoles.js';
+import arrayWithHoles from '../node_modules/@babel/runtime/helpers/arrayWithHoles.js';
 export { default } from '../node_modules/@babel/runtime/helpers/arrayWithHoles.js';
 //# sourceMappingURL=arrayWithHoles.js_commonjs-proxy.map

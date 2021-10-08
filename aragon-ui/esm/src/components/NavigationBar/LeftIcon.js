@@ -1,11 +1,11 @@
-import React$1 from 'react';
+import React from 'react';
 
 var LeftIcon = function LeftIcon() {
-  return /*#__PURE__*/React$1.createElement("svg", {
+  return /*#__PURE__*/React.createElement("svg", {
     width: "24",
     height: "19",
     viewBox: "0 0 24 19"
-  }, /*#__PURE__*/React$1.createElement("path", {
+  }, /*#__PURE__*/React.createElement("path", {
     d: "M21 10H4l6-6-6 6 6 6",
     stroke: "currentColor",
     strokeWidth: "1.5",

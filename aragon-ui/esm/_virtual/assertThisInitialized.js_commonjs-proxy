@@ -1,3 +1,3 @@
-import assertThisInitialized$1 from '../node_modules/@babel/runtime/helpers/assertThisInitialized.js';
+import assertThisInitialized from '../node_modules/@babel/runtime/helpers/assertThisInitialized.js';
 export { default } from '../node_modules/@babel/runtime/helpers/assertThisInitialized.js';
 //# sourceMappingURL=assertThisInitialized.js_commonjs-proxy.map

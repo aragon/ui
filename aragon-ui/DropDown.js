@@ -2,49 +2,50 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
-
-var slicedToArray = require('./slicedToArray-a8a77f0e.js');
-require('./unsupportedIterableToArray-f175acfa.js');
-var React = require('react');
-var React__default = _interopDefault(React);
-require('./_commonjsHelpers-1b94f6bc.js');
-var index = require('./index-46d0e707.js');
-require('./defineProperty-3cad0327.js');
-require('./toConsumableArray-cc0d28a9.js');
-var _styled = require('styled-components');
-var _styled__default = _interopDefault(_styled);
-require('./getPrototypeOf-55c9e80c.js');
-require('./color.js');
-require('./components.js');
-var css = require('./css.js');
-require('./miscellaneous.js');
-var environment = require('./environment.js');
-require('./font.js');
-require('./keycodes.js');
-var constants = require('./constants.js');
-require('./breakpoints.js');
-require('./springs.js');
-var textStyles = require('./text-styles.js');
-require('./theme-dark.js');
-require('./theme-light.js');
-var Theme = require('./Theme.js');
 var _extends = require('./extends-023d783e.js');
 var objectWithoutProperties = require('./objectWithoutProperties-c6d3675c.js');
-var index$1 = require('./index-f5a9917e.js');
-require('./_baseGetTag-42b4dd3e.js');
-var Viewport = require('./Viewport-abbde113.js');
-require('./FocusVisible.js');
+var slicedToArray = require('./slicedToArray-a8a77f0e.js');
+var _styled = require('styled-components');
+var React = require('react');
+var index$1 = require('./index-37353731.js');
+var index = require('./index-c33eeeef.js');
+var Viewport = require('./Viewport-71f7efe6.js');
 var ButtonBase = require('./ButtonBase.js');
-require('./IconPropTypes-dd9d2cb1.js');
+var Popover = require('./Popover.js');
+var Theme = require('./Theme.js');
 var IconDown = require('./IconDown.js');
+var environment = require('./environment.js');
+var constants = require('./constants.js');
+var textStyles = require('./text-styles.js');
+var css = require('./css.js');
+require('./_commonjsHelpers-1b94f6bc.js');
+require('./unsupportedIterableToArray-f175acfa.js');
+require('./getPrototypeOf-55c9e80c.js');
+require('./defineProperty-3cad0327.js');
+require('./_baseGetTag-6ec23aaa.js');
+require('./breakpoints.js');
+require('./FocusVisible.js');
+require('./keycodes.js');
+require('./theme-dark.js');
+require('./theme-light.js');
+require('./color.js');
+require('./toConsumableArray-cc0d28a9.js');
+require('./miscellaneous.js');
+require('./font.js');
+require('./proptypes-316e1def.js');
+require('./web-46d746d6.js');
 require('./objectWithoutPropertiesLoose-1af20ad0.js');
 require('react-dom');
-require('./web-d0294535.js');
-require('./Root-fd39454b.js');
 require('./RootPortal.js');
-require('./proptypes-b2a781f4.js');
-var Popover = require('./Popover.js');
+require('./Root-07f851a6.js');
+require('./springs.js');
+require('./components.js');
+require('./IconPropTypes-b9997416.js');
+
+function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
+
+var _styled__default = /*#__PURE__*/_interopDefaultLegacy(_styled);
+var React__default = /*#__PURE__*/_interopDefaultLegacy(React);
 
 var MIN_WIDTH = 128;
 
@@ -52,9 +53,9 @@ function useDropDown(_ref) {
   var buttonRef = _ref.buttonRef,
       items = _ref.items,
       displayedLabel = _ref.displayedLabel,
-      onChange = _ref.onChange,
-      placeholder = _ref.placeholder,
-      selected = _ref.selected;
+      onChange = _ref.onChange;
+      _ref.placeholder;
+      var selected = _ref.selected;
 
   var _useState = React.useState(displayedLabel),
       _useState2 = slicedToArray.slicedToArray(_useState, 2),
@@ -117,7 +118,7 @@ function useButtonRef(cb) {
   };
 }
 
-var _StyledButtonBase = _styled__default(ButtonBase.default).withConfig({
+var _StyledButtonBase = _styled__default['default'](ButtonBase['default']).withConfig({
   displayName: "DropDown___StyledButtonBase",
   componentId: "sc-17zpefi-0"
 })(["display:", ";justify-content:space-between;align-items:center;height:", "px;padding-left:", "px;padding-right:", "px;width:", ";min-width:", ";background:", ";color:", ";border:", "px solid ", ";", ";", ""], function (p) {
@@ -146,12 +147,12 @@ var _StyledButtonBase = _styled__default(ButtonBase.default).withConfig({
   return p._css12;
 });
 
-var _StyledDiv = _styled__default("div").withConfig({
+var _StyledDiv = _styled__default['default']("div").withConfig({
   displayName: "DropDown___StyledDiv",
   componentId: "sc-17zpefi-1"
 })(["overflow:hidden;"]);
 
-var _StyledIconDown = _styled__default(IconDown.default).withConfig({
+var _StyledIconDown = _styled__default['default'](IconDown['default']).withConfig({
   displayName: "DropDown___StyledIconDown",
   componentId: "sc-17zpefi-2"
 })(["margin-left:", "px;color:", ";"], function (p) {
@@ -160,12 +161,12 @@ var _StyledIconDown = _styled__default(IconDown.default).withConfig({
   return p._css14;
 });
 
-var _StyledDiv2 = _styled__default("div").withConfig({
+var _StyledDiv2 = _styled__default['default']("div").withConfig({
   displayName: "DropDown___StyledDiv2",
   componentId: "sc-17zpefi-3"
 })(["position:absolute;top:-100vh;left:-100vw;opacity:0;visibility:hidden;"]);
 
-var DropDown = /*#__PURE__*/React__default.memo(function DropDown(_ref2) {
+var DropDown = /*#__PURE__*/React__default['default'].memo(function DropDown(_ref2) {
   var disabled = _ref2.disabled,
       header = _ref2.header,
       items = _ref2.items,
@@ -266,9 +267,9 @@ var DropDown = /*#__PURE__*/React__default.memo(function DropDown(_ref2) {
 
   var closedWithChanges = !opened && selectedIndex !== -1;
   var Label = renderLabel;
-  return /*#__PURE__*/React__default.createElement(index$1.i, {
+  return /*#__PURE__*/React__default['default'].createElement(index.i, {
     name: "DropDown"
-  }, /*#__PURE__*/React__default.createElement(_StyledButtonBase, _extends._extends_1({
+  }, /*#__PURE__*/React__default['default'].createElement(_StyledButtonBase, _extends._extends_1({
     ref: refCallback,
     disabled: disabled,
     onClick: toggle,
@@ -287,23 +288,23 @@ var DropDown = /*#__PURE__*/React__default.memo(function DropDown(_ref2) {
     _css10: closedWithChanges ? theme.selected : theme.border,
     _css11: textStyles.textStyle('body2'),
     _css12: disabled ? 'font-weight: 600;' : "\n              &:active {\n                background: ".concat(theme.surfacePressed, ";\n              }\n            ")
-  }), /*#__PURE__*/React__default.createElement(_StyledDiv, null, /*#__PURE__*/React__default.createElement(Label, {
+  }), /*#__PURE__*/React__default['default'].createElement(_StyledDiv, null, /*#__PURE__*/React__default['default'].createElement(Label, {
     selectedIndex: selectedIndex,
     selectedLabel: selectedLabel
-  })), /*#__PURE__*/React__default.createElement(_StyledIconDown, {
+  })), /*#__PURE__*/React__default['default'].createElement(_StyledIconDown, {
     size: "tiny",
     _css13: 1.5 * constants.GU,
     _css14: disabled ? theme.disabledIcon : closedWithChanges ? theme.accent : theme.surfaceIcon
-  })), measureWidth && /*#__PURE__*/React__default.createElement(_StyledDiv2, null, /*#__PURE__*/React__default.createElement(PopoverContent, {
+  })), measureWidth && /*#__PURE__*/React__default['default'].createElement(_StyledDiv2, null, /*#__PURE__*/React__default['default'].createElement(PopoverContent, {
     refCallback: popoverRefCallback,
     buttonWidth: buttonWidth,
     header: header,
     items: items
-  })), /*#__PURE__*/React__default.createElement(Popover.default, {
+  })), /*#__PURE__*/React__default['default'].createElement(Popover['default'], {
     onClose: close,
     opener: buttonRef.current,
     visible: opened
-  }, /*#__PURE__*/React__default.createElement(PopoverContent, {
+  }, /*#__PURE__*/React__default['default'].createElement(PopoverContent, {
     buttonWidth: buttonWidth,
     header: header,
     items: items,
@@ -312,18 +313,18 @@ var DropDown = /*#__PURE__*/React__default.memo(function DropDown(_ref2) {
   })));
 });
 DropDown.propTypes = {
-  disabled: index.propTypes.bool,
-  header: index.propTypes.node,
-  items: index.propTypes.arrayOf(index.propTypes.node).isRequired,
-  onChange: index.propTypes.func.isRequired,
-  placeholder: index.propTypes.node,
-  renderLabel: index.propTypes.func,
-  selected: index.propTypes.number,
-  wide: index.propTypes.bool,
-  width: index.propTypes.string,
+  disabled: index$1.propTypes.bool,
+  header: index$1.propTypes.node,
+  items: index$1.propTypes.arrayOf(index$1.propTypes.node).isRequired,
+  onChange: index$1.propTypes.func.isRequired,
+  placeholder: index$1.propTypes.node,
+  renderLabel: index$1.propTypes.func,
+  selected: index$1.propTypes.number,
+  wide: index$1.propTypes.bool,
+  width: index$1.propTypes.string,
   // deprecated
-  active: index.propTypes.number,
-  label: index.propTypes.string
+  active: index$1.propTypes.number,
+  label: index$1.propTypes.string
 };
 DropDown.defaultProps = {
   placeholder: 'Select an item',
@@ -334,7 +335,7 @@ DropDown.defaultProps = {
   wide: false
 };
 
-var _StyledDiv3 = _styled__default("div").withConfig({
+var _StyledDiv3 = _styled__default['default']("div").withConfig({
   displayName: "DropDown___StyledDiv3",
   componentId: "sc-17zpefi-4"
 })(["min-width:", "px;color:", ";"], function (p) {
@@ -343,7 +344,7 @@ var _StyledDiv3 = _styled__default("div").withConfig({
   return p._css16;
 });
 
-var _StyledDiv4 = _styled__default("div").withConfig({
+var _StyledDiv4 = _styled__default['default']("div").withConfig({
   displayName: "DropDown___StyledDiv4",
   componentId: "sc-17zpefi-5"
 })(["padding:", "px ", "px ", "px;", ";", ";"], function (p) {
@@ -356,12 +357,12 @@ var _StyledDiv4 = _styled__default("div").withConfig({
   return p._css20;
 }, css.unselectable);
 
-var _StyledUl = _styled__default("ul").withConfig({
+var _StyledUl = _styled__default['default']("ul").withConfig({
   displayName: "DropDown___StyledUl",
   componentId: "sc-17zpefi-6"
 })(["margin:0;padding:0;list-style:none;width:100%;"]);
 
-var PopoverContent = /*#__PURE__*/React__default.memo(function PopoverContent(_ref4) {
+var PopoverContent = /*#__PURE__*/React__default['default'].memo(function PopoverContent(_ref4) {
   var refCallback = _ref4.refCallback,
       buttonWidth = _ref4.buttonWidth,
       header = _ref4.header,
@@ -369,20 +370,20 @@ var PopoverContent = /*#__PURE__*/React__default.memo(function PopoverContent(_r
       handleItemSelect = _ref4.handleItemSelect,
       selectedIndex = _ref4.selectedIndex;
   var theme = Theme.useTheme();
-  return /*#__PURE__*/React__default.createElement(_StyledDiv3, {
+  return /*#__PURE__*/React__default['default'].createElement(_StyledDiv3, {
     _css15: buttonWidth,
     _css16: theme.surfaceContentSecondary
-  }, header && /*#__PURE__*/React__default.createElement(_StyledDiv4, {
+  }, header && /*#__PURE__*/React__default['default'].createElement(_StyledDiv4, {
     _css17: 1.5 * constants.GU,
     _css18: 2 * constants.GU,
     _css19: 1.25 * constants.GU,
     _css20: textStyles.textStyle('label2')
-  }, header), /*#__PURE__*/React__default.createElement(_StyledUl, {
+  }, header), /*#__PURE__*/React__default['default'].createElement(_StyledUl, {
     ref: refCallback
-  }, /*#__PURE__*/React__default.createElement(index$1.i, {
+  }, /*#__PURE__*/React__default['default'].createElement(index.i, {
     name: "DropDown:menu"
   }, items.map(function (item, index) {
-    return /*#__PURE__*/React__default.createElement(Item, {
+    return /*#__PURE__*/React__default['default'].createElement(Item, {
       key: index,
       index: index,
       onSelect: handleItemSelect,
@@ -395,12 +396,12 @@ var PopoverContent = /*#__PURE__*/React__default.memo(function PopoverContent(_r
   }))));
 });
 PopoverContent.propTypes = {
-  refCallback: index.propTypes.func.isRequired,
-  buttonWidth: index.propTypes.number.isRequired,
-  header: index.propTypes.node,
-  items: index.propTypes.array.isRequired,
-  handleItemSelect: index.propTypes.func.isRequired,
-  selectedIndex: index.propTypes.number.isRequired
+  refCallback: index$1.propTypes.func.isRequired,
+  buttonWidth: index$1.propTypes.number.isRequired,
+  header: index$1.propTypes.node,
+  items: index$1.propTypes.array.isRequired,
+  handleItemSelect: index$1.propTypes.func.isRequired,
+  selectedIndex: index$1.propTypes.number.isRequired
 };
 PopoverContent.defaultProps = {
   refCallback: function refCallback() {
@@ -412,7 +413,7 @@ PopoverContent.defaultProps = {
   selectedIndex: -1
 };
 
-var _StyledButtonBase2 = _styled__default(ButtonBase.default).withConfig({
+var _StyledButtonBase2 = _styled__default['default'](ButtonBase['default']).withConfig({
   displayName: "DropDown___StyledButtonBase2",
   componentId: "sc-17zpefi-7"
 })(["width:100%;text-align:left;padding:", "px ", "px;border-radius:0;color:", ";", ";", " ", " ", " &:active{background:", ";}"], function (p) {
@@ -433,7 +434,7 @@ var _StyledButtonBase2 = _styled__default(ButtonBase.default).withConfig({
   return p._css28;
 });
 
-var Item = /*#__PURE__*/React__default.memo(function Item(_ref5) {
+var Item = /*#__PURE__*/React__default['default'].memo(function Item(_ref5) {
   var header = _ref5.header,
       index = _ref5.index,
       item = _ref5.item,
@@ -444,7 +445,7 @@ var Item = /*#__PURE__*/React__default.memo(function Item(_ref5) {
   var handleClick = React.useCallback(function () {
     onSelect(index);
   }, [index, onSelect]);
-  return /*#__PURE__*/React__default.createElement("li", null, /*#__PURE__*/React__default.createElement(_StyledButtonBase2, {
+  return /*#__PURE__*/React__default['default'].createElement("li", null, /*#__PURE__*/React__default['default'].createElement(_StyledButtonBase2, {
     onClick: handleClick,
     _css21: 1.25 * constants.GU,
     _css22: 2 * constants.GU,
@@ -457,13 +458,13 @@ var Item = /*#__PURE__*/React__default.memo(function Item(_ref5) {
   }, item));
 });
 Item.propTypes = {
-  header: index.propTypes.node,
-  index: index.propTypes.number.isRequired,
-  item: index.propTypes.node.isRequired,
-  length: index.propTypes.number.isRequired,
-  onSelect: index.propTypes.func.isRequired,
-  selected: index.propTypes.number.isRequired,
-  theme: index.propTypes.object.isRequired
+  header: index$1.propTypes.node,
+  index: index$1.propTypes.number.isRequired,
+  item: index$1.propTypes.node.isRequired,
+  length: index$1.propTypes.number.isRequired,
+  onSelect: index$1.propTypes.func.isRequired,
+  selected: index$1.propTypes.number.isRequired,
+  theme: index$1.propTypes.object.isRequired
 };
 
 exports.default = DropDown;

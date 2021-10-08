@@ -2,39 +2,40 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
-
+var _extends = require('./extends-023d783e.js');
 var slicedToArray = require('./slicedToArray-a8a77f0e.js');
-require('./unsupportedIterableToArray-f175acfa.js');
-var React = require('react');
-var React__default = _interopDefault(React);
-require('./_commonjsHelpers-1b94f6bc.js');
-var index = require('./index-46d0e707.js');
-require('./defineProperty-3cad0327.js');
-require('./toConsumableArray-cc0d28a9.js');
+var objectWithoutProperties = require('./objectWithoutProperties-c6d3675c.js');
 var _styled = require('styled-components');
-var _styled__default = _interopDefault(_styled);
-require('./getPrototypeOf-55c9e80c.js');
-require('./color.js');
-var css = require('./css.js');
-require('./miscellaneous.js');
+var React = require('react');
+var index = require('./index-37353731.js');
+var index$1 = require('./index-c33eeeef.js');
+var Layout = require('./Layout.js');
+var ButtonBase = require('./ButtonBase.js');
 var environment = require('./environment.js');
-require('./font.js');
-require('./keycodes.js');
-var constants = require('./constants.js');
-require('./breakpoints.js');
+var Theme = require('./Theme.js');
+var css = require('./css.js');
 var textStyles = require('./text-styles.js');
+var constants = require('./constants.js');
+require('./_commonjsHelpers-1b94f6bc.js');
+require('./unsupportedIterableToArray-f175acfa.js');
+require('./defineProperty-3cad0327.js');
+require('./Viewport-71f7efe6.js');
+require('./getPrototypeOf-55c9e80c.js');
+require('./_baseGetTag-6ec23aaa.js');
+require('./breakpoints.js');
+require('./FocusVisible.js');
+require('./keycodes.js');
+require('./miscellaneous.js');
 require('./theme-dark.js');
 require('./theme-light.js');
-var Theme = require('./Theme.js');
-var _extends = require('./extends-023d783e.js');
-var objectWithoutProperties = require('./objectWithoutProperties-c6d3675c.js');
-var index$1 = require('./index-f5a9917e.js');
-require('./_baseGetTag-42b4dd3e.js');
-require('./Viewport-abbde113.js');
-var Layout = require('./Layout.js');
-require('./FocusVisible.js');
-var ButtonBase = require('./ButtonBase.js');
+require('./color.js');
+require('./toConsumableArray-cc0d28a9.js');
+require('./font.js');
+
+function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
+
+var _styled__default = /*#__PURE__*/_interopDefaultLegacy(_styled);
+var React__default = /*#__PURE__*/_interopDefaultLegacy(React);
 
 // See src/icons/icon-size.js for the corresponding icon sizes.
 
@@ -162,7 +163,7 @@ function modeStyles(theme, mode, disabled) {
   };
 }
 
-var _StyledButtonBase = _styled__default(ButtonBase.default).withConfig({
+var _StyledButtonBase = _styled__default['default'](ButtonBase['default']).withConfig({
   displayName: "Button___StyledButtonBase",
   componentId: "sc-8npd5h-0"
 })(["display:", ";align-items:center;justify-content:center;width:", ";height:", ";min-width:", ";padding:", ";", ";", ";background:", ";color:", ";white-space:nowrap;border:", ";box-shadow:", ";transition-property:transform,box-shadow;transition-duration:50ms;transition-timing-function:ease-in-out;&:active{transform:", ";box-shadow:", ";}"], function (p) {
@@ -191,7 +192,7 @@ var _StyledButtonBase = _styled__default(ButtonBase.default).withConfig({
   return p._css12;
 });
 
-var _StyledSpan = _styled__default("span").withConfig({
+var _StyledSpan = _styled__default['default']("span").withConfig({
   displayName: "Button___StyledSpan",
   componentId: "sc-8npd5h-1"
 })(["position:relative;top:-1px;display:flex;color:", ";margin-right:", ";"], function (p) {
@@ -297,7 +298,7 @@ function Button(_ref) {
   var insideData = {
     size: size
   };
-  return /*#__PURE__*/React__default.createElement(_StyledButtonBase, _extends._extends_1({
+  return /*#__PURE__*/React__default['default'].createElement(_StyledButtonBase, _extends._extends_1({
     ref: innerRef,
     focusRingSpacing: border === '0' ? 0 : 1,
     focusRingRadius: constants.RADIUS,
@@ -315,16 +316,16 @@ function Button(_ref) {
     _css10: disabled ? 'none' : '0 1px 3px rgba(0, 0, 0, 0.1)',
     _css11: disabled ? 'none' : 'translateY(1px)',
     _css12: disabled ? 'none' : '0px 1px 2px rgba(0, 0, 0, 0.08)'
-  }), /*#__PURE__*/React__default.createElement(index$1.i, {
+  }), /*#__PURE__*/React__default['default'].createElement(index$1.i, {
     name: "Button",
     data: insideData
-  }, children || /*#__PURE__*/React__default.createElement(React__default.Fragment, null, displayIcon && /*#__PURE__*/React__default.createElement(index$1.i, {
+  }, children || /*#__PURE__*/React__default['default'].createElement(React__default['default'].Fragment, null, displayIcon && /*#__PURE__*/React__default['default'].createElement(index$1.i, {
     name: "Button:icon",
     data: insideData
-  }, /*#__PURE__*/React__default.createElement(_StyledSpan, {
+  }, /*#__PURE__*/React__default['default'].createElement(_StyledSpan, {
     _css13: iconColor,
     _css14: middleSpace
-  }, icon)), displayLabel && /*#__PURE__*/React__default.createElement(index$1.i, {
+  }, icon)), displayLabel && /*#__PURE__*/React__default['default'].createElement(index$1.i, {
     name: "Button:label",
     data: insideData
   }, label))));
@@ -352,14 +353,14 @@ Button.defaultProps = {
   size: 'medium',
   wide: false
 };
-var ButtonWithRef = /*#__PURE__*/React__default.forwardRef(function (props, ref) {
-  return /*#__PURE__*/React__default.createElement(Button, _extends._extends_1({
+var ButtonWithRef = /*#__PURE__*/React__default['default'].forwardRef(function (props, ref) {
+  return /*#__PURE__*/React__default['default'].createElement(Button, _extends._extends_1({
     innerRef: ref
   }, props));
 });
-ButtonWithRef.Anchor = /*#__PURE__*/React__default.forwardRef(function (props, ref) {
+ButtonWithRef.Anchor = /*#__PURE__*/React__default['default'].forwardRef(function (props, ref) {
   environment.warnOnce('Button.Anchor', 'Button.Anchor is deprecated: please use Button with a href prop instead.');
-  return /*#__PURE__*/React__default.createElement(ButtonWithRef, _extends._extends_1({
+  return /*#__PURE__*/React__default['default'].createElement(ButtonWithRef, _extends._extends_1({
     ref: ref
   }, props));
 });

@@ -1,22 +1,21 @@
-import React$1 from 'react';
-import propTypes from '../../../node_modules/prop-types/index.js';
-import defineProperty$1 from '../../../node_modules/@babel/runtime/helpers/defineProperty.js';
-import _styled$1 from 'styled-components';
-import classCallCheck$1 from '../../../node_modules/@babel/runtime/helpers/classCallCheck.js';
-import createClass$1 from '../../../node_modules/@babel/runtime/helpers/createClass.js';
-import inherits$1 from '../../../node_modules/@babel/runtime/helpers/inherits.js';
-import assertThisInitialized$1 from '../../../node_modules/@babel/runtime/helpers/assertThisInitialized.js';
-import possibleConstructorReturn$1 from '../../../node_modules/@babel/runtime/helpers/possibleConstructorReturn.js';
-import getPrototypeOf$1 from '../../../node_modules/@babel/runtime/helpers/getPrototypeOf.js';
-import { unselectable } from '../../utils/css.js';
-import '../../utils/environment.js';
-import { springs as springs$1 } from '../../style/springs.js';
-import { useTheme } from '../../theme/Theme2.js';
 import _extends_1 from '../../../node_modules/@babel/runtime/helpers/extends.js';
-import objectWithoutProperties$1 from '../../../node_modules/@babel/runtime/helpers/objectWithoutProperties.js';
+import objectWithoutProperties from '../../../node_modules/@babel/runtime/helpers/objectWithoutProperties.js';
+import classCallCheck from '../../../node_modules/@babel/runtime/helpers/classCallCheck.js';
+import createClass from '../../../node_modules/@babel/runtime/helpers/createClass.js';
+import assertThisInitialized from '../../../node_modules/@babel/runtime/helpers/assertThisInitialized.js';
+import inherits from '../../../node_modules/@babel/runtime/helpers/inherits.js';
+import possibleConstructorReturn from '../../../node_modules/@babel/runtime/helpers/possibleConstructorReturn.js';
+import getPrototypeOf from '../../../node_modules/@babel/runtime/helpers/getPrototypeOf.js';
+import defineProperty from '../../../node_modules/@babel/runtime/helpers/defineProperty.js';
+import _styled from 'styled-components';
+import React from 'react';
+import propTypes from '../../../node_modules/prop-types/index.js';
 import { animated as extendedAnimated, Spring } from '../../../node_modules/react-spring/web.js';
+import { useTheme } from '../../theme/Theme2.js';
+import { unselectable } from '../../utils/css.js';
+import { springs } from '../../style/springs.js';
 
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = getPrototypeOf$1(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = getPrototypeOf$1(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return possibleConstructorReturn$1(this, result); }; }
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return possibleConstructorReturn(this, result); }; }
 
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
 var BAR_HEIGHT = 6;
@@ -38,19 +37,19 @@ var DEFAULT_RECT = typeof window === 'undefined' || typeof window.DOMRect !== 'f
   left: 0
 } : new window.DOMRect();
 
-var _StyledDiv = _styled$1("div").withConfig({
+var _StyledDiv = _styled("div").withConfig({
   displayName: "Slider___StyledDiv",
   componentId: "sc-94djfe-0"
 })(["min-width:", "px;padding:0 ", "px;", ";"], MIN_WIDTH, function (p) {
   return p._css;
 }, unselectable);
 
-var _StyledDiv2 = _styled$1("div").withConfig({
+var _StyledDiv2 = _styled("div").withConfig({
   displayName: "Slider___StyledDiv2",
   componentId: "sc-94djfe-1"
 })(["position:relative;height:", "px;cursor:pointer;"], HEIGHT);
 
-var _StyledAnimatedDiv = _styled$1(extendedAnimated.div).withConfig({
+var _StyledAnimatedDiv = _styled(extendedAnimated.div).withConfig({
   displayName: "Slider___StyledAnimatedDiv",
   componentId: "sc-94djfe-2"
 })(["position:absolute;top:50%;left:0;width:", "px;height:", "px;border:1px solid ", ";border-radius:50%;cursor:pointer;pointer-events:auto;"], HANDLE_SIZE, HANDLE_SIZE, function (p) {
@@ -58,14 +57,14 @@ var _StyledAnimatedDiv = _styled$1(extendedAnimated.div).withConfig({
 });
 
 var Slider = /*#__PURE__*/function (_React$Component) {
-  inherits$1(Slider, _React$Component);
+  inherits(Slider, _React$Component);
 
   var _super = _createSuper(Slider);
 
   function Slider() {
     var _this;
 
-    classCallCheck$1(this, Slider);
+    classCallCheck(this, Slider);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
@@ -73,16 +72,16 @@ var Slider = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call.apply(_super, [this].concat(args));
 
-    defineProperty$1(assertThisInitialized$1(_this), "state", {
+    defineProperty(assertThisInitialized(_this), "state", {
       pressed: false
     });
 
-    defineProperty$1(assertThisInitialized$1(_this), "handleRef", function (element) {
+    defineProperty(assertThisInitialized(_this), "handleRef", function (element) {
       _this._mainElement = element;
       _this._document = element && element.ownerDocument;
     });
 
-    defineProperty$1(assertThisInitialized$1(_this), "getRect", function () {
+    defineProperty(assertThisInitialized(_this), "getRect", function () {
       var now = Date.now(); // Cache the rect if the last poll was less than a second ago
 
       if (_this._lastRect && now - _this._lastRectTime < 1000) {
@@ -94,7 +93,7 @@ var Slider = /*#__PURE__*/function (_React$Component) {
       return _this._lastRect;
     });
 
-    defineProperty$1(assertThisInitialized$1(_this), "dragStart", function (event) {
+    defineProperty(assertThisInitialized(_this), "dragStart", function (event) {
       _this.dragStop();
 
       var clientX = _this.clientXFromEvent(event);
@@ -114,7 +113,7 @@ var Slider = /*#__PURE__*/function (_React$Component) {
       _this._document.addEventListener('touchmove', _this.dragMove);
     });
 
-    defineProperty$1(assertThisInitialized$1(_this), "dragStop", function () {
+    defineProperty(assertThisInitialized(_this), "dragStop", function () {
       _this.setState({
         pressed: false
       });
@@ -128,7 +127,7 @@ var Slider = /*#__PURE__*/function (_React$Component) {
       _this._document.removeEventListener('touchmove', _this.dragMove);
     });
 
-    defineProperty$1(assertThisInitialized$1(_this), "dragMove", function (event) {
+    defineProperty(assertThisInitialized(_this), "dragMove", function (event) {
       if (!_this.state.pressed) {
         return;
       }
@@ -139,7 +138,7 @@ var Slider = /*#__PURE__*/function (_React$Component) {
     return _this;
   }
 
-  createClass$1(Slider, [{
+  createClass(Slider, [{
     key: "componentWillUnmount",
     value: function componentWillUnmount() {
       this.dragStop();
@@ -196,15 +195,15 @@ var Slider = /*#__PURE__*/function (_React$Component) {
 
       var pressed = this.state.pressed;
 
-      var _this$props = this.props,
-          onUpdate = _this$props.onUpdate,
-          value = _this$props.value,
+      var _this$props = this.props;
+          _this$props.onUpdate;
+          var value = _this$props.value,
           theme = _this$props.theme,
-          props = objectWithoutProperties$1(_this$props, ["onUpdate", "value", "theme"]);
+          props = objectWithoutProperties(_this$props, ["onUpdate", "value", "theme"]);
 
-      return /*#__PURE__*/React$1.createElement(Spring, {
+      return /*#__PURE__*/React.createElement(Spring, {
         native: true,
-        config: springs$1.swift,
+        config: springs.swift,
         to: {
           pressProgress: Number(pressed),
           value: Math.max(0, Math.min(1, value))
@@ -212,20 +211,20 @@ var Slider = /*#__PURE__*/function (_React$Component) {
       }, function (_ref) {
         var value = _ref.value,
             pressProgress = _ref.pressProgress;
-        return /*#__PURE__*/React$1.createElement(_StyledDiv, _extends_1({}, props, {
+        return /*#__PURE__*/React.createElement(_StyledDiv, _extends_1({}, props, {
           _css: HANDLE_SIZE / 2 + PADDING
-        }), /*#__PURE__*/React$1.createElement(_StyledDiv2, {
+        }), /*#__PURE__*/React.createElement(_StyledDiv2, {
           ref: _this2.handleRef,
           onMouseDown: _this2.dragStart,
           onTouchStart: _this2.dragStart
-        }, /*#__PURE__*/React$1.createElement(Bars, null, /*#__PURE__*/React$1.createElement(_StyledBar, {
+        }, /*#__PURE__*/React.createElement(Bars, null, /*#__PURE__*/React.createElement(_StyledBar, {
           _css2: theme.surfaceUnder
-        }), /*#__PURE__*/React$1.createElement(_StyledBar2, {
+        }), /*#__PURE__*/React.createElement(_StyledBar2, {
           style: _this2.getActiveBarStyles(value, pressProgress),
           _css3: theme.selected
-        })), /*#__PURE__*/React$1.createElement(HandleClip, null, /*#__PURE__*/React$1.createElement(HandlePosition, {
+        })), /*#__PURE__*/React.createElement(HandleClip, null, /*#__PURE__*/React.createElement(HandlePosition, {
           style: _this2.getHandlePositionStyles(value, pressProgress)
-        }, /*#__PURE__*/React$1.createElement(_StyledAnimatedDiv, {
+        }, /*#__PURE__*/React.createElement(_StyledAnimatedDiv, {
           style: _this2.getHandleStyles(pressProgress),
           _css4: theme.border
         })))));
@@ -234,53 +233,53 @@ var Slider = /*#__PURE__*/function (_React$Component) {
   }]);
 
   return Slider;
-}(React$1.Component);
+}(React.Component);
 
-defineProperty$1(Slider, "propTypes", {
+defineProperty(Slider, "propTypes", {
   value: propTypes.number,
   onUpdate: propTypes.func,
   theme: propTypes.object
 });
 
-defineProperty$1(Slider, "defaultProps", {
+defineProperty(Slider, "defaultProps", {
   value: 0,
   onUpdate: function onUpdate() {}
 });
 
-var Bars = _styled$1(extendedAnimated.div).withConfig({
+var Bars = _styled(extendedAnimated.div).withConfig({
   displayName: "Slider__Bars",
   componentId: "sc-94djfe-3"
 })(["position:absolute;left:0;right:0;top:50%;transform:translateY(-50%);overflow:hidden;border-radius:2px;height:", "px;"], BAR_HEIGHT);
-var Bar = _styled$1(extendedAnimated.div).withConfig({
+var Bar = _styled(extendedAnimated.div).withConfig({
   displayName: "Slider__Bar",
   componentId: "sc-94djfe-4"
 })(["position:absolute;top:0;left:0;right:0;bottom:0;"]);
 
-var _StyledBar2 = _styled$1(Bar).withConfig({
+var _StyledBar2 = _styled(Bar).withConfig({
   displayName: "Slider___StyledBar2",
   componentId: "sc-94djfe-5"
 })(["transform-origin:0 0;background:", ";"], function (p) {
   return p._css3;
 });
 
-var _StyledBar = _styled$1(Bar).withConfig({
+var _StyledBar = _styled(Bar).withConfig({
   displayName: "Slider___StyledBar",
   componentId: "sc-94djfe-6"
 })(["background:", ";"], function (p) {
   return p._css2;
 });
 
-var HandleClip = _styled$1.div.withConfig({
+var HandleClip = _styled.div.withConfig({
   displayName: "Slider__HandleClip",
   componentId: "sc-94djfe-7"
 })(["pointer-events:none;overflow:hidden;width:calc(100% + ", "px);height:calc(100% + ", "px);transform-origin:50% 50%;transform:translate( -", "px,-", "px );"], HANDLE_SIZE + HANDLE_SHADOW_MARGIN * 2, HANDLE_SHADOW_MARGIN * 2, HANDLE_SIZE / 2 + HANDLE_SHADOW_MARGIN, HANDLE_SHADOW_MARGIN);
-var HandlePosition = _styled$1(extendedAnimated.div).withConfig({
+var HandlePosition = _styled(extendedAnimated.div).withConfig({
   displayName: "Slider__HandlePosition",
   componentId: "sc-94djfe-8"
 })(["width:calc(100% - ", "px);height:100%;transform-origin:50% 50%;"], HANDLE_SIZE + HANDLE_SHADOW_MARGIN * 2);
 var Slider$1 = (function (props) {
   var theme = useTheme();
-  return /*#__PURE__*/React$1.createElement(Slider, _extends_1({
+  return /*#__PURE__*/React.createElement(Slider, _extends_1({
     theme: theme
   }, props));
 });

@@ -1,15 +1,15 @@
-import React$1, { useCallback } from 'react';
+import defineProperty from '../../../node_modules/@babel/runtime/helpers/defineProperty.js';
+import _styled from 'styled-components';
+import React, { useCallback } from 'react';
 import propTypes from '../../../node_modules/prop-types/index.js';
-import defineProperty$1 from '../../../node_modules/@babel/runtime/helpers/defineProperty.js';
-import _styled$1 from 'styled-components';
-import { warnOnce } from '../../utils/environment.js';
-import { clamp } from '../../utils/math.js';
-import { useTheme } from '../../theme/Theme2.js';
 import { animated as extendedAnimated, Spring } from '../../../node_modules/react-spring/web.js';
+import { useTheme } from '../../theme/Theme2.js';
+import { clamp } from '../../utils/math.js';
+import { warnOnce } from '../../utils/environment.js';
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { defineProperty$1(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 var STROKE_WIDTH = 4;
 var SIZE_DEFAULT = 80;
 
@@ -30,7 +30,7 @@ function labelDefault(animValue, value) {
 }
 
 function labelCompat(parts) {
-  if (typeof parts === 'string' || typeof parts === 'number' || /*#__PURE__*/React$1.isValidElement(parts)) {
+  if (typeof parts === 'string' || typeof parts === 'number' || /*#__PURE__*/React.isValidElement(parts)) {
     warnOnce('CircleGraph:label:string', 'CircleGraph: the function passed to the label should not ' + 'return a React node anymore: please check the CircleGraph documentation.');
     return {
       value: String(parts)
@@ -40,7 +40,7 @@ function labelCompat(parts) {
   return parts;
 }
 
-var _StyledDiv = _styled$1("div").withConfig({
+var _StyledDiv = _styled("div").withConfig({
   displayName: "CircleGraph___StyledDiv",
   componentId: "sc-2a8gt2-0"
 })(["position:relative;display:flex;align-items:center;justify-content center;width:", "px;height:", "px;"], function (p) {
@@ -49,39 +49,39 @@ var _StyledDiv = _styled$1("div").withConfig({
   return p._css2;
 });
 
-var _StyledSvg = _styled$1("svg").withConfig({
+var _StyledSvg = _styled("svg").withConfig({
   displayName: "CircleGraph___StyledSvg",
   componentId: "sc-2a8gt2-1"
 })(["position:absolute;top:0;left:0;"]);
 
-var _StyledAnimatedCircle = _styled$1(extendedAnimated.circle).withConfig({
+var _StyledAnimatedCircle = _styled(extendedAnimated.circle).withConfig({
   displayName: "CircleGraph___StyledAnimatedCircle",
   componentId: "sc-2a8gt2-2"
 })(["transform:rotate(270deg);transform-origin:50% 50%;"]);
 
-var _StyledDiv2 = _styled$1("div").withConfig({
+var _StyledDiv2 = _styled("div").withConfig({
   displayName: "CircleGraph___StyledDiv2",
   componentId: "sc-2a8gt2-3"
 })(["display:flex;flex-direction:column;justify-content:center;align-items:center;line-height:1.2;"]);
 
-var _StyledDiv3 = _styled$1("div").withConfig({
+var _StyledDiv3 = _styled("div").withConfig({
   displayName: "CircleGraph___StyledDiv3",
   componentId: "sc-2a8gt2-4"
 })(["position:absolute;top:50%;left:0;right:0;transform:translateY(-50%);"]);
 
-var _StyledDiv4 = _styled$1("div").withConfig({
+var _StyledDiv4 = _styled("div").withConfig({
   displayName: "CircleGraph___StyledDiv4",
   componentId: "sc-2a8gt2-5"
 })(["display:flex;align-items:baseline;justify-content:center;"]);
 
-var _StyledAnimatedDiv = _styled$1(extendedAnimated.div).withConfig({
+var _StyledAnimatedDiv = _styled(extendedAnimated.div).withConfig({
   displayName: "CircleGraph___StyledAnimatedDiv",
   componentId: "sc-2a8gt2-6"
 })(["display:flex;color:", ";"], function (p) {
   return p._css3;
 });
 
-var _StyledAnimatedDiv2 = _styled$1(extendedAnimated.div).withConfig({
+var _StyledAnimatedDiv2 = _styled(extendedAnimated.div).withConfig({
   displayName: "CircleGraph___StyledAnimatedDiv2",
   componentId: "sc-2a8gt2-7"
 })(["position:absolute;top:100%;left:0;right:0;display:flex;justify-content:center;color:", ";"], function (p) {
@@ -116,21 +116,21 @@ function CircleGraph(_ref) {
   var colorFn = typeof color === 'function' ? color : function () {
     return color || theme.accent;
   };
-  return /*#__PURE__*/React$1.createElement(Spring, {
+  return /*#__PURE__*/React.createElement(Spring, {
     to: {
       progressValue: value
     },
     native: true
   }, function (_ref2) {
     var progressValue = _ref2.progressValue;
-    return /*#__PURE__*/React$1.createElement(_StyledDiv, {
+    return /*#__PURE__*/React.createElement(_StyledDiv, {
       _css: size,
       _css2: size
-    }, /*#__PURE__*/React$1.createElement(_StyledSvg, {
+    }, /*#__PURE__*/React.createElement(_StyledSvg, {
       width: size,
       height: size,
       viewBox: "0 0 ".concat(size, " ").concat(size)
-    }, /*#__PURE__*/React$1.createElement("circle", {
+    }, /*#__PURE__*/React.createElement("circle", {
       cx: size / 2,
       cy: size / 2,
       r: radius,
@@ -139,7 +139,7 @@ function CircleGraph(_ref) {
       },
       fill: "none",
       stroke: theme.border
-    }), /*#__PURE__*/React$1.createElement(_StyledAnimatedCircle, {
+    }), /*#__PURE__*/React.createElement(_StyledAnimatedCircle, {
       cx: size / 2,
       cy: size / 2,
       r: radius,
@@ -153,20 +153,20 @@ function CircleGraph(_ref) {
           return length - length * t / 2;
         })
       }
-    })), /*#__PURE__*/React$1.createElement(_StyledDiv2, null, typeof label !== 'function' ? label : label && /*#__PURE__*/React$1.createElement(_StyledDiv3, null, /*#__PURE__*/React$1.createElement(_StyledDiv4, null, /*#__PURE__*/React$1.createElement(extendedAnimated.div, {
+    })), /*#__PURE__*/React.createElement(_StyledDiv2, null, typeof label !== 'function' ? label : label && /*#__PURE__*/React.createElement(_StyledDiv3, null, /*#__PURE__*/React.createElement(_StyledDiv4, null, /*#__PURE__*/React.createElement(extendedAnimated.div, {
       style: {
         fontSize: "".concat(size * 0.2, "px")
       }
-    }, progressValue.interpolate(labelPart('prefix'))), /*#__PURE__*/React$1.createElement(extendedAnimated.div, {
+    }, progressValue.interpolate(labelPart('prefix'))), /*#__PURE__*/React.createElement(extendedAnimated.div, {
       style: {
         fontSize: "".concat(size * 0.25, "px")
       }
-    }, progressValue.interpolate(labelPart('value'))), /*#__PURE__*/React$1.createElement(_StyledAnimatedDiv, {
+    }, progressValue.interpolate(labelPart('value'))), /*#__PURE__*/React.createElement(_StyledAnimatedDiv, {
       style: {
         fontSize: "".concat(size * 0.13, "px")
       },
       _css3: theme.surfaceContentSecondary
-    }, progressValue.interpolate(labelPart('suffix')))), /*#__PURE__*/React$1.createElement(_StyledAnimatedDiv2, {
+    }, progressValue.interpolate(labelPart('suffix')))), /*#__PURE__*/React.createElement(_StyledAnimatedDiv2, {
       style: {
         fontSize: "".concat(size * 0.1, "px")
       },

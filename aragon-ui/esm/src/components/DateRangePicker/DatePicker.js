@@ -1,21 +1,20 @@
-import slicedToArray$1 from '../../../node_modules/@babel/runtime/helpers/slicedToArray.js';
-import React$1, { useState } from 'react';
+import slicedToArray from '../../../node_modules/@babel/runtime/helpers/slicedToArray.js';
+import objectWithoutProperties from '../../../node_modules/@babel/runtime/helpers/objectWithoutProperties.js';
+import _styled from 'styled-components';
+import React, { useState } from 'react';
 import propTypes from '../../../node_modules/prop-types/index.js';
-import _styled$1 from 'styled-components';
-import dayjs_min$1 from '../../../node_modules/dayjs/dayjs.min.js';
-import { eachDayOfInterval } from '../../utils/date.js';
-import '../../utils/environment.js';
-import { GU } from '../../style/constants.js';
-import objectWithoutProperties$1 from '../../../node_modules/@babel/runtime/helpers/objectWithoutProperties.js';
+import dayjs_min from '../../../node_modules/dayjs/dayjs.min.js';
 import { Selector } from './components.js';
 import WrappedMonthDay from './MonthDay.js';
+import { eachDayOfInterval } from '../../utils/date.js';
+import { GU } from '../../style/constants.js';
 
-var _StyledDiv = _styled$1("div").withConfig({
+var _StyledDiv = _styled("div").withConfig({
   displayName: "DatePicker___StyledDiv",
   componentId: "sc-6xp23y-0"
 })(["display:grid;"]);
 
-var _StyledDiv2 = _styled$1("div").withConfig({
+var _StyledDiv2 = _styled("div").withConfig({
   displayName: "DatePicker___StyledDiv2",
   componentId: "sc-6xp23y-1"
 })(["display:grid;grid-template:auto / repeat(7,1fr);width:", "px;"], function (p) {
@@ -34,10 +33,10 @@ function DatePicker(_ref) {
       monthYearFormat = _ref.monthYearFormat,
       hideWeekDays = _ref.hideWeekDays,
       weekDayFormat = _ref.weekDayFormat,
-      props = objectWithoutProperties$1(_ref, ["initialDate", "onSelect", "datesRangeStart", "datesRangeEnd", "hideYearSelector", "yearFormat", "hideMonthSelector", "monthFormat", "monthYearFormat", "hideWeekDays", "weekDayFormat"]);
+      props = objectWithoutProperties(_ref, ["initialDate", "onSelect", "datesRangeStart", "datesRangeEnd", "hideYearSelector", "yearFormat", "hideMonthSelector", "monthFormat", "monthYearFormat", "hideWeekDays", "weekDayFormat"]);
 
   var _useState = useState(initialDate),
-      _useState2 = slicedToArray$1(_useState, 2),
+      _useState2 = slicedToArray(_useState, 2),
       selectedDate = _useState2[0],
       setSelectedDate = _useState2[1];
 
@@ -45,12 +44,12 @@ function DatePicker(_ref) {
     var year = _ref2.year,
         add = _ref2.add;
     return function (event) {
-      setSelectedDate(dayjs_min$1(selectedDate).startOf('month')[add ? 'add' : 'subtract'](1, year ? 'year' : 'month').toDate());
+      setSelectedDate(dayjs_min(selectedDate).startOf('month')[add ? 'add' : 'subtract'](1, year ? 'year' : 'month').toDate());
     };
   };
 
-  var today = dayjs_min$1().startOf('day').toDate();
-  var selectedDayjs = dayjs_min$1(selectedDate || today);
+  var today = dayjs_min().startOf('day').toDate();
+  var selectedDayjs = dayjs_min(selectedDate || today);
 
   var isSelected = function isSelected(day) {
     if (datesRangeStart || datesRangeEnd) {
@@ -66,7 +65,7 @@ function DatePicker(_ref) {
     }
   };
 
-  return /*#__PURE__*/React$1.createElement(_StyledDiv, props, !hideYearSelector && /*#__PURE__*/React$1.createElement(Selector, {
+  return /*#__PURE__*/React.createElement(_StyledDiv, props, !hideYearSelector && /*#__PURE__*/React.createElement(Selector, {
     prev: setDate({
       year: true,
       add: false
@@ -76,7 +75,7 @@ function DatePicker(_ref) {
       add: true
     }),
     small: true
-  }, selectedDayjs.format(yearFormat)), !hideMonthSelector && /*#__PURE__*/React$1.createElement(Selector, {
+  }, selectedDayjs.format(yearFormat)), !hideMonthSelector && /*#__PURE__*/React.createElement(Selector, {
     prev: setDate({
       year: false,
       add: false
@@ -85,14 +84,14 @@ function DatePicker(_ref) {
       year: false,
       add: true
     })
-  }, selectedDayjs.format(!hideYearSelector ? monthFormat : monthYearFormat)), /*#__PURE__*/React$1.createElement(_StyledDiv2, {
+  }, selectedDayjs.format(!hideYearSelector ? monthFormat : monthYearFormat)), /*#__PURE__*/React.createElement(_StyledDiv2, {
     _css: 31.5 * GU
   }, !hideWeekDays && eachDayOfInterval({
     start: selectedDayjs.startOf('week'),
     end: selectedDayjs.endOf('week')
   }).map(function (day) {
-    var dayJs = dayjs_min$1(day);
-    return /*#__PURE__*/React$1.createElement(WrappedMonthDay, {
+    var dayJs = dayjs_min(day);
+    return /*#__PURE__*/React.createElement(WrappedMonthDay, {
       key: dayJs.format('dd'),
       weekDay: true
     }, dayJs.format(weekDayFormat));
@@ -100,8 +99,8 @@ function DatePicker(_ref) {
     start: selectedDayjs.startOf('month').startOf('week'),
     end: selectedDayjs.endOf('month').endOf('week')
   }).map(function (day) {
-    var dayJs = dayjs_min$1(day);
-    return /*#__PURE__*/React$1.createElement(WrappedMonthDay, {
+    var dayJs = dayjs_min(day);
+    return /*#__PURE__*/React.createElement(WrappedMonthDay, {
       key: dayJs.valueOf(),
       disabled: !selectedDayjs.isSame(dayJs, 'month'),
       selected: isSelected(dayJs),

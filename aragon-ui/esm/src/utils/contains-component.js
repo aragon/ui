@@ -1,8 +1,8 @@
-import slicedToArray$1 from '../../node_modules/@babel/runtime/helpers/slicedToArray.js';
-import React$1, { useState, useMemo, useContext, useEffect } from 'react';
+import slicedToArray from '../../node_modules/@babel/runtime/helpers/slicedToArray.js';
+import React, { useState, useMemo, useContext, useEffect } from 'react';
 
 function initContainsComponent() {
-  var ContainsContext = /*#__PURE__*/React$1.createContext({
+  var ContainsContext = /*#__PURE__*/React.createContext({
     contains: false
   });
   return {
@@ -13,7 +13,7 @@ function initContainsComponent() {
       var children = _ref.children;
 
       var _useState = useState(0),
-          _useState2 = slicedToArray$1(_useState, 2),
+          _useState2 = slicedToArray(_useState, 2),
           count = _useState2[0],
           setCount = _useState2[1];
 
@@ -27,7 +27,7 @@ function initContainsComponent() {
           contains: count > 0
         };
       }, [count]);
-      return /*#__PURE__*/React$1.createElement(ContainsContext.Provider, {
+      return /*#__PURE__*/React.createElement(ContainsContext.Provider, {
         value: contextValue
       }, children);
     },

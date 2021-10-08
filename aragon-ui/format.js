@@ -2,11 +2,11 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-var slicedToArray = require('./slicedToArray-a8a77f0e.js');
-require('./unsupportedIterableToArray-f175acfa.js');
 var toConsumableArray = require('./toConsumableArray-cc0d28a9.js');
+var slicedToArray = require('./slicedToArray-a8a77f0e.js');
 var math = require('./math-ecfd5d91.js');
 var characters = require('./characters.js');
+require('./unsupportedIterableToArray-f175acfa.js');
 
 /**
  * Formats an integer based on a limited range.

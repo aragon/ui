@@ -1,29 +1,29 @@
-import React$1 from 'react';
-import propTypes from '../../../node_modules/prop-types/index.js';
-import _styled$1 from 'styled-components';
 import _extends_1 from '../../../node_modules/@babel/runtime/helpers/extends.js';
-import objectWithoutProperties$1 from '../../../node_modules/@babel/runtime/helpers/objectWithoutProperties.js';
+import objectWithoutProperties from '../../../node_modules/@babel/runtime/helpers/objectWithoutProperties.js';
+import _styled from 'styled-components';
+import React from 'react';
+import propTypes from '../../../node_modules/prop-types/index.js';
+import AppBar from './AppBar.js';
 import { useRegisterAppView } from '../Main/Main.js';
-import AppBar$1 from './AppBar.js';
 
-var _StyledDiv = _styled$1("div").withConfig({
+var _StyledDiv = _styled("div").withConfig({
   displayName: "AppView___StyledDiv",
   componentId: "sm6g80-0"
 })(["display:flex;height:", ";flex-direction:column;align-items:stretch;justify-content:stretch;"], function (p) {
   return p.height;
 });
 
-var _StyledDiv2 = _styled$1("div").withConfig({
+var _StyledDiv2 = _styled("div").withConfig({
   displayName: "AppView___StyledDiv2",
   componentId: "sm6g80-1"
 })(["position:relative;z-index:2;flex-shrink:0;"]);
 
-var _StyledDiv3 = _styled$1("div").withConfig({
+var _StyledDiv3 = _styled("div").withConfig({
   displayName: "AppView___StyledDiv3",
   componentId: "sm6g80-2"
 })(["position:relative;z-index:1;height:100%;overflow:auto;"]);
 
-var _StyledDiv4 = _styled$1("div").withConfig({
+var _StyledDiv4 = _styled("div").withConfig({
   displayName: "AppView___StyledDiv4",
   componentId: "sm6g80-3"
 })(["display:flex;flex-direction:column;min-height:100%;padding:", ";"], function (_ref) {
@@ -38,16 +38,16 @@ function AppView(_ref2) {
       padding = _ref2.padding,
       tabs = _ref2.tabs,
       title = _ref2.title,
-      props = objectWithoutProperties$1(_ref2, ["appBar", "children", "height", "padding", "tabs", "title"]);
+      props = objectWithoutProperties(_ref2, ["appBar", "children", "height", "padding", "tabs", "title"]);
 
   // Notify Main that it contains this AppView
   useRegisterAppView();
-  return /*#__PURE__*/React$1.createElement(_StyledDiv, _extends_1({
+  return /*#__PURE__*/React.createElement(_StyledDiv, _extends_1({
     height: height
-  }, props), /*#__PURE__*/React$1.createElement(_StyledDiv2, null, appBar || /*#__PURE__*/React$1.createElement(AppBar$1, {
+  }, props), /*#__PURE__*/React.createElement(_StyledDiv2, null, appBar || /*#__PURE__*/React.createElement(AppBar, {
     title: title,
     tabs: tabs
-  })), /*#__PURE__*/React$1.createElement(_StyledDiv3, null, /*#__PURE__*/React$1.createElement(_StyledDiv4, {
+  })), /*#__PURE__*/React.createElement(_StyledDiv3, null, /*#__PURE__*/React.createElement(_StyledDiv4, {
     padding: padding
   }, children)));
 }

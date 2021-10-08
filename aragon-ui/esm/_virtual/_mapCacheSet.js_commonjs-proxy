@@ -1,3 +1,3 @@
-import _mapCacheSet$1 from '../node_modules/lodash/_mapCacheSet.js';
+import _mapCacheSet from '../node_modules/lodash/_mapCacheSet.js';
 export { default } from '../node_modules/lodash/_mapCacheSet.js';
 //# sourceMappingURL=_mapCacheSet.js_commonjs-proxy.map

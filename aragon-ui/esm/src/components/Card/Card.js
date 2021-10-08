@@ -1,14 +1,13 @@
-import slicedToArray$1 from '../../../node_modules/@babel/runtime/helpers/slicedToArray.js';
-import React$1 from 'react';
-import propTypes from '../../../node_modules/prop-types/index.js';
-import _styled$1, { css } from 'styled-components';
-import '../../utils/environment.js';
-import { RADIUS, GU } from '../../style/constants.js';
-import { useTheme } from '../../theme/Theme2.js';
 import _extends_1 from '../../../node_modules/@babel/runtime/helpers/extends.js';
-import objectWithoutProperties$1 from '../../../node_modules/@babel/runtime/helpers/objectWithoutProperties.js';
+import slicedToArray from '../../../node_modules/@babel/runtime/helpers/slicedToArray.js';
+import objectWithoutProperties from '../../../node_modules/@babel/runtime/helpers/objectWithoutProperties.js';
+import _styled, { css } from 'styled-components';
+import React from 'react';
+import propTypes from '../../../node_modules/prop-types/index.js';
 import { useInside as o } from '../../../node_modules/use-inside/dist/index.js';
 import ButtonBaseWithFocus from '../ButtonBase/ButtonBase.js';
+import { useTheme } from '../../theme/Theme2.js';
+import { RADIUS, GU } from '../../style/constants.js';
 
 var DEFAULT_WIDTH = 35 * GU;
 var DEFAULT_HEIGHT = 40 * GU;
@@ -25,7 +24,7 @@ function dimension(insideCardLayout, value, defaultValue) {
   return value === undefined ? defaultValue : value;
 }
 
-var _StyledDiv = _styled$1("div").withConfig({
+var _StyledDiv = _styled("div").withConfig({
   displayName: "Card___StyledDiv",
   componentId: "sc-13r75gj-0"
 })(["position:relative;width:", ";height:", ";background:", ";border:1px solid ", ";border-radius:", "px;cursor:", ";display:flex;flex-direction:column;align-items:center;justify-content:center;", ""], function (p) {
@@ -47,12 +46,12 @@ function Card(_ref) {
       width = _ref.width,
       height = _ref.height,
       onClick = _ref.onClick,
-      props = objectWithoutProperties$1(_ref, ["children", "width", "height", "onClick"]);
+      props = objectWithoutProperties(_ref, ["children", "width", "height", "onClick"]);
 
   var theme = useTheme();
 
   var _useInside = o('CardLayout'),
-      _useInside2 = slicedToArray$1(_useInside, 1),
+      _useInside2 = slicedToArray(_useInside, 1),
       insideCardLayout = _useInside2[0];
 
   var interactive = Boolean(onClick);
@@ -64,7 +63,7 @@ function Card(_ref) {
   } : {};
   var cssWidth = dimension(insideCardLayout, width, "".concat(DEFAULT_WIDTH, "px"));
   var cssHeight = dimension(insideCardLayout, height, "".concat(DEFAULT_HEIGHT, "px"));
-  return /*#__PURE__*/React$1.createElement(_StyledDiv, _extends_1({}, interactiveProps, props, {
+  return /*#__PURE__*/React.createElement(_StyledDiv, _extends_1({}, interactiveProps, props, {
     _css: cssWidth,
     _css2: cssHeight,
     _css3: theme.surface,
