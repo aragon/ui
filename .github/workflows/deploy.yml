@@ -61,7 +61,7 @@ jobs:
       run: |
         TEMP=$(mktemp -d)
         cp -R gallery/dist/* $TEMP
-        echo "::set-output name=temp:$TEMP"
+        echo "::set-output name=temp::$TEMP"
     - name: Checkout pages
       uses: actions/checkout@v2
       with:
