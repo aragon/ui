@@ -27,6 +27,8 @@ jobs:
     needs: [build]
     runs-on: ubuntu-latest
     steps:
+    - name: Checkout
+      uses: actions/checkout@v1
     - name: Release
       env:
         GITHUB_TOKEN: ${{ secrets.MERGE_RELEASE_GITHUB_TOKEN }}
@@ -37,6 +39,8 @@ jobs:
     needs: [build]
     runs-on: ubuntu-latest
     steps:
+    - name: Checkout
+      uses: actions/checkout@v1
     - name: Install, build & prepare
       run: |
         cd gallery
