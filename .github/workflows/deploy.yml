@@ -43,7 +43,11 @@ jobs:
       uses: actions/checkout@v1
     - name: Install, build & prepare
       run: |
+        yarn --frozen-lockfile
+        yarn build
+        yarn link
         cd gallery
+        yarn link @aragon/ui
         yarn --frozen-lockfile
         yarn build
         echo 'ui.aragon.org' > dist/CNAME
