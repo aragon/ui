@@ -29,6 +29,10 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v1
+    - name: build
+      run: |
+        yarn --frozen-lockfile
+        yarn build
     - name: Release
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -52,16 +56,23 @@ jobs:
         yarn build
         echo 'ui.aragon.org' > dist/CNAME
         cp public/favicon.svg dist
-    - name: Configure Git
-      run: |
-        git config user.name "$GITHUB_ACTOR"
-        git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
-    - name: Push to gh-pages
+    - name: save build away
+      id: temp
       run: |
         TEMP=$(mktemp -d)
         cp -R gallery/dist/* $TEMP
-        git checkout origin/gh-pages
-        cp -R $TEMP .
-        git add .
-        git commit -m "Updates"
-        git push
+        echo "::set-output name=temp:$TEMP"
+    - name: Checkout pages
+      uses: actions/checkout@v2
+      with:
+        ref: gh-pages
+        path: pages
+    - name: copy build
+      env:
+        TEMP: ${{ steps.temp.outputs.temp }}
+      run: |
+        cp -R $TEMP/* .
+    - name: commit and push
+      uses: actions-js/push@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
