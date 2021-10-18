@@ -12,10 +12,17 @@ function IconLeft({ size, ...props }) {
       viewBox="0 0 24 24"
       {...props}
     >
-      <path
-        fill="currentColor"
-        d="M15.777 18.392a.737.737 0 000-1.054L9.834 11.5l5.943-5.838a.737.737 0 000-1.055.77.77 0 00-1.074 0l-6.48 6.365a.737.737 0 000 1.055l6.48 6.365a.77.77 0 001.074 0z"
-      />
+      <g clipPath="url(#clip0_1:80)">
+        <path
+          fill="currentColor"
+          d="M7 12a1.533 1.533 0 01.52-1.153l7.435-6.54a1.231 1.231 0 011.626 1.848l-6.502 5.72a.167.167 0 000 .25l6.502 5.72a1.233 1.233 0 11-1.626 1.848l-7.432-6.538A1.54 1.54 0 017 12z"
+        />
+      </g>
+      <defs>
+        <clipPath id="clip0_1:80">
+          <path fill="#fff" d="M0 0h16v16H0z" transform="translate(4 4)" />
+        </clipPath>
+      </defs>
     </svg>
   )
 }
