@@ -162,11 +162,6 @@ const AdornmentTextInput = React.forwardRef(
             justify-content: center;
             color: ${theme.surfaceContentSecondary};
             ${adornmentPosition === 'end'
-              ? 'border-left'
-              : 'border-right'}: ${!removeBorder
-              ? `2px solid ${borderColor(theme, props.status)}`
-              : '0px'};
-            ${adornmentPosition === 'end'
               ? 'padding-left'
               : 'padding-right'}: ${adornmentPadding}px;
           `}
