@@ -1,12 +1,5 @@
 import React, { useState } from 'react'
-import {
-  GU,
-  RADIUS,
-  Button,
-  ButtonBase,
-  useTheme,
-  useLayout,
-} from '@aragon/ui'
+import { GU, RADIUS, Button, ButtonBase, useTheme, useLayout } from '@aragon/ui'
 import * as icons from '../all-icons'
 import { ToggleThemeButton } from '../components/current-theme'
 

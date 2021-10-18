@@ -2,7 +2,7 @@ import React from 'react'
 import useIconSize from '../icon-size'
 import IconPropTypes from '../IconPropTypes'
 
-function IconCross({ size, ...props }) {
+function IconDotMenu({ size, ...props }) {
   const sizeValue = useIconSize(size)
   return (
     <svg
@@ -14,12 +14,11 @@ function IconCross({ size, ...props }) {
     >
       <path
         fill="currentColor"
-        stroke="currentColor"
-        d="M12.663 12l5.2-5.2a.469.469 0 10-.663-.663l-5.2 5.2-5.2-5.2a.469.469 0 10-.663.663l5.2 5.2-5.2 5.2a.469.469 0 10.663.663l5.2-5.2 5.2 5.2a.467.467 0 00.663 0 .469.469 0 000-.663l-5.2-5.2z"
+        d="M12 8.333A2.167 2.167 0 1012 4a2.167 2.167 0 000 4.333zM12 14.167a2.167 2.167 0 100-4.334 2.167 2.167 0 000 4.334zM12 20a2.167 2.167 0 100-4.333A2.167 2.167 0 0012 20z"
       />
     </svg>
   )
 }
 
-IconCross.propTypes = IconPropTypes
-export default IconCross
+IconDotMenu.propTypes = IconPropTypes
+export default IconDotMenu
