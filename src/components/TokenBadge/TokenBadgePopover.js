@@ -34,7 +34,7 @@ const TokenBadgePopover = React.memo(function TokenBadgePopover({
           <AddressField address={address} />
         )
       }
-      link={etherscanUrl && <Link href={etherscanUrl}>See on Etherscan</Link>}
+      link={etherscanUrl && <Link href={etherscanUrl}>See on Explorer</Link>}
       onClose={onClose}
       opener={opener}
       title={title}

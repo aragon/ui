@@ -232,7 +232,7 @@ const DEMOS = new Map([
         ]}
         renderEntryActions={entry => (
           <ContextMenu>
-            <ContextMenuItem>Open on Etherscan</ContextMenuItem>
+            <ContextMenuItem>Open on Explorer</ContextMenuItem>
           </ContextMenu>
         )}
       />
@@ -285,7 +285,7 @@ const DEMOS = new Map([
         ]}
         renderEntryActions={() => (
           <ContextMenu>
-            <ContextMenuItem>Open on Etherscan</ContextMenuItem>
+            <ContextMenuItem>Open on Explorer</ContextMenuItem>
           </ContextMenu>
         )}
         renderEntryExpansion={([_, entities]) => {
@@ -359,7 +359,7 @@ const DEMOS = new Map([
         ]}
         renderEntryActions={() => (
           <ContextMenu>
-            <ContextMenuItem>Open on Etherscan</ContextMenuItem>
+            <ContextMenuItem>Open on Explorer</ContextMenuItem>
           </ContextMenu>
         )}
         renderEntryExpansion={([action, entities, manager, height]) => (
