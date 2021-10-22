@@ -83,7 +83,7 @@ const TransactionProgress = React.memo(function TransactionProgress({
             </div>
           )}
           <Link href={transactionHashUrl} css="text-decoration: none">
-            See on Etherscan
+            See on Explorer
           </Link>
         </div>
       </section>

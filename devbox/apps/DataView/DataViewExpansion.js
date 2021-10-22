@@ -61,7 +61,7 @@ function DataViewExpansion(props) {
       ]}
       renderEntryActions={() => (
         <ContextMenu>
-          <ContextMenuItem>Open on Etherscan</ContextMenuItem>
+          <ContextMenuItem>Open on Explorer</ContextMenuItem>
         </ContextMenu>
       )}
       renderEntryExpansion={([_, entities]) => {

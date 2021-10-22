@@ -23,7 +23,7 @@ const IdentityBadgePopover = React.memo(function IdentityBadgePopover({
   return (
     <BadgePopoverBase
       addressField={<AddressField address={address} />}
-      link={etherscanUrl && <Link href={etherscanUrl}>See on Etherscan</Link>}
+      link={etherscanUrl && <Link href={etherscanUrl}>See on Explorer</Link>}
       onClose={onClose}
       opener={opener}
       popoverAction={popoverAction}
