@@ -86,7 +86,7 @@ var IdentityBadgePopover = /*#__PURE__*/React__default['default'].memo(function 
     }),
     link: etherscanUrl && /*#__PURE__*/React__default['default'].createElement(Link['default'], {
       href: etherscanUrl
-    }, "See on Etherscan"),
+    }, "See on Explorer"),
     onClose: onClose,
     opener: opener,
     popoverAction: popoverAction,

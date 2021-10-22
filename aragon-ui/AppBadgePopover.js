@@ -89,7 +89,7 @@ var AppBadgePopover = /*#__PURE__*/React__default['default'].memo(function AppBa
     }),
     link: etherscanUrl && /*#__PURE__*/React__default['default'].createElement(Link['default'], {
       href: etherscanUrl
-    }, "See on Etherscan"),
+    }, "See on Explorer"),
     onClose: onClose,
     opener: opener,
     popoverAction: popoverAction,

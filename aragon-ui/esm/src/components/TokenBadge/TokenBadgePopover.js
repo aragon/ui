@@ -35,7 +35,7 @@ var TokenBadgePopover = /*#__PURE__*/React.memo(function TokenBadgePopover(_ref)
     }),
     link: etherscanUrl && /*#__PURE__*/React.createElement(Link, {
       href: etherscanUrl
-    }, "See on Etherscan"),
+    }, "See on Explorer"),
     onClose: onClose,
     opener: opener,
     title: title,

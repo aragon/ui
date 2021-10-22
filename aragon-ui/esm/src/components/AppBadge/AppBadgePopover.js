@@ -38,7 +38,7 @@ var AppBadgePopover = /*#__PURE__*/React.memo(function AppBadgePopover(_ref) {
     }),
     link: etherscanUrl && /*#__PURE__*/React.createElement(Link, {
       href: etherscanUrl
-    }, "See on Etherscan"),
+    }, "See on Explorer"),
     onClose: onClose,
     opener: opener,
     popoverAction: popoverAction,

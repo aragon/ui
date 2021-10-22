@@ -165,7 +165,7 @@ var TransactionProgress = /*#__PURE__*/React__default['default'].memo(function T
     _css11: 2 * constants.GU
   }, /*#__PURE__*/React__default['default'].createElement(Info['default'].Alert, null, "Slow transaction. Retry with more gas")), /*#__PURE__*/React__default['default'].createElement(_StyledLink, {
     href: transactionHashUrl
-  }, "See on Etherscan"))));
+  }, "See on Explorer"))));
 });
 TransactionProgress.propTypes = {
   endTime: proptypes.ExtendedPropTypes.instanceOf(Date),
