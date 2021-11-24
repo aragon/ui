@@ -39,7 +39,7 @@ export const POLYGONSCAN_TYPES = new Map([
 
 // ARBISCAN - Arbitrum
 export const ARBISCAN_NETWORK_TYPES = new Map([
-  ['polygon', ''],
+  ['arbitrum', ''],
   ['arbtest', 'testnet.'],
 ])
 export const ARBISCAN_TYPES = new Map([
