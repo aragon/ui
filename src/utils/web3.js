@@ -1,5 +1,15 @@
 import sha3 from 'js-sha3'
 import { warn } from './environment'
+import {
+  ARBISCAN_NETWORK_TYPES,
+  ARBISCAN_TYPES,
+  BLOCKSCOUT_NETWORK_TYPES,
+  BLOCKSCOUT_TYPES,
+  ETHERSCAN_NETWORK_TYPES,
+  ETHERSCAN_TYPES,
+  POLYGONSCAN_NETWORK_TYPES,
+  POLYGONSCAN_TYPES,
+} from './provider-types'
 
 const { keccak_256: keccak256 } = sha3
 
@@ -9,31 +19,6 @@ const ADDRESS_REGEX = /^0x[0-9a-fA-F]{40}$/
 
 const TRUST_WALLET_BASE_URL =
   'https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum'
-
-const ETHERSCAN_NETWORK_TYPES = new Map([
-  ['main', ''],
-  ['kovan', 'kovan.'],
-  ['rinkeby', 'rinkeby.'],
-  ['ropsten', 'ropsten.'],
-  ['goerli', 'goerli.'],
-])
-const ETHERSCAN_TYPES = new Map([
-  ['block', 'block'],
-  ['transaction', 'tx'],
-  ['address', 'address'],
-  ['token', 'token'],
-])
-
-const BLOCKSCOUT_NETWORK_TYPES = new Map([
-  ['xdai', 'xdai'],
-  ['sokol', 'sokol'],
-])
-const BLOCKSCOUT_TYPES = new Map([
-  ['block', 'block'],
-  ['transaction', 'tx'],
-  ['address', 'address'],
-  ['token', 'token'],
-])
 
 const BLOCK_EXPLORERS = {
   etherscan: ({ type, value, networkType }) => {
@@ -68,6 +53,38 @@ const BLOCK_EXPLORERS = {
     const networkName = BLOCKSCOUT_NETWORK_TYPES.get(networkType)
     const typePart = BLOCKSCOUT_TYPES.get(type)
     return `https://blockscout.com/poa/${networkName}/${typePart}/${value}`
+  },
+  polygonscan: ({ type, value, networkType }) => {
+    if (networkType === 'private') {
+      return ''
+    }
+
+    if (!POLYGONSCAN_NETWORK_TYPES.has(networkType)) {
+      throw new Error('provider not supported.')
+    }
+    if (!POLYGONSCAN_TYPES.has(type)) {
+      throw new Error('type not supported.')
+    }
+
+    const subdomain = POLYGONSCAN_NETWORK_TYPES.get(networkType)
+    const typePart = POLYGONSCAN_TYPES.get(type)
+    return `https://${subdomain}polygonscan.com/${typePart}/${value}`
+  },
+  arbiscan: ({ type, value, networkType }) => {
+    if (networkType === 'private') {
+      return ''
+    }
+
+    if (!ARBISCAN_NETWORK_TYPES.has(networkType)) {
+      throw new Error('provider not supported.')
+    }
+    if (!ARBISCAN_TYPES.has(type)) {
+      throw new Error('type not supported.')
+    }
+
+    const subdomain = ARBISCAN_NETWORK_TYPES.get(networkType)
+    const typePart = ARBISCAN_TYPES.get(type)
+    return `https://${subdomain}arbiscan.com/${typePart}/${value}`
   },
 }
 
