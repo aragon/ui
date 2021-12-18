@@ -20,7 +20,6 @@
   "scripts": {
     "build": "npm run icons:build && rollup -c && rimraf dist/dts",
     "build:analyze": "ANALYZE=1 npm run build",
-    "build:types": "npx tsc",
     "dev": "npm run icons:build && rollup -c -w",
     "devbox": "cd devbox && npm start",
     "flow": "flow",
