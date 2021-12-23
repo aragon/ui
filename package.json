@@ -5,6 +5,7 @@
   "license": "MIT",
   "repository": "github:1hive/1hive-ui",
   "main": "dist/index.js",
+  "types": "dist/types/index.d.js",
   "module": "dist/esm/index.js",
   "sideEffects": false,
   "files": [
@@ -17,7 +18,7 @@
     "copy-aragon-ui-assets": "./bin/copy-aragon-ui-assets"
   },
   "scripts": {
-    "build": "npm run icons:build && rollup -c",
+    "build": "npm run icons:build && rollup -c && rimraf dist/dts",
     "build:analyze": "ANALYZE=1 npm run build",
     "dev": "npm run icons:build && rollup -c -w",
     "devbox": "cd devbox && npm start",
@@ -75,13 +76,18 @@
     "prettier": "^1.19.0",
     "react": "^16.3.1",
     "react-dom": "^16.3.1",
+    "rimraf": "^3.0.2",
     "rollup": "^1.30.1",
     "rollup-plugin-analyzer": "^3.2.2",
+    "rollup-plugin-api-extractor": "^0.2.2",
     "rollup-plugin-babel": "^4.0.3",
     "rollup-plugin-commonjs": "^10.0.0",
     "rollup-plugin-progress": "^1.1.2",
+    "rollup-plugin-typescript2": "^0.31.1",
     "styled-components": ">=4.0.0",
-    "svgo": "^1.2.2"
+    "svgo": "^1.2.2",
+    "tslib": "^2.3.1",
+    "typescript": "^4.5.4"
   },
   "dependencies": {
     "@babel/runtime": "^7.3.1",
@@ -98,9 +104,9 @@
     "react-blockies": "^1.4.0",
     "react-display-name": "^0.2.3",
     "react-onclickout": "^2.0.8",
-    "react-spring": "^7.2.11",
+    "react-spring": "7.2.10",
     "recursive-copy": "^2.0.9",
-    "use-inside": "^0.2.0"
+    "use-inside": "https://github.com/aragon/use-inside#16f321e499d8f89e9b0fb0999e2d21db2b119bbf"
   },
   "engines": {
     "node": ">=12.0.0"

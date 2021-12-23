@@ -7,6 +7,9 @@ import progress from 'rollup-plugin-progress'
 import analyze from 'rollup-plugin-analyzer'
 import glob from 'fast-glob'
 
+import typescript from 'rollup-plugin-typescript2'
+import { apiExtractor } from 'rollup-plugin-api-extractor'
+
 const production = !process.env.ROLLUP_WATCH
 
 // Get all the JS modules inside of a directory, excluding index.js and test
@@ -102,6 +105,19 @@ export default (async () => {
       }),
       resolve(),
       commonjs(),
+      typescript({
+        tsconfig: './tsconfig.json',
+        useTsconfigDeclarationDir: true,
+      }),
+      apiExtractor({
+        configFile: './api-extractor.json',
+        configuration: {
+          projectFolder: '.',
+          compiler: {
+            tsconfigFilePath: '<projectFolder>/tsconfig.json',
+          },
+        },
+      }),
     ],
   }
 })()
