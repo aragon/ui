@@ -1,0 +1,259 @@
+## Components to convert to TS
+
+###### Reminders
+
+esModuleInterop need back to false
+Look for FIXME potencial bugs
+Check for TODOS at rework.index.d.ts file
+
+### Converted to TS manually
+
+- [x] EthIdenticon
+- [x] Accordion
+- [x] AddressField
+- [x] TextCopy
+- [x] Color (not exported)
+
+### Automatic with Anys
+
+- [x] AppBadge
+- [x] AppBar
+
+### Semi-Automatic with some props name any
+
+- [x] AppView
+- [x] AppBadgePopover
+- [x] AutoComplete
+- [x] AutoCompleteSelected
+- [x] BackButton
+- [x] Badge
+- [x] Badge.Info
+- [x] Badge.Notification
+- [x] Badge.Identity
+- [x] Badge.App
+- [x] BadgeNumber
+- [x] BadgeBase
+- [x] BadgePopoverBase
+- [x] Bar
+- [x] BaseStyles
+- [x] Box
+- [x] Button
+- [x] ButtonIcon
+- [x] ButtonText
+- [x] ButtonBase
+- [x] Card
+- [x] EmptyState
+- [x] EmptyStateCard
+- [x] CardLayout
+- [x] CircleGraph
+- [x] ContextMenu
+- [x] ContextMenuItem
+- [x] Countdown
+- [x] DataView
+- [x] DateRangePicker
+- [x] ListView
+- [x] OpenedSurfaceBorder
+- [x] TableView
+- [x] ToggleButton
+- [x] DatePicker
+- [x] Selector
+- [x] Labels
+- [x] MonthDay
+- [x] Details
+- [x] DiscButton
+- [x] Distribuiton
+- [x] Dropdown
+- [x] EscapeOutside
+- [x] Field
+- [x] FloatIndicator
+- [x] FocusVisible
+- [x] Header
+- [x] Heade.Title
+- [x] Help
+- [x] IdentityBadge
+- [x] IdentityBadgePopover
+- [x] Info
+- [x] ImageExists
+- [x] Checkbox
+- [x] PublicUrl
+- [x] PublicUrlProvider
+- [x] Radio (input folder) (aka RadioButton)
+- [x] SearchInput
+- [x] TextInput
+- [x] Theme
+- [x] Text
+- [x] Text.Block (deprecated)
+- [x] Text.Paragraph (deprecated)
+- [x] TEXT_STYLES
+- [x] Layout
+- [x] LineChart
+- [x] Link
+- [x] ExternalLink (deprecated)
+- [x] SafeLink (deprecated)
+- [x] LoadingRing
+- [x] LinkBase
+- [x] Main
+- [x] Markdown
+- [x] Modal
+- [x] NavigationBar
+- [x] Pagination
+- [x] PartitionBar
+- [x] Popover
+- [x] ProgressBar
+- [x] RadioGroup (radio folder)
+- [x] RadioList
+- [x] Redraw (private)
+- [x] Root
+- [x] Root.Provider
+- [x] RootPortal
+- [x] ScrollView
+- [x] SearchInput
+- [x] SidePanel
+- [x] SidePanelSeparator
+- [x] SidePanelSplit
+- [x] Slider
+- [x] Split
+- [x] Switch
+- [x] SyncIndicator
+- [x] TabBar
+- [x] Table
+- [x] TableCell
+- [x] TableHeader
+- [x] TableRow
+- [x] Tab
+- [x] TabBarLegacy
+- [x] Tabs
+- [x] TabsFullWidth
+- [x] Tag
+- [x] Timer
+- [x] Toast
+- [x] ToastHub
+- [x] TokenBadge
+- [x] TokenBadgePopover
+- [x] Viewport
+- [x] ViewportProvider
+- [x] TransactionBadge
+- [x] TransactionProgress
+
+### Looks Private, not exported
+
+- [ ] NormalizedHtml (private)
+- [ ] LeftIcon (private)
+- [ ] PaginationItem (private)
+- [ ] PaginationSeparator (private)
+- [x] RedrawFromDate (private)
+- [ ] RadioListItem (private)
+
+### Icons
+
+- [x] IconAddUser (aka IconIdentity)
+- [x] IconAlert (aka IconNotifications)
+- [x] IconAlignCenter
+- [x] IconAlignJustify
+- [x] IconAlignLeft
+- [x] IconAlignRight
+- [x] IconAragon
+- [x] IconArrowDown
+- [x] IconArrowLeft
+- [x] IconArrowRight
+- [x] IconArrowUp
+- [x] IconAtSign
+- [x] IconBlock
+- [x] IconBookmark
+- [x] IconCalendar
+- [x] IconCanvas
+- [x] IconCaution (aka IconAttention)
+- [x] IconCenter
+- [x] IconChart
+- [x] IconChat
+- [x] IconCheck
+- [x] IconChip
+- [x] IconCircleCheck
+- [x] IconCircleMinus (aka IconRemove)
+- [x] IconCirclePlus (aka IconAdd)
+- [x] IconClock (aka IconTime)
+- [x] IconCloudDownload
+- [x] IconCloudUpload
+- [x] IconCoin (aka IconFundraising)
+- [x] IconConfiguration
+- [x] IconConnect
+- [x] IconConnection
+- [x] IconConsole
+- [x] IconCopy
+- [x] IconCross (aka IconClose)
+- [x] IconDashedSquare
+- [x] IconDown
+- [x] IconDownload
+- [x] IconEllipsis
+- [x] IconEnter
+- [x] IconEthereum
+- [x] IconExternal
+- [x] IconFile (aka IconBlank)
+- [x] IconFilter
+- [x] IconFlag
+- [x] IconFolder
+- [x] IconGraph
+- [x] IconGraph2
+- [x] IconGrid (aka IconApps)
+- [x] IconGroup
+- [x] IconHash
+- [x] IconHeart
+- [x] IconHide
+- [x] IconHome
+- [x] IconImage
+- [x] IconInfo (aka IconBylaw and IconPermissions)
+- [x] IconLabel
+- [x] IconLayers
+- [x] IconLeft
+- [x] IconLink
+- [x] IconLocation
+- [x] IconLock
+- [x] IconMail
+- [x] IconMaximize
+- [x] IconMenu
+- [x] IconMinimize
+- [x] IconMinus
+- [x] IconMove
+- [x] IconNoPicture
+- [x] IconPicture
+- [x] IconPlus
+- [x] IconPower
+- [x] IconPrint
+- [x] IconProhibited
+- [x] IconQuestion
+- [x] IconRefresh
+- [x] IconRemoveUser
+- [x] IconRight
+- [x] IconRotateLeft
+- [x] IconRotateRight
+- [x] IconSearch
+- [x] IconSettings
+- [x] IconShare
+- [x] IconSquare
+- [x] IconSquareMinus
+- [x] IconSquarePlus
+- [x] IconStar
+- [x] IconStarFilled
+- [x] IconSwap
+- [x] IconTarget
+- [x] IconToken
+- [x] IconTrash
+- [x] IconUnlock
+- [x] IconUp
+- [x] IconUpload
+- [x] IconUser
+- [x] IconView
+- [x] IconVote
+- [x] IconWallet
+- [x] IconWarning (aka IconError)
+- [x] IconWorld
+- [x] IconWrite
+- [x] IconZoomIn
+- [x] IconZoomOut
+
+### Helper functions
+
+- [x] font
+- [x] formatHtmlDatetime
+- [x] formatIntegerRange
+- [x] formatTokenAmount
