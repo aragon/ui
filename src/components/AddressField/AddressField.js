@@ -19,7 +19,7 @@ const AddressField = React.forwardRef(function AddressField(
           <div>
             <EthIdenticon
               address={address}
-              onCopy={onCopy}
+              onCopy={onCopy} // FIXME: Should be in YextCopy
               scale={2}
               css={`
                 transform: scale(${(HEIGHT - 2) / IDENTICON_SIZE});
