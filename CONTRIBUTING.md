@@ -5,19 +5,19 @@
 Clone this repository and install the dependencies:
 
 ```sh
-npm install
+yarn
 ```
 
 Build:
 
 ```sh
-npm run build
+yarn run build
 ```
 
 Auto rebuild:
 
 ```sh
-npm run dev
+yarn run dev
 ```
 
 ## Develop
